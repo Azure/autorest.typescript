@@ -49,7 +49,7 @@ async function verifyModularPropertyType(
       prop: ${inputType};
   }
     
-  export function inputOutputModelSerializer(item: InputOutputModel): Record<string, unknown> {
+  export function inputOutputModelSerializer(item: InputOutputModel): any {
     return {
       prop: item["prop"]
     }
@@ -131,9 +131,9 @@ describe("model property type", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
         createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       export function _createStreamingSend(
         context: Client,
@@ -184,6 +184,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: string;
         prop2: string;
@@ -196,7 +197,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): Record<string, unknown> {
+      export function fooSerializer(item: Foo): any {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
@@ -205,7 +206,19 @@ describe("modular encode test for property type datetime", () => {
         };
       }`
     );
-
+    const deserializer = modelFile?.getFunction("fooDeserializer")?.getText();
+    await assertEqualContent(
+      deserializer!,
+      `
+      export function fooDeserializer(item: any): Foo {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+          prop3: new Date(item["prop3"]),
+          prop4: item["prop4"],
+        };
+      }`
+    );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
@@ -215,9 +228,9 @@ describe("modular encode test for property type datetime", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -229,12 +242,7 @@ describe("modular encode test for property type datetime", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"],
-              prop2: body["prop2"],
-              prop3: body["prop3"].toISOString(),
-              prop4: body["prop4"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -243,12 +251,7 @@ describe("modular encode test for property type datetime", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: result.body["prop1"],
-          prop2: result.body["prop2"],
-          prop3: new Date(result.body["prop3"]),
-          prop4: result.body["prop4"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -276,9 +279,9 @@ describe("modular encode test for property type datetime", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -332,6 +335,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Date;
         prop2: string;
@@ -342,12 +346,13 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): Record<string, unknown> {
+      export function fooSerializer(item: Foo): any {
         return {
           prop1: item["prop1"].toISOString(),
           prop2: item["prop2"],
         };
-      }`
+      }`,
+      true
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -359,9 +364,9 @@ describe("modular encode test for property type datetime", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -373,10 +378,7 @@ describe("modular encode test for property type datetime", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"].toISOString(),
-              prop2: body["prop2"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -385,10 +387,7 @@ describe("modular encode test for property type datetime", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: new Date(result.body["prop1"]),
-          prop2: result.body["prop2"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -418,6 +417,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Date;
         prop2: string;
@@ -428,12 +428,13 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): Record<string, unknown> {
+      export function fooSerializer(item: Foo): any {
         return {
           prop1: item["prop1"].toUTCString(),
           prop2: item["prop2"],
         };
-      }`
+      }`,
+      true
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -445,9 +446,9 @@ describe("modular encode test for property type datetime", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -459,10 +460,7 @@ describe("modular encode test for property type datetime", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"].toUTCString(),
-              prop2: body["prop2"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -471,10 +469,7 @@ describe("modular encode test for property type datetime", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: new Date(result.body["prop1"]),
-          prop2: result.body["prop2"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -502,6 +497,7 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Date;
       }`
@@ -511,11 +507,12 @@ describe("modular encode test for property type datetime", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): Record<string, unknown> {
+      export function fooSerializer(item: Foo): any {
         return {
           prop1: item["prop1"].getTime(),
         };
-      }`
+      }`,
+      true
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -527,9 +524,9 @@ describe("modular encode test for property type datetime", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -541,9 +538,7 @@ describe("modular encode test for property type datetime", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"].getTime()
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -552,9 +547,7 @@ describe("modular encode test for property type datetime", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: new Date(result.body["prop1"]),
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -583,6 +576,7 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: string;
       }`
@@ -596,9 +590,9 @@ describe("modular encode test for property type duration", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -610,9 +604,7 @@ describe("modular encode test for property type duration", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -621,9 +613,7 @@ describe("modular encode test for property type duration", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: result.body["prop1"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -651,6 +641,7 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: string;
       }`
@@ -663,10 +654,10 @@ describe("modular encode test for property type duration", () => {
       `
       import { TestingContext as Client } from "./index.js";
       import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
+        StreamableMethod, 
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -678,9 +669,7 @@ describe("modular encode test for property type duration", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -689,9 +678,7 @@ describe("modular encode test for property type duration", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: result.body["prop1"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -721,6 +708,7 @@ describe("modular encode test for property type duration", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: number;
         prop2: number;
@@ -735,9 +723,9 @@ describe("modular encode test for property type duration", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -749,10 +737,7 @@ describe("modular encode test for property type duration", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: body["prop1"], 
-              prop2: body["prop2"],
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -761,10 +746,7 @@ describe("modular encode test for property type duration", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1: result.body["prop1"],
-          prop2: result.body["prop2"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -793,20 +775,38 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Uint8Array;
-      }`
+      }`,
+      true
     );
 
     const serializer = modelFile?.getFunction("fooSerializer")?.getText();
     await assertEqualContent(
       serializer!,
       `
-      export function fooSerializer(item: Foo): Record<string, unknown> {
+      export function fooSerializer(item: Foo): any {
         return {
           prop1: uint8ArrayToString(item["prop1"], "base64"),
         }
-      };`
+      }`,
+      true
+    );
+
+    const deserializer = modelFile?.getFunction("fooDeserializer")?.getText();
+    await assertEqualContent(
+      deserializer!,
+      `
+      export function fooDeserializer(item: any): Foo {
+        return {
+          prop1:
+            typeof item["prop1"] === "string"
+              ? stringToUint8Array(item["prop1"], "base64")
+              : item["prop1"],
+        };
+      }`,
+      true
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -818,11 +818,10 @@ describe("modular encode test for property type bytes", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -833,9 +832,7 @@ describe("modular encode test for property type bytes", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: uint8ArrayToString(body["prop1"], "base64"),
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -844,12 +841,7 @@ describe("modular encode test for property type bytes", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1:
-            typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64")
-              : result.body["prop1"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -877,9 +869,37 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Uint8Array;
       }`
+    );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): any {
+        return {
+          prop1: uint8ArrayToString(item["prop1"], "base64"),
+        }
+      }`,
+      true
+    );
+
+    const deserializer = modelFile?.getFunction("fooDeserializer")?.getText();
+    await assertEqualContent(
+      deserializer!,
+      `
+      export function fooDeserializer(item: any): Foo {
+        return {
+          prop1:
+            typeof item["prop1"] === "string"
+              ? stringToUint8Array(item["prop1"], "base64")
+              : item["prop1"],
+        };
+      }`,
+      true
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -890,11 +910,10 @@ describe("modular encode test for property type bytes", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
       export function _readSend(
         context: Client,
@@ -905,9 +924,7 @@ describe("modular encode test for property type bytes", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: uint8ArrayToString(body["prop1"], "base64"),
-            },
+            body: fooSerializer(body)
           });
       }
       
@@ -916,12 +933,7 @@ describe("modular encode test for property type bytes", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1:
-            typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64")
-              : result.body["prop1"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -949,9 +961,37 @@ describe("modular encode test for property type bytes", () => {
     await assertEqualContent(
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         prop1: Uint8Array;
       }`
+    );
+
+    const serializer = modelFile?.getFunction("fooSerializer")?.getText();
+    await assertEqualContent(
+      serializer!,
+      `
+      export function fooSerializer(item: Foo): any {
+        return {
+          prop1: uint8ArrayToString(item["prop1"], "base64url"),
+        }
+      }`,
+      true
+    );
+
+    const deserializer = modelFile?.getFunction("fooDeserializer")?.getText();
+    await assertEqualContent(
+      deserializer!,
+      `
+      export function fooDeserializer(item: any): Foo {
+        return {
+          prop1:
+            typeof item["prop1"] === "string"
+              ? stringToUint8Array(item["prop1"], "base64url")
+              : item["prop1"],
+        };
+      }`,
+      true
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -962,12 +1002,11 @@ describe("modular encode test for property type bytes", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-      
+
       export function _readSend(
         context: Client,
         body: Foo,
@@ -977,9 +1016,7 @@ describe("modular encode test for property type bytes", () => {
           .path("/")
           .post({
             ...operationOptionsToRequestParameters(options),
-            body: {
-              prop1: uint8ArrayToString(body["prop1"], "base64url"),
-            },
+            body: fooSerializer(body),
           });
       }
       
@@ -988,12 +1025,7 @@ describe("modular encode test for property type bytes", () => {
         if (!expectedStatuses.includes(result.status)) {
           throw createRestError(result);
         }
-        return {
-          prop1:
-            typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64url")
-              : result.body["prop1"],
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(
@@ -1030,20 +1062,81 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        name: string;
-        weight?: number;
-      }
-
+      /** model interface Cat */
       export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
+      export function catSerializer(item: Cat): any {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+      
+      export function catDeserializer(item: any): Cat {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+
+      /** model interface Pet */
+      export interface Pet {
+        name: string;
+        weight?: number;
+      }
+        
+      export function petSerializer(item: Pet): any {
+        return { name: item["name"], weight: item["weight"] };
+      }
+      
+      export function petDeserializer(item: any): Pet {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+        };
+      }
+
+      /** model interface Dog */
       export interface Dog extends Pet {
         kind: "dog";
         bark: string;
-      }`
+      }
+
+      export function dogSerializer(item: Dog): any {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          bark: item["bark"],
+        };
+      }
+      
+      export function dogDeserializer(item: any): Dog {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          bark: item["bark"],
+        };
+      }
+      
+      export type ReadResponse = Cat | Dog;
+      
+      export function readResponseSerializer(item: ReadResponse): any {
+        return item;
+      }
+      
+      export function readResponseDeserializer(item: any): ReadResponse {
+        return item;
+      }
+      `
     );
   });
 
@@ -1068,14 +1161,45 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        name: string;
-        weight?: number;
-      }
-
+      /** model interface Cat */
       export interface Cat extends Pet {
         kind: "cat";
         meow: number;
+      }
+
+      export function catSerializer(item: Cat): any {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+      
+      export function catDeserializer(item: any): Cat {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+      
+      /** model interface Pet */
+       export interface Pet {
+         name: string;
+         weight?: number;
+       }
+        
+      export function petSerializer(item: Pet): any {
+        return { name: item["name"], weight: item["weight"] };
+      }
+      
+      export function petDeserializer(item: any): Pet {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+        };
       }`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -1087,9 +1211,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1107,12 +1231,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
         
-        return {
-          name: result.body["name"],
-          weight: result.body["weight"],
-          kind: result.body["kind"],
-          meow: result.body["meow"],
-        };
+        return catDeserializer(result.body);
       }
       
       export async function read(
@@ -1145,17 +1264,59 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Animal {
-        name: string;
+      /** model interface Cat */
+      export interface Cat extends Pet {
+        kind: "cat";
+        meow: number;
       }
-
+        
+      export function catSerializer(item: Cat): any {
+        return {
+          weight: item["weight"],
+          name: item["name"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+      
+      export function catDeserializer(item: any): Cat {
+        return {
+          weight: item["weight"],
+          name: item["name"],
+          kind: item["kind"],
+          meow: item["meow"],
+        };
+      }
+      
+      /** model interface Pet */
       export interface Pet extends Animal {
         weight?: number;
       }
 
-      export interface Cat extends Pet {
-        kind: "cat";
-        meow: number;
+      export function petSerializer(item: Pet): any {
+        return { name: item["name"], weight: item["weight"] };
+      } 
+           
+      export function petDeserializer(item: any): Pet {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+        };
+      }
+      
+      /** model interface Animal */
+      export interface Animal {
+        name: string;
+      }
+        
+      export function animalSerializer(item: Animal): any {
+        return { name: item["name"] };
+      }   
+
+      export function animalDeserializer(item: any): Animal {
+        return {
+          name: item["name"],
+        };
       }
       `
     );
@@ -1168,9 +1329,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
 
       export function _readSend(
@@ -1188,12 +1349,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        return {
-          weight: result.body["weight"],
-          name: result.body["name"],
-          kind: result.body["kind"],
-          meow: result.body["meow"],
-        };
+        return catDeserializer(result.body);
       }
 
       export async function read(
@@ -1230,25 +1386,101 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        /** the discriminator possible values: cat, dog */
-        kind: string;
-        name: string;
-        weight?: number;
-      }
-
+      /** model interface Cat */
       export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
+        
+      export function catSerializer(item: Cat): any {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          meow: item["meow"],
+        };
+      }
+           
+      export function catDeserializer(item: any): Cat {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          meow: item["meow"],
+        };
+      }
+      
+      /** model interface Pet */
+      export interface Pet {
+        kind: string;
+        name: string;
+        weight?: number;
+      }
+      
+      export function petSerializer(item: Pet): any {
+        return { kind: item["kind"], name: item["name"], weight: item["weight"] };
+      }
+      
+      export function petDeserializer(item: any): Pet {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+        };
+      }
+      
+      export type PetUnion = Cat | Dog | Pet;
 
+      export function petUnionSerializer(item: Pet): any {
+        switch (item.kind) {
+          case "cat":
+            return catSerializer(item as Cat);
+      
+          case "dog":
+            return dogSerializer(item as Dog);
+      
+          default:
+            return petSerializer(item);
+        }
+      }
+            
+      export function petUnionDeserializer(item: any): Pet {
+        switch (item.kind) {
+          case "cat":
+            return catDeserializer(item as Cat);
+      
+          case "dog":
+            return dogDeserializer(item as Dog);
+      
+          default:
+            return petDeserializer(item);
+        }
+      }
+      
+      /** model interface Dog */
       export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
       
-      /** Alias for PetUnion */
-      export type PetUnion = Cat | Dog | Pet;`
+      export function dogSerializer(item: Dog): any {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          bark: item["bark"],
+        };
+      }
+      
+      export function dogDeserializer(item: any): Dog {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          bark: item["bark"],
+        };
+      }
+      `
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1258,10 +1490,10 @@ describe("inheritance & polymorphism", () => {
       `
       import { TestingContext as Client } from "./index.js";
       import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
+        StreamableMethod, 
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1279,12 +1511,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        return {
-          kind: result.body["kind"],
-          name: result.body["name"],
-          weight: result.body["weight"],
-          meow: result.body["meow"],
-        };
+        return catDeserializer(result.body);
       }
       
       export async function read(
@@ -1321,25 +1548,101 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
+      /** model interface Pet */
       export interface Pet {
-        /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
+      export function petSerializer(item: Pet): any {
+        return { kind: item["kind"], name: item["name"], weight: item["weight"] };
+      }
+      
+      export function petDeserializer(item: any): Pet {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+        };
+      }
+
+      export type PetUnion = Cat | Dog | Pet;
+      
+      export function petUnionSerializer(item: Pet): any {
+        switch (item.kind) {
+          case "cat":
+            return catSerializer(item as Cat);
+      
+          case "dog":
+            return dogSerializer(item as Dog);
+      
+          default:
+            return petSerializer(item);
+        }
+      }
+      
+      export function petUnionDeserializer(item: any): Pet {
+        switch (item.kind) {
+          case "cat":
+            return catDeserializer(item as Cat);
+      
+          case "dog":
+            return dogDeserializer(item as Dog);
+      
+          default:
+            return petDeserializer(item);
+        }
+      }
+      
+      /** model interface Cat */      
       export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
+      export function catSerializer(item: Cat): any {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          meow: item["meow"],
+        };
+      }
+      
+      export function catDeserializer(item: any): Cat {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          meow: item["meow"],
+        };
+      }
+      
+      /** model interface Dog */
       export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
+        
+      export function dogSerializer(item: Dog): any {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          bark: item["bark"],
+        };
+      }
       
-      /** Alias for PetUnion */
-      export type PetUnion = Cat | Dog | Pet;`
+      export function dogDeserializer(item: any): Dog {
+        return {
+          kind: item["kind"],
+          name: item["name"],
+          weight: item["weight"],
+          bark: item["bark"],
+        };
+      }
+      `
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1350,9 +1653,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1370,7 +1673,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
 
-        return result.body;
+        return petUnionDeserializer(result.body);
       }
       
       export async function read(
@@ -1452,9 +1755,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1523,9 +1826,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
         createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1612,9 +1915,9 @@ describe("inheritance & polymorphism", () => {
       import { TestingContext as Client } from "./index.js";
       import {
         StreamableMethod,
-        operationOptionsToRequestParameters,
         PathUncheckedResponse,
-        createRestError
+        createRestError,
+        operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
 
       export function _readSend(
@@ -1695,6 +1998,18 @@ describe("inheritance & polymorphism", () => {
           | "application/json; serialization=json"
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
+        
+        export function schemaContentTypeValuesSerializer(
+          item: SchemaContentTypeValues,
+        ): any {
+          return item;
+        }
+        
+        export function schemaContentTypeValuesDeserializer(
+          item: any,
+        ): SchemaContentTypeValues {
+          return item;
+        }
         `
       );
       const paramOutput = await emitModularOperationsFromTypeSpec(
@@ -1714,9 +2029,9 @@ describe("inheritance & polymorphism", () => {
         import { DemoServiceContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
           createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _getSend(
@@ -1799,6 +2114,18 @@ describe("inheritance & polymorphism", () => {
           | "application/json; serialization=json"
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
+        
+        export function schemaContentTypeValuesSerializer(
+          item: SchemaContentTypeValues,
+        ): any {
+          return item;
+        }
+        
+        export function schemaContentTypeValuesDeserializer(
+          item: any,
+        ): SchemaContentTypeValues {
+          return item;
+        }
         `
       );
     });
@@ -1828,7 +2155,41 @@ describe("inheritance & polymorphism", () => {
           withRawContent: true
         }
       );
-      assert.isUndefined(schemaOutput);
+      assert.ok(schemaOutput);
+      await assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+        /** Type of GetRequestTestHeader */
+        export type GetRequestTestHeader = "A" | "B";
+        
+        export function getRequestTestHeaderSerializer(
+          item: GetRequestTestHeader,
+        ): any {
+          return item;
+        }
+        
+        export function getRequestTestHeaderDeserializer(
+          item: any,
+        ): GetRequestTestHeader {
+          return item;
+        }
+        
+        /** Type of GetResponseTestHeader */
+        export type GetResponseTestHeader = "A" | "B";
+        
+        export function getResponseTestHeaderSerializer(
+          item: GetResponseTestHeader,
+        ): any {
+          return item;
+        }
+        
+        export function getResponseTestHeaderDeserializer(
+          item: any,
+        ): GetResponseTestHeader {
+          return item;
+        }
+        `
+      );
 
       const paramOutput = await emitModularOperationsFromTypeSpec(
         tspDefinition,
@@ -1848,9 +2209,9 @@ describe("inheritance & polymorphism", () => {
         import { DemoServiceContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
           createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _getSend(
           context: Client,
@@ -1917,12 +2278,13 @@ describe("`is`", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function aSerializer(item: A): Record<string, unknown> {
+      export function aSerializer(item: A): any {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
         };
-      }`
+      }`,
+      true
     );
   });
 });
@@ -1949,19 +2311,21 @@ describe("`extends`", () => {
         prop1: string;
         prop2: string;
       }
-      `
+      `,
+      true
     );
 
     const serializerB = modelFile?.getFunction("bSerializer")?.getText();
     await assertEqualContent(
       serializerB!,
       `
-      export function bSerializer(item: B): Record<string, unknown> {
+      export function bSerializer(item: B): any {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
         };
-      }`
+      }`,
+      true
     );
 
     await assertEqualContent(
@@ -1974,12 +2338,13 @@ describe("`extends`", () => {
     await assertEqualContent(
       serializerA!,
       `
-      export function aSerializer(item: A): Record<string, unknown> {
+      export function aSerializer(item: A): any {
         return {
           prop1: item["prop1"],
           prop2: item["prop2"],
         };
-      }`
+      }`,
+      true
     );
   });
 });
@@ -2005,7 +2370,8 @@ describe("visibility", () => {
       export function aSerializer(item: A): any {
         return item as any;
       }
-      `
+      `,
+      true
     );
   });
 
@@ -2024,18 +2390,20 @@ describe("visibility", () => {
       /** model interface A */
       export interface A {
         exactVersion?: string;
-      }`
+      }`,
+      true
     );
 
     const serializer = modelFile?.getFunction("aSerializer")?.getText();
     await assertEqualContent(
       serializer!,
       `
-      export function aSerializer(item: A): Record<string, unknown> {
+      export function aSerializer(item: A): any {
         return {
           exactVersion: item["exactVersion"],
         };
-      }`
+      }`,
+      true
     );
   });
 });
@@ -2065,7 +2433,8 @@ describe("spread record", () => {
         carrots: number;
         beans: number;
       }
-      `
+      `,
+      true
     );
 
     const serializer = modelFile
@@ -2074,13 +2443,14 @@ describe("spread record", () => {
     await assertEqualContent(
       serializer!,
       `
-      export function vegetablesSerializer(item: Vegetables): Record<string, unknown> {
+      export function vegetablesSerializer(item: Vegetables): any {
         return {
           ...item,
           carrots: item["carrots"],
           beans: item["beans"],
         };
-      }`
+      }`,
+      true
     );
   });
 
@@ -2120,9 +2490,9 @@ describe("spread record", () => {
       }
       op post(@body body: A): { @body body: A };
     `,
-    {
-      compatibilityMode: true
-    }
+      {
+        compatibilityMode: true
+      }
     );
     assert.ok(modelFile);
     assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
@@ -2132,20 +2502,22 @@ describe("spread record", () => {
       export interface A extends Base, Record<string, number> {
         prop: number;
       }
-      `
+      `,
+      true
     );
 
     const serializerA = modelFile?.getFunction("aSerializer")?.getText();
     await assertEqualContent(
       serializerA!,
       `
-      export function aSerializer(item: A): Record<string, unknown> {
+      export function aSerializer(item: A): any {
         return {
           ...item,
           foo: item["foo"],
           prop: item["prop"],
         };
-      }`
+      }`,
+      true
     );
 
     await assertEqualContent(
@@ -2161,12 +2533,13 @@ describe("spread record", () => {
     await assertEqualContent(
       serializerBase!,
       `
-      export function baseSerializer(item: Base): Record<string, unknown> {
+      export function baseSerializer(item: Base): any {
         return {
           foo: item["foo"],
         };
       }
-      `
+      `,
+      true
     );
   });
 });

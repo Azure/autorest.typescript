@@ -161,10 +161,24 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType?.tcgcType) {
-    const deserializeFunctionName =
-      buildModelDeserializer(context, deserializedType.tcgcType, false, true) ??
-      "";
-    statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+    const deserializeFunctionName = buildModelDeserializer(
+      context,
+      deserializedType.tcgcType,
+      false,
+      true
+    );
+    if (deserializeFunctionName) {
+      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+    } else {
+      statements.push(
+        `return ${deserializeResponseValue(
+          context,
+          deserializedType,
+          deserializedRoot,
+          deserializedType.format
+        )}`
+      );
+    }
   } else if (returnType.type === "void") {
     statements.push("return;");
   } else if (deserializedType) {
@@ -172,7 +186,7 @@ export function getDeserializePrivateFunction(
       `return ${deserializeResponseValue(
         context,
         deserializedType,
-        "result.body",
+        deserializedRoot,
         deserializedType.format
       )}`
     );
@@ -910,12 +924,12 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
-    const deserializeFunctionName =
-      buildModelDeserializer(context, property.type.tcgcType!, false, true) ??
-      "";
-    if (deserializeFunctionName === "receiveDetailsArrayDeserializer") {
-      type;
-    }
+    const deserializeFunctionName = buildModelDeserializer(
+      context,
+      property.type.tcgcType!,
+      false,
+      true
+    );
     if (deserializeFunctionName) {
       props.push(
         `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
@@ -1068,22 +1082,25 @@ export function deserializeResponseValue(
       return `${nullOrUndefinedPrefix} new Date(${restValue})`;
     case "list": {
       const prefix = nullOrUndefinedPrefix + restValue;
-      if (type.elementType?.type === "model") {
-        if (!type.elementType.aliasType) {
-          const elementNullOrUndefinedPrefix =
-            isTypeNullable(type.elementType) || type.elementType.optional
-              ? "!p ? p :"
-              : "";
-          const deserializeFunctionName =
-            buildModelDeserializer(
-              context,
-              type.elementType.tcgcType!,
-              false,
-              true
-            ) ?? "";
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
-        }
-        return `${prefix}`;
+      let elementNullOrUndefinedPrefix = "";
+      if (
+        type.elementType &&
+        (isTypeNullable(type.elementType) || type.elementType.optional)
+      ) {
+        elementNullOrUndefinedPrefix = "!p ? p :";
+      }
+      const deserializeFunctionName = type.elementType
+        ? buildModelDeserializer(
+            context,
+            type.elementType.tcgcType!,
+            false,
+            true
+          )
+        : undefined;
+      if (deserializeFunctionName) {
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
+      } else if (type.elementType) {
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.elementType, "p", type.elementType?.format)}})`;
       } else {
         return restValue;
       }

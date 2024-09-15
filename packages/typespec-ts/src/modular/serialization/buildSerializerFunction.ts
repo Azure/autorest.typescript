@@ -10,7 +10,6 @@ import {
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { SdkContext } from "../../utils/interfaces.js";
-import { UsageFlags } from "@typespec/compiler";
 import { getRequestModelMapping } from "../helpers/operationHelpers.js";
 import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
@@ -37,12 +36,6 @@ export function buildModelSerializer(
     return undefined;
   }
   if (type.kind === "model") {
-    if (
-      type.usage !== undefined &&
-      (type.usage & UsageFlags.Input) !== UsageFlags.Input
-    ) {
-      return undefined;
-    }
     if (!type.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }

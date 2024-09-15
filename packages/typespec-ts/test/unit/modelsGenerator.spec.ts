@@ -57,8 +57,10 @@ describe("Input/output model type", () => {
     @route("/models")
     @get
     op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;`,
-      needAzureCore,
-      needTCGC
+      {
+        needAzureCore,
+        needTCGC
+      }
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -462,10 +464,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-      {
-        needTCGC: true,
-        mustEmptyDiagnostic: false
-      }
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -514,10 +516,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-         {
-          needTCGC: true,
-          mustEmptyDiagnostic: false
-         }// throw exception for diagnostics
+          {
+            needTCGC: true,
+            mustEmptyDiagnostic: false
+          }// throw exception for diagnostics
         );
       } catch (err: any) {
         assert.strictEqual(err.length, 2);
@@ -542,10 +544,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-      {
-        needTCGC: true,
-        mustEmptyDiagnostic: false
-      }
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -2958,13 +2960,13 @@ describe("Input/output model type", () => {
         op1(a: A): void
       }
       `,
-      {
-        needAzureCore: false,
-        needTCGC: true,
-        withRawContent: true,
-        mustEmptyDiagnostic: true,
-        enableModelNamespace: true
-      }
+        {
+          needAzureCore: false,
+          needTCGC: true,
+          withRawContent: true,
+          mustEmptyDiagnostic: true,
+          enableModelNamespace: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile } = schemaOutput!;

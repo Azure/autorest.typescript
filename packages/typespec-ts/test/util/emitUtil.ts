@@ -22,7 +22,6 @@ import {
   transformUrlInfo
 } from "../../src/transform/transform.js";
 
-import { Project } from "ts-morph";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
@@ -548,7 +547,8 @@ export async function emitModularClientContextFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -569,11 +569,13 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildClientContext(
+      const res = buildClientContext(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel
       );
+      binder.resolveAllReferences();
+      return res;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -605,7 +607,8 @@ export async function emitModularClientFromTypeSpec(
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -626,11 +629,13 @@ export async function emitModularClientFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildClassicalClient(
+      const res = buildClassicalClient(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel
       );
+      binder.resolveAllReferences();
+      return res;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);

@@ -43,6 +43,10 @@ export interface Example {
   id: string;
 }
 
+export function exampleSerializer(item: Example): any {
+  return { id: item["id"] };
+}
+
 export function exampleDeserializer(item: any): Example {
   return {
     id: item["id"],

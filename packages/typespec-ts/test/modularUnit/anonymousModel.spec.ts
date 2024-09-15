@@ -38,7 +38,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -56,9 +56,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
 
         export function _readSend(
@@ -149,7 +149,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -182,9 +182,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -275,7 +275,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -309,9 +309,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
 
         export function _readSend(
@@ -410,7 +410,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -421,7 +421,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("fooSerializer")?.getText()!,
           `
-          export function fooSerializer(item: Foo): Record<string, unknown> {
+          export function fooSerializer(item: Foo): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -442,9 +442,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -510,9 +510,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -574,7 +574,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
@@ -661,7 +661,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): Record<string, unknown> {
+          export function testSerializer(item: Test): any {
             return {
               color: item["color"],
             }
@@ -678,9 +678,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -737,7 +737,7 @@ describe("anonymous model", () => {
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): Record<string, unknown> {
+          export function testSerializer(item: Test): any {
             return {
               color: {foo: item.color["foo"]},
             }
@@ -754,9 +754,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -891,9 +891,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -968,9 +968,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -1060,9 +1060,9 @@ describe("anonymous model", () => {
           import { TestingContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
-            createRestError
+            createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           
           export function _readSend(

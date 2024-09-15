@@ -70,9 +70,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           
           export function _getSend(
@@ -491,9 +491,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
@@ -576,9 +576,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
@@ -845,11 +845,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             color: item["color"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -895,6 +896,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: "red" | null;
         }`
@@ -904,11 +906,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -933,11 +936,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
   });
@@ -964,11 +968,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             color: item["color"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -1018,6 +1023,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Color | null;
         }
@@ -1128,15 +1134,30 @@ describe("model type", () => {
         `
         /** Known values of {@link ImageSize} that the service accepts. */
         export enum KnownImageSize {
-          /** size256x256 */
+         /**
+          * Very small image size of 256x256 pixels.
+          * Only supported with dall-e-2 models.
+          */
           size256x256 = "256x256",
-          /** size512x512 */
+         /**
+          * A smaller image size of 512x512 pixels.
+          * Only supported with dall-e-2 models.
+          */
           size512x512 = "512x512",
-          /** size1024x1024 */
+         /**
+          * A standard, square image size of 1024x1024 pixels.
+          * Supported by both dall-e-2 and dall-e-3 models.
+          */
           size1024x1024 = "1024x1024",
-          /** size1792x1024 */
+         /**
+          * A wider image size of 1024x1792 pixels.
+          * Only supported with dall-e-3 models.
+          */
           size1792x1024 = "1792x1024",
-          /** size1024x1792 */
+         /**
+          * A taller image size of 1792x1024 pixels.
+          * Only supported with dall-e-3 models.
+          */
           size1024x1792 = "1024x1792",
         }
         `
@@ -1246,11 +1267,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -1275,11 +1297,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
   });

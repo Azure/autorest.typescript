@@ -122,7 +122,9 @@ describe("Integration test for mocking sample", () => {
           }
           op getModel(@body input: Test): void;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           const mockStr = generateParameterTypeValue(
             "Test",
@@ -153,7 +155,9 @@ describe("Integration test for mocking sample", () => {
           }
           op getModel(@body input: Test): void;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           const mockStr = generateParameterTypeValue(
             "Test",
@@ -247,7 +251,9 @@ describe("Integration test for mocking sample", () => {
         }
         op getModel(@body input: Test): void;
         `,
-          true
+          {
+            needAzureCore: true
+          }
         );
         const mockStr = generateParameterTypeValue(
           "Test",
@@ -286,7 +292,9 @@ describe("Integration test for mocking sample", () => {
         }
         op getModel(@body input: Test): void;
         `,
-          true
+          {
+            needAzureCore: true
+          }
         );
         const mockStr = generateParameterTypeValue(
           "Test",
@@ -324,7 +332,9 @@ describe("Integration test for mocking sample", () => {
           }
           op getModel(@body input: Test): void;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           const mockStr = generateParameterTypeValue(
             "Test",
@@ -370,7 +380,9 @@ describe("Integration test for mocking sample", () => {
           }
           op getModel(@body input: Test): void;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           const mockStr = generateParameterTypeValue(
             "Test",
@@ -404,7 +416,9 @@ describe("Integration test for mocking sample", () => {
         }
         op getModel(@body input: Test): void;
         `,
-          true
+          {
+            needAzureCore: true
+          }
         );
         const mockStr = generateParameterTypeValue(
           "Test",

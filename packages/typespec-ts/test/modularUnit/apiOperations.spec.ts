@@ -1,13 +1,14 @@
 import {
   emitModularClientContextFromTypeSpec,
   emitModularClientFromTypeSpec,
+  emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 
 import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("api operations in Modular", () => {
+describe.only("api operations in Modular", () => {
   describe("in parameters", () => {
     it("should handle contentTypes has binary data", async () => {
       const tspContent = `
@@ -26,9 +27,9 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -84,9 +85,9 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -133,6 +134,46 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
+      const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile?.getInterface("UploadFileRequest")?.getFullText()!,
+        `
+         /** model interface UploadFileRequest */
+         export interface UploadFileRequest {
+           name: string;
+           file: Uint8Array;
+         }
+        `
+      );
+  
+      const serializer = modelFile?.getFunction("uploadFileRequestSerializer")?.getText();
+      await assertEqualContent(
+        serializer!,
+        `
+         export function uploadFileRequestSerializer(item: UploadFileRequest): any {
+           return {
+             name: item["name"],
+             file: uint8ArrayToString(item["file"], "base64"),
+           };
+         }
+        `
+      );
+      const deserializer = modelFile?.getFunction("uploadFileRequestDeserializer")?.getText();
+      await assertEqualContent(
+        deserializer!,
+        `
+        export function uploadFileRequestDeserializer(item: any): UploadFileRequest {
+          return {
+            name: item["name"],
+            file:
+              typeof item["file"] === "string"
+                ? stringToUint8Array(item["file"], "base64")
+                : item["file"],
+          };
+        }
+        `
+      );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
@@ -142,14 +183,14 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { uint8ArrayToString } from "@azure/core-util";
+
          export function _uploadFileSend(
            context: Client,
-           body: { name: string; file: Uint8Array },
+           body: UploadFileRequest,
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod {
            return context
@@ -157,10 +198,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: {
-                 name: body["name"],
-                 file: uint8ArrayToString(body["file"], "base64"),
-               },
+               body: uploadFileRequestSerializer(body),
              });
          }
          export async function _uploadFileDeserialize(
@@ -174,7 +212,7 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFile(
            context: Client,
-           body: { name: string; file: Uint8Array },
+           body: UploadFileRequest,
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFileSend(context, body, options);
@@ -196,6 +234,30 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
+      const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+      assert.ok(modelFile);
+      await assertEqualContent(modelFile?.getFullText()!,
+      `
+       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+       
+       /** model interface UploadFilesRequest */
+       export interface UploadFilesRequest {
+         files: Uint8Array[];
+       }
+       
+       export function uploadFilesRequestSerializer(item: UploadFilesRequest): any {
+         return { files: item["files"].map((p) => uint8ArrayToString(p, "base64")) };
+       }
+       
+       export function uploadFilesRequestDeserializer(item: any): UploadFilesRequest {
+         return {
+           files: item["files"].map((p: any) => {
+             return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
+           }),
+         };
+       }
+      `
+      );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
@@ -205,14 +267,14 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { uint8ArrayToString } from "@azure/core-util";
+
          export function _uploadFilesSend(
            context: Client,
-           body: { files: Uint8Array[] },
+           body: UploadFilesRequest,
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): StreamableMethod {
            return context
@@ -220,9 +282,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body:  {
-                 files: body["files"].map((p) => uint8ArrayToString(p, "base64")),
-               },
+               body: uploadFilesRequestSerializer(body),
              });
          }
          export async function _uploadFilesDeserialize(
@@ -236,7 +296,7 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFiles(
            context: Client,
-           body: { files: Uint8Array[] },
+           body: UploadFilesRequest,
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFilesSend(context, body, options);
@@ -266,10 +326,11 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
+         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptionalParams = { requestOptions: {} }
@@ -285,7 +346,9 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
              throw createRestError(result);
            }
-           return result.body as any;
+           return typeof result.body === "string"
+             ? stringToUint8Array(result.body, "base64")
+             : result.body;
          }
          export async function downloadFile(
            context: Client,
@@ -319,9 +382,9 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -338,7 +401,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
              throw createRestError(result);
            }
-           return result.body as any;
+           return result.body;
          }
          export async function downloadFile(
            context: Client,
@@ -363,6 +426,41 @@ describe("api operations in Modular", () => {
         };
       };
       `;
+      const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile?.getFullText()!,
+        `
+         import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+         
+         /** model interface DownloadFileResponse */
+         export interface DownloadFileResponse {
+           name: string;
+           file: Uint8Array;
+         }
+         
+         export function downloadFileResponseSerializer(
+           item: DownloadFileResponse,
+         ): any {
+           return {
+             name: item["name"],
+             file: uint8ArrayToString(item["file"], "base64"),
+           };
+         }
+         
+         export function downloadFileResponseDeserializer(
+           item: any,
+         ): DownloadFileResponse {
+           return {
+             name: item["name"],
+             file:
+               typeof item["file"] === "string"
+                 ? stringToUint8Array(item["file"], "base64")
+                 : item["file"],
+           };
+         }
+        `
+      );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
@@ -372,11 +470,10 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptionalParams = { requestOptions: {} }
@@ -392,13 +489,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
              throw createRestError(result);
            }
-            return {
-              name: result.body["name"],
-              file:
-                typeof result.body["file"] === "string"
-                  ? stringToUint8Array(result.body["file"], "base64")
-                  : result.body["file"],
-            };
+           return downloadFileResponseDeserializer(result.body);
          }
          export async function downloadFile(
            context: Client,
@@ -425,6 +516,40 @@ describe("api operations in Modular", () => {
         };
       };
       `;
+      const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile?.getFullText()!,
+        `
+         import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+         
+         /** model interface DownloadFileResponse */
+         export interface DownloadFileResponse {
+           name: string;
+           file: Uint8Array[];
+         }
+         
+         export function downloadFileResponseSerializer(
+           item: DownloadFileResponse,
+         ): any {
+           return {
+             name: item["name"],
+             file: item["file"].map((p) => uint8ArrayToString(p, "base64")),
+           };
+         }
+         
+         export function downloadFileResponseDeserializer(
+           item: any,
+         ): DownloadFileResponse {
+           return {
+             name: item["name"],
+             file: item["file"].map((p: any) => {
+               return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
+             }),
+           };
+         }
+        `
+      );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
@@ -434,11 +559,10 @@ describe("api operations in Modular", () => {
         `import { TestingContext as Client } from "./index.js";
          import {
            StreamableMethod,
-           operationOptionsToRequestParameters,
            PathUncheckedResponse,
-           createRestError
+           createRestError,
+           operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptionalParams = { requestOptions: {} }
@@ -454,12 +578,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
            }
-            return {
-              name: result.body["name"],
-              file: result.body["file"].map((p: any) =>
-                typeof p === "string" ? stringToUint8Array(p, "base64") : p,
-              ),
-            };
+            return downloadFileResponseDeserializer(result.body);
          }
          export async function downloadFile(
            context: Client,
@@ -492,9 +611,9 @@ describe("api operations in Modular", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
           createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _testSend(
@@ -532,8 +651,8 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
         import { logger } from "../logger.js";
+        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
         
@@ -541,7 +660,7 @@ describe("api operations in Modular", () => {
         export interface TestingClientOptionalParams  extends ClientOptions  {}
         
         export function createTesting(
-          endpoint: string,
+          endpointParam: string,
           apiVersion: string,
           options: TestingClientOptionalParams  = {},
         ): TestingContext {
@@ -555,7 +674,7 @@ describe("api operations in Modular", () => {
             loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
           };
           const clientContext = getClient(
-            options.endpoint ?? options.baseUrl ?? endpoint,
+            options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`,
             undefined,
             updatedOptions,
           );
@@ -644,9 +763,9 @@ describe("api operations in Modular", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
           createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _testSend(
@@ -689,8 +808,8 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
         import { logger } from "../logger.js";
+        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
         
@@ -700,7 +819,7 @@ describe("api operations in Modular", () => {
         }
         
         export function createTesting(
-          endpoint: string,
+          endpointParam: string,
           options: TestingClientOptionalParams  = {},
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -713,7 +832,7 @@ describe("api operations in Modular", () => {
             loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
           };
           const clientContext = getClient(
-            options.endpoint ?? options.baseUrl ?? endpoint,
+            options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`,
             undefined,
             updatedOptions,
           );
@@ -808,9 +927,9 @@ describe("api operations in Modular", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
           createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _testSend(
@@ -880,19 +999,19 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
         import { logger } from "../logger.js";
+        import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
 
         /** Optional parameters for the client. */
         export interface TestingClientOptionalParams extends ClientOptions {}
 
-        export function createTesting(endpoint: string, options: TestingClientOptionalParams = {}): TestingContext {
+        export function createTesting(endpointParam: string, options: TestingClientOptionalParams = {}): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api\` : "azsdk-js-api";
           const { apiVersion: _, ...updatedOptions } = { ...options,userAgentOptions: { userAgentPrefix },loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },}
-          const clientContext = getClient(options.endpoint ?? options.baseUrl ?? endpoint, undefined, updatedOptions);
+          const clientContext = getClient(options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`, undefined, updatedOptions);
           clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           if (options.apiVersion) {
             logger.warning("This client does not support client api-version, please change it at the operation level");
@@ -906,7 +1025,6 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -917,14 +1035,14 @@ describe("api operations in Modular", () => {
           public readonly pipeline: Pipeline;
         
           constructor(
-            endpoint: string,
+            endpointParam: string,
             options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
               : "azsdk-js-client";
-            this._client = createTesting(endpoint, {
+            this._client = createTesting(endpointParam, {
               ...options,
               userAgentOptions: { userAgentPrefix },
             });

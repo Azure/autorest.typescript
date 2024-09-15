@@ -558,7 +558,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       serializeWidgetData1?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
+      export function widgetData1Serializer(item: WidgetData1): any {
         return {
           kind: item["kind"],
           start: item["start"].toISOString(),
@@ -574,7 +574,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       serializeWidgetData0?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
+      export function widgetData0Serializer(item: WidgetData0): any {
         return {
           kind: item["kind"],
           fooProp: item["fooProp"],
@@ -692,7 +692,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
+      export function widgetData1Serializer(item: WidgetData1): any {
         return { 
           kind: item["kind"],
           data: uint8ArrayToString(item["data"], "base64")
@@ -815,7 +815,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
+      export function widgetData0Serializer(item: WidgetData0): any {
         return {
           kind: item["kind"],
           fooProp: uint8ArrayToString(item["fooProp"], "base64"),
@@ -827,7 +827,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `
-      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
+      export function widgetData1Serializer(item: WidgetData1): any {
         return { 
           kind: item["kind"],
           data: item["data"].toISOString()
@@ -945,7 +945,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData0Serializer")?.getFullText()!,
       `
-      export function widgetData0Serializer(item: WidgetData0): Record<string, unknown> {
+      export function widgetData0Serializer(item: WidgetData0): any {
         return {
           kind: item["kind"],
           fooProp: uint8ArrayToString(item["fooProp"], "base64"),
@@ -957,7 +957,7 @@ describe.skip("modular special union serialization", () => {
     await assertEqualContent(
       modelsFile?.getFunction("widgetData1Serializer")?.getFullText()!,
       `      
-      export function widgetData1Serializer(item: WidgetData1): Record<string, unknown> {
+      export function widgetData1Serializer(item: WidgetData1): any {
         return { 
         kind: item["kind"],
         data: uint8ArrayToString(item["data"], "base64")
@@ -1134,7 +1134,7 @@ describe.skip("modular special union serialization", () => {
       `
       export function vectorStoreAutoChunkingStrategyRequestSerializer(
         item: VectorStoreAutoChunkingStrategyRequest,
-      ): Record<string, unknown> {
+      ): any {
         return {
           type: item["type"],
         };
@@ -1147,7 +1147,7 @@ describe.skip("modular special union serialization", () => {
       `
       export function vectorStoreStaticChunkingStrategyRequestSerializer(
         item: VectorStoreStaticChunkingStrategyRequest,
-      ): Record<string, unknown> {
+      ): any {
         return {
           type: item["type"],
           static: vectorStoreStaticChunkingStrategyOptionsSerializer(item.static),
@@ -1161,14 +1161,14 @@ describe.skip("modular special union serialization", () => {
       `
       export function vectorStoreChunkingStrategyRequestSerializer(
         item: VectorStoreChunkingStrategyRequestUnion,
-      ): Record<string, unknown> {
+      ): any {
         return {
           ...vectorStoreChunkingStrategyRequestUnionSerializer(item),
         };
       }
       `
     );
-    
+
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
