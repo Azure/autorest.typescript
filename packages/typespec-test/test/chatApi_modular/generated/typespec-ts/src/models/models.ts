@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-
 /** The configuration for a streaming chat completion request. */
 export interface StreamingChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -27,12 +25,21 @@ export function streamingChatCompletionOptionsRecordSerializer(
   item: StreamingChatCompletionOptionsRecord,
 ): any {
   return {
-    messages: item["messages"].map(chatMessageSerializer),
+    messages: chatMessageArraySerializer(item["messages"]),
     stream: item["stream"],
     session_state: item["sessionState"],
-    context: !item.context
-      ? item.context
-      : (serializeRecord(item.context as any) as any),
+    context: item["context"],
+  };
+}
+
+export function streamingChatCompletionOptionsRecordDeserializer(
+  item: any,
+): StreamingChatCompletionOptionsRecord {
+  return {
+    messages: chatMessageArrayDeserializer(item["messages"]),
+    stream: item["stream"],
+    sessionState: item["session_state"],
+    context: item["context"],
   };
 }
 
@@ -54,7 +61,7 @@ export interface ChatMessage {
 export function chatMessageSerializer(item: ChatMessage): any {
   return {
     content: item["content"],
-    role: item["role"],
+    role: chatRoleSerializer(item["role"]),
     session_state: item["sessionState"],
   };
 }
@@ -98,6 +105,12 @@ export interface ChatCompletionChunkRecord {
   choices: ChoiceDeltaRecord[];
 }
 
+export function chatCompletionChunkRecordSerializer(
+  item: ChatCompletionChunkRecord,
+): any {
+  return { choices: choiceDeltaRecordArraySerializer(item["choices"]) };
+}
+
 export function chatCompletionChunkRecordDeserializer(
   item: any,
 ): ChatCompletionChunkRecord {
@@ -128,6 +141,18 @@ export interface ChoiceDeltaRecord {
   finishReason?: FinishReason;
 }
 
+export function choiceDeltaRecordSerializer(item: ChoiceDeltaRecord): any {
+  return {
+    index: item["index"],
+    delta: chatMessageDeltaSerializer(item["delta"]),
+    session_state: item["sessionState"],
+    context: item["context"],
+    finish_reason: !item["finishReason"]
+      ? item["finishReason"]
+      : finishReasonSerializer(item["finishReason"]),
+  };
+}
+
 export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
   return {
     index: item["index"],
@@ -155,6 +180,14 @@ export interface ChatMessageDelta {
   sessionState?: any;
 }
 
+export function chatMessageDeltaSerializer(item: ChatMessageDelta): any {
+  return {
+    content: item["content"],
+    role: !item["role"] ? item["role"] : chatRoleSerializer(item["role"]),
+    session_state: item["sessionState"],
+  };
+}
+
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
@@ -172,6 +205,14 @@ export function finishReasonSerializer(item: FinishReason): any {
 
 export function finishReasonDeserializer(item: any): FinishReason {
   return item;
+}
+
+export function choiceDeltaRecordArraySerializer(
+  result: Array<ChoiceDeltaRecord>,
+): any[] {
+  return result.map((item) => {
+    choiceDeltaRecordSerializer(item);
+  });
 }
 
 export function choiceDeltaRecordArrayDeserializer(
@@ -206,12 +247,21 @@ export function chatCompletionOptionsRecordSerializer(
   item: ChatCompletionOptionsRecord,
 ): any {
   return {
-    messages: item["messages"].map(chatMessageSerializer),
+    messages: chatMessageArraySerializer(item["messages"]),
     stream: item["stream"],
     session_state: item["sessionState"],
-    context: !item.context
-      ? item.context
-      : (serializeRecord(item.context as any) as any),
+    context: item["context"],
+  };
+}
+
+export function chatCompletionOptionsRecordDeserializer(
+  item: any,
+): ChatCompletionOptionsRecord {
+  return {
+    messages: chatMessageArrayDeserializer(item["messages"]),
+    stream: item["stream"],
+    sessionState: item["session_state"],
+    context: item["context"],
   };
 }
 
@@ -219,6 +269,12 @@ export function chatCompletionOptionsRecordSerializer(
 export interface ChatCompletionRecord {
   /** The collection of generated completions. */
   choices: ChatChoiceRecord[];
+}
+
+export function chatCompletionRecordSerializer(
+  item: ChatCompletionRecord,
+): any {
+  return { choices: chatChoiceRecordArraySerializer(item["choices"]) };
 }
 
 export function chatCompletionRecordDeserializer(
@@ -251,6 +307,16 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
+export function chatChoiceRecordSerializer(item: ChatChoiceRecord): any {
+  return {
+    index: item["index"],
+    message: chatMessageSerializer(item["message"]),
+    session_state: item["sessionState"],
+    context: item["context"],
+    finish_reason: finishReasonSerializer(item["finishReason"]),
+  };
+}
+
 export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   return {
     index: item["index"],
@@ -259,6 +325,14 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     context: item["context"],
     finishReason: finishReasonDeserializer(item["finish_reason"]),
   };
+}
+
+export function chatChoiceRecordArraySerializer(
+  result: Array<ChatChoiceRecord>,
+): any[] {
+  return result.map((item) => {
+    chatChoiceRecordSerializer(item);
+  });
 }
 
 export function chatChoiceRecordArrayDeserializer(

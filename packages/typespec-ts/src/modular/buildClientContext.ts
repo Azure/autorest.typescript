@@ -32,7 +32,7 @@ export function buildClientContext(
   const client = _client.tcgcClient;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const requiredParams = getClientParametersDeclaration(client, dpgContext, {
+  const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true
   });
@@ -54,7 +54,7 @@ export function buildClientContext(
     name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(client, dpgContext, {
+    properties: getClientParameters(_client, dpgContext, {
       optionalOnly: true
     })
       .filter((p) => p.name !== "endpoint")
@@ -128,13 +128,13 @@ export function buildClientContext(
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
 
   if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = getClientParameters(client, dpgContext).find(
-      (x) => x.isApiVersionParam && x.kind === "method"
+    const apiVersionParam = getClientParameters(_client, dpgContext).find(
+      (x) => x.isApiVersionParam && x.kind === "endpoint"
     );
 
     if (apiVersionParam) {
       if (apiVersionParam.clientDefaultValue) {
-        apiVersionPolicyStatement += `const ${apiVersionParam.name} = options.${apiVersionParam.name} ?? "${apiVersionParam.clientDefaultValue}";`;
+        apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
       }
 
       apiVersionPolicyStatement += `

@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorModel } from "@azure-rest/core-client";
-
 /** Schema Group resource. */
 export interface SchemaGroup {
   /** Name of schema group. */
   readonly groupName: string;
+}
+
+export function schemaGroupSerializer(item: SchemaGroup): any {
+  return item as any;
 }
 
 export function schemaGroupDeserializer(item: any): SchemaGroup {
@@ -19,6 +21,10 @@ export function schemaGroupDeserializer(item: any): SchemaGroup {
 export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
+}
+
+export function schemaVersionSerializer(item: SchemaVersion): any {
+  return item as any;
 }
 
 export function schemaVersionDeserializer(item: any): SchemaVersion {
@@ -44,7 +50,7 @@ export interface SchemaProperties {
 export function schemaPropertiesSerializer(item: SchemaProperties): any {
   return {
     id: item["id"],
-    format: item["format"],
+    format: schemaFormatSerializer(item["format"]),
     groupName: item["groupName"],
     name: item["name"],
     version: item["version"],
@@ -83,7 +89,7 @@ export interface Schema {
 export function schemaSerializer(item: Schema): any {
   return {
     definition: item["definition"],
-    properties: schemaPropertiesSerializer(item.properties),
+    properties: schemaPropertiesSerializer(item["properties"]),
   };
 }
 
@@ -139,6 +145,12 @@ export function contentTypeEnumDeserializer(item: any): ContentTypeEnum {
   return item;
 }
 
+export function schemaGroupArraySerializer(result: Array<SchemaGroup>): any[] {
+  return result.map((item) => {
+    schemaGroupSerializer(item);
+  });
+}
+
 export function schemaGroupArrayDeserializer(
   result: Array<SchemaGroup>,
 ): any[] {
@@ -147,18 +159,34 @@ export function schemaGroupArrayDeserializer(
   });
 }
 
-/** A response containing error details. */
-export interface ErrorResponse {
-  /** The error object. */
-  error: ErrorModel;
-}
-
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {
   /** The SchemaGroup items on this page */
   value: SchemaGroup[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedSchemaGroupSerializer(item: _PagedSchemaGroup): any {
+  return {
+    value: schemaGroupArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
+  return {
+    value: schemaGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function schemaVersionArraySerializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    schemaVersionSerializer(item);
+  });
 }
 
 export function schemaVersionArrayDeserializer(
@@ -175,4 +203,18 @@ export interface _PagedVersion {
   value: SchemaVersion[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedVersionSerializer(item: _PagedVersion): any {
+  return {
+    value: schemaVersionArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedVersionDeserializer(item: any): _PagedVersion {
+  return {
+    value: schemaVersionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }

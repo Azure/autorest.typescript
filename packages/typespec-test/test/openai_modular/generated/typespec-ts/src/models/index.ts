@@ -146,5 +146,4 @@ export {
   EmbeddingItem,
   EmbeddingsUsage,
   ServiceApiVersions,
-  ErrorResponse,
 } from "./models.js";

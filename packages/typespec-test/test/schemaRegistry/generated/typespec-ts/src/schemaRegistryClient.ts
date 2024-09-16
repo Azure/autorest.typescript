@@ -10,7 +10,14 @@ import {
   SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
-import { _PagedSchemaGroup, _PagedVersion } from "./models/models.js";
+import {
+  _PagedSchemaGroup,
+  _pagedSchemaGroupSerializer,
+  _pagedSchemaGroupDeserializer,
+  _PagedVersion,
+  _pagedVersionSerializer,
+  _pagedVersionDeserializer,
+} from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 

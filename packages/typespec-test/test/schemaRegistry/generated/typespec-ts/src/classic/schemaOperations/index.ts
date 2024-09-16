@@ -15,7 +15,11 @@ import {
   SchemaVersion,
   SchemaContentTypeValues,
   _PagedSchemaGroup,
+  _pagedSchemaGroupSerializer,
+  _pagedSchemaGroupDeserializer,
   _PagedVersion,
+  _pagedVersionSerializer,
+  _pagedVersionDeserializer,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {

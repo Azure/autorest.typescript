@@ -39,13 +39,24 @@ import {
   MetricRequestPayload,
   metricRequestPayloadSerializer,
   _Metrics,
+  _metricsSerializer,
   _metricsDeserializer,
   TimeSeriesElement,
   _PagedTestFileInfo,
+  _pagedTestFileInfoSerializer,
+  _pagedTestFileInfoDeserializer,
   _PagedTest,
+  _pagedTestSerializer,
+  _pagedTestDeserializer,
   _PagedTestRun,
+  _pagedTestRunSerializer,
+  _pagedTestRunDeserializer,
   _PagedTestProfile,
+  _pagedTestProfileSerializer,
+  _pagedTestProfileDeserializer,
   _PagedTestProfileRun,
+  _pagedTestProfileRunSerializer,
+  _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -579,7 +590,7 @@ export async function _listTestRunsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTestRunDeserializer(result.body);
 }
 
 /** Get all test runs for the given filters. */

@@ -34,10 +34,10 @@ export function buildClassicalClient(
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClientName(client)}Client`;
-  const classicalParams = getClientParametersDeclaration(client, dpgContext, {
+  const classicalParams = getClientParametersDeclaration(_client, dpgContext, {
     requiredOnly: true
   });
-  const contextParams = getClientParametersDeclaration(client, dpgContext, {
+  const contextParams = getClientParametersDeclaration(_client, dpgContext, {
     onClientOnly: true,
     requiredOnly: true
   });

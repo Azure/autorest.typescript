@@ -7,7 +7,6 @@
 import { AbortSignalLike } from '@azure/abort-controller';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -48,11 +47,6 @@ export type CreateWidgetRequestColor = "red" | "blue";
 
 // @public (undocumented)
 export function createWidgetService(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams): WidgetServiceContext;
-
-// @public
-export interface ErrorResponse {
-    error: ErrorModel;
-}
 
 // @public
 export interface NonReferencedModel {

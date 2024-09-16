@@ -8,7 +8,7 @@ import {
 import { assert } from "chai";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("api operations in Modular", () => {
+describe("api operations in Modular", () => {
   describe("in parameters", () => {
     it("should handle contentTypes has binary data", async () => {
       const tspContent = `
@@ -31,6 +31,7 @@ describe.only("api operations in Modular", () => {
            createRestError,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
+         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -41,7 +42,7 @@ describe.only("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "application/octet-stream",
-               body: body,
+               body: uint8ArrayToString(body, "base64"),
              });
          }
          export async function _uploadFileViaBodyDeserialize(
@@ -246,7 +247,11 @@ describe.only("api operations in Modular", () => {
        }
        
        export function uploadFilesRequestSerializer(item: UploadFilesRequest): any {
-         return { files: item["files"].map((p) => uint8ArrayToString(p, "base64")) };
+        return {
+          files: item["files"].map((p: any) => {
+            return uint8ArrayToString(p, "base64");
+          }),
+        };
        }
        
        export function uploadFilesRequestDeserializer(item: any): UploadFilesRequest {
@@ -256,7 +261,8 @@ describe.only("api operations in Modular", () => {
            }),
          };
        }
-      `
+      `,
+      true
       );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
@@ -459,7 +465,8 @@ describe.only("api operations in Modular", () => {
                  : item["file"],
            };
          }
-        `
+        `,
+        true
       );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
@@ -534,7 +541,9 @@ describe.only("api operations in Modular", () => {
          ): any {
            return {
              name: item["name"],
-             file: item["file"].map((p) => uint8ArrayToString(p, "base64")),
+             file: item["file"].map((p: any) => {
+              return uint8ArrayToString(p, "base64");
+            }),
            };
          }
          
@@ -548,7 +557,8 @@ describe.only("api operations in Modular", () => {
              }),
            };
          }
-        `
+        `,
+        true
       );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
@@ -652,7 +662,7 @@ describe.only("api operations in Modular", () => {
         clientContext?.getFullText()!,
         `
         import { logger } from "../logger.js";
-        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+        import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
         
@@ -703,7 +713,6 @@ describe.only("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -714,7 +723,7 @@ describe.only("api operations in Modular", () => {
           public readonly pipeline: Pipeline;
         
           constructor(
-            endpoint: string,
+            endpointParam: string,
             apiVersion: string,
             options: TestingClientOptionalParams  = {},
           ) {
@@ -722,7 +731,7 @@ describe.only("api operations in Modular", () => {
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
               : "azsdk-js-client";
-            this._client = createTesting(endpoint, apiVersion, {
+            this._client = createTesting(endpointParam, apiVersion, {
               ...options,
               userAgentOptions: { userAgentPrefix },
             });
@@ -809,12 +818,13 @@ describe.only("api operations in Modular", () => {
         clientContext?.getFullText()!,
         `
         import { logger } from "../logger.js";
-        import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
+        import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
         
         /** Optional parameters for the client. */
         export interface TestingClientOptionalParams extends ClientOptions  {
+          /** The API version to use for the request. */
           apiVersion?: string;
         }
         
@@ -868,7 +878,6 @@ describe.only("api operations in Modular", () => {
       await assertEqualContent(
         classicClient?.getFullText()!,
         `
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { Pipeline } from "@azure/core-rest-pipeline";
         
         export { TestingClientOptionalParams  } from "./api/testingContext.js";
@@ -879,14 +888,14 @@ describe.only("api operations in Modular", () => {
           public readonly pipeline: Pipeline;
         
           constructor(
-            endpoint: string,
+            endpointParam: string,
             options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
               : "azsdk-js-client";
-            this._client = createTesting(endpoint, {
+            this._client = createTesting(endpointParam, {
               ...options,
               userAgentOptions: { userAgentPrefix },
             });

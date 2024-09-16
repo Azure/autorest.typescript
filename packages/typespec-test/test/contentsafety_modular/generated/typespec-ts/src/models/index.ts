@@ -21,5 +21,4 @@ export {
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
   Versions,
-  ErrorResponse,
 } from "./models.js";

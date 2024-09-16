@@ -38,6 +38,7 @@ import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata } from "@typespec/http";
+import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 
 export function emitTypes(
   context: SdkContext,
@@ -58,6 +59,9 @@ export function emitTypes(
 
   for (const type of emitQueue) {
     if (type.kind === "model") {
+      if (isAzureCoreErrorType(context.program, type.__raw)) {
+        continue;
+      }
       const modelInterface = buildModelInterface(context, type);
       addDeclaration(sourceFile, modelInterface, type);
       const modelPolymorphicType = buildModelPolymorphicType(type);

@@ -10,15 +10,26 @@ import {
 } from "./index.js";
 import {
   _Metrics,
+  _metricsSerializer,
   _metricsDeserializer,
   TestProfile,
   testProfileSerializer,
   testProfileDeserializer,
   _PagedTestFileInfo,
+  _pagedTestFileInfoSerializer,
+  _pagedTestFileInfoDeserializer,
   _PagedTest,
+  _pagedTestSerializer,
+  _pagedTestDeserializer,
   _PagedTestRun,
+  _pagedTestRunSerializer,
+  _pagedTestRunDeserializer,
   _PagedTestProfile,
+  _pagedTestProfileSerializer,
+  _pagedTestProfileDeserializer,
   _PagedTestProfileRun,
+  _pagedTestProfileRunSerializer,
+  _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -162,7 +173,7 @@ export async function _listTestProfilesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTestProfileDeserializer(result.body);
 }
 
 /** Get all test profiles for the given filters. */

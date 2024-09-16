@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { ErrorModel } from "@azure-rest/core-client";
-
 /** Load test model. */
 export interface Test {
   /** Pass fail criteria for a test. */
@@ -56,29 +53,27 @@ export interface Test {
 
 export function testSerializer(item: Test): any {
   return {
-    passFailCriteria: !item.passFailCriteria
-      ? item.passFailCriteria
-      : passFailCriteriaSerializer(item.passFailCriteria),
-    autoStopCriteria: !item.autoStopCriteria
-      ? item.autoStopCriteria
-      : autoStopCriteriaSerializer(item.autoStopCriteria),
-    secrets: !item.secrets
-      ? item.secrets
-      : (serializeRecord(item.secrets as any, secretSerializer) as any),
-    certificate: !item.certificate
-      ? item.certificate
-      : certificateMetadataSerializer(item.certificate),
-    environmentVariables: !item.environmentVariables
-      ? item.environmentVariables
-      : (serializeRecord(item.environmentVariables as any) as any),
-    loadTestConfiguration: !item.loadTestConfiguration
-      ? item.loadTestConfiguration
-      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    passFailCriteria: !item["passFailCriteria"]
+      ? item["passFailCriteria"]
+      : passFailCriteriaSerializer(item["passFailCriteria"]),
+    autoStopCriteria: !item["autoStopCriteria"]
+      ? item["autoStopCriteria"]
+      : autoStopCriteriaSerializer(item["autoStopCriteria"]),
+    secrets: !item["secrets"]
+      ? item["secrets"]
+      : secretRecordSerializer(item["secrets"]),
+    certificate: !item["certificate"]
+      ? item["certificate"]
+      : certificateMetadataSerializer(item["certificate"]),
+    environmentVariables: item["environmentVariables"],
+    loadTestConfiguration: !item["loadTestConfiguration"]
+      ? item["loadTestConfiguration"]
+      : loadTestConfigurationSerializer(item["loadTestConfiguration"]),
     baselineTestRunId: item["baselineTestRunId"],
     description: item["description"],
     displayName: item["displayName"],
     subnetId: item["subnetId"],
-    kind: item["kind"],
+    kind: !item["kind"] ? item["kind"] : testKindSerializer(item["kind"]),
     publicIPDisabled: item["publicIPDisabled"],
     keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
     keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
@@ -130,12 +125,9 @@ export interface PassFailCriteria {
 
 export function passFailCriteriaSerializer(item: PassFailCriteria): any {
   return {
-    passFailMetrics: !item.passFailMetrics
-      ? item.passFailMetrics
-      : (serializeRecord(
-          item.passFailMetrics as any,
-          passFailMetricSerializer,
-        ) as any),
+    passFailMetrics: !item["passFailMetrics"]
+      ? item["passFailMetrics"]
+      : passFailMetricRecordSerializer(item["passFailMetrics"]),
   };
 }
 
@@ -177,12 +169,18 @@ export interface PassFailMetric {
 
 export function passFailMetricSerializer(item: PassFailMetric): any {
   return {
-    clientMetric: item["clientMetric"],
-    aggregate: item["aggregate"],
+    clientMetric: !item["clientMetric"]
+      ? item["clientMetric"]
+      : pFMetricsSerializer(item["clientMetric"]),
+    aggregate: !item["aggregate"]
+      ? item["aggregate"]
+      : pFAgFuncSerializer(item["aggregate"]),
     condition: item["condition"],
     requestName: item["requestName"],
     value: item["value"],
-    action: item["action"],
+    action: !item["action"]
+      ? item["action"]
+      : pFActionSerializer(item["action"]),
   };
 }
 
@@ -417,7 +415,10 @@ export interface Secret {
 }
 
 export function secretSerializer(item: Secret): any {
-  return { value: item["value"], type: item["type"] };
+  return {
+    value: item["value"],
+    type: !item["type"] ? item["type"] : secretTypeSerializer(item["type"]),
+  };
 }
 
 export function secretDeserializer(item: any): Secret {
@@ -484,7 +485,13 @@ export interface CertificateMetadata {
 }
 
 export function certificateMetadataSerializer(item: CertificateMetadata): any {
-  return { value: item["value"], type: item["type"], name: item["name"] };
+  return {
+    value: item["value"],
+    type: !item["type"]
+      ? item["type"]
+      : certificateTypeSerializer(item["type"]),
+    name: item["name"],
+  };
 }
 
 export function certificateMetadataDeserializer(
@@ -551,12 +558,12 @@ export function loadTestConfigurationSerializer(
     engineInstances: item["engineInstances"],
     splitAllCSVs: item["splitAllCSVs"],
     quickStartTest: item["quickStartTest"],
-    optionalLoadTestConfig: !item.optionalLoadTestConfig
-      ? item.optionalLoadTestConfig
-      : optionalLoadTestConfigSerializer(item.optionalLoadTestConfig),
+    optionalLoadTestConfig: !item["optionalLoadTestConfig"]
+      ? item["optionalLoadTestConfig"]
+      : optionalLoadTestConfigSerializer(item["optionalLoadTestConfig"]),
     regionalLoadTestConfig: !item["regionalLoadTestConfig"]
       ? item["regionalLoadTestConfig"]
-      : item["regionalLoadTestConfig"].map(regionalConfigurationSerializer),
+      : regionalConfigurationArraySerializer(item["regionalLoadTestConfig"]),
   };
 }
 
@@ -677,6 +684,26 @@ export interface TestInputArtifacts {
   readonly additionalFileInfo?: TestFileInfo[];
 }
 
+export function testInputArtifactsSerializer(item: TestInputArtifacts): any {
+  return {
+    configFileInfo: !item["configFileInfo"]
+      ? item["configFileInfo"]
+      : testFileInfoSerializer(item["configFileInfo"]),
+    testScriptFileInfo: !item["testScriptFileInfo"]
+      ? item["testScriptFileInfo"]
+      : testFileInfoSerializer(item["testScriptFileInfo"]),
+    userPropFileInfo: !item["userPropFileInfo"]
+      ? item["userPropFileInfo"]
+      : testFileInfoSerializer(item["userPropFileInfo"]),
+    inputArtifactsZipFileInfo: !item["inputArtifactsZipFileInfo"]
+      ? item["inputArtifactsZipFileInfo"]
+      : testFileInfoSerializer(item["inputArtifactsZipFileInfo"]),
+    urlTestConfigFileInfo: !item["urlTestConfigFileInfo"]
+      ? item["urlTestConfigFileInfo"]
+      : testFileInfoSerializer(item["urlTestConfigFileInfo"]),
+  };
+}
+
 export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
   return {
     configFileInfo: !item["configFileInfo"]
@@ -714,6 +741,10 @@ export interface TestFileInfo {
   readonly validationStatus?: FileStatus;
   /** Validation failure error details */
   readonly validationFailureDetails?: string;
+}
+
+export function testFileInfoSerializer(item: TestFileInfo): any {
+  return { fileName: item["fileName"] };
 }
 
 export function testFileInfoDeserializer(item: any): TestFileInfo {
@@ -804,6 +835,14 @@ export function fileStatusDeserializer(item: any): FileStatus {
   return item;
 }
 
+export function testFileInfoArraySerializer(
+  result: Array<TestFileInfo>,
+): any[] {
+  return result.map((item) => {
+    testFileInfoSerializer(item);
+  });
+}
+
 export function testFileInfoArrayDeserializer(
   result: Array<TestFileInfo>,
 ): any[] {
@@ -862,12 +901,7 @@ export interface TestAppComponents {
 }
 
 export function testAppComponentsSerializer(item: TestAppComponents): any {
-  return {
-    components: serializeRecord(
-      item.components as any,
-      appComponentSerializer,
-    ) as any,
-  };
+  return { components: appComponentRecordSerializer(item["components"]) };
 }
 
 export function testAppComponentsDeserializer(item: any): TestAppComponents {
@@ -963,12 +997,7 @@ export interface TestServerMetricConfig {
 export function testServerMetricConfigSerializer(
   item: TestServerMetricConfig,
 ): any {
-  return {
-    metrics: serializeRecord(
-      item.metrics as any,
-      resourceMetricSerializer,
-    ) as any,
-  };
+  return { metrics: resourceMetricRecordSerializer(item["metrics"]) };
 }
 
 export function testServerMetricConfigDeserializer(
@@ -1135,28 +1164,28 @@ export interface TestRun {
 
 export function testRunSerializer(item: TestRun): any {
   return {
-    passFailCriteria: !item.passFailCriteria
-      ? item.passFailCriteria
-      : passFailCriteriaSerializer(item.passFailCriteria),
-    autoStopCriteria: !item.autoStopCriteria
-      ? item.autoStopCriteria
-      : autoStopCriteriaSerializer(item.autoStopCriteria),
-    secrets: !item.secrets
-      ? item.secrets
-      : (serializeRecord(item.secrets as any, secretSerializer) as any),
-    certificate: !item.certificate
-      ? item.certificate
-      : certificateMetadataSerializer(item.certificate),
-    environmentVariables: !item.environmentVariables
-      ? item.environmentVariables
-      : (serializeRecord(item.environmentVariables as any) as any),
-    loadTestConfiguration: !item.loadTestConfiguration
-      ? item.loadTestConfiguration
-      : loadTestConfigurationSerializer(item.loadTestConfiguration),
+    passFailCriteria: !item["passFailCriteria"]
+      ? item["passFailCriteria"]
+      : passFailCriteriaSerializer(item["passFailCriteria"]),
+    autoStopCriteria: !item["autoStopCriteria"]
+      ? item["autoStopCriteria"]
+      : autoStopCriteriaSerializer(item["autoStopCriteria"]),
+    secrets: !item["secrets"]
+      ? item["secrets"]
+      : secretRecordSerializer(item["secrets"]),
+    certificate: !item["certificate"]
+      ? item["certificate"]
+      : certificateMetadataSerializer(item["certificate"]),
+    environmentVariables: item["environmentVariables"],
+    loadTestConfiguration: !item["loadTestConfiguration"]
+      ? item["loadTestConfiguration"]
+      : loadTestConfigurationSerializer(item["loadTestConfiguration"]),
     displayName: item["displayName"],
     testId: item["testId"],
     description: item["description"],
-    requestDataLevel: item["requestDataLevel"],
+    requestDataLevel: !item["requestDataLevel"]
+      ? item["requestDataLevel"]
+      : requestDataLevelSerializer(item["requestDataLevel"]),
     debugLogsEnabled: item["debugLogsEnabled"],
   };
 }
@@ -1227,10 +1256,22 @@ export interface ErrorDetails {
   readonly message?: string;
 }
 
+export function errorDetailsSerializer(item: ErrorDetails): any {
+  return item as any;
+}
+
 export function errorDetailsDeserializer(item: any): ErrorDetails {
   return {
     message: item["message"],
   };
+}
+
+export function errorDetailsArraySerializer(
+  result: Array<ErrorDetails>,
+): any[] {
+  return result.map((item) => {
+    errorDetailsSerializer(item);
+  });
 }
 
 export function errorDetailsArrayDeserializer(
@@ -1285,6 +1326,10 @@ export interface TestRunStatistics {
   readonly sentKBytesPerSec?: number;
 }
 
+export function testRunStatisticsSerializer(item: TestRunStatistics): any {
+  return item as any;
+}
+
 export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
   return {
     transaction: item["transaction"],
@@ -1310,6 +1355,16 @@ export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
   };
 }
 
+export function testRunStatisticsRecordSerializer(
+  item: Record<string, TestRunStatistics>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = testRunStatisticsSerializer(item[key]);
+  });
+  return result;
+}
+
 export function testRunStatisticsRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, TestRunStatistics> {
@@ -1326,6 +1381,14 @@ export interface TestRunArtifacts {
   readonly inputArtifacts?: TestRunInputArtifacts;
   /** The output artifacts for the test run. */
   outputArtifacts?: TestRunOutputArtifacts;
+}
+
+export function testRunArtifactsSerializer(item: TestRunArtifacts): any {
+  return {
+    outputArtifacts: !item["outputArtifacts"]
+      ? item["outputArtifacts"]
+      : testRunOutputArtifactsSerializer(item["outputArtifacts"]),
+  };
 }
 
 export function testRunArtifactsDeserializer(item: any): TestRunArtifacts {
@@ -1353,6 +1416,28 @@ export interface TestRunInputArtifacts {
   urlTestConfigFileInfo?: TestRunFileInfo;
   /** Additional supported files for the test run */
   readonly additionalFileInfo?: TestRunFileInfo[];
+}
+
+export function testRunInputArtifactsSerializer(
+  item: TestRunInputArtifacts,
+): any {
+  return {
+    configFileInfo: !item["configFileInfo"]
+      ? item["configFileInfo"]
+      : testRunFileInfoSerializer(item["configFileInfo"]),
+    testScriptFileInfo: !item["testScriptFileInfo"]
+      ? item["testScriptFileInfo"]
+      : testRunFileInfoSerializer(item["testScriptFileInfo"]),
+    userPropFileInfo: !item["userPropFileInfo"]
+      ? item["userPropFileInfo"]
+      : testRunFileInfoSerializer(item["userPropFileInfo"]),
+    inputArtifactsZipFileInfo: !item["inputArtifactsZipFileInfo"]
+      ? item["inputArtifactsZipFileInfo"]
+      : testRunFileInfoSerializer(item["inputArtifactsZipFileInfo"]),
+    urlTestConfigFileInfo: !item["urlTestConfigFileInfo"]
+      ? item["urlTestConfigFileInfo"]
+      : testRunFileInfoSerializer(item["urlTestConfigFileInfo"]),
+  };
 }
 
 export function testRunInputArtifactsDeserializer(
@@ -1396,6 +1481,10 @@ export interface TestRunFileInfo {
   readonly validationFailureDetails?: string;
 }
 
+export function testRunFileInfoSerializer(item: TestRunFileInfo): any {
+  return { fileName: item["fileName"] };
+}
+
 export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   return {
     fileName: item["fileName"],
@@ -1409,6 +1498,14 @@ export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
       : fileStatusDeserializer(item["validationStatus"]),
     validationFailureDetails: item["validationFailureDetails"],
   };
+}
+
+export function testRunFileInfoArraySerializer(
+  result: Array<TestRunFileInfo>,
+): any[] {
+  return result.map((item) => {
+    testRunFileInfoSerializer(item);
+  });
 }
 
 export function testRunFileInfoArrayDeserializer(
@@ -1429,6 +1526,25 @@ export interface TestRunOutputArtifacts {
   artifactsContainerInfo?: ArtifactsContainerInfo;
   /** The report file for the test run. */
   reportFileInfo?: TestRunFileInfo;
+}
+
+export function testRunOutputArtifactsSerializer(
+  item: TestRunOutputArtifacts,
+): any {
+  return {
+    resultFileInfo: !item["resultFileInfo"]
+      ? item["resultFileInfo"]
+      : testRunFileInfoSerializer(item["resultFileInfo"]),
+    logsFileInfo: !item["logsFileInfo"]
+      ? item["logsFileInfo"]
+      : testRunFileInfoSerializer(item["logsFileInfo"]),
+    artifactsContainerInfo: !item["artifactsContainerInfo"]
+      ? item["artifactsContainerInfo"]
+      : artifactsContainerInfoSerializer(item["artifactsContainerInfo"]),
+    reportFileInfo: !item["reportFileInfo"]
+      ? item["reportFileInfo"]
+      : testRunFileInfoSerializer(item["reportFileInfo"]),
+  };
 }
 
 export function testRunOutputArtifactsDeserializer(
@@ -1456,6 +1572,15 @@ export interface ArtifactsContainerInfo {
   url?: string;
   /** Expiry time of the container (RFC 3339 literal format) */
   expireDateTime?: Date;
+}
+
+export function artifactsContainerInfoSerializer(
+  item: ArtifactsContainerInfo,
+): any {
+  return {
+    url: item["url"],
+    expireDateTime: item["expireDateTime"]?.toISOString(),
+  };
 }
 
 export function artifactsContainerInfoDeserializer(
@@ -1613,12 +1738,7 @@ export interface TestRunAppComponents {
 export function testRunAppComponentsSerializer(
   item: TestRunAppComponents,
 ): any {
-  return {
-    components: serializeRecord(
-      item.components as any,
-      appComponentSerializer,
-    ) as any,
-  };
+  return { components: appComponentRecordSerializer(item["components"]) };
 }
 
 export function testRunAppComponentsDeserializer(
@@ -1658,9 +1778,9 @@ export function testRunServerMetricConfigSerializer(
   item: TestRunServerMetricConfig,
 ): any {
   return {
-    metrics: !item.metrics
-      ? item.metrics
-      : (serializeRecord(item.metrics as any, resourceMetricSerializer) as any),
+    metrics: !item["metrics"]
+      ? item["metrics"]
+      : resourceMetricRecordSerializer(item["metrics"]),
   };
 }
 
@@ -1689,10 +1809,23 @@ export interface DimensionValueList {
   nextLink?: string;
 }
 
+export function dimensionValueListSerializer(item: DimensionValueList): any {
+  return {
+    value: !item["value"]
+      ? item["value"]
+      : item["value"].map((p: any) => {
+          return p;
+        }),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function dimensionValueListDeserializer(item: any): DimensionValueList {
   return {
     name: item["name"],
-    value: item["value"],
+    value: item["value"].map((p: any) => {
+      return p;
+    }),
     nextLink: item["nextLink"],
   };
 }
@@ -1701,6 +1834,12 @@ export function dimensionValueListDeserializer(item: any): DimensionValueList {
 export interface MetricDefinitionCollection {
   /** the values for the metric definitions. */
   value: MetricDefinition[];
+}
+
+export function metricDefinitionCollectionSerializer(
+  item: MetricDefinitionCollection,
+): any {
+  return { value: metricDefinitionArraySerializer(item["value"]) };
 }
 
 export function metricDefinitionCollectionDeserializer(
@@ -1734,6 +1873,29 @@ export interface MetricDefinition {
   metricAvailabilities?: MetricAvailability[];
 }
 
+export function metricDefinitionSerializer(item: MetricDefinition): any {
+  return {
+    dimensions: !item["dimensions"]
+      ? item["dimensions"]
+      : nameAndDescArraySerializer(item["dimensions"]),
+    description: item["description"],
+    name: item["name"],
+    namespace: item["namespace"],
+    primaryAggregationType: !item["primaryAggregationType"]
+      ? item["primaryAggregationType"]
+      : aggregationTypeSerializer(item["primaryAggregationType"]),
+    supportedAggregationTypes: !item["supportedAggregationTypes"]
+      ? item["supportedAggregationTypes"]
+      : item["supportedAggregationTypes"].map((p: any) => {
+          return p;
+        }),
+    unit: !item["unit"] ? item["unit"] : metricUnitSerializer(item["unit"]),
+    metricAvailabilities: !item["metricAvailabilities"]
+      ? item["metricAvailabilities"]
+      : metricAvailabilityArraySerializer(item["metricAvailabilities"]),
+  };
+}
+
 export function metricDefinitionDeserializer(item: any): MetricDefinition {
   return {
     dimensions: !item["dimensions"]
@@ -1745,7 +1907,11 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
     primaryAggregationType: !item["primaryAggregationType"]
       ? item["primaryAggregationType"]
       : aggregationTypeDeserializer(item["primaryAggregationType"]),
-    supportedAggregationTypes: item["supportedAggregationTypes"],
+    supportedAggregationTypes: item["supportedAggregationTypes"].map(
+      (p: any) => {
+        return p;
+      },
+    ),
     unit: !item["unit"] ? item["unit"] : metricUnitDeserializer(item["unit"]),
     metricAvailabilities: !item["metricAvailabilities"]
       ? item["metricAvailabilities"]
@@ -1761,11 +1927,21 @@ export interface NameAndDesc {
   name?: string;
 }
 
+export function nameAndDescSerializer(item: NameAndDesc): any {
+  return { description: item["description"], name: item["name"] };
+}
+
 export function nameAndDescDeserializer(item: any): NameAndDesc {
   return {
     description: item["description"],
     name: item["name"],
   };
+}
+
+export function nameAndDescArraySerializer(result: Array<NameAndDesc>): any[] {
+  return result.map((item) => {
+    nameAndDescSerializer(item);
+  });
 }
 
 export function nameAndDescArrayDeserializer(
@@ -1888,6 +2064,14 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
+export function metricAvailabilitySerializer(item: MetricAvailability): any {
+  return {
+    timeGrain: !item["timeGrain"]
+      ? item["timeGrain"]
+      : timeGrainSerializer(item["timeGrain"]),
+  };
+}
+
 export function metricAvailabilityDeserializer(item: any): MetricAvailability {
   return {
     timeGrain: !item["timeGrain"]
@@ -1931,11 +2115,27 @@ export function timeGrainDeserializer(item: any): TimeGrain {
   return item;
 }
 
+export function metricAvailabilityArraySerializer(
+  result: Array<MetricAvailability>,
+): any[] {
+  return result.map((item) => {
+    metricAvailabilitySerializer(item);
+  });
+}
+
 export function metricAvailabilityArrayDeserializer(
   result: Array<MetricAvailability>,
 ): any[] {
   return result.map((item) => {
     metricAvailabilityDeserializer(item);
+  });
+}
+
+export function metricDefinitionArraySerializer(
+  result: Array<MetricDefinition>,
+): any[] {
+  return result.map((item) => {
+    metricDefinitionSerializer(item);
   });
 }
 
@@ -1951,6 +2151,12 @@ export function metricDefinitionArrayDeserializer(
 export interface MetricNamespaceCollection {
   /** The values for the metric namespaces. */
   value: MetricNamespace[];
+}
+
+export function metricNamespaceCollectionSerializer(
+  item: MetricNamespaceCollection,
+): any {
+  return { value: metricNamespaceArraySerializer(item["value"]) };
 }
 
 export function metricNamespaceCollectionDeserializer(
@@ -1969,11 +2175,23 @@ export interface MetricNamespace {
   name?: string;
 }
 
+export function metricNamespaceSerializer(item: MetricNamespace): any {
+  return { description: item["description"], name: item["name"] };
+}
+
 export function metricNamespaceDeserializer(item: any): MetricNamespace {
   return {
     description: item["description"],
     name: item["name"],
   };
+}
+
+export function metricNamespaceArraySerializer(
+  result: Array<MetricNamespace>,
+): any[] {
+  return result.map((item) => {
+    metricNamespaceSerializer(item);
+  });
 }
 
 export function metricNamespaceArrayDeserializer(
@@ -2001,7 +2219,17 @@ export function metricRequestPayloadSerializer(
   return {
     filters: !item["filters"]
       ? item["filters"]
-      : item["filters"].map(dimensionFilterSerializer),
+      : dimensionFilterArraySerializer(item["filters"]),
+  };
+}
+
+export function metricRequestPayloadDeserializer(
+  item: any,
+): MetricRequestPayload {
+  return {
+    filters: !item["filters"]
+      ? item["filters"]
+      : dimensionFilterArrayDeserializer(item["filters"]),
   };
 }
 
@@ -2014,7 +2242,23 @@ export interface DimensionFilter {
 }
 
 export function dimensionFilterSerializer(item: DimensionFilter): any {
-  return { name: item["name"], values: item["values"] };
+  return {
+    name: item["name"],
+    values: !item["values"]
+      ? item["values"]
+      : item["values"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
+export function dimensionFilterDeserializer(item: any): DimensionFilter {
+  return {
+    name: item["name"],
+    values: item["values"].map((p: any) => {
+      return p;
+    }),
+  };
 }
 
 export function dimensionFilterArraySerializer(
@@ -2025,12 +2269,27 @@ export function dimensionFilterArraySerializer(
   });
 }
 
+export function dimensionFilterArrayDeserializer(
+  result: Array<DimensionFilter>,
+): any[] {
+  return result.map((item) => {
+    dimensionFilterDeserializer(item);
+  });
+}
+
 /** The response to a metrics query. */
 export interface _Metrics {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _metricsSerializer(item: _Metrics): any {
+  return {
+    value: timeSeriesElementArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 export function _metricsDeserializer(item: any): _Metrics {
@@ -2046,6 +2305,17 @@ export interface TimeSeriesElement {
   data?: MetricValue[];
   /** The dimension values */
   dimensionValues?: DimensionValue[];
+}
+
+export function timeSeriesElementSerializer(item: TimeSeriesElement): any {
+  return {
+    data: !item["data"]
+      ? item["data"]
+      : metricValueArraySerializer(item["data"]),
+    dimensionValues: !item["dimensionValues"]
+      ? item["dimensionValues"]
+      : dimensionValueArraySerializer(item["dimensionValues"]),
+  };
 }
 
 export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
@@ -2067,11 +2337,21 @@ export interface MetricValue {
   value?: number;
 }
 
+export function metricValueSerializer(item: MetricValue): any {
+  return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
+}
+
 export function metricValueDeserializer(item: any): MetricValue {
   return {
     timestamp: new Date(item["timestamp"]),
     value: item["value"],
   };
+}
+
+export function metricValueArraySerializer(result: Array<MetricValue>): any[] {
+  return result.map((item) => {
+    metricValueSerializer(item);
+  });
 }
 
 export function metricValueArrayDeserializer(
@@ -2090,6 +2370,10 @@ export interface DimensionValue {
   value?: string;
 }
 
+export function dimensionValueSerializer(item: DimensionValue): any {
+  return { name: item["name"], value: item["value"] };
+}
+
 export function dimensionValueDeserializer(item: any): DimensionValue {
   return {
     name: item["name"],
@@ -2097,11 +2381,27 @@ export function dimensionValueDeserializer(item: any): DimensionValue {
   };
 }
 
+export function dimensionValueArraySerializer(
+  result: Array<DimensionValue>,
+): any[] {
+  return result.map((item) => {
+    dimensionValueSerializer(item);
+  });
+}
+
 export function dimensionValueArrayDeserializer(
   result: Array<DimensionValue>,
 ): any[] {
   return result.map((item) => {
     dimensionValueDeserializer(item);
+  });
+}
+
+export function timeSeriesElementArraySerializer(
+  result: Array<TimeSeriesElement>,
+): any[] {
+  return result.map((item) => {
+    timeSeriesElementSerializer(item);
   });
 }
 
@@ -2143,10 +2443,10 @@ export function testProfileSerializer(item: TestProfile): any {
     description: item["description"],
     testId: item["testId"],
     targetResourceId: item["targetResourceId"],
-    targetResourceConfigurations: !item.targetResourceConfigurations
-      ? item.targetResourceConfigurations
+    targetResourceConfigurations: !item["targetResourceConfigurations"]
+      ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionSerializer(
-          item.targetResourceConfigurations,
+          item["targetResourceConfigurations"],
         ),
   };
 }
@@ -2179,7 +2479,7 @@ export interface TargetResourceConfigurations {
 export function targetResourceConfigurationsSerializer(
   item: TargetResourceConfigurations,
 ): any {
-  return { kind: item["kind"] };
+  return { kind: resourceKindSerializer(item["kind"]) };
 }
 
 export function targetResourceConfigurationsDeserializer(
@@ -2262,12 +2562,11 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
 ): any {
   return {
     kind: item["kind"],
-    configurations: !item.configurations
-      ? item.configurations
-      : (serializeRecord(
-          item.configurations as any,
-          functionFlexConsumptionResourceConfigurationSerializer,
-        ) as any),
+    configurations: !item["configurations"]
+      ? item["configurations"]
+      : functionFlexConsumptionResourceConfigurationRecordSerializer(
+          item["configurations"],
+        ),
   };
 }
 
@@ -2472,12 +2771,30 @@ export interface TestRunDetail {
   properties: Record<string, string>;
 }
 
+export function testRunDetailSerializer(item: TestRunDetail): any {
+  return {
+    status: statusSerializer(item["status"]),
+    configurationId: item["configurationId"],
+    properties: item["properties"],
+  };
+}
+
 export function testRunDetailDeserializer(item: any): TestRunDetail {
   return {
     status: statusDeserializer(item["status"]),
     configurationId: item["configurationId"],
     properties: item["properties"],
   };
+}
+
+export function testRunDetailRecordSerializer(
+  item: Record<string, TestRunDetail>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = testRunDetailSerializer(item[key]);
+  });
+  return result;
 }
 
 export function testRunDetailRecordDeserializer(
@@ -2498,12 +2815,27 @@ export interface TestProfileRunRecommendation {
   configurations?: string[];
 }
 
+export function testProfileRunRecommendationSerializer(
+  item: TestProfileRunRecommendation,
+): any {
+  return {
+    category: recommendationCategorySerializer(item["category"]),
+    configurations: !item["configurations"]
+      ? item["configurations"]
+      : item["configurations"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
 export function testProfileRunRecommendationDeserializer(
   item: any,
 ): TestProfileRunRecommendation {
   return {
     category: recommendationCategoryDeserializer(item["category"]),
-    configurations: item["configurations"],
+    configurations: item["configurations"].map((p: any) => {
+      return p;
+    }),
   };
 }
 
@@ -2537,6 +2869,14 @@ export function recommendationCategoryDeserializer(
   return item;
 }
 
+export function testProfileRunRecommendationArraySerializer(
+  result: Array<TestProfileRunRecommendation>,
+): any[] {
+  return result.map((item) => {
+    testProfileRunRecommendationSerializer(item);
+  });
+}
+
 export function testProfileRunRecommendationArrayDeserializer(
   result: Array<TestProfileRunRecommendation>,
 ): any[] {
@@ -2560,18 +2900,26 @@ export function aPIVersionsDeserializer(item: any): APIVersions {
   return item;
 }
 
-/** A response containing error details. */
-export interface ErrorResponse {
-  /** The error object. */
-  error: ErrorModel;
-}
-
 /** Paged collection of TestFileInfo items */
 export interface _PagedTestFileInfo {
   /** The TestFileInfo items on this page */
   value: TestFileInfo[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedTestFileInfoSerializer(item: _PagedTestFileInfo): any {
+  return {
+    value: testFileInfoArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
+  return {
+    value: testFileInfoArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 export function testArraySerializer(result: Array<Test>): any[] {
@@ -2594,6 +2942,20 @@ export interface _PagedTest {
   nextLink?: string;
 }
 
+export function _pagedTestSerializer(item: _PagedTest): any {
+  return {
+    value: testArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedTestDeserializer(item: any): _PagedTest {
+  return {
+    value: testArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function testRunArraySerializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
     testRunSerializer(item);
@@ -2612,6 +2974,20 @@ export interface _PagedTestRun {
   value: TestRun[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedTestRunSerializer(item: _PagedTestRun): any {
+  return {
+    value: testRunArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
+  return {
+    value: testRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
@@ -2636,6 +3012,20 @@ export interface _PagedTestProfile {
   nextLink?: string;
 }
 
+export function _pagedTestProfileSerializer(item: _PagedTestProfile): any {
+  return {
+    value: testProfileArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
+  return {
+    value: testProfileArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function testProfileRunArraySerializer(
   result: Array<TestProfileRun>,
 ): any[] {
@@ -2658,4 +3048,22 @@ export interface _PagedTestProfileRun {
   value: TestProfileRun[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedTestProfileRunSerializer(
+  item: _PagedTestProfileRun,
+): any {
+  return {
+    value: testProfileRunArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function _pagedTestProfileRunDeserializer(
+  item: any,
+): _PagedTestProfileRun {
+  return {
+    value: testProfileRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }

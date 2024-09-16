@@ -5,8 +5,6 @@ import {
   StatementedNode
 } from "ts-morph";
 import {
-  SdkClientType,
-  SdkHttpOperation,
   SdkHttpParameter,
   SdkParameter
 } from "@azure-tools/typespec-client-generator-core";
@@ -28,7 +26,7 @@ interface ClientParameterOptions {
 }
 
 export function getClientParameters(
-  client: SdkClientType<SdkHttpOperation>,
+  _client: Client,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     requiredOnly: false,
@@ -36,6 +34,7 @@ export function getClientParameters(
     optionalOnly: false
   }
 ) {
+  const client = _client.tcgcClient;
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
   for (const property of client.initialization.properties) {
     if (
@@ -50,6 +49,25 @@ export function getClientParameters(
     }
   }
 
+  const apiVersionParam = _client.parameters.filter(
+    (p) => p.isApiVersion && p.location === "query"
+  )[0];
+  if (apiVersionParam && !clientParams.find((p) => p.isApiVersionParam)) {
+    clientParams.push({
+      name: "apiVersion",
+      description: "The API version to use for the request.",
+      kind: "endpoint",
+      optional: apiVersionParam?.clientDefaultValue ? true : false,
+      clientDefaultValue: apiVersionParam?.clientDefaultValue,
+      onClient: true,
+      isGeneratedName: false,
+      isApiVersionParam: true,
+      type: {
+        kind: "string",
+        name: "string"
+      }
+    } as any);
+  }
   const params = clientParams
     .filter(
       (p) =>
@@ -81,7 +99,7 @@ export function getClientParameters(
 }
 
 export function getClientParametersDeclaration(
-  client: SdkClientType<SdkHttpOperation>,
+  _client: Client,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     optionalOnly: false,
@@ -89,6 +107,7 @@ export function getClientParametersDeclaration(
     onClientOnly: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
+  const client = _client.tcgcClient;
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
@@ -97,7 +116,7 @@ export function getClientParametersDeclaration(
   };
 
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
-    ...getClientParameters(client, dpgContext, options).map<
+    ...getClientParameters(_client, dpgContext, options).map<
       OptionalKind<ParameterDeclarationStructure>
     >((p) => {
       const typeExpression = getClientParameterTypeExpression(p);
@@ -148,11 +167,10 @@ function getClientParameterName(parameter: SdkParameter | SdkHttpParameter) {
 export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
-  _client: Client
+  client: Client
 ): string {
-  const client = _client.tcgcClient;
   // Special case: endpoint URL not defined
-  if (_client.url === "") {
+  if (client.url === "") {
     const endpointParam = getClientParameters(client, dpgContext, {
       onClientOnly: true
     }).find((x) => x.kind === "endpoint" || x.kind === "path");
@@ -161,7 +179,7 @@ export function buildGetClientEndpointParam(
     }
   }
 
-  const urlParams = _client.parameters.filter((p) => {
+  const urlParams = client.parameters.filter((p) => {
     return p.location === "endpointPath" || p.location === "path";
   });
 
@@ -181,7 +199,7 @@ export function buildGetClientEndpointParam(
     }
   }
 
-  let parameterizedEndpointUrl = _client.url;
+  let parameterizedEndpointUrl = client.url;
   for (const param of urlParams) {
     parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
       `{${param.restApiName}}`,

@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { _PagedSchemaGroup, _PagedVersion } from "./models/models.js";
+import {
+  _PagedSchemaGroup,
+  _pagedSchemaGroupSerializer,
+  _pagedSchemaGroupDeserializer,
+  _PagedVersion,
+  _pagedVersionSerializer,
+  _pagedVersionDeserializer,
+} from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -18,7 +25,6 @@ export {
   SchemaContentTypeValues,
   ServiceApiVersions,
   ContentTypeEnum,
-  ErrorResponse,
 } from "./models/index.js";
 export {
   SchemaOperationsListSchemaGroupsOptionalParams,

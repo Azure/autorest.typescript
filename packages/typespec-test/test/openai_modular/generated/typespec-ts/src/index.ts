@@ -147,7 +147,6 @@ export {
   EmbeddingItem,
   EmbeddingsUsage,
   ServiceApiVersions,
-  ErrorResponse,
 } from "./models/index.js";
 export {
   createOpenAI,

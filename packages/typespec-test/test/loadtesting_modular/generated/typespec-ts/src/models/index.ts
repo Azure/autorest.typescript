@@ -84,5 +84,4 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   APIVersions,
-  ErrorResponse,
 } from "./models.js";

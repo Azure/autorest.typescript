@@ -12,6 +12,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 
 export function _getAvatarAsPngSend(
   context: Client,
@@ -23,7 +24,7 @@ export function _getAvatarAsPngSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
-      body: image,
+      body: uint8ArrayToString(image, "base64"),
     });
 }
 
@@ -58,7 +59,7 @@ export function _getAvatarAsJpegSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/jpeg",
-      body: image,
+      body: uint8ArrayToString(image, "base64"),
     });
 }
 

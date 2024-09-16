@@ -4,12 +4,16 @@
 import { logger } from "../logger.js";
 import {
   _DataProductListResult,
+  _dataProductListResultSerializer,
   _dataProductListResultDeserializer,
   _DataTypeListResult,
+  _dataTypeListResultSerializer,
   _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultSerializer,
   _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
+  _operationListResultSerializer,
   _operationListResultDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
@@ -44,21 +48,5 @@ export function createNetworkAnalytics(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-11-15";
-  clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version")) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
-
-      return next(req);
-    },
-  });
   return clientContext;
 }

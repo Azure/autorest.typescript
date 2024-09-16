@@ -14,6 +14,7 @@ import { getResponseMapping } from "../helpers/operationHelpers.js";
 import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
+import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 
 function isSupportedSerializerType(type: SdkType): boolean {
   return (
@@ -38,6 +39,9 @@ export function buildModelDeserializer(
   if (type.kind === "model") {
     if (!type.name) {
       throw new Error(`NYI Serialization of anonymous types`);
+    }
+    if (isAzureCoreErrorType(context.program, type.__raw!)) {
+      return undefined;
     }
   }
 

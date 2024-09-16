@@ -3,6 +3,7 @@
 
 import {
   _MultivariateModelList,
+  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
 } from "./models/models.js";
 import {

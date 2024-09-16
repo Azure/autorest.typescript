@@ -2,7 +2,14 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { _PagedTextBlocklist, _PagedTextBlockItem } from "../models/models.js";
+import {
+  _PagedTextBlocklist,
+  _pagedTextBlocklistSerializer,
+  _pagedTextBlocklistDeserializer,
+  _PagedTextBlockItem,
+  _pagedTextBlockItemSerializer,
+  _pagedTextBlockItemDeserializer,
+} from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
@@ -42,21 +49,5 @@ export function createContentSafety(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-10-01";
-  clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version")) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
-
-      return next(req);
-    },
-  });
   return clientContext;
 }

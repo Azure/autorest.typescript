@@ -6,7 +6,6 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -28,11 +27,6 @@ export interface ConfidentialLedgerOperations {
 
 // @public (undocumented)
 export function createParametrizedHost(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
-
-// @public
-export interface ErrorResponse {
-    error: ErrorModel;
-}
 
 // @public (undocumented)
 export class ParametrizedHostClient {

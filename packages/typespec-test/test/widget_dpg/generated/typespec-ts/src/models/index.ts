@@ -13,5 +13,4 @@ export {
   AnalyzeResult,
   NonReferencedModel,
   Versions,
-  ErrorResponse,
 } from "./models.js";

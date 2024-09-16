@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { _PagedTextBlocklist, _PagedTextBlockItem } from "./models/models.js";
+import {
+  _PagedTextBlocklist,
+  _pagedTextBlocklistSerializer,
+  _pagedTextBlocklistDeserializer,
+  _PagedTextBlockItem,
+  _pagedTextBlockItemSerializer,
+  _pagedTextBlockItemDeserializer,
+} from "./models/models.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -29,7 +36,6 @@ export {
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
   Versions,
-  ErrorResponse,
 } from "./models/index.js";
 export {
   createContentSafety,

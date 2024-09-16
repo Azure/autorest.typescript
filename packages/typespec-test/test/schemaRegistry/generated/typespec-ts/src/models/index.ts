@@ -10,5 +10,4 @@ export {
   SchemaContentTypeValues,
   ServiceApiVersions,
   ContentTypeEnum,
-  ErrorResponse,
 } from "./models.js";

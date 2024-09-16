@@ -6,7 +6,6 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -122,11 +121,6 @@ export function deleteTextBlocklist(context: ContentSafetyContext, blocklistName
 
 // @public
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ErrorResponse {
-    error: ErrorModel;
 }
 
 // @public

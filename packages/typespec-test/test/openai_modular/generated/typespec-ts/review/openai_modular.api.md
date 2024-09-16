@@ -719,11 +719,6 @@ export interface EmbeddingsUsage {
 }
 
 // @public
-export interface ErrorResponse {
-    error: ErrorModel;
-}
-
-// @public
 export interface FunctionCall {
     arguments: string;
     name: string;

@@ -16,6 +16,7 @@ import {
 } from "./api/index.js";
 import {
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

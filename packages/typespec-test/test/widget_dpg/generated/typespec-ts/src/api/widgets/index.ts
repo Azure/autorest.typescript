@@ -20,6 +20,7 @@ import {
   Widget,
   widgetDeserializer,
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
   AnalyzeResult,
@@ -49,40 +50,42 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/widgets")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        "required-header": requiredHeader,
-        ...(options?.optionalHeader !== undefined
-          ? { "optional-header": options?.optionalHeader }
-          : {}),
-        ...(options?.nullableOptionalHeader !== undefined &&
-        options?.nullableOptionalHeader !== null
-          ? { "nullable-optional-header": options?.nullableOptionalHeader }
-          : {}),
-        "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
-        value: uint8ArrayToString(value, "base64"),
-        "csv-array-header": buildCsvCollection(
-          csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url")),
-        ),
-        "utc-date-header": utcDateHeader.toUTCString(),
-        ...(options?.optionalDateHeader !== undefined
-          ? {
-              "optional-date-header":
-                options?.optionalDateHeader?.toUTCString(),
-            }
-          : {}),
-        ...(options?.nullableDateHeader !== undefined &&
-        options?.nullableDateHeader !== null
-          ? {
-              "nullable-date-header":
-                options?.nullableDateHeader?.toUTCString(),
-            }
-          : {}),
-      },
-    });
+  return context.path("/widgets").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      "required-header": requiredHeader,
+      ...(options?.optionalHeader !== undefined
+        ? { "optional-header": options?.optionalHeader }
+        : {}),
+      ...(options?.nullableOptionalHeader !== undefined &&
+      options?.nullableOptionalHeader !== null
+        ? { "nullable-optional-header": options?.nullableOptionalHeader }
+        : {}),
+      "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
+      value: uint8ArrayToString(value, "base64"),
+      "csv-array-header": buildCsvCollection(
+        csvArrayHeader.map((p: any) => {
+          return uint8ArrayToString(p, "base64url");
+        }),
+      ),
+      "utc-date-header": utcDateHeader.toUTCString(),
+      ...(options?.optionalDateHeader !== undefined
+        ? {
+            "optional-date-header": !options?.optionalDateHeader
+              ? options?.optionalDateHeader
+              : options?.optionalDateHeader.toUTCString(),
+          }
+        : {}),
+      ...(options?.nullableDateHeader !== undefined &&
+      options?.nullableDateHeader !== null
+        ? {
+            "nullable-date-header": !options?.nullableDateHeader
+              ? options?.nullableDateHeader
+              : options?.nullableDateHeader.toUTCString(),
+          }
+        : {}),
+    },
+  });
 }
 
 export async function _listWidgetsDeserialize(

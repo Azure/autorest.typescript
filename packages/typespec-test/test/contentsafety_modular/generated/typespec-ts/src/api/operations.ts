@@ -35,7 +35,11 @@ import {
   AnalyzeTextResult,
   analyzeTextResultDeserializer,
   _PagedTextBlocklist,
+  _pagedTextBlocklistSerializer,
+  _pagedTextBlocklistDeserializer,
   _PagedTextBlockItem,
+  _pagedTextBlockItemSerializer,
+  _pagedTextBlockItemDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -242,7 +246,7 @@ export async function _listTextBlocklistsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTextBlocklistDeserializer(result.body);
 }
 
 /** Get all text blocklists details. */
@@ -411,7 +415,7 @@ export async function _listTextBlocklistItemsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTextBlockItemDeserializer(result.body);
 }
 
 /** Get all blockItems in a text blocklist */

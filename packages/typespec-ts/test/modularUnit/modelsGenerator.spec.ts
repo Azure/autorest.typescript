@@ -44,15 +44,19 @@ async function verifyModularPropertyType(
     modelsFile?.getFullText()!,
     `
   ${additionalImports}
-
+  /** model interface InputOutputModel */
   export interface InputOutputModel {
       prop: ${inputType};
   }
     
   export function inputOutputModelSerializer(item: InputOutputModel): any {
+    return { prop: item["prop"] };
+  }
+    
+  export function inputOutputModelDeserializer(item: any): InputOutputModel {
     return {
-      prop: item["prop"]
-    }
+      prop: item["prop"],
+    };
   }
   ${additionalInputContent}`
   );

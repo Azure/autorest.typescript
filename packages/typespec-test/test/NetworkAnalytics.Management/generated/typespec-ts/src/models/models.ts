@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-
 /** The data product resource. */
 export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
@@ -13,14 +11,14 @@ export interface DataProduct extends TrackedResource {
 
 export function dataProductSerializer(item: DataProduct): any {
   return {
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    tags: item["tags"],
     location: item["location"],
-    properties: !item.properties
-      ? item.properties
-      : dataProductPropertiesSerializer(item.properties),
-    identity: !item.identity
-      ? item.identity
-      : managedServiceIdentityV4Serializer(item.identity),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductPropertiesSerializer(item["properties"]),
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Serializer(item["identity"]),
   };
 }
 
@@ -94,24 +92,39 @@ export function dataProductPropertiesSerializer(
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
-    owners: item["owners"],
-    redundancy: item["redundancy"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
+    redundancy: !item["redundancy"]
+      ? item["redundancy"]
+      : controlStateSerializer(item["redundancy"]),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled:
-      item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item.customerEncryptionKey
-      ? item.customerEncryptionKey
-      : encryptionKeyDetailsSerializer(item.customerEncryptionKey),
-    networkacls: !item.networkacls
-      ? item.networkacls
-      : dataProductNetworkAclsSerializer(item.networkacls),
-    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
-      ? item.managedResourceGroupConfiguration
+    privateLinksEnabled: !item["privateLinksEnabled"]
+      ? item["privateLinksEnabled"]
+      : controlStateSerializer(item["privateLinksEnabled"]),
+    publicNetworkAccess: !item["publicNetworkAccess"]
+      ? item["publicNetworkAccess"]
+      : controlStateSerializer(item["publicNetworkAccess"]),
+    customerManagedKeyEncryptionEnabled: !item[
+      "customerManagedKeyEncryptionEnabled"
+    ]
+      ? item["customerManagedKeyEncryptionEnabled"]
+      : controlStateSerializer(item["customerManagedKeyEncryptionEnabled"]),
+    customerEncryptionKey: !item["customerEncryptionKey"]
+      ? item["customerEncryptionKey"]
+      : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
+    networkacls: !item["networkacls"]
+      ? item["networkacls"]
+      : dataProductNetworkAclsSerializer(item["networkacls"]),
+    managedResourceGroupConfiguration: !item[
+      "managedResourceGroupConfiguration"
+    ]
+      ? item["managedResourceGroupConfiguration"]
       : managedResourceGroupConfigurationSerializer(
-          item.managedResourceGroupConfiguration,
+          item["managedResourceGroupConfiguration"],
         ),
     currentMinorVersion: item["currentMinorVersion"],
   };
@@ -128,7 +141,9 @@ export function dataProductPropertiesDeserializer(
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
-    owners: item["owners"],
+    owners: item["owners"].map((p: any) => {
+      return p;
+    }),
     redundancy: !item["redundancy"]
       ? item["redundancy"]
       : controlStateDeserializer(item["redundancy"]),
@@ -158,7 +173,9 @@ export function dataProductPropertiesDeserializer(
       : managedResourceGroupConfigurationDeserializer(
           item["managedResourceGroupConfiguration"],
         ),
-    availableMinorVersions: item["availableMinorVersions"],
+    availableMinorVersions: item["availableMinorVersions"].map((p: any) => {
+      return p;
+    }),
     currentMinorVersion: item["currentMinorVersion"],
     documentation: item["documentation"],
     consumptionEndpoints: !item["consumptionEndpoints"]
@@ -283,12 +300,14 @@ export function dataProductNetworkAclsSerializer(
   item: DataProductNetworkAcls,
 ): any {
   return {
-    virtualNetworkRule: item["virtualNetworkRule"].map(
-      virtualNetworkRuleSerializer,
+    virtualNetworkRule: virtualNetworkRuleArraySerializer(
+      item["virtualNetworkRule"],
     ),
-    ipRules: item["ipRules"].map(iPRulesSerializer),
-    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
-    defaultAction: item["defaultAction"],
+    ipRules: iPRulesArraySerializer(item["ipRules"]),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
+    defaultAction: defaultActionSerializer(item["defaultAction"]),
   };
 }
 
@@ -300,7 +319,9 @@ export function dataProductNetworkAclsDeserializer(
       item["virtualNetworkRule"],
     ),
     ipRules: iPRulesArrayDeserializer(item["ipRules"]),
-    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
     defaultAction: defaultActionDeserializer(item["defaultAction"]),
   };
 }
@@ -439,6 +460,12 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
+export function consumptionEndpointsPropertiesSerializer(
+  item: ConsumptionEndpointsProperties,
+): any {
+  return item as any;
+}
+
 export function consumptionEndpointsPropertiesDeserializer(
   item: any,
 ): ConsumptionEndpointsProperties {
@@ -468,13 +495,10 @@ export function managedServiceIdentityV4Serializer(
   item: ManagedServiceIdentityV4,
 ): any {
   return {
-    type: item["type"],
-    userAssignedIdentities: !item.userAssignedIdentities
-      ? item.userAssignedIdentities
-      : (serializeRecord(
-          item.userAssignedIdentities as any,
-          userAssignedIdentitySerializer,
-        ) as any),
+    type: managedServiceIdentityTypeSerializer(item["type"]),
+    userAssignedIdentities: !item["userAssignedIdentities"]
+      ? item["userAssignedIdentities"]
+      : userAssignedIdentityRecordSerializer(item["userAssignedIdentities"]),
   };
 }
 
@@ -579,10 +603,7 @@ export interface TrackedResource extends Resource {
 }
 
 export function trackedResourceSerializer(item: TrackedResource): any {
-  return {
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    location: item["location"],
-  };
+  return { tags: item["tags"], location: item["location"] };
 }
 
 export function trackedResourceDeserializer(item: any): TrackedResource {
@@ -641,6 +662,21 @@ export interface SystemData {
   lastModifiedAt?: Date;
 }
 
+export function systemDataSerializer(item: SystemData): any {
+  return {
+    createdBy: item["createdBy"],
+    createdByType: !item["createdByType"]
+      ? item["createdByType"]
+      : createdByTypeSerializer(item["createdByType"]),
+    createdAt: item["createdAt"]?.toISOString(),
+    lastModifiedBy: item["lastModifiedBy"],
+    lastModifiedByType: !item["lastModifiedByType"]
+      ? item["lastModifiedByType"]
+      : createdByTypeSerializer(item["lastModifiedByType"]),
+    lastModifiedAt: item["lastModifiedAt"]?.toISOString(),
+  };
+}
+
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
@@ -694,6 +730,14 @@ export interface ErrorResponse {
   error?: ErrorDetail;
 }
 
+export function errorResponseSerializer(item: ErrorResponse): any {
+  return {
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailSerializer(item["error"]),
+  };
+}
+
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
     error: !item["error"]
@@ -716,6 +760,10 @@ export interface ErrorDetail {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
+export function errorDetailSerializer(item: ErrorDetail): any {
+  return item as any;
+}
+
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
     code: item["code"],
@@ -728,6 +776,12 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
       ? item["additionalInfo"]
       : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
+}
+
+export function errorDetailArraySerializer(result: Array<ErrorDetail>): any[] {
+  return result.map((item) => {
+    errorDetailSerializer(item);
+  });
 }
 
 export function errorDetailArrayDeserializer(
@@ -746,6 +800,10 @@ export interface ErrorAdditionalInfo {
   readonly info?: Record<string, any>;
 }
 
+export function errorAdditionalInfoSerializer(item: ErrorAdditionalInfo): any {
+  return item as any;
+}
+
 export function errorAdditionalInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfo {
@@ -760,10 +818,24 @@ export function errorAdditionalInfoDeserializer(
 /** model interface ErrorAdditionalInfoInfo */
 export interface ErrorAdditionalInfoInfo {}
 
+export function errorAdditionalInfoInfoSerializer(
+  item: ErrorAdditionalInfoInfo,
+): any {
+  return item as any;
+}
+
 export function errorAdditionalInfoInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfoInfo {
   return item as any;
+}
+
+export function errorAdditionalInfoArraySerializer(
+  result: Array<ErrorAdditionalInfo>,
+): any[] {
+  return result.map((item) => {
+    errorAdditionalInfoSerializer(item);
+  });
 }
 
 export function errorAdditionalInfoArrayDeserializer(
@@ -786,13 +858,25 @@ export interface DataProductUpdate {
 
 export function dataProductUpdateSerializer(item: DataProductUpdate): any {
   return {
-    identity: !item.identity
-      ? item.identity
-      : managedServiceIdentityV4Serializer(item.identity),
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    properties: !item.properties
-      ? item.properties
-      : dataProductUpdatePropertiesSerializer(item.properties),
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Serializer(item["identity"]),
+    tags: item["tags"],
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductUpdatePropertiesSerializer(item["properties"]),
+  };
+}
+
+export function dataProductUpdateDeserializer(item: any): DataProductUpdate {
+  return {
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Deserializer(item["identity"]),
+    tags: item["tags"],
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductUpdatePropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -814,10 +898,32 @@ export function dataProductUpdatePropertiesSerializer(
   item: DataProductUpdateProperties,
 ): any {
   return {
-    owners: item["owners"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
+    privateLinksEnabled: !item["privateLinksEnabled"]
+      ? item["privateLinksEnabled"]
+      : controlStateSerializer(item["privateLinksEnabled"]),
+    currentMinorVersion: item["currentMinorVersion"],
+  };
+}
+
+export function dataProductUpdatePropertiesDeserializer(
+  item: any,
+): DataProductUpdateProperties {
+  return {
+    owners: item["owners"].map((p: any) => {
+      return p;
+    }),
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: !item["privateLinksEnabled"]
+      ? item["privateLinksEnabled"]
+      : controlStateDeserializer(item["privateLinksEnabled"]),
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
@@ -840,10 +946,22 @@ export function accountSasSerializer(item: AccountSas): any {
   };
 }
 
+export function accountSasDeserializer(item: any): AccountSas {
+  return {
+    startTimeStamp: new Date(item["startTimeStamp"]),
+    expiryTimeStamp: new Date(item["expiryTimeStamp"]),
+    ipAddress: item["ipAddress"],
+  };
+}
+
 /** Details of storage account sas token . */
 export interface AccountSasToken {
   /** Field to specify storage account sas token. */
   storageAccountSasToken: string;
+}
+
+export function accountSasTokenSerializer(item: AccountSasToken): any {
+  return { storageAccountSasToken: item["storageAccountSasToken"] };
 }
 
 export function accountSasTokenDeserializer(item: any): AccountSasToken {
@@ -860,6 +978,12 @@ export interface KeyVaultInfo {
 
 export function keyVaultInfoSerializer(item: KeyVaultInfo): any {
   return { keyVaultUrl: item["keyVaultUrl"] };
+}
+
+export function keyVaultInfoDeserializer(item: any): KeyVaultInfo {
+  return {
+    keyVaultUrl: item["keyVaultUrl"],
+  };
 }
 
 /** The details for role assignment common properties. */
@@ -885,9 +1009,26 @@ export function roleAssignmentCommonPropertiesSerializer(
     roleId: item["roleId"],
     principalId: item["principalId"],
     userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
     principalType: item["principalType"],
-    role: item["role"],
+    role: dataProductUserRoleSerializer(item["role"]),
+  };
+}
+
+export function roleAssignmentCommonPropertiesDeserializer(
+  item: any,
+): RoleAssignmentCommonProperties {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
+    principalType: item["principalType"],
+    role: dataProductUserRoleDeserializer(item["role"]),
   };
 }
 
@@ -948,9 +1089,11 @@ export function roleAssignmentDetailSerializer(
     roleId: item["roleId"],
     principalId: item["principalId"],
     userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
     principalType: item["principalType"],
-    role: item["role"],
+    role: dataProductUserRoleSerializer(item["role"]),
     roleAssignmentId: item["roleAssignmentId"],
   };
 }
@@ -962,7 +1105,9 @@ export function roleAssignmentDetailDeserializer(
     roleId: item["roleId"],
     principalId: item["principalId"],
     userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
     principalType: item["principalType"],
     role: dataProductUserRoleDeserializer(item["role"]),
     roleAssignmentId: item["roleAssignmentId"],
@@ -972,12 +1117,33 @@ export function roleAssignmentDetailDeserializer(
 /** model interface ListRolesAssignmentsRequest */
 export interface ListRolesAssignmentsRequest {}
 
+export function listRolesAssignmentsRequestSerializer(
+  item: ListRolesAssignmentsRequest,
+): any {
+  return item as any;
+}
+
+export function listRolesAssignmentsRequestDeserializer(
+  item: any,
+): ListRolesAssignmentsRequest {
+  return item as any;
+}
+
 /** list role assignments. */
 export interface ListRoleAssignments {
   /** Count of role assignments. */
   count: number;
   /** list of role assignments */
   roleAssignmentResponse: RoleAssignmentDetail[];
+}
+
+export function listRoleAssignmentsSerializer(item: ListRoleAssignments): any {
+  return {
+    count: item["count"],
+    roleAssignmentResponse: roleAssignmentDetailArraySerializer(
+      item["roleAssignmentResponse"],
+    ),
+  };
 }
 
 export function listRoleAssignmentsDeserializer(
@@ -1015,6 +1181,15 @@ export interface _DataProductListResult {
   nextLink?: string;
 }
 
+export function _dataProductListResultSerializer(
+  item: _DataProductListResult,
+): any {
+  return {
+    value: dataProductArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function _dataProductListResultDeserializer(
   item: any,
 ): _DataProductListResult {
@@ -1046,9 +1221,9 @@ export interface DataType extends ProxyResource {
 
 export function dataTypeSerializer(item: DataType): any {
   return {
-    properties: !item.properties
-      ? item.properties
-      : dataTypePropertiesSerializer(item.properties),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypePropertiesSerializer(item["properties"]),
   };
 }
 
@@ -1086,7 +1261,9 @@ export interface DataTypeProperties {
 
 export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
   return {
-    state: item["state"],
+    state: !item["state"]
+      ? item["state"]
+      : dataTypeStateSerializer(item["state"]),
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
@@ -1161,9 +1338,17 @@ export interface DataTypeUpdate {
 
 export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
   return {
-    properties: !item.properties
-      ? item.properties
-      : dataTypeUpdatePropertiesSerializer(item.properties),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypeUpdatePropertiesSerializer(item["properties"]),
+  };
+}
+
+export function dataTypeUpdateDeserializer(item: any): DataTypeUpdate {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypeUpdatePropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -1183,7 +1368,22 @@ export function dataTypeUpdatePropertiesSerializer(
   item: DataTypeUpdateProperties,
 ): any {
   return {
-    state: item["state"],
+    state: !item["state"]
+      ? item["state"]
+      : dataTypeStateSerializer(item["state"]),
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+  };
+}
+
+export function dataTypeUpdatePropertiesDeserializer(
+  item: any,
+): DataTypeUpdateProperties {
+  return {
+    state: !item["state"]
+      ? item["state"]
+      : dataTypeStateDeserializer(item["state"]),
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
@@ -1192,6 +1392,14 @@ export function dataTypeUpdatePropertiesSerializer(
 
 /** model interface DeleteDataRequest */
 export interface DeleteDataRequest {}
+
+export function deleteDataRequestSerializer(item: DeleteDataRequest): any {
+  return item as any;
+}
+
+export function deleteDataRequestDeserializer(item: any): DeleteDataRequest {
+  return item as any;
+}
 
 /** The details for container sas creation. */
 export interface ContainerSaS {
@@ -1211,10 +1419,22 @@ export function containerSaSSerializer(item: ContainerSaS): any {
   };
 }
 
+export function containerSaSDeserializer(item: any): ContainerSaS {
+  return {
+    startTimeStamp: new Date(item["startTimeStamp"]),
+    expiryTimeStamp: new Date(item["expiryTimeStamp"]),
+    ipAddress: item["ipAddress"],
+  };
+}
+
 /** Details of storage container account sas token . */
 export interface ContainerSasToken {
   /** Field to specify storage container sas token. */
   storageContainerSasToken: string;
+}
+
+export function containerSasTokenSerializer(item: ContainerSasToken): any {
+  return { storageContainerSasToken: item["storageContainerSasToken"] };
 }
 
 export function containerSasTokenDeserializer(item: any): ContainerSasToken {
@@ -1229,6 +1449,13 @@ export interface _DataTypeListResult {
   value: DataType[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _dataTypeListResultSerializer(item: _DataTypeListResult): any {
+  return {
+    value: dataTypeArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 export function _dataTypeListResultDeserializer(
@@ -1258,6 +1485,14 @@ export interface DataProductsCatalog extends ProxyResource {
   properties?: DataProductsCatalogProperties;
 }
 
+export function dataProductsCatalogSerializer(item: DataProductsCatalog): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductsCatalogPropertiesSerializer(item["properties"]),
+  };
+}
+
 export function dataProductsCatalogDeserializer(
   item: any,
 ): DataProductsCatalog {
@@ -1282,6 +1517,14 @@ export interface DataProductsCatalogProperties {
   publishers: PublisherInformation[];
 }
 
+export function dataProductsCatalogPropertiesSerializer(
+  item: DataProductsCatalogProperties,
+): any {
+  return {
+    publishers: publisherInformationArraySerializer(item["publishers"]),
+  };
+}
+
 export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
@@ -1299,6 +1542,15 @@ export interface PublisherInformation {
   publisherName: string;
   /** Data product information. */
   dataProducts: DataProductInformation[];
+}
+
+export function publisherInformationSerializer(
+  item: PublisherInformation,
+): any {
+  return {
+    publisherName: item["publisherName"],
+    dataProducts: dataProductInformationArraySerializer(item["dataProducts"]),
+  };
 }
 
 export function publisherInformationDeserializer(
@@ -1320,6 +1572,18 @@ export interface DataProductInformation {
   dataProductVersions: DataProductVersion[];
 }
 
+export function dataProductInformationSerializer(
+  item: DataProductInformation,
+): any {
+  return {
+    dataProductName: item["dataProductName"],
+    description: item["description"],
+    dataProductVersions: dataProductVersionArraySerializer(
+      item["dataProductVersions"],
+    ),
+  };
+}
+
 export function dataProductInformationDeserializer(
   item: any,
 ): DataProductInformation {
@@ -1338,10 +1602,22 @@ export interface DataProductVersion {
   version: string;
 }
 
+export function dataProductVersionSerializer(item: DataProductVersion): any {
+  return { version: item["version"] };
+}
+
 export function dataProductVersionDeserializer(item: any): DataProductVersion {
   return {
     version: item["version"],
   };
+}
+
+export function dataProductVersionArraySerializer(
+  result: Array<DataProductVersion>,
+): any[] {
+  return result.map((item) => {
+    dataProductVersionSerializer(item);
+  });
 }
 
 export function dataProductVersionArrayDeserializer(
@@ -1352,11 +1628,27 @@ export function dataProductVersionArrayDeserializer(
   });
 }
 
+export function dataProductInformationArraySerializer(
+  result: Array<DataProductInformation>,
+): any[] {
+  return result.map((item) => {
+    dataProductInformationSerializer(item);
+  });
+}
+
 export function dataProductInformationArrayDeserializer(
   result: Array<DataProductInformation>,
 ): any[] {
   return result.map((item) => {
     dataProductInformationDeserializer(item);
+  });
+}
+
+export function publisherInformationArraySerializer(
+  result: Array<PublisherInformation>,
+): any[] {
+  return result.map((item) => {
+    publisherInformationSerializer(item);
   });
 }
 
@@ -1376,6 +1668,15 @@ export interface _DataProductsCatalogListResult {
   nextLink?: string;
 }
 
+export function _dataProductsCatalogListResultSerializer(
+  item: _DataProductsCatalogListResult,
+): any {
+  return {
+    value: dataProductsCatalogArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function _dataProductsCatalogListResultDeserializer(
   item: any,
 ): _DataProductsCatalogListResult {
@@ -1383,6 +1684,14 @@ export function _dataProductsCatalogListResultDeserializer(
     value: dataProductsCatalogArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function dataProductsCatalogArraySerializer(
+  result: Array<DataProductsCatalog>,
+): any[] {
+  return result.map((item) => {
+    dataProductsCatalogSerializer(item);
+  });
 }
 
 export function dataProductsCatalogArrayDeserializer(
@@ -1399,6 +1708,15 @@ export interface _OperationListResult {
   value: Operation[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _operationListResultSerializer(
+  item: _OperationListResult,
+): any {
+  return {
+    value: operationArraySerializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 export function _operationListResultDeserializer(
@@ -1422,6 +1740,14 @@ export interface Operation {
   readonly origin?: Origin;
   /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
   actionType?: ActionType;
+}
+
+export function operationSerializer(item: Operation): any {
+  return {
+    actionType: !item["actionType"]
+      ? item["actionType"]
+      : actionTypeSerializer(item["actionType"]),
+  };
 }
 
 export function operationDeserializer(item: any): Operation {
@@ -1450,6 +1776,10 @@ export interface OperationDisplay {
   readonly operation?: string;
   /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
   readonly description?: string;
+}
+
+export function operationDisplaySerializer(item: OperationDisplay): any {
+  return item as any;
 }
 
 export function operationDisplayDeserializer(item: any): OperationDisplay {
@@ -1511,6 +1841,12 @@ export function actionTypeSerializer(item: ActionType): any {
 
 export function actionTypeDeserializer(item: any): ActionType {
   return item;
+}
+
+export function operationArraySerializer(result: Array<Operation>): any[] {
+  return result.map((item) => {
+    operationSerializer(item);
+  });
 }
 
 export function operationArrayDeserializer(result: Array<Operation>): any[] {

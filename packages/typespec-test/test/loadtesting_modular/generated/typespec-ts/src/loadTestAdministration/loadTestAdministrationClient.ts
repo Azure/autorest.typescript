@@ -36,12 +36,23 @@ import {
   TestAppComponents,
   TestServerMetricConfig,
   _Metrics,
+  _metricsSerializer,
   _metricsDeserializer,
   _PagedTestFileInfo,
+  _pagedTestFileInfoSerializer,
+  _pagedTestFileInfoDeserializer,
   _PagedTest,
+  _pagedTestSerializer,
+  _pagedTestDeserializer,
   _PagedTestRun,
+  _pagedTestRunSerializer,
+  _pagedTestRunDeserializer,
   _PagedTestProfile,
+  _pagedTestProfileSerializer,
+  _pagedTestProfileDeserializer,
   _PagedTestProfileRun,
+  _pagedTestProfileRunSerializer,
+  _pagedTestProfileRunDeserializer,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

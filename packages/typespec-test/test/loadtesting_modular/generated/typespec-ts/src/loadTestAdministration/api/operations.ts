@@ -29,12 +29,23 @@ import {
   testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
   _Metrics,
+  _metricsSerializer,
   _metricsDeserializer,
   _PagedTestFileInfo,
+  _pagedTestFileInfoSerializer,
+  _pagedTestFileInfoDeserializer,
   _PagedTest,
+  _pagedTestSerializer,
+  _pagedTestDeserializer,
   _PagedTestRun,
+  _pagedTestRunSerializer,
+  _pagedTestRunDeserializer,
   _PagedTestProfile,
+  _pagedTestProfileSerializer,
+  _pagedTestProfileDeserializer,
   _PagedTestProfileRun,
+  _pagedTestProfileRunSerializer,
+  _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -46,6 +57,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 
 export function _createOrUpdateTestSend(
   context: Client,
@@ -319,7 +331,7 @@ export async function _listTestFilesDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTestFileInfoDeserializer(result.body);
 }
 
 /** Get all test files. */
@@ -363,7 +375,7 @@ export async function _listTestsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedTestDeserializer(result.body);
 }
 
 /**
@@ -396,7 +408,7 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
       queryParameters: { fileType: options?.fileType },
-      body: body,
+      body: uint8ArrayToString(body, "base64"),
     });
 }
 

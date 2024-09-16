@@ -15,7 +15,11 @@ import {
   SchemaVersion,
   SchemaContentTypeValues,
   _PagedSchemaGroup,
+  _pagedSchemaGroupSerializer,
+  _pagedSchemaGroupDeserializer,
   _PagedVersion,
+  _pagedVersionSerializer,
+  _pagedVersionDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -27,6 +31,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export function _listSchemaGroupsSend(
   context: Client,
@@ -47,7 +52,7 @@ export async function _listSchemaGroupsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedSchemaGroupDeserializer(result.body);
 }
 
 /** Gets the list of schema groups user is authorized to access. */
@@ -84,7 +89,9 @@ export async function _getSchemaByIdDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
@@ -118,7 +125,7 @@ export async function _listSchemaVersionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return _pagedVersionDeserializer(result.body);
 }
 
 /** Gets the list of all versions of one schema. */
@@ -166,7 +173,9 @@ export async function _getSchemaByVersionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets one specific version of one schema. */
@@ -204,7 +213,7 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: schemaContent,
+      body: uint8ArrayToString(schemaContent, "base64"),
     });
 }
 
@@ -256,7 +265,7 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: content,
+      body: uint8ArrayToString(content, "base64"),
     });
 }
 

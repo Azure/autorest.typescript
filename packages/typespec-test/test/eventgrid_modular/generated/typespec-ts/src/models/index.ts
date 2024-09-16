@@ -16,5 +16,4 @@ export {
   RejectOptions,
   RejectResult,
   ServiceApiVersions,
-  ErrorResponse,
 } from "./models.js";

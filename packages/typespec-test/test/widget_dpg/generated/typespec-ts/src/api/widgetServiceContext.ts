@@ -4,6 +4,7 @@
 import { logger } from "../logger.js";
 import {
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";

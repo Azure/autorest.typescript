@@ -3,6 +3,7 @@
 
 import {
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "./models/models.js";
 import {
@@ -25,7 +26,6 @@ export {
   AnalyzeResult,
   NonReferencedModel,
   Versions,
-  ErrorResponse,
 } from "./models/index.js";
 export {
   WidgetsListWidgetsOptionalParams,

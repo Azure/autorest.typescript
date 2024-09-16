@@ -47,6 +47,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { stringToUint8Array } from "@azure/core-util";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
@@ -391,7 +392,9 @@ export async function _generateSpeechFromTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Generates text-to-speech audio from the input text. */

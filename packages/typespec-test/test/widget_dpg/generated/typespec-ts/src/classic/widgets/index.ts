@@ -28,6 +28,7 @@ import {
   User,
   Widget,
   _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
   AnalyzeResult,
 } from "../../models/models.js";
