@@ -804,18 +804,38 @@ describe("header parameters", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Type of EnumTest */
-        export type EnumTest = 1 | 2 | 3 | 4;
+        /** model interface Foo */
+        export interface Foo {}
         
-        export interface Foo {
-        }
-
-        export function fooSerializer(item: Foo) {
+        export function fooSerializer(item: Foo): any {
           return item as any;
         }
         
+        export function fooDeserializer(item: any): Foo {
+          return item as any;
+        }
+               
+        /** Type of EnumTest */
+        export type EnumTest = 1 | 2 | 3 | 4;
+
+        export function enumTestSerializer(item: EnumTest): any {
+          return item;
+        }
+
+        export function enumTestDeserializer(item: any): EnumTest {
+          return item;
+        }
+  
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
+      
+        export function mixedTypesSerializer(item: MixedTypes): any {
+          return item;
+        }
+        
+        export function mixedTypesDeserializer(item: any): MixedTypes {
+          return item;
+        }
       `
       );
     });
@@ -846,9 +866,7 @@ describe("model type", () => {
         serializer!,
         `
         export function testSerializer(item: Test): any {
-          return {
-            color: item["color"],
-          }
+          return { color: testColorSerializer(item["color"]) };
         };`,
         true
       );
@@ -969,9 +987,7 @@ describe("model type", () => {
         serializer!,
         `
         export function testSerializer(item: Test): any {
-          return {
-            color: item["color"],
-          }
+          return { color: testColorSerializer(item["color"]) };
         };`,
         true
       );

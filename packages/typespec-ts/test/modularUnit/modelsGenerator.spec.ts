@@ -63,13 +63,13 @@ async function verifyModularPropertyType(
 }
 
 describe("modular model type", () => {
-  it("shouldn't generate models if there is no operations", async () => {
+  it("should generate models even if there is no operations", async () => {
     const schemaOutput = await emitModularModelsFromTypeSpec(`
       model Test {
         prop: string;
       }
       `);
-    assert.ok(!schemaOutput);
+    assert.ok(schemaOutput);
   });
 });
 
@@ -108,6 +108,18 @@ describe("model property type", () => {
       additionalInputContent: `
       /** Translation Language Values */
       export type TranslationLanguageValues = "English" | "Chinese";
+      
+      export function translationLanguageValuesSerializer(
+        item: TranslationLanguageValues,
+      ): any {
+        return item;
+      }
+      
+      export function translationLanguageValuesDeserializer(
+        item: any,
+      ): TranslationLanguageValues {
+        return item;
+      }
       `
     });
   });
@@ -2335,6 +2347,7 @@ describe("`extends`", () => {
     await assertEqualContent(
       modelFile!.getInterface("A")?.getFullText()!,
       `
+      /** model interface A */
       export interface A extends B {}`
     );
 
@@ -2373,6 +2386,9 @@ describe("visibility", () => {
       
       export function aSerializer(item: A): any {
         return item as any;
+      }
+      export function aDeserializer(item: any): A {
+        return { exactVersion: item["exactVersion"] };
       }
       `,
       true

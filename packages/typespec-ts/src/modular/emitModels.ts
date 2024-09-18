@@ -157,9 +157,9 @@ function buildUnionType(
     type: type.values.map((v) => getTypeExpression(v)).join(" | ")
   };
 
-  if (type.description) {
-    unionDeclaration.docs = [type.description];
-  }
+  unionDeclaration.docs = [
+    type.description ?? `Alias for ${unionDeclaration.name}`
+  ];
 
   return unionDeclaration;
 }
