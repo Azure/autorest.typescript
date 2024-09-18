@@ -246,12 +246,14 @@ const libDef = {
       }
     },
     "un-supported-finalStateVia": {
-    "required-sample-parameter": {
-      severity: "warning",
-      messages: {
       severity: "warning",
       messages: {
         default: paramMessage`The LRO final-state-via ${"finalStateVia"} is not supported.`
+      }
+    },
+    "required-sample-parameter": {
+      severity: "warning",
+      messages: {
         default: paramMessage`The parameter ${"paramName"} in ${"exampleName"} is required but no value provided.`
       }
     }
