@@ -703,13 +703,12 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should return directly if package.json is non-existing or no paging/lro operations", () => {
+    it("[cjs] should return directly if package.json is non-existing or no lro operations", () => {
       let model = createMockModel({
         moduleKind: "cjs",
         flavor: "azure",
         isMonorepo: false,
         withTests: true,
-        hasPaging: false,
         hasLro: false
       });
       let packageFileContent = updatePackageFile(
@@ -722,7 +721,6 @@ describe("Package file generation", () => {
         flavor: "azure",
         isMonorepo: false,
         withTests: true,
-        hasPaging: true,
         hasLro: true
       });
       packageFileContent = updatePackageFile(
@@ -730,40 +728,6 @@ describe("Package file generation", () => {
         "./test/integration/static/package_non_existing.json"
       );
       expect(packageFileContent).to.be.undefined;
-    });
-
-    it("[esm] should not update paging dependency if there exists paging operations for Modular", () => {
-      let model = createMockModel({
-        moduleKind: "esm",
-        flavor: "azure",
-        isMonorepo: false,
-        withTests: true,
-        hasPaging: true,
-        isModularLibrary: true
-      });
-      const packageFileContent = updatePackageFile(
-        model,
-        "./test/integration/static/package.json"
-      );
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.dependencies).to.not.have.property(
-        "@azure/core-paging"
-      );
-    });
-    it("[esm] should not include paging dependency if there exists paging operations for Modular", () => {
-      let model = createMockModel({
-        moduleKind: "esm",
-        flavor: "azure",
-        isMonorepo: false,
-        withTests: true,
-        hasPaging: true,
-        isModularLibrary: true
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.dependencies).to.not.have.property(
-        "@azure/core-paging"
-      );
     });
   });
 

@@ -8,7 +8,6 @@ import {
 
 export interface AzurePackageInfoConfig extends PackageCommonInfoConfig {
   hasLro: boolean;
-  hasPaging: boolean;
   specSource: "Swagger" | "TypeSpec";
 }
 
@@ -30,10 +29,8 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
  */
 export function getAzurePackageDependencies({
   hasLro,
-  hasPaging,
   specSource,
-  dependencies,
-  isModularLibrary
+  dependencies
 }: AzurePackageInfoConfig) {
   let azureDependencies: Record<string, string> = {
     ...dependencies,
