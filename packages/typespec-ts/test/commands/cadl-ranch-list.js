@@ -548,6 +548,10 @@ export const modularTsps = [
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
   },
   {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
+  },
+  {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
