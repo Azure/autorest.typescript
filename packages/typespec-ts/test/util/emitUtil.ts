@@ -14,7 +14,12 @@ import {
   buildModels,
   buildModelsOptions
 } from "../../src/modular/emitModels.js";
-import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
+import {
+  compileTypeSpecFor,
+  createDpgContextTestHelper,
+  ExampleJson,
+  rlcEmitterFor
+} from "./testUtil.js";
 import {
   transformRLCModel,
   transformUrlInfo
@@ -36,6 +41,7 @@ import { transformToParameterTypes } from "../../src/transform/transformParamete
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
+import { emitSamples } from "../../src/modular/emitSamples.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -323,7 +329,7 @@ export async function emitModularModelsFromTypeSpec(
     RLCModel
   >();
   const project = useContext("outputProject");
-  const binder = useBinder(); 
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   let modelFile = undefined;
   if (clients && clients[0]) {
@@ -561,4 +567,22 @@ export async function emitModularClientFromTypeSpec(
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
+}
+
+export async function emitSamplesFromTypeSpec(
+  tspContent: string,
+  examples: ExampleJson[],
+  configs: Record<string, string> = {}
+) {
+  const context = await compileTypeSpecFor(tspContent, examples);
+  const dpgContext = await createDpgContextTestHelper(context.program, false, {
+    "examples-directory": `./examples`,
+    packageDetails: {
+      name: "@azure/internal-test"
+    },
+    ...configs
+  });
+  const files = await emitSamples(dpgContext);
+  useBinder().resolveAllReferences();
+  return files;
 }
