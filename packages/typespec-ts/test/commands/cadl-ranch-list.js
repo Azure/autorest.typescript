@@ -1,5 +1,9 @@
 export const rlcTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "payload/multipart",
     inputPath: "payload/multipart"
   },
