@@ -2,7 +2,7 @@ import RoutesClientFactory, {
   RoutesClient
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
-describe.only("RoutesClient Rest Client", () => {
+describe("RoutesClient Rest Client", () => {
   let client: RoutesClient;
 
   beforeEach(() => {
