@@ -1,6 +1,8 @@
-# Should generate optional body in option parameter
+# skip: Should generate optional body in option parameter
 
 Should generate optional body in option parameter.
+
+// FIXME: issue tracked: https://github.com/Azure/autorest.typescript/issues/2827
 
 ## TypeSpec
 
@@ -70,7 +72,7 @@ async function read() {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
     body: { name: "body name" },
-    optionalQuery: "renamed optional query",
+    optionalQuery: "renamed optional query"
   });
   console.log(result);
 }
