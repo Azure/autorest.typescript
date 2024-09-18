@@ -290,10 +290,6 @@ export const rlcTsps = [
   {
     outputPath: "client/structure/client-operation-group",
     inputPath: "client/structure/client-operation-group"
-  },
-  {
-    outputPath: "routes",
-    inputPath: "routes"
   }
 ];
 
