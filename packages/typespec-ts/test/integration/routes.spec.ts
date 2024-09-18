@@ -29,7 +29,6 @@ describe("RoutesClient Rest Client", () => {
     const result = await client
       .path("/routes/path/annotation-only/{param}", "a")
       .get();
-    console.log(result);
     assert.strictEqual(result.status, "204");
   });
 
