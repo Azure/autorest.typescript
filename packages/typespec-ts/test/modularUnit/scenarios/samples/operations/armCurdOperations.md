@@ -122,8 +122,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function operationsList() {
   const credential = new DefaultAzureCredential();
+  const apiVersion = "2021-10-01-preview";
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new ContosoClient(credential, subscriptionId);
+  const client = new ContosoClient(credential, apiVersion, subscriptionId);
   const resArray = new Array();
   for await (let item of client.operations.list()) {
     resArray.push(item);
@@ -183,8 +184,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function employeesCreateOrUpdate() {
   const credential = new DefaultAzureCredential();
+  const apiVersion = "2021-10-01-preview";
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
+  const client = new ContosoClient(credential, apiVersion, subscriptionId);
   const result = await client.employees.createOrUpdate(
     "rgopenapi",
     "9KF-f-8b",
@@ -241,8 +243,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function employeesDelete() {
   const credential = new DefaultAzureCredential();
+  const apiVersion = "2021-10-01-preview";
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
+  const client = new ContosoClient(credential, apiVersion, subscriptionId);
   await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
 }
 
