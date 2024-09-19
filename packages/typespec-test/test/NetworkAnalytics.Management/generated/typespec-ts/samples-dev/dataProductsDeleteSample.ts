@@ -12,8 +12,13 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function dataProductsDeleteMaximumSetGen() {
   const credential = new DefaultAzureCredential();
+  const apiVersion = "2023-11-15";
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
+  const client = new NetworkAnalyticsClient(
+    credential,
+    apiVersion,
+    subscriptionId,
+  );
   await client.dataProducts.delete("aoiresourceGroupName", "dataproduct01");
 }
 
