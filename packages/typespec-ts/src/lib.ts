@@ -244,6 +244,12 @@ const libDef = {
       messages: {
         default: paramMessage`Authentication type ${"credentialType"} is not supported.`
       }
+    },
+    "required-sample-parameter": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} in ${"exampleName"} is required but no value provided.`
+      }
     }
   },
   emitter: {
