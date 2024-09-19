@@ -8,7 +8,6 @@ import {
 
 export interface AzurePackageInfoConfig extends PackageCommonInfoConfig {
   hasLro: boolean;
-  hasPaging: boolean;
   specSource: "Swagger" | "TypeSpec";
 }
 
@@ -30,10 +29,8 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
  */
 export function getAzurePackageDependencies({
   hasLro,
-  hasPaging,
   specSource,
-  dependencies,
-  isModularLibrary
+  dependencies
 }: AzurePackageInfoConfig) {
   let azureDependencies: Record<string, string> = {
     ...dependencies,
@@ -49,13 +46,6 @@ export function getAzurePackageDependencies({
       ...azureDependencies,
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
-    };
-  }
-
-  if (hasPaging && isModularLibrary !== true) {
-    azureDependencies = {
-      ...azureDependencies,
-      "@azure/core-paging": "^1.5.0"
     };
   }
 
