@@ -49,13 +49,15 @@ function buildExportsForMultiClient(
 }
 
 export function getModuleExports(codeModel: ModularCodeModel) {
-  const exports = {
+  const exports: Record<string, any> = {
     exports: {
       ".": "./src/index.ts",
-      "./api": "./src/api/index.ts",
       "./models": "./src/models/index.ts"
     }
   };
+  if (!codeModel.options.azureArm) {
+    exports["exports"]["./api"] = "./src/api/index.ts";
+  }
 
   return buildExportsForMultiClient(codeModel, exports);
 }

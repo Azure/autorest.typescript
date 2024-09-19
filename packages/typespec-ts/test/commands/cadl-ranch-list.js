@@ -1,5 +1,9 @@
 export const rlcTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "payload/multipart",
     inputPath: "payload/multipart"
   },
@@ -546,6 +550,10 @@ export const modularTsps = [
   {
     outputPath: "azure/resource-manager/models/common-types/managed-identity",
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
   },
   {
     outputPath: "azure/core/page",
