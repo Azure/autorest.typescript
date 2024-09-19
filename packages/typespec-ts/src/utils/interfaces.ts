@@ -2,6 +2,7 @@ import { RLCOptions, SchemaContext } from "@azure-tools/rlc-common";
 import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { ModelProperty } from "@typespec/compiler";
 import { KnownMediaType } from "./mediaTypes.js";
+import { HttpOperationParameter } from "@typespec/http";
 
 export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
@@ -30,4 +31,6 @@ export interface GetSchemaOptions {
   isRequestBody?: boolean;
   // if the parent type is taken as request body
   isParentRequestBody?: boolean;
+  // relevant operation parameter
+  relevantOperationParameter?: HttpOperationParameter;
 }

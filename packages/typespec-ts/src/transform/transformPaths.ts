@@ -133,13 +133,19 @@ function transformOperation(
         .filter((p) => p.type === "path")
         .map((p) => {
           const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
+          const options = {
+            usage: schemaUsage,
+            needRef: false,
+            relevantProperty: p.param,
+            relevantOperationParameter: p
+          };
           const schema = p.param.sourceProperty
-            ? getSchemaForType(dpgContext, p.param.sourceProperty?.type)
-            : getSchemaForType(dpgContext, p.param.type, {
-                usage: schemaUsage,
-                needRef: false,
-                relevantProperty: p.param
-              });
+            ? getSchemaForType(
+                dpgContext,
+                p.param.sourceProperty?.type,
+                options
+              )
+            : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
           return {

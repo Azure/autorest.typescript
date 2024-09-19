@@ -58,6 +58,7 @@ import {
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
   HttpOperation,
+  HttpOperationParameter,
   HttpOperationParameters,
   getHeaderFieldName,
   getPathParamName,
@@ -152,7 +153,10 @@ export function getSchemaForType(
   options?: GetSchemaOptions
 ) {
   const program = dpgContext.program;
-  const { usage } = options ?? {};
+  const { usage, relevantOperationParameter } = options ?? {};
+  if (isWrappedParameter(relevantOperationParameter)) {
+    return wrapOperationParameter();
+  }
   const type = getEffectiveModelFromType(dpgContext, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
@@ -1778,4 +1782,36 @@ export function isBodyRequired(parameter: HttpOperationParameters) {
   return parameter.body?.type && parameter.body?.property?.optional !== true
     ? true
     : false;
+}
+
+function isWrappedParameter(parameter?: HttpOperationParameter) {
+  if (!parameter) {
+    return false;
+  }
+  if (parameter.type === "path" && parameter.allowReserved === true) {
+    return true;
+  }
+  return false;
+}
+
+function wrapOperationParameter() {
+  const schema: ObjectSchema = {
+    type: "object",
+    name: "StringWithEncodingMetadata",
+    description: "String with encoding metadata",
+    properties: {
+      '"value"': {
+        description: undefined,
+        required: true,
+        type: "string"
+      },
+      '"allowReserved"': {
+        description: undefined,
+        required: true,
+        type: `true`
+      }
+    } as any
+  };
+
+  return schema;
 }
