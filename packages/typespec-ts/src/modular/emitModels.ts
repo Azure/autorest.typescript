@@ -193,7 +193,7 @@ function buildEnumTypes(
       : [docs];
   enumDeclaration.docs = type.description
     ? [type.description]
-    : ["Type of " + enumDeclaration.name];
+    : [`Known values of {@link ${type.name}} that the service accepts.`];
 
   return [enumAsUnion, enumDeclaration];
 }
@@ -364,15 +364,6 @@ function visitClientMethod(
     case "paging":
     case "lropaging":
     case "basic":
-      // Visit the response
-      visitType(method.response.type, emitQueue);
-      // Visit the error response
-      visitType(method.exception?.type, emitQueue);
-      // Visit the parameters
-      method.parameters.forEach((parameter) => {
-        visitType(parameter.type, emitQueue);
-      });
-
       visitOperation(method.operation, emitQueue);
       break;
     case "clientaccessor":
@@ -463,7 +454,9 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     }
   }
   if (type.kind === "union") {
-    emitQueue.add(type);
+    if (!emitQueue.has(type as any)) {
+      emitQueue.add(type);
+    }
     for (const value of type.values) {
       if (!emitQueue.has(value as any)) {
         visitType(value, emitQueue);
