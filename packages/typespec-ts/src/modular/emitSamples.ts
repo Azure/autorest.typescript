@@ -270,7 +270,11 @@ function prepareExampleParameters(
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
   // required parameters
   for (const param of method.operation.parameters) {
-    if (param.optional === true || param.type.kind === "constant") {
+    if (
+      param.optional === true ||
+      param.type.kind === "constant" ||
+      param.clientDefaultValue
+    ) {
       continue;
     }
 
@@ -346,7 +350,10 @@ function prepareExampleParameters(
   // optional parameters
   method.operation.parameters
     .filter(
-      (param) => param.optional === true && parameterMap[param.serializedName]
+      (param) =>
+        param.optional === true &&
+        parameterMap[param.serializedName] &&
+        !param.clientDefaultValue
     )
     .map((param) => parameterMap[param.serializedName]!)
     .forEach((param) => {
