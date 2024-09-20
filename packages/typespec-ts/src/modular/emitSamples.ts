@@ -8,11 +8,11 @@ import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
   SdkHttpOperationExample,
-  SdkHttpParameterExample,
+  SdkHttpParameterExampleValue,
   SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
-  SdkTypeExample
+  SdkExampleValue
 } from "@azure-tools/typespec-client-generator-core";
 import {
   isAzurePackage,
@@ -148,7 +148,7 @@ function emitMethodSamples(
       returnType: "void",
       body: exampleFunctionBody
     };
-    const parameterMap: Record<string, SdkHttpParameterExample> =
+    const parameterMap: Record<string, SdkHttpParameterExampleValue> =
       buildParameterValueMap(example);
     const parameters = prepareExampleParameters(
       dpgContext,
@@ -240,7 +240,7 @@ function emitMethodSamples(
 }
 
 function buildParameterValueMap(example: SdkHttpOperationExample) {
-  const parameterMap: Record<string, SdkHttpParameterExample> = {};
+  const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
     (param) =>
       (parameterMap[
@@ -253,7 +253,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 function prepareExampleParameters(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
-  parameterMap: Record<string, SdkHttpParameterExample>,
+  parameterMap: Record<string, SdkHttpParameterExampleValue>,
   topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
@@ -399,7 +399,7 @@ function getCredentialExampleValue(
   return undefined;
 }
 
-function getParameterValue(value: SdkTypeExample): string {
+function getParameterValue(value: SdkExampleValue): string {
   let retValue = `{} as any`;
   switch (value.kind) {
     case "string": {
@@ -416,7 +416,7 @@ function getParameterValue(value: SdkTypeExample): string {
     case "boolean":
     case "number":
     case "null":
-    case "any":
+    case "unknown":
     case "union":
       retValue = `${value.value}`;
       break;
