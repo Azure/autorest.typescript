@@ -1,5 +1,6 @@
 import {
   Enum,
+  EnumMember,
   IntrinsicScalarName,
   Model,
   ModelProperty,
@@ -67,7 +68,6 @@ import {
 import {
   SdkBuiltInType,
   SdkClient,
-  SdkEnumValueType,
   SdkType,
   getAllModels,
   getClientNamespaceString,
@@ -1114,6 +1114,9 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  if (enumValues.length === 0) {
+    throw new Error(`Expecting enum values but got none`);
+  }
   const name = normalizeName(
     getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
     NameType.Interface
@@ -1125,14 +1128,14 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
       getDocStr(program, type) === ""
         ? `Type of ${name}`
         : getDocStr(program, type),
-    valueType: { type: enumMemberType(type.members.values().next().value) },
+    valueType: { type: enumMemberType(type.members.values().next().value!) },
     values: enumValues,
     isFixed: true,
     coreTypeInfo: buildCoreTypeInfo(program, type)
   };
 }
 
-function enumMemberType(member: SdkEnumValueType) {
+function enumMemberType(member: EnumMember) {
   if (typeof member.value === "number") {
     return "number";
   }
