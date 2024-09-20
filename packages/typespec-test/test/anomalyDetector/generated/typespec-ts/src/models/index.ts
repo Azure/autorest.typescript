@@ -35,6 +35,7 @@ export {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
   Versions,
+  MultivariateResponseError,
 } from "./models.js";
 export {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
