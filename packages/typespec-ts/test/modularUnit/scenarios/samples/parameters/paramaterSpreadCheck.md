@@ -1,6 +1,4 @@
-# skip: Should generate samples for spread cases
-
-// FIXME: issue tracked in tcgc: https://github.com/Azure/typespec-azure/issues/1421
+# Should generate samples for spread cases
 
 Sample generation should handle operation-level parameter order successfully.
 
@@ -68,6 +66,7 @@ Raw json files.
 Generate samples for spread cases:
 
 ```ts samples
+/** This file path is /samples-dev/readSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -83,7 +82,10 @@ async function read() {
     "required header",
     "required query",
     { name: "body name" },
-    { optionalHeader: "optional header", optionalQuery: "optional query" }
+    {
+      optionalHeader: "optional header",
+      renamedOptional: "renamed optional query"
+    }
   );
   console.log(result);
 }
