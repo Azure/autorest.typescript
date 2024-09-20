@@ -103,7 +103,8 @@ import {
 } from "../utils/operationUtil.js";
 import {
   getLroMetadata,
-  getPagedResult
+  getPagedResult,
+  LroMetadata
 } from "@azure-tools/typespec-azure-core";
 
 import { Project } from "ts-morph";
@@ -732,9 +733,35 @@ function addLroInformation(
       metadata?.finalResult === "void" || metadata?.finalResult === undefined
         ? undefined
         : getType(context, metadata.finalResult),
-    finalStateVia: metadata?.finalStateVia,
+    finalStateVia: getFinalStateVia(context, operation, metadata),
     finalResultPath: metadata?.finalResultPath
   };
+}
+
+function getFinalStateVia(
+  context: SdkContext,
+  operation: Operation,
+  metadata?: LroMetadata
+) {
+  if (!metadata) {
+    return undefined;
+  }
+  switch (metadata.finalStateVia) {
+    case "azure-async-operation":
+    case "location":
+    case "operation-location":
+    case "original-uri":
+      return metadata.finalStateVia;
+    default:
+      reportDiagnostic(context.program, {
+        code: "un-supported-finalStateVia",
+        format: {
+          finalStateVia: metadata.finalStateVia!
+        },
+        target: operation
+      });
+      return undefined;
+  }
 }
 
 function addPagingInformation(

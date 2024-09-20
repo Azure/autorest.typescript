@@ -106,7 +106,7 @@ export function updatePackageFile(
   if (hasLro) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      "@azure/core-lro": "^3.0.0",
+      "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }

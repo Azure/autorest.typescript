@@ -245,6 +245,12 @@ const libDef = {
         default: paramMessage`Authentication type ${"credentialType"} is not supported.`
       }
     },
+    "un-supported-finalStateVia": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The LRO final-state-via ${"finalStateVia"} is not supported.`
+      }
+    },
     "required-sample-parameter": {
       severity: "warning",
       messages: {
