@@ -1412,7 +1412,7 @@ function emitUnion(
       : type.name;
     const discriminatorPropertyName = getDiscriminator(context.program, type)
       ?.propertyName;
-    const variantTypes = sdkType.values.map((x) => {
+    const variantTypes = sdkType.variantTypes.map((x) => {
       const valueType = getType(context, x.__raw!, { usage });
       if (valueType.properties && discriminatorPropertyName) {
         valueType.discriminatorValue = valueType.properties.filter(
