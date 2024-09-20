@@ -294,8 +294,29 @@ describe("header parameters", () => {
           `
           /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
+           
+          export function jsonContentTypeSerializer(item: JsonContentType): any {
+            return item;
+          }
+           
+          export function jsonContentTypeDeserializer(item: any): JsonContentType {
+            return item;
+          }
+
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+           
+           export function schemaContentTypeValuesSerializer(
+             item: SchemaContentTypeValues,
+           ): any {
+             return item;
+           }
+           
+           export function schemaContentTypeValuesDeserializer(
+             item: any,
+           ): SchemaContentTypeValues {
+             return item;
+           }
           `
         );
       });

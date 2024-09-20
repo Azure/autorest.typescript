@@ -142,36 +142,43 @@ describe("operations", () => {
           prop1: string,
           prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
-            return context.path("/", ).post({...operationOptionsToRequestParameters(options), 
+            return context.path("/").post({
+              ...operationOptionsToRequestParameters(options),
               headers: {
                 "required-header": requiredHeader,
                 ...(options?.optionalHeader !== undefined
                   ? { "optional-header": options?.optionalHeader }
                   : {}),
-                ...(options?.nullableOptionalHeader !== undefined && options?.nullableOptionalHeader !== null
+                ...(options?.nullableOptionalHeader !== undefined &&
+                options?.nullableOptionalHeader !== null
                   ? { "nullable-optional-header": options?.nullableOptionalHeader }
                   : {}),
                 "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
                 value: uint8ArrayToString(value, "base64"),
                 "csv-array-header": buildCsvCollection(
-                  csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url"))
+                  csvArrayHeader.map((p: any) => {
+                    return uint8ArrayToString(p, "base64url");
+                  }),
                 ),
                 "utc-date-header": utcDateHeader.toUTCString(),
                 ...(options?.optionalDateHeader !== undefined
                   ? {
-                      "optional-date-header":
-                        options?.optionalDateHeader?.toUTCString(),
+                      "optional-date-header": !options?.optionalDateHeader
+                        ? options?.optionalDateHeader
+                        : options?.optionalDateHeader.toUTCString(),
                     }
                   : {}),
-                ...(options?.nullableDateHeader !== undefined && options?.nullableDateHeader !== null
+                ...(options?.nullableDateHeader !== undefined &&
+                options?.nullableDateHeader !== null
                   ? {
-                      "nullable-date-header":
-                        options?.nullableDateHeader?.toUTCString(),
+                      "nullable-date-header": !options?.nullableDateHeader
+                        ? options?.nullableDateHeader
+                        : options?.nullableDateHeader.toUTCString(),
                     }
                   : {}),
               },
-            body: { prop1: prop1, prop2: prop2 },
-          });
+              body: { prop1: prop1, prop2: prop2 },
+            });
         }
         
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
