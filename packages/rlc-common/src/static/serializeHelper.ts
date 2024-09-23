@@ -34,7 +34,7 @@ export function buildCsvCollection(items: string[] | number[]): string {
 }`;
 
 export const buildAllowReservedContent = `
-function withReservedCharacters(value: string) {
+export function withReservedCharacters(value: string) {
     return {
         allowReserved: true,
         value
@@ -43,7 +43,7 @@ function withReservedCharacters(value: string) {
 `;
 
 export const buildExplodedAndFormStyleContent = `
-function withExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function withExplodedAndFormStyle(value: string[] | Record<string, unknown>){
     return {
         explode: true,
         style: "form",
@@ -53,7 +53,7 @@ function withExplodedAndFormStyle(value: string[] | Record<string, unknown>){
 `;
 
 export const buildNonExplodedAndFormStyleContent = `
-function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>){
     return {
         explode: false,
         style: "form",
@@ -63,7 +63,7 @@ function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>){
 `;
 
 export const buildNonExplodedAndPipeStyleContent = `
-function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
     return {
         explode: false,
         style: "pipeDelimited",
@@ -73,7 +73,7 @@ function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
     return {
         explode: false,
         style: "spaceDelimited",

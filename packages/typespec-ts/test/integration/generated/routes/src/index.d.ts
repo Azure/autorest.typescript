@@ -703,4 +703,15 @@ export declare type RoutesClient = Client & {
 export declare interface RoutesClientOptions extends ClientOptions {
 }
 
+export declare function withExplodedAndFormStyle(value: string[] | Record<string, unknown>): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: any;
+};
+
+export declare function withReservedCharacters(value: string): {
+    allowReserved: boolean;
+    value: string;
+};
+
 export { }
