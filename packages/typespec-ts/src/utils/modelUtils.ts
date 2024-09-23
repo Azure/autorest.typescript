@@ -1452,7 +1452,7 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
-function getBinaryDescripton(type: any) {
+function getBinaryDescription(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
     return `Value may contain any sequence of octets`;
   }
@@ -1484,7 +1484,7 @@ export function getFormattedPropertyDoc(
   const enhancedDocFromType =
     getEnumStringDescription(schemaType) ??
     getDecimalDescription(schemaType) ??
-    getBinaryDescripton(schemaType);
+    getBinaryDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
