@@ -130,7 +130,15 @@ export interface HelperFunctionDetails {
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
   hasCsvCollection?: boolean;
+  serializeHelper?: SerializeHelperKind[];
 }
+
+export type SerializeHelperKind =
+  | "withAllowReserved"
+  | "withExplodedAndFormStyle"
+  | "withNonExplodedAndFormStyle"
+  | "withNonExplodedAndSpaceStyle"
+  | "withNonExplodedAndPipeStyle";
 
 export interface PagingDetails {
   itemNames: string[];
@@ -359,7 +367,14 @@ export interface ParameterBodySchema extends Schema {
 export interface ParameterMetadata {
   type: "query" | "path" | "header";
   name: string;
-  param: Schema;
+  param: ParameterSchema;
+}
+
+export interface ParameterSchema extends Schema {
+  // the wrapper type and usually used to generate the parameter type details
+  wrapperType?: Schema;
+  // if the param type is a wrapper type
+  isWrappedType?: boolean;
 }
 
 export interface OperationResponse {

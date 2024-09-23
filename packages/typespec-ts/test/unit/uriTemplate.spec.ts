@@ -1,13 +1,13 @@
 import { assert } from "chai";
-import { emitClientDefinitionFromTypeSpec } from "../util/emitUtil.js";
+import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe.only("Client definition generation", () => {
   it("should generate method-level parameter", async () => {
-    const clientDef = await emitClientDefinitionFromTypeSpec(
+    const clientDef = await emitParameterFromTypeSpec(
       `
-    @route("template/{+param}")
-    op template(param: string): void;
+      @route("array{?param*}")
+      op array(param: string[]): void;
         `
     );
     assert.ok(clientDef);

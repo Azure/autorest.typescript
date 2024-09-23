@@ -11,8 +11,13 @@ import {
   hasTsvCollection
 } from "./helpers/operationHelpers.js";
 import {
+  buildAllowReservedContent,
   buildCsvCollectionContent,
+  buildExplodedAndFormStyleContent,
   buildMultiCollectionContent,
+  buildNonExplodedAndFormStyleContent,
+  buildNonExplodedAndPipeStyleContent,
+  buildNonExplodedAndSpaceStyleContent,
   buildPipeCollectionContent,
   buildSsvCollectionContent,
   buildTsvCollectionContent
@@ -34,6 +39,25 @@ export function buildSerializeHelper(model: RLCModel) {
   }
   if (hasCsvCollection(model)) {
     serializeHelperContent += "\n" + buildCsvCollectionContent;
+  }
+  for (const helper of model.helperDetails?.serializeHelper ?? []) {
+    switch (helper) {
+      case "withAllowReserved":
+        serializeHelperContent += "\n" + buildAllowReservedContent;
+        break;
+      case "withExplodedAndFormStyle":
+        serializeHelperContent += "\n" + buildExplodedAndFormStyleContent;
+        break;
+      case "withNonExplodedAndFormStyle":
+        serializeHelperContent += "\n" + buildNonExplodedAndFormStyleContent;
+        break;
+      case "withNonExplodedAndPipeStyle":
+        serializeHelperContent += "\n" + buildNonExplodedAndPipeStyleContent;
+        break;
+      case "withNonExplodedAndSpaceStyle":
+        serializeHelperContent += "\n" + buildNonExplodedAndSpaceStyleContent;
+        break;
+    }
   }
   if (serializeHelperContent !== "") {
     const readmeFileContents = hbs.compile(serializeHelperContent, {

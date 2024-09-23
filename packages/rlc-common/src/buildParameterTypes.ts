@@ -14,7 +14,8 @@ import {
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
-  Schema
+  Schema,
+  SchemaContext
 } from "./interfaces.js";
 import {
   getImportModuleName,
@@ -22,6 +23,7 @@ import {
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
+import { getObjectInterfaceDeclaration } from "./buildObjectTypes.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -58,6 +60,7 @@ export function buildParameterTypes(model: RLCModel) {
           ? `${baseParameterName}RequestParameters${nameSuffix}`
           : topParamName;
       const queryParameterDefinitions = buildQueryParameterDefinition(
+        model,
         parameter,
         baseParameterName,
         internalReferences,
@@ -177,6 +180,7 @@ export function buildParameterTypes(model: RLCModel) {
 }
 
 function buildQueryParameterDefinition(
+  model: RLCModel,
   parameters: ParameterMetadatas,
   baseName: string,
   internalReferences: Set<string>,
@@ -198,6 +202,23 @@ function buildQueryParameterDefinition(
   const propertiesDefinition = queryParameters.map((qp) =>
     getPropertyFromSchema(qp.param)
   );
+  // Get wrapper types for query parameters
+  const wrapperTypesDefinition = queryParameters
+    .filter(
+      (qp) =>
+        qp.param.isWrappedType &&
+        qp.param.wrapperType &&
+        qp.param.wrapperType!.type === "object"
+    )
+    .map((qp) => {
+      return getObjectInterfaceDeclaration(
+        model,
+        qp.param.wrapperType!.name,
+        qp.param.wrapperType!,
+        [SchemaContext.Input],
+        new Set<string>()
+      );
+    });
 
   const hasRequiredParameters = propertiesDefinition.some(
     (p) => !p.hasQuestionToken
@@ -227,7 +248,7 @@ function buildQueryParameterDefinition(
   // Mark the queryParameter interface for importing
   internalReferences.add(queryParameterInterfaceName);
 
-  return [propertiesInterface, parameterInterface];
+  return [...wrapperTypesDefinition, propertiesInterface, parameterInterface];
 }
 
 function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {

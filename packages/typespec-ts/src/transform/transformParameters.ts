@@ -44,8 +44,8 @@ import {
   getOperationName,
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
-
 import { SdkContext } from "../utils/interfaces.js";
+import { getParameterWrapperType } from "../utils/parameterUtils.js";
 
 export function transformToParameterTypes(
   client: SdkClient,
@@ -180,6 +180,10 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
+  const wrapper = getParameterWrapperType(parameter);
+  if (wrapper) {
+    type = getTypeName(wrapper, schemaContext);
+  }
   return {
     type: paramType,
     name,
@@ -188,7 +192,9 @@ function getParameterMetadata(
       type,
       typeName: type,
       required: !parameter.param.optional,
-      description
+      description,
+      isWrappedType: Boolean(wrapper),
+      wrapperType: wrapper
     }
   };
 }
