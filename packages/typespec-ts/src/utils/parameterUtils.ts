@@ -1,4 +1,9 @@
-import { Schema, SerializeHelperKind } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  Schema,
+  SerializeHelperKind
+} from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
 
 export function getSerializeHelperKind(
@@ -35,31 +40,49 @@ export function getSerializeHelperKind(
 }
 
 export function getParameterWrapperType(
-  parameter: HttpOperationParameter
+  operationGroup: string,
+  operationName: string,
+  parameter: HttpOperationParameter,
+  valueSchema: Schema
 ): Schema | undefined {
+  const prefix = `${operationGroup}_${operationName}_${parameter.name}`;
   switch (parameter.type) {
     case "path": {
       if (parameter.allowReserved === true) {
-        return buildAllowReserved();
+        return buildAllowReserved(
+          normalizeName(`${prefix}_PathParam`, NameType.Interface),
+          valueSchema
+        );
       } else {
         return undefined;
       }
     }
     case "query": {
+      const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
       if (parameter.explode === true) {
         if (parameter.format !== undefined) {
           // Not supported and report warnings
         }
-        return buildExplodeAndStyle(true, "form");
+        return buildExplodeAndStyle(name, true, "form", valueSchema);
       } else {
         if (parameter.format === undefined) {
           return undefined;
         } else if (parameter.format === "csv") {
-          return buildExplodeAndStyle(false, "form");
+          return buildExplodeAndStyle(name, false, "form", valueSchema);
         } else if (parameter.format === "ssv") {
-          return buildExplodeAndStyle(false, "spaceDelimited");
+          return buildExplodeAndStyle(
+            name,
+            false,
+            "spaceDelimited",
+            valueSchema
+          );
         } else if (parameter.format === "pipes") {
-          return buildExplodeAndStyle(false, "pipeDelimited");
+          return buildExplodeAndStyle(
+            name,
+            false,
+            "pipeDelimited",
+            valueSchema
+          );
         } else {
           // Not supported and report warnings
         }
@@ -72,41 +95,51 @@ export function getParameterWrapperType(
   }
 }
 
-function buildAllowReserved() {
+function buildAllowReserved(typeName: string, valueSchema: Schema) {
   return {
-    type: "string",
-    name: "StringWithEncodingMetadata",
+    type: "object",
+    name: typeName,
     description: "String with encoding metadata",
     properties: {
       value: {
-        type: "string",
-        description: "The string value"
+        ...valueSchema,
+        description: "Value of the parameter",
+        required: true
       },
       allowReserved: {
-        type: "boolean",
-        description: "Whether to allow reserved characters"
+        type: `true`,
+        description: "Whether to allow reserved characters",
+        required: true
       }
     }
   };
 }
 
-function buildExplodeAndStyle(explode: boolean, style: string) {
+function buildExplodeAndStyle(
+  typeName: string,
+  explode: boolean,
+  style: string,
+  valueSchema: Schema
+) {
   return {
     type: "object",
-    name: "StringWithExplodedStyleMetadata",
-    description: "Object with encoding metadata",
+    name: typeName,
+    description: "Wrapper object for query parameters",
     properties: {
       value: {
-        type: "string",
-        description: "The string value"
+        ...valueSchema,
+        description: "Value of the parameter",
+        required: true
       },
       explode: {
         type: `${explode}`,
-        description: "Explode the object always"
+        description: "Explode the object always",
+        required: true
       },
       style: {
         type: `"${style}"`,
-        description: "Style of the object"
+        description: "Style of the object",
+        required: true
       }
     }
   };

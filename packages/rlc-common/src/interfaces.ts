@@ -183,6 +183,7 @@ export type PathParameter = {
   type: string;
   description?: string;
   value?: string | number | boolean;
+  isWrappedType?: boolean;
 };
 
 export interface OperationHelperDetail {
@@ -373,8 +374,8 @@ export interface ParameterMetadata {
 export interface ParameterSchema extends Schema {
   // the wrapper type and usually used to generate the parameter type details
   wrapperType?: Schema;
-  // if the param type is a wrapper type
-  isWrappedType?: boolean;
+  // the path parameter will be passed to method or client factory. For swagger sources, it could be client.
+  pathPosition?: "client" | "method";
 }
 
 export interface OperationResponse {

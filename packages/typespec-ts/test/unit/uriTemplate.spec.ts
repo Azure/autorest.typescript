@@ -6,8 +6,8 @@ describe.only("Client definition generation", () => {
   it("should generate method-level parameter", async () => {
     const clientDef = await emitParameterFromTypeSpec(
       `
-      @route("array{?param*}")
-      op array(param: string[]): void;
+    @route("template/{+param}")
+    op template(param: string): void;
         `
     );
     assert.ok(clientDef);

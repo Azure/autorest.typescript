@@ -149,14 +149,17 @@ function transformOperation(
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-          const wrapperType = getParameterWrapperType(p);
-          if (wrapperType) {
-            // TODO: here to add importing from parameters
-          }
+          const wrapperType = getParameterWrapperType(
+            operationGroupName,
+            method.operationName,
+            p,
+            schema
+          );
           return {
             name: p.name,
             type: getTypeName(wrapperType ?? schema, schemaUsage),
-            description: getDoc(program, p.param)
+            description: getDoc(program, p.param),
+            isWrappedType: !!wrapperType
           };
         }),
       operationGroupName: getOperationGroupName(dpgContext, route),
