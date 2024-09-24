@@ -582,9 +582,7 @@ describe("Input/output model type", () => {
       `
       );
     });
-
-    // TODO: pending with typespec definition https://github.com/microsoft/typespec/issues/2762
-    it.skip("should handle decimal/decimal128 with encode `string`", async () => {
+    it("should handle int/decimal/decimal128 with encode `string`", async () => {
       const schemaOutput = await emitModelsFromTypeSpec(
         `
       model SimpleModel {
