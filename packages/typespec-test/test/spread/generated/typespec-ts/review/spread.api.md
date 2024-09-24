@@ -56,6 +56,12 @@ export interface DemoServiceContext extends Client {
 }
 
 // @public
+export interface Test {
+    // (undocumented)
+    prop: string;
+}
+
+// @public
 export interface Test1Request {
     // (undocumented)
     a: string;
@@ -63,12 +69,6 @@ export interface Test1Request {
     b: string;
     // (undocumented)
     c: string;
-}
-
-// @public
-export interface Test2Request {
-    // (undocumented)
-    prop: string;
 }
 
 // @public

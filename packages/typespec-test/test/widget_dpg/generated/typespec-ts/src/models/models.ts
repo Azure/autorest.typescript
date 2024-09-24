@@ -117,42 +117,36 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   });
 }
 
-/** model interface CreateWidgetRequest */
-export interface CreateWidgetRequest {
+/** model interface CreateWidget */
+export interface CreateWidget {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight: number;
   /** The color of the widget. */
   color: "red" | "blue";
 }
 
-export function createWidgetRequestSerializer(item: CreateWidgetRequest): any {
+export function createWidgetSerializer(item: CreateWidget): any {
   return {
     weight: item["weight"],
-    color: createWidgetRequestColorSerializer(item["color"]),
+    color: createWidgetColorSerializer(item["color"]),
   };
 }
 
-export function createWidgetRequestDeserializer(
-  item: any,
-): CreateWidgetRequest {
+export function createWidgetDeserializer(item: any): CreateWidget {
   return {
     weight: item["weight"],
-    color: createWidgetRequestColorDeserializer(item["color"]),
+    color: createWidgetColorDeserializer(item["color"]),
   };
 }
 
-/** Type of CreateWidgetRequestColor */
-export type CreateWidgetRequestColor = "red" | "blue";
+/** Type of CreateWidgetColor */
+export type CreateWidgetColor = "red" | "blue";
 
-export function createWidgetRequestColorSerializer(
-  item: CreateWidgetRequestColor,
-): any {
+export function createWidgetColorSerializer(item: CreateWidgetColor): any {
   return item;
 }
 
-export function createWidgetRequestColorDeserializer(
-  item: any,
-): CreateWidgetRequestColor {
+export function createWidgetColorDeserializer(item: any): CreateWidgetColor {
   return item;
 }
 

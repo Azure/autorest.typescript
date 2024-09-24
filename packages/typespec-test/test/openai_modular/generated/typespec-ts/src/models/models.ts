@@ -1686,6 +1686,7 @@ export function chatRequestUserMessageDeserializer(
   };
 }
 
+/** Alias for ChatRequestUserMessageContent */
 export type ChatRequestUserMessageContent =
   | string
   | ChatMessageContentItemUnion[];
@@ -2175,6 +2176,7 @@ export function functionDefinitionArrayDeserializer(
   });
 }
 
+/** Alias for ChatCompletionsOptionsFunctionCall */
 export type ChatCompletionsOptionsFunctionCall =
   | FunctionCallPreset
   | FunctionName;
@@ -4258,6 +4260,7 @@ export function chatCompletionsToolDefinitionArrayDeserializer(
   });
 }
 
+/** Alias for ChatCompletionsOptionsToolChoice */
 export type ChatCompletionsOptionsToolChoice =
   | ChatCompletionsToolSelectionPreset
   | ChatCompletionsNamedToolSelectionUnion;

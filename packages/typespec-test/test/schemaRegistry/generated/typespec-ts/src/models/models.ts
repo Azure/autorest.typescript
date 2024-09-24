@@ -145,20 +145,6 @@ export function contentTypeEnumDeserializer(item: any): ContentTypeEnum {
   return item;
 }
 
-export function schemaGroupArraySerializer(result: Array<SchemaGroup>): any[] {
-  return result.map((item) => {
-    schemaGroupSerializer(item);
-  });
-}
-
-export function schemaGroupArrayDeserializer(
-  result: Array<SchemaGroup>,
-): any[] {
-  return result.map((item) => {
-    schemaGroupDeserializer(item);
-  });
-}
-
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {
   /** The SchemaGroup items on this page */
@@ -181,19 +167,17 @@ export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   };
 }
 
-export function schemaVersionArraySerializer(
-  result: Array<SchemaVersion>,
-): any[] {
+export function schemaGroupArraySerializer(result: Array<SchemaGroup>): any[] {
   return result.map((item) => {
-    schemaVersionSerializer(item);
+    schemaGroupSerializer(item);
   });
 }
 
-export function schemaVersionArrayDeserializer(
-  result: Array<SchemaVersion>,
+export function schemaGroupArrayDeserializer(
+  result: Array<SchemaGroup>,
 ): any[] {
   return result.map((item) => {
-    schemaVersionDeserializer(item);
+    schemaGroupDeserializer(item);
   });
 }
 
@@ -217,4 +201,20 @@ export function _pagedVersionDeserializer(item: any): _PagedVersion {
     value: schemaVersionArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function schemaVersionArraySerializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    schemaVersionSerializer(item);
+  });
+}
+
+export function schemaVersionArrayDeserializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    schemaVersionDeserializer(item);
+  });
 }

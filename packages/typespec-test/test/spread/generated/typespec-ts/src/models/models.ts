@@ -20,16 +20,16 @@ export function test1RequestDeserializer(item: any): Test1Request {
   };
 }
 
-/** model interface Test2Request */
-export interface Test2Request {
+/** model interface Test */
+export interface Test {
   prop: string;
 }
 
-export function test2RequestSerializer(item: Test2Request): any {
+export function testSerializer(item: Test): any {
   return { prop: item["prop"] };
 }
 
-export function test2RequestDeserializer(item: any): Test2Request {
+export function testDeserializer(item: any): Test {
   return {
     prop: item["prop"],
   };

@@ -148,7 +148,7 @@ export interface CreateChatCompletionRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateChatCompletionRequestFunctionCall1 = "none" | "auto" | ChatCompletionFunctionCallOption;
 
 // @public
@@ -299,7 +299,7 @@ export interface CreateEmbeddingRequest {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type CreateEmbeddingRequestInput = string | string[] | number[] | number[][];
 
 // @public
@@ -363,7 +363,7 @@ export interface CreateFineTuningJobRequestHyperparameters {
     n_epochs?: "auto" | number;
 }
 
-// @public (undocumented)
+// @public
 export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 
 // @public
@@ -413,7 +413,7 @@ export interface CreateModerationRequest {
     model?: "text-moderation-latest" | "text-moderation-stable";
 }
 
-// @public (undocumented)
+// @public
 export type CreateModerationRequestInput = string | string[];
 
 // @public
@@ -801,7 +801,7 @@ export interface FineTuningJobHyperparameters {
     n_epochs?: "auto" | number;
 }
 
-// @public (undocumented)
+// @public
 export type FineTuningJobHyperparametersNEpochs = "auto" | number;
 
 // @public
@@ -1019,13 +1019,13 @@ export interface OpenAIFile {
 // @public
 export type OpenAIFileStatus = "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
 
-// @public (undocumented)
+// @public
 export type Prompt = string | string[] | number[] | number[][];
 
-// @public (undocumented)
+// @public
 export type Stop = string | string[];
 
-// @public (undocumented)
+// @public
 export type Stop_1 = string | string[];
 
 // (No @packageDocumentation comment for this package)

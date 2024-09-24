@@ -1,6 +1,6 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import { getClientName } from "./helpers/namingHelpers.js";
+import { getClassicalClientName, getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers } from "./static-helpers-metadata.js";
@@ -13,7 +13,7 @@ export function buildRootIndex(
   const { project } = codeModel;
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
-  const clientName = `${getClientName(client.tcgcClient)}Client`;
+  const clientName = `${getClassicalClientName(client.tcgcClient)}`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       clientName,

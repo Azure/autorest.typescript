@@ -4,7 +4,7 @@
 export { DemoServiceClient } from "./demoServiceClient.js";
 export {
   Test1Request,
-  Test2Request,
+  Test,
   Test3Request,
   Test4Request,
 } from "./models/index.js";

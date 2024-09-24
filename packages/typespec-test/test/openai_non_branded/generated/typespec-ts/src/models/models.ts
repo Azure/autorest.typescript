@@ -41,6 +41,7 @@ export function createModerationRequestDeserializer(
   };
 }
 
+/** Alias for CreateModerationRequestInput */
 export type CreateModerationRequestInput = string | string[];
 
 export function createModerationRequestInputSerializer(
@@ -1335,6 +1336,7 @@ export function createEmbeddingRequestModelDeserializer(
   return item;
 }
 
+/** Alias for CreateEmbeddingRequestInput */
 export type CreateEmbeddingRequestInput =
   | string
   | string[]
@@ -1846,6 +1848,7 @@ export function createCompletionRequestModelDeserializer(
   return item;
 }
 
+/** Alias for Prompt */
 export type Prompt = string | string[] | number[] | number[][];
 
 export function promptSerializer(item: Prompt): any {
@@ -1856,6 +1859,7 @@ export function promptDeserializer(item: any): Prompt {
   return item;
 }
 
+/** Alias for Stop */
 export type Stop = string | string[];
 
 export function stopSerializer(item: Stop): any {
@@ -2177,6 +2181,7 @@ export function createFineTuningJobRequestHyperparametersDeserializer(
   };
 }
 
+/** Alias for CreateFineTuningJobRequestHyperparametersNEpochs */
 export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 
 export function createFineTuningJobRequestHyperparametersNEpochsSerializer(
@@ -2363,6 +2368,7 @@ export function fineTuningJobHyperparametersDeserializer(
   };
 }
 
+/** Alias for FineTuningJobHyperparametersNEpochs */
 export type FineTuningJobHyperparametersNEpochs = "auto" | number;
 
 export function fineTuningJobHyperparametersNEpochsSerializer(
@@ -2902,6 +2908,7 @@ export function chatCompletionFunctionsArrayDeserializer(
   });
 }
 
+/** Alias for CreateChatCompletionRequestFunctionCall1 */
 export type CreateChatCompletionRequestFunctionCall1 =
   | "none"
   | "auto"
@@ -2939,6 +2946,7 @@ export function chatCompletionFunctionCallOptionDeserializer(
   };
 }
 
+/** Alias for Stop */
 export type Stop_1 = string | string[];
 
 /** Represents a chat completion response returned by model, based on the provided input. */

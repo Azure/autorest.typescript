@@ -33,8 +33,8 @@ export function buildClassicalClient(
   const client = _client.tcgcClient;
   const { description } = _client;
   const dependencies = useDependencies();
-  const modularClientName = getClassicalClientName(client);
-  const classicalClientName = `${getClientName(client)}Client`;
+  const modularClientName = getClientName(client);
+  const classicalClientName = `${getClassicalClientName(client)}`;
   const classicalParams = getClientParametersDeclaration(_client, dpgContext, {
     requiredOnly: true
   });

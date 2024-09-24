@@ -37,13 +37,13 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export interface CreateWidgetRequest {
+export interface CreateWidget {
     color: "red" | "blue";
     weight: number;
 }
 
 // @public
-export type CreateWidgetRequestColor = "red" | "blue";
+export type CreateWidgetColor = "red" | "blue";
 
 // @public (undocumented)
 export function createWidgetService(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams): WidgetServiceContext;

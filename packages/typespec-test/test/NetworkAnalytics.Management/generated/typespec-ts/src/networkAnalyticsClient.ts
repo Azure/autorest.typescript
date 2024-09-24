@@ -18,6 +18,7 @@ import {
   DataProductsOperations,
 } from "./classic/dataProducts/index.js";
 import {
+  createNetworkAnalytics,
   NetworkAnalyticsContext,
   NetworkAnalyticsClientOptionalParams,
 } from "./api/index.js";
@@ -38,7 +39,7 @@ import {
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
-export { NetworkAnalyticsClientOptionalParams } from "./api/networkAnalyticsClientContext.js";
+export { NetworkAnalyticsClientOptionalParams } from "./api/networkAnalyticsContext.js";
 
 export class NetworkAnalyticsClient {
   private _client: NetworkAnalyticsContext;
@@ -54,7 +55,7 @@ export class NetworkAnalyticsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createNetworkAnalyticsClient(credential, {
+    this._client = createNetworkAnalytics(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

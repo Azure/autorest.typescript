@@ -374,10 +374,10 @@ export interface ChatCompletionsOptions {
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsOptionsFunctionCall = FunctionCallPreset | FunctionName;
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsOptionsToolChoice = ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
 
 // @public
@@ -495,7 +495,7 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
     role: "user";
 }
 
-// @public (undocumented)
+// @public
 export type ChatRequestUserMessageContent = string | ChatMessageContentItemUnion[];
 
 // @public
