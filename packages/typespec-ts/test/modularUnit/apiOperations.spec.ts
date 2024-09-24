@@ -824,7 +824,6 @@ describe("api operations in Modular", () => {
         
         /** Optional parameters for the client. */
         export interface TestingClientOptionalParams extends ClientOptions  {
-          /** The API version to use for the request. */
           apiVersion?: string;
         }
         
@@ -910,7 +909,8 @@ describe("api operations in Modular", () => {
       );
     });
 
-    it("should generate apiVersion if there's no client level apiVersion", async () => {
+    // TODO see issue tracked https://github.com/Azure/typespec-azure/issues/1595
+    it.skip("should not generate apiVersion if there's no client level apiVersion", async () => {
       const tspContent = `
       model ApiVersionParameter {
         @query

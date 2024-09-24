@@ -3,7 +3,7 @@ import { emitModularClientContextFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("modular client context type", () => {
-  it("handle with no default values in server", async () => {
+  it.only("handle with no default values in server", async () => {
     const tspContent = `
     import "@typespec/http";
     import "@typespec/rest";

@@ -129,7 +129,7 @@ export function buildClientContext(
 
   if (dpgContext.hasApiVersionInClient) {
     const apiVersionParam = getClientParameters(_client, dpgContext).find(
-      (x) => x.isApiVersionParam && x.kind === "endpoint"
+      (x) => x.isApiVersionParam && x.kind === "method"
     );
 
     if (apiVersionParam) {
@@ -147,7 +147,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${apiVersionParam.name}}\`;
+            }api-version=\${${normalizeName(apiVersionParam.name, NameType.Parameter)}}\`;
           }
     
           return next(req);

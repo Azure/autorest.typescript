@@ -49,25 +49,6 @@ export function getClientParameters(
     }
   }
 
-  const apiVersionParam = _client.parameters.filter(
-    (p) => p.isApiVersion && p.location === "query"
-  )[0];
-  if (apiVersionParam && !clientParams.find((p) => p.isApiVersionParam)) {
-    clientParams.push({
-      name: "apiVersion",
-      description: "The API version to use for the request.",
-      kind: "endpoint",
-      optional: apiVersionParam?.clientDefaultValue ? true : false,
-      clientDefaultValue: apiVersionParam?.clientDefaultValue,
-      onClient: true,
-      isGeneratedName: false,
-      isApiVersionParam: true,
-      type: {
-        kind: "string",
-        name: "string"
-      }
-    } as any);
-  }
   const params = clientParams
     .filter(
       (p) =>
@@ -91,8 +72,7 @@ export function getClientParameters(
     )
     .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
     .filter(
-      (p) =>
-        !options.onClientOnly || (options.onClientOnly && p.kind !== "method")
+      (p) => !options.onClientOnly || (options.onClientOnly && p.onClient)
     );
 
   return params;
@@ -179,9 +159,9 @@ export function buildGetClientEndpointParam(
     }
   }
 
-  const urlParams = client.parameters.filter((p) => {
-    return p.location === "endpointPath" || p.location === "path";
-  });
+  const urlParams = getClientParameters(client, dpgContext, {
+    onClientOnly: true
+  }).filter((x) => x.kind === "endpoint" || x.kind === "path");
 
   for (const param of urlParams) {
     if (param.clientDefaultValue) {
@@ -190,20 +170,18 @@ export function buildGetClientEndpointParam(
           ? `"${param.clientDefaultValue}"`
           : param.clientDefaultValue;
       context.addStatements(
-        `const ${param.clientName} = options.${param.clientName} ?? ${defaultValue};`
+        `const ${param.name} = options.${param.name} ?? ${defaultValue};`
       );
     } else if (param.optional) {
-      context.addStatements(
-        `const ${param.clientName} = options.${param.clientName};`
-      );
+      context.addStatements(`const ${param.name} = options.${param.name};`);
     }
   }
 
   let parameterizedEndpointUrl = client.url;
   for (const param of urlParams) {
     parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
-      `{${param.restApiName}}`,
-      `\${${param.clientName}}`
+      `{${param.serializedName}}`,
+      `\${${param.name}}`
     );
   }
   const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
