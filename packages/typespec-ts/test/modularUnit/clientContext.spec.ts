@@ -2,8 +2,9 @@ import assert from "assert";
 import { emitModularClientContextFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("modular client context type", () => {
-  it.only("handle with no default values in server", async () => {
+// TODO issue tracked https://github.com/Azure/typespec-azure/issues/1598
+describe.skip("modular client context type", () => {
+  it("handle with no default values in server", async () => {
     const tspContent = `
     import "@typespec/http";
     import "@typespec/rest";
