@@ -566,6 +566,10 @@ export const modularTsps = [
   {
     outputPath: "client/structure/client-operation-group",
     inputPath: "client/structure/client-operation-group"
+  },
+  {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
   }
 ];
 
