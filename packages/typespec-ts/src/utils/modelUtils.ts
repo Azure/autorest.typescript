@@ -1165,6 +1165,7 @@ function getSchemaForStdScalar(
         type: "number"
       });
     case "int8":
+      console.log("int8", getEncode(program, relevantProperty));
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int8"
