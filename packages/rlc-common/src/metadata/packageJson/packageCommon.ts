@@ -47,7 +47,7 @@ export function getCommonPackageDevDependencies(
     eslint: "^8.55.0",
     rimraf: "^5.0.5",
     mkdirp: "^3.0.1",
-    typescript: "~5.5.3",
+    typescript: "~5.6.2",
     ...getEsmDevDependencies(config)
   };
 }

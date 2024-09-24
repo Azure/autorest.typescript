@@ -385,7 +385,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "explode": false
           }
         ],
         "responses": {
@@ -414,7 +415,7 @@
             }
           },
           "409": {
-            "description": "The request conflicts with the current state of the server.",
+            "description": "The user already exists",
             "content": {
               "application/json": {
                 "schema": {
@@ -424,7 +425,7 @@
             }
           },
           "422": {
-            "description": "Client error",
+            "description": "The user is invalid (e.g. forgot to enter email address)",
             "content": {
               "application/json": {
                 "schema": {
@@ -464,7 +465,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "explode": false
           }
         ],
         "responses": {
@@ -472,7 +474,7 @@
             "description": "The request has succeeded."
           },
           "422": {
-            "description": "Client error",
+            "description": "The user is invalid (e.g. forgot to enter email address)",
             "content": {
               "application/json": {
                 "schema": {
@@ -501,7 +503,8 @@
           "type": "integer",
           "format": "int32",
           "default": 50
-        }
+        },
+        "explode": false
       },
       "TodoItems.PaginationControls.offset": {
         "name": "offset",
@@ -512,7 +515,8 @@
           "type": "integer",
           "format": "int32",
           "default": 0
-        }
+        },
+        "explode": false
       }
     },
     "schemas": {
