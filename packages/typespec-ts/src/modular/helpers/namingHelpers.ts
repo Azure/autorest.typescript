@@ -6,7 +6,7 @@ import {
 import {
   SdkClient,
   SdkClientType,
-  SdkHttpOperation
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
@@ -18,8 +18,16 @@ import {
   OperationGroup
 } from "../modularCodeModel.js";
 
-export function getClientName(client: SdkClientType<SdkHttpOperation>) {
+export function getClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
   return client.name.replace(/Client$/, "");
+}
+
+export function getClassicalClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
+  return client.name;
 }
 
 export interface GuardedName {

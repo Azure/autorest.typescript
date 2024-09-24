@@ -1486,6 +1486,29 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
   };
 }
 
+/** Error response */
+export interface MultivariateResponseError {
+  /** The error code. */
+  code: string;
+  /** The message explaining the error reported by the service. */
+  message: string;
+}
+
+export function multivariateResponseErrorSerializer(
+  item: MultivariateResponseError,
+): any {
+  return { code: item["code"], message: item["message"] };
+}
+
+export function multivariateResponseErrorDeserializer(
+  item: any,
+): MultivariateResponseError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 /** Type of APIVersion */
 export type APIVersion = "v1.1";
 

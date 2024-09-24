@@ -198,3 +198,11 @@ export const AzureCoreDependencies: CoreDependencies = {
     module: "@azure-rest/core-client"
   }
 };
+
+export const AzureIdentityDependencies = {
+  DefaultAzureCredential: {
+    kind: "externalDependency",
+    module: "@azure/identity",
+    name: "DefaultAzureCredential"
+  }
+};

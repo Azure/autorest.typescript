@@ -79,7 +79,6 @@ import {
   getUnionAsEnum
 } from "@azure-tools/typespec-azure-core";
 
-import { extractPagedMetadataNested } from "./operationUtil.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 
@@ -671,36 +670,6 @@ function getSchemaForModel(
     modelSchema.outputTypeName = modelSchema.name + "Output";
   }
 
-  if (getPagedResult(program, model)) {
-    const paged = extractPagedMetadataNested(program, model);
-    if (paged && paged.itemsProperty) {
-      const items = paged.itemsProperty as unknown as Model;
-      if (items && items.templateMapper && items.templateMapper.args) {
-        const templateTypes = items.templateMapper.args.filter((it) =>
-          isType(it)
-        ) as Type[];
-        const templateName = templateTypes
-          ?.map((it) => {
-            switch (it.kind) {
-              case "Model":
-                return it.name;
-              case "String":
-                return it.value;
-              default:
-                return "";
-            }
-          })
-          .join("");
-        if (
-          paged.itemsProperty.name === "value" &&
-          paged.nextLinkProperty?.name === "nextLink"
-        ) {
-          modelSchema.alias = `Paged<${templateName}>`;
-          modelSchema.outputAlias = `Paged<${templateName}Output>`;
-        }
-      }
-    }
-  }
   modelSchema.properties = {};
 
   // getSchemaOrRef on all children to push them into components.schemas

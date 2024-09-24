@@ -39,9 +39,9 @@ export function getClientParameters(
   for (const property of client.initialization.properties) {
     if (
       property.type.kind === "union" &&
-      property.type.values[0]?.kind === "endpoint"
+      property.type.variantTypes[0]?.kind === "endpoint"
     ) {
-      clientParams.push(...property.type.values[0].templateArguments);
+      clientParams.push(...property.type.variantTypes[0].templateArguments);
     } else if (property.type.kind === "endpoint") {
       clientParams.push(...property.type.templateArguments);
     } else if (!clientParams.find((p) => p.name === property.name)) {
@@ -140,7 +140,7 @@ function getClientParameterTypeExpression(
   // inserting a variant with {endpoint}.
   // Our emitter allows this through the options.endpoint.
   if (parameter.type.kind === "union") {
-    const endpointVariant = parameter.type.values.find(
+    const endpointVariant = parameter.type.variantTypes.find(
       (p) => p.kind === "endpoint"
     );
     if (endpointVariant) {
@@ -154,7 +154,7 @@ function getClientParameterName(parameter: SdkParameter | SdkHttpParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
-      parameter.type.values.some((v) => v.kind === "endpoint")) ||
+      parameter.type.variantTypes.some((v) => v.kind === "endpoint")) ||
     ((parameter.kind === "endpoint" || parameter.kind === "path") &&
       parameter.name.toLowerCase() === "endpoint")
   ) {

@@ -19,7 +19,7 @@ export function getTypeExpression(
     }
     case "enum":
       return getEnumExpression(type, options);
-    case "any":
+    case "unknown":
       return "any";
     case "boolean":
       return "boolean";
@@ -77,7 +77,7 @@ export function getTypeExpression(
     case "offsetDateTime":
       return "string";
     case "tuple": {
-      const types = type.values
+      const types = type.valueTypes
         .map((v) => getTypeExpression(v, options))
         .join(", ");
       return `[${types}]`;

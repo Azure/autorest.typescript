@@ -1,5 +1,6 @@
 import {
   Enum,
+  EnumMember,
   IntrinsicScalarName,
   Model,
   ModelProperty,
@@ -66,7 +67,6 @@ import {
 import {
   SdkBuiltInType,
   SdkClient,
-  SdkEnumValueType,
   SdkType,
   getAllModels,
   getClientNamespaceString,
@@ -102,7 +102,8 @@ import {
 } from "../utils/operationUtil.js";
 import {
   getLroMetadata,
-  getPagedResult
+  getPagedResult,
+  LroMetadata
 } from "@azure-tools/typespec-azure-core";
 
 import { Project } from "ts-morph";
@@ -737,9 +738,35 @@ function addLroInformation(
       metadata?.finalResult === "void" || metadata?.finalResult === undefined
         ? undefined
         : getType(context, metadata.finalResult),
-    finalStateVia: metadata?.finalStateVia,
+    finalStateVia: getFinalStateVia(context, operation, metadata),
     finalResultPath: metadata?.finalResultPath
   };
+}
+
+function getFinalStateVia(
+  context: SdkContext,
+  operation: Operation,
+  metadata?: LroMetadata
+) {
+  if (!metadata) {
+    return undefined;
+  }
+  switch (metadata.finalStateVia) {
+    case "azure-async-operation":
+    case "location":
+    case "operation-location":
+    case "original-uri":
+      return metadata.finalStateVia;
+    default:
+      reportDiagnostic(context.program, {
+        code: "un-supported-finalStateVia",
+        format: {
+          finalStateVia: metadata.finalStateVia!
+        },
+        target: operation
+      });
+      return undefined;
+  }
 }
 
 function addPagingInformation(
@@ -1092,6 +1119,9 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  if (enumValues.length === 0) {
+    throw new Error(`Expecting enum values but got none`);
+  }
   const name = normalizeName(
     getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
     NameType.Interface
@@ -1103,14 +1133,14 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
       getDocStr(program, type) === ""
         ? `Type of ${name}`
         : getDocStr(program, type),
-    valueType: { type: enumMemberType(type.members.values().next().value) },
+    valueType: { type: enumMemberType(type.members.values().next().value!) },
     values: enumValues,
     isFixed: true,
     coreTypeInfo: buildCoreTypeInfo(program, type)
   };
 }
 
-function enumMemberType(member: SdkEnumValueType) {
+function enumMemberType(member: EnumMember) {
   if (typeof member.value === "number") {
     return "number";
   }
@@ -1389,7 +1419,7 @@ function emitUnion(
       context.program,
       type
     )?.propertyName;
-    const variantTypes = sdkType.values.map((x) => {
+    const variantTypes = sdkType.variantTypes.map((x) => {
       const valueType = getType(context, x.__raw!, { usage });
       if (valueType.properties && discriminatorPropertyName) {
         valueType.discriminatorValue = valueType.properties.filter(

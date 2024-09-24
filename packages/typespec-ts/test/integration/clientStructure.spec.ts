@@ -11,12 +11,16 @@ import ServiceRenamedClientFactory, {
 import ServiceTwoOpGroupClientFactory, {
   ServiceClient as ServiceTwoOpGroupClient
 } from "./generated/client/structure/two-operation-group/src/index.js";
+import ServiceOperationGroupClientFactory, {
+  ServiceClient as ServiceOperationGroupClient
+} from "./generated/client/structure/client-operation-group/src/index.js";
 import { assert } from "chai";
 describe("ClientStructureClient Rest Client", () => {
   let client0: ServiceDefaultClient;
   let client1: ServiceMultiClient;
   let client2: ServiceRenamedClient;
   let client3: ServiceTwoOpGroupClient;
+  let client4: ServiceOperationGroupClient;
   let clientArray: Client[];
 
   beforeEach(() => {
@@ -44,7 +48,14 @@ describe("ClientStructureClient Rest Client", () => {
         allowInsecureConnection: true
       }
     );
-    clientArray = new Array(...[client0, client1, client2, client3]);
+    client4 = ServiceOperationGroupClientFactory(
+      "http://localhost:3000",
+      "default",
+      {
+        allowInsecureConnection: true
+      }
+    );
+    clientArray = [client0, client1, client2, client3, client4];
   });
 
   it("should call operation one correctly", async () => {

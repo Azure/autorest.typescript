@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  createEventGrid,
   EventGridContext,
   EventGridClientOptionalParams,
   publishCloudEvent,
@@ -33,7 +32,7 @@ import {
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 
-export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
+export { EventGridClientOptionalParams } from "./api/eventGridClientContext.js";
 
 export class EventGridClient {
   private _client: EventGridContext;
@@ -50,7 +49,7 @@ export class EventGridClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createEventGrid(endpointParam, credential, {
+    this._client = createEventGridClient(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

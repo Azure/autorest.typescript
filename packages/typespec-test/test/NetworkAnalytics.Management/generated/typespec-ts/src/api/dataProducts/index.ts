@@ -114,6 +114,7 @@ export function create(
         resource,
         options,
       ),
+    resourceLocationConfig: "azure-async-operation",
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
@@ -216,6 +217,7 @@ export function update(
         properties,
         options,
       ),
+    resourceLocationConfig: "location",
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
@@ -275,6 +277,7 @@ export function $delete(
           dataProductName,
           options,
         ),
+      resourceLocationConfig: "location",
     },
   ) as PollerLike<OperationState<void>, void>;
 }

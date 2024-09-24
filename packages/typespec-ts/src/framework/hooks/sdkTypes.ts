@@ -78,7 +78,7 @@ export function provideSdkTypes(context: SdkContext) {
         }
         break;
       case "union":
-        sdkModel.values.forEach((v) => {
+        sdkModel.variantTypes.forEach((v) => {
           if (v.__raw) {
             sdkTypesContext.types.set(v.__raw, v);
           }

@@ -10,7 +10,6 @@ import {
   MultivariateOperations,
 } from "./classic/multivariate/index.js";
 import {
-  createAnomalyDetector,
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
@@ -22,7 +21,7 @@ import {
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 
-export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
+export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorClientContext.js";
 
 export class AnomalyDetectorClient {
   private _client: AnomalyDetectorContext;
@@ -56,7 +55,7 @@ export class AnomalyDetectorClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createAnomalyDetector(endpointParam, credential, {
+    this._client = createAnomalyDetectorClient(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

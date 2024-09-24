@@ -154,7 +154,7 @@ function buildUnionType(
     kind: StructureKind.TypeAlias,
     name: normalizeModelName(context, type),
     isExported: true,
-    type: type.values.map((v) => getTypeExpression(v)).join(" | ")
+    type: type.variantTypes.map((v) => getTypeExpression(v)).join(" | ")
   };
 
   unionDeclaration.docs = [
@@ -457,7 +457,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     if (!emitQueue.has(type as any)) {
       emitQueue.add(type);
     }
-    for (const value of type.values) {
+    for (const value of type.variantTypes) {
       if (!emitQueue.has(value as any)) {
         visitType(value, emitQueue);
       }

@@ -12,6 +12,7 @@ import {
   getClientParametersDeclaration
 } from "./helpers/clientHelpers.js";
 import {
+  getClassicalClientName,
   getClassicalLayerPrefix,
   getClientName
 } from "./helpers/namingHelpers.js";
@@ -32,7 +33,7 @@ export function buildClassicalClient(
   const client = _client.tcgcClient;
   const { description } = _client;
   const dependencies = useDependencies();
-  const modularClientName = getClientName(client);
+  const modularClientName = getClassicalClientName(client);
   const classicalClientName = `${getClientName(client)}Client`;
   const classicalParams = getClientParametersDeclaration(_client, dpgContext, {
     requiredOnly: true

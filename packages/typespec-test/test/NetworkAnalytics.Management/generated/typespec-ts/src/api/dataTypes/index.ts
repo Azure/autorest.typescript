@@ -105,6 +105,7 @@ export function create(
         resource,
         options,
       ),
+    resourceLocationConfig: "azure-async-operation",
   }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
@@ -215,6 +216,7 @@ export function update(
         properties,
         options,
       ),
+    resourceLocationConfig: "location",
   }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
@@ -278,6 +280,7 @@ export function $delete(
           dataTypeName,
           options,
         ),
+      resourceLocationConfig: "location",
     },
   ) as PollerLike<OperationState<void>, void>;
 }
@@ -343,6 +346,7 @@ export function deleteData(
           body,
           options,
         ),
+      resourceLocationConfig: "location",
     },
   ) as PollerLike<OperationState<void>, void>;
 }

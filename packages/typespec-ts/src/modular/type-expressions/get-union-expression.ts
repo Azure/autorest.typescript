@@ -9,7 +9,7 @@ export function getUnionExpression(
 ): string {
   if (shouldEmitInline(type, options)) {
     const variantTypes = new Set(
-      type.values.map((v) => `${getTypeExpression(v, options)}`)
+      type.variantTypes.map((v) => `${getTypeExpression(v, options)}`)
     );
     return `(${[...variantTypes].join(" | ")})`;
   } else {

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  createContentSafety,
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
   analyzeText,
@@ -47,7 +46,7 @@ import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
-export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
+export { ContentSafetyClientOptionalParams } from "./api/contentSafetyClientContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;
@@ -64,7 +63,7 @@ export class ContentSafetyClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createContentSafety(endpointParam, credential, {
+    this._client = createContentSafetyClient(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

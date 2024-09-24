@@ -564,22 +564,6 @@ export function versionsDeserializer(item: any): Versions {
   return item;
 }
 
-export function textBlocklistArraySerializer(
-  result: Array<TextBlocklist>,
-): any[] {
-  return result.map((item) => {
-    textBlocklistSerializer(item);
-  });
-}
-
-export function textBlocklistArrayDeserializer(
-  result: Array<TextBlocklist>,
-): any[] {
-  return result.map((item) => {
-    textBlocklistDeserializer(item);
-  });
-}
-
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
@@ -602,6 +586,22 @@ export function _pagedTextBlocklistDeserializer(
     value: textBlocklistArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function textBlocklistArraySerializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    textBlocklistSerializer(item);
+  });
+}
+
+export function textBlocklistArrayDeserializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    textBlocklistDeserializer(item);
+  });
 }
 
 /** Paged collection of TextBlockItem items */

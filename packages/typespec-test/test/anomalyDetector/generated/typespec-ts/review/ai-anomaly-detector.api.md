@@ -202,6 +202,12 @@ export interface MultivariateOperations {
 }
 
 // @public
+export interface MultivariateResponseError {
+    code: string;
+    message: string;
+}
+
+// @public
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
 

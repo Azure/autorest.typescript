@@ -11,21 +11,21 @@ export function readFileSync(file: string, options: BufferEncoding): string;
 export function readFileSync(
   file: string,
   options?: { encoding?: BufferEncoding | null; flag?: string } | null
-): Uint8Array;
+): Buffer;
 export function readFileSync(
   file: string,
   options?:
     | { encoding?: BufferEncoding | null; flag?: string }
     | BufferEncoding
     | null
-): Uint8Array | string {
+): Buffer | string {
   return readSync(file, options);
 }
 
 export function readFile(
   path: string,
   options?: { encoding?: null; flag?: string }
-): Promise<Uint8Array> {
+): Promise<Buffer> {
   return fs.readFile(path, options);
 }
 

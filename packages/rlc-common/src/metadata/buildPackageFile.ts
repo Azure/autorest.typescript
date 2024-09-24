@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
-import {
-  hasPagingOperations,
-  hasPollingOperations
-} from "../helpers/operationHelpers.js";
+import { hasPollingOperations } from "../helpers/operationHelpers.js";
 import {
   isAzureMonorepoPackage,
   isAzurePackage,
@@ -47,7 +44,6 @@ export function buildPackageFile(
     ...config,
     clientFilePaths: [getClientFilePath(model)],
     hasLro: hasPollingOperations(model),
-    hasPaging: hasPagingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
     specSource: model.options?.sourceFrom ?? "TypeSpec",
     dependencies
@@ -88,9 +84,8 @@ export function updatePackageFile(
   model: RLCModel,
   existingFilePathOrContent: string | Record<string, any>
 ) {
-  const hasPaging = hasPagingOperations(model),
-    hasLro = hasPollingOperations(model);
-  if (!isAzurePackage(model) || (!hasPaging && !hasLro)) {
+  const hasLro = hasPollingOperations(model);
+  if (!isAzurePackage(model) || !hasLro) {
     return;
   }
   let packageInfo;
@@ -108,18 +103,10 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  // no need to update paging dependency for modular libraries
-  if (hasPaging && model.options?.isModularLibrary !== true) {
-    packageInfo.dependencies = {
-      ...packageInfo.dependencies,
-      "@azure/core-paging": "^1.5.0"
-    };
-  }
-
   if (hasLro) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      "@azure/core-lro": "^3.0.0",
+      "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }

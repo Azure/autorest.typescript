@@ -28,8 +28,14 @@ import {
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
+  AzureIdentityDependencies,
   AzurePollingDependencies
 } from "../../src/modular/external-dependencies.js";
+
+export interface ExampleJson {
+  filename: string;
+  rawContent: string;
+}
 
 const { __dirname } = getDirname(import.meta.url);
 
@@ -55,6 +61,7 @@ export interface RLCEmitterOptions {
   withRawContent?: boolean;
   withVersionedApiVersion?: boolean;
   needArmTemplate?: boolean;
+  exampleJson?: Record<string, any>;
 }
 
 export async function rlcEmitterFor(
@@ -66,6 +73,7 @@ export async function rlcEmitterFor(
     withRawContent = false,
     withVersionedApiVersion = false,
     needArmTemplate = false,
+    exampleJson = {}
   }: RLCEmitterOptions = {}
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
@@ -108,15 +116,77 @@ ${
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);
+  for (const example in exampleJson) {
+    host.addTypeSpecFile(`./examples/${example}.json`, exampleJson[example]);
+  }
   await host.compile("./", {
     warningAsError: false
   });
   return host;
 }
 
+export async function compileTypeSpecFor(
+  code: string,
+  examples: ExampleJson[] = []
+) {
+  let prefix = "";
+  if (!code.includes("import")) {
+    prefix = prefix + importStatement();
+    if (!code.includes("@service")) {
+      prefix = prefix + serviceStatement();
+    }
+  }
+  const host: TestHost = await createRLCEmitterTestHost();
+  host.addTypeSpecFile("main.tsp", `${prefix}${code}`);
+  for (const example of examples) {
+    host.addTypeSpecFile(
+      `./examples/2021-10-01-preview/${example.filename}.json`,
+      example.rawContent
+    );
+  }
+  await host.compile("./", {
+    warningAsError: false
+  });
+  return host;
+}
+
+function importStatement() {
+  return `
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+
+using TypeSpec.Rest; 
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
+using Azure.Core;
+using Azure.ResourceManager;`;
+}
+
+function serviceStatement() {
+  return `
+  @versioned(Azure.TypeScript.Testing.Versions)
+  @service({
+    title: "Azure TypeScript Testing",
+  })
+
+  namespace Azure.TypeScript.Testing;
+  enum Versions {
+    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+    v2021_10_01_preview: "2021-10-01-preview",
+  }
+  
+  `;
+}
+
 export async function createDpgContextTestHelper(
   program: Program,
-  enableModelNamespace = false
+  enableModelNamespace = false,
+  configs: Record<string, unknown> = {}
 ): Promise<SdkContext> {
   const outputProject = new Project({ useInMemoryFileSystem: true });
   provideContext("rlcMetaTree", new Map());
@@ -125,13 +195,18 @@ export async function createDpgContextTestHelper(
   provideContext("outputProject", outputProject);
 
   const context = await createContextWithDefaultOptions({
-    program
+    program,
+    options: configs as any
   } as EmitContext);
 
   const sdkContext = {
     ...context,
     program,
-    rlcOptions: { flavor: "azure", enableModelNamespace },
+    rlcOptions: {
+      flavor: "azure",
+      enableModelNamespace,
+      ...configs
+    },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
@@ -184,7 +259,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
 
   const extraDependencies = {
     ...AzurePollingDependencies,
-    ...AzureCoreDependencies
+    ...AzureCoreDependencies,
+    ...AzureIdentityDependencies
   };
 
   const staticHelpers = {

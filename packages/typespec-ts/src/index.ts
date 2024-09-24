@@ -5,6 +5,7 @@ import * as fsextra from "fs-extra";
 
 import {
   AzureCoreDependencies,
+  AzureIdentityDependencies,
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
@@ -77,6 +78,7 @@ import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
+import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
 
@@ -115,7 +117,11 @@ export async function $onEmit(context: EmitContext) {
     { sourcesDir: modularSourcesDir }
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
-    ? { ...AzurePollingDependencies, ...AzureCoreDependencies }
+    ? {
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -260,6 +266,15 @@ export async function $onEmit(context: EmitContext) {
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularCodeModel, "models");
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions?.generateSample === true) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
+    }
     for (const subClient of modularCodeModel.clients) {
       buildApiOptions(subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
@@ -406,5 +421,8 @@ export async function createContextWithDefaultOptions(
     ...tcgcSettings
   };
 
-  return (await createSdkContext(context)) as SdkContext;
+  return (await createSdkContext(
+    context,
+    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
+  )) as SdkContext;
 }

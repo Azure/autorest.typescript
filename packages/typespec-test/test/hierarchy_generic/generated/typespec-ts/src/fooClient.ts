@@ -4,7 +4,6 @@
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
-  createFoo,
   FooContext,
   FooClientOptionalParams,
   op1,
@@ -13,7 +12,7 @@ import {
 import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { FooClientOptionalParams } from "./api/fooContext.js";
+export { FooClientOptionalParams } from "./api/fooClientContext.js";
 
 export class FooClient {
   private _client: FooContext;
@@ -25,7 +24,7 @@ export class FooClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createFoo(endpointParam, {
+    this._client = createFooClient(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
