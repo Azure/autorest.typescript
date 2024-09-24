@@ -590,6 +590,8 @@ describe("Input/output model type", () => {
         prop1: decimal;
         @encode("string")
         prop2: decimal128;
+        @encode("string")
+        x: int8;
       }
       @route("/decimal/prop/encode")
       @get
@@ -606,6 +608,7 @@ describe("Input/output model type", () => {
       export interface SimpleModel { 
         "prop1": string;
         "prop2": string;
+        "x": string;
       }
       `
       );
@@ -615,6 +618,7 @@ describe("Input/output model type", () => {
       export interface SimpleModelOutput { 
         "prop1": string;
         "prop2": string;
+        "x": string;
       }
       `
       );
