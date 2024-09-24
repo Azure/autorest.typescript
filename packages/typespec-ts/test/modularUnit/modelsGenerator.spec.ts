@@ -108,7 +108,6 @@ describe("model property type", () => {
     });
   });
 
-
   it("should handle boolean literal type", async () => {
     const tspContent = `
     @doc("The configuration for a streaming chat completion request.")
@@ -121,8 +120,7 @@ describe("model property type", () => {
       ...StreamingChatCompletionOptions
     ): void;
     `;
-    const operationFiles =
-      await emitModularOperationsFromTypeSpec(tspContent);
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     await assertEqualContent(
@@ -2155,6 +2153,44 @@ describe("spread record", () => {
         };
       }
       `
+    );
+  });
+});
+
+describe("@encode", () => {
+  it("should take numeric as string for @encode as string", async () => {
+    const tspContent = `
+     model Foo {
+        @encode("string")
+        prop1: int32;
+        @encode("string")
+        prop2: decimal;
+      }
+      op post(@body body: Foo): { @body body: Foo };`;
+
+    const modelFile = await emitModularModelsFromTypeSpec(
+      tspContent,
+      false,
+      false,
+      false,
+      true,
+      false
+    );
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Foo {
+        prop1: string;
+        prop2: string;
+      }
+
+      export function fooSerializer(item: Foo): Record<string, unknown> {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+        };
+      }`
     );
   });
 });
