@@ -14,17 +14,9 @@ import {
   emitTypes,
 } from "../../src/modular/emitModels.js";
 import {
-<<<<<<< HEAD
   buildApiOptions
 } from "../../src/modular/emitModelsOptions.js";
 import { compileTypeSpecFor, createDpgContextTestHelper, ExampleJson, rlcEmitterFor } from "./testUtil.js";
-=======
-  compileTypeSpecFor,
-  createDpgContextTestHelper,
-  ExampleJson,
-  rlcEmitterFor
-} from "./testUtil.js";
->>>>>>> main
 import {
   transformRLCModel,
   transformUrlInfo
