@@ -15,28 +15,6 @@ export interface TypeMetadata {
   modifier?: "Array";
 }
 
-// Mapping of simple types to their TypeScript equivalents.
-const simpleTypeMap: Record<string, TypeMetadata> = {
-  Key: {
-    name: "KeyCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
-  },
-  OAuth2: {
-    name: "TokenCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
-  },
-  boolean: { name: "boolean" },
-  datetime: { name: "Date" },
-  float: { name: "number" },
-  integer: { name: "number" },
-  "byte-array": { name: "Uint8Array" },
-  string: { name: "string" },
-  any: { name: "Record<string, any>" },
-  unknown: { name: "any" }
-};
-
 function handleAnomymousModelName(type: Type) {
   let retVal = `{`;
   for (const prop of type.properties ?? []) {
@@ -73,7 +51,7 @@ function handleNullableTypeName(type: {
  */
 export function getType(type: Type, format?: string): TypeMetadata {
   // Handle simple type conversions
-  const simpleType = simpleTypeMap[type.type];
+  const simpleType = handleSimpleType(type, format);
   if (simpleType) {
     const typeMetadata: TypeMetadata = { ...simpleType };
     if (isTypeNullable(type)) {
@@ -110,6 +88,35 @@ export function getType(type: Type, format?: string): TypeMetadata {
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }
+}
+
+// Mapping of simple types to their TypeScript equivalents.
+const simpleTypeMap: Record<string, TypeMetadata> = {
+  Key: {
+    name: "KeyCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  OAuth2: {
+    name: "TokenCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  boolean: { name: "boolean" },
+  datetime: { name: "Date" },
+  float: { name: "number" },
+  "byte-array": { name: "Uint8Array" },
+  string: { name: "string" },
+  any: { name: "Record<string, any>" },
+  unknown: { name: "any" }
+};
+
+function handleSimpleType(type: Type, format?: string) {
+  if (type.type === "integer") {
+    // we will treat integer as string if the format is string
+    return format === "string" ? { name: "string" } : { name: "number" };
+  }
+  return simpleTypeMap[type.type];
 }
 
 /**
