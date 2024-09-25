@@ -14,6 +14,8 @@ using OpenAPI;
 // ** Service description **
 //
 
+// TODO: remove version in server temporary https://github.com/Azure/typespec-azure/issues/1608
+
 @service({title: "ParametrizedHost"})
 @useAuth(OAuth2Auth<[MyFlow]>)
 @useDependency(Azure.Core.Versions.v1_0_Preview_1)
