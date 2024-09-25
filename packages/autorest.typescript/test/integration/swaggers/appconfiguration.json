@@ -191,7 +191,9 @@
                 "last_modified",
                 "tags",
                 "locked",
-                "etag"
+                "etag",
+                "user, system",
+                "user x system ~"
               ]
             },
             "collectionFormat": "csv"

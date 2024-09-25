@@ -19,7 +19,7 @@ import { buildOperationOptions } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import { toCamelCase } from "../utils/casingUtils.js";
+import { pascal, toCamelCase } from "../utils/casingUtils.js";
 
 // ====== UTILITIES ======
 
@@ -201,7 +201,7 @@ export function buildModels(
           isExported: true,
           members:
             model.values?.map((v) => ({
-              name: v.name,
+              name: pascal(v.name),
               value: v.value,
               docs: v.description ? [v.description] : [v.name]
             })) ?? [],
