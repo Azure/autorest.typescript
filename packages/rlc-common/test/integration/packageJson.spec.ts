@@ -265,7 +265,6 @@ describe("Package file generation", () => {
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.devDependencies).to.have.property("tshy");
     });
 
     it("[esm] should include correct devDependencies with tests", () => {

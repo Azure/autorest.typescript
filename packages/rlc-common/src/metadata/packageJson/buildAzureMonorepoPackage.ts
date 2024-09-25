@@ -119,20 +119,14 @@ function getEsmDevDependencies({
     return {};
   }
 
-  let testDevDependencies: Record<string, string> = {};
   if (withTests) {
-    testDevDependencies = {
+    return {
       "@vitest/browser": "^2.0.5",
       "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
       vitest: "^2.0.5"
     };
-  }
-
-  return {
-    tshy: "^2.0.0",
-    ...testDevDependencies
-  };
+  } else return {};
 }
 
 function getCjsDevDependencies({
