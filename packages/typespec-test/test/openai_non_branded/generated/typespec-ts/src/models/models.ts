@@ -2679,7 +2679,7 @@ export function chatCompletionFunctionsDeserializer(
 }
 
 /** model interface ChatCompletionFunctionParameters */
-export interface ChatCompletionFunctionParameters {}
+export interface ChatCompletionFunctionParameters extends Record<string, any> {}
 
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,

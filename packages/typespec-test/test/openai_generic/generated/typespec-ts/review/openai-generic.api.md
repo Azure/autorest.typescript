@@ -48,7 +48,7 @@ export interface ChatCompletionFunctionCallOption {
 }
 
 // @public
-export interface ChatCompletionFunctionParameters {
+export interface ChatCompletionFunctionParameters extends Record<string, any> {
 }
 
 // @public
