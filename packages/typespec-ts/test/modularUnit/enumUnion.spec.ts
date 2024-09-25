@@ -247,6 +247,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }
           `
         );
       });
@@ -294,7 +306,6 @@ describe("header parameters", () => {
           `
           /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
-
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
            
@@ -402,6 +413,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }
           `
         );
       });
@@ -451,6 +474,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }   
           `
         );
       });
@@ -484,15 +519,28 @@ describe("header parameters", () => {
             withRawContent: true,
           }
         );
-        assert.isUndefined(schemaOutput);
-
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of GetRequestTestHeader */ 
+          export type GetRequestTestHeader =
+            | "A"
+            | "B";
+          /** Type of GetResponseTestHeader */ 
+          export type GetResponseTestHeader =
+            | "A"
+            | "B";
+          `,
+          true
+        );
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
           {
             mustEmptyDiagnostic: true,
-            needNamespaces: true,
+            needNamespaces: false,
             needAzureCore: false,
-            withRawContent: false,
+            withRawContent: true,
           }
         );
         assert.ok(paramOutput);
@@ -569,7 +617,21 @@ describe("header parameters", () => {
             withRawContent: true,
           }
         );
-        assert.isUndefined(schemaOutput);
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of GetRequestTestHeader */ 
+          export type GetRequestTestHeader =
+            | "A"
+            | "B";
+          /** Type of GetResponseTestHeader */ 
+          export type GetResponseTestHeader =
+            | "A"
+            | "B";
+          `,
+          true
+        );
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,

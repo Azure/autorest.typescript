@@ -2390,6 +2390,7 @@ describe("spread record", () => {
     await assertEqualContent(
       modelFile!.getInterface("Vegetables")?.getFullText()!,
       `
+      /** model interface Vegetables */
       export interface Vegetables extends Record<string, number | string>{
         carrots: number;
         beans: number;
@@ -2460,6 +2461,7 @@ describe("spread record", () => {
     await assertEqualContent(
       modelFile!.getInterface("A")?.getFullText()!,
       `
+      /** model interface A */
       export interface A extends Base, Record<string, number> {
         prop: number;
       }
@@ -2484,6 +2486,7 @@ describe("spread record", () => {
     await assertEqualContent(
       modelFile!.getInterface("Base")?.getFullText()!,
       `
+      /** model interface Base */
       export interface Base {
         foo: number;
       }

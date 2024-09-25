@@ -18,17 +18,13 @@ import {
 
 export function _listCollectionsSend(
   context: Client,
-  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
     .path("/app/collections")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": apiVersion },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listCollectionsDeserialize(
@@ -45,11 +41,10 @@ export async function _listCollectionsDeserialize(
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
-  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
 ): Promise<Collection[]> {
-  const result = await _listCollectionsSend(context, apiVersion, options);
+  const result = await _listCollectionsSend(context, options);
   return _listCollectionsDeserialize(result);
 }

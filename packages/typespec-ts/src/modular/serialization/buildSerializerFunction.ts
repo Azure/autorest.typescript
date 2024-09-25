@@ -329,7 +329,7 @@ function buildModelTypeSerializer(
 
   // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
   const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item,"
+    ? "...item"
     : "";
 
   const { directAssignment, propertiesStr } = getRequestModelMapping(
@@ -338,7 +338,7 @@ function buildModelTypeSerializer(
     "item"
   );
   if (additionalPropertiesSpread) {
-    propertiesStr.push(additionalPropertiesSpread);
+    propertiesStr.unshift(additionalPropertiesSpread);
   }
   const serializeContent =
     directAssignment === true

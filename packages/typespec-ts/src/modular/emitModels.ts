@@ -2,6 +2,7 @@ import {
   EnumDeclarationStructure,
   EnumMemberStructure,
   InterfaceDeclarationStructure,
+  OptionalKind,
   PropertySignatureStructure,
   SourceFile,
   StructureKind,
@@ -39,6 +40,11 @@ import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
+
+type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
+  extends?: string[];
+  kind: StructureKind.Interface;
+};
 
 export function emitTypes(
   context: SdkContext,
@@ -241,20 +247,24 @@ export function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
-  const interfaceStructure: InterfaceDeclarationStructure = {
+  const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type),
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
       .map(buildModelProperty)
-  };
+  } as InterfaceStructure;
 
   if (type.baseModel) {
-    const partentReference = getModelExpression(type.baseModel, {
+    const parentReference = getModelExpression(type.baseModel, {
       skipPolymorphicUnion: true
     });
-    interfaceStructure.extends = [partentReference];
+    interfaceStructure.extends = [parentReference];
+  }
+
+  if (type.additionalProperties) {
+    addExtendedDictInfo(type, interfaceStructure);
   }
 
   interfaceStructure.docs = [
@@ -262,6 +272,40 @@ export function buildModelInterface(
   ];
 
   return interfaceStructure;
+}
+
+function addExtendedDictInfo(
+  model: SdkModelType,
+  modelInterface: InterfaceStructure,
+  compatibilityMode: boolean = false
+) {
+  const additionalPropertiesType = model.additionalProperties
+    ? getTypeExpression(model.additionalProperties)
+    : undefined;
+  if (
+    (model.properties &&
+      model.properties.length > 0 &&
+      model.additionalProperties &&
+      model.properties?.every((p) => {
+        return additionalPropertiesType?.includes(getTypeExpression(p.type));
+      })) ||
+    (model.properties?.length === 0 && model.additionalProperties)
+  ) {
+    modelInterface.extends = [
+      ...(modelInterface.extends ?? []),
+      `Record<string, ${additionalPropertiesType ?? "any"}>`
+    ];
+  } else if (compatibilityMode) {
+    modelInterface.extends?.push(`Record<string, any>`);
+  } else {
+    modelInterface.properties?.push({
+      name: "additionalProperties",
+      docs: ["Additional properties"],
+      hasQuestionToken: true,
+      isReadonly: false,
+      type: `Record<string, ${additionalPropertiesType ?? "any"}>`
+    });
+  }
 }
 
 export function normalizeModelName(

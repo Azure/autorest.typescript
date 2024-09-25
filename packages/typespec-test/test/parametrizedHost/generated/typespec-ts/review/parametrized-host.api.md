@@ -22,23 +22,21 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 
 // @public
 export interface ConfidentialLedgerOperations {
-    listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
 // @public (undocumented)
-export function createParametrizedHost(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
+export function createParametrizedHost(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
 
 // @public (undocumented)
 export class ParametrizedHostClient {
-    constructor(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams);
+    constructor(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams);
     readonly confidentialLedger: ConfidentialLedgerOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
-    // (undocumented)
-    apiVersion?: string;
     // (undocumented)
     host?: string;
     // (undocumented)

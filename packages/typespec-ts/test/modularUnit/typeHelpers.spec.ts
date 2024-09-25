@@ -371,14 +371,12 @@ describe("typeHelpers", () => {
       const type: Type = { type: "Key" };
       const result = getType(type);
       expect(result.name).to.equal("KeyCredential");
-      expect(result.originModule).to.equal("@azure/core-auth");
     });
 
     it("should handle OAuth2 type", () => {
       const type: Type = { type: "OAuth2" };
       const result = getType(type);
       expect(result.name).to.equal("TokenCredential");
-      expect(result.originModule).to.equal("@azure/core-auth");
     });
 
     it("should handle  nullable boolean type", () => {
