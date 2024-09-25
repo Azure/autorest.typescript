@@ -130,7 +130,7 @@ function getEsmDevDependencies({
   }
 
   return {
-    tshy: "^1.11.1",
+    tshy: "^2.0.0",
     ...testDevDependencies
   };
 }
@@ -228,12 +228,13 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test": "npm run clean && tshy && dev-tool run build-test",
+    "build:test":
+      "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api",
     "test:node":
-      "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
+      "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
+    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
     "unit-test:browser":
       "npm run build:test && dev-tool run test:vitest --browser",
     "unit-test:node": "dev-tool run test:vitest"
