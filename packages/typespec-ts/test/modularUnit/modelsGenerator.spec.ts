@@ -108,18 +108,6 @@ describe("model property type", () => {
       additionalInputContent: `
       /** Translation Language Values */
       export type TranslationLanguageValues = "English" | "Chinese";
-      
-      export function translationLanguageValuesSerializer(
-        item: TranslationLanguageValues,
-      ): any {
-        return item;
-      }
-      
-      export function translationLanguageValuesDeserializer(
-        item: any,
-      ): TranslationLanguageValues {
-        return item;
-      }
       `
     });
   });
@@ -2016,18 +2004,6 @@ describe("inheritance & polymorphism", () => {
           | "application/json; serialization=json"
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
-        
-        export function schemaContentTypeValuesSerializer(
-          item: SchemaContentTypeValues,
-        ): any {
-          return item;
-        }
-        
-        export function schemaContentTypeValuesDeserializer(
-          item: any,
-        ): SchemaContentTypeValues {
-          return item;
-        }
         `
       );
       const paramOutput = await emitModularOperationsFromTypeSpec(
@@ -2132,18 +2108,6 @@ describe("inheritance & polymorphism", () => {
           | "application/json; serialization=json"
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
-        
-        export function schemaContentTypeValuesSerializer(
-          item: SchemaContentTypeValues,
-        ): any {
-          return item;
-        }
-        
-        export function schemaContentTypeValuesDeserializer(
-          item: any,
-        ): SchemaContentTypeValues {
-          return item;
-        }
         `
       );
     });
@@ -2179,33 +2143,8 @@ describe("inheritance & polymorphism", () => {
         `
         /** Type of GetRequestTestHeader */
         export type GetRequestTestHeader = "A" | "B";
-        
-        export function getRequestTestHeaderSerializer(
-          item: GetRequestTestHeader,
-        ): any {
-          return item;
-        }
-        
-        export function getRequestTestHeaderDeserializer(
-          item: any,
-        ): GetRequestTestHeader {
-          return item;
-        }
-        
         /** Type of GetResponseTestHeader */
         export type GetResponseTestHeader = "A" | "B";
-        
-        export function getResponseTestHeaderSerializer(
-          item: GetResponseTestHeader,
-        ): any {
-          return item;
-        }
-        
-        export function getResponseTestHeaderDeserializer(
-          item: any,
-        ): GetResponseTestHeader {
-          return item;
-        }
         `
       );
 

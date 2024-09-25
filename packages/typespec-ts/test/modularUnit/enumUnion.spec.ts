@@ -294,14 +294,6 @@ describe("header parameters", () => {
           `
           /** Type of JsonContentType */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
-           
-          export function jsonContentTypeSerializer(item: JsonContentType): any {
-            return item;
-          }
-           
-          export function jsonContentTypeDeserializer(item: any): JsonContentType {
-            return item;
-          }
 
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
@@ -838,15 +830,6 @@ describe("header parameters", () => {
                
         /** Type of EnumTest */
         export type EnumTest = 1 | 2 | 3 | 4;
-
-        export function enumTestSerializer(item: EnumTest): any {
-          return item;
-        }
-
-        export function enumTestDeserializer(item: any): EnumTest {
-          return item;
-        }
-  
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
       
@@ -887,7 +870,7 @@ describe("model type", () => {
         serializer!,
         `
         export function testSerializer(item: Test): any {
-          return { color: testColorSerializer(item["color"]) };
+          return { color: item["color"] };
         };`,
         true
       );
@@ -1008,7 +991,7 @@ describe("model type", () => {
         serializer!,
         `
         export function testSerializer(item: Test): any {
-          return { color: testColorSerializer(item["color"]) };
+          return { color: item["color"] };
         };`,
         true
       );
