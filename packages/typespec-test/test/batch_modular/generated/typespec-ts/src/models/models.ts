@@ -218,12 +218,8 @@ export function batchNodeSerializer(item: BatchNode): any {
   return {
     id: item["id"],
     url: item["url"],
-    state: !item["state"]
-      ? item["state"]
-      : batchNodeStateSerializer(item["state"]),
-    schedulingState: !item["schedulingState"]
-      ? item["schedulingState"]
-      : schedulingStateSerializer(item["schedulingState"]),
+    state: item["state"],
+    schedulingState: item["schedulingState"],
     stateTransitionTime: item["stateTransitionTime"]?.toISOString(),
     lastBootTime: item["lastBootTime"]?.toISOString(),
     allocationTime: item["allocationTime"]?.toISOString(),
@@ -266,12 +262,8 @@ export function batchNodeDeserializer(item: any): BatchNode {
   return {
     id: item["id"],
     url: item["url"],
-    state: !item["state"]
-      ? item["state"]
-      : batchNodeStateDeserializer(item["state"]),
-    schedulingState: !item["schedulingState"]
-      ? item["schedulingState"]
-      : schedulingStateDeserializer(item["schedulingState"]),
+    state: item["state"],
+    schedulingState: item["schedulingState"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
     lastBootTime: new Date(item["lastBootTime"]),
     allocationTime: new Date(item["allocationTime"]),
@@ -327,25 +319,8 @@ export type BatchNodeState =
   | "leavingpool"
   | "offline"
   | "preempted";
-
-export function batchNodeStateSerializer(item: BatchNodeState): any {
-  return item;
-}
-
-export function batchNodeStateDeserializer(item: any): BatchNodeState {
-  return item;
-}
-
 /** SchedulingState enums */
 export type SchedulingState = "enabled" | "disabled";
-
-export function schedulingStateSerializer(item: SchedulingState): any {
-  return item;
-}
-
-export function schedulingStateDeserializer(item: any): SchedulingState {
-  return item;
-}
 
 /** Information about a Task running on a Compute Node. */
 export interface TaskInformation {
@@ -369,7 +344,7 @@ export function taskInformationSerializer(item: TaskInformation): any {
     jobId: item["jobId"],
     taskId: item["taskId"],
     subtaskId: item["subtaskId"],
-    taskState: taskStateSerializer(item["taskState"]),
+    taskState: item["taskState"],
     executionInfo: !item["executionInfo"]
       ? item["executionInfo"]
       : taskExecutionInformationSerializer(item["executionInfo"]),
@@ -382,7 +357,7 @@ export function taskInformationDeserializer(item: any): TaskInformation {
     jobId: item["jobId"],
     taskId: item["taskId"],
     subtaskId: item["subtaskId"],
-    taskState: taskStateDeserializer(item["taskState"]),
+    taskState: item["taskState"],
     executionInfo: !item["executionInfo"]
       ? item["executionInfo"]
       : taskExecutionInformationDeserializer(item["executionInfo"]),
@@ -391,14 +366,6 @@ export function taskInformationDeserializer(item: any): TaskInformation {
 
 /** TaskState enums */
 export type TaskState = "active" | "preparing" | "running" | "completed";
-
-export function taskStateSerializer(item: TaskState): any {
-  return item;
-}
-
-export function taskStateDeserializer(item: any): TaskState {
-  return item;
-}
 
 /** Information about the execution of a Task. */
 export interface TaskExecutionInformation {
@@ -441,9 +408,7 @@ export function taskExecutionInformationSerializer(
     lastRetryTime: item["lastRetryTime"]?.toISOString(),
     requeueCount: item["requeueCount"],
     lastRequeueTime: item["lastRequeueTime"]?.toISOString(),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultSerializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -464,9 +429,7 @@ export function taskExecutionInformationDeserializer(
     lastRetryTime: new Date(item["lastRetryTime"]),
     requeueCount: item["requeueCount"],
     lastRequeueTime: new Date(item["lastRequeueTime"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultDeserializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -516,7 +479,7 @@ export function taskFailureInformationSerializer(
   item: TaskFailureInformation,
 ): any {
   return {
-    category: errorCategorySerializer(item["category"]),
+    category: item["category"],
     code: item["code"],
     message: item["message"],
     details: !item["details"]
@@ -529,7 +492,7 @@ export function taskFailureInformationDeserializer(
   item: any,
 ): TaskFailureInformation {
   return {
-    category: errorCategoryDeserializer(item["category"]),
+    category: item["category"],
     code: item["code"],
     message: item["message"],
     details: !item["details"]
@@ -540,14 +503,6 @@ export function taskFailureInformationDeserializer(
 
 /** ErrorCategory enums */
 export type ErrorCategory = "usererror" | "servererror";
-
-export function errorCategorySerializer(item: ErrorCategory): any {
-  return item;
-}
-
-export function errorCategoryDeserializer(item: any): ErrorCategory {
-  return item;
-}
 
 /** Represents a name-value pair. */
 export interface NameValuePair {
@@ -586,16 +541,6 @@ export function nameValuePairArrayDeserializer(
 
 /** TaskExecutionResult enums */
 export type TaskExecutionResult = "success" | "failure";
-
-export function taskExecutionResultSerializer(item: TaskExecutionResult): any {
-  return item;
-}
-
-export function taskExecutionResultDeserializer(
-  item: any,
-): TaskExecutionResult {
-  return item;
-}
 
 export function taskInformationArraySerializer(
   result: Array<TaskInformation>,
@@ -706,9 +651,7 @@ export function taskContainerSettingsSerializer(
     registry: !item["registry"]
       ? item["registry"]
       : containerRegistrySerializer(item["registry"]),
-    workingDirectory: !item["workingDirectory"]
-      ? item["workingDirectory"]
-      : containerWorkingDirectorySerializer(item["workingDirectory"]),
+    workingDirectory: item["workingDirectory"],
   };
 }
 
@@ -721,9 +664,7 @@ export function taskContainerSettingsDeserializer(
     registry: !item["registry"]
       ? item["registry"]
       : containerRegistryDeserializer(item["registry"]),
-    workingDirectory: !item["workingDirectory"]
-      ? item["workingDirectory"]
-      : containerWorkingDirectoryDeserializer(item["workingDirectory"]),
+    workingDirectory: item["workingDirectory"],
   };
 }
 
@@ -788,18 +729,6 @@ export function batchNodeIdentityReferenceDeserializer(
 export type ContainerWorkingDirectory =
   | "taskWorkingDirectory"
   | "containerImageDefault";
-
-export function containerWorkingDirectorySerializer(
-  item: ContainerWorkingDirectory,
-): any {
-  return item;
-}
-
-export function containerWorkingDirectoryDeserializer(
-  item: any,
-): ContainerWorkingDirectory {
-  return item;
-}
 
 /** A single file or multiple files to be downloaded to a Compute Node. */
 export interface ResourceFile {
@@ -935,50 +864,22 @@ export interface AutoUserSpecification {
 export function autoUserSpecificationSerializer(
   item: AutoUserSpecification,
 ): any {
-  return {
-    scope: !item["scope"]
-      ? item["scope"]
-      : autoUserScopeSerializer(item["scope"]),
-    elevationLevel: !item["elevationLevel"]
-      ? item["elevationLevel"]
-      : elevationLevelSerializer(item["elevationLevel"]),
-  };
+  return { scope: item["scope"], elevationLevel: item["elevationLevel"] };
 }
 
 export function autoUserSpecificationDeserializer(
   item: any,
 ): AutoUserSpecification {
   return {
-    scope: !item["scope"]
-      ? item["scope"]
-      : autoUserScopeDeserializer(item["scope"]),
-    elevationLevel: !item["elevationLevel"]
-      ? item["elevationLevel"]
-      : elevationLevelDeserializer(item["elevationLevel"]),
+    scope: item["scope"],
+    elevationLevel: item["elevationLevel"],
   };
 }
 
 /** AutoUserScope enums */
 export type AutoUserScope = "task" | "pool";
-
-export function autoUserScopeSerializer(item: AutoUserScope): any {
-  return item;
-}
-
-export function autoUserScopeDeserializer(item: any): AutoUserScope {
-  return item;
-}
-
 /** ElevationLevel enums */
 export type ElevationLevel = "nonadmin" | "admin";
-
-export function elevationLevelSerializer(item: ElevationLevel): any {
-  return item;
-}
-
-export function elevationLevelDeserializer(item: any): ElevationLevel {
-  return item;
-}
 
 /** Information about a StartTask running on a Compute Node. */
 export interface StartTaskInformation {
@@ -1006,7 +907,7 @@ export function startTaskInformationSerializer(
   item: StartTaskInformation,
 ): any {
   return {
-    state: startTaskStateSerializer(item["state"]),
+    state: item["state"],
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"]?.toISOString(),
     exitCode: item["exitCode"],
@@ -1018,9 +919,7 @@ export function startTaskInformationSerializer(
       : taskFailureInformationSerializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: item["lastRetryTime"]?.toISOString(),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultSerializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -1028,7 +927,7 @@ export function startTaskInformationDeserializer(
   item: any,
 ): StartTaskInformation {
   return {
-    state: startTaskStateDeserializer(item["state"]),
+    state: item["state"],
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
     exitCode: item["exitCode"],
@@ -1040,22 +939,12 @@ export function startTaskInformationDeserializer(
       : taskFailureInformationDeserializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: new Date(item["lastRetryTime"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultDeserializer(item["result"]),
+    result: item["result"],
   };
 }
 
 /** StartTaskState enums */
 export type StartTaskState = "running" | "completed";
-
-export function startTaskStateSerializer(item: StartTaskState): any {
-  return item;
-}
-
-export function startTaskStateDeserializer(item: any): StartTaskState {
-  return item;
-}
 
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export interface CertificateReference {
@@ -1077,13 +966,13 @@ export function certificateReferenceSerializer(
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
-    storeLocation: !item["storeLocation"]
-      ? item["storeLocation"]
-      : certificateStoreLocationSerializer(item["storeLocation"]),
+    storeLocation: item["storeLocation"],
     storeName: item["storeName"],
     visibility: !item["visibility"]
       ? item["visibility"]
-      : certificateVisibilityArraySerializer(item["visibility"]),
+      : item["visibility"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -1093,61 +982,18 @@ export function certificateReferenceDeserializer(
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
-    storeLocation: !item["storeLocation"]
-      ? item["storeLocation"]
-      : certificateStoreLocationDeserializer(item["storeLocation"]),
+    storeLocation: item["storeLocation"],
     storeName: item["storeName"],
-    visibility: !item["visibility"]
-      ? item["visibility"]
-      : certificateVisibilityArrayDeserializer(item["visibility"]),
+    visibility: item["visibility"].map((p: any) => {
+      return p;
+    }),
   };
 }
 
 /** CertificateStoreLocation enums */
 export type CertificateStoreLocation = "currentuser" | "localmachine";
-
-export function certificateStoreLocationSerializer(
-  item: CertificateStoreLocation,
-): any {
-  return item;
-}
-
-export function certificateStoreLocationDeserializer(
-  item: any,
-): CertificateStoreLocation {
-  return item;
-}
-
 /** CertificateVisibility enums */
 export type CertificateVisibility = "starttask" | "task" | "remoteuser";
-
-export function certificateVisibilitySerializer(
-  item: CertificateVisibility,
-): any {
-  return item;
-}
-
-export function certificateVisibilityDeserializer(
-  item: any,
-): CertificateVisibility {
-  return item;
-}
-
-export function certificateVisibilityArraySerializer(
-  result: Array<CertificateVisibility>,
-): any[] {
-  return result.map((item) => {
-    certificateVisibilitySerializer(item);
-  });
-}
-
-export function certificateVisibilityArrayDeserializer(
-  result: Array<CertificateVisibility>,
-): any[] {
-  return result.map((item) => {
-    certificateVisibilityDeserializer(item);
-  });
-}
 
 export function certificateReferenceArraySerializer(
   result: Array<CertificateReference>,
@@ -1254,7 +1100,7 @@ export interface InboundEndpoint {
 export function inboundEndpointSerializer(item: InboundEndpoint): any {
   return {
     name: item["name"],
-    protocol: inboundEndpointProtocolSerializer(item["protocol"]),
+    protocol: item["protocol"],
     publicIPAddress: item["publicIpAddress"],
     publicFQDN: item["publicFQDN"],
     frontendPort: item["frontendPort"],
@@ -1265,7 +1111,7 @@ export function inboundEndpointSerializer(item: InboundEndpoint): any {
 export function inboundEndpointDeserializer(item: any): InboundEndpoint {
   return {
     name: item["name"],
-    protocol: inboundEndpointProtocolDeserializer(item["protocol"]),
+    protocol: item["protocol"],
     publicIpAddress: item["publicIPAddress"],
     publicFQDN: item["publicFQDN"],
     frontendPort: item["frontendPort"],
@@ -1275,18 +1121,6 @@ export function inboundEndpointDeserializer(item: any): InboundEndpoint {
 
 /** InboundEndpointProtocol enums */
 export type InboundEndpointProtocol = "tcp" | "udp";
-
-export function inboundEndpointProtocolSerializer(
-  item: InboundEndpointProtocol,
-): any {
-  return item;
-}
-
-export function inboundEndpointProtocolDeserializer(
-  item: any,
-): InboundEndpointProtocol {
-  return item;
-}
 
 export function inboundEndpointArraySerializer(
   result: Array<InboundEndpoint>,
@@ -1403,18 +1237,12 @@ export interface NodeRebootOptions {
 }
 
 export function nodeRebootOptionsSerializer(item: NodeRebootOptions): any {
-  return {
-    nodeRebootOption: !item["nodeRebootOption"]
-      ? item["nodeRebootOption"]
-      : batchNodeRebootOptionSerializer(item["nodeRebootOption"]),
-  };
+  return { nodeRebootOption: item["nodeRebootOption"] };
 }
 
 export function nodeRebootOptionsDeserializer(item: any): NodeRebootOptions {
   return {
-    nodeRebootOption: !item["nodeRebootOption"]
-      ? item["nodeRebootOption"]
-      : batchNodeRebootOptionDeserializer(item["nodeRebootOption"]),
+    nodeRebootOption: item["nodeRebootOption"],
   };
 }
 
@@ -1425,18 +1253,6 @@ export type BatchNodeRebootOption =
   | "taskcompletion"
   | "retaineddata";
 
-export function batchNodeRebootOptionSerializer(
-  item: BatchNodeRebootOption,
-): any {
-  return item;
-}
-
-export function batchNodeRebootOptionDeserializer(
-  item: any,
-): BatchNodeRebootOption {
-  return item;
-}
-
 /** Options for reimaging an Azure Batch Compute Node. */
 export interface NodeReimageOptions {
   /** When to reimage the Compute Node and what to do with currently running Tasks. The default value is requeue. */
@@ -1444,18 +1260,12 @@ export interface NodeReimageOptions {
 }
 
 export function nodeReimageOptionsSerializer(item: NodeReimageOptions): any {
-  return {
-    nodeReimageOption: !item["nodeReimageOption"]
-      ? item["nodeReimageOption"]
-      : batchNodeReimageOptionSerializer(item["nodeReimageOption"]),
-  };
+  return { nodeReimageOption: item["nodeReimageOption"] };
 }
 
 export function nodeReimageOptionsDeserializer(item: any): NodeReimageOptions {
   return {
-    nodeReimageOption: !item["nodeReimageOption"]
-      ? item["nodeReimageOption"]
-      : batchNodeReimageOptionDeserializer(item["nodeReimageOption"]),
+    nodeReimageOption: item["nodeReimageOption"],
   };
 }
 
@@ -1466,18 +1276,6 @@ export type BatchNodeReimageOption =
   | "taskcompletion"
   | "retaineddata";
 
-export function batchNodeReimageOptionSerializer(
-  item: BatchNodeReimageOption,
-): any {
-  return item;
-}
-
-export function batchNodeReimageOptionDeserializer(
-  item: any,
-): BatchNodeReimageOption {
-  return item;
-}
-
 /** Options for disabling scheduling on an Azure Batch Compute Node. */
 export interface NodeDisableSchedulingOptions {
   /** What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. */
@@ -1487,24 +1285,14 @@ export interface NodeDisableSchedulingOptions {
 export function nodeDisableSchedulingOptionsSerializer(
   item: NodeDisableSchedulingOptions,
 ): any {
-  return {
-    nodeDisableSchedulingOption: !item["nodeDisableSchedulingOption"]
-      ? item["nodeDisableSchedulingOption"]
-      : disableBatchNodeSchedulingOptionSerializer(
-          item["nodeDisableSchedulingOption"],
-        ),
-  };
+  return { nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"] };
 }
 
 export function nodeDisableSchedulingOptionsDeserializer(
   item: any,
 ): NodeDisableSchedulingOptions {
   return {
-    nodeDisableSchedulingOption: !item["nodeDisableSchedulingOption"]
-      ? item["nodeDisableSchedulingOption"]
-      : disableBatchNodeSchedulingOptionDeserializer(
-          item["nodeDisableSchedulingOption"],
-        ),
+    nodeDisableSchedulingOption: item["nodeDisableSchedulingOption"],
   };
 }
 
@@ -1513,18 +1301,6 @@ export type DisableBatchNodeSchedulingOption =
   | "requeue"
   | "terminate"
   | "taskcompletion";
-
-export function disableBatchNodeSchedulingOptionSerializer(
-  item: DisableBatchNodeSchedulingOption,
-): any {
-  return item;
-}
-
-export function disableBatchNodeSchedulingOptionDeserializer(
-  item: any,
-): DisableBatchNodeSchedulingOption {
-  return item;
-}
 
 /** The remote login settings for a Compute Node. */
 export interface BatchNodeRemoteLoginSettingsResult {
@@ -1804,9 +1580,7 @@ export function instanceViewStatusSerializer(item: InstanceViewStatus): any {
   return {
     code: item["code"],
     displayStatus: item["displayStatus"],
-    level: !item["level"]
-      ? item["level"]
-      : statusLevelTypesSerializer(item["level"]),
+    level: item["level"],
     message: item["message"],
     time: item["time"],
   };
@@ -1816,9 +1590,7 @@ export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
   return {
     code: item["code"],
     displayStatus: item["displayStatus"],
-    level: !item["level"]
-      ? item["level"]
-      : statusLevelTypesDeserializer(item["level"]),
+    level: item["level"],
     message: item["message"],
     time: item["time"],
   };
@@ -1826,14 +1598,6 @@ export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
 
 /** Level code. */
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
-
-export function statusLevelTypesSerializer(item: StatusLevelTypes): any {
-  return item;
-}
-
-export function statusLevelTypesDeserializer(item: any): StatusLevelTypes {
-  return item;
-}
 
 export function instanceViewStatusArraySerializer(
   result: Array<InstanceViewStatus>,
@@ -2235,47 +1999,22 @@ export interface ExitOptions {
 
 export function exitOptionsSerializer(item: ExitOptions): any {
   return {
-    jobAction: !item["jobAction"]
-      ? item["jobAction"]
-      : jobActionSerializer(item["jobAction"]),
-    dependencyAction: !item["dependencyAction"]
-      ? item["dependencyAction"]
-      : dependencyActionSerializer(item["dependencyAction"]),
+    jobAction: item["jobAction"],
+    dependencyAction: item["dependencyAction"],
   };
 }
 
 export function exitOptionsDeserializer(item: any): ExitOptions {
   return {
-    jobAction: !item["jobAction"]
-      ? item["jobAction"]
-      : jobActionDeserializer(item["jobAction"]),
-    dependencyAction: !item["dependencyAction"]
-      ? item["dependencyAction"]
-      : dependencyActionDeserializer(item["dependencyAction"]),
+    jobAction: item["jobAction"],
+    dependencyAction: item["dependencyAction"],
   };
 }
 
 /** JobAction enums */
 export type JobAction = "none" | "disable" | "terminate";
-
-export function jobActionSerializer(item: JobAction): any {
-  return item;
-}
-
-export function jobActionDeserializer(item: any): JobAction {
-  return item;
-}
-
 /** DependencyAction enums */
 export type DependencyAction = "satisfy" | "block";
-
-export function dependencyActionSerializer(item: DependencyAction): any {
-  return item;
-}
-
-export function dependencyActionDeserializer(item: any): DependencyAction {
-  return item;
-}
 
 export function exitCodeMappingArraySerializer(
   result: Array<ExitCodeMapping>,
@@ -2479,20 +2218,14 @@ export interface OutputFileUploadOptions {
 export function outputFileUploadOptionsSerializer(
   item: OutputFileUploadOptions,
 ): any {
-  return {
-    uploadCondition: outputFileUploadConditionSerializer(
-      item["uploadCondition"],
-    ),
-  };
+  return { uploadCondition: item["uploadCondition"] };
 }
 
 export function outputFileUploadOptionsDeserializer(
   item: any,
 ): OutputFileUploadOptions {
   return {
-    uploadCondition: outputFileUploadConditionDeserializer(
-      item["uploadCondition"],
-    ),
+    uploadCondition: item["uploadCondition"],
   };
 }
 
@@ -2501,18 +2234,6 @@ export type OutputFileUploadCondition =
   | "tasksuccess"
   | "taskfailure"
   | "taskcompletion";
-
-export function outputFileUploadConditionSerializer(
-  item: OutputFileUploadCondition,
-): any {
-  return item;
-}
-
-export function outputFileUploadConditionDeserializer(
-  item: any,
-): OutputFileUploadCondition {
-  return item;
-}
 
 export function outputFileArraySerializer(result: Array<OutputFile>): any[] {
   return result.map((item) => {
@@ -2738,7 +2459,9 @@ export function authenticationTokenSettingsSerializer(
   return {
     access: !item["access"]
       ? item["access"]
-      : accessScopeArraySerializer(item["access"]),
+      : item["access"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -2746,36 +2469,14 @@ export function authenticationTokenSettingsDeserializer(
   item: any,
 ): AuthenticationTokenSettings {
   return {
-    access: !item["access"]
-      ? item["access"]
-      : accessScopeArrayDeserializer(item["access"]),
+    access: item["access"].map((p: any) => {
+      return p;
+    }),
   };
 }
 
 /** AccessScope enums */
 export type AccessScope = "job";
-
-export function accessScopeSerializer(item: AccessScope): any {
-  return item;
-}
-
-export function accessScopeDeserializer(item: any): AccessScope {
-  return item;
-}
-
-export function accessScopeArraySerializer(result: Array<AccessScope>): any[] {
-  return result.map((item) => {
-    accessScopeSerializer(item);
-  });
-}
-
-export function accessScopeArrayDeserializer(
-  result: Array<AccessScope>,
-): any[] {
-  return result.map((item) => {
-    accessScopeDeserializer(item);
-  });
-}
 
 /** The result of listing the Tasks in a Job. */
 export interface _BatchTaskListResult {
@@ -2894,13 +2595,9 @@ export function batchTaskDeserializer(item: any): BatchTask {
     exitConditions: !item["exitConditions"]
       ? item["exitConditions"]
       : exitConditionsDeserializer(item["exitConditions"]),
-    state: !item["state"]
-      ? item["state"]
-      : taskStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : taskStateDeserializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     commandLine: item["commandLine"],
     containerSettings: !item["containerSettings"]
@@ -3143,7 +2840,7 @@ export interface TaskAddResult {
 
 export function taskAddResultSerializer(item: TaskAddResult): any {
   return {
-    status: taskAddStatusSerializer(item["status"]),
+    status: item["status"],
     taskId: item["taskId"],
     eTag: item["eTag"],
     lastModified: item["lastModified"]?.toISOString(),
@@ -3154,7 +2851,7 @@ export function taskAddResultSerializer(item: TaskAddResult): any {
 
 export function taskAddResultDeserializer(item: any): TaskAddResult {
   return {
-    status: taskAddStatusDeserializer(item["status"]),
+    status: item["status"],
     taskId: item["taskId"],
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
@@ -3167,14 +2864,6 @@ export function taskAddResultDeserializer(item: any): TaskAddResult {
 
 /** TaskAddStatus enums */
 export type TaskAddStatus = "Success" | "clienterror" | "servererror";
-
-export function taskAddStatusSerializer(item: TaskAddStatus): any {
-  return item;
-}
-
-export function taskAddStatusDeserializer(item: any): TaskAddStatus {
-  return item;
-}
 
 export function taskAddResultArraySerializer(
   result: Array<TaskAddResult>,
@@ -3261,18 +2950,12 @@ export function subtaskInformationSerializer(item: SubtaskInformation): any {
     failureInfo: !item["failureInfo"]
       ? item["failureInfo"]
       : taskFailureInformationSerializer(item["failureInfo"]),
-    state: !item["state"]
-      ? item["state"]
-      : subtaskStateSerializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: item["stateTransitionTime"]?.toISOString(),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : subtaskStateSerializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime:
       item["previousStateTransitionTime"]?.toISOString(),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultSerializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -3291,30 +2974,16 @@ export function subtaskInformationDeserializer(item: any): SubtaskInformation {
     failureInfo: !item["failureInfo"]
       ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
-    state: !item["state"]
-      ? item["state"]
-      : subtaskStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : subtaskStateDeserializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultDeserializer(item["result"]),
+    result: item["result"],
   };
 }
 
 /** SubtaskState enums */
 export type SubtaskState = "preparing" | "running" | "completed";
-
-export function subtaskStateSerializer(item: SubtaskState): any {
-  return item;
-}
-
-export function subtaskStateDeserializer(item: any): SubtaskState {
-  return item;
-}
 
 export function subtaskInformationArraySerializer(
   result: Array<SubtaskInformation>,
@@ -3387,13 +3056,9 @@ export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item["state"]
-      ? item["state"]
-      : jobScheduleStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : jobScheduleStateDeserializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     schedule: scheduleDeserializer(item["schedule"]),
     jobSpecification: jobSpecificationDeserializer(item["jobSpecification"]),
@@ -3416,14 +3081,6 @@ export type JobScheduleState =
   | "disabled"
   | "terminating"
   | "deleting";
-
-export function jobScheduleStateSerializer(item: JobScheduleState): any {
-  return item;
-}
-
-export function jobScheduleStateDeserializer(item: any): JobScheduleState {
-  return item;
-}
 
 /**
  * The schedule according to which Jobs will be created. All times are fixed
@@ -3499,12 +3156,8 @@ export function jobSpecificationSerializer(item: JobSpecification): any {
     maxParallelTasks: item["maxParallelTasks"],
     displayName: item["displayName"],
     usesTaskDependencies: item["usesTaskDependencies"],
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteSerializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item["onTaskFailure"]
-      ? item["onTaskFailure"]
-      : onTaskFailureSerializer(item["onTaskFailure"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
     networkConfiguration: !item["networkConfiguration"]
       ? item["networkConfiguration"]
       : jobNetworkConfigurationSerializer(item["networkConfiguration"]),
@@ -3537,12 +3190,8 @@ export function jobSpecificationDeserializer(item: any): JobSpecification {
     maxParallelTasks: item["maxParallelTasks"],
     displayName: item["displayName"],
     usesTaskDependencies: item["usesTaskDependencies"],
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item["onTaskFailure"]
-      ? item["onTaskFailure"]
-      : onTaskFailureDeserializer(item["onTaskFailure"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
     networkConfiguration: !item["networkConfiguration"]
       ? item["networkConfiguration"]
       : jobNetworkConfigurationDeserializer(item["networkConfiguration"]),
@@ -3570,25 +3219,8 @@ export function jobSpecificationDeserializer(item: any): JobSpecification {
 
 /** The action the Batch service should take when all Tasks in the Job are in the completed state. */
 export type OnAllTasksComplete = "noaction" | "terminatejob";
-
-export function onAllTasksCompleteSerializer(item: OnAllTasksComplete): any {
-  return item;
-}
-
-export function onAllTasksCompleteDeserializer(item: any): OnAllTasksComplete {
-  return item;
-}
-
 /** OnTaskFailure enums */
 export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
-
-export function onTaskFailureSerializer(item: OnTaskFailure): any {
-  return item;
-}
-
-export function onTaskFailureDeserializer(item: any): OnTaskFailure {
-  return item;
-}
 
 /** The network configuration for the Job. */
 export interface JobNetworkConfiguration {
@@ -4001,9 +3633,7 @@ export function autoPoolSpecificationSerializer(
 ): any {
   return {
     autoPoolIdPrefix: item["autoPoolIdPrefix"],
-    poolLifetimeOption: poolLifetimeOptionSerializer(
-      item["poolLifetimeOption"],
-    ),
+    poolLifetimeOption: item["poolLifetimeOption"],
     keepAlive: item["keepAlive"],
     pool: !item["pool"]
       ? item["pool"]
@@ -4016,9 +3646,7 @@ export function autoPoolSpecificationDeserializer(
 ): AutoPoolSpecification {
   return {
     autoPoolIdPrefix: item["autoPoolIdPrefix"],
-    poolLifetimeOption: poolLifetimeOptionDeserializer(
-      item["poolLifetimeOption"],
-    ),
+    poolLifetimeOption: item["poolLifetimeOption"],
     keepAlive: item["keepAlive"],
     pool: !item["pool"]
       ? item["pool"]
@@ -4028,14 +3656,6 @@ export function autoPoolSpecificationDeserializer(
 
 /** PoolLifetimeOption enums */
 export type PoolLifetimeOption = "jobschedule" | "job";
-
-export function poolLifetimeOptionSerializer(item: PoolLifetimeOption): any {
-  return item;
-}
-
-export function poolLifetimeOptionDeserializer(item: any): PoolLifetimeOption {
-  return item;
-}
 
 /** Specification for creating a new Pool. */
 export interface PoolSpecification {
@@ -4140,9 +3760,7 @@ export function poolSpecificationSerializer(item: PoolSpecification): any {
     mountConfiguration: !item["mountConfiguration"]
       ? item["mountConfiguration"]
       : mountConfigurationArraySerializer(item["mountConfiguration"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeSerializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -4197,9 +3815,7 @@ export function poolSpecificationDeserializer(item: any): PoolSpecification {
     mountConfiguration: !item["mountConfiguration"]
       ? item["mountConfiguration"]
       : mountConfigurationArrayDeserializer(item["mountConfiguration"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -4385,50 +4001,25 @@ export interface DataDisk {
 export function dataDiskSerializer(item: DataDisk): any {
   return {
     lun: item["lun"],
-    caching: !item["caching"]
-      ? item["caching"]
-      : cachingTypeSerializer(item["caching"]),
+    caching: item["caching"],
     diskSizeGB: item["diskSizeGb"],
-    storageAccountType: !item["storageAccountType"]
-      ? item["storageAccountType"]
-      : storageAccountTypeSerializer(item["storageAccountType"]),
+    storageAccountType: item["storageAccountType"],
   };
 }
 
 export function dataDiskDeserializer(item: any): DataDisk {
   return {
     lun: item["lun"],
-    caching: !item["caching"]
-      ? item["caching"]
-      : cachingTypeDeserializer(item["caching"]),
+    caching: item["caching"],
     diskSizeGb: item["diskSizeGB"],
-    storageAccountType: !item["storageAccountType"]
-      ? item["storageAccountType"]
-      : storageAccountTypeDeserializer(item["storageAccountType"]),
+    storageAccountType: item["storageAccountType"],
   };
 }
 
 /** CachingType enums */
 export type CachingType = "none" | "readonly" | "readwrite";
-
-export function cachingTypeSerializer(item: CachingType): any {
-  return item;
-}
-
-export function cachingTypeDeserializer(item: any): CachingType {
-  return item;
-}
-
 /** StorageAccountType enums */
 export type StorageAccountType = "standard_lrs" | "premium_lrs";
-
-export function storageAccountTypeSerializer(item: StorageAccountType): any {
-  return item;
-}
-
-export function storageAccountTypeDeserializer(item: any): StorageAccountType {
-  return item;
-}
 
 export function dataDiskArraySerializer(result: Array<DataDisk>): any[] {
   return result.map((item) => {
@@ -4456,7 +4047,7 @@ export function containerConfigurationSerializer(
   item: ContainerConfiguration,
 ): any {
   return {
-    type: containerTypeSerializer(item["type"]),
+    type: item["type"],
     containerImageNames: !item["containerImageNames"]
       ? item["containerImageNames"]
       : item["containerImageNames"].map((p: any) => {
@@ -4472,7 +4063,7 @@ export function containerConfigurationDeserializer(
   item: any,
 ): ContainerConfiguration {
   return {
-    type: containerTypeDeserializer(item["type"]),
+    type: item["type"],
     containerImageNames: item["containerImageNames"].map((p: any) => {
       return p;
     }),
@@ -4484,14 +4075,6 @@ export function containerConfigurationDeserializer(
 
 /** ContainerType enums */
 export type ContainerType = "dockerCompatible" | "criCompatible";
-
-export function containerTypeSerializer(item: ContainerType): any {
-  return item;
-}
-
-export function containerTypeDeserializer(item: any): ContainerType {
-  return item;
-}
 
 export function containerRegistryArraySerializer(
   result: Array<ContainerRegistry>,
@@ -4525,7 +4108,9 @@ export function diskEncryptionConfigurationSerializer(
   return {
     targets: !item["targets"]
       ? item["targets"]
-      : diskEncryptionTargetArraySerializer(item["targets"]),
+      : item["targets"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -4533,42 +4118,14 @@ export function diskEncryptionConfigurationDeserializer(
   item: any,
 ): DiskEncryptionConfiguration {
   return {
-    targets: !item["targets"]
-      ? item["targets"]
-      : diskEncryptionTargetArrayDeserializer(item["targets"]),
+    targets: item["targets"].map((p: any) => {
+      return p;
+    }),
   };
 }
 
 /** DiskEncryptionTarget enums */
 export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
-
-export function diskEncryptionTargetSerializer(
-  item: DiskEncryptionTarget,
-): any {
-  return item;
-}
-
-export function diskEncryptionTargetDeserializer(
-  item: any,
-): DiskEncryptionTarget {
-  return item;
-}
-
-export function diskEncryptionTargetArraySerializer(
-  result: Array<DiskEncryptionTarget>,
-): any[] {
-  return result.map((item) => {
-    diskEncryptionTargetSerializer(item);
-  });
-}
-
-export function diskEncryptionTargetArrayDeserializer(
-  result: Array<DiskEncryptionTarget>,
-): any[] {
-  return result.map((item) => {
-    diskEncryptionTargetDeserializer(item);
-  });
-}
 
 /**
  * For regional placement, nodes in the pool will be allocated in the same region.
@@ -4583,37 +4140,19 @@ export interface NodePlacementConfiguration {
 export function nodePlacementConfigurationSerializer(
   item: NodePlacementConfiguration,
 ): any {
-  return {
-    policy: !item["policy"]
-      ? item["policy"]
-      : nodePlacementPolicyTypeSerializer(item["policy"]),
-  };
+  return { policy: item["policy"] };
 }
 
 export function nodePlacementConfigurationDeserializer(
   item: any,
 ): NodePlacementConfiguration {
   return {
-    policy: !item["policy"]
-      ? item["policy"]
-      : nodePlacementPolicyTypeDeserializer(item["policy"]),
+    policy: item["policy"],
   };
 }
 
 /** NodePlacementPolicyType enums */
 export type NodePlacementPolicyType = "regional" | "zonal";
-
-export function nodePlacementPolicyTypeSerializer(
-  item: NodePlacementPolicyType,
-): any {
-  return item;
-}
-
-export function nodePlacementPolicyTypeDeserializer(
-  item: any,
-): NodePlacementPolicyType {
-  return item;
-}
 
 export function vMExtensionArraySerializer(result: Array<VMExtension>): any[] {
   return result.map((item) => {
@@ -4661,31 +4200,17 @@ export interface DiffDiskSettings {
 }
 
 export function diffDiskSettingsSerializer(item: DiffDiskSettings): any {
-  return {
-    placement: !item["placement"]
-      ? item["placement"]
-      : diffDiskPlacementSerializer(item["placement"]),
-  };
+  return { placement: item["placement"] };
 }
 
 export function diffDiskSettingsDeserializer(item: any): DiffDiskSettings {
   return {
-    placement: !item["placement"]
-      ? item["placement"]
-      : diffDiskPlacementDeserializer(item["placement"]),
+    placement: item["placement"],
   };
 }
 
 /** AccessDiffDiskPlacementScope enums */
 export type DiffDiskPlacement = "cachedisk";
-
-export function diffDiskPlacementSerializer(item: DiffDiskPlacement): any {
-  return item;
-}
-
-export function diffDiskPlacementDeserializer(item: any): DiffDiskPlacement {
-  return item;
-}
 
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
@@ -4696,27 +4221,19 @@ export interface TaskSchedulingPolicy {
 export function taskSchedulingPolicySerializer(
   item: TaskSchedulingPolicy,
 ): any {
-  return { nodeFillType: batchNodeFillTypeSerializer(item["nodeFillType"]) };
+  return { nodeFillType: item["nodeFillType"] };
 }
 
 export function taskSchedulingPolicyDeserializer(
   item: any,
 ): TaskSchedulingPolicy {
   return {
-    nodeFillType: batchNodeFillTypeDeserializer(item["nodeFillType"]),
+    nodeFillType: item["nodeFillType"],
   };
 }
 
 /** BatchNodeFillType enums */
 export type BatchNodeFillType = "spread" | "pack";
-
-export function batchNodeFillTypeSerializer(item: BatchNodeFillType): any {
-  return item;
-}
-
-export function batchNodeFillTypeDeserializer(item: any): BatchNodeFillType {
-  return item;
-}
 
 /** The network configuration for a Pool. */
 export interface NetworkConfiguration {
@@ -4737,11 +4254,7 @@ export function networkConfigurationSerializer(
 ): any {
   return {
     subnetId: item["subnetId"],
-    dynamicVNetAssignmentScope: !item["dynamicVNetAssignmentScope"]
-      ? item["dynamicVNetAssignmentScope"]
-      : dynamicVNetAssignmentScopeSerializer(
-          item["dynamicVNetAssignmentScope"],
-        ),
+    dynamicVNetAssignmentScope: item["dynamicVNetAssignmentScope"],
     endpointConfiguration: !item["endpointConfiguration"]
       ? item["endpointConfiguration"]
       : poolEndpointConfigurationSerializer(item["endpointConfiguration"]),
@@ -4759,11 +4272,7 @@ export function networkConfigurationDeserializer(
 ): NetworkConfiguration {
   return {
     subnetId: item["subnetId"],
-    dynamicVNetAssignmentScope: !item["dynamicVNetAssignmentScope"]
-      ? item["dynamicVNetAssignmentScope"]
-      : dynamicVNetAssignmentScopeDeserializer(
-          item["dynamicVNetAssignmentScope"],
-        ),
+    dynamicVNetAssignmentScope: item["dynamicVNetAssignmentScope"],
     endpointConfiguration: !item["endpointConfiguration"]
       ? item["endpointConfiguration"]
       : poolEndpointConfigurationDeserializer(item["endpointConfiguration"]),
@@ -4778,18 +4287,6 @@ export function networkConfigurationDeserializer(
 
 /** DynamicVNetAssignmentScope enums */
 export type DynamicVNetAssignmentScope = "none" | "job";
-
-export function dynamicVNetAssignmentScopeSerializer(
-  item: DynamicVNetAssignmentScope,
-): any {
-  return item;
-}
-
-export function dynamicVNetAssignmentScopeDeserializer(
-  item: any,
-): DynamicVNetAssignmentScope {
-  return item;
-}
 
 /** The endpoint configuration for a Pool. */
 export interface PoolEndpointConfiguration {
@@ -4835,7 +4332,7 @@ export interface InboundNATPool {
 export function inboundNATPoolSerializer(item: InboundNATPool): any {
   return {
     name: item["name"],
-    protocol: inboundEndpointProtocolSerializer(item["protocol"]),
+    protocol: item["protocol"],
     backendPort: item["backendPort"],
     frontendPortRangeStart: item["frontendPortRangeStart"],
     frontendPortRangeEnd: item["frontendPortRangeEnd"],
@@ -4850,7 +4347,7 @@ export function inboundNATPoolSerializer(item: InboundNATPool): any {
 export function inboundNATPoolDeserializer(item: any): InboundNATPool {
   return {
     name: item["name"],
-    protocol: inboundEndpointProtocolDeserializer(item["protocol"]),
+    protocol: item["protocol"],
     backendPort: item["backendPort"],
     frontendPortRangeStart: item["frontendPortRangeStart"],
     frontendPortRangeEnd: item["frontendPortRangeEnd"],
@@ -4879,7 +4376,7 @@ export function networkSecurityGroupRuleSerializer(
 ): any {
   return {
     priority: item["priority"],
-    access: networkSecurityGroupRuleAccessSerializer(item["access"]),
+    access: item["access"],
     sourceAddressPrefix: item["sourceAddressPrefix"],
     sourcePortRanges: !item["sourcePortRanges"]
       ? item["sourcePortRanges"]
@@ -4894,7 +4391,7 @@ export function networkSecurityGroupRuleDeserializer(
 ): NetworkSecurityGroupRule {
   return {
     priority: item["priority"],
-    access: networkSecurityGroupRuleAccessDeserializer(item["access"]),
+    access: item["access"],
     sourceAddressPrefix: item["sourceAddressPrefix"],
     sourcePortRanges: item["sourcePortRanges"].map((p: any) => {
       return p;
@@ -4904,18 +4401,6 @@ export function networkSecurityGroupRuleDeserializer(
 
 /** NetworkSecurityGroupRuleAccess enums */
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
-
-export function networkSecurityGroupRuleAccessSerializer(
-  item: NetworkSecurityGroupRuleAccess,
-): any {
-  return item;
-}
-
-export function networkSecurityGroupRuleAccessDeserializer(
-  item: any,
-): NetworkSecurityGroupRuleAccess {
-  return item;
-}
 
 export function networkSecurityGroupRuleArraySerializer(
   result: Array<NetworkSecurityGroupRule>,
@@ -4961,9 +4446,7 @@ export function publicIpAddressConfigurationSerializer(
   item: PublicIpAddressConfiguration,
 ): any {
   return {
-    provision: !item["IpAddressProvisioningType"]
-      ? item["IpAddressProvisioningType"]
-      : ipAddressProvisioningTypeSerializer(item["IpAddressProvisioningType"]),
+    provision: item["IpAddressProvisioningType"],
     ipAddressIds: !item["ipAddressIds"]
       ? item["ipAddressIds"]
       : item["ipAddressIds"].map((p: any) => {
@@ -4976,9 +4459,7 @@ export function publicIpAddressConfigurationDeserializer(
   item: any,
 ): PublicIpAddressConfiguration {
   return {
-    IpAddressProvisioningType: !item["provision"]
-      ? item["provision"]
-      : ipAddressProvisioningTypeDeserializer(item["provision"]),
+    IpAddressProvisioningType: item["provision"],
     ipAddressIds: item["ipAddressIds"].map((p: any) => {
       return p;
     }),
@@ -4990,18 +4471,6 @@ export type IpAddressProvisioningType =
   | "batchmanaged"
   | "usermanaged"
   | "nopublicipaddresses";
-
-export function ipAddressProvisioningTypeSerializer(
-  item: IpAddressProvisioningType,
-): any {
-  return item;
-}
-
-export function ipAddressProvisioningTypeDeserializer(
-  item: any,
-): IpAddressProvisioningType {
-  return item;
-}
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
@@ -5024,9 +4493,7 @@ export function userAccountSerializer(item: UserAccount): any {
   return {
     name: item["name"],
     password: item["password"],
-    elevationLevel: !item["elevationLevel"]
-      ? item["elevationLevel"]
-      : elevationLevelSerializer(item["elevationLevel"]),
+    elevationLevel: item["elevationLevel"],
     linuxUserConfiguration: !item["linuxUserConfiguration"]
       ? item["linuxUserConfiguration"]
       : linuxUserConfigurationSerializer(item["linuxUserConfiguration"]),
@@ -5040,9 +4507,7 @@ export function userAccountDeserializer(item: any): UserAccount {
   return {
     name: item["name"],
     password: item["password"],
-    elevationLevel: !item["elevationLevel"]
-      ? item["elevationLevel"]
-      : elevationLevelDeserializer(item["elevationLevel"]),
+    elevationLevel: item["elevationLevel"],
     linuxUserConfiguration: !item["linuxUserConfiguration"]
       ? item["linuxUserConfiguration"]
       : linuxUserConfigurationDeserializer(item["linuxUserConfiguration"]),
@@ -5091,33 +4556,19 @@ export interface WindowsUserConfiguration {
 export function windowsUserConfigurationSerializer(
   item: WindowsUserConfiguration,
 ): any {
-  return {
-    loginMode: !item["loginMode"]
-      ? item["loginMode"]
-      : loginModeSerializer(item["loginMode"]),
-  };
+  return { loginMode: item["loginMode"] };
 }
 
 export function windowsUserConfigurationDeserializer(
   item: any,
 ): WindowsUserConfiguration {
   return {
-    loginMode: !item["loginMode"]
-      ? item["loginMode"]
-      : loginModeDeserializer(item["loginMode"]),
+    loginMode: item["loginMode"],
   };
 }
 
 /** LoginMode enums */
 export type LoginMode = "batch" | "interactive";
-
-export function loginModeSerializer(item: LoginMode): any {
-  return item;
-}
-
-export function loginModeDeserializer(item: any): LoginMode {
-  return item;
-}
 
 export function userAccountArraySerializer(result: Array<UserAccount>): any[] {
   return result.map((item) => {
@@ -5399,18 +4850,6 @@ export function mountConfigurationArrayDeserializer(
 
 /** NodeCommunicationMode enums */
 export type NodeCommunicationMode = "default" | "classic" | "simplified";
-
-export function nodeCommunicationModeSerializer(
-  item: NodeCommunicationMode,
-): any {
-  return item;
-}
-
-export function nodeCommunicationModeDeserializer(
-  item: any,
-): NodeCommunicationMode {
-  return item;
-}
 
 /**
  * Contains information about Jobs that have been and will be run under a Job
@@ -5708,9 +5147,7 @@ export function batchCertificateSerializer(item: BatchCertificate): any {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
     data: uint8ArrayToString(item["data"], "base64"),
-    certificateFormat: !item["certificateFormat"]
-      ? item["certificateFormat"]
-      : certificateFormatSerializer(item["certificateFormat"]),
+    certificateFormat: item["certificateFormat"],
     password: item["password"],
   };
 }
@@ -5720,13 +5157,9 @@ export function batchCertificateDeserializer(item: any): BatchCertificate {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
     url: item["url"],
-    state: !item["state"]
-      ? item["state"]
-      : certificateStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : certificateStateDeserializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     publicData:
       typeof item["publicData"] === "string"
@@ -5739,23 +5172,13 @@ export function batchCertificateDeserializer(item: any): BatchCertificate {
       typeof item["data"] === "string"
         ? stringToUint8Array(item["data"], "base64")
         : item["data"],
-    certificateFormat: !item["certificateFormat"]
-      ? item["certificateFormat"]
-      : certificateFormatDeserializer(item["certificateFormat"]),
+    certificateFormat: item["certificateFormat"],
     password: item["password"],
   };
 }
 
 /** CertificateState enums */
 export type CertificateState = "active" | "deleting" | "deletefailed";
-
-export function certificateStateSerializer(item: CertificateState): any {
-  return item;
-}
-
-export function certificateStateDeserializer(item: any): CertificateState {
-  return item;
-}
 
 /** An error encountered by the Batch service when deleting a Certificate. */
 export interface DeleteCertificateError {
@@ -5793,14 +5216,6 @@ export function deleteCertificateErrorDeserializer(
 
 /** CertificateFormat enums */
 export type CertificateFormat = "pfx" | "cer";
-
-export function certificateFormatSerializer(item: CertificateFormat): any {
-  return item;
-}
-
-export function certificateFormatDeserializer(item: any): CertificateFormat {
-  return item;
-}
 
 /** The result of listing the Certificates in the Account. */
 export interface _CertificateListResult {
@@ -5913,9 +5328,7 @@ export function batchJobSerializer(item: BatchJob): any {
       ? item["constraints"]
       : jobConstraintsSerializer(item["constraints"]),
     poolInfo: poolInformationSerializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteSerializer(item["onAllTasksComplete"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
     metadata: !item["metadata"]
       ? item["metadata"]
       : metadataItemArraySerializer(item["metadata"]),
@@ -5931,11 +5344,9 @@ export function batchJobDeserializer(item: any): BatchJob {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item["state"] ? item["state"] : jobStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    previousState: !item["previousState"]
-      ? item["previousState"]
-      : jobStateDeserializer(item["previousState"]),
+    previousState: item["previousState"],
     previousStateTransitionTime: new Date(item["previousStateTransitionTime"]),
     priority: item["priority"],
     allowTaskPreemption: item["allowTaskPreemption"],
@@ -5956,12 +5367,8 @@ export function batchJobDeserializer(item: any): BatchJob {
       ? item["commonEnvironmentSettings"]
       : environmentSettingArrayDeserializer(item["commonEnvironmentSettings"]),
     poolInfo: poolInformationDeserializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item["onTaskFailure"]
-      ? item["onTaskFailure"]
-      : onTaskFailureDeserializer(item["onTaskFailure"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
     networkConfiguration: !item["networkConfiguration"]
       ? item["networkConfiguration"]
       : jobNetworkConfigurationDeserializer(item["networkConfiguration"]),
@@ -5986,14 +5393,6 @@ export type JobState =
   | "terminating"
   | "completed"
   | "deleting";
-
-export function jobStateSerializer(item: JobState): any {
-  return item;
-}
-
-export function jobStateDeserializer(item: any): JobState {
-  return item;
-}
 
 /** Contains information about the execution of a Job in the Azure Batch service. */
 export interface JobExecutionInformation {
@@ -6051,7 +5450,7 @@ export interface JobSchedulingError {
 
 export function jobSchedulingErrorSerializer(item: JobSchedulingError): any {
   return {
-    category: errorCategorySerializer(item["category"]),
+    category: item["category"],
     code: item["code"],
     message: item["message"],
     details: !item["details"]
@@ -6062,7 +5461,7 @@ export function jobSchedulingErrorSerializer(item: JobSchedulingError): any {
 
 export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
   return {
-    category: errorCategoryDeserializer(item["category"]),
+    category: item["category"],
     code: item["code"],
     message: item["message"],
     details: !item["details"]
@@ -6172,9 +5571,7 @@ export function batchJobUpdateOptionsSerializer(
     poolInfo: !item["poolInfo"]
       ? item["poolInfo"]
       : poolInformationSerializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteSerializer(item["onAllTasksComplete"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
     metadata: !item["metadata"]
       ? item["metadata"]
       : metadataItemArraySerializer(item["metadata"]),
@@ -6194,9 +5591,7 @@ export function batchJobUpdateOptionsDeserializer(
     poolInfo: !item["poolInfo"]
       ? item["poolInfo"]
       : poolInformationDeserializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
     metadata: !item["metadata"]
       ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
@@ -6212,27 +5607,19 @@ export interface BatchJobDisableOptions {
 export function batchJobDisableOptionsSerializer(
   item: BatchJobDisableOptions,
 ): any {
-  return { disableTasks: disableJobOptionSerializer(item["disableTasks"]) };
+  return { disableTasks: item["disableTasks"] };
 }
 
 export function batchJobDisableOptionsDeserializer(
   item: any,
 ): BatchJobDisableOptions {
   return {
-    disableTasks: disableJobOptionDeserializer(item["disableTasks"]),
+    disableTasks: item["disableTasks"],
   };
 }
 
 /** DisableJobOption enums */
 export type DisableJobOption = "requeue" | "terminate" | "wait";
-
-export function disableJobOptionSerializer(item: DisableJobOption): any {
-  return item;
-}
-
-export function disableJobOptionDeserializer(item: any): DisableJobOption {
-  return item;
-}
 
 /** Options for terminating an Azure Batch Job. */
 export interface BatchJobTerminateOptions {
@@ -6316,12 +5703,8 @@ export function batchJobCreateOptionsSerializer(
       ? item["commonEnvironmentSettings"]
       : environmentSettingArraySerializer(item["commonEnvironmentSettings"]),
     poolInfo: poolInformationSerializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteSerializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item["onTaskFailure"]
-      ? item["onTaskFailure"]
-      : onTaskFailureSerializer(item["onTaskFailure"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
     networkConfiguration: !item["networkConfiguration"]
       ? item["networkConfiguration"]
       : jobNetworkConfigurationSerializer(item["networkConfiguration"]),
@@ -6357,12 +5740,8 @@ export function batchJobCreateOptionsDeserializer(
       ? item["commonEnvironmentSettings"]
       : environmentSettingArrayDeserializer(item["commonEnvironmentSettings"]),
     poolInfo: poolInformationDeserializer(item["poolInfo"]),
-    onAllTasksComplete: !item["onAllTasksComplete"]
-      ? item["onAllTasksComplete"]
-      : onAllTasksCompleteDeserializer(item["onAllTasksComplete"]),
-    onTaskFailure: !item["onTaskFailure"]
-      ? item["onTaskFailure"]
-      : onTaskFailureDeserializer(item["onTaskFailure"]),
+    onAllTasksComplete: item["onAllTasksComplete"],
+    onTaskFailure: item["onTaskFailure"],
     networkConfiguration: !item["networkConfiguration"]
       ? item["networkConfiguration"]
       : jobNetworkConfigurationDeserializer(item["networkConfiguration"]),
@@ -6538,7 +5917,7 @@ export function jobPreparationTaskExecutionInformationSerializer(
   return {
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"]?.toISOString(),
-    state: jobPreparationTaskStateSerializer(item["state"]),
+    state: item["state"],
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
@@ -6550,9 +5929,7 @@ export function jobPreparationTaskExecutionInformationSerializer(
       : taskFailureInformationSerializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: item["lastRetryTime"]?.toISOString(),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultSerializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -6562,7 +5939,7 @@ export function jobPreparationTaskExecutionInformationDeserializer(
   return {
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
-    state: jobPreparationTaskStateDeserializer(item["state"]),
+    state: item["state"],
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
@@ -6574,26 +5951,12 @@ export function jobPreparationTaskExecutionInformationDeserializer(
       : taskFailureInformationDeserializer(item["failureInfo"]),
     retryCount: item["retryCount"],
     lastRetryTime: new Date(item["lastRetryTime"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultDeserializer(item["result"]),
+    result: item["result"],
   };
 }
 
 /** JobPreparationTaskState enums */
 export type JobPreparationTaskState = "running" | "completed";
-
-export function jobPreparationTaskStateSerializer(
-  item: JobPreparationTaskState,
-): any {
-  return item;
-}
-
-export function jobPreparationTaskStateDeserializer(
-  item: any,
-): JobPreparationTaskState {
-  return item;
-}
 
 /**
  * Contains information about the execution of a Job Release Task on a Compute
@@ -6626,7 +5989,7 @@ export function jobReleaseTaskExecutionInformationSerializer(
   return {
     startTime: item["startTime"].toISOString(),
     endTime: item["endTime"]?.toISOString(),
-    state: jobReleaseTaskStateSerializer(item["state"]),
+    state: item["state"],
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
@@ -6636,9 +5999,7 @@ export function jobReleaseTaskExecutionInformationSerializer(
     failureInfo: !item["failureInfo"]
       ? item["failureInfo"]
       : taskFailureInformationSerializer(item["failureInfo"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultSerializer(item["result"]),
+    result: item["result"],
   };
 }
 
@@ -6648,7 +6009,7 @@ export function jobReleaseTaskExecutionInformationDeserializer(
   return {
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
-    state: jobReleaseTaskStateDeserializer(item["state"]),
+    state: item["state"],
     taskRootDirectory: item["taskRootDirectory"],
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
     exitCode: item["exitCode"],
@@ -6658,24 +6019,12 @@ export function jobReleaseTaskExecutionInformationDeserializer(
     failureInfo: !item["failureInfo"]
       ? item["failureInfo"]
       : taskFailureInformationDeserializer(item["failureInfo"]),
-    result: !item["result"]
-      ? item["result"]
-      : taskExecutionResultDeserializer(item["result"]),
+    result: item["result"],
   };
 }
 
 /** JobReleaseTaskState enums */
 export type JobReleaseTaskState = "running" | "completed";
-
-export function jobReleaseTaskStateSerializer(item: JobReleaseTaskState): any {
-  return item;
-}
-
-export function jobReleaseTaskStateDeserializer(
-  item: any,
-): JobReleaseTaskState {
-  return item;
-}
 
 export function jobPreparationAndReleaseTaskExecutionInformationArraySerializer(
   result: Array<JobPreparationAndReleaseTaskExecutionInformation>,
@@ -6836,14 +6185,14 @@ export function imageInformationSerializer(item: ImageInformation): any {
   return {
     nodeAgentSKUId: item["nodeAgentSkuId"],
     imageReference: imageReferenceSerializer(item["imageReference"]),
-    osType: oSTypeSerializer(item["osType"]),
+    osType: item["osType"],
     capabilities: !item["capabilities"]
       ? item["capabilities"]
       : item["capabilities"].map((p: any) => {
           return p;
         }),
     batchSupportEndOfLife: item["batchSupportEndOfLife"]?.toISOString(),
-    verificationType: verificationTypeSerializer(item["verificationType"]),
+    verificationType: item["verificationType"],
   };
 }
 
@@ -6851,36 +6200,19 @@ export function imageInformationDeserializer(item: any): ImageInformation {
   return {
     nodeAgentSkuId: item["nodeAgentSKUId"],
     imageReference: imageReferenceDeserializer(item["imageReference"]),
-    osType: oSTypeDeserializer(item["osType"]),
+    osType: item["osType"],
     capabilities: item["capabilities"].map((p: any) => {
       return p;
     }),
     batchSupportEndOfLife: new Date(item["batchSupportEndOfLife"]),
-    verificationType: verificationTypeDeserializer(item["verificationType"]),
+    verificationType: item["verificationType"],
   };
 }
 
 /** OSType enums */
 export type OSType = "linux" | "windows";
-
-export function oSTypeSerializer(item: OSType): any {
-  return item;
-}
-
-export function oSTypeDeserializer(item: any): OSType {
-  return item;
-}
-
 /** VerificationType enums */
 export type VerificationType = "verified" | "unverified";
-
-export function verificationTypeSerializer(item: VerificationType): any {
-  return item;
-}
-
-export function verificationTypeDeserializer(item: any): VerificationType {
-  return item;
-}
 
 export function imageInformationArraySerializer(
   result: Array<ImageInformation>,
@@ -7237,9 +6569,7 @@ export function batchPoolCreateOptionsSerializer(
     mountConfiguration: !item["mountConfiguration"]
       ? item["mountConfiguration"]
       : mountConfigurationArraySerializer(item["mountConfiguration"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeSerializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -7297,9 +6627,7 @@ export function batchPoolCreateOptionsDeserializer(
     mountConfiguration: !item["mountConfiguration"]
       ? item["mountConfiguration"]
       : mountConfigurationArrayDeserializer(item["mountConfiguration"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -7423,9 +6751,7 @@ export function batchPoolSerializer(item: BatchPool): any {
     startTask: !item["startTask"]
       ? item["startTask"]
       : startTaskSerializer(item["startTask"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeSerializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -7437,13 +6763,9 @@ export function batchPoolDeserializer(item: any): BatchPool {
     eTag: item["eTag"],
     lastModified: new Date(item["lastModified"]),
     creationTime: new Date(item["creationTime"]),
-    state: !item["state"]
-      ? item["state"]
-      : poolStateDeserializer(item["state"]),
+    state: item["state"],
     stateTransitionTime: new Date(item["stateTransitionTime"]),
-    allocationState: !item["allocationState"]
-      ? item["allocationState"]
-      : allocationStateDeserializer(item["allocationState"]),
+    allocationState: item["allocationState"],
     allocationStateTransitionTime: new Date(
       item["allocationStateTransitionTime"],
     ),
@@ -7509,36 +6831,15 @@ export function batchPoolDeserializer(item: any): BatchPool {
     identity: !item["identity"]
       ? item["identity"]
       : batchPoolIdentityDeserializer(item["identity"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
-    currentNodeCommunicationMode: !item["currentNodeCommunicationMode"]
-      ? item["currentNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["currentNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
+    currentNodeCommunicationMode: item["currentNodeCommunicationMode"],
   };
 }
 
 /** PoolState enums */
 export type PoolState = "active" | "deleting";
-
-export function poolStateSerializer(item: PoolState): any {
-  return item;
-}
-
-export function poolStateDeserializer(item: any): PoolState {
-  return item;
-}
-
 /** AllocationState enums */
 export type AllocationState = "steady" | "resizing" | "stopping";
-
-export function allocationStateSerializer(item: AllocationState): any {
-  return item;
-}
-
-export function allocationStateDeserializer(item: any): AllocationState {
-  return item;
-}
 
 /** An error that occurred when resizing a Pool. */
 export interface ResizeError {
@@ -7788,7 +7089,7 @@ export interface BatchPoolIdentity {
 
 export function batchPoolIdentitySerializer(item: BatchPoolIdentity): any {
   return {
-    type: poolIdentityTypeSerializer(item["type"]),
+    type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
       : userAssignedIdentityArraySerializer(item["userAssignedIdentities"]),
@@ -7797,7 +7098,7 @@ export function batchPoolIdentitySerializer(item: BatchPoolIdentity): any {
 
 export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
   return {
-    type: poolIdentityTypeDeserializer(item["type"]),
+    type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
       : userAssignedIdentityArrayDeserializer(item["userAssignedIdentities"]),
@@ -7806,14 +7107,6 @@ export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
 
 /** PoolIdentityType enums */
 export type PoolIdentityType = "UserAssigned" | "None";
-
-export function poolIdentityTypeSerializer(item: PoolIdentityType): any {
-  return item;
-}
-
-export function poolIdentityTypeDeserializer(item: any): PoolIdentityType {
-  return item;
-}
 
 /** The user assigned Identity */
 export interface UserAssignedIdentity {
@@ -7908,9 +7201,7 @@ export function batchPoolUpdateOptionsSerializer(
     metadata: !item["metadata"]
       ? item["metadata"]
       : metadataItemArraySerializer(item["metadata"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeSerializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -7932,9 +7223,7 @@ export function batchPoolUpdateOptionsDeserializer(
     metadata: !item["metadata"]
       ? item["metadata"]
       : metadataItemArrayDeserializer(item["metadata"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -8003,9 +7292,7 @@ export function batchPoolResizeOptionsSerializer(
     targetDedicatedNodes: item["targetDedicatedNodes"],
     targetLowPriorityNodes: item["targetLowPriorityNodes"],
     resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: !item["nodeDeallocationOption"]
-      ? item["nodeDeallocationOption"]
-      : batchNodeDeallocationOptionSerializer(item["nodeDeallocationOption"]),
+    nodeDeallocationOption: item["nodeDeallocationOption"],
   };
 }
 
@@ -8016,9 +7303,7 @@ export function batchPoolResizeOptionsDeserializer(
     targetDedicatedNodes: item["targetDedicatedNodes"],
     targetLowPriorityNodes: item["targetLowPriorityNodes"],
     resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: !item["nodeDeallocationOption"]
-      ? item["nodeDeallocationOption"]
-      : batchNodeDeallocationOptionDeserializer(item["nodeDeallocationOption"]),
+    nodeDeallocationOption: item["nodeDeallocationOption"],
   };
 }
 
@@ -8028,18 +7313,6 @@ export type BatchNodeDeallocationOption =
   | "terminate"
   | "taskcompletion"
   | "retaineddata";
-
-export function batchNodeDeallocationOptionSerializer(
-  item: BatchNodeDeallocationOption,
-): any {
-  return item;
-}
-
-export function batchNodeDeallocationOptionDeserializer(
-  item: any,
-): BatchNodeDeallocationOption {
-  return item;
-}
 
 /** Options for replacing properties on an Azure Batch Pool. */
 export interface BatchPoolReplaceOptions {
@@ -8076,9 +7349,7 @@ export function batchPoolReplaceOptionsSerializer(
       item["applicationPackageReferences"],
     ),
     metadata: metadataItemArraySerializer(item["metadata"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeSerializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -8096,9 +7367,7 @@ export function batchPoolReplaceOptionsDeserializer(
       item["applicationPackageReferences"],
     ),
     metadata: metadataItemArrayDeserializer(item["metadata"]),
-    targetNodeCommunicationMode: !item["targetNodeCommunicationMode"]
-      ? item["targetNodeCommunicationMode"]
-      : nodeCommunicationModeDeserializer(item["targetNodeCommunicationMode"]),
+    targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
 
@@ -8118,9 +7387,7 @@ export function nodeRemoveOptionsSerializer(item: NodeRemoveOptions): any {
       return p;
     }),
     resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: !item["nodeDeallocationOption"]
-      ? item["nodeDeallocationOption"]
-      : batchNodeDeallocationOptionSerializer(item["nodeDeallocationOption"]),
+    nodeDeallocationOption: item["nodeDeallocationOption"],
   };
 }
 
@@ -8130,9 +7397,7 @@ export function nodeRemoveOptionsDeserializer(item: any): NodeRemoveOptions {
       return p;
     }),
     resizeTimeout: item["resizeTimeout"],
-    nodeDeallocationOption: !item["nodeDeallocationOption"]
-      ? item["nodeDeallocationOption"]
-      : batchNodeDeallocationOptionDeserializer(item["nodeDeallocationOption"]),
+    nodeDeallocationOption: item["nodeDeallocationOption"],
   };
 }
 
@@ -8214,11 +7479,3 @@ export function batchApplicationArrayDeserializer(
 
 /** The Azure Batch service version. */
 export type Versions = "2023-05-01.17.0";
-
-export function versionsSerializer(item: Versions): any {
-  return item;
-}
-
-export function versionsDeserializer(item: any): Versions {
-  return item;
-}

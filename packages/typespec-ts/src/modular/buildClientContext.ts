@@ -8,6 +8,7 @@ import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,
   buildGetClientOptionsParam,
+  getClientParameterName,
   getClientParameters,
   getClientParametersDeclaration
 } from "./helpers/clientHelpers.js";
@@ -147,7 +148,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${normalizeName(apiVersionParam.name, NameType.Parameter)}}\`;
+            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
           }
     
           return next(req);

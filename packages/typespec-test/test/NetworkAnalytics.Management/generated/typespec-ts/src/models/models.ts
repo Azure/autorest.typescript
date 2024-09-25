@@ -97,22 +97,13 @@ export function dataProductPropertiesSerializer(
       : item["owners"].map((p: any) => {
           return p;
         }),
-    redundancy: !item["redundancy"]
-      ? item["redundancy"]
-      : controlStateSerializer(item["redundancy"]),
+    redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: !item["privateLinksEnabled"]
-      ? item["privateLinksEnabled"]
-      : controlStateSerializer(item["privateLinksEnabled"]),
-    publicNetworkAccess: !item["publicNetworkAccess"]
-      ? item["publicNetworkAccess"]
-      : controlStateSerializer(item["publicNetworkAccess"]),
-    customerManagedKeyEncryptionEnabled: !item[
-      "customerManagedKeyEncryptionEnabled"
-    ]
-      ? item["customerManagedKeyEncryptionEnabled"]
-      : controlStateSerializer(item["customerManagedKeyEncryptionEnabled"]),
+    privateLinksEnabled: item["privateLinksEnabled"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled:
+      item["customerManagedKeyEncryptionEnabled"],
     customerEncryptionKey: !item["customerEncryptionKey"]
       ? item["customerEncryptionKey"]
       : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
@@ -135,31 +126,20 @@ export function dataProductPropertiesDeserializer(
 ): DataProductProperties {
   return {
     resourceGuid: item["resourceGuid"],
-    provisioningState: !item["provisioningState"]
-      ? item["provisioningState"]
-      : provisioningStateDeserializer(item["provisioningState"]),
+    provisioningState: item["provisioningState"],
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
     owners: item["owners"].map((p: any) => {
       return p;
     }),
-    redundancy: !item["redundancy"]
-      ? item["redundancy"]
-      : controlStateDeserializer(item["redundancy"]),
+    redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: !item["privateLinksEnabled"]
-      ? item["privateLinksEnabled"]
-      : controlStateDeserializer(item["privateLinksEnabled"]),
-    publicNetworkAccess: !item["publicNetworkAccess"]
-      ? item["publicNetworkAccess"]
-      : controlStateDeserializer(item["publicNetworkAccess"]),
-    customerManagedKeyEncryptionEnabled: !item[
-      "customerManagedKeyEncryptionEnabled"
-    ]
-      ? item["customerManagedKeyEncryptionEnabled"]
-      : controlStateDeserializer(item["customerManagedKeyEncryptionEnabled"]),
+    privateLinksEnabled: item["privateLinksEnabled"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled:
+      item["customerManagedKeyEncryptionEnabled"],
     customerEncryptionKey: !item["customerEncryptionKey"]
       ? item["customerEncryptionKey"]
       : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
@@ -220,14 +200,6 @@ export enum KnownProvisioningState {
  */
 export type ProvisioningState = string;
 
-export function provisioningStateSerializer(item: ProvisioningState): any {
-  return item;
-}
-
-export function provisioningStateDeserializer(item: any): ProvisioningState {
-  return item;
-}
-
 /** The data type state */
 export enum KnownControlState {
   /** Field to enable a setting. */
@@ -245,14 +217,6 @@ export enum KnownControlState {
  * **Disabled**: Field to disable a setting.
  */
 export type ControlState = string;
-
-export function controlStateSerializer(item: ControlState): any {
-  return item;
-}
-
-export function controlStateDeserializer(item: any): ControlState {
-  return item;
-}
 
 /** Encryption key details. */
 export interface EncryptionKeyDetails {
@@ -307,7 +271,7 @@ export function dataProductNetworkAclsSerializer(
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
-    defaultAction: defaultActionSerializer(item["defaultAction"]),
+    defaultAction: item["defaultAction"],
   };
 }
 
@@ -322,7 +286,7 @@ export function dataProductNetworkAclsDeserializer(
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
-    defaultAction: defaultActionDeserializer(item["defaultAction"]),
+    defaultAction: item["defaultAction"],
   };
 }
 
@@ -413,14 +377,6 @@ export enum KnownDefaultAction {
  */
 export type DefaultAction = string;
 
-export function defaultActionSerializer(item: DefaultAction): any {
-  return item;
-}
-
-export function defaultActionDeserializer(item: any): DefaultAction {
-  return item;
-}
-
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
   /** Name of managed resource group */
@@ -495,7 +451,7 @@ export function managedServiceIdentityV4Serializer(
   item: ManagedServiceIdentityV4,
 ): any {
   return {
-    type: managedServiceIdentityTypeSerializer(item["type"]),
+    type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
       : userAssignedIdentityRecordSerializer(item["userAssignedIdentities"]),
@@ -508,7 +464,7 @@ export function managedServiceIdentityV4Deserializer(
   return {
     principalId: item["principalId"],
     tenantId: item["tenantId"],
-    type: managedServiceIdentityTypeDeserializer(item["type"]),
+    type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
       : userAssignedIdentityRecordDeserializer(item["userAssignedIdentities"]),
@@ -538,18 +494,6 @@ export enum KnownManagedServiceIdentityType {
  * **SystemAssigned, UserAssigned**: System and user assigned managed identity.
  */
 export type ManagedServiceIdentityType = string;
-
-export function managedServiceIdentityTypeSerializer(
-  item: ManagedServiceIdentityType,
-): any {
-  return item;
-}
-
-export function managedServiceIdentityTypeDeserializer(
-  item: any,
-): ManagedServiceIdentityType {
-  return item;
-}
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -665,14 +609,10 @@ export interface SystemData {
 export function systemDataSerializer(item: SystemData): any {
   return {
     createdBy: item["createdBy"],
-    createdByType: !item["createdByType"]
-      ? item["createdByType"]
-      : createdByTypeSerializer(item["createdByType"]),
+    createdByType: item["createdByType"],
     createdAt: item["createdAt"]?.toISOString(),
     lastModifiedBy: item["lastModifiedBy"],
-    lastModifiedByType: !item["lastModifiedByType"]
-      ? item["lastModifiedByType"]
-      : createdByTypeSerializer(item["lastModifiedByType"]),
+    lastModifiedByType: item["lastModifiedByType"],
     lastModifiedAt: item["lastModifiedAt"]?.toISOString(),
   };
 }
@@ -680,14 +620,10 @@ export function systemDataSerializer(item: SystemData): any {
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
-    createdByType: !item["createdByType"]
-      ? item["createdByType"]
-      : createdByTypeDeserializer(item["createdByType"]),
+    createdByType: item["createdByType"],
     createdAt: new Date(item["createdAt"]),
     lastModifiedBy: item["lastModifiedBy"],
-    lastModifiedByType: !item["lastModifiedByType"]
-      ? item["lastModifiedByType"]
-      : createdByTypeDeserializer(item["lastModifiedByType"]),
+    lastModifiedByType: item["lastModifiedByType"],
     lastModifiedAt: new Date(item["lastModifiedAt"]),
   };
 }
@@ -715,14 +651,6 @@ export enum KnownCreatedByType {
  * **Key**: The entity was created by a key.
  */
 export type CreatedByType = string;
-
-export function createdByTypeSerializer(item: CreatedByType): any {
-  return item;
-}
-
-export function createdByTypeDeserializer(item: any): CreatedByType {
-  return item;
-}
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
@@ -905,9 +833,7 @@ export function dataProductUpdatePropertiesSerializer(
         }),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: !item["privateLinksEnabled"]
-      ? item["privateLinksEnabled"]
-      : controlStateSerializer(item["privateLinksEnabled"]),
+    privateLinksEnabled: item["privateLinksEnabled"],
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
@@ -921,9 +847,7 @@ export function dataProductUpdatePropertiesDeserializer(
     }),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: !item["privateLinksEnabled"]
-      ? item["privateLinksEnabled"]
-      : controlStateDeserializer(item["privateLinksEnabled"]),
+    privateLinksEnabled: item["privateLinksEnabled"],
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
@@ -1013,7 +937,7 @@ export function roleAssignmentCommonPropertiesSerializer(
       return p;
     }),
     principalType: item["principalType"],
-    role: dataProductUserRoleSerializer(item["role"]),
+    role: item["role"],
   };
 }
 
@@ -1028,7 +952,7 @@ export function roleAssignmentCommonPropertiesDeserializer(
       return p;
     }),
     principalType: item["principalType"],
-    role: dataProductUserRoleDeserializer(item["role"]),
+    role: item["role"],
   };
 }
 
@@ -1053,16 +977,6 @@ export enum KnownDataProductUserRole {
  * This user has privileged access to read sensitive data of a data product.
  */
 export type DataProductUserRole = string;
-
-export function dataProductUserRoleSerializer(item: DataProductUserRole): any {
-  return item;
-}
-
-export function dataProductUserRoleDeserializer(
-  item: any,
-): DataProductUserRole {
-  return item;
-}
 
 /** The details for role assignment response. */
 export interface RoleAssignmentDetail {
@@ -1093,7 +1007,7 @@ export function roleAssignmentDetailSerializer(
       return p;
     }),
     principalType: item["principalType"],
-    role: dataProductUserRoleSerializer(item["role"]),
+    role: item["role"],
     roleAssignmentId: item["roleAssignmentId"],
   };
 }
@@ -1109,7 +1023,7 @@ export function roleAssignmentDetailDeserializer(
       return p;
     }),
     principalType: item["principalType"],
-    role: dataProductUserRoleDeserializer(item["role"]),
+    role: item["role"],
     roleAssignmentId: item["roleAssignmentId"],
   };
 }
@@ -1261,9 +1175,7 @@ export interface DataTypeProperties {
 
 export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
   return {
-    state: !item["state"]
-      ? item["state"]
-      : dataTypeStateSerializer(item["state"]),
+    state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
@@ -1272,12 +1184,8 @@ export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
 
 export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
   return {
-    provisioningState: !item["provisioningState"]
-      ? item["provisioningState"]
-      : provisioningStateDeserializer(item["provisioningState"]),
-    state: !item["state"]
-      ? item["state"]
-      : dataTypeStateDeserializer(item["state"]),
+    provisioningState: item["provisioningState"],
+    state: item["state"],
     stateReason: item["stateReason"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
@@ -1303,14 +1211,6 @@ export enum KnownDataTypeState {
  * **Running**: Field to specify running state.
  */
 export type DataTypeState = string;
-
-export function dataTypeStateSerializer(item: DataTypeState): any {
-  return item;
-}
-
-export function dataTypeStateDeserializer(item: any): DataTypeState {
-  return item;
-}
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
@@ -1368,9 +1268,7 @@ export function dataTypeUpdatePropertiesSerializer(
   item: DataTypeUpdateProperties,
 ): any {
   return {
-    state: !item["state"]
-      ? item["state"]
-      : dataTypeStateSerializer(item["state"]),
+    state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
@@ -1381,9 +1279,7 @@ export function dataTypeUpdatePropertiesDeserializer(
   item: any,
 ): DataTypeUpdateProperties {
   return {
-    state: !item["state"]
-      ? item["state"]
-      : dataTypeStateDeserializer(item["state"]),
+    state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
@@ -1529,9 +1425,7 @@ export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
   return {
-    provisioningState: !item["provisioningState"]
-      ? item["provisioningState"]
-      : provisioningStateDeserializer(item["provisioningState"]),
+    provisioningState: item["provisioningState"],
     publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
 }
@@ -1743,11 +1637,7 @@ export interface Operation {
 }
 
 export function operationSerializer(item: Operation): any {
-  return {
-    actionType: !item["actionType"]
-      ? item["actionType"]
-      : actionTypeSerializer(item["actionType"]),
-  };
+  return { actionType: item["actionType"] };
 }
 
 export function operationDeserializer(item: any): Operation {
@@ -1757,12 +1647,8 @@ export function operationDeserializer(item: any): Operation {
     display: !item["display"]
       ? item["display"]
       : operationDisplayDeserializer(item["display"]),
-    origin: !item["origin"]
-      ? item["origin"]
-      : originDeserializer(item["origin"]),
-    actionType: !item["actionType"]
-      ? item["actionType"]
-      : actionTypeDeserializer(item["actionType"]),
+    origin: item["origin"],
+    actionType: item["actionType"],
   };
 }
 
@@ -1812,14 +1698,6 @@ export enum KnownOrigin {
  */
 export type Origin = string;
 
-export function originSerializer(item: Origin): any {
-  return item;
-}
-
-export function originDeserializer(item: any): Origin {
-  return item;
-}
-
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export enum KnownActionType {
   /** Actions are for internal-only APIs. */
@@ -1835,14 +1713,6 @@ export enum KnownActionType {
  */
 export type ActionType = string;
 
-export function actionTypeSerializer(item: ActionType): any {
-  return item;
-}
-
-export function actionTypeDeserializer(item: any): ActionType {
-  return item;
-}
-
 export function operationArraySerializer(result: Array<Operation>): any[] {
   return result.map((item) => {
     operationSerializer(item);
@@ -1857,11 +1727,3 @@ export function operationArrayDeserializer(result: Array<Operation>): any[] {
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export type Versions = "2023-11-15";
-
-export function versionsSerializer(item: Versions): any {
-  return item;
-}
-
-export function versionsDeserializer(item: any): Versions {
-  return item;
-}

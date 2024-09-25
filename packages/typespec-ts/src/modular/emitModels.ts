@@ -84,7 +84,6 @@ export function emitTypes(
         );
       }
       addDeclaration(sourceFile, enumType, type);
-      addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "union") {
       const unionType = buildUnionType(context, type);
       addDeclaration(sourceFile, unionType, type);

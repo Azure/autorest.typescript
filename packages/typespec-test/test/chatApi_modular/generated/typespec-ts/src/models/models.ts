@@ -61,7 +61,7 @@ export interface ChatMessage {
 export function chatMessageSerializer(item: ChatMessage): any {
   return {
     content: item["content"],
-    role: chatRoleSerializer(item["role"]),
+    role: item["role"],
     session_state: item["sessionState"],
   };
 }
@@ -69,21 +69,13 @@ export function chatMessageSerializer(item: ChatMessage): any {
 export function chatMessageDeserializer(item: any): ChatMessage {
   return {
     content: item["content"],
-    role: chatRoleDeserializer(item["role"]),
+    role: item["role"],
     sessionState: item["session_state"],
   };
 }
 
 /** A representation of the intended purpose of a message. */
 export type ChatRole = "user" | "system" | "assistant";
-
-export function chatRoleSerializer(item: ChatRole): any {
-  return item;
-}
-
-export function chatRoleDeserializer(item: any): ChatRole {
-  return item;
-}
 
 export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
   return result.map((item) => {
@@ -147,9 +139,7 @@ export function choiceDeltaRecordSerializer(item: ChoiceDeltaRecord): any {
     delta: chatMessageDeltaSerializer(item["delta"]),
     session_state: item["sessionState"],
     context: item["context"],
-    finish_reason: !item["finishReason"]
-      ? item["finishReason"]
-      : finishReasonSerializer(item["finishReason"]),
+    finish_reason: item["finishReason"],
   };
 }
 
@@ -159,9 +149,7 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
     delta: chatMessageDeltaDeserializer(item["delta"]),
     sessionState: item["session_state"],
     context: item["context"],
-    finishReason: !item["finish_reason"]
-      ? item["finish_reason"]
-      : finishReasonDeserializer(item["finish_reason"]),
+    finishReason: item["finish_reason"],
   };
 }
 
@@ -183,7 +171,7 @@ export interface ChatMessageDelta {
 export function chatMessageDeltaSerializer(item: ChatMessageDelta): any {
   return {
     content: item["content"],
-    role: !item["role"] ? item["role"] : chatRoleSerializer(item["role"]),
+    role: item["role"],
     session_state: item["sessionState"],
   };
 }
@@ -191,21 +179,13 @@ export function chatMessageDeltaSerializer(item: ChatMessageDelta): any {
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
-    role: !item["role"] ? item["role"] : chatRoleDeserializer(item["role"]),
+    role: item["role"],
     sessionState: item["session_state"],
   };
 }
 
 /** Representation of the reason why a chat session has finished processing. */
 export type FinishReason = "stop" | "length";
-
-export function finishReasonSerializer(item: FinishReason): any {
-  return item;
-}
-
-export function finishReasonDeserializer(item: any): FinishReason {
-  return item;
-}
 
 export function choiceDeltaRecordArraySerializer(
   result: Array<ChoiceDeltaRecord>,
@@ -313,7 +293,7 @@ export function chatChoiceRecordSerializer(item: ChatChoiceRecord): any {
     message: chatMessageSerializer(item["message"]),
     session_state: item["sessionState"],
     context: item["context"],
-    finish_reason: finishReasonSerializer(item["finishReason"]),
+    finish_reason: item["finishReason"],
   };
 }
 
@@ -323,7 +303,7 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     message: chatMessageDeserializer(item["message"]),
     sessionState: item["session_state"],
     context: item["context"],
-    finishReason: finishReasonDeserializer(item["finish_reason"]),
+    finishReason: item["finish_reason"],
   };
 }
 
@@ -345,11 +325,3 @@ export function chatChoiceRecordArrayDeserializer(
 
 /** Type of APIVersion */
 export type APIVersion = "2023-10-01-preview";
-
-export function aPIVersionSerializer(item: APIVersion): any {
-  return item;
-}
-
-export function aPIVersionDeserializer(item: any): APIVersion {
-  return item;
-}

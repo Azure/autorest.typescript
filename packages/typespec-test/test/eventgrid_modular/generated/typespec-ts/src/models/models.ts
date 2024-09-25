@@ -360,14 +360,6 @@ export function rejectResultDeserializer(item: any): RejectResult {
 /** Type of ServiceApiVersions */
 export type ServiceApiVersions = "2023-06-01-preview";
 
-export function serviceApiVersionsSerializer(item: ServiceApiVersions): any {
-  return item;
-}
-
-export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
-  return item;
-}
-
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {
   return result.map((item) => {
     cloudEventSerializer(item);

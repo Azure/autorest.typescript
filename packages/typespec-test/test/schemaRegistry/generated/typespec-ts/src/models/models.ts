@@ -50,7 +50,7 @@ export interface SchemaProperties {
 export function schemaPropertiesSerializer(item: SchemaProperties): any {
   return {
     id: item["id"],
-    format: schemaFormatSerializer(item["format"]),
+    format: item["format"],
     groupName: item["groupName"],
     name: item["name"],
     version: item["version"],
@@ -60,7 +60,7 @@ export function schemaPropertiesSerializer(item: SchemaProperties): any {
 export function schemaPropertiesDeserializer(item: any): SchemaProperties {
   return {
     id: item["id"],
-    format: schemaFormatDeserializer(item["format"]),
+    format: item["format"],
     groupName: item["groupName"],
     name: item["name"],
     version: item["version"],
@@ -69,14 +69,6 @@ export function schemaPropertiesDeserializer(item: any): SchemaProperties {
 
 /** Represents the format of the schema to be stored by the Schema Registry service. */
 export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
-
-export function schemaFormatSerializer(item: SchemaFormat): any {
-  return item;
-}
-
-export function schemaFormatDeserializer(item: any): SchemaFormat {
-  return item;
-}
 
 /** The schema content of a schema, along with id and meta properties. */
 export interface Schema {
@@ -106,44 +98,14 @@ export type SchemaContentTypeValues =
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
-
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
-  return item;
-}
-
-export function schemaContentTypeValuesDeserializer(
-  item: any,
-): SchemaContentTypeValues {
-  return item;
-}
-
 /** Represents the Schema Registry API version to use for requests. */
 export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
-
-export function serviceApiVersionsSerializer(item: ServiceApiVersions): any {
-  return item;
-}
-
-export function serviceApiVersionsDeserializer(item: any): ServiceApiVersions {
-  return item;
-}
-
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
-
-export function contentTypeEnumSerializer(item: ContentTypeEnum): any {
-  return item;
-}
-
-export function contentTypeEnumDeserializer(item: any): ContentTypeEnum {
-  return item;
-}
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {

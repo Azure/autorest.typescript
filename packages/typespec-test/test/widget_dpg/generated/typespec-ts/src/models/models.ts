@@ -34,31 +34,19 @@ export interface Widget {
 }
 
 export function widgetSerializer(item: Widget): any {
-  return {
-    id: item["id"],
-    weight: item["weight"],
-    color: widgetColorSerializer(item["color"]),
-  };
+  return { id: item["id"], weight: item["weight"], color: item["color"] };
 }
 
 export function widgetDeserializer(item: any): Widget {
   return {
     id: item["id"],
     weight: item["weight"],
-    color: widgetColorDeserializer(item["color"]),
+    color: item["color"],
   };
 }
 
 /** Type of WidgetColor */
 export type WidgetColor = "red" | "blue";
-
-export function widgetColorSerializer(item: WidgetColor): any {
-  return item;
-}
-
-export function widgetColorDeserializer(item: any): WidgetColor {
-  return item;
-}
 
 /** model interface WidgetError */
 export interface WidgetError {
@@ -126,29 +114,18 @@ export interface CreateWidget {
 }
 
 export function createWidgetSerializer(item: CreateWidget): any {
-  return {
-    weight: item["weight"],
-    color: createWidgetColorSerializer(item["color"]),
-  };
+  return { weight: item["weight"], color: item["color"] };
 }
 
 export function createWidgetDeserializer(item: any): CreateWidget {
   return {
     weight: item["weight"],
-    color: createWidgetColorDeserializer(item["color"]),
+    color: item["color"],
   };
 }
 
 /** Type of CreateWidgetColor */
 export type CreateWidgetColor = "red" | "blue";
-
-export function createWidgetColorSerializer(item: CreateWidgetColor): any {
-  return item;
-}
-
-export function createWidgetColorDeserializer(item: any): CreateWidgetColor {
-  return item;
-}
 
 /** model interface UpdateWidgetRequest */
 export interface UpdateWidgetRequest {
@@ -159,12 +136,7 @@ export interface UpdateWidgetRequest {
 }
 
 export function updateWidgetRequestSerializer(item: UpdateWidgetRequest): any {
-  return {
-    weight: item["weight"],
-    color: !item["color"]
-      ? item["color"]
-      : updateWidgetRequestColorSerializer(item["color"]),
-  };
+  return { weight: item["weight"], color: item["color"] };
 }
 
 export function updateWidgetRequestDeserializer(
@@ -172,26 +144,12 @@ export function updateWidgetRequestDeserializer(
 ): UpdateWidgetRequest {
   return {
     weight: item["weight"],
-    color: !item["color"]
-      ? item["color"]
-      : updateWidgetRequestColorDeserializer(item["color"]),
+    color: item["color"],
   };
 }
 
 /** Type of UpdateWidgetRequestColor */
 export type UpdateWidgetRequestColor = "red" | "blue";
-
-export function updateWidgetRequestColorSerializer(
-  item: UpdateWidgetRequestColor,
-): any {
-  return item;
-}
-
-export function updateWidgetRequestColorDeserializer(
-  item: any,
-): UpdateWidgetRequestColor {
-  return item;
-}
 
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {
@@ -229,11 +187,3 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
 
 /** The Contoso Widget Manager service version. */
 export type Versions = "1.0.0";
-
-export function versionsSerializer(item: Versions): any {
-  return item;
-}
-
-export function versionsDeserializer(item: any): Versions {
-  return item;
-}

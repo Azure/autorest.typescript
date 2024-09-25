@@ -189,10 +189,10 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
     image: imageDataSerializer(item["image"]),
     categories: !item["categories"]
       ? item["categories"]
-      : imageCategoryArraySerializer(item["categories"]),
-    outputType: !item["outputType"]
-      ? item["outputType"]
-      : analyzeImageOutputTypeSerializer(item["outputType"]),
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
+    outputType: item["outputType"],
   };
 }
 
@@ -201,12 +201,10 @@ export function analyzeImageOptionsDeserializer(
 ): AnalyzeImageOptions {
   return {
     image: imageDataDeserializer(item["image"]),
-    categories: !item["categories"]
-      ? item["categories"]
-      : imageCategoryArrayDeserializer(item["categories"]),
-    outputType: !item["outputType"]
-      ? item["outputType"]
-      : analyzeImageOutputTypeDeserializer(item["outputType"]),
+    categories: item["categories"].map((p: any) => {
+      return p;
+    }),
+    outputType: item["outputType"],
   };
 }
 
@@ -239,45 +237,8 @@ export function imageDataDeserializer(item: any): ImageData {
 
 /** Image analyze category */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-
-export function imageCategorySerializer(item: ImageCategory): any {
-  return item;
-}
-
-export function imageCategoryDeserializer(item: any): ImageCategory {
-  return item;
-}
-
-export function imageCategoryArraySerializer(
-  result: Array<ImageCategory>,
-): any[] {
-  return result.map((item) => {
-    imageCategorySerializer(item);
-  });
-}
-
-export function imageCategoryArrayDeserializer(
-  result: Array<ImageCategory>,
-): any[] {
-  return result.map((item) => {
-    imageCategoryDeserializer(item);
-  });
-}
-
 /** The type of image analysis output. */
 export type AnalyzeImageOutputType = "FourLevels";
-
-export function analyzeImageOutputTypeSerializer(
-  item: AnalyzeImageOutputType,
-): any {
-  return item;
-}
-
-export function analyzeImageOutputTypeDeserializer(
-  item: any,
-): AnalyzeImageOutputType {
-  return item;
-}
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
@@ -312,17 +273,14 @@ export interface ImageAnalyzeSeverityResult {
 export function imageAnalyzeSeverityResultSerializer(
   item: ImageAnalyzeSeverityResult,
 ): any {
-  return {
-    category: imageCategorySerializer(item["category"]),
-    severity: item["severity"],
-  };
+  return { category: item["category"], severity: item["severity"] };
 }
 
 export function imageAnalyzeSeverityResultDeserializer(
   item: any,
 ): ImageAnalyzeSeverityResult {
   return {
-    category: imageCategoryDeserializer(item["category"]),
+    category: item["category"],
     severity: item["severity"],
   };
 }
@@ -362,76 +320,37 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
     text: item["text"],
     categories: !item["categories"]
       ? item["categories"]
-      : textCategoryArraySerializer(item["categories"]),
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
     blocklistNames: !item["blocklistNames"]
       ? item["blocklistNames"]
       : item["blocklistNames"].map((p: any) => {
           return p;
         }),
     breakByBlocklists: item["breakByBlocklists"],
-    outputType: !item["outputType"]
-      ? item["outputType"]
-      : analyzeTextOutputTypeSerializer(item["outputType"]),
+    outputType: item["outputType"],
   };
 }
 
 export function analyzeTextOptionsDeserializer(item: any): AnalyzeTextOptions {
   return {
     text: item["text"],
-    categories: !item["categories"]
-      ? item["categories"]
-      : textCategoryArrayDeserializer(item["categories"]),
+    categories: item["categories"].map((p: any) => {
+      return p;
+    }),
     blocklistNames: item["blocklistNames"].map((p: any) => {
       return p;
     }),
     breakByBlocklists: item["breakByBlocklists"],
-    outputType: !item["outputType"]
-      ? item["outputType"]
-      : analyzeTextOutputTypeDeserializer(item["outputType"]),
+    outputType: item["outputType"],
   };
 }
 
 /** Text analyze category */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-
-export function textCategorySerializer(item: TextCategory): any {
-  return item;
-}
-
-export function textCategoryDeserializer(item: any): TextCategory {
-  return item;
-}
-
-export function textCategoryArraySerializer(
-  result: Array<TextCategory>,
-): any[] {
-  return result.map((item) => {
-    textCategorySerializer(item);
-  });
-}
-
-export function textCategoryArrayDeserializer(
-  result: Array<TextCategory>,
-): any[] {
-  return result.map((item) => {
-    textCategoryDeserializer(item);
-  });
-}
-
 /** The type of text analysis output. */
 export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
-
-export function analyzeTextOutputTypeSerializer(
-  item: AnalyzeTextOutputType,
-): any {
-  return item;
-}
-
-export function analyzeTextOutputTypeDeserializer(
-  item: any,
-): AnalyzeTextOutputType {
-  return item;
-}
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
@@ -522,17 +441,14 @@ export interface TextAnalyzeSeverityResult {
 export function textAnalyzeSeverityResultSerializer(
   item: TextAnalyzeSeverityResult,
 ): any {
-  return {
-    category: textCategorySerializer(item["category"]),
-    severity: item["severity"],
-  };
+  return { category: item["category"], severity: item["severity"] };
 }
 
 export function textAnalyzeSeverityResultDeserializer(
   item: any,
 ): TextAnalyzeSeverityResult {
   return {
-    category: textCategoryDeserializer(item["category"]),
+    category: item["category"],
     severity: item["severity"],
   };
 }
@@ -555,14 +471,6 @@ export function textAnalyzeSeverityResultArrayDeserializer(
 
 /** Type of Versions */
 export type Versions = "2023-10-01";
-
-export function versionsSerializer(item: Versions): any {
-  return item;
-}
-
-export function versionsDeserializer(item: any): Versions {
-  return item;
-}
 
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {

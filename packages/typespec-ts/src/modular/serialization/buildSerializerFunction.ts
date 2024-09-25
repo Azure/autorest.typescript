@@ -2,7 +2,6 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
-  SdkEnumType,
   SdkModelType,
   SdkType,
   SdkUnionType
@@ -19,7 +18,6 @@ import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 function isSupportedSerializerType(type: SdkType): boolean {
   return (
     type.kind === "model" ||
-    type.kind === "enum" ||
     type.kind === "dict" ||
     type.kind === "array" ||
     type.kind === "union"
@@ -60,9 +58,8 @@ export function buildModelSerializer(
   switch (type.kind) {
     case "model":
       return buildModelTypeSerializer(context, type, nameOnly);
-    case "enum":
     case "union": // for non-discriminated union, we just return whatever we get
-      return buildEnumSerializer(context, type, nameOnly);
+      return buildUnionSerializer(context, type, nameOnly);
     case "dict":
       return buildDictTypeSerializer(context, type, nameOnly);
     case "array":
@@ -250,18 +247,18 @@ function buildDiscriminatedUnionSerializer(
   return serializerFunction;
 }
 
-function buildEnumSerializer(
+function buildUnionSerializer(
   context: SdkContext,
-  type: SdkEnumType | SdkUnionType,
+  type: SdkUnionType,
   nameOnly: boolean
 ): string;
-function buildEnumSerializer(
+function buildUnionSerializer(
   context: SdkContext,
-  type: SdkEnumType | SdkUnionType
+  type: SdkUnionType
 ): FunctionDeclarationStructure;
-function buildEnumSerializer(
+function buildUnionSerializer(
   context: SdkContext,
-  type: SdkEnumType | SdkUnionType,
+  type: SdkUnionType,
   nameOnly = false
 ): FunctionDeclarationStructure | string {
   if (!type.name) {

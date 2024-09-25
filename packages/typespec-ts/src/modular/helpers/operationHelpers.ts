@@ -1087,11 +1087,6 @@ export function deserializeResponseValue(
       } else {
         return `${restValue} as any`;
       }
-    case "enum":
-      if (!type.isFixed && !type.isNonExhaustive) {
-        return `${restValue} as ${type.name}`;
-      }
-      return restValue;
     default:
       return restValue;
   }

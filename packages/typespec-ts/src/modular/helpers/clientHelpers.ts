@@ -72,7 +72,10 @@ export function getClientParameters(
     )
     .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
     .filter(
-      (p) => !options.onClientOnly || (options.onClientOnly && p.onClient)
+      (p) =>
+        !options.onClientOnly ||
+        (options.onClientOnly &&
+          (p.kind !== "method" || (p.kind === "method" && p.isApiVersionParam)))
     );
 
   return params;
@@ -130,7 +133,9 @@ function getClientParameterTypeExpression(
   return getTypeExpression(parameter.type);
 }
 
-function getClientParameterName(parameter: SdkParameter | SdkHttpParameter) {
+export function getClientParameterName(
+  parameter: SdkParameter | SdkHttpParameter
+) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
@@ -159,21 +164,22 @@ export function buildGetClientEndpointParam(
     }
   }
 
-  const urlParams = getClientParameters(client, dpgContext, {
-    onClientOnly: true
-  }).filter((x) => x.kind === "endpoint" || x.kind === "path");
+  const urlParams = getClientParameters(client, dpgContext).filter(
+    (x) => x.kind === "endpoint" || x.kind === "path"
+  );
 
   for (const param of urlParams) {
+    const paramName = getClientParameterName(param);
     if (param.clientDefaultValue) {
       const defaultValue =
         typeof param.clientDefaultValue === "string"
           ? `"${param.clientDefaultValue}"`
           : param.clientDefaultValue;
       context.addStatements(
-        `const ${param.name} = options.${param.name} ?? ${defaultValue};`
+        `const ${paramName} = options.${paramName} ?? ${defaultValue};`
       );
     } else if (param.optional) {
-      context.addStatements(`const ${param.name} = options.${param.name};`);
+      context.addStatements(`const ${paramName} = options.${paramName};`);
     }
   }
 
@@ -181,7 +187,7 @@ export function buildGetClientEndpointParam(
   for (const param of urlParams) {
     parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
       `{${param.serializedName}}`,
-      `\${${param.name}}`
+      `\${${getClientParameterName(param)}}`
     );
   }
   const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;

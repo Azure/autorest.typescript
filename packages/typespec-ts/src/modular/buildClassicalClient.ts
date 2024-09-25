@@ -39,7 +39,7 @@ export function buildClassicalClient(
     requiredOnly: true
   });
   const contextParams = getClientParametersDeclaration(_client, dpgContext, {
-    onClientOnly: false,
+    onClientOnly: true,
     requiredOnly: true
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
