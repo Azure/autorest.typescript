@@ -32,10 +32,91 @@ describe("RoutesClient Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it.skip("should have PathParameters SimpleExpansion Standard primitive", async () => {
+  it("should have allowReserved: true", async () => {
     const result = await client
-      .path("/routes/path/simple/standard/primitive{param}", "a")
+      .path("/routes/path/reserved-expansion/template/{param}", {
+        value: "foo/bar baz",
+        allowReserved: true
+      })
       .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/array")
+      .get({
+        queryParameters: {
+          param: {
+            value: ["a", "b"],
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/record")
+      .get({
+        queryParameters: {
+          param: {
+            value: { a: 1, b: 2 },
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/primitive")
+      .get({
+        queryParameters: {
+          param: {
+            value: "a",
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/array")
+      .get({
+        queryParameters: {
+          param: ["a", "b"]
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/record")
+      .get({
+        queryParameters: {
+          param: { a: 1, b: 2 }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/primitive")
+      .get({
+        queryParameters: {
+          param: "a"
+        }
+      });
     assert.strictEqual(result.status, "204");
   });
 
