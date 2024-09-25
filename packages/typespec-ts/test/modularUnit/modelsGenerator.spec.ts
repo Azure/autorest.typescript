@@ -1380,6 +1380,7 @@ describe("inheritance & polymorphism", () => {
     );
   });
 
+  // TODO: Pending on https://github.com/Azure/typespec-azure/issues/1605 to be fixed
   it("should handle inheritance model with discriminator in operations", async () => {
     const tspContent = `
     @discriminator("kind")
