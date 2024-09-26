@@ -13,7 +13,6 @@ import {
 } from "../index.js";
 import {
   _DataProductListResult,
-  _dataProductListResultSerializer,
   _dataProductListResultDeserializer,
   DataType,
   dataTypeSerializer,
@@ -26,13 +25,10 @@ import {
   ContainerSasToken,
   containerSasTokenDeserializer,
   _DataTypeListResult,
-  _dataTypeListResultSerializer,
   _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultSerializer,
   _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
-  _operationListResultSerializer,
   _operationListResultDeserializer,
 } from "../../models/models.js";
 import {

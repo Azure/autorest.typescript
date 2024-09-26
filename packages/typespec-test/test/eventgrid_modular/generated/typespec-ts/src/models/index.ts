@@ -15,5 +15,4 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
-  ServiceApiVersions,
 } from "./models.js";

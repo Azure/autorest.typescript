@@ -33,10 +33,6 @@ export interface Widget {
   color: "red" | "blue";
 }
 
-export function widgetSerializer(item: Widget): any {
-  return { id: item["id"], weight: item["weight"], color: item["color"] };
-}
-
 export function widgetDeserializer(item: any): Widget {
   return {
     id: item["id"],
@@ -56,10 +52,6 @@ export interface WidgetError {
   message: string;
 }
 
-export function widgetErrorSerializer(item: WidgetError): any {
-  return { code: item["code"], message: item["message"] };
-}
-
 export function widgetErrorDeserializer(item: any): WidgetError {
   return {
     code: item["code"],
@@ -75,15 +67,6 @@ export interface _ListWidgetsPagesResults {
   "odata.nextLink"?: string;
 }
 
-export function _listWidgetsPagesResultsSerializer(
-  item: _ListWidgetsPagesResults,
-): any {
-  return {
-    results: widgetArraySerializer(item["results"]),
-    "odata.nextLink": item["odata.nextLink"],
-  };
-}
-
 export function _listWidgetsPagesResultsDeserializer(
   item: any,
 ): _ListWidgetsPagesResults {
@@ -93,71 +76,20 @@ export function _listWidgetsPagesResultsDeserializer(
   };
 }
 
-export function widgetArraySerializer(result: Array<Widget>): any[] {
-  return result.map((item) => {
-    widgetSerializer(item);
-  });
-}
-
 export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   return result.map((item) => {
     widgetDeserializer(item);
   });
 }
 
-/** model interface CreateWidget */
-export interface CreateWidget {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight: number;
-  /** The color of the widget. */
-  color: "red" | "blue";
-}
-
-export function createWidgetSerializer(item: CreateWidget): any {
-  return { weight: item["weight"], color: item["color"] };
-}
-
-export function createWidgetDeserializer(item: any): CreateWidget {
-  return {
-    weight: item["weight"],
-    color: item["color"],
-  };
-}
-
 /** Type of CreateWidgetColor */
 export type CreateWidgetColor = "red" | "blue";
-
-/** model interface UpdateWidgetRequest */
-export interface UpdateWidgetRequest {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight?: number;
-  /** The color of the widget. */
-  color?: "red" | "blue";
-}
-
-export function updateWidgetRequestSerializer(item: UpdateWidgetRequest): any {
-  return { weight: item["weight"], color: item["color"] };
-}
-
-export function updateWidgetRequestDeserializer(
-  item: any,
-): UpdateWidgetRequest {
-  return {
-    weight: item["weight"],
-    color: item["color"],
-  };
-}
-
 /** Type of UpdateWidgetRequestColor */
 export type UpdateWidgetRequestColor = "red" | "blue";
 
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
-}
-
-export function analyzeResultSerializer(item: AnalyzeResult): any {
-  return { summary: item["summary"] };
 }
 
 export function analyzeResultDeserializer(item: any): AnalyzeResult {
@@ -184,6 +116,3 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
     prop2: item["prop2"],
   };
 }
-
-/** The Contoso Widget Manager service version. */
-export type Versions = "1.0.0";

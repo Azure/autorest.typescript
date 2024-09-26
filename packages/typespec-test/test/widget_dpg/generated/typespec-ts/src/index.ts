@@ -3,7 +3,6 @@
 
 import {
   _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "./models/models.js";
 import {
@@ -19,13 +18,10 @@ export {
   Widget,
   WidgetColor,
   WidgetError,
-  CreateWidget,
   CreateWidgetColor,
-  UpdateWidgetRequest,
   UpdateWidgetRequestColor,
   AnalyzeResult,
   NonReferencedModel,
-  Versions,
 } from "./models/index.js";
 export {
   WidgetsListWidgetsOptionalParams,

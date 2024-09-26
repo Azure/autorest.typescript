@@ -91,9 +91,10 @@ export function emitTypes(
         continue;
       }
       if (
-        type.usage !== undefined &&
-        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-        (type.usage & UsageFlags.Input) !== UsageFlags.Input
+        !type.usage ||
+        (type.usage !== undefined &&
+          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
       ) {
         continue;
       }
@@ -111,9 +112,10 @@ export function emitTypes(
       addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "enum") {
       if (
-        type.usage !== undefined &&
-        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-        (type.usage & UsageFlags.Input) !== UsageFlags.Input
+        !type.usage ||
+        (type.usage !== undefined &&
+          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
       ) {
         continue;
       }

@@ -16,7 +16,6 @@ import {
 } from "./api/index.js";
 import {
   _MultivariateModelList,
-  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

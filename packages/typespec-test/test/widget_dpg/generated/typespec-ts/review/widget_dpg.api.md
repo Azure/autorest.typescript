@@ -37,12 +37,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export interface CreateWidget {
-    color: "red" | "blue";
-    weight: number;
-}
-
-// @public
 export type CreateWidgetColor = "red" | "blue";
 
 // @public (undocumented)
@@ -77,12 +71,6 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 }
 
 // @public
-export interface UpdateWidgetRequest {
-    color?: "red" | "blue";
-    weight?: number;
-}
-
-// @public
 export type UpdateWidgetRequestColor = "red" | "blue";
 
 // @public
@@ -91,9 +79,6 @@ export interface User {
     readonly name: string;
     role: string;
 }
-
-// @public
-export type Versions = "1.0.0";
 
 // @public
 export interface Widget {

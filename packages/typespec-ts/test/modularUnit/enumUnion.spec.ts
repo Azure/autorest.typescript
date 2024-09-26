@@ -885,10 +885,6 @@ describe("header parameters", () => {
         export function fooSerializer(item: Foo): any {
           return item as any;
         }
-        
-        export function fooDeserializer(item: any): Foo {
-          return item as any;
-        }
                
         /** Type of EnumTest */
         export type EnumTest = 1 | 2 | 3 | 4;

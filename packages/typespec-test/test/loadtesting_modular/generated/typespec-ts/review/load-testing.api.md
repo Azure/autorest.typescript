@@ -14,9 +14,6 @@ import { TokenCredential } from '@azure/core-auth';
 export type AggregationType = string;
 
 // @public
-export type APIVersions = "2022-11-01" | "2023-04-01-preview" | "2024-03-01-preview" | "2024-05-01-preview";
-
-// @public
 export interface AppComponent {
     displayName?: string;
     kind?: string;

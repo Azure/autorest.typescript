@@ -20,7 +20,6 @@ import {
   Widget,
   widgetDeserializer,
   _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
   AnalyzeResult,

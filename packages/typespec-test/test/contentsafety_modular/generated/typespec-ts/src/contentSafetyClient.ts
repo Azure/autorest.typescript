@@ -37,10 +37,8 @@ import {
   AnalyzeTextOptions,
   AnalyzeTextResult,
   _PagedTextBlocklist,
-  _pagedTextBlocklistSerializer,
   _pagedTextBlocklistDeserializer,
   _PagedTextBlockItem,
-  _pagedTextBlockItemSerializer,
   _pagedTextBlockItemDeserializer,
 } from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";

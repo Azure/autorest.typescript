@@ -10,7 +10,6 @@ import {
   userSerializer,
   userDeserializer,
   _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";

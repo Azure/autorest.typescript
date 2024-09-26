@@ -4,10 +4,8 @@
 import { logger } from "../logger.js";
 import {
   _PagedTextBlocklist,
-  _pagedTextBlocklistSerializer,
   _pagedTextBlocklistDeserializer,
   _PagedTextBlockItem,
-  _pagedTextBlockItemSerializer,
   _pagedTextBlockItemDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";

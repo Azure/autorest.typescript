@@ -8,6 +8,5 @@ export {
   SchemaFormat,
   Schema,
   SchemaContentTypeValues,
-  ServiceApiVersions,
   ContentTypeEnum,
 } from "./models.js";

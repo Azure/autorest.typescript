@@ -3,10 +3,8 @@
 
 import {
   _PagedTextBlocklist,
-  _pagedTextBlocklistSerializer,
   _pagedTextBlocklistDeserializer,
   _PagedTextBlockItem,
-  _pagedTextBlockItemSerializer,
   _pagedTextBlockItemDeserializer,
 } from "./models/models.js";
 import {
@@ -35,7 +33,6 @@ export {
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
-  Versions,
 } from "./models/index.js";
 export {
   createContentSafety,

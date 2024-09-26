@@ -202,12 +202,6 @@ export interface MultivariateOperations {
 }
 
 // @public
-export interface MultivariateResponseError {
-    code: string;
-    message: string;
-}
-
-// @public
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
 
@@ -332,9 +326,6 @@ export interface UnivariateUnivariateLastDetectionResult {
     suggestedWindow: number;
     upperMargin: number;
 }
-
-// @public
-export type Versions = "v1.1";
 
 // (No @packageDocumentation comment for this package)
 

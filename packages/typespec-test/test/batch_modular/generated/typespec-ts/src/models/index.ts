@@ -193,5 +193,4 @@ export {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
-  Versions,
 } from "./models.js";

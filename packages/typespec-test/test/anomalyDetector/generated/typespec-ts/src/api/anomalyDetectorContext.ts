@@ -4,7 +4,6 @@
 import { logger } from "../logger.js";
 import {
   _MultivariateModelList,
-  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";

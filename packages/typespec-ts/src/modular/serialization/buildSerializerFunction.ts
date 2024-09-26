@@ -37,8 +37,9 @@ export function buildModelSerializer(
   }
   if (type.kind === "model") {
     if (
-      type.usage !== undefined &&
-      (type.usage & UsageFlags.Input) !== UsageFlags.Input
+      !type.usage ||
+      (type.usage !== undefined &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input)
     ) {
       return undefined;
     }
@@ -157,8 +158,9 @@ function buildPolymorphicSerializer(
   Object.keys(subTypes).forEach((discriminatedValue) => {
     const subType = subTypes[discriminatedValue];
     if (
-      subType?.usage !== undefined &&
-      (subType.usage & UsageFlags.Input) !== UsageFlags.Input
+      !subType?.usage ||
+      (subType?.usage !== undefined &&
+        (subType.usage & UsageFlags.Input) !== UsageFlags.Input)
     ) {
       return;
     }
@@ -224,8 +226,9 @@ function buildDiscriminatedUnionSerializer(
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
     if (
-      subType.usage !== undefined &&
-      (subType.usage & UsageFlags.Input) !== UsageFlags.Input
+      !subType.usage ||
+      (subType.usage !== undefined &&
+        (subType.usage & UsageFlags.Input) !== UsageFlags.Input)
     ) {
       continue;
     }

@@ -146,7 +146,6 @@ export {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  ServiceApiVersions,
 } from "./models/index.js";
 export {
   createOpenAI,

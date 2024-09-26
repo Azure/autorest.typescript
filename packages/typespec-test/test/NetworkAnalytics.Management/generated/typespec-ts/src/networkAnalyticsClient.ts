@@ -24,16 +24,12 @@ import {
 } from "./api/index.js";
 import {
   _DataProductListResult,
-  _dataProductListResultSerializer,
   _dataProductListResultDeserializer,
   _DataTypeListResult,
-  _dataTypeListResultSerializer,
   _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultSerializer,
   _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
-  _operationListResultSerializer,
   _operationListResultDeserializer,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

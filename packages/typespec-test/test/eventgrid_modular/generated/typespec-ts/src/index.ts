@@ -16,7 +16,6 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
-  ServiceApiVersions,
 } from "./models/index.js";
 export {
   createEventGrid,

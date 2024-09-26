@@ -7,10 +7,6 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
-export function schemaGroupSerializer(item: SchemaGroup): any {
-  return item as any;
-}
-
 export function schemaGroupDeserializer(item: any): SchemaGroup {
   return {
     groupName: item["groupName"],
@@ -21,10 +17,6 @@ export function schemaGroupDeserializer(item: any): SchemaGroup {
 export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
-}
-
-export function schemaVersionSerializer(item: SchemaVersion): any {
-  return item as any;
 }
 
 export function schemaVersionDeserializer(item: any): SchemaVersion {
@@ -98,8 +90,6 @@ export type SchemaContentTypeValues =
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"
@@ -115,24 +105,11 @@ export interface _PagedSchemaGroup {
   nextLink?: string;
 }
 
-export function _pagedSchemaGroupSerializer(item: _PagedSchemaGroup): any {
-  return {
-    value: schemaGroupArraySerializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
 export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   return {
     value: schemaGroupArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
-}
-
-export function schemaGroupArraySerializer(result: Array<SchemaGroup>): any[] {
-  return result.map((item) => {
-    schemaGroupSerializer(item);
-  });
 }
 
 export function schemaGroupArrayDeserializer(
@@ -151,26 +128,11 @@ export interface _PagedVersion {
   nextLink?: string;
 }
 
-export function _pagedVersionSerializer(item: _PagedVersion): any {
-  return {
-    value: schemaVersionArraySerializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
 export function _pagedVersionDeserializer(item: any): _PagedVersion {
   return {
     value: schemaVersionArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
-}
-
-export function schemaVersionArraySerializer(
-  result: Array<SchemaVersion>,
-): any[] {
-  return result.map((item) => {
-    schemaVersionSerializer(item);
-  });
 }
 
 export function schemaVersionArrayDeserializer(

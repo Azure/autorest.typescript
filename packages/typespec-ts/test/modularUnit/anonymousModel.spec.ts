@@ -878,10 +878,6 @@ describe("anonymous model", () => {
           `
           /** model interface PublishResult */
           export interface PublishResult {}
-
-          export function publishResultSerializer(item: PublishResult): any {
-            return item as any;
-          }
           
           export function publishResultDeserializer(item: any): PublishResult {
             return item as any;
@@ -981,21 +977,6 @@ describe("anonymous model", () => {
            emptyModelDict: Record<string, EmptyModel>;
          }
          
-         export function returnBodySerializer(item: ReturnBody): any {
-           return {
-             emptyAnomyous: returnBodyEmptyAnomyousSerializer(item["emptyAnomyous"]),
-             emptyAnomyousArray: returnBodyEmptyAnomyousArrayArraySerializer(
-               item["emptyAnomyousArray"],
-             ),
-             emptyAnomyousDict: returnBodyEmptyAnomyousDictRecordSerializer(
-               item["emptyAnomyousDict"],
-             ),
-             emptyModel: emptyModelSerializer(item["emptyModel"]),
-             emptyModelArray: emptyModelArraySerializer(item["emptyModelArray"]),
-             emptyModelDict: emptyModelRecordSerializer(item["emptyModelDict"]),
-           };
-         }
-         
          export function returnBodyDeserializer(item: any): ReturnBody {
            return {
              emptyAnomyous: returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
@@ -1014,12 +995,6 @@ describe("anonymous model", () => {
          /** model interface ReturnBodyEmptyAnomyous */
          export interface ReturnBodyEmptyAnomyous {}
          
-         export function returnBodyEmptyAnomyousSerializer(
-           item: ReturnBodyEmptyAnomyous,
-         ): any {
-           return item as any;
-         }
-         
          export function returnBodyEmptyAnomyousDeserializer(
            item: any,
          ): ReturnBodyEmptyAnomyous {
@@ -1029,24 +1004,10 @@ describe("anonymous model", () => {
          /** model interface ReturnBodyEmptyAnomyousArray */
          export interface ReturnBodyEmptyAnomyousArray {}
          
-         export function returnBodyEmptyAnomyousArraySerializer(
-           item: ReturnBodyEmptyAnomyousArray,
-         ): any {
-           return item as any;
-         }
-         
          export function returnBodyEmptyAnomyousArrayDeserializer(
            item: any,
          ): ReturnBodyEmptyAnomyousArray {
            return item as any;
-         }
-         
-         export function returnBodyEmptyAnomyousArrayArraySerializer(
-           result: Array<ReturnBodyEmptyAnomyousArray>,
-         ): any[] {
-           return result.map((item) => {
-             returnBodyEmptyAnomyousArraySerializer(item);
-           });
          }
          
          export function returnBodyEmptyAnomyousArrayArrayDeserializer(
@@ -1060,26 +1021,10 @@ describe("anonymous model", () => {
          /** model interface ReturnBodyEmptyAnomyousDict */
          export interface ReturnBodyEmptyAnomyousDict {}
          
-         export function returnBodyEmptyAnomyousDictSerializer(
-           item: ReturnBodyEmptyAnomyousDict,
-         ): any {
-           return item as any;
-         }
-         
          export function returnBodyEmptyAnomyousDictDeserializer(
            item: any,
          ): ReturnBodyEmptyAnomyousDict {
            return item as any;
-         }
-         
-         export function returnBodyEmptyAnomyousDictRecordSerializer(
-           item: Record<string, ReturnBodyEmptyAnomyousDict>,
-         ): Record<string, any> {
-           const result: Record<string, any> = {};
-           Object.keys(item).map((key) => {
-             result[key] = returnBodyEmptyAnomyousDictSerializer(item[key]);
-           });
-           return result;
          }
          
          export function returnBodyEmptyAnomyousDictRecordDeserializer(
@@ -1094,35 +1039,15 @@ describe("anonymous model", () => {
          
          /** model interface EmptyModel */
          export interface EmptyModel {}
-         
-         export function emptyModelSerializer(item: EmptyModel): any {
-           return item as any;
-         }
-         
+        
          export function emptyModelDeserializer(item: any): EmptyModel {
            return item as any;
-         }
-         
-         export function emptyModelArraySerializer(result: Array<EmptyModel>): any[] {
-           return result.map((item) => {
-             emptyModelSerializer(item);
-           });
          }
          
          export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
            return result.map((item) => {
              emptyModelDeserializer(item);
            });
-         }
-         
-         export function emptyModelRecordSerializer(
-           item: Record<string, EmptyModel>,
-         ): Record<string, any> {
-           const result: Record<string, any> = {};
-           Object.keys(item).map((key) => {
-             result[key] = emptyModelSerializer(item[key]);
-           });
-           return result;
          }
          
          export function emptyModelRecordDeserializer(
@@ -1223,10 +1148,6 @@ describe("anonymous model", () => {
              };
            }
            
-           export function fozSerializer(item: Foz): any {
-             return { baz: fozBazSerializer(item["baz"]) };
-           }
-           
            export function fozDeserializer(item: any): Foz {
              return {
                baz: fozBazDeserializer(item["baz"]),
@@ -1250,25 +1171,6 @@ describe("anonymous model", () => {
                  c: number[];
                }
              >;
-           }
-           
-           export function fozBazSerializer(item: FozBaz): any {
-             return {
-               foo: item["foo"].map((p: any) => {
-                 return p;
-               }),
-               bas: item["bas"],
-               test: !item["bar"] ? item["bar"] : simpleModelArraySerializer(item["bar"]),
-               nonemptyAnomyous: fozBazNonemptyAnomyousSerializer(
-                 item["nonemptyAnomyous"],
-               ),
-               nonemptyAnomyousArray: fozBazNonemptyAnomyousArrayArraySerializer(
-                 item["nonemptyAnomyousArray"],
-               ),
-               nonemptyAnomyousDict: fozBazNonemptyAnomyousDictRecordSerializer(
-                 item["nonemptyAnomyousDict"],
-               ),
-             };
            }
            
            export function fozBazDeserializer(item: any): FozBaz {
@@ -1297,20 +1199,10 @@ describe("anonymous model", () => {
              test: string;
            }
            
-           export function simpleModelSerializer(item: SimpleModel): any {
-             return { test: item["test"] };
-           }
-           
            export function simpleModelDeserializer(item: any): SimpleModel {
              return {
                test: item["test"],
              };
-           }
-           
-           export function simpleModelArraySerializer(result: Array<SimpleModel>): any[] {
-             return result.map((item) => {
-               simpleModelSerializer(item);
-             });
            }
            
            export function simpleModelArrayDeserializer(
@@ -1326,12 +1218,6 @@ describe("anonymous model", () => {
              a: string;
            }
            
-           export function fozBazNonemptyAnomyousSerializer(
-             item: FozBazNonemptyAnomyous,
-           ): any {
-             return { a: item["a"] };
-           }
-           
            export function fozBazNonemptyAnomyousDeserializer(
              item: any,
            ): FozBazNonemptyAnomyous {
@@ -1345,26 +1231,12 @@ describe("anonymous model", () => {
              b?: Record<string, string>;
            }
            
-           export function fozBazNonemptyAnomyousArraySerializer(
-             item: FozBazNonemptyAnomyousArray,
-           ): any {
-             return { b: item["b"] };
-           }
-           
            export function fozBazNonemptyAnomyousArrayDeserializer(
              item: any,
            ): FozBazNonemptyAnomyousArray {
              return {
                b: item["b"],
              };
-           }
-           
-           export function fozBazNonemptyAnomyousArrayArraySerializer(
-             result: Array<FozBazNonemptyAnomyousArray>,
-           ): any[] {
-             return result.map((item) => {
-               fozBazNonemptyAnomyousArraySerializer(item);
-             });
            }
            
            export function fozBazNonemptyAnomyousArrayArrayDeserializer(
@@ -1380,16 +1252,6 @@ describe("anonymous model", () => {
              c: number[];
            }
            
-           export function fozBazNonemptyAnomyousDictSerializer(
-             item: FozBazNonemptyAnomyousDict,
-           ): any {
-             return {
-               c: item["c"].map((p: any) => {
-                 return p;
-               }),
-             };
-           }
-           
            export function fozBazNonemptyAnomyousDictDeserializer(
              item: any,
            ): FozBazNonemptyAnomyousDict {
@@ -1399,17 +1261,7 @@ describe("anonymous model", () => {
                }),
              };
            }
-           
-           export function fozBazNonemptyAnomyousDictRecordSerializer(
-             item: Record<string, FozBazNonemptyAnomyousDict>,
-           ): Record<string, any> {
-             const result: Record<string, any> = {};
-             Object.keys(item).map((key) => {
-               result[key] = fozBazNonemptyAnomyousDictSerializer(item[key]);
-             });
-             return result;
-           }
-           
+        
            export function fozBazNonemptyAnomyousDictRecordDeserializer(
              item: Record<string, any>,
            ): Record<string, FozBazNonemptyAnomyousDict> {

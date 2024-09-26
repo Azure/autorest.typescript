@@ -6,11 +6,8 @@ export {
   Widget,
   WidgetColor,
   WidgetError,
-  CreateWidget,
   CreateWidgetColor,
-  UpdateWidgetRequest,
   UpdateWidgetRequestColor,
   AnalyzeResult,
   NonReferencedModel,
-  Versions,
 } from "./models.js";

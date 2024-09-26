@@ -37,8 +37,9 @@ export function buildModelDeserializer(
   }
   if (type.kind === "model") {
     if (
-      type.usage !== undefined &&
-      (type.usage & UsageFlags.Output) !== UsageFlags.Output
+      !type.usage ||
+      (type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output)
     ) {
       return undefined;
     }
@@ -154,8 +155,9 @@ function buildPolymorphicDeserializer(
   Object.keys(subTypes).forEach((discriminatedValue) => {
     const subType = subTypes[discriminatedValue];
     if (
-      subType?.usage !== undefined &&
-      (subType.usage & UsageFlags.Output) !== UsageFlags.Output
+      !subType?.usage ||
+      (subType?.usage !== undefined &&
+        (subType.usage & UsageFlags.Output) !== UsageFlags.Output)
     ) {
       return;
     }
@@ -218,8 +220,9 @@ function buildDiscriminatedUnionDeserializer(
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
     if (
-      subType.usage !== undefined &&
-      (subType.usage & UsageFlags.Output) !== UsageFlags.Output
+      !subType.usage ||
+      (subType.usage !== undefined &&
+        (subType.usage & UsageFlags.Output) !== UsageFlags.Output)
     ) {
       continue;
     }

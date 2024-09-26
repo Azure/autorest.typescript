@@ -35,10 +35,8 @@ import {
   AnalyzeTextResult,
   analyzeTextResultDeserializer,
   _PagedTextBlocklist,
-  _pagedTextBlocklistSerializer,
   _pagedTextBlocklistDeserializer,
   _PagedTextBlockItem,
-  _pagedTextBlockItemSerializer,
   _pagedTextBlockItemDeserializer,
 } from "../models/models.js";
 import {

@@ -32,17 +32,6 @@ export function streamingChatCompletionOptionsRecordSerializer(
   };
 }
 
-export function streamingChatCompletionOptionsRecordDeserializer(
-  item: any,
-): StreamingChatCompletionOptionsRecord {
-  return {
-    messages: chatMessageArrayDeserializer(item["messages"]),
-    stream: item["stream"],
-    sessionState: item["session_state"],
-    context: item["context"],
-  };
-}
-
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {
   /** The text associated with the message. */
@@ -97,12 +86,6 @@ export interface ChatCompletionChunkRecord {
   choices: ChoiceDeltaRecord[];
 }
 
-export function chatCompletionChunkRecordSerializer(
-  item: ChatCompletionChunkRecord,
-): any {
-  return { choices: choiceDeltaRecordArraySerializer(item["choices"]) };
-}
-
 export function chatCompletionChunkRecordDeserializer(
   item: any,
 ): ChatCompletionChunkRecord {
@@ -133,16 +116,6 @@ export interface ChoiceDeltaRecord {
   finishReason?: FinishReason;
 }
 
-export function choiceDeltaRecordSerializer(item: ChoiceDeltaRecord): any {
-  return {
-    index: item["index"],
-    delta: chatMessageDeltaSerializer(item["delta"]),
-    session_state: item["sessionState"],
-    context: item["context"],
-    finish_reason: item["finishReason"],
-  };
-}
-
 export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
   return {
     index: item["index"],
@@ -168,14 +141,6 @@ export interface ChatMessageDelta {
   sessionState?: any;
 }
 
-export function chatMessageDeltaSerializer(item: ChatMessageDelta): any {
-  return {
-    content: item["content"],
-    role: item["role"],
-    session_state: item["sessionState"],
-  };
-}
-
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
@@ -186,14 +151,6 @@ export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
 
 /** Representation of the reason why a chat session has finished processing. */
 export type FinishReason = "stop" | "length";
-
-export function choiceDeltaRecordArraySerializer(
-  result: Array<ChoiceDeltaRecord>,
-): any[] {
-  return result.map((item) => {
-    choiceDeltaRecordSerializer(item);
-  });
-}
 
 export function choiceDeltaRecordArrayDeserializer(
   result: Array<ChoiceDeltaRecord>,
@@ -234,27 +191,10 @@ export function chatCompletionOptionsRecordSerializer(
   };
 }
 
-export function chatCompletionOptionsRecordDeserializer(
-  item: any,
-): ChatCompletionOptionsRecord {
-  return {
-    messages: chatMessageArrayDeserializer(item["messages"]),
-    stream: item["stream"],
-    sessionState: item["session_state"],
-    context: item["context"],
-  };
-}
-
 /** Representation of the response to a chat completion request. */
 export interface ChatCompletionRecord {
   /** The collection of generated completions. */
   choices: ChatChoiceRecord[];
-}
-
-export function chatCompletionRecordSerializer(
-  item: ChatCompletionRecord,
-): any {
-  return { choices: chatChoiceRecordArraySerializer(item["choices"]) };
 }
 
 export function chatCompletionRecordDeserializer(
@@ -287,16 +227,6 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
-export function chatChoiceRecordSerializer(item: ChatChoiceRecord): any {
-  return {
-    index: item["index"],
-    message: chatMessageSerializer(item["message"]),
-    session_state: item["sessionState"],
-    context: item["context"],
-    finish_reason: item["finishReason"],
-  };
-}
-
 export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   return {
     index: item["index"],
@@ -307,14 +237,6 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   };
 }
 
-export function chatChoiceRecordArraySerializer(
-  result: Array<ChatChoiceRecord>,
-): any[] {
-  return result.map((item) => {
-    chatChoiceRecordSerializer(item);
-  });
-}
-
 export function chatChoiceRecordArrayDeserializer(
   result: Array<ChatChoiceRecord>,
 ): any[] {
@@ -322,6 +244,3 @@ export function chatChoiceRecordArrayDeserializer(
     chatChoiceRecordDeserializer(item);
   });
 }
-
-/** Type of APIVersion */
-export type APIVersion = "2023-10-01-preview";

@@ -3,16 +3,12 @@
 
 import {
   _DataProductListResult,
-  _dataProductListResultSerializer,
   _dataProductListResultDeserializer,
   _DataTypeListResult,
-  _dataTypeListResultSerializer,
   _dataTypeListResultDeserializer,
   _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultSerializer,
   _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
-  _operationListResultSerializer,
   _operationListResultDeserializer,
 } from "./models/models.js";
 import {
@@ -83,7 +79,6 @@ export {
   Origin,
   KnownActionType,
   ActionType,
-  Versions,
 } from "./models/index.js";
 export {
   createNetworkAnalytics,

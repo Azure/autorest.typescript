@@ -12,10 +12,8 @@ import {
 } from "./api/index.js";
 import {
   _PagedSchemaGroup,
-  _pagedSchemaGroupSerializer,
   _pagedSchemaGroupDeserializer,
   _PagedVersion,
-  _pagedVersionSerializer,
   _pagedVersionDeserializer,
 } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

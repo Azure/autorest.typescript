@@ -9,7 +9,6 @@ import {
 } from "../index.js";
 import {
   _MultivariateModelList,
-  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
   UnivariateUnivariateDetectionOptions,
   univariateUnivariateDetectionOptionsSerializer,

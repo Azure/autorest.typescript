@@ -3,7 +3,6 @@
 
 import {
   _MultivariateModelList,
-  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
 } from "./models/models.js";
 import {
@@ -46,9 +45,7 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  MultivariateResponseError,
   APIVersion,
-  Versions,
 } from "./models/index.js";
 export {
   createAnomalyDetector,

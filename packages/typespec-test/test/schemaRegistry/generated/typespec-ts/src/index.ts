@@ -3,10 +3,8 @@
 
 import {
   _PagedSchemaGroup,
-  _pagedSchemaGroupSerializer,
   _pagedSchemaGroupDeserializer,
   _PagedVersion,
-  _pagedVersionSerializer,
   _pagedVersionDeserializer,
 } from "./models/models.js";
 import {
@@ -23,7 +21,6 @@ export {
   SchemaFormat,
   Schema,
   SchemaContentTypeValues,
-  ServiceApiVersions,
   ContentTypeEnum,
 } from "./models/index.js";
 export {

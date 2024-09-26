@@ -2433,9 +2433,6 @@ export interface UserIdentity {
 export type VerificationType = "verified" | "unverified";
 
 // @public
-export type Versions = "2023-05-01.17.0";
-
-// @public
 export interface VirtualMachineConfiguration {
     containerConfiguration?: ContainerConfiguration;
     dataDisks?: DataDisk[];

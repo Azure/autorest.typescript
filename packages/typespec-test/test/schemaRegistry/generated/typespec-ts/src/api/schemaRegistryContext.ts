@@ -4,10 +4,8 @@
 import { logger } from "../logger.js";
 import {
   _PagedSchemaGroup,
-  _pagedSchemaGroupSerializer,
   _pagedSchemaGroupDeserializer,
   _PagedVersion,
-  _pagedVersionSerializer,
   _pagedVersionDeserializer,
 } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";

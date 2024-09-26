@@ -160,21 +160,6 @@ describe("api operations in Modular", () => {
          }
         `
       );
-      const deserializer = modelFile?.getFunction("uploadFileRequestDeserializer")?.getText();
-      await assertEqualContent(
-        deserializer!,
-        `
-        export function uploadFileRequestDeserializer(item: any): UploadFileRequest {
-          return {
-            name: item["name"],
-            file:
-              typeof item["file"] === "string"
-                ? stringToUint8Array(item["file"], "base64")
-                : item["file"],
-          };
-        }
-        `
-      );
       const operationFiles =
         await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
@@ -239,7 +224,7 @@ describe("api operations in Modular", () => {
       assert.ok(modelFile);
       await assertEqualContent(modelFile?.getFullText()!,
       `
-       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+       import { uint8ArrayToString } from "@azure/core-util";
        
        /** model interface UploadFilesRequest */
        export interface UploadFilesRequest {
@@ -252,14 +237,6 @@ describe("api operations in Modular", () => {
             return uint8ArrayToString(p, "base64");
           }),
         };
-       }
-       
-       export function uploadFilesRequestDeserializer(item: any): UploadFilesRequest {
-         return {
-           files: item["files"].map((p: any) => {
-             return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
-           }),
-         };
        }
       `,
       true
@@ -437,21 +414,12 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         modelFile?.getFullText()!,
         `
-         import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+         import { stringToUint8Array } from "@azure/core-util";
          
          /** model interface DownloadFileResponse */
          export interface DownloadFileResponse {
            name: string;
            file: Uint8Array;
-         }
-         
-         export function downloadFileResponseSerializer(
-           item: DownloadFileResponse,
-         ): any {
-           return {
-             name: item["name"],
-             file: uint8ArrayToString(item["file"], "base64"),
-           };
          }
          
          export function downloadFileResponseDeserializer(
@@ -528,23 +496,12 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         modelFile?.getFullText()!,
         `
-         import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+         import { stringToUint8Array } from "@azure/core-util";
          
          /** model interface DownloadFileResponse */
          export interface DownloadFileResponse {
            name: string;
            file: Uint8Array[];
-         }
-         
-         export function downloadFileResponseSerializer(
-           item: DownloadFileResponse,
-         ): any {
-           return {
-             name: item["name"],
-             file: item["file"].map((p: any) => {
-              return uint8ArrayToString(p, "base64");
-            }),
-           };
          }
          
          export function downloadFileResponseDeserializer(

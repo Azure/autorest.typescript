@@ -6,7 +6,6 @@ import { createOrReplace } from "../../api/budgets/index.js";
 import {
   User,
   _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsSerializer,
   _listWidgetsPagesResultsDeserializer,
 } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";

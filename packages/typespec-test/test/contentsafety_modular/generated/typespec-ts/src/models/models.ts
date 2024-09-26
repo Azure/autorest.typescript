@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString } from "@azure/core-util";
 
 /** Text Blocklist. */
 export interface TextBlocklist {
@@ -37,14 +37,6 @@ export function addOrUpdateBlockItemsOptionsSerializer(
   return { blockItems: textBlockItemInfoArraySerializer(item["blockItems"]) };
 }
 
-export function addOrUpdateBlockItemsOptionsDeserializer(
-  item: any,
-): AddOrUpdateBlockItemsOptions {
-  return {
-    blockItems: textBlockItemInfoArrayDeserializer(item["blockItems"]),
-  };
-}
-
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -57,13 +49,6 @@ export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
   return { description: item["description"], text: item["text"] };
 }
 
-export function textBlockItemInfoDeserializer(item: any): TextBlockItemInfo {
-  return {
-    description: item["description"],
-    text: item["text"],
-  };
-}
-
 export function textBlockItemInfoArraySerializer(
   result: Array<TextBlockItemInfo>,
 ): any[] {
@@ -72,28 +57,10 @@ export function textBlockItemInfoArraySerializer(
   });
 }
 
-export function textBlockItemInfoArrayDeserializer(
-  result: Array<TextBlockItemInfo>,
-): any[] {
-  return result.map((item) => {
-    textBlockItemInfoDeserializer(item);
-  });
-}
-
 /** The response of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsResult {
   /** Array of blockItems added. */
   value?: TextBlockItem[];
-}
-
-export function addOrUpdateBlockItemsResultSerializer(
-  item: AddOrUpdateBlockItemsResult,
-): any {
-  return {
-    value: !item["value"]
-      ? item["value"]
-      : textBlockItemArraySerializer(item["value"]),
-  };
 }
 
 export function addOrUpdateBlockItemsResultDeserializer(
@@ -116,28 +83,12 @@ export interface TextBlockItem {
   text: string;
 }
 
-export function textBlockItemSerializer(item: TextBlockItem): any {
-  return {
-    blockItemId: item["blockItemId"],
-    description: item["description"],
-    text: item["text"],
-  };
-}
-
 export function textBlockItemDeserializer(item: any): TextBlockItem {
   return {
     blockItemId: item["blockItemId"],
     description: item["description"],
     text: item["text"],
   };
-}
-
-export function textBlockItemArraySerializer(
-  result: Array<TextBlockItem>,
-): any[] {
-  return result.map((item) => {
-    textBlockItemSerializer(item);
-  });
 }
 
 export function textBlockItemArrayDeserializer(
@@ -157,16 +108,6 @@ export interface RemoveBlockItemsOptions {
 export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
 ): any {
-  return {
-    blockItemIds: item["blockItemIds"].map((p: any) => {
-      return p;
-    }),
-  };
-}
-
-export function removeBlockItemsOptionsDeserializer(
-  item: any,
-): RemoveBlockItemsOptions {
   return {
     blockItemIds: item["blockItemIds"].map((p: any) => {
       return p;
@@ -196,18 +137,6 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   };
 }
 
-export function analyzeImageOptionsDeserializer(
-  item: any,
-): AnalyzeImageOptions {
-  return {
-    image: imageDataDeserializer(item["image"]),
-    categories: item["categories"].map((p: any) => {
-      return p;
-    }),
-    outputType: item["outputType"],
-  };
-}
-
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
 export interface ImageData {
   /** Base64 encoding of image. */
@@ -225,16 +154,6 @@ export function imageDataSerializer(item: ImageData): any {
   };
 }
 
-export function imageDataDeserializer(item: any): ImageData {
-  return {
-    content:
-      typeof item["content"] === "string"
-        ? stringToUint8Array(item["content"], "base64")
-        : item["content"],
-    blobUrl: item["blobUrl"],
-  };
-}
-
 /** Image analyze category */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
@@ -244,14 +163,6 @@ export type AnalyzeImageOutputType = "FourLevels";
 export interface AnalyzeImageResult {
   /** Analysis result for categories. */
   analyzeResults: ImageAnalyzeSeverityResult[];
-}
-
-export function analyzeImageResultSerializer(item: AnalyzeImageResult): any {
-  return {
-    analyzeResults: imageAnalyzeSeverityResultArraySerializer(
-      item["analyzeResults"],
-    ),
-  };
 }
 
 export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
@@ -270,12 +181,6 @@ export interface ImageAnalyzeSeverityResult {
   severity?: number;
 }
 
-export function imageAnalyzeSeverityResultSerializer(
-  item: ImageAnalyzeSeverityResult,
-): any {
-  return { category: item["category"], severity: item["severity"] };
-}
-
 export function imageAnalyzeSeverityResultDeserializer(
   item: any,
 ): ImageAnalyzeSeverityResult {
@@ -283,14 +188,6 @@ export function imageAnalyzeSeverityResultDeserializer(
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-export function imageAnalyzeSeverityResultArraySerializer(
-  result: Array<ImageAnalyzeSeverityResult>,
-): any[] {
-  return result.map((item) => {
-    imageAnalyzeSeverityResultSerializer(item);
-  });
 }
 
 export function imageAnalyzeSeverityResultArrayDeserializer(
@@ -333,20 +230,6 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   };
 }
 
-export function analyzeTextOptionsDeserializer(item: any): AnalyzeTextOptions {
-  return {
-    text: item["text"],
-    categories: item["categories"].map((p: any) => {
-      return p;
-    }),
-    blocklistNames: item["blocklistNames"].map((p: any) => {
-      return p;
-    }),
-    breakByBlocklists: item["breakByBlocklists"],
-    outputType: item["outputType"],
-  };
-}
-
 /** Text analyze category */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
@@ -358,17 +241,6 @@ export interface AnalyzeTextResult {
   blocklistsMatchResults?: TextBlocklistMatchResult[];
   /** Analysis result for categories. */
   analyzeResults: TextAnalyzeSeverityResult[];
-}
-
-export function analyzeTextResultSerializer(item: AnalyzeTextResult): any {
-  return {
-    blocklistsMatchResults: !item["blocklistsMatchResults"]
-      ? item["blocklistsMatchResults"]
-      : textBlocklistMatchResultArraySerializer(item["blocklistsMatchResults"]),
-    analyzeResults: textAnalyzeSeverityResultArraySerializer(
-      item["analyzeResults"],
-    ),
-  };
 }
 
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
@@ -394,16 +266,6 @@ export interface TextBlocklistMatchResult {
   blockItemText: string;
 }
 
-export function textBlocklistMatchResultSerializer(
-  item: TextBlocklistMatchResult,
-): any {
-  return {
-    blocklistName: item["blocklistName"],
-    blockItemId: item["blockItemId"],
-    blockItemText: item["blockItemText"],
-  };
-}
-
 export function textBlocklistMatchResultDeserializer(
   item: any,
 ): TextBlocklistMatchResult {
@@ -412,14 +274,6 @@ export function textBlocklistMatchResultDeserializer(
     blockItemId: item["blockItemId"],
     blockItemText: item["blockItemText"],
   };
-}
-
-export function textBlocklistMatchResultArraySerializer(
-  result: Array<TextBlocklistMatchResult>,
-): any[] {
-  return result.map((item) => {
-    textBlocklistMatchResultSerializer(item);
-  });
 }
 
 export function textBlocklistMatchResultArrayDeserializer(
@@ -438,12 +292,6 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-export function textAnalyzeSeverityResultSerializer(
-  item: TextAnalyzeSeverityResult,
-): any {
-  return { category: item["category"], severity: item["severity"] };
-}
-
 export function textAnalyzeSeverityResultDeserializer(
   item: any,
 ): TextAnalyzeSeverityResult {
@@ -451,14 +299,6 @@ export function textAnalyzeSeverityResultDeserializer(
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-export function textAnalyzeSeverityResultArraySerializer(
-  result: Array<TextAnalyzeSeverityResult>,
-): any[] {
-  return result.map((item) => {
-    textAnalyzeSeverityResultSerializer(item);
-  });
 }
 
 export function textAnalyzeSeverityResultArrayDeserializer(
@@ -469,22 +309,12 @@ export function textAnalyzeSeverityResultArrayDeserializer(
   });
 }
 
-/** Type of Versions */
-export type Versions = "2023-10-01";
-
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
   nextLink?: string;
-}
-
-export function _pagedTextBlocklistSerializer(item: _PagedTextBlocklist): any {
-  return {
-    value: textBlocklistArraySerializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
 }
 
 export function _pagedTextBlocklistDeserializer(
@@ -518,13 +348,6 @@ export interface _PagedTextBlockItem {
   value: TextBlockItem[];
   /** The link to the next page of items */
   nextLink?: string;
-}
-
-export function _pagedTextBlockItemSerializer(item: _PagedTextBlockItem): any {
-  return {
-    value: textBlockItemArraySerializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
 }
 
 export function _pagedTextBlockItemDeserializer(

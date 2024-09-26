@@ -21,7 +21,6 @@ import {
   MultivariateAnomalyDetectionModel,
   multivariateAnomalyDetectionModelDeserializer,
   _MultivariateModelList,
-  _multivariateModelListSerializer,
   _multivariateModelListDeserializer,
   MultivariateMultivariateLastDetectionOptions,
   multivariateMultivariateLastDetectionOptionsSerializer,

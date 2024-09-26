@@ -11,17 +11,6 @@ export interface MultivariateMultivariateDetectionResult {
   results: MultivariateAnomalyState[];
 }
 
-export function multivariateMultivariateDetectionResultSerializer(
-  item: MultivariateMultivariateDetectionResult,
-): any {
-  return {
-    summary: multivariateMultivariateBatchDetectionResultSummarySerializer(
-      item["summary"],
-    ),
-    results: multivariateAnomalyStateArraySerializer(item["results"]),
-  };
-}
-
 export function multivariateMultivariateDetectionResultDeserializer(
   item: any,
 ): MultivariateMultivariateDetectionResult {
@@ -47,23 +36,6 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
    * will need another API to get detection results.
    */
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
-}
-
-export function multivariateMultivariateBatchDetectionResultSummarySerializer(
-  item: MultivariateMultivariateBatchDetectionResultSummary,
-): any {
-  return {
-    status: item["status"],
-    errors: !item["errors"]
-      ? item["errors"]
-      : multivariateErrorResponseArraySerializer(item["errors"]),
-    variableStates: !item["variableStates"]
-      ? item["variableStates"]
-      : multivariateVariableStateArraySerializer(item["variableStates"]),
-    setupInfo: multivariateMultivariateBatchDetectionOptionsSerializer(
-      item["setupInfo"],
-    ),
-  };
 }
 
 export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
@@ -98,12 +70,6 @@ export interface MultivariateErrorResponse {
   message: string;
 }
 
-export function multivariateErrorResponseSerializer(
-  item: MultivariateErrorResponse,
-): any {
-  return { code: item["code"], message: item["message"] };
-}
-
 export function multivariateErrorResponseDeserializer(
   item: any,
 ): MultivariateErrorResponse {
@@ -111,14 +77,6 @@ export function multivariateErrorResponseDeserializer(
     code: item["code"],
     message: item["message"],
   };
-}
-
-export function multivariateErrorResponseArraySerializer(
-  result: Array<MultivariateErrorResponse>,
-): any[] {
-  return result.map((item) => {
-    multivariateErrorResponseSerializer(item);
-  });
 }
 
 export function multivariateErrorResponseArrayDeserializer(
@@ -245,20 +203,6 @@ export interface MultivariateAnomalyState {
   errors?: MultivariateErrorResponse[];
 }
 
-export function multivariateAnomalyStateSerializer(
-  item: MultivariateAnomalyState,
-): any {
-  return {
-    timestamp: item["timestamp"].toISOString(),
-    value: !item["value"]
-      ? item["value"]
-      : multivariateAnomalyValueSerializer(item["value"]),
-    errors: !item["errors"]
-      ? item["errors"]
-      : multivariateErrorResponseArraySerializer(item["errors"]),
-  };
-}
-
 export function multivariateAnomalyStateDeserializer(
   item: any,
 ): MultivariateAnomalyState {
@@ -291,21 +235,6 @@ export interface MultivariateAnomalyValue {
   interpretation?: MultivariateAnomalyInterpretation[];
 }
 
-export function multivariateAnomalyValueSerializer(
-  item: MultivariateAnomalyValue,
-): any {
-  return {
-    isAnomaly: item["isAnomaly"],
-    severity: item["severity"],
-    score: item["score"],
-    interpretation: !item["interpretation"]
-      ? item["interpretation"]
-      : multivariateAnomalyInterpretationArraySerializer(
-          item["interpretation"],
-        ),
-  };
-}
-
 export function multivariateAnomalyValueDeserializer(
   item: any,
 ): MultivariateAnomalyValue {
@@ -334,18 +263,6 @@ export interface MultivariateAnomalyInterpretation {
   correlationChanges?: MultivariateCorrelationChanges;
 }
 
-export function multivariateAnomalyInterpretationSerializer(
-  item: MultivariateAnomalyInterpretation,
-): any {
-  return {
-    variable: item["variable"],
-    contributionScore: item["contributionScore"],
-    correlationChanges: !item["correlationChanges"]
-      ? item["correlationChanges"]
-      : multivariateCorrelationChangesSerializer(item["correlationChanges"]),
-  };
-}
-
 export function multivariateAnomalyInterpretationDeserializer(
   item: any,
 ): MultivariateAnomalyInterpretation {
@@ -364,18 +281,6 @@ export interface MultivariateCorrelationChanges {
   changedVariables?: string[];
 }
 
-export function multivariateCorrelationChangesSerializer(
-  item: MultivariateCorrelationChanges,
-): any {
-  return {
-    changedVariables: !item["changedVariables"]
-      ? item["changedVariables"]
-      : item["changedVariables"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
 export function multivariateCorrelationChangesDeserializer(
   item: any,
 ): MultivariateCorrelationChanges {
@@ -386,27 +291,11 @@ export function multivariateCorrelationChangesDeserializer(
   };
 }
 
-export function multivariateAnomalyInterpretationArraySerializer(
-  result: Array<MultivariateAnomalyInterpretation>,
-): any[] {
-  return result.map((item) => {
-    multivariateAnomalyInterpretationSerializer(item);
-  });
-}
-
 export function multivariateAnomalyInterpretationArrayDeserializer(
   result: Array<MultivariateAnomalyInterpretation>,
 ): any[] {
   return result.map((item) => {
     multivariateAnomalyInterpretationDeserializer(item);
-  });
-}
-
-export function multivariateAnomalyStateArraySerializer(
-  result: Array<MultivariateAnomalyState>,
-): any[] {
-  return result.map((item) => {
-    multivariateAnomalyStateSerializer(item);
   });
 }
 
@@ -678,18 +567,6 @@ export interface MultivariateAnomalyDetectionModel {
   modelInfo?: MultivariateModelInfo;
 }
 
-export function multivariateAnomalyDetectionModelSerializer(
-  item: MultivariateAnomalyDetectionModel,
-): any {
-  return {
-    createdTime: item["createdTime"].toISOString(),
-    lastUpdatedTime: item["lastUpdatedTime"].toISOString(),
-    modelInfo: !item["modelInfo"]
-      ? item["modelInfo"]
-      : multivariateModelInfoSerializer(item["modelInfo"]),
-  };
-}
-
 export function multivariateAnomalyDetectionModelDeserializer(
   item: any,
 ): MultivariateAnomalyDetectionModel {
@@ -715,17 +592,6 @@ export interface _MultivariateModelList {
   nextLink?: string;
 }
 
-export function _multivariateModelListSerializer(
-  item: _MultivariateModelList,
-): any {
-  return {
-    models: multivariateAnomalyDetectionModelArraySerializer(item["models"]),
-    currentCount: item["currentCount"],
-    maxCount: item["maxCount"],
-    nextLink: item["nextLink"],
-  };
-}
-
 export function _multivariateModelListDeserializer(
   item: any,
 ): _MultivariateModelList {
@@ -735,14 +601,6 @@ export function _multivariateModelListDeserializer(
     maxCount: item["maxCount"],
     nextLink: item["nextLink"],
   };
-}
-
-export function multivariateAnomalyDetectionModelArraySerializer(
-  result: Array<MultivariateAnomalyDetectionModel>,
-): any[] {
-  return result.map((item) => {
-    multivariateAnomalyDetectionModelSerializer(item);
-  });
 }
 
 export function multivariateAnomalyDetectionModelArrayDeserializer(
@@ -777,15 +635,6 @@ export function multivariateMultivariateLastDetectionOptionsSerializer(
   };
 }
 
-export function multivariateMultivariateLastDetectionOptionsDeserializer(
-  item: any,
-): MultivariateMultivariateLastDetectionOptions {
-  return {
-    variables: multivariateVariableValuesArrayDeserializer(item["variables"]),
-    topContributorCount: item["topContributorCount"],
-  };
-}
-
 /** Variable values. */
 export interface MultivariateVariableValues {
   /** Variable name of last detection request. */
@@ -810,33 +659,11 @@ export function multivariateVariableValuesSerializer(
   };
 }
 
-export function multivariateVariableValuesDeserializer(
-  item: any,
-): MultivariateVariableValues {
-  return {
-    variable: item["variable"],
-    timestamps: item["timestamps"].map((p: any) => {
-      return p;
-    }),
-    values: item["values"].map((p: any) => {
-      return p;
-    }),
-  };
-}
-
 export function multivariateVariableValuesArraySerializer(
   result: Array<MultivariateVariableValues>,
 ): any[] {
   return result.map((item) => {
     multivariateVariableValuesSerializer(item);
-  });
-}
-
-export function multivariateVariableValuesArrayDeserializer(
-  result: Array<MultivariateVariableValues>,
-): any[] {
-  return result.map((item) => {
-    multivariateVariableValuesDeserializer(item);
   });
 }
 
@@ -846,19 +673,6 @@ export interface MultivariateMultivariateLastDetectionResult {
   variableStates?: MultivariateVariableState[];
   /** Anomaly status and information. */
   results?: MultivariateAnomalyState[];
-}
-
-export function multivariateMultivariateLastDetectionResultSerializer(
-  item: MultivariateMultivariateLastDetectionResult,
-): any {
-  return {
-    variableStates: !item["variableStates"]
-      ? item["variableStates"]
-      : multivariateVariableStateArraySerializer(item["variableStates"]),
-    results: !item["results"]
-      ? item["results"]
-      : multivariateAnomalyStateArraySerializer(item["results"]),
-  };
 }
 
 export function multivariateMultivariateLastDetectionResultDeserializer(
@@ -936,21 +750,6 @@ export function univariateUnivariateDetectionOptionsSerializer(
   };
 }
 
-export function univariateUnivariateDetectionOptionsDeserializer(
-  item: any,
-): UnivariateUnivariateDetectionOptions {
-  return {
-    series: univariateTimeSeriesPointArrayDeserializer(item["series"]),
-    granularity: item["granularity"],
-    customInterval: item["customInterval"],
-    period: item["period"],
-    maxAnomalyRatio: item["maxAnomalyRatio"],
-    sensitivity: item["sensitivity"],
-    imputeMode: item["imputeMode"],
-    imputeFixedValue: item["imputeFixedValue"],
-  };
-}
-
 /** The definition of input timeseries points. */
 export interface UnivariateTimeSeriesPoint {
   /** Optional argument, timestamp of a data point (ISO8601 format). */
@@ -965,28 +764,11 @@ export function univariateTimeSeriesPointSerializer(
   return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
 }
 
-export function univariateTimeSeriesPointDeserializer(
-  item: any,
-): UnivariateTimeSeriesPoint {
-  return {
-    timestamp: new Date(item["timestamp"]),
-    value: item["value"],
-  };
-}
-
 export function univariateTimeSeriesPointArraySerializer(
   result: Array<UnivariateTimeSeriesPoint>,
 ): any[] {
   return result.map((item) => {
     univariateTimeSeriesPointSerializer(item);
-  });
-}
-
-export function univariateTimeSeriesPointArrayDeserializer(
-  result: Array<UnivariateTimeSeriesPoint>,
-): any[] {
-  return result.map((item) => {
-    univariateTimeSeriesPointDeserializer(item);
   });
 }
 
@@ -1066,37 +848,6 @@ export interface UnivariateUnivariateEntireDetectionResult {
   severity?: number[];
 }
 
-export function univariateUnivariateEntireDetectionResultSerializer(
-  item: UnivariateUnivariateEntireDetectionResult,
-): any {
-  return {
-    period: item["period"],
-    expectedValues: item["expectedValues"].map((p: any) => {
-      return p;
-    }),
-    upperMargins: item["upperMargins"].map((p: any) => {
-      return p;
-    }),
-    lowerMargins: item["lowerMargins"].map((p: any) => {
-      return p;
-    }),
-    isAnomaly: item["isAnomaly"].map((p: any) => {
-      return p;
-    }),
-    isNegativeAnomaly: item["isNegativeAnomaly"].map((p: any) => {
-      return p;
-    }),
-    isPositiveAnomaly: item["isPositiveAnomaly"].map((p: any) => {
-      return p;
-    }),
-    severity: !item["severity"]
-      ? item["severity"]
-      : item["severity"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
 export function univariateUnivariateEntireDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateEntireDetectionResult {
@@ -1132,12 +883,6 @@ export interface UnivariateAnomalyDetectorError {
   code?: UnivariateAnomalyDetectorErrorCodes;
   /** A message explaining the error reported by the service. */
   message?: string;
-}
-
-export function univariateAnomalyDetectorErrorSerializer(
-  item: UnivariateAnomalyDetectorError,
-): any {
-  return { code: item["code"], message: item["message"] };
 }
 
 export function univariateAnomalyDetectorErrorDeserializer(
@@ -1210,22 +955,6 @@ export interface UnivariateUnivariateLastDetectionResult {
   severity?: number;
 }
 
-export function univariateUnivariateLastDetectionResultSerializer(
-  item: UnivariateUnivariateLastDetectionResult,
-): any {
-  return {
-    period: item["period"],
-    suggestedWindow: item["suggestedWindow"],
-    expectedValue: item["expectedValue"],
-    upperMargin: item["upperMargin"],
-    lowerMargin: item["lowerMargin"],
-    isAnomaly: item["isAnomaly"],
-    isNegativeAnomaly: item["isNegativeAnomaly"],
-    isPositiveAnomaly: item["isPositiveAnomaly"],
-    severity: item["severity"],
-  };
-}
-
 export function univariateUnivariateLastDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateLastDetectionResult {
@@ -1291,19 +1020,6 @@ export function univariateUnivariateChangePointDetectionOptionsSerializer(
   };
 }
 
-export function univariateUnivariateChangePointDetectionOptionsDeserializer(
-  item: any,
-): UnivariateUnivariateChangePointDetectionOptions {
-  return {
-    series: univariateTimeSeriesPointArrayDeserializer(item["series"]),
-    granularity: item["granularity"],
-    customInterval: item["customInterval"],
-    period: item["period"],
-    stableTrendWindow: item["stableTrendWindow"],
-    threshold: item["threshold"],
-  };
-}
-
 /** The response of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionResult {
   /**
@@ -1321,23 +1037,6 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-export function univariateUnivariateChangePointDetectionResultSerializer(
-  item: UnivariateUnivariateChangePointDetectionResult,
-): any {
-  return {
-    isChangePoint: !item["isChangePoint"]
-      ? item["isChangePoint"]
-      : item["isChangePoint"].map((p: any) => {
-          return p;
-        }),
-    confidenceScores: !item["confidenceScores"]
-      ? item["confidenceScores"]
-      : item["confidenceScores"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
 export function univariateUnivariateChangePointDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateChangePointDetectionResult {
@@ -1352,30 +1051,5 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
   };
 }
 
-/** Error response */
-export interface MultivariateResponseError {
-  /** The error code. */
-  code: string;
-  /** The message explaining the error reported by the service. */
-  message: string;
-}
-
-export function multivariateResponseErrorSerializer(
-  item: MultivariateResponseError,
-): any {
-  return { code: item["code"], message: item["message"] };
-}
-
-export function multivariateResponseErrorDeserializer(
-  item: any,
-): MultivariateResponseError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
 /** Type of APIVersion */
 export type APIVersion = "v1.1";
-/** Type of Versions */
-export type Versions = "v1.1";
