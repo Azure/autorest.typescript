@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -43,36 +44,45 @@ export declare class AdditionalPropertiesClient {
 export declare interface AdditionalPropertiesClientOptionalParams extends ClientOptions {
 }
 
+export declare interface AdditionalPropertiesContext extends Client {
+}
+
+export declare function createAdditionalProperties(options?: AdditionalPropertiesClientOptionalParams): AdditionalPropertiesContext;
+
 export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
     derivedProp: number;
 }
 
-export declare interface DifferentSpreadFloatRecord extends Record<string, any> {
+export declare interface DifferentSpreadFloatRecord {
     name: string;
+    additionalProperties?: Record<string, number>;
 }
 
 export declare interface DifferentSpreadModelArrayDerived extends DifferentSpreadModelArrayRecord {
     derivedProp: ModelForRecord[];
 }
 
-export declare interface DifferentSpreadModelArrayRecord extends Record<string, any> {
+export declare interface DifferentSpreadModelArrayRecord {
     knownProp: string;
+    additionalProperties?: Record<string, ModelForRecord[]>;
 }
 
 export declare interface DifferentSpreadModelDerived extends DifferentSpreadModelRecord {
     derivedProp: ModelForRecord;
 }
 
-export declare interface DifferentSpreadModelRecord extends Record<string, any> {
+export declare interface DifferentSpreadModelRecord {
     knownProp: string;
+    additionalProperties?: Record<string, ModelForRecord>;
 }
 
 export declare interface DifferentSpreadStringDerived extends DifferentSpreadStringRecord {
     derivedProp: string;
 }
 
-export declare interface DifferentSpreadStringRecord extends Record<string, any> {
+export declare interface DifferentSpreadStringRecord {
     id: number;
+    additionalProperties?: Record<string, string>;
 }
 
 export declare interface ExtendsDifferentSpreadFloatGetOptionalParams extends OperationOptions {
@@ -179,8 +189,9 @@ export declare interface ExtendsStringOperations {
 export declare interface ExtendsStringPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsUnknownAdditionalProperties extends Record<string, any> {
+export declare interface ExtendsUnknownAdditionalProperties {
     name: string;
+    additionalProperties?: Record<string, any>;
 }
 
 export declare interface ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditionalProperties {
@@ -188,9 +199,10 @@ export declare interface ExtendsUnknownAdditionalPropertiesDerived extends Exten
     age?: number;
 }
 
-export declare interface ExtendsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
+export declare interface ExtendsUnknownAdditionalPropertiesDiscriminated {
     name: string;
     kind: string;
+    additionalProperties?: Record<string, any>;
 }
 
 export declare interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived extends ExtendsUnknownAdditionalPropertiesDiscriminated {
@@ -216,8 +228,8 @@ export declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends Op
 }
 
 export declare interface ExtendsUnknownDiscriminatedOperations {
-    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminatedUnion>;
-    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminatedUnion, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminated>;
+    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminated, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
@@ -294,8 +306,9 @@ export declare interface IsStringOperations {
 export declare interface IsStringPutOptionalParams extends OperationOptions {
 }
 
-export declare interface IsUnknownAdditionalProperties extends Record<string, any> {
+export declare interface IsUnknownAdditionalProperties {
     name: string;
+    additionalProperties?: Record<string, any>;
 }
 
 export declare interface IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties {
@@ -303,9 +316,10 @@ export declare interface IsUnknownAdditionalPropertiesDerived extends IsUnknownA
     age?: number;
 }
 
-export declare interface IsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
+export declare interface IsUnknownAdditionalPropertiesDiscriminated {
     name: string;
     kind: string;
+    additionalProperties?: Record<string, any>;
 }
 
 export declare interface IsUnknownAdditionalPropertiesDiscriminatedDerived extends IsUnknownAdditionalPropertiesDiscriminated {
@@ -331,8 +345,8 @@ export declare interface IsUnknownDiscriminatedGetOptionalParams extends Operati
 }
 
 export declare interface IsUnknownDiscriminatedOperations {
-    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
-    put: (body: IsUnknownAdditionalPropertiesDiscriminatedUnion, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminated>;
+    put: (body: IsUnknownAdditionalPropertiesDiscriminated, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
@@ -364,9 +378,12 @@ export declare interface MultipleSpreadOperations {
 export declare interface MultipleSpreadPutOptionalParams extends OperationOptions {
 }
 
-export declare interface MultipleSpreadRecord extends Record<string, any> {
+export declare interface MultipleSpreadRecord {
     flag: boolean;
+    additionalProperties?: Record<string, string | number>;
 }
+
+export declare type MultipleSpreadRecordAdditionalProperty = string | number;
 
 export declare interface SpreadDifferentFloatGetOptionalParams extends OperationOptions {
 }
@@ -468,25 +485,38 @@ export declare interface SpreadRecordDiscriminatedUnionOperations {
 export declare interface SpreadRecordDiscriminatedUnionPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
+export declare interface SpreadRecordForDiscriminatedUnion {
     name: string;
+    additionalProperties?: Record<string, WidgetData>;
 }
 
-export declare interface SpreadRecordForNonDiscriminatedUnion extends Record<string, any> {
+export declare interface SpreadRecordForNonDiscriminatedUnion {
     name: string;
+    additionalProperties?: Record<string, WidgetData0 | WidgetData1>;
 }
 
-export declare interface SpreadRecordForNonDiscriminatedUnion2 extends Record<string, any> {
+export declare interface SpreadRecordForNonDiscriminatedUnion2 {
     name: string;
+    additionalProperties?: Record<string, WidgetData2 | WidgetData1>;
 }
 
-export declare interface SpreadRecordForNonDiscriminatedUnion3 extends Record<string, any> {
+export declare type SpreadRecordForNonDiscriminatedUnion2AdditionalProperty = WidgetData2 | WidgetData1;
+
+export declare interface SpreadRecordForNonDiscriminatedUnion3 {
     name: string;
+    additionalProperties?: Record<string, WidgetData2[] | WidgetData1>;
 }
 
-export declare interface SpreadRecordForUnion extends Record<string, any> {
+export declare type SpreadRecordForNonDiscriminatedUnion3AdditionalProperty = WidgetData2[] | WidgetData1;
+
+export declare type SpreadRecordForNonDiscriminatedUnionAdditionalProperty = WidgetData0 | WidgetData1;
+
+export declare interface SpreadRecordForUnion {
     flag: boolean;
+    additionalProperties?: Record<string, string | number>;
 }
+
+export declare type SpreadRecordForUnionAdditionalProperty = string | number;
 
 export declare interface SpreadRecordNonDiscriminatedUnion2GetOptionalParams extends OperationOptions {
 }

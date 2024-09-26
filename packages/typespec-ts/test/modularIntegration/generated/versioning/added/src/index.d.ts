@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -13,6 +14,11 @@ export declare class AddedClient {
 
 export declare interface AddedClientOptionalParams extends ClientOptions {
 }
+
+export declare interface AddedContext extends Client {
+}
+
+export declare function createAdded(endpointParam: string, version: Versions, options?: AddedClientOptionalParams): AddedContext;
 
 export declare type EnumV1 = "enumMemberV1" | "enumMemberV2";
 
@@ -34,8 +40,14 @@ export declare type UnionV1 = string | number;
 
 export declare type UnionV2 = string | number;
 
+export declare function v1(context: AddedContext, headerV2: string, body: ModelV1, options?: V1OptionalParams): Promise<ModelV1>;
+
 export declare interface V1OptionalParams extends OperationOptions {
 }
+
+export declare function v2(context: AddedContext, body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
+
+export declare function v2InInterface(context: AddedContext, body: ModelV2, options?: V2InInterfaceOptionalParams): Promise<ModelV2>;
 
 export declare interface V2InInterfaceOptionalParams extends OperationOptions {
 }

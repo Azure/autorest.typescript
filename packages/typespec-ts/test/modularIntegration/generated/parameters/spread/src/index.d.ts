@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -10,17 +11,27 @@ export declare interface AliasOperations {
     spreadParameterWithInnerAlias: (id: string, xMsTestHeader: string, name: string, age: number, options?: AliasSpreadParameterWithInnerAliasOptionalParams) => Promise<void>;
 }
 
+export declare function aliasSpreadAsRequestBody(context: SpreadContext, name: string, options?: AliasSpreadAsRequestBodyOptionalParams): Promise<void>;
+
 export declare interface AliasSpreadAsRequestBodyOptionalParams extends OperationOptions {
 }
+
+export declare function aliasSpreadAsRequestParameter(context: SpreadContext, id: string, xMsTestHeader: string, name: string, options?: AliasSpreadAsRequestParameterOptionalParams): Promise<void>;
 
 export declare interface AliasSpreadAsRequestParameterOptionalParams extends OperationOptions {
 }
 
+export declare function aliasSpreadParameterWithInnerAlias(context: SpreadContext, id: string, xMsTestHeader: string, name: string, age: number, options?: AliasSpreadParameterWithInnerAliasOptionalParams): Promise<void>;
+
 export declare interface AliasSpreadParameterWithInnerAliasOptionalParams extends OperationOptions {
 }
 
+export declare function aliasSpreadParameterWithInnerModel(context: SpreadContext, id: string, xMsTestHeader: string, name: string, options?: AliasSpreadParameterWithInnerModelOptionalParams): Promise<void>;
+
 export declare interface AliasSpreadParameterWithInnerModelOptionalParams extends OperationOptions {
 }
+
+export declare function aliasSpreadWithMultipleParameters(context: SpreadContext, id: string, xMsTestHeader: string, requiredString: string, requiredIntList: number[], options?: AliasSpreadWithMultipleParametersOptionalParams): Promise<void>;
 
 export declare interface AliasSpreadWithMultipleParametersOptionalParams extends OperationOptions {
     optionalInt?: number;
@@ -31,13 +42,7 @@ export declare interface BodyParameter {
     name: string;
 }
 
-export declare interface CompositeRequestMix {
-    prop: string;
-}
-
-export declare interface InnerModel {
-    name: string;
-}
+export declare function createSpread(options?: SpreadClientOptionalParams): SpreadContext;
 
 export declare interface ModelOperations {
     spreadAsRequestBody: (name: string, options?: ModelSpreadAsRequestBodyOptionalParams) => Promise<void>;
@@ -47,17 +52,27 @@ export declare interface ModelOperations {
     spreadCompositeRequestMix: (name: string, testHeader: string, prop: string, options?: ModelSpreadCompositeRequestMixOptionalParams) => Promise<void>;
 }
 
+export declare function modelSpreadAsRequestBody(context: SpreadContext, name: string, options?: ModelSpreadAsRequestBodyOptionalParams): Promise<void>;
+
 export declare interface ModelSpreadAsRequestBodyOptionalParams extends OperationOptions {
 }
 
+export declare function modelSpreadCompositeRequest(context: SpreadContext, name: string, testHeader: string, body: BodyParameter, options?: ModelSpreadCompositeRequestOptionalParams): Promise<void>;
+
+export declare function modelSpreadCompositeRequestMix(context: SpreadContext, name: string, testHeader: string, prop: string, options?: ModelSpreadCompositeRequestMixOptionalParams): Promise<void>;
+
 export declare interface ModelSpreadCompositeRequestMixOptionalParams extends OperationOptions {
 }
+
+export declare function modelSpreadCompositeRequestOnlyWithBody(context: SpreadContext, body: BodyParameter, options?: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams): Promise<void>;
 
 export declare interface ModelSpreadCompositeRequestOnlyWithBodyOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelSpreadCompositeRequestOptionalParams extends OperationOptions {
 }
+
+export declare function modelSpreadCompositeRequestWithoutBody(context: SpreadContext, name: string, testHeader: string, options?: ModelSpreadCompositeRequestWithoutBodyOptionalParams): Promise<void>;
 
 export declare interface ModelSpreadCompositeRequestWithoutBodyOptionalParams extends OperationOptions {
 }
@@ -71,6 +86,9 @@ export declare class SpreadClient {
 }
 
 export declare interface SpreadClientOptionalParams extends ClientOptions {
+}
+
+export declare interface SpreadContext extends Client {
 }
 
 export { }

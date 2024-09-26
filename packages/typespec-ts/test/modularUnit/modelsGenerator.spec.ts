@@ -63,13 +63,13 @@ async function verifyModularPropertyType(
 }
 
 describe("modular model type", () => {
-  it("should generate models even if there is no operations", async () => {
+  it("should not generate models if there is no operations", async () => {
     const schemaOutput = await emitModularModelsFromTypeSpec(`
       model Test {
         prop: string;
       }
       `);
-    assert.ok(schemaOutput);
+    assert.isUndefined(schemaOutput);
   });
 });
 

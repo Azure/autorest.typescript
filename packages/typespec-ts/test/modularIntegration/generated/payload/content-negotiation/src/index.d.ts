@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -12,6 +13,11 @@ export declare class ContentNegotiationClient {
 
 export declare interface ContentNegotiationClientOptionalParams extends ClientOptions {
 }
+
+export declare interface ContentNegotiationContext extends Client {
+}
+
+export declare function createContentNegotiation(options?: ContentNegotiationClientOptionalParams): ContentNegotiationContext;
 
 export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
     accept?: "application/json";

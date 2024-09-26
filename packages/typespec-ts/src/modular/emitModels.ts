@@ -76,7 +76,10 @@ export function emitTypes(
   visitPackageTypes(sdkPackage, emitQueue);
   const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
-  if (emitQueue.size > 0 && (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)) {
+  if (
+    emitQueue.size > 0 &&
+    (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)
+  ) {
     sourceFile = outputProject.createSourceFile(modelsFilePath);
     if (!sourceFile) {
       throw new Error(`Failed to create source file at ${modelsFilePath}`);
@@ -84,7 +87,6 @@ export function emitTypes(
   } else {
     return;
   }
-
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -143,6 +145,14 @@ export function emitTypes(
     }
   }
 
+  if (
+    sourceFile.getInterfaces().length === 0 &&
+    sourceFile.getTypeAliases().length === 0 &&
+    sourceFile.getEnums().length === 0
+  ) {
+    sourceFile.delete();
+    return;
+  }
   addImportBySymbol("serializeRecord", sourceFile);
   return sourceFile;
 }
@@ -352,7 +362,12 @@ function addExtendedDictInfo(
 
 export function normalizeModelName(
   context: SdkContext,
-  type: SdkModelType | SdkEnumType | SdkUnionType | SdkArrayType | SdkDictionaryType,
+  type:
+    | SdkModelType
+    | SdkEnumType
+    | SdkUnionType
+    | SdkArrayType
+    | SdkDictionaryType,
   nameType: NameType = NameType.Interface
 ): string {
   if (type.kind === "array") {
@@ -364,7 +379,7 @@ export function normalizeModelName(
       nameType
     )}>`;
   }
-  if (type.crossLanguageDefinitionId === undefined) {
+  if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
     return getTypeExpression(type);
   }
   const segments = type.crossLanguageDefinitionId.split(".");
@@ -517,6 +532,9 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
       return;
     }
     emitQueue.add(type);
+    if (type.additionalProperties) {
+      visitType(type.additionalProperties, emitQueue);
+    }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type as any)) {
         visitType(property.type, emitQueue);

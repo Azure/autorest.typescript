@@ -36,9 +36,9 @@ describe.skip("modular special union serialization", () => {
     const serializeUtil =
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
-    serializeUtil.getInterface("")
+    serializeUtil?.getInterface("")
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       ``
     )
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -1724,7 +1724,7 @@ describe.skip("modular special union deserialization", () => {
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       `
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
@@ -1835,7 +1835,7 @@ describe.skip("modular special union deserialization", () => {
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       `
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
       import { WidgetData1, WidgetData } from "../models/models.js";
@@ -1948,7 +1948,7 @@ describe.skip("modular special union deserialization", () => {
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       `
       import {
         WidgetData0Output,
@@ -2073,7 +2073,7 @@ describe.skip("modular special union deserialization", () => {
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       `
       import {
         WidgetData0Output,
@@ -2224,7 +2224,7 @@ describe.skip("modular special union deserialization", () => {
       await emitModularSerializeUtilsFromTypeSpec(tspContent);
     assert.ok(serializeUtil);
     await assertEqualContent(
-      serializeUtil.getFullText()!,
+      serializeUtil?.getFullText()!,
       `
       import { PetUnion, Gold, DogUnion } from "../models/models.js";
       import { PetOutput, GoldOutput, DogOutput } from "../rest/index.js";

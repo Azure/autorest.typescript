@@ -1,6 +1,9 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+
+export declare function createMediaType(options?: MediaTypeClientOptionalParams): MediaTypeContext;
 
 export declare class MediaTypeClient {
     private _client;
@@ -10,6 +13,9 @@ export declare class MediaTypeClient {
 }
 
 export declare interface MediaTypeClientOptionalParams extends ClientOptions {
+}
+
+export declare interface MediaTypeContext extends Client {
 }
 
 export declare interface StringBodyGetAsJsonOptionalParams extends OperationOptions {

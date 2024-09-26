@@ -1,13 +1,22 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare function createResiliencyServiceDriven(endpointParam: string, serviceDeploymentVersion: string, options?: ResiliencyServiceDrivenClientOptionalParams): ResiliencyServiceDrivenContext;
+
+export declare function fromNone(context: ResiliencyServiceDrivenContext, options?: FromNoneOptionalParams): Promise<void>;
+
 export declare interface FromNoneOptionalParams extends OperationOptions {
 }
+
+export declare function fromOneOptional(context: ResiliencyServiceDrivenContext, options?: FromOneOptionalOptionalParams): Promise<void>;
 
 export declare interface FromOneOptionalOptionalParams extends OperationOptions {
     parameter?: string;
 }
+
+export declare function fromOneRequired(context: ResiliencyServiceDrivenContext, parameter: string, options?: FromOneRequiredOptionalParams): Promise<void>;
 
 export declare interface FromOneRequiredOptionalParams extends OperationOptions {
 }
@@ -25,6 +34,7 @@ export declare interface ResiliencyServiceDrivenClientOptionalParams extends Cli
     apiVersion?: string;
 }
 
-export declare type Versions = "v1";
+export declare interface ResiliencyServiceDrivenContext extends Client {
+}
 
 export { }

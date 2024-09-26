@@ -1,8 +1,11 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
+
+export declare function createUnion(credential: KeyCredential | TokenCredential, options?: UnionClientOptionalParams): UnionContext;
 
 export declare class UnionClient {
     private _client;
@@ -15,8 +18,15 @@ export declare class UnionClient {
 export declare interface UnionClientOptionalParams extends ClientOptions {
 }
 
+export declare interface UnionContext extends Client {
+}
+
+export declare function validKey(context: UnionContext, options?: ValidKeyOptionalParams): Promise<void>;
+
 export declare interface ValidKeyOptionalParams extends OperationOptions {
 }
+
+export declare function validToken(context: UnionContext, options?: ValidTokenOptionalParams): Promise<void>;
 
 export declare interface ValidTokenOptionalParams extends OperationOptions {
 }

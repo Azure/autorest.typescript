@@ -1,6 +1,9 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+
+export declare function createFixed(options?: FixedClientOptionalParams): FixedContext;
 
 export declare type DaysOfWeekEnum = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
@@ -12,6 +15,9 @@ export declare class FixedClient {
 }
 
 export declare interface FixedClientOptionalParams extends ClientOptions {
+}
+
+export declare interface FixedContext extends Client {
 }
 
 export declare interface StringGetKnownValueOptionalParams extends OperationOptions {

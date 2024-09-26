@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -5,6 +6,10 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+export declare function createPageable(options?: PageableClientOptionalParams): PageableContext;
+
+export declare function list(context: PageableContext, options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
 
 export declare interface ListOptionalParams extends OperationOptions {
     maxpagesize?: number;
@@ -18,6 +23,9 @@ export declare class PageableClient {
 }
 
 export declare interface PageableClientOptionalParams extends ClientOptions {
+}
+
+export declare interface PageableContext extends Client {
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {

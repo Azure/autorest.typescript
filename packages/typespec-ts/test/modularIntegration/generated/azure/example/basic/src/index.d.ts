@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -27,8 +28,15 @@ export declare interface AzureExampleClientOptionalParams extends ClientOptions 
     apiVersion?: string;
 }
 
+export declare interface AzureExampleContext extends Client {
+}
+
+export declare function basicAction(context: AzureExampleContext, queryParam: string, headerParam: string, body: ActionRequest, options?: BasicActionOptionalParams): Promise<ActionResponse>;
+
 export declare interface BasicActionOptionalParams extends OperationOptions {
 }
+
+export declare function createAzureExample(options?: AzureExampleClientOptionalParams): AzureExampleContext;
 
 export declare type Enum = "EnumValue1";
 
@@ -37,7 +45,5 @@ export declare interface Model {
     float32Property?: number;
     enumProperty?: Enum;
 }
-
-export declare type Versions = "2022-12-01-preview";
 
 export { }
