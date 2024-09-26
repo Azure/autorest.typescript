@@ -1,10 +1,12 @@
 import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
+import { TokenCredential } from '@azure/core-auth';
 
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
@@ -12,9 +14,14 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 export declare type CreatedByType = string;
 
+export declare function createResources(options?: ResourcesClientOptionalParams): ResourcesContext;
+
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: Record<string, any>;
+}
+
+export declare interface ErrorAdditionalInfoInfo {
 }
 
 export declare interface ErrorDetail {
@@ -47,20 +54,28 @@ export declare interface NestedProxyResource extends ProxyResource {
 }
 
 export declare interface NestedProxyResourceProperties {
-    readonly provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState_1;
     description?: string;
 }
+
+export declare function nestedProxyResourcesCreateOrReplace(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, resource: NestedProxyResource, options?: NestedProxyResourcesCreateOrReplaceOptionalParams): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
 
 export declare interface NestedProxyResourcesCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
+export declare function nestedProxyResourcesDelete(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, options?: NestedProxyResourcesDeleteOptionalParams): PollerLike<OperationState<void>, void>;
+
 export declare interface NestedProxyResourcesDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
+export declare function nestedProxyResourcesGet(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, options?: NestedProxyResourcesGetOptionalParams): Promise<NestedProxyResource>;
+
 export declare interface NestedProxyResourcesGetOptionalParams extends OperationOptions {
 }
+
+export declare function nestedProxyResourcesListByTopLevelTrackedResource(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, options?: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams): PagedAsyncIterableIterator<NestedProxyResource>;
 
 export declare interface NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams extends OperationOptions {
 }
@@ -72,6 +87,8 @@ export declare interface NestedProxyResourcesOperations {
     delete: (resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, options?: NestedProxyResourcesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     listByTopLevelTrackedResource: (resourceGroupName: string, topLevelTrackedResourceName: string, options?: NestedProxyResourcesListByTopLevelTrackedResourceOptionalParams) => PagedAsyncIterableIterator<NestedProxyResource>;
 }
+
+export declare function nestedProxyResourcesUpdate(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, properties: NestedProxyResource, options?: NestedProxyResourcesUpdateOptionalParams): PollerLike<OperationState<NestedProxyResource>, NestedProxyResource>;
 
 export declare interface NestedProxyResourcesUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
@@ -94,6 +111,10 @@ export declare interface PageSettings {
 
 export declare type ProvisioningState = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
+export declare type ProvisioningState_1 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+
+export declare type ProvisioningState_2 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+
 export declare interface ProxyResource extends Resource {
 }
 
@@ -109,7 +130,7 @@ export declare type ResourceProvisioningState = string;
 export declare class ResourcesClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
+    constructor(credential: TokenCredential, subscriptionId: string, options?: ResourcesClientOptionalParams);
     readonly topLevelTrackedResources: TopLevelTrackedResourcesOperations;
     readonly nestedProxyResources: NestedProxyResourcesOperations;
     readonly singletonTrackedResources: SingletonTrackedResourcesOperations;
@@ -117,6 +138,9 @@ export declare class ResourcesClient {
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+export declare interface ResourcesContext extends Client {
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: ResourcesClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
@@ -136,12 +160,18 @@ export declare interface SingletonTrackedResourceProperties {
     description?: string;
 }
 
+export declare function singletonTrackedResourcesCreateOrUpdate(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, resource: SingletonTrackedResource, options?: SingletonTrackedResourcesCreateOrUpdateOptionalParams): PollerLike<OperationState<SingletonTrackedResource>, SingletonTrackedResource>;
+
 export declare interface SingletonTrackedResourcesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
+export declare function singletonTrackedResourcesGetByResourceGroup(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, options?: SingletonTrackedResourcesGetByResourceGroupOptionalParams): Promise<SingletonTrackedResource>;
+
 export declare interface SingletonTrackedResourcesGetByResourceGroupOptionalParams extends OperationOptions {
 }
+
+export declare function singletonTrackedResourcesListByResourceGroup(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, options?: SingletonTrackedResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<SingletonTrackedResource>;
 
 export declare interface SingletonTrackedResourcesListByResourceGroupOptionalParams extends OperationOptions {
 }
@@ -152,6 +182,8 @@ export declare interface SingletonTrackedResourcesOperations {
     update: (resourceGroupName: string, properties: SingletonTrackedResource, options?: SingletonTrackedResourcesUpdateOptionalParams) => Promise<SingletonTrackedResource>;
     listByResourceGroup: (resourceGroupName: string, options?: SingletonTrackedResourcesListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<SingletonTrackedResource>;
 }
+
+export declare function singletonTrackedResourcesUpdate(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, properties: SingletonTrackedResource, options?: SingletonTrackedResourcesUpdateOptionalParams): Promise<SingletonTrackedResource>;
 
 export declare interface SingletonTrackedResourcesUpdateOptionalParams extends OperationOptions {
 }
@@ -170,26 +202,38 @@ export declare interface TopLevelTrackedResource extends TrackedResource {
 }
 
 export declare interface TopLevelTrackedResourceProperties {
-    readonly provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState_2;
     description?: string;
 }
 
+export declare function topLevelTrackedResourcesActionSync(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, body: NotificationDetails, options?: TopLevelTrackedResourcesActionSyncOptionalParams): Promise<void>;
+
 export declare interface TopLevelTrackedResourcesActionSyncOptionalParams extends OperationOptions {
 }
+
+export declare function topLevelTrackedResourcesCreateOrReplace(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, resource: TopLevelTrackedResource, options?: TopLevelTrackedResourcesCreateOrReplaceOptionalParams): PollerLike<OperationState<TopLevelTrackedResource>, TopLevelTrackedResource>;
 
 export declare interface TopLevelTrackedResourcesCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
+export declare function topLevelTrackedResourcesDelete(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, options?: TopLevelTrackedResourcesDeleteOptionalParams): PollerLike<OperationState<void>, void>;
+
 export declare interface TopLevelTrackedResourcesDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
+export declare function topLevelTrackedResourcesGet(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, options?: TopLevelTrackedResourcesGetOptionalParams): Promise<TopLevelTrackedResource>;
+
 export declare interface TopLevelTrackedResourcesGetOptionalParams extends OperationOptions {
 }
 
+export declare function topLevelTrackedResourcesListByResourceGroup(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, options?: TopLevelTrackedResourcesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<TopLevelTrackedResource>;
+
 export declare interface TopLevelTrackedResourcesListByResourceGroupOptionalParams extends OperationOptions {
 }
+
+export declare function topLevelTrackedResourcesListBySubscription(context: ResourcesContext, subscriptionId: string, options?: TopLevelTrackedResourcesListBySubscriptionOptionalParams): PagedAsyncIterableIterator<TopLevelTrackedResource>;
 
 export declare interface TopLevelTrackedResourcesListBySubscriptionOptionalParams extends OperationOptions {
 }
@@ -203,6 +247,8 @@ export declare interface TopLevelTrackedResourcesOperations {
     listBySubscription: (options?: TopLevelTrackedResourcesListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<TopLevelTrackedResource>;
     actionSync: (resourceGroupName: string, topLevelTrackedResourceName: string, body: NotificationDetails, options?: TopLevelTrackedResourcesActionSyncOptionalParams) => Promise<void>;
 }
+
+export declare function topLevelTrackedResourcesUpdate(context: ResourcesContext, subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string, properties: TopLevelTrackedResource, options?: TopLevelTrackedResourcesUpdateOptionalParams): PollerLike<OperationState<TopLevelTrackedResource>, TopLevelTrackedResource>;
 
 export declare interface TopLevelTrackedResourcesUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;

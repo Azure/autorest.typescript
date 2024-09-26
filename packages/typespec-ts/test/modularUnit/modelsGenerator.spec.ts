@@ -1397,15 +1397,6 @@ describe("inheritance & polymorphism", () => {
         kind: "cat";
         meow: number;
       }
-        
-      export function catSerializer(item: Cat): any {
-        return {
-          kind: item["kind"],
-          name: item["name"],
-          weight: item["weight"],
-          meow: item["meow"],
-        };
-      }
            
       export function catDeserializer(item: any): Cat {
         return {
@@ -1423,10 +1414,6 @@ describe("inheritance & polymorphism", () => {
         weight?: number;
       }
       
-      export function petSerializer(item: Pet): any {
-        return { kind: item["kind"], name: item["name"], weight: item["weight"] };
-      }
-      
       export function petDeserializer(item: any): Pet {
         return {
           kind: item["kind"],
@@ -1435,56 +1422,16 @@ describe("inheritance & polymorphism", () => {
         };
       }
       
-      export type PetUnion = Cat | Dog | Pet;
-
-      export function petUnionSerializer(item: Pet): any {
-        switch (item.kind) {
-          case "cat":
-            return catSerializer(item as Cat);
-      
-          case "dog":
-            return dogSerializer(item as Dog);
-      
-          default:
-            return petSerializer(item);
-        }
-      }
+      export type PetUnion = Cat | Pet;
             
       export function petUnionDeserializer(item: any): Pet {
         switch (item.kind) {
           case "cat":
             return catDeserializer(item as Cat);
       
-          case "dog":
-            return dogDeserializer(item as Dog);
-      
           default:
             return petDeserializer(item);
         }
-      }
-      
-      /** model interface Dog */
-      export interface Dog extends Pet {
-        kind: "dog";
-        bark: string;
-      }
-      
-      export function dogSerializer(item: Dog): any {
-        return {
-          kind: item["kind"],
-          name: item["name"],
-          weight: item["weight"],
-          bark: item["bark"],
-        };
-      }
-      
-      export function dogDeserializer(item: any): Dog {
-        return {
-          kind: item["kind"],
-          name: item["name"],
-          weight: item["weight"],
-          bark: item["bark"],
-        };
       }
       `
     );

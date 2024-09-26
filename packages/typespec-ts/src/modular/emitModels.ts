@@ -10,8 +10,10 @@ import {
 } from "ts-morph";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
+  SdkArrayType,
   SdkBodyModelPropertyType,
   SdkClientType,
+  SdkDictionaryType,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
@@ -21,6 +23,7 @@ import {
   SdkModelType,
   SdkType,
   SdkUnionType,
+  UsageFlags,
   isReadOnly
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -46,6 +49,22 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   kind: StructureKind.Interface;
 };
 
+function isGenerableType(
+  type: SdkType
+): type is
+  | SdkModelType
+  | SdkEnumType
+  | SdkUnionType
+  | SdkDictionaryType
+  | SdkArrayType {
+  return (
+    type.kind === "model" ||
+    type.kind === "enum" ||
+    type.kind === "union" ||
+    type.kind === "dict" ||
+    type.kind === "array"
+  );
+}
 export function emitTypes(
   context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
@@ -64,8 +83,18 @@ export function emitTypes(
   visitPackageTypes(sdkPackage, emitQueue);
 
   for (const type of emitQueue) {
+    if (!isGenerableType(type)) {
+      continue;
+    }
     if (type.kind === "model") {
       if (isAzureCoreErrorType(context.program, type.__raw)) {
+        continue;
+      }
+      if (
+        type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input
+      ) {
         continue;
       }
       const modelInterface = buildModelInterface(context, type);
@@ -81,6 +110,13 @@ export function emitTypes(
       }
       addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "enum") {
+      if (
+        type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input
+      ) {
+        continue;
+      }
       const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
       if (isExtensibleEnum(context, type)) {
         addDeclaration(
@@ -342,7 +378,16 @@ function buildModelPolymorphicType(type: SdkModelType) {
     kind: StructureKind.TypeAlias,
     name: `${normalizeName(type.name, NameType.Interface)}Union`,
     isExported: true,
-    type: discriminatedSubtypes.map((t) => getTypeExpression(t)).join(" | ")
+    type: discriminatedSubtypes
+      .filter((p) => {
+        return (
+          p.usage !== undefined &&
+          ((p.usage & UsageFlags.Output) === UsageFlags.Output ||
+            (p.usage & UsageFlags.Input) === UsageFlags.Input)
+        );
+      })
+      .map((t) => getTypeExpression(t))
+      .join(" | ")
   };
 
   typeDeclaration.type += ` | ${getModelExpression(type, {

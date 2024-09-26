@@ -1,13 +1,20 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+
+export declare function createUsage(options?: UsageClientOptionalParams): UsageContext;
 
 export declare interface InputModel {
     name: string;
 }
 
+export declare function inputToInputOutput(context: UsageContext, body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;
+
 export declare interface InputToInputOutputOptionalParams extends OperationOptions {
 }
+
+export declare function modelInReadOnlyProperty(context: UsageContext, body: RoundTripModel, options?: ModelInReadOnlyPropertyOptionalParams): Promise<RoundTripModel>;
 
 export declare interface ModelInReadOnlyPropertyOptionalParams extends OperationOptions {
 }
@@ -19,6 +26,8 @@ export declare interface OrphanModel {
 export declare interface OutputModel {
     name: string;
 }
+
+export declare function outputToInputOutput(context: UsageContext, options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
 
 export declare interface OutputToInputOutputOptionalParams extends OperationOptions {
 }
@@ -41,6 +50,9 @@ export declare class UsageClient {
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {
+}
+
+export declare interface UsageContext extends Client {
 }
 
 export { }

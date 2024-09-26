@@ -211,6 +211,7 @@ function handleDiscriminator(
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
     const discriminatedSubtypes: Type[] = [];
+    let discriminatorTcgcType = undefined;
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
@@ -218,6 +219,7 @@ function handleDiscriminator(
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
           discriminatorValues.push(modelType.discriminatorValue);
+          discriminatorTcgcType = getClientType(context, property.type);
         }
       }
       discriminatedSubtypes.push(modelType);
@@ -229,7 +231,7 @@ function handleDiscriminator(
               ", "
             )}`
           : "discriminator property",
-      type: { type: "string" },
+      type: { type: "string", tcgcType: discriminatorTcgcType },
       restApiName: discriminator.propertyName,
       clientName: discriminator.propertyName,
       name: discriminator.propertyName,
@@ -268,7 +270,8 @@ function processModelProperties(
       newProperty = {
         ...newProperty,
         ...discriminatorInfo,
-        type: newProperty["type"]
+        type: newProperty["type"],
+        tcgcType: getClientType(context, property)
       };
     }
     newValue.properties.push(newProperty);

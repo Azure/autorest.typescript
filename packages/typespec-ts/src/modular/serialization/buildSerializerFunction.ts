@@ -4,7 +4,8 @@ import {
   SdkDictionaryType,
   SdkModelType,
   SdkType,
-  SdkUnionType
+  SdkUnionType,
+  UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
@@ -35,6 +36,12 @@ export function buildModelSerializer(
     return undefined;
   }
   if (type.kind === "model") {
+    if (
+      type.usage !== undefined &&
+      (type.usage & UsageFlags.Input) !== UsageFlags.Input
+    ) {
+      return undefined;
+    }
     if (!type.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
@@ -149,12 +156,15 @@ function buildPolymorphicSerializer(
   const cases: string[] = [];
   Object.keys(subTypes).forEach((discriminatedValue) => {
     const subType = subTypes[discriminatedValue];
+    if (
+      subType?.usage !== undefined &&
+      (subType.usage & UsageFlags.Input) !== UsageFlags.Input
+    ) {
+      return;
+    }
     const union = subType?.discriminatedSubtypes ? "Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
-    }
-    if (union !== "") {
-      subType;
     }
     const subTypeName = `${toPascalCase(subType.name)}${union}`;
     const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
@@ -213,6 +223,12 @@ function buildDiscriminatedUnionSerializer(
   )}Serializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
+    if (
+      subType.usage !== undefined &&
+      (subType.usage & UsageFlags.Input) !== UsageFlags.Input
+    ) {
+      continue;
+    }
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
     const subTypeName = `${toPascalCase(subType.name)}${union}`;

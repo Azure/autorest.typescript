@@ -1,10 +1,13 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare function $public(context: AccessContext, name: string, options?: PublicOptionalParams): Promise<SharedModel>;
+
 export declare interface AbstractModel {
-    name: string;
     kind: string;
+    name: string;
 }
 
 export declare type AbstractModelUnion = RealModel | AbstractModel;
@@ -27,9 +30,16 @@ export declare class AccessClient {
 export declare interface AccessClientOptionalParams extends ClientOptions {
 }
 
+export declare interface AccessContext extends Client {
+}
+
 export declare interface BaseModel {
     name: string;
 }
+
+export declare function createAccess(options?: AccessClientOptionalParams): AccessContext;
+
+export declare function discriminator(context: AccessContext, kind: string, options?: DiscriminatorOptionalParams): Promise<AbstractModelUnion>;
 
 export declare interface DiscriminatorOptionalParams extends OperationOptions {
 }
@@ -37,6 +47,10 @@ export declare interface DiscriminatorOptionalParams extends OperationOptions {
 export declare interface InnerModel {
     name: string;
 }
+
+export declare function internal(context: AccessContext, name: string, options?: InternalOptionalParams): Promise<SharedModel>;
+
+export declare function internalDecoratorInInternal(context: AccessContext, name: string, options?: InternalDecoratorInInternalOptionalParams): Promise<InternalDecoratorModelInInternal>;
 
 export declare interface InternalDecoratorInInternalOptionalParams extends OperationOptions {
 }
@@ -48,8 +62,12 @@ export declare interface InternalDecoratorModelInInternal {
 export declare interface InternalOptionalParams extends OperationOptions {
 }
 
+export declare function noDecoratorInInternal(context: AccessContext, name: string, options?: NoDecoratorInInternalOptionalParams): Promise<NoDecoratorModelInInternal>;
+
 export declare interface NoDecoratorInInternalOptionalParams extends OperationOptions {
 }
+
+export declare function noDecoratorInPublic(context: AccessContext, name: string, options?: NoDecoratorInPublicOptionalParams): Promise<NoDecoratorModelInPublic>;
 
 export declare interface NoDecoratorInPublicOptionalParams extends OperationOptions {
 }
@@ -62,6 +80,8 @@ export declare interface NoDecoratorModelInPublic {
     name: string;
 }
 
+export declare function operation(context: AccessContext, name: string, options?: OperationOptionalParams): Promise<OuterModel>;
+
 export declare interface OperationOptionalParams extends OperationOptions {
 }
 
@@ -69,8 +89,12 @@ export declare interface OuterModel extends BaseModel {
     inner: InnerModel;
 }
 
+export declare function publicDecoratorInInternal(context: AccessContext, name: string, options?: PublicDecoratorInInternalOptionalParams): Promise<PublicDecoratorModelInInternal>;
+
 export declare interface PublicDecoratorInInternalOptionalParams extends OperationOptions {
 }
+
+export declare function publicDecoratorInPublic(context: AccessContext, name: string, options?: PublicDecoratorInPublicOptionalParams): Promise<PublicDecoratorModelInPublic>;
 
 export declare interface PublicDecoratorInPublicOptionalParams extends OperationOptions {
 }
