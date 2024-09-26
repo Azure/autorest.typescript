@@ -73,7 +73,7 @@ function getAuthScheme(initialization: SdkInitializationType): HttpAuth[] {
   if (kind === "credential") {
     authScheme.push(credentialParams.type.scheme);
   } else if (kind === "union") {
-    for (const param of credentialParams.type.values) {
+    for (const param of credentialParams.type.variantTypes) {
       authScheme.push(param.scheme);
     }
   }

@@ -8,11 +8,11 @@ import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
   SdkHttpOperationExample,
-  SdkHttpParameterExample,
+  SdkHttpParameterExampleValue,
   SdkInitializationType,
   SdkServiceMethod,
   SdkServiceOperation,
-  SdkTypeExample
+  SdkExampleValue
 } from "@azure-tools/typespec-client-generator-core";
 import {
   isAzurePackage,
@@ -148,7 +148,7 @@ function emitMethodSamples(
       returnType: "void",
       body: exampleFunctionBody
     };
-    const parameterMap: Record<string, SdkHttpParameterExample> =
+    const parameterMap: Record<string, SdkHttpParameterExampleValue> =
       buildParameterValueMap(example);
     const parameters = prepareExampleParameters(
       dpgContext,
@@ -240,7 +240,7 @@ function emitMethodSamples(
 }
 
 function buildParameterValueMap(example: SdkHttpOperationExample) {
-  const parameterMap: Record<string, SdkHttpParameterExample> = {};
+  const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
     (param) =>
       (parameterMap[
@@ -253,7 +253,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 function prepareExampleParameters(
   dpgContext: SdkContext,
   method: SdkServiceMethod<SdkServiceOperation>,
-  parameterMap: Record<string, SdkHttpParameterExample>,
+  parameterMap: Record<string, SdkHttpParameterExampleValue>,
   topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
@@ -270,7 +270,11 @@ function prepareExampleParameters(
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
   // required parameters
   for (const param of method.operation.parameters) {
-    if (param.optional === true || param.type.kind === "constant") {
+    if (
+      param.optional === true ||
+      param.type.kind === "constant" ||
+      param.clientDefaultValue
+    ) {
       continue;
     }
 
@@ -346,7 +350,10 @@ function prepareExampleParameters(
   // optional parameters
   method.operation.parameters
     .filter(
-      (param) => param.optional === true && parameterMap[param.serializedName]
+      (param) =>
+        param.optional === true &&
+        parameterMap[param.serializedName] &&
+        !param.clientDefaultValue
     )
     .map((param) => parameterMap[param.serializedName]!)
     .forEach((param) => {
@@ -399,7 +406,7 @@ function getCredentialExampleValue(
   return undefined;
 }
 
-function getParameterValue(value: SdkTypeExample): string {
+function getParameterValue(value: SdkExampleValue): string {
   let retValue = `{} as any`;
   switch (value.kind) {
     case "string": {
@@ -416,7 +423,7 @@ function getParameterValue(value: SdkTypeExample): string {
     case "boolean":
     case "number":
     case "null":
-    case "any":
+    case "unknown":
     case "union":
       retValue = `${value.value}`;
       break;
