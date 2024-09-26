@@ -259,6 +259,4 @@ export declare interface TrackedResource extends Resource {
     location: string;
 }
 
-export declare type Versions = "2023-12-01-preview";
-
 export { }

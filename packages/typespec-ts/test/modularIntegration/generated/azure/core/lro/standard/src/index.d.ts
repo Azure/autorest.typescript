@@ -77,6 +77,4 @@ export declare interface User {
     role: string;
 }
 
-export declare type Versions = "2022-12-01-preview";
-
 export { }

@@ -55,6 +55,4 @@ export declare interface RpcClientOptionalParams extends ClientOptions {
 export declare interface RpcContext extends Client {
 }
 
-export declare type Versions = "2022-12-01-preview";
-
 export { }

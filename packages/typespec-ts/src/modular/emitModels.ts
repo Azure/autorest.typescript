@@ -73,14 +73,18 @@ export function emitTypes(
   const emitQueue: Set<SdkType> = new Set();
   const outputProject = useContext("outputProject");
 
+  visitPackageTypes(sdkPackage, emitQueue);
   const modelsFilePath = getModelsPath(sourceRoot);
-  const sourceFile = outputProject.createSourceFile(modelsFilePath);
-
-  if (!sourceFile) {
-    throw new Error(`Failed to create source file at ${modelsFilePath}`);
+  let sourceFile;
+  if (emitQueue.size > 0 && (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)) {
+    sourceFile = outputProject.createSourceFile(modelsFilePath);
+    if (!sourceFile) {
+      throw new Error(`Failed to create source file at ${modelsFilePath}`);
+    }
+  } else {
+    return;
   }
 
-  visitPackageTypes(sdkPackage, emitQueue);
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -348,9 +352,21 @@ function addExtendedDictInfo(
 
 export function normalizeModelName(
   context: SdkContext,
-  type: SdkModelType | SdkEnumType | SdkUnionType,
+  type: SdkModelType | SdkEnumType | SdkUnionType | SdkArrayType | SdkDictionaryType,
   nameType: NameType = NameType.Interface
 ): string {
+  if (type.kind === "array") {
+    return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
+  } else if (type.kind === "dict") {
+    return `Record<string, ${normalizeModelName(
+      context,
+      type.valueType as any,
+      nameType
+    )}>`;
+  }
+  if (type.crossLanguageDefinitionId === undefined) {
+    return getTypeExpression(type);
+  }
   const segments = type.crossLanguageDefinitionId.split(".");
   segments.pop();
   segments.shift();
