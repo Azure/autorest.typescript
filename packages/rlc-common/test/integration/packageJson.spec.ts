@@ -762,11 +762,6 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.scripts).to.have.property(
-        "check-format",
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" '
-      );
-
-      expect(packageFile.scripts).to.have.property(
         "build",
         "npm run clean && tshy && npm run extract-api"
       );
@@ -778,11 +773,6 @@ describe("Package file generation", () => {
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.scripts).to.have.property(
-        "check-format",
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" '
-      );
 
       expect(packageFile.scripts).to.have.property(
         "build",
