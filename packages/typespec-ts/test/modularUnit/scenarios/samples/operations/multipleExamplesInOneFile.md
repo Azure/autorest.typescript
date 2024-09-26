@@ -161,9 +161,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function employeesCreateOrUpdateMaxage() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2021-10-01-preview";
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, apiVersion, subscriptionId);
+  const client = new ContosoClient(credential, subscriptionId);
   const result = await client.employees.createOrUpdate(
     "rgopenapi",
     "9KF-f-8b",
@@ -188,9 +187,8 @@ async function employeesCreateOrUpdateMaxage() {
  */
 async function employeesCreateOrUpdateMinage() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2021-10-01-preview";
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, apiVersion, subscriptionId);
+  const client = new ContosoClient(credential, subscriptionId);
   const result = await client.employees.createOrUpdate(
     "rgopenapi",
     "9KF-f-8b",

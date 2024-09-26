@@ -138,10 +138,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function widgetsCreateOrUpdateWidget() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2021-10-01-preview";
-  const client = new WidgetManagerClient(credential, apiVersion);
+  const client = new WidgetManagerClient(credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
-    manufacturerId: "manufacturer id1",
+    manufacturerId: "manufacturer id1"
   });
   console.log(result);
 }
@@ -164,8 +163,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function deleteWidgetByWidgetNameUsingLongRunningOperation() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2021-10-01-preview";
-  const client = new WidgetManagerClient(credential, apiVersion);
+  const client = new WidgetManagerClient(credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
@@ -188,13 +186,12 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function widgetsListWidgets() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2021-10-01-preview";
-  const client = new WidgetManagerClient(credential, apiVersion);
+  const client = new WidgetManagerClient(credential);
   const resArray = new Array();
   for await (let item of client.widgets.listWidgets({
     top: 8,
     skip: 15,
-    maxpagesize: 27,
+    maxpagesize: 27
   })) {
     resArray.push(item);
   }

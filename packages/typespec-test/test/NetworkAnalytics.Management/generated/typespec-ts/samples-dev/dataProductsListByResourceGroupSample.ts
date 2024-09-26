@@ -12,13 +12,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen() {
   const credential = new DefaultAzureCredential();
-  const apiVersion = "2023-11-15";
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(
-    credential,
-    apiVersion,
-    subscriptionId,
-  );
+  const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.dataProducts.listByResourceGroup(
     "aoiresourceGroupName",
