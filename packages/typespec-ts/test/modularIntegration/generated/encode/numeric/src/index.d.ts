@@ -28,15 +28,15 @@ export declare interface PropertyUint8AsStringOptionalParams extends OperationOp
 }
 
 export declare interface SafeintAsStringProperty {
-    value: number;
+    value: string;
 }
 
 export declare interface Uint32AsStringProperty {
-    value?: number;
+    value?: string;
 }
 
 export declare interface Uint8AsStringProperty {
-    value: number;
+    value: string;
 }
 
 export { }

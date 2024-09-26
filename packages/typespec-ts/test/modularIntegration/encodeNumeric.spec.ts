@@ -18,7 +18,6 @@ describe("EncodeNumericClient Rest Client", () => {
       const result = await client.property.safeintAsString({
         value: "10000000000"
       });
-      console.log(result);
       assert.strictEqual(result.value, "10000000000");
     });
 
