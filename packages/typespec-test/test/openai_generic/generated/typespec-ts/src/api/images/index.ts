@@ -55,7 +55,7 @@ export async function _createDeserialize(
         url: p["url"],
         b64Json:
           typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
+            ? stringToUint8Array(p["b64_json"], "string")
             : p["b64_json"],
       };
     }),
@@ -111,7 +111,7 @@ export async function _createEditDeserialize(
         url: p["url"],
         b64Json:
           typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
+            ? stringToUint8Array(p["b64_json"], "string")
             : p["b64_json"],
       };
     }),
@@ -162,7 +162,7 @@ export async function _createVariationDeserialize(
         url: p["url"],
         b64Json:
           typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
+            ? stringToUint8Array(p["b64_json"], "string")
             : p["b64_json"],
       };
     }),

@@ -428,7 +428,7 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].toUTCString(),
+          prop1: item["prop1"].toISOString(),
           prop2: item["prop2"],
         };
       }`
@@ -458,7 +458,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].toUTCString(),
+              prop1: body["prop1"].toISOString(),
               prop2: body["prop2"],
             },
           });
@@ -511,7 +511,7 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].getTime(),
+          prop1: item["prop1"].toISOString(),
         };
       }`
     );
@@ -540,7 +540,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].getTime()
+              prop1: body["prop1"].toISOString()
             },
           });
       }
@@ -720,8 +720,8 @@ describe("modular encode test for property type duration", () => {
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
-        prop1: number;
-        prop2: number;
+        prop1: string;
+        prop2: string;
       }`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -917,7 +917,7 @@ describe("modular encode test for property type bytes", () => {
         return {
           prop1:
             typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64")
+              ? stringToUint8Array(result.body["prop1"], "string")
               : result.body["prop1"],
         };
       }
@@ -976,7 +976,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(body["prop1"], "base64url"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -989,7 +989,7 @@ describe("modular encode test for property type bytes", () => {
         return {
           prop1:
             typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64url")
+              ? stringToUint8Array(result.body["prop1"], "string")
               : result.body["prop1"],
         };
       }
