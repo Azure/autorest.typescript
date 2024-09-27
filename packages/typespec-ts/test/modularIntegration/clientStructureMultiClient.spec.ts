@@ -1,17 +1,17 @@
 import {
-  AClient,
-  BClient
+  ClientAClient,
+  ClientBClient
 } from "./generated/client/structure/multi-client/src/index.js";
 import { assert } from "chai";
 describe("Client Structure Multi-Client Rest Client", () => {
-  let clientA: AClient;
-  let clientB: BClient;
+  let clientA: ClientAClient;
+  let clientB: ClientBClient;
 
   beforeEach(() => {
-    clientA = new AClient("http://localhost:3002", "multi-client", {
+    clientA = new ClientAClient("http://localhost:3002", "multi-client", {
       allowInsecureConnection: true
     });
-    clientB = new BClient("http://localhost:3002", "multi-client", {
+    clientB = new ClientBClient("http://localhost:3002", "multi-client", {
       allowInsecureConnection: true
     });
   });

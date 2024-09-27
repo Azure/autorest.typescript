@@ -316,7 +316,11 @@ export function buildModelInterface(
   }
 
   if (type.additionalProperties) {
-    addExtendedDictInfo(type, interfaceStructure);
+    addExtendedDictInfo(
+      type,
+      interfaceStructure,
+      context.rlcOptions?.compatibilityMode
+    );
   }
 
   interfaceStructure.docs = [
@@ -348,7 +352,10 @@ function addExtendedDictInfo(
       `Record<string, ${additionalPropertiesType ?? "any"}>`
     ];
   } else if (compatibilityMode) {
-    modelInterface.extends?.push(`Record<string, any>`);
+    if (!modelInterface.extends) {
+      modelInterface.extends = [];
+    }
+    modelInterface.extends.push(`Record<string, any>`);
   } else {
     modelInterface.properties?.push({
       name: "additionalProperties",
