@@ -6,7 +6,6 @@ import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
-import { TokenCredential } from '@azure/core-auth';
 
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
@@ -130,7 +129,7 @@ export declare type ResourceProvisioningState = string;
 export declare class ResourcesClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(credential: TokenCredential, subscriptionId: string, options?: ResourcesClientOptionalParams);
+    constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
     readonly topLevelTrackedResources: TopLevelTrackedResourcesOperations;
     readonly nestedProxyResources: NestedProxyResourcesOperations;
     readonly singletonTrackedResources: SingletonTrackedResourcesOperations;

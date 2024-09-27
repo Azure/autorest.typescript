@@ -2,7 +2,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
-import { TokenCredential } from '@azure/core-auth';
 
 export declare type CreatedByType = string;
 
@@ -55,7 +54,7 @@ export declare enum KnownManagedServiceIdentityType {
 export declare class ManagedIdentityClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(credential: TokenCredential, options?: ManagedIdentityClientOptionalParams);
+    constructor(options?: ManagedIdentityClientOptionalParams);
     get(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
     createWithSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
     updateWithUserAssignedAndSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;

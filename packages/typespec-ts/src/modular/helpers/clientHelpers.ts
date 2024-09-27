@@ -63,6 +63,12 @@ export function getClientParameters(
     )
     .filter(
       (p) =>
+        dpgContext.rlcOptions?.addCredentials !== false ||
+        (p.kind !== "credential" &&
+          dpgContext.rlcOptions?.addCredentials === false)
+    )
+    .filter(
+      (p) =>
         !options.optionalOnly ||
         (options.optionalOnly &&
           (p.optional ||
