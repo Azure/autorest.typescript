@@ -916,7 +916,7 @@ export function getResponseMapping(
       );
     } else {
       props.push(
-        `"${property.clientName}": ${deserializeResponseValue(context, property.type, `${propertyPath}${dot}["${property.restApiName}"]`, property.format)}`
+        `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeResponseValue(context, property.type, `${propertyPath}${dot}["${property.restApiName}"]`, property.format)}`
       );
     }
   }

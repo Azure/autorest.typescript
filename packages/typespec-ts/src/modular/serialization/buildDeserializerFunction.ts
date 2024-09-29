@@ -339,6 +339,9 @@ function buildModelTypeDeserializer(
     returnType: normalizeModelName(context, type),
     statements: ["return item;"]
   };
+  if (deserializerFunction.name === "collectionsBytePropertyDeserializer") {
+    type;
+  }
   const nullabilityPrefix = "";
   // getPropertySerializationPrefix({
   //   clientName: "item",
