@@ -12,7 +12,7 @@ export function buildSampleEnvFile(model: RLCModel) {
       model.options?.generateSample === true) &&
     model.options?.flavor === "azure"
   ) {
-    let filePath = "sample.env";
+    const filePath = "sample.env";
     return {
       path: filePath,
       content: sampleEnvText.trim()
