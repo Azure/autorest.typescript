@@ -17,7 +17,12 @@ export function buildLogger(model: RLCModel) {
   const { srcPath } = model;
   const { packageDetails } = model.options;
   const filePath = path.join(
-    srcPath.substring(0, srcPath.lastIndexOf("src") + 4),
+    srcPath.substring(
+      0,
+      srcPath.includes("generated") && !srcPath.includes("src")
+        ? srcPath.lastIndexOf("generated") + 10
+        : srcPath.lastIndexOf("src") + 4
+    ),
     `logger.ts`
   );
   const loggerFile = project.createSourceFile("logger.ts", undefined, {
