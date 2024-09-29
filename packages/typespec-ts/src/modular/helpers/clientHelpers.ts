@@ -81,7 +81,10 @@ export function getClientParameters(
       (p) =>
         !options.onClientOnly ||
         (options.onClientOnly &&
-          (p.kind !== "method" || (p.kind === "method" && p.isApiVersionParam)))
+          (p.kind !== "method" ||
+            (p.kind === "method" &&
+              p.isApiVersionParam &&
+              _client.parameters.find((p) => p.isApiVersion))))
     );
 
   return params;

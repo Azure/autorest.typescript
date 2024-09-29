@@ -404,7 +404,10 @@ export function normalizeModelName(
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType)}`;
+  if (type.name.toLowerCase() === "global") {
+    type;
+  }
+  return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}`;
 }
 
 function buildModelPolymorphicType(type: SdkModelType) {

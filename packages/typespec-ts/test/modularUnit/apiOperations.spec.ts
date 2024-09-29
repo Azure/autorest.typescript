@@ -867,7 +867,7 @@ describe("api operations in Modular", () => {
     });
 
     // TODO see issue tracked https://github.com/Azure/typespec-azure/issues/1595
-    it.skip("should not generate apiVersion if there's no client level apiVersion", async () => {
+    it("should not generate apiVersion if there's no client level apiVersion", async () => {
       const tspContent = `
       model ApiVersionParameter {
         @query
