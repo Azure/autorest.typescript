@@ -609,7 +609,7 @@ export interface EmbeddingsOperations {
 }
 
 // @public
-interface Error_2 {
+export interface ErrorModel {
     // (undocumented)
     code: string | null;
     // (undocumented)
@@ -619,12 +619,11 @@ interface Error_2 {
     // (undocumented)
     type: string;
 }
-export { Error_2 as Error }
 
 // @public
 export interface ErrorResponse {
     // (undocumented)
-    error: Error_2;
+    error: ErrorModel;
 }
 
 // @public

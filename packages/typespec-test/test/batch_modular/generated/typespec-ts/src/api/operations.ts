@@ -3474,9 +3474,7 @@ export async function _getTaskFileDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 /** Returns the content of the specified Task file. */

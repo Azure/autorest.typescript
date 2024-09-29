@@ -72,13 +72,15 @@ export function _listWidgetsPagesResultsDeserializer(
 ): _ListWidgetsPagesResults {
   return {
     results: widgetArrayDeserializer(item["results"]),
-    "odata.nextLink": item["odata.nextLink"],
+    "odata.nextLink": !item["odata.nextLink"]
+      ? item["odata.nextLink"]
+      : item["odata.nextLink"],
   };
 }
 
 export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   return result.map((item) => {
-    widgetDeserializer(item);
+    return widgetDeserializer(item);
   });
 }
 

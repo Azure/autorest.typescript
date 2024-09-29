@@ -59,7 +59,9 @@ export function chatMessageDeserializer(item: any): ChatMessage {
   return {
     content: item["content"],
     role: item["role"],
-    sessionState: item["session_state"],
+    sessionState: !item["session_state"]
+      ? item["session_state"]
+      : item["session_state"],
   };
 }
 
@@ -68,7 +70,7 @@ export type ChatRole = "user" | "system" | "assistant";
 
 export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
   return result.map((item) => {
-    chatMessageSerializer(item);
+    return chatMessageSerializer(item);
   });
 }
 
@@ -76,7 +78,7 @@ export function chatMessageArrayDeserializer(
   result: Array<ChatMessage>,
 ): any[] {
   return result.map((item) => {
-    chatMessageDeserializer(item);
+    return chatMessageDeserializer(item);
   });
 }
 
@@ -120,9 +122,13 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
   return {
     index: item["index"],
     delta: chatMessageDeltaDeserializer(item["delta"]),
-    sessionState: item["session_state"],
-    context: item["context"],
-    finishReason: item["finish_reason"],
+    sessionState: !item["session_state"]
+      ? item["session_state"]
+      : item["session_state"],
+    context: !item["context"] ? item["context"] : item["context"],
+    finishReason: !item["finish_reason"]
+      ? item["finish_reason"]
+      : item["finish_reason"],
   };
 }
 
@@ -143,9 +149,11 @@ export interface ChatMessageDelta {
 
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
-    content: item["content"],
-    role: item["role"],
-    sessionState: item["session_state"],
+    content: !item["content"] ? item["content"] : item["content"],
+    role: !item["role"] ? item["role"] : item["role"],
+    sessionState: !item["session_state"]
+      ? item["session_state"]
+      : item["session_state"],
   };
 }
 
@@ -156,7 +164,7 @@ export function choiceDeltaRecordArrayDeserializer(
   result: Array<ChoiceDeltaRecord>,
 ): any[] {
   return result.map((item) => {
-    choiceDeltaRecordDeserializer(item);
+    return choiceDeltaRecordDeserializer(item);
   });
 }
 
@@ -231,8 +239,10 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   return {
     index: item["index"],
     message: chatMessageDeserializer(item["message"]),
-    sessionState: item["session_state"],
-    context: item["context"],
+    sessionState: !item["session_state"]
+      ? item["session_state"]
+      : item["session_state"],
+    context: !item["context"] ? item["context"] : item["context"],
     finishReason: item["finish_reason"],
   };
 }
@@ -241,6 +251,6 @@ export function chatChoiceRecordArrayDeserializer(
   result: Array<ChatChoiceRecord>,
 ): any[] {
   return result.map((item) => {
-    chatChoiceRecordDeserializer(item);
+    return chatChoiceRecordDeserializer(item);
   });
 }

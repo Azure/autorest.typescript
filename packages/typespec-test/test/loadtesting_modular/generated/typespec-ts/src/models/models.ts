@@ -94,26 +94,46 @@ export function testDeserializer(item: any): Test {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : item["environmentVariables"],
     loadTestConfiguration: !item["loadTestConfiguration"]
       ? item["loadTestConfiguration"]
       : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
-    baselineTestRunId: item["baselineTestRunId"],
+    baselineTestRunId: !item["baselineTestRunId"]
+      ? item["baselineTestRunId"]
+      : item["baselineTestRunId"],
     inputArtifacts: !item["inputArtifacts"]
       ? item["inputArtifacts"]
       : testInputArtifactsDeserializer(item["inputArtifacts"]),
     testId: item["testId"],
-    description: item["description"],
-    displayName: item["displayName"],
-    subnetId: item["subnetId"],
-    kind: item["kind"],
-    publicIPDisabled: item["publicIPDisabled"],
-    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
-    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    displayName: !item["displayName"]
+      ? item["displayName"]
+      : item["displayName"],
+    subnetId: !item["subnetId"] ? item["subnetId"] : item["subnetId"],
+    kind: !item["kind"] ? item["kind"] : item["kind"],
+    publicIPDisabled: !item["publicIPDisabled"]
+      ? item["publicIPDisabled"]
+      : item["publicIPDisabled"],
+    keyvaultReferenceIdentityType: !item["keyvaultReferenceIdentityType"]
+      ? item["keyvaultReferenceIdentityType"]
+      : item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: !item["keyvaultReferenceIdentityId"]
+      ? item["keyvaultReferenceIdentityId"]
+      : item["keyvaultReferenceIdentityId"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -180,14 +200,20 @@ export function passFailMetricSerializer(item: PassFailMetric): any {
 
 export function passFailMetricDeserializer(item: any): PassFailMetric {
   return {
-    clientMetric: item["clientMetric"],
-    aggregate: item["aggregate"],
-    condition: item["condition"],
-    requestName: item["requestName"],
-    value: item["value"],
-    action: item["action"],
-    actualValue: item["actualValue"],
-    result: item["result"],
+    clientMetric: !item["clientMetric"]
+      ? item["clientMetric"]
+      : item["clientMetric"],
+    aggregate: !item["aggregate"] ? item["aggregate"] : item["aggregate"],
+    condition: !item["condition"] ? item["condition"] : item["condition"],
+    requestName: !item["requestName"]
+      ? item["requestName"]
+      : item["requestName"],
+    value: !item["value"] ? item["value"] : item["value"],
+    action: !item["action"] ? item["action"] : item["action"],
+    actualValue: !item["actualValue"]
+      ? item["actualValue"]
+      : item["actualValue"],
+    result: !item["result"] ? item["result"] : item["result"],
   };
 }
 
@@ -319,7 +345,7 @@ export function passFailMetricRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = passFailMetricSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : passFailMetricSerializer(item[key]);
   });
   return result;
 }
@@ -329,7 +355,9 @@ export function passFailMetricRecordDeserializer(
 ): Record<string, PassFailMetric> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = passFailMetricDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : passFailMetricDeserializer(item[key]);
   });
   return result;
 }
@@ -354,9 +382,13 @@ export function autoStopCriteriaSerializer(item: AutoStopCriteria): any {
 
 export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
   return {
-    autoStopDisabled: item["autoStopDisabled"],
-    errorRate: item["errorRate"],
-    errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
+    autoStopDisabled: !item["autoStopDisabled"]
+      ? item["autoStopDisabled"]
+      : item["autoStopDisabled"],
+    errorRate: !item["errorRate"] ? item["errorRate"] : item["errorRate"],
+    errorRateTimeWindowInSeconds: !item["errorRateTimeWindowInSeconds"]
+      ? item["errorRateTimeWindowInSeconds"]
+      : item["errorRateTimeWindowInSeconds"],
   };
 }
 
@@ -374,8 +406,8 @@ export function secretSerializer(item: Secret): any {
 
 export function secretDeserializer(item: any): Secret {
   return {
-    value: item["value"],
-    type: item["type"],
+    value: !item["value"] ? item["value"] : item["value"],
+    type: !item["type"] ? item["type"] : item["type"],
   };
 }
 
@@ -402,7 +434,7 @@ export function secretRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = secretSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : secretSerializer(item[key]);
   });
   return result;
 }
@@ -412,7 +444,7 @@ export function secretRecordDeserializer(
 ): Record<string, Secret> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = secretDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : secretDeserializer(item[key]);
   });
   return result;
 }
@@ -435,9 +467,9 @@ export function certificateMetadataDeserializer(
   item: any,
 ): CertificateMetadata {
   return {
-    value: item["value"],
-    type: item["type"],
-    name: item["name"],
+    value: !item["value"] ? item["value"] : item["value"],
+    type: !item["type"] ? item["type"] : item["type"],
+    name: !item["name"] ? item["name"] : item["name"],
   };
 }
 
@@ -498,9 +530,15 @@ export function loadTestConfigurationDeserializer(
   item: any,
 ): LoadTestConfiguration {
   return {
-    engineInstances: item["engineInstances"],
-    splitAllCSVs: item["splitAllCSVs"],
-    quickStartTest: item["quickStartTest"],
+    engineInstances: !item["engineInstances"]
+      ? item["engineInstances"]
+      : item["engineInstances"],
+    splitAllCSVs: !item["splitAllCSVs"]
+      ? item["splitAllCSVs"]
+      : item["splitAllCSVs"],
+    quickStartTest: !item["quickStartTest"]
+      ? item["quickStartTest"]
+      : item["quickStartTest"],
     optionalLoadTestConfig: !item["optionalLoadTestConfig"]
       ? item["optionalLoadTestConfig"]
       : optionalLoadTestConfigDeserializer(item["optionalLoadTestConfig"]),
@@ -543,12 +581,20 @@ export function optionalLoadTestConfigDeserializer(
   item: any,
 ): OptionalLoadTestConfig {
   return {
-    endpointUrl: item["endpointUrl"],
-    requestsPerSecond: item["requestsPerSecond"],
-    maxResponseTimeInMs: item["maxResponseTimeInMs"],
-    virtualUsers: item["virtualUsers"],
-    rampUpTime: item["rampUpTime"],
-    duration: item["duration"],
+    endpointUrl: !item["endpointUrl"]
+      ? item["endpointUrl"]
+      : item["endpointUrl"],
+    requestsPerSecond: !item["requestsPerSecond"]
+      ? item["requestsPerSecond"]
+      : item["requestsPerSecond"],
+    maxResponseTimeInMs: !item["maxResponseTimeInMs"]
+      ? item["maxResponseTimeInMs"]
+      : item["maxResponseTimeInMs"],
+    virtualUsers: !item["virtualUsers"]
+      ? item["virtualUsers"]
+      : item["virtualUsers"],
+    rampUpTime: !item["rampUpTime"] ? item["rampUpTime"] : item["rampUpTime"],
+    duration: !item["duration"] ? item["duration"] : item["duration"],
   };
 }
 
@@ -583,7 +629,7 @@ export function regionalConfigurationArraySerializer(
   result: Array<RegionalConfiguration>,
 ): any[] {
   return result.map((item) => {
-    regionalConfigurationSerializer(item);
+    return regionalConfigurationSerializer(item);
   });
 }
 
@@ -591,7 +637,7 @@ export function regionalConfigurationArrayDeserializer(
   result: Array<RegionalConfiguration>,
 ): any[] {
   return result.map((item) => {
-    regionalConfigurationDeserializer(item);
+    return regionalConfigurationDeserializer(item);
   });
 }
 
@@ -653,11 +699,17 @@ export interface TestFileInfo {
 export function testFileInfoDeserializer(item: any): TestFileInfo {
   return {
     fileName: item["fileName"],
-    url: item["url"],
-    fileType: item["fileType"],
-    expireDateTime: new Date(item["expireDateTime"]),
-    validationStatus: item["validationStatus"],
-    validationFailureDetails: item["validationFailureDetails"],
+    url: !item["url"] ? item["url"] : item["url"],
+    fileType: !item["fileType"] ? item["fileType"] : item["fileType"],
+    expireDateTime: !item["expireDateTime"]
+      ? item["expireDateTime"]
+      : new Date(item["expireDateTime"]),
+    validationStatus: !item["validationStatus"]
+      ? item["validationStatus"]
+      : item["validationStatus"],
+    validationFailureDetails: !item["validationFailureDetails"]
+      ? item["validationFailureDetails"]
+      : item["validationFailureDetails"],
   };
 }
 
@@ -722,7 +774,7 @@ export function testFileInfoArrayDeserializer(
   result: Array<TestFileInfo>,
 ): any[] {
   return result.map((item) => {
-    testFileInfoDeserializer(item);
+    return testFileInfoDeserializer(item);
   });
 }
 
@@ -774,11 +826,17 @@ export function testAppComponentsSerializer(item: TestAppComponents): any {
 export function testAppComponentsDeserializer(item: any): TestAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
-    testId: item["testId"],
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    testId: !item["testId"] ? item["testId"] : item["testId"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -814,10 +872,16 @@ export function appComponentDeserializer(item: any): AppComponent {
     resourceId: item["resourceId"],
     resourceName: item["resourceName"],
     resourceType: item["resourceType"],
-    displayName: item["displayName"],
-    resourceGroup: item["resourceGroup"],
-    subscriptionId: item["subscriptionId"],
-    kind: item["kind"],
+    displayName: !item["displayName"]
+      ? item["displayName"]
+      : item["displayName"],
+    resourceGroup: !item["resourceGroup"]
+      ? item["resourceGroup"]
+      : item["resourceGroup"],
+    subscriptionId: !item["subscriptionId"]
+      ? item["subscriptionId"]
+      : item["subscriptionId"],
+    kind: !item["kind"] ? item["kind"] : item["kind"],
   };
 }
 
@@ -826,7 +890,7 @@ export function appComponentRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = appComponentSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : appComponentSerializer(item[key]);
   });
   return result;
 }
@@ -836,7 +900,7 @@ export function appComponentRecordDeserializer(
 ): Record<string, AppComponent> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = appComponentDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : appComponentDeserializer(item[key]);
   });
   return result;
 }
@@ -871,12 +935,18 @@ export function testServerMetricConfigDeserializer(
   item: any,
 ): TestServerMetricConfig {
   return {
-    testId: item["testId"],
+    testId: !item["testId"] ? item["testId"] : item["testId"],
     metrics: resourceMetricRecordDeserializer(item["metrics"]),
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -918,13 +988,15 @@ export function resourceMetricSerializer(item: ResourceMetric): any {
 
 export function resourceMetricDeserializer(item: any): ResourceMetric {
   return {
-    id: item["id"],
+    id: !item["id"] ? item["id"] : item["id"],
     resourceId: item["resourceId"],
     metricNamespace: item["metricNamespace"],
-    displayDescription: item["displayDescription"],
+    displayDescription: !item["displayDescription"]
+      ? item["displayDescription"]
+      : item["displayDescription"],
     name: item["name"],
     aggregation: item["aggregation"],
-    unit: item["unit"],
+    unit: !item["unit"] ? item["unit"] : item["unit"],
     resourceType: item["resourceType"],
   };
 }
@@ -934,7 +1006,7 @@ export function resourceMetricRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = resourceMetricSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : resourceMetricSerializer(item[key]);
   });
   return result;
 }
@@ -944,7 +1016,9 @@ export function resourceMetricRecordDeserializer(
 ): Record<string, ResourceMetric> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = resourceMetricDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : resourceMetricDeserializer(item[key]);
   });
   return result;
 }
@@ -1070,7 +1144,9 @@ export function testRunDeserializer(item: any): TestRun {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : item["environmentVariables"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
@@ -1086,26 +1162,50 @@ export function testRunDeserializer(item: any): TestRun {
     testArtifacts: !item["testArtifacts"]
       ? item["testArtifacts"]
       : testRunArtifactsDeserializer(item["testArtifacts"]),
-    testResult: item["testResult"],
-    virtualUsers: item["virtualUsers"],
-    displayName: item["displayName"],
-    testId: item["testId"],
-    description: item["description"],
-    status: item["status"],
-    startDateTime: new Date(item["startDateTime"]),
-    endDateTime: new Date(item["endDateTime"]),
-    executedDateTime: new Date(item["executedDateTime"]),
-    portalUrl: item["portalUrl"],
-    duration: item["duration"],
-    subnetId: item["subnetId"],
-    kind: item["kind"],
-    requestDataLevel: item["requestDataLevel"],
-    debugLogsEnabled: item["debugLogsEnabled"],
-    publicIPDisabled: item["publicIPDisabled"],
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    testResult: !item["testResult"] ? item["testResult"] : item["testResult"],
+    virtualUsers: !item["virtualUsers"]
+      ? item["virtualUsers"]
+      : item["virtualUsers"],
+    displayName: !item["displayName"]
+      ? item["displayName"]
+      : item["displayName"],
+    testId: !item["testId"] ? item["testId"] : item["testId"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    status: !item["status"] ? item["status"] : item["status"],
+    startDateTime: !item["startDateTime"]
+      ? item["startDateTime"]
+      : new Date(item["startDateTime"]),
+    endDateTime: !item["endDateTime"]
+      ? item["endDateTime"]
+      : new Date(item["endDateTime"]),
+    executedDateTime: !item["executedDateTime"]
+      ? item["executedDateTime"]
+      : new Date(item["executedDateTime"]),
+    portalUrl: !item["portalUrl"] ? item["portalUrl"] : item["portalUrl"],
+    duration: !item["duration"] ? item["duration"] : item["duration"],
+    subnetId: !item["subnetId"] ? item["subnetId"] : item["subnetId"],
+    kind: !item["kind"] ? item["kind"] : item["kind"],
+    requestDataLevel: !item["requestDataLevel"]
+      ? item["requestDataLevel"]
+      : item["requestDataLevel"],
+    debugLogsEnabled: !item["debugLogsEnabled"]
+      ? item["debugLogsEnabled"]
+      : item["debugLogsEnabled"],
+    publicIPDisabled: !item["publicIPDisabled"]
+      ? item["publicIPDisabled"]
+      : item["publicIPDisabled"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -1117,7 +1217,7 @@ export interface ErrorDetails {
 
 export function errorDetailsDeserializer(item: any): ErrorDetails {
   return {
-    message: item["message"],
+    message: !item["message"] ? item["message"] : item["message"],
   };
 }
 
@@ -1125,7 +1225,7 @@ export function errorDetailsArrayDeserializer(
   result: Array<ErrorDetails>,
 ): any[] {
   return result.map((item) => {
-    errorDetailsDeserializer(item);
+    return errorDetailsDeserializer(item);
   });
 }
 
@@ -1175,26 +1275,56 @@ export interface TestRunStatistics {
 
 export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
   return {
-    transaction: item["transaction"],
-    sampleCount: item["sampleCount"],
-    errorCount: item["errorCount"],
-    errorPct: item["errorPct"],
-    meanResTime: item["meanResTime"],
-    medianResTime: item["medianResTime"],
-    maxResTime: item["maxResTime"],
-    minResTime: item["minResTime"],
-    pct1ResTime: item["pct1ResTime"],
-    pct2ResTime: item["pct2ResTime"],
-    pct3ResTime: item["pct3ResTime"],
-    pct75ResTime: item["pct75ResTime"],
-    pct96ResTime: item["pct96ResTime"],
-    pct97ResTime: item["pct97ResTime"],
-    pct98ResTime: item["pct98ResTime"],
-    pct999ResTime: item["pct999ResTime"],
-    pct9999ResTime: item["pct9999ResTime"],
-    throughput: item["throughput"],
-    receivedKBytesPerSec: item["receivedKBytesPerSec"],
-    sentKBytesPerSec: item["sentKBytesPerSec"],
+    transaction: !item["transaction"]
+      ? item["transaction"]
+      : item["transaction"],
+    sampleCount: !item["sampleCount"]
+      ? item["sampleCount"]
+      : item["sampleCount"],
+    errorCount: !item["errorCount"] ? item["errorCount"] : item["errorCount"],
+    errorPct: !item["errorPct"] ? item["errorPct"] : item["errorPct"],
+    meanResTime: !item["meanResTime"]
+      ? item["meanResTime"]
+      : item["meanResTime"],
+    medianResTime: !item["medianResTime"]
+      ? item["medianResTime"]
+      : item["medianResTime"],
+    maxResTime: !item["maxResTime"] ? item["maxResTime"] : item["maxResTime"],
+    minResTime: !item["minResTime"] ? item["minResTime"] : item["minResTime"],
+    pct1ResTime: !item["pct1ResTime"]
+      ? item["pct1ResTime"]
+      : item["pct1ResTime"],
+    pct2ResTime: !item["pct2ResTime"]
+      ? item["pct2ResTime"]
+      : item["pct2ResTime"],
+    pct3ResTime: !item["pct3ResTime"]
+      ? item["pct3ResTime"]
+      : item["pct3ResTime"],
+    pct75ResTime: !item["pct75ResTime"]
+      ? item["pct75ResTime"]
+      : item["pct75ResTime"],
+    pct96ResTime: !item["pct96ResTime"]
+      ? item["pct96ResTime"]
+      : item["pct96ResTime"],
+    pct97ResTime: !item["pct97ResTime"]
+      ? item["pct97ResTime"]
+      : item["pct97ResTime"],
+    pct98ResTime: !item["pct98ResTime"]
+      ? item["pct98ResTime"]
+      : item["pct98ResTime"],
+    pct999ResTime: !item["pct999ResTime"]
+      ? item["pct999ResTime"]
+      : item["pct999ResTime"],
+    pct9999ResTime: !item["pct9999ResTime"]
+      ? item["pct9999ResTime"]
+      : item["pct9999ResTime"],
+    throughput: !item["throughput"] ? item["throughput"] : item["throughput"],
+    receivedKBytesPerSec: !item["receivedKBytesPerSec"]
+      ? item["receivedKBytesPerSec"]
+      : item["receivedKBytesPerSec"],
+    sentKBytesPerSec: !item["sentKBytesPerSec"]
+      ? item["sentKBytesPerSec"]
+      : item["sentKBytesPerSec"],
   };
 }
 
@@ -1203,7 +1333,9 @@ export function testRunStatisticsRecordDeserializer(
 ): Record<string, TestRunStatistics> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = testRunStatisticsDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : testRunStatisticsDeserializer(item[key]);
   });
   return result;
 }
@@ -1287,11 +1419,17 @@ export interface TestRunFileInfo {
 export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   return {
     fileName: item["fileName"],
-    url: item["url"],
-    fileType: item["fileType"],
-    expireDateTime: new Date(item["expireDateTime"]),
-    validationStatus: item["validationStatus"],
-    validationFailureDetails: item["validationFailureDetails"],
+    url: !item["url"] ? item["url"] : item["url"],
+    fileType: !item["fileType"] ? item["fileType"] : item["fileType"],
+    expireDateTime: !item["expireDateTime"]
+      ? item["expireDateTime"]
+      : new Date(item["expireDateTime"]),
+    validationStatus: !item["validationStatus"]
+      ? item["validationStatus"]
+      : item["validationStatus"],
+    validationFailureDetails: !item["validationFailureDetails"]
+      ? item["validationFailureDetails"]
+      : item["validationFailureDetails"],
   };
 }
 
@@ -1299,7 +1437,7 @@ export function testRunFileInfoArrayDeserializer(
   result: Array<TestRunFileInfo>,
 ): any[] {
   return result.map((item) => {
-    testRunFileInfoDeserializer(item);
+    return testRunFileInfoDeserializer(item);
   });
 }
 
@@ -1346,8 +1484,10 @@ export function artifactsContainerInfoDeserializer(
   item: any,
 ): ArtifactsContainerInfo {
   return {
-    url: item["url"],
-    expireDateTime: new Date(item["expireDateTime"]),
+    url: !item["url"] ? item["url"] : item["url"],
+    expireDateTime: !item["expireDateTime"]
+      ? item["expireDateTime"]
+      : new Date(item["expireDateTime"]),
   };
 }
 
@@ -1481,11 +1621,17 @@ export function testRunAppComponentsDeserializer(
 ): TestRunAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
-    testRunId: item["testRunId"],
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    testRunId: !item["testRunId"] ? item["testRunId"] : item["testRunId"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -1523,14 +1669,20 @@ export function testRunServerMetricConfigDeserializer(
   item: any,
 ): TestRunServerMetricConfig {
   return {
-    testRunId: item["testRunId"],
+    testRunId: !item["testRunId"] ? item["testRunId"] : item["testRunId"],
     metrics: !item["metrics"]
       ? item["metrics"]
       : resourceMetricRecordDeserializer(item["metrics"]),
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -1546,11 +1698,13 @@ export interface DimensionValueList {
 
 export function dimensionValueListDeserializer(item: any): DimensionValueList {
   return {
-    name: item["name"],
-    value: item["value"].map((p: any) => {
-      return p;
-    }),
-    nextLink: item["nextLink"],
+    name: !item["name"] ? item["name"] : item["name"],
+    value: !item["value"]
+      ? item["value"]
+      : item["value"].map((p: any) => {
+          return p;
+        }),
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -1596,16 +1750,20 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
     dimensions: !item["dimensions"]
       ? item["dimensions"]
       : nameAndDescArrayDeserializer(item["dimensions"]),
-    description: item["description"],
-    name: item["name"],
-    namespace: item["namespace"],
-    primaryAggregationType: item["primaryAggregationType"],
-    supportedAggregationTypes: item["supportedAggregationTypes"].map(
-      (p: any) => {
-        return p;
-      },
-    ),
-    unit: item["unit"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    name: !item["name"] ? item["name"] : item["name"],
+    namespace: !item["namespace"] ? item["namespace"] : item["namespace"],
+    primaryAggregationType: !item["primaryAggregationType"]
+      ? item["primaryAggregationType"]
+      : item["primaryAggregationType"],
+    supportedAggregationTypes: !item["supportedAggregationTypes"]
+      ? item["supportedAggregationTypes"]
+      : item["supportedAggregationTypes"].map((p: any) => {
+          return p;
+        }),
+    unit: !item["unit"] ? item["unit"] : item["unit"],
     metricAvailabilities: !item["metricAvailabilities"]
       ? item["metricAvailabilities"]
       : metricAvailabilityArrayDeserializer(item["metricAvailabilities"]),
@@ -1622,8 +1780,10 @@ export interface NameAndDesc {
 
 export function nameAndDescDeserializer(item: any): NameAndDesc {
   return {
-    description: item["description"],
-    name: item["name"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    name: !item["name"] ? item["name"] : item["name"],
   };
 }
 
@@ -1631,7 +1791,7 @@ export function nameAndDescArrayDeserializer(
   result: Array<NameAndDesc>,
 ): any[] {
   return result.map((item) => {
-    nameAndDescDeserializer(item);
+    return nameAndDescDeserializer(item);
   });
 }
 
@@ -1733,7 +1893,7 @@ export interface MetricAvailability {
 
 export function metricAvailabilityDeserializer(item: any): MetricAvailability {
   return {
-    timeGrain: item["timeGrain"],
+    timeGrain: !item["timeGrain"] ? item["timeGrain"] : item["timeGrain"],
   };
 }
 
@@ -1768,7 +1928,7 @@ export function metricAvailabilityArrayDeserializer(
   result: Array<MetricAvailability>,
 ): any[] {
   return result.map((item) => {
-    metricAvailabilityDeserializer(item);
+    return metricAvailabilityDeserializer(item);
   });
 }
 
@@ -1776,7 +1936,7 @@ export function metricDefinitionArrayDeserializer(
   result: Array<MetricDefinition>,
 ): any[] {
   return result.map((item) => {
-    metricDefinitionDeserializer(item);
+    return metricDefinitionDeserializer(item);
   });
 }
 
@@ -1804,8 +1964,10 @@ export interface MetricNamespace {
 
 export function metricNamespaceDeserializer(item: any): MetricNamespace {
   return {
-    description: item["description"],
-    name: item["name"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    name: !item["name"] ? item["name"] : item["name"],
   };
 }
 
@@ -1813,7 +1975,7 @@ export function metricNamespaceArrayDeserializer(
   result: Array<MetricNamespace>,
 ): any[] {
   return result.map((item) => {
-    metricNamespaceDeserializer(item);
+    return metricNamespaceDeserializer(item);
   });
 }
 
@@ -1861,7 +2023,7 @@ export function dimensionFilterArraySerializer(
   result: Array<DimensionFilter>,
 ): any[] {
   return result.map((item) => {
-    dimensionFilterSerializer(item);
+    return dimensionFilterSerializer(item);
   });
 }
 
@@ -1876,7 +2038,7 @@ export interface _Metrics {
 export function _metricsDeserializer(item: any): _Metrics {
   return {
     value: timeSeriesElementArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -1909,8 +2071,10 @@ export interface MetricValue {
 
 export function metricValueDeserializer(item: any): MetricValue {
   return {
-    timestamp: new Date(item["timestamp"]),
-    value: item["value"],
+    timestamp: !item["timestamp"]
+      ? item["timestamp"]
+      : new Date(item["timestamp"]),
+    value: !item["value"] ? item["value"] : item["value"],
   };
 }
 
@@ -1918,7 +2082,7 @@ export function metricValueArrayDeserializer(
   result: Array<MetricValue>,
 ): any[] {
   return result.map((item) => {
-    metricValueDeserializer(item);
+    return metricValueDeserializer(item);
   });
 }
 
@@ -1932,8 +2096,8 @@ export interface DimensionValue {
 
 export function dimensionValueDeserializer(item: any): DimensionValue {
   return {
-    name: item["name"],
-    value: item["value"],
+    name: !item["name"] ? item["name"] : item["name"],
+    value: !item["value"] ? item["value"] : item["value"],
   };
 }
 
@@ -1941,7 +2105,7 @@ export function dimensionValueArrayDeserializer(
   result: Array<DimensionValue>,
 ): any[] {
   return result.map((item) => {
-    dimensionValueDeserializer(item);
+    return dimensionValueDeserializer(item);
   });
 }
 
@@ -1949,7 +2113,7 @@ export function timeSeriesElementArrayDeserializer(
   result: Array<TimeSeriesElement>,
 ): any[] {
   return result.map((item) => {
-    timeSeriesElementDeserializer(item);
+    return timeSeriesElementDeserializer(item);
   });
 }
 
@@ -1994,19 +2158,31 @@ export function testProfileSerializer(item: TestProfile): any {
 export function testProfileDeserializer(item: any): TestProfile {
   return {
     testProfileId: item["testProfileId"],
-    displayName: item["displayName"],
-    description: item["description"],
-    testId: item["testId"],
-    targetResourceId: item["targetResourceId"],
+    displayName: !item["displayName"]
+      ? item["displayName"]
+      : item["displayName"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    testId: !item["testId"] ? item["testId"] : item["testId"],
+    targetResourceId: !item["targetResourceId"]
+      ? item["targetResourceId"]
+      : item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
           item["targetResourceConfigurations"],
         ),
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -2146,9 +2322,9 @@ export function functionFlexConsumptionResourceConfigurationRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = functionFlexConsumptionResourceConfigurationSerializer(
-      item[key],
-    );
+    result[key] = !item[key]
+      ? item[key]
+      : functionFlexConsumptionResourceConfigurationSerializer(item[key]);
   });
   return result;
 }
@@ -2158,9 +2334,9 @@ export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
 ): Record<string, FunctionFlexConsumptionResourceConfiguration> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = functionFlexConsumptionResourceConfigurationDeserializer(
-      item[key],
-    );
+    result[key] = !item[key]
+      ? item[key]
+      : functionFlexConsumptionResourceConfigurationDeserializer(item[key]);
   });
   return result;
 }
@@ -2217,32 +2393,52 @@ export function testProfileRunSerializer(item: TestProfileRun): any {
 export function testProfileRunDeserializer(item: any): TestProfileRun {
   return {
     testProfileRunId: item["testProfileRunId"],
-    displayName: item["displayName"],
-    description: item["description"],
-    testProfileId: item["testProfileId"],
-    targetResourceId: item["targetResourceId"],
+    displayName: !item["displayName"]
+      ? item["displayName"]
+      : item["displayName"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
+    testProfileId: !item["testProfileId"]
+      ? item["testProfileId"]
+      : item["testProfileId"],
+    targetResourceId: !item["targetResourceId"]
+      ? item["targetResourceId"]
+      : item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
           item["targetResourceConfigurations"],
         ),
-    status: item["status"],
+    status: !item["status"] ? item["status"] : item["status"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
-    startDateTime: new Date(item["startDateTime"]),
-    endDateTime: new Date(item["endDateTime"]),
-    durationInSeconds: item["durationInSeconds"],
+    startDateTime: !item["startDateTime"]
+      ? item["startDateTime"]
+      : new Date(item["startDateTime"]),
+    endDateTime: !item["endDateTime"]
+      ? item["endDateTime"]
+      : new Date(item["endDateTime"]),
+    durationInSeconds: !item["durationInSeconds"]
+      ? item["durationInSeconds"]
+      : item["durationInSeconds"],
     testRunDetails: !item["testRunDetails"]
       ? item["testRunDetails"]
       : testRunDetailRecordDeserializer(item["testRunDetails"]),
     recommendations: !item["recommendations"]
       ? item["recommendations"]
       : testProfileRunRecommendationArrayDeserializer(item["recommendations"]),
-    createdDateTime: new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
   };
 }
 
@@ -2302,7 +2498,7 @@ export function testRunDetailRecordDeserializer(
 ): Record<string, TestRunDetail> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = testRunDetailDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : testRunDetailDeserializer(item[key]);
   });
   return result;
 }
@@ -2320,9 +2516,11 @@ export function testProfileRunRecommendationDeserializer(
 ): TestProfileRunRecommendation {
   return {
     category: item["category"],
-    configurations: item["configurations"].map((p: any) => {
-      return p;
-    }),
+    configurations: !item["configurations"]
+      ? item["configurations"]
+      : item["configurations"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -2348,7 +2546,7 @@ export function testProfileRunRecommendationArrayDeserializer(
   result: Array<TestProfileRunRecommendation>,
 ): any[] {
   return result.map((item) => {
-    testProfileRunRecommendationDeserializer(item);
+    return testProfileRunRecommendationDeserializer(item);
   });
 }
 
@@ -2363,7 +2561,7 @@ export interface _PagedTestFileInfo {
 export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
   return {
     value: testFileInfoArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -2378,19 +2576,19 @@ export interface _PagedTest {
 export function _pagedTestDeserializer(item: any): _PagedTest {
   return {
     value: testArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
 export function testArraySerializer(result: Array<Test>): any[] {
   return result.map((item) => {
-    testSerializer(item);
+    return testSerializer(item);
   });
 }
 
 export function testArrayDeserializer(result: Array<Test>): any[] {
   return result.map((item) => {
-    testDeserializer(item);
+    return testDeserializer(item);
   });
 }
 
@@ -2405,19 +2603,19 @@ export interface _PagedTestRun {
 export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
   return {
     value: testRunArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
 export function testRunArraySerializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
-    testRunSerializer(item);
+    return testRunSerializer(item);
   });
 }
 
 export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
-    testRunDeserializer(item);
+    return testRunDeserializer(item);
   });
 }
 
@@ -2432,13 +2630,13 @@ export interface _PagedTestProfile {
 export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
   return {
     value: testProfileArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
 export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
   return result.map((item) => {
-    testProfileSerializer(item);
+    return testProfileSerializer(item);
   });
 }
 
@@ -2446,7 +2644,7 @@ export function testProfileArrayDeserializer(
   result: Array<TestProfile>,
 ): any[] {
   return result.map((item) => {
-    testProfileDeserializer(item);
+    return testProfileDeserializer(item);
   });
 }
 
@@ -2463,7 +2661,7 @@ export function _pagedTestProfileRunDeserializer(
 ): _PagedTestProfileRun {
   return {
     value: testProfileRunArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -2471,7 +2669,7 @@ export function testProfileRunArraySerializer(
   result: Array<TestProfileRun>,
 ): any[] {
   return result.map((item) => {
-    testProfileRunSerializer(item);
+    return testProfileRunSerializer(item);
   });
 }
 
@@ -2479,6 +2677,6 @@ export function testProfileRunArrayDeserializer(
   result: Array<TestProfileRun>,
 ): any[] {
   return result.map((item) => {
-    testProfileRunDeserializer(item);
+    return testProfileRunDeserializer(item);
   });
 }

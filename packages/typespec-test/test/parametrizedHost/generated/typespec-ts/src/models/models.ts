@@ -14,6 +14,6 @@ export function collectionDeserializer(item: any): Collection {
 
 export function collectionArrayDeserializer(result: Array<Collection>): any[] {
   return result.map((item) => {
-    collectionDeserializer(item);
+    return collectionDeserializer(item);
   });
 }

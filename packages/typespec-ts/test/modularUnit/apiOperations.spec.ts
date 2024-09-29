@@ -31,7 +31,6 @@ describe("api operations in Modular", () => {
            createRestError,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -42,7 +41,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "application/octet-stream",
-               body: uint8ArrayToString(body, "base64"),
+               body: body,
              });
          }
          export async function _uploadFileViaBodyDeserialize(
@@ -313,7 +312,6 @@ describe("api operations in Modular", () => {
            createRestError,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptionalParams = { requestOptions: {} }
@@ -329,9 +327,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
              throw createRestError(result);
            }
-           return typeof result.body === "string"
-             ? stringToUint8Array(result.body, "base64")
-             : result.body;
+           return result.body;
          }
          export async function downloadFile(
            context: Client,

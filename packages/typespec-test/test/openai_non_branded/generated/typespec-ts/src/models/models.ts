@@ -256,13 +256,13 @@ export function createModerationResponseResultArrayDeserializer(
   result: Array<CreateModerationResponseResult>,
 ): any[] {
   return result.map((item) => {
-    createModerationResponseResultDeserializer(item);
+    return createModerationResponseResultDeserializer(item);
   });
 }
 
 /** model interface ErrorResponse */
 export interface ErrorResponse {
-  error: Error;
+  error: ErrorModel;
 }
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
@@ -271,20 +271,20 @@ export function errorResponseDeserializer(item: any): ErrorResponse {
   };
 }
 
-/** model interface Error */
-export interface Error {
+/** model interface ErrorModel */
+export interface ErrorModel {
   type: string;
   message: string;
   param: string | null;
   code: string | null;
 }
 
-export function errorDeserializer(item: any): Error {
+export function errorDeserializer(item: any): ErrorModel {
   return {
     type: item["type"],
     message: item["message"],
-    param: item["param"],
-    code: item["code"],
+    param: !item["param"] ? item["param"] : item["param"],
+    code: !item["code"] ? item["code"] : item["code"],
   };
 }
 
@@ -339,9 +339,10 @@ export interface Image {
 
 export function imageDeserializer(item: any): Image {
   return {
-    url: item["url"],
-    b64_json:
-      typeof item["b64_json"] === "string"
+    url: !item["url"] ? item["url"] : item["url"],
+    b64_json: !item["b64_json"]
+      ? item["b64_json"]
+      : typeof item["b64_json"] === "string"
         ? stringToUint8Array(item["b64_json"], "base64")
         : item["b64_json"],
   };
@@ -349,7 +350,7 @@ export function imageDeserializer(item: any): Image {
 
 export function imageArrayDeserializer(result: Array<Image>): any[] {
   return result.map((item) => {
-    imageDeserializer(item);
+    return imageDeserializer(item);
   });
 }
 
@@ -457,7 +458,7 @@ export function modelDeserializer(item: any): Model {
 
 export function modelArrayDeserializer(result: Array<Model>): any[] {
   return result.map((item) => {
-    modelDeserializer(item);
+    return modelDeserializer(item);
   });
 }
 
@@ -670,7 +671,9 @@ export function fineTuneDeserializer(item: any): FineTune {
     created_at: new Date(item["created_at"]),
     updated_at: new Date(item["updated_at"]),
     model: item["model"],
-    fine_tuned_model: item["fine_tuned_model"],
+    fine_tuned_model: !item["fine_tuned_model"]
+      ? item["fine_tuned_model"]
+      : item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: item["status"],
     hyperparams: fineTuneHyperparamsDeserializer(item["hyperparams"]),
@@ -723,9 +726,15 @@ export function fineTuneHyperparamsDeserializer(
     batch_size: item["batch_size"],
     prompt_loss_weight: item["prompt_loss_weight"],
     learning_rate_multiplier: item["learning_rate_multiplier"],
-    compute_classification_metrics: item["compute_classification_metrics"],
-    classification_positive_class: item["classification_positive_class"],
-    classification_n_classes: item["classification_n_classes"],
+    compute_classification_metrics: !item["compute_classification_metrics"]
+      ? item["compute_classification_metrics"]
+      : item["compute_classification_metrics"],
+    classification_positive_class: !item["classification_positive_class"]
+      ? item["classification_positive_class"]
+      : item["classification_positive_class"],
+    classification_n_classes: !item["classification_n_classes"]
+      ? item["classification_n_classes"]
+      : item["classification_n_classes"],
   };
 }
 
@@ -770,7 +779,9 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     filename: item["filename"],
     purpose: item["purpose"],
     status: item["status"],
-    status_details: item["status_details"],
+    status_details: !item["status_details"]
+      ? item["status_details"]
+      : item["status_details"],
   };
 }
 
@@ -785,7 +796,7 @@ export type OpenAIFileStatus =
 
 export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   return result.map((item) => {
-    openAIFileDeserializer(item);
+    return openAIFileDeserializer(item);
   });
 }
 
@@ -810,7 +821,7 @@ export function fineTuneEventArrayDeserializer(
   result: Array<FineTuneEvent>,
 ): any[] {
   return result.map((item) => {
-    fineTuneEventDeserializer(item);
+    return fineTuneEventDeserializer(item);
   });
 }
 
@@ -831,7 +842,7 @@ export function listFineTunesResponseDeserializer(
 
 export function fineTuneArrayDeserializer(result: Array<FineTune>): any[] {
   return result.map((item) => {
-    fineTuneDeserializer(item);
+    return fineTuneDeserializer(item);
   });
 }
 
@@ -998,7 +1009,7 @@ export function embeddingDeserializer(item: any): Embedding {
 
 export function embeddingArrayDeserializer(result: Array<Embedding>): any[] {
   return result.map((item) => {
-    embeddingDeserializer(item);
+    return embeddingDeserializer(item);
   });
 }
 
@@ -1120,7 +1131,7 @@ export function createEditResponseChoiceArrayDeserializer(
   result: Array<CreateEditResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    createEditResponseChoiceDeserializer(item);
+    return createEditResponseChoiceDeserializer(item);
   });
 }
 
@@ -1385,7 +1396,7 @@ export function createCompletionResponseChoiceDeserializer(
   return {
     index: item["index"],
     text: item["text"],
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"] ? item["logprobs"] : item["logprobs"],
     finish_reason: item["finish_reason"],
   };
 }
@@ -1427,7 +1438,7 @@ export function createCompletionResponseChoiceArrayDeserializer(
   result: Array<CreateCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    createCompletionResponseChoiceDeserializer(item);
+    return createCompletionResponseChoiceDeserializer(item);
   });
 }
 
@@ -1611,21 +1622,29 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     created_at: new Date(item["created_at"]),
     finished_at: !item["finished_at"]
       ? item["finished_at"]
-      : new Date(item["finished_at"]),
+      : !item["finished_at"]
+        ? item["finished_at"]
+        : new Date(item["finished_at"]),
     model: item["model"],
-    fine_tuned_model: item["fine_tuned_model"],
+    fine_tuned_model: !item["fine_tuned_model"]
+      ? item["fine_tuned_model"]
+      : item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: item["status"],
     hyperparameters: fineTuningJobHyperparametersDeserializer(
       item["hyperparameters"],
     ),
     training_file: item["training_file"],
-    validation_file: item["validation_file"],
+    validation_file: !item["validation_file"]
+      ? item["validation_file"]
+      : item["validation_file"],
     result_files: item["result_files"].map((p: any) => {
       return p;
     }),
-    trained_tokens: item["trained_tokens"],
-    error: item["error"],
+    trained_tokens: !item["trained_tokens"]
+      ? item["trained_tokens"]
+      : item["trained_tokens"],
+    error: !item["error"] ? item["error"] : item["error"],
   };
 }
 
@@ -1690,9 +1709,9 @@ export interface FineTuningJobError {
 
 export function fineTuningJobErrorDeserializer(item: any): FineTuningJobError {
   return {
-    message: item["message"],
-    code: item["code"],
-    param: item["param"],
+    message: !item["message"] ? item["message"] : item["message"],
+    code: !item["code"] ? item["code"] : item["code"],
+    param: !item["param"] ? item["param"] : item["param"],
   };
 }
 
@@ -1717,7 +1736,7 @@ export function fineTuningJobArrayDeserializer(
   result: Array<FineTuningJob>,
 ): any[] {
   return result.map((item) => {
-    fineTuningJobDeserializer(item);
+    return fineTuningJobDeserializer(item);
   });
 }
 
@@ -1762,7 +1781,7 @@ export function fineTuningJobEventArrayDeserializer(
   result: Array<FineTuningJobEvent>,
 ): any[] {
   return result.map((item) => {
-    fineTuningJobEventDeserializer(item);
+    return fineTuningJobEventDeserializer(item);
   });
 }
 
@@ -1975,7 +1994,7 @@ export function chatCompletionRequestMessageArraySerializer(
   result: Array<ChatCompletionRequestMessage>,
 ): any[] {
   return result.map((item) => {
-    chatCompletionRequestMessageSerializer(item);
+    return chatCompletionRequestMessageSerializer(item);
   });
 }
 
@@ -2024,7 +2043,7 @@ export function chatCompletionFunctionsArraySerializer(
   result: Array<ChatCompletionFunctions>,
 ): any[] {
   return result.map((item) => {
-    chatCompletionFunctionsSerializer(item);
+    return chatCompletionFunctionsSerializer(item);
   });
 }
 
@@ -2139,7 +2158,7 @@ export function chatCompletionResponseMessageDeserializer(
 ): ChatCompletionResponseMessage {
   return {
     role: item["role"],
-    content: item["content"],
+    content: !item["content"] ? item["content"] : item["content"],
     function_call: !item["function_call"]
       ? item["function_call"]
       : chatCompletionResponseMessageFunctionCallDeserializer(
@@ -2187,7 +2206,7 @@ export function createChatCompletionResponseChoiceArrayDeserializer(
   result: Array<CreateChatCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    createChatCompletionResponseChoiceDeserializer(item);
+    return createChatCompletionResponseChoiceDeserializer(item);
   });
 }
 

@@ -1075,7 +1075,7 @@ describe("inheritance & polymorphism", () => {
       export function catDeserializer(item: any): Cat {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           kind: item["kind"],
           meow: item["meow"],
         };
@@ -1090,7 +1090,7 @@ describe("inheritance & polymorphism", () => {
       export function petDeserializer(item: any): Pet {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
         };
       }
 
@@ -1103,7 +1103,7 @@ describe("inheritance & polymorphism", () => {
       export function dogDeserializer(item: any): Dog {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           kind: item["kind"],
           bark: item["bark"],
         };
@@ -1153,7 +1153,7 @@ describe("inheritance & polymorphism", () => {
       export function catDeserializer(item: any): Cat {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           kind: item["kind"],
           meow: item["meow"],
         };
@@ -1168,7 +1168,7 @@ describe("inheritance & polymorphism", () => {
       export function petDeserializer(item: any): Pet {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
         };
       }`
     );
@@ -1242,7 +1242,7 @@ describe("inheritance & polymorphism", () => {
 
       export function catDeserializer(item: any): Cat {
         return {
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           name: item["name"],
           kind: item["kind"],
           meow: item["meow"],
@@ -1257,7 +1257,7 @@ describe("inheritance & polymorphism", () => {
       export function petDeserializer(item: any): Pet {
         return {
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
         };
       }
       
@@ -1350,7 +1350,7 @@ describe("inheritance & polymorphism", () => {
         return {
           kind: item["kind"],
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           meow: item["meow"],
         };
       }
@@ -1366,7 +1366,7 @@ describe("inheritance & polymorphism", () => {
         return {
           kind: item["kind"],
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
         };
       }
       
@@ -1460,7 +1460,7 @@ describe("inheritance & polymorphism", () => {
         return {
           kind: item["kind"],
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
         };
       }
 
@@ -1489,7 +1489,7 @@ describe("inheritance & polymorphism", () => {
         return {
           kind: item["kind"],
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           meow: item["meow"],
         };
       }
@@ -1504,7 +1504,7 @@ describe("inheritance & polymorphism", () => {
         return {
           kind: item["kind"],
           name: item["name"],
-          weight: item["weight"],
+          weight: !item["weight"] ? item["weight"] : item["weight"],
           bark: item["bark"],
         };
       }

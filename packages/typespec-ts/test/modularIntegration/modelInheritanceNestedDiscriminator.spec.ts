@@ -102,8 +102,8 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client.getRecursiveModel();
       assert.strictEqual(
-        JSON.stringify(result),
-        JSON.stringify(validRecursiveBody)
+        JSON.stringify(result, Object.keys(result).sort()),
+        JSON.stringify(validRecursiveBody, Object.keys(validRecursiveBody).sort())
       );
       if (result.kind === "salmon") {
         assert.strictEqual(

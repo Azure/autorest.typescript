@@ -24,11 +24,11 @@ export function dataProductSerializer(item: DataProduct): any {
 
 export function dataProductDeserializer(item: any): DataProduct {
   return {
-    tags: item["tags"],
+    tags: !item["tags"] ? item["tags"] : item["tags"],
     location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
@@ -125,21 +125,38 @@ export function dataProductPropertiesDeserializer(
   item: any,
 ): DataProductProperties {
   return {
-    resourceGuid: item["resourceGuid"],
-    provisioningState: item["provisioningState"],
+    resourceGuid: !item["resourceGuid"]
+      ? item["resourceGuid"]
+      : item["resourceGuid"],
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
+      : item["provisioningState"],
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
-    owners: item["owners"].map((p: any) => {
-      return p;
-    }),
-    redundancy: item["redundancy"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled:
-      item["customerManagedKeyEncryptionEnabled"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
+    redundancy: !item["redundancy"] ? item["redundancy"] : item["redundancy"],
+    purviewAccount: !item["purviewAccount"]
+      ? item["purviewAccount"]
+      : item["purviewAccount"],
+    purviewCollection: !item["purviewCollection"]
+      ? item["purviewCollection"]
+      : item["purviewCollection"],
+    privateLinksEnabled: !item["privateLinksEnabled"]
+      ? item["privateLinksEnabled"]
+      : item["privateLinksEnabled"],
+    publicNetworkAccess: !item["publicNetworkAccess"]
+      ? item["publicNetworkAccess"]
+      : item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled: !item[
+      "customerManagedKeyEncryptionEnabled"
+    ]
+      ? item["customerManagedKeyEncryptionEnabled"]
+      : item["customerManagedKeyEncryptionEnabled"],
     customerEncryptionKey: !item["customerEncryptionKey"]
       ? item["customerEncryptionKey"]
       : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
@@ -153,17 +170,25 @@ export function dataProductPropertiesDeserializer(
       : managedResourceGroupConfigurationDeserializer(
           item["managedResourceGroupConfiguration"],
         ),
-    availableMinorVersions: item["availableMinorVersions"].map((p: any) => {
-      return p;
-    }),
-    currentMinorVersion: item["currentMinorVersion"],
-    documentation: item["documentation"],
+    availableMinorVersions: !item["availableMinorVersions"]
+      ? item["availableMinorVersions"]
+      : item["availableMinorVersions"].map((p: any) => {
+          return p;
+        }),
+    currentMinorVersion: !item["currentMinorVersion"]
+      ? item["currentMinorVersion"]
+      : item["currentMinorVersion"],
+    documentation: !item["documentation"]
+      ? item["documentation"]
+      : item["documentation"],
     consumptionEndpoints: !item["consumptionEndpoints"]
       ? item["consumptionEndpoints"]
       : consumptionEndpointsPropertiesDeserializer(
           item["consumptionEndpoints"],
         ),
-    keyVaultUrl: item["keyVaultUrl"],
+    keyVaultUrl: !item["keyVaultUrl"]
+      ? item["keyVaultUrl"]
+      : item["keyVaultUrl"],
   };
 }
 
@@ -307,8 +332,8 @@ export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
 export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   return {
     id: item["id"],
-    action: item["action"],
-    state: item["state"],
+    action: !item["action"] ? item["action"] : item["action"],
+    state: !item["state"] ? item["state"] : item["state"],
   };
 }
 
@@ -316,7 +341,7 @@ export function virtualNetworkRuleArraySerializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
   return result.map((item) => {
-    virtualNetworkRuleSerializer(item);
+    return virtualNetworkRuleSerializer(item);
   });
 }
 
@@ -324,7 +349,7 @@ export function virtualNetworkRuleArrayDeserializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
   return result.map((item) => {
-    virtualNetworkRuleDeserializer(item);
+    return virtualNetworkRuleDeserializer(item);
   });
 }
 
@@ -342,20 +367,20 @@ export function iPRulesSerializer(item: IPRules): any {
 
 export function iPRulesDeserializer(item: any): IPRules {
   return {
-    value: item["value"],
+    value: !item["value"] ? item["value"] : item["value"],
     action: item["action"],
   };
 }
 
 export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    iPRulesSerializer(item);
+    return iPRulesSerializer(item);
   });
 }
 
 export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    iPRulesDeserializer(item);
+    return iPRulesDeserializer(item);
   });
 }
 
@@ -420,12 +445,22 @@ export function consumptionEndpointsPropertiesDeserializer(
   item: any,
 ): ConsumptionEndpointsProperties {
   return {
-    ingestionUrl: item["ingestionUrl"],
-    ingestionResourceId: item["ingestionResourceId"],
-    fileAccessUrl: item["fileAccessUrl"],
-    fileAccessResourceId: item["fileAccessResourceId"],
-    queryUrl: item["queryUrl"],
-    queryResourceId: item["queryResourceId"],
+    ingestionUrl: !item["ingestionUrl"]
+      ? item["ingestionUrl"]
+      : item["ingestionUrl"],
+    ingestionResourceId: !item["ingestionResourceId"]
+      ? item["ingestionResourceId"]
+      : item["ingestionResourceId"],
+    fileAccessUrl: !item["fileAccessUrl"]
+      ? item["fileAccessUrl"]
+      : item["fileAccessUrl"],
+    fileAccessResourceId: !item["fileAccessResourceId"]
+      ? item["fileAccessResourceId"]
+      : item["fileAccessResourceId"],
+    queryUrl: !item["queryUrl"] ? item["queryUrl"] : item["queryUrl"],
+    queryResourceId: !item["queryResourceId"]
+      ? item["queryResourceId"]
+      : item["queryResourceId"],
   };
 }
 
@@ -456,8 +491,10 @@ export function managedServiceIdentityV4Deserializer(
   item: any,
 ): ManagedServiceIdentityV4 {
   return {
-    principalId: item["principalId"],
-    tenantId: item["tenantId"],
+    principalId: !item["principalId"]
+      ? item["principalId"]
+      : item["principalId"],
+    tenantId: !item["tenantId"] ? item["tenantId"] : item["tenantId"],
     type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
@@ -507,8 +544,10 @@ export function userAssignedIdentityDeserializer(
   item: any,
 ): UserAssignedIdentity {
   return {
-    principalId: item["principalId"],
-    clientId: item["clientId"],
+    principalId: !item["principalId"]
+      ? item["principalId"]
+      : item["principalId"],
+    clientId: !item["clientId"] ? item["clientId"] : item["clientId"],
   };
 }
 
@@ -517,7 +556,9 @@ export function userAssignedIdentityRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = userAssignedIdentitySerializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : userAssignedIdentitySerializer(item[key]);
   });
   return result;
 }
@@ -527,7 +568,9 @@ export function userAssignedIdentityRecordDeserializer(
 ): Record<string, UserAssignedIdentity> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = userAssignedIdentityDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : userAssignedIdentityDeserializer(item[key]);
   });
   return result;
 }
@@ -546,13 +589,13 @@ export function trackedResourceSerializer(item: TrackedResource): any {
 
 export function trackedResourceDeserializer(item: any): TrackedResource {
   return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    tags: item["tags"],
+    tags: !item["tags"] ? item["tags"] : item["tags"],
     location: item["location"],
   };
 }
@@ -575,9 +618,9 @@ export function resourceSerializer(item: Resource): any {
 
 export function resourceDeserializer(item: any): Resource {
   return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
@@ -602,12 +645,22 @@ export interface SystemData {
 
 export function systemDataDeserializer(item: any): SystemData {
   return {
-    createdBy: item["createdBy"],
-    createdByType: item["createdByType"],
-    createdAt: new Date(item["createdAt"]),
-    lastModifiedBy: item["lastModifiedBy"],
-    lastModifiedByType: item["lastModifiedByType"],
-    lastModifiedAt: new Date(item["lastModifiedAt"]),
+    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdByType: !item["createdByType"]
+      ? item["createdByType"]
+      : item["createdByType"],
+    createdAt: !item["createdAt"]
+      ? item["createdAt"]
+      : new Date(item["createdAt"]),
+    lastModifiedBy: !item["lastModifiedBy"]
+      ? item["lastModifiedBy"]
+      : item["lastModifiedBy"],
+    lastModifiedByType: !item["lastModifiedByType"]
+      ? item["lastModifiedByType"]
+      : item["lastModifiedByType"],
+    lastModifiedAt: !item["lastModifiedAt"]
+      ? item["lastModifiedAt"]
+      : new Date(item["lastModifiedAt"]),
   };
 }
 
@@ -665,9 +718,9 @@ export interface ErrorDetail {
 
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
-    code: item["code"],
-    message: item["message"],
-    target: item["target"],
+    code: !item["code"] ? item["code"] : item["code"],
+    message: !item["message"] ? item["message"] : item["message"],
+    target: !item["target"] ? item["target"] : item["target"],
     details: !item["details"]
       ? item["details"]
       : errorDetailArrayDeserializer(item["details"]),
@@ -681,7 +734,7 @@ export function errorDetailArrayDeserializer(
   result: Array<ErrorDetail>,
 ): any[] {
   return result.map((item) => {
-    errorDetailDeserializer(item);
+    return errorDetailDeserializer(item);
   });
 }
 
@@ -697,7 +750,7 @@ export function errorAdditionalInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfo {
   return {
-    type: item["type"],
+    type: !item["type"] ? item["type"] : item["type"],
     info: !item["info"]
       ? item["info"]
       : errorAdditionalInfoInfoDeserializer(item["info"]),
@@ -717,7 +770,7 @@ export function errorAdditionalInfoArrayDeserializer(
   result: Array<ErrorAdditionalInfo>,
 ): any[] {
   return result.map((item) => {
-    errorAdditionalInfoDeserializer(item);
+    return errorAdditionalInfoDeserializer(item);
   });
 }
 
@@ -948,7 +1001,7 @@ export function roleAssignmentDetailArraySerializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
   return result.map((item) => {
-    roleAssignmentDetailSerializer(item);
+    return roleAssignmentDetailSerializer(item);
   });
 }
 
@@ -956,7 +1009,7 @@ export function roleAssignmentDetailArrayDeserializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
   return result.map((item) => {
-    roleAssignmentDetailDeserializer(item);
+    return roleAssignmentDetailDeserializer(item);
   });
 }
 
@@ -973,13 +1026,13 @@ export function _dataProductListResultDeserializer(
 ): _DataProductListResult {
   return {
     value: dataProductArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
 export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
   return result.map((item) => {
-    dataProductSerializer(item);
+    return dataProductSerializer(item);
   });
 }
 
@@ -987,7 +1040,7 @@ export function dataProductArrayDeserializer(
   result: Array<DataProduct>,
 ): any[] {
   return result.map((item) => {
-    dataProductDeserializer(item);
+    return dataProductDeserializer(item);
   });
 }
 
@@ -1007,9 +1060,9 @@ export function dataTypeSerializer(item: DataType): any {
 
 export function dataTypeDeserializer(item: any): DataType {
   return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
@@ -1048,13 +1101,25 @@ export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
 
 export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
   return {
-    provisioningState: item["provisioningState"],
-    state: item["state"],
-    stateReason: item["stateReason"],
-    storageOutputRetention: item["storageOutputRetention"],
-    databaseCacheRetention: item["databaseCacheRetention"],
-    databaseRetention: item["databaseRetention"],
-    visualizationUrl: item["visualizationUrl"],
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
+      : item["provisioningState"],
+    state: !item["state"] ? item["state"] : item["state"],
+    stateReason: !item["stateReason"]
+      ? item["stateReason"]
+      : item["stateReason"],
+    storageOutputRetention: !item["storageOutputRetention"]
+      ? item["storageOutputRetention"]
+      : item["storageOutputRetention"],
+    databaseCacheRetention: !item["databaseCacheRetention"]
+      ? item["databaseCacheRetention"]
+      : item["databaseCacheRetention"],
+    databaseRetention: !item["databaseRetention"]
+      ? item["databaseRetention"]
+      : item["databaseRetention"],
+    visualizationUrl: !item["visualizationUrl"]
+      ? item["visualizationUrl"]
+      : item["visualizationUrl"],
   };
 }
 
@@ -1085,9 +1150,9 @@ export function proxyResourceSerializer(item: ProxyResource): any {
 
 export function proxyResourceDeserializer(item: any): ProxyResource {
   return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
@@ -1181,19 +1246,19 @@ export function _dataTypeListResultDeserializer(
 ): _DataTypeListResult {
   return {
     value: dataTypeArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
 export function dataTypeArraySerializer(result: Array<DataType>): any[] {
   return result.map((item) => {
-    dataTypeSerializer(item);
+    return dataTypeSerializer(item);
   });
 }
 
 export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {
   return result.map((item) => {
-    dataTypeDeserializer(item);
+    return dataTypeDeserializer(item);
   });
 }
 
@@ -1207,9 +1272,9 @@ export function dataProductsCatalogDeserializer(
   item: any,
 ): DataProductsCatalog {
   return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
+    id: !item["id"] ? item["id"] : item["id"],
+    name: !item["name"] ? item["name"] : item["name"],
+    type: !item["type"] ? item["type"] : item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
@@ -1231,7 +1296,9 @@ export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
   return {
-    provisioningState: item["provisioningState"],
+    provisioningState: !item["provisioningState"]
+      ? item["provisioningState"]
+      : item["provisioningState"],
     publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
 }
@@ -1291,7 +1358,7 @@ export function dataProductVersionArrayDeserializer(
   result: Array<DataProductVersion>,
 ): any[] {
   return result.map((item) => {
-    dataProductVersionDeserializer(item);
+    return dataProductVersionDeserializer(item);
   });
 }
 
@@ -1299,7 +1366,7 @@ export function dataProductInformationArrayDeserializer(
   result: Array<DataProductInformation>,
 ): any[] {
   return result.map((item) => {
-    dataProductInformationDeserializer(item);
+    return dataProductInformationDeserializer(item);
   });
 }
 
@@ -1307,7 +1374,7 @@ export function publisherInformationArrayDeserializer(
   result: Array<PublisherInformation>,
 ): any[] {
   return result.map((item) => {
-    publisherInformationDeserializer(item);
+    return publisherInformationDeserializer(item);
   });
 }
 
@@ -1324,7 +1391,7 @@ export function _dataProductsCatalogListResultDeserializer(
 ): _DataProductsCatalogListResult {
   return {
     value: dataProductsCatalogArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -1332,7 +1399,7 @@ export function dataProductsCatalogArrayDeserializer(
   result: Array<DataProductsCatalog>,
 ): any[] {
   return result.map((item) => {
-    dataProductsCatalogDeserializer(item);
+    return dataProductsCatalogDeserializer(item);
   });
 }
 
@@ -1349,7 +1416,7 @@ export function _operationListResultDeserializer(
 ): _OperationListResult {
   return {
     value: operationArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -1369,13 +1436,15 @@ export interface Operation {
 
 export function operationDeserializer(item: any): Operation {
   return {
-    name: item["name"],
-    isDataAction: item["isDataAction"],
+    name: !item["name"] ? item["name"] : item["name"],
+    isDataAction: !item["isDataAction"]
+      ? item["isDataAction"]
+      : item["isDataAction"],
     display: !item["display"]
       ? item["display"]
       : operationDisplayDeserializer(item["display"]),
-    origin: item["origin"],
-    actionType: item["actionType"],
+    origin: !item["origin"] ? item["origin"] : item["origin"],
+    actionType: !item["actionType"] ? item["actionType"] : item["actionType"],
   };
 }
 
@@ -1393,10 +1462,12 @@ export interface OperationDisplay {
 
 export function operationDisplayDeserializer(item: any): OperationDisplay {
   return {
-    provider: item["provider"],
-    resource: item["resource"],
-    operation: item["operation"],
-    description: item["description"],
+    provider: !item["provider"] ? item["provider"] : item["provider"],
+    resource: !item["resource"] ? item["resource"] : item["resource"],
+    operation: !item["operation"] ? item["operation"] : item["operation"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
   };
 }
 
@@ -1438,6 +1509,6 @@ export type ActionType = string;
 
 export function operationArrayDeserializer(result: Array<Operation>): any[] {
   return result.map((item) => {
-    operationDeserializer(item);
+    return operationDeserializer(item);
   });
 }

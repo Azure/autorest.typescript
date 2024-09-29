@@ -21,7 +21,9 @@ export function textBlocklistSerializer(item: TextBlocklist): any {
 export function textBlocklistDeserializer(item: any): TextBlocklist {
   return {
     blocklistName: item["blocklistName"],
-    description: item["description"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
   };
 }
 
@@ -53,7 +55,7 @@ export function textBlockItemInfoArraySerializer(
   result: Array<TextBlockItemInfo>,
 ): any[] {
   return result.map((item) => {
-    textBlockItemInfoSerializer(item);
+    return textBlockItemInfoSerializer(item);
   });
 }
 
@@ -86,7 +88,9 @@ export interface TextBlockItem {
 export function textBlockItemDeserializer(item: any): TextBlockItem {
   return {
     blockItemId: item["blockItemId"],
-    description: item["description"],
+    description: !item["description"]
+      ? item["description"]
+      : item["description"],
     text: item["text"],
   };
 }
@@ -95,7 +99,7 @@ export function textBlockItemArrayDeserializer(
   result: Array<TextBlockItem>,
 ): any[] {
   return result.map((item) => {
-    textBlockItemDeserializer(item);
+    return textBlockItemDeserializer(item);
   });
 }
 
@@ -186,7 +190,7 @@ export function imageAnalyzeSeverityResultDeserializer(
 ): ImageAnalyzeSeverityResult {
   return {
     category: item["category"],
-    severity: item["severity"],
+    severity: !item["severity"] ? item["severity"] : item["severity"],
   };
 }
 
@@ -194,7 +198,7 @@ export function imageAnalyzeSeverityResultArrayDeserializer(
   result: Array<ImageAnalyzeSeverityResult>,
 ): any[] {
   return result.map((item) => {
-    imageAnalyzeSeverityResultDeserializer(item);
+    return imageAnalyzeSeverityResultDeserializer(item);
   });
 }
 
@@ -280,7 +284,7 @@ export function textBlocklistMatchResultArrayDeserializer(
   result: Array<TextBlocklistMatchResult>,
 ): any[] {
   return result.map((item) => {
-    textBlocklistMatchResultDeserializer(item);
+    return textBlocklistMatchResultDeserializer(item);
   });
 }
 
@@ -297,7 +301,7 @@ export function textAnalyzeSeverityResultDeserializer(
 ): TextAnalyzeSeverityResult {
   return {
     category: item["category"],
-    severity: item["severity"],
+    severity: !item["severity"] ? item["severity"] : item["severity"],
   };
 }
 
@@ -305,7 +309,7 @@ export function textAnalyzeSeverityResultArrayDeserializer(
   result: Array<TextAnalyzeSeverityResult>,
 ): any[] {
   return result.map((item) => {
-    textAnalyzeSeverityResultDeserializer(item);
+    return textAnalyzeSeverityResultDeserializer(item);
   });
 }
 
@@ -322,7 +326,7 @@ export function _pagedTextBlocklistDeserializer(
 ): _PagedTextBlocklist {
   return {
     value: textBlocklistArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -330,7 +334,7 @@ export function textBlocklistArraySerializer(
   result: Array<TextBlocklist>,
 ): any[] {
   return result.map((item) => {
-    textBlocklistSerializer(item);
+    return textBlocklistSerializer(item);
   });
 }
 
@@ -338,7 +342,7 @@ export function textBlocklistArrayDeserializer(
   result: Array<TextBlocklist>,
 ): any[] {
   return result.map((item) => {
-    textBlocklistDeserializer(item);
+    return textBlocklistDeserializer(item);
   });
 }
 
@@ -355,6 +359,6 @@ export function _pagedTextBlockItemDeserializer(
 ): _PagedTextBlockItem {
   return {
     value: textBlockItemArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }

@@ -108,7 +108,7 @@ export interface _PagedSchemaGroup {
 export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   return {
     value: schemaGroupArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -116,7 +116,7 @@ export function schemaGroupArrayDeserializer(
   result: Array<SchemaGroup>,
 ): any[] {
   return result.map((item) => {
-    schemaGroupDeserializer(item);
+    return schemaGroupDeserializer(item);
   });
 }
 
@@ -131,7 +131,7 @@ export interface _PagedVersion {
 export function _pagedVersionDeserializer(item: any): _PagedVersion {
   return {
     value: schemaVersionArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
   };
 }
 
@@ -139,6 +139,6 @@ export function schemaVersionArrayDeserializer(
   result: Array<SchemaVersion>,
 ): any[] {
   return result.map((item) => {
-    schemaVersionDeserializer(item);
+    return schemaVersionDeserializer(item);
   });
 }

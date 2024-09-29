@@ -397,7 +397,7 @@ function buildDictTypeDeserializer(
   const valueDeserializer = buildModelDeserializer(
     context,
     type.valueType,
-    true,
+    false,
     true
   );
   if (!valueDeserializer) {
@@ -458,7 +458,7 @@ function buildArrayTypeDeserializer(
   const valueDeserializer = buildModelDeserializer(
     context,
     type.valueType,
-    true,
+    false,
     true
   );
   if (!valueDeserializer) {

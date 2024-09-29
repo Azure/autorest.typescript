@@ -51,7 +51,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 
 export function _createOrUpdateTestSend(
   context: Client,
@@ -402,7 +401,7 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
       queryParameters: { fileType: options?.fileType },
-      body: uint8ArrayToString(body, "base64"),
+      body: body,
     });
 }
 

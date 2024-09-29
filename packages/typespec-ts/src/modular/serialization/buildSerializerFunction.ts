@@ -397,7 +397,7 @@ function buildDictTypeSerializer(
   const valueSerializer = buildModelSerializer(
     context,
     type.valueType,
-    true,
+    false,
     true
   );
   if (!valueSerializer) {
@@ -458,7 +458,7 @@ function buildArrayTypeSerializer(
   const valueSerializer = buildModelSerializer(
     context,
     type.valueType,
-    true,
+    false,
     true
   );
   if (!valueSerializer) {

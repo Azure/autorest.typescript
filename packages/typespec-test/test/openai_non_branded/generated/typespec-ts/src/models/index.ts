@@ -9,7 +9,7 @@ export {
   CreateModerationResponseResultCategories,
   CreateModerationResponseResultCategoryScores,
   ErrorResponse,
-  Error,
+  ErrorModel,
   CreateImageRequest,
   CreateImageRequestSize,
   CreateImageRequestResponseFormat,

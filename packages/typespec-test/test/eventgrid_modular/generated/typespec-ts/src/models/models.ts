@@ -59,17 +59,20 @@ export function cloudEventDeserializer(item: any): CloudEvent {
   return {
     id: item["id"],
     source: item["source"],
-    data: item["data"],
-    data_base64:
-      typeof item["data_base64"] === "string"
+    data: !item["data"] ? item["data"] : item["data"],
+    data_base64: !item["data_base64"]
+      ? item["data_base64"]
+      : typeof item["data_base64"] === "string"
         ? stringToUint8Array(item["data_base64"], "base64")
         : item["data_base64"],
     type: item["type"],
-    time: new Date(item["time"]),
+    time: !item["time"] ? item["time"] : new Date(item["time"]),
     specversion: item["specversion"],
-    dataschema: item["dataschema"],
-    datacontenttype: item["datacontenttype"],
-    subject: item["subject"],
+    dataschema: !item["dataschema"] ? item["dataschema"] : item["dataschema"],
+    datacontenttype: !item["datacontenttype"]
+      ? item["datacontenttype"]
+      : item["datacontenttype"],
+    subject: !item["subject"] ? item["subject"] : item["subject"],
   };
 }
 
@@ -126,7 +129,7 @@ export function receiveDetailsArrayDeserializer(
   result: Array<ReceiveDetails>,
 ): any[] {
   return result.map((item) => {
-    receiveDetailsDeserializer(item);
+    return receiveDetailsDeserializer(item);
   });
 }
 
@@ -185,7 +188,7 @@ export function failedLockTokenArrayDeserializer(
   result: Array<FailedLockToken>,
 ): any[] {
   return result.map((item) => {
-    failedLockTokenDeserializer(item);
+    return failedLockTokenDeserializer(item);
   });
 }
 
@@ -257,12 +260,12 @@ export function rejectResultDeserializer(item: any): RejectResult {
 
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {
   return result.map((item) => {
-    cloudEventSerializer(item);
+    return cloudEventSerializer(item);
   });
 }
 
 export function cloudEventArrayDeserializer(result: Array<CloudEvent>): any[] {
   return result.map((item) => {
-    cloudEventDeserializer(item);
+    return cloudEventDeserializer(item);
   });
 }

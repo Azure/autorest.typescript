@@ -1014,7 +1014,7 @@ describe("anonymous model", () => {
            result: Array<ReturnBodyEmptyAnomyousArray>,
          ): any[] {
            return result.map((item) => {
-             returnBodyEmptyAnomyousArrayDeserializer(item);
+             return returnBodyEmptyAnomyousArrayDeserializer(item);
            });
          }
          
@@ -1032,7 +1032,9 @@ describe("anonymous model", () => {
          ): Record<string, ReturnBodyEmptyAnomyousDict> {
            const result: Record<string, any> = {};
            Object.keys(item).map((key) => {
-             result[key] = returnBodyEmptyAnomyousDictDeserializer(item[key]);
+             result[key] = !item[key]
+               ? item[key]
+               : returnBodyEmptyAnomyousDictDeserializer(item[key]);
            });
            return result;
          }
@@ -1046,7 +1048,7 @@ describe("anonymous model", () => {
          
          export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
            return result.map((item) => {
-             emptyModelDeserializer(item);
+             return emptyModelDeserializer(item);
            });
          }
          
@@ -1055,7 +1057,7 @@ describe("anonymous model", () => {
          ): Record<string, EmptyModel> {
            const result: Record<string, any> = {};
            Object.keys(item).map((key) => {
-             result[key] = emptyModelDeserializer(item[key]);
+             result[key] = !item[key] ? item[key] : emptyModelDeserializer(item[key]);
            });
            return result;
          }
@@ -1209,7 +1211,7 @@ describe("anonymous model", () => {
              result: Array<SimpleModel>,
            ): any[] {
              return result.map((item) => {
-               simpleModelDeserializer(item);
+               return simpleModelDeserializer(item);
              });
            }
            
@@ -1235,7 +1237,7 @@ describe("anonymous model", () => {
              item: any,
            ): FozBazNonemptyAnomyousArray {
              return {
-               b: item["b"],
+               b: !item["b"] ? item["b"] : item["b"],
              };
            }
            
@@ -1243,7 +1245,7 @@ describe("anonymous model", () => {
              result: Array<FozBazNonemptyAnomyousArray>,
            ): any[] {
              return result.map((item) => {
-               fozBazNonemptyAnomyousArrayDeserializer(item);
+               return fozBazNonemptyAnomyousArrayDeserializer(item);
              });
            }
            
@@ -1267,7 +1269,9 @@ describe("anonymous model", () => {
            ): Record<string, FozBazNonemptyAnomyousDict> {
              const result: Record<string, any> = {};
              Object.keys(item).map((key) => {
-               result[key] = fozBazNonemptyAnomyousDictDeserializer(item[key]);
+              result[key] = !item[key]
+                ? item[key]
+                : fozBazNonemptyAnomyousDictDeserializer(item[key]);
              });
              return result;
            }
