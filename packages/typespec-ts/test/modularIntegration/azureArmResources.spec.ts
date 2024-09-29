@@ -106,14 +106,13 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.type, validSingletonResource.type);
   });
 
-  it.only("should list singleton tracked resources by resourceGroup", async () => {
+  it("should list singleton tracked resources by resourceGroup", async () => {
     const result =
       client.singletonTrackedResources.listByResourceGroup("test-rg");
     const items = [];
     for await (const user of result) {
       items.push(user);
     }
-    console.log(items);
     assert.strictEqual(items[0]?.id, validSingletonResource.id);
     assert.strictEqual(items[0]?.name, validSingletonResource.name);
     assert.strictEqual(items[0]?.type, validSingletonResource.type);

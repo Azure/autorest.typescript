@@ -177,7 +177,7 @@ export function getDeserializePrivateFunction(
           context,
           deserializedType,
           deserializedRoot,
-          deserializedType.format
+          response.isBinaryPayload ? "binary" : deserializedType.format
         )}`
       );
     }
@@ -189,7 +189,7 @@ export function getDeserializePrivateFunction(
         context,
         deserializedType,
         deserializedRoot,
-        deserializedType.format
+        response.isBinaryPayload ? "binary" : deserializedType.format
       )}`
     );
   } else {
@@ -574,7 +574,7 @@ function buildBodyParameter(
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyParameter.clientName},`;
   }
-  return `\nbody: ${nullOrUndefinedPrefix}${serializeRequestValue(context, bodyParameter.type, bodyParameter.clientName, !bodyParameter.optional, bodyParameter.type.format)},`;
+  return `\nbody: ${nullOrUndefinedPrefix}${serializeRequestValue(context, bodyParameter.type, bodyParameter.clientName, !bodyParameter.optional, bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format)},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -1063,7 +1063,7 @@ export function deserializeResponseValue(
       ) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.elementType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.elementType, "p", type.elementType?.format)}})`;
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.elementType, "p", type.format)}})`;
       } else {
         return restValue;
       }

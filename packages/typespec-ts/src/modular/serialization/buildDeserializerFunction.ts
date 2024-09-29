@@ -492,7 +492,7 @@ function buildArrayTypeDeserializer(
     statements: [
       `
   return result.map((item) => {
-    ${valueDeserializer}(item)
+    return ${valueDeserializer}(item)
   });
       `
     ]

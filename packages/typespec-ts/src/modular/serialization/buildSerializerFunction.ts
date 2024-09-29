@@ -492,7 +492,7 @@ function buildArrayTypeSerializer(
     statements: [
       `
   return result.map((item) => {
-    ${valueSerializer}(item)
+    return ${valueSerializer}(item)
   });
       `
     ]
