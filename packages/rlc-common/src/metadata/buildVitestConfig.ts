@@ -29,6 +29,7 @@ const nodeConfig = `export default defineConfig({
       "reportsDirectory": "coverage"
     },
     testTimeout: 1200000,
+    hookTimeout: 1200000
   }
 });`;
 
@@ -71,6 +72,7 @@ export default defineConfig({
         "reportsDirectory": "coverage-browser"
       },
       testTimeout: 1200000,
+      hookTimeout: 1200000
     }
   });`;
 
