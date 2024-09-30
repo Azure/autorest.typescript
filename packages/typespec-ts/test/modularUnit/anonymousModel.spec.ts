@@ -1237,7 +1237,7 @@ describe("anonymous model", () => {
              item: any,
            ): FozBazNonemptyAnomyousArray {
              return {
-               b: !item["b"] ? item["b"] : item["b"],
+               b: item["b"],
              };
            }
            

@@ -72,9 +72,7 @@ export function _listWidgetsPagesResultsDeserializer(
 ): _ListWidgetsPagesResults {
   return {
     results: widgetArrayDeserializer(item["results"]),
-    "odata.nextLink": !item["odata.nextLink"]
-      ? item["odata.nextLink"]
-      : item["odata.nextLink"],
+    "odata.nextLink": item["odata.nextLink"],
   };
 }
 

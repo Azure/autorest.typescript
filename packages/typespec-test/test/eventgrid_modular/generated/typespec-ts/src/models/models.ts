@@ -45,9 +45,11 @@ export function cloudEventSerializer(item: CloudEvent): any {
     data: item["data"],
     data_base64: !item["data_base64"]
       ? item["data_base64"]
-      : uint8ArrayToString(item["data_base64"], "base64"),
+      : !item["data_base64"]
+        ? item["data_base64"]
+        : uint8ArrayToString(item["data_base64"], "base64"),
     type: item["type"],
-    time: item["time"]?.toISOString(),
+    time: !item["time"] ? item["time"] : item["time"]?.toISOString(),
     specversion: item["specversion"],
     dataschema: item["dataschema"],
     datacontenttype: item["datacontenttype"],
@@ -59,7 +61,7 @@ export function cloudEventDeserializer(item: any): CloudEvent {
   return {
     id: item["id"],
     source: item["source"],
-    data: !item["data"] ? item["data"] : item["data"],
+    data: item["data"],
     data_base64: !item["data_base64"]
       ? item["data_base64"]
       : typeof item["data_base64"] === "string"
@@ -68,11 +70,9 @@ export function cloudEventDeserializer(item: any): CloudEvent {
     type: item["type"],
     time: !item["time"] ? item["time"] : new Date(item["time"]),
     specversion: item["specversion"],
-    dataschema: !item["dataschema"] ? item["dataschema"] : item["dataschema"],
-    datacontenttype: !item["datacontenttype"]
-      ? item["datacontenttype"]
-      : item["datacontenttype"],
-    subject: !item["subject"] ? item["subject"] : item["subject"],
+    dataschema: item["dataschema"],
+    datacontenttype: item["datacontenttype"],
+    subject: item["subject"],
   };
 }
 

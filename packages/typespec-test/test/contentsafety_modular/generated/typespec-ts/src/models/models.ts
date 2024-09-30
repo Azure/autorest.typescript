@@ -21,9 +21,7 @@ export function textBlocklistSerializer(item: TextBlocklist): any {
 export function textBlocklistDeserializer(item: any): TextBlocklist {
   return {
     blocklistName: item["blocklistName"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
+    description: item["description"],
   };
 }
 
@@ -88,9 +86,7 @@ export interface TextBlockItem {
 export function textBlockItemDeserializer(item: any): TextBlockItem {
   return {
     blockItemId: item["blockItemId"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
+    description: item["description"],
     text: item["text"],
   };
 }
@@ -134,9 +130,11 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
     image: imageDataSerializer(item["image"]),
     categories: !item["categories"]
       ? item["categories"]
-      : item["categories"].map((p: any) => {
-          return p;
-        }),
+      : !item["categories"]
+        ? item["categories"]
+        : item["categories"].map((p: any) => {
+            return p;
+          }),
     outputType: item["outputType"],
   };
 }
@@ -153,7 +151,9 @@ export function imageDataSerializer(item: ImageData): any {
   return {
     content: !item["content"]
       ? item["content"]
-      : uint8ArrayToString(item["content"], "base64"),
+      : !item["content"]
+        ? item["content"]
+        : uint8ArrayToString(item["content"], "base64"),
     blobUrl: item["blobUrl"],
   };
 }
@@ -190,7 +190,7 @@ export function imageAnalyzeSeverityResultDeserializer(
 ): ImageAnalyzeSeverityResult {
   return {
     category: item["category"],
-    severity: !item["severity"] ? item["severity"] : item["severity"],
+    severity: item["severity"],
   };
 }
 
@@ -221,14 +221,18 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
     text: item["text"],
     categories: !item["categories"]
       ? item["categories"]
-      : item["categories"].map((p: any) => {
-          return p;
-        }),
+      : !item["categories"]
+        ? item["categories"]
+        : item["categories"].map((p: any) => {
+            return p;
+          }),
     blocklistNames: !item["blocklistNames"]
       ? item["blocklistNames"]
-      : item["blocklistNames"].map((p: any) => {
-          return p;
-        }),
+      : !item["blocklistNames"]
+        ? item["blocklistNames"]
+        : item["blocklistNames"].map((p: any) => {
+            return p;
+          }),
     breakByBlocklists: item["breakByBlocklists"],
     outputType: item["outputType"],
   };
@@ -301,7 +305,7 @@ export function textAnalyzeSeverityResultDeserializer(
 ): TextAnalyzeSeverityResult {
   return {
     category: item["category"],
-    severity: !item["severity"] ? item["severity"] : item["severity"],
+    severity: item["severity"],
   };
 }
 
@@ -326,7 +330,7 @@ export function _pagedTextBlocklistDeserializer(
 ): _PagedTextBlocklist {
   return {
     value: textBlocklistArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -359,6 +363,6 @@ export function _pagedTextBlockItemDeserializer(
 ): _PagedTextBlockItem {
   return {
     value: textBlockItemArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }

@@ -55,9 +55,11 @@ export function audioTranscriptionOptionsSerializer(
     temperature: item["temperature"],
     timestamp_granularities: !item["timestampGranularities"]
       ? item["timestampGranularities"]
-      : item["timestampGranularities"].map((p: any) => {
-          return p;
-        }),
+      : !item["timestampGranularities"]
+        ? item["timestampGranularities"]
+        : item["timestampGranularities"].map((p: any) => {
+            return p;
+          }),
     model: item["model"],
   };
 }
@@ -94,9 +96,9 @@ export interface AudioTranscription {
 export function audioTranscriptionDeserializer(item: any): AudioTranscription {
   return {
     text: item["text"],
-    task: !item["task"] ? item["task"] : item["task"],
-    language: !item["language"] ? item["language"] : item["language"],
-    duration: !item["duration"] ? item["duration"] : item["duration"],
+    task: item["task"],
+    language: item["language"],
+    duration: item["duration"],
     segments: !item["segments"]
       ? item["segments"]
       : audioTranscriptionSegmentArrayDeserializer(item["segments"]),
@@ -265,9 +267,9 @@ export interface AudioTranslation {
 export function audioTranslationDeserializer(item: any): AudioTranslation {
   return {
     text: item["text"],
-    task: !item["task"] ? item["task"] : item["task"],
-    language: !item["language"] ? item["language"] : item["language"],
-    duration: !item["duration"] ? item["duration"] : item["duration"],
+    task: item["task"],
+    language: item["language"],
+    duration: item["duration"],
     segments: !item["segments"]
       ? item["segments"]
       : audioTranslationSegmentArrayDeserializer(item["segments"]),
@@ -445,9 +447,11 @@ export function completionsOptionsSerializer(item: CompletionsOptions): any {
     echo: item["echo"],
     stop: !item["stop"]
       ? item["stop"]
-      : item["stop"].map((p: any) => {
-          return p;
-        }),
+      : !item["stop"]
+        ? item["stop"]
+        : item["stop"].map((p: any) => {
+            return p;
+          }),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     best_of: item["bestOf"],
@@ -709,10 +713,8 @@ export function choiceDeserializer(item: any): Choice {
       : contentFilterResultsForChoiceDeserializer(
           item["content_filter_results"],
         ),
-    logprobs: !item["logprobs"] ? item["logprobs"] : item["logprobs"],
-    finishReason: !item["finish_reason"]
-      ? item["finish_reason"]
-      : item["finish_reason"],
+    logprobs: item["logprobs"],
+    finishReason: item["finish_reason"],
   };
 }
 
@@ -812,7 +814,7 @@ export function contentFilterCitedDetectionResultDeserializer(
   return {
     filtered: item["filtered"],
     detected: item["detected"],
-    url: !item["URL"] ? item["URL"] : item["URL"],
+    url: item["URL"],
     license: item["license"],
   };
 }
@@ -1015,9 +1017,11 @@ export function chatCompletionsOptionsSerializer(
     n: item["n"],
     stop: !item["stop"]
       ? item["stop"]
-      : item["stop"].map((p: any) => {
-          return p;
-        }),
+      : !item["stop"]
+        ? item["stop"]
+        : item["stop"].map((p: any) => {
+            return p;
+          }),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     stream: item["stream"],
@@ -1680,9 +1684,11 @@ export function azureSearchChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
-          return p;
-        }),
+      : !item["includeContexts"]
+        ? item["includeContexts"]
+        : item["includeContexts"].map((p: any) => {
+            return p;
+          }),
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item["fieldsMapping"]
@@ -1916,20 +1922,26 @@ export function azureSearchIndexFieldMappingOptionsSerializer(
     filepath_field: item["filepathField"],
     content_fields: !item["contentFields"]
       ? item["contentFields"]
-      : item["contentFields"].map((p: any) => {
-          return p;
-        }),
+      : !item["contentFields"]
+        ? item["contentFields"]
+        : item["contentFields"].map((p: any) => {
+            return p;
+          }),
     content_fields_separator: item["contentFieldsSeparator"],
     vector_fields: !item["vectorFields"]
       ? item["vectorFields"]
-      : item["vectorFields"].map((p: any) => {
-          return p;
-        }),
+      : !item["vectorFields"]
+        ? item["vectorFields"]
+        : item["vectorFields"].map((p: any) => {
+            return p;
+          }),
     image_vector_fields: !item["imageVectorFields"]
       ? item["imageVectorFields"]
-      : item["imageVectorFields"].map((p: any) => {
-          return p;
-        }),
+      : !item["imageVectorFields"]
+        ? item["imageVectorFields"]
+        : item["imageVectorFields"].map((p: any) => {
+            return p;
+          }),
   };
 }
 
@@ -2212,9 +2224,11 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
-          return p;
-        }),
+      : !item["includeContexts"]
+        ? item["includeContexts"]
+        : item["includeContexts"].map((p: any) => {
+            return p;
+          }),
     project_resource_id: item["projectResourceId"],
     name: item["name"],
     version: item["version"],
@@ -2308,9 +2322,11 @@ export function azureCosmosDBChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
-          return p;
-        }),
+      : !item["includeContexts"]
+        ? item["includeContexts"]
+        : item["includeContexts"].map((p: any) => {
+            return p;
+          }),
     database_name: item["databaseName"],
     container_name: item["containerName"],
     index_name: item["indexName"],
@@ -2439,9 +2455,11 @@ export function elasticsearchChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
-          return p;
-        }),
+      : !item["includeContexts"]
+        ? item["includeContexts"]
+        : item["includeContexts"].map((p: any) => {
+            return p;
+          }),
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item["fieldsMapping"]
@@ -2481,15 +2499,19 @@ export function elasticsearchIndexFieldMappingOptionsSerializer(
     filepath_field: item["filepathField"],
     content_fields: !item["contentFields"]
       ? item["contentFields"]
-      : item["contentFields"].map((p: any) => {
-          return p;
-        }),
+      : !item["contentFields"]
+        ? item["contentFields"]
+        : item["contentFields"].map((p: any) => {
+            return p;
+          }),
     content_fields_separator: item["contentFieldsSeparator"],
     vector_fields: !item["vectorFields"]
       ? item["vectorFields"]
-      : item["vectorFields"].map((p: any) => {
-          return p;
-        }),
+      : !item["vectorFields"]
+        ? item["vectorFields"]
+        : item["vectorFields"].map((p: any) => {
+            return p;
+          }),
   };
 }
 
@@ -2575,9 +2597,11 @@ export function pineconeChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
-          return p;
-        }),
+      : !item["includeContexts"]
+        ? item["includeContexts"]
+        : item["includeContexts"].map((p: any) => {
+            return p;
+          }),
     environment: item["environment"],
     index_name: item["indexName"],
     fields_mapping: pineconeFieldMappingOptionsSerializer(
@@ -2914,15 +2938,13 @@ export function chatCompletionsDeserializer(item: any): ChatCompletions {
     id: item["id"],
     created: new Date(item["created"]),
     choices: chatChoiceArrayDeserializer(item["choices"]),
-    model: !item["model"] ? item["model"] : item["model"],
+    model: item["model"],
     promptFilterResults: !item["prompt_filter_results"]
       ? item["prompt_filter_results"]
       : contentFilterResultsForPromptArrayDeserializer(
           item["prompt_filter_results"],
         ),
-    systemFingerprint: !item["system_fingerprint"]
-      ? item["system_fingerprint"]
-      : item["system_fingerprint"],
+    systemFingerprint: item["system_fingerprint"],
     usage: completionsUsageDeserializer(item["usage"]),
   };
 }
@@ -2967,11 +2989,9 @@ export function chatChoiceDeserializer(item: any): ChatChoice {
     message: !item["message"]
       ? item["message"]
       : chatResponseMessageDeserializer(item["message"]),
-    logprobs: !item["logprobs"] ? item["logprobs"] : item["logprobs"],
+    logprobs: item["logprobs"],
     index: item["index"],
-    finishReason: !item["finish_reason"]
-      ? item["finish_reason"]
-      : item["finish_reason"],
+    finishReason: item["finish_reason"],
     finishDetails: !item["finish_details"]
       ? item["finish_details"]
       : chatFinishDetailsUnionDeserializer(item["finish_details"]),
@@ -3017,7 +3037,7 @@ export function chatResponseMessageDeserializer(
 ): ChatResponseMessage {
   return {
     role: item["role"],
-    content: !item["content"] ? item["content"] : item["content"],
+    content: item["content"],
     toolCalls: !item["tool_calls"]
       ? item["tool_calls"]
       : chatCompletionsToolCallUnionArrayDeserializer(item["tool_calls"]),
@@ -3058,7 +3078,7 @@ export function azureChatExtensionsMessageContextDeserializer(
       : azureChatExtensionDataSourceResponseCitationArrayDeserializer(
           item["citations"],
         ),
-    intent: !item["intent"] ? item["intent"] : item["intent"],
+    intent: item["intent"],
     allRetrievedDocuments: !item["all_retrieved_documents"]
       ? item["all_retrieved_documents"]
       : azureChatExtensionRetrievedDocumentArrayDeserializer(
@@ -3090,10 +3110,10 @@ export function azureChatExtensionDataSourceResponseCitationDeserializer(
 ): AzureChatExtensionDataSourceResponseCitation {
   return {
     content: item["content"],
-    title: !item["title"] ? item["title"] : item["title"],
-    url: !item["url"] ? item["url"] : item["url"],
-    filepath: !item["filepath"] ? item["filepath"] : item["filepath"],
-    chunk_id: !item["chunk_id"] ? item["chunk_id"] : item["chunk_id"],
+    title: item["title"],
+    url: item["url"],
+    filepath: item["filepath"],
+    chunk_id: item["chunk_id"],
   };
 }
 
@@ -3137,23 +3157,17 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
 ): AzureChatExtensionRetrievedDocument {
   return {
     content: item["content"],
-    title: !item["title"] ? item["title"] : item["title"],
-    url: !item["url"] ? item["url"] : item["url"],
-    filepath: !item["filepath"] ? item["filepath"] : item["filepath"],
-    chunk_id: !item["chunk_id"] ? item["chunk_id"] : item["chunk_id"],
+    title: item["title"],
+    url: item["url"],
+    filepath: item["filepath"],
+    chunk_id: item["chunk_id"],
     searchQueries: item["search_queries"].map((p: any) => {
       return p;
     }),
     dataSourceIndex: item["data_source_index"],
-    originalSearchScore: !item["original_search_score"]
-      ? item["original_search_score"]
-      : item["original_search_score"],
-    rerankScore: !item["rerank_score"]
-      ? item["rerank_score"]
-      : item["rerank_score"],
-    filterReason: !item["filter_reason"]
-      ? item["filter_reason"]
-      : item["filter_reason"],
+    originalSearchScore: item["original_search_score"],
+    rerankScore: item["rerank_score"],
+    filterReason: item["filter_reason"],
   };
 }
 
@@ -3510,16 +3524,14 @@ export function imageGenerationOptionsDeserializer(
   item: any,
 ): ImageGenerationOptions {
   return {
-    model: !item["model"] ? item["model"] : item["model"],
+    model: item["model"],
     prompt: item["prompt"],
-    n: !item["n"] ? item["n"] : item["n"],
-    size: !item["size"] ? item["size"] : item["size"],
-    responseFormat: !item["response_format"]
-      ? item["response_format"]
-      : item["response_format"],
-    quality: !item["quality"] ? item["quality"] : item["quality"],
-    style: !item["style"] ? item["style"] : item["style"],
-    user: !item["user"] ? item["user"] : item["user"],
+    n: item["n"],
+    size: item["size"],
+    responseFormat: item["response_format"],
+    quality: item["quality"],
+    style: item["style"],
+    user: item["user"],
   };
 }
 
@@ -3592,16 +3604,14 @@ export function imageGenerationDataDeserializer(
   item: any,
 ): ImageGenerationData {
   return {
-    url: !item["url"] ? item["url"] : item["url"],
-    base64Data: !item["b64_json"] ? item["b64_json"] : item["b64_json"],
+    url: item["url"],
+    base64Data: item["b64_json"],
     contentFilterResults: !item["content_filter_results"]
       ? item["content_filter_results"]
       : imageGenerationContentFilterResultsDeserializer(
           item["content_filter_results"],
         ),
-    revisedPrompt: !item["revised_prompt"]
-      ? item["revised_prompt"]
-      : item["revised_prompt"],
+    revisedPrompt: item["revised_prompt"],
     promptFilterResults: !item["prompt_filter_results"]
       ? item["prompt_filter_results"]
       : imageGenerationPromptFilterResultsDeserializer(

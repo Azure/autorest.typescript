@@ -574,7 +574,14 @@ function buildBodyParameter(
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyParameter.clientName},`;
   }
-  return `\nbody: ${nullOrUndefinedPrefix}${serializeRequestValue(context, bodyParameter.type, bodyParameter.clientName, !bodyParameter.optional, bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format)},`;
+  const serializedBody = serializeRequestValue(
+    context,
+    bodyParameter.type,
+    bodyParameter.clientName,
+    !bodyParameter.optional,
+    bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format
+  );
+  return `\nbody: ${serializedBody === bodyParameter.clientName ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -863,14 +870,15 @@ export function getRequestModelMapping(
         `"${property.restApiName}": ${nullOrUndefinedPrefix}${propertyFullName}`
       );
     } else {
+      const serializedValue = serializeRequestValue(
+        context,
+        property.type,
+        propertyFullName,
+        !property.optional,
+        property.format
+      );
       props.push(
-        `"${property.restApiName}": ${serializeRequestValue(
-          context,
-          property.type,
-          propertyFullName,
-          !property.optional,
-          property.format
-        )}`
+        `"${property.restApiName}": ${serializedValue === propertyFullName ? "" : nullOrUndefinedPrefix}${serializedValue}`
       );
     }
   }
@@ -915,8 +923,14 @@ export function getResponseMapping(
         `"${property.clientName}": ${nullOrUndefinedPrefix}${restValue}`
       );
     } else {
+      const deserializeValue = deserializeResponseValue(
+        context,
+        property.type,
+        `${propertyPath}${dot}["${property.restApiName}"]`,
+        property.format
+      );
       props.push(
-        `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeResponseValue(context, property.type, `${propertyPath}${dot}["${property.restApiName}"]`, property.format)}`
+        `"${property.clientName}": ${deserializeValue === `${propertyPath}${dot}["${property.restApiName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
       );
     }
   }

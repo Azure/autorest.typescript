@@ -94,46 +94,30 @@ export function testDeserializer(item: any): Test {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: !item["environmentVariables"]
-      ? item["environmentVariables"]
-      : item["environmentVariables"],
+    environmentVariables: item["environmentVariables"],
     loadTestConfiguration: !item["loadTestConfiguration"]
       ? item["loadTestConfiguration"]
       : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
-    baselineTestRunId: !item["baselineTestRunId"]
-      ? item["baselineTestRunId"]
-      : item["baselineTestRunId"],
+    baselineTestRunId: item["baselineTestRunId"],
     inputArtifacts: !item["inputArtifacts"]
       ? item["inputArtifacts"]
       : testInputArtifactsDeserializer(item["inputArtifacts"]),
     testId: item["testId"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    displayName: !item["displayName"]
-      ? item["displayName"]
-      : item["displayName"],
-    subnetId: !item["subnetId"] ? item["subnetId"] : item["subnetId"],
-    kind: !item["kind"] ? item["kind"] : item["kind"],
-    publicIPDisabled: !item["publicIPDisabled"]
-      ? item["publicIPDisabled"]
-      : item["publicIPDisabled"],
-    keyvaultReferenceIdentityType: !item["keyvaultReferenceIdentityType"]
-      ? item["keyvaultReferenceIdentityType"]
-      : item["keyvaultReferenceIdentityType"],
-    keyvaultReferenceIdentityId: !item["keyvaultReferenceIdentityId"]
-      ? item["keyvaultReferenceIdentityId"]
-      : item["keyvaultReferenceIdentityId"],
+    description: item["description"],
+    displayName: item["displayName"],
+    subnetId: item["subnetId"],
+    kind: item["kind"],
+    publicIPDisabled: item["publicIPDisabled"],
+    keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
+    keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -200,20 +184,14 @@ export function passFailMetricSerializer(item: PassFailMetric): any {
 
 export function passFailMetricDeserializer(item: any): PassFailMetric {
   return {
-    clientMetric: !item["clientMetric"]
-      ? item["clientMetric"]
-      : item["clientMetric"],
-    aggregate: !item["aggregate"] ? item["aggregate"] : item["aggregate"],
-    condition: !item["condition"] ? item["condition"] : item["condition"],
-    requestName: !item["requestName"]
-      ? item["requestName"]
-      : item["requestName"],
-    value: !item["value"] ? item["value"] : item["value"],
-    action: !item["action"] ? item["action"] : item["action"],
-    actualValue: !item["actualValue"]
-      ? item["actualValue"]
-      : item["actualValue"],
-    result: !item["result"] ? item["result"] : item["result"],
+    clientMetric: item["clientMetric"],
+    aggregate: item["aggregate"],
+    condition: item["condition"],
+    requestName: item["requestName"],
+    value: item["value"],
+    action: item["action"],
+    actualValue: item["actualValue"],
+    result: item["result"],
   };
 }
 
@@ -382,13 +360,9 @@ export function autoStopCriteriaSerializer(item: AutoStopCriteria): any {
 
 export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
   return {
-    autoStopDisabled: !item["autoStopDisabled"]
-      ? item["autoStopDisabled"]
-      : item["autoStopDisabled"],
-    errorRate: !item["errorRate"] ? item["errorRate"] : item["errorRate"],
-    errorRateTimeWindowInSeconds: !item["errorRateTimeWindowInSeconds"]
-      ? item["errorRateTimeWindowInSeconds"]
-      : item["errorRateTimeWindowInSeconds"],
+    autoStopDisabled: item["autoStopDisabled"],
+    errorRate: item["errorRate"],
+    errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
   };
 }
 
@@ -406,8 +380,8 @@ export function secretSerializer(item: Secret): any {
 
 export function secretDeserializer(item: any): Secret {
   return {
-    value: !item["value"] ? item["value"] : item["value"],
-    type: !item["type"] ? item["type"] : item["type"],
+    value: item["value"],
+    type: item["type"],
   };
 }
 
@@ -467,9 +441,9 @@ export function certificateMetadataDeserializer(
   item: any,
 ): CertificateMetadata {
   return {
-    value: !item["value"] ? item["value"] : item["value"],
-    type: !item["type"] ? item["type"] : item["type"],
-    name: !item["name"] ? item["name"] : item["name"],
+    value: item["value"],
+    type: item["type"],
+    name: item["name"],
   };
 }
 
@@ -530,15 +504,9 @@ export function loadTestConfigurationDeserializer(
   item: any,
 ): LoadTestConfiguration {
   return {
-    engineInstances: !item["engineInstances"]
-      ? item["engineInstances"]
-      : item["engineInstances"],
-    splitAllCSVs: !item["splitAllCSVs"]
-      ? item["splitAllCSVs"]
-      : item["splitAllCSVs"],
-    quickStartTest: !item["quickStartTest"]
-      ? item["quickStartTest"]
-      : item["quickStartTest"],
+    engineInstances: item["engineInstances"],
+    splitAllCSVs: item["splitAllCSVs"],
+    quickStartTest: item["quickStartTest"],
     optionalLoadTestConfig: !item["optionalLoadTestConfig"]
       ? item["optionalLoadTestConfig"]
       : optionalLoadTestConfigDeserializer(item["optionalLoadTestConfig"]),
@@ -581,20 +549,12 @@ export function optionalLoadTestConfigDeserializer(
   item: any,
 ): OptionalLoadTestConfig {
   return {
-    endpointUrl: !item["endpointUrl"]
-      ? item["endpointUrl"]
-      : item["endpointUrl"],
-    requestsPerSecond: !item["requestsPerSecond"]
-      ? item["requestsPerSecond"]
-      : item["requestsPerSecond"],
-    maxResponseTimeInMs: !item["maxResponseTimeInMs"]
-      ? item["maxResponseTimeInMs"]
-      : item["maxResponseTimeInMs"],
-    virtualUsers: !item["virtualUsers"]
-      ? item["virtualUsers"]
-      : item["virtualUsers"],
-    rampUpTime: !item["rampUpTime"] ? item["rampUpTime"] : item["rampUpTime"],
-    duration: !item["duration"] ? item["duration"] : item["duration"],
+    endpointUrl: item["endpointUrl"],
+    requestsPerSecond: item["requestsPerSecond"],
+    maxResponseTimeInMs: item["maxResponseTimeInMs"],
+    virtualUsers: item["virtualUsers"],
+    rampUpTime: item["rampUpTime"],
+    duration: item["duration"],
   };
 }
 
@@ -699,17 +659,13 @@ export interface TestFileInfo {
 export function testFileInfoDeserializer(item: any): TestFileInfo {
   return {
     fileName: item["fileName"],
-    url: !item["url"] ? item["url"] : item["url"],
-    fileType: !item["fileType"] ? item["fileType"] : item["fileType"],
+    url: item["url"],
+    fileType: item["fileType"],
     expireDateTime: !item["expireDateTime"]
       ? item["expireDateTime"]
       : new Date(item["expireDateTime"]),
-    validationStatus: !item["validationStatus"]
-      ? item["validationStatus"]
-      : item["validationStatus"],
-    validationFailureDetails: !item["validationFailureDetails"]
-      ? item["validationFailureDetails"]
-      : item["validationFailureDetails"],
+    validationStatus: item["validationStatus"],
+    validationFailureDetails: item["validationFailureDetails"],
   };
 }
 
@@ -826,17 +782,15 @@ export function testAppComponentsSerializer(item: TestAppComponents): any {
 export function testAppComponentsDeserializer(item: any): TestAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
-    testId: !item["testId"] ? item["testId"] : item["testId"],
+    testId: item["testId"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -872,16 +826,10 @@ export function appComponentDeserializer(item: any): AppComponent {
     resourceId: item["resourceId"],
     resourceName: item["resourceName"],
     resourceType: item["resourceType"],
-    displayName: !item["displayName"]
-      ? item["displayName"]
-      : item["displayName"],
-    resourceGroup: !item["resourceGroup"]
-      ? item["resourceGroup"]
-      : item["resourceGroup"],
-    subscriptionId: !item["subscriptionId"]
-      ? item["subscriptionId"]
-      : item["subscriptionId"],
-    kind: !item["kind"] ? item["kind"] : item["kind"],
+    displayName: item["displayName"],
+    resourceGroup: item["resourceGroup"],
+    subscriptionId: item["subscriptionId"],
+    kind: item["kind"],
   };
 }
 
@@ -935,18 +883,16 @@ export function testServerMetricConfigDeserializer(
   item: any,
 ): TestServerMetricConfig {
   return {
-    testId: !item["testId"] ? item["testId"] : item["testId"],
+    testId: item["testId"],
     metrics: resourceMetricRecordDeserializer(item["metrics"]),
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -988,15 +934,13 @@ export function resourceMetricSerializer(item: ResourceMetric): any {
 
 export function resourceMetricDeserializer(item: any): ResourceMetric {
   return {
-    id: !item["id"] ? item["id"] : item["id"],
+    id: item["id"],
     resourceId: item["resourceId"],
     metricNamespace: item["metricNamespace"],
-    displayDescription: !item["displayDescription"]
-      ? item["displayDescription"]
-      : item["displayDescription"],
+    displayDescription: item["displayDescription"],
     name: item["name"],
     aggregation: item["aggregation"],
-    unit: !item["unit"] ? item["unit"] : item["unit"],
+    unit: item["unit"],
     resourceType: item["resourceType"],
   };
 }
@@ -1144,9 +1088,7 @@ export function testRunDeserializer(item: any): TestRun {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: !item["environmentVariables"]
-      ? item["environmentVariables"]
-      : item["environmentVariables"],
+    environmentVariables: item["environmentVariables"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
@@ -1162,18 +1104,12 @@ export function testRunDeserializer(item: any): TestRun {
     testArtifacts: !item["testArtifacts"]
       ? item["testArtifacts"]
       : testRunArtifactsDeserializer(item["testArtifacts"]),
-    testResult: !item["testResult"] ? item["testResult"] : item["testResult"],
-    virtualUsers: !item["virtualUsers"]
-      ? item["virtualUsers"]
-      : item["virtualUsers"],
-    displayName: !item["displayName"]
-      ? item["displayName"]
-      : item["displayName"],
-    testId: !item["testId"] ? item["testId"] : item["testId"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    status: !item["status"] ? item["status"] : item["status"],
+    testResult: item["testResult"],
+    virtualUsers: item["virtualUsers"],
+    displayName: item["displayName"],
+    testId: item["testId"],
+    description: item["description"],
+    status: item["status"],
     startDateTime: !item["startDateTime"]
       ? item["startDateTime"]
       : new Date(item["startDateTime"]),
@@ -1183,29 +1119,21 @@ export function testRunDeserializer(item: any): TestRun {
     executedDateTime: !item["executedDateTime"]
       ? item["executedDateTime"]
       : new Date(item["executedDateTime"]),
-    portalUrl: !item["portalUrl"] ? item["portalUrl"] : item["portalUrl"],
-    duration: !item["duration"] ? item["duration"] : item["duration"],
-    subnetId: !item["subnetId"] ? item["subnetId"] : item["subnetId"],
-    kind: !item["kind"] ? item["kind"] : item["kind"],
-    requestDataLevel: !item["requestDataLevel"]
-      ? item["requestDataLevel"]
-      : item["requestDataLevel"],
-    debugLogsEnabled: !item["debugLogsEnabled"]
-      ? item["debugLogsEnabled"]
-      : item["debugLogsEnabled"],
-    publicIPDisabled: !item["publicIPDisabled"]
-      ? item["publicIPDisabled"]
-      : item["publicIPDisabled"],
+    portalUrl: item["portalUrl"],
+    duration: item["duration"],
+    subnetId: item["subnetId"],
+    kind: item["kind"],
+    requestDataLevel: item["requestDataLevel"],
+    debugLogsEnabled: item["debugLogsEnabled"],
+    publicIPDisabled: item["publicIPDisabled"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -1217,7 +1145,7 @@ export interface ErrorDetails {
 
 export function errorDetailsDeserializer(item: any): ErrorDetails {
   return {
-    message: !item["message"] ? item["message"] : item["message"],
+    message: item["message"],
   };
 }
 
@@ -1275,56 +1203,26 @@ export interface TestRunStatistics {
 
 export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
   return {
-    transaction: !item["transaction"]
-      ? item["transaction"]
-      : item["transaction"],
-    sampleCount: !item["sampleCount"]
-      ? item["sampleCount"]
-      : item["sampleCount"],
-    errorCount: !item["errorCount"] ? item["errorCount"] : item["errorCount"],
-    errorPct: !item["errorPct"] ? item["errorPct"] : item["errorPct"],
-    meanResTime: !item["meanResTime"]
-      ? item["meanResTime"]
-      : item["meanResTime"],
-    medianResTime: !item["medianResTime"]
-      ? item["medianResTime"]
-      : item["medianResTime"],
-    maxResTime: !item["maxResTime"] ? item["maxResTime"] : item["maxResTime"],
-    minResTime: !item["minResTime"] ? item["minResTime"] : item["minResTime"],
-    pct1ResTime: !item["pct1ResTime"]
-      ? item["pct1ResTime"]
-      : item["pct1ResTime"],
-    pct2ResTime: !item["pct2ResTime"]
-      ? item["pct2ResTime"]
-      : item["pct2ResTime"],
-    pct3ResTime: !item["pct3ResTime"]
-      ? item["pct3ResTime"]
-      : item["pct3ResTime"],
-    pct75ResTime: !item["pct75ResTime"]
-      ? item["pct75ResTime"]
-      : item["pct75ResTime"],
-    pct96ResTime: !item["pct96ResTime"]
-      ? item["pct96ResTime"]
-      : item["pct96ResTime"],
-    pct97ResTime: !item["pct97ResTime"]
-      ? item["pct97ResTime"]
-      : item["pct97ResTime"],
-    pct98ResTime: !item["pct98ResTime"]
-      ? item["pct98ResTime"]
-      : item["pct98ResTime"],
-    pct999ResTime: !item["pct999ResTime"]
-      ? item["pct999ResTime"]
-      : item["pct999ResTime"],
-    pct9999ResTime: !item["pct9999ResTime"]
-      ? item["pct9999ResTime"]
-      : item["pct9999ResTime"],
-    throughput: !item["throughput"] ? item["throughput"] : item["throughput"],
-    receivedKBytesPerSec: !item["receivedKBytesPerSec"]
-      ? item["receivedKBytesPerSec"]
-      : item["receivedKBytesPerSec"],
-    sentKBytesPerSec: !item["sentKBytesPerSec"]
-      ? item["sentKBytesPerSec"]
-      : item["sentKBytesPerSec"],
+    transaction: item["transaction"],
+    sampleCount: item["sampleCount"],
+    errorCount: item["errorCount"],
+    errorPct: item["errorPct"],
+    meanResTime: item["meanResTime"],
+    medianResTime: item["medianResTime"],
+    maxResTime: item["maxResTime"],
+    minResTime: item["minResTime"],
+    pct1ResTime: item["pct1ResTime"],
+    pct2ResTime: item["pct2ResTime"],
+    pct3ResTime: item["pct3ResTime"],
+    pct75ResTime: item["pct75ResTime"],
+    pct96ResTime: item["pct96ResTime"],
+    pct97ResTime: item["pct97ResTime"],
+    pct98ResTime: item["pct98ResTime"],
+    pct999ResTime: item["pct999ResTime"],
+    pct9999ResTime: item["pct9999ResTime"],
+    throughput: item["throughput"],
+    receivedKBytesPerSec: item["receivedKBytesPerSec"],
+    sentKBytesPerSec: item["sentKBytesPerSec"],
   };
 }
 
@@ -1419,17 +1317,13 @@ export interface TestRunFileInfo {
 export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   return {
     fileName: item["fileName"],
-    url: !item["url"] ? item["url"] : item["url"],
-    fileType: !item["fileType"] ? item["fileType"] : item["fileType"],
+    url: item["url"],
+    fileType: item["fileType"],
     expireDateTime: !item["expireDateTime"]
       ? item["expireDateTime"]
       : new Date(item["expireDateTime"]),
-    validationStatus: !item["validationStatus"]
-      ? item["validationStatus"]
-      : item["validationStatus"],
-    validationFailureDetails: !item["validationFailureDetails"]
-      ? item["validationFailureDetails"]
-      : item["validationFailureDetails"],
+    validationStatus: item["validationStatus"],
+    validationFailureDetails: item["validationFailureDetails"],
   };
 }
 
@@ -1484,7 +1378,7 @@ export function artifactsContainerInfoDeserializer(
   item: any,
 ): ArtifactsContainerInfo {
   return {
-    url: !item["url"] ? item["url"] : item["url"],
+    url: item["url"],
     expireDateTime: !item["expireDateTime"]
       ? item["expireDateTime"]
       : new Date(item["expireDateTime"]),
@@ -1621,17 +1515,15 @@ export function testRunAppComponentsDeserializer(
 ): TestRunAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
-    testRunId: !item["testRunId"] ? item["testRunId"] : item["testRunId"],
+    testRunId: item["testRunId"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -1669,20 +1561,18 @@ export function testRunServerMetricConfigDeserializer(
   item: any,
 ): TestRunServerMetricConfig {
   return {
-    testRunId: !item["testRunId"] ? item["testRunId"] : item["testRunId"],
+    testRunId: item["testRunId"],
     metrics: !item["metrics"]
       ? item["metrics"]
       : resourceMetricRecordDeserializer(item["metrics"]),
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -1698,13 +1588,13 @@ export interface DimensionValueList {
 
 export function dimensionValueListDeserializer(item: any): DimensionValueList {
   return {
-    name: !item["name"] ? item["name"] : item["name"],
+    name: item["name"],
     value: !item["value"]
       ? item["value"]
       : item["value"].map((p: any) => {
           return p;
         }),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -1750,20 +1640,16 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
     dimensions: !item["dimensions"]
       ? item["dimensions"]
       : nameAndDescArrayDeserializer(item["dimensions"]),
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    name: !item["name"] ? item["name"] : item["name"],
-    namespace: !item["namespace"] ? item["namespace"] : item["namespace"],
-    primaryAggregationType: !item["primaryAggregationType"]
-      ? item["primaryAggregationType"]
-      : item["primaryAggregationType"],
+    description: item["description"],
+    name: item["name"],
+    namespace: item["namespace"],
+    primaryAggregationType: item["primaryAggregationType"],
     supportedAggregationTypes: !item["supportedAggregationTypes"]
       ? item["supportedAggregationTypes"]
       : item["supportedAggregationTypes"].map((p: any) => {
           return p;
         }),
-    unit: !item["unit"] ? item["unit"] : item["unit"],
+    unit: item["unit"],
     metricAvailabilities: !item["metricAvailabilities"]
       ? item["metricAvailabilities"]
       : metricAvailabilityArrayDeserializer(item["metricAvailabilities"]),
@@ -1780,10 +1666,8 @@ export interface NameAndDesc {
 
 export function nameAndDescDeserializer(item: any): NameAndDesc {
   return {
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    name: !item["name"] ? item["name"] : item["name"],
+    description: item["description"],
+    name: item["name"],
   };
 }
 
@@ -1893,7 +1777,7 @@ export interface MetricAvailability {
 
 export function metricAvailabilityDeserializer(item: any): MetricAvailability {
   return {
-    timeGrain: !item["timeGrain"] ? item["timeGrain"] : item["timeGrain"],
+    timeGrain: item["timeGrain"],
   };
 }
 
@@ -1964,10 +1848,8 @@ export interface MetricNamespace {
 
 export function metricNamespaceDeserializer(item: any): MetricNamespace {
   return {
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    name: !item["name"] ? item["name"] : item["name"],
+    description: item["description"],
+    name: item["name"],
   };
 }
 
@@ -2013,9 +1895,11 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
     name: item["name"],
     values: !item["values"]
       ? item["values"]
-      : item["values"].map((p: any) => {
-          return p;
-        }),
+      : !item["values"]
+        ? item["values"]
+        : item["values"].map((p: any) => {
+            return p;
+          }),
   };
 }
 
@@ -2038,7 +1922,7 @@ export interface _Metrics {
 export function _metricsDeserializer(item: any): _Metrics {
   return {
     value: timeSeriesElementArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -2074,7 +1958,7 @@ export function metricValueDeserializer(item: any): MetricValue {
     timestamp: !item["timestamp"]
       ? item["timestamp"]
       : new Date(item["timestamp"]),
-    value: !item["value"] ? item["value"] : item["value"],
+    value: item["value"],
   };
 }
 
@@ -2096,8 +1980,8 @@ export interface DimensionValue {
 
 export function dimensionValueDeserializer(item: any): DimensionValue {
   return {
-    name: !item["name"] ? item["name"] : item["name"],
-    value: !item["value"] ? item["value"] : item["value"],
+    name: item["name"],
+    value: item["value"],
   };
 }
 
@@ -2158,16 +2042,10 @@ export function testProfileSerializer(item: TestProfile): any {
 export function testProfileDeserializer(item: any): TestProfile {
   return {
     testProfileId: item["testProfileId"],
-    displayName: !item["displayName"]
-      ? item["displayName"]
-      : item["displayName"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    testId: !item["testId"] ? item["testId"] : item["testId"],
-    targetResourceId: !item["targetResourceId"]
-      ? item["targetResourceId"]
-      : item["targetResourceId"],
+    displayName: item["displayName"],
+    description: item["description"],
+    testId: item["testId"],
+    targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
@@ -2176,13 +2054,11 @@ export function testProfileDeserializer(item: any): TestProfile {
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -2393,24 +2269,16 @@ export function testProfileRunSerializer(item: TestProfileRun): any {
 export function testProfileRunDeserializer(item: any): TestProfileRun {
   return {
     testProfileRunId: item["testProfileRunId"],
-    displayName: !item["displayName"]
-      ? item["displayName"]
-      : item["displayName"],
-    description: !item["description"]
-      ? item["description"]
-      : item["description"],
-    testProfileId: !item["testProfileId"]
-      ? item["testProfileId"]
-      : item["testProfileId"],
-    targetResourceId: !item["targetResourceId"]
-      ? item["targetResourceId"]
-      : item["targetResourceId"],
+    displayName: item["displayName"],
+    description: item["description"],
+    testProfileId: item["testProfileId"],
+    targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
           item["targetResourceConfigurations"],
         ),
-    status: !item["status"] ? item["status"] : item["status"],
+    status: item["status"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
@@ -2420,9 +2288,7 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     endDateTime: !item["endDateTime"]
       ? item["endDateTime"]
       : new Date(item["endDateTime"]),
-    durationInSeconds: !item["durationInSeconds"]
-      ? item["durationInSeconds"]
-      : item["durationInSeconds"],
+    durationInSeconds: item["durationInSeconds"],
     testRunDetails: !item["testRunDetails"]
       ? item["testRunDetails"]
       : testRunDetailRecordDeserializer(item["testRunDetails"]),
@@ -2432,13 +2298,11 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
-    createdBy: !item["createdBy"] ? item["createdBy"] : item["createdBy"],
+    createdBy: item["createdBy"],
     lastModifiedDateTime: !item["lastModifiedDateTime"]
       ? item["lastModifiedDateTime"]
       : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: !item["lastModifiedBy"]
-      ? item["lastModifiedBy"]
-      : item["lastModifiedBy"],
+    lastModifiedBy: item["lastModifiedBy"],
   };
 }
 
@@ -2561,7 +2425,7 @@ export interface _PagedTestFileInfo {
 export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
   return {
     value: testFileInfoArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -2576,7 +2440,7 @@ export interface _PagedTest {
 export function _pagedTestDeserializer(item: any): _PagedTest {
   return {
     value: testArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -2603,7 +2467,7 @@ export interface _PagedTestRun {
 export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
   return {
     value: testRunArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -2630,7 +2494,7 @@ export interface _PagedTestProfile {
 export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
   return {
     value: testProfileArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -2661,7 +2525,7 @@ export function _pagedTestProfileRunDeserializer(
 ): _PagedTestProfileRun {
   return {
     value: testProfileRunArrayDeserializer(item["value"]),
-    nextLink: !item["nextLink"] ? item["nextLink"] : item["nextLink"],
+    nextLink: item["nextLink"],
   };
 }
 
