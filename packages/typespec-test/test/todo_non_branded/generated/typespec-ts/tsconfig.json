@@ -20,5 +20,5 @@
     "esModuleInterop": true,
     "paths": { "@notabrand/todo-non-branded": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
 }
