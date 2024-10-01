@@ -15,6 +15,6 @@
     "importHelpers": true,
     "paths": { "@msinternal/network-resource-manager": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"],
+  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"],
   "exclude": ["node_modules"]
 }
