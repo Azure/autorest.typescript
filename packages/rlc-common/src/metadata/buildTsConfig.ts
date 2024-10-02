@@ -16,12 +16,7 @@ const restLevelTsConfigInAzureSdkForJs: (
         rootDir: ".",
         skipLibCheck: true
       },
-      include: [
-        "src/**/*.ts",
-        "src/**/*.mts",
-        "src/**/*.cts",
-        "test/**/*.ts"
-      ]
+      include: ["src/**/*.ts", "src/**/*.mts", "src/**/*.cts", "test/**/*.ts"]
     };
   }
 
