@@ -433,7 +433,7 @@ function buildDictTypeSerializer(
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key]? item[key]: ${valueSerializer}(item[key])
-  })
+  });
   return result;
       `
     ]
