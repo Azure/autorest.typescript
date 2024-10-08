@@ -249,9 +249,7 @@ function transformBody(
     if (!body || isVoidType(body.type)) {
       continue;
     }
-    const hasBinaryContent = body.contentTypes.some((contentType) =>
-      isBinaryPayload(dpgContext, body.type, contentType)
-    );
+    const hasBinaryContent = isBinaryPayload(dpgContext, body.type);
     if (hasBinaryContent) {
       typeSet.add(getBinaryType([SchemaContext.Output]));
       descriptions.add("Value may contain any sequence of octets");

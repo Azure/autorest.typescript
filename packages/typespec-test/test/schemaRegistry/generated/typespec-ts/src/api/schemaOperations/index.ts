@@ -90,9 +90,7 @@ export async function _getSchemaByIdDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body as any;
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
@@ -179,9 +177,7 @@ export async function _getSchemaByVersionDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body as any;
 }
 
 /** Gets one specific version of one schema. */
@@ -219,7 +215,7 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(schemaContent, "base64"),
+      body: schemaContent,
     });
 }
 
@@ -271,7 +267,7 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(content, "base64"),
+      body: content,
     });
 }
 

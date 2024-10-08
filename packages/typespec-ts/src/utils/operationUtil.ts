@@ -33,7 +33,6 @@ import {
   HttpStatusCodesEntry
 } from "@typespec/http";
 import { SdkContext } from "./interfaces.js";
-import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
@@ -171,18 +170,9 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
   return statusCodes !== "*";
 }
 
-export function isBinaryPayload(
-  dpgContext: SdkContext,
-  body: Type,
-  contentType: string | string[]
-) {
-  const knownMediaTypes: KnownMediaType[] = (
-    Array.isArray(contentType) ? contentType : [contentType]
-  ).map((ct) => knownMediaType(ct));
-  for (const type of knownMediaTypes) {
-    if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
-      return true;
-    }
+export function isBinaryPayload(dpgContext: SdkContext, body: Type) {
+  if (isByteOrByteUnion(dpgContext, body)) {
+    return true;
   }
   return false;
 }
