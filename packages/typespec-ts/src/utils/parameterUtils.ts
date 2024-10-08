@@ -5,6 +5,11 @@ import {
   SerializeHelperKind
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
+import {
+  isArrayType,
+  isObjectOrDictType,
+  isPrimitiveType
+} from "./modelUtils.js";
 
 export function getSerializeHelperKind(
   parameter: HttpOperationParameter
@@ -58,36 +63,41 @@ export function getParameterWrapperType(
       }
     }
     case "query": {
-      const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
-      if (parameter.explode === true) {
-        if (parameter.format !== undefined) {
-          // Not supported and report warnings
-        }
-        return buildExplodeAndStyle(name, true, "form", valueSchema);
-      } else {
-        if (parameter.format === undefined) {
-          return undefined;
-        } else if (parameter.format === "csv") {
-          return buildExplodeAndStyle(name, false, "form", valueSchema);
-        } else if (parameter.format === "ssv") {
-          return buildExplodeAndStyle(
-            name,
-            false,
-            "spaceDelimited",
-            valueSchema
-          );
-        } else if (parameter.format === "pipes") {
-          return buildExplodeAndStyle(
-            name,
-            false,
-            "pipeDelimited",
-            valueSchema
-          );
-        } else {
-          // Not supported and report warnings
-        }
+      if (isPrimitiveType(valueSchema)) {
         return undefined;
+      } else if (isArrayType(valueSchema) || isObjectOrDictType(valueSchema)) {
+        const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
+        if (parameter.explode === true) {
+          if (parameter.format !== undefined) {
+            // Not supported and report warnings
+          }
+          return buildExplodeAndStyle(name, true, "form", valueSchema);
+        } else {
+          if (parameter.format === undefined) {
+            return undefined;
+          } else if (parameter.format === "csv") {
+            return buildExplodeAndStyle(name, false, "form", valueSchema);
+          } else if (parameter.format === "ssv") {
+            return buildExplodeAndStyle(
+              name,
+              false,
+              "spaceDelimited",
+              valueSchema
+            );
+          } else if (parameter.format === "pipes") {
+            return buildExplodeAndStyle(
+              name,
+              false,
+              "pipeDelimited",
+              valueSchema
+            );
+          } else {
+            // Not supported and report warnings
+          }
+          return undefined;
+        }
       }
+      return undefined;
     }
     default: {
       return undefined;
