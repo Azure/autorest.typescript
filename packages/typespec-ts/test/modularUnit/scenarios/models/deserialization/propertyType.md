@@ -1,4 +1,4 @@
-# Should generate deserializer for property types
+# only: Should generate deserializer for property types
 Will prompt all operations into top-level.
 
 ## TypeSpec
@@ -51,6 +51,12 @@ model SimpleModel {
 interface D {
   op bar(): { @body body: SimpleModel };
 }
+```
+
+This is the tspconfig.yaml.
+
+```yaml
+experimentalExtensibleEnums: true
 ```
 
 ## Provide generated models and its serializer
@@ -237,16 +243,42 @@ export type SimpleModelPropStringUnion = "A" | "B";
 export type SimpleModelPropStringUnionOptioanl = "A" | "B";
 /** Type of SimpleModelPropStringUnionNullable */
 export type SimpleModelPropStringUnionNullable = "A" | "B";
+
+/** Known values of {@link SimpleModelPropStringUnionAsExtensible} that the service accepts. */
+export enum KnownSimpleModelPropStringUnionAsExtensible {
+  A = "A",
+  B = "B",
+}
+
 /** Type of SimpleModelPropStringUnionAsExtensible */
-export type SimpleModelPropStringUnionAsExtensible = "A" | "B";
+export type SimpleModelPropStringUnionAsExtensible = string;
+
+/** Known values of {@link SimpleModelPropStringUnionAsExtensibleOptional} that the service accepts. */
+export enum KnownSimpleModelPropStringUnionAsExtensibleOptional {
+  A = "A",
+  B = "B",
+}
+
 /** Type of SimpleModelPropStringUnionAsExtensibleOptional */
-export type SimpleModelPropStringUnionAsExtensibleOptional = "A" | "B";
+export type SimpleModelPropStringUnionAsExtensibleOptional = string;
+
+/** Known values of {@link SimpleModelPropStringUnionAsExtensibleNullable} that the service accepts. */
+export enum KnownSimpleModelPropStringUnionAsExtensibleNullable {
+  A = "A",
+  B = "B",
+}
+
 /** Type of SimpleModelPropStringUnionAsExtensibleNullable */
-export type SimpleModelPropStringUnionAsExtensibleNullable = "A" | "B";
+export type SimpleModelPropStringUnionAsExtensibleNullable = string;
+
+/** Known values of {@link SimpleModelPropStringUnionAsExtensibleOptionalAndNullable} that the service accepts. */
+export enum KnownSimpleModelPropStringUnionAsExtensibleOptionalAndNullable {
+  A = "A",
+  B = "B",
+}
+
 /** Type of SimpleModelPropStringUnionAsExtensibleOptionalAndNullable */
-export type SimpleModelPropStringUnionAsExtensibleOptionalAndNullable =
-  | "A"
-  | "B";
+export type SimpleModelPropStringUnionAsExtensibleOptionalAndNullable = string;
 /** Alias for SimpleModelPropMixedTypeLiteral */
 export type SimpleModelPropMixedTypeLiteral = "A" | false | 1;
 
