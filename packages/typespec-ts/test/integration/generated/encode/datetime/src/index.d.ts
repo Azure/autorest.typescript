@@ -268,7 +268,13 @@ export declare interface QueryUnixTimestampArrayQueryParam {
 }
 
 export declare interface QueryUnixTimestampArrayQueryParamProperties {
+    value: number[] | QueryUnixTimestampArrayValueQueryParam;
+}
+
+export declare interface QueryUnixTimestampArrayValueQueryParam {
     value: number[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryUnixTimestampParameters = QueryUnixTimestampQueryParam & RequestParameters;
@@ -394,5 +400,11 @@ export declare interface UnixTimestampDatetimeProperty {
 export declare interface UnixTimestampDatetimePropertyOutput {
     value: number;
 }
+
+export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: any;
+};
 
 export { }

@@ -6,6 +6,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
 import {
+  getTypeName,
   isArrayType,
   isObjectOrDictType,
   isPrimitiveType
@@ -73,10 +74,16 @@ export function getParameterWrapperType(
           }
           return buildExplodeAndStyle(name, true, "form", valueSchema);
         } else {
-          if (parameter.format === undefined) {
-            return undefined;
-          } else if (parameter.format === "csv") {
-            return buildExplodeAndStyle(name, false, "form", valueSchema);
+          if (parameter.format === undefined || parameter.format === "csv") {
+            const wrapperType = buildExplodeAndStyle(
+              name,
+              false,
+              "form",
+              valueSchema
+            );
+            return isArrayType(valueSchema)
+              ? buildUnionType([valueSchema, wrapperType])
+              : wrapperType;
           } else if (parameter.format === "ssv") {
             return buildExplodeAndStyle(
               name,
@@ -152,5 +159,16 @@ function buildExplodeAndStyle(
         required: true
       }
     }
+  };
+}
+
+function buildUnionType(values: Schema[]) {
+  return {
+    name: "",
+    enum: values,
+    type: "union",
+    typeName: `${values.map((v) => getTypeName(v)).join(" | ")}`,
+    required: true,
+    description: undefined
   };
 }

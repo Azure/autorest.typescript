@@ -1133,7 +1133,11 @@ function isUnionType(type: Type) {
 }
 
 export function isObjectOrDictType(schema: Schema) {
-  return schema.type === "object" || schema.type === "dictionary";
+  return (
+    (schema.type === "object" &&
+      (schema as ObjectSchema).properties !== undefined) ||
+    schema.type === "dictionary"
+  );
 }
 
 export function isArrayType(schema: Schema) {

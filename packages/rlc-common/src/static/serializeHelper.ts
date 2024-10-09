@@ -43,7 +43,7 @@ export function withReservedCharacters(value: string) {
 `;
 
 export const buildExplodedAndFormStyleContent = `
-export function withExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>){
     return {
         explode: true,
         style: "form",
@@ -53,7 +53,7 @@ export function withExplodedAndFormStyle(value: string[] | Record<string, unknow
 `;
 
 export const buildNonExplodedAndFormStyleContent = `
-export function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>){
     return {
         explode: false,
         style: "form",
@@ -63,7 +63,7 @@ export function withNonExplodedAndFormStyle(value: string[] | Record<string, unk
 `;
 
 export const buildNonExplodedAndPipeStyleContent = `
-export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>){
     return {
         explode: false,
         style: "pipeDelimited",
@@ -73,7 +73,7 @@ export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unk
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>){
     return {
         explode: false,
         style: "spaceDelimited",
