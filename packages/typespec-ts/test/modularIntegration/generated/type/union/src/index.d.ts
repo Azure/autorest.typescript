@@ -93,7 +93,7 @@ export declare interface GetResponse7 {
 }
 
 export declare interface GetResponse8 {
-    prop: "b" | "c";
+    prop: string;
 }
 
 export declare interface GetResponse9 {
