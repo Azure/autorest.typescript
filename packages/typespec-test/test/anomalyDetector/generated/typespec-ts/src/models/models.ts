@@ -687,3 +687,11 @@ export interface UnivariateUnivariateChangePointDetectionResult {
 
 /** Type of Versions */
 export type Versions = "v1.1";
+
+/** Error response */
+export interface MultivariateResponseError {
+  /** The error code. */
+  code: string;
+  /** The message explaining the error reported by the service. */
+  message: string;
+}

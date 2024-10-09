@@ -2,8 +2,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -26,7 +24,7 @@ export declare interface FirstItemOutput {
 
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
-export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -164,11 +162,30 @@ export declare interface ListWithParametersQueryParamProperties {
     another?: ListItemInputExtensibleEnum;
 }
 
-export declare type PagedFirstItemOutput = Paged<FirstItemOutput>;
+export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    next(): Promise<IteratorResult<TElement>>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+}
 
-export declare type PagedSecondItemOutput = Paged<SecondItemOutput>;
+export declare interface PagedFirstItemOutput {
+    value: Array<FirstItemOutput>;
+    nextLink?: string;
+}
 
-export declare type PagedUserOutput = Paged<UserOutput>;
+export declare interface PagedSecondItemOutput {
+    value: Array<SecondItemOutput>;
+    nextLink?: string;
+}
+
+export declare interface PagedUserOutput {
+    value: Array<UserOutput>;
+    nextLink?: string;
+}
+
+export declare interface PageSettings {
+    continuationToken?: string;
+}
 
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 

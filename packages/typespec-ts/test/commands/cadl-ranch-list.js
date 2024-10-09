@@ -1,5 +1,9 @@
 export const rlcTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "payload/multipart",
     inputPath: "payload/multipart"
   },
@@ -282,6 +286,10 @@ export const rlcTsps = [
   {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 
@@ -544,8 +552,16 @@ export const modularTsps = [
     inputPath: "azure/resource-manager/models/common-types/managed-identity"
   },
   {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
+  },
+  {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
   }
 ];
 

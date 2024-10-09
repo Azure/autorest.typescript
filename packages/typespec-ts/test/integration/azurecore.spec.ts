@@ -20,6 +20,12 @@ describe("Azure Core Rest Client", () => {
     name: "Madge",
     etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
   };
+  const validUser2 = {
+    id: 2,
+    name: "John",
+    etag: "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
+  const expectBody = { users: [validUser, validUser2] };
   it("should put user", async () => {
     try {
       const result = await client.path("/azure/core/basic/users/{id}", 1).put({
@@ -138,6 +144,25 @@ describe("Azure Core Rest Client", () => {
       }
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, validUser);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should export all users", async () => {
+    try {
+      const result = await client
+        .path("/azure/core/basic/users:exportallusers")
+        .post({
+          queryParameters: {
+            format: "json"
+          }
+        });
+      if (isUnexpected(result)) {
+        throw Error("Unexpected status code");
+      }
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, expectBody);
     } catch (err) {
       assert.fail(err as string);
     }

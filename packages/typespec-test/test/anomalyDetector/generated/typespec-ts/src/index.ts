@@ -45,6 +45,7 @@ export {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
   Versions,
+  MultivariateResponseError,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
