@@ -1,4 +1,4 @@
-# only: Should generate deserializer for property types
+# Should generate deserializer for property types
 Will prompt all operations into top-level.
 
 ## TypeSpec

@@ -1,4 +1,4 @@
-# Should generate deserializer for additional properties
+# Should generate serializer for additional properties
 
 ## TypeSpec
 
@@ -13,7 +13,7 @@ model SimpleModel {
 
 @route("/serialize")
 interface D {
-  op bar(): { @body body: SimpleModel };
+  op bar(@body body: SimpleModel): void;
 }
 ```
 
@@ -32,12 +32,7 @@ export interface SimpleModel extends Record<string, string> {
   propA: string;
   propB: string;
 }
-
-export function simpleModelDeserializer(item: any): SimpleModel {
-  return {
-    ...item,
-    propA: item["propA"],
-    propB: item["propB"],
-  };
+export function simpleModelSerializer(item: SimpleModel): any {
+  return { ...item, propA: item["propA"], propB: item["propB"] };
 }
 ```
