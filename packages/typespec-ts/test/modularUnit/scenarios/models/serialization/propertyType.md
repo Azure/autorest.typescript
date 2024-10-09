@@ -150,11 +150,9 @@ export function simpleModelSerializer(item: SimpleModel): any {
     ),
     propStringArrayOptional: !item["propStringArrayOptional"]
       ? item["propStringArrayOptional"]
-      : !item["propStringArrayOptional"]
-        ? item["propStringArrayOptional"]
-        : item["propStringArrayOptional"].map((p: any) => {
-            return p;
-          }),
+      : item["propStringArrayOptional"].map((p: any) => {
+          return p;
+        }),
     propSimpleUnionArrayOptional: !item["propSimpleUnionArrayOptional"]
       ? item["propSimpleUnionArrayOptional"]
       : simpleModelPropSimpleUnionArrayOptionalArraySerializer(
@@ -177,11 +175,9 @@ export function simpleModelSerializer(item: SimpleModel): any {
       "propArrayOfRecordOfStringOptional"
     ]
       ? item["propArrayOfRecordOfStringOptional"]
-      : !item["propArrayOfRecordOfStringOptional"]
-        ? item["propArrayOfRecordOfStringOptional"]
-        : item["propArrayOfRecordOfStringOptional"].map((p: any) => {
-            return p;
-          }),
+      : item["propArrayOfRecordOfStringOptional"].map((p: any) => {
+          return p;
+        }),
     propRecordOfUnionArray:
       simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
         item["propRecordOfUnionArray"],

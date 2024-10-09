@@ -32,6 +32,7 @@ export interface SimpleModel extends Record<string, string> {
   propA: string;
   propB: string;
 }
+
 export function simpleModelSerializer(item: SimpleModel): any {
   return { ...item, propA: item["propA"], propB: item["propB"] };
 }
