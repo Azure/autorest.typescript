@@ -877,9 +877,7 @@ export function getRequestModelMapping(
         !property.optional,
         property.format
       );
-      props.push(
-        `"${property.restApiName}": ${serializedValue}`
-      );
+      props.push(`"${property.restApiName}": ${serializedValue}`);
     }
   }
 
