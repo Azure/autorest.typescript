@@ -23,9 +23,7 @@ export function batchNodeUserCreateOptionsSerializer(
   return {
     name: item["name"],
     isAdmin: item["isAdmin"],
-    expiryTime: !item["expiryTime"]
-      ? item["expiryTime"]
-      : item["expiryTime"]?.toISOString(),
+    expiryTime: item["expiryTime"]?.toISOString(),
     password: item["password"],
     sshPublicKey: item["sshPublicKey"],
   };
@@ -106,9 +104,7 @@ export function batchNodeUserUpdateOptionsSerializer(
 ): any {
   return {
     password: item["password"],
-    expiryTime: !item["expiryTime"]
-      ? item["expiryTime"]
-      : item["expiryTime"]?.toISOString(),
+    expiryTime: item["expiryTime"]?.toISOString(),
     sshPublicKey: item["sshPublicKey"],
   };
 }
@@ -797,11 +793,9 @@ export function certificateReferenceSerializer(
     storeName: item["storeName"],
     visibility: !item["visibility"]
       ? item["visibility"]
-      : !item["visibility"]
-        ? item["visibility"]
-        : item["visibility"].map((p: any) => {
-            return p;
-          }),
+      : item["visibility"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -1086,9 +1080,7 @@ export function uploadBatchServiceLogsOptionsSerializer(
   return {
     containerUrl: item["containerUrl"],
     startTime: item["startTime"].toISOString(),
-    endTime: !item["endTime"]
-      ? item["endTime"]
-      : item["endTime"]?.toISOString(),
+    endTime: item["endTime"]?.toISOString(),
     identityReference: !item["identityReference"]
       ? item["identityReference"]
       : batchNodeIdentityReferenceSerializer(item["identityReference"]),
@@ -1193,11 +1185,9 @@ export function vMExtensionSerializer(item: VMExtension): any {
     protectedSettings: item["protectedSettings"],
     provisionAfterExtensions: !item["provisionAfterExtensions"]
       ? item["provisionAfterExtensions"]
-      : !item["provisionAfterExtensions"]
-        ? item["provisionAfterExtensions"]
-        : item["provisionAfterExtensions"].map((p: any) => {
-            return p;
-          }),
+      : item["provisionAfterExtensions"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -1908,11 +1898,9 @@ export function taskDependenciesSerializer(item: TaskDependencies): any {
   return {
     taskIds: !item["taskIds"]
       ? item["taskIds"]
-      : !item["taskIds"]
-        ? item["taskIds"]
-        : item["taskIds"].map((p: any) => {
-            return p;
-          }),
+      : item["taskIds"].map((p: any) => {
+          return p;
+        }),
     taskIdRanges: !item["taskIdRanges"]
       ? item["taskIdRanges"]
       : taskIdRangeArraySerializer(item["taskIdRanges"]),
@@ -2022,11 +2010,9 @@ export function authenticationTokenSettingsSerializer(
   return {
     access: !item["access"]
       ? item["access"]
-      : !item["access"]
-        ? item["access"]
-        : item["access"].map((p: any) => {
-            return p;
-          }),
+      : item["access"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -2563,12 +2549,8 @@ export interface Schedule {
 
 export function scheduleSerializer(item: Schedule): any {
   return {
-    doNotRunUntil: !item["doNotRunUntil"]
-      ? item["doNotRunUntil"]
-      : item["doNotRunUntil"]?.toISOString(),
-    doNotRunAfter: !item["doNotRunAfter"]
-      ? item["doNotRunAfter"]
-      : item["doNotRunAfter"]?.toISOString(),
+    doNotRunUntil: item["doNotRunUntil"]?.toISOString(),
+    doNotRunAfter: item["doNotRunAfter"]?.toISOString(),
     startWindow: item["startWindow"],
     recurrenceInterval: item["recurrenceInterval"],
   };
@@ -3220,11 +3202,9 @@ export function poolSpecificationSerializer(item: PoolSpecification): any {
         ),
     applicationLicenses: !item["applicationLicenses"]
       ? item["applicationLicenses"]
-      : !item["applicationLicenses"]
-        ? item["applicationLicenses"]
-        : item["applicationLicenses"].map((p: any) => {
-            return p;
-          }),
+      : item["applicationLicenses"].map((p: any) => {
+          return p;
+        }),
     userAccounts: !item["userAccounts"]
       ? item["userAccounts"]
       : userAccountArraySerializer(item["userAccounts"]),
@@ -3526,11 +3506,9 @@ export function containerConfigurationSerializer(
     type: item["type"],
     containerImageNames: !item["containerImageNames"]
       ? item["containerImageNames"]
-      : !item["containerImageNames"]
-        ? item["containerImageNames"]
-        : item["containerImageNames"].map((p: any) => {
-            return p;
-          }),
+      : item["containerImageNames"].map((p: any) => {
+          return p;
+        }),
     containerRegistries: !item["containerRegistries"]
       ? item["containerRegistries"]
       : containerRegistryArraySerializer(item["containerRegistries"]),
@@ -3588,11 +3566,9 @@ export function diskEncryptionConfigurationSerializer(
   return {
     targets: !item["targets"]
       ? item["targets"]
-      : !item["targets"]
-        ? item["targets"]
-        : item["targets"].map((p: any) => {
-            return p;
-          }),
+      : item["targets"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -3864,11 +3840,9 @@ export function networkSecurityGroupRuleSerializer(
     sourceAddressPrefix: item["sourceAddressPrefix"],
     sourcePortRanges: !item["sourcePortRanges"]
       ? item["sourcePortRanges"]
-      : !item["sourcePortRanges"]
-        ? item["sourcePortRanges"]
-        : item["sourcePortRanges"].map((p: any) => {
-            return p;
-          }),
+      : item["sourcePortRanges"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -3937,11 +3911,9 @@ export function publicIpAddressConfigurationSerializer(
     provision: item["IpAddressProvisioningType"],
     ipAddressIds: !item["ipAddressIds"]
       ? item["ipAddressIds"]
-      : !item["ipAddressIds"]
-        ? item["ipAddressIds"]
-        : item["ipAddressIds"].map((p: any) => {
-            return p;
-          }),
+      : item["ipAddressIds"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -5616,11 +5588,9 @@ export function batchPoolCreateOptionsSerializer(
         ),
     applicationLicenses: !item["applicationLicenses"]
       ? item["applicationLicenses"]
-      : !item["applicationLicenses"]
-        ? item["applicationLicenses"]
-        : item["applicationLicenses"].map((p: any) => {
-            return p;
-          }),
+      : item["applicationLicenses"].map((p: any) => {
+          return p;
+        }),
     taskSlotsPerNode: item["taskSlotsPerNode"],
     taskSchedulingPolicy: !item["taskSchedulingPolicy"]
       ? item["taskSchedulingPolicy"]

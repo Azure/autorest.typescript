@@ -108,12 +108,8 @@ export function multivariateVariableStateSerializer(
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
     effectiveCount: item["effectiveCount"],
-    firstTimestamp: !item["firstTimestamp"]
-      ? item["firstTimestamp"]
-      : item["firstTimestamp"]?.toISOString(),
-    lastTimestamp: !item["lastTimestamp"]
-      ? item["lastTimestamp"]
-      : item["lastTimestamp"]?.toISOString(),
+    firstTimestamp: item["firstTimestamp"]?.toISOString(),
+    lastTimestamp: item["lastTimestamp"]?.toISOString(),
   };
 }
 
@@ -522,32 +518,24 @@ export function multivariateModelStateSerializer(
   return {
     epochIds: !item["epochIds"]
       ? item["epochIds"]
-      : !item["epochIds"]
-        ? item["epochIds"]
-        : item["epochIds"].map((p: any) => {
-            return p;
-          }),
+      : item["epochIds"].map((p: any) => {
+          return p;
+        }),
     trainLosses: !item["trainLosses"]
       ? item["trainLosses"]
-      : !item["trainLosses"]
-        ? item["trainLosses"]
-        : item["trainLosses"].map((p: any) => {
-            return p;
-          }),
+      : item["trainLosses"].map((p: any) => {
+          return p;
+        }),
     validationLosses: !item["validationLosses"]
       ? item["validationLosses"]
-      : !item["validationLosses"]
-        ? item["validationLosses"]
-        : item["validationLosses"].map((p: any) => {
-            return p;
-          }),
+      : item["validationLosses"].map((p: any) => {
+          return p;
+        }),
     latenciesInSeconds: !item["latenciesInSeconds"]
       ? item["latenciesInSeconds"]
-      : !item["latenciesInSeconds"]
-        ? item["latenciesInSeconds"]
-        : item["latenciesInSeconds"].map((p: any) => {
-            return p;
-          }),
+      : item["latenciesInSeconds"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -787,12 +775,7 @@ export interface UnivariateTimeSeriesPoint {
 export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
-  return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : item["timestamp"]?.toISOString(),
-    value: item["value"],
-  };
+  return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
 }
 
 export function univariateTimeSeriesPointArraySerializer(

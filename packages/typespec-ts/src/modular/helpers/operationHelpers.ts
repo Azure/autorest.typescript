@@ -878,7 +878,7 @@ export function getRequestModelMapping(
         property.format
       );
       props.push(
-        `"${property.restApiName}": ${serializedValue === propertyFullName ? "" : nullOrUndefinedPrefix}${serializedValue}`
+        `"${property.restApiName}": ${serializedValue}`
       );
     }
   }

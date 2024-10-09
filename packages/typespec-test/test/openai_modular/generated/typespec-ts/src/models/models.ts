@@ -55,11 +55,9 @@ export function audioTranscriptionOptionsSerializer(
     temperature: item["temperature"],
     timestamp_granularities: !item["timestampGranularities"]
       ? item["timestampGranularities"]
-      : !item["timestampGranularities"]
-        ? item["timestampGranularities"]
-        : item["timestampGranularities"].map((p: any) => {
-            return p;
-          }),
+      : item["timestampGranularities"].map((p: any) => {
+          return p;
+        }),
     model: item["model"],
   };
 }
@@ -447,11 +445,9 @@ export function completionsOptionsSerializer(item: CompletionsOptions): any {
     echo: item["echo"],
     stop: !item["stop"]
       ? item["stop"]
-      : !item["stop"]
-        ? item["stop"]
-        : item["stop"].map((p: any) => {
-            return p;
-          }),
+      : item["stop"].map((p: any) => {
+          return p;
+        }),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     best_of: item["bestOf"],
@@ -1017,11 +1013,9 @@ export function chatCompletionsOptionsSerializer(
     n: item["n"],
     stop: !item["stop"]
       ? item["stop"]
-      : !item["stop"]
-        ? item["stop"]
-        : item["stop"].map((p: any) => {
-            return p;
-          }),
+      : item["stop"].map((p: any) => {
+          return p;
+        }),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     stream: item["stream"],
@@ -1684,11 +1678,9 @@ export function azureSearchChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : !item["includeContexts"]
-        ? item["includeContexts"]
-        : item["includeContexts"].map((p: any) => {
-            return p;
-          }),
+      : item["includeContexts"].map((p: any) => {
+          return p;
+        }),
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item["fieldsMapping"]
@@ -1922,26 +1914,20 @@ export function azureSearchIndexFieldMappingOptionsSerializer(
     filepath_field: item["filepathField"],
     content_fields: !item["contentFields"]
       ? item["contentFields"]
-      : !item["contentFields"]
-        ? item["contentFields"]
-        : item["contentFields"].map((p: any) => {
-            return p;
-          }),
+      : item["contentFields"].map((p: any) => {
+          return p;
+        }),
     content_fields_separator: item["contentFieldsSeparator"],
     vector_fields: !item["vectorFields"]
       ? item["vectorFields"]
-      : !item["vectorFields"]
-        ? item["vectorFields"]
-        : item["vectorFields"].map((p: any) => {
-            return p;
-          }),
+      : item["vectorFields"].map((p: any) => {
+          return p;
+        }),
     image_vector_fields: !item["imageVectorFields"]
       ? item["imageVectorFields"]
-      : !item["imageVectorFields"]
-        ? item["imageVectorFields"]
-        : item["imageVectorFields"].map((p: any) => {
-            return p;
-          }),
+      : item["imageVectorFields"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -2224,11 +2210,9 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : !item["includeContexts"]
-        ? item["includeContexts"]
-        : item["includeContexts"].map((p: any) => {
-            return p;
-          }),
+      : item["includeContexts"].map((p: any) => {
+          return p;
+        }),
     project_resource_id: item["projectResourceId"],
     name: item["name"],
     version: item["version"],
@@ -2322,11 +2306,9 @@ export function azureCosmosDBChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : !item["includeContexts"]
-        ? item["includeContexts"]
-        : item["includeContexts"].map((p: any) => {
-            return p;
-          }),
+      : item["includeContexts"].map((p: any) => {
+          return p;
+        }),
     database_name: item["databaseName"],
     container_name: item["containerName"],
     index_name: item["indexName"],
@@ -2455,11 +2437,9 @@ export function elasticsearchChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : !item["includeContexts"]
-        ? item["includeContexts"]
-        : item["includeContexts"].map((p: any) => {
-            return p;
-          }),
+      : item["includeContexts"].map((p: any) => {
+          return p;
+        }),
     endpoint: item["endpoint"],
     index_name: item["indexName"],
     fields_mapping: !item["fieldsMapping"]
@@ -2499,19 +2479,15 @@ export function elasticsearchIndexFieldMappingOptionsSerializer(
     filepath_field: item["filepathField"],
     content_fields: !item["contentFields"]
       ? item["contentFields"]
-      : !item["contentFields"]
-        ? item["contentFields"]
-        : item["contentFields"].map((p: any) => {
-            return p;
-          }),
+      : item["contentFields"].map((p: any) => {
+          return p;
+        }),
     content_fields_separator: item["contentFieldsSeparator"],
     vector_fields: !item["vectorFields"]
       ? item["vectorFields"]
-      : !item["vectorFields"]
-        ? item["vectorFields"]
-        : item["vectorFields"].map((p: any) => {
-            return p;
-          }),
+      : item["vectorFields"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -2597,11 +2573,9 @@ export function pineconeChatExtensionParametersSerializer(
     allow_partial_result: item["allowPartialResult"],
     include_contexts: !item["includeContexts"]
       ? item["includeContexts"]
-      : !item["includeContexts"]
-        ? item["includeContexts"]
-        : item["includeContexts"].map((p: any) => {
-            return p;
-          }),
+      : item["includeContexts"].map((p: any) => {
+          return p;
+        }),
     environment: item["environment"],
     index_name: item["indexName"],
     fields_mapping: pineconeFieldMappingOptionsSerializer(

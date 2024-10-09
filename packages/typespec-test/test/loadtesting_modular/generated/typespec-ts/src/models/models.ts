@@ -1895,11 +1895,9 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
     name: item["name"],
     values: !item["values"]
       ? item["values"]
-      : !item["values"]
-        ? item["values"]
-        : item["values"].map((p: any) => {
-            return p;
-          }),
+      : item["values"].map((p: any) => {
+          return p;
+        }),
   };
 }
 

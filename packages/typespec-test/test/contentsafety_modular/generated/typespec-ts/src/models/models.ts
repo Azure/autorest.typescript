@@ -130,11 +130,9 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
     image: imageDataSerializer(item["image"]),
     categories: !item["categories"]
       ? item["categories"]
-      : !item["categories"]
-        ? item["categories"]
-        : item["categories"].map((p: any) => {
-            return p;
-          }),
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
     outputType: item["outputType"],
   };
 }
@@ -151,9 +149,7 @@ export function imageDataSerializer(item: ImageData): any {
   return {
     content: !item["content"]
       ? item["content"]
-      : !item["content"]
-        ? item["content"]
-        : uint8ArrayToString(item["content"], "base64"),
+      : uint8ArrayToString(item["content"], "base64"),
     blobUrl: item["blobUrl"],
   };
 }
@@ -221,18 +217,14 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
     text: item["text"],
     categories: !item["categories"]
       ? item["categories"]
-      : !item["categories"]
-        ? item["categories"]
-        : item["categories"].map((p: any) => {
-            return p;
-          }),
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
     blocklistNames: !item["blocklistNames"]
       ? item["blocklistNames"]
-      : !item["blocklistNames"]
-        ? item["blocklistNames"]
-        : item["blocklistNames"].map((p: any) => {
-            return p;
-          }),
+      : item["blocklistNames"].map((p: any) => {
+          return p;
+        }),
     breakByBlocklists: item["breakByBlocklists"],
     outputType: item["outputType"],
   };

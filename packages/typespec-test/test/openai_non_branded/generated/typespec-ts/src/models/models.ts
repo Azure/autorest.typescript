@@ -386,9 +386,7 @@ export function createImageEditRequestSerializer(
     image: uint8ArrayToString(item["image"], "base64"),
     mask: !item["mask"]
       ? item["mask"]
-      : !item["mask"]
-        ? item["mask"]
-        : uint8ArrayToString(item["mask"], "base64"),
+      : uint8ArrayToString(item["mask"], "base64"),
     n: item["n"],
     size: item["size"],
     response_format: item["response_format"],
@@ -608,11 +606,9 @@ export function createFineTuneRequestSerializer(
     classification_positive_class: item["classification_positive_class"],
     classification_betas: !item["classification_betas"]
       ? item["classification_betas"]
-      : !item["classification_betas"]
-        ? item["classification_betas"]
-        : item["classification_betas"].map((p: any) => {
-            return p;
-          }),
+      : item["classification_betas"].map((p: any) => {
+          return p;
+        }),
     suffix: item["suffix"],
   };
 }

@@ -94,11 +94,9 @@ export function dataProductPropertiesSerializer(
     majorVersion: item["majorVersion"],
     owners: !item["owners"]
       ? item["owners"]
-      : !item["owners"]
-        ? item["owners"]
-        : item["owners"].map((p: any) => {
-            return p;
-          }),
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
     redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
@@ -777,11 +775,9 @@ export function dataProductUpdatePropertiesSerializer(
   return {
     owners: !item["owners"]
       ? item["owners"]
-      : !item["owners"]
-        ? item["owners"]
-        : item["owners"].map((p: any) => {
-            return p;
-          }),
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
     privateLinksEnabled: item["privateLinksEnabled"],
