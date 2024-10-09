@@ -79,10 +79,10 @@ export interface SimpleModel {
   propStringUnion: "A" | "B";
   propStringUnionOptioanl: "A" | "B";
   propStringUnionNullable: ("A" | "B") | null;
-  propStringUnionAsExtensible: "A" | "B";
-  propStringUnionAsExtensibleOptional?: "A" | "B";
-  propStringUnionAsExtensibleNullable: ("A" | "B") | null;
-  propStringUnionAsExtensibleOptionalAndNullable?: ("A" | "B") | null;
+  propStringUnionAsExtensible: string;
+  propStringUnionAsExtensibleOptional?: string;
+  propStringUnionAsExtensibleNullable: string | null;
+  propStringUnionAsExtensibleOptionalAndNullable?: string | null;
   propMixedTypeLiteral: "A" | false | 1;
   propStringArray: string[];
   propBooleanArray: boolean[];

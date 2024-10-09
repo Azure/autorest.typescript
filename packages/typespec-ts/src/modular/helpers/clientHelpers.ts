@@ -111,7 +111,7 @@ export function getClientParametersDeclaration(
     ...getClientParameters(_client, dpgContext, options).map<
       OptionalKind<ParameterDeclarationStructure>
     >((p) => {
-      const typeExpression = getClientParameterTypeExpression(p);
+      const typeExpression = getClientParameterTypeExpression(dpgContext, p);
       const name = getClientParameterName(p);
       return {
         name,
@@ -125,6 +125,7 @@ export function getClientParametersDeclaration(
 }
 
 function getClientParameterTypeExpression(
+  context: SdkContext,
   parameter: SdkParameter | SdkHttpParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
@@ -136,10 +137,10 @@ function getClientParameterTypeExpression(
       (p) => p.kind === "endpoint"
     );
     if (endpointVariant) {
-      return getTypeExpression(endpointVariant);
+      return getTypeExpression(context, endpointVariant);
     }
   }
-  return getTypeExpression(parameter.type);
+  return getTypeExpression(context, parameter.type);
 }
 
 export function getClientParameterName(

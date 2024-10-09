@@ -5,12 +5,14 @@ import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { shouldEmitInline } from "./utils.js";
 import { useContext } from "../../contextManager.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export interface ModelExpressionOptions extends EmitTypeOptions {
   skipPolymorphicUnion?: boolean;
 }
 
 export function getModelExpression(
+  context: SdkContext,
   type: SdkModelType,
   options: ModelExpressionOptions = {}
 ): string {
@@ -28,7 +30,7 @@ export function getModelExpression(
       ${type.properties
         .map(
           (p) =>
-            `"${p.name}"${p.optional ? "?" : ""}: ${getTypeExpression(p.type, options)}`
+            `"${p.name}"${p.optional ? "?" : ""}: ${getTypeExpression(context, p.type)}`
         )
         .join(",\n")}
     }`;

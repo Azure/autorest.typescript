@@ -65,7 +65,7 @@ export function buildClientContext(
           type:
             p.name.toLowerCase() === "apiversion"
               ? "string"
-              : getTypeExpression(p.type),
+              : getTypeExpression(dpgContext, p.type),
           hasQuestionToken: true,
           docs: getDocsFromDescription(p.description)
         };

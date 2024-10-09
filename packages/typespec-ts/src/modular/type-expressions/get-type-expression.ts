@@ -1,4 +1,7 @@
-import { SdkType } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 import { getCredentialExpression } from "./get-credential-expression.js";
 import { getEnumExpression } from "./get-enum-expression.js";
 import { getModelExpression } from "./get-model-expression.js";
@@ -9,16 +12,17 @@ export interface EmitTypeOptions {
 }
 
 export function getTypeExpression(
+  context: SdkContext,
   type: SdkType,
   options?: EmitTypeOptions
 ): string {
   switch (type.kind) {
     case "array": {
-      const valueType = getTypeExpression(type.valueType, options);
+      const valueType = getTypeExpression(context, type.valueType, options);
       return `(${valueType})[]`;
     }
     case "enum":
-      return getEnumExpression(type, options);
+      return getEnumExpression(context, type);
     case "unknown":
       return "any";
     case "boolean":
@@ -50,40 +54,36 @@ export function getTypeExpression(
     case "bytes":
       return "Uint8Array";
     case "constant":
-      if (getTypeExpression(type.valueType) === "string") {
+    case "enumvalue":
+      if (getTypeExpression(context, type.valueType) === "string") {
         return `"${type.value}"`;
       }
       return String(type.value);
     case "duration":
-      return getTypeExpression(type.wireType, options);
+      return getTypeExpression(context, type.wireType, options);
     case "credential":
       // Credential comes from @useAuth decorator
       return getCredentialExpression(type);
     case "dict": {
-      const valueType = getTypeExpression(type.valueType, options);
+      const valueType = getTypeExpression(context, type.valueType, options);
       return `Record<string, ${valueType}>`;
     }
-    case "enumvalue":
-      if (getTypeExpression(type.valueType) === "string") {
-        return `"${type.value}"`;
-      }
-      return String(type.value);
     case "model":
-      return getModelExpression(type, options);
+      return getModelExpression(context, type);
     case "nullable": {
-      const nonNullableType = getTypeExpression(type.type, options);
+      const nonNullableType = getTypeExpression(context, type.type, options);
       return `(${nonNullableType}) | null`;
     }
     case "offsetDateTime":
       return "string";
     case "tuple": {
       const types = type.valueTypes
-        .map((v) => getTypeExpression(v, options))
+        .map((v) => getTypeExpression(context, v, options))
         .join(", ");
       return `[${types}]`;
     }
     case "union":
-      return getUnionExpression(type, options);
+      return getUnionExpression(context, type, options);
     case "utcDateTime":
       return "Date";
 

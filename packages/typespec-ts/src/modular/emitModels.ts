@@ -43,6 +43,7 @@ import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
+import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -106,7 +107,7 @@ export function emitTypes(
       }
       const modelInterface = buildModelInterface(context, type);
       addDeclaration(sourceFile, modelInterface, type);
-      const modelPolymorphicType = buildModelPolymorphicType(type);
+      const modelPolymorphicType = buildModelPolymorphicType(context, type);
       if (modelPolymorphicType) {
         addSerializationFunctions(context, type, sourceFile, true);
         addDeclaration(
@@ -211,7 +212,9 @@ function buildUnionType(
     kind: StructureKind.TypeAlias,
     name: normalizeModelName(context, type),
     isExported: true,
-    type: type.variantTypes.map((v) => getTypeExpression(v)).join(" | ")
+    type: type.variantTypes
+      .map((v) => getTypeExpression(context, v))
+      .join(" | ")
   };
 
   unionDeclaration.docs = [
@@ -237,8 +240,8 @@ function buildEnumTypes(
     name: normalizeModelName(context, type),
     isExported: true,
     type: !isExtensibleEnum(context, type)
-      ? type.values.map((v) => getTypeExpression(v)).join(" | ")
-      : getTypeExpression(type.valueType)
+      ? type.values.map((v) => getTypeExpression(context, v)).join(" | ")
+      : getTypeExpression(context, type.valueType)
   };
 
   const docs = type.description
@@ -253,12 +256,6 @@ function buildEnumTypes(
     : [`Known values of {@link ${type.name}} that the service accepts.`];
 
   return [enumAsUnion, enumDeclaration];
-}
-
-function isExtensibleEnum(context: SdkContext, type: SdkEnumType): boolean {
-  return (
-    !type.isFixed && context.rlcOptions?.experimentalExtensibleEnums === true
-  );
 }
 
 function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
@@ -305,22 +302,20 @@ export function buildModelInterface(
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
-      .map(buildModelProperty)
+      .map((p) => {
+        return buildModelProperty(context, p);
+      })
   } as InterfaceStructure;
 
   if (type.baseModel) {
-    const parentReference = getModelExpression(type.baseModel, {
+    const parentReference = getModelExpression(context, type.baseModel, {
       skipPolymorphicUnion: true
     });
     interfaceStructure.extends = [parentReference];
   }
 
   if (type.additionalProperties) {
-    addExtendedDictInfo(
-      type,
-      interfaceStructure,
-      context.rlcOptions?.compatibilityMode
-    );
+    addExtendedDictInfo(context, type, interfaceStructure);
   }
 
   interfaceStructure.docs = [
@@ -331,19 +326,21 @@ export function buildModelInterface(
 }
 
 function addExtendedDictInfo(
+  context: SdkContext,
   model: SdkModelType,
-  modelInterface: InterfaceStructure,
-  compatibilityMode: boolean = false
+  modelInterface: InterfaceStructure
 ) {
   const additionalPropertiesType = model.additionalProperties
-    ? getTypeExpression(model.additionalProperties)
+    ? getTypeExpression(context, model.additionalProperties)
     : undefined;
   if (
     (model.properties &&
       model.properties.length > 0 &&
       model.additionalProperties &&
       model.properties?.every((p) => {
-        return additionalPropertiesType?.includes(getTypeExpression(p.type));
+        return additionalPropertiesType?.includes(
+          getTypeExpression(context, p.type)
+        );
       })) ||
     (model.properties?.length === 0 && model.additionalProperties)
   ) {
@@ -351,7 +348,7 @@ function addExtendedDictInfo(
       ...(modelInterface.extends ?? []),
       `Record<string, ${additionalPropertiesType ?? "any"}>`
     ];
-  } else if (compatibilityMode) {
+  } else if (context.rlcOptions?.compatibilityMode) {
     if (!modelInterface.extends) {
       modelInterface.extends = [];
     }
@@ -387,7 +384,7 @@ export function normalizeModelName(
     )}>`;
   }
   if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
-    return getTypeExpression(type);
+    return getTypeExpression(context, type);
   }
   const segments = type.crossLanguageDefinitionId.split(".");
   segments.pop();
@@ -410,7 +407,7 @@ export function normalizeModelName(
   return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}`;
 }
 
-function buildModelPolymorphicType(type: SdkModelType) {
+function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
   if (!type.discriminatedSubtypes) {
     return undefined;
   }
@@ -429,23 +426,24 @@ function buildModelPolymorphicType(type: SdkModelType) {
             (p.usage & UsageFlags.Input) === UsageFlags.Input)
         );
       })
-      .map((t) => getTypeExpression(t))
+      .map((t) => getTypeExpression(context, t))
       .join(" | ")
   };
 
-  typeDeclaration.type += ` | ${getModelExpression(type, {
+  typeDeclaration.type += ` | ${getModelExpression(context, type, {
     skipPolymorphicUnion: true
   })}`;
   return typeDeclaration;
 }
 
 function buildModelProperty(
+  context: SdkContext,
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: `"${property.name}"`,
-    type: getTypeExpression(property.type),
+    type: getTypeExpression(context, property.type),
     hasQuestionToken: property.optional,
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
   };
