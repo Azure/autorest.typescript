@@ -37,6 +37,7 @@ import {
   getSchemaForType,
   getSerializeTypeName,
   getTypeName,
+  isArrayType,
   isBodyRequired
 } from "../utils/modelUtils.js";
 import {
@@ -46,6 +47,7 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { isArray } from "lodash";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -156,23 +158,12 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
       parameter.type,
       (parameter as any).format
     );
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
-      serializeInfo.hasCsvCollection
-    ) {
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
         ", "
