@@ -45,7 +45,8 @@ import {
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
-  updatePackageFile
+  updatePackageFile,
+  buildSampleEnvFile
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -352,7 +353,8 @@ export async function $onEmit(context: EmitContext) {
         buildRollupConfig,
         buildApiExtractorConfig,
         buildReadmeFile,
-        buildLicenseFile
+        buildLicenseFile,
+        buildSampleEnvFile
       ];
       if (option.moduleKind === "esm") {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
