@@ -1,8 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  createOpenAI,
+  OpenAIContext,
+  OpenAIClientOptionalParams,
+  getAudioTranscriptionAsPlainText,
+  getAudioTranscriptionAsResponseObject,
+  getAudioTranslationAsPlainText,
+  getAudioTranslationAsResponseObject,
+  getCompletions,
+  getChatCompletions,
+  getImageGenerations,
+  generateSpeechFromText,
+  getEmbeddings,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetEmbeddingsOptionalParams,
+} from "./api/index.js";
 import {
   AudioTranscriptionOptions,
   AudioTranscription,
@@ -18,31 +39,8 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
-import {
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
-} from "./models/options.js";
-import {
-  createOpenAI,
-  OpenAIContext,
-  OpenAIClientOptionalParams,
-  getAudioTranscriptionAsPlainText,
-  getAudioTranscriptionAsResponseObject,
-  getAudioTranslationAsPlainText,
-  getAudioTranslationAsResponseObject,
-  getCompletions,
-  getChatCompletions,
-  getImageGenerations,
-  generateSpeechFromText,
-  getEmbeddings,
-} from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 

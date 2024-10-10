@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -26,6 +27,8 @@ export declare interface BazOperations {
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
 
+export declare function createService(endpointParam: string, client: ClientType, options?: ServiceClientOptionalParams): ServiceContext;
+
 export declare interface FooFourOptionalParams extends OperationOptions {
 }
 
@@ -36,6 +39,8 @@ export declare interface FooOperations {
 
 export declare interface FooThreeOptionalParams extends OperationOptions {
 }
+
+export declare function one(context: ServiceContext, options?: OneOptionalParams): Promise<void>;
 
 export declare interface OneOptionalParams extends OperationOptions {
 }
@@ -58,7 +63,7 @@ export declare interface QuxOperations {
 export declare class ServiceClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptionalParams);
+    constructor(endpointParam: string, client: ClientType, options?: ServiceClientOptionalParams);
     one(options?: OneOptionalParams): Promise<void>;
     two(options?: TwoOptionalParams): Promise<void>;
     readonly baz: BazOperations;
@@ -69,6 +74,11 @@ export declare class ServiceClient {
 
 export declare interface ServiceClientOptionalParams extends ClientOptions {
 }
+
+export declare interface ServiceContext extends Client {
+}
+
+export declare function two(context: ServiceContext, options?: TwoOptionalParams): Promise<void>;
 
 export declare interface TwoOptionalParams extends OperationOptions {
 }

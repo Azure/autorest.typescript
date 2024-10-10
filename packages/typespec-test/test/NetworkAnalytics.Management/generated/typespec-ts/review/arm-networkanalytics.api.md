@@ -5,6 +5,7 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -60,6 +61,9 @@ export type ControlState = string;
 
 // @public
 export type CreatedByType = string;
+
+// @public (undocumented)
+export function createNetworkAnalytics(credential: TokenCredential, options?: NetworkAnalyticsClientOptionalParams): NetworkAnalyticsContext;
 
 // @public
 export interface DataProduct extends TrackedResource {
@@ -301,6 +305,10 @@ export interface DataTypeUpdateProperties {
 export type DefaultAction = string;
 
 // @public
+export interface DeleteDataRequest {
+}
+
+// @public
 export interface EncryptionKeyDetails {
     keyName: string;
     keyVaultUri: string;
@@ -311,6 +319,10 @@ export interface EncryptionKeyDetails {
 export interface ErrorAdditionalInfo {
     readonly info?: Record<string, any>;
     readonly type?: string;
+}
+
+// @public
+export interface ErrorAdditionalInfoInfo {
 }
 
 // @public
@@ -408,6 +420,10 @@ export interface ListRoleAssignments {
 }
 
 // @public
+export interface ListRolesAssignmentsRequest {
+}
+
+// @public
 export interface ManagedResourceGroupConfiguration {
     location: string;
     name: string;
@@ -437,6 +453,10 @@ export class NetworkAnalyticsClient {
 // @public
 export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface NetworkAnalyticsContext extends Client {
 }
 
 // @public
@@ -553,9 +573,6 @@ export interface UserAssignedIdentity {
     readonly clientId?: string;
     readonly principalId?: string;
 }
-
-// @public
-export type Versions = "2023-11-15";
 
 // @public
 export interface VirtualNetworkRule {

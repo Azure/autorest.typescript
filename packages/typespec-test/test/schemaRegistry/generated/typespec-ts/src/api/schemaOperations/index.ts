@@ -2,32 +2,34 @@
 // Licensed under the MIT License.
 
 import {
-  SchemaGroup,
-  SchemaContentTypeValues,
-  SchemaVersion,
-  _PagedSchemaGroup,
-  _PagedVersion,
-} from "../../models/models.js";
-import { SchemaRegistryContext as Client } from "../index.js";
+  SchemaRegistryContext as Client,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
+} from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+  _PagedSchemaGroup,
+  _pagedSchemaGroupDeserializer,
+  _PagedVersion,
+  _pagedVersionDeserializer,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
-  SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsRegisterSchemaOptionalParams,
-} from "../../models/options.js";
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export function _listSchemaGroupsSend(
   context: Client,
@@ -48,12 +50,7 @@ export async function _listSchemaGroupsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return { groupName: p["groupName"] };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return _pagedSchemaGroupDeserializer(result.body);
 }
 
 /** Gets the list of schema groups user is authorized to access. */
@@ -126,12 +123,7 @@ export async function _listSchemaVersionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return { schemaVersion: p["schemaVersion"] };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return _pagedVersionDeserializer(result.body);
 }
 
 /** Gets the list of all versions of one schema. */

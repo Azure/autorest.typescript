@@ -2,18 +2,21 @@
 // Licensed under the MIT License.
 
 import {
+  AudioTranscriptionsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
+import {
   CreateTranscriptionRequest,
+  createTranscriptionRequestSerializer,
   CreateTranscriptionResponse,
+  createTranscriptionResponseDeserializer,
 } from "../../../models/models.js";
-import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
-import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
@@ -25,14 +28,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["responseFormat"],
-        temperature: audio["temperature"],
-        language: audio["language"],
-      },
+      body: createTranscriptionRequestSerializer(audio),
     });
 }
 
@@ -44,9 +40,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  return createTranscriptionResponseDeserializer(result.body);
 }
 
 export async function create(

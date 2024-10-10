@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -21,12 +22,15 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 
 // @public
 export interface ConfidentialLedgerOperations {
-    listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
 // @public (undocumented)
+export function createParametrizedHost(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
+
+// @public (undocumented)
 export class ParametrizedHostClient {
-    constructor(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams);
+    constructor(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams);
     readonly confidentialLedger: ConfidentialLedgerOperations;
     readonly pipeline: Pipeline;
 }
@@ -34,13 +38,15 @@ export class ParametrizedHostClient {
 // @public
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     // (undocumented)
-    apiVersion?: string;
-    // (undocumented)
     host?: string;
     // (undocumented)
     subdomain?: string;
     // (undocumented)
     sufix?: string;
+}
+
+// @public (undocumented)
+export interface ParametrizedHostContext extends Client {
 }
 
 // (No @packageDocumentation comment for this package)

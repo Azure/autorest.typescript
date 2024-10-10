@@ -1,6 +1,9 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+
+export declare function client(context: NamingContext, body: ClientNameModel, options?: ClientOptionalParams): Promise<void>;
 
 export declare type ClientExtensibleEnum = "value1";
 
@@ -19,6 +22,8 @@ export declare interface ClientModelOperations {
     language: (body: TSModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
 }
 
+export declare function clientName(context: NamingContext, options?: ClientNameOptionalParams): Promise<void>;
+
 export declare interface ClientNameAndJsonEncodedNameModel {
     clientName: boolean;
 }
@@ -33,13 +38,19 @@ export declare interface ClientNameOptionalParams extends OperationOptions {
 export declare interface ClientOptionalParams extends OperationOptions {
 }
 
+export declare function compatibleWithEncodedName(context: NamingContext, body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
+
 export declare interface CompatibleWithEncodedNameOptionalParams extends OperationOptions {
 }
 
+export declare function createNaming(options?: NamingClientOptionalParams): NamingContext;
+
 export declare type ExtensibleEnum = "value1" | "value2";
 
+export declare function language(context: NamingContext, body: LanguageClientNameModel, options?: LanguageOptionalParams): Promise<void>;
+
 export declare interface LanguageClientNameModel {
-    tSName: boolean;
+    TSName: boolean;
 }
 
 export declare interface LanguageOptionalParams extends OperationOptions {
@@ -63,11 +74,20 @@ export declare class NamingClient {
 export declare interface NamingClientOptionalParams extends ClientOptions {
 }
 
+export declare interface NamingContext extends Client {
+}
+
+export declare function parameter(context: NamingContext, clientName: string, options?: ParameterOptionalParams): Promise<void>;
+
 export declare interface ParameterOptionalParams extends OperationOptions {
 }
 
+export declare function request(context: NamingContext, clientName: string, options?: RequestOptionalParams): Promise<void>;
+
 export declare interface RequestOptionalParams extends OperationOptions {
 }
+
+export declare function response(context: NamingContext, options?: ResponseOptionalParams): Promise<void>;
 
 export declare interface ResponseOptionalParams extends OperationOptions {
 }

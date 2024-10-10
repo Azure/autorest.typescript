@@ -79,10 +79,9 @@ export declare interface From {
     name: string;
 }
 
-declare interface Global_2 {
+export declare interface GlobalModel {
     name: string;
 }
-export { Global_2 as Global }
 
 export declare interface If {
     name: string;
@@ -379,7 +378,7 @@ export declare interface ModelsWithGlobal204Response extends HttpResponse {
 }
 
 export declare interface ModelsWithGlobalBodyParam {
-    body: Global_2;
+    body: GlobalModel;
 }
 
 export declare type ModelsWithGlobalParameters = ModelsWithGlobalBodyParam & RequestParameters;
@@ -764,15 +763,15 @@ export declare interface OperationsFrom204Response extends HttpResponse {
 
 export declare type OperationsFromParameters = RequestParameters;
 
-export declare interface OperationsGlobal {
-    get(options?: OperationsGlobalParameters): StreamableMethod<OperationsGlobal204Response>;
+export declare interface OperationsGlobalModel {
+    get(options?: OperationsGlobalModelParameters): StreamableMethod<OperationsGlobalModel204Response>;
 }
 
-export declare interface OperationsGlobal204Response extends HttpResponse {
+export declare interface OperationsGlobalModel204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type OperationsGlobalParameters = RequestParameters;
+export declare type OperationsGlobalModelParameters = RequestParameters;
 
 export declare interface OperationsIf {
     get(options?: OperationsIfParameters): StreamableMethod<OperationsIf204Response>;
@@ -1595,7 +1594,7 @@ export declare interface Routes {
     (path: "/special-words/operations/finally"): OperationsFinally;
     (path: "/special-words/operations/for"): OperationsFor;
     (path: "/special-words/operations/from"): OperationsFrom;
-    (path: "/special-words/operations/global"): OperationsGlobal;
+    (path: "/special-words/operations/global"): OperationsGlobalModel;
     (path: "/special-words/operations/if"): OperationsIf;
     (path: "/special-words/operations/import"): OperationsImport;
     (path: "/special-words/operations/in"): OperationsIn;

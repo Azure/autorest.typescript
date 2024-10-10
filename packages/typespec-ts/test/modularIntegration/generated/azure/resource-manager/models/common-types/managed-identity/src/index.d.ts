@@ -1,8 +1,13 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare type CreatedByType = string;
+
+export declare function createManagedIdentity(options?: ManagedIdentityClientOptionalParams): ManagedIdentityContext;
+
+export declare function createWithSystemAssigned(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
 
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
 }
@@ -10,6 +15,9 @@ export declare interface CreateWithSystemAssignedOptionalParams extends Operatio
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: Record<string, any>;
+}
+
+export declare interface ErrorAdditionalInfoInfo {
 }
 
 export declare interface ErrorDetail {
@@ -23,6 +31,8 @@ export declare interface ErrorDetail {
 export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
+
+export declare function get(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
@@ -52,6 +62,9 @@ export declare class ManagedIdentityClient {
 
 export declare interface ManagedIdentityClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+export declare interface ManagedIdentityContext extends Client {
 }
 
 export declare interface ManagedIdentityTrackedResource extends TrackedResource {
@@ -93,6 +106,8 @@ export declare interface TrackedResource extends Resource {
     location: string;
 }
 
+export declare function updateWithUserAssignedAndSystemAssigned(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+
 export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
 }
 
@@ -100,7 +115,5 @@ export declare interface UserAssignedIdentity {
     readonly principalId?: string;
     readonly clientId?: string;
 }
-
-export declare type Versions = "2023-12-01-preview";
 
 export { }

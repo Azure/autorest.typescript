@@ -246,7 +246,9 @@ describe("Responses.ts", () => {
       @doc("testing")
       @get op read(): Azure.Core.Foundations.ErrorResponse;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(parameters);
       await assertEqualContent(
@@ -288,8 +290,8 @@ describe("Responses.ts", () => {
       @doc("testing")
       @get op read(): ErrorResponse;
     `;
-      const parameters = await emitResponsesFromTypeSpec(tsp, false);
-      const models = await emitModelsFromTypeSpec(tsp, false);
+      const parameters = await emitResponsesFromTypeSpec(tsp);
+      const models = await emitModelsFromTypeSpec(tsp);
       assert.ok(parameters);
       await assertEqualContent(
         models?.outputModelFile?.content!,

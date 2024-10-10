@@ -4,18 +4,19 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface A {
     // (undocumented)
     prop1: string;
 }
 
-// @public (undocumented)
-export interface BA {
+// @public
+export interface Ba {
     // (undocumented)
     prop2: string;
 }
@@ -27,11 +28,11 @@ export interface BCOp1OptionalParams extends OperationOptions {
 // @public
 export interface BCOperations {
     // (undocumented)
-    op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
+    op1: (body: Ba, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
-export interface BEA {
+// @public
+export interface Bea {
     // (undocumented)
     prop3: string;
 }
@@ -43,7 +44,7 @@ export interface BECOp1OptionalParams extends OperationOptions {
 // @public
 export interface BECOperations {
     // (undocumented)
-    op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
+    op1: (body: Bea, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -63,8 +64,11 @@ export interface BOperations {
     // (undocumented)
     e: BEOperations;
     // (undocumented)
-    op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
+    op1: (body: Ba, options?: BOp1OptionalParams) => Promise<void>;
 }
+
+// @public (undocumented)
+export function createFoo(endpointParam: string, options?: FooClientOptionalParams): FooContext;
 
 // @public
 export interface DOp1OptionalParams extends OperationOptions {
@@ -78,7 +82,7 @@ export interface DOperations {
 
 // @public (undocumented)
 export class FooClient {
-    constructor(endpoint: string, options?: FooClientOptionalParams);
+    constructor(endpointParam: string, options?: FooClientOptionalParams);
     readonly b: BOperations;
     readonly d: DOperations;
     // (undocumented)
@@ -89,6 +93,13 @@ export class FooClient {
 // @public
 export interface FooClientOptionalParams extends ClientOptions {
 }
+
+// @public (undocumented)
+export interface FooContext extends Client {
+}
+
+// @public (undocumented)
+export function op1(context: FooContext, body: A, options?: Op1OptionalParams): Promise<void>;
 
 // @public
 export interface Op1OptionalParams extends OperationOptions {

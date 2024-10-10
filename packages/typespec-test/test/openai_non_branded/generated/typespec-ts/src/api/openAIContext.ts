@@ -1,9 +1,14 @@
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@typespec/ts-http-runtime";
-import { ClientOptions, Client, getClient } from "@typespec/ts-http-runtime";
-import { isKeyCredential } from "@typespec/ts-http-runtime";
+import {
+  Client,
+  ClientOptions,
+  getClient,
+  KeyCredential,
+  isKeyCredential,
+} from "@typespec/ts-http-runtime";
 
+/** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export interface OpenAIContext extends Client {}
 
 /** Optional parameters for the client. */

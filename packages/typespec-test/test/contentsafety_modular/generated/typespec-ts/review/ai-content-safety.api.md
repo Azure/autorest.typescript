@@ -4,11 +4,15 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
+
+// @public
+export function addOrUpdateBlockItems(context: ContentSafetyContext, blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsOptionalParams): Promise<AddOrUpdateBlockItemsResult>;
 
 // @public
 export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
@@ -23,6 +27,9 @@ export interface AddOrUpdateBlockItemsOptions {
 export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
 }
+
+// @public
+export function analyzeImage(context: ContentSafetyContext, body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
 
 // @public
 export interface AnalyzeImageOptionalParams extends OperationOptions {
@@ -42,6 +49,9 @@ export type AnalyzeImageOutputType = "FourLevels";
 export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
 }
+
+// @public
+export function analyzeText(context: ContentSafetyContext, body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
 
 // @public
 export interface AnalyzeTextOptionalParams extends OperationOptions {
@@ -87,9 +97,19 @@ export interface ContentSafetyClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface ContentSafetyContext extends Client {
+}
+
+// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export function createContentSafety(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptionalParams): ContentSafetyContext;
+
+// @public
+export function createOrUpdateTextBlocklist(context: ContentSafetyContext, blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
 
 // @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
@@ -97,8 +117,17 @@ export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOpti
 }
 
 // @public
+export function deleteTextBlocklist(context: ContentSafetyContext, blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
+
+// @public
+export function getTextBlocklist(context: ContentSafetyContext, blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
+
+// @public
+export function getTextBlocklistItem(context: ContentSafetyContext, blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlockItem>;
 
 // @public
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
@@ -124,11 +153,17 @@ export interface ImageData {
 }
 
 // @public
+export function listTextBlocklistItems(context: ContentSafetyContext, blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlockItem>;
+
+// @public
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
+
+// @public
+export function listTextBlocklists(context: ContentSafetyContext, options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
 
 // @public
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {
@@ -145,6 +180,9 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PageSettings {
     continuationToken?: string;
 }
+
+// @public
+export function removeBlockItems(context: ContentSafetyContext, blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
 
 // @public
 export interface RemoveBlockItemsOptionalParams extends OperationOptions {
@@ -189,9 +227,6 @@ export interface TextBlocklistMatchResult {
 
 // @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-
-// @public
-export type Versions = "2023-10-01";
 
 // (No @packageDocumentation comment for this package)
 

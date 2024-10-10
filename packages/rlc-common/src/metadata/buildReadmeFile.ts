@@ -7,6 +7,7 @@ import { RLCModel } from "../interfaces.js";
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import { isAzurePackage } from "../helpers/packageUtil.js";
+import { getClientName } from "../helpers/nameConstructors.js";
 
 const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -429,11 +430,4 @@ function getServiceName(model: RLCModel) {
       ? simpleServiceName
       : `Azure ${simpleServiceName}`
     : simpleServiceName;
-}
-
-function getClientName(model: RLCModel) {
-  const clientName = model.libraryName;
-  return clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}Client`;
 }

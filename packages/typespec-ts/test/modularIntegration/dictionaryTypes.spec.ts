@@ -91,10 +91,12 @@ describe("DictionaryClient Modular Client", () => {
     const result = await client.modelValue.get();
     assert.deepEqual(result, {
       k1: {
-        property: "hello"
+        property: "hello",
+        children: undefined
       },
       k2: {
-        property: "world"
+        property: "world",
+        children: undefined
       }
     });
   });
@@ -131,7 +133,7 @@ describe("DictionaryClient Modular Client", () => {
       k1: { property: "hello", children: {} },
       k2: {
         property: "world",
-        children: { "k2.1": { property: "inner world" } }
+        children: { "k2.1": { children: undefined, property: "inner world" } }
       }
     });
   });

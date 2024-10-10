@@ -36,8 +36,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -53,10 +55,12 @@ describe("header parameters", () => {
         );
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          false,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: false,
+            needNamespaces: false,
+            needAzureCore: false,
+            withRawContent: true,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -66,9 +70,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           
           export function _getSend(
@@ -136,8 +140,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -180,8 +186,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -226,8 +234,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -237,6 +247,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }
           `
         );
       });
@@ -272,8 +294,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
 
         assert.ok(schemaOutput);
@@ -284,6 +308,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+           
+           export function schemaContentTypeValuesSerializer(
+             item: SchemaContentTypeValues,
+           ): any {
+             return item;
+           }
+           
+           export function schemaContentTypeValuesDeserializer(
+             item: any,
+           ): SchemaContentTypeValues {
+             return item;
+           }
           `
         );
       });
@@ -316,8 +352,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -362,8 +400,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -373,6 +413,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }
           `
         );
       });
@@ -408,8 +460,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
         );
 
         assert.ok(schemaOutput);
@@ -420,6 +474,18 @@ describe("header parameters", () => {
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          
+          export function schemaContentTypeValuesSerializer(
+            item: SchemaContentTypeValues,
+          ): any {
+            return item;
+          }
+          
+          export function schemaContentTypeValuesDeserializer(
+            item: any,
+          ): SchemaContentTypeValues {
+            return item;
+          }   
           `
         );
       });
@@ -448,17 +514,34 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of GetRequestTestHeader */ 
+          export type GetRequestTestHeader =
+            | "A"
+            | "B";
+          /** Type of GetResponseTestHeader */ 
+          export type GetResponseTestHeader =
+            | "A"
+            | "B";
+          `,
           true
         );
-        assert.isUndefined(schemaOutput);
-
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          true,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: true,
+            needNamespaces: false,
+            needAzureCore: false,
+            withRawContent: true,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -469,9 +552,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
@@ -529,17 +612,35 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
+          {
+            needOptions: false,
+            withRawContent: true,
+          }
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of GetRequestTestHeader */ 
+          export type GetRequestTestHeader =
+            | "A"
+            | "B";
+          /** Type of GetResponseTestHeader */ 
+          export type GetResponseTestHeader =
+            | "A"
+            | "B";
+          `,
           true
         );
-        assert.isUndefined(schemaOutput);
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
-          true,
-          false,
-          false,
-          true
+          {
+            mustEmptyDiagnostic: true,
+            needNamespaces: false,
+            needAzureCore: false,
+            withRawContent: true,
+          }
         );
         assert.ok(paramOutput);
         assert.strictEqual(paramOutput?.length, 1);
@@ -550,9 +651,9 @@ describe("header parameters", () => {
           import { DemoServiceContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
             createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
@@ -623,8 +724,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -665,8 +768,10 @@ describe("header parameters", () => {
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
-          false,
-          true
+          {
+            needOptions: false,
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -710,8 +815,10 @@ describe("header parameters", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          needOptions: false,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
@@ -760,28 +867,37 @@ describe("header parameters", () => {
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
-        false,
-        true,
-        false,
-        false,
-        false
+        {
+          needOptions: false,
+          withRawContent: true,
+          needAzureCore: false,
+          compatibilityMode: false,
+          mustEmptyDiagnostic: false,
+        }
       );
       assert.ok(schemaOutput);
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Type of EnumTest */
-        export type EnumTest = 1 | 2 | 3 | 4;
+        /** model interface Foo */
+        export interface Foo {}
         
-        export interface Foo {
-        }
-
-        export function fooSerializer(item: Foo) {
+        export function fooSerializer(item: Foo): any {
           return item as any;
         }
-        
+               
+        /** Type of EnumTest */
+        export type EnumTest = 1 | 2 | 3 | 4;
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
+      
+        export function mixedTypesSerializer(item: MixedTypes): any {
+          return item;
+        }
+        
+        export function mixedTypesDeserializer(item: any): MixedTypes {
+          return item;
+        }
       `
       );
     });
@@ -801,6 +917,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: "red" | "blue";
         }`
@@ -810,11 +927,10 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
-          return {
-            color: item["color"],
-          }
-        };`
+        export function testSerializer(item: Test): any {
+          return { color: item["color"] };
+        };`,
+        true
       );
     });
 
@@ -833,6 +949,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: "red";
         }
@@ -859,6 +976,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: "red" | null;
         }`
@@ -868,11 +986,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -887,6 +1006,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: string | null;
         }`
@@ -896,11 +1016,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
   });
@@ -917,6 +1038,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: 1 | 2;
         }`
@@ -926,11 +1048,10 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
-          return {
-            color: item["color"],
-          }
-        };`
+        export function testSerializer(item: Test): any {
+          return { color: item["color"] };
+        };`,
+        true
       );
     });
 
@@ -949,6 +1070,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: 1;
         }
@@ -979,6 +1101,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Color | null;
         }
@@ -999,14 +1122,17 @@ describe("model type", () => {
         }
         op read(@body body: Test): void;
         `,
-        undefined,
-        undefined,
-        true
+        {
+          needOptions: false,
+          withRawContent: false,
+          needAzureCore: true,
+        }
       );
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Color | null;
         }
@@ -1062,17 +1188,20 @@ describe("model type", () => {
       }
       op read(@body body: Test): void;
         `,
-        false,
-        false,
-        false,
-        false,
-        true,
-        true
+        {
+          needOptions: false,
+          withRawContent: false,
+          needAzureCore: false,
+          compatibilityMode: false,
+          mustEmptyDiagnostic: true,
+          experimentalExtensibleEnums: true
+        }
       );
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")!.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: ImageSize;
         }
@@ -1083,15 +1212,30 @@ describe("model type", () => {
         `
         /** Known values of {@link ImageSize} that the service accepts. */
         export enum KnownImageSize {
-          /** size256x256 */
+         /**
+          * Very small image size of 256x256 pixels.
+          * Only supported with dall-e-2 models.
+          */
           size256x256 = "256x256",
-          /** size512x512 */
+         /**
+          * A smaller image size of 512x512 pixels.
+          * Only supported with dall-e-2 models.
+          */
           size512x512 = "512x512",
-          /** size1024x1024 */
+         /**
+          * A standard, square image size of 1024x1024 pixels.
+          * Supported by both dall-e-2 and dall-e-3 models.
+          */
           size1024x1024 = "1024x1024",
-          /** size1792x1024 */
+         /**
+          * A wider image size of 1024x1792 pixels.
+          * Only supported with dall-e-3 models.
+          */
           size1792x1024 = "1792x1024",
-          /** size1024x1792 */
+         /**
+          * A taller image size of 1792x1024 pixels.
+          * Only supported with dall-e-3 models.
+          */
           size1024x1792 = "1024x1792",
         }
         `
@@ -1118,6 +1262,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: Lr | Ud;
         }
@@ -1158,6 +1303,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           color: LeftAndRight | UpAndDown;
         }
@@ -1189,6 +1335,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: 1 | null;
         }`
@@ -1198,11 +1345,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
 
@@ -1217,6 +1365,7 @@ describe("model type", () => {
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
         `
+        /** model interface Test */
         export interface Test {
           content: number | null;
         }`
@@ -1226,11 +1375,12 @@ describe("model type", () => {
       await assertEqualContent(
         serializer!,
         `
-        export function testSerializer(item: Test): Record<string, unknown> {
+        export function testSerializer(item: Test): any {
           return {
             content: item["content"],
           }
-        };`
+        };`,
+        true
       );
     });
   });

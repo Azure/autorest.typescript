@@ -74,8 +74,11 @@ async function generate(path, logger) {
 
     // Clean up the folder before generation
     if (await exists(join(path, "generated", "typespec-ts"))) {
-      const pathToRemove = join(path, "generated", "typespec-ts");
-      await rm(pathToRemove, { recursive: true, force: true });
+      fstat.readdirSync(join(path, "generated", "typespec-ts")).forEach((file) => {
+        if(file !== "node_modules") {
+          rm(join(path, "generated", "typespec-ts", file), { recursive: true, force: true });
+        }
+      });
     }
   } catch (e) {
     // do nothing

@@ -2,12 +2,6 @@
 
 import { OpenAIContext } from "../../../api/openAIContext.js";
 import {
-  CreateFineTuningJobRequest,
-  FineTuningJob,
-  ListPaginatedFineTuningJobsResponse,
-  ListFineTuningJobEventsResponse,
-} from "../../../models/models.js";
-import {
   create,
   list,
   retrieve,
@@ -20,7 +14,13 @@ import {
   FineTuningJobsRetrieveOptionalParams,
   FineTuningJobsListEventsOptionalParams,
   FineTuningJobsCancelOptionalParams,
-} from "../../../models/options.js";
+} from "../../../api/options.js";
+import {
+  CreateFineTuningJobRequest,
+  FineTuningJob,
+  ListPaginatedFineTuningJobsResponse,
+  ListFineTuningJobEventsResponse,
+} from "../../../models/models.js";
 
 /** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {

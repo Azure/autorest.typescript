@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -189,6 +190,11 @@ export class BatchClient {
 
 // @public
 export interface BatchClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+export interface BatchContext extends Client {
 }
 
 // @public
@@ -578,6 +584,9 @@ export interface BatchTaskListSubtasksResult {
 export type CachingType = "none" | "readonly" | "readwrite";
 
 // @public
+export function cancelCertificateDeletion(context: BatchContext, thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptionalParams): Promise<void>;
+
+// @public
 export interface CancelCertificateDeletionOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
@@ -646,11 +655,20 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
+export function createBatch(endpointParam: string, credential: TokenCredential, options?: BatchClientOptionalParams): BatchContext;
+
+// @public
+export function createCertificate(context: BatchContext, body: BatchCertificate, options?: CreateCertificateOptionalParams): Promise<void>;
+
+// @public
 export interface CreateCertificateOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function createJob(context: BatchContext, body: BatchJobCreateOptions, options?: CreateJobOptionalParams): Promise<void>;
 
 // @public
 export interface CreateJobOptionalParams extends OperationOptions {
@@ -660,11 +678,17 @@ export interface CreateJobOptionalParams extends OperationOptions {
 }
 
 // @public
+export function createJobSchedule(context: BatchContext, body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptionalParams): Promise<void>;
+
+// @public
 export interface CreateJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function createNodeUser(context: BatchContext, poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptionalParams): Promise<void>;
 
 // @public
 export interface CreateNodeUserOptionalParams extends OperationOptions {
@@ -674,11 +698,20 @@ export interface CreateNodeUserOptionalParams extends OperationOptions {
 }
 
 // @public
+export function createPool(context: BatchContext, body: BatchPoolCreateOptions, options?: CreatePoolOptionalParams): Promise<void>;
+
+// @public
 export interface CreatePoolOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function createTask(context: BatchContext, jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptionalParams): Promise<void>;
+
+// @public
+export function createTaskCollection(context: BatchContext, jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptionalParams): Promise<TaskAddCollectionResult>;
 
 // @public
 export interface CreateTaskCollectionOptionalParams extends OperationOptions {
@@ -703,6 +736,9 @@ export interface DataDisk {
 }
 
 // @public
+export function deleteCertificate(context: BatchContext, thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteCertificateError {
     code?: string;
     message?: string;
@@ -716,6 +752,9 @@ export interface DeleteCertificateOptionalParams extends OperationOptions {
 }
 
 // @public
+export function deleteJob(context: BatchContext, jobId: string, options?: DeleteJobOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -724,6 +763,9 @@ export interface DeleteJobOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function deleteJobSchedule(context: BatchContext, jobScheduleId: string, options?: DeleteJobScheduleOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteJobScheduleOptionalParams extends OperationOptions {
@@ -736,6 +778,9 @@ export interface DeleteJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function deleteNodeFile(context: BatchContext, poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteNodeFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     recursive?: boolean;
@@ -743,10 +788,16 @@ export interface DeleteNodeFileOptionalParams extends OperationOptions {
 }
 
 // @public
+export function deleteNodeUser(context: BatchContext, poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptionalParams): Promise<void>;
+
+// @public
 export interface DeleteNodeUserOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function deletePool(context: BatchContext, poolId: string, options?: DeletePoolOptionalParams): Promise<void>;
 
 // @public
 export interface DeletePoolOptionalParams extends OperationOptions {
@@ -757,6 +808,12 @@ export interface DeletePoolOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function deleteTask(context: BatchContext, jobId: string, taskId: string, options?: DeleteTaskOptionalParams): Promise<void>;
+
+// @public
+export function deleteTaskFile(context: BatchContext, jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTaskFileOptionalParams extends OperationOptions {
@@ -790,6 +847,9 @@ export interface DiffDiskSettings {
 export type DisableBatchNodeSchedulingOption = "requeue" | "terminate" | "taskcompletion";
 
 // @public
+export function disableJob(context: BatchContext, jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptionalParams): Promise<void>;
+
+// @public
 export type DisableJobOption = "requeue" | "terminate" | "wait";
 
 // @public
@@ -804,6 +864,9 @@ export interface DisableJobOptionalParams extends OperationOptions {
 }
 
 // @public
+export function disableJobSchedule(context: BatchContext, jobScheduleId: string, options?: DisableJobScheduleOptionalParams): Promise<void>;
+
+// @public
 export interface DisableJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -814,11 +877,17 @@ export interface DisableJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function disableNodeScheduling(context: BatchContext, poolId: string, nodeId: string, body?: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptionalParams): Promise<void>;
+
+// @public
 export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function disablePoolAutoScale(context: BatchContext, poolId: string, options?: DisablePoolAutoScaleOptionalParams): Promise<void>;
 
 // @public
 export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
@@ -841,6 +910,9 @@ export type DynamicVNetAssignmentScope = "none" | "job";
 export type ElevationLevel = "nonadmin" | "admin";
 
 // @public
+export function enableJob(context: BatchContext, jobId: string, options?: EnableJobOptionalParams): Promise<void>;
+
+// @public
 export interface EnableJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -849,6 +921,9 @@ export interface EnableJobOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function enableJobSchedule(context: BatchContext, jobScheduleId: string, options?: EnableJobScheduleOptionalParams): Promise<void>;
 
 // @public
 export interface EnableJobScheduleOptionalParams extends OperationOptions {
@@ -861,10 +936,16 @@ export interface EnableJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function enableNodeScheduling(context: BatchContext, poolId: string, nodeId: string, options?: EnableNodeSchedulingOptionalParams): Promise<void>;
+
+// @public
 export interface EnableNodeSchedulingOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function enablePoolAutoScale(context: BatchContext, poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptionalParams): Promise<void>;
 
 // @public
 export interface EnablePoolAutoScaleOptionalParams extends OperationOptions {
@@ -891,6 +972,9 @@ export interface ErrorMessage {
     lang?: string;
     value?: string;
 }
+
+// @public
+export function evaluatePoolAutoScale(context: BatchContext, poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptionalParams): Promise<AutoScaleRun>;
 
 // @public
 export interface EvaluatePoolAutoScaleOptionalParams extends OperationOptions {
@@ -937,10 +1021,16 @@ export interface FileProperties {
 }
 
 // @public
+export function getApplication(context: BatchContext, applicationId: string, options?: GetApplicationOptionalParams): Promise<BatchApplication>;
+
+// @public
 export interface GetApplicationOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getCertificate(context: BatchContext, thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<BatchCertificate>;
 
 // @public
 export interface GetCertificateOptionalParams extends OperationOptions {
@@ -948,6 +1038,9 @@ export interface GetCertificateOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getJob(context: BatchContext, jobId: string, options?: GetJobOptionalParams): Promise<BatchJob>;
 
 // @public
 export interface GetJobOptionalParams extends OperationOptions {
@@ -962,6 +1055,9 @@ export interface GetJobOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getJobSchedule(context: BatchContext, jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
+
+// @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
     $expand?: string[];
     $select?: string[];
@@ -974,10 +1070,19 @@ export interface GetJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getJobTaskCounts(context: BatchContext, jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
+
+// @public
 export interface GetJobTaskCountsOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getNode(context: BatchContext, poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
+
+// @public
+export function getNodeExtension(context: BatchContext, poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
 
 // @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
@@ -987,6 +1092,9 @@ export interface GetNodeExtensionOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getNodeFile(context: BatchContext, poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
+
+// @public
 export interface GetNodeFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -994,6 +1102,9 @@ export interface GetNodeFileOptionalParams extends OperationOptions {
     ocpRange?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getNodeFileProperties(context: BatchContext, poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
 
 // @public
 export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
@@ -1011,16 +1122,25 @@ export interface GetNodeOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getNodeRemoteDesktopFile(context: BatchContext, poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
+
+// @public
 export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public
+export function getNodeRemoteLoginSettings(context: BatchContext, poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptionalParams): Promise<BatchNodeRemoteLoginSettingsResult>;
+
+// @public
 export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptions {
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getPool(context: BatchContext, poolId: string, options?: GetPoolOptionalParams): Promise<BatchPool>;
 
 // @public
 export interface GetPoolOptionalParams extends OperationOptions {
@@ -1035,6 +1155,12 @@ export interface GetPoolOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getTask(context: BatchContext, jobId: string, taskId: string, options?: GetTaskOptionalParams): Promise<BatchTask>;
+
+// @public
+export function getTaskFile(context: BatchContext, jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<Uint8Array>;
+
+// @public
 export interface GetTaskFileOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifModifiedSince?: Date;
@@ -1042,6 +1168,9 @@ export interface GetTaskFileOptionalParams extends OperationOptions {
     ocpRange?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function getTaskFileProperties(context: BatchContext, jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
 
 // @public
 export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
@@ -1242,6 +1371,9 @@ export interface JobScheduleExecutionInformation {
 }
 
 // @public
+export function jobScheduleExists(context: BatchContext, jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
+
+// @public
 export interface JobScheduleExistsOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -1328,11 +1460,17 @@ export interface LinuxUserConfiguration {
 }
 
 // @public
+export function listApplications(context: BatchContext, options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;
+
+// @public
 export interface ListApplicationsOptionalParams extends OperationOptions {
     apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listCertificates(context: BatchContext, options?: ListCertificatesOptionalParams): PagedAsyncIterableIterator<BatchCertificate>;
 
 // @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
@@ -1344,12 +1482,21 @@ export interface ListCertificatesOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listJobPreparationAndReleaseTaskStatus(context: BatchContext, jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptionalParams): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
+
+// @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
     $filter?: string;
     $select?: string[];
     maxresults?: number;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listJobs(context: BatchContext, options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;
+
+// @public
+export function listJobSchedules(context: BatchContext, options?: ListJobSchedulesOptionalParams): PagedAsyncIterableIterator<BatchJobSchedule>;
 
 // @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
@@ -1360,6 +1507,9 @@ export interface ListJobSchedulesOptionalParams extends OperationOptions {
     maxresults?: number;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listJobsFromSchedule(context: BatchContext, jobScheduleId: string, options?: ListJobsFromScheduleOptionalParams): PagedAsyncIterableIterator<BatchJob>;
 
 // @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
@@ -1382,11 +1532,17 @@ export interface ListJobsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listNodeExtensions(context: BatchContext, poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVMExtension>;
+
+// @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
     $select?: string[];
     maxresults?: number;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listNodeFiles(context: BatchContext, poolId: string, nodeId: string, options?: ListNodeFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
 
 // @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
@@ -1398,6 +1554,9 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listNodes(context: BatchContext, poolId: string, options?: ListNodesOptionalParams): PagedAsyncIterableIterator<BatchNode>;
+
+// @public
 export interface ListNodesOptionalParams extends OperationOptions {
     $filter?: string;
     $select?: string[];
@@ -1407,12 +1566,18 @@ export interface ListNodesOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listPoolNodeCounts(context: BatchContext, options?: ListPoolNodeCountsOptionalParams): PagedAsyncIterableIterator<PoolNodeCounts>;
+
+// @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listPools(context: BatchContext, options?: ListPoolsOptionalParams): PagedAsyncIterableIterator<BatchPool>;
 
 // @public
 export interface ListPoolsOptionalParams extends OperationOptions {
@@ -1425,6 +1590,9 @@ export interface ListPoolsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listPoolUsageMetrics(context: BatchContext, options?: ListPoolUsageMetricsOptionalParams): PagedAsyncIterableIterator<PoolUsageMetrics>;
+
+// @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1435,11 +1603,17 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listSubTasks(context: BatchContext, jobId: string, taskId: string, options?: ListSubTasksOptionalParams): Promise<BatchTaskListSubtasksResult>;
+
+// @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
     $select?: string[];
     apiVersion?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listSupportedImages(context: BatchContext, options?: ListSupportedImagesOptionalParams): PagedAsyncIterableIterator<ImageInformation>;
 
 // @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
@@ -1449,6 +1623,9 @@ export interface ListSupportedImagesOptionalParams extends OperationOptions {
 }
 
 // @public
+export function listTaskFiles(context: BatchContext, jobId: string, taskId: string, options?: ListTaskFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
+
+// @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
     $filter?: string;
     apiVersion?: string;
@@ -1456,6 +1633,9 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function listTasks(context: BatchContext, jobId: string, options?: ListTasksOptionalParams): PagedAsyncIterableIterator<BatchTask>;
 
 // @public
 export interface ListTasksOptionalParams extends OperationOptions {
@@ -1656,6 +1836,9 @@ export interface PoolEndpointConfiguration {
 }
 
 // @public
+export function poolExists(context: BatchContext, poolId: string, options?: PoolExistsOptionalParams): Promise<void>;
+
+// @public
 export interface PoolExistsOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -1734,8 +1917,11 @@ export interface PoolUsageMetrics {
 // @public
 export interface PublicIpAddressConfiguration {
     ipAddressIds?: string[];
-    ipAddressProvisioningType?: IpAddressProvisioningType;
+    IpAddressProvisioningType?: IpAddressProvisioningType;
 }
+
+// @public
+export function reactivateTask(context: BatchContext, jobId: string, taskId: string, options?: ReactivateTaskOptionalParams): Promise<void>;
 
 // @public
 export interface ReactivateTaskOptionalParams extends OperationOptions {
@@ -1746,6 +1932,9 @@ export interface ReactivateTaskOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function rebootNode(context: BatchContext, poolId: string, nodeId: string, body?: NodeRebootOptions, options?: RebootNodeOptionalParams): Promise<void>;
 
 // @public
 export interface RebootNodeOptionalParams extends OperationOptions {
@@ -1761,11 +1950,17 @@ export interface RecentJob {
 }
 
 // @public
+export function reimageNode(context: BatchContext, poolId: string, nodeId: string, body?: NodeReimageOptions, options?: ReimageNodeOptionalParams): Promise<void>;
+
+// @public
 export interface ReimageNodeOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function removeNodes(context: BatchContext, poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptionalParams): Promise<void>;
 
 // @public
 export interface RemoveNodesOptionalParams extends OperationOptions {
@@ -1779,6 +1974,9 @@ export interface RemoveNodesOptionalParams extends OperationOptions {
 }
 
 // @public
+export function replaceJob(context: BatchContext, jobId: string, body: BatchJob, options?: ReplaceJobOptionalParams): Promise<void>;
+
+// @public
 export interface ReplaceJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1788,6 +1986,9 @@ export interface ReplaceJobOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function replaceJobSchedule(context: BatchContext, jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptionalParams): Promise<void>;
 
 // @public
 export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
@@ -1801,6 +2002,9 @@ export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function replaceNodeUser(context: BatchContext, poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptionalParams): Promise<void>;
+
+// @public
 export interface ReplaceNodeUserOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -1808,11 +2012,17 @@ export interface ReplaceNodeUserOptionalParams extends OperationOptions {
 }
 
 // @public
+export function replacePoolProperties(context: BatchContext, poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptionalParams): Promise<void>;
+
+// @public
 export interface ReplacePoolPropertiesOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function replaceTask(context: BatchContext, jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptionalParams): Promise<void>;
 
 // @public
 export interface ReplaceTaskOptionalParams extends OperationOptions {
@@ -1831,6 +2041,9 @@ export interface ResizeError {
     message?: string;
     values?: NameValuePair[];
 }
+
+// @public
+export function resizePool(context: BatchContext, poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptionalParams): Promise<void>;
 
 // @public
 export interface ResizePoolOptionalParams extends OperationOptions {
@@ -1911,6 +2124,9 @@ export type StartTaskState = "running" | "completed";
 
 // @public
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
+
+// @public
+export function stopPoolResize(context: BatchContext, poolId: string, options?: StopPoolResizeOptionalParams): Promise<void>;
 
 // @public
 export interface StopPoolResizeOptionalParams extends OperationOptions {
@@ -2079,6 +2295,9 @@ export interface TaskStatistics {
 }
 
 // @public
+export function terminateJob(context: BatchContext, jobId: string, body?: BatchJobTerminateOptions, options?: TerminateJobOptionalParams): Promise<void>;
+
+// @public
 export interface TerminateJobOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2088,6 +2307,9 @@ export interface TerminateJobOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function terminateJobSchedule(context: BatchContext, jobScheduleId: string, options?: TerminateJobScheduleOptionalParams): Promise<void>;
 
 // @public
 export interface TerminateJobScheduleOptionalParams extends OperationOptions {
@@ -2100,6 +2322,9 @@ export interface TerminateJobScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
+export function terminateTask(context: BatchContext, jobId: string, taskId: string, options?: TerminateTaskOptionalParams): Promise<void>;
+
+// @public
 export interface TerminateTaskOptionalParams extends OperationOptions {
     apiVersion?: string;
     ifMatch?: string;
@@ -2108,6 +2333,9 @@ export interface TerminateTaskOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function updateJob(context: BatchContext, jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptionalParams): Promise<void>;
 
 // @public
 export interface UpdateJobOptionalParams extends OperationOptions {
@@ -2121,6 +2349,9 @@ export interface UpdateJobOptionalParams extends OperationOptions {
 }
 
 // @public
+export function updateJobSchedule(context: BatchContext, jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptionalParams): Promise<void>;
+
+// @public
 export interface UpdateJobScheduleOptionalParams extends OperationOptions {
     apiVersion?: string;
     contentType?: string;
@@ -2130,6 +2361,9 @@ export interface UpdateJobScheduleOptionalParams extends OperationOptions {
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
 }
+
+// @public
+export function updatePool(context: BatchContext, poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptionalParams): Promise<void>;
 
 // @public
 export interface UpdatePoolOptionalParams extends OperationOptions {
@@ -2155,6 +2389,9 @@ export interface UploadBatchServiceLogsResult {
     numberOfFilesUploaded: number;
     virtualDirectoryName: string;
 }
+
+// @public
+export function uploadNodeLogs(context: BatchContext, poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptionalParams): Promise<UploadBatchServiceLogsResult>;
 
 // @public
 export interface UploadNodeLogsOptionalParams extends OperationOptions {
@@ -2194,9 +2431,6 @@ export interface UserIdentity {
 
 // @public
 export type VerificationType = "verified" | "unverified";
-
-// @public
-export type Versions = "2023-05-01.17.0";
 
 // @public
 export interface VirtualMachineConfiguration {

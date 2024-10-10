@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -42,6 +43,11 @@ export declare class AdditionalPropertiesClient {
 
 export declare interface AdditionalPropertiesClientOptionalParams extends ClientOptions {
 }
+
+export declare interface AdditionalPropertiesContext extends Client {
+}
+
+export declare function createAdditionalProperties(options?: AdditionalPropertiesClientOptionalParams): AdditionalPropertiesContext;
 
 export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
     derivedProp: number;
@@ -216,8 +222,8 @@ export declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends Op
 }
 
 export declare interface ExtendsUnknownDiscriminatedOperations {
-    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminatedUnion>;
-    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminatedUnion, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminated>;
+    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminated, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
@@ -331,8 +337,8 @@ export declare interface IsUnknownDiscriminatedGetOptionalParams extends Operati
 }
 
 export declare interface IsUnknownDiscriminatedOperations {
-    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
-    put: (body: IsUnknownAdditionalPropertiesDiscriminatedUnion, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminated>;
+    put: (body: IsUnknownAdditionalPropertiesDiscriminated, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
@@ -367,6 +373,8 @@ export declare interface MultipleSpreadPutOptionalParams extends OperationOption
 export declare interface MultipleSpreadRecord extends Record<string, any> {
     flag: boolean;
 }
+
+export declare type MultipleSpreadRecordAdditionalProperty = string | number;
 
 export declare interface SpreadDifferentFloatGetOptionalParams extends OperationOptions {
 }
@@ -480,13 +488,21 @@ export declare interface SpreadRecordForNonDiscriminatedUnion2 extends Record<st
     name: string;
 }
 
+export declare type SpreadRecordForNonDiscriminatedUnion2AdditionalProperty = WidgetData2 | WidgetData1;
+
 export declare interface SpreadRecordForNonDiscriminatedUnion3 extends Record<string, any> {
     name: string;
 }
 
+export declare type SpreadRecordForNonDiscriminatedUnion3AdditionalProperty = WidgetData2[] | WidgetData1;
+
+export declare type SpreadRecordForNonDiscriminatedUnionAdditionalProperty = WidgetData0 | WidgetData1;
+
 export declare interface SpreadRecordForUnion extends Record<string, any> {
     flag: boolean;
 }
+
+export declare type SpreadRecordForUnionAdditionalProperty = string | number;
 
 export declare interface SpreadRecordNonDiscriminatedUnion2GetOptionalParams extends OperationOptions {
 }

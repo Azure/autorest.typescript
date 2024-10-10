@@ -31,6 +31,11 @@ export const DefaultCoreDependencies: CoreDependencies = {
     name: "OperationOptions",
     module: "@typespec/ts-http-runtime"
   },
+  StreamableMethod: {
+    kind: "externalDependency",
+    name: "StreamableMethod",
+    module: "@typespec/ts-http-runtime"
+  },
   PathUncheckedResponse: {
     kind: "externalDependency",
     name: "PathUncheckedResponse",
@@ -59,6 +64,26 @@ export const DefaultCoreDependencies: CoreDependencies = {
   stringToUint8Array: {
     kind: "externalDependency",
     name: "stringToUint8Array",
+    module: "@typespec/ts-http-runtime"
+  },
+  KeyCredential: {
+    kind: "externalDependency",
+    name: "KeyCredential",
+    module: "@typespec/ts-http-runtime"
+  },
+  isKeyCredential: {
+    kind: "externalDependency",
+    name: "isKeyCredential",
+    module: "@typespec/ts-http-runtime"
+  },
+  TokenCredential: {
+    kind: "externalDependency",
+    name: "TokenCredential",
+    module: "@typespec/ts-http-runtime"
+  },
+  ErrorModel: {
+    kind: "externalDependency",
+    name: "ErrorModel",
     module: "@typespec/ts-http-runtime"
   }
 } as const;
@@ -99,7 +124,7 @@ export const AzureCoreDependencies: CoreDependencies = {
   },
   Pipeline: {
     kind: "externalDependency",
-    module: "@azure-rest/core-client",
+    module: "@azure/core-rest-pipeline",
     name: "Pipeline"
   },
   getClient: {
@@ -116,6 +141,11 @@ export const AzureCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     module: "@azure-rest/core-client",
     name: "OperationOptions"
+  },
+  StreamableMethod: {
+    kind: "externalDependency",
+    module: "@azure-rest/core-client",
+    name: "StreamableMethod"
   },
   PathUncheckedResponse: {
     kind: "externalDependency",
@@ -146,6 +176,26 @@ export const AzureCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     module: "@azure/core-util",
     name: "stringToUint8Array"
+  },
+  KeyCredential: {
+    kind: "externalDependency",
+    name: "KeyCredential",
+    module: "@azure/core-auth"
+  },
+  isKeyCredential: {
+    kind: "externalDependency",
+    name: "isKeyCredential",
+    module: "@azure/core-auth"
+  },
+  TokenCredential: {
+    kind: "externalDependency",
+    name: "TokenCredential",
+    module: "@azure/core-auth"
+  },
+  ErrorModel: {
+    kind: "externalDependency",
+    name: "ErrorModel",
+    module: "@azure-rest/core-client"
   }
 };
 

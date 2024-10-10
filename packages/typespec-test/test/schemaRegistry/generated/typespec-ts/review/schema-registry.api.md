@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -16,6 +17,9 @@ export type ContentTypeEnum = "application/octet-stream" | "application/json; se
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export function createSchemaRegistry(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams): SchemaRegistryContext;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -102,12 +106,13 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface SchemaVersion {
-    readonly schemaVersion: number;
+export interface SchemaRegistryContext extends Client {
 }
 
 // @public
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
+export interface SchemaVersion {
+    readonly schemaVersion: number;
+}
 
 // (No @packageDocumentation comment for this package)
 

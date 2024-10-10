@@ -1,12 +1,12 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../../api/openAIContext.js";
+import { create } from "../../../api/chat/completions/index.js";
+import { ChatCompletionsCreateOptionalParams } from "../../../api/options.js";
 import {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
-import { create } from "../../../api/chat/completions/index.js";
-import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
 /** Interface representing a ChatCompletions operations. */
 export interface ChatCompletionsOperations {

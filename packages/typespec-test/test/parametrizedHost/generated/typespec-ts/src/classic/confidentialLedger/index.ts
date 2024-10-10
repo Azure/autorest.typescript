@@ -2,15 +2,14 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext } from "../../api/parametrizedHostContext.js";
-import { Collection } from "../../models/models.js";
 import { listCollections } from "../../api/confidentialLedger/index.js";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/options.js";
+import { Collection } from "../../models/models.js";
 
 /** Interface representing a ConfidentialLedger operations. */
 export interface ConfidentialLedgerOperations {
   /** Collection ids are user-created collections of ledger entries */
   listCollections: (
-    apiVersion: string,
     options?: ConfidentialLedgerListCollectionsOptionalParams,
   ) => Promise<Collection[]>;
 }
@@ -18,9 +17,8 @@ export interface ConfidentialLedgerOperations {
 export function getConfidentialLedger(context: ParametrizedHostContext) {
   return {
     listCollections: (
-      apiVersion: string,
       options?: ConfidentialLedgerListCollectionsOptionalParams,
-    ) => listCollections(context, apiVersion, options),
+    ) => listCollections(context, options),
   };
 }
 

@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -15,11 +16,9 @@ export interface AOperations {
     // (undocumented)
     test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
     // (undocumented)
-    test3: (body: {
-        prop: string;
-    }, options?: ATest3OptionalParams) => Promise<void>;
+    test3: (body: Test3Request, options?: ATest3OptionalParams) => Promise<void>;
     // (undocumented)
-    test4: (body: Test, options?: ATest4OptionalParams) => Promise<void>;
+    test4: (body: Test4Request, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -39,8 +38,11 @@ export interface ATest4OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
+export function createDemoService(endpointParam: string, options?: DemoServiceClientOptionalParams): DemoServiceContext;
+
+// @public (undocumented)
 export class DemoServiceClient {
-    constructor(endpoint: string, options?: DemoServiceClientOptionalParams);
+    constructor(endpointParam: string, options?: DemoServiceClientOptionalParams);
     readonly a: AOperations;
     readonly pipeline: Pipeline;
 }
@@ -50,7 +52,17 @@ export interface DemoServiceClientOptionalParams extends ClientOptions {
 }
 
 // @public (undocumented)
-export interface Test {
+export interface DemoServiceContext extends Client {
+}
+
+// @public
+export interface Test3Request {
+    // (undocumented)
+    prop: string;
+}
+
+// @public
+export interface Test4Request {
     // (undocumented)
     prop: string;
 }

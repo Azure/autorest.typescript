@@ -11,9 +11,14 @@ export interface TextBlocklist {
   description?: string;
 }
 
-export function textBlocklistSerializer(
-  item: TextBlocklist,
-): Record<string, unknown> {
+export function textBlocklistSerializer(item: TextBlocklist): any {
+  return {
+    blocklistName: item["blocklistName"],
+    description: item["description"],
+  };
+}
+
+export function textBlocklistDeserializer(item: any): TextBlocklist {
   return {
     blocklistName: item["blocklistName"],
     description: item["description"],
@@ -28,10 +33,8 @@ export interface AddOrUpdateBlockItemsOptions {
 
 export function addOrUpdateBlockItemsOptionsSerializer(
   item: AddOrUpdateBlockItemsOptions,
-): Record<string, unknown> {
-  return {
-    blockItems: item["blockItems"].map(textBlockItemInfoSerializer),
-  };
+): any {
+  return { blockItems: textBlockItemInfoArraySerializer(item["blockItems"]) };
 }
 
 /** Block item info in text blocklist. */
@@ -42,19 +45,32 @@ export interface TextBlockItemInfo {
   text: string;
 }
 
-export function textBlockItemInfoSerializer(
-  item: TextBlockItemInfo,
-): Record<string, unknown> {
-  return {
-    description: item["description"],
-    text: item["text"],
-  };
+export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
+  return { description: item["description"], text: item["text"] };
+}
+
+export function textBlockItemInfoArraySerializer(
+  result: Array<TextBlockItemInfo>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemInfoSerializer(item);
+  });
 }
 
 /** The response of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsResult {
   /** Array of blockItems added. */
   value?: TextBlockItem[];
+}
+
+export function addOrUpdateBlockItemsResultDeserializer(
+  item: any,
+): AddOrUpdateBlockItemsResult {
+  return {
+    value: !item["value"]
+      ? item["value"]
+      : textBlockItemArrayDeserializer(item["value"]),
+  };
 }
 
 /** Item in TextBlocklist. */
@@ -67,6 +83,22 @@ export interface TextBlockItem {
   text: string;
 }
 
+export function textBlockItemDeserializer(item: any): TextBlockItem {
+  return {
+    blockItemId: item["blockItemId"],
+    description: item["description"],
+    text: item["text"],
+  };
+}
+
+export function textBlockItemArrayDeserializer(
+  result: Array<TextBlockItem>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemDeserializer(item);
+  });
+}
+
 /** The request of removing blockItems from text blocklist. */
 export interface RemoveBlockItemsOptions {
   /** Array of blockItemIds to remove. */
@@ -75,9 +107,11 @@ export interface RemoveBlockItemsOptions {
 
 export function removeBlockItemsOptionsSerializer(
   item: RemoveBlockItemsOptions,
-): Record<string, unknown> {
+): any {
   return {
-    blockItemIds: item["blockItemIds"],
+    blockItemIds: item["blockItemIds"].map((p: any) => {
+      return p;
+    }),
   };
 }
 
@@ -91,12 +125,14 @@ export interface AnalyzeImageOptions {
   outputType?: AnalyzeImageOutputType;
 }
 
-export function analyzeImageOptionsSerializer(
-  item: AnalyzeImageOptions,
-): Record<string, unknown> {
+export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   return {
-    image: imageDataSerializer(item.image),
-    categories: item["categories"],
+    image: imageDataSerializer(item["image"]),
+    categories: !item["categories"]
+      ? item["categories"]
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
     outputType: item["outputType"],
   };
 }
@@ -109,12 +145,11 @@ export interface ImageData {
   blobUrl?: string;
 }
 
-export function imageDataSerializer(item: ImageData): Record<string, unknown> {
+export function imageDataSerializer(item: ImageData): any {
   return {
-    content:
-      item["content"] !== undefined
-        ? uint8ArrayToString(item["content"], "base64")
-        : undefined,
+    content: !item["content"]
+      ? item["content"]
+      : uint8ArrayToString(item["content"], "base64"),
     blobUrl: item["blobUrl"],
   };
 }
@@ -130,12 +165,37 @@ export interface AnalyzeImageResult {
   analyzeResults: ImageAnalyzeSeverityResult[];
 }
 
+export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
+  return {
+    analyzeResults: imageAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
+  };
+}
+
 /** Image analysis result. */
 export interface ImageAnalyzeSeverityResult {
   /** The image category. */
   category: ImageCategory;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
+}
+
+export function imageAnalyzeSeverityResultDeserializer(
+  item: any,
+): ImageAnalyzeSeverityResult {
+  return {
+    category: item["category"],
+    severity: item["severity"],
+  };
+}
+
+export function imageAnalyzeSeverityResultArrayDeserializer(
+  result: Array<ImageAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    return imageAnalyzeSeverityResultDeserializer(item);
+  });
 }
 
 /** The analysis request of the text. */
@@ -152,13 +212,19 @@ export interface AnalyzeTextOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
-export function analyzeTextOptionsSerializer(
-  item: AnalyzeTextOptions,
-): Record<string, unknown> {
+export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   return {
     text: item["text"],
-    categories: item["categories"],
-    blocklistNames: item["blocklistNames"],
+    categories: !item["categories"]
+      ? item["categories"]
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
+    blocklistNames: !item["blocklistNames"]
+      ? item["blocklistNames"]
+      : item["blocklistNames"].map((p: any) => {
+          return p;
+        }),
     breakByBlocklists: item["breakByBlocklists"],
     outputType: item["outputType"],
   };
@@ -177,6 +243,19 @@ export interface AnalyzeTextResult {
   analyzeResults: TextAnalyzeSeverityResult[];
 }
 
+export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
+  return {
+    blocklistsMatchResults: !item["blocklistsMatchResults"]
+      ? item["blocklistsMatchResults"]
+      : textBlocklistMatchResultArrayDeserializer(
+          item["blocklistsMatchResults"],
+        ),
+    analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
+  };
+}
+
 /** The result of blocklist match. */
 export interface TextBlocklistMatchResult {
   /** The name of matched blocklist. */
@@ -187,6 +266,24 @@ export interface TextBlocklistMatchResult {
   blockItemText: string;
 }
 
+export function textBlocklistMatchResultDeserializer(
+  item: any,
+): TextBlocklistMatchResult {
+  return {
+    blocklistName: item["blocklistName"],
+    blockItemId: item["blockItemId"],
+    blockItemText: item["blockItemText"],
+  };
+}
+
+export function textBlocklistMatchResultArrayDeserializer(
+  result: Array<TextBlocklistMatchResult>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistMatchResultDeserializer(item);
+  });
+}
+
 /** Text analysis result. */
 export interface TextAnalyzeSeverityResult {
   /** The text category. */
@@ -195,8 +292,22 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-/** Type of Versions */
-export type Versions = "2023-10-01";
+export function textAnalyzeSeverityResultDeserializer(
+  item: any,
+): TextAnalyzeSeverityResult {
+  return {
+    category: item["category"],
+    severity: item["severity"],
+  };
+}
+
+export function textAnalyzeSeverityResultArrayDeserializer(
+  result: Array<TextAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    return textAnalyzeSeverityResultDeserializer(item);
+  });
+}
 
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {
@@ -206,10 +317,44 @@ export interface _PagedTextBlocklist {
   nextLink?: string;
 }
 
+export function _pagedTextBlocklistDeserializer(
+  item: any,
+): _PagedTextBlocklist {
+  return {
+    value: textBlocklistArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function textBlocklistArraySerializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistSerializer(item);
+  });
+}
+
+export function textBlocklistArrayDeserializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistDeserializer(item);
+  });
+}
+
 /** Paged collection of TextBlockItem items */
 export interface _PagedTextBlockItem {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedTextBlockItemDeserializer(
+  item: any,
+): _PagedTextBlockItem {
+  return {
+    value: textBlockItemArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }

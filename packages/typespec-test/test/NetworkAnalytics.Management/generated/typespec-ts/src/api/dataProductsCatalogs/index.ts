@@ -2,25 +2,27 @@
 // Licensed under the MIT License.
 
 import {
-  DataProductsCatalog,
-  _DataProductsCatalogListResult,
-} from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+  NetworkAnalyticsContext as Client,
+  DataProductsCatalogsGetOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+} from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
+  DataProductsCatalog,
+  dataProductsCatalogDeserializer,
+  _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import {
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-} from "../../models/options.js";
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
@@ -45,48 +47,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          publishers: result.body.properties?.["publishers"].map((p: any) => {
-            return {
-              publisherName: p["publisherName"],
-              dataProducts: p["dataProducts"].map((p: any) => {
-                return {
-                  dataProductName: p["dataProductName"],
-                  description: p["description"],
-                  dataProductVersions: p["dataProductVersions"].map(
-                    (p: any) => {
-                      return { version: p["version"] };
-                    },
-                  ),
-                };
-              }),
-            };
-          }),
-        },
-  };
+  return dataProductsCatalogDeserializer(result.body);
 }
 
 /** Retrieve data type resource. */
@@ -130,53 +91,7 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        id: p["id"],
-        name: p["name"],
-        type: p["type"],
-        systemData: !p.systemData
-          ? undefined
-          : {
-              createdBy: p.systemData?.["createdBy"],
-              createdByType: p.systemData?.["createdByType"],
-              createdAt:
-                p.systemData?.["createdAt"] !== undefined
-                  ? new Date(p.systemData?.["createdAt"])
-                  : undefined,
-              lastModifiedBy: p.systemData?.["lastModifiedBy"],
-              lastModifiedByType: p.systemData?.["lastModifiedByType"],
-              lastModifiedAt:
-                p.systemData?.["lastModifiedAt"] !== undefined
-                  ? new Date(p.systemData?.["lastModifiedAt"])
-                  : undefined,
-            },
-        properties: !p.properties
-          ? undefined
-          : {
-              provisioningState: p.properties?.["provisioningState"],
-              publishers: p.properties?.["publishers"].map((p: any) => {
-                return {
-                  publisherName: p["publisherName"],
-                  dataProducts: p["dataProducts"].map((p: any) => {
-                    return {
-                      dataProductName: p["dataProductName"],
-                      description: p["description"],
-                      dataProductVersions: p["dataProductVersions"].map(
-                        (p: any) => {
-                          return { version: p["version"] };
-                        },
-                      ),
-                    };
-                  }),
-                };
-              }),
-            },
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by resource group. */
@@ -226,53 +141,7 @@ export async function _listBySubscriptionDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        id: p["id"],
-        name: p["name"],
-        type: p["type"],
-        systemData: !p.systemData
-          ? undefined
-          : {
-              createdBy: p.systemData?.["createdBy"],
-              createdByType: p.systemData?.["createdByType"],
-              createdAt:
-                p.systemData?.["createdAt"] !== undefined
-                  ? new Date(p.systemData?.["createdAt"])
-                  : undefined,
-              lastModifiedBy: p.systemData?.["lastModifiedBy"],
-              lastModifiedByType: p.systemData?.["lastModifiedByType"],
-              lastModifiedAt:
-                p.systemData?.["lastModifiedAt"] !== undefined
-                  ? new Date(p.systemData?.["lastModifiedAt"])
-                  : undefined,
-            },
-        properties: !p.properties
-          ? undefined
-          : {
-              provisioningState: p.properties?.["provisioningState"],
-              publishers: p.properties?.["publishers"].map((p: any) => {
-                return {
-                  publisherName: p["publisherName"],
-                  dataProducts: p["dataProducts"].map((p: any) => {
-                    return {
-                      dataProductName: p["dataProductName"],
-                      description: p["description"],
-                      dataProductVersions: p["dataProductVersions"].map(
-                        (p: any) => {
-                          return { version: p["version"] };
-                        },
-                      ),
-                    };
-                  }),
-                };
-              }),
-            },
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by subscription. */

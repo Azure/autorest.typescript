@@ -1,18 +1,21 @@
 // Licensed under the MIT License.
 
 import {
+  AudioTranslationsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
+import {
   CreateTranslationRequest,
+  createTranslationRequestSerializer,
   CreateTranslationResponse,
+  createTranslationResponseDeserializer,
 } from "../../../models/models.js";
-import { OpenAIContext as Client } from "../../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { uint8ArrayToString } from "@typespec/ts-http-runtime";
-import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
@@ -24,13 +27,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["responseFormat"],
-        temperature: audio["temperature"],
-      },
+      body: createTranslationRequestSerializer(audio),
     });
 }
 
@@ -42,9 +39,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  return createTranslationResponseDeserializer(result.body);
 }
 
 export async function create(

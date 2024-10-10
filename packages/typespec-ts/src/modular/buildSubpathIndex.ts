@@ -1,5 +1,6 @@
-import { join } from "path";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+
+import { join } from "path";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -7,16 +8,16 @@ export interface buildSubpathIndexFileOptions {
 }
 
 export function buildSubpathIndexFile(
-  client: Client,
   codeModel: ModularCodeModel,
   subpath: string,
+  client?: Client,
   options: buildSubpathIndexFileOptions = {}
 ) {
-  const { subfolder } = client;
+  const subfolder = client?.subfolder ?? "";
   const srcPath = codeModel.modularOptions.sourceRoot;
   // Skip to export these files because they are used internally.
   const skipFiles = ["pagingHelpers.ts", "pollingHelpers.ts"];
-  const apiFilePattern = join(srcPath, client.subfolder ?? "", subpath);
+  const apiFilePattern = join(srcPath, subfolder, subpath);
   const apiFiles = codeModel.project.getSourceFiles().filter((file) => {
     return file
       .getFilePath()
@@ -30,14 +31,15 @@ export function buildSubpathIndexFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
-    if (!options.exportIndex && file.getFilePath().endsWith("index.ts")) {
+    const filePath = file.getFilePath();
+    if (!options.exportIndex && filePath.endsWith("index.ts")) {
       continue;
     }
     // Skip to export these files because they are used internally.
-    if (skipFiles.some((skipFile) => file.getFilePath().endsWith(skipFile))) {
+    if (skipFiles.some((skipFile) => filePath.endsWith(skipFile))) {
       continue;
     }
-    if (file.getFilePath() === indexFile.getFilePath()) {
+    if (filePath === indexFile.getFilePath()) {
       continue;
     }
 
@@ -58,7 +60,8 @@ export function buildSubpathIndexFile(
           if (
             subpath === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            exDeclaration[0].endsWith("Serializer")
+            (exDeclaration[0].endsWith("Serializer") ||
+              exDeclaration[0].endsWith("Deserializer"))
           ) {
             return false;
           }
@@ -70,14 +73,13 @@ export function buildSubpathIndexFile(
         return exDeclaration[0];
       });
     // Skip to export PagedResult and BuildPagedAsyncIteratorOptions
-    if (file.getFilePath().endsWith("pagingTypes.ts")) {
+    if (filePath.endsWith("pagingTypes.ts")) {
       namedExports = namedExports.filter(
         (ex) => !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
       );
     }
     indexFile.addExportDeclaration({
-      moduleSpecifier: `.${file
-        .getFilePath()
+      moduleSpecifier: `.${filePath
         .replace(indexFile.getDirectoryPath(), "")
         .replace(/\\/g, "/")
         .replace(".ts", "")}.js`,

@@ -3,11 +3,6 @@
 
 import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
-  SchemaGroup,
-  SchemaContentTypeValues,
-  SchemaVersion,
-} from "../../models/models.js";
-import {
   listSchemaGroups,
   getSchemaById,
   listSchemaVersions,
@@ -15,6 +10,11 @@ import {
   getSchemaIdByContent,
   registerSchema,
 } from "../../api/schemaOperations/index.js";
+import {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   SchemaOperationsListSchemaGroupsOptionalParams,
@@ -23,7 +23,7 @@ import {
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a SchemaOperations operations. */
 export interface SchemaOperationsOperations {

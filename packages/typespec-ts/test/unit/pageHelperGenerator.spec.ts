@@ -39,5 +39,7 @@ async function generatePagingHelper(code: string) {
     ${code}
     `;
 
-  return await emitPageHelperFromTypeSpec(content, true);
+  return await emitPageHelperFromTypeSpec(content, {
+    needAzureCore: true
+  });
 }

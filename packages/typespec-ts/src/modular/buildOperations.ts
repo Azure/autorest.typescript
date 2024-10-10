@@ -1,15 +1,10 @@
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import {
-  addImportsToFiles,
-  clearImportSets,
-  getImportSpecifier,
   NameType,
+  clearImportSets,
   normalizeName
 } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { getOperationName } from "./helpers/namingHelpers.js";
 import {
   getDeserializePrivateFunction,
   getExpectedStatuses,
@@ -18,10 +13,15 @@ import {
   getSendPrivateFunction,
   isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
-import { buildType } from "./helpers/typeHelpers.js";
+
 import { OperationPathAndDeserDetails } from "./interfaces.js";
-import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import { SdkContext } from "../utils/interfaces.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
+import { buildType } from "./helpers/typeHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -58,16 +58,6 @@ export function buildOperationFiles(
       }api/${operationFileName}.ts`
     );
 
-    // Import models used from ./models.ts
-    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(
-      srcPath,
-      operationGroupFile,
-      codeModel.project,
-      subfolder,
-      operationGroup.namespaceHierarchies.length
-    );
-
     // Import the deserializeUtils
     importDeserializeUtils(
       srcPath,
@@ -100,12 +90,11 @@ export function buildOperationFiles(
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
         o,
-        clientType,
-        codeModel.runtimeImports
+        clientType
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
-        o,
-        codeModel.runtimeImports
+        dpgContext,
+        o
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -114,61 +103,13 @@ export function buildOperationFiles(
       ]);
     });
 
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "restClient",
-          codeModel?.runtimeImports
-        ),
-        namedImports: [
-          "StreamableMethod",
-          "operationOptionsToRequestParameters"
-        ]
-      }
-    ]);
-
-    addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    // addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
+    operationGroupFile.fixUnusedIdentifiers();
     addImportBySymbol("serializeRecord", operationGroupFile);
 
     operationFiles.push(operationGroupFile);
   }
   return operationFiles;
-}
-
-export function importModels(
-  srcPath: string,
-  sourceFile: SourceFile,
-  project: Project,
-  subfolder: string = "",
-  importLayer: number = 0
-) {
-  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
-    return i.getModuleSpecifierValue().endsWith(`models/models.js`);
-  });
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }models/models.ts`
-  );
-  const models: string[] = [];
-
-  for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    if (name.startsWith("_")) {
-      continue;
-    }
-    models.push(name);
-  }
-
-  if (models.length > 0 && !hasModelsImport) {
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
-      namedImports: models
-    });
-  }
-
-  // Import all models and then let ts-morph clean up the unused ones
-  // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
-  // sourceFile.fixUnusedIdentifiers();
 }
 
 export function importDeserializeUtils(

@@ -61,7 +61,6 @@ import {
   NameType,
   RLCModel,
   buildRuntimeImports,
-  getClientName,
   isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
@@ -113,9 +112,9 @@ import { getAddedOnVersions } from "@typespec/versioning";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
-import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
+import { normalizeModelName } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -212,6 +211,7 @@ function handleDiscriminator(
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
     const discriminatedSubtypes: Type[] = [];
+    let discriminatorTcgcType = undefined;
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
@@ -219,6 +219,7 @@ function handleDiscriminator(
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
           discriminatorValues.push(modelType.discriminatorValue);
+          discriminatorTcgcType = getClientType(context, property.type);
         }
       }
       discriminatedSubtypes.push(modelType);
@@ -230,7 +231,7 @@ function handleDiscriminator(
               ", "
             )}`
           : "discriminator property",
-      type: { type: "string" },
+      type: { type: "string", tcgcType: discriminatorTcgcType },
       restApiName: discriminator.propertyName,
       clientName: discriminator.propertyName,
       name: discriminator.propertyName,
@@ -269,7 +270,8 @@ function processModelProperties(
       newProperty = {
         ...newProperty,
         ...discriminatorInfo,
-        type: newProperty["type"]
+        type: newProperty["type"],
+        tcgcType: getClientType(context, property)
       };
     }
     newValue.properties.push(newProperty);
@@ -306,7 +308,7 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
   );
 }
 
-function getType(
+export function getType(
   context: SdkContext,
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
@@ -326,7 +328,7 @@ function getType(
       return cached;
     }
   }
-  let newValue: any;
+  let newValue: any = { __raw: type };
 
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
@@ -346,6 +348,9 @@ function getType(
 
   if (enableCache) {
     if (!options.disableEffectiveModel) {
+      if (newValue.__raw === undefined) {
+        newValue.__raw = type;
+      }
       typesMap.set(effectiveModel, newValue);
     }
     if (type.kind === "Union") {
@@ -375,7 +380,8 @@ function getType(
   }
   if (
     type.kind === "Model" &&
-    isModelWithAdditionalProperties(newValue) &&
+    newValue.type === "dict" &&
+    newValue.name !== "Record" &&
     !context.rlcOptions?.compatibilityMode
   ) {
     reportDiagnostic(context.program, {
@@ -476,6 +482,8 @@ function emitBodyParameter(
       disableEffectiveModel: true,
       usage: UsageFlags.Input
     });
+
+    type.name = normalizeModelName(context, type.tcgcType);
 
     return {
       contentTypes,
@@ -987,7 +995,7 @@ function emitProperty(
   }
   const type = getType(context, property.type, { usage });
   return {
-    clientName: applyCasing(clientName, { casing: CASING }),
+    clientName,
     restApiName: jsonName,
     type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,
@@ -1022,7 +1030,7 @@ function getName(program: Program, type: Model): string {
   }
 }
 
-function emitModel(
+export function emitModel(
   context: SdkContext,
   type: Model,
   usage: UsageFlags
@@ -1410,8 +1418,10 @@ function emitUnion(
     const unionName = getLibraryName(context, type)
       ? getLibraryName(context, type)
       : type.name;
-    const discriminatorPropertyName = getDiscriminator(context.program, type)
-      ?.propertyName;
+    const discriminatorPropertyName = getDiscriminator(
+      context.program,
+      type
+    )?.propertyName;
     const variantTypes = sdkType.variantTypes.map((x) => {
       const valueType = getType(context, x.__raw!, { usage });
       if (valueType.properties && discriminatorPropertyName) {
@@ -1572,7 +1582,7 @@ function emitOperationGroups(
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? overrideName ?? operationGroup.type.name
+        ? (overrideName ?? operationGroup.type.name)
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
@@ -1659,14 +1669,14 @@ function emitServerParams(
   namespace: Namespace
 ): Parameter[] {
   const server = getServerHelper(context.program, namespace);
-  if (server === undefined) {
+  if (server === undefined || server.parameters.size === 0) {
     return [
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: null,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "endpointPath",
         type: { type: "string" },
         implementation: "Client",
@@ -1701,9 +1711,9 @@ function emitServerParams(
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: server.url,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "path",
         type: { type: "string" },
         implementation: "Client",
@@ -1787,6 +1797,14 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
+    const sdkPackageClient = context.sdkPackage.clients.find((p) => {
+      return p.name === client.name;
+    });
+
+    if (!sdkPackageClient) {
+      throw new Error(`Client ${client.name} not found in the SDK package`);
+    }
+
     const clientName = client.name.replace("Client", "");
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
@@ -1798,9 +1816,10 @@ function emitClients(
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
       operationGroups: emitOperationGroups(context, client, rlcModels),
+      tcgcClient: sdkPackageClient,
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      rlcClientName: `${client.name.replace("Client", "")}Context`,
       subfolder: "",
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}

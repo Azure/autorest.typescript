@@ -4,14 +4,12 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
-
-// @public
-export type APIVersion = "2023-10-01-preview";
 
 // @public
 export interface ChatChoiceRecord {
@@ -67,6 +65,10 @@ export interface ChatProtocolClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface ChatProtocolContext extends Client {
+}
+
+// @public
 export type ChatRole = "user" | "system" | "assistant";
 
 // @public
@@ -79,8 +81,17 @@ export interface ChoiceDeltaRecord {
 }
 
 // @public
+export function create(context: ChatProtocolContext, body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
+
+// @public
+export function createChatProtocol(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptionalParams): ChatProtocolContext;
+
+// @public
 export interface CreateOptionalParams extends OperationOptions {
 }
+
+// @public
+export function createStreaming(context: ChatProtocolContext, body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
 
 // @public
 export interface CreateStreamingOptionalParams extends OperationOptions {

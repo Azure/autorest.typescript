@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -93,6 +94,8 @@ export declare interface CollectionsModelPutAllOptionalParams extends OperationO
 
 export declare interface CollectionsModelPutDefaultOptionalParams extends OperationOptions {
 }
+
+export declare function createOptional(options?: OptionalClientOptionalParams): OptionalContext;
 
 export declare interface DatetimeGetAllOptionalParams extends OperationOptions {
 }
@@ -209,6 +212,9 @@ export declare class OptionalClient {
 }
 
 export declare interface OptionalClientOptionalParams extends ClientOptions {
+}
+
+export declare interface OptionalContext extends Client {
 }
 
 export declare interface PlainDateGetAllOptionalParams extends OperationOptions {
@@ -344,6 +350,8 @@ export declare interface UnionFloatLiteralProperty {
     property?: 1.25 | 2.375;
 }
 
+export declare type UnionFloatLiteralPropertyProperty = 1.25 | 2.375;
+
 export declare interface UnionFloatLiteralPutAllOptionalParams extends OperationOptions {
 }
 
@@ -367,6 +375,8 @@ export declare interface UnionIntLiteralProperty {
     property?: 1 | 2;
 }
 
+export declare type UnionIntLiteralPropertyProperty = 1 | 2;
+
 export declare interface UnionIntLiteralPutAllOptionalParams extends OperationOptions {
 }
 
@@ -389,6 +399,8 @@ export declare interface UnionStringLiteralOperations {
 export declare interface UnionStringLiteralProperty {
     property?: "hello" | "world";
 }
+
+export declare type UnionStringLiteralPropertyProperty = "hello" | "world";
 
 export declare interface UnionStringLiteralPutAllOptionalParams extends OperationOptions {
 }

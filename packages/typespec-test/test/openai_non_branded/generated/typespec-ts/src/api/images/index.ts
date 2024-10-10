@@ -1,27 +1,27 @@
 // Licensed under the MIT License.
 
 import {
+  OpenAIContext as Client,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+  ImagesCreateVariationOptionalParams,
+} from "../index.js";
+import {
   CreateImageRequest,
+  createImageRequestSerializer,
   ImagesResponse,
+  imagesResponseDeserializer,
   CreateImageEditRequest,
+  createImageEditRequestSerializer,
   CreateImageVariationRequest,
+  createImageVariationRequestSerializer,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  uint8ArrayToString,
-  stringToUint8Array,
-} from "@typespec/ts-http-runtime";
-import {
-  ImagesCreateOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateVariationOptionalParams,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,
@@ -32,13 +32,7 @@ export function _createSend(
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: image["prompt"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageRequestSerializer(image),
     });
 }
 
@@ -50,18 +44,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64Json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function create(
@@ -83,18 +66,7 @@ export function _createEditSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
-        mask:
-          image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
-            : undefined,
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageEditRequestSerializer(image),
     });
 }
 
@@ -106,18 +78,7 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64Json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createEdit(
@@ -139,13 +100,7 @@ export function _createVariationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        image: uint8ArrayToString(image["image"], "base64"),
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageVariationRequestSerializer(image),
     });
 }
 
@@ -157,18 +112,7 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        b64Json:
-          typeof p["b64_json"] === "string"
-            ? stringToUint8Array(p["b64_json"], "base64")
-            : p["b64_json"],
-      };
-    }),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createVariation(

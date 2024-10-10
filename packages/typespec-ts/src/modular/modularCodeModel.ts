@@ -6,6 +6,8 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
+  SdkClientType,
+  SdkHttpOperation,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { UsageFlags, Type as TypespecType } from "@typespec/compiler";
@@ -134,6 +136,7 @@ export interface Client {
   rlcClientName: string;
   subfolder?: string;
   rlcHelperDetails: HelperFunctionDetails;
+  tcgcClient: SdkClientType<SdkHttpOperation>;
 }
 
 export type ParameterLocation =

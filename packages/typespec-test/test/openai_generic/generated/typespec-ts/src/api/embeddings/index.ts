@@ -2,17 +2,21 @@
 // Licensed under the MIT License.
 
 import {
+  OpenAIContext as Client,
+  EmbeddingsCreateOptionalParams,
+} from "../index.js";
+import {
   CreateEmbeddingRequest,
+  createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
+  createEmbeddingResponseDeserializer,
 } from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
@@ -23,11 +27,7 @@ export function _createSend(
     .path("/embeddings")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: embedding["model"],
-        input: embedding["input"],
-        user: embedding["user"],
-      },
+      body: createEmbeddingRequestSerializer(embedding),
     });
 }
 
@@ -39,21 +39,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    model: result.body["model"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        index: p["index"],
-        object: p["object"],
-        embedding: p["embedding"],
-      };
-    }),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  return createEmbeddingResponseDeserializer(result.body);
 }
 
 export async function create(

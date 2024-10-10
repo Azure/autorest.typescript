@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -115,12 +116,12 @@ export interface AzureChatExtensionConfiguration {
     type: AzureChatExtensionType;
 }
 
-// @public
+// @public (undocumented)
 export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfiguration | AzureMachineLearningIndexChatExtensionConfiguration | AzureCosmosDBChatExtensionConfiguration | ElasticsearchChatExtensionConfiguration | PineconeChatExtensionConfiguration | AzureChatExtensionConfiguration;
 
 // @public
 export interface AzureChatExtensionDataSourceResponseCitation {
-    chunkId?: string;
+    chunk_id?: string;
     content: string;
     filepath?: string;
     title?: string;
@@ -129,7 +130,7 @@ export interface AzureChatExtensionDataSourceResponseCitation {
 
 // @public
 export interface AzureChatExtensionRetrievedDocument {
-    chunkId?: string;
+    chunk_id?: string;
     content: string;
     dataSourceIndex: number;
     filepath?: string;
@@ -344,7 +345,7 @@ export interface ChatCompletionsNamedToolSelection {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
 
 // @public
@@ -368,17 +369,23 @@ export interface ChatCompletionsOptions {
     temperature?: number;
     toolChoice?: ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
     tools?: ChatCompletionsToolDefinitionUnion[];
-    topLogprobs?: number | null;
+    top_logprobs?: number | null;
     topP?: number;
     user?: string;
 }
+
+// @public
+export type ChatCompletionsOptionsFunctionCall = FunctionCallPreset | FunctionName;
+
+// @public
+export type ChatCompletionsOptionsToolChoice = ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
 
 // @public
 export interface ChatCompletionsResponseFormat {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatCompletionsResponseFormatUnion = ChatCompletionsTextResponseFormat | ChatCompletionsJsonResponseFormat | ChatCompletionsResponseFormat;
 
 // @public
@@ -392,7 +399,7 @@ export interface ChatCompletionsToolCall {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
 
 // @public
@@ -400,7 +407,7 @@ export interface ChatCompletionsToolDefinition {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
 
 // @public
@@ -411,7 +418,7 @@ export interface ChatFinishDetails {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatFinishDetailsUnion = StopFinishDetails | MaxTokensFinishDetails | ChatFinishDetails;
 
 // @public
@@ -419,7 +426,7 @@ export interface ChatMessageContentItem {
     type: string;
 }
 
-// @public
+// @public (undocumented)
 export type ChatMessageContentItemUnion = ChatMessageTextContentItem | ChatMessageImageContentItem | ChatMessageContentItem;
 
 // @public
@@ -464,7 +471,7 @@ export interface ChatRequestMessage {
     role: ChatRole;
 }
 
-// @public
+// @public (undocumented)
 export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestFunctionMessage | ChatRequestMessage;
 
 // @public
@@ -487,6 +494,9 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
     name?: string;
     role: "user";
 }
+
+// @public
+export type ChatRequestUserMessageContent = string | ChatMessageContentItemUnion[];
 
 // @public
 export interface ChatResponseMessage {
@@ -512,7 +522,7 @@ export interface ChatTokenLogProbabilityResult {
     bytes: number[] | null;
     logprob: number;
     token: string;
-    topLogprobs: ChatTokenLogProbabilityInfo[] | null;
+    top_logprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
 // @public
@@ -638,6 +648,9 @@ export interface ContentFilterResultsForPrompt {
 // @public
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
+// @public (undocumented)
+export function createOpenAI(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
+
 // @public
 export interface ElasticsearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: ElasticsearchChatExtensionParameters;
@@ -727,8 +740,14 @@ export interface FunctionName {
 }
 
 // @public
+export function generateSpeechFromText(context: OpenAIContext, deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<Uint8Array>;
+
+// @public
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 }
+
+// @public
+export function getAudioTranscriptionAsPlainText(context: OpenAIContext, deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
@@ -736,9 +755,15 @@ export interface GetAudioTranscriptionAsPlainTextOptionalParams extends Operatio
 }
 
 // @public
+export function getAudioTranscriptionAsResponseObject(context: OpenAIContext, deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
+
+// @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
+
+// @public
+export function getAudioTranslationAsPlainText(context: OpenAIContext, deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
@@ -746,21 +771,36 @@ export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationO
 }
 
 // @public
+export function getAudioTranslationAsResponseObject(context: OpenAIContext, deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
+
+// @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
+
+// @public
+export function getChatCompletions(context: OpenAIContext, deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
 
 // @public
 export interface GetChatCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getCompletions(context: OpenAIContext, deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;
+
+// @public
 export interface GetCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public
+export function getEmbeddings(context: OpenAIContext, deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptionalParams): Promise<Embeddings>;
+
+// @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
 }
+
+// @public
+export function getImageGenerations(context: OpenAIContext, deploymentId: string, body: ImageGenerationOptions, options?: GetImageGenerationsOptionalParams): Promise<ImageGenerations>;
 
 // @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {
@@ -846,7 +886,7 @@ export interface OnYourDataAuthenticationOptions {
     type: OnYourDataAuthenticationType;
 }
 
-// @public
+// @public (undocumented)
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
 
 // @public
@@ -913,7 +953,7 @@ export interface OnYourDataVectorizationSource {
 // @public
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
-// @public
+// @public (undocumented)
 export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorizationSource | OnYourDataDeploymentNameVectorizationSource | OnYourDataModelIdVectorizationSource | OnYourDataVectorizationSource;
 
 // @public
@@ -933,7 +973,7 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
     type: OnYourDataVectorSearchAuthenticationType;
 }
 
-// @public
+// @public (undocumented)
 export type OnYourDataVectorSearchAuthenticationOptionsUnion = OnYourDataVectorSearchApiKeyAuthenticationOptions | OnYourDataVectorSearchAccessTokenAuthenticationOptions | OnYourDataVectorSearchAuthenticationOptions;
 
 // @public
@@ -957,6 +997,10 @@ export class OpenAIClient {
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+}
+
+// @public (undocumented)
+export interface OpenAIContext extends Client {
 }
 
 // @public
@@ -989,9 +1033,6 @@ export interface PineconeFieldMappingOptions {
     titleField?: string;
     urlField?: string;
 }
-
-// @public
-export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2023-06-01-preview" | "2023-07-01-preview" | "2024-02-01" | "2024-02-15-preview" | "2024-03-01-preview" | "2024-04-01-preview" | "2024-05-01-preview" | "2024-06-01";
 
 // @public
 export interface SpeechGenerationOptions {

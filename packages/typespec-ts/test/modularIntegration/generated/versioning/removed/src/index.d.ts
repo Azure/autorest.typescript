@@ -1,6 +1,9 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+
+export declare function createRemoved(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams): RemovedContext;
 
 export declare type EnumV2 = "enumMemberV2";
 
@@ -20,7 +23,12 @@ export declare class RemovedClient {
 export declare interface RemovedClientOptionalParams extends ClientOptions {
 }
 
+export declare interface RemovedContext extends Client {
+}
+
 export declare type UnionV2 = string | number;
+
+export declare function v2(context: RemovedContext, body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
 
 export declare interface V2OptionalParams extends OperationOptions {
 }

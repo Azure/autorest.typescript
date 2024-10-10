@@ -3,7 +3,7 @@
 
 export {
   createLoadTestRun,
-  LoadTestServiceContext,
+  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
 } from "./loadTestRunContext.js";
 export {
@@ -22,3 +22,19 @@ export {
   listTestRuns,
   stopTestRun,
 } from "./operations.js";
+export {
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./options.js";

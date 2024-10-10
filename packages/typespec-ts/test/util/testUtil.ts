@@ -54,15 +54,27 @@ export async function createRLCEmitterTestHost() {
   });
 }
 
+export interface RLCEmitterOptions {
+  needNamespaces?: boolean;
+  needAzureCore?: boolean;
+  needTCGC?: boolean;
+  withRawContent?: boolean;
+  withVersionedApiVersion?: boolean;
+  needArmTemplate?: boolean;
+  exampleJson?: Record<string, any>;
+}
+
 export async function rlcEmitterFor(
   code: string,
-  needNamespaces: boolean = true,
-  needAzureCore: boolean = false,
-  needTCGC: boolean = false,
-  withRawContent: boolean = false,
-  withVersionedApiVersion: boolean = false,
-  needArmTemplate: boolean = false,
-  exampleJson: Record<string, any> = {}
+   {
+    needNamespaces = true,
+    needAzureCore = false,
+    needTCGC = false,
+    withRawContent = false,
+    withVersionedApiVersion = false,
+    needArmTemplate = false,
+    exampleJson = {}
+  }: RLCEmitterOptions = {}
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
@@ -205,7 +217,7 @@ export async function createDpgContextTestHelper(
     tcgcContext: sdkContext
   });
 
-  provideSdkTypes(context.sdkPackage);
+  provideSdkTypes(context);
   await provideBinderWithAzureDependencies(outputProject);
 
   return sdkContext;

@@ -1,27 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  CloudEvent,
-  PublishResult,
-  ReceiveResult,
-  AcknowledgeOptions,
-  AcknowledgeResult,
-  ReleaseOptions,
-  ReleaseResult,
-  RejectOptions,
-  RejectResult,
-} from "./models/models.js";
-import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./models/options.js";
 import {
   createEventGrid,
   EventGridContext,
@@ -32,7 +11,27 @@ import {
   acknowledgeCloudEvents,
   releaseCloudEvents,
   rejectCloudEvents,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "./api/index.js";
+import {
+  PublishCloudEventRequest,
+  CloudEvent,
+  PublishResult,
+  ReceiveResult,
+  AcknowledgeOptions,
+  AcknowledgeResult,
+  ReleaseOptions,
+  ReleaseResult,
+  RejectOptions,
+  RejectResult,
+} from "./models/models.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential } from "@azure/core-auth";
 
 export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 
@@ -61,7 +60,7 @@ export class EventGridClient {
   /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
   publishCloudEvent(
     topicName: string,
-    event: { event: CloudEvent },
+    event: PublishCloudEventRequest,
     options: PublishCloudEventOptionalParams = { requestOptions: {} },
   ): Promise<PublishResult> {
     return publishCloudEvent(this._client, topicName, event, options);

@@ -1,13 +1,15 @@
+import { Operation, Type, getNamespaceFullName } from "@typespec/compiler";
 import {
   SdkClientType,
+  SdkContext,
   SdkHttpOperation,
-  SdkPackage,
   SdkServiceMethod,
   SdkType,
   getClientType
 } from "@azure-tools/typespec-client-generator-core";
-import { Operation, Type, getNamespaceFullName } from "@typespec/compiler";
 import { provideContext, useContext } from "../../contextManager.js";
+
+import { visitPackageTypes } from "../../modular/emitModels.js";
 
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;
@@ -50,25 +52,57 @@ export function useSdkTypes() {
   return getSdkType;
 }
 
-export function provideSdkTypes(sdkPackage: SdkPackage<SdkHttpOperation>) {
+export function provideSdkTypes(context: SdkContext) {
+  const sdkPackage = context.sdkPackage;
   const sdkTypesContext = {
     operations: new Map<Type, SdkServiceMethod<SdkHttpOperation>>(),
     types: new Map<Type, SdkType>()
   };
-
-  for (const sdkEnum of sdkPackage.enums) {
-    if (!sdkEnum.__raw) {
-      continue;
+  const emitQueue: Set<SdkType> = new Set();
+  visitPackageTypes(sdkPackage, emitQueue);
+  for (const sdkModel of emitQueue) {
+    switch (sdkModel.kind) {
+      case "model":
+        sdkModel.properties.forEach((prop) => {
+          sdkTypesContext.types.set(prop.type.__raw!, prop.type);
+        });
+        if (sdkModel.discriminatedSubtypes) {
+          Object.values(sdkModel.discriminatedSubtypes).forEach((subtype) => {
+            sdkTypesContext.types.set(subtype.__raw!, subtype);
+          });
+        }
+        break;
+      case "enum":
+        if (sdkModel.__raw) {
+          sdkTypesContext.types.set(sdkModel.__raw, sdkModel);
+        }
+        break;
+      case "union":
+        sdkModel.variantTypes.forEach((v) => {
+          if (v.__raw) {
+            sdkTypesContext.types.set(v.__raw, v);
+          }
+        });
+        break;
+      case "array":
+        sdkTypesContext.types.set(
+          sdkModel.valueType.__raw!,
+          sdkModel.valueType
+        );
+        break;
+      case "dict":
+        sdkTypesContext.types.set(
+          sdkModel.valueType.__raw!,
+          sdkModel.valueType
+        );
+        break;
+      case "nullable":
+        sdkTypesContext.types.set(sdkModel.type.__raw!, sdkModel.type);
+        break;
     }
-
-    sdkTypesContext.types.set(sdkEnum.__raw, sdkEnum);
-  }
-
-  for (const sdkModel of sdkPackage.models) {
     if (!sdkModel.__raw) {
       continue;
     }
-
     sdkTypesContext.types.set(sdkModel.__raw, sdkModel);
   }
 
@@ -79,6 +113,11 @@ export function provideSdkTypes(sdkPackage: SdkPackage<SdkHttpOperation>) {
       }
 
       sdkTypesContext.operations.set(method.__raw, method);
+
+      // Visit the parameters of the method to add them to the types map
+      method.parameters.forEach((param) => {
+        sdkTypesContext.types.set(param.type.__raw!, param.type);
+      });
     }
   }
 

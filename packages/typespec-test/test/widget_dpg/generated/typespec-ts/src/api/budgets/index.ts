@@ -1,17 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { User } from "../../models/models.js";
-import { WidgetServiceContext as Client } from "../index.js";
+import {
+  BudgetsCreateOrReplaceOptionalParams,
+  WidgetServiceContext as Client,
+} from "../index.js";
+import { User, userSerializer, userDeserializer } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
@@ -24,7 +26,7 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: { role: resource["role"], id: resource["id"] },
+      body: userSerializer(resource),
     });
 }
 
@@ -36,11 +38,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
+  return userDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */

@@ -143,7 +143,9 @@ describe("Client Factory generation", () => {
         V2
       }
       `;
-      const clientFactory = await emitClientFactoryFromTypeSpec(tsp, true);
+      const clientFactory = await emitClientFactoryFromTypeSpec(tsp, {
+        needAzureCore: true,
+      });
       assert.ok(clientFactory);
       await assertEqualContent(
         clientFactory!.content,
@@ -216,7 +218,9 @@ describe("Client Factory generation", () => {
               v1_1: "v1.1",
             }
             `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(models);
       await assertEqualContent(
@@ -291,7 +295,9 @@ describe("Client Factory generation", () => {
               v1_1: "v1.1",
             }
             `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(models);
       await assertEqualContent(
@@ -413,8 +419,6 @@ describe("Client Factory generation", () => {
           @service( {title: "PetStoreClient"})
           namespace PetStore;
         `,
-          false,
-          true
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {
@@ -439,8 +443,9 @@ describe("Client Factory generation", () => {
         @service( {title: "PetStoreClient"})
         namespace PetStore;
       `,
-        false,
-        false
+        {
+          mustEmptyDiagnostic: false
+        }
       );
 
       assert.ok(factoryFile);

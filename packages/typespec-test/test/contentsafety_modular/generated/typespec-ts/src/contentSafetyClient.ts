@@ -1,31 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  TextBlocklist,
-  AddOrUpdateBlockItemsOptions,
-  AddOrUpdateBlockItemsResult,
-  TextBlockItem,
-  RemoveBlockItemsOptions,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-} from "./models/models.js";
-import {
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-} from "./models/options.js";
 import {
   createContentSafety,
   ContentSafetyContext,
@@ -40,8 +15,31 @@ import {
   removeBlockItems,
   getTextBlocklistItem,
   listTextBlocklistItems,
+  AnalyzeTextOptionalParams,
+  AnalyzeImageOptionalParams,
+  GetTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
 } from "./api/index.js";
+import {
+  TextBlocklist,
+  AddOrUpdateBlockItemsOptions,
+  AddOrUpdateBlockItemsResult,
+  TextBlockItem,
+  RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
+} from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 

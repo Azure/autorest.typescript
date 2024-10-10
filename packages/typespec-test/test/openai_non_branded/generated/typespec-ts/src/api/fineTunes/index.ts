@@ -1,25 +1,29 @@
 // Licensed under the MIT License.
 
 import {
-  CreateFineTuneRequest,
-  FineTune,
-  ListFineTunesResponse,
-  ListFineTuneEventsResponse,
-} from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@typespec/ts-http-runtime";
-import {
+  OpenAIContext as Client,
+  FineTunesCancelOptionalParams,
   FineTunesCreateOptionalParams,
+  FineTunesListEventsOptionalParams,
   FineTunesListOptionalParams,
   FineTunesRetrieveOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesCancelOptionalParams,
-} from "../../models/options.js";
+} from "../index.js";
+import {
+  CreateFineTuneRequest,
+  createFineTuneRequestSerializer,
+  FineTune,
+  fineTuneDeserializer,
+  ListFineTunesResponse,
+  listFineTunesResponseDeserializer,
+  ListFineTuneEventsResponse,
+  listFineTuneEventsResponseDeserializer,
+} from "../../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@typespec/ts-http-runtime";
 
 export function _createSend(
   context: Client,
@@ -30,21 +34,7 @@ export function _createSend(
     .path("/fine-tunes")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        training_file: fineTune["trainingFile"],
-        validation_file: fineTune["validationFile"],
-        model: fineTune["model"],
-        n_epochs: fineTune["nEpochs"],
-        batch_size: fineTune["batchSize"],
-        learning_rate_multiplier: fineTune["learningRateMultiplier"],
-        prompt_loss_rate: fineTune["promptLossRate"],
-        compute_classification_metrics:
-          fineTune["computeClassificationMetrics"],
-        classification_n_classes: fineTune["classificationNClasses"],
-        classification_positive_class: fineTune["classificationPositiveClass"],
-        classification_betas: fineTune["classificationBetas"],
-        suffix: fineTune["suffix"],
-      },
+      body: createFineTuneRequestSerializer(fineTune),
     });
 }
 
@@ -56,76 +46,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    validationFiles: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    resultFiles: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              createdAt: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return fineTuneDeserializer(result.body);
 }
 
 export async function create(
@@ -154,79 +75,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        createdAt: new Date(p["created_at"]),
-        updatedAt: new Date(p["updated_at"]),
-        model: p["model"],
-        fineTunedModel: p["fine_tuned_model"],
-        organizationId: p["organization_id"],
-        status: p["status"],
-        hyperparams: {
-          nEpochs: p.hyperparams["n_epochs"],
-          batchSize: p.hyperparams["batch_size"],
-          promptLossWeight: p.hyperparams["prompt_loss_weight"],
-          learningRateMultiplier: p.hyperparams["learning_rate_multiplier"],
-          computeClassificationMetrics:
-            p.hyperparams["compute_classification_metrics"],
-          classificationPositiveClass:
-            p.hyperparams["classification_positive_class"],
-          classificationNClasses: p.hyperparams["classification_n_classes"],
-        },
-        trainingFiles: p["training_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            statusDetails: p["status_details"],
-          };
-        }),
-        validationFiles: p["validation_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            statusDetails: p["status_details"],
-          };
-        }),
-        resultFiles: p["result_files"].map((p: any) => {
-          return {
-            id: p["id"],
-            object: p["object"],
-            bytes: p["bytes"],
-            createdAt: new Date(p["createdAt"]),
-            filename: p["filename"],
-            purpose: p["purpose"],
-            status: p["status"],
-            statusDetails: p["status_details"],
-          };
-        }),
-        events:
-          p["events"] === undefined
-            ? p["events"]
-            : p["events"].map((p: any) => {
-                return {
-                  object: p["object"],
-                  createdAt: new Date(p["created_at"]),
-                  level: p["level"],
-                  message: p["message"],
-                };
-              }),
-      };
-    }),
-  };
+  return listFineTunesResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -255,76 +104,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    validationFiles: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    resultFiles: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              createdAt: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return fineTuneDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -357,17 +137,7 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        object: p["object"],
-        createdAt: new Date(p["created_at"]),
-        level: p["level"],
-        message: p["message"],
-      };
-    }),
-  };
+  return listFineTuneEventsResponseDeserializer(result.body);
 }
 
 export async function listEvents(
@@ -397,76 +167,7 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    validationFiles: result.body["validation_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    resultFiles: result.body["result_files"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-    events:
-      result.body["events"] === undefined
-        ? result.body["events"]
-        : result.body["events"].map((p: any) => {
-            return {
-              object: p["object"],
-              createdAt: new Date(p["created_at"]),
-              level: p["level"],
-              message: p["message"],
-            };
-          }),
-  };
+  return fineTuneDeserializer(result.body);
 }
 
 export async function cancel(

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 export {
+  PublishCloudEventRequest,
   CloudEvent,
   PublishResult,
   ReceiveResult,
@@ -14,13 +15,4 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
-  ServiceApiVersions,
 } from "./models.js";
-export {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./options.js";

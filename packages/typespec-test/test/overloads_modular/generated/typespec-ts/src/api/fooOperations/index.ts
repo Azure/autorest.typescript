@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetManagerContext as Client } from "../index.js";
+import {
+  WidgetManagerContext as Client,
+  FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FooOperationsGetAvatarAsPngOptionalParams,
-  FooOperationsGetAvatarAsJpegOptionalParams,
-} from "../../models/options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,

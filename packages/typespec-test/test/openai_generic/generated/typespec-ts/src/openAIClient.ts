@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { getAudioOperations, AudioOperations } from "./classic/audio/index.js";
 import { getChatOperations, ChatOperations } from "./classic/chat/index.js";
 import {
@@ -40,6 +38,8 @@ import {
   OpenAIContext,
   OpenAIClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential } from "@azure/core-auth";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 

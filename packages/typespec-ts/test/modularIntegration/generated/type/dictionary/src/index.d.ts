@@ -1,3 +1,4 @@
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -12,6 +13,8 @@ export declare interface BooleanValueOperations {
 
 export declare interface BooleanValuePutOptionalParams extends OperationOptions {
 }
+
+export declare function createDictionary(options?: DictionaryClientOptionalParams): DictionaryContext;
 
 export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
 }
@@ -42,6 +45,9 @@ export declare class DictionaryClient {
 }
 
 export declare interface DictionaryClientOptionalParams extends ClientOptions {
+}
+
+export declare interface DictionaryContext extends Client {
 }
 
 export declare interface DurationValueGetOptionalParams extends OperationOptions {

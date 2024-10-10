@@ -2,49 +2,51 @@
 // Licensed under the MIT License.
 
 import {
-  chatRequestMessageUnionSerializer,
-  functionDefinitionSerializer,
-  azureChatExtensionConfigurationUnionSerializer,
-  azureChatEnhancementConfigurationSerializer,
-  chatCompletionsResponseFormatUnionSerializer,
-  AudioTranscriptionOptions,
-  AudioTranscription,
-  AudioTaskLabel,
-  AudioTranslationOptions,
-  AudioTranslation,
-  CompletionsOptions,
-  Completions,
-  ContentFilterSeverity,
-  CompletionsFinishReason,
-  ChatCompletionsOptions,
-  ChatRole,
-  ChatCompletions,
-  ImageGenerationOptions,
-  ImageGenerations,
-  SpeechGenerationOptions,
-  EmbeddingsOptions,
-  Embeddings,
-} from "../models/models.js";
-import { OpenAIContext as Client } from "./index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-import { uint8ArrayToString } from "@azure/core-util";
-import {
+  OpenAIContext as Client,
+  GenerateSpeechFromTextOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
   GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
+  GetCompletionsOptionalParams,
   GetEmbeddingsOptionalParams,
-} from "../models/options.js";
+  GetImageGenerationsOptionalParams,
+} from "./index.js";
+import {
+  AudioTranscriptionOptions,
+  audioTranscriptionOptionsSerializer,
+  AudioTranscription,
+  audioTranscriptionDeserializer,
+  AudioTranslationOptions,
+  audioTranslationOptionsSerializer,
+  AudioTranslation,
+  audioTranslationDeserializer,
+  CompletionsOptions,
+  completionsOptionsSerializer,
+  Completions,
+  completionsDeserializer,
+  ChatCompletionsOptions,
+  chatCompletionsOptionsSerializer,
+  ChatCompletions,
+  chatCompletionsDeserializer,
+  ImageGenerationOptions,
+  imageGenerationOptionsSerializer,
+  ImageGenerations,
+  imageGenerationsDeserializer,
+  SpeechGenerationOptions,
+  speechGenerationOptionsSerializer,
+  EmbeddingsOptions,
+  embeddingsOptionsSerializer,
+  Embeddings,
+  embeddingsDeserializer,
+} from "../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
@@ -59,16 +61,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        timestamp_granularities: body["timestampGranularities"],
-        model: body["model"],
-      },
+      body: audioTranscriptionOptionsSerializer(body),
     });
 }
 
@@ -117,16 +110,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        language: body["language"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        timestamp_granularities: body["timestampGranularities"],
-        model: body["model"],
-      },
+      body: audioTranscriptionOptionsSerializer(body),
     });
 }
 
@@ -138,35 +122,7 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-    task: result.body["task"] as AudioTaskLabel,
-    language: result.body["language"],
-    duration: result.body["duration"],
-    segments:
-      result.body["segments"] === undefined
-        ? result.body["segments"]
-        : result.body["segments"].map((p: any) => {
-            return {
-              id: p["id"],
-              start: p["start"],
-              end: p["end"],
-              text: p["text"],
-              temperature: p["temperature"],
-              avgLogprob: p["avg_logprob"],
-              compressionRatio: p["compression_ratio"],
-              noSpeechProb: p["no_speech_prob"],
-              tokens: p["tokens"],
-              seek: p["seek"],
-            };
-          }),
-    words:
-      result.body["words"] === undefined
-        ? result.body["words"]
-        : result.body["words"].map((p: any) => {
-            return { word: p["word"], start: p["start"], end: p["end"] };
-          }),
-  };
+  return audioTranscriptionDeserializer(result.body);
 }
 
 /**
@@ -203,14 +159,7 @@ export function _getAudioTranslationAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
-      },
+      body: audioTranslationOptionsSerializer(body),
     });
 }
 
@@ -256,14 +205,7 @@ export function _getAudioTranslationAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(body["file"], "base64"),
-        filename: body["filename"],
-        response_format: body["responseFormat"],
-        prompt: body["prompt"],
-        temperature: body["temperature"],
-        model: body["model"],
-      },
+      body: audioTranslationOptionsSerializer(body),
     });
 }
 
@@ -275,29 +217,7 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-    task: result.body["task"] as AudioTaskLabel,
-    language: result.body["language"],
-    duration: result.body["duration"],
-    segments:
-      result.body["segments"] === undefined
-        ? result.body["segments"]
-        : result.body["segments"].map((p: any) => {
-            return {
-              id: p["id"],
-              start: p["start"],
-              end: p["end"],
-              text: p["text"],
-              temperature: p["temperature"],
-              avgLogprob: p["avg_logprob"],
-              compressionRatio: p["compression_ratio"],
-              noSpeechProb: p["no_speech_prob"],
-              tokens: p["tokens"],
-              seek: p["seek"],
-            };
-          }),
-  };
+  return audioTranslationDeserializer(result.body);
 }
 
 /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
@@ -328,26 +248,7 @@ export function _getCompletionsSend(
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: body["prompt"],
-        max_tokens: body["maxTokens"],
-        temperature: body["temperature"],
-        top_p: body["topP"],
-        logit_bias: !body.logitBias
-          ? body.logitBias
-          : (serializeRecord(body.logitBias as any) as any),
-        user: body["user"],
-        n: body["n"],
-        logprobs: body["logprobs"],
-        suffix: body["suffix"],
-        echo: body["echo"],
-        stop: body["stop"],
-        presence_penalty: body["presencePenalty"],
-        frequency_penalty: body["frequencyPenalty"],
-        best_of: body["bestOf"],
-        stream: body["stream"],
-        model: body["model"],
-      },
+      body: completionsOptionsSerializer(body),
     });
 }
 
@@ -359,203 +260,7 @@ export async function _getCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    promptFilterResults:
-      result.body["prompt_filter_results"] === undefined
-        ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p: any) => {
-            return {
-              promptIndex: p["prompt_index"],
-              contentFilterResults: {
-                sexual: !p.content_filter_results.sexual
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.sexual?.["filtered"],
-                      severity: p.content_filter_results.sexual?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                violence: !p.content_filter_results.violence
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.violence?.["filtered"],
-                      severity: p.content_filter_results.violence?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                hate: !p.content_filter_results.hate
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.hate?.["filtered"],
-                      severity: p.content_filter_results.hate?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                selfHarm: !p.content_filter_results.self_harm
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.self_harm?.["filtered"],
-                      severity: p.content_filter_results.self_harm?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                profanity: !p.content_filter_results.profanity
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.profanity?.["filtered"],
-                      detected:
-                        p.content_filter_results.profanity?.["detected"],
-                    },
-                customBlocklists: !p.content_filter_results.custom_blocklists
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.custom_blocklists?.[
-                          "filtered"
-                        ],
-                      details: p.content_filter_results.custom_blocklists?.[
-                        "details"
-                      ].map((p: any) => {
-                        return { filtered: p["filtered"], id: p["id"] };
-                      }),
-                    },
-                error: !p.content_filter_results.error
-                  ? undefined
-                  : p.content_filter_results.error,
-                jailbreak: !p.content_filter_results.jailbreak
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.jailbreak?.["filtered"],
-                      detected:
-                        p.content_filter_results.jailbreak?.["detected"],
-                    },
-                indirectAttack: !p.content_filter_results.indirect_attack
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.indirect_attack?.["filtered"],
-                      detected:
-                        p.content_filter_results.indirect_attack?.["detected"],
-                    },
-              },
-            };
-          }),
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        text: p["text"],
-        index: p["index"],
-        contentFilterResults: !p.content_filter_results
-          ? undefined
-          : {
-              sexual: !p.content_filter_results?.sexual
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.sexual?.["filtered"],
-                    severity: p.content_filter_results?.sexual?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              violence: !p.content_filter_results?.violence
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.violence?.["filtered"],
-                    severity: p.content_filter_results?.violence?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              hate: !p.content_filter_results?.hate
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.hate?.["filtered"],
-                    severity: p.content_filter_results?.hate?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              selfHarm: !p.content_filter_results?.self_harm
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.self_harm?.["filtered"],
-                    severity: p.content_filter_results?.self_harm?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              profanity: !p.content_filter_results?.profanity
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.profanity?.["filtered"],
-                    detected: p.content_filter_results?.profanity?.["detected"],
-                  },
-              customBlocklists: !p.content_filter_results?.custom_blocklists
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.custom_blocklists?.["filtered"],
-                    details: p.content_filter_results?.custom_blocklists?.[
-                      "details"
-                    ].map((p: any) => {
-                      return { filtered: p["filtered"], id: p["id"] };
-                    }),
-                  },
-              error: !p.content_filter_results?.error
-                ? undefined
-                : p.content_filter_results?.error,
-              protectedMaterialText: !p.content_filter_results
-                ?.protected_material_text
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.protected_material_text?.[
-                        "filtered"
-                      ],
-                    detected:
-                      p.content_filter_results?.protected_material_text?.[
-                        "detected"
-                      ],
-                  },
-              protectedMaterialCode: !p.content_filter_results
-                ?.protected_material_code
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.protected_material_code?.[
-                        "filtered"
-                      ],
-                    detected:
-                      p.content_filter_results?.protected_material_code?.[
-                        "detected"
-                      ],
-                    url: p.content_filter_results?.protected_material_code?.[
-                      "URL"
-                    ],
-                    license:
-                      p.content_filter_results?.protected_material_code?.[
-                        "license"
-                      ],
-                  },
-            },
-        logprobs:
-          p.logprobs === null
-            ? null
-            : {
-                tokens: p.logprobs["tokens"],
-                tokenLogprobs: p.logprobs["token_logprobs"],
-                topLogprobs: p.logprobs["top_logprobs"],
-                textOffset: p.logprobs["text_offset"],
-              },
-        finishReason: p["finish_reason"] as CompletionsFinishReason,
-      };
-    }),
-    usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  return completionsDeserializer(result.body);
 }
 
 /**
@@ -588,46 +293,7 @@ export function _getChatCompletionsSend(
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map((p) =>
-          chatRequestMessageUnionSerializer(p),
-        ),
-        functions:
-          body["functions"] === undefined
-            ? body["functions"]
-            : body["functions"].map(functionDefinitionSerializer),
-        function_call: body["functionCall"] as any,
-        max_tokens: body["maxTokens"],
-        temperature: body["temperature"],
-        top_p: body["topP"],
-        logit_bias: !body.logitBias
-          ? body.logitBias
-          : (serializeRecord(body.logitBias as any) as any),
-        user: body["user"],
-        n: body["n"],
-        stop: body["stop"],
-        presence_penalty: body["presencePenalty"],
-        frequency_penalty: body["frequencyPenalty"],
-        stream: body["stream"],
-        model: body["model"],
-        data_sources:
-          body["dataSources"] === undefined
-            ? body["dataSources"]
-            : body["dataSources"].map((p) =>
-                azureChatExtensionConfigurationUnionSerializer(p),
-              ),
-        enhancements: !body.enhancements
-          ? body.enhancements
-          : azureChatEnhancementConfigurationSerializer(body.enhancements),
-        seed: body["seed"],
-        logprobs: body["logprobs"],
-        top_logprobs: body["topLogprobs"],
-        response_format: !body.responseFormat
-          ? body.responseFormat
-          : chatCompletionsResponseFormatUnionSerializer(body.responseFormat),
-        tools: body["tools"],
-        tool_choice: body["toolChoice"] as any,
-      },
+      body: chatCompletionsOptionsSerializer(body),
     });
 }
 
@@ -639,354 +305,7 @@ export async function _getChatCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        message: !p.message
-          ? undefined
-          : {
-              role: p.message?.["role"] as ChatRole,
-              content: p.message?.["content"],
-              toolCalls:
-                p.message?.["tool_calls"] === undefined
-                  ? p.message?.["tool_calls"]
-                  : p.message?.["tool_calls"],
-              functionCall: !p.message?.function_call
-                ? undefined
-                : {
-                    name: p.message?.function_call?.["name"],
-                    arguments: p.message?.function_call?.["arguments"],
-                  },
-              context: !p.message?.context
-                ? undefined
-                : {
-                    citations:
-                      p.message?.context?.["citations"] === undefined
-                        ? p.message?.context?.["citations"]
-                        : p.message?.context?.["citations"].map((p: any) => {
-                            return {
-                              content: p["content"],
-                              title: p["title"],
-                              url: p["url"],
-                              filepath: p["filepath"],
-                              chunkId: p["chunk_id"],
-                            };
-                          }),
-                    intent: p.message?.context?.["intent"],
-                    allRetrievedDocuments:
-                      p.message?.context?.["all_retrieved_documents"] ===
-                      undefined
-                        ? p.message?.context?.["all_retrieved_documents"]
-                        : p.message?.context?.["all_retrieved_documents"].map(
-                            (p: any) => {
-                              return {
-                                content: p["content"],
-                                title: p["title"],
-                                url: p["url"],
-                                filepath: p["filepath"],
-                                chunkId: p["chunk_id"],
-                                searchQueries: p["search_queries"],
-                                dataSourceIndex: p["data_source_index"],
-                                originalSearchScore: p["original_search_score"],
-                                rerankScore: p["rerank_score"],
-                                filterReason: p["filter_reason"],
-                              };
-                            },
-                          ),
-                  },
-            },
-        logprobs:
-          p.logprobs === null
-            ? null
-            : {
-                content:
-                  p.logprobs["content"] === null
-                    ? p.logprobs["content"]
-                    : p.logprobs["content"].map((p: any) => {
-                        return {
-                          token: p["token"],
-                          logprob: p["logprob"],
-                          bytes: p["bytes"],
-                          topLogprobs:
-                            p["top_logprobs"] === null
-                              ? p["top_logprobs"]
-                              : p["top_logprobs"].map((p: any) => {
-                                  return {
-                                    token: p["token"],
-                                    logprob: p["logprob"],
-                                    bytes: p["bytes"],
-                                  };
-                                }),
-                        };
-                      }),
-              },
-        index: p["index"],
-        finishReason: p["finish_reason"] as CompletionsFinishReason,
-        finishDetails: !p.finish_details
-          ? undefined
-          : { type: p.finish_details?.["type"] },
-        delta: !p.delta
-          ? undefined
-          : {
-              role: p.delta?.["role"] as ChatRole,
-              content: p.delta?.["content"],
-              toolCalls:
-                p.delta?.["tool_calls"] === undefined
-                  ? p.delta?.["tool_calls"]
-                  : p.delta?.["tool_calls"],
-              functionCall: !p.delta?.function_call
-                ? undefined
-                : {
-                    name: p.delta?.function_call?.["name"],
-                    arguments: p.delta?.function_call?.["arguments"],
-                  },
-              context: !p.delta?.context
-                ? undefined
-                : {
-                    citations:
-                      p.delta?.context?.["citations"] === undefined
-                        ? p.delta?.context?.["citations"]
-                        : p.delta?.context?.["citations"].map((p: any) => {
-                            return {
-                              content: p["content"],
-                              title: p["title"],
-                              url: p["url"],
-                              filepath: p["filepath"],
-                              chunkId: p["chunk_id"],
-                            };
-                          }),
-                    intent: p.delta?.context?.["intent"],
-                    allRetrievedDocuments:
-                      p.delta?.context?.["all_retrieved_documents"] ===
-                      undefined
-                        ? p.delta?.context?.["all_retrieved_documents"]
-                        : p.delta?.context?.["all_retrieved_documents"].map(
-                            (p: any) => {
-                              return {
-                                content: p["content"],
-                                title: p["title"],
-                                url: p["url"],
-                                filepath: p["filepath"],
-                                chunkId: p["chunk_id"],
-                                searchQueries: p["search_queries"],
-                                dataSourceIndex: p["data_source_index"],
-                                originalSearchScore: p["original_search_score"],
-                                rerankScore: p["rerank_score"],
-                                filterReason: p["filter_reason"],
-                              };
-                            },
-                          ),
-                  },
-            },
-        contentFilterResults: !p.content_filter_results
-          ? undefined
-          : {
-              sexual: !p.content_filter_results?.sexual
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.sexual?.["filtered"],
-                    severity: p.content_filter_results?.sexual?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              violence: !p.content_filter_results?.violence
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.violence?.["filtered"],
-                    severity: p.content_filter_results?.violence?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              hate: !p.content_filter_results?.hate
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.hate?.["filtered"],
-                    severity: p.content_filter_results?.hate?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              selfHarm: !p.content_filter_results?.self_harm
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.self_harm?.["filtered"],
-                    severity: p.content_filter_results?.self_harm?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              profanity: !p.content_filter_results?.profanity
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.profanity?.["filtered"],
-                    detected: p.content_filter_results?.profanity?.["detected"],
-                  },
-              customBlocklists: !p.content_filter_results?.custom_blocklists
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.custom_blocklists?.["filtered"],
-                    details: p.content_filter_results?.custom_blocklists?.[
-                      "details"
-                    ].map((p: any) => {
-                      return { filtered: p["filtered"], id: p["id"] };
-                    }),
-                  },
-              error: !p.content_filter_results?.error
-                ? undefined
-                : p.content_filter_results?.error,
-              protectedMaterialText: !p.content_filter_results
-                ?.protected_material_text
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.protected_material_text?.[
-                        "filtered"
-                      ],
-                    detected:
-                      p.content_filter_results?.protected_material_text?.[
-                        "detected"
-                      ],
-                  },
-              protectedMaterialCode: !p.content_filter_results
-                ?.protected_material_code
-                ? undefined
-                : {
-                    filtered:
-                      p.content_filter_results?.protected_material_code?.[
-                        "filtered"
-                      ],
-                    detected:
-                      p.content_filter_results?.protected_material_code?.[
-                        "detected"
-                      ],
-                    url: p.content_filter_results?.protected_material_code?.[
-                      "URL"
-                    ],
-                    license:
-                      p.content_filter_results?.protected_material_code?.[
-                        "license"
-                      ],
-                  },
-            },
-        enhancements: !p.enhancements
-          ? undefined
-          : {
-              grounding: !p.enhancements?.grounding
-                ? undefined
-                : {
-                    lines: p.enhancements?.grounding?.["lines"].map(
-                      (p: any) => {
-                        return {
-                          text: p["text"],
-                          spans: p["spans"].map((p: any) => {
-                            return {
-                              text: p["text"],
-                              offset: p["offset"],
-                              length: p["length"],
-                              polygon: p["polygon"].map((p: any) => {
-                                return { x: p["x"], y: p["y"] };
-                              }),
-                            };
-                          }),
-                        };
-                      },
-                    ),
-                  },
-            },
-      };
-    }),
-    model: result.body["model"],
-    promptFilterResults:
-      result.body["prompt_filter_results"] === undefined
-        ? result.body["prompt_filter_results"]
-        : result.body["prompt_filter_results"].map((p: any) => {
-            return {
-              promptIndex: p["prompt_index"],
-              contentFilterResults: {
-                sexual: !p.content_filter_results.sexual
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.sexual?.["filtered"],
-                      severity: p.content_filter_results.sexual?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                violence: !p.content_filter_results.violence
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.violence?.["filtered"],
-                      severity: p.content_filter_results.violence?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                hate: !p.content_filter_results.hate
-                  ? undefined
-                  : {
-                      filtered: p.content_filter_results.hate?.["filtered"],
-                      severity: p.content_filter_results.hate?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                selfHarm: !p.content_filter_results.self_harm
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.self_harm?.["filtered"],
-                      severity: p.content_filter_results.self_harm?.[
-                        "severity"
-                      ] as ContentFilterSeverity,
-                    },
-                profanity: !p.content_filter_results.profanity
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.profanity?.["filtered"],
-                      detected:
-                        p.content_filter_results.profanity?.["detected"],
-                    },
-                customBlocklists: !p.content_filter_results.custom_blocklists
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.custom_blocklists?.[
-                          "filtered"
-                        ],
-                      details: p.content_filter_results.custom_blocklists?.[
-                        "details"
-                      ].map((p: any) => {
-                        return { filtered: p["filtered"], id: p["id"] };
-                      }),
-                    },
-                error: !p.content_filter_results.error
-                  ? undefined
-                  : p.content_filter_results.error,
-                jailbreak: !p.content_filter_results.jailbreak
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.jailbreak?.["filtered"],
-                      detected:
-                        p.content_filter_results.jailbreak?.["detected"],
-                    },
-                indirectAttack: !p.content_filter_results.indirect_attack
-                  ? undefined
-                  : {
-                      filtered:
-                        p.content_filter_results.indirect_attack?.["filtered"],
-                      detected:
-                        p.content_filter_results.indirect_attack?.["detected"],
-                    },
-              },
-            };
-          }),
-    systemFingerprint: result.body["system_fingerprint"],
-    usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  return chatCompletionsDeserializer(result.body);
 }
 
 /**
@@ -1019,16 +338,7 @@ export function _getImageGenerationsSend(
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: body["model"],
-        prompt: body["prompt"],
-        n: body["n"],
-        size: body["size"],
-        response_format: body["responseFormat"],
-        quality: body["quality"],
-        style: body["style"],
-        user: body["user"],
-      },
+      body: imageGenerationOptionsSerializer(body),
     });
 }
 
@@ -1040,111 +350,7 @@ export async function _getImageGenerationsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p: any) => {
-      return {
-        url: p["url"],
-        base64Data: p["b64_json"],
-        contentFilterResults: !p.content_filter_results
-          ? undefined
-          : {
-              sexual: !p.content_filter_results?.sexual
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.sexual?.["filtered"],
-                    severity: p.content_filter_results?.sexual?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              violence: !p.content_filter_results?.violence
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.violence?.["filtered"],
-                    severity: p.content_filter_results?.violence?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              hate: !p.content_filter_results?.hate
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.hate?.["filtered"],
-                    severity: p.content_filter_results?.hate?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              selfHarm: !p.content_filter_results?.self_harm
-                ? undefined
-                : {
-                    filtered: p.content_filter_results?.self_harm?.["filtered"],
-                    severity: p.content_filter_results?.self_harm?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-            },
-        revisedPrompt: p["revised_prompt"],
-        promptFilterResults: !p.prompt_filter_results
-          ? undefined
-          : {
-              sexual: !p.prompt_filter_results?.sexual
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.sexual?.["filtered"],
-                    severity: p.prompt_filter_results?.sexual?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              violence: !p.prompt_filter_results?.violence
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.violence?.["filtered"],
-                    severity: p.prompt_filter_results?.violence?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              hate: !p.prompt_filter_results?.hate
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.hate?.["filtered"],
-                    severity: p.prompt_filter_results?.hate?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              selfHarm: !p.prompt_filter_results?.self_harm
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.self_harm?.["filtered"],
-                    severity: p.prompt_filter_results?.self_harm?.[
-                      "severity"
-                    ] as ContentFilterSeverity,
-                  },
-              profanity: !p.prompt_filter_results?.profanity
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.profanity?.["filtered"],
-                    detected: p.prompt_filter_results?.profanity?.["detected"],
-                  },
-              jailbreak: !p.prompt_filter_results?.jailbreak
-                ? undefined
-                : {
-                    filtered: p.prompt_filter_results?.jailbreak?.["filtered"],
-                    detected: p.prompt_filter_results?.jailbreak?.["detected"],
-                  },
-              customBlocklists: !p.prompt_filter_results?.custom_blocklists
-                ? undefined
-                : {
-                    filtered:
-                      p.prompt_filter_results?.custom_blocklists?.["filtered"],
-                    details: p.prompt_filter_results?.custom_blocklists?.[
-                      "details"
-                    ].map((p: any) => {
-                      return { filtered: p["filtered"], id: p["id"] };
-                    }),
-                  },
-            },
-      };
-    }),
-  };
+  return imageGenerationsDeserializer(result.body);
 }
 
 /** Creates an image given a prompt. */
@@ -1173,13 +379,7 @@ export function _generateSpeechFromTextSend(
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        input: body["input"],
-        voice: body["voice"],
-        response_format: body["responseFormat"],
-        speed: body["speed"],
-        model: body["model"],
-      },
+      body: speechGenerationOptionsSerializer(body),
     });
 }
 
@@ -1191,7 +391,7 @@ export async function _generateSpeechFromTextDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  return result.body;
 }
 
 /** Generates text-to-speech audio from the input text. */
@@ -1220,14 +420,7 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        user: body["user"],
-        model: body["model"],
-        input: body["input"],
-        encoding_format: body["encodingFormat"],
-        dimensions: body["dimensions"],
-        input_type: body["inputType"],
-      },
+      body: embeddingsOptionsSerializer(body),
     });
 }
 
@@ -1239,15 +432,7 @@ export async function _getEmbeddingsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    data: result.body["data"].map((p: any) => {
-      return { embedding: p["embedding"], index: p["index"] };
-    }),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  return embeddingsDeserializer(result.body);
 }
 
 /** Return the embeddings for a given prompt. */

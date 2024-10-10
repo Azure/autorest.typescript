@@ -87,6 +87,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "with", reservedFor: [NameType.Parameter] },
   { name: "yield", reservedFor: [NameType.Parameter] },
   { name: "arguments", reservedFor: [NameType.Parameter] },
+  { name: "global", reservedFor: [...Newable] },
   // reserve client for codegen
   { name: "client", reservedFor: [NameType.Parameter] },
   { name: "endpoint", reservedFor: [NameType.Parameter] },

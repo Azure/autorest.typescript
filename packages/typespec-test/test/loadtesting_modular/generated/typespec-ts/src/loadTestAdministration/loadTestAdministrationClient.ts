@@ -1,31 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  Test,
-  TestFileInfo,
-  TestAppComponents,
-  TestServerMetricConfig,
-} from "./models/models.js";
-import {
-  CreateOrUpdateTestOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestOptionalParams,
-  GetTestFileOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-} from "./models/options.js";
 import {
   createLoadTestAdministration,
-  LoadTestServiceContext,
+  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -39,13 +17,33 @@ import {
   uploadTestFile,
   deleteTestFile,
   deleteTest,
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
 } from "./api/index.js";
+import {
+  Test,
+  TestFileInfo,
+  TestAppComponents,
+  TestServerMetricConfig,
+} from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
 
 export { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
 
 export class LoadTestAdministrationClient {
-  private _client: LoadTestServiceContext;
+  private _client: LoadTestAdministrationContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 

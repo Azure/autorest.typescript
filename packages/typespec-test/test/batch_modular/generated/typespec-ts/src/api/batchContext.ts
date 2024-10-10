@@ -1,14 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { TokenCredential } from "@azure/core-auth";
 
+/** Azure Batch provides Cloud-scale job scheduling and compute management. */
 export interface BatchContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface BatchClientOptionalParams extends ClientOptions {}
+export interface BatchClientOptionalParams extends ClientOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
+}
 
 /** Azure Batch provides Cloud-scale job scheduling and compute management. */
 export function createBatch(

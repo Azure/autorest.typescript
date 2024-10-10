@@ -4,22 +4,10 @@
 export {
   User,
   Widget,
+  WidgetColor,
   WidgetError,
-  CreateWidget,
-  UpdateWidget,
+  CreateWidgetColor,
+  UpdateWidgetRequestColor,
   AnalyzeResult,
-  Versions,
   NonReferencedModel,
 } from "./models.js";
-export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-  BudgetsCreateOrReplaceOptionalParams,
-} from "./options.js";
