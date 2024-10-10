@@ -385,8 +385,7 @@
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "explode": false
+            }
           }
         ],
         "responses": {
@@ -465,8 +464,7 @@
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "explode": false
+            }
           }
         ],
         "responses": {
@@ -503,8 +501,7 @@
           "type": "integer",
           "format": "int32",
           "default": 50
-        },
-        "explode": false
+        }
       },
       "TodoItems.PaginationControls.offset": {
         "name": "offset",
@@ -515,8 +512,7 @@
           "type": "integer",
           "format": "int32",
           "default": 0
-        },
-        "explode": false
+        }
       }
     },
     "schemas": {
