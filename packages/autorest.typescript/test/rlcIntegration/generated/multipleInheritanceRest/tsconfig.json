@@ -22,5 +22,5 @@
     "declarationDir": "./types",
     "paths": { "@msinternal/multiple-inheritance-rest": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
 }
