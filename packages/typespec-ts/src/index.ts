@@ -304,6 +304,18 @@ export async function $onEmit(context: EmitContext) {
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+      file.getImportDeclarations().map((importDeclaration) => {
+        importDeclaration.getNamedImports().map((namedImport) => {
+          if (namedImport.getNameNode().findReferencesAsNodes().filter((n) => {
+            return n.getSourceFile().getFilePath() === file.getFilePath();
+          }).length === 1) {
+            namedImport.remove();
+          }
+        });
+        if (importDeclaration.getNamedImports().length === 0) {
+          importDeclaration.remove();
+        }
+      });
       file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,

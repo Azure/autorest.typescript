@@ -2,16 +2,6 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
-import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
-} from "../src/models/models.js";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**

@@ -2,16 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
-} from "./models/models.js";
-import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

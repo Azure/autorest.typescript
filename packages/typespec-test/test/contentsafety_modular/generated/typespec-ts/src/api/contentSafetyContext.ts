@@ -2,12 +2,6 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import {
-  _PagedTextBlocklist,
-  _pagedTextBlocklistDeserializer,
-  _PagedTextBlockItem,
-  _pagedTextBlockItemDeserializer,
-} from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 

@@ -12,18 +12,10 @@ import {
   listByDataProduct,
 } from "../../api/dataTypes/index.js";
 import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
   DataType,
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";

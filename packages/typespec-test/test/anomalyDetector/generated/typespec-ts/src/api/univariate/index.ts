@@ -8,8 +8,6 @@ import {
   UnivariateDetectUnivariateLastPointOptionalParams,
 } from "../index.js";
 import {
-  _MultivariateModelList,
-  _multivariateModelListDeserializer,
   UnivariateUnivariateDetectionOptions,
   univariateUnivariateDetectionOptionsSerializer,
   UnivariateUnivariateEntireDetectionResult,

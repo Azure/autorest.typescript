@@ -14,10 +14,6 @@ import {
   WidgetServiceContext,
   WidgetServiceClientOptionalParams,
 } from "./api/index.js";
-import {
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-} from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 

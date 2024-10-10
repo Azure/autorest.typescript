@@ -2,12 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  _PagedSchemaGroup,
-  _pagedSchemaGroupDeserializer,
-  _PagedVersion,
-  _pagedVersionDeserializer,
-} from "./models/models.js";
-import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

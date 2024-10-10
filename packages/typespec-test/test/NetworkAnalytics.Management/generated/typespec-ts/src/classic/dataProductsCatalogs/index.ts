@@ -7,17 +7,7 @@ import {
   listByResourceGroup,
   listBySubscription,
 } from "../../api/dataProductsCatalogs/index.js";
-import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  DataProductsCatalog,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
-} from "../../models/models.js";
+import { DataProductsCatalog } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   DataProductsCatalogsGetOptionalParams,

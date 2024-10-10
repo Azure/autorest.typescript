@@ -43,19 +43,7 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  _Metrics,
-  _metricsDeserializer,
   TimeSeriesElement,
-  _PagedTestFileInfo,
-  _pagedTestFileInfoDeserializer,
-  _PagedTest,
-  _pagedTestDeserializer,
-  _PagedTestRun,
-  _pagedTestRunDeserializer,
-  _PagedTestProfile,
-  _pagedTestProfileDeserializer,
-  _PagedTestProfileRun,
-  _pagedTestProfileRunDeserializer,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

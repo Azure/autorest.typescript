@@ -5,13 +5,7 @@ import {
   BudgetsCreateOrReplaceOptionalParams,
   WidgetServiceContext as Client,
 } from "../index.js";
-import {
-  User,
-  userSerializer,
-  userDeserializer,
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-} from "../../models/models.js";
+import { User, userSerializer, userDeserializer } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,

@@ -6,12 +6,6 @@ import {
   OperationsListOptionalParams,
 } from "../index.js";
 import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
   _OperationListResult,
   _operationListResultDeserializer,
   Operation,

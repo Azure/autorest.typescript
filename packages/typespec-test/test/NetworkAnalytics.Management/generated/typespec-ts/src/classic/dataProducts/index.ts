@@ -24,14 +24,6 @@ import {
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";

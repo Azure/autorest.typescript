@@ -2,12 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  _PagedTextBlocklist,
-  _pagedTextBlocklistDeserializer,
-  _PagedTextBlockItem,
-  _pagedTextBlockItemDeserializer,
-} from "./models/models.js";
-import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

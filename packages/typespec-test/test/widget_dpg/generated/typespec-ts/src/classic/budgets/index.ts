@@ -3,11 +3,7 @@
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import { createOrReplace } from "../../api/budgets/index.js";
-import {
-  User,
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-} from "../../models/models.js";
+import { User } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { BudgetsCreateOrReplaceOptionalParams } from "../../api/options.js";
 

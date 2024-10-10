@@ -14,21 +14,7 @@ import {
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
-import {
-  _Metrics,
-  _metricsDeserializer,
-  TestProfile,
-  _PagedTestFileInfo,
-  _pagedTestFileInfoDeserializer,
-  _PagedTest,
-  _pagedTestDeserializer,
-  _PagedTestRun,
-  _pagedTestRunDeserializer,
-  _PagedTestProfile,
-  _pagedTestProfileDeserializer,
-  _PagedTestProfileRun,
-  _pagedTestProfileRunDeserializer,
-} from "../models/models.js";
+import { TestProfile } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";

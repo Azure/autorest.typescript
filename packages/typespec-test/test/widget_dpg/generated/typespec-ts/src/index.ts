@@ -2,10 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-} from "./models/models.js";
-import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

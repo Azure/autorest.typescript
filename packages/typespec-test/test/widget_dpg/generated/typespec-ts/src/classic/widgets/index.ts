@@ -24,13 +24,7 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
-import {
-  User,
-  Widget,
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-  AnalyzeResult,
-} from "../../models/models.js";
+import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 

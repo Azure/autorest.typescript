@@ -9,21 +9,11 @@ import {
   ListTestProfilesOptionalParams,
 } from "./index.js";
 import {
-  _Metrics,
-  _metricsDeserializer,
   TestProfile,
   testProfileSerializer,
   testProfileDeserializer,
-  _PagedTestFileInfo,
-  _pagedTestFileInfoDeserializer,
-  _PagedTest,
-  _pagedTestDeserializer,
-  _PagedTestRun,
-  _pagedTestRunDeserializer,
   _PagedTestProfile,
   _pagedTestProfileDeserializer,
-  _PagedTestProfileRun,
-  _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,

@@ -8,16 +8,10 @@ import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
 } from "../index.js";
 import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
   DataProductsCatalog,
   dataProductsCatalogDeserializer,
   _DataProductsCatalogListResult,
   _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,

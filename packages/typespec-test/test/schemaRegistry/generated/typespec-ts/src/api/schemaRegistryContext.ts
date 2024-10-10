@@ -2,12 +2,6 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import {
-  _PagedSchemaGroup,
-  _pagedSchemaGroupDeserializer,
-  _PagedVersion,
-  _pagedVersionDeserializer,
-} from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 

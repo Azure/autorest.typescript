@@ -12,8 +12,6 @@ import {
   DataTypesUpdateOptionalParams,
 } from "../index.js";
 import {
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
   DataType,
   dataTypeSerializer,
   dataTypeDeserializer,
@@ -26,10 +24,6 @@ import {
   containerSasTokenDeserializer,
   _DataTypeListResult,
   _dataTypeListResultDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
-  _OperationListResult,
-  _operationListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,

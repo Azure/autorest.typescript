@@ -4,10 +4,6 @@
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
 import { _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets } from "./api/budgets/index.js";
-import {
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
-} from "./models/models.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
