@@ -306,9 +306,14 @@ export async function $onEmit(context: EmitContext) {
       file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
       file.getImportDeclarations().map((importDeclaration) => {
         importDeclaration.getNamedImports().map((namedImport) => {
-          if (namedImport.getNameNode().findReferencesAsNodes().filter((n) => {
-            return n.getSourceFile().getFilePath() === file.getFilePath();
-          }).length === 1) {
+          if (
+            namedImport
+              .getNameNode()
+              .findReferencesAsNodes()
+              .filter((n) => {
+                return n.getSourceFile().getFilePath() === file.getFilePath();
+              }).length === 1
+          ) {
             namedImport.remove();
           }
         });
