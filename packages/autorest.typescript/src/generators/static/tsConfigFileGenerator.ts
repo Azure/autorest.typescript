@@ -20,7 +20,7 @@ const highLevelTsConfig: Record<string, any> = {
     outDir: "./dist-esm",
     importHelpers: true
   },
-  include: ["./src/**/*.ts"],
+  include: ["src/**/*.ts"],
   exclude: ["node_modules"]
 };
 
@@ -38,7 +38,7 @@ export function generateTsConfig(project: Project) {
 
   const clientPackageName = packageDetails.name;
   if (generateTest) {
-    highLevelTsConfig.include.push("./test/**/*.ts");
+    highLevelTsConfig.include.push("test/**/*.ts");
   }
 
   if (generateSample) {
