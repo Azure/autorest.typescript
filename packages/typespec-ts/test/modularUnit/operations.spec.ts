@@ -154,7 +154,7 @@ describe("operations", () => {
                 "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
                 value: uint8ArrayToString(value, "base64"),
                 "csv-array-header": buildCsvCollection(
-                  csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url"))
+                  csvArrayHeader.map((p) => uint8ArrayToString(p, "base64"))
                 ),
                 "utc-date-header": utcDateHeader.toUTCString(),
                 ...(options?.optionalDateHeader !== undefined

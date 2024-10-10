@@ -37,6 +37,17 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   unknown: { name: "any" }
 };
 
+function handleSimpleType(
+  type: Type,
+  format?: string
+): TypeMetadata | undefined {
+  if (type.type === "integer") {
+    // Treat integer as number if format is specified as string
+    return format === "string" ? { name: "string" } : { name: "number" };
+  }
+  return simpleTypeMap[type.type];
+}
+
 function handleAnomymousModelName(type: Type) {
   let retVal = `{`;
   for (const prop of type.properties ?? []) {
@@ -73,7 +84,7 @@ function handleNullableTypeName(type: {
  */
 export function getType(type: Type, format?: string): TypeMetadata {
   // Handle simple type conversions
-  const simpleType = simpleTypeMap[type.type];
+  const simpleType = handleSimpleType(type, format);
   if (simpleType) {
     const typeMetadata: TypeMetadata = { ...simpleType };
     if (isTypeNullable(type)) {

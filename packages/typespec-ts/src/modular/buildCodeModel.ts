@@ -1263,7 +1263,7 @@ function applyEncoding(
     newTarget["format"] = mergeFormatAndEncoding(
       newTarget.format,
       encodeData.encoding,
-      newType["format"]
+      newType["format"] ?? newType["type"]
     );
     return newTarget;
   }

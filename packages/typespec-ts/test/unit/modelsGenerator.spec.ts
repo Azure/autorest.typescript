@@ -582,9 +582,7 @@ describe("Input/output model type", () => {
       `
       );
     });
-
-    // TODO: pending with typespec definition https://github.com/microsoft/typespec/issues/2762
-    it.skip("should handle decimal/decimal128 with encode `string`", async () => {
+    it("should handle int/decimal/decimal128 with encode `string`", async () => {
       const schemaOutput = await emitModelsFromTypeSpec(
         `
       model SimpleModel {
@@ -592,6 +590,8 @@ describe("Input/output model type", () => {
         prop1: decimal;
         @encode("string")
         prop2: decimal128;
+        @encode("string")
+        x: int8;
       }
       @route("/decimal/prop/encode")
       @get
@@ -608,6 +608,7 @@ describe("Input/output model type", () => {
       export interface SimpleModel { 
         "prop1": string;
         "prop2": string;
+        "x": string;
       }
       `
       );
@@ -617,6 +618,7 @@ describe("Input/output model type", () => {
       export interface SimpleModelOutput { 
         "prop1": string;
         "prop2": string;
+        "x": string;
       }
       `
       );

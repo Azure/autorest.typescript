@@ -108,7 +108,6 @@ describe("model property type", () => {
     });
   });
 
-
   it("should handle boolean literal type", async () => {
     const tspContent = `
     @doc("The configuration for a streaming chat completion request.")
@@ -121,8 +120,7 @@ describe("model property type", () => {
       ...StreamingChatCompletionOptions
     ): void;
     `;
-    const operationFiles =
-      await emitModularOperationsFromTypeSpec(tspContent);
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     await assertEqualContent(
@@ -430,7 +428,7 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].toUTCString(),
+          prop1: item["prop1"].toISOString(),
           prop2: item["prop2"],
         };
       }`
@@ -460,7 +458,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].toUTCString(),
+              prop1: body["prop1"].toISOString(),
               prop2: body["prop2"],
             },
           });
@@ -513,7 +511,7 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): Record<string, unknown> {
         return {
-          prop1: item["prop1"].getTime(),
+          prop1: item["prop1"].toISOString(),
         };
       }`
     );
@@ -542,7 +540,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].getTime()
+              prop1: body["prop1"].toISOString()
             },
           });
       }
@@ -722,8 +720,8 @@ describe("modular encode test for property type duration", () => {
       modelFile?.getInterface("Foo")?.getFullText()!,
       `
       export interface Foo {
-        prop1: number;
-        prop2: number;
+        prop1: string;
+        prop2: string;
       }`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -919,7 +917,7 @@ describe("modular encode test for property type bytes", () => {
         return {
           prop1:
             typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64")
+              ? stringToUint8Array(result.body["prop1"], "string")
               : result.body["prop1"],
         };
       }
@@ -978,7 +976,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(body["prop1"], "base64url"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -991,7 +989,7 @@ describe("modular encode test for property type bytes", () => {
         return {
           prop1:
             typeof result.body["prop1"] === "string"
-              ? stringToUint8Array(result.body["prop1"], "base64url")
+              ? stringToUint8Array(result.body["prop1"], "string")
               : result.body["prop1"],
         };
       }
@@ -2155,6 +2153,44 @@ describe("spread record", () => {
         };
       }
       `
+    );
+  });
+});
+
+describe("@encode", () => {
+  it("should take numeric as string for @encode as string", async () => {
+    const tspContent = `
+     model Foo {
+        @encode("string")
+        prop1: int32;
+        @encode("string")
+        prop2: decimal;
+      }
+      op post(@body body: Foo): { @body body: Foo };`;
+
+    const modelFile = await emitModularModelsFromTypeSpec(
+      tspContent,
+      false,
+      false,
+      false,
+      true,
+      false
+    );
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Foo {
+        prop1: string;
+        prop2: string;
+      }
+
+      export function fooSerializer(item: Foo): Record<string, unknown> {
+        return {
+          prop1: item["prop1"],
+          prop2: item["prop2"],
+        };
+      }`
     );
   });
 });
