@@ -1132,6 +1132,26 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
+export function isObjectOrDictType(schema: Schema) {
+  return (
+    (schema.type === "object" &&
+      (schema as ObjectSchema).properties !== undefined) ||
+    schema.type === "dictionary"
+  );
+}
+
+export function isArrayType(schema: Schema) {
+  return schema.type === "array";
+}
+
+export function isPrimitiveType(schema: Schema) {
+  return (
+    schema.type === "string" ||
+    schema.type === "number" ||
+    schema.type === "boolean"
+  );
+}
+
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
@@ -1448,7 +1468,7 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
-function getBinaryDescripton(type: any) {
+function getBinaryDescription(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
     return `Value may contain any sequence of octets`;
   }
@@ -1480,7 +1500,7 @@ export function getFormattedPropertyDoc(
   const enhancedDocFromType =
     getEnumStringDescription(schemaType) ??
     getDecimalDescription(schemaType) ??
-    getBinaryDescripton(schemaType);
+    getBinaryDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }

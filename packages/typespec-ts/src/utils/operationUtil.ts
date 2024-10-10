@@ -413,29 +413,12 @@ export function getSpecialSerializeInfo(
   paramFormat: string
 ) {
   const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
-  const hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
-  const hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
-  const hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
   const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];
   const collectionInfo = [];
   if (hasMultiCollection) {
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
-  }
-  if (hasSsvCollection) {
-    descriptions.push("buildSsvCollection");
-    collectionInfo.push("ssv");
-  }
-
-  if (hasTsvCollection) {
-    descriptions.push("buildTsvCollection");
-    collectionInfo.push("tsv");
-  }
-
-  if (hasPipeCollection) {
-    descriptions.push("buildPipeCollection");
-    collectionInfo.push("pipe");
   }
 
   if (hasCsvCollection) {
@@ -444,9 +427,6 @@ export function getSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasSsvCollection,
-    hasTsvCollection,
     hasCsvCollection,
     descriptions,
     collectionInfo
@@ -458,20 +438,9 @@ function getHasMultiCollection(paramType: string, paramFormat: string) {
     (paramType === "query" || paramType === "header") && paramFormat === "multi"
   );
 }
-function getHasSsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "ssv";
-}
-
-function getHasTsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "tsv";
-}
 
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";
-}
-
-function getHasPipeCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "pipes";
 }
 
 export function hasCollectionFormatInfo(
@@ -480,10 +449,7 @@ export function hasCollectionFormatInfo(
 ) {
   return (
     getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
+    getHasCsvCollection(paramType, paramFormat)
   );
 }
 
@@ -491,22 +457,8 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  // const detail = getSpecialSerializeInfo(paramType, paramFormat);
-  // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
   if (getHasMultiCollection(paramType, paramFormat)) {
     return resolveReference(SerializationHelpers.buildMultiCollection);
-  }
-
-  if (getHasPipeCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildPipeCollection);
-  }
-
-  if (getHasSsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildSsvCollection);
-  }
-
-  if (getHasTsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildTsvCollection);
   }
 
   if (getHasCsvCollection(paramType, paramFormat)) {

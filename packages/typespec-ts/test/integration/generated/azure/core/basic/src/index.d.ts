@@ -214,6 +214,18 @@ export declare interface ListDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListDefaultHeaders;
 }
 
+export declare interface ListExpandQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
+export declare interface ListOrderbyQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
 export declare type ListParameters = ListQueryParam & RequestParameters;
 
 export declare interface ListQueryParam {
@@ -224,10 +236,16 @@ export declare interface ListQueryParamProperties {
     top?: number;
     skip?: number;
     maxpagesize?: number;
-    orderby?: string;
+    orderby?: ListOrderbyQueryParam;
     filter?: string;
-    select?: string;
-    expand?: string;
+    select?: ListSelectQueryParam;
+    expand?: ListExpandQueryParam;
+}
+
+export declare interface ListSelectQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
@@ -292,5 +310,11 @@ export declare interface UserOutput {
 }
 
 export declare type UserResourceMergeAndPatch = Partial<User>;
+
+export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: any;
+};
 
 export { }

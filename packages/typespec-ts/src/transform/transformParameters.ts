@@ -37,6 +37,7 @@ import {
   getSchemaForType,
   getSerializeTypeName,
   getTypeName,
+  isArrayType,
   isBodyRequired
 } from "../utils/modelUtils.js";
 import {
@@ -44,8 +45,16 @@ import {
   getOperationName,
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
-
 import { SdkContext } from "../utils/interfaces.js";
+import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { isArray } from "lodash";
+
+interface ParameterTransformationOptions {
+  apiVersionInfo?: ApiVersionInfo;
+  operationGroupName?: string;
+  operationName?: string;
+  importModels?: Set<string>;
+}
 
 export function transformToParameterTypes(
   client: SdkClient,
@@ -90,20 +99,25 @@ export function transformToParameterTypes(
       operationName: getOperationName(dpgContext, route.operation),
       parameters: []
     };
+    const options = {
+      apiVersionInfo,
+      operationGroupName: rlcParameter.operationGroup,
+      operationName: rlcParameter.operationName,
+      importModels: outputImportedSet
+    };
     // transform query param
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
-      { apiVersionInfo },
-      outputImportedSet
+      options
     );
     // transform path param
-    const pathParams = transformPathParameters();
+    const pathParams = transformPathParameters(dpgContext, parameters, options);
     // transform header param including content-type
     const headerParams = transformHeaderParameters(
       dpgContext,
       parameters,
-      outputImportedSet
+      options
     );
     // transform body
     const bodyType = getBodyType(route);
@@ -130,9 +144,10 @@ function getParameterMetadata(
   dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter,
-  importedModels: Set<string>
+  options: ParameterTransformationOptions
 ): ParameterMetadata {
   const program = dpgContext.program;
+  const importedModels = options.importModels ?? new Set<string>();
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
   const schema = getSchemaForType(dpgContext, parameter.param.type, {
     usage: schemaContext,
@@ -143,23 +158,12 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
       parameter.type,
       (parameter as any).format
     );
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
-      serializeInfo.hasCsvCollection
-    ) {
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
         ", "
@@ -180,6 +184,16 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
+  const wrapper = getParameterWrapperType(
+    options.operationGroupName ?? "",
+    options.operationName ?? "",
+    parameter,
+    schema
+  );
+  if (wrapper) {
+    type = getTypeName(wrapper, schemaContext);
+  }
+  const pathPosition = paramType === "path" ? "method" : undefined;
   return {
     type: paramType,
     name,
@@ -188,7 +202,9 @@ function getParameterMetadata(
       type,
       typeName: type,
       required: !parameter.param.optional,
-      description
+      description,
+      wrapperType: wrapper,
+      pathPosition
     }
   };
 }
@@ -203,8 +219,7 @@ function getParameterName(name: string) {
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
-  options: { apiVersionInfo: ApiVersionInfo | undefined },
-  importModels: Set<string> = new Set<string>()
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
@@ -218,7 +233,7 @@ function transformQueryParameters(
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "query", qp, importModels)
+    getParameterMetadata(dpgContext, "query", qp, options)
   );
 }
 
@@ -226,16 +241,27 @@ function transformQueryParameters(
  * Only support to take the global path parameter as path parameter
  * @returns
  */
-function transformPathParameters() {
-  // TODO
-  // issue tracked https://github.com/Azure/autorest.typescript/issues/1521
-  return [];
+function transformPathParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters,
+  options: ParameterTransformationOptions
+) {
+  // build wrapper path parameters
+  const pathParameters = parameters.parameters.filter((p) => p.type === "path");
+  if (!pathParameters.length) {
+    return [];
+  }
+  // only need to build path parameters for wrapper type
+  const params = pathParameters
+    .map((qp) => getParameterMetadata(dpgContext, "path", qp, options))
+    .filter((p) => p.param.wrapperType);
+  return params;
 }
 
 export function transformHeaderParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
-  importedModels: Set<string>
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
     (p) => p.type === "header"
@@ -244,7 +270,7 @@ export function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "header", qp, importedModels)
+    getParameterMetadata(dpgContext, "header", qp, options)
   );
 }
 

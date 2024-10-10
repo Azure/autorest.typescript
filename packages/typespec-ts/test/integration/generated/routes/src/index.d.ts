@@ -235,7 +235,19 @@ export declare interface PathParametersReservedExpansionAnnotation204Response ex
     status: "204";
 }
 
-export declare type PathParametersReservedExpansionAnnotationParameters = RequestParameters;
+export declare type PathParametersReservedExpansionAnnotationParameters = PathParametersReservedExpansionAnnotationPathParam & RequestParameters;
+
+export declare interface PathParametersReservedExpansionAnnotationParamPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface PathParametersReservedExpansionAnnotationPathParam {
+    pathParameters: PathParametersReservedExpansionAnnotationPathParameters;
+}
+
+export declare interface PathParametersReservedExpansionAnnotationPathParameters {
+}
 
 export declare interface PathParametersReservedExpansionTemplate {
     get(options?: PathParametersReservedExpansionTemplateParameters): StreamableMethod<PathParametersReservedExpansionTemplate204Response>;
@@ -245,7 +257,19 @@ export declare interface PathParametersReservedExpansionTemplate204Response exte
     status: "204";
 }
 
-export declare type PathParametersReservedExpansionTemplateParameters = RequestParameters;
+export declare type PathParametersReservedExpansionTemplateParameters = PathParametersReservedExpansionTemplatePathParam & RequestParameters;
+
+export declare interface PathParametersReservedExpansionTemplateParamPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface PathParametersReservedExpansionTemplatePathParam {
+    pathParameters: PathParametersReservedExpansionTemplatePathParameters;
+}
+
+export declare interface PathParametersReservedExpansionTemplatePathParameters {
+}
 
 export declare interface PathParametersSimpleExpansionExplodeArray {
     get(options?: PathParametersSimpleExpansionExplodeArrayParameters): StreamableMethod<PathParametersSimpleExpansionExplodeArray204Response>;
@@ -363,12 +387,18 @@ export declare interface QueryParametersQueryContinuationExplodeArray204Response
 
 export declare type QueryParametersQueryContinuationExplodeArrayParameters = QueryParametersQueryContinuationExplodeArrayQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryContinuationExplodeArrayParamQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryContinuationExplodeArrayQueryParam {
     queryParameters: QueryParametersQueryContinuationExplodeArrayQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryContinuationExplodeArrayQueryParamProperties {
-    param: string[];
+    param: QueryParametersQueryContinuationExplodeArrayParamQueryParam;
 }
 
 export declare interface QueryParametersQueryContinuationExplodePrimitive {
@@ -399,12 +429,18 @@ export declare interface QueryParametersQueryContinuationExplodeRecord204Respons
 
 export declare type QueryParametersQueryContinuationExplodeRecordParameters = QueryParametersQueryContinuationExplodeRecordQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryContinuationExplodeRecordParamQueryParam {
+    value: Record<string, number>;
+    explode: true;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryContinuationExplodeRecordQueryParam {
     queryParameters: QueryParametersQueryContinuationExplodeRecordQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryContinuationExplodeRecordQueryParamProperties {
-    param: Record<string, number>;
+    param: QueryParametersQueryContinuationExplodeRecordParamQueryParam;
 }
 
 export declare interface QueryParametersQueryContinuationStandardArray {
@@ -417,12 +453,18 @@ export declare interface QueryParametersQueryContinuationStandardArray204Respons
 
 export declare type QueryParametersQueryContinuationStandardArrayParameters = QueryParametersQueryContinuationStandardArrayQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryContinuationStandardArrayParamQueryParam {
+    value: string[];
+    explode: false;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryContinuationStandardArrayQueryParam {
     queryParameters: QueryParametersQueryContinuationStandardArrayQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryContinuationStandardArrayQueryParamProperties {
-    param: string[];
+    param: string[] | QueryParametersQueryContinuationStandardArrayParamQueryParam;
 }
 
 export declare interface QueryParametersQueryContinuationStandardPrimitive {
@@ -453,12 +495,18 @@ export declare interface QueryParametersQueryContinuationStandardRecord204Respon
 
 export declare type QueryParametersQueryContinuationStandardRecordParameters = QueryParametersQueryContinuationStandardRecordQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryContinuationStandardRecordParamQueryParam {
+    value: Record<string, number>;
+    explode: false;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryContinuationStandardRecordQueryParam {
     queryParameters: QueryParametersQueryContinuationStandardRecordQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryContinuationStandardRecordQueryParamProperties {
-    param: Record<string, number>;
+    param: QueryParametersQueryContinuationStandardRecordParamQueryParam;
 }
 
 export declare interface QueryParametersQueryExpansionExplodeArray {
@@ -471,12 +519,18 @@ export declare interface QueryParametersQueryExpansionExplodeArray204Response ex
 
 export declare type QueryParametersQueryExpansionExplodeArrayParameters = QueryParametersQueryExpansionExplodeArrayQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryExpansionExplodeArrayParamQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryExpansionExplodeArrayQueryParam {
     queryParameters: QueryParametersQueryExpansionExplodeArrayQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryExpansionExplodeArrayQueryParamProperties {
-    param: string[];
+    param: QueryParametersQueryExpansionExplodeArrayParamQueryParam;
 }
 
 export declare interface QueryParametersQueryExpansionExplodePrimitive {
@@ -507,12 +561,18 @@ export declare interface QueryParametersQueryExpansionExplodeRecord204Response e
 
 export declare type QueryParametersQueryExpansionExplodeRecordParameters = QueryParametersQueryExpansionExplodeRecordQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryExpansionExplodeRecordParamQueryParam {
+    value: Record<string, number>;
+    explode: true;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryExpansionExplodeRecordQueryParam {
     queryParameters: QueryParametersQueryExpansionExplodeRecordQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryExpansionExplodeRecordQueryParamProperties {
-    param: Record<string, number>;
+    param: QueryParametersQueryExpansionExplodeRecordParamQueryParam;
 }
 
 export declare interface QueryParametersQueryExpansionStandardArray {
@@ -525,12 +585,18 @@ export declare interface QueryParametersQueryExpansionStandardArray204Response e
 
 export declare type QueryParametersQueryExpansionStandardArrayParameters = QueryParametersQueryExpansionStandardArrayQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryExpansionStandardArrayParamQueryParam {
+    value: string[];
+    explode: false;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryExpansionStandardArrayQueryParam {
     queryParameters: QueryParametersQueryExpansionStandardArrayQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryExpansionStandardArrayQueryParamProperties {
-    param: string[];
+    param: string[] | QueryParametersQueryExpansionStandardArrayParamQueryParam;
 }
 
 export declare interface QueryParametersQueryExpansionStandardPrimitive {
@@ -561,12 +627,18 @@ export declare interface QueryParametersQueryExpansionStandardRecord204Response 
 
 export declare type QueryParametersQueryExpansionStandardRecordParameters = QueryParametersQueryExpansionStandardRecordQueryParam & RequestParameters;
 
+export declare interface QueryParametersQueryExpansionStandardRecordParamQueryParam {
+    value: Record<string, number>;
+    explode: false;
+    style: "form";
+}
+
 export declare interface QueryParametersQueryExpansionStandardRecordQueryParam {
     queryParameters: QueryParametersQueryExpansionStandardRecordQueryParamProperties;
 }
 
 export declare interface QueryParametersQueryExpansionStandardRecordQueryParamProperties {
-    param: Record<string, number>;
+    param: QueryParametersQueryExpansionStandardRecordParamQueryParam;
 }
 
 export declare interface QueryParametersTemplateOnly {
@@ -592,8 +664,8 @@ export declare interface Routes {
     (path: "/routes/path/template-only/{param}", param: string): PathParametersTemplateOnly;
     (path: "/routes/path/explicit/{param}", param: string): PathParametersExplicit;
     (path: "/routes/path/annotation-only/{param}", param: string): PathParametersAnnotationOnly;
-    (path: "/routes/path/reserved-expansion/template/{param}", param: string): PathParametersReservedExpansionTemplate;
-    (path: "/routes/path/reserved-expansion/annotation/{param}", param: string): PathParametersReservedExpansionAnnotation;
+    (path: "/routes/path/reserved-expansion/template/{param}", param: PathParametersReservedExpansionTemplateParamPathParam): PathParametersReservedExpansionTemplate;
+    (path: "/routes/path/reserved-expansion/annotation/{param}", param: PathParametersReservedExpansionAnnotationParamPathParam): PathParametersReservedExpansionAnnotation;
     (path: "/routes/path/simple/standard/primitive{param}", param: string): PathParametersSimpleExpansionStandardPrimitive;
     (path: "/routes/path/simple/standard/array{param}", param: string[]): PathParametersSimpleExpansionStandardArray;
     (path: "/routes/path/simple/standard/record{param}", param: Record<string, number>): PathParametersSimpleExpansionStandardRecord;
@@ -642,5 +714,16 @@ export declare type RoutesClient = Client & {
 
 export declare interface RoutesClientOptions extends ClientOptions {
 }
+
+export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: any;
+};
+
+export declare function withReservedCharacters(value: string): {
+    allowReserved: boolean;
+    value: string;
+};
 
 export { }

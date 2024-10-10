@@ -32,3 +32,52 @@ export const buildCsvCollectionContent = `
 export function buildCsvCollection(items: string[] | number[]): string {
   return items.join(",");
 }`;
+
+export const buildAllowReservedContent = `
+export function withReservedCharacters(value: string) {
+    return {
+        allowReserved: true,
+        value
+    }
+}
+`;
+
+export const buildExplodedAndFormStyleContent = `
+export function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>){
+    return {
+        explode: true,
+        style: "form",
+        value: value as any
+    } as const
+}
+`;
+
+export const buildNonExplodedAndFormStyleContent = `
+export function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>){
+    return {
+        explode: false,
+        style: "form",
+        value: value as any
+    } as const
+}
+`;
+
+export const buildNonExplodedAndPipeStyleContent = `
+export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>){
+    return {
+        explode: false,
+        style: "pipeDelimited",
+        value: value as any
+    } as const
+}
+`;
+
+export const buildNonExplodedAndSpaceStyleContent = `
+export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>){
+    return {
+        explode: false,
+        style: "spaceDelimited",
+        value: value as any
+    } as const
+}
+`;

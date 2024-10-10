@@ -223,7 +223,13 @@ export declare interface QueryBase64urlArrayQueryParam {
 }
 
 export declare interface QueryBase64urlArrayQueryParamProperties {
+    value: string[] | QueryBase64urlArrayValueQueryParam;
+}
+
+export declare interface QueryBase64urlArrayValueQueryParam {
     value: string[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryBase64urlParameters = QueryBase64urlQueryParam & RequestParameters;
@@ -421,5 +427,11 @@ export declare interface Routes {
     (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;
     (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64url;
 }
+
+export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: any;
+};
 
 export { }

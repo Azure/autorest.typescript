@@ -168,6 +168,9 @@ function getPathFirstRoutesInterfaceDefinition(
       sourcefile
     );
     const pathParams = paths[key].pathParameters;
+    pathParams
+      .filter((p) => p.isWrappedType)
+      .forEach((p) => options.importedParameters.add(p.type));
     signatures.push({
       docs: [
         `Resource for '${key

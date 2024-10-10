@@ -333,6 +333,12 @@ export declare interface QueryInt32SecondsArray204Response extends HttpResponse 
     status: "204";
 }
 
+export declare interface QueryInt32SecondsArrayInputQueryParam {
+    value: number[];
+    explode: false;
+    style: "form";
+}
+
 export declare type QueryInt32SecondsArrayParameters = QueryInt32SecondsArrayQueryParam & RequestParameters;
 
 export declare interface QueryInt32SecondsArrayQueryParam {
@@ -340,7 +346,7 @@ export declare interface QueryInt32SecondsArrayQueryParam {
 }
 
 export declare interface QueryInt32SecondsArrayQueryParamProperties {
-    input: number[];
+    input: number[] | QueryInt32SecondsArrayInputQueryParam;
 }
 
 export declare type QueryInt32SecondsParameters = QueryInt32SecondsQueryParam & RequestParameters;
@@ -391,5 +397,11 @@ export declare interface Routes {
     (path: "/encode/duration/header/float-seconds"): HeaderFloatSeconds;
     (path: "/encode/duration/header/float64-seconds"): HeaderFloat64Seconds;
 }
+
+export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: any;
+};
 
 export { }

@@ -14,7 +14,8 @@ import {
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
-  Schema
+  Schema,
+  SchemaContext
 } from "./interfaces.js";
 import {
   getImportModuleName,
@@ -22,6 +23,7 @@ import {
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
+import { getObjectInterfaceDeclaration } from "./buildObjectTypes.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -58,12 +60,14 @@ export function buildParameterTypes(model: RLCModel) {
           ? `${baseParameterName}RequestParameters${nameSuffix}`
           : topParamName;
       const queryParameterDefinitions = buildQueryParameterDefinition(
+        model,
         parameter,
         baseParameterName,
         internalReferences,
         i
       );
       const pathParameterDefinitions = buildPathParameterDefinitions(
+        model,
         parameter,
         baseParameterName,
         parametersFile,
@@ -103,7 +107,7 @@ export function buildParameterTypes(model: RLCModel) {
       parametersFile.addInterfaces([
         ...(bodyParameterDefinition ?? []),
         ...(queryParameterDefinitions ?? []),
-        ...(pathParameterDefinitions ? [pathParameterDefinitions] : []),
+        ...(pathParameterDefinitions ?? []),
         ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
         ...(contentTypeParameterDefinition
           ? [contentTypeParameterDefinition]
@@ -177,6 +181,7 @@ export function buildParameterTypes(model: RLCModel) {
 }
 
 function buildQueryParameterDefinition(
+  model: RLCModel,
   parameters: ParameterMetadatas,
   baseName: string,
   internalReferences: Set<string>,
@@ -198,6 +203,27 @@ function buildQueryParameterDefinition(
   const propertiesDefinition = queryParameters.map((qp) =>
     getPropertyFromSchema(qp.param)
   );
+  const wrapperFromObjects = queryParameters
+    .filter((qp) => qp.param.wrapperType?.type === "object")
+    .map((qp) => qp.param.wrapperType);
+  const wrapperFromUnions = queryParameters
+    .filter((qp) => qp.param.wrapperType?.type === "union")
+    .map((qp) => qp.param.wrapperType)
+    .flatMap((wrapperType) => wrapperType?.enum ?? [])
+    .filter((v) => v.type === "object");
+  // Get wrapper types for query parameters
+  const wrapperTypesDefinition = [
+    ...wrapperFromUnions,
+    ...wrapperFromObjects
+  ].map((wrapObj) => {
+    return getObjectInterfaceDeclaration(
+      model,
+      wrapObj.name,
+      wrapObj,
+      [SchemaContext.Input],
+      new Set<string>()
+    );
+  });
 
   const hasRequiredParameters = propertiesDefinition.some(
     (p) => !p.hasQuestionToken
@@ -227,7 +253,7 @@ function buildQueryParameterDefinition(
   // Mark the queryParameter interface for importing
   internalReferences.add(queryParameterInterfaceName);
 
-  return [propertiesInterface, parameterInterface];
+  return [...wrapperTypesDefinition, propertiesInterface, parameterInterface];
 }
 
 function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
@@ -242,42 +268,73 @@ function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
 }
 
 function buildPathParameterDefinitions(
+  model: RLCModel,
   parameters: ParameterMetadatas,
   baseName: string,
   parametersFile: SourceFile,
   internalReferences: Set<string>,
   requestIndex: number
-): InterfaceDeclarationStructure | undefined {
+): InterfaceDeclarationStructure[] | undefined {
   const pathParameters = (parameters.parameters || []).filter(
     (p) => p.type === "path"
   );
   if (!pathParameters.length) {
     return undefined;
   }
+  const allDefinitions: InterfaceDeclarationStructure[] = [];
 
-  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const pathParameterInterfaceName = `${baseName}PathParam${nameSuffix}`;
+  buildClientPathParameters();
+  buildMethodWrapParameters();
+  return allDefinitions;
+  function buildClientPathParameters() {
+    const clientPathParams = pathParameters.filter(
+      (p) => p.param.pathPosition !== "method"
+    );
+    const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+    const pathParameterInterfaceName = `${baseName}PathParam${nameSuffix}`;
 
-  const pathInterface = getPathInterfaceDefinition(pathParameters, baseName);
+    const pathInterface = getPathInterfaceDefinition(
+      clientPathParams,
+      baseName
+    );
 
-  if (pathInterface) {
-    parametersFile.addInterface(pathInterface);
+    if (pathInterface) {
+      parametersFile.addInterface(pathInterface);
+    }
+
+    internalReferences.add(pathParameterInterfaceName);
+
+    allDefinitions.push({
+      isExported: true,
+      kind: StructureKind.Interface,
+      name: pathParameterInterfaceName,
+      properties: [
+        {
+          name: "pathParameters",
+          type: `${baseName}PathParameters`,
+          kind: StructureKind.PropertySignature
+        }
+      ]
+    });
   }
 
-  internalReferences.add(pathParameterInterfaceName);
-
-  return {
-    isExported: true,
-    kind: StructureKind.Interface,
-    name: pathParameterInterfaceName,
-    properties: [
-      {
-        name: "pathParameters",
-        type: `${baseName}PathParameters`,
-        kind: StructureKind.PropertySignature
-      }
-    ]
-  };
+  function buildMethodWrapParameters() {
+    const methodPathParams = pathParameters.filter(
+      (p) => p.param.pathPosition === "method"
+    );
+    const wrapperTypesDefinition = methodPathParams
+      .filter((qp) => qp.param.wrapperType?.type === "object")
+      .map((qp) => {
+        return getObjectInterfaceDeclaration(
+          model,
+          qp.param.wrapperType!.name,
+          qp.param.wrapperType!,
+          [SchemaContext.Input],
+          new Set<string>()
+        );
+      });
+    allDefinitions.push(...wrapperTypesDefinition);
+  }
 }
 
 function getPathInterfaceDefinition(

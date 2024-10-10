@@ -1,4 +1,5 @@
 import {
+  OperationParameter,
   RLCModel,
   Schema,
   buildClient,
@@ -160,6 +161,7 @@ export async function emitParameterFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   const importSet = initInternalImports();
   let parameters;
+  let helperDetails;
   if (clients && clients[0]) {
     const urlInfo = transformUrlInfo(clients[0], dpgContext, importSet);
     parameters = transformToParameterTypes(
@@ -168,6 +170,7 @@ export async function emitParameterFromTypeSpec(
       importSet,
       urlInfo?.apiVersionInfo
     );
+    helperDetails = transformHelperFunctionDetails(clients[0], dpgContext);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -178,6 +181,7 @@ export async function emitParameterFromTypeSpec(
     libraryName: "test",
     schemas: [],
     parameters,
+    helperDetails,
     importInfo: {
       internalImports: importSet,
       runtimeImports: buildRuntimeImports("azure")
@@ -194,8 +198,14 @@ export async function emitClientDefinitionFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   const internalImports = initInternalImports();
   let paths = {};
+  let parameters: OperationParameter[] = [];
   if (clients && clients[0]) {
     paths = transformPaths(clients[0], dpgContext, internalImports);
+    parameters = transformToParameterTypes(
+      clients[0],
+      dpgContext,
+      internalImports
+    );
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildClientDefinitions({
@@ -203,6 +213,7 @@ export async function emitClientDefinitionFromTypeSpec(
     libraryName: "test",
     schemas: [],
     paths,
+    parameters,
     importInfo: {
       internalImports,
       runtimeImports: buildRuntimeImports("azure")

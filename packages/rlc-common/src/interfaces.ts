@@ -130,7 +130,15 @@ export interface HelperFunctionDetails {
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
   hasCsvCollection?: boolean;
+  serializeHelper?: SerializeHelperKind[];
 }
+
+export type SerializeHelperKind =
+  | "withAllowReserved"
+  | "withExplodedAndFormStyle"
+  | "withNonExplodedAndFormStyle"
+  | "withNonExplodedAndSpaceStyle"
+  | "withNonExplodedAndPipeStyle";
 
 export interface PagingDetails {
   itemNames: string[];
@@ -175,6 +183,7 @@ export type PathParameter = {
   type: string;
   description?: string;
   value?: string | number | boolean;
+  isWrappedType?: boolean;
 };
 
 export interface OperationHelperDetail {
@@ -359,7 +368,14 @@ export interface ParameterBodySchema extends Schema {
 export interface ParameterMetadata {
   type: "query" | "path" | "header";
   name: string;
-  param: Schema;
+  param: ParameterSchema;
+}
+
+export interface ParameterSchema extends Schema {
+  // the wrapper type and usually used to generate the parameter type details
+  wrapperType?: Schema;
+  // the path parameter will be passed to method or client factory. For swagger sources, it could be client.
+  pathPosition?: "client" | "method";
 }
 
 export interface OperationResponse {
