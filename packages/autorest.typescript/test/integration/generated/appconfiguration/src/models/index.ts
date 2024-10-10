@@ -220,6 +220,10 @@ export enum KnownGet6ItemsItem {
   Locked = "locked",
   /** Etag */
   Etag = "etag",
+  /** UserSystem */
+  UserSystem = "user, system",
+  /** UserXSystem */
+  UserXSystem = "user x system ~",
 }
 
 /**
@@ -234,7 +238,9 @@ export enum KnownGet6ItemsItem {
  * **last_modified** \
  * **tags** \
  * **locked** \
- * **etag**
+ * **etag** \
+ * **user, system** \
+ * **user x system ~**
  */
 export type Get6ItemsItem = string;
 
