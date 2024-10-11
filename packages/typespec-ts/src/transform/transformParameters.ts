@@ -47,7 +47,6 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getParameterWrapperType } from "../utils/parameterUtils.js";
-import { isArray } from "lodash";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
