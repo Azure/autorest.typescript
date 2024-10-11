@@ -212,7 +212,7 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.description ?? `execute ${method.name}`;
+    const description = method.doc ?? `execute ${method.name}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
