@@ -8,17 +8,9 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
-export declare function $delete(context: StandardContext, name: string, options?: DeleteOptionalParams): PollerLike<OperationState_2<void>, void>;
-
-export declare function $export(context: StandardContext, name: string, format: string, options?: ExportOptionalParams): PollerLike<OperationState_2<ExportedUser>, ExportedUser>;
-
-export declare function createOrReplace(context: StandardContext, name: string, resource: User, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState_2<User>, User>;
-
 export declare interface CreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
-
-export declare function createStandard(options?: StandardClientOptionalParams): StandardContext;
 
 export declare interface DeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;

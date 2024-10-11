@@ -52,22 +52,10 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
-export function createLoadTestAdministration(endpointParam: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptionalParams): LoadTestAdministrationContext;
-
-// @public (undocumented)
-export function createLoadTestRun(endpointParam: string, credential: TokenCredential, options?: LoadTestRunClientOptionalParams): LoadTestRunContext;
-
-// @public
-export function createOrUpdateAppComponents(context: LoadTestAdministrationContext, testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
-
 // @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function createOrUpdateServerMetricsConfig(context: LoadTestAdministrationContext, testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
 
 // @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
@@ -75,15 +63,9 @@ export interface CreateOrUpdateServerMetricsConfigOptionalParams extends Operati
 }
 
 // @public
-export function createOrUpdateTest(context: LoadTestAdministrationContext, testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
-
-// @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function createOrUpdateTestProfile(context: TestProfileAdministrationContext, testProfileId: string, body: TestProfile, options?: CreateOrUpdateTestProfileOptionalParams): Promise<TestProfile>;
 
 // @public
 export interface CreateOrUpdateTestProfileOptionalParams extends OperationOptions {
@@ -91,33 +73,15 @@ export interface CreateOrUpdateTestProfileOptionalParams extends OperationOption
 }
 
 // @public
-export function createOrUpdateTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, body: TestProfileRun, options?: CreateOrUpdateTestProfileRunOptionalParams): Promise<TestProfileRun>;
-
-// @public
 export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function createOrUpdateTestRun(context: LoadTestRunContext, testRunId: string, body: TestRun, options?: CreateOrUpdateTestRunOptionalParams): Promise<TestRun>;
 
 // @public
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
 }
-
-// @public (undocumented)
-export function createTestProfileAdministration(endpointParam: string, credential: TokenCredential, options?: TestProfileAdministrationClientOptionalParams): TestProfileAdministrationContext;
-
-// @public (undocumented)
-export function createTestProfileRun(endpointParam: string, credential: TokenCredential, options?: TestProfileRunClientOptionalParams): TestProfileRunContext;
-
-// @public
-export function deleteTest(context: LoadTestAdministrationContext, testId: string, options?: DeleteTestOptionalParams): Promise<void>;
-
-// @public
-export function deleteTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestFileOptionalParams extends OperationOptions {
@@ -128,21 +92,12 @@ export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
 // @public
-export function deleteTestProfile(context: TestProfileAdministrationContext, testProfileId: string, options?: DeleteTestProfileOptionalParams): Promise<void>;
-
-// @public
 export interface DeleteTestProfileOptionalParams extends OperationOptions {
 }
 
 // @public
-export function deleteTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: DeleteTestProfileRunOptionalParams): Promise<void>;
-
-// @public
 export interface DeleteTestProfileRunOptionalParams extends OperationOptions {
 }
-
-// @public
-export function deleteTestRun(context: LoadTestRunContext, testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
 
 // @public
 export interface DeleteTestRunOptionalParams extends OperationOptions {
@@ -191,24 +146,12 @@ export interface FunctionFlexConsumptionTargetResourceConfigurations extends Tar
 }
 
 // @public
-export function getAppComponents(context: LoadTestAdministrationContext, testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
-
-// @public
 export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getServerMetricsConfig(context: LoadTestAdministrationContext, testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
-
-// @public
 export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
-
-// @public
-export function getTest(context: LoadTestAdministrationContext, testId: string, options?: GetTestOptionalParams): Promise<Test>;
-
-// @public
-export function getTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<TestFileInfo>;
 
 // @public
 export interface GetTestFileOptionalParams extends OperationOptions {
@@ -219,24 +162,12 @@ export interface GetTestOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTestProfile(context: TestProfileAdministrationContext, testProfileId: string, options?: GetTestProfileOptionalParams): Promise<TestProfile>;
-
-// @public
 export interface GetTestProfileOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: GetTestProfileRunOptionalParams): Promise<TestProfileRun>;
-
-// @public
 export interface GetTestProfileRunOptionalParams extends OperationOptions {
 }
-
-// @public
-export function getTestRun(context: LoadTestRunContext, testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRun>;
-
-// @public
-export function getTestRunFile(context: LoadTestRunContext, testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunFileInfo>;
 
 // @public
 export interface GetTestRunFileOptionalParams extends OperationOptions {
@@ -418,14 +349,8 @@ export enum KnownTimeGrain {
 }
 
 // @public
-export function listMetricDefinitions(context: LoadTestRunContext, testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
-
-// @public
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
 }
-
-// @public
-export function listMetricDimensionValues(context: LoadTestRunContext, testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
 
 // @public
 export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
@@ -433,14 +358,8 @@ export interface ListMetricDimensionValuesOptionalParams extends OperationOption
 }
 
 // @public
-export function listMetricNamespaces(context: LoadTestRunContext, testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-
-// @public
 export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
-
-// @public
-export function listMetrics(context: LoadTestRunContext, testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
 
 // @public
 export interface ListMetricsOptionalParams extends OperationOptions {
@@ -449,14 +368,8 @@ export interface ListMetricsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestFiles(context: LoadTestAdministrationContext, testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<TestFileInfo>;
-
-// @public
 export interface ListTestFilesOptionalParams extends OperationOptions {
 }
-
-// @public
-export function listTestProfileRuns(context: TestProfileRunContext, options?: ListTestProfileRunsOptionalParams): PagedAsyncIterableIterator<TestProfileRun>;
 
 // @public
 export interface ListTestProfileRunsOptionalParams extends OperationOptions {
@@ -473,9 +386,6 @@ export interface ListTestProfileRunsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function listTestProfiles(context: TestProfileAdministrationContext, options?: ListTestProfilesOptionalParams): PagedAsyncIterableIterator<TestProfile>;
-
-// @public
 export interface ListTestProfilesOptionalParams extends OperationOptions {
     lastModifiedEndTime?: Date;
     lastModifiedStartTime?: Date;
@@ -483,9 +393,6 @@ export interface ListTestProfilesOptionalParams extends OperationOptions {
     testIds?: string;
     testProfileIds?: string;
 }
-
-// @public
-export function listTestRuns(context: LoadTestRunContext, options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
 
 // @public
 export interface ListTestRunsOptionalParams extends OperationOptions {
@@ -497,9 +404,6 @@ export interface ListTestRunsOptionalParams extends OperationOptions {
     status?: string;
     testId?: string;
 }
-
-// @public
-export function listTests(context: LoadTestAdministrationContext, options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
 
 // @public
 export interface ListTestsOptionalParams extends OperationOptions {
@@ -567,15 +471,9 @@ export class LoadTestRunClient {
 }
 
 // @public
-export function LoadTestRunClientcreateOrUpdateAppComponents(context: LoadTestRunContext, testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-
-// @public
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function LoadTestRunClientcreateOrUpdateServerMetricsConfig(context: LoadTestRunContext, testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
@@ -583,14 +481,8 @@ export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParam
 }
 
 // @public
-export function LoadTestRunClientgetAppComponents(context: LoadTestRunContext, testRunId: string, options?: LoadTestRunClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-
-// @public
 export interface LoadTestRunClientGetAppComponentsOptionalParams extends OperationOptions {
 }
-
-// @public
-export function LoadTestRunClientgetServerMetricsConfig(context: LoadTestRunContext, testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
 
 // @public
 export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends OperationOptions {
@@ -752,14 +644,8 @@ export type SecretType = string;
 export type Status = string;
 
 // @public
-export function stopTestProfileRun(context: TestProfileRunContext, testProfileRunId: string, options?: StopTestProfileRunOptionalParams): Promise<TestProfileRun>;
-
-// @public
 export interface StopTestProfileRunOptionalParams extends OperationOptions {
 }
-
-// @public
-export function stopTestRun(context: LoadTestRunContext, testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
 
 // @public
 export interface StopTestRunOptionalParams extends OperationOptions {
@@ -1051,9 +937,6 @@ export interface TimeSeriesElement {
     data?: MetricValue[];
     dimensionValues?: DimensionValue[];
 }
-
-// @public
-export function uploadTestFile(context: LoadTestAdministrationContext, testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<TestFileInfo>;
 
 // @public
 export interface UploadTestFileOptionalParams extends OperationOptions {

@@ -22,8 +22,6 @@ export declare interface BodyOptionalityClientOptionalParams extends ClientOptio
 export declare interface BodyOptionalityContext extends Client {
 }
 
-export declare function createBodyOptionality(options?: BodyOptionalityClientOptionalParams): BodyOptionalityContext;
-
 export declare interface OptionalExplicitOmitOptionalParams extends OperationOptions {
 }
 
@@ -35,12 +33,8 @@ export declare interface OptionalExplicitOperations {
 export declare interface OptionalExplicitSetOptionalParams extends OperationOptions {
 }
 
-export declare function requiredExplicit(context: BodyOptionalityContext, body: BodyModel, options?: RequiredExplicitOptionalParams): Promise<void>;
-
 export declare interface RequiredExplicitOptionalParams extends OperationOptions {
 }
-
-export declare function requiredImplicit(context: BodyOptionalityContext, name: string, options?: RequiredImplicitOptionalParams): Promise<void>;
 
 export declare interface RequiredImplicitOptionalParams extends OperationOptions {
 }

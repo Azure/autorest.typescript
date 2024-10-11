@@ -39,9 +39,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 // @public
 export type CreateWidgetColor = "red" | "blue";
 
-// @public (undocumented)
-export function createWidgetService(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams): WidgetServiceContext;
-
 // @public
 export interface NonReferencedModel {
     prop1: number;

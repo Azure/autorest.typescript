@@ -95,8 +95,6 @@ export declare interface CollectionsModelPutAllOptionalParams extends OperationO
 export declare interface CollectionsModelPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare function createOptional(options?: OptionalClientOptionalParams): OptionalContext;
-
 export declare interface DatetimeGetAllOptionalParams extends OperationOptions {
 }
 

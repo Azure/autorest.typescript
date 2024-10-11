@@ -4,10 +4,8 @@
 export { FooClient } from "./fooClient.js";
 export { A, Ba, Bea } from "./models/index.js";
 export {
-  createFoo,
   FooContext,
   FooClientOptionalParams,
-  op1,
   Op1OptionalParams,
   BOp1OptionalParams,
   BECOp1OptionalParams,

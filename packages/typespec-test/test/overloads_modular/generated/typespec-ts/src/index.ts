@@ -5,7 +5,6 @@ export { WidgetManagerClient } from "./widgetManagerClient.js";
 export {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
-  createWidgetManager,
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";

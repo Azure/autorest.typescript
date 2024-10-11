@@ -17,8 +17,6 @@ export declare interface ContentNegotiationClientOptionalParams extends ClientOp
 export declare interface ContentNegotiationContext extends Client {
 }
 
-export declare function createContentNegotiation(options?: ContentNegotiationClientOptionalParams): ContentNegotiationContext;
-
 export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
     accept?: "application/json";
 }

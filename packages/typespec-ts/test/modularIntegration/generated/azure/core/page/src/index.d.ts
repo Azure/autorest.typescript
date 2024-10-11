@@ -7,13 +7,9 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-export declare function createPage(options?: PageClientOptionalParams): PageContext;
-
 export declare interface FirstItem {
     readonly id: number;
 }
-
-export declare function listFirstItem(context: PageContext, options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
 
 export declare interface ListFirstItemOptionalParams extends OperationOptions {
 }
@@ -24,22 +20,14 @@ export declare interface ListItemInputBody {
 
 export declare type ListItemInputExtensibleEnum = "First" | "Second";
 
-export declare function listSecondItem(context: PageContext, options?: ListSecondItemOptionalParams): PagedAsyncIterableIterator<SecondItem>;
-
 export declare interface ListSecondItemOptionalParams extends OperationOptions {
 }
-
-export declare function listWithCustomPageModel(context: PageContext, options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
 
 export declare interface ListWithCustomPageModelOptionalParams extends OperationOptions {
 }
 
-export declare function listWithPage(context: PageContext, options?: ListWithPageOptionalParams): PagedAsyncIterableIterator<User>;
-
 export declare interface ListWithPageOptionalParams extends OperationOptions {
 }
-
-export declare function listWithParameters(context: PageContext, bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
 
 export declare interface ListWithParametersOptionalParams extends OperationOptions {
     another?: ListItemInputExtensibleEnum;

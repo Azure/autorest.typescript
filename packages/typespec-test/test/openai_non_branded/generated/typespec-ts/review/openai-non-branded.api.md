@@ -516,9 +516,6 @@ export interface CreateModerationResponseResultCategoryScores {
 }
 
 // @public
-export function createOpenAI(credential: KeyCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
-
-// @public
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
     language?: string;

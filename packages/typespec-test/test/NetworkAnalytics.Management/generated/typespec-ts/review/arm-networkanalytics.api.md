@@ -62,9 +62,6 @@ export type ControlState = string;
 // @public
 export type CreatedByType = string;
 
-// @public (undocumented)
-export function createNetworkAnalytics(credential: TokenCredential, options?: NetworkAnalyticsClientOptionalParams): NetworkAnalyticsContext;
-
 // @public
 export interface DataProduct extends TrackedResource {
     identity?: ManagedServiceIdentityV4;

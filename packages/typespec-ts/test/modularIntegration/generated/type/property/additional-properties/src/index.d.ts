@@ -47,8 +47,6 @@ export declare interface AdditionalPropertiesClientOptionalParams extends Client
 export declare interface AdditionalPropertiesContext extends Client {
 }
 
-export declare function createAdditionalProperties(options?: AdditionalPropertiesClientOptionalParams): AdditionalPropertiesContext;
-
 export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
     derivedProp: number;
 }

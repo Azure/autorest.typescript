@@ -3,8 +3,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare function createMediaType(options?: MediaTypeClientOptionalParams): MediaTypeContext;
-
 export declare class MediaTypeClient {
     private _client;
     readonly pipeline: Pipeline;

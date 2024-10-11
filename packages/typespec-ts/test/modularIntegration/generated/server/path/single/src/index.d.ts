@@ -3,10 +3,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare function createSingle(endpointParam: string, options?: SingleClientOptionalParams): SingleContext;
-
-export declare function myOp(context: SingleContext, options?: MyOpOptionalParams): Promise<void>;
-
 export declare interface MyOpOptionalParams extends OperationOptions {
 }
 

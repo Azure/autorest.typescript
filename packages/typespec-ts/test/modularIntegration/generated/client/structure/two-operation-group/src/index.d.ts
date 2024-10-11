@@ -5,8 +5,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
 
-export declare function createTwoOperationGroup(endpointParam: string, client: ClientType, options?: TwoOperationGroupClientOptionalParams): TwoOperationGroupContext;
-
 export declare interface Group1FourOptionalParams extends OperationOptions {
 }
 

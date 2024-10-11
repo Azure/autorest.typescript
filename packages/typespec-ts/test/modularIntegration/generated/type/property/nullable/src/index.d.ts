@@ -107,8 +107,6 @@ export declare interface CollectionsStringProperty {
     nullableProperty: string[] | null;
 }
 
-export declare function createNullable(options?: NullableClientOptionalParams): NullableContext;
-
 export declare interface DatetimeGetNonNullOptionalParams extends OperationOptions {
 }
 

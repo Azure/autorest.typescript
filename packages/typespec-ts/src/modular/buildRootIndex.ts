@@ -54,6 +54,7 @@ export function buildRootIndex(
   }
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
+    interfaceOnly: true,
     isTopLevel: true
   });
   exportModules(rootIndexFile, project, srcPath, clientName, "classic", {

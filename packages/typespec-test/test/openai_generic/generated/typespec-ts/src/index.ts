@@ -94,7 +94,6 @@ export {
   CreateTranscriptionResponse,
 } from "./models/index.js";
 export {
-  createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
   AudioTranscriptionsCreateOptionalParams,

@@ -5,10 +5,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare type CreatedByType = string;
 
-export declare function createManagedIdentity(options?: ManagedIdentityClientOptionalParams): ManagedIdentityContext;
-
-export declare function createWithSystemAssigned(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
-
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
 }
 
@@ -31,8 +27,6 @@ export declare interface ErrorDetail {
 export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
-
-export declare function get(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
@@ -105,8 +99,6 @@ export declare interface TrackedResource extends Resource {
     tags?: Record<string, string>;
     location: string;
 }
-
-export declare function updateWithUserAssignedAndSystemAssigned(context: ManagedIdentityContext, subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
 
 export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
 }

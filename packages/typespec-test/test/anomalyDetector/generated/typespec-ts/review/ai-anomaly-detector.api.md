@@ -36,9 +36,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export function createAnomalyDetector(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams): AnomalyDetectorContext;
-
-// @public
 export type MultivariateAlignMode = "Inner" | "Outer";
 
 // @public

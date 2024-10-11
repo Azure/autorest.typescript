@@ -67,9 +67,6 @@ export interface BOperations {
     op1: (body: Ba, options?: BOp1OptionalParams) => Promise<void>;
 }
 
-// @public (undocumented)
-export function createFoo(endpointParam: string, options?: FooClientOptionalParams): FooContext;
-
 // @public
 export interface DOp1OptionalParams extends OperationOptions {
 }
@@ -97,9 +94,6 @@ export interface FooClientOptionalParams extends ClientOptions {
 // @public (undocumented)
 export interface FooContext extends Client {
 }
-
-// @public (undocumented)
-export function op1(context: FooContext, body: A, options?: Op1OptionalParams): Promise<void>;
 
 // @public
 export interface Op1OptionalParams extends OperationOptions {

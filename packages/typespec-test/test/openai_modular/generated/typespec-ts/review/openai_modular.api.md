@@ -648,9 +648,6 @@ export interface ContentFilterResultsForPrompt {
 // @public
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
-// @public (undocumented)
-export function createOpenAI(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptionalParams): OpenAIContext;
-
 // @public
 export interface ElasticsearchChatExtensionConfiguration extends AzureChatExtensionConfiguration {
     parameters: ElasticsearchChatExtensionParameters;
@@ -740,14 +737,8 @@ export interface FunctionName {
 }
 
 // @public
-export function generateSpeechFromText(context: OpenAIContext, deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<Uint8Array>;
-
-// @public
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 }
-
-// @public
-export function getAudioTranscriptionAsPlainText(context: OpenAIContext, deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
@@ -755,15 +746,9 @@ export interface GetAudioTranscriptionAsPlainTextOptionalParams extends Operatio
 }
 
 // @public
-export function getAudioTranscriptionAsResponseObject(context: OpenAIContext, deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
-
-// @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function getAudioTranslationAsPlainText(context: OpenAIContext, deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
@@ -771,36 +756,21 @@ export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationO
 }
 
 // @public
-export function getAudioTranslationAsResponseObject(context: OpenAIContext, deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
-
-// @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
-
-// @public
-export function getChatCompletions(context: OpenAIContext, deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
 
 // @public
 export interface GetChatCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getCompletions(context: OpenAIContext, deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;
-
-// @public
 export interface GetCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function getEmbeddings(context: OpenAIContext, deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptionalParams): Promise<Embeddings>;
-
-// @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
 }
-
-// @public
-export function getImageGenerations(context: OpenAIContext, deploymentId: string, body: ImageGenerationOptions, options?: GetImageGenerationsOptionalParams): Promise<ImageGenerations>;
 
 // @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {

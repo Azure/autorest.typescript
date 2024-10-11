@@ -81,17 +81,8 @@ export interface ChoiceDeltaRecord {
 }
 
 // @public
-export function create(context: ChatProtocolContext, body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
-
-// @public
-export function createChatProtocol(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptionalParams): ChatProtocolContext;
-
-// @public
 export interface CreateOptionalParams extends OperationOptions {
 }
-
-// @public
-export function createStreaming(context: ChatProtocolContext, body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
 
 // @public
 export interface CreateStreamingOptionalParams extends OperationOptions {

@@ -15,11 +15,8 @@ export {
   ChatChoiceRecord,
 } from "./models/index.js";
 export {
-  createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
-  createStreaming,
-  create,
   CreateStreamingOptionalParams,
   CreateOptionalParams,
 } from "./api/index.js";

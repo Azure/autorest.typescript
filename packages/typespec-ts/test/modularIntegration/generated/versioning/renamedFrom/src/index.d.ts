@@ -3,8 +3,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare function createRenamedFrom(endpointParam: string, version: Versions, options?: RenamedFromClientOptionalParams): RenamedFromContext;
-
 export declare type NewEnum = "newEnumMember";
 
 export declare interface NewModel {
@@ -12,10 +10,6 @@ export declare interface NewModel {
     enumProp: NewEnum;
     unionProp: NewUnion;
 }
-
-export declare function newOp(context: RenamedFromContext, newQuery: string, body: NewModel, options?: NewOpOptionalParams): Promise<NewModel>;
-
-export declare function newOpInNewInterface(context: RenamedFromContext, body: NewModel, options?: NewOpInNewInterfaceOptionalParams): Promise<NewModel>;
 
 export declare interface NewOpInNewInterfaceOptionalParams extends OperationOptions {
 }

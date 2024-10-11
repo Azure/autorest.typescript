@@ -7,10 +7,6 @@ export declare interface Cat extends Pet {
     age: number;
 }
 
-export declare function createNotDiscriminated(options?: NotDiscriminatedClientOptionalParams): NotDiscriminatedContext;
-
-export declare function getValid(context: NotDiscriminatedContext, options?: GetValidOptionalParams): Promise<Siamese>;
-
 export declare interface GetValidOptionalParams extends OperationOptions {
 }
 
@@ -33,12 +29,8 @@ export declare interface Pet {
     name: string;
 }
 
-export declare function postValid(context: NotDiscriminatedContext, input: Siamese, options?: PostValidOptionalParams): Promise<void>;
-
 export declare interface PostValidOptionalParams extends OperationOptions {
 }
-
-export declare function putValid(context: NotDiscriminatedContext, input: Siamese, options?: PutValidOptionalParams): Promise<Siamese>;
 
 export declare interface PutValidOptionalParams extends OperationOptions {
 }

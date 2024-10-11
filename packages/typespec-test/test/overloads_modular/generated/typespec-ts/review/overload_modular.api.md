@@ -11,9 +11,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export function createWidgetManager(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams): WidgetManagerContext;
-
 // @public
 export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
     // (undocumented)

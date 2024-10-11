@@ -44,7 +44,6 @@ export {
   APIVersion,
 } from "./models/index.js";
 export {
-  createAnomalyDetector,
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,

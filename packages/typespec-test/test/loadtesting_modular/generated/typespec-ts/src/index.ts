@@ -92,21 +92,8 @@ export {
   RecommendationCategory,
 } from "./models/index.js";
 export {
-  createLoadTestAdministration,
   LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
-  createOrUpdateTest,
-  createOrUpdateAppComponents,
-  createOrUpdateServerMetricsConfig,
-  getAppComponents,
-  getServerMetricsConfig,
-  getTest,
-  getTestFile,
-  listTestFiles,
-  listTests,
-  uploadTestFile,
-  deleteTestFile,
-  deleteTest,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -123,23 +110,8 @@ export {
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
 export {
-  createLoadTestRun,
   LoadTestRunContext,
   LoadTestRunClientOptionalParams,
-  createOrUpdateTestRun,
-  createOrUpdateAppComponents as LoadTestRunClientcreateOrUpdateAppComponents,
-  createOrUpdateServerMetricsConfig as LoadTestRunClientcreateOrUpdateServerMetricsConfig,
-  deleteTestRun,
-  getAppComponents as LoadTestRunClientgetAppComponents,
-  getServerMetricsConfig as LoadTestRunClientgetServerMetricsConfig,
-  getTestRun,
-  getTestRunFile,
-  listMetricDimensionValues,
-  listMetricDefinitions,
-  listMetricNamespaces,
-  listMetrics,
-  listTestRuns,
-  stopTestRun,
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams as LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams as LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams,
@@ -157,31 +129,20 @@ export {
 } from "./loadTestRun/api/index.js";
 export { TestProfileAdministrationClient } from "./testProfileAdministration/testProfileAdministrationClient.js";
 export {
-  createOrUpdateTestProfile,
-  deleteTestProfile,
-  getTestProfile,
-  listTestProfiles,
   CreateOrUpdateTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  createTestProfileAdministration,
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./testProfileAdministration/api/index.js";
 export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
 export {
-  createOrUpdateTestProfileRun,
-  deleteTestProfileRun,
-  getTestProfileRun,
-  listTestProfileRuns,
-  stopTestProfileRun,
   CreateOrUpdateTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-  createTestProfileRun,
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./testProfileRun/api/index.js";

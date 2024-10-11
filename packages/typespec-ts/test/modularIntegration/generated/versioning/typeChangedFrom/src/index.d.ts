@@ -3,11 +3,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare function createTypeChangedFrom(endpointParam: string, version: Versions, options?: TypeChangedFromClientOptionalParams): TypeChangedFromContext;
-
-declare function test_2(context: TypeChangedFromContext, param: string, body: TestModel, options?: TestOptionalParams): Promise<TestModel>;
-export { test_2 as test }
-
 export declare interface TestModel {
     prop: string;
     changedProp: string;

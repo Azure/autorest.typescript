@@ -7,10 +7,6 @@ export declare interface AzureEmbeddingModel {
     embedding: number[];
 }
 
-export declare function createModel(options?: ModelClientOptionalParams): ModelContext;
-
-export declare function get(context: ModelContext, options?: GetOptionalParams): Promise<number[]>;
-
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
@@ -29,12 +25,8 @@ export declare interface ModelClientOptionalParams extends ClientOptions {
 export declare interface ModelContext extends Client {
 }
 
-export declare function post(context: ModelContext, body: AzureEmbeddingModel, options?: PostOptionalParams): Promise<AzureEmbeddingModel>;
-
 export declare interface PostOptionalParams extends OperationOptions {
 }
-
-export declare function put(context: ModelContext, body: number[], options?: PutOptionalParams): Promise<void>;
 
 export declare interface PutOptionalParams extends OperationOptions {
 }

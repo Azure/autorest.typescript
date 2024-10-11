@@ -38,9 +38,6 @@ export interface ATest4OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export function createDemoService(endpointParam: string, options?: DemoServiceClientOptionalParams): DemoServiceContext;
-
-// @public (undocumented)
 export class DemoServiceClient {
     constructor(endpointParam: string, options?: DemoServiceClientOptionalParams);
     readonly a: AOperations;

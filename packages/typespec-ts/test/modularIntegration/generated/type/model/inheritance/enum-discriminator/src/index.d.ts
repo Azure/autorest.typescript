@@ -7,8 +7,6 @@ export declare interface Cobra extends Snake {
     kind: "cobra";
 }
 
-export declare function createEnumDiscriminator(options?: EnumDiscriminatorClientOptionalParams): EnumDiscriminatorContext;
-
 export declare interface Dog {
     kind: DogKind;
     weight: number;
@@ -38,32 +36,20 @@ export declare interface EnumDiscriminatorClientOptionalParams extends ClientOpt
 export declare interface EnumDiscriminatorContext extends Client {
 }
 
-export declare function getExtensibleModel(context: EnumDiscriminatorContext, options?: GetExtensibleModelOptionalParams): Promise<Dog>;
-
-export declare function getExtensibleModelMissingDiscriminator(context: EnumDiscriminatorContext, options?: GetExtensibleModelMissingDiscriminatorOptionalParams): Promise<Dog>;
-
 export declare interface GetExtensibleModelMissingDiscriminatorOptionalParams extends OperationOptions {
 }
 
 export declare interface GetExtensibleModelOptionalParams extends OperationOptions {
 }
 
-export declare function getExtensibleModelWrongDiscriminator(context: EnumDiscriminatorContext, options?: GetExtensibleModelWrongDiscriminatorOptionalParams): Promise<Dog>;
-
 export declare interface GetExtensibleModelWrongDiscriminatorOptionalParams extends OperationOptions {
 }
-
-export declare function getFixedModel(context: EnumDiscriminatorContext, options?: GetFixedModelOptionalParams): Promise<Snake>;
-
-export declare function getFixedModelMissingDiscriminator(context: EnumDiscriminatorContext, options?: GetFixedModelMissingDiscriminatorOptionalParams): Promise<Snake>;
 
 export declare interface GetFixedModelMissingDiscriminatorOptionalParams extends OperationOptions {
 }
 
 export declare interface GetFixedModelOptionalParams extends OperationOptions {
 }
-
-export declare function getFixedModelWrongDiscriminator(context: EnumDiscriminatorContext, options?: GetFixedModelWrongDiscriminatorOptionalParams): Promise<Snake>;
 
 export declare interface GetFixedModelWrongDiscriminatorOptionalParams extends OperationOptions {
 }
@@ -72,12 +58,8 @@ export declare interface Golden extends Dog {
     kind: "golden";
 }
 
-export declare function putExtensibleModel(context: EnumDiscriminatorContext, input: Dog, options?: PutExtensibleModelOptionalParams): Promise<void>;
-
 export declare interface PutExtensibleModelOptionalParams extends OperationOptions {
 }
-
-export declare function putFixedModel(context: EnumDiscriminatorContext, input: Snake, options?: PutFixedModelOptionalParams): Promise<void>;
 
 export declare interface PutFixedModelOptionalParams extends OperationOptions {
 }

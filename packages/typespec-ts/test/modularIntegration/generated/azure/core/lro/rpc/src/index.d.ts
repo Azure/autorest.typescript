@@ -8,8 +8,6 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
-export declare function createRpc(options?: RpcClientOptionalParams): RpcContext;
-
 export declare interface GenerationOptions {
     prompt: string;
 }
@@ -17,8 +15,6 @@ export declare interface GenerationOptions {
 export declare interface GenerationResult {
     data: string;
 }
-
-export declare function longRunningRpc(context: RpcContext, body: GenerationOptions, options?: LongRunningRpcOptionalParams): PollerLike<OperationState_2<GenerationResult>, GenerationResult>;
 
 export declare interface LongRunningRpcOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;

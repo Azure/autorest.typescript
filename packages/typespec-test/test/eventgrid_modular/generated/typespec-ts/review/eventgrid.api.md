@@ -11,9 +11,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
-export function acknowledgeCloudEvents(context: EventGridContext, topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
-
-// @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -49,9 +46,6 @@ export interface CloudEvent {
     type: string;
 }
 
-// @public
-export function createEventGrid(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptionalParams): EventGridContext;
-
 // @public (undocumented)
 export class EventGridClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptionalParams);
@@ -81,9 +75,6 @@ export interface FailedLockToken {
 }
 
 // @public
-export function publishCloudEvent(context: EventGridContext, topicName: string, event: PublishCloudEventRequest, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
-
-// @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -95,9 +86,6 @@ export interface PublishCloudEventRequest {
 }
 
 // @public
-export function publishCloudEvents(context: EventGridContext, topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
-
-// @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -105,9 +93,6 @@ export interface PublishCloudEventsOptionalParams extends OperationOptions {
 // @public
 export interface PublishResult {
 }
-
-// @public
-export function receiveCloudEvents(context: EventGridContext, topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
 
 // @public
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
@@ -127,9 +112,6 @@ export interface ReceiveResult {
 }
 
 // @public
-export function rejectCloudEvents(context: EventGridContext, topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
-
-// @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
@@ -144,9 +126,6 @@ export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
 }
-
-// @public
-export function releaseCloudEvents(context: EventGridContext, topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 
 // @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {

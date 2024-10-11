@@ -31,12 +31,8 @@ export declare interface AzureExampleClientOptionalParams extends ClientOptions 
 export declare interface AzureExampleContext extends Client {
 }
 
-export declare function basicAction(context: AzureExampleContext, queryParam: string, headerParam: string, body: ActionRequest, options?: BasicActionOptionalParams): Promise<ActionResponse>;
-
 export declare interface BasicActionOptionalParams extends OperationOptions {
 }
-
-export declare function createAzureExample(options?: AzureExampleClientOptionalParams): AzureExampleContext;
 
 export declare type Enum = "EnumValue1";
 

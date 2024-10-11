@@ -3,8 +3,6 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare function createNestedDiscriminator(options?: NestedDiscriminatorClientOptionalParams): NestedDiscriminatorContext;
-
 export declare interface Fish {
     kind: string;
     age: number;
@@ -12,22 +10,14 @@ export declare interface Fish {
 
 export declare type FishUnion = SharkUnion | Salmon | Fish;
 
-export declare function getMissingDiscriminator(context: NestedDiscriminatorContext, options?: GetMissingDiscriminatorOptionalParams): Promise<Fish>;
-
 export declare interface GetMissingDiscriminatorOptionalParams extends OperationOptions {
 }
-
-export declare function getModel(context: NestedDiscriminatorContext, options?: GetModelOptionalParams): Promise<Fish>;
 
 export declare interface GetModelOptionalParams extends OperationOptions {
 }
 
-export declare function getRecursiveModel(context: NestedDiscriminatorContext, options?: GetRecursiveModelOptionalParams): Promise<Fish>;
-
 export declare interface GetRecursiveModelOptionalParams extends OperationOptions {
 }
-
-export declare function getWrongDiscriminator(context: NestedDiscriminatorContext, options?: GetWrongDiscriminatorOptionalParams): Promise<Fish>;
 
 export declare interface GetWrongDiscriminatorOptionalParams extends OperationOptions {
 }
@@ -54,12 +44,8 @@ export declare interface NestedDiscriminatorClientOptionalParams extends ClientO
 export declare interface NestedDiscriminatorContext extends Client {
 }
 
-export declare function putModel(context: NestedDiscriminatorContext, input: Fish, options?: PutModelOptionalParams): Promise<void>;
-
 export declare interface PutModelOptionalParams extends OperationOptions {
 }
-
-export declare function putRecursiveModel(context: NestedDiscriminatorContext, input: Fish, options?: PutRecursiveModelOptionalParams): Promise<void>;
 
 export declare interface PutRecursiveModelOptionalParams extends OperationOptions {
 }

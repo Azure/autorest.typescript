@@ -71,7 +71,6 @@ export {
   ActionType,
 } from "./models/index.js";
 export {
-  createNetworkAnalytics,
   NetworkAnalyticsContext,
   NetworkAnalyticsClientOptionalParams,
   OperationsListOptionalParams,

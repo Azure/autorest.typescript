@@ -148,18 +148,8 @@ export {
   EmbeddingsUsage,
 } from "./models/index.js";
 export {
-  createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
-  getAudioTranscriptionAsPlainText,
-  getAudioTranscriptionAsResponseObject,
-  getAudioTranslationAsPlainText,
-  getAudioTranslationAsResponseObject,
-  getCompletions,
-  getChatCompletions,
-  getImageGenerations,
-  generateSpeechFromText,
-  getEmbeddings,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,

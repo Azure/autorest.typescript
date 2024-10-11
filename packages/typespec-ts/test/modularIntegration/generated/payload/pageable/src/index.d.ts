@@ -7,10 +7,6 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-export declare function createPageable(options?: PageableClientOptionalParams): PageableContext;
-
-export declare function list(context: PageableContext, options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
-
 export declare interface ListOptionalParams extends OperationOptions {
     maxpagesize?: number;
 }

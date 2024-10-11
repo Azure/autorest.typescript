@@ -26,9 +26,6 @@ export interface ConfidentialLedgerOperations {
 }
 
 // @public (undocumented)
-export function createParametrizedHost(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams): ParametrizedHostContext;
-
-// @public (undocumented)
 export class ParametrizedHostClient {
     constructor(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams);
     readonly confidentialLedger: ConfidentialLedgerOperations;

@@ -30,7 +30,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  createWidgetService,
   WidgetServiceContext,
   WidgetServiceClientOptionalParams,
 } from "./api/index.js";

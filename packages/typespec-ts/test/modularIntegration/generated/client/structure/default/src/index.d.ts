@@ -27,8 +27,6 @@ export declare interface BazOperations {
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
 
-export declare function createService(endpointParam: string, client: ClientType, options?: ServiceClientOptionalParams): ServiceContext;
-
 export declare interface FooFourOptionalParams extends OperationOptions {
 }
 
@@ -39,8 +37,6 @@ export declare interface FooOperations {
 
 export declare interface FooThreeOptionalParams extends OperationOptions {
 }
-
-export declare function one(context: ServiceContext, options?: OneOptionalParams): Promise<void>;
 
 export declare interface OneOptionalParams extends OperationOptions {
 }
@@ -77,8 +73,6 @@ export declare interface ServiceClientOptionalParams extends ClientOptions {
 
 export declare interface ServiceContext extends Client {
 }
-
-export declare function two(context: ServiceContext, options?: TwoOptionalParams): Promise<void>;
 
 export declare interface TwoOptionalParams extends OperationOptions {
 }

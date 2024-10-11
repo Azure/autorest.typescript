@@ -39,8 +39,6 @@ export declare interface Continue {
     name: string;
 }
 
-export declare function createSpecialWords(options?: SpecialWordsClientOptionalParams): SpecialWordsContext;
-
 export declare interface Def {
     name: string;
 }
@@ -105,8 +103,6 @@ export declare interface ModelPropertiesOperations {
     sameAsModel: (body: SameAsModel, options?: ModelPropertiesSameAsModelOptionalParams) => Promise<void>;
 }
 
-export declare function modelPropertiesSameAsModel(context: SpecialWordsContext, body: SameAsModel, options?: ModelPropertiesSameAsModelOptionalParams): Promise<void>;
-
 export declare interface ModelPropertiesSameAsModelOptionalParams extends OperationOptions {
 }
 
@@ -146,167 +142,101 @@ export declare interface ModelsOperations {
     withYield: (body: Yield, options?: ModelsWithYieldOptionalParams) => Promise<void>;
 }
 
-export declare function modelsWithAnd(context: SpecialWordsContext, body: And, options?: ModelsWithAndOptionalParams): Promise<void>;
-
 export declare interface ModelsWithAndOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithAs(context: SpecialWordsContext, body: As, options?: ModelsWithAsOptionalParams): Promise<void>;
 
 export declare interface ModelsWithAsOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithAssert(context: SpecialWordsContext, body: Assert, options?: ModelsWithAssertOptionalParams): Promise<void>;
-
 export declare interface ModelsWithAssertOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithAsync(context: SpecialWordsContext, body: Async, options?: ModelsWithAsyncOptionalParams): Promise<void>;
 
 export declare interface ModelsWithAsyncOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithAwait(context: SpecialWordsContext, body: Await, options?: ModelsWithAwaitOptionalParams): Promise<void>;
-
 export declare interface ModelsWithAwaitOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithBreak(context: SpecialWordsContext, body: Break, options?: ModelsWithBreakOptionalParams): Promise<void>;
 
 export declare interface ModelsWithBreakOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithClass(context: SpecialWordsContext, body: Class, options?: ModelsWithClassOptionalParams): Promise<void>;
-
 export declare interface ModelsWithClassOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithConstructor(context: SpecialWordsContext, body: Constructor, options?: ModelsWithConstructorOptionalParams): Promise<void>;
 
 export declare interface ModelsWithConstructorOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithContinue(context: SpecialWordsContext, body: Continue, options?: ModelsWithContinueOptionalParams): Promise<void>;
-
 export declare interface ModelsWithContinueOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithDef(context: SpecialWordsContext, body: Def, options?: ModelsWithDefOptionalParams): Promise<void>;
 
 export declare interface ModelsWithDefOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithDel(context: SpecialWordsContext, body: Del, options?: ModelsWithDelOptionalParams): Promise<void>;
-
 export declare interface ModelsWithDelOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithElif(context: SpecialWordsContext, body: Elif, options?: ModelsWithElifOptionalParams): Promise<void>;
 
 export declare interface ModelsWithElifOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithElse(context: SpecialWordsContext, body: Else, options?: ModelsWithElseOptionalParams): Promise<void>;
-
 export declare interface ModelsWithElseOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithExcept(context: SpecialWordsContext, body: Except, options?: ModelsWithExceptOptionalParams): Promise<void>;
 
 export declare interface ModelsWithExceptOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithExec(context: SpecialWordsContext, body: Exec, options?: ModelsWithExecOptionalParams): Promise<void>;
-
 export declare interface ModelsWithExecOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithFinally(context: SpecialWordsContext, body: Finally, options?: ModelsWithFinallyOptionalParams): Promise<void>;
 
 export declare interface ModelsWithFinallyOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithFor(context: SpecialWordsContext, body: For, options?: ModelsWithForOptionalParams): Promise<void>;
-
 export declare interface ModelsWithForOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithFrom(context: SpecialWordsContext, body: From, options?: ModelsWithFromOptionalParams): Promise<void>;
 
 export declare interface ModelsWithFromOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithGlobal(context: SpecialWordsContext, body: GlobalModel, options?: ModelsWithGlobalOptionalParams): Promise<void>;
-
 export declare interface ModelsWithGlobalOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithIf(context: SpecialWordsContext, body: If, options?: ModelsWithIfOptionalParams): Promise<void>;
 
 export declare interface ModelsWithIfOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithImport(context: SpecialWordsContext, body: Import, options?: ModelsWithImportOptionalParams): Promise<void>;
-
 export declare interface ModelsWithImportOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithIn(context: SpecialWordsContext, body: In, options?: ModelsWithInOptionalParams): Promise<void>;
 
 export declare interface ModelsWithInOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithIs(context: SpecialWordsContext, body: Is, options?: ModelsWithIsOptionalParams): Promise<void>;
-
 export declare interface ModelsWithIsOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithLambda(context: SpecialWordsContext, body: Lambda, options?: ModelsWithLambdaOptionalParams): Promise<void>;
 
 export declare interface ModelsWithLambdaOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithNot(context: SpecialWordsContext, body: Not, options?: ModelsWithNotOptionalParams): Promise<void>;
-
 export declare interface ModelsWithNotOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithOr(context: SpecialWordsContext, body: Or, options?: ModelsWithOrOptionalParams): Promise<void>;
 
 export declare interface ModelsWithOrOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithPass(context: SpecialWordsContext, body: Pass, options?: ModelsWithPassOptionalParams): Promise<void>;
-
 export declare interface ModelsWithPassOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithRaise(context: SpecialWordsContext, body: Raise, options?: ModelsWithRaiseOptionalParams): Promise<void>;
 
 export declare interface ModelsWithRaiseOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithReturn(context: SpecialWordsContext, body: Return, options?: ModelsWithReturnOptionalParams): Promise<void>;
-
 export declare interface ModelsWithReturnOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithTry(context: SpecialWordsContext, body: Try, options?: ModelsWithTryOptionalParams): Promise<void>;
 
 export declare interface ModelsWithTryOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithWhile(context: SpecialWordsContext, body: While, options?: ModelsWithWhileOptionalParams): Promise<void>;
-
 export declare interface ModelsWithWhileOptionalParams extends OperationOptions {
 }
 
-export declare function modelsWithWith(context: SpecialWordsContext, body: With, options?: ModelsWithWithOptionalParams): Promise<void>;
-
 export declare interface ModelsWithWithOptionalParams extends OperationOptions {
 }
-
-export declare function modelsWithYield(context: SpecialWordsContext, body: Yield, options?: ModelsWithYieldOptionalParams): Promise<void>;
 
 export declare interface ModelsWithYieldOptionalParams extends OperationOptions {
 }
@@ -315,127 +245,77 @@ export declare interface Not {
     name: string;
 }
 
-export declare function operationsAnd(context: SpecialWordsContext, options?: OperationsAndOptionalParams): Promise<void>;
-
 export declare interface OperationsAndOptionalParams extends OperationOptions {
 }
-
-export declare function operationsAs(context: SpecialWordsContext, options?: OperationsAsOptionalParams): Promise<void>;
 
 export declare interface OperationsAsOptionalParams extends OperationOptions {
 }
 
-export declare function operationsAssert(context: SpecialWordsContext, options?: OperationsAssertOptionalParams): Promise<void>;
-
 export declare interface OperationsAssertOptionalParams extends OperationOptions {
 }
-
-export declare function operationsAsync(context: SpecialWordsContext, options?: OperationsAsyncOptionalParams): Promise<void>;
 
 export declare interface OperationsAsyncOptionalParams extends OperationOptions {
 }
 
-export declare function operationsAwait(context: SpecialWordsContext, options?: OperationsAwaitOptionalParams): Promise<void>;
-
 export declare interface OperationsAwaitOptionalParams extends OperationOptions {
 }
-
-export declare function operationsBreak(context: SpecialWordsContext, options?: OperationsBreakOptionalParams): Promise<void>;
 
 export declare interface OperationsBreakOptionalParams extends OperationOptions {
 }
 
-export declare function operationsClass(context: SpecialWordsContext, options?: OperationsClassOptionalParams): Promise<void>;
-
 export declare interface OperationsClassOptionalParams extends OperationOptions {
 }
-
-export declare function operationsConstructor(context: SpecialWordsContext, options?: OperationsConstructorOptionalParams): Promise<void>;
 
 export declare interface OperationsConstructorOptionalParams extends OperationOptions {
 }
 
-export declare function operationsContinue(context: SpecialWordsContext, options?: OperationsContinueOptionalParams): Promise<void>;
-
 export declare interface OperationsContinueOptionalParams extends OperationOptions {
 }
-
-export declare function operationsDef(context: SpecialWordsContext, options?: OperationsDefOptionalParams): Promise<void>;
 
 export declare interface OperationsDefOptionalParams extends OperationOptions {
 }
 
-export declare function operationsDel(context: SpecialWordsContext, options?: OperationsDelOptionalParams): Promise<void>;
-
 export declare interface OperationsDelOptionalParams extends OperationOptions {
 }
-
-export declare function operationsElif(context: SpecialWordsContext, options?: OperationsElifOptionalParams): Promise<void>;
 
 export declare interface OperationsElifOptionalParams extends OperationOptions {
 }
 
-export declare function operationsElse(context: SpecialWordsContext, options?: OperationsElseOptionalParams): Promise<void>;
-
 export declare interface OperationsElseOptionalParams extends OperationOptions {
 }
-
-export declare function operationsExcept(context: SpecialWordsContext, options?: OperationsExceptOptionalParams): Promise<void>;
 
 export declare interface OperationsExceptOptionalParams extends OperationOptions {
 }
 
-export declare function operationsExec(context: SpecialWordsContext, options?: OperationsExecOptionalParams): Promise<void>;
-
 export declare interface OperationsExecOptionalParams extends OperationOptions {
 }
-
-export declare function operationsFinally(context: SpecialWordsContext, options?: OperationsFinallyOptionalParams): Promise<void>;
 
 export declare interface OperationsFinallyOptionalParams extends OperationOptions {
 }
 
-export declare function operationsFor(context: SpecialWordsContext, options?: OperationsForOptionalParams): Promise<void>;
-
 export declare interface OperationsForOptionalParams extends OperationOptions {
 }
-
-export declare function operationsFrom(context: SpecialWordsContext, options?: OperationsFromOptionalParams): Promise<void>;
 
 export declare interface OperationsFromOptionalParams extends OperationOptions {
 }
 
-export declare function operationsGlobal(context: SpecialWordsContext, options?: OperationsGlobalOptionalParams): Promise<void>;
-
 export declare interface OperationsGlobalOptionalParams extends OperationOptions {
 }
-
-export declare function operationsIf(context: SpecialWordsContext, options?: OperationsIfOptionalParams): Promise<void>;
 
 export declare interface OperationsIfOptionalParams extends OperationOptions {
 }
 
-export declare function operationsImport(context: SpecialWordsContext, options?: OperationsImportOptionalParams): Promise<void>;
-
 export declare interface OperationsImportOptionalParams extends OperationOptions {
 }
-
-export declare function operationsIn(context: SpecialWordsContext, options?: OperationsInOptionalParams): Promise<void>;
 
 export declare interface OperationsInOptionalParams extends OperationOptions {
 }
 
-export declare function operationsIs(context: SpecialWordsContext, options?: OperationsIsOptionalParams): Promise<void>;
-
 export declare interface OperationsIsOptionalParams extends OperationOptions {
 }
 
-export declare function operationsLambda(context: SpecialWordsContext, options?: OperationsLambdaOptionalParams): Promise<void>;
-
 export declare interface OperationsLambdaOptionalParams extends OperationOptions {
 }
-
-export declare function operationsNot(context: SpecialWordsContext, options?: OperationsNotOptionalParams): Promise<void>;
 
 export declare interface OperationsNotOptionalParams extends OperationOptions {
 }
@@ -476,42 +356,26 @@ export declare interface OperationsOperations {
     yield: (options?: OperationsYieldOptionalParams) => Promise<void>;
 }
 
-export declare function operationsOr(context: SpecialWordsContext, options?: OperationsOrOptionalParams): Promise<void>;
-
 export declare interface OperationsOrOptionalParams extends OperationOptions {
 }
-
-export declare function operationsPass(context: SpecialWordsContext, options?: OperationsPassOptionalParams): Promise<void>;
 
 export declare interface OperationsPassOptionalParams extends OperationOptions {
 }
 
-export declare function operationsRaise(context: SpecialWordsContext, options?: OperationsRaiseOptionalParams): Promise<void>;
-
 export declare interface OperationsRaiseOptionalParams extends OperationOptions {
 }
-
-export declare function operationsReturn(context: SpecialWordsContext, options?: OperationsReturnOptionalParams): Promise<void>;
 
 export declare interface OperationsReturnOptionalParams extends OperationOptions {
 }
 
-export declare function operationsTry(context: SpecialWordsContext, options?: OperationsTryOptionalParams): Promise<void>;
-
 export declare interface OperationsTryOptionalParams extends OperationOptions {
 }
-
-export declare function operationsWhile(context: SpecialWordsContext, options?: OperationsWhileOptionalParams): Promise<void>;
 
 export declare interface OperationsWhileOptionalParams extends OperationOptions {
 }
 
-export declare function operationsWith(context: SpecialWordsContext, options?: OperationsWithOptionalParams): Promise<void>;
-
 export declare interface OperationsWithOptionalParams extends OperationOptions {
 }
-
-export declare function operationsYield(context: SpecialWordsContext, options?: OperationsYieldOptionalParams): Promise<void>;
 
 export declare interface OperationsYieldOptionalParams extends OperationOptions {
 }
@@ -557,172 +421,104 @@ export declare interface ParametersOperations {
     withCancellationToken: (cancellationToken: string, options?: ParametersWithCancellationTokenOptionalParams) => Promise<void>;
 }
 
-export declare function parametersWithAnd(context: SpecialWordsContext, and: string, options?: ParametersWithAndOptionalParams): Promise<void>;
-
 export declare interface ParametersWithAndOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithAs(context: SpecialWordsContext, asParam: string, options?: ParametersWithAsOptionalParams): Promise<void>;
 
 export declare interface ParametersWithAsOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithAssert(context: SpecialWordsContext, assertParam: string, options?: ParametersWithAssertOptionalParams): Promise<void>;
-
 export declare interface ParametersWithAssertOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithAsync(context: SpecialWordsContext, asyncParam: string, options?: ParametersWithAsyncOptionalParams): Promise<void>;
 
 export declare interface ParametersWithAsyncOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithAwait(context: SpecialWordsContext, awaitParam: string, options?: ParametersWithAwaitOptionalParams): Promise<void>;
-
 export declare interface ParametersWithAwaitOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithBreak(context: SpecialWordsContext, breakParam: string, options?: ParametersWithBreakOptionalParams): Promise<void>;
 
 export declare interface ParametersWithBreakOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithCancellationToken(context: SpecialWordsContext, cancellationToken: string, options?: ParametersWithCancellationTokenOptionalParams): Promise<void>;
-
 export declare interface ParametersWithCancellationTokenOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithClass(context: SpecialWordsContext, classParam: string, options?: ParametersWithClassOptionalParams): Promise<void>;
 
 export declare interface ParametersWithClassOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithConstructor(context: SpecialWordsContext, constructorParam: string, options?: ParametersWithConstructorOptionalParams): Promise<void>;
-
 export declare interface ParametersWithConstructorOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithContinue(context: SpecialWordsContext, continueParam: string, options?: ParametersWithContinueOptionalParams): Promise<void>;
 
 export declare interface ParametersWithContinueOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithDef(context: SpecialWordsContext, def: string, options?: ParametersWithDefOptionalParams): Promise<void>;
-
 export declare interface ParametersWithDefOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithDel(context: SpecialWordsContext, del: string, options?: ParametersWithDelOptionalParams): Promise<void>;
 
 export declare interface ParametersWithDelOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithElif(context: SpecialWordsContext, elif: string, options?: ParametersWithElifOptionalParams): Promise<void>;
-
 export declare interface ParametersWithElifOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithElse(context: SpecialWordsContext, elseParam: string, options?: ParametersWithElseOptionalParams): Promise<void>;
 
 export declare interface ParametersWithElseOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithExcept(context: SpecialWordsContext, except: string, options?: ParametersWithExceptOptionalParams): Promise<void>;
-
 export declare interface ParametersWithExceptOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithExec(context: SpecialWordsContext, exec: string, options?: ParametersWithExecOptionalParams): Promise<void>;
 
 export declare interface ParametersWithExecOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithFinally(context: SpecialWordsContext, finallyParam: string, options?: ParametersWithFinallyOptionalParams): Promise<void>;
-
 export declare interface ParametersWithFinallyOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithFor(context: SpecialWordsContext, forParam: string, options?: ParametersWithForOptionalParams): Promise<void>;
 
 export declare interface ParametersWithForOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithFrom(context: SpecialWordsContext, fromParam: string, options?: ParametersWithFromOptionalParams): Promise<void>;
-
 export declare interface ParametersWithFromOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithGlobal(context: SpecialWordsContext, global: string, options?: ParametersWithGlobalOptionalParams): Promise<void>;
 
 export declare interface ParametersWithGlobalOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithIf(context: SpecialWordsContext, ifParam: string, options?: ParametersWithIfOptionalParams): Promise<void>;
-
 export declare interface ParametersWithIfOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithImport(context: SpecialWordsContext, importParam: string, options?: ParametersWithImportOptionalParams): Promise<void>;
 
 export declare interface ParametersWithImportOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithIn(context: SpecialWordsContext, inParam: string, options?: ParametersWithInOptionalParams): Promise<void>;
-
 export declare interface ParametersWithInOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithIs(context: SpecialWordsContext, is: string, options?: ParametersWithIsOptionalParams): Promise<void>;
 
 export declare interface ParametersWithIsOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithLambda(context: SpecialWordsContext, lambda: string, options?: ParametersWithLambdaOptionalParams): Promise<void>;
-
 export declare interface ParametersWithLambdaOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithNot(context: SpecialWordsContext, not: string, options?: ParametersWithNotOptionalParams): Promise<void>;
 
 export declare interface ParametersWithNotOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithOr(context: SpecialWordsContext, or: string, options?: ParametersWithOrOptionalParams): Promise<void>;
-
 export declare interface ParametersWithOrOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithPass(context: SpecialWordsContext, pass: string, options?: ParametersWithPassOptionalParams): Promise<void>;
 
 export declare interface ParametersWithPassOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithRaise(context: SpecialWordsContext, raise: string, options?: ParametersWithRaiseOptionalParams): Promise<void>;
-
 export declare interface ParametersWithRaiseOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithReturn(context: SpecialWordsContext, returnParam: string, options?: ParametersWithReturnOptionalParams): Promise<void>;
 
 export declare interface ParametersWithReturnOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithTry(context: SpecialWordsContext, tryParam: string, options?: ParametersWithTryOptionalParams): Promise<void>;
-
 export declare interface ParametersWithTryOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithWhile(context: SpecialWordsContext, whileParam: string, options?: ParametersWithWhileOptionalParams): Promise<void>;
 
 export declare interface ParametersWithWhileOptionalParams extends OperationOptions {
 }
 
-export declare function parametersWithWith(context: SpecialWordsContext, withParam: string, options?: ParametersWithWithOptionalParams): Promise<void>;
-
 export declare interface ParametersWithWithOptionalParams extends OperationOptions {
 }
-
-export declare function parametersWithYield(context: SpecialWordsContext, yieldParam: string, options?: ParametersWithYieldOptionalParams): Promise<void>;
 
 export declare interface ParametersWithYieldOptionalParams extends OperationOptions {
 }

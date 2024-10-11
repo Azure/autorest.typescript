@@ -14,8 +14,6 @@ export declare interface BooleanValueOperations {
 export declare interface BooleanValuePutOptionalParams extends OperationOptions {
 }
 
-export declare function createDictionary(options?: DictionaryClientOptionalParams): DictionaryContext;
-
 export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
 }
 

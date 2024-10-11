@@ -13,8 +13,6 @@ export declare interface ChildModel {
     age: number;
 }
 
-export declare function createFlattenProperty(options?: FlattenPropertyClientOptionalParams): FlattenPropertyContext;
-
 export declare interface FlattenModel {
     name: string;
     properties: ChildModel;
@@ -39,12 +37,8 @@ export declare interface NestedFlattenModel {
     properties: ChildFlattenModel;
 }
 
-export declare function putFlattenModel(context: FlattenPropertyContext, input: FlattenModel, options?: PutFlattenModelOptionalParams): Promise<FlattenModel>;
-
 export declare interface PutFlattenModelOptionalParams extends OperationOptions {
 }
-
-export declare function putNestedFlattenModel(context: FlattenPropertyContext, input: NestedFlattenModel, options?: PutNestedFlattenModelOptionalParams): Promise<NestedFlattenModel>;
 
 export declare interface PutNestedFlattenModelOptionalParams extends OperationOptions {
 }

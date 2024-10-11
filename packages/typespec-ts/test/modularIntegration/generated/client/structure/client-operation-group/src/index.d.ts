@@ -5,10 +5,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
 
-export declare function createFirst(endpointParam: string, client: ClientType, options?: FirstClientOptionalParams): FirstContext;
-
-export declare function createSecond(endpointParam: string, client: ClientType, options?: SecondClientOptionalParams): SecondContext;
-
 export declare class FirstClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -23,8 +19,6 @@ export declare interface FirstClientOptionalParams extends ClientOptions {
 
 export declare interface FirstContext extends Client {
 }
-
-export declare function five(context: SecondContext, options?: FiveOptionalParams): Promise<void>;
 
 export declare interface FiveOptionalParams extends OperationOptions {
 }
@@ -53,8 +47,6 @@ export declare interface Group5Operations {
 
 export declare interface Group5SixOptionalParams extends OperationOptions {
 }
-
-export declare function one(context: FirstContext, options?: OneOptionalParams): Promise<void>;
 
 export declare interface OneOptionalParams extends OperationOptions {
 }
