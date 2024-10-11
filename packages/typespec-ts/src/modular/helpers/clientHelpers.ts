@@ -159,7 +159,7 @@ export function buildGetClientEndpointParam(
       onClientOnly: true
     }).find((x) => x.kind === "endpoint" || x.kind === "path");
     if (endpointParam) {
-      return `options.endpoint ?? options.baseUrl ?? \`\${${getClientParameterName(endpointParam)}}\``;
+      return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
     }
   }
 

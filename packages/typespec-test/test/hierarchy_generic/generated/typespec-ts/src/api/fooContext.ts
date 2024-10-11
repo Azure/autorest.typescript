@@ -23,7 +23,7 @@ export function createFoo(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}`,
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
     undefined,
     updatedOptions,
   );

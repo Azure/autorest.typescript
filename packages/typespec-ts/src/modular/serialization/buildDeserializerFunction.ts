@@ -80,7 +80,13 @@ function isDiscriminatedUnion(
 }
 
 function hasAdditionalProperties(type: SdkType | undefined) {
-  if (!type || !("additionalProperties" in type)) {
+  if (
+    !type ||
+    !(
+      "additionalProperties" in type ||
+      (type.kind === "model" && hasAdditionalProperties(type.baseModel))
+    )
+  ) {
     return false;
   }
 
