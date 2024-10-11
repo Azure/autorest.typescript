@@ -16,12 +16,7 @@ const restLevelTsConfigInAzureSdkForJs: (
         rootDir: ".",
         skipLibCheck: true
       },
-      include: [
-        "./src/**/*.ts",
-        "./src/**/*.mts",
-        "./src/**/*.cts",
-        "test/**/*.ts"
-      ]
+      include: ["src/**/*.ts", "src/**/*.mts", "src/**/*.cts", "test/**/*.ts"]
     };
   }
 
@@ -63,7 +58,7 @@ const restLevelTsConfigNotInAzureSdkForJs: (
       outDir: options?.moduleKind === "cjs" ? "./dist-esm" : undefined,
       declarationDir: options?.moduleKind === "cjs" ? "./types" : undefined
     },
-    include: ["./src/**/*.ts"]
+    include: ["src/**/*.ts"]
   };
 };
 
@@ -79,7 +74,7 @@ export function buildTsConfig(model: RLCModel) {
     : restLevelTsConfigNotInAzureSdkForJs(model);
 
   if (generateTest) {
-    restLevelTsConfig.include.push("./test/**/*.ts");
+    restLevelTsConfig.include.push("test/**/*.ts");
   }
   if (generateSample) {
     restLevelTsConfig.include.push("samples-dev/**/*.ts");

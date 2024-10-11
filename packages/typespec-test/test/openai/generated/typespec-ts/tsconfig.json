@@ -20,5 +20,5 @@
     "esModuleInterop": true,
     "paths": { "@msinternal/openai": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
 }
