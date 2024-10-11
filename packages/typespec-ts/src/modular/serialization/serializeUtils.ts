@@ -6,6 +6,16 @@ import {
 import { Type } from "../modularCodeModel.js";
 import { getAllAncestors } from "../helpers/operationHelpers.js";
 import { toPascalCase } from "../../utils/casingUtils.js";
+import { SdkType } from "@azure-tools/typespec-client-generator-core";
+
+export function isSupportedSerializeType(type: SdkType): boolean {
+  return (
+    type.kind === "model" ||
+    type.kind === "dict" ||
+    type.kind === "array" ||
+    type.kind === "union"
+  );
+}
 
 export function getDeserializeFunctionName(
   type: Type,

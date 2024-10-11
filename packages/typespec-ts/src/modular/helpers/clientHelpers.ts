@@ -48,44 +48,33 @@ export function getClientParameters(
       clientParams.push(property);
     }
   }
-
-  const params = clientParams
-    .filter(
-      (p) =>
-        !options.requiredOnly ||
-        (options.requiredOnly &&
-          !p.optional &&
-          !(
-            p.clientDefaultValue ||
-            p.__raw?.defaultValue ||
-            p.type.kind === "constant"
-          ))
-    )
-    .filter(
-      (p) =>
-        dpgContext.rlcOptions?.addCredentials !== false ||
-        (p.kind !== "credential" &&
-          dpgContext.rlcOptions?.addCredentials === false)
-    )
-    .filter(
-      (p) =>
-        !options.optionalOnly ||
-        (options.optionalOnly &&
-          (p.optional ||
-            p.clientDefaultValue ||
-            p.__raw?.defaultValue ||
-            p.type.kind === "constant"))
-    )
-    .filter((p) => !(p.kind === "endpoint" && dpgContext.arm))
-    .filter(
-      (p) =>
-        !options.onClientOnly ||
-        (options.onClientOnly &&
-          (p.kind !== "method" ||
-            (p.kind === "method" &&
-              p.isApiVersionParam &&
-              _client.parameters.find((p) => p.isApiVersion))))
-    );
+  const hasDefaultValue = (p: SdkParameter | SdkHttpParameter) =>
+    p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
+  const isRequired = (p: SdkParameter | SdkHttpParameter) =>
+    !p.optional && !hasDefaultValue(p);
+  const isOptional = (p: SdkParameter | SdkHttpParameter) =>
+    p.optional || hasDefaultValue(p);
+  const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
+    p.kind !== "credential";
+  const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
+    p.kind !== "method" ||
+    (p.kind === "method" &&
+      p.isApiVersionParam &&
+      _client.parameters.find((p) => p.isApiVersion));
+  const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
+    !(p.kind === "endpoint" && dpgContext.arm);
+  const filters = [
+    options.requiredOnly ? isRequired : undefined,
+    dpgContext.rlcOptions?.addCredentials === false
+      ? skipCredentials
+      : undefined,
+    options.optionalOnly ? isOptional : undefined,
+    options.onClientOnly ? skipMethodParam : undefined,
+    armSpecific
+  ];
+  const params = clientParams.filter((p) =>
+    filters.every((filter) => !filter || filter(p))
+  );
 
   return params;
 }

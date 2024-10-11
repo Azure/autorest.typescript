@@ -29,8 +29,7 @@ export function buildClientContext(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, subfolder } = _client;
-  const client = _client.tcgcClient;
+  const { description, subfolder, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
   const requiredParams = getClientParametersDeclaration(_client, dpgContext, {

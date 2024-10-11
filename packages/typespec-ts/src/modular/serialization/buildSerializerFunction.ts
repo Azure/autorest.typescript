@@ -15,15 +15,7 @@ import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-
-function isSupportedSerializerType(type: SdkType): boolean {
-  return (
-    type.kind === "model" ||
-    type.kind === "dict" ||
-    type.kind === "array" ||
-    type.kind === "union"
-  );
-}
+import { isSupportedSerializeType } from "./serializeUtils.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -32,7 +24,7 @@ export function buildModelSerializer(
   nameOnly: boolean = false
 ): FunctionDeclarationStructure | undefined | string {
   // const modelTcgcType = getTcgcType(type) as SdkModelType;
-  if (!isSupportedSerializerType(type)) {
+  if (!isSupportedSerializeType(type)) {
     return undefined;
   }
   if (type.kind === "model") {
@@ -403,7 +395,7 @@ function buildDictTypeSerializer(
   if (!valueSerializer) {
     return undefined;
   }
-  if (!isSupportedSerializerType(type.valueType)) {
+  if (!isSupportedSerializeType(type.valueType)) {
     return undefined;
   }
 
@@ -464,7 +456,7 @@ function buildArrayTypeSerializer(
   if (!valueSerializer) {
     return undefined;
   }
-  if (!isSupportedSerializerType(type.valueType)) {
+  if (!isSupportedSerializeType(type.valueType)) {
     return undefined;
   }
 

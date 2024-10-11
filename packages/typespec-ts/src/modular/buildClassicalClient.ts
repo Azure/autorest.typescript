@@ -30,8 +30,7 @@ export function buildClassicalClient(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ) {
-  const client = _client.tcgcClient;
-  const { description } = _client;
+  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
