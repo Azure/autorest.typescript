@@ -17,7 +17,8 @@ import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
-  isSupportedSerializeType
+  isSupportedSerializeType,
+  ModelSerializeOptions
 } from "./serializeUtils.js";
 
 export function buildModelSerializer(
@@ -60,7 +61,10 @@ export function buildModelSerializer(
 
   switch (type.kind) {
     case "model":
-      return buildModelTypeSerializer(context, type, nameOnly);
+      return buildModelTypeSerializer(context, type, {
+        nameOnly,
+        skipDiscriminatedUnionSuffix: skipDiscriminatedUnion
+      });
     case "union": // for non-discriminated union, we just return whatever we get
       return buildUnionSerializer(context, type, nameOnly);
     case "dict":
@@ -290,16 +294,10 @@ function buildUnionSerializer(
 function buildModelTypeSerializer(
   context: SdkContext,
   type: SdkModelType,
-  nameOnly: boolean
-): string;
-function buildModelTypeSerializer(
-  context: SdkContext,
-  type: SdkModelType
-): FunctionDeclarationStructure;
-function buildModelTypeSerializer(
-  context: SdkContext,
-  type: SdkModelType,
-  nameOnly = false
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
 ): FunctionDeclarationStructure | string {
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
@@ -307,9 +305,10 @@ function buildModelTypeSerializer(
   const serializerFunctionName = `${normalizeModelName(
     context,
     type,
-    NameType.Operation
+    NameType.Operation,
+    options.skipDiscriminatedUnionSuffix
   )}Serializer`;
-  if (nameOnly) {
+  if (options.nameOnly) {
     return serializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
@@ -319,7 +318,12 @@ function buildModelTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: normalizeModelName(
+          context,
+          type,
+          NameType.Interface,
+          options.skipDiscriminatedUnionSuffix
+        )
       }
     ],
     returnType: "any",

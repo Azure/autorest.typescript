@@ -2085,7 +2085,7 @@ export type TargetResourceConfigurationsUnion =
   | TargetResourceConfigurations;
 
 export function targetResourceConfigurationsUnionSerializer(
-  item: TargetResourceConfigurations,
+  item: TargetResourceConfigurationsUnion,
 ): any {
   switch (item.kind) {
     case "FunctionsFlexConsumption":
@@ -2100,7 +2100,7 @@ export function targetResourceConfigurationsUnionSerializer(
 
 export function targetResourceConfigurationsUnionDeserializer(
   item: any,
-): TargetResourceConfigurations {
+): TargetResourceConfigurationsUnion {
   switch (item.kind) {
     case "FunctionsFlexConsumption":
       return functionFlexConsumptionTargetResourceConfigurationsDeserializer(

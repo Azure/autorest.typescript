@@ -1,11 +1,5 @@
-import {
-  Imports as RuntimeImports,
-  addImportToSpecifier
-} from "@azure-tools/rlc-common";
-
 import { Type } from "../modularCodeModel.js";
 import { getAllAncestors } from "../helpers/operationHelpers.js";
-import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   SdkModelType,
   SdkType
@@ -18,30 +12,6 @@ export function isSupportedSerializeType(type: SdkType): boolean {
     type.kind === "array" ||
     type.kind === "union"
   );
-}
-
-export function getDeserializeFunctionName(
-  type: Type,
-  serializeType: string,
-  runtimeImports?: RuntimeImports
-) {
-  const typeUnionNames = getTypeUnionName(
-    type,
-    false,
-    runtimeImports,
-    serializeType
-  );
-  const deserializeFunctionName = `${serializeType}${toPascalCase(
-    formalizeTypeUnionName(typeUnionNames ?? "")
-  )}`;
-  return deserializeFunctionName;
-}
-
-function formalizeTypeUnionName(typeUnionName: string) {
-  return typeUnionName
-    .replace(/\[\]/g, "Array")
-    .replace(/ /g, "")
-    .replace(/\|/g, "And");
 }
 
 /**
@@ -167,94 +137,7 @@ export function isPolymorphicUnion(t: Type): boolean {
   return false;
 }
 
-function getTypeUnionName(
-  type: Type,
-  fromRest: boolean,
-  runtimeImports?: RuntimeImports,
-  serializeType?: string
-) {
-  const types = type.types;
-  if (type.type === "list") {
-    types === type.elementType?.types;
-  }
-  if (type.name) {
-    const typeName =
-      (fromRest && type.alias ? type.alias : type.name) +
-      (fromRest ? (serializeType === "serialize" ? "Rest" : "Output") : "");
-    if (fromRest && runtimeImports) {
-      addImportToSpecifier(
-        "rlcIndex",
-        runtimeImports,
-        (type.alias ?? type.name) +
-          (serializeType === "serialize"
-            ? " as " + (type.alias ?? type.name) + "Rest"
-            : "Output")
-      );
-    } else if (runtimeImports) {
-      addImportToSpecifier("modularModel", runtimeImports, type.name);
-    }
-    return typeName;
-  }
-  return types
-    ?.map((t) => {
-      if (t.type === "list" && t.elementType?.type === "model") {
-        if (fromRest && t.elementType.name && runtimeImports) {
-          addImportToSpecifier(
-            "rlcIndex",
-            runtimeImports,
-            (t.elementType.alias ?? t.elementType.name) +
-              (serializeType === "serialize"
-                ? " as " + t.elementType.name + "Rest"
-                : "Output")
-          );
-        } else if (t.elementType.name && runtimeImports) {
-          addImportToSpecifier(
-            "modularModel",
-            runtimeImports,
-            t.elementType.name
-          );
-        }
-        return (
-          (t.elementType.alias ?? t.elementType.name) +
-          (fromRest
-            ? serializeType === "serialize"
-              ? "Rest"
-              : "Output"
-            : "") +
-          "[]"
-        );
-      }
-      if (fromRest && t.name && runtimeImports) {
-        addImportToSpecifier(
-          "rlcIndex",
-          runtimeImports,
-          (t.alias ?? t.name) +
-            (serializeType === "serialize"
-              ? " as " + (t.alias ?? t.name) + "Rest"
-              : "Output")
-        );
-      } else if (t.name && runtimeImports) {
-        addImportToSpecifier("modularModel", runtimeImports, t.name);
-      }
-      return t.name
-        ? (fromRest && t.alias ? t.alias : t.name) +
-            (fromRest
-              ? serializeType === "serialize"
-                ? "Rest"
-                : "Output"
-              : "")
-        : getMappedType(t.type, fromRest);
-    })
-    .join(" | ");
-}
-
-function getMappedType(modularType: string, fromRest?: boolean) {
-  switch (modularType) {
-    case "datetime":
-      return fromRest ? "string" : "Date";
-    case "byte-array":
-      return fromRest ? "string" : "Uint8Array";
-    default:
-      return modularType;
-  }
+export interface ModelSerializeOptions {
+  nameOnly: boolean;
+  skipDiscriminatedUnionSuffix: boolean;
 }

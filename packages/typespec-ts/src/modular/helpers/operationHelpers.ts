@@ -22,7 +22,6 @@ import {
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
 import {
-  getDeserializeFunctionName,
   isNormalUnion,
   isSpecialHandledUnion
 } from "../serialization/serializeUtils.js";
@@ -1087,11 +1086,14 @@ export function deserializeResponseValue(
       if (isNormalUnion(type)) {
         return `${restValue}`;
       } else if (isSpecialHandledUnion(type)) {
-        const deserializeFunctionName = getDeserializeFunctionName(
-          type,
-          "deserialize"
-        );
-        return `${deserializeFunctionName}(${restValue})`;
+        const deserializeFunctionName = type
+          ? buildModelDeserializer(context, type.tcgcType!, false, true)
+          : undefined;
+        if (deserializeFunctionName) {
+          return `${deserializeFunctionName}(${restValue})`;
+        } else {
+          return `${restValue} as any`;
+        }
       } else {
         return `${restValue} as any`;
       }

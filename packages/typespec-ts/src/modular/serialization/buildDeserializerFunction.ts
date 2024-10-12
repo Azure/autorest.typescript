@@ -17,7 +17,8 @@ import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
-  isSupportedSerializeType
+  isSupportedSerializeType,
+  ModelSerializeOptions
 } from "./serializeUtils.js";
 
 export function buildModelDeserializer(
@@ -60,7 +61,10 @@ export function buildModelDeserializer(
 
   switch (type.kind) {
     case "model":
-      return buildModelTypeDeserializer(context, type, nameOnly);
+      return buildModelTypeDeserializer(context, type, {
+        nameOnly,
+        skipDiscriminatedUnionSuffix: skipDiscriminatedUnion
+      });
     case "union": // for non-discriminated union, we just return whatever we get
       return buildUnionDeserializer(context, type, nameOnly);
     case "dict":
@@ -296,16 +300,10 @@ function buildUnionDeserializer(
 function buildModelTypeDeserializer(
   context: SdkContext,
   type: SdkModelType,
-  nameOnly: boolean
-): string;
-function buildModelTypeDeserializer(
-  context: SdkContext,
-  type: SdkModelType
-): FunctionDeclarationStructure;
-function buildModelTypeDeserializer(
-  context: SdkContext,
-  type: SdkModelType,
-  nameOnly = false
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
 ): FunctionDeclarationStructure | string | undefined {
   if (!type.name) {
     throw new Error(`NYI Deserialization of anonymous types`);
@@ -313,14 +311,15 @@ function buildModelTypeDeserializer(
   const deserializerFunctionName = `${normalizeModelName(
     context,
     type,
-    NameType.Operation
+    NameType.Operation,
+    options.skipDiscriminatedUnionSuffix
   )}Deserializer`;
-  if (nameOnly) {
+  if (options.nameOnly) {
     return deserializerFunctionName;
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${normalizeModelName(context, type, NameType.Operation)}Deserializer`,
+    name: deserializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -328,7 +327,12 @@ function buildModelTypeDeserializer(
         type: "any"
       }
     ],
-    returnType: normalizeModelName(context, type),
+    returnType: normalizeModelName(
+      context,
+      type,
+      NameType.Interface,
+      options.skipDiscriminatedUnionSuffix
+    ),
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";

@@ -1062,7 +1062,7 @@ export type ChatRequestMessageUnion =
   | ChatRequestMessage;
 
 export function chatRequestMessageUnionSerializer(
-  item: ChatRequestMessage,
+  item: ChatRequestMessageUnion,
 ): any {
   switch (item.role) {
     case "system":
@@ -1168,7 +1168,7 @@ export type ChatMessageContentItemUnion =
   | ChatMessageContentItem;
 
 export function chatMessageContentItemUnionSerializer(
-  item: ChatMessageContentItem,
+  item: ChatMessageContentItemUnion,
 ): any {
   switch (item.type) {
     case "text":
@@ -1236,7 +1236,7 @@ export function chatMessageImageUrlSerializer(item: ChatMessageImageUrl): any {
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
 export function chatMessageContentItemUnionArraySerializer(
-  result: Array<ChatMessageContentItem>,
+  result: Array<ChatMessageContentItemUnion>,
 ): any[] {
   return result.map((item) => {
     return chatMessageContentItemUnionSerializer(item);
@@ -1310,7 +1310,7 @@ export type ChatCompletionsToolCallUnion =
   | ChatCompletionsToolCall;
 
 export function chatCompletionsToolCallUnionSerializer(
-  item: ChatCompletionsToolCall,
+  item: ChatCompletionsToolCallUnion,
 ): any {
   switch (item.type) {
     case "function":
@@ -1325,7 +1325,7 @@ export function chatCompletionsToolCallUnionSerializer(
 
 export function chatCompletionsToolCallUnionDeserializer(
   item: any,
-): ChatCompletionsToolCall {
+): ChatCompletionsToolCallUnion {
   switch (item.type) {
     case "function":
       return chatCompletionsFunctionToolCallDeserializer(
@@ -1394,7 +1394,7 @@ export function functionCallDeserializer(item: any): FunctionCall {
 }
 
 export function chatCompletionsToolCallUnionArraySerializer(
-  result: Array<ChatCompletionsToolCall>,
+  result: Array<ChatCompletionsToolCallUnion>,
 ): any[] {
   return result.map((item) => {
     return chatCompletionsToolCallUnionSerializer(item);
@@ -1402,7 +1402,7 @@ export function chatCompletionsToolCallUnionArraySerializer(
 }
 
 export function chatCompletionsToolCallUnionArrayDeserializer(
-  result: Array<ChatCompletionsToolCall>,
+  result: Array<ChatCompletionsToolCallUnion>,
 ): any[] {
   return result.map((item) => {
     return chatCompletionsToolCallUnionDeserializer(item);
@@ -1446,7 +1446,7 @@ export function chatRequestFunctionMessageSerializer(
 }
 
 export function chatRequestMessageUnionArraySerializer(
-  result: Array<ChatRequestMessage>,
+  result: Array<ChatRequestMessageUnion>,
 ): any[] {
   return result.map((item) => {
     return chatRequestMessageUnionSerializer(item);
@@ -1546,7 +1546,7 @@ export type AzureChatExtensionConfigurationUnion =
   | AzureChatExtensionConfiguration;
 
 export function azureChatExtensionConfigurationUnionSerializer(
-  item: AzureChatExtensionConfiguration,
+  item: AzureChatExtensionConfigurationUnion,
 ): any {
   switch (item.type) {
     case "azure_search":
@@ -1720,7 +1720,7 @@ export type OnYourDataAuthenticationOptionsUnion =
   | OnYourDataAuthenticationOptions;
 
 export function onYourDataAuthenticationOptionsUnionSerializer(
-  item: OnYourDataAuthenticationOptions,
+  item: OnYourDataAuthenticationOptionsUnion,
 ): any {
   switch (item.type) {
     case "api_key":
@@ -1958,7 +1958,7 @@ export type OnYourDataVectorizationSourceUnion =
   | OnYourDataVectorizationSource;
 
 export function onYourDataVectorizationSourceUnionSerializer(
-  item: OnYourDataVectorizationSource,
+  item: OnYourDataVectorizationSourceUnion,
 ): any {
   switch (item.type) {
     case "endpoint":
@@ -2034,7 +2034,7 @@ export type OnYourDataVectorSearchAuthenticationOptionsUnion =
   | OnYourDataVectorSearchAuthenticationOptions;
 
 export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
-  item: OnYourDataVectorSearchAuthenticationOptions,
+  item: OnYourDataVectorSearchAuthenticationOptionsUnion,
 ): any {
   switch (item.type) {
     case "api_key":
@@ -2616,7 +2616,7 @@ export function pineconeFieldMappingOptionsSerializer(
 }
 
 export function azureChatExtensionConfigurationUnionArraySerializer(
-  result: Array<AzureChatExtensionConfiguration>,
+  result: Array<AzureChatExtensionConfigurationUnion>,
 ): any[] {
   return result.map((item) => {
     return azureChatExtensionConfigurationUnionSerializer(item);
@@ -2689,7 +2689,7 @@ export type ChatCompletionsResponseFormatUnion =
   | ChatCompletionsResponseFormat;
 
 export function chatCompletionsResponseFormatUnionSerializer(
-  item: ChatCompletionsResponseFormat,
+  item: ChatCompletionsResponseFormatUnion,
 ): any {
   switch (item.type) {
     case "text":
@@ -2753,7 +2753,7 @@ export type ChatCompletionsToolDefinitionUnion =
   | ChatCompletionsToolDefinition;
 
 export function chatCompletionsToolDefinitionUnionSerializer(
-  item: ChatCompletionsToolDefinition,
+  item: ChatCompletionsToolDefinitionUnion,
 ): any {
   switch (item.type) {
     case "function":
@@ -2785,7 +2785,7 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
 }
 
 export function chatCompletionsToolDefinitionUnionArraySerializer(
-  result: Array<ChatCompletionsToolDefinition>,
+  result: Array<ChatCompletionsToolDefinitionUnion>,
 ): any[] {
   return result.map((item) => {
     return chatCompletionsToolDefinitionUnionSerializer(item);
@@ -2829,7 +2829,7 @@ export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedToolSelection;
 
 export function chatCompletionsNamedToolSelectionUnionSerializer(
-  item: ChatCompletionsNamedToolSelection,
+  item: ChatCompletionsNamedToolSelectionUnion,
 ): any {
   switch (item.type) {
     case "function":
@@ -3272,7 +3272,7 @@ export type ChatFinishDetailsUnion =
 
 export function chatFinishDetailsUnionDeserializer(
   item: any,
-): ChatFinishDetails {
+): ChatFinishDetailsUnion {
   switch (item.type) {
     case "stop":
       return stopFinishDetailsDeserializer(item as StopFinishDetails);

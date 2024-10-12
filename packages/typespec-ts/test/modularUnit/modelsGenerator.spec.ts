@@ -1372,7 +1372,7 @@ describe("inheritance & polymorphism", () => {
       
       export type PetUnion = Cat | Pet;
             
-      export function petUnionDeserializer(item: any): Pet {
+      export function petUnionDeserializer(item: any): PetUnion {
         switch (item.kind) {
           case "cat":
             return catDeserializer(item as Cat);
@@ -1466,7 +1466,7 @@ describe("inheritance & polymorphism", () => {
 
       export type PetUnion = Cat | Dog | Pet;
       
-      export function petUnionDeserializer(item: any): Pet {
+      export function petUnionDeserializer(item: any): PetUnion {
         switch (item.kind) {
           case "cat":
             return catDeserializer(item as Cat);
