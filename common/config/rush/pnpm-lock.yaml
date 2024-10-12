@@ -242,16 +242,16 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      "@azure-rest/core-client": ^2.1.0
+      "@azure-rest/core-client": ^2.3.1
       "@azure-tools/cadl-ranch": ^0.14.5
       "@azure-tools/cadl-ranch-api": ^0.4.6
       "@azure-tools/cadl-ranch-expect": ^0.15.3
       "@azure-tools/cadl-ranch-specs": ^0.37.1
       "@azure-tools/rlc-common": workspace:^0.33.0
-      "@azure-tools/typespec-autorest": 0.46.0-dev.6
-      "@azure-tools/typespec-azure-core": 0.46.0-dev.3
-      "@azure-tools/typespec-azure-resource-manager": 0.46.0-dev.4
-      "@azure-tools/typespec-client-generator-core": 0.46.0-dev.28
+      "@azure-tools/typespec-autorest": ">=0.46.0 <1.0.0"
+      "@azure-tools/typespec-azure-core": ">=0.46.0 <1.0.0"
+      "@azure-tools/typespec-azure-resource-manager": ">=0.46.0 <1.0.0"
+      "@azure-tools/typespec-client-generator-core": ">=0.46.1 <1.0.0"
       "@azure/abort-controller": ^2.1.2
       "@azure/core-auth": ^1.6.0
       "@azure/core-lro": ^3.1.0
@@ -267,12 +267,12 @@ importers:
       "@types/node": ^18.0.0
       "@typescript-eslint/eslint-plugin": ^6.8.0
       "@typescript-eslint/parser": ^6.8.0
-      "@typespec/compiler": 0.60.0-dev.14
-      "@typespec/http": 0.60.0-dev.3
-      "@typespec/openapi": 0.60.0-dev.2
-      "@typespec/rest": 0.60.0-dev.2
+      "@typespec/compiler": ">=0.60.0 <1.0.0"
+      "@typespec/http": ">=0.60.0 <1.0.0"
+      "@typespec/openapi": ">=0.60.0, <1.0.0"
+      "@typespec/rest": ">=0.60.0 <1.0.0"
       "@typespec/ts-http-runtime": 1.0.0-alpha.20240314.2
-      "@typespec/versioning": 0.60.0-dev.8
+      "@typespec/versioning": ">=0.60.0 <1.0.0"
       "@vitest/coverage-istanbul": ~1.6.0
       "@vitest/coverage-v8": ~1.6.0
       chai: ^4.3.6
@@ -301,15 +301,15 @@ importers:
       ts-morph: 23.0.0
       tslib: 2.6.2
     devDependencies:
-      "@azure-rest/core-client": 2.1.0
-      "@azure-tools/cadl-ranch": 0.14.5_wwhgtlv3d5czp7ehywk5zavfwa
+      "@azure-rest/core-client": 2.3.1
+      "@azure-tools/cadl-ranch": 0.14.5_u6vqycza47pc27npceq3afjroq
       "@azure-tools/cadl-ranch-api": 0.4.6
-      "@azure-tools/cadl-ranch-expect": 0.15.3_l3q25u3ienytgtg6i6hqlfnacq
-      "@azure-tools/cadl-ranch-specs": 0.37.1_ucovefapbiugtshuitrok25s7a
-      "@azure-tools/typespec-autorest": 0.46.0-dev.6_nah5s6cn32446s4exvzzirjwxi
-      "@azure-tools/typespec-azure-core": 0.46.0-dev.3_o7wmy4k7bi6uk2anfdntymvlty
-      "@azure-tools/typespec-azure-resource-manager": 0.46.0-dev.4_hkb4eljafkcbputz4gxklxskki
-      "@azure-tools/typespec-client-generator-core": 0.46.0-dev.28_hkb4eljafkcbputz4gxklxskki
+      "@azure-tools/cadl-ranch-expect": 0.15.3_6q3mt4nixmc7532uwgfmj35l7a
+      "@azure-tools/cadl-ranch-specs": 0.37.1_uusjfipei5klyr7ukao6twze4y
+      "@azure-tools/typespec-autorest": 0.46.0_xbl575whnidfaer3avxvmhdt4m
+      "@azure-tools/typespec-azure-core": 0.46.0_q5ggzbpl3hc67afymvxcd3rf4u
+      "@azure-tools/typespec-azure-resource-manager": 0.46.0_mv2yjhxqzehxobn2ibqatea2lm
+      "@azure-tools/typespec-client-generator-core": 0.46.1_mv2yjhxqzehxobn2ibqatea2lm
       "@azure/abort-controller": 2.1.2
       "@azure/core-auth": 1.6.0
       "@azure/core-lro": 3.1.0
@@ -323,14 +323,14 @@ importers:
       "@types/lodash": 4.17.4
       "@types/mocha": 10.0.6
       "@types/node": 18.18.0
-      "@typescript-eslint/eslint-plugin": 6.8.0_qf4uxqaifopx7g4oramkqjuumy
-      "@typescript-eslint/parser": 6.8.0_5hvrknbmeu6sajfm3eyubyzq5i
-      "@typespec/compiler": 0.60.0-dev.14
-      "@typespec/http": 0.60.0-dev.3_zm2padhol43qgwf45dr22smluy
-      "@typespec/openapi": 0.60.0-dev.2_pdoq2af7kan6dezigzzcr3h2yy
-      "@typespec/rest": 0.60.0-dev.2_pdoq2af7kan6dezigzzcr3h2yy
+      "@typescript-eslint/eslint-plugin": 6.8.0_wroavni7rd6ng5lxj6jm5p2pxq
+      "@typescript-eslint/parser": 6.8.0_wgnkk2eh2432jxos7omdkkhhte
+      "@typespec/compiler": 0.60.1
+      "@typespec/http": 0.60.0_@typespec+compiler@0.60.1
+      "@typespec/openapi": 0.60.0_yqm75b3axjref3ollnyxtv2cye
+      "@typespec/rest": 0.60.0_yqm75b3axjref3ollnyxtv2cye
       "@typespec/ts-http-runtime": 1.0.0-alpha.20240314.2
-      "@typespec/versioning": 0.60.0-dev.8_zm2padhol43qgwf45dr22smluy
+      "@typespec/versioning": 0.60.1_@typespec+compiler@0.60.1
       "@vitest/coverage-istanbul": 1.6.0_vitest@1.6.0
       "@vitest/coverage-v8": 1.6.0_vitest@1.6.0
       chai: 4.3.8
@@ -421,18 +421,18 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-rest/core-client/2.1.0:
+  /@azure-rest/core-client/2.3.1:
     resolution:
       {
-        integrity: sha512-Ekq5PXiLyBF1PnfoXeC0IIAmFm1DVBiJdZGzk4lK0wsk8l8KdYDAWDfDQ8P0nqjvEQQjFaWd45pIidri94ih3Q==,
+        integrity: sha512-sGTdh2Ln95F/Jqikr9OybQvx00EVvljwgxjfcxTqjID0PBVGDuNR0ie9e9HsTA1vJT23BlVRd/dCIGzJriYw9g==,
       }
     engines: { node: ">=18.0.0" }
     dependencies:
       "@azure/abort-controller": 2.1.2
       "@azure/core-auth": 1.6.0
       "@azure/core-rest-pipeline": 1.14.0
-      "@azure/core-tracing": 1.0.1
-      "@azure/core-util": 1.5.0
+      "@azure/core-tracing": 1.1.2
+      "@azure/core-util": 1.9.0
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
