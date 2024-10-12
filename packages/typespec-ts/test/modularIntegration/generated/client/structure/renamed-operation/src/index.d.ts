@@ -29,7 +29,7 @@ export declare interface RenamedOneOptionalParams extends OperationOptions {
 export declare class RenamedOperationClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: RenamedOperationClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: RenamedOperationClientOptionalParams);
     renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
     renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
     renamedFive(options?: RenamedFiveOptionalParams): Promise<void>;

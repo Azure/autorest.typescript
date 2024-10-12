@@ -38,7 +38,7 @@ export declare interface Group2TwoOptionalParams extends OperationOptions {
 export declare class TwoOperationGroupClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: TwoOperationGroupClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: TwoOperationGroupClientOptionalParams);
     readonly group1: Group1Operations;
     readonly group2: Group2Operations;
 }

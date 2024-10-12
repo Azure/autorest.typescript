@@ -60,7 +60,7 @@ export function buildClientContext(
       .filter((p) => p.name !== "endpoint")
       .map((p) => {
         return {
-          name: normalizeName(p.name, NameType.Property),
+          name: normalizeName(p.name, NameType.Parameter),
           type:
             p.name.toLowerCase() === "apiversion"
               ? "string"

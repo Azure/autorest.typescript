@@ -12,7 +12,7 @@ export declare interface BClientContext extends Client {
 export declare class ClientAClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: ClientAClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: ClientAClientOptionalParams);
     renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
     renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
     renamedFive(options?: RenamedFiveOptionalParams): Promise<void>;
@@ -24,7 +24,7 @@ export declare interface ClientAClientOptionalParams extends ClientOptions {
 export declare class ClientBClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: ClientBClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: ClientBClientOptionalParams);
     renamedTwo(options?: RenamedTwoOptionalParams): Promise<void>;
     renamedFour(options?: RenamedFourOptionalParams): Promise<void>;
     renamedSix(options?: RenamedSixOptionalParams): Promise<void>;

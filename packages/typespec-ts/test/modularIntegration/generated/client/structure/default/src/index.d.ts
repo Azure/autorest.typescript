@@ -59,7 +59,7 @@ export declare interface QuxOperations {
 export declare class ServiceClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: ServiceClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptionalParams);
     one(options?: OneOptionalParams): Promise<void>;
     two(options?: TwoOptionalParams): Promise<void>;
     readonly baz: BazOperations;

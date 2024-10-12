@@ -8,7 +8,7 @@ export declare type ClientType = "default" | "multi-client" | "renamed-operation
 export declare class FirstClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: FirstClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: FirstClientOptionalParams);
     one(options?: OneOptionalParams): Promise<void>;
     readonly group3: Group3Operations;
     readonly group4: Group4Operations;
@@ -54,7 +54,7 @@ export declare interface OneOptionalParams extends OperationOptions {
 export declare class SecondClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, client: ClientType, options?: SecondClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: SecondClientOptionalParams);
     five(options?: FiveOptionalParams): Promise<void>;
     readonly group5: Group5Operations;
 }

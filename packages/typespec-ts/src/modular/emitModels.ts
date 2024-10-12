@@ -401,9 +401,6 @@ export function normalizeModelName(
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  if (type.name.toLowerCase() === "global") {
-    type;
-  }
   return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}`;
 }
 
