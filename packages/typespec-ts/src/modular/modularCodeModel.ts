@@ -20,7 +20,6 @@ export interface ModularCodeModel {
   options: RLCOptions;
   modularOptions: ModularOptions;
   namespace?: string;
-  subnamespaceToClients?: any;
   clients: Client[];
   types: Type[];
   project: Project;

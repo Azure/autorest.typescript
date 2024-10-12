@@ -482,7 +482,7 @@ function emitBodyParameter(
       type,
       location: "body",
       ...base,
-      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+      isBinaryPayload: isBinaryPayload(context, body.type)
     };
   }
   return undefined;
@@ -646,11 +646,7 @@ function emitResponse(
     discriminator: "basic",
     type: type,
     isBinaryPayload: innerResponse.body?.type
-      ? isBinaryPayload(
-          context,
-          innerResponse.body?.type,
-          innerResponse.body?.contentTypes![0] ?? "application/json"
-        )
+      ? isBinaryPayload(context, innerResponse.body?.type)
       : false
   };
 
