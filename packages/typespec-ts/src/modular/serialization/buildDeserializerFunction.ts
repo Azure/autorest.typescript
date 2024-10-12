@@ -15,7 +15,10 @@ import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-import { isSupportedSerializeType } from "./serializeUtils.js";
+import {
+  isDiscriminatedUnion,
+  isSupportedSerializeType
+} from "./serializeUtils.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -69,16 +72,6 @@ export function buildModelDeserializer(
   }
 }
 
-function isDiscriminatedUnion(
-  type: SdkType
-): type is SdkModelType & { discriminatorProperty: SdkType } {
-  return Boolean(
-    type?.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
-  );
-}
-
 function hasAdditionalProperties(type: SdkType | undefined) {
   if (
     !type ||
@@ -122,7 +115,7 @@ function buildPolymorphicDeserializer(
     context,
     type,
     NameType.Operation
-  )}UnionDeserializer`;
+  )}Deserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
   }
@@ -206,14 +199,15 @@ function buildDiscriminatedUnionDeserializer(
     context,
     type,
     NameType.Operation
-  )}UnionDeserializer`;
+  )}Deserializer`;
   if (nameOnly) {
     return deserializeFunctionName;
   }
   const baseDeserializerName = `${normalizeModelName(
     context,
     type,
-    NameType.Operation
+    NameType.Operation,
+    true
   )}Deserializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;
@@ -285,7 +279,7 @@ function buildUnionDeserializer(
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${normalizeModelName(context, type, NameType.Operation)}Deserializer`,
+    name: deserializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -337,9 +331,6 @@ function buildModelTypeDeserializer(
     returnType: normalizeModelName(context, type),
     statements: ["return item;"]
   };
-  if (deserializerFunction.name === "collectionsBytePropertyDeserializer") {
-    type;
-  }
   const nullabilityPrefix = "";
   // getPropertySerializationPrefix({
   //   clientName: "item",

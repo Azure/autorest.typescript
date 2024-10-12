@@ -15,7 +15,10 @@ import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-import { isSupportedSerializeType } from "./serializeUtils.js";
+import {
+  isDiscriminatedUnion,
+  isSupportedSerializeType
+} from "./serializeUtils.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -69,16 +72,6 @@ export function buildModelSerializer(
   }
 }
 
-function isDiscriminatedUnion(
-  type: SdkType
-): type is SdkModelType & { discriminatorProperty: SdkType } {
-  return Boolean(
-    type?.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
-  );
-}
-
 function hasAdditionalProperties(type: SdkType | undefined) {
   if (!type || !("additionalProperties" in type)) {
     return false;
@@ -116,12 +109,9 @@ function buildPolymorphicSerializer(
     context,
     type,
     NameType.Operation
-  )}UnionSerializer`;
+  )}Serializer`;
   if (nameOnly) {
     return serializeFunctionName;
-  }
-  if (serializeFunctionName === "chatRequestMessageUnionSerializer") {
-    type;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -203,17 +193,15 @@ function buildDiscriminatedUnionSerializer(
     context,
     type,
     NameType.Operation
-  )}UnionSerializer`;
+  )}Serializer`;
   if (nameOnly) {
     return serializeFunctionName;
-  }
-  if (serializeFunctionName === "chatRequestMessageUnionSerializer") {
-    type;
   }
   const baseSerializerName = `${normalizeModelName(
     context,
     type,
-    NameType.Operation
+    NameType.Operation,
+    true
   )}Serializer`;
   for (const key in type.discriminatedSubtypes) {
     const subType = type.discriminatedSubtypes[key]!;

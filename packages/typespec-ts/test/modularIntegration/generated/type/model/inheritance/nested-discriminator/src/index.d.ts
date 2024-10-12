@@ -30,12 +30,12 @@ export declare class NestedDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NestedDiscriminatorClientOptionalParams);
-    getModel(options?: GetModelOptionalParams): Promise<Fish>;
-    putModel(input: Fish, options?: PutModelOptionalParams): Promise<void>;
-    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<Fish>;
-    putRecursiveModel(input: Fish, options?: PutRecursiveModelOptionalParams): Promise<void>;
-    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<Fish>;
-    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<Fish>;
+    getModel(options?: GetModelOptionalParams): Promise<FishUnion>;
+    putModel(input: FishUnion, options?: PutModelOptionalParams): Promise<void>;
+    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<FishUnion>;
+    putRecursiveModel(input: FishUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
+    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<FishUnion>;
+    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<FishUnion>;
 }
 
 export declare interface NestedDiscriminatorClientOptionalParams extends ClientOptions {

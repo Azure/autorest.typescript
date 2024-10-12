@@ -393,6 +393,7 @@ export function getType(
     });
   }
 
+  typesMap.set(effectiveModel, newValue);
   return newValue;
 }
 
@@ -484,7 +485,6 @@ function emitBodyParameter(
     });
 
     type.name = normalizeModelName(context, type.tcgcType);
-
     return {
       contentTypes,
       type,

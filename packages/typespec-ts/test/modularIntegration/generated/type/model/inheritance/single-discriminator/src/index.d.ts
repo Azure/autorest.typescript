@@ -57,12 +57,12 @@ export declare class SingleDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: SingleDiscriminatorClientOptionalParams);
-    getModel(options?: GetModelOptionalParams): Promise<Bird>;
-    putModel(input: Bird, options?: PutModelOptionalParams): Promise<void>;
-    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<Bird>;
-    putRecursiveModel(input: Bird, options?: PutRecursiveModelOptionalParams): Promise<void>;
-    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<Bird>;
-    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<Bird>;
+    getModel(options?: GetModelOptionalParams): Promise<BirdUnion>;
+    putModel(input: BirdUnion, options?: PutModelOptionalParams): Promise<void>;
+    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<BirdUnion>;
+    putRecursiveModel(input: BirdUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
+    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<BirdUnion>;
+    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<BirdUnion>;
     getLegacyModel(options?: GetLegacyModelOptionalParams): Promise<DinosaurUnion>;
 }
 

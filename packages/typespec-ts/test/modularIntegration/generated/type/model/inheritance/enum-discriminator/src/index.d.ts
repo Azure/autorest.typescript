@@ -20,14 +20,14 @@ export declare class EnumDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: EnumDiscriminatorClientOptionalParams);
-    getExtensibleModel(options?: GetExtensibleModelOptionalParams): Promise<Dog>;
-    putExtensibleModel(input: Dog, options?: PutExtensibleModelOptionalParams): Promise<void>;
-    getExtensibleModelMissingDiscriminator(options?: GetExtensibleModelMissingDiscriminatorOptionalParams): Promise<Dog>;
-    getExtensibleModelWrongDiscriminator(options?: GetExtensibleModelWrongDiscriminatorOptionalParams): Promise<Dog>;
-    getFixedModel(options?: GetFixedModelOptionalParams): Promise<Snake>;
-    putFixedModel(input: Snake, options?: PutFixedModelOptionalParams): Promise<void>;
-    getFixedModelMissingDiscriminator(options?: GetFixedModelMissingDiscriminatorOptionalParams): Promise<Snake>;
-    getFixedModelWrongDiscriminator(options?: GetFixedModelWrongDiscriminatorOptionalParams): Promise<Snake>;
+    getExtensibleModel(options?: GetExtensibleModelOptionalParams): Promise<DogUnion>;
+    putExtensibleModel(input: DogUnion, options?: PutExtensibleModelOptionalParams): Promise<void>;
+    getExtensibleModelMissingDiscriminator(options?: GetExtensibleModelMissingDiscriminatorOptionalParams): Promise<DogUnion>;
+    getExtensibleModelWrongDiscriminator(options?: GetExtensibleModelWrongDiscriminatorOptionalParams): Promise<DogUnion>;
+    getFixedModel(options?: GetFixedModelOptionalParams): Promise<SnakeUnion>;
+    putFixedModel(input: SnakeUnion, options?: PutFixedModelOptionalParams): Promise<void>;
+    getFixedModelMissingDiscriminator(options?: GetFixedModelMissingDiscriminatorOptionalParams): Promise<SnakeUnion>;
+    getFixedModelWrongDiscriminator(options?: GetFixedModelWrongDiscriminatorOptionalParams): Promise<SnakeUnion>;
 }
 
 export declare interface EnumDiscriminatorClientOptionalParams extends ClientOptions {

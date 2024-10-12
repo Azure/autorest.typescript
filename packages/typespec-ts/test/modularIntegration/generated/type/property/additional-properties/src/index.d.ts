@@ -220,8 +220,8 @@ export declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends Op
 }
 
 export declare interface ExtendsUnknownDiscriminatedOperations {
-    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminated>;
-    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminated, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminatedUnion>;
+    put: (body: ExtendsUnknownAdditionalPropertiesDiscriminatedUnion, options?: ExtendsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
@@ -335,8 +335,8 @@ export declare interface IsUnknownDiscriminatedGetOptionalParams extends Operati
 }
 
 export declare interface IsUnknownDiscriminatedOperations {
-    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminated>;
-    put: (body: IsUnknownAdditionalPropertiesDiscriminated, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
+    get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
+    put: (body: IsUnknownAdditionalPropertiesDiscriminatedUnion, options?: IsUnknownDiscriminatedPutOptionalParams) => Promise<void>;
 }
 
 export declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {

@@ -6,7 +6,10 @@ import {
 import { Type } from "../modularCodeModel.js";
 import { getAllAncestors } from "../helpers/operationHelpers.js";
 import { toPascalCase } from "../../utils/casingUtils.js";
-import { SdkType } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkModelType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 
 export function isSupportedSerializeType(type: SdkType): boolean {
   return (
@@ -123,19 +126,21 @@ export function isNormalUnion(t: Type): boolean {
   );
 }
 
-export function isDiscriminatedUnion(t: Type): boolean {
-  return (
-    t.type === "combined" &&
-    (t.discriminator ? true : false) &&
-    (t.types?.some((p) => {
-      return isSpecialUnionVariant(p);
-    }) ??
-      false)
+export function isDiscriminatedUnion(
+  type: SdkType
+): type is SdkModelType & { discriminatorProperty: SdkType } {
+  if (!type) {
+    return false;
+  }
+  return Boolean(
+    type?.kind === "model" &&
+      type.discriminatorProperty &&
+      type.discriminatedSubtypes
   );
 }
 
 export function isSpecialHandledUnion(t: Type): boolean {
-  return isDiscriminatedUnion(t) || isPolymorphicUnion(t);
+  return isDiscriminatedUnion(t.tcgcType!) || isPolymorphicUnion(t);
 }
 
 const polymorphicUnionMap = new Map<Type, boolean>();

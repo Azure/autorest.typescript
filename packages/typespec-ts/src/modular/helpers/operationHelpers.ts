@@ -14,11 +14,7 @@ import {
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import {
-  SdkContext,
-  SdkModelType,
-  SdkType
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
@@ -1189,18 +1185,6 @@ export function getPropertyFullName(
     fullName = `${propertyPath}["${modularType.clientName}"]`;
   }
   return fullName;
-}
-
-export function isDiscriminatedUnion(type?: SdkType): type is SdkModelType {
-  if (!type) {
-    return false;
-  }
-
-  return Boolean(
-    type.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
-  );
 }
 
 /**

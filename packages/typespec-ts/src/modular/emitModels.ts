@@ -44,6 +44,7 @@ import { useContext } from "../contextManager.js";
 import { isMetadata } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
+import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -298,7 +299,7 @@ export function buildModelInterface(
 ): InterfaceDeclarationStructure {
   const interfaceStructure = {
     kind: StructureKind.Interface,
-    name: normalizeModelName(context, type),
+    name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
@@ -372,7 +373,8 @@ export function normalizeModelName(
     | SdkUnionType
     | SdkArrayType
     | SdkDictionaryType,
-  nameType: NameType = NameType.Interface
+  nameType: NameType = NameType.Interface,
+  skipPolymorphicUnionSuffix = false
 ): string {
   if (type.kind === "array") {
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
@@ -390,6 +392,12 @@ export function normalizeModelName(
   segments.pop();
   segments.shift();
   segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+  let unionSuffix = "";
+  if (!skipPolymorphicUnionSuffix) {
+    if (type.kind === "model" && isDiscriminatedUnion(type)) {
+      unionSuffix = "Union";
+    }
+  }
   const namespacePrefix = context.rlcOptions?.enableModelNamespace
     ? segments.join("")
     : "";
@@ -401,7 +409,7 @@ export function normalizeModelName(
     pagePrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}`;
+  return `${pagePrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
