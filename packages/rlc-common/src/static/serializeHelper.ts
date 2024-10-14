@@ -73,7 +73,7 @@ export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, un
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-export function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>){
+export function withNonExplodedAndSpaceStyle(value: unknown[] | Record<string, unknown>){
     return {
         explode: false,
         style: "spaceDelimited",

@@ -15,8 +15,6 @@ export declare interface AzureCoreClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-export declare function buildMultiCollection(items: string[], parameterName: string): string;
-
 declare function createClient({ apiVersion, ...options }?: AzureCoreClientOptions): AzureCoreClient;
 export default createClient;
 
@@ -313,6 +311,12 @@ export declare type UserResourceMergeAndPatch = Partial<User>;
 
 export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
     readonly explode: true;
+    readonly style: "form";
+    readonly value: any;
+};
+
+export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
     readonly style: "form";
     readonly value: any;
 };

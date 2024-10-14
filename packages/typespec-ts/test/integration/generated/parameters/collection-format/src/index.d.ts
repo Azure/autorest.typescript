@@ -82,7 +82,7 @@ export declare interface QueryMultiQueryParam {
 }
 
 export declare interface QueryMultiQueryParamProperties {
-    colors: QueryMultiColorsQueryParam;
+    colors: QueryMultiColorsQueryParam | string;
 }
 
 export declare interface QueryPipes {
@@ -173,6 +173,12 @@ export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<st
 };
 
 export declare function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
+    readonly style: "pipeDelimited";
+    readonly value: any;
+};
+
+export declare function withNonExplodedAndSpaceStyle(value: unknown[] | Record<string, unknown>): {
     readonly explode: false;
     readonly style: "spaceDelimited";
     readonly value: any;

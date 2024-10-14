@@ -721,6 +721,12 @@ export declare function withExplodedAndFormStyle(value: unknown[] | Record<strin
     readonly value: any;
 };
 
+export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: any;
+};
+
 export declare function withReservedCharacters(value: string): {
     allowReserved: boolean;
     value: string;

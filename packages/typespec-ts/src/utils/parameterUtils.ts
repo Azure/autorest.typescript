@@ -28,9 +28,7 @@ export function getSerializeHelperKind(
       if (parameter.explode === true) {
         return "withExplodedAndFormStyle";
       } else {
-        if (parameter.format === undefined) {
-          return undefined;
-        } else if (parameter.format === "csv") {
+        if (parameter.format === undefined || parameter.format === "csv") {
           return "withNonExplodedAndFormStyle";
         } else if (parameter.format === "ssv") {
           return "withNonExplodedAndSpaceStyle";
