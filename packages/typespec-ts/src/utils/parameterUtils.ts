@@ -11,6 +11,7 @@ import {
   isObjectOrDictType,
   isPrimitiveType
 } from "./modelUtils.js";
+import { SdkContext } from "./interfaces.js";
 
 export function getSerializeHelperKind(
   parameter: HttpOperationParameter
@@ -46,6 +47,7 @@ export function getSerializeHelperKind(
 }
 
 export function getParameterWrapperType(
+  dpgContext: SdkContext,
   operationGroup: string,
   operationName: string,
   parameter: HttpOperationParameter,
@@ -72,7 +74,15 @@ export function getParameterWrapperType(
           if (parameter.format !== undefined) {
             // Not supported and report warnings
           }
-          return buildExplodeAndStyle(name, true, "form", valueSchema);
+          const wrapperType = buildExplodeAndStyle(
+            name,
+            true,
+            "form",
+            valueSchema
+          );
+          return dpgContext.rlcOptions?.compatibilityMode
+            ? buildUnionType([wrapperType, { type: "string", name: "string" }])
+            : wrapperType;
         } else {
           if (parameter.format === undefined || parameter.format === "csv") {
             const wrapperType = buildExplodeAndStyle(

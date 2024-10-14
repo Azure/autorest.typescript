@@ -150,6 +150,7 @@ function transformOperation(
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
           const wrapperType = getParameterWrapperType(
+            dpgContext,
             operationGroupName,
             method.operationName,
             p,

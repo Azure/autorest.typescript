@@ -159,6 +159,7 @@ function getParameterMetadata(
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
   if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
+      dpgContext,
       parameter.type,
       (parameter as any).format
     );
@@ -184,6 +185,7 @@ function getParameterMetadata(
     importedModels
   );
   const wrapper = getParameterWrapperType(
+    dpgContext,
     options.operationGroupName ?? "",
     options.operationName ?? "",
     parameter,

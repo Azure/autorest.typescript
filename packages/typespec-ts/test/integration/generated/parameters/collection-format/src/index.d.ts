@@ -9,12 +9,6 @@ export declare function buildCsvCollection(items: string[] | number[]): string;
 
 export declare function buildMultiCollection(items: string[], parameterName: string): string;
 
-export declare function buildPipeCollection(items: string[] | number[]): string;
-
-export declare function buildSsvCollection(items: string[] | number[]): string;
-
-export declare function buildTsvCollection(items: string[] | number[]): string;
-
 export declare type CollectionFormatClient = Client & {
     path: Routes;
 };
@@ -154,7 +148,7 @@ export declare interface QueryTsvQueryParam {
 }
 
 export declare interface QueryTsvQueryParamProperties {
-    colors: string;
+    colors: string[];
 }
 
 export declare interface Routes {
