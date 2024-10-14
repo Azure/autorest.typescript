@@ -42,7 +42,10 @@ import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata } from "@typespec/http";
-import { isAzureCoreErrorType } from "../utils/modelUtils.js";
+import {
+  isAzureCoreErrorType,
+  isAzureCoreLroType
+} from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 
@@ -92,6 +95,9 @@ export function emitTypes(
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
+      continue;
+    }
+    if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
     if (type.kind === "model") {
@@ -211,7 +217,7 @@ function buildUnionType(
 ): TypeAliasDeclarationStructure {
   const unionDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: normalizeModelName(context, type, NameType.Union),
+    name: normalizeModelName(context, type),
     isExported: true,
     type: type.variantTypes
       .map((v) => getTypeExpression(context, v))
@@ -471,7 +477,9 @@ export function visitPackageTypes(
 
   // Add all enums to the queue
   for (const enumType of sdkPackage.enums) {
-    emitQueue.add(enumType);
+    if (!emitQueue.has(enumType)) {
+      emitQueue.add(enumType);
+    }
   }
 
   // Visit the clients to discover all models
