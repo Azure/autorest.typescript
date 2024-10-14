@@ -23,12 +23,12 @@ export declare class BClient {
     renamedSix(options?: RenamedSixOptionalParams): Promise<void>;
 }
 
-export declare type BClientClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
+export declare type BClientClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
 export declare interface BClientOptionalParams extends ClientOptions {
 }
 
-export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
+export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
 export declare interface RenamedFiveOptionalParams extends OperationOptions {
 }

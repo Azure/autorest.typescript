@@ -4,7 +4,7 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
+export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
 declare function createClient(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptions): ServiceClient;
 export default createClient;
