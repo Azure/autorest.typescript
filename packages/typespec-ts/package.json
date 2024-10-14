@@ -85,7 +85,7 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "@typespec/compiler": ">=0.61.0 <1.0.0",
+    "@typespec/compiler": ">=0.61.2 <1.0.0",
     "@typespec/http": ">=0.61.0 <1.0.0",
     "@typespec/openapi": ">=0.61.0, <1.0.0",
     "@typespec/rest": ">=0.61.0 <1.0.0",
@@ -112,7 +112,7 @@
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.47.0 <1.0.0",
     "@azure-tools/typespec-client-generator-core": ">=0.47.1 <1.0.0",
-    "@typespec/compiler": ">=0.61.0 <1.0.0",
+    "@typespec/compiler": ">=0.61.2 <1.0.0",
     "@typespec/http": ">=0.61.0 <1.0.0",
     "@typespec/rest": ">=0.61.0 <1.0.0",
     "@typespec/versioning": ">=0.61.0 <1.0.0"
