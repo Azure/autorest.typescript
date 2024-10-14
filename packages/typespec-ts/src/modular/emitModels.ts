@@ -211,7 +211,7 @@ function buildUnionType(
 ): TypeAliasDeclarationStructure {
   const unionDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: normalizeModelName(context, type),
+    name: normalizeModelName(context, type, NameType.Union),
     isExported: true,
     type: type.variantTypes
       .map((v) => getTypeExpression(context, v))

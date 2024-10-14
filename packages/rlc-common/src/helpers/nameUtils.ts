@@ -14,7 +14,8 @@ export enum NameType {
   Parameter,
   Operation,
   OperationGroup,
-  Method
+  Method,
+  Union
 }
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
@@ -91,7 +92,8 @@ export const ReservedModelNames: ReservedName[] = [
   // reserve client for codegen
   { name: "client", reservedFor: [NameType.Parameter] },
   { name: "endpoint", reservedFor: [NameType.Parameter] },
-  { name: "apiVersion", reservedFor: [NameType.Parameter] }
+  { name: "apiVersion", reservedFor: [NameType.Parameter] },
+  { name: "operationState", reservedFor: [NameType.Union, ...Newable]}
 ];
 
 export enum CasingConvention {
@@ -123,6 +125,8 @@ function getSuffix(nameType?: NameType) {
       return "Operations";
     case NameType.Parameter:
       return "Param";
+    case NameType.Union:
+      return "Union";
     case NameType.Class:
     case NameType.Interface:
     case NameType.Method:
@@ -185,6 +189,7 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Class:
     case NameType.Interface:
     case NameType.OperationGroup:
+    case NameType.Union:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
