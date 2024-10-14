@@ -4,7 +4,6 @@
 export { DemoServiceClient } from "./demoServiceClient.js";
 export { Test3Request, Test4Request } from "./models/index.js";
 export {
-  DemoServiceContext,
   DemoServiceClientOptionalParams,
   ATest1OptionalParams,
   ATest2OptionalParams,

@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
@@ -994,10 +993,6 @@ export class OpenAIClient {
 
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
-}
-
-// @public
-export interface OpenAIContext extends Client {
 }
 
 // @public

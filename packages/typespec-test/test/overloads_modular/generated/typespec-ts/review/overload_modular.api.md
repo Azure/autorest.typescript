@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -39,10 +38,6 @@ export class WidgetManagerClient {
 // @public
 export interface WidgetManagerClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public (undocumented)
-export interface WidgetManagerContext extends Client {
 }
 
 // (No @packageDocumentation comment for this package)

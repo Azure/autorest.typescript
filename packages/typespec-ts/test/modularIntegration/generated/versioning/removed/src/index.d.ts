@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -19,9 +18,6 @@ export declare class RemovedClient {
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
-}
-
-export declare interface RemovedContext extends Client {
 }
 
 export declare type UnionV2 = string | number;

@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -100,10 +99,6 @@ export class SchemaRegistryClient {
 // @public
 export interface SchemaRegistryClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface SchemaRegistryContext extends Client {
 }
 
 // @public

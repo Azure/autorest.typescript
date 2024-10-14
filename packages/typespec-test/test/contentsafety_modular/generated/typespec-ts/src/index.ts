@@ -29,7 +29,6 @@ export {
   TextAnalyzeSeverityResult,
 } from "./models/index.js";
 export {
-  ContentSafetyContext,
   ContentSafetyClientOptionalParams,
   AnalyzeTextOptionalParams,
   AnalyzeImageOptionalParams,

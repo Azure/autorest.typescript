@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -24,9 +23,6 @@ export declare class ArrayClient {
 }
 
 export declare interface ArrayClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ArrayContext extends Client {
 }
 
 export declare interface BooleanValueGetOptionalParams extends OperationOptions {

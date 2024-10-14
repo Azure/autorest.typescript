@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -14,9 +13,6 @@ export declare class UnionClient {
 }
 
 export declare interface UnionClientOptionalParams extends ClientOptions {
-}
-
-export declare interface UnionContext extends Client {
 }
 
 export declare interface ValidKeyOptionalParams extends OperationOptions {

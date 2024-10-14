@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -19,9 +18,6 @@ export declare class TypeChangedFromClient {
 }
 
 export declare interface TypeChangedFromClientOptionalParams extends ClientOptions {
-}
-
-export declare interface TypeChangedFromContext extends Client {
 }
 
 export declare type Versions = "v1" | "v2";

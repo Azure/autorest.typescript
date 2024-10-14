@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -277,9 +276,6 @@ export declare class UnionClient {
 }
 
 export declare interface UnionClientOptionalParams extends ClientOptions {
-}
-
-export declare interface UnionContext extends Client {
 }
 
 export { }

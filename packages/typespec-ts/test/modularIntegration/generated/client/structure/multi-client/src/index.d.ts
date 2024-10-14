@@ -1,13 +1,6 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
-
-export declare interface AClientContext extends Client {
-}
-
-export declare interface BClientContext extends Client {
-}
 
 export declare class ClientAClient {
     private _client;

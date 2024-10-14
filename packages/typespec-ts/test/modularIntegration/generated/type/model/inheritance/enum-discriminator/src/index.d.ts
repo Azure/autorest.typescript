@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -31,9 +30,6 @@ export declare class EnumDiscriminatorClient {
 }
 
 export declare interface EnumDiscriminatorClientOptionalParams extends ClientOptions {
-}
-
-export declare interface EnumDiscriminatorContext extends Client {
 }
 
 export declare interface GetExtensibleModelMissingDiscriminatorOptionalParams extends OperationOptions {

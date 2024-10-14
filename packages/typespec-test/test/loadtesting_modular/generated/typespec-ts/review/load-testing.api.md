@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -437,10 +436,6 @@ export interface LoadTestAdministrationClientOptionalParams extends ClientOption
     apiVersion?: string;
 }
 
-// @public (undocumented)
-export interface LoadTestAdministrationContext extends Client {
-}
-
 // @public
 export interface LoadTestConfiguration {
     engineInstances?: number;
@@ -491,10 +486,6 @@ export interface LoadTestRunClientGetServerMetricsConfigOptionalParams extends O
 // @public
 export interface LoadTestRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public (undocumented)
-export interface LoadTestRunContext extends Client {
 }
 
 // @public
@@ -745,10 +736,6 @@ export interface TestProfileAdministrationClientOptionalParams extends ClientOpt
     apiVersion?: string;
 }
 
-// @public (undocumented)
-export interface TestProfileAdministrationContext extends Client {
-}
-
 // @public
 export interface TestProfileRun {
     readonly createdBy?: string;
@@ -784,10 +771,6 @@ export class TestProfileRunClient {
 // @public
 export interface TestProfileRunClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public (undocumented)
-export interface TestProfileRunContext extends Client {
 }
 
 // @public

@@ -220,6 +220,13 @@ function exportModules(
         ) {
           return false;
         }
+        if (
+          options.interfaceOnly &&
+          options.isTopLevel &&
+          exDeclaration[0].endsWith("Context")
+        ) {
+          return false;
+        }
         return true;
       });
     })

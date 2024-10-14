@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -40,10 +39,6 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     subdomain?: string;
     // (undocumented)
     sufix?: string;
-}
-
-// @public (undocumented)
-export interface ParametrizedHostContext extends Client {
 }
 
 // (No @packageDocumentation comment for this package)

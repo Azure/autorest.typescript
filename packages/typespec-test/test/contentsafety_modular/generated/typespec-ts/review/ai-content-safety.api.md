@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -85,10 +84,6 @@ export class ContentSafetyClient {
 // @public
 export interface ContentSafetyClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface ContentSafetyContext extends Client {
 }
 
 // @public

@@ -14,7 +14,7 @@ export enum NameType {
   Parameter,
   Operation,
   OperationGroup,
-  Method,  
+  Method
 }
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
@@ -91,7 +91,7 @@ export const ReservedModelNames: ReservedName[] = [
   // reserve client for codegen
   { name: "client", reservedFor: [NameType.Parameter] },
   { name: "endpoint", reservedFor: [NameType.Parameter] },
-  { name: "apiVersion", reservedFor: [NameType.Parameter] },
+  { name: "apiVersion", reservedFor: [NameType.Parameter] }
 ];
 
 export enum CasingConvention {

@@ -5,7 +5,6 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -450,10 +449,6 @@ export class NetworkAnalyticsClient {
 // @public
 export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public (undocumented)
-export interface NetworkAnalyticsContext extends Client {
 }
 
 // @public

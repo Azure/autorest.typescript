@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -13,9 +12,6 @@ export declare class AddedClient {
 }
 
 export declare interface AddedClientOptionalParams extends ClientOptions {
-}
-
-export declare interface AddedContext extends Client {
 }
 
 export declare type EnumV1 = "enumMemberV1" | "enumMemberV2";

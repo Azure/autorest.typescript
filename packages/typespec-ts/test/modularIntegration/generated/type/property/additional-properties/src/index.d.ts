@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -42,9 +41,6 @@ export declare class AdditionalPropertiesClient {
 }
 
 export declare interface AdditionalPropertiesClientOptionalParams extends ClientOptions {
-}
-
-export declare interface AdditionalPropertiesContext extends Client {
 }
 
 export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {

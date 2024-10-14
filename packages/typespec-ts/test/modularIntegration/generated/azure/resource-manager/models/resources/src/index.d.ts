@@ -1,5 +1,4 @@
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -125,9 +124,6 @@ export declare class ResourcesClient {
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-export declare interface ResourcesContext extends Client {
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: ResourcesClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;

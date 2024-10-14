@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -11,9 +10,6 @@ export declare class NotDefinedClient {
 }
 
 export declare interface NotDefinedClientOptionalParams extends ClientOptions {
-}
-
-export declare interface NotDefinedContext extends Client {
 }
 
 export declare interface ValidOptionalParams extends OperationOptions {

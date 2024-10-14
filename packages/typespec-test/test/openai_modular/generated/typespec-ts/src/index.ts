@@ -148,7 +148,6 @@ export {
   EmbeddingsUsage,
 } from "./models/index.js";
 export {
-  OpenAIContext,
   OpenAIClientOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,

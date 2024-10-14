@@ -1,5 +1,4 @@
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -36,9 +35,6 @@ export declare class RpcClient {
 
 export declare interface RpcClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-export declare interface RpcContext extends Client {
 }
 
 export { }

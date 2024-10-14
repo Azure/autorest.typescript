@@ -24,7 +24,6 @@ export {
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsRegisterSchemaOptionalParams,
-  SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";

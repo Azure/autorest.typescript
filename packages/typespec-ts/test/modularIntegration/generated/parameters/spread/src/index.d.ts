@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -64,9 +63,6 @@ export declare class SpreadClient {
 }
 
 export declare interface SpreadClientOptionalParams extends ClientOptions {
-}
-
-export declare interface SpreadContext extends Client {
 }
 
 export { }

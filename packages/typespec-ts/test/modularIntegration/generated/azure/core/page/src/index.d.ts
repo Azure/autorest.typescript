@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -46,9 +45,6 @@ export declare class PageClient {
 
 export declare interface PageClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-export declare interface PageContext extends Client {
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {

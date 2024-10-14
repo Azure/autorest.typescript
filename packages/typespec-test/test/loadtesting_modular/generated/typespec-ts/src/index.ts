@@ -92,7 +92,6 @@ export {
   RecommendationCategory,
 } from "./models/index.js";
 export {
-  LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
@@ -110,7 +109,6 @@ export {
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
 export {
-  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
   CreateOrUpdateTestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams as LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams,
@@ -133,7 +131,6 @@ export {
   DeleteTestProfileOptionalParams,
   GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
-  TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./testProfileAdministration/api/index.js";
 export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
@@ -143,6 +140,5 @@ export {
   GetTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
-  TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./testProfileRun/api/index.js";

@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -16,9 +15,6 @@ export declare class RepeatabilityClient {
 }
 
 export declare interface RepeatabilityClientOptionalParams extends ClientOptions {
-}
-
-export declare interface RepeatabilityContext extends Client {
 }
 
 export { }

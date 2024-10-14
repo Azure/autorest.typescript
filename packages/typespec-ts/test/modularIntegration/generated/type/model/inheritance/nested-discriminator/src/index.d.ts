@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -39,9 +38,6 @@ export declare class NestedDiscriminatorClient {
 }
 
 export declare interface NestedDiscriminatorClientOptionalParams extends ClientOptions {
-}
-
-export declare interface NestedDiscriminatorContext extends Client {
 }
 
 export declare interface PutModelOptionalParams extends OperationOptions {

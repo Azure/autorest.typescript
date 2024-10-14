@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -191,10 +190,6 @@ export class BatchClient {
 // @public
 export interface BatchClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface BatchContext extends Client {
 }
 
 // @public

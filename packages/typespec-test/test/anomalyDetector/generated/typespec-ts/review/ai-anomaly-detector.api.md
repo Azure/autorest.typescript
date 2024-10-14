@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -21,10 +20,6 @@ export class AnomalyDetectorClient {
 // @public
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface AnomalyDetectorContext extends Client {
 }
 
 // @public

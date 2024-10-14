@@ -1,4 +1,3 @@
-import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
@@ -34,9 +33,6 @@ export declare class UsageClient {
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {
-}
-
-export declare interface UsageContext extends Client {
 }
 
 export { }

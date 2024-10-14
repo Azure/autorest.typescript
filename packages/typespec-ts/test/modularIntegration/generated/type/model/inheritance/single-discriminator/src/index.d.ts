@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -67,9 +66,6 @@ export declare class SingleDiscriminatorClient {
 }
 
 export declare interface SingleDiscriminatorClientOptionalParams extends ClientOptions {
-}
-
-export declare interface SingleDiscriminatorContext extends Client {
 }
 
 export declare interface Sparrow extends Bird {

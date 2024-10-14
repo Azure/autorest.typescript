@@ -1,5 +1,4 @@
 import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -43,9 +42,6 @@ export declare class StandardClient {
 
 export declare interface StandardClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-export declare interface StandardContext extends Client {
 }
 
 export declare interface User {

@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -13,9 +12,6 @@ export declare class CustomClient {
 }
 
 export declare interface CustomClientOptionalParams extends ClientOptions {
-}
-
-export declare interface CustomContext extends Client {
 }
 
 export declare interface InvalidAuth {

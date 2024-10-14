@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -17,9 +16,6 @@ export declare class DurationClient {
 }
 
 export declare interface DurationClientOptionalParams extends ClientOptions {
-}
-
-export declare interface DurationContext extends Client {
 }
 
 export declare interface Float64SecondsDurationProperty {

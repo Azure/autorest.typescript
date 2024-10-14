@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -15,9 +14,6 @@ export declare class FirstClient {
 }
 
 export declare interface FirstClientOptionalParams extends ClientOptions {
-}
-
-export declare interface FirstContext extends Client {
 }
 
 export declare interface FiveOptionalParams extends OperationOptions {
@@ -60,9 +56,6 @@ export declare class SecondClient {
 }
 
 export declare interface SecondClientOptionalParams extends ClientOptions {
-}
-
-export declare interface SecondContext extends Client {
 }
 
 export { }

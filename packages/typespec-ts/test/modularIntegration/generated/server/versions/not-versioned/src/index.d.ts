@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -13,9 +12,6 @@ export declare class NotVersionedClient {
 }
 
 export declare interface NotVersionedClientOptionalParams extends ClientOptions {
-}
-
-export declare interface NotVersionedContext extends Client {
 }
 
 export declare interface WithoutApiVersionOptionalParams extends OperationOptions {

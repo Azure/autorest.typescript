@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -20,9 +19,6 @@ export declare class OAuth2Client {
 }
 
 export declare interface OAuth2ClientOptionalParams extends ClientOptions {
-}
-
-export declare interface OAuth2Context extends Client {
 }
 
 export declare interface ValidOptionalParams extends OperationOptions {

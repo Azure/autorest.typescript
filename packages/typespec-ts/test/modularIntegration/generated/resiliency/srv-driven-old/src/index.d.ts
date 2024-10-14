@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -24,9 +23,6 @@ export declare class ResiliencyServiceDrivenClient {
 
 export declare interface ResiliencyServiceDrivenClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-export declare interface ResiliencyServiceDrivenContext extends Client {
 }
 
 export { }

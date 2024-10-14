@@ -4,7 +4,6 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
@@ -61,10 +60,6 @@ export class EventGridClient {
 // @public
 export interface EventGridClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-}
-
-// @public
-export interface EventGridContext extends Client {
 }
 
 // @public

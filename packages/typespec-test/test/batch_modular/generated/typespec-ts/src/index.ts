@@ -202,7 +202,6 @@ export {
   BatchApplication,
 } from "./models/index.js";
 export {
-  BatchContext,
   BatchClientOptionalParams,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,

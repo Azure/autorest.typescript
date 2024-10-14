@@ -1,4 +1,3 @@
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -80,9 +79,6 @@ export declare class ScalarClient {
 }
 
 export declare interface ScalarClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ScalarContext extends Client {
 }
 
 export declare interface StringGetOptionalParams extends OperationOptions {

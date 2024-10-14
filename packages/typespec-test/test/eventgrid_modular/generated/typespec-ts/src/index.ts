@@ -18,7 +18,6 @@ export {
   RejectResult,
 } from "./models/index.js";
 export {
-  EventGridContext,
   EventGridClientOptionalParams,
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
