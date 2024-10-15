@@ -63,13 +63,13 @@ export interface TranslateBodyParam {
   body: Array<InputTextElement>;
 }
 
-/** Wrapper object for query parameters */
+/** You can use the function buildExplodedAndFormStyleValue to help prepare this parameter. */
 export interface TranslateToQueryParam {
   /** Value of the parameter */
   value: string[];
-  /** Explode the object always */
+  /** Should we explode the value? */
   explode: true;
-  /** Style of the object */
+  /** Style of the value */
   style: "form";
 }
 
@@ -78,7 +78,9 @@ export interface TranslateQueryParamProperties {
    * Specifies the language of the output text. The target language must be one of the supported languages included
    * in the translation scope. For example, use to=de to translate to German.
    * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
-   * For example, use to=de&to=it to translate to German and Italian. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
+   * For example, use to=de&to=it to translate to German and Italian.
+   *
+   * This parameter type could be easily prepared with function buildExplodedAndFormStyleValue.
    */
   to: TranslateToQueryParam;
   /**

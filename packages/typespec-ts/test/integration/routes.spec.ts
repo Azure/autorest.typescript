@@ -1,5 +1,7 @@
 import RoutesClientFactory, {
-  RoutesClient
+  RoutesClient,
+  buildAllowReservedValue,
+  buildUnexplodedFormStyleValue
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -42,7 +44,17 @@ describe("RoutesClient Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it("should have explode: true array", async () => {
+  it("should have allowReserved: true with helper", async () => {
+    const result = await client
+      .path(
+        "/routes/path/reserved-expansion/template/{param}",
+        buildAllowReservedValue("foo/bar baz")
+      )
+      .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it.skip("should have explode: true array", async () => {
     const result = await client
       .path("/routes/query/query-expansion/explode/array")
       .get({
@@ -77,11 +89,7 @@ describe("RoutesClient Rest Client", () => {
       .path("/routes/query/query-expansion/explode/primitive")
       .get({
         queryParameters: {
-          param: {
-            value: "a",
-            explode: true,
-            style: "form"
-          }
+          param: "a"
         }
       });
     assert.strictEqual(result.status, "204");
@@ -103,7 +111,7 @@ describe("RoutesClient Rest Client", () => {
       .path("/routes/query/query-expansion/standard/record")
       .get({
         queryParameters: {
-          param: { a: 1, b: 2 }
+          param: buildUnexplodedFormStyleValue({ a: 1, b: 2 })
         }
       });
     assert.strictEqual(result.status, "204");

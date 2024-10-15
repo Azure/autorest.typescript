@@ -134,11 +134,11 @@ export interface HelperFunctionDetails {
 }
 
 export type SerializeHelperKind =
-  | "withAllowReserved"
-  | "withExplodedAndFormStyle"
-  | "withNonExplodedAndFormStyle"
-  | "withNonExplodedAndSpaceStyle"
-  | "withNonExplodedAndPipeStyle";
+  | "buildAllowReservedValue"
+  | "buildExplodedAndFormStyleValue"
+  | "buildNonExplodedAndFormStyleValue"
+  | "buildNonExplodedAndSpaceStyleValue"
+  | "buildNonExplodedAndPipeStyleValue";
 
 export interface PagingDetails {
   itemNames: string[];

@@ -42,19 +42,19 @@ export function buildSerializeHelper(model: RLCModel) {
   }
   for (const helper of model.helperDetails?.serializeHelper ?? []) {
     switch (helper) {
-      case "withAllowReserved":
+      case "buildAllowReservedValue":
         serializeHelperContent += "\n" + buildAllowReservedContent;
         break;
-      case "withExplodedAndFormStyle":
+      case "buildExplodedAndFormStyleValue":
         serializeHelperContent += "\n" + buildExplodedAndFormStyleContent;
         break;
-      case "withNonExplodedAndFormStyle":
+      case "buildNonExplodedAndFormStyleValue":
         serializeHelperContent += "\n" + buildNonExplodedAndFormStyleContent;
         break;
-      case "withNonExplodedAndPipeStyle":
+      case "buildNonExplodedAndSpaceStyleValue":
         serializeHelperContent += "\n" + buildNonExplodedAndPipeStyleContent;
         break;
-      case "withNonExplodedAndSpaceStyle":
+      case "buildNonExplodedAndPipeStyleValue":
         serializeHelperContent += "\n" + buildNonExplodedAndSpaceStyleContent;
         break;
     }

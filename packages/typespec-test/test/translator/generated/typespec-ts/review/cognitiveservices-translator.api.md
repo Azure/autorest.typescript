@@ -98,7 +98,11 @@ export interface BreakSentenceQueryParamProperties {
 }
 
 // @public (undocumented)
-export function buildMultiCollection(items: string[], parameterName: string): string;
+export function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
 
 // @public
 export interface CommonScriptModelOutput {
@@ -718,13 +722,6 @@ export interface TransliterationOutput {
     script: string;
     text: string;
 }
-
-// @public (undocumented)
-export function withExplodedAndFormStyle(value: string[] | Record<string, unknown>): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: any;
-};
 
 // (No @packageDocumentation comment for this package)
 

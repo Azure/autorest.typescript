@@ -34,50 +34,50 @@ export function buildCsvCollection(items: string[] | number[]): string {
 }`;
 
 export const buildAllowReservedContent = `
-export function withReservedCharacters(value: string) {
+export function buildAllowReservedValue<ValueType>(value: ValueType) {
     return {
         allowReserved: true,
         value
-    }
+    } as const
 }
 `;
 
 export const buildExplodedAndFormStyleContent = `
-export function withExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function buildExplodedFormStyleValue<ValueType>(value: ValueType){
     return {
         explode: true,
         style: "form",
-        value: value as any
+        value
     } as const
 }
 `;
 
 export const buildNonExplodedAndFormStyleContent = `
-export function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>){
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "form",
-        value: value as any
+        value
     } as const
 }
 `;
 
 export const buildNonExplodedAndPipeStyleContent = `
-export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "pipeDelimited",
-        value: value as any
+        value
     } as const
 }
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-export function withNonExplodedAndPipeStyle(value: string[] | Record<string, unknown>){
+export function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "spaceDelimited",
-        value: value as any
+        value
     } as const
 }
 `;

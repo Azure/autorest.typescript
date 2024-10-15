@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export function withNonExplodedAndFormStyle(
-  value: string[] | Record<string, unknown>,
-) {
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType) {
   return {
     explode: false,
     style: "form",
-    value: value as any,
+    value,
   } as const;
 }

@@ -203,18 +203,27 @@ function buildQueryParameterDefinition(
   const propertiesDefinition = queryParameters.map((qp) =>
     getPropertyFromSchema(qp.param)
   );
-  // Get wrapper types for query parameters
-  const wrapperTypesDefinition = queryParameters
+  const wrapperFromObjects = queryParameters
     .filter((qp) => qp.param.wrapperType?.type === "object")
-    .map((qp) => {
-      return getObjectInterfaceDeclaration(
-        model,
-        qp.param.wrapperType!.name,
-        qp.param.wrapperType!,
-        [SchemaContext.Input],
-        new Set<string>()
-      );
-    });
+    .map((qp) => qp.param.wrapperType);
+  const wrapperFromUnions = queryParameters
+    .filter((qp) => qp.param.wrapperType?.type === "union")
+    .map((qp) => qp.param.wrapperType)
+    .flatMap((wrapperType) => wrapperType?.enum ?? [])
+    .filter((v) => v.type === "object");
+  // Get wrapper types for query parameters
+  const wrapperTypesDefinition = [
+    ...wrapperFromUnions,
+    ...wrapperFromObjects
+  ].map((wrapObj) => {
+    return getObjectInterfaceDeclaration(
+      model,
+      wrapObj.name,
+      wrapObj,
+      [SchemaContext.Input],
+      new Set<string>()
+    );
+  });
 
   const hasRequiredParameters = propertiesDefinition.some(
     (p) => !p.hasQuestionToken

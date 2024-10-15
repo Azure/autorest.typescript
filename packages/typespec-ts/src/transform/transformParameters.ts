@@ -37,6 +37,7 @@ import {
   getSchemaForType,
   getSerializeTypeName,
   getTypeName,
+  isArrayType,
   isBodyRequired
 } from "../utils/modelUtils.js";
 import {
@@ -45,7 +46,7 @@ import {
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -156,23 +157,13 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
+      dpgContext,
       parameter.type,
       (parameter as any).format
     );
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
-      serializeInfo.hasCsvCollection
-    ) {
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
         ", "
@@ -193,14 +184,17 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
-  const wrapper = getParameterWrapperType(
-    options.operationGroupName ?? "",
-    options.operationName ?? "",
-    parameter,
-    schema
-  );
-  if (wrapper) {
-    type = getTypeName(wrapper, schemaContext);
+  const [serializeHelper, wrapperType] =
+    getParameterSerializeInfo(
+      dpgContext,
+      parameter,
+      schema,
+      options.operationGroupName,
+      options.operationName
+    ) ?? [];
+  if (wrapperType) {
+    type = getTypeName(wrapperType, schemaContext);
+    description = `${description} \n\nThis parameter type could be easily prepared with function ${serializeHelper}.`;
   }
   const pathPosition = paramType === "path" ? "method" : undefined;
   return {
@@ -212,7 +206,7 @@ function getParameterMetadata(
       typeName: type,
       required: !parameter.param.optional,
       description,
-      wrapperType: wrapper,
+      wrapperType,
       pathPosition
     }
   };

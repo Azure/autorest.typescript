@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
   AzureCoreClient,
-  buildMultiCollection,
   isUnexpected
 } from "./generated/azure/core/basic/src/index.js";
+import { buildExplodedFormStyleValue } from "./generated/parameters/collection-format/src/serializeHelper.js";
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 
@@ -92,42 +92,37 @@ describe("Azure Core Rest Client", () => {
   });
 
   it("should list users", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users").get({
-        queryParameters: {
-          top: 5,
-          skip: 10,
-          orderby: "id",
-          filter: "id lt 10",
-          select: buildMultiCollection(["id", "orders", "etag"], "select"),
-          expand: "orders"
-        },
-        skipUrlEncoding: true
-      });
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
+    const result = await client.path("/azure/core/basic/users").get({
+      queryParameters: {
+        top: 5,
+        skip: 10,
+        orderby: buildExplodedFormStyleValue(["id"]),
+        filter: "id lt 10",
+        select: buildExplodedFormStyleValue(["id", "orders", "etag"]),
+        expand: buildExplodedFormStyleValue(["orders"])
       }
-      const responseBody = {
-        value: [
-          {
-            id: 1,
-            name: "Madge",
-            etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
-            orders: [{ id: 1, userId: 1, detail: "a recorder" }]
-          },
-          {
-            id: 2,
-            name: "John",
-            etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
-            orders: [{ id: 2, userId: 2, detail: "a TV" }]
-          }
-        ]
-      };
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, responseBody);
-    } catch (err) {
-      assert.fail(err as string);
+    });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    const responseBody = {
+      value: [
+        {
+          id: 1,
+          name: "Madge",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          orders: [{ id: 1, userId: 1, detail: "a recorder" }]
+        },
+        {
+          id: 2,
+          name: "John",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          orders: [{ id: 2, userId: 2, detail: "a TV" }]
+        }
+      ]
+    };
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, responseBody);
   });
 
   it("should export a user", async () => {

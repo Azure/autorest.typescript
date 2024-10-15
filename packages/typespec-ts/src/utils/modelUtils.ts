@@ -1132,6 +1132,26 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
+export function isObjectOrDictType(schema: Schema) {
+  return (
+    (schema.type === "object" &&
+      (schema as ObjectSchema).properties !== undefined) ||
+    schema.type === "dictionary"
+  );
+}
+
+export function isArrayType(schema: Schema) {
+  return schema.type === "array";
+}
+
+export function isPrimitiveType(schema: Schema) {
+  return (
+    schema.type === "string" ||
+    schema.type === "number" ||
+    schema.type === "boolean"
+  );
+}
+
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,

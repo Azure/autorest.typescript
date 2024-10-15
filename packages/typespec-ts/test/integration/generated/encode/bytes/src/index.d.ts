@@ -32,6 +32,12 @@ export declare interface Base64urlBytesPropertyOutput {
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 export declare type BytesClient = Client & {
     path: Routes;
 };
@@ -223,7 +229,13 @@ export declare interface QueryBase64urlArrayQueryParam {
 }
 
 export declare interface QueryBase64urlArrayQueryParamProperties {
+    value: string[] | QueryBase64urlArrayValueQueryParam;
+}
+
+export declare interface QueryBase64urlArrayValueQueryParam {
     value: string[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryBase64urlParameters = QueryBase64urlQueryParam & RequestParameters;

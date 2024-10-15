@@ -187,9 +187,6 @@ export function buildObjectAliases(
         isExported: true,
         docs: [description ?? "Alias for " + modelName]
       });
-      if (objectSchema.alias?.startsWith("Paged<")) {
-        importedModels.add("Paged");
-      }
     }
   }
   return objectAliases;

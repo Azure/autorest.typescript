@@ -1454,7 +1454,7 @@ function emitUnion(
     return {
       name: typeName,
       nullable: isNull,
-      description: sdkType.description || `Type of ${typeName}`,
+      description: sdkType.doc || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(sdkType.valueType),

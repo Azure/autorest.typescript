@@ -36,7 +36,6 @@
     "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
     "eslint": "^8.55.0",
-    "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1",
     "typescript": "~5.6.2",
@@ -56,8 +55,6 @@
     "pack": "npm pack 2>&1",
     "lint": "eslint package.json api-extractor.json src",
     "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
     "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js"
   }

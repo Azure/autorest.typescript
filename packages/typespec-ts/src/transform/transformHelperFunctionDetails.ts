@@ -20,7 +20,8 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { getSerializeHelperKind } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -183,36 +184,27 @@ function extractSpecialSerializeInfo(
 ) {
   const set = new Set<SerializeHelperKind>();
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasTsvCollection = false;
-  let hasSsvCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
+        dpgContext,
         parameter.type,
         (parameter as any).format
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasPipeCollection = hasPipeCollection
-        ? hasPipeCollection
-        : serializeInfo.hasPipeCollection;
-      hasTsvCollection = hasTsvCollection
-        ? hasTsvCollection
-        : serializeInfo.hasTsvCollection;
-      hasSsvCollection = hasSsvCollection
-        ? hasSsvCollection
-        : serializeInfo.hasSsvCollection;
-      hasCsvCollection = hasCsvCollection
-        ? hasCsvCollection
-        : serializeInfo.hasCsvCollection;
-      const serializableKind = getSerializeHelperKind(parameter);
-      if (serializableKind) {
-        set.add(serializableKind);
+      const [paramSerializeKind] =
+        getParameterSerializeInfo(
+          dpgContext,
+          parameter,
+          getSchemaForType(dpgContext, parameter.param.type)
+        ) ?? [];
+      if (paramSerializeKind) {
+        set.add(paramSerializeKind);
       }
     });
   }
@@ -226,36 +218,30 @@ function extractSpecialSerializeInfo(
       const route = getHttpOperationWithCache(dpgContext, op);
       route.parameters.parameters.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(
+          dpgContext,
           parameter.type,
           (parameter as any).format
         );
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection
           : serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection
-          ? hasPipeCollection
-          : serializeInfo.hasPipeCollection;
-        hasTsvCollection = hasTsvCollection
-          ? hasTsvCollection
-          : serializeInfo.hasTsvCollection;
-        hasSsvCollection = hasSsvCollection
-          ? hasSsvCollection
-          : serializeInfo.hasSsvCollection;
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
-        const serializableKind = getSerializeHelperKind(parameter);
-        if (serializableKind) {
-          set.add(serializableKind);
+        const [paramSerializeKind] =
+          getParameterSerializeInfo(
+            dpgContext,
+            parameter,
+            getSchemaForType(dpgContext, parameter.param.type)
+          ) ?? [];
+        if (paramSerializeKind) {
+          set.add(paramSerializeKind);
         }
       });
     }
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasTsvCollection,
-    hasSsvCollection,
     hasCsvCollection,
     serializeHelper: [...set]
   };

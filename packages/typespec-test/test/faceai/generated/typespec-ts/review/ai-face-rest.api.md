@@ -103,7 +103,7 @@ export interface AddFaceListFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddFaceListFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddFaceListFaceFromUrlTargetFaceQueryParam;
+    targetFace?: number[] | AddFaceListFaceFromUrlTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -131,7 +131,7 @@ export interface AddFaceListFaceQueryParam {
 // @public (undocumented)
 export interface AddFaceListFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddFaceListFaceTargetFaceQueryParam;
+    targetFace?: number[] | AddFaceListFaceTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -225,7 +225,7 @@ export interface AddLargeFaceListFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddLargeFaceListFaceFromUrlTargetFaceQueryParam;
+    targetFace?: number[] | AddLargeFaceListFaceFromUrlTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -253,7 +253,7 @@ export interface AddLargeFaceListFaceQueryParam {
 // @public (undocumented)
 export interface AddLargeFaceListFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddLargeFaceListFaceTargetFaceQueryParam;
+    targetFace?: number[] | AddLargeFaceListFaceTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -341,7 +341,7 @@ export interface AddLargePersonGroupPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam;
+    targetFace?: number[] | AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -369,7 +369,7 @@ export interface AddLargePersonGroupPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddLargePersonGroupPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddLargePersonGroupPersonFaceTargetFaceQueryParam;
+    targetFace?: number[] | AddLargePersonGroupPersonFaceTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -486,7 +486,7 @@ export interface AddPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddPersonFaceFromUrlTargetFaceQueryParam;
+    targetFace?: number[] | AddPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -522,7 +522,7 @@ export interface AddPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddPersonFaceTargetFaceQueryParam;
+    targetFace?: number[] | AddPersonFaceTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -610,7 +610,7 @@ export interface AddPersonGroupPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam;
+    targetFace?: number[] | AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -638,7 +638,7 @@ export interface AddPersonGroupPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddPersonGroupPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: AddPersonGroupPersonFaceTargetFaceQueryParam;
+    targetFace?: number[] | AddPersonGroupPersonFaceTargetFaceQueryParam;
     userData?: string;
 }
 
@@ -657,6 +657,13 @@ export interface BlurPropertiesOutput {
     blurLevel: BlurLevelOutput;
     value: number;
 }
+
+// @public (undocumented)
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
 
 // @public
 function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: FaceClientOptions): FaceClient;
@@ -1733,7 +1740,7 @@ export interface DetectFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
     faceIdTimeToLive?: number;
     recognitionModel?: RecognitionModel;
-    returnFaceAttributes?: DetectFromUrlReturnFaceAttributesQueryParam;
+    returnFaceAttributes?: FaceAttributeType[] | DetectFromUrlReturnFaceAttributesQueryParam;
     returnFaceId?: boolean;
     returnFaceLandmarks?: boolean;
     returnRecognitionModel?: boolean;
@@ -1768,7 +1775,7 @@ export interface DetectQueryParamProperties {
     detectionModel?: DetectionModel;
     faceIdTimeToLive?: number;
     recognitionModel?: RecognitionModel;
-    returnFaceAttributes?: DetectReturnFaceAttributesQueryParam;
+    returnFaceAttributes?: FaceAttributeType[] | DetectReturnFaceAttributesQueryParam;
     returnFaceId?: boolean;
     returnFaceLandmarks?: boolean;
     returnRecognitionModel?: boolean;
@@ -4900,13 +4907,6 @@ export type VerifyFromPersonGroupParameters = VerifyFromPersonGroupBodyParam & R
 
 // @public
 export type Versions = "v1.1-preview.1";
-
-// @public (undocumented)
-export function withNonExplodedAndFormStyle(value: string[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
 
 // (No @packageDocumentation comment for this package)
 

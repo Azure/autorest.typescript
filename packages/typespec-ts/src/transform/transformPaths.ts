@@ -37,7 +37,7 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
-import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -149,16 +149,24 @@ function transformOperation(
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-          const wrapperType = getParameterWrapperType(
-            operationGroupName,
-            method.operationName,
-            p,
-            schema
-          );
+
+          const [serializeHelper, wrapperType] =
+            getParameterSerializeInfo(
+              dpgContext,
+              p,
+              schema,
+              operationGroupName,
+              method.operationName
+            ) ?? [];
+          let description = getDoc(program, p.param) ?? "";
+          const typeName = getTypeName(wrapperType ?? schema, schemaUsage);
+          if (wrapperType) {
+            description = `${description} \n\nThis parameter type could be easily prepared with function ${serializeHelper}.`;
+          }
           return {
             name: p.name,
-            type: getTypeName(wrapperType ?? schema, schemaUsage),
-            description: getDoc(program, p.param),
+            type: typeName,
+            description,
             isWrappedType: !!wrapperType
           };
         }),

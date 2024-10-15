@@ -15,7 +15,11 @@ export declare interface AzureCoreClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-export declare function buildMultiCollection(items: string[], parameterName: string): string;
+export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
 
 declare function createClient({ apiVersion, ...options }?: AzureCoreClientOptions): AzureCoreClient;
 export default createClient;
@@ -214,6 +218,18 @@ export declare interface ListDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListDefaultHeaders;
 }
 
+export declare interface ListExpandQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
+export declare interface ListOrderbyQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
 export declare type ListParameters = ListQueryParam & RequestParameters;
 
 export declare interface ListQueryParam {
@@ -224,10 +240,16 @@ export declare interface ListQueryParamProperties {
     top?: number;
     skip?: number;
     maxpagesize?: number;
-    orderby?: string;
+    orderby?: ListOrderbyQueryParam;
     filter?: string;
-    select?: string;
-    expand?: string;
+    select?: ListSelectQueryParam;
+    expand?: ListExpandQueryParam;
+}
+
+export declare interface ListSelectQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
