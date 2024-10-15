@@ -114,13 +114,17 @@ export function emitTypes(
       }
       const modelInterface = buildModelInterface(context, type);
       if (type.discriminatorProperty) {
-        modelInterface.properties?.filter((p) => { 
-          return p.name === `"${type.discriminatorProperty?.name}"`;
-        }).map((p) => {
-          p.docs?.push(`The discriminator possible values: ${Object.keys(type.discriminatedSubtypes?? {}).join(", ")}`);
-          return p;
-        });
-      } 
+        modelInterface.properties
+          ?.filter((p) => {
+            return p.name === `"${type.discriminatorProperty?.name}"`;
+          })
+          .map((p) => {
+            p.docs?.push(
+              `The discriminator possible values: ${Object.keys(type.discriminatedSubtypes ?? {}).join(", ")}`
+            );
+            return p;
+          });
+      }
       addDeclaration(sourceFile, modelInterface, type);
       const modelPolymorphicType = buildModelPolymorphicType(context, type);
       if (modelPolymorphicType) {
@@ -232,9 +236,7 @@ function buildUnionType(
       .join(" | ")
   };
 
-  unionDeclaration.docs = [
-    type.doc ?? `Alias for ${unionDeclaration.name}`
-  ];
+  unionDeclaration.docs = [type.doc ?? `Alias for ${unionDeclaration.name}`];
 
   return unionDeclaration;
 }
@@ -259,9 +261,7 @@ function buildEnumTypes(
       : getTypeExpression(context, type.valueType)
   };
 
-  const docs = type.doc
-    ? type.doc
-    : "Type of " + enumAsUnion.name;
+  const docs = type.doc ? type.doc : "Type of " + enumAsUnion.name;
   enumAsUnion.docs =
     isExtensibleEnum(context, type) && type.doc
       ? [getExtensibleEnumDescription(type) ?? docs]
