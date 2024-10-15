@@ -318,11 +318,11 @@ function buildPathParameterDefinitions(
     // we only need to build the wrapper types if the path parameters are objects
     const wrapperTypesDefinition = getGeneratedWrapperTypes(
       methodPathParams
-    ).map((qp) => {
+    ).map((wrap) => {
       return getObjectInterfaceDeclaration(
         model,
-        qp.param.wrapperType!.name,
-        qp.param.wrapperType!,
+        wrap.name,
+        wrap,
         [SchemaContext.Input],
         new Set<string>()
       );

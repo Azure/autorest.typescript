@@ -12,6 +12,7 @@ import {
   ParameterMetadata,
   PathParameter,
   RLCModel,
+  Schema,
   SchemaContext
 } from "../interfaces.js";
 import { NameType, normalizeName, pascalCase } from "./nameUtils.js";
@@ -125,7 +126,7 @@ function hasSchemaContextObject(model: RLCModel, schemaUsage: SchemaContext[]) {
 
 export function getGeneratedWrapperTypes(
   params: ParameterMetadata[] | PathParameter[]
-) {
+): Schema[] {
   const wrapperTypes = params
     .map((qp) =>
       isParameterMetadata(qp) ? qp.param.wrapperType : qp.wrapperType
