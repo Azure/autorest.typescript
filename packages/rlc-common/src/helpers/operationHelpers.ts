@@ -9,6 +9,7 @@ import {
 import {
   Methods,
   ObjectSchema,
+  ParameterMetadata,
   PathParameter,
   RLCModel,
   SchemaContext
@@ -120,4 +121,28 @@ function hasSchemaContextObject(model: RLCModel, schemaUsage: SchemaContext[]) {
   );
 
   return objectSchemas.length > 0;
+}
+
+export function getGeneratedWrapperTypes(
+  params: ParameterMetadata[] | PathParameter[]
+) {
+  const wrapperTypes = params
+    .map((qp) =>
+      isParameterMetadata(qp) ? qp.param.wrapperType : qp.wrapperType
+    )
+    .filter((v) => v !== undefined);
+  const wrapperFromObjects = wrapperTypes.filter(
+    (wrap) => wrap.type === "object"
+  );
+  const wrapperFromUnions = wrapperTypes
+    .filter((wrap) => wrap.type === "union")
+    .flatMap((wrapperType) => wrapperType?.enum ?? [])
+    .filter((v) => v.type === "object");
+  return [...wrapperFromUnions, ...wrapperFromObjects];
+}
+
+function isParameterMetadata(
+  param: ParameterMetadata | PathParameter
+): param is ParameterMetadata {
+  return (param as any).param !== undefined;
 }

@@ -24,6 +24,7 @@ import {
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 import { getObjectInterfaceDeclaration } from "./buildObjectTypes.js";
+import { getGeneratedWrapperTypes } from "./helpers/operationHelpers.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -203,27 +204,18 @@ function buildQueryParameterDefinition(
   const propertiesDefinition = queryParameters.map((qp) =>
     getPropertyFromSchema(qp.param)
   );
-  const wrapperFromObjects = queryParameters
-    .filter((qp) => qp.param.wrapperType?.type === "object")
-    .map((qp) => qp.param.wrapperType);
-  const wrapperFromUnions = queryParameters
-    .filter((qp) => qp.param.wrapperType?.type === "union")
-    .map((qp) => qp.param.wrapperType)
-    .flatMap((wrapperType) => wrapperType?.enum ?? [])
-    .filter((v) => v.type === "object");
   // Get wrapper types for query parameters
-  const wrapperTypesDefinition = [
-    ...wrapperFromUnions,
-    ...wrapperFromObjects
-  ].map((wrapObj) => {
-    return getObjectInterfaceDeclaration(
-      model,
-      wrapObj.name,
-      wrapObj,
-      [SchemaContext.Input],
-      new Set<string>()
-    );
-  });
+  const wrapperTypesDefinition = getGeneratedWrapperTypes(queryParameters).map(
+    (wrapObj) => {
+      return getObjectInterfaceDeclaration(
+        model,
+        wrapObj.name,
+        wrapObj,
+        [SchemaContext.Input],
+        new Set<string>()
+      );
+    }
+  );
 
   const hasRequiredParameters = propertiesDefinition.some(
     (p) => !p.hasQuestionToken
@@ -287,9 +279,9 @@ function buildPathParameterDefinitions(
   buildMethodWrapParameters();
   return allDefinitions;
   function buildClientPathParameters() {
-    const clientPathParams = pathParameters.filter(
-      (p) => p.param.pathPosition !== "method"
-    );
+    // we only have client-level path parameters if the source is from swagger
+    const clientPathParams =
+      model.options?.sourceFrom === "Swagger" ? pathParameters : [];
     const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
     const pathParameterInterfaceName = `${baseName}PathParam${nameSuffix}`;
 
@@ -319,20 +311,22 @@ function buildPathParameterDefinitions(
   }
 
   function buildMethodWrapParameters() {
-    const methodPathParams = pathParameters.filter(
-      (p) => p.param.pathPosition === "method"
-    );
-    const wrapperTypesDefinition = methodPathParams
-      .filter((qp) => qp.param.wrapperType?.type === "object")
-      .map((qp) => {
-        return getObjectInterfaceDeclaration(
-          model,
-          qp.param.wrapperType!.name,
-          qp.param.wrapperType!,
-          [SchemaContext.Input],
-          new Set<string>()
-        );
-      });
+    // we only have method-level path parameters if the source is from typespec
+    const methodPathParams =
+      model.options?.sourceFrom === "TypeSpec" ? pathParameters : [];
+
+    // we only need to build the wrapper types if the path parameters are objects
+    const wrapperTypesDefinition = getGeneratedWrapperTypes(
+      methodPathParams
+    ).map((qp) => {
+      return getObjectInterfaceDeclaration(
+        model,
+        qp.param.wrapperType!.name,
+        qp.param.wrapperType!,
+        [SchemaContext.Input],
+        new Set<string>()
+      );
+    });
     allDefinitions.push(...wrapperTypesDefinition);
   }
 }

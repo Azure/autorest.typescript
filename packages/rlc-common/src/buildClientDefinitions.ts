@@ -14,6 +14,7 @@ import * as path from "path";
 
 import {
   buildMethodDefinitions,
+  getGeneratedWrapperTypes,
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
 import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
@@ -168,9 +169,9 @@ function getPathFirstRoutesInterfaceDefinition(
       sourcefile
     );
     const pathParams = paths[key].pathParameters;
-    pathParams
-      .filter((p) => p.isWrappedType)
-      .forEach((p) => options.importedParameters.add(p.type));
+    getGeneratedWrapperTypes(pathParams).forEach((p) =>
+      options.importedParameters.add(p.type)
+    );
     signatures.push({
       docs: [
         `Resource for '${key

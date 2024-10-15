@@ -200,7 +200,6 @@ function getParameterMetadata(
       enableLegacyHelper ? "And also this" : "This"
     } parameter type could be prepared with function ${parameterBuilder}.`;
   }
-  const pathPosition = paramType === "path" ? "method" : undefined;
   return {
     type: paramType,
     name,
@@ -210,8 +209,7 @@ function getParameterMetadata(
       typeName: type,
       required: !parameter.param.optional,
       description,
-      wrapperType,
-      pathPosition
+      wrapperType
     }
   };
 }

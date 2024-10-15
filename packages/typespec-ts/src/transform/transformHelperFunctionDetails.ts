@@ -182,7 +182,7 @@ function extractSpecialSerializeInfo(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const set = new Set<ParameterBuilderKind>();
+  const paramBuilders = new Set<ParameterBuilderKind>();
   let hasMultiCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -197,14 +197,14 @@ function extractSpecialSerializeInfo(
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      const [paramSerializeKind] =
+      const [parameterBuilder] =
         getParameterWrapperInfo(
           dpgContext,
           parameter,
           getSchemaForType(dpgContext, parameter.param.type)
         ) ?? [];
-      if (paramSerializeKind) {
-        set.add(paramSerializeKind);
+      if (parameterBuilder) {
+        paramBuilders.add(parameterBuilder);
       }
     });
   }
@@ -235,7 +235,7 @@ function extractSpecialSerializeInfo(
             getSchemaForType(dpgContext, parameter.param.type)
           ) ?? [];
         if (parameterBuilder) {
-          set.add(parameterBuilder);
+          paramBuilders.add(parameterBuilder);
         }
       });
     }
@@ -243,6 +243,6 @@ function extractSpecialSerializeInfo(
   return {
     hasMultiCollection,
     hasCsvCollection,
-    parameterBuilders: [...set]
+    parameterBuilders: [...paramBuilders]
   };
 }
