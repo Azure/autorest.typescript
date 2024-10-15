@@ -41,9 +41,6 @@ export function widgetDeserializer(item: any): Widget {
   };
 }
 
-/** Type of _WidgetColor */
-export type _WidgetColor = "red" | "blue";
-
 /** model interface WidgetError */
 export interface WidgetError {
   /** The HTTP error code. */
@@ -81,11 +78,6 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
     return widgetDeserializer(item);
   });
 }
-
-/** Type of _CreateWidgetColor */
-export type _CreateWidgetColor = "red" | "blue";
-/** Type of _UpdateWidgetRequestColor */
-export type _UpdateWidgetRequestColor = "red" | "blue";
 
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {

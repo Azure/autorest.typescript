@@ -519,21 +519,7 @@ describe("header parameters", () => {
             withRawContent: true,
           }
         );
-        assert.ok(schemaOutput);
-        await assertEqualContent(
-          schemaOutput?.getFullText()!,
-          `
-          /** Type of GetRequestTestHeader */ 
-          export type GetRequestTestHeader =
-            | "A"
-            | "B";
-          /** Type of GetResponseTestHeader */ 
-          export type GetResponseTestHeader =
-            | "A"
-            | "B";
-          `,
-          true
-        );
+        assert.isUndefined(schemaOutput);
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,
           {
@@ -617,21 +603,7 @@ describe("header parameters", () => {
             withRawContent: true,
           }
         );
-        assert.ok(schemaOutput);
-        await assertEqualContent(
-          schemaOutput?.getFullText()!,
-          `
-          /** Type of GetRequestTestHeader */ 
-          export type GetRequestTestHeader =
-            | "A"
-            | "B";
-          /** Type of GetResponseTestHeader */ 
-          export type GetResponseTestHeader =
-            | "A"
-            | "B";
-          `,
-          true
-        );
+        assert.isUndefined(schemaOutput);
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
           tspDefinition,

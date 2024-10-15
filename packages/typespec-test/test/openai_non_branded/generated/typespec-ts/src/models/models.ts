@@ -43,11 +43,6 @@ export function _createModerationRequestInputDeserializer(
   return item;
 }
 
-/** Type of _CreateModerationRequestModel */
-export type _CreateModerationRequestModel =
-  | "text-moderation-latest"
-  | "text-moderation-stable";
-
 /** model interface CreateModerationResponse */
 export interface CreateModerationResponse {
   /** The unique identifier for the moderation request. */
@@ -310,11 +305,6 @@ export function createImageRequestSerializer(item: CreateImageRequest): any {
     user: item["user"],
   };
 }
-
-/** Type of _CreateImageRequestSize */
-export type _CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
-/** Type of _CreateImageRequestResponseFormat */
-export type _CreateImageRequestResponseFormat = "url" | "b64_json";
 
 /** model interface ImagesResponse */
 export interface ImagesResponse {
@@ -613,13 +603,6 @@ export function createFineTuneRequestSerializer(
   };
 }
 
-/** Type of _CreateFineTuneRequestModel */
-export type _CreateFineTuneRequestModel =
-  | "ada"
-  | "babbage"
-  | "curie"
-  | "davinci";
-
 /** The `FineTune` object represents a legacy fine-tune job that has been created through the API. */
 export interface FineTune {
   /** The object identifier, which can be referenced in the API endpoints. */
@@ -683,14 +666,6 @@ export function fineTuneDeserializer(item: any): FineTune {
       : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
-
-/** Type of _FineTuneStatus */
-export type _FineTuneStatus =
-  | "created"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
 
 /** model interface _FineTuneHyperparams */
 export interface _FineTuneHyperparams {
@@ -774,15 +749,6 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     status_details: item["status_details"],
   };
 }
-
-/** Type of _OpenAIFileStatus */
-export type _OpenAIFileStatus =
-  | "uploaded"
-  | "processed"
-  | "pending"
-  | "error"
-  | "deleting"
-  | "deleted";
 
 export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   return result.map((item) => {
@@ -927,8 +893,6 @@ export function createEmbeddingRequestSerializer(
   };
 }
 
-/** Type of _CreateEmbeddingRequestModel */
-export type _CreateEmbeddingRequestModel = "text-embedding-ada-002";
 /** Alias for _CreateEmbeddingRequestInput */
 export type _CreateEmbeddingRequestInput =
   | string
@@ -1061,11 +1025,6 @@ export function createEditRequestSerializer(item: CreateEditRequest): any {
   };
 }
 
-/** Type of _CreateEditRequestModel */
-export type _CreateEditRequestModel =
-  | "text-davinci-edit-001"
-  | "code-davinci-edit-001";
-
 /** model interface CreateEditResponse */
 export interface CreateEditResponse {
   /** The object type, which is always `edit`. */
@@ -1113,9 +1072,6 @@ export function _createEditResponseChoiceDeserializer(
     finish_reason: item["finish_reason"],
   };
 }
-
-/** Type of _CreateEditResponseChoiceFinishReason */
-export type _CreateEditResponseChoiceFinishReason = "stop" | "length";
 
 export function createEditResponseChoiceArrayDeserializer(
   result: Array<_CreateEditResponseChoice>,
@@ -1284,17 +1240,6 @@ export function createCompletionRequestSerializer(
   };
 }
 
-/** Type of _CreateCompletionRequestModel */
-export type _CreateCompletionRequestModel =
-  | "babbage-002"
-  | "davinci-002"
-  | "text-davinci-003"
-  | "text-davinci-002"
-  | "text-davinci-001"
-  | "code-davinci-002"
-  | "text-curie-001"
-  | "text-babbage-001"
-  | "text-ada-001";
 /** Alias for Prompt */
 export type Prompt = string | string[] | number[] | number[][];
 
@@ -1418,12 +1363,6 @@ export function _createCompletionResponseChoiceLogprobsDeserializer(
   };
 }
 
-/** Type of _CreateCompletionResponseChoiceFinishReason */
-export type _CreateCompletionResponseChoiceFinishReason =
-  | "stop"
-  | "length"
-  | "content_filter";
-
 export function createCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateCompletionResponseChoice>,
 ): any[] {
@@ -1491,12 +1430,6 @@ export function createFineTuningJobRequestSerializer(
     suffix: item["suffix"],
   };
 }
-
-/** Type of _CreateFineTuningJobRequestModel */
-export type _CreateFineTuningJobRequestModel =
-  | "babbage-002"
-  | "davinci-002"
-  | "gpt-3.5-turbo";
 
 /** model interface _CreateFineTuningJobRequestHyperparameters */
 export interface _CreateFineTuningJobRequestHyperparameters {
@@ -1632,15 +1565,6 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   };
 }
 
-/** Type of _FineTuningJobStatus */
-export type _FineTuningJobStatus =
-  | "created"
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-
 /** model interface _FineTuningJobHyperparameters */
 export interface _FineTuningJobHyperparameters {
   /**
@@ -1759,9 +1683,6 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
     message: item["message"],
   };
 }
-
-/** Type of _FineTuningJobEventLevel */
-export type _FineTuningJobEventLevel = "info" | "warn" | "error";
 
 export function fineTuningJobEventArrayDeserializer(
   result: Array<FineTuningJobEvent>,
@@ -1900,20 +1821,6 @@ export function createChatCompletionRequestSerializer(
   };
 }
 
-/** Type of _CreateChatCompletionRequestModel */
-export type _CreateChatCompletionRequestModel =
-  | "gpt4"
-  | "gpt-4-0314"
-  | "gpt-4-0613"
-  | "gpt-4-32k"
-  | "gpt-4-32k-0314"
-  | "gpt-4-32k-0613"
-  | "gpt-3.5-turbo"
-  | "gpt-3.5-turbo-16k"
-  | "gpt-3.5-turbo-0301"
-  | "gpt-3.5-turbo-0613"
-  | "gpt-3.5-turbo-16k-0613";
-
 /** model interface ChatCompletionRequestMessage */
 export interface ChatCompletionRequestMessage {
   /** The role of the messages author. One of `system`, `user`, `assistant`, or `function`. */
@@ -1950,13 +1857,6 @@ export function chatCompletionRequestMessageSerializer(
         ),
   };
 }
-
-/** Type of _ChatCompletionRequestMessageRole */
-export type _ChatCompletionRequestMessageRole =
-  | "system"
-  | "user"
-  | "assistant"
-  | "function";
 
 /** model interface _ChatCompletionRequestMessageFunctionCall */
 export interface _ChatCompletionRequestMessageFunctionCall {
@@ -2153,13 +2053,6 @@ export function chatCompletionResponseMessageDeserializer(
   };
 }
 
-/** Type of _ChatCompletionResponseMessageRole */
-export type _ChatCompletionResponseMessageRole =
-  | "system"
-  | "user"
-  | "assistant"
-  | "function";
-
 /** model interface _ChatCompletionResponseMessageFunctionCall */
 export interface _ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
@@ -2180,13 +2073,6 @@ export function _chatCompletionResponseMessageFunctionCallDeserializer(
     arguments: item["arguments"],
   };
 }
-
-/** Type of _CreateChatCompletionResponseChoiceFinishReason */
-export type _CreateChatCompletionResponseChoiceFinishReason =
-  | "stop"
-  | "length"
-  | "function_call"
-  | "content_filter";
 
 export function createChatCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateChatCompletionResponseChoice>,
@@ -2235,16 +2121,6 @@ export function createTranslationRequestSerializer(
     temperature: item["temperature"],
   };
 }
-
-/** Type of _CreateTranslationRequestModel */
-export type _CreateTranslationRequestModel = "whisper-1";
-/** Type of _CreateTranslationRequestResponseFormat */
-export type _CreateTranslationRequestResponseFormat =
-  | "json"
-  | "text"
-  | "srt"
-  | "verbose_json"
-  | "vtt";
 
 /** model interface CreateTranslationResponse */
 export interface CreateTranslationResponse {
@@ -2305,16 +2181,6 @@ export function createTranscriptionRequestSerializer(
     language: item["language"],
   };
 }
-
-/** Type of _CreateTranscriptionRequestModel */
-export type _CreateTranscriptionRequestModel = "whisper-1";
-/** Type of _CreateTranscriptionRequestResponseFormat */
-export type _CreateTranscriptionRequestResponseFormat =
-  | "json"
-  | "text"
-  | "srt"
-  | "verbose_json"
-  | "vtt";
 
 /** model interface CreateTranscriptionResponse */
 export interface CreateTranscriptionResponse {

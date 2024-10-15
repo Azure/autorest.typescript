@@ -146,14 +146,16 @@ export function emitTypes(
         continue;
       }
       const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
-      if (isExtensibleEnum(context, type)) {
+      if (isExtensibleEnum(context, type) && !enumType.name.startsWith("_")) {
         addDeclaration(
           sourceFile,
           knownValuesEnum,
           refkey(type, "knownValues")
         );
       }
-      addDeclaration(sourceFile, enumType, type);
+      if (!enumType.name.startsWith("_")) {
+        addDeclaration(sourceFile, enumType, type);
+      }
     } else if (type.kind === "union") {
       const unionType = buildUnionType(context, type);
       addDeclaration(sourceFile, unionType, type);

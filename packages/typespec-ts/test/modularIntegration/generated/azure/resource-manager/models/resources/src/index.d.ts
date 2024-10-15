@@ -17,9 +17,6 @@ export declare interface ErrorAdditionalInfo {
     readonly info?: Record<string, any>;
 }
 
-export declare interface ErrorAdditionalInfoInfo {
-}
-
 export declare interface ErrorDetail {
     readonly code?: string;
     readonly message?: string;

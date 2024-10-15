@@ -137,21 +137,21 @@ describe("api operations in Modular", () => {
       const modelFile = await emitModularModelsFromTypeSpec(tspContent);
       assert.ok(modelFile);
       await assertEqualContent(
-        modelFile?.getInterface("UploadFileRequest")?.getFullText()!,
+        modelFile?.getInterface("_UploadFileRequest")?.getFullText()!,
         `
-         /** model interface UploadFileRequest */
-         export interface UploadFileRequest {
+         /** model interface _UploadFileRequest */
+         export interface _UploadFileRequest {
            name: string;
            file: Uint8Array;
          }
         `
       );
   
-      const serializer = modelFile?.getFunction("uploadFileRequestSerializer")?.getText();
+      const serializer = modelFile?.getFunction("_uploadFileRequestSerializer")?.getText();
       await assertEqualContent(
         serializer!,
         `
-         export function uploadFileRequestSerializer(item: UploadFileRequest): any {
+         export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
            return {
              name: item["name"],
              file: uint8ArrayToString(item["file"], "base64"),
@@ -175,7 +175,7 @@ describe("api operations in Modular", () => {
 
          export function _uploadFileSend(
            context: Client,
-           body: UploadFileRequest,
+           body: { name: string; file: Uint8Array },
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod {
            return context
@@ -183,7 +183,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: uploadFileRequestSerializer(body),
+               body: _uploadFileRequestSerializer(body),
              });
          }
          export async function _uploadFileDeserialize(
@@ -197,7 +197,7 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFile(
            context: Client,
-           body: UploadFileRequest,
+           body: { name: string; file: Uint8Array },
            options: UploadFileOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFileSend(context, body, options);
@@ -225,12 +225,12 @@ describe("api operations in Modular", () => {
       `
        import { uint8ArrayToString } from "@azure/core-util";
        
-       /** model interface UploadFilesRequest */
-       export interface UploadFilesRequest {
+       /** model interface _UploadFilesRequest */
+       export interface _UploadFilesRequest {
          files: Uint8Array[];
        }
        
-       export function uploadFilesRequestSerializer(item: UploadFilesRequest): any {
+       export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
         return {
           files: item["files"].map((p: any) => {
             return uint8ArrayToString(p, "base64");
@@ -256,7 +256,7 @@ describe("api operations in Modular", () => {
 
          export function _uploadFilesSend(
            context: Client,
-           body: UploadFilesRequest,
+           body: { files: Uint8Array[] },
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): StreamableMethod {
            return context
@@ -264,7 +264,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: uploadFilesRequestSerializer(body),
+               body: _uploadFilesRequestSerializer(body),
              });
          }
          export async function _uploadFilesDeserialize(
@@ -278,7 +278,7 @@ describe("api operations in Modular", () => {
          }
          export async function uploadFiles(
            context: Client,
-           body: UploadFilesRequest,
+           body: { files: Uint8Array[] },
            options: UploadFilesOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFilesSend(context, body, options);
@@ -412,15 +412,15 @@ describe("api operations in Modular", () => {
         `
          import { stringToUint8Array } from "@azure/core-util";
          
-         /** model interface DownloadFileResponse */
-         export interface DownloadFileResponse {
+         /** model interface _DownloadFileResponse */
+         export interface _DownloadFileResponse {
            name: string;
            file: Uint8Array;
          }
          
-         export function downloadFileResponseDeserializer(
+         export function _downloadFileResponseDeserializer(
            item: any,
-         ): DownloadFileResponse {
+         ): _DownloadFileResponse {
            return {
              name: item["name"],
              file:
@@ -460,7 +460,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
              throw createRestError(result);
            }
-           return downloadFileResponseDeserializer(result.body);
+           return _downloadFileResponseDeserializer(result.body);
          }
          export async function downloadFile(
            context: Client,
@@ -494,15 +494,15 @@ describe("api operations in Modular", () => {
         `
          import { stringToUint8Array } from "@azure/core-util";
          
-         /** model interface DownloadFileResponse */
-         export interface DownloadFileResponse {
+         /** model interface _DownloadFileResponse */
+         export interface _DownloadFileResponse {
            name: string;
            file: Uint8Array[];
          }
          
-         export function downloadFileResponseDeserializer(
+         export function _downloadFileResponseDeserializer(
            item: any,
-         ): DownloadFileResponse {
+         ): _DownloadFileResponse {
            return {
              name: item["name"],
              file: item["file"].map((p: any) => {
@@ -541,7 +541,7 @@ describe("api operations in Modular", () => {
            if (!expectedStatuses.includes(result.status)) {
               throw createRestError(result);
            }
-            return downloadFileResponseDeserializer(result.body);
+            return _downloadFileResponseDeserializer(result.body);
          }
          export async function downloadFile(
            context: Client,

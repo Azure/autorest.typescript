@@ -353,8 +353,6 @@ export declare interface UnionFloatLiteralProperty {
     property: 43.125 | 46.875;
 }
 
-export declare type UnionFloatLiteralPropertyProperty = 43.125 | 46.875;
-
 export declare interface UnionFloatLiteralPutOptionalParams extends OperationOptions {
 }
 
@@ -370,8 +368,6 @@ export declare interface UnionIntLiteralProperty {
     property: 42 | 43;
 }
 
-export declare type UnionIntLiteralPropertyProperty = 42 | 43;
-
 export declare interface UnionIntLiteralPutOptionalParams extends OperationOptions {
 }
 
@@ -386,8 +382,6 @@ export declare interface UnionStringLiteralOperations {
 export declare interface UnionStringLiteralProperty {
     property: "hello" | "world";
 }
-
-export declare type UnionStringLiteralPropertyProperty = "hello" | "world";
 
 export declare interface UnionStringLiteralPutOptionalParams extends OperationOptions {
 }

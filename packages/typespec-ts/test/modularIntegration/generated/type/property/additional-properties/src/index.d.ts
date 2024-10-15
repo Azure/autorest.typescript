@@ -368,8 +368,6 @@ export declare interface MultipleSpreadRecord extends Record<string, any> {
     flag: boolean;
 }
 
-export declare type MultipleSpreadRecordAdditionalProperty = string | number;
-
 export declare interface SpreadDifferentFloatGetOptionalParams extends OperationOptions {
 }
 
@@ -482,21 +480,13 @@ export declare interface SpreadRecordForNonDiscriminatedUnion2 extends Record<st
     name: string;
 }
 
-export declare type SpreadRecordForNonDiscriminatedUnion2AdditionalProperty = WidgetData2 | WidgetData1;
-
 export declare interface SpreadRecordForNonDiscriminatedUnion3 extends Record<string, any> {
     name: string;
 }
 
-export declare type SpreadRecordForNonDiscriminatedUnion3AdditionalProperty = WidgetData2[] | WidgetData1;
-
-export declare type SpreadRecordForNonDiscriminatedUnionAdditionalProperty = WidgetData0 | WidgetData1;
-
 export declare interface SpreadRecordForUnion extends Record<string, any> {
     flag: boolean;
 }
-
-export declare type SpreadRecordForUnionAdditionalProperty = string | number;
 
 export declare interface SpreadRecordNonDiscriminatedUnion2GetOptionalParams extends OperationOptions {
 }

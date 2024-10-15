@@ -1109,14 +1109,14 @@ describe("inheritance & polymorphism", () => {
         };
       }
       
-      /** Alias for ReadResponse */
-      export type ReadResponse = Cat | Dog;
+      /** Alias for _ReadResponse */
+      export type _ReadResponse = Cat | Dog;
       
-      export function readResponseSerializer(item: ReadResponse): any {
+      export function _readResponseSerializer(item: _ReadResponse): any {
         return item;
       }
       
-      export function readResponseDeserializer(item: any): ReadResponse {
+      export function _readResponseDeserializer(item: any): _ReadResponse {
         return item;
       }
       `
@@ -1999,16 +1999,7 @@ describe("inheritance & polymorphism", () => {
           withRawContent: true
         }
       );
-      assert.ok(schemaOutput);
-      await assertEqualContent(
-        schemaOutput?.getFullText()!,
-        `
-        /** Type of GetRequestTestHeader */
-        export type GetRequestTestHeader = "A" | "B";
-        /** Type of GetResponseTestHeader */
-        export type GetResponseTestHeader = "A" | "B";
-        `
-      );
+      assert.isUndefined(schemaOutput);
 
       const paramOutput = await emitModularOperationsFromTypeSpec(
         tspDefinition,

@@ -535,7 +535,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: readRequestSerializer(body),
+              body: _readRequestSerializer(body),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -611,7 +611,7 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
-          test: ReadRequest,
+          test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
           return context
@@ -619,7 +619,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: readRequestSerializer(test),
+              body: _readRequestSerializer(test),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -633,7 +633,7 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
-          test: ReadRequest,
+          test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
@@ -674,7 +674,7 @@ describe("anonymous model", () => {
           serializer!,
           `
           export function testSerializer(item: Test): any {
-            return { color: testColorSerializer(item["color"]) };
+            return { color: _testColorSerializer(item["color"]) };
           };`,
           true
         );
@@ -750,7 +750,7 @@ describe("anonymous model", () => {
           serializer!,
           `
           export function testSerializer(item: Test): any {
-            return { color: testColorSerializer(item["color"]) };
+            return { color: _testColorSerializer(item["color"]) };
           };`,
           true
         );
@@ -862,7 +862,7 @@ describe("anonymous model", () => {
         await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
           "Record<string, any>",
-          "readResponse"
+          "_readResponse"
         );
       });
 
@@ -932,7 +932,7 @@ describe("anonymous model", () => {
           if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
-          return readResponseDeserializer(result.body);
+          return _readResponseDeserializer(result.body);
         }
         export async function read(
           context: Client,
@@ -979,7 +979,7 @@ describe("anonymous model", () => {
          
          export function returnBodyDeserializer(item: any): ReturnBody {
            return {
-             emptyAnomyous: returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
+             emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
              emptyAnomyousArray: returnBodyEmptyAnomyousArrayArrayDeserializer(
                item["emptyAnomyousArray"],
              ),
@@ -992,49 +992,49 @@ describe("anonymous model", () => {
            };
          }
          
-         /** model interface ReturnBodyEmptyAnomyous */
-         export interface ReturnBodyEmptyAnomyous {}
+         /** model interface _ReturnBodyEmptyAnomyous */
+         export interface _ReturnBodyEmptyAnomyous {}
          
-         export function returnBodyEmptyAnomyousDeserializer(
+         export function _returnBodyEmptyAnomyousDeserializer(
            item: any,
-         ): ReturnBodyEmptyAnomyous {
+         ): _ReturnBodyEmptyAnomyous {
            return item as any;
          }
          
-         /** model interface ReturnBodyEmptyAnomyousArray */
-         export interface ReturnBodyEmptyAnomyousArray {}
+         /** model interface _ReturnBodyEmptyAnomyousArray */
+         export interface _ReturnBodyEmptyAnomyousArray {}
          
-         export function returnBodyEmptyAnomyousArrayDeserializer(
+         export function _returnBodyEmptyAnomyousArrayDeserializer(
            item: any,
-         ): ReturnBodyEmptyAnomyousArray {
+         ): _ReturnBodyEmptyAnomyousArray {
            return item as any;
          }
          
          export function returnBodyEmptyAnomyousArrayArrayDeserializer(
-           result: Array<ReturnBodyEmptyAnomyousArray>,
+           result: Array<_ReturnBodyEmptyAnomyousArray>,
          ): any[] {
            return result.map((item) => {
-             return returnBodyEmptyAnomyousArrayDeserializer(item);
+             return _returnBodyEmptyAnomyousArrayDeserializer(item);
            });
          }
          
-         /** model interface ReturnBodyEmptyAnomyousDict */
-         export interface ReturnBodyEmptyAnomyousDict {}
+         /** model interface _ReturnBodyEmptyAnomyousDict */
+         export interface _ReturnBodyEmptyAnomyousDict {}
          
-         export function returnBodyEmptyAnomyousDictDeserializer(
+         export function _returnBodyEmptyAnomyousDictDeserializer(
            item: any,
-         ): ReturnBodyEmptyAnomyousDict {
+         ): _ReturnBodyEmptyAnomyousDict {
            return item as any;
          }
          
          export function returnBodyEmptyAnomyousDictRecordDeserializer(
            item: Record<string, any>,
-         ): Record<string, ReturnBodyEmptyAnomyousDict> {
+         ): Record<string, _ReturnBodyEmptyAnomyousDict> {
            const result: Record<string, any> = {};
            Object.keys(item).map((key) => {
              result[key] = !item[key]
                ? item[key]
-               : returnBodyEmptyAnomyousDictDeserializer(item[key]);
+               : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
            });
            return result;
          }
@@ -1152,12 +1152,12 @@ describe("anonymous model", () => {
            
            export function fozDeserializer(item: any): Foz {
              return {
-               baz: fozBazDeserializer(item["baz"]),
+               baz: _fozBazDeserializer(item["baz"]),
              };
            }
            
-           /** model interface FozBaz */
-           export interface FozBaz {
+           /** model interface _FozBaz */
+           export interface _FozBaz {
              foo: number[];
              bas: string;
              bar?: SimpleModel[];
@@ -1175,7 +1175,7 @@ describe("anonymous model", () => {
              >;
            }
            
-           export function fozBazDeserializer(item: any): FozBaz {
+           export function _fozBazDeserializer(item: any): _FozBaz {
              return {
                foo: item["foo"].map((p: any) => {
                  return p;
@@ -1184,7 +1184,7 @@ describe("anonymous model", () => {
                bar: !item["test"]
                  ? item["test"]
                  : simpleModelArrayDeserializer(item["test"]),
-               nonemptyAnomyous: fozBazNonemptyAnomyousDeserializer(
+               nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
                  item["nonemptyAnomyous"],
                ),
                nonemptyAnomyousArray: fozBazNonemptyAnomyousArrayArrayDeserializer(
@@ -1215,48 +1215,48 @@ describe("anonymous model", () => {
              });
            }
            
-           /** model interface FozBazNonemptyAnomyous */
-           export interface FozBazNonemptyAnomyous {
+           /** model interface _FozBazNonemptyAnomyous */
+           export interface _FozBazNonemptyAnomyous {
              a: string;
            }
            
-           export function fozBazNonemptyAnomyousDeserializer(
+           export function _fozBazNonemptyAnomyousDeserializer(
              item: any,
-           ): FozBazNonemptyAnomyous {
+           ): _FozBazNonemptyAnomyous {
              return {
                a: item["a"],
              };
            }
            
-           /** model interface FozBazNonemptyAnomyousArray */
-           export interface FozBazNonemptyAnomyousArray {
+           /** model interface _FozBazNonemptyAnomyousArray */
+           export interface _FozBazNonemptyAnomyousArray {
              b?: Record<string, string>;
            }
            
-           export function fozBazNonemptyAnomyousArrayDeserializer(
+           export function _fozBazNonemptyAnomyousArrayDeserializer(
              item: any,
-           ): FozBazNonemptyAnomyousArray {
+           ): _FozBazNonemptyAnomyousArray {
              return {
                b: item["b"],
              };
            }
            
            export function fozBazNonemptyAnomyousArrayArrayDeserializer(
-             result: Array<FozBazNonemptyAnomyousArray>,
+             result: Array<_FozBazNonemptyAnomyousArray>,
            ): any[] {
              return result.map((item) => {
-               return fozBazNonemptyAnomyousArrayDeserializer(item);
+               return _fozBazNonemptyAnomyousArrayDeserializer(item);
              });
            }
            
-           /** model interface FozBazNonemptyAnomyousDict */
-           export interface FozBazNonemptyAnomyousDict {
+           /** model interface _FozBazNonemptyAnomyousDict */
+           export interface _FozBazNonemptyAnomyousDict {
              c: number[];
            }
            
-           export function fozBazNonemptyAnomyousDictDeserializer(
+           export function _fozBazNonemptyAnomyousDictDeserializer(
              item: any,
-           ): FozBazNonemptyAnomyousDict {
+           ): _FozBazNonemptyAnomyousDict {
              return {
                c: item["c"].map((p: any) => {
                  return p;
@@ -1266,12 +1266,12 @@ describe("anonymous model", () => {
         
            export function fozBazNonemptyAnomyousDictRecordDeserializer(
              item: Record<string, any>,
-           ): Record<string, FozBazNonemptyAnomyousDict> {
+           ): Record<string, _FozBazNonemptyAnomyousDict> {
              const result: Record<string, any> = {};
              Object.keys(item).map((key) => {
               result[key] = !item[key]
                 ? item[key]
-                : fozBazNonemptyAnomyousDictDeserializer(item[key]);
+                : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
              });
              return result;
            }

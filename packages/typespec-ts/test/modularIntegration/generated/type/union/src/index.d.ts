@@ -15,10 +15,6 @@ export declare interface EnumsOnlyCases {
     ud: Ud;
 }
 
-export declare type EnumsOnlyCasesLr = Lr | Ud;
-
-export declare type EnumsOnlyCasesUd = Ud | Ud;
-
 export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
 }
 
@@ -45,58 +41,6 @@ export declare interface FloatsOnlyOperations {
 export declare interface FloatsOnlySendOptionalParams extends OperationOptions {
 }
 
-export declare interface GetResponse {
-    prop: MixedTypesCases;
-}
-
-export declare interface GetResponse1 {
-    prop: MixedLiteralsCases;
-}
-
-export declare interface GetResponse2 {
-    prop: StringAndArrayCases;
-}
-
-export declare interface GetResponse3 {
-    prop: EnumsOnlyCases;
-}
-
-export declare interface GetResponse4 {
-    prop: Cat | Dog;
-}
-
-export declare interface GetResponse5 {
-    prop: 1.1 | 2.2 | 3.3;
-}
-
-export declare interface GetResponse6 {
-    prop: 1 | 2 | 3;
-}
-
-export declare interface GetResponse7 {
-    prop: StringExtensibleNamedUnion;
-}
-
-export declare interface GetResponse8 {
-    prop: string;
-}
-
-export declare interface GetResponse9 {
-    prop: "a" | "b" | "c";
-}
-
-export declare type GetResponseProp = Cat | Dog;
-
-export declare type GetResponseProp1 = 1.1 | 2.2 | 3.3;
-
-export declare type GetResponseProp2 = 1 | 2 | 3;
-
-export declare type GetResponseProp3 = string;
-
-export declare type GetResponseProp4 = "a" | "b" | "c";
-
-export declare type GetResponseProp_1 = Cat | Dog;
-
 export declare interface IntsOnlyGetOptionalParams extends OperationOptions {
 }
 
@@ -108,11 +52,6 @@ export declare interface IntsOnlyOperations {
 }
 
 export declare interface IntsOnlySendOptionalParams extends OperationOptions {
-}
-
-export declare enum KnownGetResponseProp3 {
-    b = "b",
-    c = "c"
 }
 
 export declare enum KnownStringExtensibleNamedUnion {
@@ -128,14 +67,6 @@ export declare interface MixedLiteralsCases {
     floatLiteral: "a" | 2 | 3.3 | true;
     booleanLiteral: "a" | 2 | 3.3 | true;
 }
-
-export declare type MixedLiteralsCasesStringLiteral1 = "a" | 2 | 3.3 | true;
-
-export declare type MixedLiteralsCasesStringLiteral1_1 = "a" | 2 | 3.3 | true;
-
-export declare type MixedLiteralsCasesStringLiteral1_2 = "a" | 2 | 3.3 | true;
-
-export declare type MixedLiteralsCasesStringLiteral1_3 = "a" | 2 | 3.3 | true;
 
 export declare interface MixedLiteralsGetOptionalParams extends OperationOptions {
 }
@@ -157,16 +88,6 @@ export declare interface MixedTypesCases {
     boolean: Cat | "a" | number | boolean;
     array: (Cat | "a" | number | boolean)[];
 }
-
-export declare type MixedTypesCasesModel = Cat | "a" | number | boolean;
-
-export declare type MixedTypesCasesModel_1 = Cat | "a" | number | boolean;
-
-export declare type MixedTypesCasesModel_2 = Cat | "a" | number | boolean;
-
-export declare type MixedTypesCasesModel_3 = Cat | "a" | number | boolean;
-
-export declare type MixedTypesCasesModel_4 = Cat | "a" | number | boolean;
 
 export declare interface MixedTypesGetOptionalParams extends OperationOptions {
 }
@@ -198,10 +119,6 @@ export declare interface StringAndArrayCases {
     string: string | string[];
     array: string | string[];
 }
-
-export declare type StringAndArrayCasesArray = string | string[];
-
-export declare type StringAndArrayCasesString = string | string[];
 
 export declare interface StringAndArrayGetOptionalParams extends OperationOptions {
 }

@@ -5,8 +5,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare interface ImmediateSuccessOptionalParams extends OperationOptions {
 }
 
-export declare type ImmediateSuccessResponseRepeatabilityResult = "accepted" | "rejected";
-
 export declare class RepeatabilityClient {
     private _client;
     readonly pipeline: Pipeline;
