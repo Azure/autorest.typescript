@@ -90,9 +90,9 @@ function transformQueryParameters(
   importedModels: Set<string>
 ): ParameterMetadata[] {
   const queryParameters = parameters.filter(
-    (p) => p.protocol.http?.in === "query"
+    p => p.protocol.http?.in === "query"
   );
-  return (queryParameters || []).map((qp) =>
+  return (queryParameters || []).map(qp =>
     getParameterMetadata("query", qp, importedModels)
   );
 }
@@ -103,12 +103,12 @@ function transformPathParameters(
   importedModels: Set<string>
 ): ParameterMetadata[] {
   const pathParameters = parameters.filter(
-    (p) =>
+    p =>
       p.protocol.http?.in === ParameterLocation.Uri &&
       model.globalParameters?.indexOf(p) === -1
   );
 
-  return (pathParameters || []).map((qp) =>
+  return (pathParameters || []).map(qp =>
     getParameterMetadata("path", qp, importedModels, true)
   );
 }
@@ -118,9 +118,9 @@ function transformHeaderParameters(
   importedModels: Set<string>
 ): ParameterMetadata[] {
   const headerParameters = parameters.filter(
-    (p) => p.protocol.http?.in === "header"
+    p => p.protocol.http?.in === "header"
   );
-  return (headerParameters || []).map((qp) =>
+  return (headerParameters || []).map(qp =>
     getParameterMetadata("header", qp, importedModels, true)
   );
 }
@@ -142,7 +142,7 @@ function transformContentTypeParameter(
       name: "contentType",
       param: {
         name: "contentType",
-        type: mediaTypes.map((mt) => `"${mt}"`).join(" | "),
+        type: mediaTypes.map(mt => `"${mt}"`).join(" | "),
         description: "Request content type",
         required: false
       }
@@ -155,18 +155,16 @@ function transformBodyParameters(
   importedModels: Set<string>,
   contentTypeParam: ParameterMetadata[]
 ): ParameterBodyMetadata | undefined {
-  const bodyParameters = parameters.filter(
-    (p) => p.protocol.http?.in === "body"
-  );
+  const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
     return undefined;
   }
-  const isPartialBody = bodyParameters.some((p) => p.isPartialBody);
+  const isPartialBody = bodyParameters.some(p => p.isPartialBody);
   const rlcBodyParam: ParameterBodyMetadata = {
     isPartialBody
   };
   if (isPartialBody) {
-    rlcBodyParam.body = bodyParameters.map((bp) =>
+    rlcBodyParam.body = bodyParameters.map(bp =>
       getParameterSchema(bp, importedModels, false, contentTypeParam)
     );
   } else {
@@ -208,10 +206,8 @@ function getParameterSchema(
   contentTypeParam: ParameterMetadata[] = []
 ): ObjectSchema {
   const propertyLangMetadata = getLanguageMetadata(parameter.language);
-  const propertyName = `"${
-    propertyLangMetadata.serializedName ??
-    (parameter as Property).serializedName
-  }"`;
+  const propertyName = `"${propertyLangMetadata.serializedName ??
+    (parameter as Property).serializedName}"`;
 
   if (!propertyName) {
     throw new Error(
