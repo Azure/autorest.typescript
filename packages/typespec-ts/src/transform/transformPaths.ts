@@ -149,7 +149,8 @@ function transformOperation(
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-          const [_, wrapperType] =
+
+          const [serializeHelper, wrapperType] =
             getParameterSerializeInfo(
               dpgContext,
               p,
@@ -157,10 +158,15 @@ function transformOperation(
               operationGroupName,
               method.operationName
             ) ?? [];
+          let description = getDoc(program, p.param) ?? "";
+          const typeName = getTypeName(wrapperType ?? schema, schemaUsage);
+          if (wrapperType) {
+            description = `${description} \n\nThis parameter type could be easily prepared with function ${serializeHelper}.`;
+          }
           return {
             name: p.name,
-            type: getTypeName(wrapperType ?? schema, schemaUsage),
-            description: getDoc(program, p.param),
+            type: typeName,
+            description,
             isWrappedType: !!wrapperType
           };
         }),

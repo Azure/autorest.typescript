@@ -28,7 +28,8 @@ export function getParameterSerializeInfo(
           "withAllowReserved",
           buildAllowReserved(
             normalizeName(`${prefix}_PathParam`, NameType.Interface),
-            valueSchema
+            valueSchema,
+            "withAllowReserved"
           )
         ];
       } else {
@@ -48,7 +49,8 @@ export function getParameterSerializeInfo(
             name,
             true,
             "form",
-            valueSchema
+            valueSchema,
+            "withExplodedAndFormStyle"
           );
           return [
             "withExplodedAndFormStyle",
@@ -65,7 +67,8 @@ export function getParameterSerializeInfo(
               name,
               false,
               "form",
-              valueSchema
+              valueSchema,
+              "withNonExplodedAndFormStyle"
             );
             return [
               "withNonExplodedAndFormStyle",
@@ -76,12 +79,24 @@ export function getParameterSerializeInfo(
           } else if (parameter.format === "ssv") {
             return [
               "withNonExplodedAndSpaceStyle",
-              buildExplodeAndStyle(name, false, "spaceDelimited", valueSchema)
+              buildExplodeAndStyle(
+                name,
+                false,
+                "spaceDelimited",
+                valueSchema,
+                "withNonExplodedAndSpaceStyle"
+              )
             ];
           } else if (parameter.format === "pipes") {
             return [
               "withNonExplodedAndPipeStyle",
-              buildExplodeAndStyle(name, false, "pipeDelimited", valueSchema)
+              buildExplodeAndStyle(
+                name,
+                false,
+                "pipeDelimited",
+                valueSchema,
+                "withNonExplodedAndPipeStyle"
+              )
             ];
           } else {
             // Not supported and report warnings
@@ -97,15 +112,19 @@ export function getParameterSerializeInfo(
   }
 }
 
-function buildAllowReserved(typeName: string, valueSchema: Schema) {
+function buildAllowReserved(
+  typeName: string,
+  valueSchema: Schema,
+  serializeHelper: string
+) {
   return {
     type: "object",
     name: typeName,
-    description: "String with encoding metadata",
+    description: `You can use the function ${serializeHelper} to help prepare this parameter.`,
     properties: {
       value: {
         ...valueSchema,
-        description: "Value of the parameter",
+        description: valueSchema.description ?? "Value of the parameter",
         required: true
       },
       allowReserved: {
@@ -121,26 +140,27 @@ function buildExplodeAndStyle(
   typeName: string,
   explode: boolean,
   style: string,
-  valueSchema: Schema
+  valueSchema: Schema,
+  serializeHelper: string
 ) {
   return {
     type: "object",
     name: typeName,
-    description: "Wrapper object for query parameters",
+    description: `You can use the function ${serializeHelper} to help prepare this parameter.`,
     properties: {
       value: {
         ...valueSchema,
-        description: "Value of the parameter",
+        description: valueSchema.description ?? "Value of the parameter",
         required: true
       },
       explode: {
         type: `${explode}`,
-        description: "Explode the object always",
+        description: "Should we explode the value?",
         required: true
       },
       style: {
         type: `"${style}"`,
-        description: "Style of the object",
+        description: "Style of the value",
         required: true
       }
     }

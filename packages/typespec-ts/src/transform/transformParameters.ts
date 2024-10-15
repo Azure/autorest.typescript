@@ -184,7 +184,7 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
-  const [_, wrapper] =
+  const [serializeHelper, wrapperType] =
     getParameterSerializeInfo(
       dpgContext,
       parameter,
@@ -192,8 +192,9 @@ function getParameterMetadata(
       options.operationGroupName,
       options.operationName
     ) ?? [];
-  if (wrapper) {
-    type = getTypeName(wrapper, schemaContext);
+  if (wrapperType) {
+    type = getTypeName(wrapperType, schemaContext);
+    description = `${description} \n\nThis parameter type could be easily prepared with function ${serializeHelper}.`;
   }
   const pathPosition = paramType === "path" ? "method" : undefined;
   return {
@@ -205,7 +206,7 @@ function getParameterMetadata(
       typeName: type,
       required: !parameter.param.optional,
       description,
-      wrapperType: wrapper,
+      wrapperType,
       pathPosition
     }
   };
