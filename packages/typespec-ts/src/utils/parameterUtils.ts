@@ -25,11 +25,11 @@ export function getParameterSerializeInfo(
     case "path": {
       if (parameter.allowReserved === true) {
         return [
-          "withAllowReserved",
+          "buildAllowReservedValue",
           buildAllowReserved(
             normalizeName(`${prefix}_PathParam`, NameType.Interface),
             valueSchema,
-            "withAllowReserved"
+            "buildAllowReservedValue"
           )
         ];
       } else {
@@ -50,10 +50,10 @@ export function getParameterSerializeInfo(
             true,
             "form",
             valueSchema,
-            "withExplodedAndFormStyle"
+            "buildExplodedAndFormStyleValue"
           );
           return [
-            "withExplodedAndFormStyle",
+            "buildExplodedAndFormStyleValue",
             dpgContext.rlcOptions?.compatibilityMode
               ? buildUnionType([
                   wrapperType,
@@ -68,34 +68,34 @@ export function getParameterSerializeInfo(
               false,
               "form",
               valueSchema,
-              "withNonExplodedAndFormStyle"
+              "buildNonExplodedAndFormStyleValue"
             );
             return [
-              "withNonExplodedAndFormStyle",
+              "buildNonExplodedAndFormStyleValue",
               isArrayType(valueSchema)
                 ? buildUnionType([valueSchema, wrapperType])
                 : wrapperType
             ];
           } else if (parameter.format === "ssv") {
             return [
-              "withNonExplodedAndSpaceStyle",
+              "buildNonExplodedAndSpaceStyleValue",
               buildExplodeAndStyle(
                 name,
                 false,
                 "spaceDelimited",
                 valueSchema,
-                "withNonExplodedAndSpaceStyle"
+                "buildNonExplodedAndSpaceStyleValue"
               )
             ];
           } else if (parameter.format === "pipes") {
             return [
-              "withNonExplodedAndPipeStyle",
+              "buildNonExplodedAndPipeStyleValue",
               buildExplodeAndStyle(
                 name,
                 false,
                 "pipeDelimited",
                 valueSchema,
-                "withNonExplodedAndPipeStyle"
+                "buildNonExplodedAndPipeStyleValue"
               )
             ];
           } else {

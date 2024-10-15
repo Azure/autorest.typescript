@@ -103,8 +103,15 @@ export interface AddFaceListFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddFaceListFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddFaceListFaceFromUrlTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddFaceListFaceFromUrlTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public (undocumented)
@@ -124,8 +131,15 @@ export interface AddFaceListFaceQueryParam {
 // @public (undocumented)
 export interface AddFaceListFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddFaceListFaceTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddFaceListFaceTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public
@@ -211,8 +225,15 @@ export interface AddLargeFaceListFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddLargeFaceListFaceFromUrlTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddLargeFaceListFaceFromUrlTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public (undocumented)
@@ -232,8 +253,15 @@ export interface AddLargeFaceListFaceQueryParam {
 // @public (undocumented)
 export interface AddLargeFaceListFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddLargeFaceListFaceTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddLargeFaceListFaceTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public
@@ -313,8 +341,15 @@ export interface AddLargePersonGroupPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public (undocumented)
@@ -334,8 +369,15 @@ export interface AddLargePersonGroupPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddLargePersonGroupPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddLargePersonGroupPersonFaceTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddLargePersonGroupPersonFaceTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public (undocumented)
@@ -444,8 +486,15 @@ export interface AddPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddPersonFaceFromUrlTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public
@@ -473,8 +522,15 @@ export interface AddPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddPersonFaceTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddPersonFaceTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public
@@ -554,8 +610,15 @@ export interface AddPersonGroupPersonFaceFromUrlQueryParam {
 // @public (undocumented)
 export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public (undocumented)
@@ -575,8 +638,15 @@ export interface AddPersonGroupPersonFaceQueryParam {
 // @public (undocumented)
 export interface AddPersonGroupPersonFaceQueryParamProperties {
     detectionModel?: DetectionModel;
-    targetFace?: number[];
+    targetFace?: number[] | AddPersonGroupPersonFaceTargetFaceQueryParam;
     userData?: string;
+}
+
+// @public
+export interface AddPersonGroupPersonFaceTargetFaceQueryParam {
+    explode: false;
+    style: "form";
+    value: number[];
 }
 
 // @public
@@ -587,6 +657,13 @@ export interface BlurPropertiesOutput {
     blurLevel: BlurLevelOutput;
     value: number;
 }
+
+// @public (undocumented)
+export function buildNonExplodedAndFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
 
 // @public
 function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: FaceClientOptions): FaceClient;
@@ -1663,10 +1740,17 @@ export interface DetectFromUrlQueryParamProperties {
     detectionModel?: DetectionModel;
     faceIdTimeToLive?: number;
     recognitionModel?: RecognitionModel;
-    returnFaceAttributes?: FaceAttributeType[];
+    returnFaceAttributes?: FaceAttributeType[] | DetectFromUrlReturnFaceAttributesQueryParam;
     returnFaceId?: boolean;
     returnFaceLandmarks?: boolean;
     returnRecognitionModel?: boolean;
+}
+
+// @public
+export interface DetectFromUrlReturnFaceAttributesQueryParam {
+    explode: false;
+    style: "form";
+    value: FaceAttributeType[];
 }
 
 // @public
@@ -1691,10 +1775,17 @@ export interface DetectQueryParamProperties {
     detectionModel?: DetectionModel;
     faceIdTimeToLive?: number;
     recognitionModel?: RecognitionModel;
-    returnFaceAttributes?: FaceAttributeType[];
+    returnFaceAttributes?: FaceAttributeType[] | DetectReturnFaceAttributesQueryParam;
     returnFaceId?: boolean;
     returnFaceLandmarks?: boolean;
     returnRecognitionModel?: boolean;
+}
+
+// @public
+export interface DetectReturnFaceAttributesQueryParam {
+    explode: false;
+    style: "form";
+    value: FaceAttributeType[];
 }
 
 // @public
