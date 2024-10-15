@@ -256,6 +256,12 @@ const libDef = {
       messages: {
         default: paramMessage`The parameter ${"paramName"} in ${"exampleName"} is required but no value provided.`
       }
+    },
+    "un-supported-format-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} with explode: ${"explode"} and format: ${"format"} is not supported.`
+      }
     }
   },
   emitter: {
