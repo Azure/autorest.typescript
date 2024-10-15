@@ -20,7 +20,8 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { getSerializeHelperKind } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -196,9 +197,14 @@ function extractSpecialSerializeInfo(
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      const serializableKind = getSerializeHelperKind(parameter);
-      if (serializableKind) {
-        set.add(serializableKind);
+      const [paramSerializeKind] =
+        getParameterSerializeInfo(
+          dpgContext,
+          parameter,
+          getSchemaForType(dpgContext, parameter.param.type)
+        ) ?? [];
+      if (paramSerializeKind) {
+        set.add(paramSerializeKind);
       }
     });
   }
@@ -222,9 +228,14 @@ function extractSpecialSerializeInfo(
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
-        const serializableKind = getSerializeHelperKind(parameter);
-        if (serializableKind) {
-          set.add(serializableKind);
+        const [paramSerializeKind] =
+          getParameterSerializeInfo(
+            dpgContext,
+            parameter,
+            getSchemaForType(dpgContext, parameter.param.type)
+          ) ?? [];
+        if (paramSerializeKind) {
+          set.add(paramSerializeKind);
         }
       });
     }

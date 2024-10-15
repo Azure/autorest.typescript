@@ -37,7 +37,7 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
-import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -149,13 +149,14 @@ function transformOperation(
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-          const wrapperType = getParameterWrapperType(
-            dpgContext,
-            operationGroupName,
-            method.operationName,
-            p,
-            schema
-          );
+          const [_, wrapperType] =
+            getParameterSerializeInfo(
+              dpgContext,
+              p,
+              schema,
+              operationGroupName,
+              method.operationName
+            ) ?? [];
           return {
             name: p.name,
             type: getTypeName(wrapperType ?? schema, schemaUsage),

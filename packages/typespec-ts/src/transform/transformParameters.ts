@@ -46,7 +46,7 @@ import {
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getParameterWrapperType } from "../utils/parameterUtils.js";
+import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -184,13 +184,14 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
-  const wrapper = getParameterWrapperType(
-    dpgContext,
-    options.operationGroupName ?? "",
-    options.operationName ?? "",
-    parameter,
-    schema
-  );
+  const [_, wrapper] =
+    getParameterSerializeInfo(
+      dpgContext,
+      parameter,
+      schema,
+      options.operationGroupName,
+      options.operationName
+    ) ?? [];
   if (wrapper) {
     type = getTypeName(wrapper, schemaContext);
   }

@@ -13,52 +13,24 @@ import {
 } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
 
-export function getSerializeHelperKind(
-  parameter: HttpOperationParameter
-): SerializeHelperKind | undefined {
-  switch (parameter.type) {
-    case "path": {
-      if (parameter.allowReserved === true) {
-        return "withAllowReserved";
-      } else {
-        return undefined;
-      }
-    }
-    case "query": {
-      if (parameter.explode === true) {
-        return "withExplodedAndFormStyle";
-      } else {
-        if (parameter.format === undefined || parameter.format === "csv") {
-          return "withNonExplodedAndFormStyle";
-        } else if (parameter.format === "ssv") {
-          return "withNonExplodedAndSpaceStyle";
-        } else if (parameter.format === "pipes") {
-          return "withNonExplodedAndPipeStyle";
-        }
-        return undefined;
-      }
-    }
-    default: {
-      return undefined;
-    }
-  }
-}
-
-export function getParameterWrapperType(
+export function getParameterSerializeInfo(
   dpgContext: SdkContext,
-  operationGroup: string,
-  operationName: string,
   parameter: HttpOperationParameter,
-  valueSchema: Schema
-): Schema | undefined {
+  valueSchema: Schema,
+  operationGroup: string = "",
+  operationName: string = ""
+): [SerializeHelperKind, Schema] | undefined {
   const prefix = `${operationGroup}_${operationName}_${parameter.name}`;
   switch (parameter.type) {
     case "path": {
       if (parameter.allowReserved === true) {
-        return buildAllowReserved(
-          normalizeName(`${prefix}_PathParam`, NameType.Interface),
-          valueSchema
-        );
+        return [
+          "withAllowReserved",
+          buildAllowReserved(
+            normalizeName(`${prefix}_PathParam`, NameType.Interface),
+            valueSchema
+          )
+        ];
       } else {
         return undefined;
       }
@@ -78,9 +50,15 @@ export function getParameterWrapperType(
             "form",
             valueSchema
           );
-          return dpgContext.rlcOptions?.compatibilityMode
-            ? buildUnionType([wrapperType, { type: "string", name: "string" }])
-            : wrapperType;
+          return [
+            "withExplodedAndFormStyle",
+            dpgContext.rlcOptions?.compatibilityMode
+              ? buildUnionType([
+                  wrapperType,
+                  { type: "string", name: "string" }
+                ])
+              : wrapperType
+          ];
         } else {
           if (parameter.format === undefined || parameter.format === "csv") {
             const wrapperType = buildExplodeAndStyle(
@@ -89,23 +67,22 @@ export function getParameterWrapperType(
               "form",
               valueSchema
             );
-            return isArrayType(valueSchema)
-              ? buildUnionType([valueSchema, wrapperType])
-              : wrapperType;
+            return [
+              "withNonExplodedAndFormStyle",
+              isArrayType(valueSchema)
+                ? buildUnionType([valueSchema, wrapperType])
+                : wrapperType
+            ];
           } else if (parameter.format === "ssv") {
-            return buildExplodeAndStyle(
-              name,
-              false,
-              "spaceDelimited",
-              valueSchema
-            );
+            return [
+              "withNonExplodedAndSpaceStyle",
+              buildExplodeAndStyle(name, false, "spaceDelimited", valueSchema)
+            ];
           } else if (parameter.format === "pipes") {
-            return buildExplodeAndStyle(
-              name,
-              false,
-              "pipeDelimited",
-              valueSchema
-            );
+            return [
+              "withNonExplodedAndPipeStyle",
+              buildExplodeAndStyle(name, false, "pipeDelimited", valueSchema)
+            ];
           } else {
             // Not supported and report warnings
           }
