@@ -252,18 +252,11 @@ export declare interface PathParametersReservedExpansionAnnotation204Response ex
     status: "204";
 }
 
-export declare type PathParametersReservedExpansionAnnotationParameters = PathParametersReservedExpansionAnnotationPathParam & RequestParameters;
+export declare type PathParametersReservedExpansionAnnotationParameters = RequestParameters;
 
 export declare interface PathParametersReservedExpansionAnnotationParamPathParam {
     value: string;
     allowReserved: true;
-}
-
-export declare interface PathParametersReservedExpansionAnnotationPathParam {
-    pathParameters: PathParametersReservedExpansionAnnotationPathParameters;
-}
-
-export declare interface PathParametersReservedExpansionAnnotationPathParameters {
 }
 
 export declare interface PathParametersReservedExpansionTemplate {
@@ -274,18 +267,11 @@ export declare interface PathParametersReservedExpansionTemplate204Response exte
     status: "204";
 }
 
-export declare type PathParametersReservedExpansionTemplateParameters = PathParametersReservedExpansionTemplatePathParam & RequestParameters;
+export declare type PathParametersReservedExpansionTemplateParameters = RequestParameters;
 
 export declare interface PathParametersReservedExpansionTemplateParamPathParam {
     value: string;
     allowReserved: true;
-}
-
-export declare interface PathParametersReservedExpansionTemplatePathParam {
-    pathParameters: PathParametersReservedExpansionTemplatePathParameters;
-}
-
-export declare interface PathParametersReservedExpansionTemplatePathParameters {
 }
 
 export declare interface PathParametersSimpleExpansionExplodeArray {

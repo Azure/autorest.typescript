@@ -170,7 +170,7 @@ function getPathFirstRoutesInterfaceDefinition(
     );
     const pathParams = paths[key].pathParameters;
     getGeneratedWrapperTypes(pathParams).forEach((p) =>
-      options.importedParameters.add(p.type)
+      options.importedParameters.add(p.name ?? p.type)
     );
     signatures.push({
       docs: [
