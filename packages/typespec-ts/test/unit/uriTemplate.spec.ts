@@ -18,14 +18,14 @@ describe.only("Client definition generation", () => {
     import { RequestParameters } from "@azure-rest/core-client";
     
     export interface TemplatePathParameters {}
-    
+
     export interface TemplatePathParam {
       pathParameters: TemplatePathParameters;
     }
 
-    /** String with encoding metadata */
+    /** You can use the function buildAllowReservedValue to help prepare this parameter. */
       export interface TemplateParamPathParam {
-        /** Value of the parameter */
+        /** A sequence of textual characters. */
         value: string;
         /** Whether to allow reserved characters */
         allowReserved: true;
