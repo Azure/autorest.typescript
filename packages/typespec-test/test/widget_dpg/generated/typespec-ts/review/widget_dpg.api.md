@@ -36,9 +36,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export type CreateWidgetColor = "red" | "blue";
-
-// @public
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
@@ -67,9 +64,6 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 }
 
 // @public
-export type UpdateWidgetRequestColor = "red" | "blue";
-
-// @public
 export interface User {
     id: string;
     readonly name: string;
@@ -82,9 +76,6 @@ export interface Widget {
     id: string;
     weight: number;
 }
-
-// @public
-export type WidgetColor = "red" | "blue";
 
 // @public
 export interface WidgetError {

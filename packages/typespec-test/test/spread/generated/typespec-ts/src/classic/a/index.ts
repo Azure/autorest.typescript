@@ -9,7 +9,7 @@ import {
   ATest3OptionalParams,
   ATest4OptionalParams,
 } from "../../api/options.js";
-import { Test3Request, Test4Request } from "../../models/models.js";
+import { _Test4Request } from "../../models/models.js";
 
 /** Interface representing a A operations. */
 export interface AOperations {
@@ -20,8 +20,11 @@ export interface AOperations {
     options?: ATest1OptionalParams,
   ) => Promise<void>;
   test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
-  test3: (body: Test3Request, options?: ATest3OptionalParams) => Promise<void>;
-  test4: (body: Test4Request, options?: ATest4OptionalParams) => Promise<void>;
+  test3: (
+    body: { prop: string },
+    options?: ATest3OptionalParams,
+  ) => Promise<void>;
+  test4: (body: _Test4Request, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 export function getA(context: DemoServiceContext) {
@@ -30,9 +33,9 @@ export function getA(context: DemoServiceContext) {
       test1(context, a, b, c, options),
     test2: (prop: string, options?: ATest2OptionalParams) =>
       test2(context, prop, options),
-    test3: (body: Test3Request, options?: ATest3OptionalParams) =>
+    test3: (body: { prop: string }, options?: ATest3OptionalParams) =>
       test3(context, body, options),
-    test4: (body: Test4Request, options?: ATest4OptionalParams) =>
+    test4: (body: _Test4Request, options?: ATest4OptionalParams) =>
       test4(context, body, options),
   };
 }

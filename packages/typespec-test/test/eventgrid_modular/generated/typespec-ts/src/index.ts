@@ -3,7 +3,6 @@
 
 export { EventGridClient } from "./eventGridClient.js";
 export {
-  PublishCloudEventRequest,
   CloudEvent,
   PublishResult,
   ReceiveResult,

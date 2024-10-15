@@ -23,28 +23,28 @@ export function createModerationRequestSerializer(
   item: CreateModerationRequest,
 ): any {
   return {
-    input: createModerationRequestInputSerializer(item["input"]),
+    input: _createModerationRequestInputSerializer(item["input"]),
     model: item["model"],
   };
 }
 
-/** Alias for CreateModerationRequestInput */
-export type CreateModerationRequestInput = string | string[];
+/** Alias for _CreateModerationRequestInput */
+export type _CreateModerationRequestInput = string | string[];
 
-export function createModerationRequestInputSerializer(
-  item: CreateModerationRequestInput,
+export function _createModerationRequestInputSerializer(
+  item: _CreateModerationRequestInput,
 ): any {
   return item;
 }
 
-export function createModerationRequestInputDeserializer(
+export function _createModerationRequestInputDeserializer(
   item: any,
-): CreateModerationRequestInput {
+): _CreateModerationRequestInput {
   return item;
 }
 
-/** Type of CreateModerationRequestModel */
-export type CreateModerationRequestModel =
+/** Type of _CreateModerationRequestModel */
+export type _CreateModerationRequestModel =
   | "text-moderation-latest"
   | "text-moderation-stable";
 
@@ -96,8 +96,8 @@ export function createModerationResponseDeserializer(
   };
 }
 
-/** model interface CreateModerationResponseResult */
-export interface CreateModerationResponseResult {
+/** model interface _CreateModerationResponseResult */
+export interface _CreateModerationResponseResult {
   /** Whether the content violates [OpenAI's usage policies](/policies/usage-policies). */
   flagged: boolean;
   /** A list of the categories, and whether they are flagged or not. */
@@ -130,22 +130,22 @@ export interface CreateModerationResponseResult {
   };
 }
 
-export function createModerationResponseResultDeserializer(
+export function _createModerationResponseResultDeserializer(
   item: any,
-): CreateModerationResponseResult {
+): _CreateModerationResponseResult {
   return {
     flagged: item["flagged"],
-    categories: createModerationResponseResultCategoriesDeserializer(
+    categories: _createModerationResponseResultCategoriesDeserializer(
       item["categories"],
     ),
-    category_scores: createModerationResponseResultCategoryScoresDeserializer(
+    category_scores: _createModerationResponseResultCategoryScoresDeserializer(
       item["category_scores"],
     ),
   };
 }
 
-/** model interface CreateModerationResponseResultCategories */
-export interface CreateModerationResponseResultCategories {
+/** model interface _CreateModerationResponseResultCategories */
+export interface _CreateModerationResponseResultCategories {
   /**
    * Content that expresses, incites, or promotes hate based on race, gender, ethnicity,
    * religion, nationality, sexual orientation, disability status, or caste. Hateful content
@@ -190,9 +190,9 @@ export interface CreateModerationResponseResultCategories {
   "violence/graphic": boolean;
 }
 
-export function createModerationResponseResultCategoriesDeserializer(
+export function _createModerationResponseResultCategoriesDeserializer(
   item: any,
-): CreateModerationResponseResultCategories {
+): _CreateModerationResponseResultCategories {
   return {
     hate: item["hate"],
     "hate/threatening": item["hate/threatening"],
@@ -208,8 +208,8 @@ export function createModerationResponseResultCategoriesDeserializer(
   };
 }
 
-/** model interface CreateModerationResponseResultCategoryScores */
-export interface CreateModerationResponseResultCategoryScores {
+/** model interface _CreateModerationResponseResultCategoryScores */
+export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'hate'. */
   hate: number;
   /** The score for the category 'hate/threatening'. */
@@ -234,9 +234,9 @@ export interface CreateModerationResponseResultCategoryScores {
   "violence/graphic": number;
 }
 
-export function createModerationResponseResultCategoryScoresDeserializer(
+export function _createModerationResponseResultCategoryScoresDeserializer(
   item: any,
-): CreateModerationResponseResultCategoryScores {
+): _CreateModerationResponseResultCategoryScores {
   return {
     hate: item["hate"],
     "hate/threatening": item["hate/threatening"],
@@ -253,10 +253,10 @@ export function createModerationResponseResultCategoryScoresDeserializer(
 }
 
 export function createModerationResponseResultArrayDeserializer(
-  result: Array<CreateModerationResponseResult>,
+  result: Array<_CreateModerationResponseResult>,
 ): any[] {
   return result.map((item) => {
-    return createModerationResponseResultDeserializer(item);
+    return _createModerationResponseResultDeserializer(item);
   });
 }
 
@@ -311,10 +311,10 @@ export function createImageRequestSerializer(item: CreateImageRequest): any {
   };
 }
 
-/** Type of CreateImageRequestSize */
-export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
-/** Type of CreateImageRequestResponseFormat */
-export type CreateImageRequestResponseFormat = "url" | "b64_json";
+/** Type of _CreateImageRequestSize */
+export type _CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
+/** Type of _CreateImageRequestResponseFormat */
+export type _CreateImageRequestResponseFormat = "url" | "b64_json";
 
 /** model interface ImagesResponse */
 export interface ImagesResponse {
@@ -613,8 +613,8 @@ export function createFineTuneRequestSerializer(
   };
 }
 
-/** Type of CreateFineTuneRequestModel */
-export type CreateFineTuneRequestModel =
+/** Type of _CreateFineTuneRequestModel */
+export type _CreateFineTuneRequestModel =
   | "ada"
   | "babbage"
   | "curie"
@@ -674,7 +674,7 @@ export function fineTuneDeserializer(item: any): FineTune {
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: item["status"],
-    hyperparams: fineTuneHyperparamsDeserializer(item["hyperparams"]),
+    hyperparams: _fineTuneHyperparamsDeserializer(item["hyperparams"]),
     training_files: openAIFileArrayDeserializer(item["training_files"]),
     validation_files: openAIFileArrayDeserializer(item["validation_files"]),
     result_files: openAIFileArrayDeserializer(item["result_files"]),
@@ -684,16 +684,16 @@ export function fineTuneDeserializer(item: any): FineTune {
   };
 }
 
-/** Type of FineTuneStatus */
-export type FineTuneStatus =
+/** Type of _FineTuneStatus */
+export type _FineTuneStatus =
   | "created"
   | "running"
   | "succeeded"
   | "failed"
   | "cancelled";
 
-/** model interface FineTuneHyperparams */
-export interface FineTuneHyperparams {
+/** model interface _FineTuneHyperparams */
+export interface _FineTuneHyperparams {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
@@ -716,9 +716,9 @@ export interface FineTuneHyperparams {
   classification_n_classes?: number;
 }
 
-export function fineTuneHyperparamsDeserializer(
+export function _fineTuneHyperparamsDeserializer(
   item: any,
-): FineTuneHyperparams {
+): _FineTuneHyperparams {
   return {
     n_epochs: item["n_epochs"],
     batch_size: item["batch_size"],
@@ -775,8 +775,8 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
   };
 }
 
-/** Type of OpenAIFileStatus */
-export type OpenAIFileStatus =
+/** Type of _OpenAIFileStatus */
+export type _OpenAIFileStatus =
   | "uploaded"
   | "processed"
   | "pending"
@@ -922,29 +922,29 @@ export function createEmbeddingRequestSerializer(
 ): any {
   return {
     model: item["model"],
-    input: createEmbeddingRequestInputSerializer(item["input"]),
+    input: _createEmbeddingRequestInputSerializer(item["input"]),
     user: item["user"],
   };
 }
 
-/** Type of CreateEmbeddingRequestModel */
-export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
-/** Alias for CreateEmbeddingRequestInput */
-export type CreateEmbeddingRequestInput =
+/** Type of _CreateEmbeddingRequestModel */
+export type _CreateEmbeddingRequestModel = "text-embedding-ada-002";
+/** Alias for _CreateEmbeddingRequestInput */
+export type _CreateEmbeddingRequestInput =
   | string
   | string[]
   | number[]
   | number[][];
 
-export function createEmbeddingRequestInputSerializer(
-  item: CreateEmbeddingRequestInput,
+export function _createEmbeddingRequestInputSerializer(
+  item: _CreateEmbeddingRequestInput,
 ): any {
   return item;
 }
 
-export function createEmbeddingRequestInputDeserializer(
+export function _createEmbeddingRequestInputDeserializer(
   item: any,
-): CreateEmbeddingRequestInput {
+): _CreateEmbeddingRequestInput {
   return item;
 }
 
@@ -970,7 +970,7 @@ export function createEmbeddingResponseDeserializer(
     object: item["object"],
     model: item["model"],
     data: embeddingArrayDeserializer(item["data"]),
-    usage: createEmbeddingResponseUsageDeserializer(item["usage"]),
+    usage: _createEmbeddingResponseUsageDeserializer(item["usage"]),
   };
 }
 
@@ -1003,17 +1003,17 @@ export function embeddingArrayDeserializer(result: Array<Embedding>): any[] {
   });
 }
 
-/** model interface CreateEmbeddingResponseUsage */
-export interface CreateEmbeddingResponseUsage {
+/** model interface _CreateEmbeddingResponseUsage */
+export interface _CreateEmbeddingResponseUsage {
   /** The number of tokens used by the prompt. */
   prompt_tokens: number;
   /** The total number of tokens used by the request. */
   total_tokens: number;
 }
 
-export function createEmbeddingResponseUsageDeserializer(
+export function _createEmbeddingResponseUsageDeserializer(
   item: any,
-): CreateEmbeddingResponseUsage {
+): _CreateEmbeddingResponseUsage {
   return {
     prompt_tokens: item["prompt_tokens"],
     total_tokens: item["total_tokens"],
@@ -1061,8 +1061,8 @@ export function createEditRequestSerializer(item: CreateEditRequest): any {
   };
 }
 
-/** Type of CreateEditRequestModel */
-export type CreateEditRequestModel =
+/** Type of _CreateEditRequestModel */
+export type _CreateEditRequestModel =
   | "text-davinci-edit-001"
   | "code-davinci-edit-001";
 
@@ -1090,8 +1090,8 @@ export function createEditResponseDeserializer(item: any): CreateEditResponse {
   };
 }
 
-/** model interface CreateEditResponseChoice */
-export interface CreateEditResponseChoice {
+/** model interface _CreateEditResponseChoice */
+export interface _CreateEditResponseChoice {
   /** The edited result. */
   text: string;
   /** The index of the choice in the list of choices. */
@@ -1104,9 +1104,9 @@ export interface CreateEditResponseChoice {
   finish_reason: "stop" | "length";
 }
 
-export function createEditResponseChoiceDeserializer(
+export function _createEditResponseChoiceDeserializer(
   item: any,
-): CreateEditResponseChoice {
+): _CreateEditResponseChoice {
   return {
     text: item["text"],
     index: item["index"],
@@ -1114,14 +1114,14 @@ export function createEditResponseChoiceDeserializer(
   };
 }
 
-/** Type of CreateEditResponseChoiceFinishReason */
-export type CreateEditResponseChoiceFinishReason = "stop" | "length";
+/** Type of _CreateEditResponseChoiceFinishReason */
+export type _CreateEditResponseChoiceFinishReason = "stop" | "length";
 
 export function createEditResponseChoiceArrayDeserializer(
-  result: Array<CreateEditResponseChoice>,
+  result: Array<_CreateEditResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    return createEditResponseChoiceDeserializer(item);
+    return _createEditResponseChoiceDeserializer(item);
   });
 }
 
@@ -1284,8 +1284,8 @@ export function createCompletionRequestSerializer(
   };
 }
 
-/** Type of CreateCompletionRequestModel */
-export type CreateCompletionRequestModel =
+/** Type of _CreateCompletionRequestModel */
+export type _CreateCompletionRequestModel =
   | "babbage-002"
   | "davinci-002"
   | "text-davinci-003"
@@ -1360,8 +1360,8 @@ export function createCompletionResponseDeserializer(
   };
 }
 
-/** model interface CreateCompletionResponseChoice */
-export interface CreateCompletionResponseChoice {
+/** model interface _CreateCompletionResponseChoice */
+export interface _CreateCompletionResponseChoice {
   index: number;
   text: string;
   logprobs: {
@@ -1380,9 +1380,9 @@ export interface CreateCompletionResponseChoice {
   finish_reason: "stop" | "length" | "content_filter";
 }
 
-export function createCompletionResponseChoiceDeserializer(
+export function _createCompletionResponseChoiceDeserializer(
   item: any,
-): CreateCompletionResponseChoice {
+): _CreateCompletionResponseChoice {
   return {
     index: item["index"],
     text: item["text"],
@@ -1391,17 +1391,17 @@ export function createCompletionResponseChoiceDeserializer(
   };
 }
 
-/** model interface CreateCompletionResponseChoiceLogprobs */
-export interface CreateCompletionResponseChoiceLogprobs {
+/** model interface _CreateCompletionResponseChoiceLogprobs */
+export interface _CreateCompletionResponseChoiceLogprobs {
   tokens: string[];
   token_logprobs: number[];
   top_logprobs: Record<string, number>[];
   text_offset: number[];
 }
 
-export function createCompletionResponseChoiceLogprobsDeserializer(
+export function _createCompletionResponseChoiceLogprobsDeserializer(
   item: any,
-): CreateCompletionResponseChoiceLogprobs {
+): _CreateCompletionResponseChoiceLogprobs {
   return {
     tokens: item["tokens"].map((p: any) => {
       return p;
@@ -1418,17 +1418,17 @@ export function createCompletionResponseChoiceLogprobsDeserializer(
   };
 }
 
-/** Type of CreateCompletionResponseChoiceFinishReason */
-export type CreateCompletionResponseChoiceFinishReason =
+/** Type of _CreateCompletionResponseChoiceFinishReason */
+export type _CreateCompletionResponseChoiceFinishReason =
   | "stop"
   | "length"
   | "content_filter";
 
 export function createCompletionResponseChoiceArrayDeserializer(
-  result: Array<CreateCompletionResponseChoice>,
+  result: Array<_CreateCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    return createCompletionResponseChoiceDeserializer(item);
+    return _createCompletionResponseChoiceDeserializer(item);
   });
 }
 
@@ -1485,21 +1485,21 @@ export function createFineTuningJobRequestSerializer(
     model: item["model"],
     hyperparameters: !item["hyperparameters"]
       ? item["hyperparameters"]
-      : createFineTuningJobRequestHyperparametersSerializer(
+      : _createFineTuningJobRequestHyperparametersSerializer(
           item["hyperparameters"],
         ),
     suffix: item["suffix"],
   };
 }
 
-/** Type of CreateFineTuningJobRequestModel */
-export type CreateFineTuningJobRequestModel =
+/** Type of _CreateFineTuningJobRequestModel */
+export type _CreateFineTuningJobRequestModel =
   | "babbage-002"
   | "davinci-002"
   | "gpt-3.5-turbo";
 
-/** model interface CreateFineTuningJobRequestHyperparameters */
-export interface CreateFineTuningJobRequestHyperparameters {
+/** model interface _CreateFineTuningJobRequestHyperparameters */
+export interface _CreateFineTuningJobRequestHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
@@ -1507,30 +1507,30 @@ export interface CreateFineTuningJobRequestHyperparameters {
   n_epochs?: "auto" | number;
 }
 
-export function createFineTuningJobRequestHyperparametersSerializer(
-  item: CreateFineTuningJobRequestHyperparameters,
+export function _createFineTuningJobRequestHyperparametersSerializer(
+  item: _CreateFineTuningJobRequestHyperparameters,
 ): any {
   return {
     n_epochs: !item["n_epochs"]
       ? item["n_epochs"]
-      : createFineTuningJobRequestHyperparametersNEpochsSerializer(
+      : _createFineTuningJobRequestHyperparametersNEpochsSerializer(
           item["n_epochs"],
         ),
   };
 }
 
-/** Alias for CreateFineTuningJobRequestHyperparametersNEpochs */
-export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
+/** Alias for _CreateFineTuningJobRequestHyperparametersNEpochs */
+export type _CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
 
-export function createFineTuningJobRequestHyperparametersNEpochsSerializer(
-  item: CreateFineTuningJobRequestHyperparametersNEpochs,
+export function _createFineTuningJobRequestHyperparametersNEpochsSerializer(
+  item: _CreateFineTuningJobRequestHyperparametersNEpochs,
 ): any {
   return item;
 }
 
-export function createFineTuningJobRequestHyperparametersNEpochsDeserializer(
+export function _createFineTuningJobRequestHyperparametersNEpochsDeserializer(
   item: any,
-): CreateFineTuningJobRequestHyperparametersNEpochs {
+): _CreateFineTuningJobRequestHyperparametersNEpochs {
   return item;
 }
 
@@ -1619,7 +1619,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: item["status"],
-    hyperparameters: fineTuningJobHyperparametersDeserializer(
+    hyperparameters: _fineTuningJobHyperparametersDeserializer(
       item["hyperparameters"],
     ),
     training_file: item["training_file"],
@@ -1632,8 +1632,8 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   };
 }
 
-/** Type of FineTuningJobStatus */
-export type FineTuningJobStatus =
+/** Type of _FineTuningJobStatus */
+export type _FineTuningJobStatus =
   | "created"
   | "pending"
   | "running"
@@ -1641,8 +1641,8 @@ export type FineTuningJobStatus =
   | "failed"
   | "cancelled";
 
-/** model interface FineTuningJobHyperparameters */
-export interface FineTuningJobHyperparameters {
+/** model interface _FineTuningJobHyperparameters */
+export interface _FineTuningJobHyperparameters {
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
@@ -1653,33 +1653,33 @@ export interface FineTuningJobHyperparameters {
   n_epochs?: "auto" | number;
 }
 
-export function fineTuningJobHyperparametersDeserializer(
+export function _fineTuningJobHyperparametersDeserializer(
   item: any,
-): FineTuningJobHyperparameters {
+): _FineTuningJobHyperparameters {
   return {
     n_epochs: !item["n_epochs"]
       ? item["n_epochs"]
-      : fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
+      : _fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
   };
 }
 
-/** Alias for FineTuningJobHyperparametersNEpochs */
-export type FineTuningJobHyperparametersNEpochs = "auto" | number;
+/** Alias for _FineTuningJobHyperparametersNEpochs */
+export type _FineTuningJobHyperparametersNEpochs = "auto" | number;
 
-export function fineTuningJobHyperparametersNEpochsSerializer(
-  item: FineTuningJobHyperparametersNEpochs,
+export function _fineTuningJobHyperparametersNEpochsSerializer(
+  item: _FineTuningJobHyperparametersNEpochs,
 ): any {
   return item;
 }
 
-export function fineTuningJobHyperparametersNEpochsDeserializer(
+export function _fineTuningJobHyperparametersNEpochsDeserializer(
   item: any,
-): FineTuningJobHyperparametersNEpochs {
+): _FineTuningJobHyperparametersNEpochs {
   return item;
 }
 
-/** model interface FineTuningJobError */
-export interface FineTuningJobError {
+/** model interface _FineTuningJobError */
+export interface _FineTuningJobError {
   /** A human-readable error message. */
   message?: string;
   /** A machine-readable error code. */
@@ -1691,7 +1691,9 @@ export interface FineTuningJobError {
   param?: string | null;
 }
 
-export function fineTuningJobErrorDeserializer(item: any): FineTuningJobError {
+export function _fineTuningJobErrorDeserializer(
+  item: any,
+): _FineTuningJobError {
   return {
     message: item["message"],
     code: item["code"],
@@ -1758,8 +1760,8 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   };
 }
 
-/** Type of FineTuningJobEventLevel */
-export type FineTuningJobEventLevel = "info" | "warn" | "error";
+/** Type of _FineTuningJobEventLevel */
+export type _FineTuningJobEventLevel = "info" | "warn" | "error";
 
 export function fineTuningJobEventArrayDeserializer(
   result: Array<FineTuningJobEvent>,
@@ -1882,7 +1884,7 @@ export function createChatCompletionRequestSerializer(
       : chatCompletionFunctionsArraySerializer(item["functions"]),
     function_call: !item["function_call"]
       ? item["function_call"]
-      : createChatCompletionRequestFunctionCall1Serializer(
+      : _createChatCompletionRequestFunctionCall1Serializer(
           item["function_call"],
         ),
     temperature: item["temperature"],
@@ -1898,8 +1900,8 @@ export function createChatCompletionRequestSerializer(
   };
 }
 
-/** Type of CreateChatCompletionRequestModel */
-export type CreateChatCompletionRequestModel =
+/** Type of _CreateChatCompletionRequestModel */
+export type _CreateChatCompletionRequestModel =
   | "gpt4"
   | "gpt-4-0314"
   | "gpt-4-0613"
@@ -1943,21 +1945,21 @@ export function chatCompletionRequestMessageSerializer(
     name: item["name"],
     function_call: !item["function_call"]
       ? item["function_call"]
-      : chatCompletionRequestMessageFunctionCallSerializer(
+      : _chatCompletionRequestMessageFunctionCallSerializer(
           item["function_call"],
         ),
   };
 }
 
-/** Type of ChatCompletionRequestMessageRole */
-export type ChatCompletionRequestMessageRole =
+/** Type of _ChatCompletionRequestMessageRole */
+export type _ChatCompletionRequestMessageRole =
   | "system"
   | "user"
   | "assistant"
   | "function";
 
-/** model interface ChatCompletionRequestMessageFunctionCall */
-export interface ChatCompletionRequestMessageFunctionCall {
+/** model interface _ChatCompletionRequestMessageFunctionCall */
+export interface _ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
   /**
@@ -1968,8 +1970,8 @@ export interface ChatCompletionRequestMessageFunctionCall {
   arguments: string;
 }
 
-export function chatCompletionRequestMessageFunctionCallSerializer(
-  item: ChatCompletionRequestMessageFunctionCall,
+export function _chatCompletionRequestMessageFunctionCallSerializer(
+  item: _ChatCompletionRequestMessageFunctionCall,
 ): any {
   return { name: item["name"], arguments: item["arguments"] };
 }
@@ -2031,21 +2033,21 @@ export function chatCompletionFunctionsArraySerializer(
   });
 }
 
-/** Alias for CreateChatCompletionRequestFunctionCall1 */
-export type CreateChatCompletionRequestFunctionCall1 =
+/** Alias for _CreateChatCompletionRequestFunctionCall1 */
+export type _CreateChatCompletionRequestFunctionCall1 =
   | "none"
   | "auto"
   | ChatCompletionFunctionCallOption;
 
-export function createChatCompletionRequestFunctionCall1Serializer(
-  item: CreateChatCompletionRequestFunctionCall1,
+export function _createChatCompletionRequestFunctionCall1Serializer(
+  item: _CreateChatCompletionRequestFunctionCall1,
 ): any {
   return item;
 }
 
-export function createChatCompletionRequestFunctionCall1Deserializer(
+export function _createChatCompletionRequestFunctionCall1Deserializer(
   item: any,
-): CreateChatCompletionRequestFunctionCall1 {
+): _CreateChatCompletionRequestFunctionCall1 {
   return item;
 }
 
@@ -2100,8 +2102,8 @@ export function createChatCompletionResponseDeserializer(
   };
 }
 
-/** model interface CreateChatCompletionResponseChoice */
-export interface CreateChatCompletionResponseChoice {
+/** model interface _CreateChatCompletionResponseChoice */
+export interface _CreateChatCompletionResponseChoice {
   /** The index of the choice in the list of choices. */
   index: number;
   message: ChatCompletionResponseMessage;
@@ -2114,9 +2116,9 @@ export interface CreateChatCompletionResponseChoice {
   finish_reason: "stop" | "length" | "function_call" | "content_filter";
 }
 
-export function createChatCompletionResponseChoiceDeserializer(
+export function _createChatCompletionResponseChoiceDeserializer(
   item: any,
-): CreateChatCompletionResponseChoice {
+): _CreateChatCompletionResponseChoice {
   return {
     index: item["index"],
     message: chatCompletionResponseMessageDeserializer(item["message"]),
@@ -2145,21 +2147,21 @@ export function chatCompletionResponseMessageDeserializer(
     content: item["content"],
     function_call: !item["function_call"]
       ? item["function_call"]
-      : chatCompletionResponseMessageFunctionCallDeserializer(
+      : _chatCompletionResponseMessageFunctionCallDeserializer(
           item["function_call"],
         ),
   };
 }
 
-/** Type of ChatCompletionResponseMessageRole */
-export type ChatCompletionResponseMessageRole =
+/** Type of _ChatCompletionResponseMessageRole */
+export type _ChatCompletionResponseMessageRole =
   | "system"
   | "user"
   | "assistant"
   | "function";
 
-/** model interface ChatCompletionResponseMessageFunctionCall */
-export interface ChatCompletionResponseMessageFunctionCall {
+/** model interface _ChatCompletionResponseMessageFunctionCall */
+export interface _ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
   name: string;
   /**
@@ -2170,27 +2172,27 @@ export interface ChatCompletionResponseMessageFunctionCall {
   arguments: string;
 }
 
-export function chatCompletionResponseMessageFunctionCallDeserializer(
+export function _chatCompletionResponseMessageFunctionCallDeserializer(
   item: any,
-): ChatCompletionResponseMessageFunctionCall {
+): _ChatCompletionResponseMessageFunctionCall {
   return {
     name: item["name"],
     arguments: item["arguments"],
   };
 }
 
-/** Type of CreateChatCompletionResponseChoiceFinishReason */
-export type CreateChatCompletionResponseChoiceFinishReason =
+/** Type of _CreateChatCompletionResponseChoiceFinishReason */
+export type _CreateChatCompletionResponseChoiceFinishReason =
   | "stop"
   | "length"
   | "function_call"
   | "content_filter";
 
 export function createChatCompletionResponseChoiceArrayDeserializer(
-  result: Array<CreateChatCompletionResponseChoice>,
+  result: Array<_CreateChatCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {
-    return createChatCompletionResponseChoiceDeserializer(item);
+    return _createChatCompletionResponseChoiceDeserializer(item);
   });
 }
 
@@ -2234,10 +2236,10 @@ export function createTranslationRequestSerializer(
   };
 }
 
-/** Type of CreateTranslationRequestModel */
-export type CreateTranslationRequestModel = "whisper-1";
-/** Type of CreateTranslationRequestResponseFormat */
-export type CreateTranslationRequestResponseFormat =
+/** Type of _CreateTranslationRequestModel */
+export type _CreateTranslationRequestModel = "whisper-1";
+/** Type of _CreateTranslationRequestResponseFormat */
+export type _CreateTranslationRequestResponseFormat =
   | "json"
   | "text"
   | "srt"
@@ -2304,10 +2306,10 @@ export function createTranscriptionRequestSerializer(
   };
 }
 
-/** Type of CreateTranscriptionRequestModel */
-export type CreateTranscriptionRequestModel = "whisper-1";
-/** Type of CreateTranscriptionRequestResponseFormat */
-export type CreateTranscriptionRequestResponseFormat =
+/** Type of _CreateTranscriptionRequestModel */
+export type _CreateTranscriptionRequestModel = "whisper-1";
+/** Type of _CreateTranscriptionRequestResponseFormat */
+export type _CreateTranscriptionRequestResponseFormat =
   | "json"
   | "text"
   | "srt"

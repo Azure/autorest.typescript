@@ -32,7 +32,7 @@ import {
   RoleAssignmentDetail,
   roleAssignmentDetailSerializer,
   roleAssignmentDetailDeserializer,
-  listRolesAssignmentsRequestSerializer,
+  _listRolesAssignmentsRequestSerializer,
   ListRoleAssignments,
   listRoleAssignmentsDeserializer,
   _DataProductListResult,
@@ -503,7 +503,7 @@ export function _listRolesAssignmentsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: listRolesAssignmentsRequestSerializer(body),
+      body: _listRolesAssignmentsRequestSerializer(body),
     });
 }
 

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 export {
-  PublishCloudEventRequest,
   CloudEvent,
   PublishResult,
   ReceiveResult,

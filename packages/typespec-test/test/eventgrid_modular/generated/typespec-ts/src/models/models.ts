@@ -3,13 +3,13 @@
 
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
-/** model interface PublishCloudEventRequest */
-export interface PublishCloudEventRequest {
+/** model interface _PublishCloudEventRequest */
+export interface _PublishCloudEventRequest {
   event: CloudEvent;
 }
 
-export function publishCloudEventRequestSerializer(
-  item: PublishCloudEventRequest,
+export function _publishCloudEventRequestSerializer(
+  item: _PublishCloudEventRequest,
 ): any {
   return { event: cloudEventSerializer(item["event"]) };
 }

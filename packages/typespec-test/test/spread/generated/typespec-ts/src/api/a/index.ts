@@ -9,10 +9,9 @@ import {
   DemoServiceContext as Client,
 } from "../index.js";
 import {
-  Test3Request,
-  test3RequestSerializer,
-  Test4Request,
-  test4RequestSerializer,
+  _test3RequestSerializer,
+  _Test4Request,
+  _test4RequestSerializer,
 } from "../../models/models.js";
 import {
   StreamableMethod,
@@ -93,14 +92,14 @@ export async function test2(
 
 export function _test3Send(
   context: Client,
-  body: Test3Request,
+  body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/test3")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: test3RequestSerializer(body),
+      body: _test3RequestSerializer(body),
     });
 }
 
@@ -117,7 +116,7 @@ export async function _test3Deserialize(
 
 export async function test3(
   context: Client,
-  body: Test3Request,
+  body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test3Send(context, body, options);
@@ -126,14 +125,14 @@ export async function test3(
 
 export function _test4Send(
   context: Client,
-  body: Test4Request,
+  body: _Test4Request,
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/test4")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: test4RequestSerializer(body),
+      body: _test4RequestSerializer(body),
     });
 }
 
@@ -150,7 +149,7 @@ export async function _test4Deserialize(
 
 export async function test4(
   context: Client,
-  body: Test4Request,
+  body: _Test4Request,
   options: ATest4OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test4Send(context, body, options);

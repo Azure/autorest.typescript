@@ -374,12 +374,6 @@ export interface ChatCompletionsOptions {
 }
 
 // @public
-export type ChatCompletionsOptionsFunctionCall = FunctionCallPreset | FunctionName;
-
-// @public
-export type ChatCompletionsOptionsToolChoice = ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
-
-// @public
 export interface ChatCompletionsResponseFormat {
     type: string;
 }
@@ -493,9 +487,6 @@ export interface ChatRequestUserMessage extends ChatRequestMessage {
     name?: string;
     role: "user";
 }
-
-// @public
-export type ChatRequestUserMessageContent = string | ChatMessageContentItemUnion[];
 
 // @public
 export interface ChatResponseMessage {

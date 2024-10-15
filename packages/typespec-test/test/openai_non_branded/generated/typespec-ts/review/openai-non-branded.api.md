@@ -69,15 +69,6 @@ export interface ChatCompletionRequestMessage {
 }
 
 // @public
-export interface ChatCompletionRequestMessageFunctionCall {
-    arguments: string;
-    name: string;
-}
-
-// @public
-export type ChatCompletionRequestMessageRole = "system" | "user" | "assistant" | "function";
-
-// @public
 export interface ChatCompletionResponseMessage {
     content: string | null;
     function_call?: {
@@ -86,15 +77,6 @@ export interface ChatCompletionResponseMessage {
     };
     role: "system" | "user" | "assistant" | "function";
 }
-
-// @public
-export interface ChatCompletionResponseMessageFunctionCall {
-    arguments: string;
-    name: string;
-}
-
-// @public
-export type ChatCompletionResponseMessageRole = "system" | "user" | "assistant" | "function";
 
 // @public
 export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
@@ -148,12 +130,6 @@ export interface CreateChatCompletionRequest {
 }
 
 // @public
-export type CreateChatCompletionRequestFunctionCall1 = "none" | "auto" | ChatCompletionFunctionCallOption;
-
-// @public
-export type CreateChatCompletionRequestModel = "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
-
-// @public
 export interface CreateChatCompletionResponse {
     choices: {
         index: number;
@@ -167,17 +143,6 @@ export interface CreateChatCompletionResponse {
     // (undocumented)
     usage?: CompletionUsage;
 }
-
-// @public
-export interface CreateChatCompletionResponseChoice {
-    finish_reason: "stop" | "length" | "function_call" | "content_filter";
-    index: number;
-    // (undocumented)
-    message: ChatCompletionResponseMessage;
-}
-
-// @public
-export type CreateChatCompletionResponseChoiceFinishReason = "stop" | "length" | "function_call" | "content_filter";
 
 // @public
 export interface CreateCompletionRequest {
@@ -198,9 +163,6 @@ export interface CreateCompletionRequest {
     top_p?: number | null;
     user?: string;
 }
-
-// @public
-export type CreateCompletionRequestModel = "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
 
 // @public
 export interface CreateCompletionResponse {
@@ -224,37 +186,6 @@ export interface CreateCompletionResponse {
 }
 
 // @public
-export interface CreateCompletionResponseChoice {
-    finish_reason: "stop" | "length" | "content_filter";
-    // (undocumented)
-    index: number;
-    // (undocumented)
-    logprobs: {
-        tokens: string[];
-        token_logprobs: number[];
-        top_logprobs: Record<string, number>[];
-        text_offset: number[];
-    } | null;
-    // (undocumented)
-    text: string;
-}
-
-// @public
-export type CreateCompletionResponseChoiceFinishReason = "stop" | "length" | "content_filter";
-
-// @public
-export interface CreateCompletionResponseChoiceLogprobs {
-    // (undocumented)
-    text_offset: number[];
-    // (undocumented)
-    token_logprobs: number[];
-    // (undocumented)
-    tokens: string[];
-    // (undocumented)
-    top_logprobs: Record<string, number>[];
-}
-
-// @public
 export interface CreateEditRequest {
     input?: string | null;
     instruction: string;
@@ -263,9 +194,6 @@ export interface CreateEditRequest {
     temperature?: number | null;
     top_p?: number | null;
 }
-
-// @public
-export type CreateEditRequestModel = "text-davinci-edit-001" | "code-davinci-edit-001";
 
 // @public
 export interface CreateEditResponse {
@@ -281,28 +209,12 @@ export interface CreateEditResponse {
 }
 
 // @public
-export interface CreateEditResponseChoice {
-    finish_reason: "stop" | "length";
-    index: number;
-    text: string;
-}
-
-// @public
-export type CreateEditResponseChoiceFinishReason = "stop" | "length";
-
-// @public
 export interface CreateEmbeddingRequest {
     input: string | string[] | number[] | number[][];
     model: "text-embedding-ada-002";
     // (undocumented)
     user?: string;
 }
-
-// @public
-export type CreateEmbeddingRequestInput = string | string[] | number[] | number[][];
-
-// @public
-export type CreateEmbeddingRequestModel = "text-embedding-ada-002";
 
 // @public
 export interface CreateEmbeddingResponse {
@@ -313,12 +225,6 @@ export interface CreateEmbeddingResponse {
         prompt_tokens: number;
         total_tokens: number;
     };
-}
-
-// @public
-export interface CreateEmbeddingResponseUsage {
-    prompt_tokens: number;
-    total_tokens: number;
 }
 
 // @public
@@ -344,9 +250,6 @@ export interface CreateFineTuneRequest {
 }
 
 // @public
-export type CreateFineTuneRequestModel = "ada" | "babbage" | "curie" | "davinci";
-
-// @public
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
         n_epochs?: "auto" | number;
@@ -356,17 +259,6 @@ export interface CreateFineTuningJobRequest {
     training_file: string;
     validation_file?: string | null;
 }
-
-// @public
-export interface CreateFineTuningJobRequestHyperparameters {
-    n_epochs?: "auto" | number;
-}
-
-// @public
-export type CreateFineTuningJobRequestHyperparametersNEpochs = "auto" | number;
-
-// @public
-export type CreateFineTuningJobRequestModel = "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
 
 // @public
 export interface CreateImageEditRequest {
@@ -391,12 +283,6 @@ export interface CreateImageRequest {
 }
 
 // @public
-export type CreateImageRequestResponseFormat = "url" | "b64_json";
-
-// @public
-export type CreateImageRequestSize = "256x256" | "512x512" | "1024x1024";
-
-// @public
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
@@ -411,12 +297,6 @@ export interface CreateModerationRequest {
     input: string | string[];
     model?: "text-moderation-latest" | "text-moderation-stable";
 }
-
-// @public
-export type CreateModerationRequestInput = string | string[];
-
-// @public
-export type CreateModerationRequestModel = "text-moderation-latest" | "text-moderation-stable";
 
 // @public
 export interface CreateModerationResponse {
@@ -454,67 +334,6 @@ export interface CreateModerationResponse {
 }
 
 // @public
-export interface CreateModerationResponseResult {
-    categories: {
-        hate: boolean;
-        "hate/threatening": boolean;
-        harassment: boolean;
-        "harassment/threatening": boolean;
-        "self-harm": boolean;
-        "self-harm/intent": boolean;
-        "self-harm/instructive": boolean;
-        sexual: boolean;
-        "sexual/minors": boolean;
-        violence: boolean;
-        "violence/graphic": boolean;
-    };
-    category_scores: {
-        hate: number;
-        "hate/threatening": number;
-        harassment: number;
-        "harassment/threatening": number;
-        "self-harm": number;
-        "self-harm/intent": number;
-        "self-harm/instructive": number;
-        sexual: number;
-        "sexual/minors": number;
-        violence: number;
-        "violence/graphic": number;
-    };
-    flagged: boolean;
-}
-
-// @public
-export interface CreateModerationResponseResultCategories {
-    "harassment/threatening": boolean;
-    "hate/threatening": boolean;
-    "self-harm": boolean;
-    "self-harm/instructive": boolean;
-    "self-harm/intent": boolean;
-    "sexual/minors": boolean;
-    "violence/graphic": boolean;
-    harassment: boolean;
-    hate: boolean;
-    sexual: boolean;
-    violence: boolean;
-}
-
-// @public
-export interface CreateModerationResponseResultCategoryScores {
-    "harassment/threatening": number;
-    "hate/threatening": number;
-    "self-harm": number;
-    "self-harm/instructive": number;
-    "self-harm/intent": number;
-    "sexual/minors": number;
-    "violence/graphic": number;
-    harassment: number;
-    hate: number;
-    sexual: number;
-    violence: number;
-}
-
-// @public
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
     language?: string;
@@ -523,12 +342,6 @@ export interface CreateTranscriptionRequest {
     response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
-
-// @public
-export type CreateTranscriptionRequestModel = "whisper-1";
-
-// @public
-export type CreateTranscriptionRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
 // @public
 export interface CreateTranscriptionResponse {
@@ -544,12 +357,6 @@ export interface CreateTranslationRequest {
     response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
-
-// @public
-export type CreateTranslationRequestModel = "whisper-1";
-
-// @public
-export type CreateTranslationRequestResponseFormat = "json" | "text" | "srt" | "verbose_json" | "vtt";
 
 // @public
 export interface CreateTranslationResponse {
@@ -695,17 +502,6 @@ export interface FineTuneEvent {
 }
 
 // @public
-export interface FineTuneHyperparams {
-    batch_size: number;
-    classification_n_classes?: number;
-    classification_positive_class?: string;
-    compute_classification_metrics?: boolean;
-    learning_rate_multiplier: number;
-    n_epochs: number;
-    prompt_loss_weight: number;
-}
-
-// @public
 export interface FineTunesCancelOptionalParams extends OperationOptions {
 }
 
@@ -741,9 +537,6 @@ export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
 // @public
-export type FineTuneStatus = "created" | "running" | "succeeded" | "failed" | "cancelled";
-
-// @public
 export interface FineTuningJob {
     created_at: Date;
     error: {
@@ -768,13 +561,6 @@ export interface FineTuningJob {
 }
 
 // @public
-export interface FineTuningJobError {
-    code?: string;
-    message?: string;
-    param?: string | null;
-}
-
-// @public
 export interface FineTuningJobEvent {
     // (undocumented)
     created_at: Date;
@@ -787,17 +573,6 @@ export interface FineTuningJobEvent {
     // (undocumented)
     object: string;
 }
-
-// @public
-export type FineTuningJobEventLevel = "info" | "warn" | "error";
-
-// @public
-export interface FineTuningJobHyperparameters {
-    n_epochs?: "auto" | number;
-}
-
-// @public
-export type FineTuningJobHyperparametersNEpochs = "auto" | number;
 
 // @public
 export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
@@ -835,9 +610,6 @@ export interface FineTuningJobsOperations {
 // @public
 export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 }
-
-// @public
-export type FineTuningJobStatus = "created" | "pending" | "running" | "succeeded" | "failed" | "cancelled";
 
 // @public
 export interface FineTuningOperations {
@@ -1006,9 +778,6 @@ export interface OpenAIFile {
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
     status_details?: string | null;
 }
-
-// @public
-export type OpenAIFileStatus = "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
 
 // @public
 export type Prompt = string | string[] | number[] | number[][];

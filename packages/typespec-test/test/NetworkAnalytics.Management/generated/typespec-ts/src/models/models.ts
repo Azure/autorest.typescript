@@ -712,16 +712,16 @@ export function errorAdditionalInfoDeserializer(
     type: item["type"],
     info: !item["info"]
       ? item["info"]
-      : errorAdditionalInfoInfoDeserializer(item["info"]),
+      : _errorAdditionalInfoInfoDeserializer(item["info"]),
   };
 }
 
-/** model interface ErrorAdditionalInfoInfo */
-export interface ErrorAdditionalInfoInfo {}
+/** model interface _ErrorAdditionalInfoInfo */
+export interface _ErrorAdditionalInfoInfo {}
 
-export function errorAdditionalInfoInfoDeserializer(
+export function _errorAdditionalInfoInfoDeserializer(
   item: any,
-): ErrorAdditionalInfoInfo {
+): _ErrorAdditionalInfoInfo {
   return item as any;
 }
 
@@ -928,11 +928,11 @@ export function roleAssignmentDetailDeserializer(
   };
 }
 
-/** model interface ListRolesAssignmentsRequest */
-export interface ListRolesAssignmentsRequest {}
+/** model interface _ListRolesAssignmentsRequest */
+export interface _ListRolesAssignmentsRequest {}
 
-export function listRolesAssignmentsRequestSerializer(
-  item: ListRolesAssignmentsRequest,
+export function _listRolesAssignmentsRequestSerializer(
+  item: _ListRolesAssignmentsRequest,
 ): any {
   return item as any;
 }
@@ -1143,10 +1143,10 @@ export function dataTypeUpdatePropertiesSerializer(
   };
 }
 
-/** model interface DeleteDataRequest */
-export interface DeleteDataRequest {}
+/** model interface _DeleteDataRequest */
+export interface _DeleteDataRequest {}
 
-export function deleteDataRequestSerializer(item: DeleteDataRequest): any {
+export function _deleteDataRequestSerializer(item: _DeleteDataRequest): any {
   return item as any;
 }
 

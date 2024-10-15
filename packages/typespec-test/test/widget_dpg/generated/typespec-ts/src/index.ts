@@ -12,10 +12,7 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   Widget,
-  WidgetColor,
   WidgetError,
-  CreateWidgetColor,
-  UpdateWidgetRequestColor,
   AnalyzeResult,
   NonReferencedModel,
 } from "./models/index.js";

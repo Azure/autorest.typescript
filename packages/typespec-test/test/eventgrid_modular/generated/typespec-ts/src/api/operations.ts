@@ -11,8 +11,7 @@ import {
   ReleaseCloudEventsOptionalParams,
 } from "./index.js";
 import {
-  PublishCloudEventRequest,
-  publishCloudEventRequestSerializer,
+  _publishCloudEventRequestSerializer,
   CloudEvent,
   PublishResult,
   publishResultDeserializer,
@@ -42,7 +41,7 @@ import {
 export function _publishCloudEventSend(
   context: Client,
   topicName: string,
-  event: PublishCloudEventRequest,
+  event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -52,7 +51,7 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: publishCloudEventRequestSerializer(event),
+      body: _publishCloudEventRequestSerializer(event),
     });
 }
 
@@ -71,7 +70,7 @@ export async function _publishCloudEventDeserialize(
 export async function publishCloudEvent(
   context: Client,
   topicName: string,
-  event: PublishCloudEventRequest,
+  event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
   const result = await _publishCloudEventSend(

@@ -41,8 +41,8 @@ export function widgetDeserializer(item: any): Widget {
   };
 }
 
-/** Type of WidgetColor */
-export type WidgetColor = "red" | "blue";
+/** Type of _WidgetColor */
+export type _WidgetColor = "red" | "blue";
 
 /** model interface WidgetError */
 export interface WidgetError {
@@ -82,10 +82,10 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   });
 }
 
-/** Type of CreateWidgetColor */
-export type CreateWidgetColor = "red" | "blue";
-/** Type of UpdateWidgetRequestColor */
-export type UpdateWidgetRequestColor = "red" | "blue";
+/** Type of _CreateWidgetColor */
+export type _CreateWidgetColor = "red" | "blue";
+/** Type of _UpdateWidgetRequestColor */
+export type _UpdateWidgetRequestColor = "red" | "blue";
 
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {

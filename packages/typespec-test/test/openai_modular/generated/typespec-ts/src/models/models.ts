@@ -1004,7 +1004,7 @@ export function chatCompletionsOptionsSerializer(
       : functionDefinitionArraySerializer(item["functions"]),
     function_call: !item["functionCall"]
       ? item["functionCall"]
-      : chatCompletionsOptionsFunctionCallSerializer(item["functionCall"]),
+      : _chatCompletionsOptionsFunctionCallSerializer(item["functionCall"]),
     max_tokens: item["maxTokens"],
     temperature: item["temperature"],
     top_p: item["topP"],
@@ -1039,7 +1039,7 @@ export function chatCompletionsOptionsSerializer(
       : chatCompletionsToolDefinitionUnionArraySerializer(item["tools"]),
     tool_choice: !item["toolChoice"]
       ? item["toolChoice"]
-      : chatCompletionsOptionsToolChoiceSerializer(item["toolChoice"]),
+      : _chatCompletionsOptionsToolChoiceSerializer(item["toolChoice"]),
   };
 }
 
@@ -1130,25 +1130,25 @@ export function chatRequestUserMessageSerializer(
 ): any {
   return {
     role: item["role"],
-    content: chatRequestUserMessageContentSerializer(item["content"]),
+    content: _chatRequestUserMessageContentSerializer(item["content"]),
     name: item["name"],
   };
 }
 
-/** Alias for ChatRequestUserMessageContent */
-export type ChatRequestUserMessageContent =
+/** Alias for _ChatRequestUserMessageContent */
+export type _ChatRequestUserMessageContent =
   | string
   | ChatMessageContentItemUnion[];
 
-export function chatRequestUserMessageContentSerializer(
-  item: ChatRequestUserMessageContent,
+export function _chatRequestUserMessageContentSerializer(
+  item: _ChatRequestUserMessageContent,
 ): any {
   return item;
 }
 
-export function chatRequestUserMessageContentDeserializer(
+export function _chatRequestUserMessageContentDeserializer(
   item: any,
-): ChatRequestUserMessageContent {
+): _ChatRequestUserMessageContent {
   return item;
 }
 
@@ -1488,20 +1488,20 @@ export function functionDefinitionArraySerializer(
   });
 }
 
-/** Alias for ChatCompletionsOptionsFunctionCall */
-export type ChatCompletionsOptionsFunctionCall =
+/** Alias for _ChatCompletionsOptionsFunctionCall */
+export type _ChatCompletionsOptionsFunctionCall =
   | FunctionCallPreset
   | FunctionName;
 
-export function chatCompletionsOptionsFunctionCallSerializer(
-  item: ChatCompletionsOptionsFunctionCall,
+export function _chatCompletionsOptionsFunctionCallSerializer(
+  item: _ChatCompletionsOptionsFunctionCall,
 ): any {
   return item;
 }
 
-export function chatCompletionsOptionsFunctionCallDeserializer(
+export function _chatCompletionsOptionsFunctionCallDeserializer(
   item: any,
-): ChatCompletionsOptionsFunctionCall {
+): _ChatCompletionsOptionsFunctionCall {
   return item;
 }
 
@@ -2810,20 +2810,20 @@ export function chatCompletionsToolDefinitionUnionArraySerializer(
   });
 }
 
-/** Alias for ChatCompletionsOptionsToolChoice */
-export type ChatCompletionsOptionsToolChoice =
+/** Alias for _ChatCompletionsOptionsToolChoice */
+export type _ChatCompletionsOptionsToolChoice =
   | ChatCompletionsToolSelectionPreset
   | ChatCompletionsNamedToolSelectionUnion;
 
-export function chatCompletionsOptionsToolChoiceSerializer(
-  item: ChatCompletionsOptionsToolChoice,
+export function _chatCompletionsOptionsToolChoiceSerializer(
+  item: _ChatCompletionsOptionsToolChoice,
 ): any {
   return item;
 }
 
-export function chatCompletionsOptionsToolChoiceDeserializer(
+export function _chatCompletionsOptionsToolChoiceDeserializer(
   item: any,
-): ChatCompletionsOptionsToolChoice {
+): _ChatCompletionsOptionsToolChoice {
   return item;
 }
 

@@ -415,15 +415,18 @@ export function normalizeModelName(
   const namespacePrefix = context.rlcOptions?.enableModelNamespace
     ? segments.join("")
     : "";
-  let pagePrefix = "";
+  let internalModelPrefix = "";
   if (type.__raw && type.__raw.kind === "Model") {
     // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
     // issue link https://github.com/Azure/typespec-azure/issues/1464
     const page = extractPagedMetadataNested(context.program, type.__raw!);
-    pagePrefix =
+    internalModelPrefix =
       page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
   }
-  return `${pagePrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
+  if (type.isGeneratedName) {
+    internalModelPrefix = "_";
+  }
+  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {

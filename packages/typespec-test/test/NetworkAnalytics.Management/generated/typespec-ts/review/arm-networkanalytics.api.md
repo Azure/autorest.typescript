@@ -301,10 +301,6 @@ export interface DataTypeUpdateProperties {
 export type DefaultAction = string;
 
 // @public
-export interface DeleteDataRequest {
-}
-
-// @public
 export interface EncryptionKeyDetails {
     keyName: string;
     keyVaultUri: string;
@@ -315,10 +311,6 @@ export interface EncryptionKeyDetails {
 export interface ErrorAdditionalInfo {
     readonly info?: Record<string, any>;
     readonly type?: string;
-}
-
-// @public
-export interface ErrorAdditionalInfoInfo {
 }
 
 // @public
@@ -413,10 +405,6 @@ export enum KnownProvisioningState {
 export interface ListRoleAssignments {
     count: number;
     roleAssignmentResponse: RoleAssignmentDetail[];
-}
-
-// @public
-export interface ListRolesAssignmentsRequest {
 }
 
 // @public

@@ -17,7 +17,7 @@ import {
   dataTypeDeserializer,
   DataTypeUpdate,
   dataTypeUpdateSerializer,
-  deleteDataRequestSerializer,
+  _deleteDataRequestSerializer,
   ContainerSaS,
   containerSaSSerializer,
   ContainerSasToken,
@@ -294,7 +294,7 @@ export function _deleteDataSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: deleteDataRequestSerializer(body),
+      body: _deleteDataRequestSerializer(body),
     });
 }
 
