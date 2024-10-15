@@ -32,6 +32,12 @@ export declare interface Base64urlBytesPropertyOutput {
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 export declare type BytesClient = Client & {
     path: Routes;
 };
@@ -427,11 +433,5 @@ export declare interface Routes {
     (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;
     (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64url;
 }
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
 
 export { }

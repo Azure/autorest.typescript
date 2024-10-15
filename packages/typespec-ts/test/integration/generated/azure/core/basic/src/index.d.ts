@@ -15,6 +15,12 @@ export declare interface AzureCoreClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
+export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient({ apiVersion, ...options }?: AzureCoreClientOptions): AzureCoreClient;
 export default createClient;
 
@@ -308,17 +314,5 @@ export declare interface UserOutput {
 }
 
 export declare type UserResourceMergeAndPatch = Partial<User>;
-
-export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: any;
-};
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
 
 export { }

@@ -7,6 +7,12 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient(options?: DurationClientOptions): DurationClient;
 export default createClient;
 
@@ -397,11 +403,5 @@ export declare interface Routes {
     (path: "/encode/duration/header/float-seconds"): HeaderFloatSeconds;
     (path: "/encode/duration/header/float64-seconds"): HeaderFloat64Seconds;
 }
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
 
 export { }

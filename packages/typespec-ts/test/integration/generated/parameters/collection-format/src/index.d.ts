@@ -7,7 +7,31 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 export declare function buildMultiCollection(items: string[], parameterName: string): string;
+
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
+export declare function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "pipeDelimited";
+    readonly value: ValueType;
+};
+
+export declare function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "spaceDelimited";
+    readonly value: ValueType;
+};
 
 export declare type CollectionFormatClient = Client & {
     path: Routes;
@@ -159,29 +183,5 @@ export declare interface Routes {
     (path: "/parameters/collection-format/query/csv"): QueryCsv;
     (path: "/parameters/collection-format/header/csv"): HeaderCsv;
 }
-
-export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: any;
-};
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
-
-export declare function withNonExplodedAndPipeStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "pipeDelimited";
-    readonly value: any;
-};
-
-export declare function withNonExplodedAndSpaceStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "spaceDelimited";
-    readonly value: any;
-};
 
 export { }

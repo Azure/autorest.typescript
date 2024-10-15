@@ -4,6 +4,23 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+export declare function buildAllowReservedValue<ValueType>(value: ValueType): {
+    readonly allowReserved: true;
+    readonly value: ValueType;
+};
+
+export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient(options?: RoutesClientOptions): RoutesClient;
 export default createClient;
 
@@ -714,22 +731,5 @@ export declare type RoutesClient = Client & {
 
 export declare interface RoutesClientOptions extends ClientOptions {
 }
-
-export declare function withExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: any;
-};
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
-
-export declare function withReservedCharacters(value: string): {
-    allowReserved: boolean;
-    value: string;
-};
 
 export { }

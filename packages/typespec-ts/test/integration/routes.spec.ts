@@ -1,6 +1,7 @@
 import RoutesClientFactory, {
   RoutesClient,
-  withNonExplodedAndFormStyle
+  buildAllowReservedValue,
+  buildUnexplodedFormStyleValue
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -39,6 +40,16 @@ describe("RoutesClient Rest Client", () => {
         value: "foo/bar baz",
         allowReserved: true
       })
+      .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have allowReserved: true with helper", async () => {
+    const result = await client
+      .path(
+        "/routes/path/reserved-expansion/template/{param}",
+        buildAllowReservedValue("foo/bar baz")
+      )
       .get();
     assert.strictEqual(result.status, "204");
   });
@@ -100,7 +111,7 @@ describe("RoutesClient Rest Client", () => {
       .path("/routes/query/query-expansion/standard/record")
       .get({
         queryParameters: {
-          param: withNonExplodedAndFormStyle({ a: 1, b: 2 })
+          param: buildUnexplodedFormStyleValue({ a: 1, b: 2 })
         }
       });
     assert.strictEqual(result.status, "204");

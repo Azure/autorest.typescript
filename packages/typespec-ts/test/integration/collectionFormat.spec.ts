@@ -3,10 +3,10 @@ import CollectionFormatClientFactory, {
   buildCsvCollection,
   buildMultiCollection,
   CollectionFormatClient,
-  withExplodedAndFormStyle,
-  withNonExplodedAndFormStyle,
-  withNonExplodedAndPipeStyle,
-  withNonExplodedAndSpaceStyle
+  buildExplodedFormStyleValue,
+  buildUnexplodedFormStyleValue,
+  buildUnexplodedPipeStyleValue,
+  buildUnexplodedSpaceStyleValue
 } from "./generated/parameters/collection-format/src/index.js";
 describe("Collection Format Rest Client", () => {
   let client: CollectionFormatClient;
@@ -33,12 +33,12 @@ describe("Collection Format Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it("should serialize multi format query array parameter with withExplodedAndFormStyle helper", async () => {
+  it("should serialize multi format query array parameter with buildExplodedFormStyleValue helper", async () => {
     const result = await client
       .path("/parameters/collection-format/query/multi")
       .get({
         queryParameters: {
-          colors: withExplodedAndFormStyle(colors)
+          colors: buildExplodedFormStyleValue(colors)
         }
       });
     assert.strictEqual(result.status, "204");
@@ -55,34 +55,34 @@ describe("Collection Format Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it("should serialize csv format query array parameter with withNonExplodedAndFormStyle helper", async () => {
+  it("should serialize csv format query array parameter with buildUnexplodedFormStyleValue helper", async () => {
     const result = await client
       .path("/parameters/collection-format/query/csv")
       .get({
         queryParameters: {
-          colors: withNonExplodedAndFormStyle(colors)
+          colors: buildUnexplodedFormStyleValue(colors)
         }
       });
     assert.strictEqual(result.status, "204");
   });
 
-  it("should serialize ssv format query array parameter with withNonExplodedAndSpaceStyle helper", async () => {
+  it("should serialize ssv format query array parameter with buildUnexplodedSpaceStyleValue helper", async () => {
     const result = await client
       .path("/parameters/collection-format/query/ssv")
       .get({
         queryParameters: {
-          colors: withNonExplodedAndSpaceStyle(colors)
+          colors: buildUnexplodedSpaceStyleValue(colors)
         }
       });
     assert.strictEqual(result.status, "204");
   });
 
-  it("should serialize pipes format query array parameter with withNonExplodedAndPipeStyle helper", async () => {
+  it("should serialize pipes format query array parameter with buildUnexplodedPipeStyleValue helper", async () => {
     const result = await client
       .path("/parameters/collection-format/query/pipes")
       .get({
         queryParameters: {
-          colors: withNonExplodedAndPipeStyle(colors)
+          colors: buildUnexplodedPipeStyleValue(colors)
         }
       });
     assert.strictEqual(result.status, "204");

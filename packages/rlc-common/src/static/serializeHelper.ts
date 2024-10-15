@@ -38,12 +38,12 @@ export function buildAllowReservedValue<ValueType>(value: ValueType) {
     return {
         allowReserved: true,
         value
-    }
+    } as const
 }
 `;
 
 export const buildExplodedAndFormStyleContent = `
-export function buildExplodedAndFormStyleValue<ValueType>(value: ValueType){
+export function buildExplodedFormStyleValue<ValueType>(value: ValueType){
     return {
         explode: true,
         style: "form",
@@ -53,7 +53,7 @@ export function buildExplodedAndFormStyleValue<ValueType>(value: ValueType){
 `;
 
 export const buildNonExplodedAndFormStyleContent = `
-export function buildNonExplodedAndFormStyleValue<ValueType>(value: ValueType){
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "form",
@@ -63,7 +63,7 @@ export function buildNonExplodedAndFormStyleValue<ValueType>(value: ValueType){
 `;
 
 export const buildNonExplodedAndPipeStyleContent = `
-export function buildNonExplodedAndPipeStyleValue<ValueType>(value: ValueType){
+export function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "pipeDelimited",
@@ -73,7 +73,7 @@ export function buildNonExplodedAndPipeStyleValue<ValueType>(value: ValueType){
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-export function buildNonExplodedAndSpaceStyleValue<ValueType>(value: ValueType){
+export function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType){
     return {
         explode: false,
         style: "spaceDelimited",

@@ -8,6 +8,12 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient(options?: DatetimeClientOptions): DatetimeClient;
 export default createClient;
 
@@ -400,11 +406,5 @@ export declare interface UnixTimestampDatetimeProperty {
 export declare interface UnixTimestampDatetimePropertyOutput {
     value: number;
 }
-
-export declare function withNonExplodedAndFormStyle(value: unknown[] | Record<string, unknown>): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: any;
-};
 
 export { }
