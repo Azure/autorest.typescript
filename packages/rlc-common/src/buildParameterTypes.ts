@@ -280,8 +280,10 @@ function buildPathParameterDefinitions(
   return allDefinitions;
   function buildClientPathParameters() {
     // we only have client-level path parameters if the source is from swagger
-    const clientPathParams =
-      model.options?.sourceFrom === "Swagger" ? pathParameters : [];
+    if (model.options?.sourceFrom === "TypeSpec") {
+      return;
+    }
+    const clientPathParams = pathParameters.length > 0 ? pathParameters : [];
     const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
     const pathParameterInterfaceName = `${baseName}PathParam${nameSuffix}`;
 
@@ -311,9 +313,11 @@ function buildPathParameterDefinitions(
   }
 
   function buildMethodWrapParameters() {
+    if (model.options?.sourceFrom === "Swagger") {
+      return;
+    }
     // we only have method-level path parameters if the source is from typespec
-    const methodPathParams =
-      model.options?.sourceFrom === "TypeSpec" ? pathParameters : [];
+    const methodPathParams = pathParameters.length > 0 ? pathParameters : [];
 
     // we only need to build the wrapper types if the path parameters are objects
     const wrapperTypesDefinition = getGeneratedWrapperTypes(

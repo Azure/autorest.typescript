@@ -35,7 +35,7 @@ export interface DetectFromUrlQueryParamProperties {
   /**
    * Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   returnFaceAttributes?:
     | FaceAttributeType[]
@@ -103,7 +103,7 @@ export interface DetectQueryParamProperties {
   /**
    * Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   returnFaceAttributes?:
     | FaceAttributeType[]
@@ -316,7 +316,7 @@ export interface AddFaceListFaceFromUrlQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddFaceListFaceFromUrlTargetFaceQueryParam;
   /**
@@ -365,7 +365,7 @@ export interface AddFaceListFaceQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddFaceListFaceTargetFaceQueryParam;
   /**
@@ -460,7 +460,7 @@ export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddLargeFaceListFaceFromUrlTargetFaceQueryParam;
   /**
@@ -509,7 +509,7 @@ export interface AddLargeFaceListFaceQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddLargeFaceListFaceTargetFaceQueryParam;
   /**
@@ -656,7 +656,7 @@ export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam;
   /**
@@ -705,7 +705,7 @@ export interface AddPersonGroupPersonFaceQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddPersonGroupPersonFaceTargetFaceQueryParam;
   /**
@@ -839,7 +839,7 @@ export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?:
     | number[]
@@ -890,7 +890,7 @@ export interface AddLargePersonGroupPersonFaceQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddLargePersonGroupPersonFaceTargetFaceQueryParam;
   /**
@@ -995,7 +995,7 @@ export interface AddPersonFaceQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddPersonFaceTargetFaceQueryParam;
   /**
@@ -1040,7 +1040,7 @@ export interface AddPersonFaceFromUrlQueryParamProperties {
   /**
    * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
    *
-   * This parameter type could be easily prepared with function buildUnexplodedFormStyleValue.
+   * This parameter type could be prepared with function buildUnexplodedFormStyleValue.
    */
   targetFace?: number[] | AddPersonFaceFromUrlTargetFaceQueryParam;
   /**

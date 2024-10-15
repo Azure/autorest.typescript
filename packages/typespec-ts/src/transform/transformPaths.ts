@@ -167,7 +167,7 @@ function transformOperation(
             name: p.name,
             type: typeName,
             description,
-            isWrappedType: !!wrapperType
+            wrapperType
           };
         }),
       operationGroupName: getOperationGroupName(dpgContext, route),

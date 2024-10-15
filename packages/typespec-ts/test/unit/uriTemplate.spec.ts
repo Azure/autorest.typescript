@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("Client definition generation", () => {
+describe("Client definition generation", () => {
   it("should generate method-level parameter", async () => {
     const clientDef = await emitParameterFromTypeSpec(
       `
@@ -16,22 +16,16 @@ describe.only("Client definition generation", () => {
       clientDef?.content!,
       `
     import { RequestParameters } from "@azure-rest/core-client";
-    
-    export interface TemplatePathParameters {}
-
-    export interface TemplatePathParam {
-      pathParameters: TemplatePathParameters;
-    }
 
     /** You can use the function buildAllowReservedValue to help prepare this parameter. */
-      export interface TemplateParamPathParam {
-        /** A sequence of textual characters. */
-        value: string;
-        /** Whether to allow reserved characters */
-        allowReserved: true;
+    export interface TemplateParamPathParam {
+      /** A sequence of textual characters. */
+      value: string;
+      /** Whether to allow reserved characters */
+      allowReserved: true;
     }
 
-    export type TemplateParameters = TemplatePathParam & RequestParameters;
+    export type TemplateParameters = RequestParameters;
       `
     );
   });
