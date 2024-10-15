@@ -591,8 +591,15 @@ export interface TranslateQueryParamProperties {
     profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
     textType?: TextTypes;
-    to: string;
+    to: TranslateToQueryParam;
     toScript?: string;
+}
+
+// @public
+export interface TranslateToQueryParam {
+    explode: true;
+    style: "form";
+    value: string[];
 }
 
 // @public
@@ -711,6 +718,13 @@ export interface TransliterationOutput {
     script: string;
     text: string;
 }
+
+// @public (undocumented)
+export function withExplodedAndFormStyle(value: string[] | Record<string, unknown>): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: any;
+};
 
 // (No @packageDocumentation comment for this package)
 

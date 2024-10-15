@@ -15,22 +15,23 @@ describe.only("Client definition generation", () => {
     await assertEqualContent(
       clientDef?.content!,
       `
-    import { TemplateParameters, StringWithEncodingMetadata  } from "./parameters.js";
-    import { Template204Response } from "./responses.js";
-    import { Client, StreamableMethod } from "@azure-rest/core-client";
-
-    export interface Template {
-        get(options?: TemplateParameters): StreamableMethod<Template204Response>;
+    import { RequestParameters } from "@azure-rest/core-client";
+    
+    export interface TemplatePathParameters {}
+    
+    export interface TemplatePathParam {
+      pathParameters: TemplatePathParameters;
     }
 
-    export interface Routes {
-        /** Resource for '/template/\{param\}' has methods for the following verbs: get */
-        (path: "/template/{param}", param: StringWithEncodingMetadata ): Template;
+    /** String with encoding metadata */
+      export interface TemplateParamPathParam {
+        /** Value of the parameter */
+        value: string;
+        /** Whether to allow reserved characters */
+        allowReserved: true;
     }
 
-    export type testClient = Client & {
-            path: Routes;
-    };
+    export type TemplateParameters = TemplatePathParam & RequestParameters;
       `
     );
   });

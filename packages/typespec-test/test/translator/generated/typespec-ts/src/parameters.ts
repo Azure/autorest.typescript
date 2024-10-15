@@ -63,6 +63,16 @@ export interface TranslateBodyParam {
   body: Array<InputTextElement>;
 }
 
+/** Wrapper object for query parameters */
+export interface TranslateToQueryParam {
+  /** Value of the parameter */
+  value: string[];
+  /** Explode the object always */
+  explode: true;
+  /** Style of the object */
+  style: "form";
+}
+
 export interface TranslateQueryParamProperties {
   /**
    * Specifies the language of the output text. The target language must be one of the supported languages included
@@ -70,7 +80,7 @@ export interface TranslateQueryParamProperties {
    * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
    * For example, use to=de&to=it to translate to German and Italian. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  to: string;
+  to: TranslateToQueryParam;
   /**
    * Specifies the language of the input text. Find which languages are available to translate from by
    * looking up supported languages using the translation scope. If the from parameter isn't specified,

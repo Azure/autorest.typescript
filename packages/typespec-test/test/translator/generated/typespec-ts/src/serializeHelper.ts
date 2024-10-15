@@ -14,3 +14,13 @@ export function buildMultiCollection(
     })
     .join("&");
 }
+
+export function withExplodedAndFormStyle(
+  value: string[] | Record<string, unknown>,
+) {
+  return {
+    explode: true,
+    style: "form",
+    value: value as any,
+  } as const;
+}
