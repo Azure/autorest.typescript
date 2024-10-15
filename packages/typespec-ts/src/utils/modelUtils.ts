@@ -1144,14 +1144,6 @@ export function isArrayType(schema: Schema) {
   return schema.type === "array";
 }
 
-export function isPrimitiveType(schema: Schema) {
-  return (
-    schema.type === "string" ||
-    schema.type === "number" ||
-    schema.type === "boolean"
-  );
-}
-
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,

@@ -114,9 +114,7 @@ export function getParameterWrapperInfo(
       }
       return undefined;
     }
-    case "header": {
-      return undefined;
-    }
+    case "header":
     default:
       return undefined;
   }
