@@ -1370,6 +1370,7 @@ describe("inheritance & polymorphism", () => {
         };
       }
       
+      /** Alias for PetUnion */
       export type PetUnion = Cat | Pet;
             
       export function petUnionDeserializer(item: any): PetUnion {
@@ -1464,6 +1465,7 @@ describe("inheritance & polymorphism", () => {
         };
       }
 
+      /** Alias for PetUnion */
       export type PetUnion = Cat | Dog | Pet;
       
       export function petUnionDeserializer(item: any): PetUnion {

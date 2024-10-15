@@ -1046,6 +1046,7 @@ export function chatCompletionsOptionsSerializer(
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
   /** The chat role associated with this message. */
+  /** The discriminator possible values: system, user, assistant, tool, function */
   role: ChatRole;
 }
 
@@ -1053,6 +1054,7 @@ export function chatRequestMessageSerializer(item: ChatRequestMessage): any {
   return { role: item["role"] };
 }
 
+/** Alias for ChatRequestMessageUnion */
 export type ChatRequestMessageUnion =
   | ChatRequestSystemMessage
   | ChatRequestUserMessage
@@ -1153,6 +1155,7 @@ export function chatRequestUserMessageContentDeserializer(
 /** An abstract representation of a structured content item within a chat message. */
 export interface ChatMessageContentItem {
   /** The discriminated object type. */
+  /** The discriminator possible values: text, image_url */
   type: string;
 }
 
@@ -1162,6 +1165,7 @@ export function chatMessageContentItemSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for ChatMessageContentItemUnion */
 export type ChatMessageContentItemUnion =
   | ChatMessageTextContentItem
   | ChatMessageImageContentItem
@@ -1285,6 +1289,7 @@ export function chatRequestAssistantMessageSerializer(
  */
 export interface ChatCompletionsToolCall {
   /** The object type. */
+  /** The discriminator possible values: function */
   type: string;
   /** The ID of the tool call. */
   id: string;
@@ -1305,6 +1310,7 @@ export function chatCompletionsToolCallDeserializer(
   };
 }
 
+/** Alias for ChatCompletionsToolCallUnion */
 export type ChatCompletionsToolCallUnion =
   | ChatCompletionsFunctionToolCall
   | ChatCompletionsToolCall;
@@ -1528,6 +1534,7 @@ export interface AzureChatExtensionConfiguration {
    *   The label for the type of an Azure chat extension. This typically corresponds to a matching Azure resource.
    *   Azure chat extensions are only compatible with Azure OpenAI.
    */
+  /** The discriminator possible values: azure_search, azure_ml_index, azure_cosmos_db, elasticsearch, pinecone */
   type: AzureChatExtensionType;
 }
 
@@ -1537,6 +1544,7 @@ export function azureChatExtensionConfigurationSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for AzureChatExtensionConfigurationUnion */
 export type AzureChatExtensionConfigurationUnion =
   | AzureSearchChatExtensionConfiguration
   | AzureMachineLearningIndexChatExtensionConfiguration
@@ -1700,6 +1708,7 @@ export function azureSearchChatExtensionParametersSerializer(
 /** The authentication options for Azure OpenAI On Your Data. */
 export interface OnYourDataAuthenticationOptions {
   /** The authentication type. */
+  /** The discriminator possible values: api_key, connection_string, key_and_key_id, encoded_api_key, access_token, system_assigned_managed_identity, user_assigned_managed_identity */
   type: OnYourDataAuthenticationType;
 }
 
@@ -1709,6 +1718,7 @@ export function onYourDataAuthenticationOptionsSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for OnYourDataAuthenticationOptionsUnion */
 export type OnYourDataAuthenticationOptionsUnion =
   | OnYourDataApiKeyAuthenticationOptions
   | OnYourDataConnectionStringAuthenticationOptions
@@ -1942,6 +1952,7 @@ export type AzureSearchQueryType =
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
 export interface OnYourDataVectorizationSource {
   /** The type of vectorization source to use. */
+  /** The discriminator possible values: endpoint, deployment_name, model_id */
   type: OnYourDataVectorizationSourceType;
 }
 
@@ -1951,6 +1962,7 @@ export function onYourDataVectorizationSourceSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for OnYourDataVectorizationSourceUnion */
 export type OnYourDataVectorizationSourceUnion =
   | OnYourDataEndpointVectorizationSource
   | OnYourDataDeploymentNameVectorizationSource
@@ -2019,6 +2031,7 @@ export function onYourDataEndpointVectorizationSourceSerializer(
 /** The authentication options for Azure OpenAI On Your Data vector search. */
 export interface OnYourDataVectorSearchAuthenticationOptions {
   /** The type of authentication to use. */
+  /** The discriminator possible values: api_key, access_token */
   type: OnYourDataVectorSearchAuthenticationType;
 }
 
@@ -2028,6 +2041,7 @@ export function onYourDataVectorSearchAuthenticationOptionsSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for OnYourDataVectorSearchAuthenticationOptionsUnion */
 export type OnYourDataVectorSearchAuthenticationOptionsUnion =
   | OnYourDataVectorSearchApiKeyAuthenticationOptions
   | OnYourDataVectorSearchAccessTokenAuthenticationOptions
@@ -2674,6 +2688,7 @@ export function azureChatOCREnhancementConfigurationSerializer(
  */
 export interface ChatCompletionsResponseFormat {
   /** The discriminated type for the response format. */
+  /** The discriminator possible values: text, json_object */
   type: string;
 }
 
@@ -2683,6 +2698,7 @@ export function chatCompletionsResponseFormatSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for ChatCompletionsResponseFormatUnion */
 export type ChatCompletionsResponseFormatUnion =
   | ChatCompletionsTextResponseFormat
   | ChatCompletionsJsonResponseFormat
@@ -2739,6 +2755,7 @@ export function chatCompletionsJsonResponseFormatSerializer(
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
 export interface ChatCompletionsToolDefinition {
   /** The object type. */
+  /** The discriminator possible values: function */
   type: string;
 }
 
@@ -2748,6 +2765,7 @@ export function chatCompletionsToolDefinitionSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for ChatCompletionsToolDefinitionUnion */
 export type ChatCompletionsToolDefinitionUnion =
   | ChatCompletionsFunctionToolDefinition
   | ChatCompletionsToolDefinition;
@@ -2815,6 +2833,7 @@ export type ChatCompletionsToolSelectionPreset = "auto" | "none";
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
 export interface ChatCompletionsNamedToolSelection {
   /** The object type. */
+  /** The discriminator possible values: function */
   type: string;
 }
 
@@ -2824,6 +2843,7 @@ export function chatCompletionsNamedToolSelectionSerializer(
   return { type: item["type"] };
 }
 
+/** Alias for ChatCompletionsNamedToolSelectionUnion */
 export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedFunctionToolSelection
   | ChatCompletionsNamedToolSelection;
@@ -3256,6 +3276,7 @@ export function chatTokenLogProbabilityResultArrayDeserializer(
 /** An abstract representation of structured information about why a chat completions response terminated. */
 export interface ChatFinishDetails {
   /** The object type. */
+  /** The discriminator possible values: stop, max_tokens */
   type: string;
 }
 
@@ -3265,6 +3286,7 @@ export function chatFinishDetailsDeserializer(item: any): ChatFinishDetails {
   };
 }
 
+/** Alias for ChatFinishDetailsUnion */
 export type ChatFinishDetailsUnion =
   | StopFinishDetails
   | MaxTokensFinishDetails

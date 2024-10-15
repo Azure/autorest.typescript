@@ -115,7 +115,7 @@ export interface AzureChatExtensionConfiguration {
     type: AzureChatExtensionType;
 }
 
-// @public (undocumented)
+// @public
 export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfiguration | AzureMachineLearningIndexChatExtensionConfiguration | AzureCosmosDBChatExtensionConfiguration | ElasticsearchChatExtensionConfiguration | PineconeChatExtensionConfiguration | AzureChatExtensionConfiguration;
 
 // @public
@@ -344,7 +344,7 @@ export interface ChatCompletionsNamedToolSelection {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsNamedToolSelectionUnion = ChatCompletionsNamedFunctionToolSelection | ChatCompletionsNamedToolSelection;
 
 // @public
@@ -384,7 +384,7 @@ export interface ChatCompletionsResponseFormat {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsResponseFormatUnion = ChatCompletionsTextResponseFormat | ChatCompletionsJsonResponseFormat | ChatCompletionsResponseFormat;
 
 // @public
@@ -398,7 +398,7 @@ export interface ChatCompletionsToolCall {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsToolCallUnion = ChatCompletionsFunctionToolCall | ChatCompletionsToolCall;
 
 // @public
@@ -406,7 +406,7 @@ export interface ChatCompletionsToolDefinition {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatCompletionsToolDefinitionUnion = ChatCompletionsFunctionToolDefinition | ChatCompletionsToolDefinition;
 
 // @public
@@ -417,7 +417,7 @@ export interface ChatFinishDetails {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatFinishDetailsUnion = StopFinishDetails | MaxTokensFinishDetails | ChatFinishDetails;
 
 // @public
@@ -425,7 +425,7 @@ export interface ChatMessageContentItem {
     type: string;
 }
 
-// @public (undocumented)
+// @public
 export type ChatMessageContentItemUnion = ChatMessageTextContentItem | ChatMessageImageContentItem | ChatMessageContentItem;
 
 // @public
@@ -470,7 +470,7 @@ export interface ChatRequestMessage {
     role: ChatRole;
 }
 
-// @public (undocumented)
+// @public
 export type ChatRequestMessageUnion = ChatRequestSystemMessage | ChatRequestUserMessage | ChatRequestAssistantMessage | ChatRequestToolMessage | ChatRequestFunctionMessage | ChatRequestMessage;
 
 // @public
@@ -855,7 +855,7 @@ export interface OnYourDataAuthenticationOptions {
     type: OnYourDataAuthenticationType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataAuthenticationOptionsUnion = OnYourDataApiKeyAuthenticationOptions | OnYourDataConnectionStringAuthenticationOptions | OnYourDataKeyAndKeyIdAuthenticationOptions | OnYourDataEncodedApiKeyAuthenticationOptions | OnYourDataAccessTokenAuthenticationOptions | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions | OnYourDataUserAssignedManagedIdentityAuthenticationOptions | OnYourDataAuthenticationOptions;
 
 // @public
@@ -922,7 +922,7 @@ export interface OnYourDataVectorizationSource {
 // @public
 export type OnYourDataVectorizationSourceType = "endpoint" | "deployment_name" | "model_id";
 
-// @public (undocumented)
+// @public
 export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorizationSource | OnYourDataDeploymentNameVectorizationSource | OnYourDataModelIdVectorizationSource | OnYourDataVectorizationSource;
 
 // @public
@@ -942,7 +942,7 @@ export interface OnYourDataVectorSearchAuthenticationOptions {
     type: OnYourDataVectorSearchAuthenticationType;
 }
 
-// @public (undocumented)
+// @public
 export type OnYourDataVectorSearchAuthenticationOptionsUnion = OnYourDataVectorSearchApiKeyAuthenticationOptions | OnYourDataVectorSearchAccessTokenAuthenticationOptions | OnYourDataVectorSearchAuthenticationOptions;
 
 // @public

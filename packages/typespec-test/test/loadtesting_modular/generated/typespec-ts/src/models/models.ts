@@ -1999,7 +1999,7 @@ export function timeSeriesElementArrayDeserializer(
   });
 }
 
-/** Test Profile Model. */
+/** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */
 export interface TestProfile {
   /** Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
   readonly testProfileId: string;
@@ -2063,6 +2063,7 @@ export function testProfileDeserializer(item: any): TestProfile {
 /** Configurations of a target resource. This varies with the kind of resource. */
 export interface TargetResourceConfigurations {
   /** Kind of the resource for which the configurations apply. */
+  /** The discriminator possible values: FunctionsFlexConsumption */
   kind: ResourceKind;
 }
 
@@ -2080,6 +2081,7 @@ export function targetResourceConfigurationsDeserializer(
   };
 }
 
+/** Alias for TargetResourceConfigurationsUnion */
 export type TargetResourceConfigurationsUnion =
   | FunctionFlexConsumptionTargetResourceConfigurations
   | TargetResourceConfigurations;
@@ -2215,7 +2217,7 @@ export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
   return result;
 }
 
-/** Test Profile Run model. */
+/** The Test Profile Run Model. Test Profile Run resource enables you to instantiate an already created test profile and run load tests to get recommendations on the optimal configuration for the target resource. */
 export interface TestProfileRun {
   /** Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
   readonly testProfileRunId: string;

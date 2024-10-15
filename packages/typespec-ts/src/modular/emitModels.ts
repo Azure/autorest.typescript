@@ -113,6 +113,14 @@ export function emitTypes(
         continue;
       }
       const modelInterface = buildModelInterface(context, type);
+      if (type.discriminatorProperty) {
+        modelInterface.properties?.filter((p) => { 
+          return p.name === `"${type.discriminatorProperty?.name}"`;
+        }).map((p) => {
+          p.docs?.push(`The discriminator possible values: ${Object.keys(type.discriminatedSubtypes?? {}).join(", ")}`);
+          return p;
+        });
+      } 
       addDeclaration(sourceFile, modelInterface, type);
       const modelPolymorphicType = buildModelPolymorphicType(context, type);
       if (modelPolymorphicType) {
@@ -225,7 +233,7 @@ function buildUnionType(
   };
 
   unionDeclaration.docs = [
-    type.description ?? `Alias for ${unionDeclaration.name}`
+    type.doc ?? `Alias for ${unionDeclaration.name}`
   ];
 
   return unionDeclaration;
@@ -251,15 +259,15 @@ function buildEnumTypes(
       : getTypeExpression(context, type.valueType)
   };
 
-  const docs = type.description
-    ? type.description
+  const docs = type.doc
+    ? type.doc
     : "Type of " + enumAsUnion.name;
   enumAsUnion.docs =
-    isExtensibleEnum(context, type) && type.description
+    isExtensibleEnum(context, type) && type.doc
       ? [getExtensibleEnumDescription(type) ?? docs]
       : [docs];
-  enumDeclaration.docs = type.description
-    ? [type.description]
+  enumDeclaration.docs = type.doc
+    ? [type.doc]
     : [`Known values of {@link ${type.name}} that the service accepts.`];
 
   return [enumAsUnion, enumDeclaration];
@@ -270,7 +278,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
     return;
   }
   const valueDescriptions = model.values
-    .map((v) => `**${v.value}**${v.description ? `: ${v.description}` : ""}`)
+    .map((v) => `**${v.value}**${v.doc ? `: ${v.doc}` : ""}`)
     .join(` \\\n`)
     // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
     .replace(/^\//g, "\\/")
@@ -278,7 +286,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
   const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
 
   return [
-    `${model.description} \\`,
+    `${model.doc} \\`,
     enumLink,
     `### Known values supported by the service`,
     valueDescriptions
@@ -292,8 +300,8 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
     value: member.value
   };
 
-  if (member.description) {
-    memberStructure.docs = [member.description];
+  if (member.doc) {
+    memberStructure.docs = [member.doc];
   }
 
   return memberStructure;
@@ -326,7 +334,7 @@ export function buildModelInterface(
   }
 
   interfaceStructure.docs = [
-    type.description ?? "model interface " + interfaceStructure.name
+    type.doc ?? "model interface " + interfaceStructure.name
   ];
 
   return interfaceStructure;
@@ -440,6 +448,7 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
       .map((t) => getTypeExpression(context, t))
       .join(" | ")
   };
+  typeDeclaration.docs = [`Alias for ${typeDeclaration.name}`];
 
   typeDeclaration.type += ` | ${getModelExpression(context, type, {
     skipPolymorphicUnion: true
@@ -459,8 +468,8 @@ function buildModelProperty(
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
   };
 
-  if (property.description) {
-    propertyStructure.docs = [property.description];
+  if (property.doc) {
+    propertyStructure.docs = [property.doc];
   }
 
   return propertyStructure;

@@ -647,7 +647,7 @@ export interface TargetResourceConfigurations {
     kind: ResourceKind;
 }
 
-// @public (undocumented)
+// @public
 export type TargetResourceConfigurationsUnion = FunctionFlexConsumptionTargetResourceConfigurations | TargetResourceConfigurations;
 
 // @public
