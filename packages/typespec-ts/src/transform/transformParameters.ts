@@ -46,7 +46,7 @@ import {
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
+import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -184,8 +184,8 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
-  const [serializeHelper, wrapperType] =
-    getParameterSerializeInfo(
+  const [parameterBuilder, wrapperType] =
+    getParameterWrapperInfo(
       dpgContext,
       parameter,
       schema,
@@ -194,7 +194,7 @@ function getParameterMetadata(
     ) ?? [];
   if (wrapperType) {
     type = getTypeName(wrapperType, schemaContext);
-    description = `${description} \n\nThis parameter type could be easily prepared with function ${serializeHelper}.`;
+    description = `${description} \n\nThis parameter type could be easily prepared with function ${parameterBuilder}.`;
   }
   const pathPosition = paramType === "path" ? "method" : undefined;
   return {

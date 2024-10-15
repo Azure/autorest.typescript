@@ -1,8 +1,8 @@
 import {
   NameType,
   normalizeName,
-  Schema,
-  SerializeHelperKind
+  ParameterBuilderKind,
+  Schema
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
 import { getTypeName, isArrayType, isObjectOrDictType } from "./modelUtils.js";
@@ -10,23 +10,23 @@ import { SdkContext } from "./interfaces.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 
-export function getParameterSerializeInfo(
+export function getParameterWrapperInfo(
   dpgContext: SdkContext,
   parameter: HttpOperationParameter,
   valueSchema: Schema,
   operationGroup: string = "",
   operationName: string = ""
-): [SerializeHelperKind, Schema] | undefined {
+): [ParameterBuilderKind, Schema] | undefined {
   const prefix = `${operationGroup}_${operationName}_${parameter.name}`;
   switch (parameter.type) {
     case "path": {
       if (parameter.allowReserved === true) {
         return [
-          "buildAllowReservedValue",
+          ParameterBuilderKind.AllowReserved,
           buildAllowReserved(
             normalizeName(`${prefix}_PathParam`, NameType.Interface),
             valueSchema,
-            "buildAllowReservedValue"
+            ParameterBuilderKind.AllowReserved
           )
         ];
       }
@@ -55,10 +55,10 @@ export function getParameterSerializeInfo(
           true,
           "form",
           valueSchema,
-          "buildExplodedAndFormStyleValue"
+          ParameterBuilderKind.ExplodedFormStyle
         );
         return [
-          "buildExplodedAndFormStyleValue",
+          ParameterBuilderKind.ExplodedFormStyle,
           dpgContext.rlcOptions?.compatibilityMode
             ? buildUnionType([wrapperType, { type: "string", name: "string" }])
             : wrapperType
@@ -71,34 +71,34 @@ export function getParameterSerializeInfo(
           false,
           "form",
           valueSchema,
-          "buildNonExplodedAndFormStyleValue"
+          ParameterBuilderKind.UnexplodedFormStyle
         );
         return [
-          "buildNonExplodedAndFormStyleValue",
+          ParameterBuilderKind.UnexplodedFormStyle,
           isArrayType(valueSchema)
             ? buildUnionType([valueSchema, wrapperType])
             : wrapperType
         ];
       } else if (parameter.format === "ssv") {
         return [
-          "buildNonExplodedAndSpaceStyleValue",
+          ParameterBuilderKind.UnexplodedSpaceStyle,
           buildExplodeAndStyle(
             name,
             false,
             "spaceDelimited",
             valueSchema,
-            "buildNonExplodedAndSpaceStyleValue"
+            ParameterBuilderKind.UnexplodedSpaceStyle
           )
         ];
       } else if (parameter.format === "pipes") {
         return [
-          "buildNonExplodedAndPipeStyleValue",
+          ParameterBuilderKind.UnexplodedPipeStyle,
           buildExplodeAndStyle(
             name,
             false,
             "pipeDelimited",
             valueSchema,
-            "buildNonExplodedAndPipeStyleValue"
+            ParameterBuilderKind.UnexplodedPipeStyle
           )
         ];
       } else {
@@ -125,12 +125,12 @@ export function getParameterSerializeInfo(
 function buildAllowReserved(
   typeName: string,
   valueSchema: Schema,
-  serializeHelper: string
+  valueBuilder: string
 ) {
   return {
     type: "object",
     name: typeName,
-    description: `You can use the function ${serializeHelper} to help prepare this parameter.`,
+    description: `You can use the function ${valueBuilder} to help prepare this parameter.`,
     properties: {
       value: {
         ...valueSchema,
@@ -151,12 +151,12 @@ function buildExplodeAndStyle(
   explode: boolean,
   style: string,
   valueSchema: Schema,
-  serializeHelper: string
+  valueBuilder: string
 ) {
   return {
     type: "object",
     name: typeName,
-    description: `You can use the function ${serializeHelper} to help prepare this parameter.`,
+    description: `You can use the function ${valueBuilder} to help prepare this parameter.`,
     properties: {
       value: {
         ...valueSchema,

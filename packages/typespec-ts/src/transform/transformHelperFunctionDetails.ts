@@ -1,7 +1,7 @@
 import {
   HelperFunctionDetails,
   PackageFlavor,
-  SerializeHelperKind
+  ParameterBuilderKind
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -20,7 +20,7 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { getParameterSerializeInfo } from "../utils/parameterUtils.js";
+import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
 import { getSchemaForType } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
@@ -182,7 +182,7 @@ function extractSpecialSerializeInfo(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const set = new Set<SerializeHelperKind>();
+  const set = new Set<ParameterBuilderKind>();
   let hasMultiCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -198,7 +198,7 @@ function extractSpecialSerializeInfo(
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
       const [paramSerializeKind] =
-        getParameterSerializeInfo(
+        getParameterWrapperInfo(
           dpgContext,
           parameter,
           getSchemaForType(dpgContext, parameter.param.type)
@@ -228,14 +228,14 @@ function extractSpecialSerializeInfo(
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
-        const [paramSerializeKind] =
-          getParameterSerializeInfo(
+        const [parameterBuilder] =
+          getParameterWrapperInfo(
             dpgContext,
             parameter,
             getSchemaForType(dpgContext, parameter.param.type)
           ) ?? [];
-        if (paramSerializeKind) {
-          set.add(paramSerializeKind);
+        if (parameterBuilder) {
+          set.add(parameterBuilder);
         }
       });
     }
@@ -243,6 +243,6 @@ function extractSpecialSerializeInfo(
   return {
     hasMultiCollection,
     hasCsvCollection,
-    serializeHelper: [...set]
+    parameterBuilders: [...set]
   };
 }

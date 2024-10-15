@@ -130,15 +130,16 @@ export interface HelperFunctionDetails {
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
   hasCsvCollection?: boolean;
-  serializeHelper?: SerializeHelperKind[];
+  parameterBuilders?: ParameterBuilderKind[];
 }
 
-export type SerializeHelperKind =
-  | "buildAllowReservedValue"
-  | "buildExplodedAndFormStyleValue"
-  | "buildNonExplodedAndFormStyleValue"
-  | "buildNonExplodedAndSpaceStyleValue"
-  | "buildNonExplodedAndPipeStyleValue";
+export enum ParameterBuilderKind {
+  AllowReserved = "buildAllowReservedValue",
+  ExplodedFormStyle = "buildExplodedFormStyleValue",
+  UnexplodedFormStyle = "buildUnexplodedFormStyleValue",
+  UnexplodedSpaceStyle = "buildUnexplodedSpaceStyleValue",
+  UnexplodedPipeStyle = "buildUnexplodedPipeStyleValue"
+}
 
 export interface PagingDetails {
   itemNames: string[];

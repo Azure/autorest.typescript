@@ -1,4 +1,4 @@
-import { RLCModel } from "./interfaces.js";
+import { ParameterBuilderKind, RLCModel } from "./interfaces.js";
 import * as path from "path";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: to fix the handlebars issue
@@ -40,21 +40,21 @@ export function buildSerializeHelper(model: RLCModel) {
   if (hasCsvCollection(model)) {
     serializeHelperContent += "\n" + buildCsvCollectionContent;
   }
-  for (const helper of model.helperDetails?.serializeHelper ?? []) {
+  for (const helper of model.helperDetails?.parameterBuilders ?? []) {
     switch (helper) {
-      case "buildAllowReservedValue":
+      case ParameterBuilderKind.AllowReserved:
         serializeHelperContent += "\n" + buildAllowReservedContent;
         break;
-      case "buildExplodedAndFormStyleValue":
+      case ParameterBuilderKind.ExplodedFormStyle:
         serializeHelperContent += "\n" + buildExplodedAndFormStyleContent;
         break;
-      case "buildNonExplodedAndFormStyleValue":
+      case ParameterBuilderKind.UnexplodedFormStyle:
         serializeHelperContent += "\n" + buildNonExplodedAndFormStyleContent;
         break;
-      case "buildNonExplodedAndSpaceStyleValue":
+      case ParameterBuilderKind.UnexplodedPipeStyle:
         serializeHelperContent += "\n" + buildNonExplodedAndPipeStyleContent;
         break;
-      case "buildNonExplodedAndPipeStyleValue":
+      case ParameterBuilderKind.UnexplodedSpaceStyle:
         serializeHelperContent += "\n" + buildNonExplodedAndSpaceStyleContent;
         break;
     }
