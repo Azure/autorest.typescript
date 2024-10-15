@@ -157,6 +157,7 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
+  let enableLegacyHelper = false;
   if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
       dpgContext,
@@ -165,15 +166,16 @@ function getParameterMetadata(
     );
     if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       type = "string";
-      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+      description += `\n\nThis parameter could be formatted as ${serializeInfo.collectionInfo.join(
         ", "
-      )} collection, we provide ${serializeInfo.descriptions.join(
+      )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
       )} from serializeHelper.ts to help${
         serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-      }`;
+      }.`;
+      enableLegacyHelper = true;
     }
   }
   type =
@@ -194,7 +196,9 @@ function getParameterMetadata(
     ) ?? [];
   if (wrapperType) {
     type = getTypeName(wrapperType, schemaContext);
-    description = `${description} \n\nThis parameter type could be easily prepared with function ${parameterBuilder}.`;
+    description = `${description} \n\n${
+      enableLegacyHelper ? "And also this" : "This"
+    } parameter type could be prepared with function ${parameterBuilder}.`;
   }
   const pathPosition = paramType === "path" ? "method" : undefined;
   return {

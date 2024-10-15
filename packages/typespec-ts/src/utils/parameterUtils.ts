@@ -39,7 +39,7 @@ export function getParameterWrapperInfo(
       }
       const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
       if (parameter.explode === true) {
-        if (parameter.format !== undefined) {
+        if (parameter.format !== undefined && parameter.format !== "multi") {
           reportDiagnostic(dpgContext.program, {
             code: "un-supported-format-cases",
             format: {
