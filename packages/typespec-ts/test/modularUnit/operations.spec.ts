@@ -121,8 +121,10 @@ describe("operations", () => {
           ...Bar): OkResponse;
           `;
 
-      const operationFiles =
-        await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(

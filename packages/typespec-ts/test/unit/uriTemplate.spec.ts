@@ -11,7 +11,6 @@ describe("Client definition generation", () => {
         `
     );
     assert.ok(clientDef);
-    console.log(clientDef?.content);
     await assertEqualContent(
       clientDef?.content!,
       `
