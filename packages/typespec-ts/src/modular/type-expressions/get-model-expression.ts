@@ -1,4 +1,8 @@
-import { EmitTypeOptions, getTypeExpression } from "./get-type-expression.js";
+import {
+  EmitTypeOptions,
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./get-type-expression.js";
 
 import { SdkModelType } from "@azure-tools/typespec-client-generator-core";
 import { refkey } from "../../framework/refkey.js";
@@ -30,7 +34,7 @@ export function getModelExpression(
       ${type.properties
         .map(
           (p) =>
-            `"${p.name}"${p.optional ? "?" : ""}: ${getTypeExpression(context, p.type)}`
+            `${normalizeModelPropertyName(context, p)}${p.optional ? "?" : ""}: ${getTypeExpression(context, p.type)}`
         )
         .join(",\n")}
     }`;

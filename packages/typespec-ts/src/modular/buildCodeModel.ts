@@ -1002,7 +1002,9 @@ function emitProperty(
   }
   const type = getType(context, property.type, { usage });
   return {
-    clientName,
+    clientName: context.rlcOptions?.ignorePropertyNameNormalize
+      ? clientName
+      : normalizeName(clientName, NameType.Property),
     restApiName: jsonName,
     type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,

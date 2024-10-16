@@ -120,7 +120,7 @@ export type AzureChatExtensionConfigurationUnion = AzureSearchChatExtensionConfi
 
 // @public
 export interface AzureChatExtensionDataSourceResponseCitation {
-    chunk_id?: string;
+    chunkId?: string;
     content: string;
     filepath?: string;
     title?: string;
@@ -129,7 +129,7 @@ export interface AzureChatExtensionDataSourceResponseCitation {
 
 // @public
 export interface AzureChatExtensionRetrievedDocument {
-    chunk_id?: string;
+    chunkId?: string;
     content: string;
     dataSourceIndex: number;
     filepath?: string;
@@ -368,7 +368,7 @@ export interface ChatCompletionsOptions {
     temperature?: number;
     toolChoice?: ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
     tools?: ChatCompletionsToolDefinitionUnion[];
-    top_logprobs?: number | null;
+    topLogprobs?: number | null;
     topP?: number;
     user?: string;
 }
@@ -512,7 +512,7 @@ export interface ChatTokenLogProbabilityResult {
     bytes: number[] | null;
     logprob: number;
     token: string;
-    top_logprobs: ChatTokenLogProbabilityInfo[] | null;
+    topLogprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
 // @public

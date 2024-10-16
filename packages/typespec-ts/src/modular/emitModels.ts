@@ -37,7 +37,10 @@ import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
-import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -48,6 +51,8 @@ import {
 } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -116,7 +121,10 @@ export function emitTypes(
       if (type.discriminatorProperty) {
         modelInterface.properties
           ?.filter((p) => {
-            return p.name === `"${type.discriminatorProperty?.name}"`;
+            return (
+              p.name ===
+              normalizeModelPropertyName(context, type.discriminatorProperty!)
+            );
           })
           .map((p) => {
             p.docs?.push(
@@ -465,9 +473,23 @@ function buildModelProperty(
   context: SdkContext,
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
+  const normalizedPropName = normalizeModelPropertyName(context, property);
+  if (
+    !context.rlcOptions?.ignorePropertyNameNormalize &&
+    normalizedPropName !== `"${property.name}"`
+  ) {
+    reportDiagnostic(context.program, {
+      code: "property-name-normalized",
+      format: {
+        propertyName: property.name,
+        normalizedName: normalizedPropName
+      },
+      target: NoTarget
+    });
+  }
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
-    name: `"${property.name}"`,
+    name: normalizedPropName,
     type: getTypeExpression(context, property.type),
     hasQuestionToken: property.optional,
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)

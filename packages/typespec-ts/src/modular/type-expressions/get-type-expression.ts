@@ -1,14 +1,26 @@
 import {
-  SdkContext,
+  SdkModelPropertyType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { getCredentialExpression } from "./get-credential-expression.js";
 import { getEnumExpression } from "./get-enum-expression.js";
 import { getModelExpression } from "./get-model-expression.js";
 import { getUnionExpression } from "./get-union-expression.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export interface EmitTypeOptions {
   emitInline?: boolean;
+}
+
+export function normalizeModelPropertyName(
+  context: SdkContext,
+  property: SdkModelPropertyType
+): string {
+  const normalizedPropName = normalizeName(property.name, NameType.Property);
+  return context.rlcOptions?.ignorePropertyNameNormalize
+    ? `"${property.name}"`
+    : `"${normalizedPropName}"`;
 }
 
 export function getTypeExpression(

@@ -34,7 +34,7 @@ export interface BrokerProperties {
 // @public
 export interface CloudEvent {
     data?: any;
-    data_base64?: Uint8Array;
+    dataBase64?: Uint8Array;
     datacontenttype?: string;
     dataschema?: string;
     id: string;

@@ -23,7 +23,7 @@ export interface CloudEvent {
   /** Event data specific to the event type. */
   data?: any;
   /** Event data specific to the event type, encoded as a base64 string. */
-  data_base64?: Uint8Array;
+  dataBase64?: Uint8Array;
   /** Type of event related to the originating occurrence. */
   type: string;
   /** The time (in UTC) the event was generated, in RFC3339 format. */
@@ -43,9 +43,9 @@ export function cloudEventSerializer(item: CloudEvent): any {
     id: item["id"],
     source: item["source"],
     data: item["data"],
-    data_base64: !item["data_base64"]
-      ? item["data_base64"]
-      : uint8ArrayToString(item["data_base64"], "base64"),
+    data_base64: !item["dataBase64"]
+      ? item["dataBase64"]
+      : uint8ArrayToString(item["dataBase64"], "base64"),
     type: item["type"],
     time: item["time"]?.toISOString(),
     specversion: item["specversion"],
@@ -60,7 +60,7 @@ export function cloudEventDeserializer(item: any): CloudEvent {
     id: item["id"],
     source: item["source"],
     data: item["data"],
-    data_base64: !item["data_base64"]
+    dataBase64: !item["data_base64"]
       ? item["data_base64"]
       : typeof item["data_base64"] === "string"
         ? stringToUint8Array(item["data_base64"], "base64")

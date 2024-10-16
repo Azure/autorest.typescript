@@ -60,7 +60,7 @@ export interface ChatCompletionFunctions {
 // @public
 export interface ChatCompletionRequestMessage {
     content: string | null;
-    function_call?: {
+    functionCall?: {
         name: string;
         arguments: string;
     };
@@ -71,7 +71,7 @@ export interface ChatCompletionRequestMessage {
 // @public
 export interface ChatCompletionResponseMessage {
     content: string | null;
-    function_call?: {
+    functionCall?: {
         name: string;
         arguments: string;
     };
@@ -106,26 +106,26 @@ export interface CompletionsOperations {
 
 // @public
 export interface CompletionUsage {
-    completion_tokens: number;
-    prompt_tokens: number;
-    total_tokens: number;
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
 }
 
 // @public
 export interface CreateChatCompletionRequest {
-    frequency_penalty?: number | null;
-    function_call?: "none" | "auto" | ChatCompletionFunctionCallOption;
+    frequencyPenalty?: number | null;
+    functionCall?: "none" | "auto" | ChatCompletionFunctionCallOption;
     functions?: ChatCompletionFunctions[];
-    logit_bias?: Record<string, number> | null;
-    max_tokens?: number | null;
+    logitBias?: Record<string, number> | null;
+    maxTokens?: number | null;
     messages: ChatCompletionRequestMessage[];
     model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
-    presence_penalty?: number | null;
+    presencePenalty?: number | null;
     stop?: Stop_1 | null;
     stream?: boolean | null;
     temperature?: number | null;
-    top_p?: number | null;
+    topP?: number | null;
     user?: string;
 }
 
@@ -134,7 +134,7 @@ export interface CreateChatCompletionResponse {
     choices: {
         index: number;
         message: ChatCompletionResponseMessage;
-        finish_reason: "stop" | "length" | "function_call" | "content_filter";
+        finishReason: "stop" | "length" | "function_call" | "content_filter";
     }[];
     created: Date;
     id: string;
@@ -146,21 +146,21 @@ export interface CreateChatCompletionResponse {
 
 // @public
 export interface CreateCompletionRequest {
-    best_of?: number | null;
+    bestOf?: number | null;
     echo?: boolean | null;
-    frequency_penalty?: number | null;
-    logit_bias?: Record<string, number> | null;
+    frequencyPenalty?: number | null;
+    logitBias?: Record<string, number> | null;
     logprobs?: number | null;
-    max_tokens?: number | null;
+    maxTokens?: number | null;
     model: "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
     n?: number | null;
-    presence_penalty?: number | null;
+    presencePenalty?: number | null;
     prompt: Prompt | null;
     stop?: Stop | null;
     stream?: boolean | null;
     suffix?: string | null;
     temperature?: number | null;
-    top_p?: number | null;
+    topP?: number | null;
     user?: string;
 }
 
@@ -171,11 +171,11 @@ export interface CreateCompletionResponse {
         text: string;
         logprobs: {
             tokens: string[];
-            token_logprobs: number[];
-            top_logprobs: Record<string, number>[];
-            text_offset: number[];
+            tokenLogprobs: number[];
+            topLogprobs: Record<string, number>[];
+            textOffset: number[];
         } | null;
-        finish_reason: "stop" | "length" | "content_filter";
+        finishReason: "stop" | "length" | "content_filter";
     }[];
     created: Date;
     id: string;
@@ -192,7 +192,7 @@ export interface CreateEditRequest {
     model: "text-davinci-edit-001" | "code-davinci-edit-001";
     n?: number | null;
     temperature?: number | null;
-    top_p?: number | null;
+    topP?: number | null;
 }
 
 // @public
@@ -200,7 +200,7 @@ export interface CreateEditResponse {
     choices: {
         text: string;
         index: number;
-        finish_reason: "stop" | "length";
+        finishReason: "stop" | "length";
     }[];
     created: Date;
     object: "edit";
@@ -222,8 +222,8 @@ export interface CreateEmbeddingResponse {
     model: string;
     object: "embedding";
     usage: {
-        prompt_tokens: number;
-        total_tokens: number;
+        promptTokens: number;
+        totalTokens: number;
     };
 }
 
@@ -235,29 +235,29 @@ export interface CreateFileRequest {
 
 // @public
 export interface CreateFineTuneRequest {
-    batch_size?: number | null;
-    classification_betas?: number[] | null;
-    classification_n_classes?: number | null;
-    classification_positive_class?: string | null;
-    compute_classification_metrics?: boolean | null;
-    learning_rate_multiplier?: number | null;
+    batchSize?: number | null;
+    classificationBetas?: number[] | null;
+    classificationNClasses?: number | null;
+    classificationPositiveClass?: string | null;
+    computeClassificationMetrics?: boolean | null;
+    learningRateMultiplier?: number | null;
     model?: ("ada" | "babbage" | "curie" | "davinci") | null;
-    n_epochs?: number | null;
-    prompt_loss_rate?: number | null;
+    nEpochs?: number | null;
+    promptLossRate?: number | null;
     suffix?: string | null;
-    training_file: string;
-    validation_file?: string | null;
+    trainingFile: string;
+    validationFile?: string | null;
 }
 
 // @public
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
-        n_epochs?: "auto" | number;
+        nEpochs?: "auto" | number;
     };
     model: "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
     suffix?: string | null;
-    training_file: string;
-    validation_file?: string | null;
+    trainingFile: string;
+    validationFile?: string | null;
 }
 
 // @public
@@ -266,7 +266,7 @@ export interface CreateImageEditRequest {
     mask?: Uint8Array;
     n?: number | null;
     prompt: string;
-    response_format?: ("url" | "b64_json") | null;
+    responseFormat?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
@@ -276,7 +276,7 @@ export interface CreateImageEditRequest {
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
-    response_format?: ("url" | "b64_json") | null;
+    responseFormat?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
@@ -286,7 +286,7 @@ export interface CreateImageRequest {
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
-    response_format?: ("url" | "b64_json") | null;
+    responseFormat?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
@@ -309,22 +309,22 @@ export interface CreateModerationResponse {
             "hate/threatening": boolean;
             harassment: boolean;
             "harassment/threatening": boolean;
-            "self-harm": boolean;
-            "self-harm/intent": boolean;
-            "self-harm/instructive": boolean;
+            selfHarm: boolean;
+            "selfHarm/intent": boolean;
+            "selfHarm/instructive": boolean;
             sexual: boolean;
             "sexual/minors": boolean;
             violence: boolean;
             "violence/graphic": boolean;
         };
-        category_scores: {
+        categoryScores: {
             hate: number;
             "hate/threatening": number;
             harassment: number;
             "harassment/threatening": number;
-            "self-harm": number;
-            "self-harm/intent": number;
-            "self-harm/instructive": number;
+            selfHarm: number;
+            "selfHarm/intent": number;
+            "selfHarm/instructive": number;
             sexual: number;
             "sexual/minors": number;
             violence: number;
@@ -339,7 +339,7 @@ export interface CreateTranscriptionRequest {
     language?: string;
     model: "whisper-1";
     prompt?: string;
-    response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+    responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
 
@@ -354,7 +354,7 @@ export interface CreateTranslationRequest {
     file: Uint8Array;
     model: "whisper-1";
     prompt?: string;
-    response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+    responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
 
@@ -466,33 +466,33 @@ export interface FilesRetrieveOptionalParams extends OperationOptions {
 
 // @public
 export interface FineTune {
-    created_at: Date;
+    createdAt: Date;
     events?: FineTuneEvent[];
-    fine_tuned_model: string | null;
+    fineTunedModel: string | null;
     hyperparams: {
-        n_epochs: number;
-        batch_size: number;
-        prompt_loss_weight: number;
-        learning_rate_multiplier: number;
-        compute_classification_metrics?: boolean;
-        classification_positive_class?: string;
-        classification_n_classes?: number;
+        nEpochs: number;
+        batchSize: number;
+        promptLossWeight: number;
+        learningRateMultiplier: number;
+        computeClassificationMetrics?: boolean;
+        classificationPositiveClass?: string;
+        classificationNClasses?: number;
     };
     id: string;
     model: string;
     object: "fine-tune";
-    organization_id: string;
-    result_files: OpenAIFile[];
+    organizationId: string;
+    resultFiles: OpenAIFile[];
     status: "created" | "running" | "succeeded" | "failed" | "cancelled";
-    training_files: OpenAIFile[];
-    updated_at: Date;
-    validation_files: OpenAIFile[];
+    trainingFiles: OpenAIFile[];
+    updatedAt: Date;
+    validationFiles: OpenAIFile[];
 }
 
 // @public
 export interface FineTuneEvent {
     // (undocumented)
-    created_at: Date;
+    createdAt: Date;
     // (undocumented)
     level: string;
     // (undocumented)
@@ -538,32 +538,32 @@ export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 
 // @public
 export interface FineTuningJob {
-    created_at: Date;
+    createdAt: Date;
     error: {
         message?: string;
         code?: string;
         param?: string | null;
     } | null;
-    fine_tuned_model: string | null;
-    finished_at: Date | null;
+    fineTunedModel: string | null;
+    finishedAt: Date | null;
     hyperparameters: {
-        n_epochs?: "auto" | number;
+        nEpochs?: "auto" | number;
     };
     id: string;
     model: string;
     object: "fine_tuning.job";
-    organization_id: string;
-    result_files: string[];
+    organizationId: string;
+    resultFiles: string[];
     status: "created" | "pending" | "running" | "succeeded" | "failed" | "cancelled";
-    trained_tokens: number | null;
-    training_file: string;
-    validation_file: string | null;
+    trainedTokens: number | null;
+    trainingFile: string;
+    validationFile: string | null;
 }
 
 // @public
 export interface FineTuningJobEvent {
     // (undocumented)
-    created_at: Date;
+    createdAt: Date;
     // (undocumented)
     id: string;
     // (undocumented)
@@ -619,7 +619,7 @@ export interface FineTuningOperations {
 
 // @public
 export interface Image {
-    b64_json?: Uint8Array;
+    b64Json?: Uint8Array;
     url?: string;
 }
 
@@ -702,7 +702,7 @@ export interface ListPaginatedFineTuningJobsResponse {
     // (undocumented)
     data: FineTuningJob[];
     // (undocumented)
-    has_more: boolean;
+    hasMore: boolean;
     // (undocumented)
     object: string;
 }
@@ -712,7 +712,7 @@ export interface Model {
     created: Date;
     id: string;
     object: "model";
-    owned_by: string;
+    ownedBy: string;
 }
 
 // @public
@@ -776,7 +776,7 @@ export interface OpenAIFile {
     object: "file";
     purpose: string;
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
-    status_details?: string | null;
+    statusDetails?: string | null;
 }
 
 // @public

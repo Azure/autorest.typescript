@@ -983,7 +983,7 @@ export interface ChatCompletionsOptions {
   /** Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. This option is currently not available on the `gpt-4-vision-preview` model. */
   logprobs?: boolean | null;
   /** An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. */
-  top_logprobs?: number | null;
+  topLogprobs?: number | null;
   /** An object specifying the format that the model must output. Used to enable JSON mode. */
   responseFormat?: ChatCompletionsResponseFormatUnion;
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
@@ -1030,7 +1030,7 @@ export function chatCompletionsOptionsSerializer(
       : azureChatEnhancementConfigurationSerializer(item["enhancements"]),
     seed: item["seed"],
     logprobs: item["logprobs"],
-    top_logprobs: item["top_logprobs"],
+    top_logprobs: item["topLogprobs"],
     response_format: !item["responseFormat"]
       ? item["responseFormat"]
       : chatCompletionsResponseFormatUnionSerializer(item["responseFormat"]),
@@ -3096,7 +3096,7 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   /** The file path of the citation. */
   filepath?: string;
   /** The chunk ID of the citation. */
-  chunk_id?: string;
+  chunkId?: string;
 }
 
 export function azureChatExtensionDataSourceResponseCitationDeserializer(
@@ -3107,7 +3107,7 @@ export function azureChatExtensionDataSourceResponseCitationDeserializer(
     title: item["title"],
     url: item["url"],
     filepath: item["filepath"],
-    chunk_id: item["chunk_id"],
+    chunkId: item["chunk_id"],
   };
 }
 
@@ -3130,7 +3130,7 @@ export interface AzureChatExtensionRetrievedDocument {
   /** The file path of the citation. */
   filepath?: string;
   /** The chunk ID of the citation. */
-  chunk_id?: string;
+  chunkId?: string;
   /** The search queries used to retrieve the document. */
   searchQueries: string[];
   /** The index of the data source. */
@@ -3154,7 +3154,7 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
     title: item["title"],
     url: item["url"],
     filepath: item["filepath"],
-    chunk_id: item["chunk_id"],
+    chunkId: item["chunk_id"],
     searchQueries: item["search_queries"].map((p: any) => {
       return p;
     }),
@@ -3205,7 +3205,7 @@ export interface ChatTokenLogProbabilityResult {
   /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be null if there is no bytes representation for the token. */
   bytes: number[] | null;
   /** The list of most likely tokens and their log probability information, as requested via 'top_logprobs'. */
-  top_logprobs: ChatTokenLogProbabilityInfo[] | null;
+  topLogprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
 export function chatTokenLogProbabilityResultDeserializer(
@@ -3221,7 +3221,7 @@ export function chatTokenLogProbabilityResultDeserializer(
         : item["bytes"].map((p: any) => {
             return p;
           }),
-    top_logprobs: !item["top_logprobs"]
+    topLogprobs: !item["top_logprobs"]
       ? item["top_logprobs"]
       : !item["top_logprobs"]
         ? item["top_logprobs"]

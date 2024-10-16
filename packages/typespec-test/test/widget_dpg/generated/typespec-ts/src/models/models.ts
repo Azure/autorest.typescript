@@ -61,7 +61,7 @@ export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */
-  "odata.nextLink"?: string;
+  odataNextLink?: string;
 }
 
 export function _listWidgetsPagesResultsDeserializer(
@@ -69,7 +69,7 @@ export function _listWidgetsPagesResultsDeserializer(
 ): _ListWidgetsPagesResults {
   return {
     results: widgetArrayDeserializer(item["results"]),
-    "odata.nextLink": item["odata.nextLink"],
+    odataNextLink: item["odata.nextLink"],
   };
 }
 

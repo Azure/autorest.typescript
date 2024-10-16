@@ -535,7 +535,7 @@ export declare interface Return {
 }
 
 export declare interface SameAsModel {
-    SameAsModel: string;
+    sameAsModel: string;
 }
 
 export declare class SpecialWordsClient {

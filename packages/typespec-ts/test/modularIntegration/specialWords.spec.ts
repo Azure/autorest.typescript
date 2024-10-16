@@ -14,7 +14,7 @@ describe("Special Words Client", () => {
   it("should post modelProperties sameAsModel", async () => {
     try {
       const result = await client.modelProperties.sameAsModel({
-        SameAsModel: "ok"
+        sameAsModel: "ok"
       });
       assert.equal(result, undefined);
     } catch (err) {
