@@ -308,10 +308,15 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
   );
 }
 
+interface EmitTypeOptions {
+  disableEffectiveModel?: boolean;
+  usage?: UsageFlags;
+}
+
 export function getType(
   context: SdkContext,
   type: EmitterType,
-  options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
+  options: EmitTypeOptions = {}
 ): any {
   const modularMetatree = useContext("modularMetaTree");
 
@@ -334,7 +339,7 @@ export function getType(
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
-    newValue = emitType(context, type, options.usage!);
+    newValue = emitType(context, type, options);
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
@@ -364,7 +369,7 @@ export function getType(
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
       if (newValue.type === "dict") {
-        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        newValue = { ...emitModel(context, type, options), ...newValue };
         typesMap.set(effectiveModel, newValue);
       }
     }
@@ -1035,15 +1040,17 @@ function getName(program: Program, type: Model): string {
 export function emitModel(
   context: SdkContext,
   type: Model,
-  usage: UsageFlags
+  options: EmitTypeOptions = {}
 ): Record<string, any> {
   // Now we know it's a defined model
   const properties: Record<string, any>[] = [];
   let baseModel = undefined;
   if (type.baseModel) {
-    baseModel = getType(context, type.baseModel, { usage });
+    baseModel = getType(context, type.baseModel, options);
   }
-  const effectiveName = getEffectiveSchemaType(context.program, type).name;
+  const effectiveName = !options.disableEffectiveModel
+    ? getEffectiveSchemaType(context.program, type).name
+    : undefined;
   const overridedModelName = normalizeName(
     getLibraryName(context, type) ?? getFriendlyName(context.program, type),
     NameType.Interface,
@@ -1101,7 +1108,7 @@ export function emitModel(
       : modelName,
     base: modelName === "" ? "json" : "dpg",
     coreTypeInfo: buildCoreTypeInfo(context.program, type),
-    usage
+    usage: options.usage
   };
 }
 
@@ -1478,12 +1485,12 @@ function emitUnion(
     };
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
-      ...emitType(context, nonNullOptions[0], usage),
+      ...emitType(context, nonNullOptions[0], { usage }),
       nullable: isNull
     };
   } else {
     return {
-      ...emitType(context, sdkType.__raw!, usage),
+      ...emitType(context, sdkType.__raw!, { usage }),
       nullable: isNull
     };
   }
@@ -1523,7 +1530,7 @@ function emitSimpleType(type: SdkBuiltInType): Record<string, any> {
 function emitType(
   context: SdkContext,
   type: EmitterType,
-  usage: UsageFlags
+  options: EmitTypeOptions = {}
 ): Record<string, any> {
   if (type.kind === "Credential") {
     return emitCredential(type.scheme);
@@ -1531,7 +1538,7 @@ function emitType(
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapTypeSpecType(context, type, usage);
+  const builtinType = mapTypeSpecType(context, type, options.usage!);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1545,13 +1552,13 @@ function emitType(
     case "Intrinsic":
       return { type: type.name };
     case "Model":
-      return emitModel(context, type, usage);
+      return emitModel(context, type, options);
     case "Scalar":
       return emitScalar(context.program, type);
     case "Union":
-      return emitUnion(context, type, usage);
+      return emitUnion(context, type, options.usage!);
     case "UnionVariant":
-      return emitType(context, type.type, usage);
+      return emitType(context, type.type, options);
     case "Enum":
       return emitEnum(context, type);
     case "EnumMember":

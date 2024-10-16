@@ -31,6 +31,6 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["src/**/*.ts", "src/modular/emitModelsOptions.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["dist", "node_modules", "typespec-output"]
 }

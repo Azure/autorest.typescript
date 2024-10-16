@@ -1671,24 +1671,40 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
+      /** model interface Foo */
       export interface Foo {
         name: string;
         weight?: number;
         bar: Bar;
       }
       
+      export function fooDeserializer(item: any): Foo {
+        return {
+          name: item["name"],
+          weight: item["weight"],
+          bar: barDeserializer(item["bar"]),
+        };
+      }
+      
+      /** model interface Bar */
       export interface Bar {
         foo: Foo;
+      }
+      
+      export function barDeserializer(item: any): Bar {
+        return {
+          foo: fooDeserializer(item["foo"]),
+        };
       }
       `
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
@@ -1714,11 +1730,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
       
-        return {
-          name: result.body["name"],
-          weight: result.body["weight"],
-          bar: { foo: result.body.bar.foo },
-        };
+        return fooDeserializer(result.body);
       }
       
       export async function read(

@@ -508,7 +508,15 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(modelFile?.getFullText()!, ``);
+        await assertEqualContent(modelFile?.getFullText()!, 
+        `
+        /** model interface _ReadRequest */
+        export interface _ReadRequest {}
+        
+        export function _readRequestSerializer(item: _ReadRequest): any {
+          return item as any;
+        }
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
@@ -854,7 +862,14 @@ describe("anonymous model", () => {
         // No models.ts file generated
         const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelsFile);
-        assertEqualContent(modelsFile?.getFullText()!, ``);
+        await assertEqualContent(modelsFile?.getFullText()!, `
+        /** model interface _ReadResponse */
+        export interface _ReadResponse {}
+        
+        export function _readResponseDeserializer(item: any): _ReadResponse {
+          return item as any;
+        }
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
@@ -902,7 +917,31 @@ describe("anonymous model", () => {
         // No models.ts file generated
         const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelsFile);
-        assertEqualContent(modelsFile?.getFullText()!, ``);
+        await assertEqualContent(modelsFile?.getFullText()!, `
+        /** model interface _ReadResponse */
+        export interface _ReadResponse {
+          foo?: {
+            bar: string | null;
+          };
+        }
+        
+        export function _readResponseDeserializer(item: any): _ReadResponse {
+          return {
+            foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"]),
+          };
+        }
+        
+        /** model interface _ReadResponseFoo */
+        export interface _ReadResponseFoo {
+          bar: string | null;
+        }
+        
+        export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
+          return {
+            bar: item["bar"],
+          };
+        } 
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
