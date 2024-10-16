@@ -1581,78 +1581,150 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        /** the discriminator possible values: cat, dog */
-        kind: string;
-        name: string;
-        weight?: number;
-      }
-
-      export interface Cat extends Pet {
-        kind: "cat";
-        meow: number;
-      }
-
-      export interface Dog extends Pet {
-        kind: "dog";
-        /** the discriminator possible values: gold */
-        type: string;
-        bark: string;
-      }
-      
-      export interface Gold extends Dog {
-        type: "gold";
-        friends: PetUnion[];
-      }
-
-      /** Alias for PetUnion */
-      export type PetUnion = Cat | DogUnion | Pet;
-      /** Alias for DogUnion */
-      export type DogUnion = Gold | Dog;
+       /** model interface Pet */
+       export interface Pet {
+         kind: string;
+         name: string;
+         weight?: number;
+       }
+       
+       export function petDeserializer(item: any): Pet {
+         return {
+           kind: item["kind"],
+           name: item["name"],
+           weight: item["weight"],
+         };
+       }
+       
+       /** Alias for PetUnion */
+       export type PetUnion = Cat | DogUnion | Pet;
+       
+       export function petUnionDeserializer(item: any): PetUnion {
+         switch (item.kind) {
+           case "cat":
+             return catDeserializer(item as Cat);
+       
+           case "dog":
+             return dogUnionDeserializer(item as DogUnion);
+       
+           default:
+             return petDeserializer(item);
+         }
+       }
+       
+       /** model interface Cat */
+       export interface Cat extends Pet {
+         kind: "cat";
+         meow: number;
+       }
+       
+       export function catDeserializer(item: any): Cat {
+         return {
+           kind: item["kind"],
+           name: item["name"],
+           weight: item["weight"],
+           meow: item["meow"],
+         };
+       }
+       
+       /** model interface Dog */
+       export interface Dog extends Pet {
+         kind: "dog";
+         type: string;
+         bark: string;
+       }
+       
+       export function dogDeserializer(item: any): Dog {
+         return {
+           kind: item["kind"],
+           name: item["name"],
+           weight: item["weight"],
+           type: item["type"],
+           bark: item["bark"],
+         };
+       }
+       
+       /** Alias for DogUnion */
+       export type DogUnion = Gold | Dog;
+       
+       export function dogUnionDeserializer(item: any): DogUnion {
+         switch (item.type) {
+           case "gold":
+             return goldDeserializer(item as Gold);
+       
+           default:
+             return dogDeserializer(item);
+         }
+       }
+       
+       /** model interface Gold */
+       export interface Gold extends Dog {
+         type: "gold";
+         friends: PetUnion[];
+       }
+       
+       export function goldDeserializer(item: any): Gold {
+         return {
+           kind: item["kind"],
+           type: item["type"],
+           bark: item["bark"],
+           name: item["name"],
+           weight: item["weight"],
+           friends: petUnionArrayDeserializer(item["friends"]),
+         };
+       }
+       
+       export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
+         return result.map((item) => {
+           return petUnionDeserializer(item);
+         });
+       }
       `
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
-      import { TestingContext as Client } from "./index.js";
-      import {
-        StreamableMethod,
-        PathUncheckedResponse,
-        createRestError,
-        operationOptionsToRequestParameters,
-      } from "@azure-rest/core-client";
-      
-      export function _readSend(
-        context: Client,
-        options: ReadOptionalParams = { requestOptions: {} }
-      ): StreamableMethod {
-        return context
-          .path("/")
-          .get({ ...operationOptionsToRequestParameters(options) });
-      }
-      
-      export async function _readDeserialize(result: PathUncheckedResponse): Promise<PetUnion> {
-        const expectedStatuses = ["200"];
-        if (!expectedStatuses.includes(result.status)) {
-          throw createRestError(result);
-        }
-      
-        return result.body;
-      }
-      
-      export async function read(
-        context: Client,
-        options: ReadOptionalParams = { requestOptions: {} }
-      ): Promise<PetUnion> {
-        const result = await _readSend(context, options);
-        return _readDeserialize(result);
-      }      
+       import { TestingContext as Client } from "./index.js";
+       import {
+         StreamableMethod,
+         PathUncheckedResponse,
+         createRestError,
+         operationOptionsToRequestParameters,
+       } from "@azure-rest/core-client";
+       
+       export function _readSend(
+         context: Client,
+         options: ReadOptionalParams = { requestOptions: {} },
+       ): StreamableMethod {
+         return context
+           .path("/")
+           .get({ ...operationOptionsToRequestParameters(options) });
+       }
+       
+       export async function _readDeserialize(
+         result: PathUncheckedResponse,
+       ): Promise<PetUnion> {
+         const expectedStatuses = ["200"];
+         if (!expectedStatuses.includes(result.status)) {
+           throw createRestError(result);
+         }
+       
+         return petUnionDeserializer(result.body);
+       }
+       
+       export async function read(
+         context: Client,
+         options: ReadOptionalParams = { requestOptions: {} },
+       ): Promise<PetUnion> {
+         const result = await _readSend(context, options);
+         return _readDeserialize(result);
+       }
       `
     );
   });

@@ -572,13 +572,20 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { TokenCredential, KeyCredential, isKeyCredential } from "@azure/core-auth";
+        import {
+          TokenCredential,
+          KeyCredential,
+          isKeyCredential,
+        } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions.js";
+        
+        /** The optional parameters for the client */
+        export interface testClientOptions extends ClientOptions {}
         
         /**
          * Initialize a new instance of \`testClient\`
@@ -586,41 +593,50 @@ describe("Client Factory generation", () => {
          * @param credentials - uniquely identify client credential
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpointParam}\`;
-        
-        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
-        const userAgentPrefix =
+        export default function createClient(
+          endpointParam: string,
+          credentials: TokenCredential | KeyCredential,
+          options: testClientOptions = {},
+        ): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
-            : \`\${userAgentInfo}\`;
-        options = {
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
             ...options,
             userAgentOptions: {
-            userAgentPrefix,
+              userAgentPrefix,
             },
             loggingOptions: {
-              logger: options.loggingOptions?.logger ?? logger.info
+              logger: options.loggingOptions?.logger ?? logger.info,
             },
             credentials: {
               scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
             },
-        };
+          };
+          const client = getClient(endpointUrl, credentials, options) as testClient;
         
-        const client = getClient(baseUrl, credentials, options) as testClient;
-
-        if (isKeyCredential(credentials)) {
-          client.pipeline.addPolicy({
-            name: "customKeyCredentialPolicy",
-            async sendRequest(request, next) {
-              request.headers.set("Authorization", "Bearer " + credentials.key);
-              return next(request);
-            },
-          });
+          client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+          if (options.apiVersion) {
+            logger.warning(
+              "This client does not support client api-version, please change it at the operation level",
+            );
+          }
+        
+          if (isKeyCredential(credentials)) {
+            client.pipeline.addPolicy({
+              name: "customKeyCredentialPolicy",
+              async sendRequest(request, next) {
+                request.headers.set("Authorization", "Bearer " + credentials.key);
+                return next(request);
+              },
+            });
+          }
+        
+          return client;
         }
-        
-        return client;
-    }
     `
       );
     });
