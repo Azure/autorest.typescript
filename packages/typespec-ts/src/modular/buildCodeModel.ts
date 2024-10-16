@@ -484,8 +484,9 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
-    type.name =
-      type.name !== "" ? normalizeModelName(context, type.tcgcType) : type.name;
+    type.name = !type.tcgcType.isGeneratedName
+      ? normalizeModelName(context, type.tcgcType)
+      : "";
     return {
       contentTypes,
       type,

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 export { DemoServiceClient } from "./demoServiceClient.js";
-export * from "./models/index.js";
 export {
   DemoServiceClientOptionalParams,
   ATest1OptionalParams,

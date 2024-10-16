@@ -322,6 +322,11 @@ export async function $onEmit(context: EmitContext) {
           importDeclaration.remove();
         }
       });
+      file.getExportDeclarations().map((exportDeclaration) => {
+        if (exportDeclaration.getNamedExports().length === 0) {
+          exportDeclaration.remove();
+        }
+      });
       file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,

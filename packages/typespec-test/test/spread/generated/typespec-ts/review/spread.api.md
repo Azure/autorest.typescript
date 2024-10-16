@@ -19,7 +19,9 @@ export interface AOperations {
         prop: string;
     }, options?: ATest3OptionalParams) => Promise<void>;
     // (undocumented)
-    test4: (body: _Test4Request, options?: ATest4OptionalParams) => Promise<void>;
+    test4: (body: {
+        prop: string;
+    }, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -48,24 +50,6 @@ export class DemoServiceClient {
 // @public
 export interface DemoServiceClientOptionalParams extends ClientOptions {
 }
-
-// @public
-export interface _Test3Request {
-    // (undocumented)
-    prop: string;
-}
-
-// @public (undocumented)
-export function _test3RequestSerializer(item: _Test3Request): any;
-
-// @public
-export interface _Test4Request {
-    // (undocumented)
-    prop: string;
-}
-
-// @public (undocumented)
-export function _test4RequestSerializer(item: _Test4Request): any;
 
 // (No @packageDocumentation comment for this package)
 

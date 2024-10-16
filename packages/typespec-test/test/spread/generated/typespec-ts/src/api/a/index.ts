@@ -10,7 +10,6 @@ import {
 } from "../index.js";
 import {
   _test3RequestSerializer,
-  _Test4Request,
   _test4RequestSerializer,
 } from "../../models/models.js";
 import {
@@ -125,7 +124,7 @@ export async function test3(
 
 export function _test4Send(
   context: Client,
-  body: _Test4Request,
+  body: { prop: string },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -149,7 +148,7 @@ export async function _test4Deserialize(
 
 export async function test4(
   context: Client,
-  body: _Test4Request,
+  body: { prop: string },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test4Send(context, body, options);
