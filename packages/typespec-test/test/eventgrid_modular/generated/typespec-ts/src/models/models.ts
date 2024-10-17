@@ -78,7 +78,7 @@ export function cloudEventDeserializer(item: any): CloudEvent {
 export interface PublishResult {}
 
 export function publishResultDeserializer(item: any): PublishResult {
-  return item as any;
+  return item;
 }
 
 /** Details of the Receive operation response. */

@@ -514,7 +514,7 @@ describe("anonymous model", () => {
         export interface _ReadRequest {}
         
         export function _readRequestSerializer(item: _ReadRequest): any {
-          return item as any;
+          return item;
         }
         `);
         const operationFiles =
@@ -867,7 +867,7 @@ describe("anonymous model", () => {
         export interface _ReadResponse {}
         
         export function _readResponseDeserializer(item: any): _ReadResponse {
-          return item as any;
+          return item;
         }
         `);
         const operationFiles =
@@ -895,7 +895,7 @@ describe("anonymous model", () => {
           export interface PublishResult {}
           
           export function publishResultDeserializer(item: any): PublishResult {
-            return item as any;
+            return item;
           }
         `
         );
@@ -1037,7 +1037,7 @@ describe("anonymous model", () => {
          export function _returnBodyEmptyAnomyousDeserializer(
            item: any,
          ): _ReturnBodyEmptyAnomyous {
-           return item as any;
+           return item;
          }
          
          /** model interface _ReturnBodyEmptyAnomyousArray */
@@ -1046,7 +1046,7 @@ describe("anonymous model", () => {
          export function _returnBodyEmptyAnomyousArrayDeserializer(
            item: any,
          ): _ReturnBodyEmptyAnomyousArray {
-           return item as any;
+           return item;
          }
          
          export function returnBodyEmptyAnomyousArrayArrayDeserializer(
@@ -1063,7 +1063,7 @@ describe("anonymous model", () => {
          export function _returnBodyEmptyAnomyousDictDeserializer(
            item: any,
          ): _ReturnBodyEmptyAnomyousDict {
-           return item as any;
+           return item;
          }
          
          export function returnBodyEmptyAnomyousDictRecordDeserializer(
@@ -1082,7 +1082,7 @@ describe("anonymous model", () => {
          export interface EmptyModel {}
         
          export function emptyModelDeserializer(item: any): EmptyModel {
-           return item as any;
+           return item;
          }
          
          export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {

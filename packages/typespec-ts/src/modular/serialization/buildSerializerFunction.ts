@@ -357,7 +357,7 @@ function buildModelTypeSerializer(
       `);
   } else {
     output.push(`
-        return item as any;
+        return item;
       `);
   }
   serializerFunction.statements = output;

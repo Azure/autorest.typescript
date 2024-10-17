@@ -2263,7 +2263,7 @@ describe("visibility", () => {
       }
       
       export function aSerializer(item: A): any {
-        return item as any;
+        return item;
       }
       `,
       true

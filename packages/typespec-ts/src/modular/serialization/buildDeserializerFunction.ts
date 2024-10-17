@@ -366,7 +366,7 @@ function buildModelTypeDeserializer(
       `);
   } else {
     output.push(`
-        return item as any;
+        return item;
       `);
   }
   deserializerFunction.statements = output;

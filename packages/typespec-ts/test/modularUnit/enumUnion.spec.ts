@@ -855,7 +855,7 @@ describe("header parameters", () => {
         export interface Foo {}
         
         export function fooSerializer(item: Foo): any {
-          return item as any;
+          return item;
         }
                
         /** Type of EnumTest */

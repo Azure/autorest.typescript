@@ -504,7 +504,7 @@ export interface UserAssignedIdentity {
 export function userAssignedIdentitySerializer(
   item: UserAssignedIdentity,
 ): any {
-  return item as any;
+  return item;
 }
 
 export function userAssignedIdentityDeserializer(
@@ -578,7 +578,7 @@ export interface Resource {
 }
 
 export function resourceSerializer(item: Resource): any {
-  return item as any;
+  return item;
 }
 
 export function resourceDeserializer(item: any): Resource {
@@ -722,7 +722,7 @@ export interface _ErrorAdditionalInfoInfo {}
 export function _errorAdditionalInfoInfoDeserializer(
   item: any,
 ): _ErrorAdditionalInfoInfo {
-  return item as any;
+  return item;
 }
 
 export function errorAdditionalInfoArrayDeserializer(
@@ -934,7 +934,7 @@ export interface _ListRolesAssignmentsRequest {}
 export function _listRolesAssignmentsRequestSerializer(
   item: _ListRolesAssignmentsRequest,
 ): any {
-  return item as any;
+  return item;
 }
 
 /** list role assignments. */
@@ -1092,7 +1092,7 @@ export type DataTypeState = string;
 export interface ProxyResource extends Resource {}
 
 export function proxyResourceSerializer(item: ProxyResource): any {
-  return item as any;
+  return item;
 }
 
 export function proxyResourceDeserializer(item: any): ProxyResource {
@@ -1147,7 +1147,7 @@ export function dataTypeUpdatePropertiesSerializer(
 export interface _DeleteDataRequest {}
 
 export function _deleteDataRequestSerializer(item: _DeleteDataRequest): any {
-  return item as any;
+  return item;
 }
 
 /** The details for container sas creation. */
