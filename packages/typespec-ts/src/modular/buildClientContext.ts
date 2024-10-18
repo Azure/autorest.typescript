@@ -38,7 +38,8 @@ export function buildClientContext(
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
