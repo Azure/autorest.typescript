@@ -74,11 +74,16 @@ async function generate(path, logger) {
 
     // Clean up the folder before generation
     if (await exists(join(path, "generated", "typespec-ts"))) {
-      fstat.readdirSync(join(path, "generated", "typespec-ts")).forEach((file) => {
-        if(file !== "node_modules") {
-          rm(join(path, "generated", "typespec-ts", file), { recursive: true, force: true });
-        }
-      });
+      const outputRoot = join(path, "generated", "typespec-ts");
+      await readdir(outputRoot)
+        .then((files) =>
+          Promise.all(files
+            .filter((file) => file !== "node_modules")
+            .map((file) =>
+              rm(join(outputRoot, file), { recursive: true, force: true })
+            )
+        )
+        );
     }
   } catch (e) {
     // do nothing
