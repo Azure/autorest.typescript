@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { FileType } from "./models.js";
+import { FileType } from "../../models/models.js";
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {

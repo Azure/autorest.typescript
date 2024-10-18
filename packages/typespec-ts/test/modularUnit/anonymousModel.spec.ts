@@ -4,6 +4,7 @@ import {
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 describe("anonymous model", () => {
   describe("in request", async () => {
@@ -31,19 +32,21 @@ describe("anonymous model", () => {
           export interface Bar {
             prop1: string;
             prop2: number;
-          }`
+          }`,
+          true
         );
 
         const serializer = modelFile?.getFunction("barSerializer")?.getText();
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
             }
-          };`
+          };`,
+          true
         );
 
         const operationFiles =
@@ -56,9 +59,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
 
         export function _readSend(
@@ -140,25 +143,28 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getInterface("Bar")?.getFullText()!,
           `
+          /** model interface Bar */
           export interface Bar {
             prop1: string;
             prop2: number;
-          }`
+          }`,
+          true
         );
 
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
             }
-          }`
+          }`,
+          true
         );
         const optionFile = await emitModularModelsFromTypeSpec(
           tspContent,
-          true
+          { needOptions: true }
         );
         assert.ok(optionFile);
         await assertEqualContent(
@@ -182,9 +188,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -265,27 +271,30 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getInterface("Bar")?.getFullText()!,
           `
+          /** model interface Bar */
           export interface Bar {
             prop1: string;
             prop2: number;
-          }`
+          }`,
+          true
         );
 
         const serializer = modelFile?.getFunction("barSerializer")?.getText();
         await assertEqualContent(
           serializer!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
             }
-          };`
+          };`,
+          true
         );
 
         const optionFile = await emitModularModelsFromTypeSpec(
           tspContent,
-          true
+          { needOptions: true }
         );
         assert.ok(optionFile);
         await assertEqualContent(
@@ -309,9 +318,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
 
         export function _readSend(
@@ -389,15 +398,18 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getInterface("Bar")?.getFullText()!,
           `
+        /** model interface Bar */
         export interface Bar {
           prop1: string;
           prop2: number;
-        }`
+        }`,
+          true
         );
 
         await assertEqualContent(
           modelFile?.getInterface("Foo")?.getFullText()!,
           `
+        /** model interface Foo */
         export interface Foo {
           prop1: string;
           prop2: number;
@@ -410,26 +422,28 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
             }
-          };`
+          };`,
+          true
         );
 
         await assertEqualContent(
           modelFile?.getFunction("fooSerializer")?.getText()!,
           `
-          export function fooSerializer(item: Foo): Record<string, unknown> {
+          export function fooSerializer(item: Foo): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
               prop3: item["prop3"].toISOString(),
               prop4: item["prop4"],
-              prop5: barSerializer(item.prop5),
+              prop5: barSerializer(item["prop5"]),
             }
-          };`
+          };`,
+          true
         );
 
         const operationFiles =
@@ -442,9 +456,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -458,13 +472,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: {
-                prop1: body["prop1"],
-                prop2: body["prop2"],
-                prop3: body["prop3"].toISOString(),
-                prop4: body["prop4"],
-                prop5: barSerializer(body.prop5),
-              },
+              body: fooSerializer(body),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -499,7 +507,16 @@ describe("anonymous model", () => {
       op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkResponse;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assert.isUndefined(modelFile);
+        assert.ok(modelFile);
+        await assertEqualContent(modelFile?.getFullText()!, 
+        `
+        /** model interface _ReadRequest */
+        export interface _ReadRequest {}
+        
+        export function _readRequestSerializer(item: _ReadRequest): any {
+          return item;
+        }
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
@@ -510,9 +527,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -526,7 +543,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: body
+              body: _readRequestSerializer(body),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -566,20 +583,23 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getInterface("Bar")?.getFullText()!,
           `
+          /** model interface Bar */
           export interface Bar {
             prop1: string;
             prop2: number;
-          }`
+          }`,
+          true
         );
         await assertEqualContent(
           modelFile?.getFunction("barSerializer")?.getFullText()!,
           `
-          export function barSerializer(item: Bar): Record<string, unknown> {
+          export function barSerializer(item: Bar): any {
             return {
               prop1: item["prop1"],
               prop2: item["prop2"],
             }
-          }`
+          }`,
+          true
         );
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
@@ -591,9 +611,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -607,7 +627,7 @@ describe("anonymous model", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               queryParameters: { queryParam: queryParam },
-              body: { prop1: test["prop1"], prop2: barSerializer(test.prop2) },
+              body: _readRequestSerializer(test),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -651,20 +671,20 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile!.getInterface("Test")?.getFullText()!,
           `
+        /** model interface Test */
         export interface Test {
           color: Record<string, any>;
-        }`
+        }`,
         );
 
         const serializer = modelFile?.getFunction("testSerializer")?.getText();
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): Record<string, unknown> {
-            return {
-              color: item["color"],
-            }
-          };`
+          export function testSerializer(item: Test): any {
+            return { color: _testColorSerializer(item["color"]) };
+          };`,
+          true
         );
 
         const operationFiles =
@@ -677,9 +697,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -690,7 +710,7 @@ describe("anonymous model", () => {
             .path("/")
             .post({
               ...operationOptionsToRequestParameters(options),
-              body: { color: body["color"] },
+              body: testSerializer(body),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -726,20 +746,21 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile!.getInterface("Test")?.getFullText()!,
           `
+        /** model interface Test */
         export interface Test {
           color: { foo?: string };
-        }`
+        }`,
+        true
         );
 
         const serializer = modelFile?.getFunction("testSerializer")?.getText();
         await assertEqualContent(
           serializer!,
           `
-          export function testSerializer(item: Test): Record<string, unknown> {
-            return {
-              color: {foo: item.color["foo"]},
-            }
-          };`
+          export function testSerializer(item: Test): any {
+            return { color: _testColorSerializer(item["color"]) };
+          };`,
+          true
         );
 
         const operationFiles =
@@ -752,9 +773,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -765,7 +786,7 @@ describe("anonymous model", () => {
             .path("/")
             .post({
               ...operationOptionsToRequestParameters(options),
-              body: { color: { foo: body.color["foo"] } },
+              body: testSerializer(body),
             });
         }
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -793,7 +814,8 @@ describe("anonymous model", () => {
     describe("happens at body parameter", async () => {
       async function verifyReturnTypeAsEmpty(
         operationDetail: string,
-        returnType: string
+        returnType: string,
+        deserializer?: string
       ) {
         await assertEqualContent(
           operationDetail,
@@ -801,9 +823,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -818,7 +840,7 @@ describe("anonymous model", () => {
           if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
-          return result.body ${returnType.startsWith("Record") ? "as any" : ""};
+          return ${deserializer ?? normalizeName(returnType, NameType.Operation)}Deserializer(result.body);
         }
         export async function read(
           context: Client,
@@ -838,14 +860,24 @@ describe("anonymous model", () => {
         op read(): { @body _: {}; };
         `;
         // No models.ts file generated
-        assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
+        const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.ok(modelsFile);
+        await assertEqualContent(modelsFile?.getFullText()!, `
+        /** model interface _ReadResponse */
+        export interface _ReadResponse {}
+        
+        export function _readResponseDeserializer(item: any): _ReadResponse {
+          return item;
+        }
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
         await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
-          "Record<string, any>"
+          "Record<string, any>",
+          "_readResponse"
         );
       });
 
@@ -859,7 +891,12 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFullText()!,
           `
+          /** model interface PublishResult */
           export interface PublishResult {}
+          
+          export function publishResultDeserializer(item: any): PublishResult {
+            return item;
+          }
         `
         );
         const operationFiles =
@@ -878,7 +915,33 @@ describe("anonymous model", () => {
         op read(): { foo?: {bar: string | null}};
         `;
         // No models.ts file generated
-        assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
+        const modelsFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.ok(modelsFile);
+        await assertEqualContent(modelsFile?.getFullText()!, `
+        /** model interface _ReadResponse */
+        export interface _ReadResponse {
+          foo?: {
+            bar: string | null;
+          };
+        }
+        
+        export function _readResponseDeserializer(item: any): _ReadResponse {
+          return {
+            foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"]),
+          };
+        }
+        
+        /** model interface _ReadResponseFoo */
+        export interface _ReadResponseFoo {
+          bar: string | null;
+        }
+        
+        export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
+          return {
+            bar: item["bar"],
+          };
+        } 
+        `);
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
@@ -889,9 +952,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -908,9 +971,7 @@ describe("anonymous model", () => {
           if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
-          return {
-            foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
-          };
+          return _readResponseDeserializer(result.body);
         }
         export async function read(
           context: Client,
@@ -945,17 +1006,101 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFullText()!,
           `
-        export interface ReturnBody {
-          emptyAnomyous: Record<string, any>;
-          emptyAnomyousArray: Record<string, any>[];
-          emptyAnomyousDict: Record<string, Record<string, any>>;
-          emptyModel: EmptyModel;
-          emptyModelArray: EmptyModel[];
-          emptyModelDict: Record<string, EmptyModel>;
-        }
-
-        export interface EmptyModel {}
-        `
+         /** model interface ReturnBody */
+         export interface ReturnBody {
+           emptyAnomyous: Record<string, any>;
+           emptyAnomyousArray: Record<string, any>[];
+           emptyAnomyousDict: Record<string, Record<string, any>>;
+           emptyModel: EmptyModel;
+           emptyModelArray: EmptyModel[];
+           emptyModelDict: Record<string, EmptyModel>;
+         }
+         
+         export function returnBodyDeserializer(item: any): ReturnBody {
+           return {
+             emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
+             emptyAnomyousArray: returnBodyEmptyAnomyousArrayArrayDeserializer(
+               item["emptyAnomyousArray"],
+             ),
+             emptyAnomyousDict: returnBodyEmptyAnomyousDictRecordDeserializer(
+               item["emptyAnomyousDict"],
+             ),
+             emptyModel: emptyModelDeserializer(item["emptyModel"]),
+             emptyModelArray: emptyModelArrayDeserializer(item["emptyModelArray"]),
+             emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"]),
+           };
+         }
+         
+         /** model interface _ReturnBodyEmptyAnomyous */
+         export interface _ReturnBodyEmptyAnomyous {}
+         
+         export function _returnBodyEmptyAnomyousDeserializer(
+           item: any,
+         ): _ReturnBodyEmptyAnomyous {
+           return item;
+         }
+         
+         /** model interface _ReturnBodyEmptyAnomyousArray */
+         export interface _ReturnBodyEmptyAnomyousArray {}
+         
+         export function _returnBodyEmptyAnomyousArrayDeserializer(
+           item: any,
+         ): _ReturnBodyEmptyAnomyousArray {
+           return item;
+         }
+         
+         export function returnBodyEmptyAnomyousArrayArrayDeserializer(
+           result: Array<_ReturnBodyEmptyAnomyousArray>,
+         ): any[] {
+           return result.map((item) => {
+             return _returnBodyEmptyAnomyousArrayDeserializer(item);
+           });
+         }
+         
+         /** model interface _ReturnBodyEmptyAnomyousDict */
+         export interface _ReturnBodyEmptyAnomyousDict {}
+         
+         export function _returnBodyEmptyAnomyousDictDeserializer(
+           item: any,
+         ): _ReturnBodyEmptyAnomyousDict {
+           return item;
+         }
+         
+         export function returnBodyEmptyAnomyousDictRecordDeserializer(
+           item: Record<string, any>,
+         ): Record<string, _ReturnBodyEmptyAnomyousDict> {
+           const result: Record<string, any> = {};
+           Object.keys(item).map((key) => {
+             result[key] = !item[key]
+               ? item[key]
+               : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
+           });
+           return result;
+         }
+         
+         /** model interface EmptyModel */
+         export interface EmptyModel {}
+        
+         export function emptyModelDeserializer(item: any): EmptyModel {
+           return item;
+         }
+         
+         export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
+           return result.map((item) => {
+             return emptyModelDeserializer(item);
+           });
+         }
+         
+         export function emptyModelRecordDeserializer(
+           item: Record<string, any>,
+         ): Record<string, EmptyModel> {
+           const result: Record<string, any> = {};
+           Object.keys(item).map((key) => {
+             result[key] = !item[key] ? item[key] : emptyModelDeserializer(item[key]);
+           });
+           return result;
+         }
+          `
         );
         const operationFiles =
           await emitModularOperationsFromTypeSpec(tspContent);
@@ -966,9 +1111,9 @@ describe("anonymous model", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -988,16 +1133,7 @@ describe("anonymous model", () => {
             throw createRestError(result);
           }
 
-          return {
-            emptyAnomyous: result.body["emptyAnomyous"],
-            emptyAnomyousArray: result.body["emptyAnomyousArray"],
-            emptyAnomyousDict: result.body["emptyAnomyousDict"],
-            emptyModel: {},
-            emptyModelArray: result.body["emptyModelArray"].map((p: any) => {
-                    return {};
-              }),
-            emptyModelDict: result.body["emptyModelDict"],
-          };
+          return returnBodyDeserializer(result.body);
         }
 
         export async function read(
@@ -1032,21 +1168,153 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFullText()!,
           `
-          export interface Foz {
-            baz: {
-                foo: number[];
-                bas: string;
-                bar?: SimpleModel[];
-                nonemptyAnomyous: { a: string };
-                nonemptyAnomyousArray: { b?: Record<string, string> }[];
-                nonemptyAnomyousDict: Record<string, { c: number[] }>;
-              };
-          }
-          
-          export interface SimpleModel {
-            test: string;
-          }
-        `
+           /** model interface Foz */
+           export interface Foz {
+             baz: {
+               foo: number[];
+               bas: string;
+               bar?: SimpleModel[];
+               nonemptyAnomyous: {
+                 a: string;
+               };
+               nonemptyAnomyousArray: {
+                 b?: Record<string, string>;
+               }[];
+               nonemptyAnomyousDict: Record<
+                 string,
+                 {
+                   c: number[];
+                 }
+               >;
+             };
+           }
+           
+           export function fozDeserializer(item: any): Foz {
+             return {
+               baz: _fozBazDeserializer(item["baz"]),
+             };
+           }
+           
+           /** model interface _FozBaz */
+           export interface _FozBaz {
+             foo: number[];
+             bas: string;
+             bar?: SimpleModel[];
+             nonemptyAnomyous: {
+               a: string;
+             };
+             nonemptyAnomyousArray: {
+               b?: Record<string, string>;
+             }[];
+             nonemptyAnomyousDict: Record<
+               string,
+               {
+                 c: number[];
+               }
+             >;
+           }
+           
+           export function _fozBazDeserializer(item: any): _FozBaz {
+             return {
+               foo: item["foo"].map((p: any) => {
+                 return p;
+               }),
+               bas: item["bas"],
+               bar: !item["test"]
+                 ? item["test"]
+                 : simpleModelArrayDeserializer(item["test"]),
+               nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
+                 item["nonemptyAnomyous"],
+               ),
+               nonemptyAnomyousArray: fozBazNonemptyAnomyousArrayArrayDeserializer(
+                 item["nonemptyAnomyousArray"],
+               ),
+               nonemptyAnomyousDict: fozBazNonemptyAnomyousDictRecordDeserializer(
+                 item["nonemptyAnomyousDict"],
+               ),
+             };
+           }
+           
+           /** model interface SimpleModel */
+           export interface SimpleModel {
+             test: string;
+           }
+           
+           export function simpleModelDeserializer(item: any): SimpleModel {
+             return {
+               test: item["test"],
+             };
+           }
+           
+           export function simpleModelArrayDeserializer(
+             result: Array<SimpleModel>,
+           ): any[] {
+             return result.map((item) => {
+               return simpleModelDeserializer(item);
+             });
+           }
+           
+           /** model interface _FozBazNonemptyAnomyous */
+           export interface _FozBazNonemptyAnomyous {
+             a: string;
+           }
+           
+           export function _fozBazNonemptyAnomyousDeserializer(
+             item: any,
+           ): _FozBazNonemptyAnomyous {
+             return {
+               a: item["a"],
+             };
+           }
+           
+           /** model interface _FozBazNonemptyAnomyousArray */
+           export interface _FozBazNonemptyAnomyousArray {
+             b?: Record<string, string>;
+           }
+           
+           export function _fozBazNonemptyAnomyousArrayDeserializer(
+             item: any,
+           ): _FozBazNonemptyAnomyousArray {
+             return {
+               b: item["b"],
+             };
+           }
+           
+           export function fozBazNonemptyAnomyousArrayArrayDeserializer(
+             result: Array<_FozBazNonemptyAnomyousArray>,
+           ): any[] {
+             return result.map((item) => {
+               return _fozBazNonemptyAnomyousArrayDeserializer(item);
+             });
+           }
+           
+           /** model interface _FozBazNonemptyAnomyousDict */
+           export interface _FozBazNonemptyAnomyousDict {
+             c: number[];
+           }
+           
+           export function _fozBazNonemptyAnomyousDictDeserializer(
+             item: any,
+           ): _FozBazNonemptyAnomyousDict {
+             return {
+               c: item["c"].map((p: any) => {
+                 return p;
+               }),
+             };
+           }
+        
+           export function fozBazNonemptyAnomyousDictRecordDeserializer(
+             item: Record<string, any>,
+           ): Record<string, _FozBazNonemptyAnomyousDict> {
+             const result: Record<string, any> = {};
+             Object.keys(item).map((key) => {
+              result[key] = !item[key]
+                ? item[key]
+                : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
+             });
+             return result;
+           }
+          `
         );
 
         const operationFiles =
@@ -1058,9 +1326,9 @@ describe("anonymous model", () => {
           import { TestingContext as Client } from "./index.js";
           import {
             StreamableMethod,
-            operationOptionsToRequestParameters,
             PathUncheckedResponse,
-            createRestError
+            createRestError,
+            operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
           
           export function _readSend(
@@ -1078,23 +1346,7 @@ describe("anonymous model", () => {
               throw createRestError(result);
             }
 
-            return {
-              baz: {
-                foo: result.body.baz["foo"],
-                bas: result.body.baz["bas"],
-                bar:
-                  result.body.baz["test"] === undefined
-                    ? result.body.baz["test"]
-                    : result.body.baz["test"].map((p: any) => {
-                                   return { test: p["test"] };
-                                 }),
-                nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
-                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p: any) => {
-                          return { b: p["b"] };
-                         },),
-                nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],
-              },
-            };
+            return fozDeserializer(result.body);
           }
           
           export async function read(

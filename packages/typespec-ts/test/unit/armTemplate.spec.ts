@@ -70,10 +70,12 @@ describe("ARM template", () => {
       `;
     const response = await emitResponsesFromTypeSpec(
       tspContent,
-      false,
-      true,
-      true,
-      true
+      {
+        needAzureCore: false,
+        withRawContent: true,
+        needTCGC: true,
+        withVersionedApiVersion: true,
+      }
     );
     assert.ok(response);
     await assertEqualContent(

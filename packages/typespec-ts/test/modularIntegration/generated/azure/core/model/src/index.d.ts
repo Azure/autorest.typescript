@@ -27,6 +27,4 @@ export declare interface PostOptionalParams extends OperationOptions {
 export declare interface PutOptionalParams extends OperationOptions {
 }
 
-export declare type Versions = "2022-12-01-preview";
-
 export { }

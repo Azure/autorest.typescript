@@ -50,12 +50,10 @@ export declare interface OneOptionalParams extends OperationOptions {
 export declare class SecondClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, clientParam: SecondClientClientType, options?: SecondClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: SecondClientOptionalParams);
     five(options?: FiveOptionalParams): Promise<void>;
     readonly group5: Group5Operations;
 }
-
-export declare type SecondClientClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group";
 
 export declare interface SecondClientOptionalParams extends ClientOptions {
 }

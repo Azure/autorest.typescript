@@ -13,7 +13,7 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
-// @public (undocumented)
+// @public
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
@@ -35,13 +35,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
-export interface CreateWidget {
-    color: "red" | "blue";
-    weight: number;
-}
-
-// @public (undocumented)
+// @public
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
@@ -69,12 +63,6 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
     updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
-export interface UpdateWidget {
-    color?: "red" | "blue";
-    weight?: number;
-}
-
 // @public
 export interface User {
     id: string;
@@ -83,16 +71,13 @@ export interface User {
 }
 
 // @public
-export type Versions = "1.0.0";
-
-// @public (undocumented)
 export interface Widget {
     color: "red" | "blue";
     id: string;
     weight: number;
 }
 
-// @public (undocumented)
+// @public
 export interface WidgetError {
     code: number;
     message: string;
@@ -118,7 +103,7 @@ export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams);
+    constructor(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams);
     readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
@@ -126,6 +111,7 @@ export class WidgetServiceClient {
 
 // @public
 export interface WidgetServiceClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

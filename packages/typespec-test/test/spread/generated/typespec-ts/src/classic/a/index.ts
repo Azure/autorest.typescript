@@ -2,14 +2,13 @@
 // Licensed under the MIT License.
 
 import { DemoServiceContext } from "../../api/demoServiceContext.js";
-import { Test } from "../../models/models.js";
 import { test1, test2, test3, test4 } from "../../api/a/index.js";
 import {
   ATest1OptionalParams,
   ATest2OptionalParams,
   ATest3OptionalParams,
   ATest4OptionalParams,
-} from "../../models/options.js";
+} from "../../api/options.js";
 
 /** Interface representing a A operations. */
 export interface AOperations {
@@ -24,7 +23,10 @@ export interface AOperations {
     body: { prop: string },
     options?: ATest3OptionalParams,
   ) => Promise<void>;
-  test4: (body: Test, options?: ATest4OptionalParams) => Promise<void>;
+  test4: (
+    body: { prop: string },
+    options?: ATest4OptionalParams,
+  ) => Promise<void>;
 }
 
 export function getA(context: DemoServiceContext) {
@@ -35,7 +37,7 @@ export function getA(context: DemoServiceContext) {
       test2(context, prop, options),
     test3: (body: { prop: string }, options?: ATest3OptionalParams) =>
       test3(context, body, options),
-    test4: (body: Test, options?: ATest4OptionalParams) =>
+    test4: (body: { prop: string }, options?: ATest4OptionalParams) =>
       test4(context, body, options),
   };
 }

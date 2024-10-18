@@ -5,6 +5,7 @@ options:
     azureSdkForJs: false
     isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    ignorePropertyNameNormalize: true
     packageDetails:
       name: "@msinternal/openai-generic"
       description: "OpenAI"

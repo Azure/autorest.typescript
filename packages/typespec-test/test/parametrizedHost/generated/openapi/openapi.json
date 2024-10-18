@@ -13,7 +13,7 @@
     "https"
   ],
   "x-ms-parameterized-host": {
-    "hostTemplate": "{host}.{subdomain}.{sufix}.com/{apiVersion}",
+    "hostTemplate": "{host}.{subdomain}.{sufix}.com",
     "useSchemePrefix": false,
     "parameters": [
       {
@@ -36,13 +36,6 @@
         "required": false,
         "type": "string",
         "default": "three"
-      },
-      {
-        "name": "apiVersion",
-        "in": "path",
-        "required": false,
-        "type": "string",
-        "default": "v1"
       }
     ]
   },

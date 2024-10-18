@@ -7,12 +7,11 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
-/** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+export function schemaGroupDeserializer(item: any): SchemaGroup {
+  return {
+    groupName: item["groupName"],
+  };
+}
 
 /** Schema versions resource. */
 export interface SchemaVersion {
@@ -20,8 +19,11 @@ export interface SchemaVersion {
   readonly schemaVersion: number;
 }
 
-/** Represents the Schema Registry API version to use for requests. */
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
+export function schemaVersionDeserializer(item: any): SchemaVersion {
+  return {
+    schemaVersion: item["schemaVersion"],
+  };
+}
 
 /** Meta properties of a schema. */
 export interface SchemaProperties {
@@ -37,9 +39,17 @@ export interface SchemaProperties {
   version: number;
 }
 
-export function schemaPropertiesSerializer(
-  item: SchemaProperties,
-): Record<string, unknown> {
+export function schemaPropertiesSerializer(item: SchemaProperties): any {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
+export function schemaPropertiesDeserializer(item: any): SchemaProperties {
   return {
     id: item["id"],
     format: item["format"],
@@ -60,13 +70,26 @@ export interface Schema {
   properties: SchemaProperties;
 }
 
-export function schemaSerializer(item: Schema): Record<string, unknown> {
+export function schemaSerializer(item: Schema): any {
   return {
     definition: item["definition"],
-    properties: schemaPropertiesSerializer(item.properties),
+    properties: schemaPropertiesSerializer(item["properties"]),
   };
 }
 
+export function schemaDeserializer(item: any): Schema {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Type of SchemaContentTypeValues */
+export type SchemaContentTypeValues =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"
@@ -82,10 +105,40 @@ export interface _PagedSchemaGroup {
   nextLink?: string;
 }
 
+export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
+  return {
+    value: schemaGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function schemaGroupArrayDeserializer(
+  result: Array<SchemaGroup>,
+): any[] {
+  return result.map((item) => {
+    return schemaGroupDeserializer(item);
+  });
+}
+
 /** Paged collection of Version items */
 export interface _PagedVersion {
   /** The Version items on this page */
   value: SchemaVersion[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _pagedVersionDeserializer(item: any): _PagedVersion {
+  return {
+    value: schemaVersionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function schemaVersionArrayDeserializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    return schemaVersionDeserializer(item);
+  });
 }
