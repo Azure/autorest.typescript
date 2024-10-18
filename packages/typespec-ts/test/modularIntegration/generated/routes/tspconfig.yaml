@@ -8,6 +8,5 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
-    hierarchyClient: false
     packageDetails:
       name: "@msinternal/routes"

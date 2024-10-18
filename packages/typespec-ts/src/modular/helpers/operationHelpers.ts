@@ -893,24 +893,39 @@ function getPathParameters(operation: Operation) {
   let pathParams = "";
   for (const param of operation.parameters) {
     if (param.location === "path") {
+      if (param.skipUrlEncoding === true) {
+        console.log(param);
+      }
       if (!param.optional) {
-        pathParams += `${pathParams !== "" ? "," : ""} ${param.clientName}`;
+        pathParams += `${pathParams !== "" ? "," : ""} ${getParamExpression(
+          param
+        )}`;
         continue;
       }
 
       const defaultValue = getDefaultValue(param);
 
-      pathParams += `${pathParams !== "" ? "," : ""} options.${
-        param.clientName
-      }`;
+      pathParams += `${pathParams !== "" ? "," : ""} ${getParamExpression(
+        param
+      )}`;
 
       if (defaultValue) {
-        pathParams += ` ?? "${defaultValue}"`;
+        pathParams += ` ?? "${getParamExpression(param, defaultValue)}"`;
       }
     }
   }
 
   return pathParams;
+}
+
+function getParamExpression(param: Parameter, defaultValue?: string) {
+  const value = defaultValue
+    ? `"${defaultValue}"`
+    : (param.optional ? "options." : "") + param.clientName;
+  if (param.skipUrlEncoding === true) {
+    return `{value: ${value}, allowReserved: true}`;
+  }
+  return value;
 }
 
 function getNullableCheck(name: string, type: Type) {
