@@ -893,9 +893,6 @@ function getPathParameters(operation: Operation) {
   let pathParams = "";
   for (const param of operation.parameters) {
     if (param.location === "path") {
-      if (param.skipUrlEncoding === true) {
-        console.log(param);
-      }
       if (!param.optional) {
         pathParams += `${pathParams !== "" ? "," : ""} ${getParamExpression(
           param
