@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Pipeline } from "@azure/core-rest-pipeline";
-import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./models/options.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
@@ -11,7 +8,10 @@ import {
   FooContext,
   FooClientOptionalParams,
   op1,
+  Op1OptionalParams,
 } from "./api/index.js";
+import { A } from "./models/models.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
 
@@ -20,12 +20,12 @@ export class FooClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: FooClientOptionalParams = {}) {
+  constructor(endpointParam: string, options: FooClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createFoo(endpoint, {
+    this._client = createFoo(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

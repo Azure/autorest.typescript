@@ -101,6 +101,4 @@ export declare interface UserAssignedIdentity {
     readonly clientId?: string;
 }
 
-export declare type Versions = "2023-12-01-preview";
-
 export { }

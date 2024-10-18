@@ -1,11 +1,11 @@
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
-import { XmsRequestIdClient } from "./generated/azure/special-headers/client-request-id/src/index.js";
+import { XmsClientRequestIdClient } from "./generated/azure/special-headers/client-request-id/src/index.js";
 import { assert } from "chai";
 describe("XmsRequestIdClient Classical Client", () => {
-  let client: XmsRequestIdClient;
+  let client: XmsClientRequestIdClient;
 
   beforeEach(() => {
-    client = new XmsRequestIdClient({
+    client = new XmsClientRequestIdClient({
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
@@ -38,7 +38,7 @@ describe("XmsRequestIdClient Classical Client", () => {
         },
         name: "preventCachingPolicy"
       };
-      client = new XmsRequestIdClient({
+      client = new XmsClientRequestIdClient({
         allowInsecureConnection: true,
         endpoint: "http://localhost:3002",
         additionalPolicies: [
@@ -55,7 +55,7 @@ describe("XmsRequestIdClient Classical Client", () => {
 
   it("should override with x-test-client-request-id header", async () => {
     try {
-      client = new XmsRequestIdClient({
+      client = new XmsClientRequestIdClient({
         allowInsecureConnection: true,
         telemetryOptions: {
           clientRequestIdHeaderName: "x-test-request-id"

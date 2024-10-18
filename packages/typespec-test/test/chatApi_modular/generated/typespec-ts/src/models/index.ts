@@ -12,9 +12,4 @@ export {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
-  APIVersion,
 } from "./models.js";
-export {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "./options.js";

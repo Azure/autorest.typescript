@@ -11,7 +11,7 @@ export declare class MultipleClient {
 }
 
 export declare interface MultipleClientOptionalParams extends ClientOptions {
-    apiVersion?: Versions;
+    apiVersion?: string;
 }
 
 export declare interface NoOperationParamsOptionalParams extends OperationOptions {

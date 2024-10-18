@@ -7,20 +7,16 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  WidgetServiceClient,
-  WidgetServiceClientOptionalParams,
-} from "./widgetServiceClient.js";
+export { WidgetServiceClient } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   Widget,
   WidgetError,
-  CreateWidget,
-  UpdateWidget,
   AnalyzeResult,
-  Versions,
   NonReferencedModel,
+} from "./models/index.js";
+export {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
@@ -31,6 +27,7 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-} from "./models/index.js";
+  WidgetServiceClientOptionalParams,
+} from "./api/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

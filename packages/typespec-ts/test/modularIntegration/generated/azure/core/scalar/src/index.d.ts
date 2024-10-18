@@ -35,6 +35,4 @@ export declare class ScalarClient {
 export declare interface ScalarClientOptionalParams extends ClientOptions {
 }
 
-export declare type Versions = "2022-12-01-preview";
-
 export { }

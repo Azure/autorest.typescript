@@ -74,10 +74,9 @@ export declare interface From {
     name: string;
 }
 
-declare interface Global_2 {
+export declare interface GlobalModel {
     name: string;
 }
-export { Global_2 as Global }
 
 export declare interface If {
     name: string;
@@ -125,7 +124,7 @@ export declare interface ModelsOperations {
     withFinally: (body: Finally, options?: ModelsWithFinallyOptionalParams) => Promise<void>;
     withFor: (body: For, options?: ModelsWithForOptionalParams) => Promise<void>;
     withFrom: (body: From, options?: ModelsWithFromOptionalParams) => Promise<void>;
-    withGlobal: (body: Global_2, options?: ModelsWithGlobalOptionalParams) => Promise<void>;
+    withGlobal: (body: GlobalModel, options?: ModelsWithGlobalOptionalParams) => Promise<void>;
     withIf: (body: If, options?: ModelsWithIfOptionalParams) => Promise<void>;
     withImport: (body: Import, options?: ModelsWithImportOptionalParams) => Promise<void>;
     withIn: (body: In, options?: ModelsWithInOptionalParams) => Promise<void>;

@@ -18,14 +18,10 @@ export interface TypeMetadata {
 // Mapping of simple types to their TypeScript equivalents.
 const simpleTypeMap: Record<string, TypeMetadata> = {
   Key: {
-    name: "KeyCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
+    name: "KeyCredential"
   },
   OAuth2: {
-    name: "TokenCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
+    name: "TokenCredential"
   },
   boolean: { name: "boolean" },
   datetime: { name: "Date" },
