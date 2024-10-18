@@ -48,7 +48,6 @@ import {
   updatePackageFile,
   buildSampleEnvFile
 } from "@azure-tools/rlc-common";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import {
   buildRootIndex,
   buildSubClientIndexFile
@@ -62,15 +61,15 @@ import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClientContext } from "./modular/buildClientContext.js";
+import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
-import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
-import { env } from "process";
+import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -108,7 +107,6 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
-  provideSdkTypes(dpgContext.sdkPackage);
   const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
   const staticHelpers = await loadStaticHelpers(
     outputProject,
@@ -132,6 +130,7 @@ export async function $onEmit(context: EmitContext) {
       ...extraDependencies
     }
   });
+  provideSdkTypes(dpgContext);
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
@@ -266,6 +265,8 @@ export async function $onEmit(context: EmitContext) {
 
     const isMultiClients = modularCodeModel.clients.length > 1;
 
+    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    buildSubpathIndexFile(modularCodeModel, "models");
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions?.generateSample === true) {
       const samples = emitSamples(dpgContext);
@@ -276,26 +277,21 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     for (const subClient of modularCodeModel.clients) {
-      buildModels(subClient, modularCodeModel);
-      buildModelsOptions(subClient, modularCodeModel);
-      if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
-        buildSerializeUtils(modularCodeModel);
-      // build operation files
+      buildApiOptions(subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
-      buildSubpathIndexFile(subClient, modularCodeModel, "models");
       buildRestorePoller(modularCodeModel, subClient);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api");
+        buildSubpathIndexFile(modularCodeModel, "api", subClient);
       } else {
-        buildSubpathIndexFile(subClient, modularCodeModel, "api", {
+        buildSubpathIndexFile(modularCodeModel, "api", subClient, {
           exportIndex: true
         });
       }
 
       buildClassicalClient(subClient, dpgContext, modularCodeModel);
       buildClassicOperationFiles(dpgContext, modularCodeModel, subClient);
-      buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
+      buildSubpathIndexFile(modularCodeModel, "classic", subClient, {
         exportIndex: true,
         interfaceOnly: true
       });
@@ -309,6 +305,28 @@ export async function $onEmit(context: EmitContext) {
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+      file.getImportDeclarations().map((importDeclaration) => {
+        importDeclaration.getNamedImports().map((namedImport) => {
+          if (
+            namedImport
+              .getNameNode()
+              .findReferencesAsNodes()
+              .filter((n) => {
+                return n.getSourceFile().getFilePath() === file.getFilePath();
+              }).length === 1
+          ) {
+            namedImport.remove();
+          }
+        });
+        if (importDeclaration.getNamedImports().length === 0) {
+          importDeclaration.remove();
+        }
+      });
+      file.getExportDeclarations().map((exportDeclaration) => {
+        if (exportDeclaration.getNamedExports().length === 0) {
+          exportDeclaration.remove();
+        }
+      });
       file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,
@@ -319,6 +337,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateMetadataAndTest() {
+    const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
       return;
     }
@@ -377,7 +396,6 @@ export async function $onEmit(context: EmitContext) {
       );
 
       if (option.isModularLibrary) {
-        const project = useContext("outputProject");
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,

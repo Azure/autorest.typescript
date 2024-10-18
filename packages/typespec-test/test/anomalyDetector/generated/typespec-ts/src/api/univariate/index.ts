@@ -2,25 +2,29 @@
 // Licensed under the MIT License.
 
 import {
-  univariateTimeSeriesPointSerializer,
-  UnivariateUnivariateDetectionOptions,
-  UnivariateUnivariateEntireDetectionResult,
-  UnivariateUnivariateLastDetectionResult,
-  UnivariateUnivariateChangePointDetectionOptions,
-  UnivariateUnivariateChangePointDetectionResult,
-} from "../../models/models.js";
-import { AnomalyDetectorContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import {
+  AnomalyDetectorContext as Client,
+  UnivariateDetectUnivariateChangePointOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-} from "../../models/options.js";
+} from "../index.js";
+import {
+  UnivariateUnivariateDetectionOptions,
+  univariateUnivariateDetectionOptionsSerializer,
+  UnivariateUnivariateEntireDetectionResult,
+  univariateUnivariateEntireDetectionResultDeserializer,
+  UnivariateUnivariateLastDetectionResult,
+  univariateUnivariateLastDetectionResultDeserializer,
+  UnivariateUnivariateChangePointDetectionOptions,
+  univariateUnivariateChangePointDetectionOptionsSerializer,
+  UnivariateUnivariateChangePointDetectionResult,
+  univariateUnivariateChangePointDetectionResultDeserializer,
+} from "../../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,
@@ -33,16 +37,7 @@ export function _detectUnivariateEntireSeriesSend(
     .path("/timeseries/entire/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        maxAnomalyRatio: options["maxAnomalyRatio"],
-        sensitivity: options["sensitivity"],
-        imputeMode: options["imputeMode"],
-        imputeFixedValue: options["imputeFixedValue"],
-      },
+      body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
 
@@ -54,16 +49,7 @@ export async function _detectUnivariateEntireSeriesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    expectedValues: result.body["expectedValues"],
-    upperMargins: result.body["upperMargins"],
-    lowerMargins: result.body["lowerMargins"],
-    isAnomaly: result.body["isAnomaly"],
-    isNegativeAnomaly: result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: result.body["isPositiveAnomaly"],
-    severity: result.body["severity"],
-  };
+  return univariateUnivariateEntireDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -98,16 +84,7 @@ export function _detectUnivariateLastPointSend(
     .path("/timeseries/last/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        maxAnomalyRatio: options["maxAnomalyRatio"],
-        sensitivity: options["sensitivity"],
-        imputeMode: options["imputeMode"],
-        imputeFixedValue: options["imputeFixedValue"],
-      },
+      body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
 
@@ -119,17 +96,7 @@ export async function _detectUnivariateLastPointDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    suggestedWindow: result.body["suggestedWindow"],
-    expectedValue: result.body["expectedValue"],
-    upperMargin: result.body["upperMargin"],
-    lowerMargin: result.body["lowerMargin"],
-    isAnomaly: result.body["isAnomaly"],
-    isNegativeAnomaly: result.body["isNegativeAnomaly"],
-    isPositiveAnomaly: result.body["isPositiveAnomaly"],
-    severity: result.body["severity"],
-  };
+  return univariateUnivariateLastDetectionResultDeserializer(result.body);
 }
 
 /**
@@ -162,14 +129,7 @@ export function _detectUnivariateChangePointSend(
     .path("/timeseries/changepoint/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: {
-        series: options["series"].map(univariateTimeSeriesPointSerializer),
-        granularity: options["granularity"],
-        customInterval: options["customInterval"],
-        period: options["period"],
-        stableTrendWindow: options["stableTrendWindow"],
-        threshold: options["threshold"],
-      },
+      body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
     });
 }
 
@@ -181,11 +141,9 @@ export async function _detectUnivariateChangePointDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    period: result.body["period"],
-    isChangePoint: result.body["isChangePoint"],
-    confidenceScores: result.body["confidenceScores"],
-  };
+  return univariateUnivariateChangePointDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /** Evaluate change point score of every series point */

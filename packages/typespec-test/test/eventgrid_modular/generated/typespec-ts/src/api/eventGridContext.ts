@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { KeyCredential } from "@azure/core-auth";
 
+/** Azure Messaging EventGrid Client */
 export interface EventGridContext extends Client {}
 
 /** Optional parameters for the client. */

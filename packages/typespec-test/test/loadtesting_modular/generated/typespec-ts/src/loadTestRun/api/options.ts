@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { TimeGrain } from "./models.js";
+import { TimeGrain } from "../../models/models.js";
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {

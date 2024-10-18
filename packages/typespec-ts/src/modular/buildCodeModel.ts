@@ -61,7 +61,6 @@ import {
   NameType,
   RLCModel,
   buildRuntimeImports,
-  getClientName,
   isAzurePackage,
   normalizeName
 } from "@azure-tools/rlc-common";
@@ -113,9 +112,9 @@ import { getAddedOnVersions } from "@typespec/versioning";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
-import { isModelWithAdditionalProperties } from "./emitModels.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
+import { normalizeModelName } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -212,6 +211,7 @@ function handleDiscriminator(
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
     const discriminatedSubtypes: Type[] = [];
+    let discriminatorTcgcType = undefined;
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
@@ -219,6 +219,7 @@ function handleDiscriminator(
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
           discriminatorValues.push(modelType.discriminatorValue);
+          discriminatorTcgcType = getClientType(context, property.type);
         }
       }
       discriminatedSubtypes.push(modelType);
@@ -230,7 +231,7 @@ function handleDiscriminator(
               ", "
             )}`
           : "discriminator property",
-      type: { type: "string" },
+      type: { type: "string", tcgcType: discriminatorTcgcType },
       restApiName: discriminator.propertyName,
       clientName: discriminator.propertyName,
       name: discriminator.propertyName,
@@ -269,7 +270,8 @@ function processModelProperties(
       newProperty = {
         ...newProperty,
         ...discriminatorInfo,
-        type: newProperty["type"]
+        type: newProperty["type"],
+        tcgcType: getClientType(context, property)
       };
     }
     newValue.properties.push(newProperty);
@@ -306,10 +308,15 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
   );
 }
 
-function getType(
+interface EmitTypeOptions {
+  disableEffectiveModel?: boolean;
+  usage?: UsageFlags;
+}
+
+export function getType(
   context: SdkContext,
   type: EmitterType,
-  options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
+  options: EmitTypeOptions = {}
 ): any {
   const modularMetatree = useContext("modularMetaTree");
 
@@ -326,13 +333,13 @@ function getType(
       return cached;
     }
   }
-  let newValue: any;
+  let newValue: any = { __raw: type };
 
   if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
-    newValue = emitType(context, type, options.usage!);
+    newValue = emitType(context, type, options);
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
@@ -346,6 +353,9 @@ function getType(
 
   if (enableCache) {
     if (!options.disableEffectiveModel) {
+      if (newValue.__raw === undefined) {
+        newValue.__raw = type;
+      }
       typesMap.set(effectiveModel, newValue);
     }
     if (type.kind === "Union") {
@@ -359,7 +369,7 @@ function getType(
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
       if (newValue.type === "dict") {
-        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        newValue = { ...emitModel(context, type, options), ...newValue };
         typesMap.set(effectiveModel, newValue);
       }
     }
@@ -375,7 +385,8 @@ function getType(
   }
   if (
     type.kind === "Model" &&
-    isModelWithAdditionalProperties(newValue) &&
+    newValue.type === "dict" &&
+    newValue.name !== "Record" &&
     !context.rlcOptions?.compatibilityMode
   ) {
     reportDiagnostic(context.program, {
@@ -387,6 +398,7 @@ function getType(
     });
   }
 
+  typesMap.set(effectiveModel, newValue);
   return newValue;
 }
 
@@ -477,6 +489,9 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
+    type.name = !type.tcgcType.isGeneratedName
+      ? normalizeModelName(context, type.tcgcType)
+      : "";
     return {
       contentTypes,
       type,
@@ -987,7 +1002,9 @@ function emitProperty(
   }
   const type = getType(context, property.type, { usage });
   return {
-    clientName: applyCasing(clientName, { casing: CASING }),
+    clientName: context.rlcOptions?.ignorePropertyNameNormalize
+      ? clientName
+      : normalizeName(clientName, NameType.Property),
     restApiName: jsonName,
     type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,
@@ -1022,18 +1039,20 @@ function getName(program: Program, type: Model): string {
   }
 }
 
-function emitModel(
+export function emitModel(
   context: SdkContext,
   type: Model,
-  usage: UsageFlags
+  options: EmitTypeOptions = {}
 ): Record<string, any> {
   // Now we know it's a defined model
   const properties: Record<string, any>[] = [];
   let baseModel = undefined;
   if (type.baseModel) {
-    baseModel = getType(context, type.baseModel, { usage });
+    baseModel = getType(context, type.baseModel, options);
   }
-  const effectiveName = getEffectiveSchemaType(context.program, type).name;
+  const effectiveName = !options.disableEffectiveModel
+    ? getEffectiveSchemaType(context.program, type).name
+    : undefined;
   const overridedModelName = normalizeName(
     getLibraryName(context, type) ?? getFriendlyName(context.program, type),
     NameType.Interface,
@@ -1091,7 +1110,7 @@ function emitModel(
       : modelName,
     base: modelName === "" ? "json" : "dpg",
     coreTypeInfo: buildCoreTypeInfo(context.program, type),
-    usage
+    usage: options.usage
   };
 }
 
@@ -1410,8 +1429,10 @@ function emitUnion(
     const unionName = getLibraryName(context, type)
       ? getLibraryName(context, type)
       : type.name;
-    const discriminatorPropertyName = getDiscriminator(context.program, type)
-      ?.propertyName;
+    const discriminatorPropertyName = getDiscriminator(
+      context.program,
+      type
+    )?.propertyName;
     const variantTypes = sdkType.variantTypes.map((x) => {
       const valueType = getType(context, x.__raw!, { usage });
       if (valueType.properties && discriminatorPropertyName) {
@@ -1466,12 +1487,12 @@ function emitUnion(
     };
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
-      ...emitType(context, nonNullOptions[0], usage),
+      ...emitType(context, nonNullOptions[0], { usage }),
       nullable: isNull
     };
   } else {
     return {
-      ...emitType(context, sdkType.__raw!, usage),
+      ...emitType(context, sdkType.__raw!, { usage }),
       nullable: isNull
     };
   }
@@ -1511,7 +1532,7 @@ function emitSimpleType(type: SdkBuiltInType): Record<string, any> {
 function emitType(
   context: SdkContext,
   type: EmitterType,
-  usage: UsageFlags
+  options: EmitTypeOptions = {}
 ): Record<string, any> {
   if (type.kind === "Credential") {
     return emitCredential(type.scheme);
@@ -1519,7 +1540,7 @@ function emitType(
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapTypeSpecType(context, type, usage);
+  const builtinType = mapTypeSpecType(context, type, options.usage!);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1533,13 +1554,13 @@ function emitType(
     case "Intrinsic":
       return { type: type.name };
     case "Model":
-      return emitModel(context, type, usage);
+      return emitModel(context, type, options);
     case "Scalar":
       return emitScalar(context.program, type);
     case "Union":
-      return emitUnion(context, type, usage);
+      return emitUnion(context, type, options.usage!);
     case "UnionVariant":
-      return emitType(context, type.type, usage);
+      return emitType(context, type.type, options);
     case "Enum":
       return emitEnum(context, type);
     case "EnumMember":
@@ -1572,7 +1593,7 @@ function emitOperationGroups(
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? overrideName ?? operationGroup.type.name
+        ? (overrideName ?? operationGroup.type.name)
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
@@ -1659,14 +1680,14 @@ function emitServerParams(
   namespace: Namespace
 ): Parameter[] {
   const server = getServerHelper(context.program, namespace);
-  if (server === undefined) {
+  if (server === undefined || server.parameters.size === 0) {
     return [
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: null,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "endpointPath",
         type: { type: "string" },
         implementation: "Client",
@@ -1701,9 +1722,9 @@ function emitServerParams(
       {
         optional: false,
         description: "Service host",
-        clientName: "endpoint",
+        clientName: "endpointParam",
         clientDefaultValue: server.url,
-        restApiName: "$host",
+        restApiName: "endpoint",
         location: "path",
         type: { type: "string" },
         implementation: "Client",
@@ -1787,6 +1808,14 @@ function emitClients(
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
+    const sdkPackageClient = context.sdkPackage.clients.find((p) => {
+      return p.name === client.name;
+    });
+
+    if (!sdkPackageClient) {
+      throw new Error(`Client ${client.name} not found in the SDK package`);
+    }
+
     const clientName = client.name.replace("Client", "");
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
@@ -1798,9 +1827,10 @@ function emitClients(
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
       operationGroups: emitOperationGroups(context, client, rlcModels),
+      tcgcClient: sdkPackageClient,
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      rlcClientName: `${client.name.replace("Client", "")}Context`,
       subfolder: "",
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}

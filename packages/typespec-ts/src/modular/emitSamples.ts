@@ -432,7 +432,7 @@ function getParameterValue(value: SdkExampleValue): string {
       const mapper = buildPropertyNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
-        value.kind === "model" ? value?.additionalPropertiesValue ?? {} : {};
+        value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
         ...value.value,
         ...additionalPropertiesValue

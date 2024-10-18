@@ -1,44 +1,48 @@
 import {
-  getImportSpecifier,
-  Imports as RuntimeImports,
-  NameType,
-  normalizeName
-} from "@azure-tools/rlc-common";
-import {
   ClassDeclaration,
   MethodDeclarationStructure,
   Scope,
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   buildUserAgentOptions,
-  getClientParameters,
-  importCredential
+  getClientParametersDeclaration
 } from "./helpers/clientHelpers.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import {
+  getClassicalClientName,
   getClassicalLayerPrefix,
   getClientName
 } from "./helpers/namingHelpers.js";
+
+import { SdkContext } from "../utils/interfaces.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { resolveReference } from "../framework/reference.js";
 import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers.js";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 export function buildClassicalClient(
-  client: Client,
+  _client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ) {
-  const { description } = client;
+  const { description, tcgcClient: client } = _client;
+  const dependencies = useDependencies();
   const modularClientName = getClientName(client);
-  const classicalClientName = `${getClientName(client)}Client`;
-  const classicalParams = getClientParameters(client, dpgContext, true);
-  const contextParams = getClientParameters(client, dpgContext, false);
+  const classicalClientName = `${getClassicalClientName(client)}`;
+  const classicalParams = getClientParametersDeclaration(_client, dpgContext, {
+    requiredOnly: true
+  });
+  const contextParams = getClientParametersDeclaration(_client, dpgContext, {
+    onClientOnly: true,
+    requiredOnly: true
+  });
   const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const subfolder = _client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -64,21 +68,20 @@ export function buildClassicalClient(
   if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
-      type: `Client.${client.rlcClientName}`,
+      type: `Client.${_client.rlcClientName}`,
       scope: Scope.Private
     });
   } else {
     clientClass.addProperty({
       name: "_client",
-      type: `${client.rlcClientName}`,
+      type: `${_client.rlcClientName}`,
       scope: Scope.Private
     });
   }
-
   // Add the pipeline member. This will be the pipeline from /api
   clientClass.addProperty({
     name: "pipeline",
-    type: "Pipeline",
+    type: resolveReference(dependencies.Pipeline),
     scope: Scope.Public,
     isReadonly: true,
     docs: ["The pipeline used by this client to make requests"]
@@ -107,11 +110,10 @@ export function buildClassicalClient(
     `this._client = create${modularClientName}(${paramNames.join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importCredential(codeModel.runtimeImports, clientFile);
-  importPipeline(codeModel.runtimeImports, clientFile);
-  importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
+
+  buildClientOperationGroups(clientFile, _client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
+  clientFile.fixUnusedIdentifiers();
   return clientFile;
 }
 
@@ -134,76 +136,6 @@ function importAllApis(
   clientFile.addImportDeclaration({
     moduleSpecifier: `./api/index.js`,
     namedImports: exported
-  });
-}
-
-function importAllModels(
-  clientFile: SourceFile,
-  srcPath: string,
-  subfolder: string
-) {
-  const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
-  );
-
-  if (!apiModels) {
-    return;
-  }
-
-  const exported = [...apiModels.getExportedDeclarations().keys()].filter(
-    (e) => {
-      return !e.startsWith("_");
-    }
-  );
-
-  if (exported.length > 0) {
-    clientFile.addImportDeclaration({
-      moduleSpecifier: `./models/models.js`,
-      namedImports: exported
-    });
-  }
-
-  const apiModelsOptions = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
-  );
-
-  if (!apiModelsOptions) {
-    return;
-  }
-
-  const exportedOptions = [
-    ...apiModelsOptions.getExportedDeclarations().keys()
-  ];
-
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/options.js`,
-    namedImports: exportedOptions
-  });
-
-  const pagingTypes = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
-  );
-
-  if (!pagingTypes) {
-    return;
-  }
-
-  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
-
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/pagingTypes.js`,
-    namedImports: exportedPaingTypes
-  });
-}
-
-function importPipeline(
-  runtimeImports: RuntimeImports,
-  clientSourceFile: SourceFile
-): void {
-  clientSourceFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("restPipeline", runtimeImports),
-    namedImports: ["Pipeline"]
   });
 }
 

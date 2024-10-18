@@ -2,30 +2,28 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare class AClient {
+export declare class ClientAClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, clientParam: ClientType, options?: AClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: ClientAClientOptionalParams);
     renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
     renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
     renamedFive(options?: RenamedFiveOptionalParams): Promise<void>;
 }
 
-export declare interface AClientOptionalParams extends ClientOptions {
+export declare interface ClientAClientOptionalParams extends ClientOptions {
 }
 
-export declare class BClient {
+export declare class ClientBClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, clientParam: BClientClientType, options?: BClientOptionalParams);
+    constructor(endpointParam: string, clientParam: ClientType, options?: ClientBClientOptionalParams);
     renamedTwo(options?: RenamedTwoOptionalParams): Promise<void>;
     renamedFour(options?: RenamedFourOptionalParams): Promise<void>;
     renamedSix(options?: RenamedSixOptionalParams): Promise<void>;
 }
 
-export declare type BClientClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
-
-export declare interface BClientOptionalParams extends ClientOptions {
+export declare interface ClientBClientOptionalParams extends ClientOptions {
 }
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";

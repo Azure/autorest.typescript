@@ -1,20 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Test } from "../../models/models.js";
-import { DemoServiceContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
 import {
   ATest1OptionalParams,
   ATest2OptionalParams,
   ATest3OptionalParams,
   ATest4OptionalParams,
-} from "../../models/options.js";
+  DemoServiceContext as Client,
+} from "../index.js";
+import {
+  _test3RequestSerializer,
+  _test4RequestSerializer,
+} from "../../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _test1Send(
   context: Client,
@@ -95,7 +98,7 @@ export function _test3Send(
     .path("/test3")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop: body["prop"] },
+      body: _test3RequestSerializer(body),
     });
 }
 
@@ -121,14 +124,14 @@ export async function test3(
 
 export function _test4Send(
   context: Client,
-  body: Test,
+  body: { prop: string },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/test4")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop: body["prop"] },
+      body: _test4RequestSerializer(body),
     });
 }
 
@@ -145,7 +148,7 @@ export async function _test4Deserialize(
 
 export async function test4(
   context: Client,
-  body: Test,
+  body: { prop: string },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test4Send(context, body, options);

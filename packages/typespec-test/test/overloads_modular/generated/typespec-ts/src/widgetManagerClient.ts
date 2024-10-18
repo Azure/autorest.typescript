@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getFooOperationsOperations,
   FooOperationsOperations,
@@ -12,6 +10,8 @@ import {
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
 

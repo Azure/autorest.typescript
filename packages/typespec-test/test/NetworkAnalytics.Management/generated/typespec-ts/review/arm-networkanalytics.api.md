@@ -555,9 +555,6 @@ export interface UserAssignedIdentity {
 }
 
 // @public
-export type Versions = "2023-11-15";
-
-// @public
 export interface VirtualNetworkRule {
     action?: string;
     id: string;

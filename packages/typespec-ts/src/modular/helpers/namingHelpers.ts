@@ -18,7 +18,9 @@ import {
   OperationGroup
 } from "../modularCodeModel.js";
 
-export function getClientName(client: Client): string {
+export function getClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
   return client.name.replace(/Client$/, "");
 }
 
