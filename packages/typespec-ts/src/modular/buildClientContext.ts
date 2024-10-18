@@ -38,8 +38,7 @@ export function buildClientContext(
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
@@ -66,7 +65,7 @@ export function buildClientContext(
               ? "string"
               : getTypeExpression(dpgContext, p.type),
           hasQuestionToken: true,
-          docs: getDocsFromDescription(p.description)
+          docs: getDocsFromDescription(p.doc)
         };
       }),
     docs: ["Optional parameters for the client."]
