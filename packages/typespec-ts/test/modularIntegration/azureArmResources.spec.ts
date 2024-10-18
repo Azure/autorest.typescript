@@ -113,7 +113,6 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const user of result) {
       items.push(user);
     }
-    console.log(items);
     assert.strictEqual(items[0]?.id, validSingletonResource.id);
     assert.strictEqual(items[0]?.name, validSingletonResource.name);
     assert.strictEqual(items[0]?.type, validSingletonResource.type);

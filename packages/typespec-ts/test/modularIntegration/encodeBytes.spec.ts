@@ -244,7 +244,7 @@ describe("EncodeBytesClient Modular Client", () => {
   describe("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
-    ).toString();
+    ).toString("utf-8");
     it(`should get bytes with base64 encoding by default`, async () => {
       try {
         const result = await client.responseBody.default();

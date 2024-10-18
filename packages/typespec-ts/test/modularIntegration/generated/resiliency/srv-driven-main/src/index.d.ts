@@ -32,6 +32,4 @@ export declare interface ResiliencyServiceDrivenClientOptionalParams extends Cli
     apiVersion?: string;
 }
 
-export declare type Versions = "v1" | "v2";
-
 export { }

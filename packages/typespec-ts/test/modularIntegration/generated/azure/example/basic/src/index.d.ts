@@ -38,6 +38,4 @@ export declare interface Model {
     enumProperty?: Enum;
 }
 
-export declare type Versions = "2022-12-01-preview";
-
 export { }

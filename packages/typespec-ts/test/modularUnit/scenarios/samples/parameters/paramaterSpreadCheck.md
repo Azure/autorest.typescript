@@ -84,8 +84,8 @@ async function read() {
     { name: "body name" },
     {
       optionalHeader: "optional header",
-      renamedOptional: "renamed optional query"
-    }
+      renamedOptional: "renamed optional query",
+    },
   );
   console.log(result);
 }

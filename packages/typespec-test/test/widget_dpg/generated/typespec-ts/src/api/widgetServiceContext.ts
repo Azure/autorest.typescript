@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
-import { isKeyCredential } from "@azure/core-auth";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 
 export interface WidgetServiceContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface WidgetServiceClientOptionalParams extends ClientOptions {}
+export interface WidgetServiceClientOptionalParams extends ClientOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
+}
 
 export function createWidgetService(
-  endpoint: string,
+  endpointParam: string,
   credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
@@ -26,7 +28,7 @@ export function createWidgetService(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? endpoint,
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
     undefined,
     updatedOptions,
   );

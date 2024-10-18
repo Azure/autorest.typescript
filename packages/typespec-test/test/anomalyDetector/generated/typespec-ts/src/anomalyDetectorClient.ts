@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getUnivariateOperations,
   UnivariateOperations,
@@ -16,6 +14,8 @@ import {
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential } from "@azure/core-auth";
 
 export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
 

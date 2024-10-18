@@ -7,17 +7,9 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  NetworkAnalyticsClient,
-  NetworkAnalyticsClientOptionalParams,
-} from "./networkAnalyticsClient.js";
+export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  Resource,
-  SystemData,
-  KnownCreatedByType,
-  CreatedByType,
-  TrackedResource,
   DataProduct,
   DataProductProperties,
   KnownProvisioningState,
@@ -36,6 +28,11 @@ export {
   KnownManagedServiceIdentityType,
   ManagedServiceIdentityType,
   UserAssignedIdentity,
+  TrackedResource,
+  Resource,
+  SystemData,
+  KnownCreatedByType,
+  CreatedByType,
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
@@ -49,11 +46,11 @@ export {
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  ProxyResource,
   DataType,
   DataTypeProperties,
   KnownDataTypeState,
   DataTypeState,
+  ProxyResource,
   DataTypeUpdate,
   DataTypeUpdateProperties,
   ContainerSaS,
@@ -69,7 +66,9 @@ export {
   Origin,
   KnownActionType,
   ActionType,
-  Versions,
+} from "./models/index.js";
+export {
+  NetworkAnalyticsClientOptionalParams,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
@@ -92,7 +91,7 @@ export {
   DataProductsListRolesAssignmentsOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   DataProductsOperations,
   DataProductsCatalogsOperations,

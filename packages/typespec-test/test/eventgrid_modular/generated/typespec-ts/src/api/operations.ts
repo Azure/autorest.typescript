@@ -2,33 +2,41 @@
 // Licensed under the MIT License.
 
 import {
-  cloudEventSerializer,
-  CloudEvent,
-  PublishResult,
-  ReceiveResult,
-  AcknowledgeOptions,
-  AcknowledgeResult,
-  ReleaseOptions,
-  ReleaseResult,
-  RejectOptions,
-  RejectResult,
-} from "../models/models.js";
-import { EventGridContext as Client } from "./index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-import {
+  AcknowledgeCloudEventsOptionalParams,
+  EventGridContext as Client,
   PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
   ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
   RejectCloudEventsOptionalParams,
-} from "../models/options.js";
+  ReleaseCloudEventsOptionalParams,
+} from "./index.js";
+import {
+  _publishCloudEventRequestSerializer,
+  CloudEvent,
+  PublishResult,
+  publishResultDeserializer,
+  ReceiveResult,
+  receiveResultDeserializer,
+  AcknowledgeOptions,
+  acknowledgeOptionsSerializer,
+  AcknowledgeResult,
+  acknowledgeResultDeserializer,
+  ReleaseOptions,
+  releaseOptionsSerializer,
+  ReleaseResult,
+  releaseResultDeserializer,
+  RejectOptions,
+  rejectOptionsSerializer,
+  RejectResult,
+  rejectResultDeserializer,
+  cloudEventArraySerializer,
+} from "../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _publishCloudEventSend(
   context: Client,
@@ -43,7 +51,7 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: { event: cloudEventSerializer(event.event) },
+      body: _publishCloudEventRequestSerializer(event),
     });
 }
 
@@ -55,7 +63,7 @@ export async function _publishCloudEventDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return publishResultDeserializer(result.body);
 }
 
 /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -80,29 +88,15 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/topics/{topicName}:publish", topicName).post({
-    ...operationOptionsToRequestParameters(options),
-    contentType:
-      (options.contentType as any) ??
-      "application/cloudevents-batch+json; charset=utf-8",
-    body: (events ?? []).map((p) => {
-      return {
-        id: p["id"],
-        source: p["source"],
-        data: p["data"],
-        data_base64:
-          p["dataBase64"] !== undefined
-            ? uint8ArrayToString(p["dataBase64"], "base64")
-            : undefined,
-        type: p["type"],
-        time: p["time"]?.toISOString(),
-        specversion: p["specversion"],
-        dataschema: p["dataschema"],
-        datacontenttype: p["datacontenttype"],
-        subject: p["subject"],
-      };
-    }),
-  });
+  return context
+    .path("/topics/{topicName}:publish", topicName)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType:
+        (options.contentType as any) ??
+        "application/cloudevents-batch+json; charset=utf-8",
+      body: cloudEventArraySerializer(events),
+    });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -113,7 +107,7 @@ export async function _publishCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return publishResultDeserializer(result.body);
 }
 
 /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -161,34 +155,7 @@ export async function _receiveCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        brokerProperties: {
-          lockToken: p.brokerProperties["lockToken"],
-          deliveryCount: p.brokerProperties["deliveryCount"],
-        },
-        event: {
-          id: p.event["id"],
-          source: p.event["source"],
-          data: p.event["data"],
-          dataBase64:
-            typeof p.event["data_base64"] === "string"
-              ? stringToUint8Array(p.event["data_base64"], "base64")
-              : p.event["data_base64"],
-          type: p.event["type"],
-          time:
-            p.event["time"] !== undefined
-              ? new Date(p.event["time"])
-              : undefined,
-          specversion: p.event["specversion"],
-          dataschema: p.event["dataschema"],
-          datacontenttype: p.event["datacontenttype"],
-          subject: p.event["subject"],
-        },
-      };
-    }),
-  };
+  return receiveResultDeserializer(result.body);
 }
 
 /** Receive Batch of Cloud Events from the Event Subscription. */
@@ -224,7 +191,7 @@ export function _acknowledgeCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: acknowledgeOptionsSerializer(lockTokens),
     });
 }
 
@@ -236,16 +203,7 @@ export async function _acknowledgeCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return acknowledgeResultDeserializer(result.body);
 }
 
 /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
@@ -283,7 +241,7 @@ export function _releaseCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: releaseOptionsSerializer(lockTokens),
     });
 }
 
@@ -295,16 +253,7 @@ export async function _releaseCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return releaseResultDeserializer(result.body);
 }
 
 /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
@@ -342,7 +291,7 @@ export function _rejectCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      body: { lockTokens: lockTokens["lockTokens"] },
+      body: rejectOptionsSerializer(lockTokens),
     });
 }
 
@@ -354,16 +303,7 @@ export async function _rejectCloudEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    failedLockTokens: result.body["failedLockTokens"].map((p: any) => {
-      return {
-        lockToken: p["lockToken"],
-        errorCode: p["errorCode"],
-        errorDescription: p["errorDescription"],
-      };
-    }),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return rejectResultDeserializer(result.body);
 }
 
 /** Reject batch of Cloud Events. */
