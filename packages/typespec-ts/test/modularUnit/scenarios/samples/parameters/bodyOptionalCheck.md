@@ -1,8 +1,6 @@
-# skip: Should generate optional body in option parameter
+# Should generate optional body in option parameter
 
 Should generate optional body in option parameter.
-
-// FIXME: issue tracked: https://github.com/Azure/autorest.typescript/issues/2827
 
 ## TypeSpec
 
@@ -25,7 +23,7 @@ model CompositeRequest {
   optionalQuery?: string;
 
   @body
-  body?: BodyParameter;
+  widget?: BodyParameter;
 }
 
 @doc("show example demo")
@@ -54,6 +52,76 @@ Raw json files.
 }
 ```
 
+## Provide generated operation options
+
+Generated operation options.
+
+```ts models:withOptions
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface ReadOptionalParams extends OperationOptions {
+  optionalQuery?: string;
+  widget?: BodyParameter;
+}
+```
+
+## Provide generated operations to call rest-level methods
+
+## Operations
+
+Should generate operations correctly:
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters
+} from "@azure-rest/core-client";
+
+export function _readSend(
+  context: Client,
+  name: string,
+  requiredQuery: string,
+  options: ReadOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  return context.path("/{name}", name).post({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: {
+      requiredQuery: requiredQuery,
+      optionalQuery: options?.optionalQuery
+    },
+    body: !options["widget"]
+      ? options["widget"]
+      : bodyParameterSerializer(options.widget)
+  });
+}
+
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<Record<string, any>> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _readResponseDeserializer(result.body);
+}
+
+/** show example demo */
+export async function read(
+  context: Client,
+  name: string,
+  requiredQuery: string,
+  options: ReadOptionalParams = { requestOptions: {} }
+): Promise<Record<string, any>> {
+  const result = await _readSend(context, name, requiredQuery, options);
+  return _readDeserialize(result);
+}
+```
+
 ## Samples
 
 Generate optional body in option parameter:
@@ -71,7 +139,7 @@ import { TestingClient } from "@azure/internal-test";
 async function read() {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
-    body: { name: "body name" },
+    widget: { name: "body name" },
     optionalQuery: "renamed optional query"
   });
   console.log(result);
