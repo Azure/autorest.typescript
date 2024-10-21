@@ -624,6 +624,7 @@ describe("api operations in Modular", () => {
         
         export function createTesting(
           endpointParam: string,
+          apiVersion: string,
           options: TestingClientOptionalParams  = {},
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -641,6 +642,21 @@ describe("api operations in Modular", () => {
             updatedOptions,
           );
           clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+          clientContext.pipeline.addPolicy({
+            name: "ClientApiVersionPolicy",
+            sendRequest: (req, next) => {
+              // Use the apiVersion defined in request url directly
+              // Append one if there is no apiVersion and we have one at client options
+              const url = new URL(req.url);
+              if (!url.searchParams.get("api-version")) {
+                req.url = \`\${req.url}\${
+                  Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+                }api-version=\$\{apiVersion}\`;
+              }
+              
+              return next(req);
+            },
+          });
           return clientContext;
         }
         `
@@ -661,13 +677,14 @@ describe("api operations in Modular", () => {
         
           constructor(
             endpointParam: string,
+            apiVersion: string,
             options: TestingClientOptionalParams  = {},
           ) {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
               : "azsdk-js-client";
-            this._client = createTesting(endpointParam, {
+            this._client = createTesting(endpointParam, apiVersion, {
               ...options,
               userAgentOptions: { userAgentPrefix },
             });
