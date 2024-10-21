@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import AzureArmModelsCommonTypesManagedIdentityClientFactory, {
   AzureArmModelsCommonTypesManagedIdentityClient
-} from "./generated/azure/resource-manager/models/common-types/managed-identity/src/index.js";
+} from "./generated/azure/resource-manager/common-properties/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: AzureArmModelsCommonTypesManagedIdentityClient;
 
@@ -21,7 +21,7 @@ describe("Azure Arm Resources Rest Client", () => {
   const IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED =
     "SystemAssigned,UserAssigned";
   const validSystemAssignedManagedIdentityResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
     location: `${LOCATION_REGION_EXPECTED}`,
     tags: {
       tagKey1: "tagValue1"
@@ -37,7 +37,7 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
     location: `${LOCATION_REGION_EXPECTED}`,
     tags: {
       tagKey1: "tagValue1"
@@ -46,10 +46,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-          {
-            principalId: `${PRINCIPAL_ID_EXPECTED}`,
-            clientId: `${CLIENT_ID_EXPECTED}`
-          }
+        {
+          principalId: `${PRINCIPAL_ID_EXPECTED}`,
+          clientId: `${CLIENT_ID_EXPECTED}`
+        }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`
@@ -75,7 +75,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "identity"
@@ -88,7 +88,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should put models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "identity"
@@ -107,7 +107,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should patch models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "identity"
