@@ -12,6 +12,7 @@ export declare class BasicClient {
     list(options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
     delete(id: number, options?: DeleteOptionalParams): Promise<void>;
     export(id: number, format: string, options?: ExportOptionalParams): Promise<User>;
+    exportAllUsers(format: string, options?: ExportAllUsersOptionalParams): Promise<UserList>;
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {
@@ -30,6 +31,9 @@ export declare interface CreateOrUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface DeleteOptionalParams extends OperationOptions {
+}
+
+export declare interface ExportAllUsersOptionalParams extends OperationOptions {
 }
 
 export declare interface ExportOptionalParams extends OperationOptions {
@@ -65,12 +69,14 @@ export declare interface User {
     readonly etag: string;
 }
 
+export declare interface UserList {
+    users: User[];
+}
+
 export declare interface UserOrder {
     readonly id: number;
     userId: number;
     detail: string;
 }
-
-export declare type Versions = "2022-12-01-preview";
 
 export { }

@@ -1,15 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { A, BA, BEA } from "../models/models.js";
-import { FooContext as Client } from "./index.js";
+import { FooContext as Client, Op1OptionalParams } from "./index.js";
+import {
+  A,
+  aSerializer,
+  Ba,
+  baSerializer,
+  Bea,
+  beaSerializer,
+} from "../models/models.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { Op1OptionalParams } from "../models/options.js";
 
 export function _op1Send(
   context: Client,
@@ -20,7 +26,7 @@ export function _op1Send(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop1: body["prop1"] },
+      body: aSerializer(body),
     });
 }
 
@@ -46,14 +52,14 @@ export async function op1(
 
 export function _op1Send(
   context: Client,
-  body: BA,
+  body: Ba,
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop2: body["prop2"] },
+      body: baSerializer(body),
     });
 }
 
@@ -70,7 +76,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BA,
+  body: Ba,
   options: Op1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
@@ -79,14 +85,14 @@ export async function op1(
 
 export function _op1Send(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop3: body["prop3"] },
+      body: beaSerializer(body),
     });
 }
 
@@ -103,7 +109,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: Op1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
@@ -112,14 +118,14 @@ export async function op1(
 
 export function _op1Send(
   context: Client,
-  body: BA,
+  body: Ba,
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop2: body["prop2"] },
+      body: baSerializer(body),
     });
 }
 
@@ -136,7 +142,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BA,
+  body: Ba,
   options: Op1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
@@ -152,7 +158,7 @@ export function _op1Send(
     .path("/d")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop1: body["prop1"] },
+      body: aSerializer(body),
     });
 }
 

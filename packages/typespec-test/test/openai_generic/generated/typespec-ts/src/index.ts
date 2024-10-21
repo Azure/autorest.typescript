@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { OpenAIClient, OpenAIClientOptionalParams } from "./openAIClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -31,6 +31,8 @@ export {
   CreateEditResponse,
   CompletionUsage,
   CreateCompletionRequest,
+  Prompt,
+  Stop,
   CreateCompletionResponse,
   CreateFineTuningJobRequest,
   FineTuningJob,
@@ -42,14 +44,16 @@ export {
   ChatCompletionFunctions,
   ChatCompletionFunctionParameters,
   ChatCompletionFunctionCallOption,
+  Stop_1,
   CreateChatCompletionResponse,
   ChatCompletionResponseMessage,
   CreateTranslationRequest,
   CreateTranslationResponse,
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
-  Prompt,
-  Stop,
+} from "./models/index.js";
+export {
+  OpenAIClientOptionalParams,
   AudioTranscriptionsCreateOptionalParams,
   AudioTranslationsCreateOptionalParams,
   ChatCompletionsCreateOptionalParams,
@@ -78,7 +82,7 @@ export {
   ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
   ModerationsCreateOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   AudioOperations,
   ChatOperations,

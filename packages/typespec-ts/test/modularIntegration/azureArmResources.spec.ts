@@ -47,6 +47,90 @@ describe("Azure Arm Resources Rest Client", () => {
       lastModifiedByType: "User"
     }
   };
+
+  const validSingletonResource = {
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+    name: "default",
+    type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    location: "eastus",
+    properties: {
+      provisioningState: "Succeeded",
+      description: "valid"
+    },
+    systemData: {
+      createdBy: "AzureSDK",
+      createdByType: "User",
+      createdAt: new Date(),
+      lastModifiedBy: "AzureSDK",
+      lastModifiedAt: new Date(),
+      lastModifiedByType: "User"
+    }
+  };
+
+  // singleton tracked resource
+  it("should get singleton tracked resources by resourceGroup", async () => {
+    const result =
+      await client.singletonTrackedResources.getByResourceGroup("test-rg");
+    assert.strictEqual(result.id, validSingletonResource.id);
+    assert.strictEqual(result.name, validSingletonResource.name);
+    assert.strictEqual(result.type, validSingletonResource.type);
+  });
+
+  it("should update singleton tracked resources", async () => {
+    const result = await client.singletonTrackedResources.update("test-rg", {
+      location: "eastus2",
+      properties: {
+        description: "valid2"
+      }
+    });
+
+    assert.strictEqual(result.id, validSingletonResource.id);
+    assert.strictEqual(result.name, validSingletonResource.name);
+    assert.strictEqual(result.type, validSingletonResource.type);
+    assert.strictEqual(result.location, "eastus2");
+    assert.strictEqual(result.properties?.description, "valid2");
+  });
+
+  it("should createOrUpdate singleton tracked resources by resourceGroup", async () => {
+    const result = await client.singletonTrackedResources.createOrUpdate(
+      "test-rg",
+      {
+        location: "eastus",
+        properties: {
+          description: "valid"
+        }
+      }
+    );
+    assert.strictEqual(result.id, validSingletonResource.id);
+    assert.strictEqual(result.name, validSingletonResource.name);
+    assert.strictEqual(result.type, validSingletonResource.type);
+  });
+
+  it("should list singleton tracked resources by resourceGroup", async () => {
+    const result =
+      client.singletonTrackedResources.listByResourceGroup("test-rg");
+    const items = [];
+    for await (const user of result) {
+      items.push(user);
+    }
+    assert.strictEqual(items[0]?.id, validSingletonResource.id);
+    assert.strictEqual(items[0]?.name, validSingletonResource.name);
+    assert.strictEqual(items[0]?.type, validSingletonResource.type);
+  });
+
+  // top level tracked resource
+  it("should actionSync top level tracked resources", async () => {
+    const result = await client.topLevelTrackedResources.actionSync(
+      "test-rg",
+      "top",
+      {
+        message: "Resource action at top level.",
+        urgent: true
+      }
+    );
+    assert.isUndefined(result);
+  });
+
   it("should get top level tracked resources", async () => {
     const result = await client.topLevelTrackedResources.get("test-rg", "top");
     assert.strictEqual(result.id, validTopLevelResource.id);

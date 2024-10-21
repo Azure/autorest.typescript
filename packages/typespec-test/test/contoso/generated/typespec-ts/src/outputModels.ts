@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Paged } from "@azure/core-paging";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** A widget. */
@@ -52,7 +51,13 @@ export interface OperationStatusOutput {
   error?: ErrorModel;
 }
 
+/** Paged collection of Widget items */
+export interface PagedWidgetOutput {
+  /** The Widget items on this page */
+  value: Array<WidgetOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Alias for OperationStateOutput */
 export type OperationStateOutput = string;
-/** Paged collection of Widget items */
-export type PagedWidgetOutput = Paged<WidgetOutput>;

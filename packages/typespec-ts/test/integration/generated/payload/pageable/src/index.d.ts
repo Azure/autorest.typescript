@@ -1,8 +1,6 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
@@ -12,7 +10,7 @@ export default createClient;
 
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
-export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -43,7 +41,20 @@ export declare type PageableClient = Client & {
 export declare interface PageableClientOptions extends ClientOptions {
 }
 
-export declare type PagedUserOutput = Paged<UserOutput>;
+export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    next(): Promise<IteratorResult<TElement>>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+}
+
+export declare interface PagedUserOutput {
+    value: Array<UserOutput>;
+    nextLink?: string;
+}
+
+export declare interface PageSettings {
+    continuationToken?: string;
+}
 
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 

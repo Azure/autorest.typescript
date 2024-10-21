@@ -57,8 +57,10 @@ describe("Input/output model type", () => {
     @route("/models")
     @get
     op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;`,
-      needAzureCore,
-      needTCGC
+      {
+        needAzureCore,
+        needTCGC
+      }
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -462,10 +464,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true,
-        false,
-        false // disable diagnostics
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -514,10 +516,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-          false,
-          true,
-          false,
-          true // throw exception for diagnostics
+          {
+            needTCGC: true,
+            mustEmptyDiagnostic: false
+          }// throw exception for diagnostics
         );
       } catch (err: any) {
         assert.strictEqual(err.length, 2);
@@ -542,10 +544,10 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true,
-        false,
-        false // disable diagnostics
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -597,8 +599,9 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1728,8 +1731,9 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1762,8 +1766,9 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1797,8 +1802,9 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1845,8 +1851,6 @@ describe("Input/output model type", () => {
           @encode("seconds", float64)
           input: duration): NoContentResponse;
         `,
-          false,
-          false
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -1865,8 +1869,6 @@ describe("Input/output model type", () => {
           @encode("iso8601")
           input: duration): NoContentResponse;
         `,
-          false,
-          false
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -1918,8 +1920,9 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1952,8 +1955,9 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -1987,8 +1991,9 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -2814,9 +2819,9 @@ describe("Input/output model type", () => {
         @clientName("testRunOperation", "javascript")
         op test(): string;
         `,
-        false,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(parameters);
       await assertEqualContent(
@@ -2955,11 +2960,13 @@ describe("Input/output model type", () => {
         op1(a: A): void
       }
       `,
-        false,
-        true,
-        true,
-        true,
-        true
+        {
+          needAzureCore: false,
+          needTCGC: true,
+          withRawContent: true,
+          mustEmptyDiagnostic: true,
+          enableModelNamespace: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile } = schemaOutput!;
@@ -3260,9 +3267,11 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        true,
-        true,
-        true
+        {
+          needAzureCore: true,
+          needTCGC: true,
+          withRawContent: true,
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3450,9 +3459,11 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        true,
-        true,
-        true
+        {
+          needAzureCore: true,
+          needTCGC: true,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3570,9 +3581,9 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3619,9 +3630,9 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3654,9 +3665,9 @@ describe("Input/output model type", () => {
 
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
@@ -3684,8 +3695,9 @@ describe("Input/output model type", () => {
       );
       const responseOutput = await emitResponsesFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
@@ -3753,9 +3765,9 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3804,9 +3816,9 @@ describe("Input/output model type", () => {
 
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
@@ -3825,8 +3837,9 @@ describe("Input/output model type", () => {
       );
       const responseOutput = await emitResponsesFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
@@ -3865,9 +3878,9 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -3875,9 +3888,9 @@ describe("Input/output model type", () => {
       assert.isUndefined(outputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
@@ -3904,8 +3917,9 @@ describe("Input/output model type", () => {
       );
       const responseOutput = await emitResponsesFromTypeSpec(
         tspDefinition,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
@@ -3955,9 +3969,9 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -4001,9 +4015,10 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        true,
-        false,
-        true
+        {
+          needAzureCore: true,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -4017,10 +4032,9 @@ describe("Input/output model type", () => {
       assert.isUndefined(outputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true,
-        true
+        {
+          withRawContent: true,
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
@@ -4078,9 +4092,10 @@ describe("Input/output model type", () => {
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
-        true,
-        false,
-        true
+        {
+          needAzureCore: true,
+          withRawContent: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -4094,9 +4109,9 @@ describe("Input/output model type", () => {
       assert.isUndefined(outputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
-        false,
-        true
+        {
+          withRawContent: true
+        }
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
@@ -4153,10 +4168,9 @@ describe("Input/output model type", () => {
 
         const schemaOutput = await emitModelsFromTypeSpec(
           tspContent,
-          false,
-          false,
-          true,
-          true
+          {
+            withRawContent: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -4164,10 +4178,9 @@ describe("Input/output model type", () => {
         assert.isUndefined(outputModelFile);
         const paramOutput = await emitParameterFromTypeSpec(
           tspContent,
-          false,
-          false,
-          true,
-          true
+          {
+            withRawContent: true
+          }
         );
         assert.ok(paramOutput);
         assert.fail("Should throw diagnostic warnings");

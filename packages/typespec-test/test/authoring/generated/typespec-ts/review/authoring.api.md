@@ -14,8 +14,6 @@ import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -440,7 +438,7 @@ export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResp
 export function getLongRunningPoller<TResult extends SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse>(client: Client, initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -739,10 +737,28 @@ export interface OperationStatusOutput {
 }
 
 // @public
-export type PagedDeploymentOutput = Paged<DeploymentOutput>;
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
 
 // @public
-export type PagedProjectOutput = Paged<ProjectOutput>;
+export interface PagedDeploymentOutput {
+    nextLink?: string;
+    value: Array<DeploymentOutput>;
+}
+
+// @public
+export interface PagedProjectOutput {
+    nextLink?: string;
+    value: Array<ProjectOutput>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -846,7 +862,10 @@ export interface SupportedLanguageOutput {
 }
 
 // @public
-export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
+export interface SupportedLanguagesOutput {
+    nextLink?: string;
+    value: Array<SupportedLanguageOutput>;
+}
 
 // @public (undocumented)
 export interface SwapDeployments {
@@ -958,7 +977,10 @@ export interface TrainingConfigVersionOutput {
 }
 
 // @public
-export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;
+export interface TrainingConfigVersionsOutput {
+    nextLink?: string;
+    value: Array<TrainingConfigVersionOutput>;
+}
 
 // @public
 export interface TrainingJobOptions {

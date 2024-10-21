@@ -2,24 +2,26 @@
 // Licensed under the MIT License.
 
 import {
-  chatMessageSerializer,
+  ChatProtocolContext as Client,
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./index.js";
+import {
   StreamingChatCompletionOptionsRecord,
+  streamingChatCompletionOptionsRecordSerializer,
   ChatCompletionChunkRecord,
+  chatCompletionChunkRecordDeserializer,
   ChatCompletionOptionsRecord,
+  chatCompletionOptionsRecordSerializer,
   ChatCompletionRecord,
+  chatCompletionRecordDeserializer,
 } from "../models/models.js";
-import { ChatProtocolContext as Client } from "./index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-import {
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
-} from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,
@@ -30,14 +32,7 @@ export function _createStreamingSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map(chatMessageSerializer),
-        stream: body["stream"],
-        session_state: body["sessionState"],
-        context: !body.context
-          ? body.context
-          : (serializeRecord(body.context as any) as any),
-      },
+      body: streamingChatCompletionOptionsRecordSerializer(body),
     });
 }
 
@@ -49,21 +44,7 @@ export async function _createStreamingDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        index: p["index"],
-        delta: {
-          content: p.delta["content"],
-          role: p.delta["role"],
-          sessionState: p.delta["session_state"],
-        },
-        sessionState: p["session_state"],
-        context: p["context"],
-        finishReason: p["finish_reason"],
-      };
-    }),
-  };
+  return chatCompletionChunkRecordDeserializer(result.body);
 }
 
 /** Creates a new streaming chat completion. */
@@ -85,14 +66,7 @@ export function _createSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        messages: body["messages"].map(chatMessageSerializer),
-        stream: body["stream"],
-        session_state: body["sessionState"],
-        context: !body.context
-          ? body.context
-          : (serializeRecord(body.context as any) as any),
-      },
+      body: chatCompletionOptionsRecordSerializer(body),
     });
 }
 
@@ -104,21 +78,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p: any) => {
-      return {
-        index: p["index"],
-        message: {
-          content: p.message["content"],
-          role: p.message["role"],
-          sessionState: p.message["session_state"],
-        },
-        sessionState: p["session_state"],
-        context: p["context"],
-        finishReason: p["finish_reason"],
-      };
-    }),
-  };
+  return chatCompletionRecordDeserializer(result.body);
 }
 
 /** Creates a new chat completion. */

@@ -3,7 +3,11 @@ import {
   normalizeName,
   ReservedModelNames
 } from "@azure-tools/rlc-common";
-import { SdkClient } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkClient,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { SdkContext } from "../../utils/interfaces.js";
@@ -14,8 +18,16 @@ import {
   OperationGroup
 } from "../modularCodeModel.js";
 
-export function getClientName(client: Client) {
+export function getClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
   return client.name.replace(/Client$/, "");
+}
+
+export function getClassicalClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
+  return client.name;
 }
 
 export interface GuardedName {

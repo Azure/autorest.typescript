@@ -5,7 +5,7 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare class NotDefinedClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpoint: string, options?: NotDefinedClientOptionalParams);
+    constructor(endpointParam: string, options?: NotDefinedClientOptionalParams);
     valid(options?: ValidOptionalParams): Promise<void>;
 }
 

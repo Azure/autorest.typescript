@@ -991,9 +991,6 @@ export interface PineconeFieldMappingOptions {
 }
 
 // @public
-export type ServiceApiVersions = "2022-12-01" | "2023-05-15" | "2023-06-01-preview" | "2023-07-01-preview" | "2024-02-01" | "2024-02-15-preview" | "2024-03-01-preview" | "2024-04-01-preview" | "2024-05-01-preview" | "2024-06-01";
-
-// @public
 export interface SpeechGenerationOptions {
     input: string;
     model?: string;

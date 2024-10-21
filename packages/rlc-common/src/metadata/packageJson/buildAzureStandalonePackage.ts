@@ -82,12 +82,8 @@ function getAzureStandaloneScripts(
   };
   return {
     ...getCommonPackageScripts(config),
-    "check-format":
-      'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}"  "test/**/*.ts" "samples-dev/**/*.ts"',
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    format:
-      'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}"  "test/**/*.ts" "samples-dev/**/*.ts"',
     ...(config.withTests && testScripts),
     ...getCjsScripts(config),
     ...getEsmScripts(config)

@@ -3,8 +3,8 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare interface Fish {
-    age: number;
     kind: string;
+    age: number;
 }
 
 export declare type FishUnion = SharkUnion | Salmon | Fish;

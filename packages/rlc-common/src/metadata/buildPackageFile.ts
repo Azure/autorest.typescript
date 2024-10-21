@@ -2,18 +2,14 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
-import {
-  hasPagingOperations,
-  hasPollingOperations
-} from "../helpers/operationHelpers.js";
+import { hasPollingOperations } from "../helpers/operationHelpers.js";
 import {
   isAzureMonorepoPackage,
   isAzurePackage,
   isAzureStandalonePackage
 } from "../helpers/packageUtil.js";
-
 import { PackageCommonInfoConfig } from "./packageJson/packageCommon.js";
-import { Project } from "ts-morph";
+import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
@@ -38,7 +34,8 @@ export function buildPackageFile(
     withTests: model.options?.generateTest === true,
     nameWithoutScope: model.options?.packageDetails?.nameWithoutScope,
     exports,
-    azureArm: model.options?.azureArm
+    azureArm: model.options?.azureArm,
+    isModularLibrary: model.options?.isModularLibrary ?? false
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
@@ -47,7 +44,6 @@ export function buildPackageFile(
     ...config,
     clientFilePaths: [getClientFilePath(model)],
     hasLro: hasPollingOperations(model),
-    hasPaging: hasPagingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
     specSource: model.options?.sourceFrom ?? "TypeSpec",
     dependencies
@@ -84,41 +80,40 @@ export function buildPackageFile(
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
  */
-export function updatePackageFile(model: RLCModel, existingFilePath: string) {
-  const project = new Project();
-  const hasPaging = hasPagingOperations(model),
-    hasLro = hasPollingOperations(model);
-  if (!isAzurePackage(model) || (!hasPaging && !hasLro)) {
+export function updatePackageFile(
+  model: RLCModel,
+  existingFilePathOrContent: string | Record<string, any>
+) {
+  const hasLro = hasPollingOperations(model);
+  if (!isAzurePackage(model) || !hasLro) {
     return;
   }
-  let packageFile;
-  try {
-    packageFile = project.addSourceFileAtPath(existingFilePath);
-  } catch (e) {
-    // If the file doesn't exist, we don't need to update it.
-    return;
-  }
-  const packageInfo = JSON.parse(packageFile.getFullText());
-
-  if (hasPaging) {
-    packageInfo.dependencies = {
-      ...packageInfo.dependencies,
-      "@azure/core-paging": "^1.5.0"
-    };
+  let packageInfo;
+  if (typeof existingFilePathOrContent === "string") {
+    let packageFile: SourceFile;
+    try {
+      const project = new Project();
+      packageFile = project.addSourceFileAtPath(existingFilePathOrContent);
+    } catch (e) {
+      // If the file doesn't exist, we don't need to update it.
+      return;
+    }
+    packageInfo = JSON.parse(packageFile.getFullText());
+  } else {
+    packageInfo = existingFilePathOrContent;
   }
 
   if (hasLro) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      "@azure/core-lro": "^3.0.0",
+      "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
   }
 
-  packageFile.replaceWithText(JSON.stringify(packageInfo, null, 2));
   return {
     path: "package.json",
-    content: packageFile.getFullText()
+    content: JSON.stringify(packageInfo, null, 2)
   };
 }
 

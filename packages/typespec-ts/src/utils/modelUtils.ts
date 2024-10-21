@@ -79,7 +79,6 @@ import {
   getUnionAsEnum
 } from "@azure-tools/typespec-azure-core";
 
-import { extractPagedMetadataNested } from "./operationUtil.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 
@@ -671,36 +670,6 @@ function getSchemaForModel(
     modelSchema.outputTypeName = modelSchema.name + "Output";
   }
 
-  if (getPagedResult(program, model)) {
-    const paged = extractPagedMetadataNested(program, model);
-    if (paged && paged.itemsProperty) {
-      const items = paged.itemsProperty as unknown as Model;
-      if (items && items.templateMapper && items.templateMapper.args) {
-        const templateTypes = items.templateMapper.args.filter((it) =>
-          isType(it)
-        ) as Type[];
-        const templateName = templateTypes
-          ?.map((it) => {
-            switch (it.kind) {
-              case "Model":
-                return it.name;
-              case "String":
-                return it.value;
-              default:
-                return "";
-            }
-          })
-          .join("");
-        if (
-          paged.itemsProperty.name === "value" &&
-          paged.nextLinkProperty?.name === "nextLink"
-        ) {
-          modelSchema.alias = `Paged<${templateName}>`;
-          modelSchema.outputAlias = `Paged<${templateName}Output>`;
-        }
-      }
-    }
-  }
   modelSchema.properties = {};
 
   // getSchemaOrRef on all children to push them into components.schemas
@@ -1455,8 +1424,8 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
   return usage &&
     usage.includes(SchemaContext.Input) &&
     !usage.includes(SchemaContext.Output)
-    ? schema.typeName ?? schema.name
-    : schema.outputTypeName ?? schema.typeName ?? schema.name;
+    ? (schema.typeName ?? schema.name)
+    : (schema.outputTypeName ?? schema.typeName ?? schema.name);
 }
 
 function getEnumStringDescription(type: any) {
@@ -1633,23 +1602,45 @@ export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
     !["error", "errorresponse", "innererror"].includes(
       effective.name.toLowerCase()
     )
-  )
+  ) {
     return false;
+  }
   return isAzureCoreFoundationsNamespace(effective);
 }
 
 // Check if the type in the Azure.Core.Foundations has an LRO type in core
 export function isAzureCoreLroType(t?: Type): boolean {
-  if (t?.kind !== "Enum" || !["operationstate"].includes(t.name.toLowerCase()))
+  if (
+    !(
+      ((t?.kind === "Enum" || t?.kind === "Union") &&
+        ["operationstate"].includes((t.name ?? "").toLowerCase())) ||
+      (t?.kind === "Model" &&
+        ["resourceoperationstatus", "operationstatus"].includes(
+          t.name.toLowerCase()
+        ))
+    )
+  ) {
     return false;
-  return isAzureCoreFoundationsNamespace(t);
+  }
+  return (
+    isAzureCoreFoundationsNamespace(t) ||
+    isAzureCoreFoundationsNamespace(t, true)
+  );
 }
 
-function isAzureCoreFoundationsNamespace(t?: Type): boolean {
-  const namespaces = ".Azure.Core.Foundations".split(".");
+function isAzureCoreFoundationsNamespace(
+  t?: Type,
+  skipFoundation: boolean = false
+): boolean {
+  const namespaces = (
+    skipFoundation ? ".Azure.Core" : ".Azure.Core.Foundations"
+  ).split(".");
   while (
     namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Enum" || t?.kind === "Namespace") &&
+    (t?.kind === "Model" ||
+      t?.kind === "Enum" ||
+      t?.kind === "Union" ||
+      t?.kind === "Namespace") &&
     t.namespace?.name === namespaces.pop()
   ) {
     t = t.namespace;

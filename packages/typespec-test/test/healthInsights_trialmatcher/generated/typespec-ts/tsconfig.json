@@ -20,5 +20,5 @@
     "esModuleInterop": true,
     "paths": { "@azure-rest/health-insights-clinicalmatching": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
 }
