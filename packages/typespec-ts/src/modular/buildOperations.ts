@@ -1,4 +1,10 @@
-import { BodyParameter, Client, ModularCodeModel, Operation, Parameter } from "./modularCodeModel.js";
+import {
+  BodyParameter,
+  Client,
+  ModularCodeModel,
+  Operation,
+  Parameter
+} from "./modularCodeModel.js";
 import {
   NameType,
   clearImportSets,
@@ -42,18 +48,19 @@ export function buildOperationFiles(
     const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0
         ? `${operationGroup.namespaceHierarchies
-          .map((hierarchy) => {
-            return normalizeName(hierarchy, NameType.File);
-          })
-          .join("/")}/index`
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
         : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+          // into a nameless operation group. We'll call this operations.
+          "operations";
 
     const subfolder = client.subfolder;
     const srcPath = codeModel.modularOptions.sourceRoot;
     const operationGroupFile = codeModel.project.createSourceFile(
-      `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+      `${srcPath}/${
+        subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
     );
 
@@ -123,7 +130,8 @@ export function importDeserializeUtils(
     return i.getModuleSpecifierValue().endsWith(`utils/${serializeType}.js`);
   });
   const modelsFile = project.getSourceFile(
-    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }utils/${serializeType}Util.ts`
   );
   const deserializeUtil: string[] = [];
@@ -202,13 +210,13 @@ export function buildLroDeserDetailMap(client: Client) {
     const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0
         ? `${operationGroup.namespaceHierarchies
-          .map((hierarchy) => {
-            return normalizeName(hierarchy, NameType.File);
-          })
-          .join("/")}/index`
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
         : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+          // into a nameless operation group. We'll call this operations.
+          "operations";
     map.set(
       `./api/${operationFileName}.js`,
       operations.map((o) => {

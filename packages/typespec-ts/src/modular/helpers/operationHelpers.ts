@@ -345,8 +345,9 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
-    }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -563,8 +564,12 @@ function buildBodyParameter(
     true
   );
 
-  const bodyNameExpression = (bodyParameter.optional ? "options." : "") + bodyParameter.clientName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter, bodyParameter.optional ? "options" : undefined);
+  const bodyNameExpression =
+    (bodyParameter.optional ? "options." : "") + bodyParameter.clientName;
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    bodyParameter,
+    bodyParameter.optional ? "options" : undefined
+  );
   if (serializerFunctionName) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
@@ -636,14 +641,15 @@ function getCollectionFormat(context: SdkContext, param: Parameter) {
       param.format
     )}${additionalParam})`;
   }
-  return `"${param.restApiName}": options?.${param.clientName
-    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-      context,
-      param.type,
-      "options?." + param.clientName,
-      false,
-      param.format
-    )}${additionalParam}): undefined`;
+  return `"${param.restApiName}": options?.${
+    param.clientName
+  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+    context,
+    param.type,
+    "options?." + param.clientName,
+    false,
+    param.format
+  )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -660,10 +666,11 @@ function getContentTypeValue(param: Parameter | Property) {
   if (defaultValue) {
     return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${!param.optional
-      ? "contentType"
-      : "options." + param.clientName + " as any"
-      }`;
+    return `contentType: ${
+      !param.optional
+        ? "contentType"
+        : "options." + param.clientName + " as any"
+    }`;
   }
 }
 
@@ -745,10 +752,11 @@ function getOptional(context: SdkContext, param: OptionalType) {
     param.restApiName === "api-version" &&
     (param as any).location === "query"
   ) {
-    return `"${param.restApiName}": ${param.clientDefaultValue
-      ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
-      : `options?.${param.clientName}`
-      }`;
+    return `"${param.restApiName}": ${
+      param.clientDefaultValue
+        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
+        : `options?.${param.clientName}`
+    }`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     context,
@@ -769,8 +777,9 @@ function getOptional(context: SdkContext, param: OptionalType) {
 function getDefaultValue(param: Parameter | Property) {
   return (param.clientDefaultValue ?? param.type.clientDefaultValue) !==
     undefined
-    ? `${param.optional ? "??" : ""} "${param.clientDefaultValue ?? param.type.clientDefaultValue
-    }"`
+    ? `${param.optional ? "??" : ""} "${
+        param.clientDefaultValue ?? param.type.clientDefaultValue
+      }"`
     : "";
 }
 
@@ -792,8 +801,9 @@ function getPathParameters(operation: Operation) {
 
       const defaultValue = getDefaultValue(param);
 
-      pathParams += `${pathParams !== "" ? "," : ""} options.${param.clientName
-        }`;
+      pathParams += `${pathParams !== "" ? "," : ""} options.${
+        param.clientName
+      }`;
 
       if (defaultValue) {
         pathParams += ` ?? "${defaultValue}"`;
@@ -890,8 +900,9 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
 
-    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
-      }["${property.restApiName}"]`;
+    const restValue = `${
+      propertyPath ? `${propertyPath}${dot}` : `${dot}`
+    }["${property.restApiName}"]`;
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
@@ -953,8 +964,9 @@ export function serializeRequestValue(
           return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
         case "rfc3339":
         default:
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${required ? "" : "?"
-            }.toISOString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toISOString()`;
       }
     case "list": {
       const prefix = nullOrUndefinedPrefix + clientValue;
@@ -988,12 +1000,14 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-            clientValue,
-            type
-          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`;
+              clientValue,
+              type
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`;
       }
       return clientValue;
     case "combined":
@@ -1048,11 +1062,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.elementType
         ? buildModelDeserializer(
-          context,
-          type.elementType.tcgcType!,
-          false,
-          true
-        )
+            context,
+            type.elementType.tcgcType!,
+            false,
+            true
+          )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
