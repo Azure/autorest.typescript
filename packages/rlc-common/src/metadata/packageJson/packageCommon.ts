@@ -12,6 +12,7 @@ export interface PackageCommonInfoConfig {
   exports?: Record<string, any>;
   dependencies?: Record<string, string>;
   azureArm?: boolean;
+  isModularLibrary?: boolean;
 }
 
 /**
@@ -44,10 +45,9 @@ export function getCommonPackageDevDependencies(
     "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
     eslint: "^8.55.0",
-    prettier: "^3.2.5",
     rimraf: "^5.0.5",
     mkdirp: "^3.0.1",
-    typescript: "~5.5.3",
+    typescript: "~5.6.2",
     ...getEsmDevDependencies(config)
   };
 }

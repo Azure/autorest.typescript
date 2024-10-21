@@ -1,6 +1,9 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import { getClientName } from "./helpers/namingHelpers.js";
+import {
+  getClassicalClientName,
+  getClientName
+} from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers } from "./static-helpers-metadata.js";
@@ -13,7 +16,7 @@ export function buildRootIndex(
   const { project } = codeModel;
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClassicalClientName(client.tcgcClient)}`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       clientName,
@@ -39,24 +42,25 @@ export function buildRootIndex(
     subfolder,
     true
   );
-  exportModules(
-    rootIndexFile,
-    project,
-    srcPath,
-    clientName,
-    "models",
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    ?.find((i) => {
+      return i.getModuleSpecifierValue() === `./models/index.js`;
+    });
+  if (!modelsExportsIndex) {
+    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
+      isTopLevel: true
+    });
+  }
+  exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
-    true
-  );
-  exportModules(
-    rootIndexFile,
-    project,
-    srcPath,
-    clientName,
-    "classic",
+    interfaceOnly: true,
+    isTopLevel: true
+  });
+  exportModules(rootIndexFile, project, srcPath, clientName, "classic", {
     subfolder,
-    true
-  );
+    isTopLevel: true
+  });
 
   exportPagingTypes(codeModel, rootIndexFile);
 }
@@ -165,13 +169,19 @@ function exportClassicalClient(
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClientName(client.tcgcClient)}Client`;
   indexFile.addExportDeclaration({
-    namedExports: [clientName, `${clientName}OptionalParams`],
+    namedExports: [clientName],
     moduleSpecifier: `./${
       subfolder !== "" && !isSubClient ? subfolder + "/" : ""
     }${normalizeName(clientName, NameType.File)}.js`
   });
+}
+
+export interface ExportModulesOptions {
+  interfaceOnly?: boolean;
+  isTopLevel?: boolean;
+  subfolder?: string;
 }
 
 function exportModules(
@@ -180,12 +190,17 @@ function exportModules(
   srcPath: string,
   clientName: string,
   moduleName: string,
-  subfolder: string = "",
-  isTopLevel: boolean = false
+  options: ExportModulesOptions = {
+    interfaceOnly: false,
+    isTopLevel: false,
+    subfolder: ""
+  }
 ) {
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
+      options.subfolder !== "" && options.subfolder
+        ? options.subfolder + "/"
+        : ""
     }${moduleName}/index.ts`
   );
   if (!modelsFile) {
@@ -193,16 +208,38 @@ function exportModules(
   }
 
   const exported = [...indexFile.getExportedDeclarations().keys()];
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(
-    (modelName) => {
-      if (exported.indexOf(modelName) > -1) {
-        return `${modelName} as ${clientName}${modelName}`;
+  const namedExports = [...modelsFile.getExportedDeclarations().entries()]
+    .filter((exDeclaration) => {
+      if (exDeclaration[0].startsWith("_")) {
+        return false;
       }
-      return modelName;
-    }
-  );
+      return exDeclaration[1].some((ex) => {
+        if (
+          options.interfaceOnly &&
+          ex.getKindName() !== "InterfaceDeclaration"
+        ) {
+          return false;
+        }
+        if (
+          options.interfaceOnly &&
+          options.isTopLevel &&
+          exDeclaration[0].endsWith("Context")
+        ) {
+          return false;
+        }
+        return true;
+      });
+    })
+    .map((exDeclaration) => {
+      if (exported.indexOf(exDeclaration[0]) > -1) {
+        return `${exDeclaration[0]} as ${clientName}${exDeclaration[0]}`;
+      }
+      return exDeclaration[0];
+    });
   const moduleSpecifier = `./${
-    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+    options.isTopLevel && options.subfolder !== "" && options.subfolder
+      ? options.subfolder + "/"
+      : ""
   }${moduleName}/index.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
@@ -221,7 +258,7 @@ export function buildSubClientIndexFile(
     undefined,
     { overwrite: true }
   );
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClientName(client.tcgcClient)}Client`;
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;
@@ -244,8 +281,11 @@ export function buildSubClientIndexFile(
     codeModel.project,
     srcPath,
     clientName,
-    "models",
-    subfolder
+    "api",
+    {
+      subfolder,
+      interfaceOnly: true
+    }
   );
   exportModules(
     subClientIndexFile,
@@ -253,6 +293,6 @@ export function buildSubClientIndexFile(
     srcPath,
     clientName,
     "classic",
-    subfolder
+    { subfolder }
   );
 }

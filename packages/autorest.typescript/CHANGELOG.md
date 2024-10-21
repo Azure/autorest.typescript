@@ -1,3 +1,18 @@
+## 6.0.27 (2024-09-06)
+
+- [Feature] Fix body optionality default parameter to true for implicit body. Please refer to [#2731](https://github.com/Azure/autorest.typescript/pull/2731)
+- [Feature] Upgrade tcgc to v0.45.4. Please refer to [#2782](https://github.com/Azure/autorest.typescript/pull/2782)
+- [Feature] Support typecheck command for sample scripts. Please refer to [#2784](https://github.com/Azure/autorest.typescript/pull/2784)
+- [Feature] Remove the paging dependency in Modular. Please refer to [#2781](https://github.com/Azure/autorest.typescript/pull/2781)
+- [Feature] Update LRO version in package.json for autorest rlc generation. Please refer to [#2763](https://github.com/Azure/autorest.typescript/pull/2763)
+- [Feature] Generate plainDate and plainTime as string in both RLC and Modular. Please refer to [#2703](https://github.com/Azure/autorest.typescript/pull/2703)
+- [Feature] Support TypeSpec enum name. Please refer to [#2767](https://github.com/Azure/autorest.typescript/pull/2767)
+- [Bugfix] Set core-util dependency with binder. Please refer to [#2743](https://github.com/Azure/autorest.typescript/pull/2743)
+- [Bugfix] Fix constant type serialization and deserialization. Please refer to [#2776](https://github.com/Azure/autorest.typescript/pull/2776)
+- [Bugfix] Standardize OSS copyright header. Please refer to [#2775](https://github.com/Azure/autorest.typescript/pull/2775)
+- [Bugfix] Fix special union within anonymous model issue. Please refer to [#2767](https://github.com/Azure/autorest.typescript/pull/2767)
+- [Bugfix] Get paging properties from parent models. Please refer to [#2764](https://github.com/Azure/autorest.typescript/pull/2764)
+
 ## 6.0.26 (2024-08-15)
 
 - [Feature] Remove internal RLC layer from modular. Please refer to [#2728](https://github.com/Azure/autorest.typescript/pull/2728).

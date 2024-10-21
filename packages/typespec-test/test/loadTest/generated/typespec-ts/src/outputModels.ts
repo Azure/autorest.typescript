@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Paged } from "@azure/core-paging";
-
 /** Load test model */
 export interface TestOutput {
   /** Pass fail criteria for a test. */
@@ -163,6 +161,22 @@ export interface FileInfoOutput {
   validationStatus?: FileStatusOutput;
   /** Validation failure error details */
   validationFailureDetails?: string;
+}
+
+/** Collection of tests */
+export interface TestsListOutput {
+  /** The Test items on this page */
+  value: Array<TestOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Collection of files. */
+export interface FileInfoListOutput {
+  /** The FileInfo items on this page */
+  value: Array<FileInfoOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Test app component */
@@ -381,6 +395,14 @@ export interface TestRunOutputArtifactsOutput {
   logsFileInfo?: FileInfoOutput;
 }
 
+/** Collection of test runs */
+export interface TestRunsListOutput {
+  /** The TestRun items on this page */
+  value: Array<TestRunOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollectionOutput {
   /** The values for the metric namespaces. */
@@ -441,6 +463,14 @@ export interface MetricAvailabilityOutput {
   timeGrain?: TimeGrainOutput;
 }
 
+/** The response to a metrics query. */
+export interface MetricsOutput {
+  /** The TimeSeriesElement items on this page */
+  value: Array<TimeSeriesElementOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** The time series returned when a data query is performed. */
 export interface TimeSeriesElementOutput {
   /** An array of data points representing the metric values. */
@@ -463,6 +493,14 @@ export interface DimensionValueOutput {
   name?: string;
   /** The value of the dimension. */
   value?: string;
+}
+
+/** Paged collection of DimensionValueList items */
+export interface PagedDimensionValueListOutput {
+  /** The DimensionValueList items on this page */
+  value: Array<DimensionValueListOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 export interface DimensionValueListOutput {
@@ -547,10 +585,6 @@ export type FileStatusOutput =
   | "VALIDATION_FAILURE"
   | "VALIDATION_INITIATED"
   | "VALIDATION_NOT_REQUIRED";
-/** Collection of tests */
-export type TestsListOutput = Paged<TestOutput>;
-/** Collection of files. */
-export type FileInfoListOutput = Paged<FileInfoOutput>;
 /** Alias for PFTestResultOutput */
 export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Alias for StatusOutput */
@@ -571,8 +605,6 @@ export type StatusOutput =
   | "FAILED"
   | "VALIDATION_SUCCESS"
   | "VALIDATION_FAILURE";
-/** Collection of test runs */
-export type TestRunsListOutput = Paged<TestRunOutput>;
 /** Alias for AggregationTypeOutput */
 export type AggregationTypeOutput =
   | "Average"
@@ -594,7 +626,3 @@ export type MetricUnitOutput =
   | "CountPerSecond";
 /** Alias for TimeGrainOutput */
 export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
-/** The response to a metrics query. */
-export type MetricsOutput = Paged<TimeSeriesElementOutput>;
-/** Paged collection of DimensionValueList items */
-export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;

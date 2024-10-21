@@ -119,20 +119,14 @@ function getEsmDevDependencies({
     return {};
   }
 
-  let testDevDependencies: Record<string, string> = {};
   if (withTests) {
-    testDevDependencies = {
+    return {
       "@vitest/browser": "^2.0.5",
       "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
       vitest: "^2.0.5"
     };
-  }
-
-  return {
-    tshy: "^1.11.1",
-    ...testDevDependencies
-  };
+  } else return {};
 }
 
 function getCjsDevDependencies({
@@ -194,17 +188,19 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     audit:
       "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": config.withSamples
-      ? "dev-tool samples publish --force"
+      ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format":
-      'dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
       "rimraf review && mkdirp ./review && dev-tool run extract-api",
-    format:
-      'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
@@ -226,12 +222,13 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test": "npm run clean && tshy && dev-tool run build-test",
+    "build:test":
+      "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api",
     "test:node":
-      "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
+      "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
+    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
     "unit-test:browser":
       "npm run build:test && dev-tool run test:vitest --browser",
     "unit-test:node": "dev-tool run test:vitest"

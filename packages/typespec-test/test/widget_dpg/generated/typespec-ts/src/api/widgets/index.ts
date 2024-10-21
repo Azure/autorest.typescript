@@ -2,37 +2,43 @@
 // Licensed under the MIT License.
 
 import {
-  User,
-  Widget,
-  AnalyzeResult,
-  _ListWidgetsPagesResults,
-} from "../../models/models.js";
-import { WidgetServiceContext as Client } from "../index.js";
+  WidgetServiceContext as Client,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+} from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
+  User,
+  userSerializer,
+  userDeserializer,
+  Widget,
+  widgetDeserializer,
+  _ListWidgetsPagesResults,
+  _listWidgetsPagesResultsDeserializer,
+  widgetArrayDeserializer,
+  AnalyzeResult,
+  analyzeResultDeserializer,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
 
 export function _listWidgetsSend(
   context: Client,
@@ -43,40 +49,42 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/widgets")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        "required-header": requiredHeader,
-        ...(options?.optionalHeader !== undefined
-          ? { "optional-header": options?.optionalHeader }
-          : {}),
-        ...(options?.nullableOptionalHeader !== undefined &&
-        options?.nullableOptionalHeader !== null
-          ? { "nullable-optional-header": options?.nullableOptionalHeader }
-          : {}),
-        "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
-        value: uint8ArrayToString(value, "base64"),
-        "csv-array-header": buildCsvCollection(
-          csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url")),
-        ),
-        "utc-date-header": utcDateHeader.toUTCString(),
-        ...(options?.optionalDateHeader !== undefined
-          ? {
-              "optional-date-header":
-                options?.optionalDateHeader?.toUTCString(),
-            }
-          : {}),
-        ...(options?.nullableDateHeader !== undefined &&
-        options?.nullableDateHeader !== null
-          ? {
-              "nullable-date-header":
-                options?.nullableDateHeader?.toUTCString(),
-            }
-          : {}),
-      },
-    });
+  return context.path("/widgets").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      "required-header": requiredHeader,
+      ...(options?.optionalHeader !== undefined
+        ? { "optional-header": options?.optionalHeader }
+        : {}),
+      ...(options?.nullableOptionalHeader !== undefined &&
+      options?.nullableOptionalHeader !== null
+        ? { "nullable-optional-header": options?.nullableOptionalHeader }
+        : {}),
+      "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
+      value: uint8ArrayToString(value, "base64"),
+      "csv-array-header": buildCsvCollection(
+        csvArrayHeader.map((p: any) => {
+          return uint8ArrayToString(p, "base64url");
+        }),
+      ),
+      "utc-date-header": utcDateHeader.toUTCString(),
+      ...(options?.optionalDateHeader !== undefined
+        ? {
+            "optional-date-header": !options?.optionalDateHeader
+              ? options?.optionalDateHeader
+              : options?.optionalDateHeader.toUTCString(),
+          }
+        : {}),
+      ...(options?.nullableDateHeader !== undefined &&
+      options?.nullableDateHeader !== null
+        ? {
+            "nullable-date-header": !options?.nullableDateHeader
+              ? options?.nullableDateHeader
+              : options?.nullableDateHeader.toUTCString(),
+          }
+        : {}),
+    },
+  });
 }
 
 export async function _listWidgetsDeserialize(
@@ -87,11 +95,7 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p: any) => {
-        return { id: p["id"], weight: p["weight"], color: p["color"] };
-      });
+  return widgetArrayDeserializer(result.body);
 }
 
 /**
@@ -142,12 +146,7 @@ export async function _listWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p: any) => {
-      return { id: p["id"], weight: p["weight"], color: p["color"] };
-    }),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
 export function listWidgetsPages(
@@ -187,12 +186,7 @@ export async function _queryWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p: any) => {
-      return { id: p["id"], weight: p["weight"], color: p["color"] };
-    }),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
 export function queryWidgetsPages(
@@ -228,11 +222,7 @@ export async function _getWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return widgetDeserializer(result.body);
 }
 
 /** Get a widget by ID. */
@@ -267,11 +257,7 @@ export async function _createWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return widgetDeserializer(result.body);
 }
 
 /**
@@ -301,7 +287,7 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: { role: resource["role"], id: resource["id"] },
+      body: userSerializer(resource),
     });
 }
 
@@ -313,11 +299,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
+  return userDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */
@@ -336,6 +318,7 @@ export function createOrReplace(
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
         _createOrReplaceSend(context, name, resource, options),
+      resourceLocationConfig: "original-uri",
     },
   ) as PollerLike<OperationState<User>, User>;
 }
@@ -361,11 +344,7 @@ export async function _updateWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
+  return widgetDeserializer(result.body);
 }
 
 /**
@@ -430,9 +409,7 @@ export async function _analyzeWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    summary: result.body["summary"],
-  };
+  return analyzeResultDeserializer(result.body);
 }
 
 /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */

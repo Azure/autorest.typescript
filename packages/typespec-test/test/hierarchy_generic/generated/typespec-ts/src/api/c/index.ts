@@ -1,26 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { BA, BEA } from "../../models/models.js";
-import { FooContext as Client } from "../index.js";
+import { FooContext as Client, COp1OptionalParams } from "../index.js";
+import { Ba, baSerializer, Bea, beaSerializer } from "../../models/models.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { COp1OptionalParams } from "../../models/options.js";
 
 export function _cOp1Send(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: COp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop3: body["prop3"] },
+      body: beaSerializer(body),
     });
 }
 
@@ -37,7 +36,7 @@ export async function _cOp1Deserialize(
 
 export async function cOp1(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: COp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cOp1Send(context, body, options);
@@ -46,14 +45,14 @@ export async function cOp1(
 
 export function _cOp1Send(
   context: Client,
-  body: BA,
+  body: Ba,
   options: COp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop2: body["prop2"] },
+      body: baSerializer(body),
     });
 }
 
@@ -70,7 +69,7 @@ export async function _cOp1Deserialize(
 
 export async function cOp1(
   context: Client,
-  body: BA,
+  body: Ba,
   options: COp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cOp1Send(context, body, options);

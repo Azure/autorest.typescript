@@ -1,3 +1,7 @@
+import {
+  SdkBodyParameter,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 import { Type } from "../modularCodeModel.js";
 
 /**
@@ -14,14 +18,10 @@ export interface TypeMetadata {
 // Mapping of simple types to their TypeScript equivalents.
 const simpleTypeMap: Record<string, TypeMetadata> = {
   Key: {
-    name: "KeyCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
+    name: "KeyCredential"
   },
   OAuth2: {
-    name: "TokenCredential",
-    originModule: "@azure/core-auth",
-    isRelative: false
+    name: "TokenCredential"
   },
   boolean: { name: "boolean" },
   datetime: { name: "Date" },
@@ -304,5 +304,37 @@ export function isCredentialType(type: Type): boolean {
   return (
     credentialTypes.includes(type.type) ||
     (type.type === "combined" && (type.types?.every(isCredentialType) ?? false))
+  );
+}
+
+/**
+ * Builds a property name mapper between the serializedName and the name of the property.
+ * Return empty map if the type is not a model.
+ */
+export function buildPropertyNameMapper(model: SdkType) {
+  const mapper = new Map<string, string>();
+  if (model.kind !== "model") {
+    return mapper;
+  }
+  for (const prop of model.properties) {
+    if (prop.kind !== "property") {
+      continue;
+    }
+
+    mapper.set(prop.serializedName, prop.name);
+  }
+  return mapper;
+}
+
+/**
+ * Checks if the body parameter is a spread parameter.
+ * @param body
+ * @returns
+ */
+export function isSpreadBodyParameter(body: SdkBodyParameter) {
+  const methodParams = body.correspondingMethodParams;
+  return (
+    methodParams.length > 1 ||
+    (methodParams.length === 1 && methodParams[0]?.type !== body.type)
   );
 }

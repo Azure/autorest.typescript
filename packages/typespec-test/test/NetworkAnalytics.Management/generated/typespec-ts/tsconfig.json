@@ -17,7 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": { "@azure/arm-networkanalytics": ["./src/index"] }
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
 }

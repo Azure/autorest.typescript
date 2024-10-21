@@ -265,7 +265,6 @@ describe("Package file generation", () => {
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.devDependencies).to.have.property("tshy");
     });
 
     it("[esm] should include correct devDependencies with tests", () => {
@@ -296,19 +295,19 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "npm run clean && tshy && dev-tool run build-test"
+        "npm run clean && dev-tool run build-package && dev-tool run build-test"
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
-        "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node"
       );
       expect(packageFile.scripts).to.have.property(
         "test",
-        "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
@@ -337,7 +336,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -444,7 +443,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
   });
@@ -693,10 +692,9 @@ describe("Package file generation", () => {
         "./test/integration/static/package.json"
       );
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
       expect(packageFile.dependencies).to.have.property(
         "@azure/core-lro",
-        "^3.0.0"
+        "^3.1.0"
       );
       expect(packageFile.dependencies).to.have.property(
         "@azure/abort-controller",
@@ -704,33 +702,12 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should update to correct paging dependencies if there are paging operations", () => {
-      const model = createMockModel({
-        moduleKind: "cjs",
-        flavor: "azure",
-        isMonorepo: false,
-        withTests: true,
-        hasPaging: true
-      });
-      const packageFileContent = updatePackageFile(
-        model,
-        "./test/integration/static/package.json"
-      );
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      console.log(packageFile);
-      expect(packageFile.dependencies).to.have.property(
-        "@azure/core-paging",
-        "^1.5.0"
-      );
-    });
-
-    it("[cjs] should return directly if package.json is non-existing or no paging/lro operations", () => {
+    it("[cjs] should return directly if package.json is non-existing or no lro operations", () => {
       let model = createMockModel({
         moduleKind: "cjs",
         flavor: "azure",
         isMonorepo: false,
         withTests: true,
-        hasPaging: false,
         hasLro: false
       });
       let packageFileContent = updatePackageFile(
@@ -743,7 +720,6 @@ describe("Package file generation", () => {
         flavor: "azure",
         isMonorepo: false,
         withTests: true,
-        hasPaging: true,
         hasLro: true
       });
       packageFileContent = updatePackageFile(
@@ -785,11 +761,6 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.scripts).to.have.property(
-        "check-format",
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" '
-      );
-
-      expect(packageFile.scripts).to.have.property(
         "build",
         "npm run clean && tshy && npm run extract-api"
       );
@@ -801,11 +772,6 @@ describe("Package file generation", () => {
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.scripts).to.have.property(
-        "check-format",
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" '
-      );
 
       expect(packageFile.scripts).to.have.property(
         "build",

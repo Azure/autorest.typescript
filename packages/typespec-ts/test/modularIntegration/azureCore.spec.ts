@@ -112,7 +112,25 @@ describe("BasicClient Classical Client", () => {
       assert.fail(err as string);
     }
   });
-
+  it("should export all users", async () => {
+    try {
+      const result = await client.exportAllUsers("json");
+      assert.strictEqual(result.users[0]?.id, 1);
+      assert.strictEqual(result.users[0]?.name, "Madge");
+      assert.strictEqual(
+        result.users[0]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
+      assert.strictEqual(result.users[1]?.id, 2);
+      assert.strictEqual(result.users[1]?.name, "John");
+      assert.strictEqual(
+        result.users[1]?.etag,
+        "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
   it("should create or replace a user", async () => {
     try {
       const user = await client.createOrReplace(

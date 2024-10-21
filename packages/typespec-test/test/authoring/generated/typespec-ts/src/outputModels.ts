@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Paged } from "@azure/core-paging";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The details of a project. */
@@ -47,10 +46,26 @@ export interface OperationStatusOutput {
   error?: ErrorModel;
 }
 
+/** Paged collection of Project items */
+export interface PagedProjectOutput {
+  /** The Project items on this page */
+  value: Array<ProjectOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
   readonly name: string;
+}
+
+/** Paged collection of Deployment items */
+export interface PagedDeploymentOutput {
+  /** The Deployment items on this page */
+  value: Array<DeploymentOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** The details of a deployment job. */
@@ -101,12 +116,28 @@ export interface SwapDeploymentsJobOutput {
   readonly id: string;
 }
 
+/** A collection of SupportedLanguage resources. */
+export interface SupportedLanguagesOutput {
+  /** The SupportedLanguage items on this page */
+  value: Array<SupportedLanguageOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Represents a supported language. */
 export interface SupportedLanguageOutput {
   /** The language name. */
   languageName: string;
   /** The language code. This is BCP-47 representation of a language. For example, "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   languageCode: string;
+}
+
+/** A collection of TrainingConfigVersion resources. */
+export interface TrainingConfigVersionsOutput {
+  /** The TrainingConfigVersion items on this page */
+  value: Array<TrainingConfigVersionOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Represents a training config version. */
@@ -124,10 +155,6 @@ export type ProjectKindOutput =
   | "CustomEntityRecognition";
 /** Alias for OperationStateOutput */
 export type OperationStateOutput = string;
-/** Paged collection of Project items */
-export type PagedProjectOutput = Paged<ProjectOutput>;
-/** Paged collection of Deployment items */
-export type PagedDeploymentOutput = Paged<DeploymentOutput>;
 /** Represents the job status. */
 export type JobStatusOutput =
   | "notStarted"
@@ -137,7 +164,3 @@ export type JobStatusOutput =
   | "cancelled"
   | "cancelling"
   | "partiallyCompleted";
-/** A collection of SupportedLanguage resources. */
-export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
-/** A collection of TrainingConfigVersion resources. */
-export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;

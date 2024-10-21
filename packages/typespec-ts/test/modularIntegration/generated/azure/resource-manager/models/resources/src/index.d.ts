@@ -47,7 +47,7 @@ export declare interface NestedProxyResource extends ProxyResource {
 }
 
 export declare interface NestedProxyResourceProperties {
-    readonly provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState_1;
     description?: string;
 }
 
@@ -94,6 +94,10 @@ export declare interface PageSettings {
 
 export declare type ProvisioningState = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
+export declare type ProvisioningState_1 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+
+export declare type ProvisioningState_2 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+
 export declare interface ProxyResource extends Resource {
 }
 
@@ -112,6 +116,7 @@ export declare class ResourcesClient {
     constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
     readonly topLevelTrackedResources: TopLevelTrackedResourcesOperations;
     readonly nestedProxyResources: NestedProxyResourcesOperations;
+    readonly singletonTrackedResources: SingletonTrackedResourcesOperations;
 }
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
@@ -124,6 +129,35 @@ export declare interface RestorePollerOptions<TResult, TResponse extends PathUnc
     updateIntervalInMs?: number;
     abortSignal?: AbortSignalLike;
     processResponseBody?: (result: TResponse) => Promise<TResult>;
+}
+
+export declare interface SingletonTrackedResource extends TrackedResource {
+    properties?: SingletonTrackedResourceProperties;
+}
+
+export declare interface SingletonTrackedResourceProperties {
+    readonly provisioningState?: ProvisioningState;
+    description?: string;
+}
+
+export declare interface SingletonTrackedResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+export declare interface SingletonTrackedResourcesGetByResourceGroupOptionalParams extends OperationOptions {
+}
+
+export declare interface SingletonTrackedResourcesListByResourceGroupOptionalParams extends OperationOptions {
+}
+
+export declare interface SingletonTrackedResourcesOperations {
+    getByResourceGroup: (resourceGroupName: string, options?: SingletonTrackedResourcesGetByResourceGroupOptionalParams) => Promise<SingletonTrackedResource>;
+    createOrUpdate: (resourceGroupName: string, resource: SingletonTrackedResource, options?: SingletonTrackedResourcesCreateOrUpdateOptionalParams) => PollerLike<OperationState<SingletonTrackedResource>, SingletonTrackedResource>;
+    update: (resourceGroupName: string, properties: SingletonTrackedResource, options?: SingletonTrackedResourcesUpdateOptionalParams) => Promise<SingletonTrackedResource>;
+    listByResourceGroup: (resourceGroupName: string, options?: SingletonTrackedResourcesListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<SingletonTrackedResource>;
+}
+
+export declare interface SingletonTrackedResourcesUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface SystemData {
@@ -140,7 +174,7 @@ export declare interface TopLevelTrackedResource extends TrackedResource {
 }
 
 export declare interface TopLevelTrackedResourceProperties {
-    readonly provisioningState?: ProvisioningState;
+    readonly provisioningState?: ProvisioningState_2;
     description?: string;
 }
 
@@ -182,7 +216,5 @@ export declare interface TrackedResource extends Resource {
     tags?: Record<string, string>;
     location: string;
 }
-
-export declare type Versions = "2023-12-01-preview";
 
 export { }

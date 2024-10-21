@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ClientOptions, Client, getClient } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface FooContext extends Client {}
 
@@ -10,7 +10,7 @@ export interface FooContext extends Client {}
 export interface FooClientOptionalParams extends ClientOptions {}
 
 export function createFoo(
-  endpoint: string,
+  endpointParam: string,
   options: FooClientOptionalParams = {},
 ): FooContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -23,7 +23,7 @@ export function createFoo(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? endpoint,
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
     undefined,
     updatedOptions,
   );

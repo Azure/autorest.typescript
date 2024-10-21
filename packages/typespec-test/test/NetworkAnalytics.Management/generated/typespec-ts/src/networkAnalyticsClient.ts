@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getOperationsOperations,
   OperationsOperations,
@@ -24,6 +22,8 @@ import {
   NetworkAnalyticsContext,
   NetworkAnalyticsClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
 
 export { NetworkAnalyticsClientOptionalParams } from "./api/networkAnalyticsContext.js";
 

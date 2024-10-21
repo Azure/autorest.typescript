@@ -230,7 +230,7 @@ function importClassicalClient(
   client: Client,
   sourceFile: SourceFile
 ): string[] {
-  const classicalClientName = `${getClientName(client)}Client`;
+  const classicalClientName = `${getClientName(client.tcgcClient)}Client`;
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientName}`],
     moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`

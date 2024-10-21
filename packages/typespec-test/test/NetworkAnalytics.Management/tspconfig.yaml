@@ -1,8 +1,7 @@
-emit: [
-    "@azure-tools/typespec-ts",
-  ]
+emit: ["@azure-tools/typespec-ts"]
 options:
   "@azure-tools/typespec-ts":
+    examples-directory: "{project-root}/spec/examples"
     generateMetadata: true
     generateTest: true
     generateSample: true

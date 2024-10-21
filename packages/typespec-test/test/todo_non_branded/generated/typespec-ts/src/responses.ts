@@ -17,13 +17,13 @@ export interface UsersCreate200Response extends HttpResponse {
   body: UserCreatedResponseOutput;
 }
 
-/** The request conflicts with the current state of the server. */
+/** The user already exists */
 export interface UsersCreate409Response extends HttpResponse {
   status: "409";
   body: UserExistsResponseOutput;
 }
 
-/** Client error */
+/** The user is invalid (e.g. forgot to enter email address) */
 export interface UsersCreate422Response extends HttpResponse {
   status: "422";
   body: InvalidUserResponseOutput;
@@ -34,7 +34,7 @@ export interface UsersValidate200Response extends HttpResponse {
   status: "200";
 }
 
-/** Client error */
+/** The user is invalid (e.g. forgot to enter email address) */
 export interface UsersValidate422Response extends HttpResponse {
   status: "422";
   body: InvalidUserResponseOutput;
