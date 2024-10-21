@@ -10,6 +10,44 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+export declare interface AccessRule {
+    name?: string;
+    properties?: AccessRuleProperties;
+}
+
+export declare type AccessRuleDirection = string;
+
+export declare type AccessRuleDirectionOutput = string;
+
+export declare interface AccessRuleOutput {
+    name?: string;
+    properties?: AccessRulePropertiesOutput;
+}
+
+export declare interface AccessRuleProperties {
+    direction?: AccessRuleDirection;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeter>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
+
+export declare interface AccessRulePropertiesOutput {
+    direction?: AccessRuleDirectionOutput;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeterOutput>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
+
 export declare type AzureArmResourceClient = Client & {
     path: Routes;
 };
@@ -85,6 +123,10 @@ export declare interface IdentityOutput {
     readonly tenantId?: string;
     type?: ResourceIdentityTypeOutput;
 }
+
+export declare type IssueType = string;
+
+export declare type IssueTypeOutput = string;
 
 export declare function isUnexpected(response: TopLevelTrackedResourcesGet200Response | TopLevelTrackedResourcesGetDefaultResponse): response is TopLevelTrackedResourcesGetDefaultResponse;
 
@@ -263,6 +305,60 @@ export declare interface NestedProxyResourcesUpdateLogicalResponse extends HttpR
 
 export declare type NestedProxyResourcesUpdateParameters = NestedProxyResourcesUpdateBodyParam & RequestParameters;
 
+export declare interface NetworkSecurityPerimeter {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityPerimeterConfiguration extends ProxyResource {
+    properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationOutput extends ProxyResourceOutput {
+    properties?: NetworkSecurityPerimeterConfigurationPropertiesOutput;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationProperties {
+    networkSecurityPerimeter?: NetworkSecurityPerimeter;
+    resourceAssociation?: ResourceAssociation;
+    profile?: NetworkSecurityProfile;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationPropertiesOutput {
+    readonly provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningStateOutput;
+    readonly provisioningIssues?: Array<ProvisioningIssueOutput>;
+    networkSecurityPerimeter?: NetworkSecurityPerimeterOutput;
+    resourceAssociation?: ResourceAssociationOutput;
+    profile?: NetworkSecurityProfileOutput;
+}
+
+export declare type NetworkSecurityPerimeterConfigurationProvisioningState = string;
+
+export declare type NetworkSecurityPerimeterConfigurationProvisioningStateOutput = string;
+
+export declare interface NetworkSecurityPerimeterOutput {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityProfile {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRule>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
+
+export declare interface NetworkSecurityProfileOutput {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRuleOutput>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
+
 export declare interface NotificationDetails {
     message: string;
     urgent: boolean;
@@ -371,6 +467,25 @@ export declare interface PrivateLinkServiceConnectionStateOutput {
     actionsRequired?: string;
 }
 
+export declare interface ProvisioningIssue {
+}
+
+export declare interface ProvisioningIssueOutput {
+    readonly name?: string;
+    readonly properties?: ProvisioningIssuePropertiesOutput;
+}
+
+export declare interface ProvisioningIssueProperties {
+}
+
+export declare interface ProvisioningIssuePropertiesOutput {
+    readonly issueType?: IssueTypeOutput;
+    readonly severity?: SeverityOutput;
+    readonly description?: string;
+    readonly suggestedResourceIds?: string[];
+    readonly suggestedAccessRules?: Array<AccessRuleOutput>;
+}
+
 export declare type ProvisioningState = string;
 
 export declare type ProvisioningStateOutput = string;
@@ -382,6 +497,20 @@ export declare interface ProxyResourceOutput extends ResourceOutput {
 }
 
 export declare interface Resource {
+}
+
+export declare interface ResourceAssociation {
+    name?: string;
+    accessMode?: ResourceAssociationAccessMode;
+}
+
+export declare type ResourceAssociationAccessMode = string;
+
+export declare type ResourceAssociationAccessModeOutput = string;
+
+export declare interface ResourceAssociationOutput {
+    name?: string;
+    accessMode?: ResourceAssociationAccessModeOutput;
 }
 
 export declare type ResourceIdentityType = "SystemAssigned";
@@ -427,6 +556,10 @@ export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default", subscriptionId: string, resourceGroupName: string): SingletonTrackedResourcesGetByResourceGroup;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources", subscriptionId: string, resourceGroupName: string): SingletonTrackedResourcesListByResourceGroup;
 }
+
+export declare type Severity = string;
+
+export declare type SeverityOutput = string;
 
 export declare interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
     isDone(): boolean;
