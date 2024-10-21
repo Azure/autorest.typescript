@@ -66,7 +66,7 @@ export function buildClientContext(
               ? "string"
               : getTypeExpression(dpgContext, p.type),
           hasQuestionToken: true,
-          docs: getDocsFromDescription(p.description)
+          docs: getDocsFromDescription(p.doc)
         };
       }),
     docs: ["Optional parameters for the client."]
