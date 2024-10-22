@@ -5,7 +5,7 @@
   "description": "A generated SDK for UserAgentCoreV1Client.",
   "version": "1.0.0-preview1",
   "engines": { "node": ">=18.0.0" },
-  "dependencies": { "@azure/core-http": "^3.0.0", "tslib": "^2.2.0" },
+  "dependencies": { "tslib": "^2.2.0" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "./dist/index.js",
