@@ -609,9 +609,9 @@ describe("Input/output model type", () => {
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
-        "prop1": string;
-        "prop2": string;
-        "x": string;
+        prop1: string;
+        prop2: string;
+        x: string;
       }
       `
       );
@@ -619,9 +619,9 @@ describe("Input/output model type", () => {
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
-        "prop1": string;
-        "prop2": string;
-        "x": string;
+        prop1: string;
+        prop2: string;
+        x: string;
       }
       `
       );
