@@ -338,10 +338,6 @@ function buildModelTypeDeserializer(
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";
-  // getPropertySerializationPrefix({
-  //   clientName: "item",
-  //   type
-  // });
 
   // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
   const additionalPropertiesSpread = hasAdditionalProperties(type)

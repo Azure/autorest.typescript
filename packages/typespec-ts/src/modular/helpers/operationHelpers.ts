@@ -221,7 +221,7 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
-  if (operation.bodyParameter) {
+  if (operation.bodyParameter && operation.bodyParameter.optional === false) {
     parameters.set(operation.bodyParameter?.clientName, {
       hasQuestionToken: operation.bodyParameter.optional,
       ...buildType(
@@ -564,20 +564,27 @@ function buildBodyParameter(
     false,
     true
   );
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter);
+
+  const bodyNameExpression = bodyParameter.optional
+    ? `options["${bodyParameter.clientName}"]`
+    : bodyParameter.clientName;
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    bodyParameter,
+    bodyParameter.optional ? "options" : undefined
+  );
   if (serializerFunctionName) {
-    return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyParameter.clientName}),`;
+    return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
-    return `\nbody: ${nullOrUndefinedPrefix}${bodyParameter.clientName},`;
+    return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
   }
   const serializedBody = serializeRequestValue(
     context,
     bodyParameter.type,
-    bodyParameter.clientName,
+    bodyNameExpression,
     !bodyParameter.optional,
     bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format
   );
-  return `\nbody: ${serializedBody === bodyParameter.clientName ? "" : nullOrUndefinedPrefix}${serializedBody},`;
+  return `\nbody: ${serializedBody === bodyNameExpression ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
