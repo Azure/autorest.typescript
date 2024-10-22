@@ -68,6 +68,7 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
+      dpgContext,
       operation
     )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
       dpgContext,
@@ -766,21 +767,9 @@ function getOptional(context: SdkContext, param: OptionalType) {
 }
 
 /**
- * Builds the assignment for when a property or parameter has a default value
- */
-function getDefaultValue(param: Parameter | Property) {
-  return (param.clientDefaultValue ?? param.type.clientDefaultValue) !==
-    undefined
-    ? `${param.optional ? "??" : ""} "${
-        param.clientDefaultValue ?? param.type.clientDefaultValue
-      }"`
-    : "";
-}
-
-/**
  * Extracts the path parameters
  */
-function getPathParameters(operation: Operation) {
+function getPathParameters(dpgContext: SdkContext, operation: Operation) {
   if (!operation.parameters) {
     return "";
   }
@@ -788,36 +777,25 @@ function getPathParameters(operation: Operation) {
   let pathParams = "";
   for (const param of operation.parameters) {
     if (param.location === "path") {
-      if (!param.optional) {
-        pathParams += `${pathParams !== "" ? "," : ""} ${getParamExpression(
-          param
-        )}`;
-        continue;
+      // Path parameters cannot be optional
+      if (param.optional) {
+        reportDiagnostic(dpgContext.program, {
+          code: "optional-path-param",
+          target: NoTarget,
+          format: {
+            paramName: param.clientName
+          }
+        });
       }
-
-      const defaultValue = getDefaultValue(param);
-
-      pathParams += `${pathParams !== "" ? "," : ""} ${getParamExpression(
-        param
-      )}`;
-
-      if (defaultValue) {
-        pathParams += ` ?? "${getParamExpression(param, defaultValue)}"`;
-      }
+      const paramExpression =
+        param.skipUrlEncoding === true
+          ? `{value: ${param.clientName}, allowReserved: true}`
+          : param.clientName;
+      pathParams += `${pathParams !== "" ? "," : ""} ${paramExpression}`;
     }
   }
 
   return pathParams;
-}
-
-function getParamExpression(param: Parameter, defaultValue?: string) {
-  const value = defaultValue
-    ? `"${defaultValue}"`
-    : (param.optional ? "options." : "") + param.clientName;
-  if (param.skipUrlEncoding === true) {
-    return `{value: ${value}, allowReserved: true}`;
-  }
-  return value;
 }
 
 function getNullableCheck(name: string, type: Type) {

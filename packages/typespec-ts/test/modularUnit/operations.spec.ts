@@ -213,7 +213,7 @@ describe("operations", () => {
         op read( @header nullableRequiredHeader: string | null): OkResponse;
         `;
 
-        await emitModularOperationsFromTypeSpec(tspContent, {mustEmptyDiagnostic: true});
+        await emitModularOperationsFromTypeSpec(tspContent, { mustEmptyDiagnostic: true });
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
@@ -768,6 +768,19 @@ describe("operations", () => {
         }`,
         true
       );
+    });
+  });
+
+  describe("path parameters", () => {
+    it("should throw errors if optional path parameter", async () => {
+      const tspContent = `
+        op read(@path param?: string): OkResponse;
+        `;
+      try {
+        await emitModularOperationsFromTypeSpec(tspContent);
+      } catch (e: any) {
+        assert.match(e.message, /Path parameter 'param' cannot be optional/);
+      }
     });
   });
 });
