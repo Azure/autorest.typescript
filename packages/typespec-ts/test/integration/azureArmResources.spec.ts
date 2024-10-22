@@ -4,7 +4,7 @@ import AzureArmResourceClientFactory, {
   getLongRunningPoller,
   isUnexpected,
   paginate
-} from "./generated/azure/resource-manager/models/resources/src/index.js";
+} from "./generated/azure/resource-manager/resources/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: AzureArmResourceClient;
 
@@ -17,9 +17,9 @@ describe("Azure Arm Resources Rest Client", () => {
   const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
   const RESOURCE_GROUP_EXPECTED = "test-rg";
   const validTopLevelResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`,
     name: "top",
-    type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+    type: "Azure.ResourceManager.Resources/topLevelTrackedResources",
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
@@ -36,9 +36,9 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validNestedResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
     name: "nested",
-    type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+    type: "Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources",
     properties: {
       provisioningState: "Succeeded",
       description: "valid"
@@ -54,9 +54,9 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validSingletonResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default`,
     name: "default",
-    type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    type: "Azure.ResourceManager.Resources/singletonTrackedResources",
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
@@ -75,7 +75,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get singleton tracked resources by resourceGroup", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
@@ -97,7 +97,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should createOrUpdate singleton tracked resources", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
@@ -124,7 +124,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should update singleton tracked resources", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
@@ -153,7 +153,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list singleton tracked resources by resourceGroup", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
@@ -177,7 +177,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should actionSync top level tracked resources", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/actionSync",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/actionSync",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
@@ -194,7 +194,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get top level tracked resources", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
@@ -214,7 +214,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should create or replace top level tracked resources", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
@@ -247,7 +247,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it.skip("should update top level tracked resources", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
@@ -274,7 +274,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should delete top level tracked resources", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
@@ -291,7 +291,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list top level tracked resources by resourceGroup ", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources",
         "00000000-0000-0000-0000-000000000000",
         "test-rg"
       )
@@ -314,7 +314,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list top level tracked resources by subscription ", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources",
         "00000000-0000-0000-0000-000000000000"
       )
       .get();
@@ -338,7 +338,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get nested proxy resource", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top",
@@ -360,7 +360,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should create or replace nested proxy resource", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top",
@@ -392,7 +392,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should update nested proxy resource", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top",
@@ -421,7 +421,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should delete nested proxy resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources/{nextedProxyResourceName}",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top",
@@ -434,7 +434,7 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list nested proxy resource by TopLevelTrackedResource ", async () => {
     const initialResponse = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources",
         "00000000-0000-0000-0000-000000000000",
         "test-rg",
         "top"
