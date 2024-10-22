@@ -12,6 +12,12 @@ model Foo {
 op post(@body body: Foo): void;
 ```
 
+This is the config to disable mustEmptyDiagnostic option.
+
+```yaml
+mustEmptyDiagnostic: false
+```
+
 ## Provide generated models and its serializer
 
 Generated Models.

@@ -50,7 +50,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   // Snapshot of the entire models file
   "(ts|typescript) models": async (tsp, { }, namedUnknownArgs) => {
     const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
-    const result = await emitModularModelsFromTypeSpec(tsp, { mustEmptyDiagnostic: false, ...configs });
+    const result = await emitModularModelsFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
       return "// (file was not generated)";
