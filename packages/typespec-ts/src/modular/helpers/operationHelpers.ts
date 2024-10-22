@@ -774,6 +774,13 @@ function getOptional(context: SdkContext, param: OptionalType) {
 }
 
 /**
+ * Builds the assignment for when a property or parameter has a default value
+ */
+function getDefaultValue(param: Parameter | Property) {
+  return param.clientDefaultValue ?? param.type.clientDefaultValue;
+}
+
+/**
  * Extracts the path parameters
  */
 function getPathParameters(dpgContext: SdkContext, operation: Operation) {
@@ -794,15 +801,26 @@ function getPathParameters(dpgContext: SdkContext, operation: Operation) {
           }
         });
       }
-      const paramExpression =
-        param.skipUrlEncoding === true
-          ? `{value: ${param.clientName}, allowReserved: true}`
-          : param.clientName;
-      pathParams += `${pathParams !== "" ? "," : ""} ${paramExpression}`;
+      pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
+        param,
+        getDefaultValue(param)
+      )}`;
     }
   }
 
   return pathParams;
+}
+
+function getPathParamExpr(param: Parameter, defaultValue?: string) {
+  const value = defaultValue
+    ? typeof defaultValue === "string"
+      ? `options[${param.clientName}] ?? "${defaultValue}"`
+      : `options[${param.clientName}] ?? ${defaultValue}`
+    : param.clientName;
+  if (param.skipUrlEncoding === true) {
+    return `{value: ${value}, allowReserved: true}`;
+  }
+  return value;
 }
 
 function getNullableCheck(name: string, type: Type) {
