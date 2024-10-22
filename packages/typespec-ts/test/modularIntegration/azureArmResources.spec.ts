@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ResourcesClient } from "./generated/azure/resource-manager/models/resources/src/index.js";
+import { ResourcesClient } from "./generated/azure/resource-manager/resources/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: ResourcesClient;
 
@@ -12,9 +12,9 @@ describe("Azure Arm Resources Rest Client", () => {
   const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
   const RESOURCE_GROUP_EXPECTED = "test-rg";
   const validTopLevelResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`,
     name: "top",
-    type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources",
+    type: "Azure.ResourceManager.Resources/topLevelTrackedResources",
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
@@ -31,9 +31,9 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validNestedResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
     name: "nested",
-    type: "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources",
+    type: "Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources",
     properties: {
       provisioningState: "Succeeded",
       description: "valid"
@@ -49,9 +49,9 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validSingletonResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.Resources/singletonTrackedResources/default`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default`,
     name: "default",
-    type: "Azure.ResourceManager.Models.Resources/singletonTrackedResources",
+    type: "Azure.ResourceManager.Resources/singletonTrackedResources",
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
@@ -70,14 +70,14 @@ describe("Azure Arm Resources Rest Client", () => {
   // singleton tracked resource
   it("should get singleton tracked resources by resourceGroup", async () => {
     const result =
-      await client.singletonTrackedResources.getByResourceGroup("test-rg");
+      await client.singleton.getByResourceGroup("test-rg");
     assert.strictEqual(result.id, validSingletonResource.id);
     assert.strictEqual(result.name, validSingletonResource.name);
     assert.strictEqual(result.type, validSingletonResource.type);
   });
 
   it("should update singleton tracked resources", async () => {
-    const result = await client.singletonTrackedResources.update("test-rg", {
+    const result = await client.singleton.update("test-rg", {
       location: "eastus2",
       properties: {
         description: "valid2"
@@ -92,7 +92,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should createOrUpdate singleton tracked resources by resourceGroup", async () => {
-    const result = await client.singletonTrackedResources.createOrUpdate(
+    const result = await client.singleton.createOrUpdate(
       "test-rg",
       {
         location: "eastus",
@@ -108,7 +108,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should list singleton tracked resources by resourceGroup", async () => {
     const result =
-      client.singletonTrackedResources.listByResourceGroup("test-rg");
+      client.singleton.listByResourceGroup("test-rg");
     const items = [];
     for await (const user of result) {
       items.push(user);
@@ -120,7 +120,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   // top level tracked resource
   it("should actionSync top level tracked resources", async () => {
-    const result = await client.topLevelTrackedResources.actionSync(
+    const result = await client.topLevel.actionSync(
       "test-rg",
       "top",
       {
@@ -132,14 +132,14 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should get top level tracked resources", async () => {
-    const result = await client.topLevelTrackedResources.get("test-rg", "top");
+    const result = await client.topLevel.get("test-rg", "top");
     assert.strictEqual(result.id, validTopLevelResource.id);
     assert.strictEqual(result.name, validTopLevelResource.name);
     assert.strictEqual(result.type, validTopLevelResource.type);
   });
 
   it("should create or replace top level tracked resources", async () => {
-    const result = await client.topLevelTrackedResources.createOrReplace(
+    const result = await client.topLevel.createOrReplace(
       "test-rg",
       "top",
       {
@@ -160,7 +160,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it.skip("should update top level tracked resources", async () => {
-    const result = await client.topLevelTrackedResources.update(
+    const result = await client.topLevel.update(
       "test-rg",
       "top",
       {
@@ -178,7 +178,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should delete top level tracked resources", async () => {
-    const result = await client.topLevelTrackedResources.delete(
+    const result = await client.topLevel.delete(
       "test-rg",
       "top"
     );
@@ -186,7 +186,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should list top level tracked resources by resourceGroup ", async () => {
-    const result = await client.topLevelTrackedResources
+    const result = await client.topLevel
       .listByResourceGroup("test-rg")
       .next();
     assert.strictEqual(result.value.id, validTopLevelResource.id);
@@ -196,7 +196,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should list top level tracked resources by subscription ", async () => {
-    const result = await client.topLevelTrackedResources
+    const result = await client.topLevel
       .listBySubscription()
       .next();
     assert.strictEqual(result.value.id, validTopLevelResource.id);
@@ -207,7 +207,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   // // nested proxy resource
   it("should get nested proxy resource", async () => {
-    const result = await client.nestedProxyResources.get(
+    const result = await client.nested.get(
       "test-rg",
       "top",
       "nested"
@@ -219,7 +219,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should create or replace nested proxy resource", async () => {
-    const result = await client.nestedProxyResources.createOrReplace(
+    const result = await client.nested.createOrReplace(
       "test-rg",
       "top",
       "nested",
@@ -239,7 +239,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should update nested proxy resource", async () => {
-    const result = await client.nestedProxyResources.update(
+    const result = await client.nested.update(
       "test-rg",
       "top",
       "nested",
@@ -256,7 +256,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should delete nested proxy resource", async () => {
-    const result = await client.nestedProxyResources.delete(
+    const result = await client.nested.delete(
       "test-rg",
       "top",
       "nested"
@@ -265,7 +265,7 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("should list nested proxy resource by TopLevelTrackedResource ", async () => {
-    const result = await client.nestedProxyResources
+    const result = await client.nested
       .listByTopLevelTrackedResource("test-rg", "top")
       .next();
 
