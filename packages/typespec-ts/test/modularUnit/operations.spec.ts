@@ -291,7 +291,7 @@ describe("operations", () => {
         export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
-              body: !options["bars"] ? options["bars"] : barArraySerializer(options.bars),
+              body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
            });
         }
 
