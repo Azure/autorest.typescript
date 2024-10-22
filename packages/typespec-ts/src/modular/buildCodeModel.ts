@@ -5,6 +5,7 @@ import {
   Model,
   ModelProperty,
   Namespace,
+  NoTarget,
   Operation,
   Program,
   Scalar,
@@ -1260,7 +1261,7 @@ function emitStdScalar(
         format: {
           propertyName: newScalar?.name ?? ""
         },
-        target: newScalar ?? scalar
+        target: NoTarget
       });
       return { type: "integer", format: newScalar.format };
     default:
