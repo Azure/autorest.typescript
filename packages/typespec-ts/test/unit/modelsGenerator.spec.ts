@@ -584,7 +584,7 @@ describe("Input/output model type", () => {
       `
       );
     });
-    it("should handle int/decimal/decimal128 with encode `string`", async () => {
+    it("should handle int/decimal/decimal128/int8 with encode `string`", async () => {
       const schemaOutput = await emitModelsFromTypeSpec(
         `
       model SimpleModel {
