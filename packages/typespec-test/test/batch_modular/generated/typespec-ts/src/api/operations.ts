@@ -1660,7 +1660,7 @@ export function _terminateJobSend(
       },
       body: !options["body"]
         ? options["body"]
-        : batchJobTerminateOptionsSerializer(options.body),
+        : batchJobTerminateOptionsSerializer(options["body"]),
     });
 }
 
@@ -3840,7 +3840,7 @@ export function _rebootNodeSend(
       },
       body: !options["body"]
         ? options["body"]
-        : nodeRebootOptionsSerializer(options.body),
+        : nodeRebootOptionsSerializer(options["body"]),
     });
 }
 
@@ -3885,7 +3885,7 @@ export function _reimageNodeSend(
       },
       body: !options["body"]
         ? options["body"]
-        : nodeReimageOptionsSerializer(options.body),
+        : nodeReimageOptionsSerializer(options["body"]),
     });
 }
 
@@ -3934,7 +3934,7 @@ export function _disableNodeSchedulingSend(
       },
       body: !options["body"]
         ? options["body"]
-        : nodeDisableSchedulingOptionsSerializer(options.body),
+        : nodeDisableSchedulingOptionsSerializer(options["body"]),
     });
 }
 
