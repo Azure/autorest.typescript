@@ -363,6 +363,7 @@ export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 // @public
 export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
+    body?: MetricRequestPayload;
     interval?: TimeGrain;
 }
 
@@ -459,7 +460,7 @@ export class LoadTestRunClient {
     listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
     listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, body?: MetricRequestPayload, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
+    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
