@@ -213,7 +213,7 @@ describe("operations", () => {
         op read( @header nullableRequiredHeader: string | null): OkResponse;
         `;
 
-        await emitModularOperationsFromTypeSpec(tspContent, {mustEmptyDiagnostic: true});
+        await emitModularOperationsFromTypeSpec(tspContent, { mustEmptyDiagnostic: true });
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
@@ -288,10 +288,10 @@ describe("operations", () => {
         import { TestingContext as Client } from "./index.js";
         import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
+        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
-              body: !bars ? bars : barArraySerializer(bars),
+              body: !options["bars"] ? options["bars"] : barArraySerializer(options.bars),
            });
         }
 
@@ -304,8 +304,8 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
-            const result = await _readSend(context, bars, options);
+        export async function read(context: Client, options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, options);
             return _readDeserialize(result);
         }`,
         true

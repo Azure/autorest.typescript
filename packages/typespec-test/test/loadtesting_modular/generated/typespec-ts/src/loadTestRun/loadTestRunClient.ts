@@ -42,7 +42,6 @@ import {
   DimensionValueList,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
-  MetricRequestPayload,
   TimeSeriesElement,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
@@ -198,7 +197,6 @@ export class LoadTestRunClient {
     metricname: string,
     metricNamespace: string,
     timespan: string,
-    body?: MetricRequestPayload,
     options: ListMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
     return listMetrics(
@@ -207,7 +205,6 @@ export class LoadTestRunClient {
       metricname,
       metricNamespace,
       timespan,
-      body,
       options,
     );
   }
