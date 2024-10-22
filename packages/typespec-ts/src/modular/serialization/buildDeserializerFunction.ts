@@ -40,7 +40,9 @@ export function buildModelDeserializer(
       return undefined;
     }
     if (!type.name) {
-      throw new Error(`NYI Serialization of anonymous types`);
+      // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
+      // throw new Error(`NYI Serialization of anonymous types`);
+      return undefined;
     }
     if (isAzureCoreErrorType(context.program, type.__raw!)) {
       return undefined;
