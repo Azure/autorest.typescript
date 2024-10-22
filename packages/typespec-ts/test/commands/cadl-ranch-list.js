@@ -268,16 +268,16 @@ export const rlcTsps = [
     inputPath: "versioning/typeChangedFrom"
   },
   {
-    outputPath: "azure/resource-manager/models/resources",
-    inputPath: "azure/resource-manager/models/resources"
+    outputPath: "azure/resource-manager/resources",
+    inputPath: "azure/resource-manager/resources"
   },
   {
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
   },
   {
-    outputPath: "azure/resource-manager/models/common-types/managed-identity",
-    inputPath: "azure/resource-manager/models/common-types/managed-identity"
+    outputPath: "azure/resource-manager/common-properties",
+    inputPath: "azure/resource-manager/common-properties"
   },
   {
     outputPath: "azure/core/page",
@@ -314,8 +314,8 @@ export const modularTsps = [
     inputPath: "azure/core/model"
   },
   {
-    outputPath: "azure/resource-manager/models/resources",
-    inputPath: "azure/resource-manager/models/resources"
+    outputPath: "azure/resource-manager/resources",
+    inputPath: "azure/resource-manager/resources"
   },
   { outputPath: "azure/core/lro/rpc", inputPath: "azure/core/lro/rpc" },
   {
@@ -552,8 +552,8 @@ export const modularTsps = [
     inputPath: "resiliency/srv-driven/main.tsp"
   },
   {
-    outputPath: "azure/resource-manager/models/common-types/managed-identity",
-    inputPath: "azure/resource-manager/models/common-types/managed-identity"
+    outputPath: "azure/resource-manager/common-properties",
+    inputPath: "azure/resource-manager/common-properties"
   },
   {
     outputPath: "azure/example/basic",
