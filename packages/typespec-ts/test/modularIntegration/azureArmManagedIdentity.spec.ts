@@ -1,10 +1,10 @@
 import { assert } from "chai";
-import { ManagedIdentityClient } from "./generated/azure/resource-manager/models/common-types/managed-identity/src/index.js";
+import { CommonPropertiesClient } from "./generated/azure/resource-manager/common-properties/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
-  let client: ManagedIdentityClient;
+  let client: CommonPropertiesClient;
 
   beforeEach(() => {
-    client = new ManagedIdentityClient({
+    client = new CommonPropertiesClient({
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
@@ -19,7 +19,7 @@ describe("Azure Arm Resources Rest Client", () => {
   const IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED =
     "SystemAssigned,UserAssigned";
   const validSystemAssignedManagedIdentityResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
     location: `${LOCATION_REGION_EXPECTED}`,
     tags: {
       tagKey1: "tagValue1"
@@ -35,7 +35,7 @@ describe("Azure Arm Resources Rest Client", () => {
   };
 
   const validUserAssignedAndSystemAssignedManagedIdentityResource = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Models.CommonTypes.ManagedIdentity/managedIdentityTrackedResources/identity`,
+    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/identity`,
     location: `${LOCATION_REGION_EXPECTED}`,
     tags: {
       tagKey1: "tagValue1"
@@ -44,10 +44,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-          {
-            principalId: `${PRINCIPAL_ID_EXPECTED}`,
-            clientId: `${CLIENT_ID_EXPECTED}`
-          }
+        {
+          principalId: `${PRINCIPAL_ID_EXPECTED}`,
+          clientId: `${CLIENT_ID_EXPECTED}`
+        }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`
