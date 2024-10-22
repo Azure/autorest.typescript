@@ -2,26 +2,29 @@
 // Licensed under the MIT License.
 
 import {
-  OpenAIFile,
-  ListFilesResponse,
-  CreateFileRequest,
-  DeleteFileResponse,
-} from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
-import {
-  FilesListOptionalParams,
+  OpenAIContext as Client,
   FilesCreateOptionalParams,
-  FilesRetrieveOptionalParams,
   FilesDeleteOptionalParams,
   FilesDownloadOptionalParams,
-} from "../../models/options.js";
+  FilesListOptionalParams,
+  FilesRetrieveOptionalParams,
+} from "../index.js";
+import {
+  OpenAIFile,
+  openAIFileDeserializer,
+  ListFilesResponse,
+  listFilesResponseDeserializer,
+  CreateFileRequest,
+  createFileRequestSerializer,
+  DeleteFileResponse,
+  deleteFileResponseDeserializer,
+} from "../../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _listSend(
   context: Client,
@@ -40,21 +43,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"],
-        statusDetails: p["status_details"],
-      };
-    }),
-  };
+  return listFilesResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -75,10 +64,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: createFileRequestSerializer(file),
     });
 }
 
@@ -90,16 +76,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    statusDetails: result.body["status_details"],
-  };
+  return openAIFileDeserializer(result.body);
 }
 
 export async function create(
@@ -129,16 +106,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    statusDetails: result.body["status_details"],
-  };
+  return openAIFileDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -168,11 +136,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return deleteFileResponseDeserializer(result.body);
 }
 
 /**

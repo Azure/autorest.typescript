@@ -265,7 +265,6 @@ describe("Package file generation", () => {
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-      expect(packageFile.devDependencies).to.have.property("tshy");
     });
 
     it("[esm] should include correct devDependencies with tests", () => {
@@ -296,19 +295,19 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "npm run clean && tshy && dev-tool run build-test"
+        "npm run clean && dev-tool run build-package && dev-tool run build-test"
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
-        "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node"
       );
       expect(packageFile.scripts).to.have.property(
         "test",
-        "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",

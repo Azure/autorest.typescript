@@ -2,22 +2,25 @@
 // Licensed under the MIT License.
 
 import {
-  ListModelsResponse,
-  Model,
-  DeleteModelResponse,
-} from "../../models/models.js";
-import { OpenAIContext as Client } from "../index.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
-import {
+  OpenAIContext as Client,
+  ModelsDeleteOptionalParams,
   ModelsListOptionalParams,
   ModelsRetrieveOptionalParams,
-  ModelsDeleteOptionalParams,
-} from "../../models/options.js";
+} from "../index.js";
+import {
+  ListModelsResponse,
+  listModelsResponseDeserializer,
+  Model,
+  modelDeserializer,
+  DeleteModelResponse,
+  deleteModelResponseDeserializer,
+} from "../../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _listSend(
   context: Client,
@@ -36,17 +39,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p: any) => {
-      return {
-        id: p["id"],
-        object: p["object"],
-        created: new Date(p["created"]),
-        ownedBy: p["owned_by"],
-      };
-    }),
-  };
+  return listModelsResponseDeserializer(result.body);
 }
 
 export async function list(
@@ -75,12 +68,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    ownedBy: result.body["owned_by"],
-  };
+  return modelDeserializer(result.body);
 }
 
 export async function retrieve(
@@ -110,11 +98,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return deleteModelResponseDeserializer(result.body);
 }
 
 /**

@@ -1,38 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  TestRun,
-  TestRunFileInfo,
-  TestRunAppComponents,
-  TestRunServerMetricConfig,
-  DimensionValueList,
-  MetricDefinitionCollection,
-  MetricNamespaceCollection,
-  MetricRequestPayload,
-  TimeSeriesElement,
-} from "./models/models.js";
-import {
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./models/options.js";
 import {
   createLoadTestRun,
-  LoadTestServiceContext,
+  LoadTestRunContext,
   LoadTestRunClientOptionalParams,
   createOrUpdateTestRun,
   createOrUpdateAppComponents,
@@ -48,13 +19,40 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
 } from "./api/index.js";
+import {
+  TestRun,
+  TestRunFileInfo,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  DimensionValueList,
+  MetricDefinitionCollection,
+  MetricNamespaceCollection,
+  MetricRequestPayload,
+  TimeSeriesElement,
+} from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
 
 export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 
 export class LoadTestRunClient {
-  private _client: LoadTestServiceContext;
+  private _client: LoadTestRunContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 

@@ -212,7 +212,7 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.description ?? `execute ${method.name}`;
+    const description = method.doc ?? `execute ${method.name}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
@@ -432,7 +432,7 @@ function getParameterValue(value: SdkExampleValue): string {
       const mapper = buildPropertyNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
-        value.kind === "model" ? value?.additionalPropertiesValue ?? {} : {};
+        value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
         ...value.value,
         ...additionalPropertiesValue

@@ -1,29 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Collection } from "../../models/models.js";
-import { ParametrizedHostContext as Client } from "../index.js";
+import {
+  ParametrizedHostContext as Client,
+  ConfidentialLedgerListCollectionsOptionalParams,
+} from "../index.js";
+import {
+  Collection,
+  collectionArrayDeserializer,
+} from "../../models/models.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
 
 export function _listCollectionsSend(
   context: Client,
-  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
     .path("/app/collections")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": apiVersion },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listCollectionsDeserialize(
@@ -34,21 +35,16 @@ export async function _listCollectionsDeserialize(
     throw createRestError(result);
   }
 
-  return result.body === undefined
-    ? result.body
-    : result.body.map((p: any) => {
-        return { collectionId: p["collectionId"] };
-      });
+  return collectionArrayDeserializer(result.body);
 }
 
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
-  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
 ): Promise<Collection[]> {
-  const result = await _listCollectionsSend(context, apiVersion, options);
+  const result = await _listCollectionsSend(context, options);
   return _listCollectionsDeserialize(result);
 }

@@ -38,7 +38,7 @@ export declare enum KnownManagedServiceIdentityType {
     None = "None",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned",
-    SystemAndUserAssignedV3 = "SystemAssigned,UserAssigned"
+    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned"
 }
 
 export declare class ManagedIdentityClient {
@@ -100,7 +100,5 @@ export declare interface UserAssignedIdentity {
     readonly principalId?: string;
     readonly clientId?: string;
 }
-
-export declare type Versions = "2023-12-01-preview";
 
 export { }

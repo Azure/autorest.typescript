@@ -36,9 +36,9 @@ export function transformApiVersionInfo(
       : undefined;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
-      ? getDefaultApiVersionString(dpgContext) ??
+      ? (getDefaultApiVersionString(dpgContext) ??
         pathVersionDetail?.defaultValue ??
-        queryVersionDetail?.defaultValue
+        queryVersionDetail?.defaultValue)
       : undefined;
 
   if (pathVersionDetail && queryVersionDetail) {

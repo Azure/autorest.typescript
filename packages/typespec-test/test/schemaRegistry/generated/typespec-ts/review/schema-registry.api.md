@@ -106,9 +106,6 @@ export interface SchemaVersion {
     readonly schemaVersion: number;
 }
 
-// @public
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
-
 // (No @packageDocumentation comment for this package)
 
 ```
