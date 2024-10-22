@@ -564,8 +564,9 @@ function buildBodyParameter(
     true
   );
 
-  const bodyNameExpression =
-    (bodyParameter.optional ? "options." : "") + bodyParameter.clientName;
+  const bodyNameExpression = bodyParameter.optional
+    ? `options["${bodyParameter.clientName}"]`
+    : bodyParameter.clientName;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
     bodyParameter,
     bodyParameter.optional ? "options" : undefined

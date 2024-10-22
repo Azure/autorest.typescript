@@ -95,7 +95,7 @@ export function _readSend(
     },
     body: !options["widget"]
       ? options["widget"]
-      : bodyParameterSerializer(options.widget)
+      : bodyParameterSerializer(options["widget"])
   });
 }
 
