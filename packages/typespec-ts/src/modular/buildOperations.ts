@@ -1,4 +1,10 @@
-import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import {
+  BodyParameter,
+  Client,
+  ModularCodeModel,
+  Operation,
+  Parameter
+} from "./modularCodeModel.js";
 import {
   NameType,
   clearImportSets,
@@ -154,7 +160,7 @@ export function buildOperationOptions(
   const optionalParameters = operation.parameters
     .filter((p) => p.implementation === "Method")
     .filter((p) => p.optional || p.clientDefaultValue);
-  const options = [...optionalParameters];
+  const options: (BodyParameter | Parameter)[] = [...optionalParameters];
 
   const name = getOperationOptionsName(operation, true);
   const lroOptions = {
@@ -163,6 +169,11 @@ export function buildOperationOptions(
     hasQuestionToken: true,
     docs: ["Delay to wait until next poll, in milliseconds."]
   };
+
+  // handle optional body parameter
+  if (operation.bodyParameter?.optional === true) {
+    options.push(operation.bodyParameter);
+  }
 
   sourceFile.addInterface({
     name,

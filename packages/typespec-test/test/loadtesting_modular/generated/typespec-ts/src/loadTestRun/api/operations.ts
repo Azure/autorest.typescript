@@ -36,7 +36,6 @@ import {
   metricDefinitionCollectionDeserializer,
   MetricNamespaceCollection,
   metricNamespaceCollectionDeserializer,
-  MetricRequestPayload,
   metricRequestPayloadSerializer,
   _Metrics,
   _metricsDeserializer,
@@ -491,7 +490,6 @@ export function _listMetricsSend(
   metricname: string,
   metricNamespace: string,
   timespan: string,
-  body?: MetricRequestPayload,
   options: ListMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -505,7 +503,9 @@ export function _listMetricsSend(
         metricNamespace: metricNamespace,
         timespan: timespan,
       },
-      body: !body ? body : metricRequestPayloadSerializer(body),
+      body: !options["body"]
+        ? options["body"]
+        : metricRequestPayloadSerializer(options["body"]),
     });
 }
 
@@ -527,7 +527,6 @@ export function listMetrics(
   metricname: string,
   metricNamespace: string,
   timespan: string,
-  body?: MetricRequestPayload,
   options: ListMetricsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TimeSeriesElement> {
   return buildPagedAsyncIterator(
@@ -539,7 +538,6 @@ export function listMetrics(
         metricname,
         metricNamespace,
         timespan,
-        body,
         options,
       ),
     _listMetricsDeserialize,
