@@ -1,0 +1,38 @@
+{
+  "title": "maximum set embeddings",
+  "operationId": "GetEmbeddings",
+  "parameters": {
+    "api-version": "2024-05-01-preview",
+    "unknown-parameters": "error",
+    "body": {
+      "input": [
+        "hgcjyjihdhbvfoftdttntknw"
+      ],
+      "dimensions": 20,
+      "encoding_format": "base64",
+      "input_type": "text"
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "bhivevzn",
+        "data": [
+          {
+            "embedding": [
+              23
+            ],
+            "index": 10
+          }
+        ],
+        "usage": {
+          "capacity_type": "usage",
+          "input_tokens": 26,
+          "prompt_tokens": 1,
+          "total_tokens": 7
+        },
+        "model": "agxtofcgnjikcqhduactsbcol"
+      }
+    }
+  }
+}
