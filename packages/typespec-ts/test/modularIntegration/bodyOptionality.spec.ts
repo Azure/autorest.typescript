@@ -24,7 +24,7 @@ describe("Body Optionality Client", () => {
 
   it("should support optional-explicit body", async () => {
     try {
-      const result = await client.optionalExplicit.set({ name: "foo" });
+      const result = await client.optionalExplicit.set({ body: { name: "foo" } });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

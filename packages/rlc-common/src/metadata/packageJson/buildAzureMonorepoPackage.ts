@@ -119,20 +119,14 @@ function getEsmDevDependencies({
     return {};
   }
 
-  let testDevDependencies: Record<string, string> = {};
   if (withTests) {
-    testDevDependencies = {
+    return {
       "@vitest/browser": "^2.0.5",
       "@vitest/coverage-istanbul": "^2.0.5",
       playwright: "^1.41.2",
       vitest: "^2.0.5"
     };
-  }
-
-  return {
-    tshy: "^1.11.1",
-    ...testDevDependencies
-  };
+  } else return {};
 }
 
 function getCjsDevDependencies({
@@ -228,12 +222,13 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test": "npm run clean && tshy && dev-tool run build-test",
+    "build:test":
+      "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api",
     "test:node":
-      "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
+      "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
+    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
     "unit-test:browser":
       "npm run build:test && dev-tool run test:vitest --browser",
     "unit-test:node": "dev-tool run test:vitest"

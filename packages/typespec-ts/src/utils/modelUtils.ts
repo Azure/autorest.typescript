@@ -1230,7 +1230,7 @@ function getSchemaForStdScalar(
         format: {
           propertyName: relevantProperty?.name ?? ""
         },
-        target: relevantProperty ?? type
+        target: relevantProperty ?? NoTarget
       });
       return applyIntrinsicDecorators(program, type, {
         type: "number",
@@ -1243,7 +1243,7 @@ function getSchemaForStdScalar(
         format: {
           propertyName: relevantProperty?.name ?? ""
         },
-        target: relevantProperty ?? type
+        target: relevantProperty ?? NoTarget
       });
       return applyIntrinsicDecorators(program, type, {
         type: "number",
@@ -1424,8 +1424,8 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
   return usage &&
     usage.includes(SchemaContext.Input) &&
     !usage.includes(SchemaContext.Output)
-    ? schema.typeName ?? schema.name
-    : schema.outputTypeName ?? schema.typeName ?? schema.name;
+    ? (schema.typeName ?? schema.name)
+    : (schema.outputTypeName ?? schema.typeName ?? schema.name);
 }
 
 function getEnumStringDescription(type: any) {
@@ -1602,23 +1602,45 @@ export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
     !["error", "errorresponse", "innererror"].includes(
       effective.name.toLowerCase()
     )
-  )
+  ) {
     return false;
+  }
   return isAzureCoreFoundationsNamespace(effective);
 }
 
 // Check if the type in the Azure.Core.Foundations has an LRO type in core
 export function isAzureCoreLroType(t?: Type): boolean {
-  if (t?.kind !== "Enum" || !["operationstate"].includes(t.name.toLowerCase()))
+  if (
+    !(
+      ((t?.kind === "Enum" || t?.kind === "Union") &&
+        ["operationstate"].includes((t.name ?? "").toLowerCase())) ||
+      (t?.kind === "Model" &&
+        ["resourceoperationstatus", "operationstatus"].includes(
+          t.name.toLowerCase()
+        ))
+    )
+  ) {
     return false;
-  return isAzureCoreFoundationsNamespace(t);
+  }
+  return (
+    isAzureCoreFoundationsNamespace(t) ||
+    isAzureCoreFoundationsNamespace(t, true)
+  );
 }
 
-function isAzureCoreFoundationsNamespace(t?: Type): boolean {
-  const namespaces = ".Azure.Core.Foundations".split(".");
+function isAzureCoreFoundationsNamespace(
+  t?: Type,
+  skipFoundation: boolean = false
+): boolean {
+  const namespaces = (
+    skipFoundation ? ".Azure.Core" : ".Azure.Core.Foundations"
+  ).split(".");
   while (
     namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Enum" || t?.kind === "Namespace") &&
+    (t?.kind === "Model" ||
+      t?.kind === "Enum" ||
+      t?.kind === "Union" ||
+      t?.kind === "Namespace") &&
     t.namespace?.name === namespaces.pop()
   ) {
     t = t.namespace;

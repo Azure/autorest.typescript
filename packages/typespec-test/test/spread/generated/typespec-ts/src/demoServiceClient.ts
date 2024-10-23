@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { getAOperations, AOperations } from "./classic/a/index.js";
 import {
   createDemoService,
   DemoServiceContext,
   DemoServiceClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";
 
@@ -16,12 +16,15 @@ export class DemoServiceClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(endpoint: string, options: DemoServiceClientOptionalParams = {}) {
+  constructor(
+    endpointParam: string,
+    options: DemoServiceClientOptionalParams = {},
+  ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : "azsdk-js-client";
-    this._client = createDemoService(endpoint, {
+    this._client = createDemoService(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

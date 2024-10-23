@@ -19,14 +19,16 @@ export declare interface BodyOptionalityClientOptionalParams extends ClientOptio
 }
 
 export declare interface OptionalExplicitOmitOptionalParams extends OperationOptions {
+    body?: BodyModel;
 }
 
 export declare interface OptionalExplicitOperations {
-    set: (body?: BodyModel, options?: OptionalExplicitSetOptionalParams) => Promise<void>;
-    omit: (body?: BodyModel, options?: OptionalExplicitOmitOptionalParams) => Promise<void>;
+    set: (options?: OptionalExplicitSetOptionalParams) => Promise<void>;
+    omit: (options?: OptionalExplicitOmitOptionalParams) => Promise<void>;
 }
 
 export declare interface OptionalExplicitSetOptionalParams extends OperationOptions {
+    body?: BodyModel;
 }
 
 export declare interface RequiredExplicitOptionalParams extends OperationOptions {

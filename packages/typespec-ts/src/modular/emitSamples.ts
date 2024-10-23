@@ -212,7 +212,7 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.description ?? `execute ${method.name}`;
+    const description = method.doc ?? `execute ${method.name}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
@@ -415,7 +415,16 @@ function getParameterValue(value: SdkExampleValue): string {
           retValue = `new Date("${value.value}")`;
           break;
         default:
-          retValue = `"${value.value}"`;
+          retValue = `"${value.value
+            ?.toString()
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+            .replace(/\r/g, "\\r")
+            .replace(/\t/g, "\\t")
+            .replace(/\f/g, "\\f")
+            .replace(/>/g, ">")
+            .replace(/</g, "<")}"`;
           break;
       }
       break;
@@ -432,7 +441,7 @@ function getParameterValue(value: SdkExampleValue): string {
       const mapper = buildPropertyNameMapper(value.type);
       const values = [];
       const additionalPropertiesValue =
-        value.kind === "model" ? value?.additionalPropertiesValue ?? {} : {};
+        value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
         ...value.value,
         ...additionalPropertiesValue

@@ -13,9 +13,8 @@ export declare class VersionedClient {
 }
 
 export declare interface VersionedClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
-
-export declare type Versions = "2021-01-01-preview" | "2022-12-01-preview";
 
 export declare interface WithoutApiVersionOptionalParams extends OperationOptions {
 }

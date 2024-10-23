@@ -10,8 +10,8 @@ export declare interface Bird {
 export declare type BirdUnion = SeaGull | Sparrow | Goose | Eagle | Bird;
 
 export declare interface Dinosaur {
-    size: number;
     kind: string;
+    size: number;
 }
 
 export declare type DinosaurUnion = TRex | Dinosaur;

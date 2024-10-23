@@ -33,7 +33,7 @@ export function getClassicalOperation(
     dpgContext,
     operationGroup
   );
-  const modularClientName = `${getClientName(client)}Context`;
+  const modularClientName = `${getClientName(client.tcgcClient)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {

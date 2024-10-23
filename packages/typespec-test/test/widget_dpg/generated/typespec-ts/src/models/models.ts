@@ -11,13 +11,19 @@ export interface User {
   id: string;
 }
 
-export function userSerializer(item: User): Record<string, unknown> {
+export function userSerializer(item: User): any {
+  return { role: item["role"], id: item["id"] };
+}
+
+export function userDeserializer(item: any): User {
   return {
+    name: item["name"],
     role: item["role"],
     id: item["id"],
   };
 }
 
+/** model interface Widget */
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
   id: string;
@@ -27,6 +33,15 @@ export interface Widget {
   color: "red" | "blue";
 }
 
+export function widgetDeserializer(item: any): Widget {
+  return {
+    id: item["id"],
+    weight: item["weight"],
+    color: item["color"],
+  };
+}
+
+/** model interface WidgetError */
 export interface WidgetError {
   /** The HTTP error code. */
   code: number;
@@ -34,34 +49,48 @@ export interface WidgetError {
   message: string;
 }
 
+export function widgetErrorDeserializer(item: any): WidgetError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** model interface _ListWidgetsPagesResults */
 export interface _ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */
-  "odata.nextLink"?: string;
+  odataNextLink?: string;
 }
 
-export interface CreateWidget {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight: number;
-  /** The color of the widget. */
-  color: "red" | "blue";
+export function _listWidgetsPagesResultsDeserializer(
+  item: any,
+): _ListWidgetsPagesResults {
+  return {
+    results: widgetArrayDeserializer(item["results"]),
+    odataNextLink: item["odata.nextLink"],
+  };
 }
 
-export interface UpdateWidget {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight?: number;
-  /** The color of the widget. */
-  color?: "red" | "blue";
+export function widgetArrayDeserializer(result: Array<Widget>): any[] {
+  return result.map((item) => {
+    return widgetDeserializer(item);
+  });
 }
 
+/** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
 }
 
-/** The Contoso Widget Manager service version. */
-export type Versions = "1.0.0";
+export function analyzeResultDeserializer(item: any): AnalyzeResult {
+  return {
+    summary: item["summary"],
+  };
+}
 
+/** model interface NonReferencedModel */
 export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   prop1: number;
@@ -69,9 +98,11 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
-export function nonReferencedModelSerializer(
-  item: NonReferencedModel,
-): Record<string, unknown> {
+export function nonReferencedModelSerializer(item: NonReferencedModel): any {
+  return { prop1: item["prop1"], prop2: item["prop2"] };
+}
+
+export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],

@@ -1,8 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+} from "../../api/options.js";
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import {
   listWidgets,
   listWidgetsPages,
@@ -14,19 +24,9 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
+import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
-} from "../../models/options.js";
 
 /** Interface representing a Widgets operations. */
 export interface WidgetsOperations {

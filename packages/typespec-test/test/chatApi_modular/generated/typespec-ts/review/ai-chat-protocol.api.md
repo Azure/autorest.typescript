@@ -11,9 +11,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export type APIVersion = "2023-10-01-preview";
-
-// @public
 export interface ChatChoiceRecord {
     context?: Record<string, any>;
     finishReason: FinishReason;

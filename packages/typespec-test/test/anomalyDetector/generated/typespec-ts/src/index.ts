@@ -7,14 +7,11 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export {
-  AnomalyDetectorClient,
-  AnomalyDetectorClientOptionalParams,
-} from "./anomalyDetectorClient.js";
+export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
-  MultivariateBatchDetectionStatus,
+  MultivariateMultivariateBatchDetectionStatus,
   MultivariateErrorResponse,
   MultivariateVariableState,
   MultivariateMultivariateBatchDetectionOptions,
@@ -23,11 +20,11 @@ export {
   MultivariateAnomalyInterpretation,
   MultivariateCorrelationChanges,
   MultivariateModelInfo,
-  DataSchema,
+  MultivariateDataSchema,
   MultivariateAlignPolicy,
-  AlignMode,
-  FillNAMethod,
-  ModelStatus,
+  MultivariateAlignMode,
+  MultivariateFillNAMethod,
+  MultivariateModelStatus,
   MultivariateDiagnosticsInfo,
   MultivariateModelState,
   MultivariateAnomalyDetectionModel,
@@ -36,16 +33,18 @@ export {
   MultivariateMultivariateLastDetectionResult,
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
-  TimeGranularity,
-  ImputeMode,
+  UnivariateTimeGranularity,
+  UnivariateImputeMode,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateAnomalyDetectorError,
-  AnomalyDetectorErrorCodes,
+  UnivariateAnomalyDetectorErrorCodes,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  Versions,
-  MultivariateResponseError,
+  APIVersion,
+} from "./models/index.js";
+export {
+  AnomalyDetectorClientOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
@@ -56,7 +55,7 @@ export {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export {
   MultivariateOperations,
   UnivariateOperations,

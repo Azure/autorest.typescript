@@ -26,6 +26,11 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
     name: "OperationOptions";
     module: string;
   };
+  StreamableMethod: {
+    kind: "externalDependency";
+    name: "StreamableMethod";
+    module: string;
+  };
   PathUncheckedResponse: {
     kind: "externalDependency";
     name: "PathUncheckedResponse";
@@ -54,6 +59,26 @@ export interface CoreDependencies extends Record<string, ReferenceableSymbol> {
   stringToUint8Array: {
     kind: "externalDependency";
     name: "stringToUint8Array";
+    module: string;
+  };
+  isKeyCredential: {
+    kind: "externalDependency";
+    name: "isKeyCredential";
+    module: string;
+  };
+  KeyCredential: {
+    kind: "externalDependency";
+    name: "KeyCredential";
+    module: string;
+  };
+  TokenCredential: {
+    kind: "externalDependency";
+    name: "TokenCredential";
+    module: string;
+  };
+  ErrorModel: {
+    kind: "externalDependency";
+    name: "ErrorModel";
     module: string;
   };
 }

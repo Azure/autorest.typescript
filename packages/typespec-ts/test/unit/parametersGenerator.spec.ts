@@ -29,10 +29,9 @@ describe("Parameters.ts", () => {
         );
         const models = await emitClientFactoryFromTypeSpec(
           tspContent,
-          false,
-          true,
-          false,
-          true
+          {
+            needNamespaces: true
+          }
         );
         assert.ok(models);
         await assertEqualContent(
@@ -106,11 +105,10 @@ describe("Parameters.ts", () => {
           }
           op test(...ApiVersionParameter): string;
           `,
-          false,
-          true,
-          false,
-          true,
-          true
+          {
+            needTCGC: true,
+            withVersionedApiVersion: true
+          }
         );
         assert.ok(parameters);
         await assertEqualContent(
@@ -134,8 +132,9 @@ describe("Parameters.ts", () => {
           @route("/test1")
           op test1(): string;
           `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(parameters);
         await assertEqualContent(

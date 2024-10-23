@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { A } from "../models/models.js";
-import { FooContext as Client } from "./index.js";
+import { FooContext as Client, Op1OptionalParams } from "./index.js";
+import { A, aSerializer } from "../models/models.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
   PathUncheckedResponse,
   createRestError,
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { Op1OptionalParams } from "../models/options.js";
 
 export function _op1Send(
   context: Client,
@@ -20,7 +19,7 @@ export function _op1Send(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop1: body["prop1"] },
+      body: aSerializer(body),
     });
 }
 

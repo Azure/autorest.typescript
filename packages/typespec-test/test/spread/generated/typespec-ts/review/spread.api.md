@@ -19,7 +19,9 @@ export interface AOperations {
         prop: string;
     }, options?: ATest3OptionalParams) => Promise<void>;
     // (undocumented)
-    test4: (body: Test, options?: ATest4OptionalParams) => Promise<void>;
+    test4: (body: {
+        prop: string;
+    }, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -40,19 +42,13 @@ export interface ATest4OptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class DemoServiceClient {
-    constructor(endpoint: string, options?: DemoServiceClientOptionalParams);
+    constructor(endpointParam: string, options?: DemoServiceClientOptionalParams);
     readonly a: AOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
 export interface DemoServiceClientOptionalParams extends ClientOptions {
-}
-
-// @public (undocumented)
-export interface Test {
-    // (undocumented)
-    prop: string;
 }
 
 // (No @packageDocumentation comment for this package)

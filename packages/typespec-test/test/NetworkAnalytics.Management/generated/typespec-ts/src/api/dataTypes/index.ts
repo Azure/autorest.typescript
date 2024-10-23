@@ -2,36 +2,41 @@
 // Licensed under the MIT License.
 
 import {
-  dataTypePropertiesSerializer,
-  dataTypeUpdatePropertiesSerializer,
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-  _DataTypeListResult,
-} from "../../models/models.js";
-import { NetworkAnalyticsContext as Client } from "../index.js";
+  NetworkAnalyticsContext as Client,
+  DataTypesCreateOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesListByDataProductOptionalParams,
+  DataTypesUpdateOptionalParams,
+} from "../index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  PathUncheckedResponse,
-  createRestError,
-} from "@azure-rest/core-client";
+  DataType,
+  dataTypeSerializer,
+  dataTypeDeserializer,
+  DataTypeUpdate,
+  dataTypeUpdateSerializer,
+  _deleteDataRequestSerializer,
+  ContainerSaS,
+  containerSaSSerializer,
+  ContainerSasToken,
+  containerSasTokenDeserializer,
+  _DataTypeListResult,
+  _dataTypeListResultDeserializer,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  DataTypesCreateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesListByDataProductOptionalParams,
-} from "../../models/options.js";
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _createSend(
   context: Client,
@@ -52,11 +57,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        properties: !resource.properties
-          ? resource.properties
-          : dataTypePropertiesSerializer(resource.properties),
-      },
+      body: dataTypeSerializer(resource),
     });
 }
 
@@ -68,40 +69,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Create data type resource. */
@@ -158,40 +126,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Retrieve data type resource. */
@@ -233,11 +168,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        properties: !properties.properties
-          ? properties.properties
-          : dataTypeUpdatePropertiesSerializer(properties.properties),
-      },
+      body: dataTypeUpdateSerializer(properties),
     });
 }
 
@@ -249,40 +180,7 @@ export async function _updateDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    type: result.body["type"],
-    systemData: !result.body.systemData
-      ? undefined
-      : {
-          createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
-          createdAt:
-            result.body.systemData?.["createdAt"] !== undefined
-              ? new Date(result.body.systemData?.["createdAt"])
-              : undefined,
-          lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
-          lastModifiedAt:
-            result.body.systemData?.["lastModifiedAt"] !== undefined
-              ? new Date(result.body.systemData?.["lastModifiedAt"])
-              : undefined,
-        },
-    properties: !result.body.properties
-      ? undefined
-      : {
-          provisioningState: result.body.properties?.["provisioningState"],
-          state: result.body.properties?.["state"],
-          stateReason: result.body.properties?.["stateReason"],
-          storageOutputRetention:
-            result.body.properties?.["storageOutputRetention"],
-          databaseCacheRetention:
-            result.body.properties?.["databaseCacheRetention"],
-          databaseRetention: result.body.properties?.["databaseRetention"],
-          visualizationUrl: result.body.properties?.["visualizationUrl"],
-        },
-  };
+  return dataTypeDeserializer(result.body);
 }
 
 /** Update data type resource. */
@@ -394,7 +292,10 @@ export function _deleteDataSend(
       dataProductName,
       dataTypeName,
     )
-    .post({ ...operationOptionsToRequestParameters(options), body: body });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: _deleteDataRequestSerializer(body),
+    });
 }
 
 export async function _deleteDataDeserialize(
@@ -461,11 +362,7 @@ export function _generateStorageContainerSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        startTimeStamp: body["startTimeStamp"].toISOString(),
-        expiryTimeStamp: body["expiryTimeStamp"].toISOString(),
-        ipAddress: body["ipAddress"],
-      },
+      body: containerSaSSerializer(body),
     });
 }
 
@@ -477,9 +374,7 @@ export async function _generateStorageContainerSasTokenDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    storageContainerSasToken: result.body["storageContainerSasToken"],
-  };
+  return containerSasTokenDeserializer(result.body);
 }
 
 /** Generate sas token for storage container. */
@@ -531,43 +426,7 @@ export async function _listByDataProductDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p: any) => {
-      return {
-        id: p["id"],
-        name: p["name"],
-        type: p["type"],
-        systemData: !p.systemData
-          ? undefined
-          : {
-              createdBy: p.systemData?.["createdBy"],
-              createdByType: p.systemData?.["createdByType"],
-              createdAt:
-                p.systemData?.["createdAt"] !== undefined
-                  ? new Date(p.systemData?.["createdAt"])
-                  : undefined,
-              lastModifiedBy: p.systemData?.["lastModifiedBy"],
-              lastModifiedByType: p.systemData?.["lastModifiedByType"],
-              lastModifiedAt:
-                p.systemData?.["lastModifiedAt"] !== undefined
-                  ? new Date(p.systemData?.["lastModifiedAt"])
-                  : undefined,
-            },
-        properties: !p.properties
-          ? undefined
-          : {
-              provisioningState: p.properties?.["provisioningState"],
-              state: p.properties?.["state"],
-              stateReason: p.properties?.["stateReason"],
-              storageOutputRetention: p.properties?.["storageOutputRetention"],
-              databaseCacheRetention: p.properties?.["databaseCacheRetention"],
-              databaseRetention: p.properties?.["databaseRetention"],
-              visualizationUrl: p.properties?.["visualizationUrl"],
-            },
-      };
-    }),
-    nextLink: result.body["nextLink"],
-  };
+  return _dataTypeListResultDeserializer(result.body);
 }
 
 /** List data type by parent resource. */
