@@ -102,6 +102,9 @@ export function getDeserializePrivateFunction(
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
+  if (operation.name === "list") {
+    operation;
+  }
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
@@ -741,7 +744,7 @@ function getOptional(context: SdkContext, param: OptionalType) {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
       param.type,
-      "options?." + param.clientName + "?"
+      "options?." + param.clientName + "?."
     );
     const serializeContent =
       directAssignment === true

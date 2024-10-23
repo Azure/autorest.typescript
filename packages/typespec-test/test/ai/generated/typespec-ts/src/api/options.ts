@@ -3,24 +3,18 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 import {
-  ToolDefinitionUnion,
+  ConnectionType,
   ToolResources,
-  AgentsApiResponseFormatMode,
-  AgentsApiResponseFormat,
-  ListSortOrder,
   ThreadMessageOptions,
   MessageAttachment,
   ThreadMessage,
   TruncationObject,
-  AgentsApiToolChoiceOptionMode,
-  AgentsNamedToolChoice,
-  AgentThreadCreationOptions,
   UpdateToolResourcesOptions,
+  AgentThreadCreationOptions,
   FilePurpose,
   VectorStoreExpirationPolicy,
-  VectorStoreChunkingStrategyRequestUnion,
+  ListSortOrder,
   VectorStoreFileStatusFilter,
-  ConnectionType,
 } from "../models/models.js";
 
 /** Optional parameters. */
@@ -32,12 +26,12 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
   /** The system instructions for the new agent to use. */
   instructions?: string | null;
   /** The collection of tools to enable for the new agent. */
-  tools?: ToolDefinitionUnion[];
+  tools?: ToolDefinitionUnionUnion[];
   /**
    * A set of resources that are used by the agent's tools. The resources are specific to the type of tool. For example, the `code_interpreter`
    * tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.
    */
-  toolResources?: ToolResources | null;
+  toolResources?: ToolResources | null | null;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
@@ -51,10 +45,7 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?:
-    | string
-    | AgentsApiResponseFormatMode
-    | AgentsApiResponseFormat;
+  responseFormat?: __PLACEHOLDER_o14__ | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -85,7 +76,7 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
   /** The modified system instructions for the new agent to use. */
   instructions?: string | null;
   /** The modified collection of tools to enable for the agent. */
-  tools?: ToolDefinitionUnion[];
+  tools?: ToolDefinitionUnionUnion[];
   /**
    * A set of resources that are used by the agent's tools. The resources are specific to the type of tool. For example,
    * the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.
@@ -104,10 +95,7 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?:
-    | string
-    | AgentsApiResponseFormatMode
-    | AgentsApiResponseFormat;
+  responseFormat?: __PLACEHOLDER_o16__ | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -124,7 +112,7 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs.
    */
-  toolResources?: ToolResources | null;
+  toolResources?: ToolResources | null | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -139,7 +127,7 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs
    */
-  toolResources?: ToolResources | null;
+  toolResources?: ToolResources | null | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -192,7 +180,7 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
   /** Adds additional messages to the thread before creating the run. */
   additionalMessages?: ThreadMessage[] | null;
   /** The overridden list of enabled tools that the agent should use to run the thread. */
-  tools?: ToolDefinitionUnion[] | null;
+  tools?: ToolDefinitionUnionUnion[] | null;
   /**
    * If `true`, returns a stream of events that happen during the Run as server-sent events,
    * terminating when the Run enters a terminal state with a `data: [DONE]` message.
@@ -224,14 +212,11 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
    */
   maxCompletionTokens?: number | null;
   /** The strategy to use for dropping messages as the context windows moves forward. */
-  truncationStrategy?: TruncationObject | null;
+  truncationStrategy?: TruncationObject | null | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
+  toolChoice?: __PLACEHOLDER_o22__ | null;
   /** Specifies the format that the model must output. */
-  responseFormat?:
-    | string
-    | AgentsApiResponseFormatMode
-    | AgentsApiResponseFormat;
+  responseFormat?: __PLACEHOLDER_o23__ | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -277,9 +262,9 @@ export interface AgentsCreateThreadAndRunOptionalParams
   /** The overridden system instructions the agent should use to run the thread. */
   instructions?: string | null;
   /** The overridden list of enabled tools the agent should use to run the thread. */
-  tools?: ToolDefinitionUnion[] | null;
+  tools?: ToolDefinitionUnionUnion[] | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
-  toolResources?: UpdateToolResourcesOptions | null;
+  toolResources?: UpdateToolResourcesOptions | null | null;
   /**
    * If `true`, returns a stream of events that happen during the Run as server-sent events,
    * terminating when the Run enters a terminal state with a `data: [DONE]` message.
@@ -311,14 +296,11 @@ export interface AgentsCreateThreadAndRunOptionalParams
    */
   maxCompletionTokens?: number | null;
   /** The strategy to use for dropping messages as the context windows moves forward. */
-  truncationStrategy?: TruncationObject | null;
+  truncationStrategy?: TruncationObject | null | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
+  toolChoice?: __PLACEHOLDER_o31__ | null;
   /** Specifies the format that the model must output. */
-  responseFormat?:
-    | string
-    | AgentsApiResponseFormatMode
-    | AgentsApiResponseFormat;
+  responseFormat?: __PLACEHOLDER_o32__ | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -383,7 +365,7 @@ export interface AgentsCreateVectorStoreOptionalParams
   /** Details on when this vector store expires */
   expiresAfter?: VectorStoreExpirationPolicy;
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. Only applicable if file_ids is non-empty. */
-  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnionUnion;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -397,7 +379,7 @@ export interface AgentsModifyVectorStoreOptionalParams
   /** The name of the vector store. */
   name?: string | null;
   /** Details on when this vector store expires */
-  expiresAfter?: VectorStoreExpirationPolicy | null;
+  expiresAfter?: VectorStoreExpirationPolicy | null | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -425,7 +407,7 @@ export interface AgentsListVectorStoreFilesOptionalParams
 export interface AgentsCreateVectorStoreFileOptionalParams
   extends OperationOptions {
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
-  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnionUnion;
 }
 
 /** Optional parameters. */
@@ -440,7 +422,7 @@ export interface AgentsDeleteVectorStoreFileOptionalParams
 export interface AgentsCreateVectorStoreFileBatchOptionalParams
   extends OperationOptions {
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
-  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+  chunkingStrategy?: VectorStoreChunkingStrategyRequestUnionUnion;
 }
 
 /** Optional parameters. */

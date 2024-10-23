@@ -106,6 +106,9 @@ export function emitTypes(
       continue;
     }
     if (type.kind === "model") {
+      if (type.name.startsWith("Paged")) {
+        type;
+      }
       if (isAzureCoreErrorType(context.program, type.__raw)) {
         continue;
       }

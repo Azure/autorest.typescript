@@ -231,6 +231,33 @@ export function evaluatorConfigurationRecordDeserializer(
   return result;
 }
 
+/** Paged collection of Evaluation items */
+export interface _PagedEvaluation {
+  /** The Evaluation items on this page */
+  value: Evaluation[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedEvaluationDeserializer(item: any): _PagedEvaluation {
+  return {
+    value: evaluationArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function evaluationArraySerializer(result: Array<Evaluation>): any[] {
+  return result.map((item) => {
+    return evaluationSerializer(item);
+  });
+}
+
+export function evaluationArrayDeserializer(result: Array<Evaluation>): any[] {
+  return result.map((item) => {
+    return evaluationDeserializer(item);
+  });
+}
+
 /** Evaluation Schedule Definition */
 export interface EvaluationSchedule {
   /** Identifier of the evaluation. */
@@ -453,6 +480,39 @@ export function samplingStrategyDeserializer(item: any): SamplingStrategy {
   return {
     rate: item["rate"],
   };
+}
+
+/** Paged collection of EvaluationSchedule items */
+export interface _PagedEvaluationSchedule {
+  /** The EvaluationSchedule items on this page */
+  value: EvaluationSchedule[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedEvaluationScheduleDeserializer(
+  item: any,
+): _PagedEvaluationSchedule {
+  return {
+    value: evaluationScheduleArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function evaluationScheduleArraySerializer(
+  result: Array<EvaluationSchedule>,
+): any[] {
+  return result.map((item) => {
+    return evaluationScheduleSerializer(item);
+  });
+}
+
+export function evaluationScheduleArrayDeserializer(
+  result: Array<EvaluationSchedule>,
+): any[] {
+  return result.map((item) => {
+    return evaluationScheduleDeserializer(item);
+  });
 }
 
 /** Response from the list operation */
@@ -4724,63 +4784,3 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
-
-/** Paged collection of Evaluation items */
-export interface _PagedEvaluation {
-  /** The Evaluation items on this page */
-  value: Evaluation[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedEvaluationDeserializer(item: any): _PagedEvaluation {
-  return {
-    value: evaluationArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function evaluationArraySerializer(result: Array<Evaluation>): any[] {
-  return result.map((item) => {
-    return evaluationSerializer(item);
-  });
-}
-
-export function evaluationArrayDeserializer(result: Array<Evaluation>): any[] {
-  return result.map((item) => {
-    return evaluationDeserializer(item);
-  });
-}
-
-/** Paged collection of EvaluationSchedule items */
-export interface _PagedEvaluationSchedule {
-  /** The EvaluationSchedule items on this page */
-  value: EvaluationSchedule[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedEvaluationScheduleDeserializer(
-  item: any,
-): _PagedEvaluationSchedule {
-  return {
-    value: evaluationScheduleArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function evaluationScheduleArraySerializer(
-  result: Array<EvaluationSchedule>,
-): any[] {
-  return result.map((item) => {
-    return evaluationScheduleSerializer(item);
-  });
-}
-
-export function evaluationScheduleArrayDeserializer(
-  result: Array<EvaluationSchedule>,
-): any[] {
-  return result.map((item) => {
-    return evaluationScheduleDeserializer(item);
-  });
-}
