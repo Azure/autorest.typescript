@@ -2,6 +2,12 @@
 // Licensed under the MIT License.
 
 import { OperationOptions } from "@azure-rest/core-client";
+import {
+  BatchJobTerminateOptions,
+  NodeRebootOptions,
+  NodeReimageOptions,
+  NodeDisableSchedulingOptions,
+} from "../models/models.js";
 
 /** Optional parameters. */
 export interface ListApplicationsOptionalParams extends OperationOptions {
@@ -725,6 +731,8 @@ export interface TerminateJobOptionalParams extends OperationOptions {
   ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
+  /** The options to use for terminating the Job. */
+  body?: BatchJobTerminateOptions;
 }
 
 /** Optional parameters. */
@@ -1622,6 +1630,8 @@ export interface RebootNodeOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
+  /** The options to use for rebooting the Compute Node. */
+  body?: NodeRebootOptions;
 }
 
 /** Optional parameters. */
@@ -1635,6 +1645,8 @@ export interface ReimageNodeOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
+  /** The options to use for reimaging the Compute Node. */
+  body?: NodeReimageOptions;
 }
 
 /** Optional parameters. */
@@ -1648,6 +1660,8 @@ export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
+  /** The options to use for disabling scheduling on the Compute Node. */
+  body?: NodeDisableSchedulingOptions;
 }
 
 /** Optional parameters. */
