@@ -288,8 +288,8 @@ function processModelProperties(
     if (newValue.name) {
       newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name}`;
-      newValue.name = `${newValue.name}Union`;
+      newValue.alias = `${newValue.name.replace(/Union$/g, "")}`;
+      newValue.name = `${newValue.name}`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
       newValue.isPolymorphicBaseModel = true;
@@ -497,9 +497,6 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
-    type.name = !type.tcgcType.isGeneratedName
-      ? normalizeModelName(context, type.tcgcType)
-      : type.name;
     return {
       contentTypes,
       type,

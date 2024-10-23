@@ -482,6 +482,9 @@ function buildModelProperty(
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
   const normalizedPropName = normalizeModelPropertyName(context, property);
+  if(normalizedPropName === '"responseFormat"') {
+    property;
+  }
   if (
     !context.rlcOptions?.ignorePropertyNameNormalize &&
     normalizedPropName !== `"${property.name}"`
@@ -602,12 +605,14 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type as any)) {
+        emitQueue.add(property.type);
         visitType(property.type, emitQueue);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
         if (!emitQueue.has(subType as any)) {
+          emitQueue.add(subType);
           visitType(subType, emitQueue);
         }
       }
@@ -615,6 +620,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   }
   if (type.kind === "array") {
     if (!emitQueue.has(type.valueType as any)) {
+      emitQueue.add(type.valueType);
       visitType(type.valueType, emitQueue);
     }
     if (!emitQueue.has(type)) {
@@ -623,6 +629,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   }
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
+      emitQueue.add(type.valueType);
       visitType(type.valueType, emitQueue);
     }
     if (!emitQueue.has(type)) {
@@ -639,6 +646,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
       emitQueue.add(type);
     }
     if (!emitQueue.has(type.type as any)) {
+      emitQueue.add(type.type);
       visitType(type.type, emitQueue);
     }
   }
@@ -648,6 +656,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     }
     for (const value of type.variantTypes) {
       if (!emitQueue.has(value as any)) {
+        emitQueue.add(value);
         visitType(value, emitQueue);
       }
     }
