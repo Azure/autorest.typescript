@@ -68,6 +68,7 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
+      dpgContext,
       operation
     )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
       dpgContext,
@@ -220,7 +221,7 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
-  if (operation.bodyParameter) {
+  if (operation.bodyParameter && operation.bodyParameter.optional === false) {
     parameters.set(operation.bodyParameter?.clientName, {
       hasQuestionToken: operation.bodyParameter.optional,
       ...buildType(
@@ -563,20 +564,27 @@ function buildBodyParameter(
     false,
     true
   );
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(bodyParameter);
+
+  const bodyNameExpression = bodyParameter.optional
+    ? `options["${bodyParameter.clientName}"]`
+    : bodyParameter.clientName;
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    bodyParameter,
+    bodyParameter.optional ? "options" : undefined
+  );
   if (serializerFunctionName) {
-    return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyParameter.clientName}),`;
+    return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
-    return `\nbody: ${nullOrUndefinedPrefix}${bodyParameter.clientName},`;
+    return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
   }
   const serializedBody = serializeRequestValue(
     context,
     bodyParameter.type,
-    bodyParameter.clientName,
+    bodyNameExpression,
     !bodyParameter.optional,
     bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format
   );
-  return `\nbody: ${serializedBody === bodyParameter.clientName ? "" : nullOrUndefinedPrefix}${serializedBody},`;
+  return `\nbody: ${serializedBody === bodyNameExpression ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -769,18 +777,13 @@ function getOptional(context: SdkContext, param: OptionalType) {
  * Builds the assignment for when a property or parameter has a default value
  */
 function getDefaultValue(param: Parameter | Property) {
-  return (param.clientDefaultValue ?? param.type.clientDefaultValue) !==
-    undefined
-    ? `${param.optional ? "??" : ""} "${
-        param.clientDefaultValue ?? param.type.clientDefaultValue
-      }"`
-    : "";
+  return param.clientDefaultValue ?? param.type.clientDefaultValue;
 }
 
 /**
  * Extracts the path parameters
  */
-function getPathParameters(operation: Operation) {
+function getPathParameters(dpgContext: SdkContext, operation: Operation) {
   if (!operation.parameters) {
     return "";
   }
@@ -788,24 +791,36 @@ function getPathParameters(operation: Operation) {
   let pathParams = "";
   for (const param of operation.parameters) {
     if (param.location === "path") {
-      if (!param.optional) {
-        pathParams += `${pathParams !== "" ? "," : ""} ${param.clientName}`;
-        continue;
+      // Path parameters cannot be optional
+      if (param.optional) {
+        reportDiagnostic(dpgContext.program, {
+          code: "optional-path-param",
+          target: NoTarget,
+          format: {
+            paramName: param.clientName
+          }
+        });
       }
-
-      const defaultValue = getDefaultValue(param);
-
-      pathParams += `${pathParams !== "" ? "," : ""} options.${
-        param.clientName
-      }`;
-
-      if (defaultValue) {
-        pathParams += ` ?? "${defaultValue}"`;
-      }
+      pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
+        param,
+        getDefaultValue(param)
+      )}`;
     }
   }
 
   return pathParams;
+}
+
+function getPathParamExpr(param: Parameter, defaultValue?: string) {
+  const value = defaultValue
+    ? typeof defaultValue === "string"
+      ? `options[${param.clientName}] ?? "${defaultValue}"`
+      : `options[${param.clientName}] ?? ${defaultValue}`
+    : param.clientName;
+  if (param.skipUrlEncoding === true) {
+    return `{value: ${value}, allowReserved: true}`;
+  }
+  return value;
 }
 
 function getNullableCheck(name: string, type: Type) {
