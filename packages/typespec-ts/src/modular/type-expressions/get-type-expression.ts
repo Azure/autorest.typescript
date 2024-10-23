@@ -55,6 +55,9 @@ export function getTypeExpression(
     case "uint8":
     case "numeric":
     case "safeint":
+      if (type.encode === "string") {
+        return "string";
+      }
       return "number";
     case "endpoint":
     case "plainDate":

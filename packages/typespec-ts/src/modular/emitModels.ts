@@ -117,6 +117,11 @@ export function emitTypes(
       ) {
         continue;
       }
+      if (!type.name && type.isGeneratedName) {
+        // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
+        // throw new Error(`Generation of anonymous types`);
+        continue;
+      }
       const modelInterface = buildModelInterface(context, type);
       if (type.discriminatorProperty) {
         modelInterface.properties
