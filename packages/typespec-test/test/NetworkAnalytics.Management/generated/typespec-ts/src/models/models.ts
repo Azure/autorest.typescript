@@ -1,81 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { serializeRecord } from "../helpers/serializerHelpers.js";
-
-/** Common fields that are returned in the response for all Azure Resource Manager resources */
-export interface Resource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  readonly id?: string;
-  /** The name of the resource */
-  readonly name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  readonly type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  readonly systemData?: SystemData;
-}
-
-export function resourceSerializer(item: Resource) {
-  return item as any;
-}
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: CreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: Date;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: CreatedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: Date;
-}
-
-/** Known values of {@link CreatedByType} that the service accepts. */
-export enum KnownCreatedByType {
-  /** User */
-  User = "User",
-  /** Application */
-  Application = "Application",
-  /** ManagedIdentity */
-  ManagedIdentity = "ManagedIdentity",
-  /** Key */
-  Key = "Key",
-}
-
-/**
- * The kind of entity that created the resource. \
- * {@link KnownCreatedByType} can be used interchangeably with CreatedByType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **User** \
- * **Application** \
- * **ManagedIdentity** \
- * **Key**
- */
-export type CreatedByType = string;
-
-/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-export interface TrackedResource extends Resource {
-  /** Resource tags. */
-  tags?: Record<string, string>;
-  /** The geo-location where the resource lives */
-  location: string;
-}
-
-export function trackedResourceSerializer(
-  item: TrackedResource,
-): Record<string, unknown> {
-  return {
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    location: item["location"],
-  };
-}
-
 /** The data product resource. */
 export interface DataProduct extends TrackedResource {
   /** The resource-specific properties for this resource. */
@@ -84,18 +9,35 @@ export interface DataProduct extends TrackedResource {
   identity?: ManagedServiceIdentityV4;
 }
 
-export function dataProductSerializer(
-  item: DataProduct,
-): Record<string, unknown> {
+export function dataProductSerializer(item: DataProduct): any {
   return {
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
+    tags: item["tags"],
     location: item["location"],
-    properties: !item.properties
-      ? item.properties
-      : dataProductPropertiesSerializer(item.properties),
-    identity: !item.identity
-      ? item.identity
-      : managedServiceIdentityV4Serializer(item.identity),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductPropertiesSerializer(item["properties"]),
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Serializer(item["identity"]),
+  };
+}
+
+export function dataProductDeserializer(item: any): DataProduct {
+  return {
+    tags: item["tags"],
+    location: item["location"],
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductPropertiesDeserializer(item["properties"]),
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Deserializer(item["identity"]),
   };
 }
 
@@ -145,12 +87,16 @@ export interface DataProductProperties {
 
 export function dataProductPropertiesSerializer(
   item: DataProductProperties,
-): Record<string, unknown> {
+): any {
   return {
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
-    owners: item["owners"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
     redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
@@ -158,36 +104,88 @@ export function dataProductPropertiesSerializer(
     publicNetworkAccess: item["publicNetworkAccess"],
     customerManagedKeyEncryptionEnabled:
       item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item.customerEncryptionKey
-      ? item.customerEncryptionKey
-      : encryptionKeyDetailsSerializer(item.customerEncryptionKey),
-    networkacls: !item.networkacls
-      ? item.networkacls
-      : dataProductNetworkAclsSerializer(item.networkacls),
-    managedResourceGroupConfiguration: !item.managedResourceGroupConfiguration
-      ? item.managedResourceGroupConfiguration
+    customerEncryptionKey: !item["customerEncryptionKey"]
+      ? item["customerEncryptionKey"]
+      : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
+    networkacls: !item["networkacls"]
+      ? item["networkacls"]
+      : dataProductNetworkAclsSerializer(item["networkacls"]),
+    managedResourceGroupConfiguration: !item[
+      "managedResourceGroupConfiguration"
+    ]
+      ? item["managedResourceGroupConfiguration"]
       : managedResourceGroupConfigurationSerializer(
-          item.managedResourceGroupConfiguration,
+          item["managedResourceGroupConfiguration"],
         ),
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
 
-/** Known values of {@link ProvisioningState} that the service accepts. */
+export function dataProductPropertiesDeserializer(
+  item: any,
+): DataProductProperties {
+  return {
+    resourceGuid: item["resourceGuid"],
+    provisioningState: item["provisioningState"],
+    publisher: item["publisher"],
+    product: item["product"],
+    majorVersion: item["majorVersion"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
+    redundancy: item["redundancy"],
+    purviewAccount: item["purviewAccount"],
+    purviewCollection: item["purviewCollection"],
+    privateLinksEnabled: item["privateLinksEnabled"],
+    publicNetworkAccess: item["publicNetworkAccess"],
+    customerManagedKeyEncryptionEnabled:
+      item["customerManagedKeyEncryptionEnabled"],
+    customerEncryptionKey: !item["customerEncryptionKey"]
+      ? item["customerEncryptionKey"]
+      : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
+    networkacls: !item["networkacls"]
+      ? item["networkacls"]
+      : dataProductNetworkAclsDeserializer(item["networkacls"]),
+    managedResourceGroupConfiguration: !item[
+      "managedResourceGroupConfiguration"
+    ]
+      ? item["managedResourceGroupConfiguration"]
+      : managedResourceGroupConfigurationDeserializer(
+          item["managedResourceGroupConfiguration"],
+        ),
+    availableMinorVersions: !item["availableMinorVersions"]
+      ? item["availableMinorVersions"]
+      : item["availableMinorVersions"].map((p: any) => {
+          return p;
+        }),
+    currentMinorVersion: item["currentMinorVersion"],
+    documentation: item["documentation"],
+    consumptionEndpoints: !item["consumptionEndpoints"]
+      ? item["consumptionEndpoints"]
+      : consumptionEndpointsPropertiesDeserializer(
+          item["consumptionEndpoints"],
+        ),
+    keyVaultUrl: item["keyVaultUrl"],
+  };
+}
+
+/** The status of the current operation. */
 export enum KnownProvisioningState {
-  /** Succeeded */
+  /** Represents a succeeded operation. */
   Succeeded = "Succeeded",
-  /** Failed */
+  /** Represents a failed operation. */
   Failed = "Failed",
-  /** Canceled */
+  /** Represents a canceled operation. */
   Canceled = "Canceled",
-  /** Provisioning */
+  /** Represents a pending operation. */
   Provisioning = "Provisioning",
-  /** Updating */
+  /** Represents a pending operation. */
   Updating = "Updating",
-  /** Deleting */
+  /** Represents an operation under deletion. */
   Deleting = "Deleting",
-  /** Accepted */
+  /** Represents an accepted operation. */
   Accepted = "Accepted",
 }
 
@@ -196,21 +194,21 @@ export enum KnownProvisioningState {
  * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Succeeded** \
- * **Failed** \
- * **Canceled** \
- * **Provisioning** \
- * **Updating** \
- * **Deleting** \
- * **Accepted**
+ * **Succeeded**: Represents a succeeded operation. \
+ * **Failed**: Represents a failed operation. \
+ * **Canceled**: Represents a canceled operation. \
+ * **Provisioning**: Represents a pending operation. \
+ * **Updating**: Represents a pending operation. \
+ * **Deleting**: Represents an operation under deletion. \
+ * **Accepted**: Represents an accepted operation.
  */
 export type ProvisioningState = string;
 
-/** Known values of {@link ControlState} that the service accepts. */
+/** The data type state */
 export enum KnownControlState {
-  /** Enabled */
+  /** Field to enable a setting. */
   Enabled = "Enabled",
-  /** Disabled */
+  /** Field to disable a setting. */
   Disabled = "Disabled",
 }
 
@@ -219,8 +217,8 @@ export enum KnownControlState {
  * {@link KnownControlState} can be used interchangeably with ControlState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Enabled** \
- * **Disabled**
+ * **Enabled**: Field to enable a setting. \
+ * **Disabled**: Field to disable a setting.
  */
 export type ControlState = string;
 
@@ -236,7 +234,17 @@ export interface EncryptionKeyDetails {
 
 export function encryptionKeyDetailsSerializer(
   item: EncryptionKeyDetails,
-): Record<string, unknown> {
+): any {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
+}
+
+export function encryptionKeyDetailsDeserializer(
+  item: any,
+): EncryptionKeyDetails {
   return {
     keyVaultUri: item["keyVaultUri"],
     keyName: item["keyName"],
@@ -258,13 +266,30 @@ export interface DataProductNetworkAcls {
 
 export function dataProductNetworkAclsSerializer(
   item: DataProductNetworkAcls,
-): Record<string, unknown> {
+): any {
   return {
-    virtualNetworkRule: item["virtualNetworkRule"].map(
-      virtualNetworkRuleSerializer,
+    virtualNetworkRule: virtualNetworkRuleArraySerializer(
+      item["virtualNetworkRule"],
     ),
-    ipRules: item["ipRules"].map(iPRulesSerializer),
-    allowedQueryIpRangeList: item["allowedQueryIpRangeList"],
+    ipRules: iPRulesArraySerializer(item["ipRules"]),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
+    defaultAction: item["defaultAction"],
+  };
+}
+
+export function dataProductNetworkAclsDeserializer(
+  item: any,
+): DataProductNetworkAcls {
+  return {
+    virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
+      item["virtualNetworkRule"],
+    ),
+    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
     defaultAction: item["defaultAction"],
   };
 }
@@ -279,14 +304,32 @@ export interface VirtualNetworkRule {
   state?: string;
 }
 
-export function virtualNetworkRuleSerializer(
-  item: VirtualNetworkRule,
-): Record<string, unknown> {
+export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
+  return { id: item["id"], action: item["action"], state: item["state"] };
+}
+
+export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   return {
     id: item["id"],
     action: item["action"],
     state: item["state"],
   };
+}
+
+export function virtualNetworkRuleArraySerializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleSerializer(item);
+  });
+}
+
+export function virtualNetworkRuleArrayDeserializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleDeserializer(item);
+  });
 }
 
 /** IP rule with specific IP or IP range in CIDR format. */
@@ -297,18 +340,34 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(item: IPRules): Record<string, unknown> {
+export function iPRulesSerializer(item: IPRules): any {
+  return { value: item["value"], action: item["action"] };
+}
+
+export function iPRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
   };
 }
 
-/** Known values of {@link DefaultAction} that the service accepts. */
+export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    return iPRulesSerializer(item);
+  });
+}
+
+export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    return iPRulesDeserializer(item);
+  });
+}
+
+/** Specifies the default action of allow or deny when no other rules match. */
 export enum KnownDefaultAction {
-  /** Allow */
+  /** Represents allow action. */
   Allow = "Allow",
-  /** Deny */
+  /** Represents deny action. */
   Deny = "Deny",
 }
 
@@ -317,8 +376,8 @@ export enum KnownDefaultAction {
  * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Allow** \
- * **Deny**
+ * **Allow**: Represents allow action. \
+ * **Deny**: Represents deny action.
  */
 export type DefaultAction = string;
 
@@ -332,7 +391,13 @@ export interface ManagedResourceGroupConfiguration {
 
 export function managedResourceGroupConfigurationSerializer(
   item: ManagedResourceGroupConfiguration,
-): Record<string, unknown> {
+): any {
+  return { name: item["name"], location: item["location"] };
+}
+
+export function managedResourceGroupConfigurationDeserializer(
+  item: any,
+): ManagedResourceGroupConfiguration {
   return {
     name: item["name"],
     location: item["location"],
@@ -355,6 +420,19 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
+export function consumptionEndpointsPropertiesDeserializer(
+  item: any,
+): ConsumptionEndpointsProperties {
+  return {
+    ingestionUrl: item["ingestionUrl"],
+    ingestionResourceId: item["ingestionResourceId"],
+    fileAccessUrl: item["fileAccessUrl"],
+    fileAccessResourceId: item["fileAccessResourceId"],
+    queryUrl: item["queryUrl"],
+    queryResourceId: item["queryResourceId"],
+  };
+}
+
 /** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -369,27 +447,37 @@ export interface ManagedServiceIdentityV4 {
 
 export function managedServiceIdentityV4Serializer(
   item: ManagedServiceIdentityV4,
-): Record<string, unknown> {
+): any {
   return {
     type: item["type"],
-    userAssignedIdentities: !item.userAssignedIdentities
-      ? item.userAssignedIdentities
-      : (serializeRecord(
-          item.userAssignedIdentities as any,
-          userAssignedIdentitySerializer,
-        ) as any),
+    userAssignedIdentities: !item["userAssignedIdentities"]
+      ? item["userAssignedIdentities"]
+      : userAssignedIdentityRecordSerializer(item["userAssignedIdentities"]),
   };
 }
 
-/** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
+export function managedServiceIdentityV4Deserializer(
+  item: any,
+): ManagedServiceIdentityV4 {
+  return {
+    principalId: item["principalId"],
+    tenantId: item["tenantId"],
+    type: item["type"],
+    userAssignedIdentities: !item["userAssignedIdentities"]
+      ? item["userAssignedIdentities"]
+      : userAssignedIdentityRecordDeserializer(item["userAssignedIdentities"]),
+  };
+}
+
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export enum KnownManagedServiceIdentityType {
-  /** None */
+  /** No managed identity. */
   None = "None",
-  /** SystemAssigned */
+  /** System assigned managed identity. */
   SystemAssigned = "SystemAssigned",
-  /** UserAssigned */
+  /** User assigned managed identity. */
   UserAssigned = "UserAssigned",
-  /** SystemAndUserAssigned */
+  /** System and user assigned managed identity. */
   SystemAndUserAssigned = "SystemAssigned, UserAssigned",
 }
 
@@ -398,10 +486,10 @@ export enum KnownManagedServiceIdentityType {
  * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **None** \
- * **SystemAssigned** \
- * **UserAssigned** \
- * **SystemAssigned, UserAssigned**
+ * **None**: No managed identity. \
+ * **SystemAssigned**: System assigned managed identity. \
+ * **UserAssigned**: User assigned managed identity. \
+ * **SystemAssigned, UserAssigned**: System and user assigned managed identity.
  */
 export type ManagedServiceIdentityType = string;
 
@@ -413,14 +501,164 @@ export interface UserAssignedIdentity {
   readonly clientId?: string;
 }
 
-export function userAssignedIdentitySerializer(item: UserAssignedIdentity) {
-  return item as any;
+export function userAssignedIdentitySerializer(
+  item: UserAssignedIdentity,
+): any {
+  return item;
 }
+
+export function userAssignedIdentityDeserializer(
+  item: any,
+): UserAssignedIdentity {
+  return {
+    principalId: item["principalId"],
+    clientId: item["clientId"],
+  };
+}
+
+export function userAssignedIdentityRecordSerializer(
+  item: Record<string, UserAssignedIdentity>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : userAssignedIdentitySerializer(item[key]);
+  });
+  return result;
+}
+
+export function userAssignedIdentityRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, UserAssignedIdentity> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : userAssignedIdentityDeserializer(item[key]);
+  });
+  return result;
+}
+
+/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
+export interface TrackedResource extends Resource {
+  /** Resource tags. */
+  tags?: Record<string, string>;
+  /** The geo-location where the resource lives */
+  location: string;
+}
+
+export function trackedResourceSerializer(item: TrackedResource): any {
+  return { tags: item["tags"], location: item["location"] };
+}
+
+export function trackedResourceDeserializer(item: any): TrackedResource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    tags: item["tags"],
+    location: item["location"],
+  };
+}
+
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
+export interface Resource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  readonly id?: string;
+  /** The name of the resource */
+  readonly name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  readonly type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  readonly systemData?: SystemData;
+}
+
+export function resourceSerializer(item: Resource): any {
+  return item;
+}
+
+export function resourceDeserializer(item: any): Resource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+  };
+}
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: CreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: Date;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: CreatedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: Date;
+}
+
+export function systemDataDeserializer(item: any): SystemData {
+  return {
+    createdBy: item["createdBy"],
+    createdByType: item["createdByType"],
+    createdAt: !item["createdAt"]
+      ? item["createdAt"]
+      : new Date(item["createdAt"]),
+    lastModifiedBy: item["lastModifiedBy"],
+    lastModifiedByType: item["lastModifiedByType"],
+    lastModifiedAt: !item["lastModifiedAt"]
+      ? item["lastModifiedAt"]
+      : new Date(item["lastModifiedAt"]),
+  };
+}
+
+/** The kind of entity that created the resource. */
+export enum KnownCreatedByType {
+  /** The entity was created by a user. */
+  User = "User",
+  /** The entity was created by an application. */
+  Application = "Application",
+  /** The entity was created by a managed identity. */
+  ManagedIdentity = "ManagedIdentity",
+  /** The entity was created by a key. */
+  Key = "Key",
+}
+
+/**
+ * The kind of entity that created the resource. \
+ * {@link KnowncreatedByType} can be used interchangeably with createdByType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **User**: The entity was created by a user. \
+ * **Application**: The entity was created by an application. \
+ * **ManagedIdentity**: The entity was created by a managed identity. \
+ * **Key**: The entity was created by a key.
+ */
+export type CreatedByType = string;
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
   /** The error object. */
   error?: ErrorDetail;
+}
+
+export function errorResponseDeserializer(item: any): ErrorResponse {
+  return {
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailDeserializer(item["error"]),
+  };
 }
 
 /** The error detail. */
@@ -437,12 +675,62 @@ export interface ErrorDetail {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
+    code: item["code"],
+    message: item["message"],
+    target: item["target"],
+    details: !item["details"]
+      ? item["details"]
+      : errorDetailArrayDeserializer(item["details"]),
+    additionalInfo: !item["additionalInfo"]
+      ? item["additionalInfo"]
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
+  };
+}
+
+export function errorDetailArrayDeserializer(
+  result: Array<ErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    return errorDetailDeserializer(item);
+  });
+}
+
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /** The additional info type. */
   readonly type?: string;
   /** The additional info. */
   readonly info?: Record<string, any>;
+}
+
+export function errorAdditionalInfoDeserializer(
+  item: any,
+): ErrorAdditionalInfo {
+  return {
+    type: item["type"],
+    info: !item["info"]
+      ? item["info"]
+      : _errorAdditionalInfoInfoDeserializer(item["info"]),
+  };
+}
+
+/** model interface _ErrorAdditionalInfoInfo */
+export interface _ErrorAdditionalInfoInfo {}
+
+export function _errorAdditionalInfoInfoDeserializer(
+  item: any,
+): _ErrorAdditionalInfoInfo {
+  return item;
+}
+
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>,
+): any[] {
+  return result.map((item) => {
+    return errorAdditionalInfoDeserializer(item);
+  });
 }
 
 /** The type used for update operations of the DataProduct. */
@@ -455,17 +743,15 @@ export interface DataProductUpdate {
   properties?: DataProductUpdateProperties;
 }
 
-export function dataProductUpdateSerializer(
-  item: DataProductUpdate,
-): Record<string, unknown> {
+export function dataProductUpdateSerializer(item: DataProductUpdate): any {
   return {
-    identity: !item.identity
-      ? item.identity
-      : managedServiceIdentityV4Serializer(item.identity),
-    tags: !item.tags ? item.tags : (serializeRecord(item.tags as any) as any),
-    properties: !item.properties
-      ? item.properties
-      : dataProductUpdatePropertiesSerializer(item.properties),
+    identity: !item["identity"]
+      ? item["identity"]
+      : managedServiceIdentityV4Serializer(item["identity"]),
+    tags: item["tags"],
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductUpdatePropertiesSerializer(item["properties"]),
   };
 }
 
@@ -485,9 +771,13 @@ export interface DataProductUpdateProperties {
 
 export function dataProductUpdatePropertiesSerializer(
   item: DataProductUpdateProperties,
-): Record<string, unknown> {
+): any {
   return {
-    owners: item["owners"],
+    owners: !item["owners"]
+      ? item["owners"]
+      : item["owners"].map((p: any) => {
+          return p;
+        }),
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
     privateLinksEnabled: item["privateLinksEnabled"],
@@ -505,9 +795,7 @@ export interface AccountSas {
   ipAddress: string;
 }
 
-export function accountSasSerializer(
-  item: AccountSas,
-): Record<string, unknown> {
+export function accountSasSerializer(item: AccountSas): any {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
@@ -521,18 +809,20 @@ export interface AccountSasToken {
   storageAccountSasToken: string;
 }
 
+export function accountSasTokenDeserializer(item: any): AccountSasToken {
+  return {
+    storageAccountSasToken: item["storageAccountSasToken"],
+  };
+}
+
 /** Details for KeyVault. */
 export interface KeyVaultInfo {
   /** key vault url. */
   keyVaultUrl: string;
 }
 
-export function keyVaultInfoSerializer(
-  item: KeyVaultInfo,
-): Record<string, unknown> {
-  return {
-    keyVaultUrl: item["keyVaultUrl"],
-  };
+export function keyVaultInfoSerializer(item: KeyVaultInfo): any {
+  return { keyVaultUrl: item["keyVaultUrl"] };
 }
 
 /** The details for role assignment common properties. */
@@ -553,22 +843,27 @@ export interface RoleAssignmentCommonProperties {
 
 export function roleAssignmentCommonPropertiesSerializer(
   item: RoleAssignmentCommonProperties,
-): Record<string, unknown> {
+): any {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
     userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
     principalType: item["principalType"],
     role: item["role"],
   };
 }
 
-/** Known values of {@link DataProductUserRole} that the service accepts. */
+/** The data type state */
 export enum KnownDataProductUserRole {
-  /** Reader */
+  /** Field to specify user of type Reader. */
   Reader = "Reader",
-  /** SensitiveReader */
+  /**
+   * Field to specify user of type SensitiveReader.
+   * This user has privileged access to read sensitive data of a data product.
+   */
   SensitiveReader = "SensitiveReader",
 }
 
@@ -577,8 +872,9 @@ export enum KnownDataProductUserRole {
  * {@link KnownDataProductUserRole} can be used interchangeably with DataProductUserRole,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Reader** \
- * **SensitiveReader**
+ * **Reader**: Field to specify user of type Reader. \
+ * **SensitiveReader**: Field to specify user of type SensitiveReader.
+ * This user has privileged access to read sensitive data of a data product.
  */
 export type DataProductUserRole = string;
 
@@ -602,16 +898,43 @@ export interface RoleAssignmentDetail {
 
 export function roleAssignmentDetailSerializer(
   item: RoleAssignmentDetail,
-): Record<string, unknown> {
+): any {
   return {
     roleId: item["roleId"],
     principalId: item["principalId"],
     userName: item["userName"],
-    dataTypeScope: item["dataTypeScope"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
     principalType: item["principalType"],
     role: item["role"],
     roleAssignmentId: item["roleAssignmentId"],
   };
+}
+
+export function roleAssignmentDetailDeserializer(
+  item: any,
+): RoleAssignmentDetail {
+  return {
+    roleId: item["roleId"],
+    principalId: item["principalId"],
+    userName: item["userName"],
+    dataTypeScope: item["dataTypeScope"].map((p: any) => {
+      return p;
+    }),
+    principalType: item["principalType"],
+    role: item["role"],
+    roleAssignmentId: item["roleAssignmentId"],
+  };
+}
+
+/** model interface _ListRolesAssignmentsRequest */
+export interface _ListRolesAssignmentsRequest {}
+
+export function _listRolesAssignmentsRequestSerializer(
+  item: _ListRolesAssignmentsRequest,
+): any {
+  return item;
 }
 
 /** list role assignments. */
@@ -622,6 +945,33 @@ export interface ListRoleAssignments {
   roleAssignmentResponse: RoleAssignmentDetail[];
 }
 
+export function listRoleAssignmentsDeserializer(
+  item: any,
+): ListRoleAssignments {
+  return {
+    count: item["count"],
+    roleAssignmentResponse: roleAssignmentDetailArrayDeserializer(
+      item["roleAssignmentResponse"],
+    ),
+  };
+}
+
+export function roleAssignmentDetailArraySerializer(
+  result: Array<RoleAssignmentDetail>,
+): any[] {
+  return result.map((item) => {
+    return roleAssignmentDetailSerializer(item);
+  });
+}
+
+export function roleAssignmentDetailArrayDeserializer(
+  result: Array<RoleAssignmentDetail>,
+): any[] {
+  return result.map((item) => {
+    return roleAssignmentDetailDeserializer(item);
+  });
+}
+
 /** The response of a DataProduct list operation. */
 export interface _DataProductListResult {
   /** The DataProduct items on this page */
@@ -630,11 +980,27 @@ export interface _DataProductListResult {
   nextLink?: string;
 }
 
-/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
-export interface ProxyResource extends Resource {}
+export function _dataProductListResultDeserializer(
+  item: any,
+): _DataProductListResult {
+  return {
+    value: dataProductArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
 
-export function proxyResourceSerializer(item: ProxyResource) {
-  return item as any;
+export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
+  return result.map((item) => {
+    return dataProductSerializer(item);
+  });
+}
+
+export function dataProductArrayDeserializer(
+  result: Array<DataProduct>,
+): any[] {
+  return result.map((item) => {
+    return dataProductDeserializer(item);
+  });
 }
 
 /** The data type resource. */
@@ -643,11 +1009,25 @@ export interface DataType extends ProxyResource {
   properties?: DataTypeProperties;
 }
 
-export function dataTypeSerializer(item: DataType): Record<string, unknown> {
+export function dataTypeSerializer(item: DataType): any {
   return {
-    properties: !item.properties
-      ? item.properties
-      : dataTypePropertiesSerializer(item.properties),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypePropertiesSerializer(item["properties"]),
+  };
+}
+
+export function dataTypeDeserializer(item: any): DataType {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypePropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -669,9 +1049,7 @@ export interface DataTypeProperties {
   readonly visualizationUrl?: string;
 }
 
-export function dataTypePropertiesSerializer(
-  item: DataTypeProperties,
-): Record<string, unknown> {
+export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
@@ -680,11 +1058,23 @@ export function dataTypePropertiesSerializer(
   };
 }
 
-/** Known values of {@link DataTypeState} that the service accepts. */
+export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    state: item["state"],
+    stateReason: item["stateReason"],
+    storageOutputRetention: item["storageOutputRetention"],
+    databaseCacheRetention: item["databaseCacheRetention"],
+    databaseRetention: item["databaseRetention"],
+    visualizationUrl: item["visualizationUrl"],
+  };
+}
+
+/** The data type state */
 export enum KnownDataTypeState {
-  /** Stopped */
+  /** Field to specify stopped state. */
   Stopped = "Stopped",
-  /** Running */
+  /** Field to specify running state. */
   Running = "Running",
 }
 
@@ -693,10 +1083,28 @@ export enum KnownDataTypeState {
  * {@link KnownDataTypeState} can be used interchangeably with DataTypeState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Stopped** \
- * **Running**
+ * **Stopped**: Field to specify stopped state. \
+ * **Running**: Field to specify running state.
  */
 export type DataTypeState = string;
+
+/** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
+export interface ProxyResource extends Resource {}
+
+export function proxyResourceSerializer(item: ProxyResource): any {
+  return item;
+}
+
+export function proxyResourceDeserializer(item: any): ProxyResource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+  };
+}
 
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
@@ -704,13 +1112,11 @@ export interface DataTypeUpdate {
   properties?: DataTypeUpdateProperties;
 }
 
-export function dataTypeUpdateSerializer(
-  item: DataTypeUpdate,
-): Record<string, unknown> {
+export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
   return {
-    properties: !item.properties
-      ? item.properties
-      : dataTypeUpdatePropertiesSerializer(item.properties),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypeUpdatePropertiesSerializer(item["properties"]),
   };
 }
 
@@ -728,13 +1134,20 @@ export interface DataTypeUpdateProperties {
 
 export function dataTypeUpdatePropertiesSerializer(
   item: DataTypeUpdateProperties,
-): Record<string, unknown> {
+): any {
   return {
     state: item["state"],
     storageOutputRetention: item["storageOutputRetention"],
     databaseCacheRetention: item["databaseCacheRetention"],
     databaseRetention: item["databaseRetention"],
   };
+}
+
+/** model interface _DeleteDataRequest */
+export interface _DeleteDataRequest {}
+
+export function _deleteDataRequestSerializer(item: _DeleteDataRequest): any {
+  return item;
 }
 
 /** The details for container sas creation. */
@@ -747,9 +1160,7 @@ export interface ContainerSaS {
   ipAddress: string;
 }
 
-export function containerSaSSerializer(
-  item: ContainerSaS,
-): Record<string, unknown> {
+export function containerSaSSerializer(item: ContainerSaS): any {
   return {
     startTimeStamp: item["startTimeStamp"].toISOString(),
     expiryTimeStamp: item["expiryTimeStamp"].toISOString(),
@@ -763,6 +1174,12 @@ export interface ContainerSasToken {
   storageContainerSasToken: string;
 }
 
+export function containerSasTokenDeserializer(item: any): ContainerSasToken {
+  return {
+    storageContainerSasToken: item["storageContainerSasToken"],
+  };
+}
+
 /** The response of a DataType list operation. */
 export interface _DataTypeListResult {
   /** The DataType items on this page */
@@ -771,10 +1188,47 @@ export interface _DataTypeListResult {
   nextLink?: string;
 }
 
+export function _dataTypeListResultDeserializer(
+  item: any,
+): _DataTypeListResult {
+  return {
+    value: dataTypeArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function dataTypeArraySerializer(result: Array<DataType>): any[] {
+  return result.map((item) => {
+    return dataTypeSerializer(item);
+  });
+}
+
+export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {
+  return result.map((item) => {
+    return dataTypeDeserializer(item);
+  });
+}
+
 /** The data catalog resource. */
 export interface DataProductsCatalog extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogProperties;
+}
+
+export function dataProductsCatalogDeserializer(
+  item: any,
+): DataProductsCatalog {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductsCatalogPropertiesDeserializer(item["properties"]),
+  };
 }
 
 /** Details for data catalog properties. */
@@ -785,12 +1239,30 @@ export interface DataProductsCatalogProperties {
   publishers: PublisherInformation[];
 }
 
+export function dataProductsCatalogPropertiesDeserializer(
+  item: any,
+): DataProductsCatalogProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    publishers: publisherInformationArrayDeserializer(item["publishers"]),
+  };
+}
+
 /** Details for Publisher Information. */
 export interface PublisherInformation {
   /** Name of the publisher. */
   publisherName: string;
   /** Data product information. */
   dataProducts: DataProductInformation[];
+}
+
+export function publisherInformationDeserializer(
+  item: any,
+): PublisherInformation {
+  return {
+    publisherName: item["publisherName"],
+    dataProducts: dataProductInformationArrayDeserializer(item["dataProducts"]),
+  };
 }
 
 /** Data Product Information */
@@ -803,10 +1275,52 @@ export interface DataProductInformation {
   dataProductVersions: DataProductVersion[];
 }
 
+export function dataProductInformationDeserializer(
+  item: any,
+): DataProductInformation {
+  return {
+    dataProductName: item["dataProductName"],
+    description: item["description"],
+    dataProductVersions: dataProductVersionArrayDeserializer(
+      item["dataProductVersions"],
+    ),
+  };
+}
+
 /** Data Product Version. */
 export interface DataProductVersion {
   /** Version of data product */
   version: string;
+}
+
+export function dataProductVersionDeserializer(item: any): DataProductVersion {
+  return {
+    version: item["version"],
+  };
+}
+
+export function dataProductVersionArrayDeserializer(
+  result: Array<DataProductVersion>,
+): any[] {
+  return result.map((item) => {
+    return dataProductVersionDeserializer(item);
+  });
+}
+
+export function dataProductInformationArrayDeserializer(
+  result: Array<DataProductInformation>,
+): any[] {
+  return result.map((item) => {
+    return dataProductInformationDeserializer(item);
+  });
+}
+
+export function publisherInformationArrayDeserializer(
+  result: Array<PublisherInformation>,
+): any[] {
+  return result.map((item) => {
+    return publisherInformationDeserializer(item);
+  });
 }
 
 /** The response of a DataProductsCatalog list operation. */
@@ -817,12 +1331,38 @@ export interface _DataProductsCatalogListResult {
   nextLink?: string;
 }
 
+export function _dataProductsCatalogListResultDeserializer(
+  item: any,
+): _DataProductsCatalogListResult {
+  return {
+    value: dataProductsCatalogArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function dataProductsCatalogArrayDeserializer(
+  result: Array<DataProductsCatalog>,
+): any[] {
+  return result.map((item) => {
+    return dataProductsCatalogDeserializer(item);
+  });
+}
+
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+export function _operationListResultDeserializer(
+  item: any,
+): _OperationListResult {
+  return {
+    value: operationArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
@@ -839,6 +1379,18 @@ export interface Operation {
   actionType?: ActionType;
 }
 
+export function operationDeserializer(item: any): Operation {
+  return {
+    name: item["name"],
+    isDataAction: item["isDataAction"],
+    display: !item["display"]
+      ? item["display"]
+      : operationDisplayDeserializer(item["display"]),
+    origin: item["origin"],
+    actionType: item["actionType"],
+  };
+}
+
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
@@ -851,14 +1403,23 @@ export interface OperationDisplay {
   readonly description?: string;
 }
 
-/** Known values of {@link Origin} that the service accepts. */
+export function operationDisplayDeserializer(item: any): OperationDisplay {
+  return {
+    provider: item["provider"],
+    resource: item["resource"],
+    operation: item["operation"],
+    description: item["description"],
+  };
+}
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
-  /** user */
-  User = "user",
-  /** system */
-  System = "system",
-  /** user,system */
-  UserSystem = "user,system",
+  /** Indicates the operation is initiated by a user. */
+  user = "user",
+  /** Indicates the operation is initiated by a system. */
+  system = "system",
+  /** Indicates the operation is initiated by a user or system. */
+  "user,system" = "user,system",
 }
 
 /**
@@ -866,15 +1427,15 @@ export enum KnownOrigin {
  * {@link KnownOrigin} can be used interchangeably with Origin,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **user** \
- * **system** \
- * **user,system**
+ * **user**: Indicates the operation is initiated by a user. \
+ * **system**: Indicates the operation is initiated by a system. \
+ * **user,system**: Indicates the operation is initiated by a user or system.
  */
 export type Origin = string;
 
-/** Known values of {@link ActionType} that the service accepts. */
+/** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export enum KnownActionType {
-  /** Internal */
+  /** Actions are for internal-only APIs. */
   Internal = "Internal",
 }
 
@@ -883,8 +1444,12 @@ export enum KnownActionType {
  * {@link KnownActionType} can be used interchangeably with ActionType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Internal**
+ * **Internal**: Actions are for internal-only APIs.
  */
 export type ActionType = string;
-/** The available API versions for the Microsoft.NetworkAnalytics RP. */
-export type Versions = "2023-11-15";
+
+export function operationArrayDeserializer(result: Array<Operation>): any[] {
+  return result.map((item) => {
+    return operationDeserializer(item);
+  });
+}
