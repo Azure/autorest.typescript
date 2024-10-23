@@ -162,9 +162,6 @@ import {
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
-  NodeRebootOptions,
-  NodeReimageOptions,
-  NodeDisableSchedulingOptions,
   BatchNodeRemoteLoginSettingsResult,
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
@@ -182,7 +179,6 @@ import {
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
-  BatchJobTerminateOptions,
   BatchJobCreateOptions,
   JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
@@ -546,10 +542,9 @@ export class BatchClient {
    */
   terminateJob(
     jobId: string,
-    body?: BatchJobTerminateOptions,
     options: TerminateJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return terminateJob(this._client, jobId, body, options);
+    return terminateJob(this._client, jobId, options);
   }
 
   /**
@@ -1022,10 +1017,9 @@ export class BatchClient {
   rebootNode(
     poolId: string,
     nodeId: string,
-    body?: NodeRebootOptions,
     options: RebootNodeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return rebootNode(this._client, poolId, nodeId, body, options);
+    return rebootNode(this._client, poolId, nodeId, options);
   }
 
   /**
@@ -1036,10 +1030,9 @@ export class BatchClient {
   reimageNode(
     poolId: string,
     nodeId: string,
-    body?: NodeReimageOptions,
     options: ReimageNodeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return reimageNode(this._client, poolId, nodeId, body, options);
+    return reimageNode(this._client, poolId, nodeId, options);
   }
 
   /**
@@ -1049,10 +1042,9 @@ export class BatchClient {
   disableNodeScheduling(
     poolId: string,
     nodeId: string,
-    body?: NodeDisableSchedulingOptions,
     options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return disableNodeScheduling(this._client, poolId, nodeId, body, options);
+    return disableNodeScheduling(this._client, poolId, nodeId, options);
   }
 
   /**
