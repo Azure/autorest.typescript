@@ -5,6 +5,7 @@ import {
   Model,
   ModelProperty,
   Namespace,
+  NoTarget,
   Operation,
   Program,
   Scalar,
@@ -87,6 +88,7 @@ import {
   getDefaultApiVersionString,
   getEffectiveSchemaType,
   isAzureCoreErrorType,
+  isBodyRequired,
   isSchemaProperty
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -497,7 +499,8 @@ function emitBodyParameter(
       type,
       location: "body",
       ...base,
-      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
+      isBinaryPayload: isBinaryPayload(context, body.type, contentTypes),
+      optional: !isBodyRequired(httpOperation.parameters)
     };
   }
   return undefined;
@@ -1260,7 +1263,7 @@ function emitStdScalar(
         format: {
           propertyName: newScalar?.name ?? ""
         },
-        target: newScalar ?? scalar
+        target: NoTarget
       });
       return { type: "integer", format: newScalar.format };
     default:
