@@ -37,10 +37,6 @@ import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
-import {
-  getTypeExpression,
-  normalizeModelPropertyName
-import { pascal, toCamelCase } from "../utils/casingUtils.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -53,6 +49,8 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { getTypeExpression, normalizeModelPropertyName } from "./type-expressions/get-type-expression.js";
+import { pascal } from "../utils/casingUtils.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -194,7 +192,6 @@ export function emitTypes(
 
 export function getModelsPath(sourceRoot: string): string {
   return path.join(...[sourceRoot, "models", `models.ts`]);
-              name: pascal(v.name),
 }
 
 function addSerializationFunctions(
@@ -312,7 +309,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
 function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: member.name,
+    name: pascal(member.name),
     value: member.value
   };
 
