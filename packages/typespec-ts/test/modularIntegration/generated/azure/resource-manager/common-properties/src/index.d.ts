@@ -2,6 +2,19 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare class CommonPropertiesClient {
+    private _client;
+    readonly pipeline: Pipeline;
+    constructor(options?: CommonPropertiesClientOptionalParams);
+    get(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    createWithSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    updateWithUserAssignedAndSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+}
+
+export declare interface CommonPropertiesClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
 export declare type CreatedByType = string;
 
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
@@ -38,20 +51,7 @@ export declare enum KnownManagedServiceIdentityType {
     None = "None",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned",
-    SystemAndUserAssignedV3 = "SystemAssigned,UserAssigned"
-}
-
-export declare class ManagedIdentityClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(options?: ManagedIdentityClientOptionalParams);
-    get(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
-    createWithSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
-    updateWithUserAssignedAndSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
-}
-
-export declare interface ManagedIdentityClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
+    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned"
 }
 
 export declare interface ManagedIdentityTrackedResource extends TrackedResource {
