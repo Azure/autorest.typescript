@@ -1,15 +1,81 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import AzureHealthInsightsClient from "./azureHealthInsightsClient.js";
-
-export * from "./azureHealthInsightsClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./isUnexpected.js";
-export * from "./models.js";
-export * from "./outputModels.js";
-export * from "./pollingHelper.js";
-
-export default AzureHealthInsightsClient;
+export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
+export {
+  PatientRecord,
+  PatientInfo,
+  PatientInfoSex,
+  Resource,
+  Meta,
+  Coding,
+  Encounter,
+  TimePeriod,
+  EncounterClass,
+  PatientDocument,
+  DocumentType,
+  ClinicalDocumentType,
+  DocumentAuthor,
+  SpecialtyType,
+  DocumentAdministrativeMetadata,
+  OrderedProcedure,
+  CodeableConcept,
+  DocumentContent,
+  DocumentContentSourceType,
+  Element,
+  Extension,
+  Quantity,
+  Range,
+  Ratio,
+  SampledData,
+  Period,
+  Reference,
+  Identifier,
+  Extendible,
+  RadiologyInsightsModelConfiguration,
+  RadiologyInsightsInferenceType,
+  RadiologyInsightsInferenceOptions,
+  FollowupRecommendationOptions,
+  FindingOptions,
+  HealthInsightsOperationStatusError,
+  JobStatus,
+  RadiologyInsightsInferenceResult,
+  RadiologyInsightsPatientResult,
+  RadiologyInsightsInference,
+  RadiologyInsightsInferenceUnion,
+  AgeMismatchInference,
+  SexMismatchInference,
+  LateralityDiscrepancyInference,
+  LateralityDiscrepancyType,
+  CompleteOrderDiscrepancyInference,
+  LimitedOrderDiscrepancyInference,
+  FindingInference,
+  Observation,
+  ObservationStatusCodeType,
+  Annotation,
+  ObservationReferenceRange,
+  ObservationComponent,
+  CriticalResultInference,
+  CriticalResult,
+  RadiologyProcedureInference,
+  ImagingProcedure,
+  RadiologyCodeWithTypes,
+  FollowupRecommendationInference,
+  RecommendationFinding,
+  RecommendationFindingStatusType,
+  ProcedureRecommendation,
+  ProcedureRecommendationUnion,
+  GenericProcedureRecommendation,
+  ImagingProcedureRecommendation,
+  FollowupCommunicationInference,
+  MedicalProfessionalType,
+  DomainResource,
+  DomainResourceUnion,
+  Narrative,
+  RadiologyInsightsResult,
+} from "./models/index.js";
+export {
+  InferRadiologyInsightsOptionalParams,
+  RadiologyInsightsClientOptionalParams,
+} from "./api/index.js";
