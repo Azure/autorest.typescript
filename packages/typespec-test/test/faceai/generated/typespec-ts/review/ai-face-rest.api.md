@@ -658,11 +658,11 @@ export interface BlurPropertiesOutput {
     value: number;
 }
 
-// @public (undocumented)
+// @public
 export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: ValueType;
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
 // @public

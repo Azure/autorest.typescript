@@ -98,14 +98,14 @@ export interface BreakSentenceQueryParamProperties {
 }
 
 // @public (undocumented)
-export function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: ValueType;
-};
-
-// @public (undocumented)
 export function buildMultiCollection(items: string[], parameterName: string): string;
+
+// @public
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
+};
 
 // @public
 export interface CommonScriptModelOutput {

@@ -1,10 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType) {
+/**
+ * The helper to build a wrapper object for a value with explode as false and form style.
+ */
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+  explode: false;
+  style: "form";
+  value: ValueType;
+} {
   return {
     explode: false,
     style: "form",
     value,
-  } as const;
+  };
 }
