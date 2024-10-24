@@ -34,50 +34,65 @@ export function buildCsvCollection(items: string[] | number[]): string {
 }`;
 
 export const buildAllowReservedContent = `
-export function buildAllowReservedValue<ValueType>(value: ValueType) {
+/**
+ * The helper to build a wrapper object for a value with allowReserved as true.
+ */
+export function buildAllowReservedValue<ValueType>(value: ValueType): { allowReserved: true, value: ValueType } {
     return {
         allowReserved: true,
         value
-    } as const
+    }
 }
 `;
 
 export const buildExplodedAndFormStyleContent = `
-export function buildExplodedFormStyleValue<ValueType>(value: ValueType){
-    return {
-        explode: true,
-        style: "form",
-        value
-    } as const
+/**
+ * The helper to build a wrapper object for a value with explode as true and form style.
+ */
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): { explode: false, style: "form", value: ValueType } {
+  return {
+    explode: false,
+    style: "form",
+    value,
+  };
 }
 `;
 
 export const buildNonExplodedAndFormStyleContent = `
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType){
+/**
+ * The helper to build a wrapper object for a value with explode as false and form style.
+ */
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): { explode: false, style: "form", value: ValueType }{
     return {
         explode: false,
         style: "form",
         value
-    } as const
+    }
 }
 `;
 
 export const buildNonExplodedAndPipeStyleContent = `
-export function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType){
+/**
+ * The helper to build a wrapper object for a value with explode as false and pipeDelimited style.
+ */
+export function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType): { explode: false, style: "pipeDelimited", value: ValueType }{
     return {
         explode: false,
         style: "pipeDelimited",
         value
-    } as const
+    }
 }
 `;
 
 export const buildNonExplodedAndSpaceStyleContent = `
-export function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType){
+/**
+ * The helper to build a wrapper object for a value with explode as false and spaceDelimited style.
+ */
+export function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType): { explode: false, style: "spaceDelimited", value: ValueType }{
     return {
         explode: false,
         style: "spaceDelimited",
         value
-    } as const
+    }
 }
 `;
