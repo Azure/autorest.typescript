@@ -8,6 +8,12 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient(options?: DatetimeClientOptions): DatetimeClient;
 export default createClient;
 
@@ -268,7 +274,13 @@ export declare interface QueryUnixTimestampArrayQueryParam {
 }
 
 export declare interface QueryUnixTimestampArrayQueryParamProperties {
+    value: number[] | QueryUnixTimestampArrayValueQueryParam;
+}
+
+export declare interface QueryUnixTimestampArrayValueQueryParam {
     value: number[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryUnixTimestampParameters = QueryUnixTimestampQueryParam & RequestParameters;

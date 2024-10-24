@@ -267,6 +267,12 @@ const libDef = {
       messages: {
         default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
       }
+    },
+    "un-supported-format-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} with explode: ${"explode"} and format: ${"format"} is not supported.`
+      }
     }
   },
   emitter: {

@@ -1,4 +1,8 @@
-import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
+import {
+  HelperFunctionDetails,
+  PackageFlavor,
+  ParameterBuilderKind
+} from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
   listOperationGroups,
@@ -16,6 +20,8 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
+import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -176,34 +182,30 @@ function extractSpecialSerializeInfo(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const paramBuilders = new Set<ParameterBuilderKind>();
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasTsvCollection = false;
-  let hasSsvCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
+        dpgContext,
         parameter.type,
         (parameter as any).format
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasPipeCollection = hasPipeCollection
-        ? hasPipeCollection
-        : serializeInfo.hasPipeCollection;
-      hasTsvCollection = hasTsvCollection
-        ? hasTsvCollection
-        : serializeInfo.hasTsvCollection;
-      hasSsvCollection = hasSsvCollection
-        ? hasSsvCollection
-        : serializeInfo.hasSsvCollection;
-      hasCsvCollection = hasCsvCollection
-        ? hasCsvCollection
-        : serializeInfo.hasCsvCollection;
+      const [parameterBuilder] =
+        getParameterWrapperInfo(
+          dpgContext,
+          parameter,
+          getSchemaForType(dpgContext, parameter.param.type)
+        ) ?? [];
+      if (parameterBuilder) {
+        paramBuilders.add(parameterBuilder);
+      }
     });
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -216,32 +218,31 @@ function extractSpecialSerializeInfo(
       const route = getHttpOperationWithCache(dpgContext, op);
       route.parameters.parameters.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(
+          dpgContext,
           parameter.type,
           (parameter as any).format
         );
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection
           : serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection
-          ? hasPipeCollection
-          : serializeInfo.hasPipeCollection;
-        hasTsvCollection = hasTsvCollection
-          ? hasTsvCollection
-          : serializeInfo.hasTsvCollection;
-        hasSsvCollection = hasSsvCollection
-          ? hasSsvCollection
-          : serializeInfo.hasSsvCollection;
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
+        const [parameterBuilder] =
+          getParameterWrapperInfo(
+            dpgContext,
+            parameter,
+            getSchemaForType(dpgContext, parameter.param.type)
+          ) ?? [];
+        if (parameterBuilder) {
+          paramBuilders.add(parameterBuilder);
+        }
       });
     }
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasTsvCollection,
-    hasSsvCollection,
-    hasCsvCollection
+    hasCsvCollection,
+    parameterBuilders: [...paramBuilders]
   };
 }

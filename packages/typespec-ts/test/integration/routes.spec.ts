@@ -1,5 +1,7 @@
 import RoutesClientFactory, {
-  RoutesClient
+  RoutesClient,
+  buildAllowReservedValue,
+  buildUnexplodedFormStyleValue
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -32,10 +34,97 @@ describe("RoutesClient Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it.skip("should have PathParameters SimpleExpansion Standard primitive", async () => {
+  it("should have allowReserved: true", async () => {
     const result = await client
-      .path("/routes/path/simple/standard/primitive{param}", "a")
+      .path("/routes/path/reserved-expansion/template/{param}", {
+        value: "foo/bar baz",
+        allowReserved: true
+      })
       .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have allowReserved: true with helper", async () => {
+    const result = await client
+      .path(
+        "/routes/path/reserved-expansion/template/{param}",
+        buildAllowReservedValue("foo/bar baz")
+      )
+      .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it.skip("should have explode: true array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/array")
+      .get({
+        queryParameters: {
+          param: {
+            value: ["a", "b"],
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/record")
+      .get({
+        queryParameters: {
+          param: {
+            value: { a: 1, b: 2 },
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/primitive")
+      .get({
+        queryParameters: {
+          param: "a"
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/array")
+      .get({
+        queryParameters: {
+          param: ["a", "b"]
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/record")
+      .get({
+        queryParameters: {
+          param: buildUnexplodedFormStyleValue({ a: 1, b: 2 })
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/primitive")
+      .get({
+        queryParameters: {
+          param: "a"
+        }
+      });
     assert.strictEqual(result.status, "204");
   });
 

@@ -7,6 +7,12 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 declare function createClient(options?: DurationClientOptions): DurationClient;
 export default createClient;
 
@@ -333,6 +339,12 @@ export declare interface QueryInt32SecondsArray204Response extends HttpResponse 
     status: "204";
 }
 
+export declare interface QueryInt32SecondsArrayInputQueryParam {
+    value: number[];
+    explode: false;
+    style: "form";
+}
+
 export declare type QueryInt32SecondsArrayParameters = QueryInt32SecondsArrayQueryParam & RequestParameters;
 
 export declare interface QueryInt32SecondsArrayQueryParam {
@@ -340,7 +352,7 @@ export declare interface QueryInt32SecondsArrayQueryParam {
 }
 
 export declare interface QueryInt32SecondsArrayQueryParamProperties {
-    input: number[];
+    input: number[] | QueryInt32SecondsArrayInputQueryParam;
 }
 
 export declare type QueryInt32SecondsParameters = QueryInt32SecondsQueryParam & RequestParameters;

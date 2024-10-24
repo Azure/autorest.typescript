@@ -37,6 +37,7 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
+import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -133,15 +134,40 @@ function transformOperation(
         .filter((p) => p.type === "path")
         .map((p) => {
           const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
+          const options = {
+            usage: schemaUsage,
+            needRef: false,
+            relevantProperty: p.param
+          };
           const schema = p.param.sourceProperty
-            ? getSchemaForType(dpgContext, p.param.sourceProperty?.type)
-            : getSchemaForType(dpgContext, p.param.type);
+            ? getSchemaForType(
+                dpgContext,
+                p.param.sourceProperty?.type,
+
+                options
+              )
+            : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
+
+          const [parameterBuilder, wrapperType] =
+            getParameterWrapperInfo(
+              dpgContext,
+              p,
+              schema,
+              operationGroupName,
+              method.operationName
+            ) ?? [];
+          let description = getDoc(program, p.param) ?? "";
+          const typeName = getTypeName(wrapperType ?? schema, schemaUsage);
+          if (wrapperType) {
+            description = `${description} \n\nThis parameter type could be easily prepared with function ${parameterBuilder}.`;
+          }
           return {
             name: p.name,
-            type: getTypeName(schema, schemaUsage),
-            description: getDoc(program, p.param)
+            type: typeName,
+            description,
+            wrapperType
           };
         }),
       operationGroupName: getOperationGroupName(dpgContext, route),

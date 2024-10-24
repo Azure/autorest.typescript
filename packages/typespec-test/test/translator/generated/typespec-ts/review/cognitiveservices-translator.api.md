@@ -101,6 +101,13 @@ export interface BreakSentenceQueryParamProperties {
 export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
+export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
+};
+
+// @public
 export interface CommonScriptModelOutput {
     code: string;
     dir: string;
@@ -591,8 +598,15 @@ export interface TranslateQueryParamProperties {
     profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
     textType?: TextTypes;
-    to: string;
+    to: TranslateToQueryParam | string;
     toScript?: string;
+}
+
+// @public
+export interface TranslateToQueryParam {
+    explode: true;
+    style: "form";
+    value: string[];
 }
 
 // @public

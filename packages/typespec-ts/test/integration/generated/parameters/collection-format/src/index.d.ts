@@ -7,13 +7,31 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: true;
+    readonly style: "form";
+    readonly value: ValueType;
+};
+
 export declare function buildMultiCollection(items: string[], parameterName: string): string;
 
-export declare function buildPipeCollection(items: string[] | number[]): string;
+export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "form";
+    readonly value: ValueType;
+};
 
-export declare function buildSsvCollection(items: string[] | number[]): string;
+export declare function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "pipeDelimited";
+    readonly value: ValueType;
+};
 
-export declare function buildTsvCollection(items: string[] | number[]): string;
+export declare function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType): {
+    readonly explode: false;
+    readonly style: "spaceDelimited";
+    readonly value: ValueType;
+};
 
 export declare type CollectionFormatClient = Client & {
     path: Routes;
@@ -51,6 +69,12 @@ export declare interface QueryCsv204Response extends HttpResponse {
     status: "204";
 }
 
+export declare interface QueryCsvColorsQueryParam {
+    value: string[];
+    explode: false;
+    style: "form";
+}
+
 export declare type QueryCsvParameters = QueryCsvQueryParam & RequestParameters;
 
 export declare interface QueryCsvQueryParam {
@@ -58,7 +82,7 @@ export declare interface QueryCsvQueryParam {
 }
 
 export declare interface QueryCsvQueryParamProperties {
-    colors: string[];
+    colors: string[] | QueryCsvColorsQueryParam;
 }
 
 export declare interface QueryMulti {
@@ -69,6 +93,12 @@ export declare interface QueryMulti204Response extends HttpResponse {
     status: "204";
 }
 
+export declare interface QueryMultiColorsQueryParam {
+    value: string[];
+    explode: true;
+    style: "form";
+}
+
 export declare type QueryMultiParameters = QueryMultiQueryParam & RequestParameters;
 
 export declare interface QueryMultiQueryParam {
@@ -76,7 +106,7 @@ export declare interface QueryMultiQueryParam {
 }
 
 export declare interface QueryMultiQueryParamProperties {
-    colors: string;
+    colors: QueryMultiColorsQueryParam | string;
 }
 
 export declare interface QueryPipes {
@@ -87,6 +117,12 @@ export declare interface QueryPipes204Response extends HttpResponse {
     status: "204";
 }
 
+export declare interface QueryPipesColorsQueryParam {
+    value: string[];
+    explode: false;
+    style: "pipeDelimited";
+}
+
 export declare type QueryPipesParameters = QueryPipesQueryParam & RequestParameters;
 
 export declare interface QueryPipesQueryParam {
@@ -94,7 +130,7 @@ export declare interface QueryPipesQueryParam {
 }
 
 export declare interface QueryPipesQueryParamProperties {
-    colors: string;
+    colors: QueryPipesColorsQueryParam;
 }
 
 export declare interface QuerySsv {
@@ -105,6 +141,12 @@ export declare interface QuerySsv204Response extends HttpResponse {
     status: "204";
 }
 
+export declare interface QuerySsvColorsQueryParam {
+    value: string[];
+    explode: false;
+    style: "spaceDelimited";
+}
+
 export declare type QuerySsvParameters = QuerySsvQueryParam & RequestParameters;
 
 export declare interface QuerySsvQueryParam {
@@ -112,7 +154,7 @@ export declare interface QuerySsvQueryParam {
 }
 
 export declare interface QuerySsvQueryParamProperties {
-    colors: string;
+    colors: QuerySsvColorsQueryParam;
 }
 
 export declare interface QueryTsv {
@@ -130,7 +172,7 @@ export declare interface QueryTsvQueryParam {
 }
 
 export declare interface QueryTsvQueryParamProperties {
-    colors: string;
+    colors: string[];
 }
 
 export declare interface Routes {
