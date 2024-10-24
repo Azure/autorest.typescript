@@ -106,6 +106,9 @@ export function emitTypes(
       continue;
     }
     if (type.kind === "model") {
+      if (type.name.startsWith("Paged")) {
+        type;
+      }
       if (isAzureCoreErrorType(context.program, type.__raw)) {
         continue;
       }
@@ -584,16 +587,16 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     return;
   }
 
-  if (emitQueue.has(type as any)) {
+  if (emitQueue.has(type)) {
     return;
   }
-
+  emitQueue.add(type);
   if (type.kind === "model") {
     const externalModel = getExternalModel(type);
     if (externalModel) {
       return;
     }
-    emitQueue.add(type);
+    
     if (type.additionalProperties) {
       visitType(type.additionalProperties, emitQueue);
     }

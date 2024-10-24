@@ -270,6 +270,9 @@ class BinderImp implements Binder {
         continue;
       }
 
+      if (declarationKey === "__PLACEHOLDER_o31__") {
+        declaration;
+      }
       let name = declaration.name;
       let declarationSourceFile: SourceFile;
 

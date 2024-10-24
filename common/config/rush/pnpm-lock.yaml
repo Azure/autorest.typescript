@@ -194,6 +194,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.47.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.47.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.47.0 <1.0.0'
+      '@azure-tools/typespec-azure-rulesets': '>=0.47.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.47.1 <1.0.0'
       '@azure-tools/typespec-ts': workspace:^0.33.0
       '@types/mocha': ^5.2.7
@@ -211,6 +212,7 @@ importers:
       '@azure-tools/typespec-autorest': 0.47.0_6i46vjalqozm5ewev2ynb2kyea
       '@azure-tools/typespec-azure-core': 0.47.0_fxc6wb4hdwr6r5hw5qrofq3aoy
       '@azure-tools/typespec-azure-resource-manager': 0.47.0_f62ldmasulsabis4qbnzkqboii
+      '@azure-tools/typespec-azure-rulesets': 0.47.0_zdsspxjo6edvirf6jkpgazolka
       '@azure-tools/typespec-client-generator-core': 0.47.1_f62ldmasulsabis4qbnzkqboii
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 0.61.2
@@ -601,6 +603,21 @@ packages:
       '@typespec/versioning': 0.61.0_@typespec+compiler@0.61.2
       change-case: 5.4.4
       pluralize: 8.0.0
+
+  /@azure-tools/typespec-azure-rulesets/0.47.0_zdsspxjo6edvirf6jkpgazolka:
+    resolution: {integrity: sha512-CG6sGYc/9qKAQIWtauzH6yEoTdugfz4DEmiWcytJMhgw1tQ2bqmcJuar01ctDKuaD5F1PKZ0X3oAxPu84pIlqw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ~0.47.0
+      '@azure-tools/typespec-azure-resource-manager': ~0.47.0
+      '@azure-tools/typespec-client-generator-core': ~0.47.0
+      '@typespec/compiler': ~0.61.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.47.0_fxc6wb4hdwr6r5hw5qrofq3aoy
+      '@azure-tools/typespec-azure-resource-manager': 0.47.0_f62ldmasulsabis4qbnzkqboii
+      '@azure-tools/typespec-client-generator-core': 0.47.1_f62ldmasulsabis4qbnzkqboii
+      '@typespec/compiler': 0.61.2
+    dev: false
 
   /@azure-tools/typespec-client-generator-core/0.47.1_f62ldmasulsabis4qbnzkqboii:
     resolution: {integrity: sha512-kgjGnnOaHewa8PjmZcEY4+UrEMBrXhOpMxDuhlMnFfOvCo3uZc3FVryoNrDHkZ8weCn6sjxo8zHcj1lpCg4/uw==}

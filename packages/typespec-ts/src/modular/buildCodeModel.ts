@@ -288,8 +288,8 @@ function processModelProperties(
     if (newValue.name) {
       newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name}`;
-      newValue.name = `${newValue.name}Union`;
+      newValue.alias = `${newValue.name.replace(/Union$/g, "")}`;
+      newValue.name = `${newValue.name}`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
       newValue.isPolymorphicBaseModel = true;
@@ -348,7 +348,13 @@ export function getType(
   }
 
   if (isTypespecType(type)) {
-    newValue.tcgcType = getClientType(context, type);
+    if (newValue.name === "_CustomPage") {
+      newValue;
+    }
+    newValue.tcgcType = getClientType(context, effectiveModel as any);
+    newValue.name = !newValue.tcgcType.isGeneratedName
+      ? normalizeModelName(context, newValue.tcgcType)
+      : newValue.name;
     newValue.__raw = type;
     modularMetatree.set(type, newValue);
   }
@@ -491,9 +497,6 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
-    type.name = !type.tcgcType.isGeneratedName
-      ? normalizeModelName(context, type.tcgcType)
-      : "";
     return {
       contentTypes,
       type,
@@ -621,6 +624,9 @@ function emitResponse(
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent
 ): Response {
+  if (operation.interface?.name === "Evaluations") {
+    operation;
+  }
   let type = undefined;
   if (
     innerResponse.body?.type &&
