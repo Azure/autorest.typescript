@@ -180,8 +180,11 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["rimraf"];
+    delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
-      "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+      "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
+    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";

@@ -43,7 +43,11 @@ function getAzureStandaloneDependencies(
     dependencies: {
       ...getAzurePackageDependencies(config)
     },
-    devDependencies: getStandaloneDevDependencies(config)
+    devDependencies: {
+      ...getStandaloneDevDependencies(config),
+      rimraf: "^5.0.5",
+      mkdirp: "^3.0.1"
+    }
   };
 }
 
