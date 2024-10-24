@@ -3,19 +3,10 @@
 
 export {
   SchemaGroup,
-  SchemaContentTypeValues,
   SchemaVersion,
-  ServiceApiVersions,
   SchemaProperties,
   SchemaFormat,
   Schema,
+  SchemaContentTypeValues,
   ContentTypeEnum,
 } from "./models.js";
-export {
-  SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsRegisterSchemaOptionalParams,
-} from "./options.js";

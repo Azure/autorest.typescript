@@ -43,7 +43,7 @@ export interface Binder {
   resolveAllReferences(): void;
 }
 
-const PLACEHOLDER_PREFIX = "_PLACEHOLDER_";
+const PLACEHOLDER_PREFIX = "__PLACEHOLDER_";
 
 class BinderImp implements Binder {
   private declarations = new Map<unknown, DeclarationInfo>();
@@ -157,7 +157,7 @@ class BinderImp implements Binder {
    * @returns The serialized placeholder string.
    */
   private serializePlaceholder(refkey: unknown): string {
-    return `${PLACEHOLDER_PREFIX}${String(refkey)}_`;
+    return `${PLACEHOLDER_PREFIX}${String(refkey)}__`;
   }
 
   /**

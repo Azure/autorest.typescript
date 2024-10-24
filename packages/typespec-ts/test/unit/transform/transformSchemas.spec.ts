@@ -158,7 +158,9 @@ describe("#transformSchemas", () => {
             @get
             op getModel(@body input: Test): Test;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           assert.isNotNull(schemaOutput);
           const first = schemaOutput?.[0] as ObjectSchema;
@@ -212,7 +214,9 @@ describe("#transformSchemas", () => {
             @get
             op getModel(@body input: Test): Test;
           `,
-            true
+            {
+              needAzureCore: true
+            }
           );
           assert.isNotNull(schemaOutput);
           const first = schemaOutput?.[0] as ObjectSchema;
@@ -339,7 +343,9 @@ describe("#transformSchemas", () => {
           @get
           op getModel(@body input: Test): Test;
         `,
-          true
+          {
+            needAzureCore: true
+          }
         );
         assert.isNotNull(schemaOutput);
         const first = schemaOutput?.[0] as ObjectSchema;
@@ -389,7 +395,9 @@ describe("#transformSchemas", () => {
           @get
           op getModel(@body input: Test): Test;
         `,
-          true
+          {
+            needAzureCore: true
+          }
         );
         assert.isNotNull(schemaOutput);
         const first = schemaOutput?.[0] as ObjectSchema;
@@ -421,7 +429,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -489,7 +499,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -530,7 +542,7 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {needAzureCore: true}
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -576,7 +588,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;

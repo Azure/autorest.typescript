@@ -190,9 +190,6 @@ export interface TextBlocklistMatchResult {
 // @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
-// @public
-export type Versions = "2023-10-01";
-
 // (No @packageDocumentation comment for this package)
 
 ```

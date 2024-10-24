@@ -257,6 +257,7 @@ export interface RLCOptions {
   compatibilityMode?: boolean;
   experimentalExtensibleEnums?: boolean;
   clearOutputFolder?: boolean;
+  ignorePropertyNameNormalize?: boolean;
 }
 
 export interface ServiceInfo {

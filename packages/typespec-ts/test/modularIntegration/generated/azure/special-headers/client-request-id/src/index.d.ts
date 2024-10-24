@@ -6,14 +6,14 @@ export declare interface GetOptionalParams extends OperationOptions {
     clientRequestId?: string;
 }
 
-export declare class XmsRequestIdClient {
+export declare class XmsClientRequestIdClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(options?: XmsRequestIdClientOptionalParams);
+    constructor(options?: XmsClientRequestIdClientOptionalParams);
     get(options?: GetOptionalParams): Promise<void>;
 }
 
-export declare interface XmsRequestIdClientOptionalParams extends ClientOptions {
+export declare interface XmsClientRequestIdClientOptionalParams extends ClientOptions {
 }
 
 export { }

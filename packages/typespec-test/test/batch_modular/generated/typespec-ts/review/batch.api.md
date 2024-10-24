@@ -126,7 +126,7 @@ export class BatchClient {
     deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptionalParams): Promise<void>;
     disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptionalParams): Promise<void>;
     disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptionalParams): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, body?: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptionalParams): Promise<void>;
+    disableNodeScheduling(poolId: string, nodeId: string, options?: DisableNodeSchedulingOptionalParams): Promise<void>;
     disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptionalParams): Promise<void>;
     enableJob(jobId: string, options?: EnableJobOptionalParams): Promise<void>;
     enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptionalParams): Promise<void>;
@@ -168,8 +168,8 @@ export class BatchClient {
     readonly pipeline: Pipeline;
     poolExists(poolId: string, options?: PoolExistsOptionalParams): Promise<void>;
     reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptionalParams): Promise<void>;
-    rebootNode(poolId: string, nodeId: string, body?: NodeRebootOptions, options?: RebootNodeOptionalParams): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, body?: NodeReimageOptions, options?: ReimageNodeOptionalParams): Promise<void>;
+    rebootNode(poolId: string, nodeId: string, options?: RebootNodeOptionalParams): Promise<void>;
+    reimageNode(poolId: string, nodeId: string, options?: ReimageNodeOptionalParams): Promise<void>;
     removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptionalParams): Promise<void>;
     replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptionalParams): Promise<void>;
     replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptionalParams): Promise<void>;
@@ -178,7 +178,7 @@ export class BatchClient {
     replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptionalParams): Promise<void>;
     resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptionalParams): Promise<void>;
     stopPoolResize(poolId: string, options?: StopPoolResizeOptionalParams): Promise<void>;
-    terminateJob(jobId: string, body?: BatchJobTerminateOptions, options?: TerminateJobOptionalParams): Promise<void>;
+    terminateJob(jobId: string, options?: TerminateJobOptionalParams): Promise<void>;
     terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptionalParams): Promise<void>;
     terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptionalParams): Promise<void>;
     updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptionalParams): Promise<void>;
@@ -189,6 +189,7 @@ export class BatchClient {
 
 // @public
 export interface BatchClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -816,6 +817,7 @@ export interface DisableJobScheduleOptionalParams extends OperationOptions {
 // @public
 export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
     apiVersion?: string;
+    body?: NodeDisableSchedulingOptions;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -1750,6 +1752,7 @@ export interface ReactivateTaskOptionalParams extends OperationOptions {
 // @public
 export interface RebootNodeOptionalParams extends OperationOptions {
     apiVersion?: string;
+    body?: NodeRebootOptions;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -1763,6 +1766,7 @@ export interface RecentJob {
 // @public
 export interface ReimageNodeOptionalParams extends OperationOptions {
     apiVersion?: string;
+    body?: NodeReimageOptions;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -2081,6 +2085,7 @@ export interface TaskStatistics {
 // @public
 export interface TerminateJobOptionalParams extends OperationOptions {
     apiVersion?: string;
+    body?: BatchJobTerminateOptions;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2194,9 +2199,6 @@ export interface UserIdentity {
 
 // @public
 export type VerificationType = "verified" | "unverified";
-
-// @public
-export type Versions = "2023-05-01.17.0";
 
 // @public
 export interface VirtualMachineConfiguration {

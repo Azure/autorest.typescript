@@ -1,8 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  createEventGrid,
+  EventGridContext,
+  EventGridClientOptionalParams,
+  publishCloudEvent,
+  publishCloudEvents,
+  receiveCloudEvents,
+  acknowledgeCloudEvents,
+  releaseCloudEvents,
+  rejectCloudEvents,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
+} from "./api/index.js";
 import {
   CloudEvent,
   PublishResult,
@@ -14,25 +29,8 @@ import {
   RejectOptions,
   RejectResult,
 } from "./models/models.js";
-import {
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-} from "./models/options.js";
-import {
-  createEventGrid,
-  EventGridContext,
-  EventGridClientOptionalParams,
-  publishCloudEvent,
-  publishCloudEvents,
-  receiveCloudEvents,
-  acknowledgeCloudEvents,
-  releaseCloudEvents,
-  rejectCloudEvents,
-} from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { KeyCredential } from "@azure/core-auth";
 
 export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 
