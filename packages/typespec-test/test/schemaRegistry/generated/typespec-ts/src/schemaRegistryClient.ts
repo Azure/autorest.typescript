@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   getSchemaOperationsOperations,
   SchemaOperationsOperations,
@@ -12,6 +10,8 @@ import {
   SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
 
 export { SchemaRegistryClientOptionalParams } from "./api/schemaRegistryContext.js";
 

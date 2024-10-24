@@ -64,8 +64,8 @@ async function compileResourceOperation(code: string) {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     ${code}
     `;
-  const parameters = await emitParameterFromTypeSpec(content, true);
-  const responses = await emitResponsesFromTypeSpec(content, true);
+  const parameters = await emitParameterFromTypeSpec(content, {needAzureCore: true});
+  const responses = await emitResponsesFromTypeSpec(content, {needAzureCore: true});
 
   return { parameters, responses };
 }

@@ -1,32 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/** model interface A */
 export interface A {
   prop1: string;
 }
 
-export function aSerializer(item: A): Record<string, unknown> {
-  return {
-    prop1: item["prop1"],
-  };
+export function aSerializer(item: A): any {
+  return { prop1: item["prop1"] };
 }
 
-export interface BA {
+/** model interface Ba */
+export interface Ba {
   prop2: string;
 }
 
-export function bASerializer(item: BA): Record<string, unknown> {
-  return {
-    prop2: item["prop2"],
-  };
+export function baSerializer(item: Ba): any {
+  return { prop2: item["prop2"] };
 }
 
-export interface BEA {
+/** model interface Bea */
+export interface Bea {
   prop3: string;
 }
 
-export function bEASerializer(item: BEA): Record<string, unknown> {
-  return {
-    prop3: item["prop3"],
-  };
+export function beaSerializer(item: Bea): any {
+  return { prop3: item["prop3"] };
 }

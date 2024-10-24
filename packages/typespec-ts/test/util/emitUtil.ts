@@ -12,25 +12,20 @@ import {
   initInternalImports
 } from "@azure-tools/rlc-common";
 import {
-  buildModels,
-  buildModelsOptions
+  emitTypes,
 } from "../../src/modular/emitModels.js";
 import {
-  compileTypeSpecFor,
-  createDpgContextTestHelper,
-  ExampleJson,
-  rlcEmitterFor
-} from "./testUtil.js";
+  buildApiOptions
+} from "../../src/modular/emitModelsOptions.js";
+import { compileTypeSpecFor, createDpgContextTestHelper, ExampleJson, rlcEmitterFor } from "./testUtil.js";
 import {
   transformRLCModel,
   transformUrlInfo
 } from "../../src/transform/transform.js";
 
-import { Project } from "ts-morph";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
-import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
@@ -46,14 +41,21 @@ import { emitSamples } from "../../src/modular/emitSamples.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  needTCGC: boolean = false
+  {
+    needAzureCore = false,
+    needTCGC = false
+  }: {
+    needAzureCore?: boolean;
+    needTCGC?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    needTCGC
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC
+    }
   );
   const program = context.program;
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -82,14 +84,21 @@ export async function emitPageHelperFromTypeSpec(
 
 export async function emitSchemasFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  needTCGC: boolean = false
+  {
+    needAzureCore = false,
+    needTCGC = false
+  }: {
+    needAzureCore?: boolean;
+    needTCGC?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    needTCGC
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC
+    }
   );
   const program = context.program;
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -104,18 +113,28 @@ export async function emitSchemasFromTypeSpec(
 
 export async function emitModelsFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  needTCGC: boolean = false,
-  withRawContent: boolean = false,
-  mustEmptyDiagnostic: boolean = true,
-  enableModelNamespace: boolean = false
+  {
+    needAzureCore = false,
+    needTCGC = false,
+    withRawContent = false,
+    mustEmptyDiagnostic = true,
+    enableModelNamespace = false
+  }: {
+    needAzureCore?: boolean;
+    needTCGC?: boolean;
+    withRawContent?: boolean;
+    mustEmptyDiagnostic?: boolean;
+    enableModelNamespace?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    needTCGC,
-    withRawContent
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC,
+      withRawContent
+    }
   );
   const dpgContext = await createDpgContextTestHelper(
     context.program,
@@ -143,19 +162,29 @@ export async function emitModelsFromTypeSpec(
 
 export async function emitParameterFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  needTCGC: boolean = false,
-  withRawContent: boolean = false,
-  mustEmptyDiagnostic: boolean = true,
-  withVersionedApiVersion: boolean = false
+  {
+    needAzureCore = false,
+    needTCGC = false,
+    withRawContent = false,
+    mustEmptyDiagnostic = true,
+    withVersionedApiVersion = false
+  }: {
+    needAzureCore?: boolean;
+    needTCGC?: boolean;
+    withRawContent?: boolean;
+    mustEmptyDiagnostic?: boolean;
+    withVersionedApiVersion?: boolean
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    needTCGC,
-    withRawContent,
-    withVersionedApiVersion
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC,
+      withRawContent,
+      withVersionedApiVersion
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
@@ -194,9 +223,16 @@ export async function emitParameterFromTypeSpec(
 
 export async function emitClientDefinitionFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false
+  {
+    needAzureCore = false
+  }: {
+    needAzureCore?: boolean;
+  } = {}
 ) {
-  const context = await rlcEmitterFor(tspContent, true, needAzureCore);
+  const context = await rlcEmitterFor(tspContent, {
+    needNamespaces: true,
+    needAzureCore
+  });
   const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const internalImports = initInternalImports();
@@ -226,17 +262,26 @@ export async function emitClientDefinitionFromTypeSpec(
 
 export async function emitClientFactoryFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  mustEmptyDiagnostic = true,
-  withRawContent = false,
-  needNamespaces = false
+  {
+    needAzureCore = false,
+    mustEmptyDiagnostic = true,
+    withRawContent = false,
+    needNamespaces = false
+  }: {
+    needAzureCore?: boolean;
+    mustEmptyDiagnostic?: boolean;
+    withRawContent?: boolean;
+    needNamespaces?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    needNamespaces,
-    needAzureCore,
-    false,
-    withRawContent
+    {
+      needNamespaces,
+      needAzureCore,
+      needTCGC: false,
+      withRawContent
+    }
   );
   const program = context.program;
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -277,20 +322,30 @@ export async function emitClientFactoryFromTypeSpec(
 
 export async function emitResponsesFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false,
-  withRawContent: boolean = false,
-  needTCGC: boolean = false,
-  withVersionedApiVersion: boolean = false,
-  needArmTemplate: boolean = false
+  {
+    needAzureCore = false,
+    withRawContent = false,
+    needTCGC = false,
+    withVersionedApiVersion = false,
+    needArmTemplate = false
+  }: {
+    needAzureCore?: boolean;
+    withRawContent?: boolean;
+    needTCGC?: boolean;
+    withVersionedApiVersion?: boolean;
+    needArmTemplate?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    needTCGC,
-    withRawContent,
-    withVersionedApiVersion,
-    needArmTemplate
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC,
+      withRawContent,
+      withVersionedApiVersion,
+      needArmTemplate
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
@@ -314,7 +369,12 @@ export async function emitResponsesFromTypeSpec(
 }
 
 export async function getRLCClientsFromTypeSpec(tspContent: string) {
-  const context = await rlcEmitterFor(tspContent, true, false, true, true);
+  const context = await rlcEmitterFor(tspContent, {
+    needNamespaces: true,
+    needAzureCore: false,
+    needTCGC: true,
+    withRawContent: true
+  });
   const dpgContext = await createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -323,19 +383,30 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
 
 export async function emitModularModelsFromTypeSpec(
   tspContent: string,
-  needOptions: boolean = false,
-  withRawContent: boolean = false,
-  needAzureCore: boolean = false,
-  compatibilityMode: boolean = false,
-  mustEmptyDiagnostic: boolean = true,
-  experimentalExtensibleEnums: boolean = false
+  {
+    needOptions = false,
+    withRawContent = false,
+    needAzureCore = false,
+    compatibilityMode = false,
+    mustEmptyDiagnostic = true,
+    experimentalExtensibleEnums = false
+  }: {
+    needOptions?: boolean;
+    withRawContent?: boolean;
+    needAzureCore?: boolean;
+    compatibilityMode?: boolean;
+    mustEmptyDiagnostic?: boolean;
+    experimentalExtensibleEnums?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    needAzureCore,
-    false,
-    withRawContent
+    {
+      needNamespaces: true,
+      needAzureCore,
+      needTCGC: false,
+      withRawContent,
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -369,12 +440,12 @@ export async function emitModularModelsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
-        modelFile = buildModelsOptions(
+        modelFile = buildApiOptions(
           modularCodeModel.clients[0],
           modularCodeModel
         );
       } else {
-        modelFile = buildModels(modularCodeModel.clients[0], modularCodeModel);
+        modelFile = emitTypes(dpgContext, { sourceRoot: "" });
       }
     }
   }
@@ -390,56 +461,39 @@ export async function emitModularSerializeUtilsFromTypeSpec(
 ) {
   const context = await rlcEmitterFor(tspContent);
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
-  const project = useContext("outputProject");
   const binder = useBinder();
-  const clients = getRLCClients(dpgContext);
-  if (clients && clients[0]) {
-    dpgContext.rlcOptions!.isModularLibrary = true;
-    const rlcModels = await transformRLCModel(clients[0], dpgContext);
-    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
-    const modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      "",
-      project,
-      {
-        casing: "camel"
-      }
-    );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      const files = buildSerializeUtils(modularCodeModel);
-      binder.resolveAllReferences();
-      return files;
-    }
-  }
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  const files = emitTypes(dpgContext, { sourceRoot: "" });
+  binder.resolveAllReferences();
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  return undefined;
+  return files;
 }
 
 export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
-  mustEmptyDiagnostic = true,
-  needNamespaces: boolean = true,
-  needAzureCore: boolean = false,
-  withRawContent: boolean = false,
-  withVersionedApiVersion: boolean = false
+  {
+    mustEmptyDiagnostic = true,
+    needNamespaces = true,
+    needAzureCore = false,
+    withRawContent = false,
+    withVersionedApiVersion = false
+  }: {
+    mustEmptyDiagnostic?: boolean;
+    needNamespaces?: boolean;
+    needAzureCore?: boolean;
+    withRawContent?: boolean;
+    withVersionedApiVersion?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    needNamespaces,
-    needAzureCore,
-    false,
-    withRawContent,
-    withVersionedApiVersion
+    {
+      needNamespaces,
+      needAzureCore,
+      needTCGC: false,
+      withRawContent,
+      withVersionedApiVersion
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -485,23 +539,31 @@ export async function emitModularOperationsFromTypeSpec(
 
 export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
-  withRawContent: boolean = false,
-  withVersionedApiVersion: boolean = false
+  {
+    withRawContent = false,
+    withVersionedApiVersion = false
+  }: {
+    withRawContent?: boolean;
+    withVersionedApiVersion?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    false,
-    false,
-    withRawContent,
-    withVersionedApiVersion
+    {
+      needNamespaces: true,
+      needAzureCore: false,
+      needTCGC: false,
+      withRawContent,
+      withVersionedApiVersion
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -522,11 +584,13 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildClientContext(
+      const res = buildClientContext(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel
       );
+      binder.resolveAllReferences();
+      return res;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -535,23 +599,31 @@ export async function emitModularClientContextFromTypeSpec(
 
 export async function emitModularClientFromTypeSpec(
   tspContent: string,
-  withRawContent: boolean = false,
-  withVersionedApiVersion: boolean = false
+  {
+    withRawContent = false,
+    withVersionedApiVersion = false
+  }: {
+    withRawContent?: boolean;
+    withVersionedApiVersion?: boolean;
+  } = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    true,
-    false,
-    false,
-    withRawContent,
-    withVersionedApiVersion
+    {
+      needNamespaces: true,
+      needAzureCore: false,
+      needTCGC: false,
+      withRawContent,
+      withVersionedApiVersion
+    }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
   >();
-  const project = new Project();
+  const project = useContext("outputProject");
+  const binder = useBinder();
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
@@ -572,11 +644,13 @@ export async function emitModularClientFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildClassicalClient(
+      const res = buildClassicalClient(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel
       );
+      binder.resolveAllReferences();
+      return res;
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);

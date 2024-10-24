@@ -11,8 +11,6 @@ import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
-  compatibilityMode?: boolean;
-  experimentalExtensibleEnums?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -93,7 +91,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     },
     compatibilityMode: { type: "boolean", nullable: true },
     experimentalExtensibleEnums: { type: "boolean", nullable: true },
-    clearOutputFolder: { type: "boolean", nullable: true }
+    clearOutputFolder: { type: "boolean", nullable: true },
+    ignorePropertyNameNormalize: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -255,6 +254,18 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`The parameter ${"paramName"} in ${"exampleName"} is required but no value provided.`
+      }
+    },
+    "property-name-normalized": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Property name ${"propertyName"} is normalized to ${"normalizedName"}.`
+      }
+    },
+    "optional-path-param": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
       }
     },
     "un-supported-format-cases": {

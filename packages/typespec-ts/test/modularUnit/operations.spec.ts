@@ -18,7 +18,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
           return context.path("/", ).post({...operationOptionsToRequestParameters(options)})  ;
@@ -53,7 +53,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options)})  ;
@@ -131,8 +131,8 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
         import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
         export function _readSend(
           context: Client, 
@@ -144,36 +144,43 @@ describe("operations", () => {
           prop1: string,
           prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
-            return context.path("/", ).post({...operationOptionsToRequestParameters(options), 
+            return context.path("/").post({
+              ...operationOptionsToRequestParameters(options),
               headers: {
                 "required-header": requiredHeader,
                 ...(options?.optionalHeader !== undefined
                   ? { "optional-header": options?.optionalHeader }
                   : {}),
-                ...(options?.nullableOptionalHeader !== undefined && options?.nullableOptionalHeader !== null
+                ...(options?.nullableOptionalHeader !== undefined &&
+                options?.nullableOptionalHeader !== null
                   ? { "nullable-optional-header": options?.nullableOptionalHeader }
                   : {}),
                 "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
                 value: uint8ArrayToString(value, "base64"),
                 "csv-array-header": buildCsvCollection(
-                  csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url"))
+                  csvArrayHeader.map((p: any) => {
+                    return uint8ArrayToString(p, "base64url");
+                  }),
                 ),
                 "utc-date-header": utcDateHeader.toUTCString(),
                 ...(options?.optionalDateHeader !== undefined
                   ? {
-                      "optional-date-header":
-                        options?.optionalDateHeader?.toUTCString(),
+                      "optional-date-header": !options?.optionalDateHeader
+                        ? options?.optionalDateHeader
+                        : options?.optionalDateHeader.toUTCString(),
                     }
                   : {}),
-                ...(options?.nullableDateHeader !== undefined && options?.nullableDateHeader !== null
+                ...(options?.nullableDateHeader !== undefined &&
+                options?.nullableDateHeader !== null
                   ? {
-                      "nullable-date-header":
-                        options?.nullableDateHeader?.toUTCString(),
+                      "nullable-date-header": !options?.nullableDateHeader
+                        ? options?.nullableDateHeader
+                        : options?.nullableDateHeader.toUTCString(),
                     }
                   : {}),
               },
-            body: { prop1: prop1, prop2: prop2 },
-          });
+              body: { prop1: prop1, prop2: prop2 },
+            });
         }
         
         export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -208,7 +215,7 @@ describe("operations", () => {
         op read( @header nullableRequiredHeader: string | null): OkResponse;
         `;
 
-        await emitModularOperationsFromTypeSpec(tspContent, true);
+        await emitModularOperationsFromTypeSpec(tspContent, { mustEmptyDiagnostic: true });
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
@@ -227,7 +234,9 @@ describe("operations", () => {
         `;
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        false
+        {
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
@@ -235,7 +244,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
       import { TestingContext as Client } from "./index.js";
-      import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+      import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
   
       export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
@@ -279,14 +288,12 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
+        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
-              body: (bars ?? []).map((p) => {
-                    return { prop1: p["prop1"], prop2: p["prop2"],};
-                  }),
+              body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
            });
         }
 
@@ -299,10 +306,11 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
-            const result = await _readSend(context, bars, options);
+        export async function read(context: Client, options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, options);
             return _readDeserialize(result);
-        }`
+        }`,
+        true
       );
     });
     it.skip("should handle `undefined` for named model array as request body", async () => {
@@ -471,9 +479,9 @@ describe("operations", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -485,21 +493,7 @@ describe("operations", () => {
             .path("/")
             .post({
               ...operationOptionsToRequestParameters(options),
-              body: {
-                optionalBars:
-                  body["optionalBars"] === undefined
-                    ? body["optionalBars"]
-                    : body["optionalBars"].map(barSerializer),
-                requiredBars: body["requiredBars"].map(barSerializer),
-                nullableBars:
-                  body["nullableBars"] === undefined || body["nullableBars"] === null
-                    ? body["nullableBars"]
-                    : body["nullableBars"].map(barSerializer),
-                nullableRequiredBars:
-                  body["nullableRequiredBars"] === null
-                    ? body["nullableRequiredBars"]
-                    : body["nullableRequiredBars"].map(barSerializer),
-              },
+              body: fooSerializer(body),
             });
         }
         
@@ -548,9 +542,9 @@ describe("operations", () => {
         import { TestingContext as Client } from "./index.js";
         import {
           StreamableMethod,
-          operationOptionsToRequestParameters,
           PathUncheckedResponse,
-          createRestError
+          createRestError,
+          operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -567,30 +561,7 @@ describe("operations", () => {
           if (!expectedStatuses.includes(result.status)) {
             throw createRestError(result);
           }
-          return {
-            optionalBars:
-              result.body["optionalBars"] === undefined
-                ? result.body["optionalBars"]
-                : result.body["optionalBars"].map((p: any) => {
-                             return { prop1: p["prop1"], prop2: p["prop2"] };
-                           }),
-            requiredBars: result.body["requiredBars"].map((p: any) => {
-                   return { prop1: p["prop1"], prop2: p["prop2"] };
-                 }),
-            nullableBars:
-              result.body["nullableBars"] === undefined ||
-              result.body["nullableBars"] === null
-                ? result.body["nullableBars"]
-                : result.body["nullableBars"].map((p: any) => {
-                             return { prop1: p["prop1"], prop2: p["prop2"] };
-                           }),
-            nullableRequiredBars:
-              result.body["nullableRequiredBars"] === null
-                ? result.body["nullableRequiredBars"]
-                : result.body["nullableRequiredBars"].map((p: any) => {
-                             return { prop1: p["prop1"], prop2: p["prop2"] };
-                           }),
-          };
+          return fooDeserializer(result.body);
         }
         
         export async function read(
@@ -624,9 +595,9 @@ describe("operations", () => {
           `;
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        true,
-        true,
-        true
+        {
+          needAzureCore: true
+        }
       );
 
       assert.ok(operationFiles);
@@ -636,11 +607,12 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
-         import {
+        import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,
         } from "../static-helpers/pagingHelpers.js";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
@@ -651,9 +623,7 @@ describe("operations", () => {
             if(!expectedStatuses.includes(result.status)){
               throw createRestError(result);
             }
-            return {
-              "lists": result.body["lists"]
-            }
+            return _barDeserializer(result.body);
         }
 
         export function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
@@ -686,7 +656,9 @@ describe("operations", () => {
           `;
 
       try {
-        await emitModularOperationsFromTypeSpec(tspContent, true, true, true);
+        await emitModularOperationsFromTypeSpec(tspContent, {
+          needAzureCore: true
+        });
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
@@ -699,9 +671,10 @@ describe("operations", () => {
       }
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        false,
-        true,
-        true
+        {
+          mustEmptyDiagnostic: false,
+          needAzureCore: true
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
@@ -709,7 +682,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
@@ -720,9 +693,7 @@ describe("operations", () => {
             if(!expectedStatuses.includes(result.status)){
             throw createRestError(result);
             }
-            return {
-            "lists": result.body["lists"]
-            }
+            return barDeserializer(result.body);
         }
 
         export async function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): Promise<Bar> {
@@ -759,9 +730,9 @@ describe("operations", () => {
 
       const operationFiles = await emitModularOperationsFromTypeSpec(
         tspContent,
-        true,
-        true,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
@@ -769,11 +740,12 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters, PathUncheckedResponse, createRestError } from "@azure-rest/core-client";
-         import {
+        import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,
         } from "../static-helpers/pagingHelpers.js";
+        import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+    
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
@@ -784,11 +756,7 @@ describe("operations", () => {
             if(!expectedStatuses.includes(result.status)){
               throw createRestError(result);
             }
-            return {
-              "lists": result.body["lists"],
-              nextLink: result.body["nextLink"],
-              message: result.body["message"]
-            }
+            return _childDeserializer(result.body);
         }
 
         export function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
@@ -802,6 +770,19 @@ describe("operations", () => {
         }`,
         true
       );
+    });
+  });
+
+  describe("path parameters", () => {
+    it("should throw errors if optional path parameter", async () => {
+      const tspContent = `
+        op read(@path param?: string): OkResponse;
+        `;
+      try {
+        await emitModularOperationsFromTypeSpec(tspContent);
+      } catch (e: any) {
+        assert.match(e.message, /Path parameter 'param' cannot be optional/);
+      }
     });
   });
 });

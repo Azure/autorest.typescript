@@ -7,7 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { BatchClient, BatchClientOptionalParams } from "./batchClient.js";
+export { BatchClient } from "./batchClient.js";
 export {
   BatchNodeUserCreateOptions,
   BatchError,
@@ -200,7 +200,9 @@ export {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
-  Versions,
+} from "./models/index.js";
+export {
+  BatchClientOptionalParams,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,
@@ -277,5 +279,5 @@ export {
   GetNodeFileOptionalParams,
   GetNodeFilePropertiesOptionalParams,
   ListNodeFilesOptionalParams,
-} from "./models/index.js";
+} from "./api/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

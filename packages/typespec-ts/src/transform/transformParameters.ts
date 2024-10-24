@@ -289,7 +289,7 @@ function transformBodyParameters(
   const bodyType =
     (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
       ? inputBodyType
-      : parameters.bodyType ?? parameters.bodyParameter?.type;
+      : (parameters.bodyType ?? parameters.bodyParameter?.type);
   if (!bodyType || isVoidType(bodyType)) {
     return;
   }

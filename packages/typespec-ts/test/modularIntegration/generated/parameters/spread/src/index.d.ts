@@ -31,14 +31,6 @@ export declare interface BodyParameter {
     name: string;
 }
 
-export declare interface CompositeRequestMix {
-    prop: string;
-}
-
-export declare interface InnerModel {
-    name: string;
-}
-
 export declare interface ModelOperations {
     spreadAsRequestBody: (name: string, options?: ModelSpreadAsRequestBodyOptionalParams) => Promise<void>;
     spreadCompositeRequestOnlyWithBody: (body: BodyParameter, options?: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams) => Promise<void>;

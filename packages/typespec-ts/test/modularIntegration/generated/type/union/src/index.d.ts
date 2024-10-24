@@ -12,7 +12,7 @@ export declare interface Dog {
 
 export declare interface EnumsOnlyCases {
     lr: Lr | Ud;
-    ud: Ud | Ud;
+    ud: Ud;
 }
 
 export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
