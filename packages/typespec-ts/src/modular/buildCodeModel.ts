@@ -230,8 +230,8 @@ function handleDiscriminator(
       description:
         discriminatorValues.length > 0
           ? `the discriminator possible values: ${discriminatorValues.join(
-            ", "
-          )}`
+              ", "
+            )}`
           : "discriminator property",
       type: { type: "string", tcgcType: discriminatorTcgcType },
       restApiName: discriminator.propertyName,
@@ -326,7 +326,7 @@ export function getType(
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
     !options.disableEffectiveModel &&
-      (type.kind === "Model" || type.kind === "Union")
+    (type.kind === "Model" || type.kind === "Union")
       ? getEffectiveSchemaType(context.program, type)
       : type;
   if (enableCache) {
@@ -653,8 +653,8 @@ function emitResponse(
       type = isVoidType(innerResponse.body.type)
         ? undefined
         : getType(context, innerResponse.body.type, {
-          usage: UsageFlags.Output
-        });
+            usage: UsageFlags.Output
+          });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -671,10 +671,10 @@ function emitResponse(
     type: type,
     isBinaryPayload: innerResponse.body?.type
       ? isBinaryPayload(
-        context,
-        innerResponse.body?.type,
-        innerResponse.body?.contentTypes![0] ?? "application/json"
-      )
+          context,
+          innerResponse.body?.type,
+          innerResponse.body?.contentTypes![0] ?? "application/json"
+        )
       : false
   };
 
@@ -821,7 +821,7 @@ function emitBasicOperation(
   const httpOperation = getHttpOperationWithCache(context, operation);
   const sourceOperation =
     operation.sourceOperation &&
-      !isTemplateDeclarationOrInstance(operation.sourceOperation)
+    !isTemplateDeclarationOrInstance(operation.sourceOperation)
       ? operation.sourceOperation
       : operation;
   const sourceOperationGroupName = getOperationGroupName(
@@ -906,7 +906,7 @@ function emitBasicOperation(
           (operation.parameters.properties.get(k) ===
             (originalBodyType as Model).properties.get(k) ||
             operation.parameters.properties.get(k) ===
-            (originalBodyType as Model).properties.get(k)?.sourceProperty)
+              (originalBodyType as Model).properties.get(k)?.sourceProperty)
       )
     ) {
       for (const param of bodyParameter.type.properties) {
@@ -1601,12 +1601,12 @@ function emitOperationGroups(
     const overrideName = getLibraryName(context, operationGroup.type);
     const name =
       context.rlcOptions?.hierarchyClient ||
-        context.rlcOptions?.enableOperationGroup
+      context.rlcOptions?.enableOperationGroup
         ? (overrideName ?? operationGroup.type.name)
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
-        context.rlcOptions?.enableOperationGroup
+      context.rlcOptions?.enableOperationGroup
         ? operationGroup.groupPath.split(".")
         : [];
     if (hierarchies[0]?.endsWith("Client")) {

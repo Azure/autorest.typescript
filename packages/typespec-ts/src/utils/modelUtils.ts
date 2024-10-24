@@ -74,10 +74,7 @@ import {
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
+import { getUnionAsEnum } from "@azure-tools/typespec-azure-core";
 
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -153,7 +150,13 @@ export function getSchemaForType(
 ) {
   const program = dpgContext.program;
   const { usage } = options ?? {};
+  if (typeInput.kind === "Model" && typeInput.name === "OpenAIPageableListOf") {
+    typeInput;
+  }
   const type = getEffectiveModelFromType(dpgContext, typeInput);
+  if (type.kind === "Model" && type.name === "OpenAIPageableListOf") {
+    type;
+  }
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -605,7 +608,7 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  const overridedModelName =
+  let overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -613,30 +616,32 @@ function getSchemaForModel(
         return normalizeName(nsName, NameType.Interface);
       })
       .join("") + model.name;
+  if (model.name === "OpenAIPageableListOf") {
+    dpgContext;
+  }
   let name = model.name;
   if (
-    !overridedModelName &&
+    overridedModelName === name &&
     model.templateMapper &&
     model.templateMapper.args &&
-    model.templateMapper.args.length > 0 &&
-    getPagedResult(program, model)
+    model.templateMapper.args.length > 0
   ) {
     const templateTypes = model.templateMapper.args.filter((it) =>
       isType(it)
     ) as Type[];
-    name =
-      templateTypes
-        .map((it: Type) => {
-          switch (it.kind) {
-            case "Model":
-              return it.name;
-            case "String":
-              return it.value;
-            default:
-              return "";
-          }
-        })
-        .join("") + "List";
+    name += templateTypes
+      .map((it: Type) => {
+        switch (it.kind) {
+          case "Model":
+            return it.name;
+          case "String":
+            return it.value;
+          default:
+            return "";
+        }
+      })
+      .join("");
+    overridedModelName = name;
   }
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);

@@ -482,7 +482,7 @@ function buildModelProperty(
   property: SdkModelPropertyType
 ): PropertySignatureStructure {
   const normalizedPropName = normalizeModelPropertyName(context, property);
-  if(normalizedPropName === '"responseFormat"') {
+  if (normalizedPropName === '"responseFormat"') {
     property;
   }
   if (
