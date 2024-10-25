@@ -1,6 +1,7 @@
 import RoutesClientFactory, {
   RoutesClient,
   buildAllowReserved,
+  buildExplodedFormStyle,
   buildUnexplodedFormStyle
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
@@ -156,6 +157,51 @@ describe("RoutesClient Rest Client", () => {
         .get({
           queryParameters: {
             param: ["a", "b"]
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+
+    it("should pass query-continuation with standard primitive correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/primitive?fixed=true")
+        .get({
+          queryParameters: {
+            param: "a"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with standard record correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/record?fixed=true")
+        .get({
+          queryParameters: {
+            param: buildUnexplodedFormStyle({ a: 1, b: 2 })
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded record correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/record?fixed=true")
+        .get({
+          queryParameters: {
+            param: buildExplodedFormStyle({ a: 1, b: 2 })
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded primitive correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/primitive?fixed=true")
+        .get({
+          queryParameters: {
+            param: "a"
           }
         });
       assert.strictEqual(result.status, "204");
