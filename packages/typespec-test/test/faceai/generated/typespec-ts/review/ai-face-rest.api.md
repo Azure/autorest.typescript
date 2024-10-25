@@ -659,7 +659,7 @@ export interface BlurPropertiesOutput {
 }
 
 // @public
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+export function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
     explode: false;
     style: "form";
     value: ValueType;
