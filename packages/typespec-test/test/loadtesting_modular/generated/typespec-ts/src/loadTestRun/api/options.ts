@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { TimeGrain } from "../../models/models.js";
+import { TimeGrain, MetricRequestPayload } from "../../models/models.js";
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
@@ -66,6 +66,8 @@ export interface ListMetricsOptionalParams extends OperationOptions {
   aggregation?: string;
   /** The interval (i.e. timegrain) of the query. */
   interval?: TimeGrain;
+  /** Metric dimension filter */
+  body?: MetricRequestPayload;
 }
 
 /** Optional parameters. */

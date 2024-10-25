@@ -30,14 +30,14 @@ type EmitterFunction = (
 const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   // Snapshot of a particular interface named {name} in the models file
   "(ts|typescript) models interface {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>): {};
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
     return result!.getInterfaceOrThrow(name ?? "No name specified!").getText();
   },
 
   // Snapshot of a particular function named {name} in the models file
   "(ts|typescript) models function {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>): {};
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
@@ -48,8 +48,8 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   },
 
   // Snapshot of the entire models file
-  "(ts|typescript) models": async (tsp, {}, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>): {};
+  "(ts|typescript) models": async (tsp, { }, namedUnknownArgs) => {
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
@@ -104,7 +104,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result![0]!.getFunctionOrThrow(name!).getText();
   },
 
-  "(ts|typescript) samples": async (tsp, {}, namedUnknownArgs) => {
+  "(ts|typescript) samples": async (tsp, { }, namedUnknownArgs) => {
     if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
       throw new Error(`Expected 'examples' to be passed in as an argument`);
     }
