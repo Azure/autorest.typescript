@@ -7,30 +7,30 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
-export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
 export declare function buildMultiCollection(items: string[], parameterName: string): string;
 
-export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
-export declare function buildUnexplodedPipeStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "pipeDelimited";
-    readonly value: ValueType;
+export declare function buildUnexplodedPipeStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "pipeDelimited";
+    value: ValueType;
 };
 
-export declare function buildUnexplodedSpaceStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "spaceDelimited";
-    readonly value: ValueType;
+export declare function buildUnexplodedSpaceStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "spaceDelimited";
+    value: ValueType;
 };
 
 export declare type CollectionFormatClient = Client & {

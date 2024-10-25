@@ -4,21 +4,21 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-export declare function buildAllowReservedValue<ValueType>(value: ValueType): {
-    readonly allowReserved: true;
-    readonly value: ValueType;
+export declare function buildAllowReserved<ValueType>(value: ValueType): {
+    allowReserved: true;
+    value: ValueType;
 };
 
-export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
-export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
 declare function createClient(options?: RoutesClientOptions): RoutesClient;

@@ -15,10 +15,10 @@ export declare interface AzureCoreClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-export declare function buildExplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: true;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
 declare function createClient({ apiVersion, ...options }?: AzureCoreClientOptions): AzureCoreClient;

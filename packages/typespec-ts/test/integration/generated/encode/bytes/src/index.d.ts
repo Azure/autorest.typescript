@@ -32,10 +32,10 @@ export declare interface Base64urlBytesPropertyOutput {
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
-export declare function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-    readonly explode: false;
-    readonly style: "form";
-    readonly value: ValueType;
+export declare function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
+    explode: false;
+    style: "form";
+    value: ValueType;
 };
 
 export declare type BytesClient = Client & {
