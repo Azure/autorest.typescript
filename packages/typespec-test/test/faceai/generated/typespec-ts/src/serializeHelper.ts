@@ -4,7 +4,7 @@
 /**
  * The helper to build a wrapper object for a value with explode as false and form style.
  */
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
+export function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
   explode: false;
   style: "form";
   value: ValueType;
