@@ -18,13 +18,13 @@ export function buildMultiCollection(
 /**
  * The helper to build a wrapper object for a value with explode as true and form style.
  */
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-  explode: false;
+export function buildExplodedFormStyle<ValueType>(value: ValueType): {
+  explode: true;
   style: "form";
   value: ValueType;
 } {
   return {
-    explode: false,
+    explode: true,
     style: "form",
     value,
   };

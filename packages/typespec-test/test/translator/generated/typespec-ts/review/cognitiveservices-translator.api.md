@@ -97,15 +97,15 @@ export interface BreakSentenceQueryParamProperties {
     script?: string;
 }
 
-// @public (undocumented)
-export function buildMultiCollection(items: string[], parameterName: string): string;
-
 // @public
-export function buildUnexplodedFormStyleValue<ValueType>(value: ValueType): {
-    explode: false;
+export function buildExplodedFormStyle<ValueType>(value: ValueType): {
+    explode: true;
     style: "form";
     value: ValueType;
 };
+
+// @public (undocumented)
+export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
 export interface CommonScriptModelOutput {
