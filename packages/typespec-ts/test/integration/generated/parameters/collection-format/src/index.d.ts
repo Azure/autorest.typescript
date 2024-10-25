@@ -8,7 +8,7 @@ import { StreamableMethod } from '@azure-rest/core-client';
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
 export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
-    explode: false;
+    explode: true;
     style: "form";
     value: ValueType;
 };

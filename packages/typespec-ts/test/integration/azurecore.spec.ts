@@ -3,7 +3,7 @@ import AzureCoreClientFactory, {
   AzureCoreClient,
   isUnexpected
 } from "./generated/azure/core/basic/src/index.js";
-import { buildExplodedFormStyleValue } from "./generated/parameters/collection-format/src/serializeHelper.js";
+import { buildExplodedFormStyle } from "./generated/parameters/collection-format/src/serializeHelper.js";
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 
@@ -96,10 +96,10 @@ describe("Azure Core Rest Client", () => {
       queryParameters: {
         top: 5,
         skip: 10,
-        orderby: buildExplodedFormStyleValue(["id"]),
+        orderby: buildExplodedFormStyle(["id"]),
         filter: "id lt 10",
-        select: buildExplodedFormStyleValue(["id", "orders", "etag"]),
-        expand: buildExplodedFormStyleValue(["orders"])
+        select: buildExplodedFormStyle(["id", "orders", "etag"]),
+        expand: buildExplodedFormStyle(["orders"])
       }
     });
     if (isUnexpected(result)) {

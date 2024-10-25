@@ -1,7 +1,7 @@
 import RoutesClientFactory, {
   RoutesClient,
-  buildAllowReservedValue,
-  buildUnexplodedFormStyleValue
+  buildAllowReserved,
+  buildUnexplodedFormStyle
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -48,13 +48,13 @@ describe("RoutesClient Rest Client", () => {
     const result = await client
       .path(
         "/routes/path/reserved-expansion/template/{param}",
-        buildAllowReservedValue("foo/bar baz")
+        buildAllowReserved("foo/bar baz")
       )
       .get();
     assert.strictEqual(result.status, "204");
   });
 
-  it.skip("should have explode: true array", async () => {
+  it("should have explode: true array", async () => {
     const result = await client
       .path("/routes/query/query-expansion/explode/array")
       .get({
@@ -111,7 +111,7 @@ describe("RoutesClient Rest Client", () => {
       .path("/routes/query/query-expansion/standard/record")
       .get({
         queryParameters: {
-          param: buildUnexplodedFormStyleValue({ a: 1, b: 2 })
+          param: buildUnexplodedFormStyle({ a: 1, b: 2 })
         }
       });
     assert.strictEqual(result.status, "204");
@@ -148,4 +148,33 @@ describe("RoutesClient Rest Client", () => {
       .get({ queryParameters: { param: "a" } });
     assert.strictEqual(result.status, "204");
   });
+
+  describe("Query continuation", () => {
+    it("should pass query-continuation with standard array correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/array?fixed=true")
+        .get({
+          queryParameters: {
+            param: ["a", "b"]
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded array correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/array?fixed=true")
+        .get({
+          queryParameters: {
+            param: {
+              value: ["a", "b"],
+              explode: true,
+              style: "form"
+            }
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+  });
+
 });

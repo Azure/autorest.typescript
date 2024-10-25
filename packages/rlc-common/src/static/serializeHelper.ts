@@ -49,7 +49,7 @@ export const buildExplodedAndFormStyleContent = `
 /**
  * The helper to build a wrapper object for a value with explode as true and form style.
  */
-export function buildExplodedFormStyle<ValueType>(value: ValueType): { explode: false, style: "form", value: ValueType } {
+export function buildExplodedFormStyle<ValueType>(value: ValueType): { explode: true, style: "form", value: ValueType } {
   return {
     explode: true,
     style: "form",

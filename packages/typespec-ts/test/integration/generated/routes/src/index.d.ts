@@ -10,7 +10,7 @@ export declare function buildAllowReserved<ValueType>(value: ValueType): {
 };
 
 export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
-    explode: false;
+    explode: true;
     style: "form";
     value: ValueType;
 };
