@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   PatientRecord,
   PatientInfo,
@@ -74,8 +72,4 @@ export {
   DomainResourceUnion,
   Narrative,
   RadiologyInsightsResult,
-} from "./models/index.js";
-export {
-  InferRadiologyInsightsOptionalParams,
-  RadiologyInsightsClientOptionalParams,
-} from "./api/index.js";
+} from "./models.js";
