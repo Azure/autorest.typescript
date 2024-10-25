@@ -530,7 +530,9 @@ function emitParameter(
     location: parameter.type,
     type: base.format ? { ...type, format: base.format } : type,
     implementation: implementation,
-    skipUrlEncoding: parameter.type === "endpointPath",
+    skipUrlEncoding:
+      parameter.type === "endpointPath" ||
+      (parameter.type === "path" && parameter.allowReserved),
     format: (parameter as any).format ?? base.format
   };
 
