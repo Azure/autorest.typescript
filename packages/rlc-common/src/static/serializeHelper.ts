@@ -1,3 +1,5 @@
+import { ParameterBuilderKind } from "../interfaces";
+
 export const buildMultiCollectionContent = `
 export function buildMultiCollection(
   items: string[],
@@ -49,7 +51,7 @@ export const buildExplodedAndFormStyleContent = `
 /**
  * The helper to build a wrapper object for a value with explode as true and form style.
  */
-export function buildExplodedFormStyle<ValueType>(value: ValueType): { explode: true, style: "form", value: ValueType } {
+export function ${ParameterBuilderKind.ExplodedFormStyle}<ValueType>(value: ValueType): { explode: true, style: "form", value: ValueType } {
   return {
     explode: true,
     style: "form",
@@ -58,11 +60,11 @@ export function buildExplodedFormStyle<ValueType>(value: ValueType): { explode: 
 }
 `;
 
-export const buildNonExplodedAndFormStyleContent = `
+export const buildUnexplodedAndFormStyleContent = `
 /**
  * The helper to build a wrapper object for a value with explode as false and form style.
  */
-export function buildUnexplodedFormStyle<ValueType>(value: ValueType): { explode: false, style: "form", value: ValueType }{
+export function ${ParameterBuilderKind.UnexplodedFormStyle}<ValueType>(value: ValueType): { explode: false, style: "form", value: ValueType }{
     return {
         explode: false,
         style: "form",
@@ -71,11 +73,11 @@ export function buildUnexplodedFormStyle<ValueType>(value: ValueType): { explode
 }
 `;
 
-export const buildNonExplodedAndPipeStyleContent = `
+export const buildUnexplodedAndPipeStyleContent = `
 /**
  * The helper to build a wrapper object for a value with explode as false and pipeDelimited style.
  */
-export function buildUnexplodedPipeStyle<ValueType>(value: ValueType): { explode: false, style: "pipeDelimited", value: ValueType }{
+export function ${ParameterBuilderKind.UnexplodedPipeStyle}<ValueType>(value: ValueType): { explode: false, style: "pipeDelimited", value: ValueType }{
     return {
         explode: false,
         style: "pipeDelimited",
@@ -84,11 +86,11 @@ export function buildUnexplodedPipeStyle<ValueType>(value: ValueType): { explode
 }
 `;
 
-export const buildNonExplodedAndSpaceStyleContent = `
+export const buildUnexplodedAndSpaceStyleContent = `
 /**
  * The helper to build a wrapper object for a value with explode as false and spaceDelimited style.
  */
-export function buildUnexplodedSpaceStyle<ValueType>(value: ValueType): { explode: false, style: "spaceDelimited", value: ValueType }{
+export function ${ParameterBuilderKind.UnexplodedSpaceStyle}<ValueType>(value: ValueType): { explode: false, style: "spaceDelimited", value: ValueType }{
     return {
         explode: false,
         style: "spaceDelimited",

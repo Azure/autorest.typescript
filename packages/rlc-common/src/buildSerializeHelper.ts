@@ -15,9 +15,9 @@ import {
   buildCsvCollectionContent,
   buildExplodedAndFormStyleContent,
   buildMultiCollectionContent,
-  buildNonExplodedAndFormStyleContent,
-  buildNonExplodedAndPipeStyleContent,
-  buildNonExplodedAndSpaceStyleContent,
+  buildUnexplodedAndFormStyleContent,
+  buildUnexplodedAndPipeStyleContent,
+  buildUnexplodedAndSpaceStyleContent,
   buildPipeCollectionContent,
   buildSsvCollectionContent,
   buildTsvCollectionContent
@@ -49,13 +49,13 @@ export function buildSerializeHelper(model: RLCModel) {
         serializeHelperContent += "\n" + buildExplodedAndFormStyleContent;
         break;
       case ParameterBuilderKind.UnexplodedFormStyle:
-        serializeHelperContent += "\n" + buildNonExplodedAndFormStyleContent;
+        serializeHelperContent += "\n" + buildUnexplodedAndFormStyleContent;
         break;
       case ParameterBuilderKind.UnexplodedPipeStyle:
-        serializeHelperContent += "\n" + buildNonExplodedAndPipeStyleContent;
+        serializeHelperContent += "\n" + buildUnexplodedAndPipeStyleContent;
         break;
       case ParameterBuilderKind.UnexplodedSpaceStyle:
-        serializeHelperContent += "\n" + buildNonExplodedAndSpaceStyleContent;
+        serializeHelperContent += "\n" + buildUnexplodedAndSpaceStyleContent;
         break;
     }
   }
