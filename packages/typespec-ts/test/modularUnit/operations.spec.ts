@@ -122,7 +122,10 @@ describe("operations", () => {
           `;
 
       const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
+        tspContent,
+        {
+          mustEmptyDiagnostic: false
+        }
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
