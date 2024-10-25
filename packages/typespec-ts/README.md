@@ -153,6 +153,16 @@ If we enable this option `clearOutputFolder` we would empty the whole output fol
 clearOutputFolder: true
 ```
 
+### compatibilityMode
+
+The purpose of this option is to attempt to generate backward-compatible code for certain features. Please note that this applies only to some features. By default, this option will be disabled, and we recommend enabling it only with proper guidance.
+
+```yaml
+compatibilityMode: true
+```
+
+If this option is enabled, it will affect the generation of the additional property feature for the Modular client. For the RLC, it will impact the query parameter serialization for array types.
+
 # Contributing
 
 If you want to contribute on this project read the [contrubuting document](./CONTRIBUTING.md) for more details.
