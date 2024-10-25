@@ -170,10 +170,11 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
-        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-        : ""
-        }.`;
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }.`;
       enableLegacyHelper = true;
     }
   }
@@ -195,8 +196,9 @@ function getParameterMetadata(
     ) ?? [];
   if (wrapperType) {
     type = getTypeName(wrapperType, schemaContext);
-    description += `${description ? "\n" : ""}${enableLegacyHelper ? "And also this" : "This"
-      } parameter type could be prepared with function ${parameterBuilder}.`;
+    description += `${description ? "\n" : ""}${
+      enableLegacyHelper ? "And also this" : "This"
+    } parameter type could be prepared with function ${parameterBuilder}.`;
   }
   return {
     type: paramType,

@@ -1,5 +1,3 @@
-import { ParameterBuilderKind } from "../interfaces";
-
 export const buildMultiCollectionContent = `
 export function buildMultiCollection(
   items: string[],
