@@ -21,6 +21,8 @@ import {
   SdkMethod,
   SdkModelPropertyType,
   SdkModelType,
+  SdkNullableType,
+  SdkServiceMethod,
   SdkType,
   SdkUnionType,
   UsageFlags,
@@ -66,13 +68,15 @@ function isGenerableType(
   | SdkEnumType
   | SdkUnionType
   | SdkDictionaryType
-  | SdkArrayType {
+  | SdkArrayType
+  | SdkNullableType {
   return (
     type.kind === "model" ||
     type.kind === "enum" ||
     type.kind === "union" ||
     type.kind === "dict" ||
-    type.kind === "array"
+    type.kind === "array" ||
+    type.kind === "nullable"
   );
 }
 export function emitTypes(
@@ -105,82 +109,7 @@ export function emitTypes(
     if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
-    if (type.kind === "model") {
-      if (type.name.startsWith("Paged")) {
-        type;
-      }
-      if (isAzureCoreErrorType(context.program, type.__raw)) {
-        continue;
-      }
-      if (
-        !type.usage ||
-        (type.usage !== undefined &&
-          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
-      ) {
-        continue;
-      }
-      if (!type.name && type.isGeneratedName) {
-        // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
-        // throw new Error(`Generation of anonymous types`);
-        continue;
-      }
-      const modelInterface = buildModelInterface(context, type);
-      if (type.discriminatorProperty) {
-        modelInterface.properties
-          ?.filter((p) => {
-            return (
-              p.name ===
-              normalizeModelPropertyName(context, type.discriminatorProperty!)
-            );
-          })
-          .map((p) => {
-            p.docs?.push(
-              `The discriminator possible values: ${Object.keys(type.discriminatedSubtypes ?? {}).join(", ")}`
-            );
-            return p;
-          });
-      }
-      addDeclaration(sourceFile, modelInterface, type);
-      const modelPolymorphicType = buildModelPolymorphicType(context, type);
-      if (modelPolymorphicType) {
-        addSerializationFunctions(context, type, sourceFile, true);
-        addDeclaration(
-          sourceFile,
-          modelPolymorphicType,
-          refkey(type, "polymorphicType")
-        );
-      }
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "enum") {
-      if (
-        !type.usage ||
-        (type.usage !== undefined &&
-          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
-      ) {
-        continue;
-      }
-      const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
-      if (isExtensibleEnum(context, type) && !enumType.name.startsWith("_")) {
-        addDeclaration(
-          sourceFile,
-          knownValuesEnum,
-          refkey(type, "knownValues")
-        );
-      }
-      if (!enumType.name.startsWith("_")) {
-        addDeclaration(sourceFile, enumType, type);
-      }
-    } else if (type.kind === "union") {
-      const unionType = buildUnionType(context, type);
-      addDeclaration(sourceFile, unionType, type);
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "dict") {
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "array") {
-      addSerializationFunctions(context, type, sourceFile);
-    }
+    emitType(context, type, sourceFile);
   }
 
   if (
@@ -193,6 +122,80 @@ export function emitTypes(
   }
   addImportBySymbol("serializeRecord", sourceFile);
   return sourceFile;
+}
+
+function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
+  if (type.kind === "model") {
+    if (isAzureCoreErrorType(context.program, type.__raw)) {
+      return;
+    }
+    if (
+      !type.usage ||
+      (type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+    ) {
+      return;
+    }
+    if (!type.name && type.isGeneratedName) {
+      // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
+      // throw new Error(`Generation of anonymous types`);
+      return;
+    }
+    const modelInterface = buildModelInterface(context, type);
+    if (type.discriminatorProperty) {
+      modelInterface.properties
+        ?.filter((p) => {
+          return (
+            p.name ===
+            normalizeModelPropertyName(context, type.discriminatorProperty!)
+          );
+        })
+        .map((p) => {
+          p.docs?.push(
+            `The discriminator possible values: ${Object.keys(type.discriminatedSubtypes ?? {}).join(", ")}`
+          );
+          return p;
+        });
+    }
+    addDeclaration(sourceFile, modelInterface, type);
+    const modelPolymorphicType = buildModelPolymorphicType(context, type);
+    if (modelPolymorphicType) {
+      addSerializationFunctions(context, type, sourceFile, true);
+      addDeclaration(
+        sourceFile,
+        modelPolymorphicType,
+        refkey(type, "polymorphicType")
+      );
+    }
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "enum") {
+    if (
+      !type.usage ||
+      (type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+    ) {
+      return;
+    }
+    const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+    if (isExtensibleEnum(context, type) && !enumType.name.startsWith("_")) {
+      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+    }
+    if (!enumType.name.startsWith("_")) {
+      addDeclaration(sourceFile, enumType, type);
+    }
+  } else if (type.kind === "union") {
+    const unionType = buildUnionType(context, type);
+    addDeclaration(sourceFile, unionType, type);
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "dict") {
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "array") {
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "nullable") {
+    emitType(context, type.type, sourceFile);
+  }
 }
 
 export function getModelsPath(sourceRoot: string): string {
@@ -550,15 +553,16 @@ function visitClientMethod(
     case "paging":
     case "lropaging":
     case "basic":
+      visitMethod(method, emitQueue);
       visitOperation(method.operation, emitQueue);
       break;
     case "clientaccessor":
       method.response.methods.forEach((responseMethod) =>
         visitClientMethod(responseMethod, emitQueue)
       );
-      method.parameters.forEach((parameter) =>
-        visitType(parameter.type, emitQueue)
-      );
+      method.parameters.forEach((parameter) => {
+        visitType(parameter.type, emitQueue);
+      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
@@ -573,13 +577,24 @@ function visitOperation(operation: SdkHttpOperation, emitQueue: Set<SdkType>) {
     visitType(exception.type, emitQueue)
   );
 
-  operation.parameters.forEach((parameter) =>
-    visitType(parameter.type, emitQueue)
-  );
+  operation.parameters.forEach((parameter) => {
+    visitType(parameter.type, emitQueue);
+  });
 
   operation.responses.forEach((response) =>
     visitType(response.type, emitQueue)
   );
+}
+
+function visitMethod(
+  method: SdkServiceMethod<SdkHttpOperation>,
+  emitQueue: Set<SdkType>
+) {
+  // Visit the request
+  method.parameters.forEach((parameter) => {
+    visitType(parameter.type, emitQueue);
+  });
+  visitType(method.response.type, emitQueue);
 }
 
 function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
@@ -596,7 +611,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     if (externalModel) {
       return;
     }
-    
+
     if (type.additionalProperties) {
       visitType(type.additionalProperties, emitQueue);
     }

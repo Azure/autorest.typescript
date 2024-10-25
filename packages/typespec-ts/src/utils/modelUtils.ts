@@ -150,13 +150,7 @@ export function getSchemaForType(
 ) {
   const program = dpgContext.program;
   const { usage } = options ?? {};
-  if (typeInput.kind === "Model" && typeInput.name === "OpenAIPageableListOf") {
-    typeInput;
-  }
   const type = getEffectiveModelFromType(dpgContext, typeInput);
-  if (type.kind === "Model" && type.name === "OpenAIPageableListOf") {
-    type;
-  }
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -616,9 +610,6 @@ function getSchemaForModel(
         return normalizeName(nsName, NameType.Interface);
       })
       .join("") + model.name;
-  if (model.name === "OpenAIPageableListOf") {
-    dpgContext;
-  }
   let name = model.name;
   if (
     overridedModelName === name &&

@@ -23,10 +23,11 @@ import {
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
-import { buildType } from "./helpers/typeHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import { buildType } from "./helpers/typeHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -154,6 +155,7 @@ export function importDeserializeUtils(
  * This function generates the interfaces for each operation options
  */
 export function buildOperationOptions(
+  context: SdkContext,
   operation: Operation,
   sourceFile: SourceFile
 ) {
@@ -184,7 +186,14 @@ export function buildOperationOptions(
         return {
           docs: getDocsFromDescription(p.description),
           hasQuestionToken: true,
-          ...buildType(p.clientName, p.type, p.format)
+          ...(p.type.tcgcType
+            ? {
+                type: getTypeExpression(context, p.type.tcgcType!),
+                name: p.clientName
+              }
+            : {
+                ...buildType(p.clientName, p.type, p.format)
+              })
         };
       })
     ),

@@ -41,6 +41,7 @@ import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
+import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -102,19 +103,15 @@ export function getDeserializePrivateFunction(
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
-  if (operation.name === "list") {
-    operation;
-  }
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
     returnType = buildLroReturnType(operation);
   } else if (response?.type?.type) {
-    returnType = buildType(
-      response.type.name,
-      response.type,
-      response.type.format
-    );
+    returnType = {
+      name: response.type.name,
+      type: getTypeExpression(context, response.type.tcgcType!)
+    };
   } else {
     returnType = { name: "", type: "void" };
   }

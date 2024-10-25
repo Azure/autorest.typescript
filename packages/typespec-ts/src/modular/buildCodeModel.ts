@@ -534,7 +534,8 @@ function emitParameter(
     type: base.format ? { ...type, format: base.format } : type,
     implementation: implementation,
     skipUrlEncoding: parameter.type === "endpointPath",
-    format: (parameter as any).format ?? base.format
+    format: (parameter as any).format ?? base.format,
+    tcgcType: base.tcgcType
   };
 
   if (paramMap.type.type === "constant") {

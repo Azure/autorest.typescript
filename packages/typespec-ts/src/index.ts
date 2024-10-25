@@ -277,7 +277,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     for (const subClient of modularCodeModel.clients) {
-      buildApiOptions(subClient, modularCodeModel);
+      buildApiOptions(dpgContext, subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
       buildRestorePoller(modularCodeModel, subClient);
