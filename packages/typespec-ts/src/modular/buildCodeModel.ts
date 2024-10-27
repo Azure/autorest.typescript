@@ -526,7 +526,13 @@ function emitParameter(
     /// We don't want constant types for content types, so we make sure if it's
     /// a constant, we make it not constant
     clientDefaultValue = type["value"];
-    type = type["valueType"];
+    type = {
+      ...type["valueType"],
+      tcgcType:
+        base.tcgcType.kind === "constant"
+          ? base.tcgcType.valueType
+          : base.tcgcType
+    };
   }
   const paramMap = {
     restApiName: parameter.name,

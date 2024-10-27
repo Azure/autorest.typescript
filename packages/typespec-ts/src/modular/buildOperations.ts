@@ -188,7 +188,7 @@ export function buildOperationOptions(
           hasQuestionToken: true,
           ...(p.type.tcgcType
             ? {
-                type: getTypeExpression(context, p.type.tcgcType!),
+                type: getTypeExpression(context, p.type.tcgcType),
                 name: p.clientName
               }
             : {
