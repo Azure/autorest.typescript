@@ -26,8 +26,9 @@ export function _test1Send(
   c: string,
   options: ATest1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/test1";
   return context
-    .path("/test1")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { a: a, b: b, c: c },
@@ -61,8 +62,9 @@ export function _test2Send(
   prop: string,
   options: ATest2OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/test2";
   return context
-    .path("/test2")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { prop: prop },
@@ -94,8 +96,9 @@ export function _test3Send(
   body: { prop: string },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/test3";
   return context
-    .path("/test3")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: _test3RequestSerializer(body),
@@ -127,8 +130,9 @@ export function _test4Send(
   body: { prop: string },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/test4";
   return context
-    .path("/test4")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: _test4RequestSerializer(body),

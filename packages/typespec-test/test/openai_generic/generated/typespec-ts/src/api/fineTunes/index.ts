@@ -19,6 +19,7 @@ import {
   ListFineTuneEventsResponse,
   listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -31,8 +32,9 @@ export function _createSend(
   fineTune: CreateFineTuneRequest,
   options: FineTunesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/fine-tunes";
   return context
-    .path("/fine-tunes")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createFineTuneRequestSerializer(fineTune),
@@ -63,8 +65,9 @@ export function _listSend(
   context: Client,
   options: FineTunesListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/fine-tunes";
   return context
-    .path("/fine-tunes")
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -92,8 +95,12 @@ export function _retrieveSend(
   fineTuneId: string,
   options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/fine-tunes/{fine_tune_id}");
+  const path = pathParser.expand({
+    fineTuneId: fineTuneId,
+  });
   return context
-    .path("/fine-tunes/{fine_tune_id}", fineTuneId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -122,12 +129,16 @@ export function _listEventsSend(
   fineTuneId: string,
   options: FineTunesListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/fine-tunes/{fine_tune_id}/events{?stream}",
+  );
+  const path = pathParser.expand({
+    fineTuneId: fineTuneId,
+    stream: options?.stream,
+  });
   return context
-    .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { stream: options?.stream },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listEventsDeserialize(
@@ -155,8 +166,12 @@ export function _cancelSend(
   fineTuneId: string,
   options: FineTunesCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/fine-tunes/{fine_tune_id}/cancel");
+  const path = pathParser.expand({
+    fineTuneId: fineTuneId,
+  });
   return context
-    .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 

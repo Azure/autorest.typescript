@@ -29,8 +29,9 @@ export function _createSend(
   image: CreateImageRequest,
   options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/images/generations";
   return context
-    .path("/images/generations")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createImageRequestSerializer(image),
@@ -62,8 +63,9 @@ export function _createEditSend(
   image: CreateImageEditRequest,
   options: ImagesCreateEditOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/images/edits";
   return context
-    .path("/images/edits")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -96,8 +98,9 @@ export function _createVariationSend(
   image: CreateImageVariationRequest,
   options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/images/variations";
   return context
-    .path("/images/variations")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",

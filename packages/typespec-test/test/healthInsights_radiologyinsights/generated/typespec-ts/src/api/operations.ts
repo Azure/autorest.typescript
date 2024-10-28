@@ -26,7 +26,8 @@ export function _inferRadiologyInsightsSend(
   patients: PatientRecord[],
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/radiology-insights/jobs").post({
+  const path = "/radiology-insights/jobs";
+  return context.path(path).post({
     ...operationOptionsToRequestParameters(options),
     headers: {
       ...(options?.repeatabilityRequestId !== undefined

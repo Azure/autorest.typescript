@@ -20,6 +20,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,8 +34,14 @@ export function _createOrUpdateTestProfileRunSend(
   body: TestProfileRun,
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+  );
+  const path = pathParser.expand({
+    testProfileRunId: testProfileRunId,
+  });
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -75,8 +82,14 @@ export function _deleteTestProfileRunSend(
   testProfileRunId: string,
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+  );
+  const path = pathParser.expand({
+    testProfileRunId: testProfileRunId,
+  });
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -110,8 +123,14 @@ export function _getTestProfileRunSend(
   testProfileRunId: string,
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+  );
+  const path = pathParser.expand({
+    testProfileRunId: testProfileRunId,
+  });
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -144,23 +163,24 @@ export function _listTestProfileRunsSend(
   context: Client,
   options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/test-profile-runs{?api-version,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
+  );
+  const path = pathParser.expand({
+    maxpagesize: options?.maxpagesize,
+    minStartDateTime: options?.minStartDateTime?.toISOString(),
+    maxStartDateTime: options?.maxStartDateTime?.toISOString(),
+    minEndDateTime: options?.minEndDateTime?.toISOString(),
+    maxEndDateTime: options?.maxEndDateTime?.toISOString(),
+    createdDateStartTime: options?.createdDateStartTime?.toISOString(),
+    createdDateEndTime: options?.createdDateEndTime?.toISOString(),
+    testProfileRunIds: options?.testProfileRunIds,
+    testProfileIds: options?.testProfileIds,
+    statuses: options?.statuses,
+  });
   return context
-    .path("/test-profile-runs")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        maxpagesize: options?.maxpagesize,
-        minStartDateTime: options?.minStartDateTime?.toISOString(),
-        maxStartDateTime: options?.maxStartDateTime?.toISOString(),
-        minEndDateTime: options?.minEndDateTime?.toISOString(),
-        maxEndDateTime: options?.maxEndDateTime?.toISOString(),
-        createdDateStartTime: options?.createdDateStartTime?.toISOString(),
-        createdDateEndTime: options?.createdDateEndTime?.toISOString(),
-        testProfileRunIds: options?.testProfileRunIds,
-        testProfileIds: options?.testProfileIds,
-        statuses: options?.statuses,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listTestProfileRunsDeserialize(
@@ -193,8 +213,14 @@ export function _stopTestProfileRunSend(
   testProfileRunId: string,
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/test-profile-runs/{testProfileRunId}:stop{?api-version}",
+  );
+  const path = pathParser.expand({
+    testProfileRunId: testProfileRunId,
+  });
   return context
-    .path("/test-profile-runs/{testProfileRunId}:stop", testProfileRunId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 

@@ -29,6 +29,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
@@ -49,7 +50,8 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/widgets").get({
+  const path = "/widgets";
+  return context.path(path).get({
     ...operationOptionsToRequestParameters(options),
     headers: {
       "required-header": requiredHeader,
@@ -130,12 +132,14 @@ export function _listWidgetsPagesSend(
   pageSize: number,
   options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/widgets/pages{?page,pageSize}");
+  const path = pathParser.expand({
+    page: page,
+    pageSize: pageSize,
+  });
   return context
-    .path("/widgets/widgets/pages")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { page: page, pageSize: pageSize },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWidgetsPagesDeserialize(
@@ -170,12 +174,14 @@ export function _queryWidgetsPagesSend(
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/widgets/pages{?page,pageSize}");
+  const path = pathParser.expand({
+    page: page,
+    pageSize: pageSize,
+  });
   return context
-    .path("/widgets/widgets/pages")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { page: page, pageSize: pageSize },
-    });
+    .path(path)
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _queryWidgetsPagesDeserialize(
@@ -209,8 +215,12 @@ export function _getWidgetSend(
   id: string,
   options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/{id}");
+  const path = pathParser.expand({
+    id: id,
+  });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -241,8 +251,9 @@ export function _createWidgetSend(
   color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/widgets";
   return context
-    .path("/widgets")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { weight: weight, color: color },
@@ -282,11 +293,17 @@ export function _createOrReplaceSend(
   resource: User,
   options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
+  );
+  const path = pathParser.expand({
+    name: name,
+    "api-version": options?.apiVersion ?? "1.0.0",
+  });
   return context
-    .path("/widgets/widgets/createOrReplace/users/{name}", name)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
       body: userSerializer(resource),
     });
 }
@@ -328,8 +345,12 @@ export function _updateWidgetSend(
   id: string,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/{id}");
+  const path = pathParser.expand({
+    id: id,
+  });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: { weight: options?.weight, color: options?.color },
@@ -365,8 +386,12 @@ export function _deleteWidgetSend(
   id: string,
   options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/{id}");
+  const path = pathParser.expand({
+    id: id,
+  });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -396,8 +421,12 @@ export function _analyzeWidgetSend(
   id: string,
   options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/widgets/{id}/analyze");
+  const path = pathParser.expand({
+    id: id,
+  });
   return context
-    .path("/widgets/{id}/analyze", id)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 

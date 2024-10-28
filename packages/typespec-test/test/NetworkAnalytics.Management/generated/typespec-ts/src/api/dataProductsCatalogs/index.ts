@@ -35,8 +35,8 @@ export function _getSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
   );
   const path = pathParser.expand({
-    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
   });
   return context
     .path(path)
@@ -82,8 +82,8 @@ export function _listByResourceGroupSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
   );
   const path = pathParser.expand({
-    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
   });
   return context
     .path(path)
@@ -136,8 +136,7 @@ export function _listBySubscriptionSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
   );
   const path = pathParser.expand({
-    ...{ subscriptionId: subscriptionId },
-    ...{},
+    subscriptionId: subscriptionId,
   });
   return context
     .path(path)

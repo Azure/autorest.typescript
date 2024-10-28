@@ -31,6 +31,7 @@ import {
   rejectResultDeserializer,
   cloudEventArraySerializer,
 } from "../models/models.js";
+import { parseTemplate } from "../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -44,8 +45,12 @@ export function _publishCloudEventSend(
   event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/topics/{topicName}:publish{?api-version}");
+  const path = pathParser.expand({
+    topicName: topicName,
+  });
   return context
-    .path("/topics/{topicName}:publish", topicName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -88,8 +93,12 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/topics/{topicName}:publish{?api-version}");
+  const path = pathParser.expand({
+    topicName: topicName,
+  });
   return context
-    .path("/topics/{topicName}:publish", topicName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -132,19 +141,18 @@ export function _receiveCloudEventsSend(
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
+  );
+  const path = pathParser.expand({
+    topicName: topicName,
+    eventSubscriptionName: eventSubscriptionName,
+    maxEvents: options?.maxEvents,
+    maxWaitTime: options?.maxWaitTime,
+  });
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive",
-      topicName,
-      eventSubscriptionName,
-    )
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        maxEvents: options?.maxEvents,
-        maxWaitTime: options?.maxWaitTime,
-      },
-    });
+    .path(path)
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _receiveCloudEventsDeserialize(
@@ -181,12 +189,15 @@ export function _acknowledgeCloudEventsSend(
   lockTokens: AcknowledgeOptions,
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
+  );
+  const path = pathParser.expand({
+    topicName: topicName,
+    eventSubscriptionName: eventSubscriptionName,
+  });
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -231,12 +242,15 @@ export function _releaseCloudEventsSend(
   lockTokens: ReleaseOptions,
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version}",
+  );
+  const path = pathParser.expand({
+    topicName: topicName,
+    eventSubscriptionName: eventSubscriptionName,
+  });
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -281,12 +295,15 @@ export function _rejectCloudEventsSend(
   lockTokens: RejectOptions,
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
+  );
+  const path = pathParser.expand({
+    topicName: topicName,
+    eventSubscriptionName: eventSubscriptionName,
+  });
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:

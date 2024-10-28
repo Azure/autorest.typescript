@@ -28,8 +28,9 @@ export function _createStreamingSend(
   body: StreamingChatCompletionOptionsRecord,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/chat";
   return context
-    .path("/chat")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: streamingChatCompletionOptionsRecordSerializer(body),
@@ -62,8 +63,9 @@ export function _createSend(
   body: ChatCompletionOptionsRecord,
   options: CreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/chat";
   return context
-    .path("/chat")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: chatCompletionOptionsRecordSerializer(body),

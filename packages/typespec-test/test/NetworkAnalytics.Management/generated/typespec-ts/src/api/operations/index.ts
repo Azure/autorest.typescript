@@ -14,7 +14,6 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -26,13 +25,7 @@ export function _listSend(
   context: Client,
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
-    "/providers/Microsoft.NetworkAnalytics/operations{?api-version}",
-  );
-  const path = pathParser.expand({
-    ...{},
-    ...{},
-  });
+  const path = "/providers/Microsoft.NetworkAnalytics/operations";
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });

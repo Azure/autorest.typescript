@@ -52,13 +52,10 @@ export function _createSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -118,13 +115,10 @@ export function _getSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -175,13 +169,10 @@ export function _updateSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -241,13 +232,10 @@ export function _$deleteSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -313,13 +301,10 @@ export function _deleteDataSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -387,13 +372,10 @@ export function _generateStorageContainerSasTokenSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-      dataTypeName: dataTypeName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
+    dataTypeName: dataTypeName,
   });
   return context
     .path(path)
@@ -449,12 +431,9 @@ export function _listByDataProductSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
