@@ -67,7 +67,7 @@ sourceFile2.addStatements(`${functionReference}();`);
 sourceFile2.addStatements(`let obj: ${modelReference} = { id: 1 };`);
 
 // Apply imports to ensure correct references
-binder.resolveAllReferences("");
+binder.resolveAllReferences("/modularPackageFolder/src");
 
 // Output the generated files
 console.log("// test.ts");
