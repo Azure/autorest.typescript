@@ -43,6 +43,7 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,13 +60,19 @@ export function _createSend(
   resource: DataProduct,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       body: dataProductSerializer(resource),
@@ -115,13 +122,19 @@ export function _getSend(
   dataProductName: string,
   options: DataProductsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -162,13 +175,19 @@ export function _updateSend(
   properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: dataProductUpdateSerializer(properties),
@@ -218,13 +237,19 @@ export function _$deleteSend(
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -282,13 +307,19 @@ export function _generateStorageAccountSasTokenSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: accountSasSerializer(body),
@@ -336,13 +367,19 @@ export function _rotateKeySend(
   body: KeyVaultInfo,
   options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: keyVaultInfoSerializer(body),
@@ -388,13 +425,19 @@ export function _addUserRoleSend(
   body: RoleAssignmentCommonProperties,
   options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: roleAssignmentCommonPropertiesSerializer(body),
@@ -440,13 +483,19 @@ export function _removeUserRoleSend(
   body: RoleAssignmentDetail,
   options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: roleAssignmentDetailSerializer(body),
@@ -494,13 +543,19 @@ export function _listRolesAssignmentsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: _listRolesAssignmentsRequestSerializer(body),
@@ -548,12 +603,15 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
-      subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -599,11 +657,15 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{ subscriptionId: subscriptionId },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts",
-      subscriptionId,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

@@ -17,6 +17,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,12 +31,15 @@ export function _getSend(
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
-      subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -74,12 +78,15 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -125,11 +132,15 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+  );
+  const path = pathParser.expand({
+    ...{ subscriptionId: subscriptionId },
+    ...{},
+  });
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

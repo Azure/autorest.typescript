@@ -950,6 +950,7 @@ function emitBasicOperation(
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
+    uriTemplate: httpOperation.uriTemplate,
     method: httpOperation.verb.toUpperCase(),
     parameters: parameters,
     bodyParameter: bodyParameter,

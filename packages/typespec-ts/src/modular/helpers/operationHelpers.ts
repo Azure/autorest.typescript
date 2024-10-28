@@ -13,7 +13,11 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
-import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  UriTemplateHelpers
+} from "../static-helpers-metadata.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
@@ -65,16 +69,35 @@ export function getSendPrivateFunction(
     p.type?.toString().endsWith("OptionalParams")
   )[0]?.name;
 
+  const isUriTemplate = Boolean(operation.uriTemplate);
   const statements: string[] = [];
-  statements.push(
-    `return context.path("${operationPath}", ${getPathParameters(
-      dpgContext,
-      operation
-    )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
-      dpgContext,
-      operation
-    )}});`
-  );
+
+  if (isUriTemplate) {
+    statements.push(
+      `const pathParser = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}");`
+    );
+    statements.push(`const path = pathParser.expand({
+      ...${getPathParametersForUriTemplate(dpgContext, operation)},
+      ...${getQueryParametersForUriTemplate(dpgContext, operation)}
+      });`);
+    statements.push(
+      `return context.path(path).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
+        dpgContext,
+        operation,
+        false
+      )}});`
+    );
+  } else {
+    statements.push(
+      `return context.path("${operationPath}", ${getPathParameters(
+        dpgContext,
+        operation
+      )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
+        dpgContext,
+        operation
+      )}});`
+    );
+  }
 
   return {
     ...functionStatement,
@@ -463,7 +486,8 @@ export function getOperationOptionsName(
  */
 function getRequestParameters(
   dpgContext: SdkContext,
-  operation: Operation
+  operation: Operation,
+  includeQuery = true
 ): string {
   if (!operation.parameters) {
     return "";
@@ -508,7 +532,7 @@ function getRequestParameters(
       .join(",\n")}},`;
   }
 
-  if (parametersImplementation.query.length) {
+  if (parametersImplementation.query.length && includeQuery) {
     paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
       .map((i) => i.paramMap)
       .join(",\n")}},`;
@@ -524,6 +548,39 @@ function getRequestParameters(
     paramStr = `${paramStr}${buildBodyParameter(dpgContext, operation.bodyParameter)}`;
   }
   return paramStr;
+}
+
+function getQueryParametersForUriTemplate(
+  dpgContext: SdkContext,
+  operation: Operation
+): string {
+  if (!operation.parameters) {
+    return "";
+  }
+  const operationParameters = operation.parameters.filter(
+    (p) => p.implementation !== "Client" && !isContentType(p)
+  );
+  const parametersImplementation: Record<
+    "query",
+    { paramMap: string; param: Parameter }[]
+  > = {
+    query: []
+  };
+
+  for (const param of operationParameters) {
+    if (param.location === "query") {
+      parametersImplementation[param.location].push({
+        paramMap: getParameterMap(dpgContext, param),
+        param
+      });
+    }
+  }
+
+  const paramStr: string[] = parametersImplementation.query.map(
+    (i) => i.paramMap
+  );
+
+  return `{${paramStr.join(",\n")}}`;
 }
 
 // Specially handle the type for headers because we only allow string/number/boolean values
@@ -780,6 +837,36 @@ function getDefaultValue(param: Parameter | Property) {
   return param.clientDefaultValue ?? param.type.clientDefaultValue;
 }
 
+function getPathParametersForUriTemplate(
+  dpgContext: SdkContext,
+  operation: Operation
+) {
+  if (!operation.parameters) {
+    return {};
+  }
+
+  const pathParams: string[] = [];
+  for (const param of operation.parameters) {
+    if (param.location === "path") {
+      // Path parameters cannot be optional
+      if (param.optional) {
+        reportDiagnostic(dpgContext.program, {
+          code: "optional-path-param",
+          target: NoTarget,
+          format: {
+            paramName: param.clientName
+          }
+        });
+      }
+      pathParams.push(
+        `${param.clientName}: ${getPathParamExpr(param, getDefaultValue(param), false)}`
+      );
+    }
+  }
+
+  return `{${pathParams.join(",\n")}}`;
+}
+
 /**
  * Extracts the path parameters
  */
@@ -811,13 +898,17 @@ function getPathParameters(dpgContext: SdkContext, operation: Operation) {
   return pathParams;
 }
 
-function getPathParamExpr(param: Parameter, defaultValue?: string) {
+function getPathParamExpr(
+  param: Parameter,
+  defaultValue?: string,
+  enableSkipEncoding = true
+) {
   const value = defaultValue
     ? typeof defaultValue === "string"
       ? `options[${param.clientName}] ?? "${defaultValue}"`
       : `options[${param.clientName}] ?? ${defaultValue}`
     : param.clientName;
-  if (param.skipUrlEncoding === true) {
+  if (enableSkipEncoding && param.skipUrlEncoding === true) {
     return `{value: ${value}, allowReserved: true}`;
   }
   return value;
