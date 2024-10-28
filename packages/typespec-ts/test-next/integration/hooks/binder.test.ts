@@ -68,7 +68,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, interfaceWithReference, "TestModel");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
@@ -106,7 +106,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, interfaceWithReference, "TestModel");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
@@ -141,7 +141,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, functionDeclaration, "testFunction");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       const functionDec = assertGetFunctionDeclaration(
@@ -186,7 +186,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, functionDeclaration, "testFunction");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       const functionDec = assertGetFunctionDeclaration(
@@ -225,7 +225,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, functionDeclaration, "testFunction");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       const fnDeclaration = assertGetFunctionDeclaration(
@@ -264,7 +264,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, functionDeclaration, "testFunction");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       const fnDeclaration = assertGetFunctionDeclaration(
@@ -302,7 +302,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, typeDeclaration, "TestType");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       assertGetTypealiasDeclaration(sourceFile, "TestType");
@@ -337,7 +337,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, typeDeclaration, "TestType");
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       assertGetTypealiasDeclaration(sourceFile, "TestType");
@@ -381,7 +381,7 @@ describe("Binder", () => {
         `${resolveReference(staticHelpers.buildCsvCollection)}();`
       );
 
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetImportStatements(sourceFile, "./static-helpers/utils.js");
       assertGetStatement(sourceFile, "buildCsvCollection();");
@@ -435,7 +435,7 @@ describe("Binder", () => {
       };
 
       addDeclaration(sourceFile, interfaceDeclaration, model);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const ifaceDeclaration = assertGetInterfaceDeclaration(
         sourceFile,
@@ -497,7 +497,7 @@ describe("Binder", () => {
       };
 
       addDeclaration(sourceFile, interfaceDeclaration, model);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const ifaceDeclaration = assertGetInterfaceDeclaration(
         sourceFile,
@@ -547,7 +547,7 @@ describe("Binder", () => {
       };
 
       addDeclaration(sourceFile, interfaceDeclaration, model);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const ifaceDeclaration = assertGetInterfaceDeclaration(
         sourceFile,
@@ -586,7 +586,7 @@ describe("Binder", () => {
       };
 
       addDeclaration(sourceFile, interfaceDeclaration, model);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
 
@@ -631,7 +631,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration1, model1);
       addDeclaration(sourceFile, interfaceDeclaration2, model2);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
       assertGetInterfaceDeclaration(sourceFile, "TestModel_1");
@@ -682,7 +682,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclarationA, modelA);
       addDeclaration(sourceFile, interfaceDeclarationB, modelB);
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestModelA");
       const modelBInterface = assertGetInterfaceDeclaration(
@@ -764,7 +764,7 @@ describe("Binder", () => {
       addDeclaration(sourceFile2, interfaceDeclaration2, model2);
       addDeclaration(sourceFile3, interfaceDeclaration3, model3);
 
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const lasModelInterface = assertGetInterfaceDeclaration(
         sourceFile3,
@@ -840,7 +840,7 @@ describe("Binder", () => {
       sourceFile2.addStatements(`${resolveReference(fnObject)}();`);
 
       const binder = useBinder();
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       console.log("// test1.ts");
       console.log(sourceFile1.getFullText());
@@ -890,7 +890,7 @@ describe("Binder", () => {
       addDeclaration(sourceFile, interfaceDeclaration, model);
       addDeclaration(sourceFile, functionDeclaration, functionModel);
 
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
       assertGetFunctionDeclaration(sourceFile, "TestFunction");
@@ -942,7 +942,7 @@ describe("Binder", () => {
       addDeclaration(sourceFile, interfaceDeclarationB, modelB);
 
       const binder = useBinder();
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const propA = sourceFile.getInterface("ModelA")?.getProperty("propA");
       const propB = sourceFile.getInterface("ModelB")?.getProperty("propB");
@@ -1005,7 +1005,7 @@ describe("Binder", () => {
       );
 
       const binder = useBinder();
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       const variableDeclaration = assertGetVariableDeclaration(
         sourceFile2,
@@ -1072,7 +1072,7 @@ describe("Binder", () => {
       addDeclaration(sourceFile, interfaceDeclarationB, modelB);
 
       const binder = useBinder();
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestModel");
       const modelBInterface = assertGetInterfaceDeclaration(
