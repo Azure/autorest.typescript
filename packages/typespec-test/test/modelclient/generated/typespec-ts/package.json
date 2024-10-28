@@ -21,15 +21,34 @@
       "./imageEmbeddings/api": "./src/imageEmbeddings/api/index.ts",
       "./imageEmbeddings/models": "./src/imageEmbeddings/models/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "review/*",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "@azure/core-util": "^1.9.2",
     "@azure-rest/core-client": "^2.3.1",
@@ -71,5 +90,191 @@
     "test:node": "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
     "test": "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
     "build": "npm run clean && tshy && npm run extract-api"
-  }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./chatCompletions": {
+      "browser": {
+        "types": "./dist/browser/chatCompletions/index.d.ts",
+        "default": "./dist/browser/chatCompletions/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/chatCompletions/index.d.ts",
+        "default": "./dist/react-native/chatCompletions/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/chatCompletions/index.d.ts",
+        "default": "./dist/esm/chatCompletions/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/chatCompletions/index.d.ts",
+        "default": "./dist/commonjs/chatCompletions/index.js"
+      }
+    },
+    "./chatCompletions/api": {
+      "browser": {
+        "types": "./dist/browser/chatCompletions/api/index.d.ts",
+        "default": "./dist/browser/chatCompletions/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/chatCompletions/api/index.d.ts",
+        "default": "./dist/react-native/chatCompletions/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/chatCompletions/api/index.d.ts",
+        "default": "./dist/esm/chatCompletions/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/chatCompletions/api/index.d.ts",
+        "default": "./dist/commonjs/chatCompletions/api/index.js"
+      }
+    },
+    "./chatCompletions/models": {
+      "browser": {
+        "types": "./dist/browser/chatCompletions/models/index.d.ts",
+        "default": "./dist/browser/chatCompletions/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/chatCompletions/models/index.d.ts",
+        "default": "./dist/react-native/chatCompletions/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/chatCompletions/models/index.d.ts",
+        "default": "./dist/esm/chatCompletions/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/chatCompletions/models/index.d.ts",
+        "default": "./dist/commonjs/chatCompletions/models/index.js"
+      }
+    },
+    "./embeddings": {
+      "browser": {
+        "types": "./dist/browser/embeddings/index.d.ts",
+        "default": "./dist/browser/embeddings/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/embeddings/index.d.ts",
+        "default": "./dist/react-native/embeddings/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/embeddings/index.d.ts",
+        "default": "./dist/esm/embeddings/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/embeddings/index.d.ts",
+        "default": "./dist/commonjs/embeddings/index.js"
+      }
+    },
+    "./embeddings/api": {
+      "browser": {
+        "types": "./dist/browser/embeddings/api/index.d.ts",
+        "default": "./dist/browser/embeddings/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/embeddings/api/index.d.ts",
+        "default": "./dist/react-native/embeddings/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/embeddings/api/index.d.ts",
+        "default": "./dist/esm/embeddings/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/embeddings/api/index.d.ts",
+        "default": "./dist/commonjs/embeddings/api/index.js"
+      }
+    },
+    "./embeddings/models": {
+      "browser": {
+        "types": "./dist/browser/embeddings/models/index.d.ts",
+        "default": "./dist/browser/embeddings/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/embeddings/models/index.d.ts",
+        "default": "./dist/react-native/embeddings/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/embeddings/models/index.d.ts",
+        "default": "./dist/esm/embeddings/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/embeddings/models/index.d.ts",
+        "default": "./dist/commonjs/embeddings/models/index.js"
+      }
+    },
+    "./imageEmbeddings": {
+      "browser": {
+        "types": "./dist/browser/imageEmbeddings/index.d.ts",
+        "default": "./dist/browser/imageEmbeddings/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/imageEmbeddings/index.d.ts",
+        "default": "./dist/react-native/imageEmbeddings/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/imageEmbeddings/index.d.ts",
+        "default": "./dist/esm/imageEmbeddings/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/imageEmbeddings/index.d.ts",
+        "default": "./dist/commonjs/imageEmbeddings/index.js"
+      }
+    },
+    "./imageEmbeddings/api": {
+      "browser": {
+        "types": "./dist/browser/imageEmbeddings/api/index.d.ts",
+        "default": "./dist/browser/imageEmbeddings/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/imageEmbeddings/api/index.d.ts",
+        "default": "./dist/react-native/imageEmbeddings/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/imageEmbeddings/api/index.d.ts",
+        "default": "./dist/esm/imageEmbeddings/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/imageEmbeddings/api/index.d.ts",
+        "default": "./dist/commonjs/imageEmbeddings/api/index.js"
+      }
+    },
+    "./imageEmbeddings/models": {
+      "browser": {
+        "types": "./dist/browser/imageEmbeddings/models/index.d.ts",
+        "default": "./dist/browser/imageEmbeddings/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/imageEmbeddings/models/index.d.ts",
+        "default": "./dist/react-native/imageEmbeddings/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/imageEmbeddings/models/index.d.ts",
+        "default": "./dist/esm/imageEmbeddings/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/imageEmbeddings/models/index.d.ts",
+        "default": "./dist/commonjs/imageEmbeddings/models/index.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }
