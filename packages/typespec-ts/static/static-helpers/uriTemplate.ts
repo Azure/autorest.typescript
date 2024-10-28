@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 function encodeReserved(str: any) {
     return str
         .split(/(%[0-9A-Fa-f]{2})/g)

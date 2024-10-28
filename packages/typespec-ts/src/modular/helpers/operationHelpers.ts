@@ -73,13 +73,18 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
 
   if (isUriTemplate) {
-    statements.push(
-      `const pathParser = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}");`
-    );
-    statements.push(`const path = pathParser.expand({
-      ...${getPathParametersForUriTemplate(dpgContext, operation)},
-      ...${getQueryParametersForUriTemplate(dpgContext, operation)}
-      });`);
+    const uriTemplateParams = [...getPathParametersForUriTemplate(dpgContext, operation), ...getQueryParametersForUriTemplate(dpgContext, operation)];
+    if (uriTemplateParams.length > 0) {
+      statements.push(
+        `const pathParser = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}");`
+      );
+      statements.push(`const path = pathParser.expand({
+        ${uriTemplateParams.join(",\n")}
+        });`);
+    } else {
+      statements.push(`const path = "${operation.url}";`);
+    }
+
     statements.push(
       `return context.path(path).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
         dpgContext,
@@ -369,9 +374,8 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
+    }>, ${returnType.type}>;
   `);
 
   return {
@@ -553,9 +557,9 @@ function getRequestParameters(
 function getQueryParametersForUriTemplate(
   dpgContext: SdkContext,
   operation: Operation
-): string {
+): string[] {
   if (!operation.parameters) {
-    return "";
+    return [];
   }
   const operationParameters = operation.parameters.filter(
     (p) => p.implementation !== "Client" && !isContentType(p)
@@ -580,7 +584,7 @@ function getQueryParametersForUriTemplate(
     (i) => i.paramMap
   );
 
-  return `{${paramStr.join(",\n")}}`;
+  return paramStr;
 }
 
 // Specially handle the type for headers because we only allow string/number/boolean values
@@ -700,15 +704,14 @@ function getCollectionFormat(context: SdkContext, param: Parameter) {
       param.format
     )}${additionalParam})`;
   }
-  return `"${param.restApiName}": options?.${
-    param.clientName
-  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-    context,
-    param.type,
-    "options?." + param.clientName,
-    false,
-    param.format
-  )}${additionalParam}): undefined`;
+  return `"${param.restApiName}": options?.${param.clientName
+    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+      context,
+      param.type,
+      "options?." + param.clientName,
+      false,
+      param.format
+    )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -725,11 +728,10 @@ function getContentTypeValue(param: Parameter | Property) {
   if (defaultValue) {
     return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${
-      !param.optional
-        ? "contentType"
-        : "options." + param.clientName + " as any"
-    }`;
+    return `contentType: ${!param.optional
+      ? "contentType"
+      : "options." + param.clientName + " as any"
+      }`;
   }
 }
 
@@ -811,11 +813,10 @@ function getOptional(context: SdkContext, param: OptionalType) {
     param.restApiName === "api-version" &&
     (param as any).location === "query"
   ) {
-    return `"${param.restApiName}": ${
-      param.clientDefaultValue
-        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
-        : `options?.${param.clientName}`
-    }`;
+    return `"${param.restApiName}": ${param.clientDefaultValue
+      ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
+      : `options?.${param.clientName}`
+      }`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     context,
@@ -842,7 +843,7 @@ function getPathParametersForUriTemplate(
   operation: Operation
 ) {
   if (!operation.parameters) {
-    return {};
+    return [];
   }
 
   const pathParams: string[] = [];
@@ -864,7 +865,7 @@ function getPathParametersForUriTemplate(
     }
   }
 
-  return `{${pathParams.join(",\n")}}`;
+  return pathParams;
 }
 
 /**
@@ -1000,9 +1001,8 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
 
-    const restValue = `${
-      propertyPath ? `${propertyPath}${dot}` : `${dot}`
-    }["${property.restApiName}"]`;
+    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${property.restApiName}"]`;
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
@@ -1064,9 +1064,8 @@ export function serializeRequestValue(
           return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
         case "rfc3339":
         default:
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toISOString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${required ? "" : "?"
+            }.toISOString()`;
       }
     case "list": {
       const prefix = nullOrUndefinedPrefix + clientValue;
@@ -1100,14 +1099,12 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-              clientValue,
-              type
-            )} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`;
+            clientValue,
+            type
+          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`;
       }
       return clientValue;
     case "combined":
@@ -1162,11 +1159,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.elementType
         ? buildModelDeserializer(
-            context,
-            type.elementType.tcgcType!,
-            false,
-            true
-          )
+          context,
+          type.elementType.tcgcType!,
+          false,
+          true
+        )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
