@@ -141,7 +141,7 @@ describe("Binder", () => {
 
       addDeclaration(sourceFile, interfaceDeclaration, "TestInterface");
       addDeclaration(sourceFile, functionDeclaration, "testFunction");
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("");
 
       assertGetInterfaceDeclaration(sourceFile, "TestInterface");
       const functionDec = assertGetFunctionDeclaration(
