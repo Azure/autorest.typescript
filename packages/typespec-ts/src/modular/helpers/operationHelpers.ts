@@ -742,7 +742,7 @@ function getOptional(context: SdkContext, param: OptionalType) {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
       param.type,
-      "options?." + param.clientName + "?"
+      "options?." + param.clientName + "?."
     );
     const serializeContent =
       directAssignment === true
