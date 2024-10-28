@@ -15,6 +15,7 @@ import {
   StaticHelperMetadata
 } from "../load-static-helpers.js";
 import path from "path/posix";
+import { normalizePath } from "@typespec/compiler";
 
 export interface DeclarationInfo {
   name: string;
@@ -315,7 +316,8 @@ class BinderImp implements Binder {
     }
 
     this.project
-      .getSourceFiles(path.join(sourceRoot, "static-helpers/**/*.ts"))
+      //normalizae the final path to adapt to different systems
+      .getSourceFiles(normalizePath(path.join(sourceRoot, "static-helpers/**/*.ts")))
       .filter((helperFile) => !usedHelperFiles.has(helperFile))
       .forEach((helperFile) => helperFile.delete());
   }
