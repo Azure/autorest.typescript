@@ -317,7 +317,9 @@ class BinderImp implements Binder {
 
     this.project
       //normalizae the final path to adapt to different systems
-      .getSourceFiles(normalizePath(path.join(sourceRoot, "static-helpers/**/*.ts")))
+      .getSourceFiles(
+        normalizePath(path.join(sourceRoot, "static-helpers/**/*.ts"))
+      )
       .filter((helperFile) => !usedHelperFiles.has(helperFile))
       .forEach((helperFile) => helperFile.delete());
   }
