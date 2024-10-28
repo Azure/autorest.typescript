@@ -22,8 +22,9 @@ export function _createSend(
   content: CreateModerationRequest,
   options: ModerationsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/moderations";
   return context
-    .path("/moderations")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createModerationRequestSerializer(content),

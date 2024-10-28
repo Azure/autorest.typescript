@@ -19,6 +19,7 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,8 +31,9 @@ export function _listSend(
   context: Client,
   options: FilesListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/files";
   return context
-    .path("/files")
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -59,8 +61,9 @@ export function _createSend(
   file: CreateFileRequest,
   options: FilesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/files";
   return context
-    .path("/files")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -93,8 +96,12 @@ export function _retrieveSend(
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/files/files/{file_id}");
+  const path = pathParser.expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -123,8 +130,12 @@ export function _$deleteSend(
   fileId: string,
   options: FilesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/files/files/{file_id}");
+  const path = pathParser.expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -158,8 +169,12 @@ export function _downloadSend(
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/files/files/{file_id}/content");
+  const path = pathParser.expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}/content", fileId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

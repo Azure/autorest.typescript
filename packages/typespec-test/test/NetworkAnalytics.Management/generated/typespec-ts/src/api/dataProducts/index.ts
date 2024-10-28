@@ -64,12 +64,9 @@ export function _createSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -126,12 +123,9 @@ export function _getSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -179,12 +173,9 @@ export function _updateSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -241,12 +232,9 @@ export function _$deleteSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -311,12 +299,9 @@ export function _generateStorageAccountSasTokenSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -371,12 +356,9 @@ export function _rotateKeySend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -429,12 +411,9 @@ export function _addUserRoleSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -487,12 +466,9 @@ export function _removeUserRoleSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -547,12 +523,9 @@ export function _listRolesAssignmentsSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments{?api-version}",
   );
   const path = pathParser.expand({
-    ...{
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
+    dataProductName: dataProductName,
   });
   return context
     .path(path)
@@ -607,8 +580,8 @@ export function _listByResourceGroupSend(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
   );
   const path = pathParser.expand({
-    ...{ subscriptionId: subscriptionId, resourceGroupName: resourceGroupName },
-    ...{},
+    subscriptionId: subscriptionId,
+    resourceGroupName: resourceGroupName,
   });
   return context
     .path(path)
@@ -661,8 +634,7 @@ export function _listBySubscriptionSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
   );
   const path = pathParser.expand({
-    ...{ subscriptionId: subscriptionId },
-    ...{},
+    subscriptionId: subscriptionId,
   });
   return context
     .path(path)

@@ -6,6 +6,7 @@ import {
   WidgetServiceContext as Client,
 } from "../index.js";
 import { User, userSerializer, userDeserializer } from "../../models/models.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
@@ -21,11 +22,17 @@ export function _createOrReplaceSend(
   resource: User,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/budgets/widgets/createOrReplace/users/{name}{?api-version}",
+  );
+  const path = pathParser.expand({
+    name: name,
+    "api-version": options?.apiVersion ?? "1.0.0",
+  });
   return context
-    .path("/budgets/widgets/createOrReplace/users/{name}", name)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
       body: userSerializer(resource),
     });
 }

@@ -33,8 +33,9 @@ export function _detectUnivariateEntireSeriesSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = "/timeseries/entire/detect";
   return context
-    .path("/timeseries/entire/detect")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: univariateUnivariateDetectionOptionsSerializer(options),
@@ -80,8 +81,9 @@ export function _detectUnivariateLastPointSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = "/timeseries/last/detect";
   return context
-    .path("/timeseries/last/detect")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: univariateUnivariateDetectionOptionsSerializer(options),
@@ -125,8 +127,9 @@ export function _detectUnivariateChangePointSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = "/timeseries/changepoint/detect";
   return context
-    .path("/timeseries/changepoint/detect")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       body: univariateUnivariateChangePointDetectionOptionsSerializer(options),

@@ -18,6 +18,7 @@ import {
   ListFineTuningJobEventsResponse,
   listFineTuningJobEventsResponseDeserializer,
 } from "../../../models/models.js";
+import { parseTemplate } from "../../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,8 +31,9 @@ export function _createSend(
   job: CreateFineTuningJobRequest,
   options: FineTuningJobsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/fine_tuning/jobs";
   return context
-    .path("/fine_tuning/jobs")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createFineTuningJobRequestSerializer(job),
@@ -70,12 +72,14 @@ export function _listSend(
   context: Client,
   options: FineTuningJobsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/fine_tuning/jobs{?after,limit}");
+  const path = pathParser.expand({
+    after: options?.after,
+    limit: options?.limit,
+  });
   return context
-    .path("/fine_tuning/jobs")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { after: options?.after, limit: options?.limit },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
@@ -102,8 +106,12 @@ export function _retrieveSend(
   fineTuningJobId: string,
   options: FineTuningJobsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate("/fine_tuning/jobs/{fine_tuning_job_id}");
+  const path = pathParser.expand({
+    fineTuningJobId: fineTuningJobId,
+  });
   return context
-    .path("/fine_tuning/jobs/{fine_tuning_job_id}", fineTuningJobId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -132,12 +140,17 @@ export function _listEventsSend(
   fineTuningJobId: string,
   options: FineTuningJobsListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/fine_tuning/jobs/{fine_tuning_job_id}/events{?after,limit}",
+  );
+  const path = pathParser.expand({
+    fineTuningJobId: fineTuningJobId,
+    after: options?.after,
+    limit: options?.limit,
+  });
   return context
-    .path("/fine_tuning/jobs/{fine_tuning_job_id}/events", fineTuningJobId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { after: options?.after, limit: options?.limit },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listEventsDeserialize(
@@ -165,8 +178,14 @@ export function _cancelSend(
   fineTuningJobId: string,
   options: FineTuningJobsCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const pathParser = parseTemplate(
+    "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+  );
+  const path = pathParser.expand({
+    fineTuningJobId: fineTuningJobId,
+  });
   return context
-    .path("/fine_tuning/jobs/{fine_tuning_job_id}/cancel", fineTuningJobId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 

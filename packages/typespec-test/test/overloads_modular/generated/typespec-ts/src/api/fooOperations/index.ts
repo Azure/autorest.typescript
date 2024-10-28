@@ -18,8 +18,9 @@ export function _getAvatarAsPngSend(
   image: Uint8Array,
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/avatar";
   return context
-    .path("/avatar")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
@@ -53,8 +54,9 @@ export function _getAvatarAsJpegSend(
   image: Uint8Array,
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = "/avatar";
   return context
-    .path("/avatar")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/jpeg",
