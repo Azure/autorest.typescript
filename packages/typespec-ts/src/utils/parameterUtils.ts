@@ -1,7 +1,6 @@
 import {
   NameType,
   normalizeName,
-  ParameterBuilderKind,
   Schema
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
@@ -16,19 +15,16 @@ export function getParameterWrapperInfo(
   valueSchema: Schema,
   operationGroup: string = "",
   operationName: string = ""
-): [ParameterBuilderKind, Schema] | undefined {
+): Schema | undefined {
   const prefix = `${operationGroup}_${operationName}_${parameter.name}`;
   switch (parameter.type) {
     case "path": {
       if (parameter.allowReserved === true) {
-        return [
-          ParameterBuilderKind.AllowReserved,
-          buildAllowReserved(
-            normalizeName(`${prefix}_PathParam`, NameType.Interface),
-            valueSchema,
-            ParameterBuilderKind.AllowReserved
-          )
-        ];
+        return buildAllowReserved(
+          normalizeName(`${prefix}_PathParam`, NameType.Interface),
+          valueSchema,
+          parameter.name
+        );
       }
       return undefined;
     }
@@ -55,14 +51,11 @@ export function getParameterWrapperInfo(
           true,
           "form",
           valueSchema,
-          ParameterBuilderKind.ExplodedFormStyle
+          parameter.name
         );
-        return [
-          ParameterBuilderKind.ExplodedFormStyle,
-          dpgContext.rlcOptions?.compatibilityMode
-            ? buildUnionType([wrapperType, { type: "string", name: "string" }])
-            : wrapperType
-        ];
+        return dpgContext.rlcOptions?.compatibilityMode
+          ? buildUnionType([wrapperType, { type: "string", name: "string" }])
+          : wrapperType;
       }
 
       if (parameter.format === undefined || parameter.format === "csv") {
@@ -71,36 +64,27 @@ export function getParameterWrapperInfo(
           false,
           "form",
           valueSchema,
-          ParameterBuilderKind.UnexplodedFormStyle
+          parameter.name
         );
-        return [
-          ParameterBuilderKind.UnexplodedFormStyle,
-          isArrayType(valueSchema)
-            ? buildUnionType([valueSchema, wrapperType])
-            : wrapperType
-        ];
+        return isArrayType(valueSchema)
+          ? buildUnionType([valueSchema, wrapperType])
+          : wrapperType;
       } else if (parameter.format === "ssv") {
-        return [
-          ParameterBuilderKind.UnexplodedSpaceStyle,
-          buildExplodeAndStyle(
-            name,
-            false,
-            "spaceDelimited",
-            valueSchema,
-            ParameterBuilderKind.UnexplodedSpaceStyle
-          )
-        ];
+        return buildExplodeAndStyle(
+          name,
+          false,
+          "spaceDelimited",
+          valueSchema,
+          parameter.name
+        );
       } else if (parameter.format === "pipes") {
-        return [
-          ParameterBuilderKind.UnexplodedPipeStyle,
-          buildExplodeAndStyle(
-            name,
-            false,
-            "pipeDelimited",
-            valueSchema,
-            ParameterBuilderKind.UnexplodedPipeStyle
-          )
-        ];
+        return buildExplodeAndStyle(
+          name,
+          false,
+          "pipeDelimited",
+          valueSchema,
+          parameter.name
+        );
       } else {
         reportDiagnostic(dpgContext.program, {
           code: "un-supported-format-cases",
@@ -123,12 +107,12 @@ export function getParameterWrapperInfo(
 function buildAllowReserved(
   typeName: string,
   valueSchema: Schema,
-  valueBuilder: string
+  parameterName: string
 ) {
   return {
     type: "object",
     name: typeName,
-    description: `You can use the function ${valueBuilder} to help prepare this parameter.`,
+    description: `This is the wrapper object for the parameter ${parameterName} with allowReserved set to true.`,
     properties: {
       value: {
         ...valueSchema,
@@ -149,12 +133,12 @@ function buildExplodeAndStyle(
   explode: boolean,
   style: string,
   valueSchema: Schema,
-  valueBuilder: string
+  parameterName: string
 ) {
   return {
     type: "object",
     name: typeName,
-    description: `You can use the function ${valueBuilder} to help prepare this parameter.`,
+    description: `This is the wrapper object for the parameter ${parameterName} with explode set to ${explode} and style set to ${style}.`,
     properties: {
       value: {
         ...valueSchema,

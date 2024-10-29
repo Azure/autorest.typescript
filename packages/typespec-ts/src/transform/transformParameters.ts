@@ -157,7 +157,6 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  let enableLegacyHelper = false;
   if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
       dpgContext,
@@ -170,12 +169,10 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${
-        serializeInfo.hasMultiCollection
-          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-          : ""
-      }.`;
-      enableLegacyHelper = true;
+      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
+        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+        : ""
+        }.`;
     }
   }
   type =
@@ -186,19 +183,16 @@ function getParameterMetadata(
     importedModels.add,
     importedModels
   );
-  const [parameterBuilder, wrapperType] =
+  const wrapperType =
     getParameterWrapperInfo(
       dpgContext,
       parameter,
       schema,
       options.operationGroupName,
       options.operationName
-    ) ?? [];
+    );
   if (wrapperType) {
     type = getTypeName(wrapperType, schemaContext);
-    description += `${description ? "\n" : ""}${
-      enableLegacyHelper ? "And also this" : "This"
-    } parameter type could be prepared with function ${parameterBuilder}.`;
   }
   return {
     type: paramType,

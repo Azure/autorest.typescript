@@ -1,7 +1,6 @@
 import {
   HelperFunctionDetails,
   PackageFlavor,
-  ParameterBuilderKind
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -20,8 +19,6 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
-import { getSchemaForType } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -182,7 +179,6 @@ function extractSpecialSerializeInfo(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const paramBuilders = new Set<ParameterBuilderKind>();
   let hasMultiCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -197,15 +193,6 @@ function extractSpecialSerializeInfo(
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      const [parameterBuilder] =
-        getParameterWrapperInfo(
-          dpgContext,
-          parameter,
-          getSchemaForType(dpgContext, parameter.param.type)
-        ) ?? [];
-      if (parameterBuilder) {
-        paramBuilders.add(parameterBuilder);
-      }
     });
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -228,21 +215,11 @@ function extractSpecialSerializeInfo(
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
-        const [parameterBuilder] =
-          getParameterWrapperInfo(
-            dpgContext,
-            parameter,
-            getSchemaForType(dpgContext, parameter.param.type)
-          ) ?? [];
-        if (parameterBuilder) {
-          paramBuilders.add(parameterBuilder);
-        }
       });
     }
   }
   return {
     hasMultiCollection,
     hasCsvCollection,
-    parameterBuilders: [...paramBuilders]
   };
 }

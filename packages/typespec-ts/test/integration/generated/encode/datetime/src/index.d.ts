@@ -8,12 +8,6 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
-export declare function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
-    explode: false;
-    style: "form";
-    value: ValueType;
-};
-
 declare function createClient(options?: DatetimeClientOptions): DatetimeClient;
 export default createClient;
 

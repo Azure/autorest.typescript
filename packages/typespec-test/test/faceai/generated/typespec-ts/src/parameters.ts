@@ -17,7 +17,7 @@ export interface DetectFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface DetectFromUrlReturnFaceAttributesQueryParam {
   /** Value of the parameter */
   value: FaceAttributeType[];
@@ -32,10 +32,7 @@ export interface DetectFromUrlQueryParamProperties {
   returnFaceId?: boolean;
   /** Return face landmarks of the detected faces or not. The default value is false. */
   returnFaceLandmarks?: boolean;
-  /**
-   * Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
   returnFaceAttributes?:
     | FaceAttributeType[]
     | DetectFromUrlReturnFaceAttributesQueryParam;
@@ -84,7 +81,7 @@ export interface DetectBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface DetectReturnFaceAttributesQueryParam {
   /** Value of the parameter */
   value: FaceAttributeType[];
@@ -99,10 +96,7 @@ export interface DetectQueryParamProperties {
   returnFaceId?: boolean;
   /** Return face landmarks of the detected faces or not. The default value is false. */
   returnFaceLandmarks?: boolean;
-  /**
-   * Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
   returnFaceAttributes?:
     | FaceAttributeType[]
     | DetectReturnFaceAttributesQueryParam;
@@ -300,7 +294,7 @@ export interface AddFaceListFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddFaceListFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -311,10 +305,7 @@ export interface AddFaceListFaceFromUrlTargetFaceQueryParam {
 }
 
 export interface AddFaceListFaceFromUrlQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddFaceListFaceFromUrlTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -348,7 +339,7 @@ export interface AddFaceListFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddFaceListFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -359,10 +350,7 @@ export interface AddFaceListFaceTargetFaceQueryParam {
 }
 
 export interface AddFaceListFaceQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddFaceListFaceTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -442,7 +430,7 @@ export interface AddLargeFaceListFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddLargeFaceListFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -453,10 +441,7 @@ export interface AddLargeFaceListFaceFromUrlTargetFaceQueryParam {
 }
 
 export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddLargeFaceListFaceFromUrlTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -490,7 +475,7 @@ export interface AddLargeFaceListFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddLargeFaceListFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -501,10 +486,7 @@ export interface AddLargeFaceListFaceTargetFaceQueryParam {
 }
 
 export interface AddLargeFaceListFaceQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddLargeFaceListFaceTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -636,7 +618,7 @@ export interface AddPersonGroupPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -647,10 +629,7 @@ export interface AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam {
 }
 
 export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -684,7 +663,7 @@ export interface AddPersonGroupPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddPersonGroupPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -695,10 +674,7 @@ export interface AddPersonGroupPersonFaceTargetFaceQueryParam {
 }
 
 export interface AddPersonGroupPersonFaceQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddPersonGroupPersonFaceTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -817,7 +793,7 @@ export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -828,10 +804,7 @@ export interface AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam {
 }
 
 export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?:
     | number[]
     | AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam;
@@ -867,7 +840,7 @@ export interface AddLargePersonGroupPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddLargePersonGroupPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -878,10 +851,7 @@ export interface AddLargePersonGroupPersonFaceTargetFaceQueryParam {
 }
 
 export interface AddLargePersonGroupPersonFaceQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddLargePersonGroupPersonFaceTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -971,7 +941,7 @@ export interface AddPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -982,10 +952,7 @@ export interface AddPersonFaceTargetFaceQueryParam {
 }
 
 export interface AddPersonFaceQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddPersonFaceTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.
@@ -1015,7 +982,7 @@ export interface AddPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** You can use the function buildUnexplodedFormStyle to help prepare this parameter. */
+/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
 export interface AddPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -1026,10 +993,7 @@ export interface AddPersonFaceFromUrlTargetFaceQueryParam {
 }
 
 export interface AddPersonFaceFromUrlQueryParamProperties {
-  /**
-   * A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'.
-   * This parameter type could be prepared with function buildUnexplodedFormStyle.
-   */
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
   targetFace?: number[] | AddPersonFaceFromUrlTargetFaceQueryParam;
   /**
    * The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'.

@@ -97,13 +97,6 @@ export interface BreakSentenceQueryParamProperties {
     script?: string;
 }
 
-// @public
-export function buildExplodedFormStyle<ValueType>(value: ValueType): {
-    explode: true;
-    style: "form";
-    value: ValueType;
-};
-
 // @public (undocumented)
 export function buildMultiCollection(items: string[], parameterName: string): string;
 

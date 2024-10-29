@@ -659,13 +659,6 @@ export interface BlurPropertiesOutput {
 }
 
 // @public
-export function buildUnexplodedFormStyle<ValueType>(value: ValueType): {
-    explode: false;
-    style: "form";
-    value: ValueType;
-};
-
-// @public
 function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: FaceClientOptions): FaceClient;
 export default createClient;
 

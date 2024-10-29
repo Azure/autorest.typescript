@@ -15,12 +15,6 @@ export declare interface AzureCoreClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-export declare function buildExplodedFormStyle<ValueType>(value: ValueType): {
-    explode: true;
-    style: "form";
-    value: ValueType;
-};
-
 declare function createClient({ apiVersion, ...options }?: AzureCoreClientOptions): AzureCoreClient;
 export default createClient;
 

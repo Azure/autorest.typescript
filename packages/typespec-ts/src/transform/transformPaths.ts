@@ -141,32 +141,27 @@ function transformOperation(
           };
           const schema = p.param.sourceProperty
             ? getSchemaForType(
-                dpgContext,
-                p.param.sourceProperty?.type,
+              dpgContext,
+              p.param.sourceProperty?.type,
 
-                options
-              )
+              options
+            )
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-
-          const [parameterBuilder, wrapperType] =
+          const wrapperType =
             getParameterWrapperInfo(
               dpgContext,
               p,
               schema,
               operationGroupName,
               method.operationName
-            ) ?? [];
-          let description = getDoc(program, p.param) ?? "";
+            );
           const typeName = getTypeName(wrapperType ?? schema, schemaUsage);
-          if (wrapperType) {
-            description = `${description} \n\nThis parameter type could be easily prepared with function ${parameterBuilder}.`;
-          }
           return {
             name: p.name,
             type: typeName,
-            description,
+            description: getDoc(program, p.param) ?? "",
             wrapperType
           };
         }),

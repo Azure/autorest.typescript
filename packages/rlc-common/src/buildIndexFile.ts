@@ -150,8 +150,7 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     hasSsvCollection(model) ||
     hasPipeCollection(model) ||
     hasTsvCollection(model) ||
-    hasCsvCollection(model) ||
-    (model.helperDetails?.parameterBuilders ?? []).length > 0
+    hasCsvCollection(model)
   ) {
     file.addImportDeclaration({
       namespaceImport: "SerializeHelper",
@@ -313,8 +312,7 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     hasSsvCollection(model) ||
     hasPipeCollection(model) ||
     hasTsvCollection(model) ||
-    hasCsvCollection(model) ||
-    (model.helperDetails?.parameterBuilders ?? []).length > 0
+    hasCsvCollection(model)
   ) {
     file.addExportDeclarations([
       {

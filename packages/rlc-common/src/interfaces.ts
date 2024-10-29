@@ -130,15 +130,6 @@ export interface HelperFunctionDetails {
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
   hasCsvCollection?: boolean;
-  parameterBuilders?: ParameterBuilderKind[];
-}
-
-export enum ParameterBuilderKind {
-  AllowReserved = "buildAllowReserved",
-  ExplodedFormStyle = "buildExplodedFormStyle",
-  UnexplodedFormStyle = "buildUnexplodedFormStyle",
-  UnexplodedSpaceStyle = "buildUnexplodedSpaceStyle",
-  UnexplodedPipeStyle = "buildUnexplodedPipeStyle"
 }
 
 export interface PagingDetails {
@@ -327,9 +318,9 @@ export interface ArraySchema extends Schema {
   items?: Schema;
 }
 
-export interface Property extends Schema {}
+export interface Property extends Schema { }
 
-export interface Parameter extends Schema {}
+export interface Parameter extends Schema { }
 
 export interface PackageDetails {
   name: string;
