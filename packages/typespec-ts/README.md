@@ -155,13 +155,19 @@ clearOutputFolder: true
 
 ### compatibilityMode
 
-The purpose of this option is to attempt to generate backward-compatible code for certain features. Please note that this applies only to some features. By default, this option will be disabled, and we recommend enabling it only with proper guidance.
+By default, this option will be disabled. If this option is enabled, it will affect the generation of the additional property feature for the Modular client.
 
 ```yaml
 compatibilityMode: true
 ```
 
-If this option is enabled, it will affect the generation of the additional property feature for the Modular client. For the RLC, it will impact the query parameter serialization for array types.
+### compatibilityQueryMultiFormat
+
+By default, this option will be disabled. If this option is enabled, we should generate the backward-compatible code for query parameter serialization for array types in RLC.
+
+```yaml
+compatibilityQueryMultiFormat: true
+```
 
 # Contributing
 
