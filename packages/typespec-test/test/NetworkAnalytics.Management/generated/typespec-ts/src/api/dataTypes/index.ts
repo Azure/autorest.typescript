@@ -25,11 +25,11 @@ import {
   _DataTypeListResult,
   _dataTypeListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
@@ -48,10 +48,9 @@ export function _createSend(
   resource: DataType,
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -111,10 +110,9 @@ export function _getSend(
   dataTypeName: string,
   options: DataTypesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -165,10 +163,9 @@ export function _updateSend(
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -228,10 +225,9 @@ export function _$deleteSend(
   dataTypeName: string,
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -297,10 +293,9 @@ export function _deleteDataSend(
   body: Record<string, any>,
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -368,10 +363,9 @@ export function _generateStorageContainerSasTokenSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -427,10 +421,9 @@ export function _listByDataProductSend(
   dataProductName: string,
   options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,

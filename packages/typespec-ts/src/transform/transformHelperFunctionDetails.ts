@@ -177,9 +177,6 @@ function extractSpecialSerializeInfo(
   dpgContext: SdkContext
 ) {
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasTsvCollection = false;
-  let hasSsvCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
@@ -192,15 +189,6 @@ function extractSpecialSerializeInfo(
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasPipeCollection = hasPipeCollection
-        ? hasPipeCollection
-        : serializeInfo.hasPipeCollection;
-      hasTsvCollection = hasTsvCollection
-        ? hasTsvCollection
-        : serializeInfo.hasTsvCollection;
-      hasSsvCollection = hasSsvCollection
-        ? hasSsvCollection
-        : serializeInfo.hasSsvCollection;
       hasCsvCollection = hasCsvCollection
         ? hasCsvCollection
         : serializeInfo.hasCsvCollection;
@@ -222,15 +210,6 @@ function extractSpecialSerializeInfo(
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection
           : serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection
-          ? hasPipeCollection
-          : serializeInfo.hasPipeCollection;
-        hasTsvCollection = hasTsvCollection
-          ? hasTsvCollection
-          : serializeInfo.hasTsvCollection;
-        hasSsvCollection = hasSsvCollection
-          ? hasSsvCollection
-          : serializeInfo.hasSsvCollection;
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
@@ -239,9 +218,6 @@ function extractSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasTsvCollection,
-    hasSsvCollection,
     hasCsvCollection
   };
 }

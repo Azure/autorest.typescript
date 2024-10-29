@@ -155,9 +155,6 @@ function getParameterMetadata(
     );
     if (
       serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
       serializeInfo.hasCsvCollection
     ) {
       type = "string";
@@ -165,11 +162,10 @@ function getParameterMetadata(
         ", "
       )} collection, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${
-        serializeInfo.hasMultiCollection
+      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-      }`;
+        }`;
     }
   }
   type =

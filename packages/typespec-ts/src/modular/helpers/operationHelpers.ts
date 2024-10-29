@@ -62,47 +62,26 @@ export function getSendPrivateFunction(
     parameters,
     returnType: resolveReference(dependencies.StreamableMethod)
   };
-
-  const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
   const optionalParamName = parameters.filter((p) =>
     p.type?.toString().endsWith("OptionalParams")
   )[0]?.name;
-
-  const isUriTemplate = Boolean(operation.uriTemplate);
   const statements: string[] = [];
-
-  if (isUriTemplate) {
-    const uriTemplateParams = [...getPathParametersForUriTemplate(dpgContext, operation), ...getQueryParametersForUriTemplate(dpgContext, operation)];
-    if (uriTemplateParams.length > 0) {
-      statements.push(
-        `const pathParser = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}");`
-      );
-      statements.push(`const path = pathParser.expand({
+  let pathStr = `"${operation.url}"`;
+  const uriTemplateParams = [...getPathParameters(dpgContext, operation), ...getQueryParameters(dpgContext, operation)];
+  if (uriTemplateParams.length > 0) {
+    statements.push(`const path = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}").expand({
         ${uriTemplateParams.join(",\n")}
         });`);
-    } else {
-      statements.push(`const path = "${operation.url}";`);
-    }
-
-    statements.push(
-      `return context.path(path).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
-        dpgContext,
-        operation,
-        false
-      )}});`
-    );
-  } else {
-    statements.push(
-      `return context.path("${operationPath}", ${getPathParameters(
-        dpgContext,
-        operation
-      )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
-        dpgContext,
-        operation
-      )}});`
-    );
+    pathStr = "path";
   }
+
+  statements.push(
+    `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
+      dpgContext,
+      operation
+    )}});`
+  );
 
   return {
     ...functionStatement,
@@ -488,10 +467,9 @@ export function getOperationOptionsName(
  * RLC internally. This will translate High Level parameters into the RLC ones.
  * Figuring out what goes in headers, body, path and qsp.
  */
-function getRequestParameters(
+function getHeaderAndBodyParameters(
   dpgContext: SdkContext,
   operation: Operation,
-  includeQuery = true
 ): string {
   if (!operation.parameters) {
     return "";
@@ -503,18 +481,16 @@ function getRequestParameters(
   const contentTypeParameter = operation.parameters.find(isContentType);
 
   const parametersImplementation: Record<
-    "header" | "query" | "body",
+    "header" | "body",
     { paramMap: string; param: Parameter }[]
   > = {
     header: [],
-    query: [],
     body: []
   };
 
   for (const param of operationParameters) {
     if (
       param.location === "header" ||
-      param.location === "query" ||
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
@@ -535,12 +511,6 @@ function getRequestParameters(
       .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
       .join(",\n")}},`;
   }
-
-  if (parametersImplementation.query.length && includeQuery) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
-      .map((i) => i.paramMap)
-      .join(",\n")}},`;
-  }
   if (
     operation.bodyParameter === undefined &&
     parametersImplementation.body.length
@@ -554,7 +524,10 @@ function getRequestParameters(
   return paramStr;
 }
 
-function getQueryParametersForUriTemplate(
+/**
+ * Extract the query parameters
+ */
+function getQueryParameters(
   dpgContext: SdkContext,
   operation: Operation
 ): string[] {
@@ -838,7 +811,10 @@ function getDefaultValue(param: Parameter | Property) {
   return param.clientDefaultValue ?? param.type.clientDefaultValue;
 }
 
-function getPathParametersForUriTemplate(
+/**
+ * Extracts the path parameters
+ */
+function getPathParameters(
   dpgContext: SdkContext,
   operation: Operation
 ) {
@@ -860,39 +836,8 @@ function getPathParametersForUriTemplate(
         });
       }
       pathParams.push(
-        `${param.clientName}: ${getPathParamExpr(param, getDefaultValue(param), false)}`
+        `${param.clientName}: ${getPathParamExpr(param, getDefaultValue(param))}`
       );
-    }
-  }
-
-  return pathParams;
-}
-
-/**
- * Extracts the path parameters
- */
-function getPathParameters(dpgContext: SdkContext, operation: Operation) {
-  if (!operation.parameters) {
-    return "";
-  }
-
-  let pathParams = "";
-  for (const param of operation.parameters) {
-    if (param.location === "path") {
-      // Path parameters cannot be optional
-      if (param.optional) {
-        reportDiagnostic(dpgContext.program, {
-          code: "optional-path-param",
-          target: NoTarget,
-          format: {
-            paramName: param.clientName
-          }
-        });
-      }
-      pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
-        param,
-        getDefaultValue(param)
-      )}`;
     }
   }
 
@@ -902,18 +847,14 @@ function getPathParameters(dpgContext: SdkContext, operation: Operation) {
 function getPathParamExpr(
   param: Parameter,
   defaultValue?: string,
-  enableSkipEncoding = true
 ) {
-  const value = defaultValue
+  return defaultValue
     ? typeof defaultValue === "string"
       ? `options[${param.clientName}] ?? "${defaultValue}"`
       : `options[${param.clientName}] ?? ${defaultValue}`
     : param.clientName;
-  if (enableSkipEncoding && param.skipUrlEncoding === true) {
-    return `{value: ${value}, allowReserved: true}`;
-  }
-  return value;
 }
+
 
 function getNullableCheck(name: string, type: Type) {
   if (!isTypeNullable(type)) {

@@ -38,11 +38,11 @@ import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
@@ -60,10 +60,9 @@ export function _createSend(
   resource: DataProduct,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -119,10 +118,9 @@ export function _getSend(
   dataProductName: string,
   options: DataProductsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -169,10 +167,9 @@ export function _updateSend(
   properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -228,10 +225,9 @@ export function _$deleteSend(
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -295,10 +291,9 @@ export function _generateStorageAccountSasTokenSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -352,10 +347,9 @@ export function _rotateKeySend(
   body: KeyVaultInfo,
   options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -407,10 +401,9 @@ export function _addUserRoleSend(
   body: RoleAssignmentCommonProperties,
   options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -462,10 +455,9 @@ export function _removeUserRoleSend(
   body: RoleAssignmentDetail,
   options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -519,10 +511,9 @@ export function _listRolesAssignmentsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
     dataProductName: dataProductName,
@@ -576,10 +567,9 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
   });
@@ -630,10 +620,9 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
   });
   return context

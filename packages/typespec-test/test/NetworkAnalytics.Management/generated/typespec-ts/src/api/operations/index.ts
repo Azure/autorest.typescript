@@ -25,9 +25,8 @@ export function _listSend(
   context: Client,
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/providers/Microsoft.NetworkAnalytics/operations";
   return context
-    .path(path)
+    .path("/providers/Microsoft.NetworkAnalytics/operations")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

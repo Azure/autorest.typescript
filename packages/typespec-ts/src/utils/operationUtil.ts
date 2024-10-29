@@ -282,9 +282,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata.finalStep.kind === "pollingSuccessProperty" &&
-      metadata?.finalStep.target &&
-      metadata?.finalStep?.target?.name === "result"
+        metadata.finalStep.kind === "pollingSuccessProperty" &&
+        metadata?.finalStep.target &&
+        metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -413,29 +413,12 @@ export function getSpecialSerializeInfo(
   paramFormat: string
 ) {
   const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
-  const hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
-  const hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
-  const hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
   const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];
   const collectionInfo = [];
   if (hasMultiCollection) {
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
-  }
-  if (hasSsvCollection) {
-    descriptions.push("buildSsvCollection");
-    collectionInfo.push("ssv");
-  }
-
-  if (hasTsvCollection) {
-    descriptions.push("buildTsvCollection");
-    collectionInfo.push("tsv");
-  }
-
-  if (hasPipeCollection) {
-    descriptions.push("buildPipeCollection");
-    collectionInfo.push("pipe");
   }
 
   if (hasCsvCollection) {
@@ -444,9 +427,6 @@ export function getSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasSsvCollection,
-    hasTsvCollection,
     hasCsvCollection,
     descriptions,
     collectionInfo
@@ -455,23 +435,11 @@ export function getSpecialSerializeInfo(
 
 function getHasMultiCollection(paramType: string, paramFormat: string) {
   return (
-    (paramType === "query" || paramType === "header") && paramFormat === "multi"
+    paramType === "header" && paramFormat === "multi"
   );
 }
-function getHasSsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "ssv";
-}
-
-function getHasTsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "tsv";
-}
-
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";
-}
-
-function getHasPipeCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "pipes";
 }
 
 export function hasCollectionFormatInfo(
@@ -480,10 +448,7 @@ export function hasCollectionFormatInfo(
 ) {
   return (
     getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
+    getHasCsvCollection(paramType, paramFormat)
   );
 }
 
@@ -495,18 +460,6 @@ export function getCollectionFormatHelper(
   // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
   if (getHasMultiCollection(paramType, paramFormat)) {
     return resolveReference(SerializationHelpers.buildMultiCollection);
-  }
-
-  if (getHasPipeCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildPipeCollection);
-  }
-
-  if (getHasSsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildSsvCollection);
-  }
-
-  if (getHasTsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildTsvCollection);
   }
 
   if (getHasCsvCollection(paramType, paramFormat)) {

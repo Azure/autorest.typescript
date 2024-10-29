@@ -31,10 +31,9 @@ export function _getSend(
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
   });
@@ -78,10 +77,9 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
     resourceGroupName: resourceGroupName,
   });
@@ -132,10 +130,9 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     subscriptionId: subscriptionId,
   });
   return context
