@@ -1230,7 +1230,7 @@ function getSchemaForStdScalar(
         format: {
           propertyName: relevantProperty?.name ?? ""
         },
-        target: relevantProperty ?? type
+        target: relevantProperty ?? NoTarget
       });
       return applyIntrinsicDecorators(program, type, {
         type: "number",
@@ -1243,7 +1243,7 @@ function getSchemaForStdScalar(
         format: {
           propertyName: relevantProperty?.name ?? ""
         },
-        target: relevantProperty ?? type
+        target: relevantProperty ?? NoTarget
       });
       return applyIntrinsicDecorators(program, type, {
         type: "number",

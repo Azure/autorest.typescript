@@ -87,11 +87,8 @@ import {
   batchNodeUserUpdateOptionsSerializer,
   BatchNode,
   batchNodeDeserializer,
-  NodeRebootOptions,
   nodeRebootOptionsSerializer,
-  NodeReimageOptions,
   nodeReimageOptionsSerializer,
-  NodeDisableSchedulingOptions,
   nodeDisableSchedulingOptionsSerializer,
   BatchNodeRemoteLoginSettingsResult,
   batchNodeRemoteLoginSettingsResultDeserializer,
@@ -142,7 +139,6 @@ import {
   batchJobUpdateOptionsSerializer,
   BatchJobDisableOptions,
   batchJobDisableOptionsSerializer,
-  BatchJobTerminateOptions,
   batchJobTerminateOptionsSerializer,
   BatchJobCreateOptions,
   batchJobCreateOptionsSerializer,
@@ -1627,7 +1623,6 @@ export async function enableJob(
 export function _terminateJobSend(
   context: Client,
   jobId: string,
-  body?: BatchJobTerminateOptions,
   options: TerminateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -1663,7 +1658,9 @@ export function _terminateJobSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: !body ? body : batchJobTerminateOptionsSerializer(body),
+      body: !options["body"]
+        ? options["body"]
+        : batchJobTerminateOptionsSerializer(options["body"]),
     });
 }
 
@@ -1689,10 +1686,9 @@ export async function _terminateJobDeserialize(
 export async function terminateJob(
   context: Client,
   jobId: string,
-  body?: BatchJobTerminateOptions,
   options: TerminateJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateJobSend(context, jobId, body, options);
+  const result = await _terminateJobSend(context, jobId, options);
   return _terminateJobDeserialize(result);
 }
 
@@ -3829,7 +3825,6 @@ export function _rebootNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeRebootOptions,
   options: RebootNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -3843,7 +3838,9 @@ export function _rebootNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: !body ? body : nodeRebootOptionsSerializer(body),
+      body: !options["body"]
+        ? options["body"]
+        : nodeRebootOptionsSerializer(options["body"]),
     });
 }
 
@@ -3863,10 +3860,9 @@ export async function rebootNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeRebootOptions,
   options: RebootNodeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _rebootNodeSend(context, poolId, nodeId, body, options);
+  const result = await _rebootNodeSend(context, poolId, nodeId, options);
   return _rebootNodeDeserialize(result);
 }
 
@@ -3874,7 +3870,6 @@ export function _reimageNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeReimageOptions,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -3888,7 +3883,9 @@ export function _reimageNodeSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: !body ? body : nodeReimageOptionsSerializer(body),
+      body: !options["body"]
+        ? options["body"]
+        : nodeReimageOptionsSerializer(options["body"]),
     });
 }
 
@@ -3912,10 +3909,9 @@ export async function reimageNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeReimageOptions,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _reimageNodeSend(context, poolId, nodeId, body, options);
+  const result = await _reimageNodeSend(context, poolId, nodeId, options);
   return _reimageNodeDeserialize(result);
 }
 
@@ -3923,7 +3919,6 @@ export function _disableNodeSchedulingSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -3937,7 +3932,9 @@ export function _disableNodeSchedulingSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: !body ? body : nodeDisableSchedulingOptionsSerializer(body),
+      body: !options["body"]
+        ? options["body"]
+        : nodeDisableSchedulingOptionsSerializer(options["body"]),
     });
 }
 
@@ -3960,14 +3957,12 @@ export async function disableNodeScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
     context,
     poolId,
     nodeId,
-    body,
     options,
   );
   return _disableNodeSchedulingDeserialize(result);
