@@ -8,7 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     enableOperationGroup: true
-    compatibilityMode: true
+    compatibilityQueryMultiFormat: true
     isTypeSpecTest: true
     title: CollectionFormatClient
     packageDetails:

@@ -17,7 +17,7 @@ export interface DetectFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `returnFaceAttributes` with explode set to false and style set to form. */
 export interface DetectFromUrlReturnFaceAttributesQueryParam {
   /** Value of the parameter */
   value: FaceAttributeType[];
@@ -81,7 +81,7 @@ export interface DetectBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `returnFaceAttributes` with explode set to false and style set to form. */
 export interface DetectReturnFaceAttributesQueryParam {
   /** Value of the parameter */
   value: FaceAttributeType[];
@@ -294,7 +294,7 @@ export interface AddFaceListFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddFaceListFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -339,7 +339,7 @@ export interface AddFaceListFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddFaceListFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -430,7 +430,7 @@ export interface AddLargeFaceListFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddLargeFaceListFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -475,7 +475,7 @@ export interface AddLargeFaceListFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddLargeFaceListFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -618,7 +618,7 @@ export interface AddPersonGroupPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddPersonGroupPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -663,7 +663,7 @@ export interface AddPersonGroupPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddPersonGroupPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -793,7 +793,7 @@ export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddLargePersonGroupPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -840,7 +840,7 @@ export interface AddLargePersonGroupPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddLargePersonGroupPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -941,7 +941,7 @@ export interface AddPersonFaceBodyParam {
     | NodeJS.ReadableStream;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddPersonFaceTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
@@ -982,7 +982,7 @@ export interface AddPersonFaceFromUrlBodyParam {
   body: { url: string };
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to false and style set to form. */
+/** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
 export interface AddPersonFaceFromUrlTargetFaceQueryParam {
   /** Value of the parameter */
   value: number[];
