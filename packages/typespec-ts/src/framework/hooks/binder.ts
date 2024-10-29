@@ -14,6 +14,8 @@ import {
   SourceFileSymbol,
   StaticHelperMetadata
 } from "../load-static-helpers.js";
+import path from "path/posix";
+import { normalizePath } from "@typespec/compiler";
 
 export interface DeclarationInfo {
   name: string;
@@ -40,7 +42,7 @@ export interface Binder {
     sourceFile: SourceFile
   ): string;
   resolveReference(refkey: unknown): string;
-  resolveAllReferences(): void;
+  resolveAllReferences(sourceRoot: string): void;
 }
 
 const PLACEHOLDER_PREFIX = "__PLACEHOLDER_";
@@ -222,7 +224,7 @@ class BinderImp implements Binder {
   /**
    * Applies all tracked imports to their respective source files.
    */
-  resolveAllReferences(): void {
+  resolveAllReferences(sourceRoot: string): void {
     for (const file of this.project.getSourceFiles()) {
       this.resolveDeclarationReferences(file);
       this.resolveDependencyReferences(file);
@@ -234,7 +236,7 @@ class BinderImp implements Binder {
       }
     }
 
-    this.cleanUnreferencedHelpers();
+    this.cleanUnreferencedHelpers(sourceRoot);
   }
 
   private resolveDependencyReferences(file: SourceFile) {
@@ -296,7 +298,7 @@ class BinderImp implements Binder {
     this.references.get(refkey)!.add(sourceFile);
   }
 
-  private cleanUnreferencedHelpers() {
+  private cleanUnreferencedHelpers(sourceRoot: string) {
     const usedHelperFiles = new Set<SourceFile>();
     for (const helper of this.staticHelpers.values()) {
       const sourceFile = helper[SourceFileSymbol];
@@ -314,7 +316,10 @@ class BinderImp implements Binder {
     }
 
     this.project
-      .getSourceFiles("**/static-helpers/**/*.ts")
+      //normalizae the final path to adapt to different systems
+      .getSourceFiles(
+        normalizePath(path.join(sourceRoot, "static-helpers/**/*.ts"))
+      )
       .filter((helperFile) => !usedHelperFiles.has(helperFile))
       .forEach((helperFile) => helperFile.delete());
   }
