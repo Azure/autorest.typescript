@@ -148,7 +148,7 @@ export declare interface QueryTsvQueryParam {
 }
 
 export declare interface QueryTsvQueryParamProperties {
-    colors: string[];
+    colors: string;
 }
 
 export declare interface Routes {

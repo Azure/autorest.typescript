@@ -35,7 +35,6 @@ import {
   getFormattedPropertyDoc,
   getImportedModelName,
   getSchemaForType,
-  getSerializeTypeName,
   getTypeName,
   isArrayType,
   isBodyRequired
@@ -46,7 +45,7 @@ import {
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
+import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -153,7 +152,6 @@ function getParameterMetadata(
     needRef: false,
     relevantProperty: parameter.param
   }) as Schema;
-  let type = getTypeName(schema, schemaContext);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
@@ -164,46 +162,39 @@ function getParameterMetadata(
       (parameter as any).format
     );
     if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
-      type = "string";
       description += `${description ? "\n" : ""}This parameter could be formatted as ${serializeInfo.collectionInfo.join(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
-        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-        : ""
-        }.`;
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }.`;
     }
   }
-  type =
-    paramType === "header"
-      ? getSerializeTypeName(dpgContext.program, schema, schemaContext)
-      : type;
+
   getImportedModelName(schema, schemaContext)?.forEach(
     importedModels.add,
     importedModels
   );
-  const wrapperType =
-    getParameterWrapperInfo(
-      dpgContext,
-      parameter,
-      schema,
-      options.operationGroupName,
-      options.operationName
-    );
-  if (wrapperType) {
-    type = getTypeName(wrapperType, schemaContext);
-  }
+  const serializationType = getParameterSerializationInfo(
+    dpgContext,
+    parameter,
+    schema,
+    options.operationGroupName,
+    options.operationName
+  );
   return {
     type: paramType,
     name,
     param: {
       name,
-      type,
-      typeName: type,
+      type: serializationType.typeName,
+      typeName: serializationType.typeName,
       required: !parameter.param.optional,
       description,
-      wrapperType
+      wrapperType: serializationType.wrapperType
     }
   };
 }

@@ -1,37 +1,48 @@
 import {
   NameType,
   normalizeName,
-  Schema
+  Schema,
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
 import { getTypeName, isArrayType, isObjectOrDictType } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
+import { NoTarget, Program } from "@typespec/compiler";
 
-export function getParameterWrapperInfo(
+export interface ParameterSerializationInfo {
+  typeName: string;
+  wrapperType?: Schema;
+}
+
+export function getParameterSerializationInfo(
   dpgContext: SdkContext,
   parameter: HttpOperationParameter,
   valueSchema: Schema,
   operationGroup: string = "",
   operationName: string = ""
-): Schema | undefined {
+): ParameterSerializationInfo {
+  const schemaContext = [SchemaContext.Input];
+  const retVal: ParameterSerializationInfo = buildSerializationInfo(
+    getTypeName(valueSchema, schemaContext)
+  );
   const prefix = `${operationGroup}_${operationName}_${parameter.name}`;
   switch (parameter.type) {
     case "path": {
       if (parameter.allowReserved === true) {
-        return buildAllowReserved(
+        const wrapperType = buildAllowReserved(
           normalizeName(`${prefix}_PathParam`, NameType.Interface),
           valueSchema,
           parameter.name
         );
+        return buildSerializationInfo(wrapperType);
       }
-      return undefined;
+      return retVal;
     }
     case "query": {
       if (!isArrayType(valueSchema) && !isObjectOrDictType(valueSchema)) {
         // if the value is a primitive type or other types, we will not generate a wrapper type
-        return undefined;
+        return retVal;
       }
       const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
       if (parameter.explode === true) {
@@ -46,45 +57,43 @@ export function getParameterWrapperInfo(
             target: NoTarget
           });
         }
-        const wrapperType = buildExplodeAndStyle(
+        let wrapperType: Schema = buildExplodeAndStyle(
           name,
           true,
           "form",
           valueSchema,
           parameter.name
         );
-        return dpgContext.rlcOptions?.compatibilityMode
-          ? buildUnionType([wrapperType, { type: "string", name: "string" }])
-          : wrapperType;
+        if (dpgContext.rlcOptions?.compatibilityMode) {
+          wrapperType = buildUnionType([
+            wrapperType,
+            { type: "string", name: "string" }
+          ]);
+        }
+        return buildSerializationInfo(wrapperType);
       }
 
       if (parameter.format === undefined || parameter.format === "csv") {
-        const wrapperType = buildExplodeAndStyle(
+        let wrapperType: Schema = buildExplodeAndStyle(
           name,
           false,
           "form",
           valueSchema,
           parameter.name
         );
-        return isArrayType(valueSchema)
-          ? buildUnionType([valueSchema, wrapperType])
-          : wrapperType;
-      } else if (parameter.format === "ssv") {
-        return buildExplodeAndStyle(
+        if (isArrayType(valueSchema)) {
+          wrapperType = buildUnionType([valueSchema, wrapperType]);
+        }
+        return buildSerializationInfo(wrapperType);
+      } else if (parameter.format === "ssv" || parameter.format === "pipes") {
+        const wrapperType = buildExplodeAndStyle(
           name,
           false,
-          "spaceDelimited",
+          parameter.format === "ssv" ? "spaceDelimited" : "pipeDelimited",
           valueSchema,
           parameter.name
         );
-      } else if (parameter.format === "pipes") {
-        return buildExplodeAndStyle(
-          name,
-          false,
-          "pipeDelimited",
-          valueSchema,
-          parameter.name
-        );
+        return buildSerializationInfo(wrapperType);
       } else {
         reportDiagnostic(dpgContext.program, {
           code: "un-supported-format-cases",
@@ -96,11 +105,65 @@ export function getParameterWrapperInfo(
           target: NoTarget
         });
       }
-      return undefined;
+      return buildSerializationInfo("string");
     }
-    case "header":
+    case "header": {
+      return buildSerializationInfo(
+        getHeaderSerializeTypeName(
+          dpgContext.program,
+          valueSchema,
+          schemaContext
+        )
+      );
+    }
     default:
-      return undefined;
+      return retVal;
+  }
+}
+
+function buildSerializationInfo(
+  typeOrSchema: string | Schema
+): ParameterSerializationInfo {
+  if (typeof typeOrSchema === "string") {
+    return {
+      typeName: typeOrSchema
+    };
+  }
+  return {
+    typeName: getTypeName(typeOrSchema),
+    wrapperType: typeOrSchema
+  };
+}
+
+function getHeaderSerializeTypeName(
+  program: Program,
+  schema: Schema,
+  usage?: SchemaContext[]
+): string {
+  const typeName = getTypeName(schema, usage);
+  const formattedName = (schema.alias ?? typeName).replace(
+    "Date | string",
+    "string"
+  );
+  const canSerialize = isSerializable(schema);
+  if (canSerialize) {
+    return schema.alias ? typeName : formattedName;
+  }
+  reportDiagnostic(program, {
+    code: "unable-serialized-type",
+    format: { type: typeName },
+    target: NoTarget
+  });
+  return "string";
+  function isSerializable(type: any) {
+    if (type.enum) {
+      return type.enum.every((i: any) => {
+        return isSerializable(i) || i.type === "null";
+      });
+    }
+    return (
+      ["string", "number", "boolean"].includes(type.type) || type.isConstant
+    );
   }
 }
 

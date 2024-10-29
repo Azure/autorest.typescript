@@ -31,13 +31,12 @@ import {
 import {
   getImportedModelName,
   getSchemaForType,
-  getTypeName,
   isBodyRequired
 } from "../utils/modelUtils.js";
 
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
-import { getParameterWrapperInfo } from "../utils/parameterUtils.js";
+import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -141,28 +140,26 @@ function transformOperation(
           };
           const schema = p.param.sourceProperty
             ? getSchemaForType(
-              dpgContext,
-              p.param.sourceProperty?.type,
+                dpgContext,
+                p.param.sourceProperty?.type,
 
-              options
-            )
+                options
+              )
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
-          const wrapperType =
-            getParameterWrapperInfo(
-              dpgContext,
-              p,
-              schema,
-              operationGroupName,
-              method.operationName
-            );
-          const typeName = getTypeName(wrapperType ?? schema, schemaUsage);
+          const serializationType = getParameterSerializationInfo(
+            dpgContext,
+            p,
+            schema,
+            operationGroupName,
+            method.operationName
+          );
           return {
             name: p.name,
-            type: typeName,
+            type: serializationType.typeName,
             description: getDoc(program, p.param) ?? "",
-            wrapperType
+            wrapperType: serializationType.wrapperType
           };
         }),
       operationGroupName: getOperationGroupName(dpgContext, route),

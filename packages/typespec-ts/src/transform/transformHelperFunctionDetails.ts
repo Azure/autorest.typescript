@@ -1,7 +1,4 @@
-import {
-  HelperFunctionDetails,
-  PackageFlavor,
-} from "@azure-tools/rlc-common";
+import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
   listOperationGroups,
@@ -220,6 +217,6 @@ function extractSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasCsvCollection,
+    hasCsvCollection
   };
 }
