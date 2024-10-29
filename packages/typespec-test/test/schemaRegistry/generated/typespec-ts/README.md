@@ -4,6 +4,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service.
 
+Key links:
+
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/schema-registry)
 
 ## Getting started

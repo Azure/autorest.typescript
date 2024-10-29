@@ -4,6 +4,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 These APIs allow end users to create, view and run load tests using Azure Load Test Service.
 
+Key links:
+
 - [Package (NPM)](https://www.npmjs.com/package/@azure/load-testing)
 - [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/load-testing)
 

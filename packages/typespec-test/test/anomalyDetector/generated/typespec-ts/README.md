@@ -19,6 +19,8 @@ a kind of group based detection, this detection will find inconsistency ones in
 a set of time series. By using anomaly detector service, business customers can
 discover incidents and establish a logic flow for root cause analysis.
 
+Key links:
+
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/ai-anomaly-detector)
 
 ## Getting started

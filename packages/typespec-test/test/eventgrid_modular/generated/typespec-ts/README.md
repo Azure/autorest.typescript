@@ -4,6 +4,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Azure Messaging EventGrid Client
 
+Key links:
+
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/eventgrid)
 
 ## Getting started

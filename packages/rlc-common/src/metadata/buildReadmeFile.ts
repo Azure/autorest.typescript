@@ -92,6 +92,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 {{ description }}
 
+Key links:
+
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
 {{/if}}
