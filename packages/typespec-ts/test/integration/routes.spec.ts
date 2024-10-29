@@ -1,8 +1,5 @@
 import RoutesClientFactory, {
   RoutesClient,
-  buildAllowReserved,
-  buildExplodedFormStyle,
-  buildUnexplodedFormStyle
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -49,7 +46,10 @@ describe("RoutesClient Rest Client", () => {
     const result = await client
       .path(
         "/routes/path/reserved-expansion/template/{param}",
-        buildAllowReserved("foo/bar baz")
+        {
+          value: "foo/bar baz",
+          allowReserved: true
+        }
       )
       .get();
     assert.strictEqual(result.status, "204");
@@ -112,7 +112,11 @@ describe("RoutesClient Rest Client", () => {
       .path("/routes/query/query-expansion/standard/record")
       .get({
         queryParameters: {
-          param: buildUnexplodedFormStyle({ a: 1, b: 2 })
+          param: {
+            value: { a: 1, b: 2 },
+            explode: false,
+            style: "form"
+          }
         }
       });
     assert.strictEqual(result.status, "204");
@@ -179,7 +183,11 @@ describe("RoutesClient Rest Client", () => {
         .path("/routes/query/query-continuation/standard/record?fixed=true")
         .get({
           queryParameters: {
-            param: buildUnexplodedFormStyle({ a: 1, b: 2 })
+            param: {
+              value: { a: 1, b: 2 },
+              explode: false,
+              style: "form"
+            }
           }
         });
       assert.strictEqual(result.status, "204");
@@ -190,7 +198,11 @@ describe("RoutesClient Rest Client", () => {
         .path("/routes/query/query-continuation/explode/record?fixed=true")
         .get({
           queryParameters: {
-            param: buildExplodedFormStyle({ a: 1, b: 2 })
+            param: {
+              value: { a: 1, b: 2 },
+              explode: true,
+              style: "form"
+            }
           }
         });
       assert.strictEqual(result.status, "204");
