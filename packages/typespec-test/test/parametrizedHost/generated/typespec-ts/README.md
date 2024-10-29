@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Parametrized host test
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/parametrized-host) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/parametrized-host)
 
 ## Getting started
 

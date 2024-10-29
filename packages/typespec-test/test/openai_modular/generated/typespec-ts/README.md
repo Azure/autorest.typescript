@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Azure OpenAI APIs for completions and search
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/openai_modular) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/openai_modular)
 
 ## Getting started
 

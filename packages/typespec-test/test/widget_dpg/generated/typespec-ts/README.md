@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Widget Service
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/widget_dpg) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/widget_dpg)
 
 ## Getting started
 

@@ -93,16 +93,16 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 {{ description }}
 
 {{#if packageSourceURL}}
-[Source code]({{ packageSourceURL }}) |
+- [Source code]({{ packageSourceURL }})
 {{/if}}
 {{#if packageNPMURL}}
-[Package (NPM)]({{ packageNPMURL }}) |
+- [Package (NPM)]({{ packageNPMURL }})
 {{/if}}
 {{#if apiRefURL}}
-[API reference documentation]({{ apiRefURL }}) |
+- [API reference documentation]({{ apiRefURL }})
 {{/if}}
 {{#if samplesURL}}
-[Samples]({{samplesURL}})
+- [Samples]({{samplesURL}})
 {{/if}}
 
 ## Getting started
@@ -410,9 +410,9 @@ function getServiceName(model: RLCModel) {
   let simpleServiceName =
     batch && batch.length > 1
       ? normalizeName(
-          packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
-          NameType.Class
-        )
+        packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
+        NameType.Class
+      )
       : normalizeName(serviceTitle, NameType.Class);
   simpleServiceName =
     /**

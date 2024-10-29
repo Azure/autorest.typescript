@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Mock Service
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/overload_modular) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/overload_modular)
 
 ## Getting started
 

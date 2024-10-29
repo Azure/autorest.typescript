@@ -4,8 +4,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Azure AI Health Insights provides an API that serves insight models, specific for Health & Life Sciences, that perform analysis and provide inferences to be used by a human.
 
-[Package (NPM)](https://www.npmjs.com/package/@azure-rest/health-insights-radiologyinsights) |
-[API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/health-insights-radiologyinsights?view=azure-node-preview) |
+- [Package (NPM)](https://www.npmjs.com/package/@azure-rest/health-insights-radiologyinsights)
+- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/health-insights-radiologyinsights?view=azure-node-preview)
 
 ## Getting started
 

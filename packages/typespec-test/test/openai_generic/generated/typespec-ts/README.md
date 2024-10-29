@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/openai-generic) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/openai-generic)
 
 ## Getting started
 

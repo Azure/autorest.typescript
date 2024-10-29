@@ -4,8 +4,8 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Analyze harmful content
 
-[Package (NPM)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) |
-[API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/ai-content-safety) |
+- [Package (NPM)](https://www.npmjs.com/package/@azure-rest/ai-content-safety)
+- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/ai-content-safety)
 
 ## Getting started
 

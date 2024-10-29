@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/spread) |
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/spread)
 
 ## Getting started
 
