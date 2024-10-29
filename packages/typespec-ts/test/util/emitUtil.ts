@@ -657,6 +657,6 @@ export async function emitSamplesFromTypeSpec(
     ...configs
   });
   const files = await emitSamples(dpgContext);
-  useBinder().resolveAllReferences();
+  useBinder().resolveAllReferences("/modularPackageFolder/src");
   return files;
 }
