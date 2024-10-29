@@ -452,7 +452,7 @@ export async function emitModularModelsFromTypeSpec(
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-  binder.resolveAllReferences();
+  binder.resolveAllReferences("/modularPackageFolder/src");
   return modelFile;
 }
 
@@ -464,7 +464,7 @@ export async function emitModularSerializeUtilsFromTypeSpec(
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   const files = emitTypes(dpgContext, { sourceRoot: "" });
-  binder.resolveAllReferences();
+  binder.resolveAllReferences("/modularPackageFolder/src");
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return files;
 }
@@ -530,7 +530,7 @@ export async function emitModularOperationsFromTypeSpec(
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("/modularPackageFolder/src");
       return res;
     }
   }
@@ -589,7 +589,7 @@ export async function emitModularClientContextFromTypeSpec(
         dpgContext,
         modularCodeModel
       );
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("/modularPackageFolder/src");
       return res;
     }
   }
@@ -649,7 +649,7 @@ export async function emitModularClientFromTypeSpec(
         dpgContext,
         modularCodeModel
       );
-      binder.resolveAllReferences();
+      binder.resolveAllReferences("/modularPackageFolder/src");
       return res;
     }
   }
@@ -671,6 +671,6 @@ export async function emitSamplesFromTypeSpec(
     ...configs
   });
   const files = await emitSamples(dpgContext);
-  useBinder().resolveAllReferences();
+  useBinder().resolveAllReferences("/modularPackageFolder/src");
   return files;
 }
