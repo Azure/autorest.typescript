@@ -417,7 +417,7 @@ export function getSpecialSerializeInfo(
     paramType,
     paramFormat,
     // Include query multi support in compatibility mode
-    dpgContext.rlcOptions?.compatibilityMode ?? false
+    dpgContext.rlcOptions?.compatibilityQueryMultiFormat ?? false
   );
   const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];

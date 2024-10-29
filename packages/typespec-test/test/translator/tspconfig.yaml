@@ -6,7 +6,7 @@ options:
     generateMetadata: true
     generateTest: true
     azureSdkForJs: false
-    compatibilityMode: true
+    compatibilityQueryMultiFormat: true
     packageDetails:
       name: "@azure-rest/cognitiveservices-translator"
       description: "Microsoft Translator Service"

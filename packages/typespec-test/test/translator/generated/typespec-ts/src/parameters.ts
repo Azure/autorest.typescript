@@ -63,7 +63,7 @@ export interface TranslateBodyParam {
   body: Array<InputTextElement>;
 }
 
-/** This is the wrapper object for the parameter undefined with explode set to true and style set to form. */
+/** This is the wrapper object for the parameter `to` with explode set to true and style set to form. */
 export interface TranslateToQueryParam {
   /** Value of the parameter */
   value: string[];

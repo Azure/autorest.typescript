@@ -249,6 +249,7 @@ export interface RLCOptions {
   experimentalExtensibleEnums?: boolean;
   clearOutputFolder?: boolean;
   ignorePropertyNameNormalize?: boolean;
+  compatibilityQueryMultiFormat?: boolean;
 }
 
 export interface ServiceInfo {

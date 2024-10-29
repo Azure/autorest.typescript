@@ -64,7 +64,7 @@ export function getParameterSerializationInfo(
           valueSchema,
           parameter.name
         );
-        if (dpgContext.rlcOptions?.compatibilityMode) {
+        if (dpgContext.rlcOptions?.compatibilityQueryMultiFormat) {
           wrapperType = buildUnionType([
             wrapperType,
             { type: "string", name: "string" }
@@ -175,7 +175,7 @@ function buildAllowReserved(
   return {
     type: "object",
     name: typeName,
-    description: `This is the wrapper object for the parameter ${parameterName} with allowReserved set to true.`,
+    description: `This is the wrapper object for the parameter \`${parameterName}\` with allowReserved set to true.`,
     properties: {
       value: {
         ...valueSchema,
@@ -201,7 +201,7 @@ function buildExplodeAndStyle(
   return {
     type: "object",
     name: typeName,
-    description: `This is the wrapper object for the parameter ${parameterName} with explode set to ${explode} and style set to ${style}.`,
+    description: `This is the wrapper object for the parameter \`${parameterName}\` with explode set to ${explode} and style set to ${style}.`,
     properties: {
       value: {
         ...valueSchema,
