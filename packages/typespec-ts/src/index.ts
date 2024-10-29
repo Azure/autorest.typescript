@@ -303,7 +303,7 @@ export async function $onEmit(context: EmitContext) {
       buildRootIndex(subClient, modularCodeModel, rootIndexFile);
     }
 
-    binder.resolveAllReferences();
+    binder.resolveAllReferences(modularSourcesRoot);
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
