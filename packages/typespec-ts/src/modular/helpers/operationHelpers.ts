@@ -68,7 +68,10 @@ export function getSendPrivateFunction(
   )[0]?.name;
   const statements: string[] = [];
   let pathStr = `"${operation.url}"`;
-  const uriTemplateParams = [...getPathParameters(dpgContext, operation), ...getQueryParameters(dpgContext, operation)];
+  const uriTemplateParams = [
+    ...getPathParameters(dpgContext, operation),
+    ...getQueryParameters(dpgContext, operation)
+  ];
   if (uriTemplateParams.length > 0) {
     statements.push(`const path = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}").expand({
         ${uriTemplateParams.join(",\n")}
@@ -353,8 +356,9 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
-    }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -469,7 +473,7 @@ export function getOperationOptionsName(
  */
 function getHeaderAndBodyParameters(
   dpgContext: SdkContext,
-  operation: Operation,
+  operation: Operation
 ): string {
   if (!operation.parameters) {
     return "";
@@ -489,10 +493,7 @@ function getHeaderAndBodyParameters(
   };
 
   for (const param of operationParameters) {
-    if (
-      param.location === "header" ||
-      param.location === "body"
-    ) {
+    if (param.location === "header" || param.location === "body") {
       parametersImplementation[param.location].push({
         paramMap: getParameterMap(dpgContext, param),
         param
@@ -677,14 +678,15 @@ function getCollectionFormat(context: SdkContext, param: Parameter) {
       param.format
     )}${additionalParam})`;
   }
-  return `"${param.restApiName}": options?.${param.clientName
-    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-      context,
-      param.type,
-      "options?." + param.clientName,
-      false,
-      param.format
-    )}${additionalParam}): undefined`;
+  return `"${param.restApiName}": options?.${
+    param.clientName
+  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+    context,
+    param.type,
+    "options?." + param.clientName,
+    false,
+    param.format
+  )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -701,10 +703,11 @@ function getContentTypeValue(param: Parameter | Property) {
   if (defaultValue) {
     return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${!param.optional
-      ? "contentType"
-      : "options." + param.clientName + " as any"
-      }`;
+    return `contentType: ${
+      !param.optional
+        ? "contentType"
+        : "options." + param.clientName + " as any"
+    }`;
   }
 }
 
@@ -786,10 +789,11 @@ function getOptional(context: SdkContext, param: OptionalType) {
     param.restApiName === "api-version" &&
     (param as any).location === "query"
   ) {
-    return `"${param.restApiName}": ${param.clientDefaultValue
-      ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
-      : `options?.${param.clientName}`
-      }`;
+    return `"${param.restApiName}": ${
+      param.clientDefaultValue
+        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
+        : `options?.${param.clientName}`
+    }`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     context,
@@ -814,10 +818,7 @@ function getDefaultValue(param: Parameter | Property) {
 /**
  * Extracts the path parameters
  */
-function getPathParameters(
-  dpgContext: SdkContext,
-  operation: Operation
-) {
+function getPathParameters(dpgContext: SdkContext, operation: Operation) {
   if (!operation.parameters) {
     return [];
   }
@@ -844,17 +845,13 @@ function getPathParameters(
   return pathParams;
 }
 
-function getPathParamExpr(
-  param: Parameter,
-  defaultValue?: string,
-) {
+function getPathParamExpr(param: Parameter, defaultValue?: string) {
   return defaultValue
     ? typeof defaultValue === "string"
       ? `options[${param.clientName}] ?? "${defaultValue}"`
       : `options[${param.clientName}] ?? ${defaultValue}`
     : param.clientName;
 }
-
 
 function getNullableCheck(name: string, type: Type) {
   if (!isTypeNullable(type)) {
@@ -942,8 +939,9 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
 
-    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
-      }["${property.restApiName}"]`;
+    const restValue = `${
+      propertyPath ? `${propertyPath}${dot}` : `${dot}`
+    }["${property.restApiName}"]`;
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
@@ -1005,8 +1003,9 @@ export function serializeRequestValue(
           return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
         case "rfc3339":
         default:
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${required ? "" : "?"
-            }.toISOString()`;
+          return `${getNullableCheck(clientValue, type)} ${clientValue}${
+            required ? "" : "?"
+          }.toISOString()`;
       }
     case "list": {
       const prefix = nullOrUndefinedPrefix + clientValue;
@@ -1040,12 +1039,14 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-            clientValue,
-            type
-          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`;
+              clientValue,
+              type
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`;
       }
       return clientValue;
     case "combined":
@@ -1100,11 +1101,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.elementType
         ? buildModelDeserializer(
-          context,
-          type.elementType.tcgcType!,
-          false,
-          true
-        )
+            context,
+            type.elementType.tcgcType!,
+            false,
+            true
+          )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;

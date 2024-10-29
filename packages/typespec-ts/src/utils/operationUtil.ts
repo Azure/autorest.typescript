@@ -282,9 +282,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-        metadata.finalStep.kind === "pollingSuccessProperty" &&
-        metadata?.finalStep.target &&
-        metadata?.finalStep?.target?.name === "result"
+      metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
+      metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -434,9 +434,7 @@ export function getSpecialSerializeInfo(
 }
 
 function getHasMultiCollection(paramType: string, paramFormat: string) {
-  return (
-    paramType === "header" && paramFormat === "multi"
-  );
+  return paramType === "header" && paramFormat === "multi";
 }
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";

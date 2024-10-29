@@ -153,19 +153,17 @@ function getParameterMetadata(
       parameter.type,
       (parameter as any).format
     );
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasCsvCollection
-    ) {
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
         ", "
       )} collection, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-        }`;
+      }`;
     }
   }
   type =
