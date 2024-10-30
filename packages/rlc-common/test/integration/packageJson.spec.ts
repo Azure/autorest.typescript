@@ -446,6 +446,40 @@ describe("Package file generation", () => {
         'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
+
+    it("[esm] should have constantPaths in typespec modular", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        isModularLibrary: true
+      });
+
+      const metadataOption = {
+        metadata: {
+          "constantPaths": [
+            {
+              "path": "src/chatCompletions/api/chatCompletionsContext.ts",
+              "prefix": "userAgentInfo"
+            },
+          ]
+        }
+      }
+
+      const packageFileContent = buildPackageFile(model, metadataOption);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("//metadata");
+    });
+
+    it("[esm] should have constantPaths in typespec rlc", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("//metadata");
+    });
   });
 
   describe("Azure flavor for standalone library", () => {
