@@ -69,6 +69,14 @@
     "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
     "build": "npm run clean && tshy && npm run extract-api"
   },
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/api/schemaRegistryContext.ts",
+        "prefix": "userAgentInfo"
+      }
+    ]
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {

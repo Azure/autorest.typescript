@@ -58,6 +58,14 @@
     "tslib": "^2.6.2",
     "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2"
   },
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "src/api/openAIContext.ts",
+        "prefix": "userAgentInfo"
+      }
+    ]
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
