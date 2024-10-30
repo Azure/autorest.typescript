@@ -4,7 +4,7 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient($host: string, options?: MediaTypesClientOptions): MediaTypesClient;
+declare function createClient(host: string, options?: MediaTypesClientOptions): MediaTypesClient;
 export default createClient;
 
 export declare interface GetByOverloadParent {

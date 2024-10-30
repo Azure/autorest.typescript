@@ -132,7 +132,7 @@ describe("Package file generation", () => {
       const expectedMetadata = {
         constantPaths: [
           {
-            path: "src/msinternal/test.ts",
+            path: "src/msinternalTest.ts",
             prefix: "userAgentInfo"
           }
         ]
@@ -155,7 +155,7 @@ describe("Package file generation", () => {
             prefix: "package-version"
           },
           {
-            path: "src/msinternal/test.ts",
+            path: "src/msinternalTest.ts",
             prefix: "userAgentInfo"
           }
         ]

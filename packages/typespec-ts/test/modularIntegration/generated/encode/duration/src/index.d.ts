@@ -61,7 +61,7 @@ export declare interface Int32SecondsDurationProperty {
     value: number;
 }
 
-export declare interface ISO8601DurationProperty {
+export declare interface Iso8601DurationProperty {
     value: string;
 }
 
@@ -85,7 +85,7 @@ export declare interface PropertyIso8601OptionalParams extends OperationOptions 
 
 export declare interface PropertyOperations {
     default: (body: DefaultDurationProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultDurationProperty>;
-    iso8601: (body: ISO8601DurationProperty, options?: PropertyIso8601OptionalParams) => Promise<ISO8601DurationProperty>;
+    iso8601: (body: Iso8601DurationProperty, options?: PropertyIso8601OptionalParams) => Promise<Iso8601DurationProperty>;
     int32Seconds: (body: Int32SecondsDurationProperty, options?: PropertyInt32SecondsOptionalParams) => Promise<Int32SecondsDurationProperty>;
     floatSeconds: (body: FloatSecondsDurationProperty, options?: PropertyFloatSecondsOptionalParams) => Promise<FloatSecondsDurationProperty>;
     float64Seconds: (body: Float64SecondsDurationProperty, options?: PropertyFloat64SecondsOptionalParams) => Promise<Float64SecondsDurationProperty>;

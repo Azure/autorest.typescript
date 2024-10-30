@@ -142,9 +142,12 @@ export function normalizeName(
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
-  const sanitizedName = sanitizeName(name);
-  const parts = getNameParts(sanitizedName);
+  const parts = deconstruct(name);
   const [firstPart, ...otherParts] = parts;
+  if (parts.length === 0) {
+    console.log("parts.length < 1", parts, name, getNameParts(sanitizeName(name)));
+    return name;
+  }
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
     .map((part) =>
@@ -158,6 +161,20 @@ export function normalizeName(
     : normalized;
 }
 
+function deconstruct(
+  identifier: string,
+): Array<string> {
+  const parts = `${identifier}`
+    .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
+    .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123 => foo123 bar)
+    .replace(/\b([A-Z]+)([A-Z])s([^a-z])(.*)/g, "$1$2« $3$4") // Add a space after a plural uppper cased word(e.g. MBsFoo => MBs Foo)
+    .replace(/\b([A-Z]+)([A-Z])([a-z]+)/g, "$1 $2$3") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
+    .replace(/«/g, "s")
+    .trim()
+    .split(/[\W|_]+/);
+  return parts.filter((part) => part.trim().length > 0);
+}
+
 function checkBeginning(name: string): string {
   if (name.startsWith("@")) {
     return name.substring(1);
@@ -168,6 +185,10 @@ function checkBeginning(name: string): string {
 function sanitizeName(name: string): string {
   // Remove \, " and ' from name string
   return name.replace(/["'\\]+/g, "");
+}
+
+function isNumericLiteralName(name: string) {
+  return (+name).toString() === name;
 }
 
 export function getModelsName(title: string): string {
