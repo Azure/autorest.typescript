@@ -60,7 +60,10 @@ import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import { buildClientContext } from "./modular/buildClientContext.js";
+import {
+  getContentPath,
+  buildClientContext
+} from "./modular/buildClientContext.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
@@ -382,6 +385,22 @@ export async function $onEmit(context: EmitContext) {
             }
           };
         }
+        let contentPath = [];
+        for (const subClient of modularCodeModel.clients) {
+          let fullPath = getContentPath(subClient, modularCodeModel);
+          const srcIndex = fullPath.indexOf("src");
+          const finalPath = fullPath.substring(srcIndex);
+          contentPath.push({
+            path: finalPath,
+            prefix: "userAgentInfo"
+          });
+        }
+        modularPackageInfo = {
+          ...modularPackageInfo,
+          metadata: {
+            constantPaths: contentPath
+          }
+        };
       }
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)

@@ -206,7 +206,11 @@ export function buildGetClientOptionsParam(
   codeModel: ModularCodeModel,
   endpointParam: string
 ): string {
-  const userAgentOptions = buildUserAgentOptions(context, "azsdk-js-api");
+  const userAgentOptions = buildUserAgentOptions(
+    context,
+    "azsdk-js-api",
+    codeModel
+  );
   const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
   const credentials = buildCredentials(codeModel, endpointParam);
 
@@ -287,9 +291,40 @@ function buildLoggingOptions(flavor?: PackageFlavor): string | undefined {
 
 export function buildUserAgentOptions(
   context: StatementedNode,
-  sdkUserAgentPrefix: string
+  sdkUserAgentPrefix: string,
+  codeModel: ModularCodeModel
 ): string {
-  const userAgentStatements = `
+  let clientPackageName =
+    codeModel.options.packageDetails!.nameWithoutScope ??
+    codeModel.options.packageDetails?.name ??
+    "";
+  const packageVersion = codeModel.options.packageDetails?.version;
+  if (
+    !codeModel.options.isModularLibrary &&
+    !clientPackageName.endsWith("-rest")
+  ) {
+    clientPackageName += "-rest";
+  }
+  const userAgentInfoStatement = sdkUserAgentPrefix.includes("api")
+    ? "const userAgentInfo = `azsdk-js-" +
+      clientPackageName +
+      "/" +
+      packageVersion +
+      "`;"
+    : "";
+  const userAgentStatements = userAgentInfoStatement
+    ? `
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    ${userAgentInfoStatement}
+    const userAgentPrefix = ${
+      "prefixFromOptions ? `${prefixFromOptions} " +
+      sdkUserAgentPrefix +
+      " ${userAgentInfo}" +
+      "` : " +
+      `${"`" + sdkUserAgentPrefix + " ${userAgentInfo}" + "`"}`
+    };
+  `
+    : `
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = ${
       "prefixFromOptions ? `${prefixFromOptions} " +
@@ -297,7 +332,7 @@ export function buildUserAgentOptions(
       "` : " +
       `"${sdkUserAgentPrefix}"`
     };
-  `;
+      `;
 
   context.addStatements(userAgentStatements);
 

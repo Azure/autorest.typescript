@@ -19,11 +19,12 @@ import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
 interface PackageFileOptions {
   exports?: Record<string, any>;
   dependencies?: Record<string, string>;
+  metadata?: Record<string, any>;
 }
 
 export function buildPackageFile(
   model: RLCModel,
-  { exports, dependencies }: PackageFileOptions = {}
+  { exports, dependencies, metadata }: PackageFileOptions = {}
 ) {
   const config: PackageCommonInfoConfig = {
     description: getDescription(model),
@@ -56,6 +57,8 @@ export function buildPackageFile(
   if (isAzureStandalonePackage(model)) {
     packageInfo = buildAzureStandalonePackage(extendedConfig);
   }
+
+  packageInfo["//metadata"] = metadata;
 
   const project = new Project();
   const filePath = "package.json";
