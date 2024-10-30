@@ -58,7 +58,7 @@ export function buildPackageFile(
     packageInfo = buildAzureStandalonePackage(extendedConfig);
   }
 
-  if (model.options?.moduleKind == "esm") {
+  if (model.options?.moduleKind == "esm" && model.options.isModularLibrary) {
     packageInfo["//metadata"] = metadata;
   }
 
