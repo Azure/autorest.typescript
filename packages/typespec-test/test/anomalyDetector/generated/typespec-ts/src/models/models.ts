@@ -92,7 +92,7 @@ export interface MultivariateVariableState {
   /** Variable name in variable states. */
   variable?: string;
   /** Proportion of missing values that need to be filled by fillNAMethod. */
-  filledNARatio?: number;
+  filledNaRatio?: number;
   /** Number of effective data points before applying fillNAMethod. */
   effectiveCount?: number;
   /** First valid timestamp with value of input data. */
@@ -106,7 +106,7 @@ export function multivariateVariableStateSerializer(
 ): any {
   return {
     variable: item["variable"],
-    filledNARatio: item["filledNARatio"],
+    filledNARatio: item["filledNaRatio"],
     effectiveCount: item["effectiveCount"],
     firstTimestamp: item["firstTimestamp"]?.toISOString(),
     lastTimestamp: item["lastTimestamp"]?.toISOString(),
@@ -118,7 +118,7 @@ export function multivariateVariableStateDeserializer(
 ): MultivariateVariableState {
   return {
     variable: item["variable"],
-    filledNARatio: item["filledNARatio"],
+    filledNaRatio: item["filledNARatio"],
     effectiveCount: item["effectiveCount"],
     firstTimestamp: !item["firstTimestamp"]
       ? item["firstTimestamp"]
@@ -416,7 +416,7 @@ export interface MultivariateAlignPolicy {
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
    */
-  fillNAMethod?: MultivariateFillNAMethod;
+  fillNaMethod?: MultivariateFillNaMethod;
   /** An optional field. Required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
@@ -426,7 +426,7 @@ export function multivariateAlignPolicySerializer(
 ): any {
   return {
     alignMode: item["alignMode"],
-    fillNAMethod: item["fillNAMethod"],
+    fillNAMethod: item["fillNaMethod"],
     paddingValue: item["paddingValue"],
   };
 }
@@ -436,7 +436,7 @@ export function multivariateAlignPolicyDeserializer(
 ): MultivariateAlignPolicy {
   return {
     alignMode: item["alignMode"],
-    fillNAMethod: item["fillNAMethod"],
+    fillNaMethod: item["fillNAMethod"],
     paddingValue: item["paddingValue"],
   };
 }
@@ -444,7 +444,7 @@ export function multivariateAlignPolicyDeserializer(
 /** Type of MultivariateAlignMode */
 export type MultivariateAlignMode = "Inner" | "Outer";
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-export type MultivariateFillNAMethod =
+export type MultivariateFillNaMethod =
   | "Previous"
   | "Subsequent"
   | "Linear"
@@ -1071,5 +1071,5 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
   };
 }
 
-/** Type of APIVersion */
-export type APIVersion = "v1.1";
+/** Type of ApiVersion */
+export type ApiVersion = "v1.1";

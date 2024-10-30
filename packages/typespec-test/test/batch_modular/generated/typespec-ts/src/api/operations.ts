@@ -98,10 +98,10 @@ import {
   uploadBatchServiceLogsResultDeserializer,
   _BatchNodeListResult,
   _batchNodeListResultDeserializer,
-  NodeVMExtension,
-  nodeVMExtensionDeserializer,
-  _NodeVMExtensionList,
-  _nodeVMExtensionListDeserializer,
+  NodeVmExtension,
+  nodeVmExtensionDeserializer,
+  _NodeVmExtensionList,
+  _nodeVmExtensionListDeserializer,
   _NodeFileListResult,
   _nodeFileListResultDeserializer,
   NodeFile,
@@ -299,7 +299,7 @@ export function _listPoolUsageMetricsSend(
         timeOut: options?.timeOutInSeconds,
         starttime: options?.starttime?.toISOString(),
         endtime: options?.endtime?.toISOString(),
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }
@@ -391,15 +391,15 @@ export function _listPoolsSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -594,14 +594,14 @@ export function _getPoolSend(
     queryParameters: {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -1131,7 +1131,7 @@ export function _listSupportedImagesSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }
@@ -1173,7 +1173,7 @@ export function _listPoolNodeCountsSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }
@@ -1307,14 +1307,14 @@ export function _getJobSend(
     queryParameters: {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -1753,15 +1753,15 @@ export function _listJobsSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -1804,15 +1804,15 @@ export function _listJobsFromScheduleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -1859,10 +1859,10 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $filter: options?.filter,
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -1999,10 +1999,10 @@ export function _listCertificatesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -2165,9 +2165,9 @@ export function _getCertificateSend(
       queryParameters: {
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -2357,14 +2357,14 @@ export function _getJobScheduleSend(
     queryParameters: {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -2776,15 +2776,15 @@ export function _listJobSchedulesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -2874,15 +2874,15 @@ export function _listTasksSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -3082,14 +3082,14 @@ export function _getTaskSend(
     queryParameters: {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -3202,9 +3202,9 @@ export function _listSubTasksSend(
       queryParameters: {
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -3573,7 +3573,7 @@ export function _listTaskFilesSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
         recursive: options?.recursive,
       },
     });
@@ -3790,9 +3790,9 @@ export function _getNodeSend(
     queryParameters: {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -4187,10 +4187,10 @@ export function _listNodesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -4242,9 +4242,9 @@ export function _getNodeExtensionSend(
       queryParameters: {
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -4253,13 +4253,13 @@ export function _getNodeExtensionSend(
 
 export async function _getNodeExtensionDeserialize(
   result: PathUncheckedResponse,
-): Promise<NodeVMExtension> {
+): Promise<NodeVmExtension> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return nodeVMExtensionDeserializer(result.body);
+  return nodeVmExtensionDeserializer(result.body);
 }
 
 /** Gets information about the specified Compute Node Extension. */
@@ -4269,7 +4269,7 @@ export async function getNodeExtension(
   nodeId: string,
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
-): Promise<NodeVMExtension> {
+): Promise<NodeVmExtension> {
   const result = await _getNodeExtensionSend(
     context,
     poolId,
@@ -4293,9 +4293,9 @@ export function _listNodeExtensionsSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -4304,13 +4304,13 @@ export function _listNodeExtensionsSend(
 
 export async function _listNodeExtensionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeVMExtensionList> {
+): Promise<_NodeVmExtensionList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _nodeVMExtensionListDeserializer(result.body);
+  return _nodeVmExtensionListDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
@@ -4319,7 +4319,7 @@ export function listNodeExtensions(
   poolId: string,
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<NodeVMExtension> {
+): PagedAsyncIterableIterator<NodeVmExtension> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
@@ -4537,7 +4537,7 @@ export function _listNodeFilesSend(
         "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
         recursive: options?.recursive,
       },
     });

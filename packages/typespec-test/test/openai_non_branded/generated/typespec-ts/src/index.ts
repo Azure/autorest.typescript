@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-export { OpenAIClient } from "./openAIClient.js";
+export { OpenAIClient } from "./openAiClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -16,7 +16,7 @@ export {
   DeleteModelResponse,
   CreateFineTuneRequest,
   FineTune,
-  OpenAIFile,
+  OpenAiFile,
   FineTuneEvent,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,

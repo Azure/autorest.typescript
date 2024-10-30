@@ -5,7 +5,7 @@ export {
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
-} from "./openAIContext.js";
+} from "./openAiContext.js";
 export {
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,

@@ -135,7 +135,7 @@ export type FileType = string;
 // @public
 export interface FunctionFlexConsumptionResourceConfiguration {
     httpConcurrency: number;
-    instanceMemoryMB: number;
+    instanceMemoryMb: number;
 }
 
 // @public
@@ -195,26 +195,26 @@ export enum KnownAggregationType {
 
 // @public
 export enum KnownCertificateType {
-    AKV_CERT_URI = "AKV_CERT_URI"
+    AKVCERTURI = "AKV_CERT_URI"
 }
 
 // @public
 export enum KnownFileStatus {
-    NOT_VALIDATED = "NOT_VALIDATED",
-    VALIDATION_FAILURE = "VALIDATION_FAILURE",
-    VALIDATION_INITIATED = "VALIDATION_INITIATED",
-    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
-    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+    NOTValidated = "NOT_VALIDATED",
+    ValidationFailure = "VALIDATION_FAILURE",
+    ValidationInitiated = "VALIDATION_INITIATED",
+    ValidationNOTRequired = "VALIDATION_NOT_REQUIRED",
+    ValidationSuccess = "VALIDATION_SUCCESS"
 }
 
 // @public
 export enum KnownFileType {
-    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
-    JMX_FILE = "JMX_FILE",
-    TEST_SCRIPT = "TEST_SCRIPT",
-    URL_TEST_CONFIG = "URL_TEST_CONFIG",
-    USER_PROPERTIES = "USER_PROPERTIES",
-    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
+    AdditionalArtifacts = "ADDITIONAL_ARTIFACTS",
+    JMXFILE = "JMX_FILE",
+    TESTSCRIPT = "TEST_SCRIPT",
+    URLTESTCONFIG = "URL_TEST_CONFIG",
+    USERProperties = "USER_PROPERTIES",
+    ZIPPEDArtifacts = "ZIPPED_ARTIFACTS"
 }
 
 // @public
@@ -230,50 +230,50 @@ export enum KnownMetricUnit {
 }
 
 // @public
-export enum KnownPFAction {
-    "continue" = "continue",
-    stop = "stop"
+export enum KnownPfAction {
+    Continue = "continue",
+    Stop = "stop"
 }
 
 // @public
-export enum KnownPFAgFunc {
-    "p99.9" = "p99.9",
-    "p99.99" = "p99.99",
-    avg = "avg",
-    count = "count",
-    max = "max",
-    min = "min",
-    p50 = "p50",
-    p75 = "p75",
-    p90 = "p90",
-    p95 = "p95",
-    p96 = "p96",
-    p97 = "p97",
-    p98 = "p98",
-    p99 = "p99",
-    percentage = "percentage"
+export enum KnownPfAgFunc {
+    Avg = "avg",
+    Count = "count",
+    Max = "max",
+    Min = "min",
+    P50 = "p50",
+    P75 = "p75",
+    P90 = "p90",
+    P95 = "p95",
+    P96 = "p96",
+    P97 = "p97",
+    P98 = "p98",
+    P99 = "p99",
+    P999 = "p99.9",
+    P9999 = "p99.99",
+    Percentage = "percentage"
 }
 
 // @public
-export enum KnownPFMetrics {
-    error = "error",
-    latency = "latency",
-    requests = "requests",
-    requests_per_sec = "requests_per_sec",
-    response_time_ms = "response_time_ms"
+export enum KnownPfMetrics {
+    Error = "error",
+    Latency = "latency",
+    Requests = "requests",
+    RequestsPerSec = "requests_per_sec",
+    ResponseTimeMs = "response_time_ms"
 }
 
 // @public
-export enum KnownPFResult {
-    failed = "failed",
-    passed = "passed",
-    undetermined = "undetermined"
+export enum KnownPfResult {
+    Failed = "failed",
+    Passed = "passed",
+    Undetermined = "undetermined"
 }
 
 // @public
-export enum KnownPFTestResult {
+export enum KnownPfTestResult {
     FAILED = "FAILED",
-    NOT_APPLICABLE = "NOT_APPLICABLE",
+    NOTApplicable = "NOT_APPLICABLE",
     PASSED = "PASSED"
 }
 
@@ -296,28 +296,28 @@ export enum KnownResourceKind {
 
 // @public
 export enum KnownSecretType {
-    AKV_SECRET_URI = "AKV_SECRET_URI",
-    SECRET_VALUE = "SECRET_VALUE"
+    AKVSECRETURI = "AKV_SECRET_URI",
+    SECRETVALUE = "SECRET_VALUE"
 }
 
 // @public
 export enum KnownStatus {
-    ACCEPTED = "ACCEPTED",
-    CANCELLED = "CANCELLED",
-    CANCELLING = "CANCELLING",
-    CONFIGURED = "CONFIGURED",
-    CONFIGURING = "CONFIGURING",
-    DEPROVISIONED = "DEPROVISIONED",
-    DEPROVISIONING = "DEPROVISIONING",
+    Accepted = "ACCEPTED",
+    Cancelled = "CANCELLED",
+    Cancelling = "CANCELLING",
+    Configured = "CONFIGURED",
+    Configuring = "CONFIGURING",
+    Deprovisioned = "DEPROVISIONED",
+    Deprovisioning = "DEPROVISIONING",
     DONE = "DONE",
-    EXECUTED = "EXECUTED",
-    EXECUTING = "EXECUTING",
+    Executed = "EXECUTED",
+    Executing = "EXECUTING",
     FAILED = "FAILED",
-    NOTSTARTED = "NOTSTARTED",
-    PROVISIONED = "PROVISIONED",
-    PROVISIONING = "PROVISIONING",
-    VALIDATION_FAILURE = "VALIDATION_FAILURE",
-    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
+    Notstarted = "NOTSTARTED",
+    Provisioned = "PROVISIONED",
+    Provisioning = "PROVISIONING",
+    ValidationFailure = "VALIDATION_FAILURE",
+    ValidationSuccess = "VALIDATION_SUCCESS"
 }
 
 // @public
@@ -329,13 +329,13 @@ export enum KnownTestKind {
 
 // @public
 export enum KnownTestProfileRunStatus {
-    ACCEPTED = "ACCEPTED",
-    CANCELLED = "CANCELLED",
-    CANCELLING = "CANCELLING",
+    Accepted = "ACCEPTED",
+    Cancelled = "CANCELLED",
+    Cancelling = "CANCELLING",
     DONE = "DONE",
-    EXECUTING = "EXECUTING",
+    Executing = "EXECUTING",
     FAILED = "FAILED",
-    NOTSTARTED = "NOTSTARTED"
+    Notstarted = "NOTSTARTED"
 }
 
 // @public
@@ -443,7 +443,7 @@ export interface LoadTestConfiguration {
     optionalLoadTestConfig?: OptionalLoadTestConfig;
     quickStartTest?: boolean;
     regionalLoadTestConfig?: RegionalConfiguration[];
-    splitAllCSVs?: boolean;
+    splitAllCsVs?: boolean;
 }
 
 // @public (undocumented)
@@ -571,30 +571,30 @@ export interface PassFailCriteria {
 
 // @public
 export interface PassFailMetric {
-    action?: PFAction;
+    action?: PfAction;
     readonly actualValue?: number;
-    aggregate?: PFAgFunc;
-    clientMetric?: PFMetrics;
+    aggregate?: PfAgFunc;
+    clientMetric?: PfMetrics;
     condition?: string;
     requestName?: string;
-    readonly result?: PFResult;
+    readonly result?: PfResult;
     value?: number;
 }
 
 // @public
-export type PFAction = string;
+export type PfAction = string;
 
 // @public
-export type PFAgFunc = string;
+export type PfAgFunc = string;
 
 // @public
-export type PFMetrics = string;
+export type PfMetrics = string;
 
 // @public
-export type PFResult = string;
+export type PfResult = string;
 
 // @public
-export type PFTestResult = string;
+export type PfTestResult = string;
 
 // @public
 export type RecommendationCategory = string;
@@ -669,7 +669,7 @@ export interface Test {
     readonly lastModifiedDateTime?: Date;
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
-    publicIPDisabled?: boolean;
+    publicIpDisabled?: boolean;
     secrets?: Record<string, Secret>;
     subnetId?: string;
     readonly testId: string;
@@ -803,7 +803,7 @@ export interface TestRun {
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
     readonly portalUrl?: string;
-    readonly publicIPDisabled?: boolean;
+    readonly publicIpDisabled?: boolean;
     readonly regionalStatistics?: Record<string, TestRunStatistics>;
     requestDataLevel?: RequestDataLevel;
     secrets?: Record<string, Secret>;
@@ -812,7 +812,7 @@ export interface TestRun {
     readonly subnetId?: string;
     readonly testArtifacts?: TestRunArtifacts;
     testId?: string;
-    readonly testResult?: PFTestResult;
+    readonly testResult?: PfTestResult;
     readonly testRunId: string;
     readonly testRunStatistics?: Record<string, TestRunStatistics>;
     readonly virtualUsers?: number;

@@ -36,7 +36,7 @@ export interface Test {
   /** Kind of test. */
   kind?: TestKind;
   /** Inject load test engines without deploying public IP for outbound access */
-  publicIPDisabled?: boolean;
+  publicIpDisabled?: boolean;
   /** Type of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityType?: string;
   /** Resource Id of the managed identity referencing the Key vault. */
@@ -74,7 +74,7 @@ export function testSerializer(item: Test): any {
     displayName: item["displayName"],
     subnetId: item["subnetId"],
     kind: item["kind"],
-    publicIPDisabled: item["publicIPDisabled"],
+    publicIPDisabled: item["publicIpDisabled"],
     keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
     keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
   };
@@ -107,7 +107,7 @@ export function testDeserializer(item: any): Test {
     displayName: item["displayName"],
     subnetId: item["subnetId"],
     kind: item["kind"],
-    publicIPDisabled: item["publicIPDisabled"],
+    publicIpDisabled: item["publicIPDisabled"],
     keyvaultReferenceIdentityType: item["keyvaultReferenceIdentityType"],
     keyvaultReferenceIdentityId: item["keyvaultReferenceIdentityId"],
     createdDateTime: !item["createdDateTime"]
@@ -146,14 +146,14 @@ export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
 /** Pass fail metric */
 export interface PassFailMetric {
   /** The client metric on which the criteria should be applied. */
-  clientMetric?: PFMetrics;
+  clientMetric?: PfMetrics;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, percentiles like ‘p50’, ‘p90’, & so on, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    */
-  aggregate?: PFAgFunc;
+  aggregate?: PfAgFunc;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
   condition?: string;
   /** Request name for which the Pass fail criteria has to be applied */
@@ -164,11 +164,11 @@ export interface PassFailMetric {
    */
   value?: number;
   /** Action taken after the threshold is met. Default is ‘continue’. */
-  action?: PFAction;
+  action?: PfAction;
   /** The actual value of the client metric for the test run. */
   readonly actualValue?: number;
   /** Outcome of the test run. */
-  readonly result?: PFResult;
+  readonly result?: PfResult;
 }
 
 export function passFailMetricSerializer(item: PassFailMetric): any {
@@ -196,17 +196,17 @@ export function passFailMetricDeserializer(item: any): PassFailMetric {
 }
 
 /** Metrics for pass/fail criteria. */
-export enum KnownPFMetrics {
+export enum KnownPfMetrics {
   /** Pass fail criteria for response time metric in milliseconds. */
-  response_time_ms = "response_time_ms",
+  ResponseTimeMs = "response_time_ms",
   /** Pass fail criteria for latency metric in milliseconds. */
-  latency = "latency",
+  Latency = "latency",
   /** Pass fail criteria for error metric. */
-  error = "error",
+  Error = "error",
   /** Pass fail criteria for total requests. */
-  requests = "requests",
+  Requests = "requests",
   /** Pass fail criteria for request per second. */
-  requests_per_sec = "requests_per_sec",
+  RequestsPerSec = "requests_per_sec",
 }
 
 /**
@@ -220,40 +220,40 @@ export enum KnownPFMetrics {
  * **requests**: Pass fail criteria for total requests. \
  * **requests_per_sec**: Pass fail criteria for request per second.
  */
-export type PFMetrics = string;
+export type PfMetrics = string;
 
 /** Aggregation functions for pass/fail criteria. */
-export enum KnownPFAgFunc {
+export enum KnownPfAgFunc {
   /** Criteria applies for count value. */
-  count = "count",
+  Count = "count",
   /** Criteria applies for given percentage value. */
-  percentage = "percentage",
+  Percentage = "percentage",
   /** Criteria applies for avg value. */
-  avg = "avg",
+  Avg = "avg",
   /** Criteria applies for 50th percentile value. */
-  p50 = "p50",
+  P50 = "p50",
   /** Criteria applies for 75th percentile value. */
-  p75 = "p75",
+  P75 = "p75",
   /** Criteria applies for 90th percentile value. */
-  p90 = "p90",
+  P90 = "p90",
   /** Criteria applies for 95th percentile value. */
-  p95 = "p95",
+  P95 = "p95",
   /** Criteria applies for 96th percentile value. */
-  p96 = "p96",
+  P96 = "p96",
   /** Criteria applies for 97th percentile value. */
-  p97 = "p97",
+  P97 = "p97",
   /** Criteria applies for 98th percentile value. */
-  p98 = "p98",
+  P98 = "p98",
   /** Criteria applies for 99th percentile value. */
-  p99 = "p99",
+  P99 = "p99",
   /** Criteria applies for 99.9th percentile value. */
-  "p99.9" = "p99.9",
+  P999 = "p99.9",
   /** Criteria applies for 99.99th percentile value. */
-  "p99.99" = "p99.99",
+  P9999 = "p99.99",
   /** Criteria applies for minimum value. */
-  min = "min",
+  Min = "min",
   /** Criteria applies for maximum value. */
-  max = "max",
+  Max = "max",
 }
 
 /**
@@ -277,14 +277,14 @@ export enum KnownPFAgFunc {
  * **min**: Criteria applies for minimum value. \
  * **max**: Criteria applies for maximum value.
  */
-export type PFAgFunc = string;
+export type PfAgFunc = string;
 
 /** Action to take on failure of pass/fail criteria. */
-export enum KnownPFAction {
+export enum KnownPfAction {
   /** Test will continue to run even if pass fail metric criteria metric gets failed. */
-  "continue" = "continue",
+  Continue = "continue",
   /** Test run will stop if pass fail criteria metric is not passed. */
-  stop = "stop",
+  Stop = "stop",
 }
 
 /**
@@ -295,16 +295,16 @@ export enum KnownPFAction {
  * **continue**: Test will continue to run even if pass fail metric criteria metric gets failed. \
  * **stop**: Test run will stop if pass fail criteria metric is not passed.
  */
-export type PFAction = string;
+export type PfAction = string;
 
 /** Pass/fail criteria result. */
-export enum KnownPFResult {
+export enum KnownPfResult {
   /** Given pass fail criteria metric has passed. */
-  passed = "passed",
+  Passed = "passed",
   /** Given pass fail criteria metric couldn't determine. */
-  undetermined = "undetermined",
+  Undetermined = "undetermined",
   /** Given pass fail criteria metric has failed. */
-  failed = "failed",
+  Failed = "failed",
 }
 
 /**
@@ -316,7 +316,7 @@ export enum KnownPFResult {
  * **undetermined**: Given pass fail criteria metric couldn't determine. \
  * **failed**: Given pass fail criteria metric has failed.
  */
-export type PFResult = string;
+export type PfResult = string;
 
 export function passFailMetricRecordSerializer(
   item: Record<string, PassFailMetric>,
@@ -388,9 +388,9 @@ export function secretDeserializer(item: any): Secret {
 /** Types of secrets supported. */
 export enum KnownSecretType {
   /** If the secret is stored in an Azure Key Vault. */
-  AKV_SECRET_URI = "AKV_SECRET_URI",
+  AKVSECRETURI = "AKV_SECRET_URI",
   /** If the secret value provided as plain text. */
-  SECRET_VALUE = "SECRET_VALUE",
+  SECRETVALUE = "SECRET_VALUE",
 }
 
 /**
@@ -450,7 +450,7 @@ export function certificateMetadataDeserializer(
 /** Types of certificates supported. */
 export enum KnownCertificateType {
   /** If the certificate is stored in an Azure Key Vault. */
-  AKV_CERT_URI = "AKV_CERT_URI",
+  AKVCERTURI = "AKV_CERT_URI",
 }
 
 /**
@@ -472,7 +472,7 @@ export interface LoadTestConfiguration {
    * input data evenly across all engine instances. If you provide multiple CSV
    * files, each file will be split evenly.
    */
-  splitAllCSVs?: boolean;
+  splitAllCsVs?: boolean;
   /**
    * If true, optionalLoadTestConfig is required and JMX script for the load test is
    * not required to upload.
@@ -489,7 +489,7 @@ export function loadTestConfigurationSerializer(
 ): any {
   return {
     engineInstances: item["engineInstances"],
-    splitAllCSVs: item["splitAllCSVs"],
+    splitAllCSVs: item["splitAllCsVs"],
     quickStartTest: item["quickStartTest"],
     optionalLoadTestConfig: !item["optionalLoadTestConfig"]
       ? item["optionalLoadTestConfig"]
@@ -505,7 +505,7 @@ export function loadTestConfigurationDeserializer(
 ): LoadTestConfiguration {
   return {
     engineInstances: item["engineInstances"],
-    splitAllCSVs: item["splitAllCSVs"],
+    splitAllCsVs: item["splitAllCSVs"],
     quickStartTest: item["quickStartTest"],
     optionalLoadTestConfig: !item["optionalLoadTestConfig"]
       ? item["optionalLoadTestConfig"]
@@ -672,17 +672,17 @@ export function testFileInfoDeserializer(item: any): TestFileInfo {
 /** Types of file supported. */
 export enum KnownFileType {
   /** If the file is a JMX script. */
-  JMX_FILE = "JMX_FILE",
+  JMXFILE = "JMX_FILE",
   /** If the file is a user properties file. */
-  USER_PROPERTIES = "USER_PROPERTIES",
+  USERProperties = "USER_PROPERTIES",
   /** If the file is not among any of the other supported file types. */
-  ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+  AdditionalArtifacts = "ADDITIONAL_ARTIFACTS",
   /** If the file is a compressed archive containing a collection of various artifacts or resources. */
-  ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS",
+  ZIPPEDArtifacts = "ZIPPED_ARTIFACTS",
   /** If the file is a JSON config file to define the requests for a URL test. */
-  URL_TEST_CONFIG = "URL_TEST_CONFIG",
+  URLTESTCONFIG = "URL_TEST_CONFIG",
   /** If the file is a test script. */
-  TEST_SCRIPT = "TEST_SCRIPT",
+  TESTSCRIPT = "TEST_SCRIPT",
 }
 
 /**
@@ -702,15 +702,15 @@ export type FileType = string;
 /** File status. */
 export enum KnownFileStatus {
   /** File is not validated. */
-  NOT_VALIDATED = "NOT_VALIDATED",
+  NOTValidated = "NOT_VALIDATED",
   /** File is validated. */
-  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
+  ValidationSuccess = "VALIDATION_SUCCESS",
   /** File validation is failed. */
-  VALIDATION_FAILURE = "VALIDATION_FAILURE",
+  ValidationFailure = "VALIDATION_FAILURE",
   /** File validation is in progress. */
-  VALIDATION_INITIATED = "VALIDATION_INITIATED",
+  ValidationInitiated = "VALIDATION_INITIATED",
   /** Validation is not required. */
-  VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+  ValidationNOTRequired = "VALIDATION_NOT_REQUIRED",
 }
 
 /**
@@ -1006,7 +1006,7 @@ export interface TestRun {
   /** Collection of test run artifacts */
   readonly testArtifacts?: TestRunArtifacts;
   /** Test result for pass/Fail criteria used during the test run. */
-  readonly testResult?: PFTestResult;
+  readonly testResult?: PfTestResult;
   /** Number of virtual users, for which test has been run. */
   readonly virtualUsers?: number;
   /** Display name of a testRun. */
@@ -1036,7 +1036,7 @@ export interface TestRun {
   /** Enable or disable debug level logging. True if debug logs are enabled for the test run. False otherwise */
   debugLogsEnabled?: boolean;
   /** Inject load test engines without deploying public IP for outbound access */
-  readonly publicIPDisabled?: boolean;
+  readonly publicIpDisabled?: boolean;
   /** The creation datetime(RFC 3339 literal format). */
   readonly createdDateTime?: Date;
   /** The user that created. */
@@ -1125,7 +1125,7 @@ export function testRunDeserializer(item: any): TestRun {
     kind: item["kind"],
     requestDataLevel: item["requestDataLevel"],
     debugLogsEnabled: item["debugLogsEnabled"],
-    publicIPDisabled: item["publicIPDisabled"],
+    publicIpDisabled: item["publicIPDisabled"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
@@ -1386,11 +1386,11 @@ export function artifactsContainerInfoDeserializer(
 }
 
 /** Test result based on pass/fail criteria. */
-export enum KnownPFTestResult {
+export enum KnownPfTestResult {
   /** Pass/fail criteria has passed. */
   PASSED = "PASSED",
   /** Pass/fail criteria is not applicable. */
-  NOT_APPLICABLE = "NOT_APPLICABLE",
+  NOTApplicable = "NOT_APPLICABLE",
   /** Pass/fail criteria has failed. */
   FAILED = "FAILED",
 }
@@ -1404,42 +1404,42 @@ export enum KnownPFTestResult {
  * **NOT_APPLICABLE**: Pass\/fail criteria is not applicable. \
  * **FAILED**: Pass\/fail criteria has failed.
  */
-export type PFTestResult = string;
+export type PfTestResult = string;
 
 /** Test run status. */
 export enum KnownStatus {
   /** Test run request is accepted. */
-  ACCEPTED = "ACCEPTED",
+  Accepted = "ACCEPTED",
   /** Test run is not yet started. */
-  NOTSTARTED = "NOTSTARTED",
+  Notstarted = "NOTSTARTED",
   /** Test run is provisioning. */
-  PROVISIONING = "PROVISIONING",
+  Provisioning = "PROVISIONING",
   /** Test run is provisioned. */
-  PROVISIONED = "PROVISIONED",
+  Provisioned = "PROVISIONED",
   /** Test run is getting configured. */
-  CONFIGURING = "CONFIGURING",
+  Configuring = "CONFIGURING",
   /** Test run configuration is done. */
-  CONFIGURED = "CONFIGURED",
+  Configured = "CONFIGURED",
   /** Test run has started executing. */
-  EXECUTING = "EXECUTING",
+  Executing = "EXECUTING",
   /** Test run execution is completed. */
-  EXECUTED = "EXECUTED",
+  Executed = "EXECUTED",
   /** Test run is getting deprovisioned. */
-  DEPROVISIONING = "DEPROVISIONING",
+  Deprovisioning = "DEPROVISIONING",
   /** Test run is deprovisioned. */
-  DEPROVISIONED = "DEPROVISIONED",
+  Deprovisioned = "DEPROVISIONED",
   /** Test run is completed. */
   DONE = "DONE",
   /** Test run is being cancelled. */
-  CANCELLING = "CANCELLING",
+  Cancelling = "CANCELLING",
   /** Test run request is cancelled. */
-  CANCELLED = "CANCELLED",
+  Cancelled = "CANCELLED",
   /** Test run request is failed. */
   FAILED = "FAILED",
   /** Test run JMX file is validated. */
-  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
+  ValidationSuccess = "VALIDATION_SUCCESS",
   /** Test run JMX file validation is failed. */
-  VALIDATION_FAILURE = "VALIDATION_FAILURE",
+  ValidationFailure = "VALIDATION_FAILURE",
 }
 
 /**
@@ -2170,7 +2170,7 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfiguration {
   /** Memory size of the instance. Supported values are 2048, 4096. */
-  instanceMemoryMB: number;
+  instanceMemoryMb: number;
   /** HTTP Concurrency for the function app. */
   httpConcurrency: number;
 }
@@ -2179,7 +2179,7 @@ export function functionFlexConsumptionResourceConfigurationSerializer(
   item: FunctionFlexConsumptionResourceConfiguration,
 ): any {
   return {
-    instanceMemoryMB: item["instanceMemoryMB"],
+    instanceMemoryMB: item["instanceMemoryMb"],
     httpConcurrency: item["httpConcurrency"],
   };
 }
@@ -2188,7 +2188,7 @@ export function functionFlexConsumptionResourceConfigurationDeserializer(
   item: any,
 ): FunctionFlexConsumptionResourceConfiguration {
   return {
-    instanceMemoryMB: item["instanceMemoryMB"],
+    instanceMemoryMb: item["instanceMemoryMB"],
     httpConcurrency: item["httpConcurrency"],
   };
 }
@@ -2309,17 +2309,17 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
 /** Test profile run status. */
 export enum KnownTestProfileRunStatus {
   /** Test profile run request is accepted. */
-  ACCEPTED = "ACCEPTED",
+  Accepted = "ACCEPTED",
   /** Test profile run is not yet started. */
-  NOTSTARTED = "NOTSTARTED",
+  Notstarted = "NOTSTARTED",
   /** Test profile run has started executing. */
-  EXECUTING = "EXECUTING",
+  Executing = "EXECUTING",
   /** Test profile run has completed successfully. */
   DONE = "DONE",
   /** Test profile run is being cancelled. */
-  CANCELLING = "CANCELLING",
+  Cancelling = "CANCELLING",
   /** Test profile run is cancelled. */
-  CANCELLED = "CANCELLED",
+  Cancelled = "CANCELLED",
   /** Test profile run has failed. */
   FAILED = "FAILED",
 }

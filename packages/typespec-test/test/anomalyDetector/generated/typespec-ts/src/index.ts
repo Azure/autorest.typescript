@@ -23,7 +23,7 @@ export {
   MultivariateDataSchema,
   MultivariateAlignPolicy,
   MultivariateAlignMode,
-  MultivariateFillNAMethod,
+  MultivariateFillNaMethod,
   MultivariateModelStatus,
   MultivariateDiagnosticsInfo,
   MultivariateModelState,
@@ -41,7 +41,7 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  APIVersion,
+  ApiVersion,
 } from "./models/index.js";
 export {
   AnomalyDetectorClientOptionalParams,

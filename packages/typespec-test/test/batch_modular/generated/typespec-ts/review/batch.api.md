@@ -139,7 +139,7 @@ export class BatchClient {
     getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
     getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
     getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
+    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVmExtension>;
     getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
     getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
     getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
@@ -155,7 +155,7 @@ export class BatchClient {
     listJobs(options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;
     listJobSchedules(options?: ListJobSchedulesOptionalParams): PagedAsyncIterableIterator<BatchJobSchedule>;
     listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptionalParams): PagedAsyncIterableIterator<BatchJob>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVMExtension>;
+    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVmExtension>;
     listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
     listNodes(poolId: string, options?: ListNodesOptionalParams): PagedAsyncIterableIterator<BatchNode>;
     listPoolNodeCounts(options?: ListPoolNodeCountsOptionalParams): PagedAsyncIterableIterator<PoolNodeCounts>;
@@ -946,32 +946,32 @@ export interface GetApplicationOptionalParams extends OperationOptions {
 
 // @public
 export interface GetCertificateOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -983,8 +983,8 @@ export interface GetJobTaskCountsOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1007,8 +1007,8 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1026,13 +1026,13 @@ export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptio
 
 // @public
 export interface GetPoolOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1055,13 +1055,13 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetTaskOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1077,7 +1077,7 @@ export interface ImageInformation {
     capabilities?: string[];
     imageReference: ImageReference;
     nodeAgentSkuId: string;
-    osType: OSType;
+    osType: OsType;
     verificationType: VerificationType;
 }
 
@@ -1097,7 +1097,7 @@ export interface InboundEndpoint {
     frontendPort: number;
     name: string;
     protocol: InboundEndpointProtocol;
-    publicFQDN?: string;
+    publicFqdn?: string;
     publicIpAddress?: string;
 }
 
@@ -1105,7 +1105,7 @@ export interface InboundEndpoint {
 export type InboundEndpointProtocol = "tcp" | "udp";
 
 // @public
-export interface InboundNATPool {
+export interface InboundNatPool {
     backendPort: number;
     frontendPortRangeEnd: number;
     frontendPortRangeStart: number;
@@ -1258,19 +1258,19 @@ export type JobScheduleState = "active" | "completed" | "disabled" | "terminatin
 
 // @public
 export interface JobScheduleStatistics {
-    kernelCPUTime: string;
+    kernelCpuTime: string;
     lastUpdateTime: Date;
     numFailedTasks: number;
     numSucceededTasks: number;
     numTaskRetries: number;
-    readIOGiB: number;
+    readIoGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCPUTime: string;
+    userCpuTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIOGiB: number;
+    writeIoGiB: number;
     writeIOps: number;
 }
 
@@ -1306,19 +1306,19 @@ export type JobState = "active" | "disabling" | "disabled" | "enabling" | "termi
 
 // @public
 export interface JobStatistics {
-    kernelCPUTime: string;
+    kernelCpuTime: string;
     lastUpdateTime: Date;
     numFailedTasks: number;
     numSucceededTasks: number;
     numTaskRetries: number;
-    readIOGiB: number;
+    readIoGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCPUTime: string;
+    userCpuTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIOGiB: number;
+    writeIoGiB: number;
     writeIOps: number;
 }
 
@@ -1338,62 +1338,62 @@ export interface ListApplicationsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
-    $select?: string[];
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1401,36 +1401,36 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListNodesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
     endtime?: Date;
+    filter?: string;
     maxresults?: number;
     starttime?: Date;
     timeOutInSeconds?: number;
@@ -1438,22 +1438,22 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
-    $filter?: string;
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1461,11 +1461,11 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTasksOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1592,10 +1592,10 @@ export interface NodeRemoveOptions {
 }
 
 // @public
-export interface NodeVMExtension {
-    instanceView?: VMExtensionInstanceView;
+export interface NodeVmExtension {
+    instanceView?: VmExtensionInstanceView;
     provisioningState?: string;
-    vmExtension?: VMExtension;
+    vmExtension?: VmExtension;
 }
 
 // @public
@@ -1605,12 +1605,12 @@ export type OnAllTasksComplete = "noaction" | "terminatejob";
 export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 // @public
-export interface OSDisk {
-    ephemeralOSDiskSettings?: DiffDiskSettings;
+export interface OsDisk {
+    ephemeralOsDiskSettings?: DiffDiskSettings;
 }
 
 // @public
-export type OSType = "linux" | "windows";
+export type OsType = "linux" | "windows";
 
 // @public
 export interface OutputFile {
@@ -1654,7 +1654,7 @@ export interface PageSettings {
 
 // @public
 export interface PoolEndpointConfiguration {
-    inboundNatPools: InboundNATPool[];
+    inboundNatPools: InboundNatPool[];
 }
 
 // @public
@@ -2069,16 +2069,16 @@ export type TaskState = "active" | "preparing" | "running" | "completed";
 
 // @public
 export interface TaskStatistics {
-    kernelCPUTime: string;
+    kernelCpuTime: string;
     lastUpdateTime: Date;
-    readIOGiB: number;
+    readIoGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCPUTime: string;
+    userCpuTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIOGiB: number;
+    writeIoGiB: number;
     writeIOps: number;
 }
 
@@ -2205,12 +2205,12 @@ export interface VirtualMachineConfiguration {
     containerConfiguration?: ContainerConfiguration;
     dataDisks?: DataDisk[];
     diskEncryptionConfiguration?: DiskEncryptionConfiguration;
-    extensions?: VMExtension[];
+    extensions?: VmExtension[];
     imageReference: ImageReference;
     licenseType?: string;
     nodeAgentSkuId: string;
     nodePlacementConfiguration?: NodePlacementConfiguration;
-    osDisk?: OSDisk;
+    osDisk?: OsDisk;
     windowsConfiguration?: WindowsConfiguration;
 }
 
@@ -2220,7 +2220,7 @@ export interface VirtualMachineInfo {
 }
 
 // @public
-export interface VMExtension {
+export interface VmExtension {
     autoUpgradeMinorVersion?: boolean;
     enableAutomaticUpgrade?: boolean;
     name: string;
@@ -2233,7 +2233,7 @@ export interface VMExtension {
 }
 
 // @public
-export interface VMExtensionInstanceView {
+export interface VmExtensionInstanceView {
     name?: string;
     statuses?: InstanceViewStatus[];
     subStatuses?: InstanceViewStatus[];

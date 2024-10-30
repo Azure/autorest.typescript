@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/openAIContext.js";
+import { OpenAIContext } from "../../api/openAiContext.js";
 import {
   list,
   create,
@@ -19,7 +19,7 @@ import {
 import {
   ListFilesResponse,
   CreateFileRequest,
-  OpenAIFile,
+  OpenAiFile,
   DeleteFileResponse,
 } from "../../models/models.js";
 
@@ -29,11 +29,11 @@ export interface FilesOperations {
   create: (
     file: CreateFileRequest,
     options?: FilesCreateOptionalParams,
-  ) => Promise<OpenAIFile>;
+  ) => Promise<OpenAiFile>;
   retrieve: (
     fileId: string,
     options?: FilesRetrieveOptionalParams,
-  ) => Promise<OpenAIFile>;
+  ) => Promise<OpenAiFile>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")

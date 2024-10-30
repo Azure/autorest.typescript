@@ -11,7 +11,7 @@ export {
   EncryptionKeyDetails,
   DataProductNetworkAcls,
   VirtualNetworkRule,
-  IPRules,
+  IpRules,
   KnownDefaultAction,
   DefaultAction,
   ManagedResourceGroupConfiguration,

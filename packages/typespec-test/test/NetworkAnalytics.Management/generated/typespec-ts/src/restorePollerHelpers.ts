@@ -11,7 +11,7 @@ import {
 import {
   _createDeserialize as _createDeserializeDataProducts,
   _updateDeserialize as _updateDeserializeDataProducts,
-  _$deleteDeserialize as _$deleteDeserializeDataProducts,
+  _$deleteDeserialize as _deleteDeserializeDataProducts,
 } from "./api/dataProducts/index.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
@@ -117,7 +117,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
     {
-      deserializer: _$deleteDeserializeDataProducts,
+      deserializer: _deleteDeserializeDataProducts,
       expectedStatuses: ["202", "204", "200"],
     },
 };

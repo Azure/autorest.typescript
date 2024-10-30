@@ -306,29 +306,29 @@ export interface CreateModerationResponse {
         flagged: boolean;
         categories: {
             hate: boolean;
-            "hate/threatening": boolean;
+            hateThreatening: boolean;
             harassment: boolean;
-            "harassment/threatening": boolean;
+            harassmentThreatening: boolean;
             selfHarm: boolean;
-            "selfHarm/intent": boolean;
-            "selfHarm/instructive": boolean;
+            selfHarmIntent: boolean;
+            selfHarmInstructive: boolean;
             sexual: boolean;
-            "sexual/minors": boolean;
+            sexualMinors: boolean;
             violence: boolean;
-            "violence/graphic": boolean;
+            violenceGraphic: boolean;
         };
         categoryScores: {
             hate: number;
-            "hate/threatening": number;
+            hateThreatening: number;
             harassment: number;
-            "harassment/threatening": number;
+            harassmentThreatening: number;
             selfHarm: number;
-            "selfHarm/intent": number;
-            "selfHarm/instructive": number;
+            selfHarmIntent: number;
+            selfHarmInstructive: number;
             sexual: number;
-            "sexual/minors": number;
+            sexualMinors: number;
             violence: number;
-            "violence/graphic": number;
+            violenceGraphic: number;
         };
     }[];
 }
@@ -450,14 +450,14 @@ export interface FilesListOptionalParams extends OperationOptions {
 // @public
 export interface FilesOperations {
     // (undocumented)
-    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAiFile>;
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
     // (undocumented)
     list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
     // (undocumented)
-    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAiFile>;
 }
 
 // @public
@@ -482,11 +482,11 @@ export interface FineTune {
     model: string;
     object: "fine-tune";
     organizationId: string;
-    resultFiles: OpenAIFile[];
+    resultFiles: OpenAiFile[];
     status: "created" | "running" | "succeeded" | "failed" | "cancelled";
-    trainingFiles: OpenAIFile[];
+    trainingFiles: OpenAiFile[];
     updatedAt: Date;
-    validationFiles: OpenAIFile[];
+    validationFiles: OpenAiFile[];
 }
 
 // @public
@@ -660,7 +660,7 @@ export interface ImagesResponse {
 // @public
 export interface ListFilesResponse {
     // (undocumented)
-    data: OpenAIFile[];
+    data: OpenAiFile[];
     // (undocumented)
     object: string;
 }
@@ -768,7 +768,7 @@ export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface OpenAIFile {
+export interface OpenAiFile {
     bytes: number;
     createdAt: Date;
     filename: string;

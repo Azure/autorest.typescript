@@ -1373,9 +1373,9 @@ export interface PassFailCriteriaOutput {
 
 // @public
 export interface PassFailMetric {
-    action?: PFAction;
-    aggregate?: PFAgFunc;
-    clientMetric?: PFMetrics;
+    action?: PfAction;
+    aggregate?: PfAgFunc;
+    clientMetric?: PfMetrics;
     condition?: string;
     requestName?: string;
     value?: number;
@@ -1383,45 +1383,45 @@ export interface PassFailMetric {
 
 // @public
 export interface PassFailMetricOutput {
-    action?: PFActionOutput;
+    action?: PfActionOutput;
     readonly actualValue?: number;
-    aggregate?: PFAgFuncOutput;
-    clientMetric?: PFMetricsOutput;
+    aggregate?: PfAgFuncOutput;
+    clientMetric?: PfMetricsOutput;
     condition?: string;
     requestName?: string;
-    readonly result?: PFResultOutput;
+    readonly result?: PfResultOutput;
     value?: number;
 }
 
 // @public
-export type PFAction = "continue" | "stop";
+export type PfAction = "continue" | "stop";
 
 // @public
-export type PFActionOutput = "continue" | "stop";
+export type PfActionOutput = "continue" | "stop";
 
 // @public
-export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
+export type PfAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
 // @public
-export type PFAgFuncOutput = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
+export type PfAgFuncOutput = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
 // @public
-export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type PfMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
 // @public
-export type PFMetricsOutput = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
+export type PfMetricsOutput = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
 // @public
-export type PFResult = "passed" | "undetermined" | "failed";
+export type PfResult = "passed" | "undetermined" | "failed";
 
 // @public
-export type PFResultOutput = "passed" | "undetermined" | "failed";
+export type PfResultOutput = "passed" | "undetermined" | "failed";
 
 // @public
-export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type PfTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
-export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+export type PfTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface ResourceMetric {
@@ -1665,7 +1665,7 @@ export interface TestRunOutput {
     readonly subnetId?: string;
     readonly testArtifacts?: TestRunArtifactsOutput;
     testId?: string;
-    readonly testResult?: PFTestResultOutput;
+    readonly testResult?: PfTestResultOutput;
     readonly testRunId: string;
     readonly testRunStatistics?: Record<string, TestRunStatisticsOutput>;
     readonly virtualUsers?: number;

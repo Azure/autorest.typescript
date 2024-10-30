@@ -66,7 +66,7 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
    */
-  $filter?: string;
+  filter?: string;
 }
 
 /** Optional parameters. */
@@ -100,11 +100,11 @@ export interface ListPoolsOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -211,9 +211,9 @@ export interface GetPoolOptionalParams extends OperationOptions {
    */
   ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -452,7 +452,7 @@ export interface ListSupportedImagesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
-  $filter?: string;
+  filter?: string;
 }
 
 /** Optional parameters. */
@@ -473,7 +473,7 @@ export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
-  $filter?: string;
+  filter?: string;
 }
 
 /** Optional parameters. */
@@ -545,9 +545,9 @@ export interface GetJobOptionalParams extends OperationOptions {
    */
   ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -766,11 +766,11 @@ export interface ListJobsOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -791,11 +791,11 @@ export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -815,9 +815,9 @@ export interface ListJobPreparationAndReleaseTaskStatusOptionalParams
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -862,9 +862,9 @@ export interface ListCertificatesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-certificates.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -900,7 +900,7 @@ export interface GetCertificateOptionalParams extends OperationOptions {
    */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1007,9 +1007,9 @@ export interface GetJobScheduleOptionalParams extends OperationOptions {
    */
   ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -1222,11 +1222,11 @@ export interface ListJobSchedulesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -1260,11 +1260,11 @@ export interface ListTasksOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -1349,9 +1349,9 @@ export interface GetTaskOptionalParams extends OperationOptions {
    */
   ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
   /** An OData $expand clause. */
-  $expand?: string[];
+  expand?: string[];
 }
 
 /** Optional parameters. */
@@ -1401,7 +1401,7 @@ export interface ListSubTasksOptionalParams extends OperationOptions {
    */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1561,7 +1561,7 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
    */
-  $filter?: string;
+  filter?: string;
   /**
    * Whether to list children of the Task directory. This parameter can be used in
    * combination with the filter parameter to list specific type of files.
@@ -1616,7 +1616,7 @@ export interface GetNodeOptionalParams extends OperationOptions {
    */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1730,9 +1730,9 @@ export interface ListNodesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
    */
-  $filter?: string;
+  filter?: string;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1745,7 +1745,7 @@ export interface GetNodeExtensionOptionalParams extends OperationOptions {
    */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1761,7 +1761,7 @@ export interface ListNodeExtensionsOptionalParams extends OperationOptions {
    */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  $select?: string[];
+  select?: string[];
 }
 
 /** Optional parameters. */
@@ -1851,7 +1851,7 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
    */
-  $filter?: string;
+  filter?: string;
   /** Whether to list children of a directory. */
   recursive?: boolean;
 }

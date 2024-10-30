@@ -39,7 +39,7 @@ export interface AzureChatExtensionsMessageContextOutput {
 export type AzureChatExtensionType = "AzureCognitiveSearch";
 
 // @public
-export type AzureOpenAIOperationStateOutput = "notRunning" | "running" | "succeeded" | "canceled" | "failed";
+export type AzureOpenAiOperationStateOutput = "notRunning" | "running" | "succeeded" | "canceled" | "failed";
 
 // @public
 export interface BatchImageGenerationOperationResponseOutput {
@@ -48,7 +48,7 @@ export interface BatchImageGenerationOperationResponseOutput {
     expires?: number;
     id: string;
     result?: ImageGenerationsOutput;
-    status: AzureOpenAIOperationStateOutput;
+    status: AzureOpenAiOperationStateOutput;
 }
 
 // @public (undocumented)
@@ -237,7 +237,7 @@ export interface ContentFilterResultsOutput {
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: OpenAIClientOptions): OpenAIClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: OpenAiClientOptions): OpenAiClient;
 export default createClient;
 
 // @public
@@ -524,12 +524,12 @@ export function isUnexpected(response: GetAzureBatchImageGenerationOperationStat
 export function isUnexpected(response: BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse): response is BeginAzureBatchImageGenerationDefaultResponse;
 
 // @public (undocumented)
-export type OpenAIClient = Client & {
+export type OpenAiClient = Client & {
     path: Routes;
 };
 
 // @public
-export interface OpenAIClientOptions extends ClientOptions {
+export interface OpenAiClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 

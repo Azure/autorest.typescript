@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { OpenAIClient } from "./openAIClient.js";
+export { OpenAIClient } from "./openAiClient.js";
 export {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
@@ -82,9 +82,9 @@ export {
   OnYourDataModelIdVectorizationSource,
   AzureMachineLearningIndexChatExtensionConfiguration,
   AzureMachineLearningIndexChatExtensionParameters,
-  AzureCosmosDBChatExtensionConfiguration,
-  AzureCosmosDBChatExtensionParameters,
-  AzureCosmosDBFieldMappingOptions,
+  AzureCosmosDbChatExtensionConfiguration,
+  AzureCosmosDbChatExtensionParameters,
+  AzureCosmosDbFieldMappingOptions,
   ElasticsearchChatExtensionConfiguration,
   ElasticsearchChatExtensionParameters,
   ElasticsearchIndexFieldMappingOptions,
@@ -94,7 +94,7 @@ export {
   PineconeFieldMappingOptions,
   AzureChatEnhancementConfiguration,
   AzureChatGroundingEnhancementConfiguration,
-  AzureChatOCREnhancementConfiguration,
+  AzureChatOcrEnhancementConfiguration,
   ChatCompletionsResponseFormat,
   ChatCompletionsResponseFormatUnion,
   ChatCompletionsTextResponseFormat,

@@ -10,8 +10,8 @@ import {
   FilesRetrieveOptionalParams,
 } from "../index.js";
 import {
-  OpenAIFile,
-  openAIFileDeserializer,
+  OpenAiFile,
+  openAiFileDeserializer,
   ListFilesResponse,
   listFilesResponseDeserializer,
   CreateFileRequest,
@@ -70,20 +70,20 @@ export function _createSend(
 
 export async function _createDeserialize(
   result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+): Promise<OpenAiFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return openAIFileDeserializer(result.body);
+  return openAiFileDeserializer(result.body);
 }
 
 export async function create(
   context: Client,
   file: CreateFileRequest,
   options: FilesCreateOptionalParams = { requestOptions: {} },
-): Promise<OpenAIFile> {
+): Promise<OpenAiFile> {
   const result = await _createSend(context, file, options);
   return _createDeserialize(result);
 }
@@ -100,20 +100,20 @@ export function _retrieveSend(
 
 export async function _retrieveDeserialize(
   result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+): Promise<OpenAiFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return openAIFileDeserializer(result.body);
+  return openAiFileDeserializer(result.body);
 }
 
 export async function retrieve(
   context: Client,
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
-): Promise<OpenAIFile> {
+): Promise<OpenAiFile> {
   const result = await _retrieveSend(context, fileId, options);
   return _retrieveDeserialize(result);
 }

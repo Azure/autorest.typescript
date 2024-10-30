@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/openAIContext.js";
+import { OpenAIContext } from "../../api/openAiContext.js";
 import { create } from "../../api/embeddings/index.js";
 import { EmbeddingsCreateOptionalParams } from "../../api/options.js";
 import {
