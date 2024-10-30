@@ -23,9 +23,10 @@ export function createChatCompletions(
   options: ChatCompletionsClientOptionalParams = {},
 ): ChatCompletionsContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-ai-inference/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
