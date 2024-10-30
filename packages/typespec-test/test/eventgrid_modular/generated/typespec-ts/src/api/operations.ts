@@ -45,8 +45,9 @@ export function _publishCloudEventSend(
   event: { event: CloudEvent },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/topics/{topicName}:publish{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate(
+    "/topics/{topicName}:publish{?api-version}",
+  ).expand({
     topicName: topicName,
   });
   return context
@@ -93,8 +94,9 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/topics/{topicName}:publish{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate(
+    "/topics/{topicName}:publish{?api-version}",
+  ).expand({
     topicName: topicName,
   });
   return context
@@ -141,10 +143,9 @@ export function _receiveCloudEventsSend(
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     topicName: topicName,
     eventSubscriptionName: eventSubscriptionName,
     maxEvents: options?.maxEvents,
@@ -189,10 +190,9 @@ export function _acknowledgeCloudEventsSend(
   lockTokens: AcknowledgeOptions,
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     topicName: topicName,
     eventSubscriptionName: eventSubscriptionName,
   });
@@ -242,10 +242,9 @@ export function _releaseCloudEventsSend(
   lockTokens: ReleaseOptions,
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     topicName: topicName,
     eventSubscriptionName: eventSubscriptionName,
   });
@@ -295,10 +294,9 @@ export function _rejectCloudEventsSend(
   lockTokens: RejectOptions,
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     topicName: topicName,
     eventSubscriptionName: eventSubscriptionName,
   });

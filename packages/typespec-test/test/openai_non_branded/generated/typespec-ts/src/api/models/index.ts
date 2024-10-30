@@ -26,9 +26,8 @@ export function _listSend(
   context: Client,
   options: ModelsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/models";
   return context
-    .path(path)
+    .path("/models")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -56,8 +55,7 @@ export function _retrieveSend(
   model: string,
   options: ModelsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/models/{model}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/models/{model}").expand({
     model: model,
   });
   return context
@@ -90,8 +88,7 @@ export function _$deleteSend(
   model: string,
   options: ModelsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/models/{model}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/models/{model}").expand({
     model: model,
   });
   return context

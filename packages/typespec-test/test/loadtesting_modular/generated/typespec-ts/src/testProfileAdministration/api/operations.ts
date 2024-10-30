@@ -33,10 +33,9 @@ export function _createOrUpdateTestProfileSend(
   body: TestProfile,
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileId: testProfileId,
   });
   return context
@@ -81,10 +80,9 @@ export function _deleteTestProfileSend(
   testProfileId: string,
   options: DeleteTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileId: testProfileId,
   });
   return context
@@ -118,10 +116,9 @@ export function _getTestProfileSend(
   testProfileId: string,
   options: GetTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileId: testProfileId,
   });
   return context
@@ -154,10 +151,9 @@ export function _listTestProfilesSend(
   context: Client,
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profiles{?api-version,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     maxpagesize: options?.maxpagesize,
     lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
     lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),

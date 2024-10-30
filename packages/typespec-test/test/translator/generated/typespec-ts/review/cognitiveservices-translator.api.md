@@ -97,9 +97,6 @@ export interface BreakSentenceQueryParamProperties {
     script?: string;
 }
 
-// @public (undocumented)
-export function buildMultiCollection(items: string[], parameterName: string): string;
-
 // @public
 export interface CommonScriptModelOutput {
     code: string;
@@ -591,7 +588,7 @@ export interface TranslateQueryParamProperties {
     profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
     textType?: TextTypes;
-    to: string;
+    to: string[];
     toScript?: string;
 }
 

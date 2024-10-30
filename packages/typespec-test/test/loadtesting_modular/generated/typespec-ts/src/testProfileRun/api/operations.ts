@@ -34,10 +34,9 @@ export function _createOrUpdateTestProfileRunSend(
   body: TestProfileRun,
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profile-runs/{testProfileRunId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileRunId: testProfileRunId,
   });
   return context
@@ -82,10 +81,9 @@ export function _deleteTestProfileRunSend(
   testProfileRunId: string,
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profile-runs/{testProfileRunId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileRunId: testProfileRunId,
   });
   return context
@@ -123,10 +121,9 @@ export function _getTestProfileRunSend(
   testProfileRunId: string,
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profile-runs/{testProfileRunId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileRunId: testProfileRunId,
   });
   return context
@@ -163,10 +160,9 @@ export function _listTestProfileRunsSend(
   context: Client,
   options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profile-runs{?api-version,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     maxpagesize: options?.maxpagesize,
     minStartDateTime: options?.minStartDateTime?.toISOString(),
     maxStartDateTime: options?.maxStartDateTime?.toISOString(),
@@ -213,10 +209,9 @@ export function _stopTestProfileRunSend(
   testProfileRunId: string,
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-profile-runs/{testProfileRunId}:stop{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testProfileRunId: testProfileRunId,
   });
   return context

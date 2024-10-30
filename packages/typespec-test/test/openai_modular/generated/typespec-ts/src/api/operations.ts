@@ -57,10 +57,9 @@ export function _getAudioTranscriptionAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -112,10 +111,9 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -167,10 +165,9 @@ export function _getAudioTranslationAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/audio/translations{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -219,10 +216,9 @@ export function _getAudioTranslationAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/audio/translations{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -269,10 +265,9 @@ export function _getCompletionsSend(
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/completions{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -320,10 +315,9 @@ export function _getChatCompletionsSend(
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/chat/completions{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -371,10 +365,9 @@ export function _getImageGenerationsSend(
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/images/generations{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -418,10 +411,9 @@ export function _generateSpeechFromTextSend(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/audio/speech{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context
@@ -465,10 +457,9 @@ export function _getEmbeddingsSend(
   body: EmbeddingsOptions,
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/deployments/{deploymentId}/embeddings{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     deploymentId: deploymentId,
   });
   return context

@@ -56,9 +56,8 @@ export function _analyzeTextSend(
   body: AnalyzeTextOptions,
   options: AnalyzeTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/text:analyze";
   return context
-    .path(path)
+    .path("/text:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: analyzeTextOptionsSerializer(body),
@@ -91,9 +90,8 @@ export function _analyzeImageSend(
   body: AnalyzeImageOptions,
   options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/image:analyze";
   return context
-    .path(path)
+    .path("/image:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: analyzeImageOptionsSerializer(body),
@@ -126,10 +124,9 @@ export function _getTextBlocklistSend(
   blocklistName: string,
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
   });
   return context
@@ -164,10 +161,9 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
   });
   return context
@@ -212,10 +208,9 @@ export function _deleteTextBlocklistSend(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
   });
   return context
@@ -252,9 +247,8 @@ export function _listTextBlocklistsSend(
   context: Client,
   options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/text/blocklists";
   return context
-    .path(path)
+    .path("/text/blocklists")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -289,10 +283,9 @@ export function _addOrUpdateBlockItemsSend(
   body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}:addOrUpdateBlockItems{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
   });
   return context
@@ -336,10 +329,9 @@ export function _removeBlockItemsSend(
   body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}:removeBlockItems{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
   });
   return context
@@ -383,10 +375,9 @@ export function _getTextBlocklistItemSend(
   blockItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}/blockItems/{blockItemId}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
     blockItemId: blockItemId,
   });
@@ -427,10 +418,9 @@ export function _listTextBlocklistItemsSend(
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/text/blocklists/{blocklistName}/blockItems{?api-version,top,skip,maxpagesize}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     blocklistName: blocklistName,
     top: options?.top,
     skip: options?.skip,

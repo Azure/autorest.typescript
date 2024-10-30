@@ -23,9 +23,8 @@ export function _createSend(
   embedding: CreateEmbeddingRequest,
   options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/embeddings";
   return context
-    .path(path)
+    .path("/embeddings")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createEmbeddingRequestSerializer(embedding),

@@ -61,10 +61,9 @@ export function _createOrUpdateTestRunSend(
   body: TestRun,
   options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}{?api-version,oldTestRunId}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
     oldTestRunId: options?.oldTestRunId,
   });
@@ -111,10 +110,9 @@ export function _createOrUpdateAppComponentsSend(
   body: TestRunAppComponents,
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/app-components{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
   });
   return context
@@ -162,10 +160,9 @@ export function _createOrUpdateServerMetricsConfigSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/server-metrics-config{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
   });
   return context
@@ -212,8 +209,7 @@ export function _deleteTestRunSend(
   testRunId: string,
   options: DeleteTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/test-runs/{testRunId}{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/test-runs/{testRunId}{?api-version}").expand({
     testRunId: testRunId,
   });
   return context
@@ -247,10 +243,9 @@ export function _getAppComponentsSend(
   testRunId: string,
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/app-components{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
   });
   return context
@@ -287,10 +282,9 @@ export function _getServerMetricsConfigSend(
   testRunId: string,
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/server-metrics-config{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
   });
   return context
@@ -324,8 +318,7 @@ export function _getTestRunSend(
   testRunId: string,
   options: GetTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/test-runs/{testRunId}{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/test-runs/{testRunId}{?api-version}").expand({
     testRunId: testRunId,
   });
   return context
@@ -360,10 +353,9 @@ export function _getTestRunFileSend(
   fileName: string,
   options: GetTestRunFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/files/{fileName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
     fileName: fileName,
   });
@@ -408,10 +400,9 @@ export function _listMetricDimensionValuesSend(
   timespan: string,
   options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/metric-dimensions/{name}/values{?api-version,metricname,interval,metricNamespace,timespan}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
     name: name,
     metricname: metricname,
@@ -463,10 +454,9 @@ export function _listMetricDefinitionsSend(
   metricNamespace: string,
   options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/metric-definitions{?api-version,metricNamespace}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
     metricNamespace: metricNamespace,
   });
@@ -507,10 +497,9 @@ export function _listMetricNamespacesSend(
   testRunId: string,
   options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/metric-namespaces{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
   });
   return context
@@ -547,10 +536,9 @@ export function _listMetricsSend(
   timespan: string,
   options: ListMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs/{testRunId}/metrics{?api-version,aggregation,metricname,interval,metricNamespace,timespan}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testRunId: testRunId,
     aggregation: options?.aggregation,
     metricname: metricname,
@@ -609,10 +597,9 @@ export function _listTestRunsSend(
   context: Client,
   options: ListTestRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/test-runs{?api-version,orderby,search,testId,executionFrom,executionTo,status,maxpagesize}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     orderby: options?.orderby,
     search: options?.search,
     testId: options?.testId,
@@ -656,8 +643,9 @@ export function _stopTestRunSend(
   testRunId: string,
   options: StopTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/test-runs/{testRunId}:stop{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate(
+    "/test-runs/{testRunId}:stop{?api-version}",
+  ).expand({
     testRunId: testRunId,
   });
   return context

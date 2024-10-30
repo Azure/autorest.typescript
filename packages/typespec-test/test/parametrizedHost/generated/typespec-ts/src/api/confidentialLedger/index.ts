@@ -22,9 +22,8 @@ export function _listCollectionsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = "/app/collections";
   return context
-    .path(path)
+    .path("/app/collections")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

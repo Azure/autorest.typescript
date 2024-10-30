@@ -22,9 +22,8 @@ export function _createSend(
   edit: CreateEditRequest,
   options: EditsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/edits";
   return context
-    .path(path)
+    .path("/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createEditRequestSerializer(edit),

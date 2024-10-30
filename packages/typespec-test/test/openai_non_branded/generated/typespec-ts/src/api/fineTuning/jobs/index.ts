@@ -31,9 +31,8 @@ export function _createSend(
   job: CreateFineTuningJobRequest,
   options: FineTuningJobsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/fine_tuning/jobs";
   return context
-    .path(path)
+    .path("/fine_tuning/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createFineTuningJobRequestSerializer(job),
@@ -72,8 +71,7 @@ export function _listSend(
   context: Client,
   options: FineTuningJobsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/fine_tuning/jobs{?after,limit}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/fine_tuning/jobs{?after,limit}").expand({
     after: options?.after,
     limit: options?.limit,
   });
@@ -106,8 +104,7 @@ export function _retrieveSend(
   fineTuningJobId: string,
   options: FineTuningJobsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/fine_tuning/jobs/{fine_tuning_job_id}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/fine_tuning/jobs/{fine_tuning_job_id}").expand({
     fineTuningJobId: fineTuningJobId,
   });
   return context
@@ -140,10 +137,9 @@ export function _listEventsSend(
   fineTuningJobId: string,
   options: FineTuningJobsListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/events{?after,limit}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     fineTuningJobId: fineTuningJobId,
     after: options?.after,
     limit: options?.limit,
@@ -178,10 +174,9 @@ export function _cancelSend(
   fineTuningJobId: string,
   options: FineTuningJobsCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
-  );
-  const path = pathParser.expand({
+  ).expand({
     fineTuningJobId: fineTuningJobId,
   });
   return context

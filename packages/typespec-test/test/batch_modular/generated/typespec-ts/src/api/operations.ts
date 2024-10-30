@@ -200,10 +200,9 @@ export function _listApplicationsSend(
   context: Client,
   options: ListApplicationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/applications{?api-version,maxresults,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -249,10 +248,9 @@ export function _getApplicationSend(
   applicationId: string,
   options: GetApplicationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/applications/{applicationId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     applicationId: applicationId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -293,10 +291,9 @@ export function _listPoolUsageMetricsSend(
   context: Client,
   options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/poolusagemetrics{?api-version,maxresults,timeOut,starttime,endtime,$filter}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -346,8 +343,7 @@ export function _createPoolSend(
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/pools{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/pools{?api-version,timeOut}").expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
   });
@@ -391,10 +387,9 @@ export function _listPoolsSend(
   context: Client,
   options: ListPoolsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools{?api-version,maxresults,timeOut,$filter,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -445,8 +440,7 @@ export function _deletePoolSend(
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/pools/{poolId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/pools/{poolId}{?api-version,timeOut}").expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -519,8 +513,7 @@ export function _poolExistsSend(
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/pools/{poolId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/pools/{poolId}{?api-version,timeOut}").expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -580,10 +573,9 @@ export function _getPoolSend(
   poolId: string,
   options: GetPoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}{?api-version,timeOut,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -654,8 +646,7 @@ export function _updatePoolSend(
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/pools/{poolId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/pools/{poolId}{?api-version,timeOut}").expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -724,10 +715,9 @@ export function _disablePoolAutoScaleSend(
   poolId: string,
   options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/disableautoscale{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -764,10 +754,9 @@ export function _enablePoolAutoScaleSend(
   body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/enableautoscale{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -840,10 +829,9 @@ export function _evaluatePoolAutoScaleSend(
   body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/evaluateautoscale{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -896,10 +884,9 @@ export function _resizePoolSend(
   body: BatchPoolResizeOptions,
   options: ResizePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/resize{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -972,10 +959,9 @@ export function _stopPoolResizeSend(
   poolId: string,
   options: StopPoolResizeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/stopresize{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1044,10 +1030,9 @@ export function _replacePoolPropertiesSend(
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/updateproperties{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1100,10 +1085,9 @@ export function _removeNodesSend(
   body: NodeRemoveOptions,
   options: RemoveNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/removenodes{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1171,10 +1155,9 @@ export function _listSupportedImagesSend(
   context: Client,
   options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/supportedimages{?maxresults,timeOut,$filter}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
     $filter: options?.$filter,
@@ -1213,10 +1196,9 @@ export function _listPoolNodeCountsSend(
   context: Client,
   options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/nodecounts{?api-version,maxresults,timeOut,$filter}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -1261,8 +1243,7 @@ export function _deleteJobSend(
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobs/{jobId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/jobs/{jobId}{?api-version,timeOut}").expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1331,10 +1312,9 @@ export function _getJobSend(
   jobId: string,
   options: GetJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}{?api-version,timeOut,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1405,8 +1385,7 @@ export function _updateJobSend(
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobs/{jobId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/jobs/{jobId}{?api-version,timeOut}").expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1476,8 +1455,7 @@ export function _replaceJobSend(
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobs/{jobId}{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/jobs/{jobId}{?api-version,timeOut}").expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1547,10 +1525,9 @@ export function _disableJobSend(
   body: BatchJobDisableOptions,
   options: DisableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/disable{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1624,10 +1601,9 @@ export function _enableJobSend(
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/enable{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1694,10 +1670,9 @@ export function _terminateJobSend(
   jobId: string,
   options: TerminateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/terminate{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -1770,8 +1745,7 @@ export function _createJobSend(
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobs{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/jobs{?api-version,timeOut}").expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
   });
@@ -1821,10 +1795,9 @@ export function _listJobsSend(
   context: Client,
   options: ListJobsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -1875,10 +1848,9 @@ export function _listJobsFromScheduleSend(
   jobScheduleId: string,
   options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
@@ -1933,10 +1905,9 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,$filter,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -1994,10 +1965,9 @@ export function _getJobTaskCountsSend(
   jobId: string,
   options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/taskcounts{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2038,8 +2008,7 @@ export function _createCertificateSend(
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/certificates{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/certificates{?api-version,timeOut}").expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
   });
@@ -2079,10 +2048,9 @@ export function _listCertificatesSend(
   context: Client,
   options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/certificates{?api-version,maxresults,timeOut,$filter,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -2129,10 +2097,9 @@ export function _cancelCertificateDeletionSend(
   thumbprint: string,
   options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     thumbprintAlgorithm: thumbprintAlgorithm,
     thumbprint: thumbprint,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -2184,10 +2151,9 @@ export function _deleteCertificateSend(
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     thumbprintAlgorithm: thumbprintAlgorithm,
     thumbprint: thumbprint,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -2241,10 +2207,9 @@ export function _getCertificateSend(
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     thumbprintAlgorithm: thumbprintAlgorithm,
     thumbprint: thumbprint,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -2292,10 +2257,9 @@ export function _jobScheduleExistsSend(
   jobScheduleId: string,
   options: JobScheduleExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2355,10 +2319,9 @@ export function _deleteJobScheduleSend(
   jobScheduleId: string,
   options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2424,10 +2387,9 @@ export function _getJobScheduleSend(
   jobScheduleId: string,
   options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}{?api-version,timeOut,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2498,10 +2460,9 @@ export function _updateJobScheduleSend(
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2578,10 +2539,9 @@ export function _replaceJobScheduleSend(
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2657,10 +2617,9 @@ export function _disableJobScheduleSend(
   jobScheduleId: string,
   options: DisableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}/disable{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2720,10 +2679,9 @@ export function _enableJobScheduleSend(
   jobScheduleId: string,
   options: EnableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}/enable{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2783,10 +2741,9 @@ export function _terminateJobScheduleSend(
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules/{jobScheduleId}/terminate{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobScheduleId: jobScheduleId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2850,8 +2807,7 @@ export function _createJobScheduleSend(
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobschedules{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/jobschedules{?api-version,timeOut}").expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
   });
@@ -2891,10 +2847,9 @@ export function _listJobSchedulesSend(
   context: Client,
   options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobschedules{?api-version,maxresults,timeOut,$filter,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
     timeOut: options?.timeOutInSeconds,
@@ -2946,8 +2901,9 @@ export function _createTaskSend(
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/jobs/{jobId}/tasks{?api-version,timeOut}");
-  const path = pathParser.expand({
+  const path = parseTemplate(
+    "/jobs/{jobId}/tasks{?api-version,timeOut}",
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -2994,10 +2950,9 @@ export function _listTasksSend(
   jobId: string,
   options: ListTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks{?api-version,maxresults,timeOut,$filter,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
@@ -3055,10 +3010,9 @@ export function _createTaskCollectionSend(
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/addtaskcollection{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     timeOut: options?.timeOutInSeconds,
@@ -3122,10 +3076,9 @@ export function _deleteTaskSend(
   taskId: string,
   options: DeleteTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3194,10 +3147,9 @@ export function _getTaskSend(
   taskId: string,
   options: GetTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut,$select,$expand}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3275,10 +3227,9 @@ export function _replaceTaskSend(
   body: BatchTask,
   options: ReplaceTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3346,10 +3297,9 @@ export function _listSubTasksSend(
   taskId: string,
   options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/subtasksinfo{?api-version,timeOut,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3393,10 +3343,9 @@ export function _terminateTaskSend(
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/terminate{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3463,10 +3412,9 @@ export function _reactivateTaskSend(
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/reactivate{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3538,10 +3486,9 @@ export function _deleteTaskFileSend(
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut,recursive}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     filePath: filePath,
@@ -3590,10 +3537,9 @@ export function _getTaskFileSend(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     filePath: filePath,
@@ -3662,10 +3608,9 @@ export function _getTaskFilePropertiesSend(
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     filePath: filePath,
@@ -3730,10 +3675,9 @@ export function _listTaskFilesSend(
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/jobs/{jobId}/tasks/{taskId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     jobId: jobId,
     taskId: taskId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3781,10 +3725,9 @@ export function _createNodeUserSend(
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/users{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -3840,10 +3783,9 @@ export function _deleteNodeUserSend(
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     userName: userName,
@@ -3895,10 +3837,9 @@ export function _replaceNodeUserSend(
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     userName: userName,
@@ -3958,10 +3899,9 @@ export function _getNodeSend(
   nodeId: string,
   options: GetNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}{?api-version,timeOut,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4005,10 +3945,9 @@ export function _rebootNodeSend(
   nodeId: string,
   options: RebootNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/reboot{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4055,10 +3994,9 @@ export function _reimageNodeSend(
   nodeId: string,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/reimage{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4109,10 +4047,9 @@ export function _disableNodeSchedulingSend(
   nodeId: string,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/disablescheduling{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4167,10 +4104,9 @@ export function _enableNodeSchedulingSend(
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/enablescheduling{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4217,10 +4153,9 @@ export function _getNodeRemoteLoginSettingsSend(
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/remoteloginsettings{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4270,10 +4205,9 @@ export function _getNodeRemoteDesktopFileSend(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/rdp{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4325,10 +4259,9 @@ export function _uploadNodeLogsSend(
   body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
@@ -4384,10 +4317,9 @@ export function _listNodesSend(
   poolId: string,
   options: ListNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes{?api-version,maxresults,timeOut,$filter,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",
     maxresults: options?.maxresults,
@@ -4437,10 +4369,9 @@ export function _getNodeExtensionSend(
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}{?api-version,timeOut,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     extensionName: extensionName,
@@ -4492,10 +4423,9 @@ export function _listNodeExtensionsSend(
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/extensions{?maxresults,timeOut,$select}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     maxresults: options?.maxresults,
@@ -4545,10 +4475,9 @@ export function _deleteNodeFileSend(
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut,recursive}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     filePath: filePath,
@@ -4597,10 +4526,9 @@ export function _getNodeFileSend(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     filePath: filePath,
@@ -4671,10 +4599,9 @@ export function _getNodeFilePropertiesSend(
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     filePath: filePath,
@@ -4739,10 +4666,9 @@ export function _listNodeFilesSend(
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/pools/{poolId}/nodes/{nodeId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     poolId: poolId,
     nodeId: nodeId,
     "api-version": options?.apiVersion ?? "2023-05-01.17.0",

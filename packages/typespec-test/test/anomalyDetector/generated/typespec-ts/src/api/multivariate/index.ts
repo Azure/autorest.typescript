@@ -46,8 +46,7 @@ export function _getMultivariateBatchDetectionResultSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/multivariate/detect-batch/{resultId}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/multivariate/detect-batch/{resultId}").expand({
     resultId: resultId,
   });
   return context
@@ -92,9 +91,8 @@ export function _trainMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = "/multivariate/models";
   return context
-    .path(path)
+    .path("/multivariate/models")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: multivariateModelInfoSerializer(modelInfo),
@@ -138,8 +136,7 @@ export function _listMultivariateModelsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/multivariate/models{?skip,top}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/multivariate/models{?skip,top}").expand({
     skip: options?.skip,
     top: options?.top,
   });
@@ -182,8 +179,7 @@ export function _deleteMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/multivariate/models/{modelId}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/multivariate/models/{modelId}").expand({
     modelId: modelId,
   });
   return context
@@ -221,8 +217,7 @@ export function _getMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/multivariate/models/{modelId}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/multivariate/models/{modelId}").expand({
     modelId: modelId,
   });
   return context
@@ -264,10 +259,9 @@ export function _detectMultivariateBatchAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/multivariate/models/{modelId}:detect-batch",
-  );
-  const path = pathParser.expand({
+  ).expand({
     modelId: modelId,
   });
   return context
@@ -322,10 +316,9 @@ export function _detectMultivariateLastAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/multivariate/models/{modelId}:detect-last",
-  );
-  const path = pathParser.expand({
+  ).expand({
     modelId: modelId,
   });
   return context

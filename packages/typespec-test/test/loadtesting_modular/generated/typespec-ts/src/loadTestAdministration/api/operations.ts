@@ -51,8 +51,7 @@ export function _createOrUpdateTestSend(
   body: Test,
   options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/tests/{testId}{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
     testId: testId,
   });
   return context
@@ -93,10 +92,9 @@ export function _createOrUpdateAppComponentsSend(
   body: TestAppComponents,
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/app-components{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
   });
   return context
@@ -144,10 +142,9 @@ export function _createOrUpdateServerMetricsConfigSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/server-metrics-config{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
   });
   return context
@@ -194,10 +191,9 @@ export function _getAppComponentsSend(
   testId: string,
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/app-components{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
   });
   return context
@@ -231,10 +227,9 @@ export function _getServerMetricsConfigSend(
   testId: string,
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/server-metrics-config{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
   });
   return context
@@ -268,8 +263,7 @@ export function _getTestSend(
   testId: string,
   options: GetTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/tests/{testId}{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
     testId: testId,
   });
   return context
@@ -304,10 +298,9 @@ export function _getTestFileSend(
   fileName: string,
   options: GetTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/files/{fileName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
     fileName: fileName,
   });
@@ -343,8 +336,7 @@ export function _listTestFilesSend(
   testId: string,
   options: ListTestFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/tests/{testId}/files{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/tests/{testId}/files{?api-version}").expand({
     testId: testId,
   });
   return context
@@ -382,10 +374,9 @@ export function _listTestsSend(
   context: Client,
   options: ListTestsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests{?api-version,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     orderby: options?.orderby,
     search: options?.search,
     lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
@@ -432,10 +423,9 @@ export function _uploadTestFileSend(
   body: Uint8Array,
   options: UploadTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/files/{fileName}{?api-version,fileType}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
     fileName: fileName,
     fileType: options?.fileType,
@@ -488,10 +478,9 @@ export function _deleteTestFileSend(
   fileName: string,
   options: DeleteTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/tests/{testId}/files/{fileName}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     testId: testId,
     fileName: fileName,
   });
@@ -527,8 +516,7 @@ export function _deleteTestSend(
   testId: string,
   options: DeleteTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/tests/{testId}{?api-version}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
     testId: testId,
   });
   return context

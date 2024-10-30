@@ -22,9 +22,8 @@ export function _createSend(
   body: CreateChatCompletionRequest,
   options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/chat/completions";
   return context
-    .path(path)
+    .path("/chat/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createChatCompletionRequestSerializer(body),

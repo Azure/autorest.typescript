@@ -31,9 +31,8 @@ export function _listSend(
   context: Client,
   options: FilesListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/files";
   return context
-    .path(path)
+    .path("/files")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -61,9 +60,8 @@ export function _createSend(
   file: CreateFileRequest,
   options: FilesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/files";
   return context
-    .path(path)
+    .path("/files")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -96,8 +94,7 @@ export function _retrieveSend(
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/files/files/{file_id}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/files/files/{file_id}").expand({
     fileId: fileId,
   });
   return context
@@ -130,8 +127,7 @@ export function _$deleteSend(
   fileId: string,
   options: FilesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/files/files/{file_id}");
-  const path = pathParser.expand({
+  const path = parseTemplate("/files/files/{file_id}").expand({
     fileId: fileId,
   });
   return context
@@ -169,8 +165,7 @@ export function _downloadSend(
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate("/files/files/{file_id}/content");
-  const path = pathParser.expand({
+  const path = parseTemplate("/files/files/{file_id}/content").expand({
     fileId: fileId,
   });
   return context

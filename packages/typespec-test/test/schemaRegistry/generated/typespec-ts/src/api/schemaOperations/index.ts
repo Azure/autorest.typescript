@@ -38,9 +38,8 @@ export function _listSchemaGroupsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = "/$schemaGroups";
   return context
-    .path(path)
+    .path("/$schemaGroups")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -76,10 +75,9 @@ export function _getSchemaByIdSend(
   id: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/$schemaGroups/$schemas/{id}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     id: id,
   });
   return context
@@ -118,10 +116,9 @@ export function _listSchemaVersionsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}/versions{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     groupName: groupName,
     name: name,
   });
@@ -168,10 +165,9 @@ export function _getSchemaByVersionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     groupName: groupName,
     name: name,
     schemaVersion: schemaVersion,
@@ -224,10 +220,9 @@ export function _getSchemaIdByContentSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     groupName: groupName,
     name: name,
   });
@@ -283,10 +278,9 @@ export function _registerSchemaSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     groupName: groupName,
     name: name,
   });

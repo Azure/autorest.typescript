@@ -15,9 +15,8 @@ export function _op1Send(
   body: Bea,
   options: BECOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/b/e";
   return context
-    .path(path)
+    .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: beaSerializer(body),

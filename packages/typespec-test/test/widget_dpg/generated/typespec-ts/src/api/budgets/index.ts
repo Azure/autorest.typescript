@@ -6,8 +6,8 @@ import {
   WidgetServiceContext as Client,
 } from "../index.js";
 import { User, userSerializer, userDeserializer } from "../../models/models.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -22,10 +22,9 @@ export function _createOrReplaceSend(
   resource: User,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const pathParser = parseTemplate(
+  const path = parseTemplate(
     "/budgets/widgets/createOrReplace/users/{name}{?api-version}",
-  );
-  const path = pathParser.expand({
+  ).expand({
     name: name,
     "api-version": options?.apiVersion ?? "1.0.0",
   });

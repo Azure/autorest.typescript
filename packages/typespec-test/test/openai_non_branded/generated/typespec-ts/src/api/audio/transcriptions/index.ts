@@ -22,9 +22,8 @@ export function _createSend(
   audio: CreateTranscriptionRequest,
   options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/audio/transcriptions";
   return context
-    .path(path)
+    .path("/audio/transcriptions")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",

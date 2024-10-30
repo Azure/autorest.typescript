@@ -15,9 +15,8 @@ export function _op1Send(
   body: Ba,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/b";
   return context
-    .path(path)
+    .path("/b")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: baSerializer(body),

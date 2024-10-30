@@ -23,9 +23,8 @@ export function _createSend(
   body: CreateCompletionRequest,
   options: CompletionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = "/completions";
   return context
-    .path(path)
+    .path("/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: createCompletionRequestSerializer(body),
