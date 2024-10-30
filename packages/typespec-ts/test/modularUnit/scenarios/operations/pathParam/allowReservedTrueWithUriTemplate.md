@@ -29,8 +29,11 @@ export function _templateSend(
   param: string,
   options: TemplateOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/template/{+param}").expand({
+    param: param
+  });
   return context
-    .path("/template/{param}", { value: param, allowReserved: true })
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

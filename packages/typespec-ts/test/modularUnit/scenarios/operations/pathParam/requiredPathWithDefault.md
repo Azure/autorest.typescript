@@ -45,12 +45,12 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/{strDefault}/{numberDefault}").expand({
+    strDefault: options[strDefault] ?? "foobar",
+    numberDefault: options[numberDefault] ?? 1
+  });
   return context
-    .path(
-      "/{strDefault}/{numberDefault}",
-      options[strDefault] ?? "foobar",
-      options[numberDefault] ?? 1
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

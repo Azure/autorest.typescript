@@ -87,12 +87,15 @@ export function _readSend(
   requiredQuery: string,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context.path("/{name}", name).post({
+  const path = __PLACEHOLDER_o15__(
+    "/{name}{?requiredQuery,optionalQuery}"
+  ).expand({
+    name: name,
+    requiredQuery: requiredQuery,
+    optionalQuery: options?.optionalQuery
+  });
+  return context.path(path).post({
     ...operationOptionsToRequestParameters(options),
-    queryParameters: {
-      requiredQuery: requiredQuery,
-      optionalQuery: options?.optionalQuery
-    },
     body: !options["widget"]
       ? options["widget"]
       : bodyParameterSerializer(options["widget"])

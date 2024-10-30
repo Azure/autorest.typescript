@@ -21,21 +21,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _templateSend(
   context: Client,
   param: string,
-  options: TemplateOptionalParams = { requestOptions: {} },
+  options: TemplateOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/template/{+param}").expand({
+    param: param
+  });
   return context
-    .path("/template/{param}", { value: param, allowReserved: true })
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _templateDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -48,7 +51,7 @@ export async function _templateDeserialize(
 export async function template(
   context: Client,
   param: string,
-  options: TemplateOptionalParams = { requestOptions: {} },
+  options: TemplateOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _templateSend(context, param, options);
   return _templateDeserialize(result);

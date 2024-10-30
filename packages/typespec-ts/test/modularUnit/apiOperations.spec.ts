@@ -899,12 +899,12 @@ describe("api operations in Modular", () => {
           apiVersion: string,
           options: TestOptionalParams = { requestOptions: {} },
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/test{?api-version}").expand({
+            "api-version": apiVersion,
+          });
           return context
-            .path("/test")
-            .get({
-              ...operationOptionsToRequestParameters(options),
-              queryParameters: { "api-version": apiVersion },
-            });
+            .path(path)
+            .get({ ...operationOptionsToRequestParameters(options) });
         }
         
         export async function _testDeserialize(

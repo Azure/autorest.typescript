@@ -35,8 +35,7 @@ export function _primitiveSend(
   param: string,
   options: PrimitiveOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  const pathParser = __PLACEHOLDER_o14__("/primitive?fixed=true{&param*}");
-  const path = pathParser.expand({
+  const path = __PLACEHOLDER_o15__("/primitive?fixed=true{&param*}").expand({
     param: param
   });
   return context
@@ -69,8 +68,7 @@ export function _arraySend(
   param: string[],
   options: ArrayOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  const pathParser = __PLACEHOLDER_o14__("/array?fixed=true{&param*}");
-  const path = pathParser.expand({
+  const path = __PLACEHOLDER_o15__("/array?fixed=true{&param*}").expand({
     param: param.map((p: any) => {
       return p;
     })
@@ -105,8 +103,7 @@ export function _recordSend(
   param: Record<string, number>,
   options: RecordOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  const pathParser = __PLACEHOLDER_o14__("/record?fixed=true{&param*}");
-  const path = pathParser.expand({
+  const path = __PLACEHOLDER_o15__("/record?fixed=true{&param*}").expand({
     param: param
   });
   return context

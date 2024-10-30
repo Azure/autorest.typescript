@@ -28,7 +28,6 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { buildMultiCollection } from "../static-helpers/serialization/build-multi-collection.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -40,19 +39,12 @@ export function _optionalSend(
   context: Client,
   options: OptionalOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  const pathParser = __PLACEHOLDER_o14__("/annotation/optional{?select}");
-  const path = pathParser.expand({
-    select:
-      options?.select !== undefined
-        ? buildMultiCollection(
-            !options?.select
-              ? options?.select
-              : options?.select.map((p: any) => {
-                  return p;
-                }),
-            "select"
-          )
-        : undefined
+  const path = __PLACEHOLDER_o15__("/annotation/optional{?select}").expand({
+    select: !options?.select
+      ? options?.select
+      : options?.select.map((p: any) => {
+          return p;
+        })
   });
   return context
     .path(path)
@@ -83,14 +75,10 @@ export function _requiredSend(
   select: string[],
   options: RequiredOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  const pathParser = __PLACEHOLDER_o14__("/annotation/required{?select}");
-  const path = pathParser.expand({
-    select: buildMultiCollection(
-      select.map((p: any) => {
-        return p;
-      }),
-      "select"
-    )
+  const path = __PLACEHOLDER_o15__("/annotation/required{?select}").expand({
+    select: select.map((p: any) => {
+      return p;
+    })
   });
   return context
     .path(path)

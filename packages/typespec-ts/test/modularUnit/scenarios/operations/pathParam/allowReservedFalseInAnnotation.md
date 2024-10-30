@@ -21,21 +21,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _annotationWithFalseSend(
   context: Client,
   param: string,
-  options: AnnotationWithFalseOptionalParams = { requestOptions: {} },
+  options: AnnotationWithFalseOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/annotationWithFalse/{param}").expand({
+    param: param
+  });
   return context
-    .path("/annotationWithFalse/{param}", param)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _annotationWithFalseDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -48,7 +51,7 @@ export async function _annotationWithFalseDeserialize(
 export async function annotationWithFalse(
   context: Client,
   param: string,
-  options: AnnotationWithFalseOptionalParams = { requestOptions: {} },
+  options: AnnotationWithFalseOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _annotationWithFalseSend(context, param, options);
   return _annotationWithFalseDeserialize(result);

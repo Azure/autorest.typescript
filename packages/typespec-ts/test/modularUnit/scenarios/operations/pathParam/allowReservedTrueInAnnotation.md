@@ -29,8 +29,11 @@ export function _annotationSend(
   param: string,
   options: AnnotationOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/annotation/{+param}").expand({
+    param: param
+  });
   return context
-    .path("/annotation/{param}", { value: param, allowReserved: true })
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

@@ -45,7 +45,7 @@ export interface Example {
 
 export function exampleDeserializer(item: any): Example {
   return {
-    id: item["id"],
+    id: item["id"]
   };
 }
 ```
@@ -83,21 +83,22 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
+  const path = __PLACEHOLDER_o15__("/{id}").expand({ id: id });
   return context
-    .path("/{id}", id)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Example> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -110,7 +111,7 @@ export async function _readDeserialize(
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);
@@ -123,7 +124,7 @@ Or you can extract a specific operation using `ts operations function <operation
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);
