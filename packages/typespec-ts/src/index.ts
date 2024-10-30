@@ -385,9 +385,9 @@ export async function $onEmit(context: EmitContext) {
             }
           };
         }
-        let contentPath = [];
+        const contentPath = [];
         for (const subClient of modularCodeModel.clients) {
-          let fullPath = getContentPath(subClient, modularCodeModel);
+          const fullPath = getContentPath(subClient, modularCodeModel);
           const srcIndex = fullPath.indexOf("src");
           const finalPath = fullPath.substring(srcIndex);
           contentPath.push({
