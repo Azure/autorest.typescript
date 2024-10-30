@@ -58,7 +58,9 @@ export function buildPackageFile(
     packageInfo = buildAzureStandalonePackage(extendedConfig);
   }
 
-  packageInfo["//metadata"] = metadata;
+  if (model.options?.moduleKind == "esm") {
+    packageInfo["//metadata"] = metadata;
+  }
 
   const project = new Project();
   const filePath = "package.json";
