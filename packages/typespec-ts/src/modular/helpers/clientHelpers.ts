@@ -208,8 +208,8 @@ export function buildGetClientOptionsParam(
 ): string {
   const userAgentOptions = buildUserAgentOptions(
     context,
-    "azsdk-js-api",
-    codeModel
+    codeModel,
+    "azsdk-js-api"
   );
   const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
   const credentials = buildCredentials(codeModel, endpointParam);
@@ -291,13 +291,13 @@ function buildLoggingOptions(flavor?: PackageFlavor): string | undefined {
 
 export function buildUserAgentOptions(
   context: StatementedNode,
-  sdkUserAgentPrefix: string,
-  codeModel: ModularCodeModel
+  codeModel: ModularCodeModel,
+  sdkUserAgentPrefix: string
 ): string {
-  const userAgentStatementsArray = [];
+  const userAgentStatements = [];
   const prefixFromOptions =
     "const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;";
-  userAgentStatementsArray.push(prefixFromOptions);
+  userAgentStatements.push(prefixFromOptions);
 
   let clientPackageName =
     codeModel.options.packageDetails?.nameWithoutScope ??
@@ -320,7 +320,7 @@ export function buildUserAgentOptions(
       : "";
 
   if (userAgentInfoStatement) {
-    userAgentStatementsArray.push(userAgentInfoStatement);
+    userAgentStatements.push(userAgentInfoStatement);
   }
   const userAgentPrefix = `const userAgentPrefix = ${
     "prefixFromOptions ? `${prefixFromOptions} " +
@@ -330,10 +330,9 @@ export function buildUserAgentOptions(
     `${sdkUserAgentPrefix}` +
     `${userAgentInfoStatement ? " ${userAgentInfo}`" : "`"}`
   };`;
-  userAgentStatementsArray.push(userAgentPrefix);
+  userAgentStatements.push(userAgentPrefix);
 
-  const userAgentStatements = userAgentStatementsArray.join("\n");
-  context.addStatements(userAgentStatements);
+  context.addStatements(userAgentStatements.join("\n"));
 
   return `{ userAgentPrefix }`;
 }

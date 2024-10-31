@@ -99,8 +99,8 @@ export function buildClassicalClient(
       if (x === "options") {
         return `{...options, userAgentOptions: ${buildUserAgentOptions(
           constructor,
-          "azsdk-js-client",
-          codeModel
+          codeModel,
+          "azsdk-js-client"
         )}}`;
       } else {
         return x;
