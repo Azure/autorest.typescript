@@ -234,21 +234,11 @@ function getCasingConvention(nameType: NameType) {
  */
 function toCasing(str: string, casing: CasingConvention): string {
   const value = str;
-  // if (value === value.toUpperCase()) {
-  //   value = str.toLowerCase();
-  // }
-
   const firstChar =
     casing === CasingConvention.Pascal
       ? value.charAt(0).toUpperCase()
       : value.charAt(0).toLowerCase();
   return `${firstChar}${value.substring(1)}`;
-}
-
-function getNameParts(name: string) {
-  const parts = name.split(/[-._ ]+/).filter((part) => part.trim().length > 0);
-
-  return parts.length > 0 ? parts : [name];
 }
 
 export function pascalCase(str: string) {
