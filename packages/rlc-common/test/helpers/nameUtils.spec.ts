@@ -5,6 +5,9 @@ import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 describe("#normalizeName", () => {
   describe("for enum member name", () => {
     it("should normalize the name with pascal case", () => {
+      expect(normalizeName("BasicGetNull", NameType.EnumMemberName, true)).to.equal("BasicGetNull");
+      expect(normalizeName("LRORetrysPut201CreatingSucceeded200BodyParam", NameType.EnumMemberName, true)).to.equal("LRORetrysPut201CreatingSucceeded200BodyParam");
+      expect(normalizeName("PagingGetNullNextLinkNamePagesParameters", NameType.EnumMemberName, true)).to.equal("PagingGetNullNextLinkNamePagesParameters");
       expect(normalizeName("AKV_cert_URI", NameType.EnumMemberName, true)).to.equal("AKVCertURI");
       expect(normalizeName("AzureOpenAIOperationStateOutput", NameType.EnumMemberName, true)).to.equal("AzureOpenAIOperationStateOutput");
       expect(normalizeName("TSModel", NameType.EnumMemberName, true)).to.equal("TSModel");
