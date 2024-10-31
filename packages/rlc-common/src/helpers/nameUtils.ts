@@ -144,6 +144,9 @@ export function normalizeName(
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
   const parts = deconstruct(name);
+  if (parts.length === 0) {
+    return name;
+  }
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
@@ -233,12 +236,11 @@ function getCasingConvention(nameType: NameType) {
  * on Modeler four namer for this once it is stable
  */
 function toCasing(str: string, casing: CasingConvention): string {
-  const value = str;
   const firstChar =
     casing === CasingConvention.Pascal
-      ? value.charAt(0).toUpperCase()
-      : value.charAt(0).toLowerCase();
-  return `${firstChar}${value.substring(1)}`;
+      ? str.charAt(0).toUpperCase()
+      : str.charAt(0).toLowerCase();
+  return `${firstChar}${str.substring(1)}`;
 }
 
 export function pascalCase(str: string) {
