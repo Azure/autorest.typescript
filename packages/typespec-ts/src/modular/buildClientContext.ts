@@ -24,7 +24,7 @@ import { useDependencies } from "../framework/hooks/useDependencies.js";
 /**
  * This function gets the path of the file containing the modular client context
  */
-export function getContentPath(
+export function getClientContextPath(
   _client: Client,
   codeModel: ModularCodeModel
 ): string {
@@ -53,7 +53,7 @@ export function buildClientContext(
     requiredOnly: true
   });
   const clientContextFile = codeModel.project.createSourceFile(
-    getContentPath(_client, codeModel)
+    getClientContextPath(_client, codeModel)
   );
 
   clientContextFile.addInterface({

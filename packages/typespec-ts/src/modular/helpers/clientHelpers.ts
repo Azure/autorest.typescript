@@ -294,8 +294,13 @@ export function buildUserAgentOptions(
   sdkUserAgentPrefix: string,
   codeModel: ModularCodeModel
 ): string {
+  const userAgentStatementsArray = [];
+  const prefixFromOptions =
+    "const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;";
+  userAgentStatementsArray.push(prefixFromOptions);
+
   let clientPackageName =
-    codeModel.options.packageDetails!.nameWithoutScope ??
+    codeModel.options.packageDetails?.nameWithoutScope ??
     codeModel.options.packageDetails?.name ??
     "";
   const packageVersion = codeModel.options.packageDetails?.version;
@@ -312,28 +317,21 @@ export function buildUserAgentOptions(
       packageVersion +
       "`;"
     : "";
-  const userAgentStatements = userAgentInfoStatement
-    ? `
-    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-    ${userAgentInfoStatement}
-    const userAgentPrefix = ${
-      "prefixFromOptions ? `${prefixFromOptions} " +
-      sdkUserAgentPrefix +
-      " ${userAgentInfo}" +
-      "` : " +
-      `${"`" + sdkUserAgentPrefix + " ${userAgentInfo}" + "`"}`
-    };
-  `
-    : `
-    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-    const userAgentPrefix = ${
-      "prefixFromOptions ? `${prefixFromOptions} " +
-      sdkUserAgentPrefix +
-      "` : " +
-      `"${sdkUserAgentPrefix}"`
-    };
-      `;
 
+  if (userAgentInfoStatement) {
+    userAgentStatementsArray.push(userAgentInfoStatement);
+  }
+  const userAgentPrefix = `const userAgentPrefix = ${
+    "prefixFromOptions ? `${prefixFromOptions} " +
+    sdkUserAgentPrefix +
+    `${userAgentInfoStatement ? " ${userAgentInfo}" : ""}` +
+    "` : `" +
+    `${sdkUserAgentPrefix}` +
+    `${userAgentInfoStatement ? " ${userAgentInfo}`" : "`"}`
+  };`;
+  userAgentStatementsArray.push(userAgentPrefix);
+
+  const userAgentStatements = userAgentStatementsArray.join("\n");
   context.addStatements(userAgentStatements);
 
   return `{ userAgentPrefix }`;

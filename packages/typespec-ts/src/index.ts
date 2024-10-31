@@ -61,7 +61,7 @@ import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import {
-  getContentPath,
+  getClientContextPath,
   buildClientContext
 } from "./modular/buildClientContext.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
@@ -387,7 +387,7 @@ export async function $onEmit(context: EmitContext) {
         }
         const contentPath = [];
         for (const subClient of modularCodeModel.clients) {
-          const fullPath = getContentPath(subClient, modularCodeModel);
+          const fullPath = getClientContextPath(subClient, modularCodeModel);
           const srcIndex = fullPath.indexOf("src");
           const finalPath = fullPath.substring(srcIndex);
           contentPath.push({
