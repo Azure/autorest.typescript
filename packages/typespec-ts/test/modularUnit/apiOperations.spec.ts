@@ -786,8 +786,8 @@ describe("api operations in Modular", () => {
         ): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
-            ? \`\${prefixFromOptions} azsdk-js-api  \${userAgentInfo}\`
-            : \`azsdk-js-api  \${userAgentInfo}\`;
+            ? \`\${prefixFromOptions} azsdk-js-api \${userAgentInfo}\`
+            : \`azsdk-js-api \${userAgentInfo}\`;
           const { apiVersion: _, ...updatedOptions } = {
             ...options,
             userAgentOptions: { userAgentPrefix },
@@ -971,7 +971,7 @@ describe("api operations in Modular", () => {
 
         export function createTesting(endpointParam: string, options: TestingClientOptionalParams = {}): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-          const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api\` : \`azsdk-js-api\`;
+          const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api \${userAgentInfo}\` : \`azsdk-js-api \${userAgentInfo}\`;
           const { apiVersion: _, ...updatedOptions } = { ...options,userAgentOptions: { userAgentPrefix },loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },}
           const clientContext = getClient(options.endpoint ?? options.baseUrl ?? String(endpointParam), undefined, updatedOptions);
           clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
