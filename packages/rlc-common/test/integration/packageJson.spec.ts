@@ -449,6 +449,7 @@ describe("Package file generation", () => {
 
     it("[esm] should have constantPaths in typespec modular", () => {
       const model = createMockModel({
+        ...baseConfig,
         moduleKind: "esm",
         isModularLibrary: true
       });
