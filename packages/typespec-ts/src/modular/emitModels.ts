@@ -49,7 +49,10 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
-import { getTypeExpression, normalizeModelPropertyName } from "./type-expressions/get-type-expression.js";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./type-expressions/get-type-expression.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];

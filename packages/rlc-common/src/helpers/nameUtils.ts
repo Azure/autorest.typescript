@@ -144,18 +144,7 @@ export function normalizeName(
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
   const parts = deconstruct(name);
-  // const parts = getNameParts(sanitizeName(name));
-  console.log("parts", parts, name, getNameParts(sanitizeName(name)));
   const [firstPart, ...otherParts] = parts;
-  if (parts.length === 0) {
-    console.log(
-      "parts.length < 1",
-      parts,
-      name,
-      getNameParts(sanitizeName(name))
-    );
-    return name;
-  }
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
     .map((part) =>
@@ -210,15 +199,6 @@ function checkBeginning(name: string): string {
     return name.substring(1);
   }
   return name;
-}
-
-function sanitizeName(name: string): string {
-  // Remove \, " and ' from name string
-  return name.replace(/["'\\]+/g, "");
-}
-
-function isNumericLiteralName(name: string) {
-  return (+name).toString() === name;
 }
 
 export function getModelsName(title: string): string {
