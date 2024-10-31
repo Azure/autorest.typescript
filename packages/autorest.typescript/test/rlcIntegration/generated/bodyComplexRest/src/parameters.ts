@@ -40,7 +40,7 @@ export type BasicPutValidParameters = BasicPutValidMediaTypesParam &
   RequestParameters;
 export type BasicGetInvalidParameters = RequestParameters;
 export type BasicGetEmptyParameters = RequestParameters;
-export type BasicGetnullParameters = RequestParameters;
+export type BasicGetNullParameters = RequestParameters;
 export type BasicGetNotProvidedParameters = RequestParameters;
 export type PrimitiveGetIntParameters = RequestParameters;
 
@@ -271,7 +271,7 @@ export interface DictionaryPutEmptyMediaTypesParam {
 export type DictionaryPutEmptyParameters = DictionaryPutEmptyMediaTypesParam &
   DictionaryPutEmptyBodyParam &
   RequestParameters;
-export type DictionaryGetnullParameters = RequestParameters;
+export type DictionaryGetNullParameters = RequestParameters;
 export type DictionaryGetNotProvidedParameters = RequestParameters;
 export type InheritanceGetValidParameters = RequestParameters;
 

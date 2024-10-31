@@ -75,13 +75,13 @@ export interface BasicGetEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get a basic complex type whose properties are null */
-export interface BasicGetnull200Response extends HttpResponse {
+export interface BasicGetNull200Response extends HttpResponse {
   status: "200";
   body: BasicDefOutput;
 }
 
 /** Get a basic complex type whose properties are null */
-export interface BasicGetnullDefaultResponse extends HttpResponse {
+export interface BasicGetNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -458,13 +458,13 @@ export interface DictionaryPutEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get complex types with dictionary property which is null */
-export interface DictionaryGetnull200Response extends HttpResponse {
+export interface DictionaryGetNull200Response extends HttpResponse {
   status: "200";
   body: DictionaryWrapperOutput;
 }
 
 /** Get complex types with dictionary property which is null */
-export interface DictionaryGetnullDefaultResponse extends HttpResponse {
+export interface DictionaryGetNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

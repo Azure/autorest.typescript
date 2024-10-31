@@ -198,7 +198,7 @@ export interface BasicGetEmpty {
   ): StreamableMethod<BasicGetEmpty200Response | BasicGetEmptyDefaultResponse>;
 }
 
-export interface BasicGetnull {
+export interface BasicGetNull {
   /** Get a basic complex type whose properties are null */
   get(
     options?: BasicGetNullParameters,
@@ -442,7 +442,7 @@ export interface DictionaryGetEmpty {
   >;
 }
 
-export interface DictionaryGetnull {
+export interface DictionaryGetNull {
   /** Get complex types with dictionary property which is null */
   get(
     options?: DictionaryGetNullParameters,
@@ -606,7 +606,7 @@ export interface Routes {
   /** Resource for '/complex/basic/empty' has methods for the following verbs: get */
   (path: "/complex/basic/empty"): BasicGetEmpty;
   /** Resource for '/complex/basic/null' has methods for the following verbs: get */
-  (path: "/complex/basic/null"): BasicGetnull;
+  (path: "/complex/basic/null"): BasicGetNull;
   /** Resource for '/complex/basic/notprovided' has methods for the following verbs: get */
   (path: "/complex/basic/notprovided"): BasicGetNotProvided;
   /** Resource for '/complex/primitive/integer' has methods for the following verbs: get, put */
@@ -642,7 +642,7 @@ export interface Routes {
   /** Resource for '/complex/dictionary/typed/empty' has methods for the following verbs: get, put */
   (path: "/complex/dictionary/typed/empty"): DictionaryGetEmpty;
   /** Resource for '/complex/dictionary/typed/null' has methods for the following verbs: get */
-  (path: "/complex/dictionary/typed/null"): DictionaryGetnull;
+  (path: "/complex/dictionary/typed/null"): DictionaryGetNull;
   /** Resource for '/complex/dictionary/typed/notprovided' has methods for the following verbs: get */
   (path: "/complex/dictionary/typed/notprovided"): DictionaryGetNotProvided;
   /** Resource for '/complex/inheritance/valid' has methods for the following verbs: get, put */

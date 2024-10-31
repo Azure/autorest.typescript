@@ -313,7 +313,7 @@ export interface PathsOperations {
     PathsStringEmpty200Response | PathsStringEmptyDefaultResponse
   >;
   /** Get null (should throw) */
-  stringnull(
+  stringNull(
     stringPath: string,
     options?: PathsStringNullParameters,
   ): StreamableMethod<
@@ -327,7 +327,7 @@ export interface PathsOperations {
     PathsEnumValid200Response | PathsEnumValidDefaultResponse
   >;
   /** Get null (should throw on the client before the request is sent on wire) */
-  enumnull(
+  enumNull(
     enumPath: "red color" | "green color" | "blue color",
     options?: PathsEnumNullParameters,
   ): StreamableMethod<PathsEnumNull400Response | PathsEnumNullDefaultResponse>;
@@ -346,7 +346,7 @@ export interface PathsOperations {
     PathsByteEmpty200Response | PathsByteEmptyDefaultResponse
   >;
   /** Get null as byte array (should throw) */
-  bytenull(
+  byteNull(
     bytePath: string,
     options?: PathsByteNullParameters,
   ): StreamableMethod<PathsByteNull400Response | PathsByteNullDefaultResponse>;
@@ -358,7 +358,7 @@ export interface PathsOperations {
     PathsDateValid200Response | PathsDateValidDefaultResponse
   >;
   /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
-  datenull(
+  dateNull(
     datePath: Date | string,
     options?: PathsDateNullParameters,
   ): StreamableMethod<PathsDateNull400Response | PathsDateNullDefaultResponse>;
@@ -370,7 +370,7 @@ export interface PathsOperations {
     PathsDateTimeValid200Response | PathsDateTimeValidDefaultResponse
   >;
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
-  dateTimenull(
+  dateTimeNull(
     dateTimePath: Date | string,
     options?: PathsDateTimeNullParameters,
   ): StreamableMethod<
@@ -414,7 +414,7 @@ export interface QueriesOperations {
     QueriesGetBooleanFalse200Response | QueriesGetBooleanFalseDefaultResponse
   >;
   /** Get null Boolean value on query (query string should be absent) */
-  getBooleannull(
+  getBooleanNull(
     options?: QueriesGetBooleanNullParameters,
   ): StreamableMethod<
     QueriesGetBooleanNull200Response | QueriesGetBooleanNullDefaultResponse
@@ -433,7 +433,7 @@ export interface QueriesOperations {
     | QueriesGetIntNegativeOneMillionDefaultResponse
   >;
   /** Get null integer value (no query parameter) */
-  getIntnull(
+  getIntNull(
     options?: QueriesGetIntNullParameters,
   ): StreamableMethod<
     QueriesGetIntNull200Response | QueriesGetIntNullDefaultResponse
@@ -452,7 +452,7 @@ export interface QueriesOperations {
     | QueriesGetNegativeTenBillionDefaultResponse
   >;
   /** Get 'null 64 bit integer value (no query param in uri) */
-  getLongnull(
+  getLongNull(
     options?: QueriesGetLongNullParameters,
   ): StreamableMethod<
     QueriesGetLongNull200Response | QueriesGetLongNullDefaultResponse
@@ -472,7 +472,7 @@ export interface QueriesOperations {
     | QueriesFloatScientificNegativeDefaultResponse
   >;
   /** Get null numeric value (no query parameter) */
-  floatnull(
+  floatNull(
     options?: QueriesFloatNullParameters,
   ): StreamableMethod<
     QueriesFloatNull200Response | QueriesFloatNullDefaultResponse
@@ -492,7 +492,7 @@ export interface QueriesOperations {
     | QueriesDoubleDecimalNegativeDefaultResponse
   >;
   /** Get null numeric value (no query parameter) */
-  doublenull(
+  doubleNull(
     options?: QueriesDoubleNullParameters,
   ): StreamableMethod<
     QueriesDoubleNull200Response | QueriesDoubleNullDefaultResponse
@@ -516,7 +516,7 @@ export interface QueriesOperations {
     QueriesStringEmpty200Response | QueriesStringEmptyDefaultResponse
   >;
   /** Get null (no query parameter in url) */
-  stringnull(
+  stringNull(
     options?: QueriesStringNullParameters,
   ): StreamableMethod<
     QueriesStringNull200Response | QueriesStringNullDefaultResponse
@@ -528,7 +528,7 @@ export interface QueriesOperations {
     QueriesEnumValid200Response | QueriesEnumValidDefaultResponse
   >;
   /** Get null (no query parameter in url) */
-  enumnull(
+  enumNull(
     options?: QueriesEnumNullParameters,
   ): StreamableMethod<
     QueriesEnumNull200Response | QueriesEnumNullDefaultResponse
@@ -546,7 +546,7 @@ export interface QueriesOperations {
     QueriesByteEmpty200Response | QueriesByteEmptyDefaultResponse
   >;
   /** Get null as byte array (no query parameters in uri) */
-  bytenull(
+  byteNull(
     options?: QueriesByteNullParameters,
   ): StreamableMethod<
     QueriesByteNull200Response | QueriesByteNullDefaultResponse
@@ -558,7 +558,7 @@ export interface QueriesOperations {
     QueriesDateValid200Response | QueriesDateValidDefaultResponse
   >;
   /** Get null as date - this should result in no query parameters in uri */
-  datenull(
+  dateNull(
     options?: QueriesDateNullParameters,
   ): StreamableMethod<
     QueriesDateNull200Response | QueriesDateNullDefaultResponse
@@ -570,7 +570,7 @@ export interface QueriesOperations {
     QueriesDateTimeValid200Response | QueriesDateTimeValidDefaultResponse
   >;
   /** Get null as date-time, should result in no query parameters in uri */
-  dateTimenull(
+  dateTimeNull(
     options?: QueriesDateTimeNullParameters,
   ): StreamableMethod<
     QueriesDateTimeNull200Response | QueriesDateTimeNullDefaultResponse
@@ -583,7 +583,7 @@ export interface QueriesOperations {
     | QueriesArrayStringCsvValidDefaultResponse
   >;
   /** Get a null array of string using the csv-array format */
-  arrayStringCsvnull(
+  arrayStringCsvNull(
     options?: QueriesArrayStringCsvNullParameters,
   ): StreamableMethod<
     | QueriesArrayStringCsvNull200Response
@@ -639,7 +639,7 @@ export interface PathItemsOperations {
     | PathItemsGetAllWithValuesDefaultResponse
   >;
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-  getGlobalQuerynull(
+  getGlobalQueryNull(
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
@@ -649,7 +649,7 @@ export interface PathItemsOperations {
     | PathItemsGetGlobalQueryNullDefaultResponse
   >;
   /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-  getGlobalAndLocalQuerynull(
+  getGlobalAndLocalQueryNull(
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
@@ -659,7 +659,7 @@ export interface PathItemsOperations {
     | PathItemsGetGlobalAndLocalQueryNullDefaultResponse
   >;
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-  getLocalPathItemQuerynull(
+  getLocalPathItemQueryNull(
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
@@ -803,7 +803,7 @@ export interface PathsStringEmpty {
   >;
 }
 
-export interface PathsStringnull {
+export interface PathsStringNull {
   /** Get null (should throw) */
   get(
     options?: PathsStringNullParameters,
@@ -821,7 +821,7 @@ export interface PathsEnumValid {
   >;
 }
 
-export interface PathsEnumnull {
+export interface PathsEnumNull {
   /** Get null (should throw on the client before the request is sent on wire) */
   get(
     options?: PathsEnumNullParameters,
@@ -846,7 +846,7 @@ export interface PathsByteEmpty {
   >;
 }
 
-export interface PathsBytenull {
+export interface PathsByteNull {
   /** Get null as byte array (should throw) */
   get(
     options?: PathsByteNullParameters,
@@ -862,7 +862,7 @@ export interface PathsDateValid {
   >;
 }
 
-export interface PathsDatenull {
+export interface PathsDateNull {
   /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
   get(
     options?: PathsDateNullParameters,
@@ -878,7 +878,7 @@ export interface PathsDateTimeValid {
   >;
 }
 
-export interface PathsDateTimenull {
+export interface PathsDateTimeNull {
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
   get(
     options?: PathsDateTimeNullParameters,
@@ -932,7 +932,7 @@ export interface QueriesGetBooleanFalse {
   >;
 }
 
-export interface QueriesGetBooleannull {
+export interface QueriesGetBooleanNull {
   /** Get null Boolean value on query (query string should be absent) */
   get(
     options?: QueriesGetBooleanNullParameters,
@@ -960,7 +960,7 @@ export interface QueriesGetIntNegativeOneMillion {
   >;
 }
 
-export interface QueriesGetIntnull {
+export interface QueriesGetIntNull {
   /** Get null integer value (no query parameter) */
   get(
     options?: QueriesGetIntNullParameters,
@@ -988,7 +988,7 @@ export interface QueriesGetNegativeTenBillion {
   >;
 }
 
-export interface QueriesGetLongnull {
+export interface QueriesGetLongNull {
   /** Get 'null 64 bit integer value (no query param in uri) */
   get(
     options?: QueriesGetLongNullParameters,
@@ -1017,7 +1017,7 @@ export interface QueriesFloatScientificNegative {
   >;
 }
 
-export interface QueriesFloatnull {
+export interface QueriesFloatNull {
   /** Get null numeric value (no query parameter) */
   get(
     options?: QueriesFloatNullParameters,
@@ -1046,7 +1046,7 @@ export interface QueriesDoubleDecimalNegative {
   >;
 }
 
-export interface QueriesDoublenull {
+export interface QueriesDoubleNull {
   /** Get null numeric value (no query parameter) */
   get(
     options?: QueriesDoubleNullParameters,
@@ -1082,7 +1082,7 @@ export interface QueriesStringEmpty {
   >;
 }
 
-export interface QueriesStringnull {
+export interface QueriesStringNull {
   /** Get null (no query parameter in url) */
   get(
     options?: QueriesStringNullParameters,
@@ -1100,7 +1100,7 @@ export interface QueriesEnumValid {
   >;
 }
 
-export interface QueriesEnumnull {
+export interface QueriesEnumNull {
   /** Get null (no query parameter in url) */
   get(
     options?: QueriesEnumNullParameters,
@@ -1127,7 +1127,7 @@ export interface QueriesByteEmpty {
   >;
 }
 
-export interface QueriesBytenull {
+export interface QueriesByteNull {
   /** Get null as byte array (no query parameters in uri) */
   get(
     options?: QueriesByteNullParameters,
@@ -1145,7 +1145,7 @@ export interface QueriesDateValid {
   >;
 }
 
-export interface QueriesDatenull {
+export interface QueriesDateNull {
   /** Get null as date - this should result in no query parameters in uri */
   get(
     options?: QueriesDateNullParameters,
@@ -1163,7 +1163,7 @@ export interface QueriesDateTimeValid {
   >;
 }
 
-export interface QueriesDateTimenull {
+export interface QueriesDateTimeNull {
   /** Get null as date-time, should result in no query parameters in uri */
   get(
     options?: QueriesDateTimeNullParameters,
@@ -1182,7 +1182,7 @@ export interface QueriesArrayStringCsvValid {
   >;
 }
 
-export interface QueriesArrayStringCsvnull {
+export interface QueriesArrayStringCsvNull {
   /** Get a null array of string using the csv-array format */
   get(
     options?: QueriesArrayStringCsvNullParameters,
@@ -1252,7 +1252,7 @@ export interface PathItemsGetAllWithValues {
   >;
 }
 
-export interface PathItemsGetGlobalQuerynull {
+export interface PathItemsGetGlobalQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
   get(
     options?: PathItemsGetGlobalQueryNullParameters,
@@ -1262,7 +1262,7 @@ export interface PathItemsGetGlobalQuerynull {
   >;
 }
 
-export interface PathItemsGetGlobalAndLocalQuerynull {
+export interface PathItemsGetGlobalAndLocalQueryNull {
   /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
   get(
     options?: PathItemsGetGlobalAndLocalQueryNullParameters,
@@ -1272,7 +1272,7 @@ export interface PathItemsGetGlobalAndLocalQuerynull {
   >;
 }
 
-export interface PathItemsGetLocalPathItemQuerynull {
+export interface PathItemsGetLocalPathItemQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
   get(
     options?: PathItemsGetLocalPathItemQueryNullParameters,
@@ -1348,7 +1348,7 @@ export interface Routes {
   (
     path: "/paths/string/null/{stringPath}",
     stringPath: string,
-  ): PathsStringnull;
+  ): PathsStringNull;
   /** Resource for '/paths/enum/green%20color/\{enumPath\}' has methods for the following verbs: get */
   (
     path: "/paths/enum/green%20color/{enumPath}",
@@ -1358,7 +1358,7 @@ export interface Routes {
   (
     path: "/paths/string/null/{enumPath}",
     enumPath: "red color" | "green color" | "blue color",
-  ): PathsEnumnull;
+  ): PathsEnumNull;
   /** Resource for '/paths/byte/multibyte/\{bytePath\}' has methods for the following verbs: get */
   (
     path: "/paths/byte/multibyte/{bytePath}",
@@ -1367,14 +1367,14 @@ export interface Routes {
   /** Resource for '/paths/byte/empty/\{bytePath\}' has methods for the following verbs: get */
   (path: "/paths/byte/empty/{bytePath}", bytePath: ""): PathsByteEmpty;
   /** Resource for '/paths/byte/null/\{bytePath\}' has methods for the following verbs: get */
-  (path: "/paths/byte/null/{bytePath}", bytePath: string): PathsBytenull;
+  (path: "/paths/byte/null/{bytePath}", bytePath: string): PathsByteNull;
   /** Resource for '/paths/date/2012-01-01/\{datePath\}' has methods for the following verbs: get */
   (
     path: "/paths/date/2012-01-01/{datePath}",
     datePath: "2012-01-01",
   ): PathsDateValid;
   /** Resource for '/paths/date/null/\{datePath\}' has methods for the following verbs: get */
-  (path: "/paths/date/null/{datePath}", datePath: Date | string): PathsDatenull;
+  (path: "/paths/date/null/{datePath}", datePath: Date | string): PathsDateNull;
   /** Resource for '/paths/datetime/2012-01-01T01%3A01%3A01Z/\{dateTimePath\}' has methods for the following verbs: get */
   (
     path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
@@ -1384,7 +1384,7 @@ export interface Routes {
   (
     path: "/paths/datetime/null/{dateTimePath}",
     dateTimePath: Date | string,
-  ): PathsDateTimenull;
+  ): PathsDateTimeNull;
   /** Resource for '/paths/string/bG9yZW0/\{base64UrlPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/bG9yZW0/{base64UrlPath}",
@@ -1405,31 +1405,31 @@ export interface Routes {
   /** Resource for '/queries/bool/false' has methods for the following verbs: get */
   (path: "/queries/bool/false"): QueriesGetBooleanFalse;
   /** Resource for '/queries/bool/null' has methods for the following verbs: get */
-  (path: "/queries/bool/null"): QueriesGetBooleannull;
+  (path: "/queries/bool/null"): QueriesGetBooleanNull;
   /** Resource for '/queries/int/1000000' has methods for the following verbs: get */
   (path: "/queries/int/1000000"): QueriesGetIntOneMillion;
   /** Resource for '/queries/int/-1000000' has methods for the following verbs: get */
   (path: "/queries/int/-1000000"): QueriesGetIntNegativeOneMillion;
   /** Resource for '/queries/int/null' has methods for the following verbs: get */
-  (path: "/queries/int/null"): QueriesGetIntnull;
+  (path: "/queries/int/null"): QueriesGetIntNull;
   /** Resource for '/queries/long/10000000000' has methods for the following verbs: get */
   (path: "/queries/long/10000000000"): QueriesGetTenBillion;
   /** Resource for '/queries/long/-10000000000' has methods for the following verbs: get */
   (path: "/queries/long/-10000000000"): QueriesGetNegativeTenBillion;
   /** Resource for '/queries/long/null' has methods for the following verbs: get */
-  (path: "/queries/long/null"): QueriesGetLongnull;
+  (path: "/queries/long/null"): QueriesGetLongNull;
   /** Resource for '/queries/float/1.034E+20' has methods for the following verbs: get */
   (path: "/queries/float/1.034E+20"): QueriesFloatScientificPositive;
   /** Resource for '/queries/float/-1.034E-20' has methods for the following verbs: get */
   (path: "/queries/float/-1.034E-20"): QueriesFloatScientificNegative;
   /** Resource for '/queries/float/null' has methods for the following verbs: get */
-  (path: "/queries/float/null"): QueriesFloatnull;
+  (path: "/queries/float/null"): QueriesFloatNull;
   /** Resource for '/queries/double/9999999.999' has methods for the following verbs: get */
   (path: "/queries/double/9999999.999"): QueriesDoubleDecimalPositive;
   /** Resource for '/queries/double/-9999999.999' has methods for the following verbs: get */
   (path: "/queries/double/-9999999.999"): QueriesDoubleDecimalNegative;
   /** Resource for '/queries/double/null' has methods for the following verbs: get */
-  (path: "/queries/double/null"): QueriesDoublenull;
+  (path: "/queries/double/null"): QueriesDoubleNull;
   /** Resource for '/queries/string/unicode/' has methods for the following verbs: get */
   (path: "/queries/string/unicode/"): QueriesStringUnicode;
   /** Resource for '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend' has methods for the following verbs: get */
@@ -1439,29 +1439,29 @@ export interface Routes {
   /** Resource for '/queries/string/empty' has methods for the following verbs: get */
   (path: "/queries/string/empty"): QueriesStringEmpty;
   /** Resource for '/queries/string/null' has methods for the following verbs: get */
-  (path: "/queries/string/null"): QueriesStringnull;
+  (path: "/queries/string/null"): QueriesStringNull;
   /** Resource for '/queries/enum/green%20color' has methods for the following verbs: get */
   (path: "/queries/enum/green%20color"): QueriesEnumValid;
   /** Resource for '/queries/enum/null' has methods for the following verbs: get */
-  (path: "/queries/enum/null"): QueriesEnumnull;
+  (path: "/queries/enum/null"): QueriesEnumNull;
   /** Resource for '/queries/byte/multibyte' has methods for the following verbs: get */
   (path: "/queries/byte/multibyte"): QueriesByteMultiByte;
   /** Resource for '/queries/byte/empty' has methods for the following verbs: get */
   (path: "/queries/byte/empty"): QueriesByteEmpty;
   /** Resource for '/queries/byte/null' has methods for the following verbs: get */
-  (path: "/queries/byte/null"): QueriesBytenull;
+  (path: "/queries/byte/null"): QueriesByteNull;
   /** Resource for '/queries/date/2012-01-01' has methods for the following verbs: get */
   (path: "/queries/date/2012-01-01"): QueriesDateValid;
   /** Resource for '/queries/date/null' has methods for the following verbs: get */
-  (path: "/queries/date/null"): QueriesDatenull;
+  (path: "/queries/date/null"): QueriesDateNull;
   /** Resource for '/queries/datetime/2012-01-01T01%3A01%3A01Z' has methods for the following verbs: get */
   (path: "/queries/datetime/2012-01-01T01%3A01%3A01Z"): QueriesDateTimeValid;
   /** Resource for '/queries/datetime/null' has methods for the following verbs: get */
-  (path: "/queries/datetime/null"): QueriesDateTimenull;
+  (path: "/queries/datetime/null"): QueriesDateTimeNull;
   /** Resource for '/queries/array/csv/string/valid' has methods for the following verbs: get */
   (path: "/queries/array/csv/string/valid"): QueriesArrayStringCsvValid;
   /** Resource for '/queries/array/csv/string/null' has methods for the following verbs: get */
-  (path: "/queries/array/csv/string/null"): QueriesArrayStringCsvnull;
+  (path: "/queries/array/csv/string/null"): QueriesArrayStringCsvNull;
   /** Resource for '/queries/array/csv/string/empty' has methods for the following verbs: get */
   (path: "/queries/array/csv/string/empty"): QueriesArrayStringCsvEmpty;
   /** Resource for '/queries/array/none/string/empty' has methods for the following verbs: get */
@@ -1487,21 +1487,21 @@ export interface Routes {
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
-  ): PathItemsGetGlobalQuerynull;
+  ): PathItemsGetGlobalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/null/pathItemStringQuery/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
-  ): PathItemsGetGlobalAndLocalQuerynull;
+  ): PathItemsGetGlobalAndLocalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/globalStringQuery/null/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string,
-  ): PathItemsGetLocalPathItemQuerynull;
+  ): PathItemsGetLocalPathItemQueryNull;
 }
 
 export type UrlRestClient = Client & {

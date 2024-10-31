@@ -64,7 +64,7 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface StringGetnull {
+export interface StringGetNull {
   /** Get null string value value */
   get(
     options?: StringGetNullParameters,
@@ -151,7 +151,7 @@ export interface StringGetBase64UrlEncoded {
   >;
 }
 
-export interface StringGetnullBase64UrlEncoded {
+export interface StringGetNullBase64UrlEncoded {
   /** Get null value that is expected to be base64url encoded */
   get(
     options?: StringGetNullBase64UrlEncodedParameters,
@@ -210,7 +210,7 @@ export interface EnumGetReferencedConstant {
 
 export interface Routes {
   /** Resource for '/string/null' has methods for the following verbs: get, put */
-  (path: "/string/null"): StringGetnull;
+  (path: "/string/null"): StringGetNull;
   /** Resource for '/string/empty' has methods for the following verbs: get, put */
   (path: "/string/empty"): StringGetEmpty;
   /** Resource for '/string/mbcs' has methods for the following verbs: get, put */
@@ -224,7 +224,7 @@ export interface Routes {
   /** Resource for '/string/base64UrlEncoding' has methods for the following verbs: get, put */
   (path: "/string/base64UrlEncoding"): StringGetBase64UrlEncoded;
   /** Resource for '/string/nullBase64UrlEncoding' has methods for the following verbs: get */
-  (path: "/string/nullBase64UrlEncoding"): StringGetnullBase64UrlEncoded;
+  (path: "/string/nullBase64UrlEncoding"): StringGetNullBase64UrlEncoded;
   /** Resource for '/string/enum/notExpandable' has methods for the following verbs: get, put */
   (path: "/string/enum/notExpandable"): EnumGetNotExpandable;
   /** Resource for '/string/enum/Referenced' has methods for the following verbs: get, put */

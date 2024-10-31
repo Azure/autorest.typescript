@@ -4,20 +4,20 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { RefColorConstant } from "./models";
 
-export type StringGetnullParameters = RequestParameters;
+export type StringGetNullParameters = RequestParameters;
 
-export interface StringPutnullBodyParam {
+export interface StringPutNullBodyParam {
   /** string body */
   body?: string;
 }
 
-export interface StringPutnullMediaTypesParam {
+export interface StringPutNullMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutnullParameters = StringPutnullMediaTypesParam &
-  StringPutnullBodyParam &
+export type StringPutNullParameters = StringPutNullMediaTypesParam &
+  StringPutNullBodyParam &
   RequestParameters;
 export type StringGetEmptyParameters = RequestParameters;
 
@@ -86,7 +86,7 @@ export type StringPutBase64UrlEncodedParameters =
   StringPutBase64UrlEncodedMediaTypesParam &
     StringPutBase64UrlEncodedBodyParam &
     RequestParameters;
-export type StringGetnullBase64UrlEncodedParameters = RequestParameters;
+export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
 export type EnumGetNotExpandableParameters = RequestParameters;
 
 export interface EnumPutNotExpandableBodyParam {

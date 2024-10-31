@@ -150,9 +150,7 @@ export function normalizeName(
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
-    .map((part) =>
-      toCasing(part, CasingConvention.Pascal)
-    )
+    .map((part) => toCasing(part, CasingConvention.Pascal))
     .join("");
 
   const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);

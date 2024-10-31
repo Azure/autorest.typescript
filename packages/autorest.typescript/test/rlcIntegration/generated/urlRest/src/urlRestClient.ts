@@ -116,7 +116,7 @@ export default function createClient(
           .path("/paths/string/empty/{stringPath}", stringPath)
           .get(options);
       },
-      stringnull: (stringPath, options) => {
+      stringNull: (stringPath, options) => {
         return client
           .path("/paths/string/null/{stringPath}", stringPath)
           .get(options);
@@ -126,7 +126,7 @@ export default function createClient(
           .path("/paths/enum/green%20color/{enumPath}", enumPath)
           .get(options);
       },
-      enumnull: (enumPath, options) => {
+      enumNull: (enumPath, options) => {
         return client
           .path("/paths/string/null/{enumPath}", enumPath)
           .get(options);
@@ -141,7 +141,7 @@ export default function createClient(
           .path("/paths/byte/empty/{bytePath}", bytePath)
           .get(options);
       },
-      bytenull: (bytePath, options) => {
+      byteNull: (bytePath, options) => {
         return client
           .path("/paths/byte/null/{bytePath}", bytePath)
           .get(options);
@@ -151,7 +151,7 @@ export default function createClient(
           .path("/paths/date/2012-01-01/{datePath}", datePath)
           .get(options);
       },
-      datenull: (datePath, options) => {
+      dateNull: (datePath, options) => {
         return client
           .path("/paths/date/null/{datePath}", datePath)
           .get(options);
@@ -164,7 +164,7 @@ export default function createClient(
           )
           .get(options);
       },
-      dateTimenull: (dateTimePath, options) => {
+      dateTimeNull: (dateTimePath, options) => {
         return client
           .path("/paths/datetime/null/{dateTimePath}", dateTimePath)
           .get(options);
@@ -195,7 +195,7 @@ export default function createClient(
       getBooleanFalse: (options) => {
         return client.path("/queries/bool/false").get(options);
       },
-      getBooleannull: (options) => {
+      getBooleanNull: (options) => {
         return client.path("/queries/bool/null").get(options);
       },
       getIntOneMillion: (options) => {
@@ -204,7 +204,7 @@ export default function createClient(
       getIntNegativeOneMillion: (options) => {
         return client.path("/queries/int/-1000000").get(options);
       },
-      getIntnull: (options) => {
+      getIntNull: (options) => {
         return client.path("/queries/int/null").get(options);
       },
       getTenBillion: (options) => {
@@ -213,7 +213,7 @@ export default function createClient(
       getNegativeTenBillion: (options) => {
         return client.path("/queries/long/-10000000000").get(options);
       },
-      getLongnull: (options) => {
+      getLongNull: (options) => {
         return client.path("/queries/long/null").get(options);
       },
       floatScientificPositive: (options) => {
@@ -222,7 +222,7 @@ export default function createClient(
       floatScientificNegative: (options) => {
         return client.path("/queries/float/-1.034E-20").get(options);
       },
-      floatnull: (options) => {
+      floatNull: (options) => {
         return client.path("/queries/float/null").get(options);
       },
       doubleDecimalPositive: (options) => {
@@ -231,7 +231,7 @@ export default function createClient(
       doubleDecimalNegative: (options) => {
         return client.path("/queries/double/-9999999.999").get(options);
       },
-      doublenull: (options) => {
+      doubleNull: (options) => {
         return client.path("/queries/double/null").get(options);
       },
       stringUnicode: (options) => {
@@ -247,13 +247,13 @@ export default function createClient(
       stringEmpty: (options) => {
         return client.path("/queries/string/empty").get(options);
       },
-      stringnull: (options) => {
+      stringNull: (options) => {
         return client.path("/queries/string/null").get(options);
       },
       enumValid: (options) => {
         return client.path("/queries/enum/green%20color").get(options);
       },
-      enumnull: (options) => {
+      enumNull: (options) => {
         return client.path("/queries/enum/null").get(options);
       },
       byteMultiByte: (options) => {
@@ -262,13 +262,13 @@ export default function createClient(
       byteEmpty: (options) => {
         return client.path("/queries/byte/empty").get(options);
       },
-      bytenull: (options) => {
+      byteNull: (options) => {
         return client.path("/queries/byte/null").get(options);
       },
       dateValid: (options) => {
         return client.path("/queries/date/2012-01-01").get(options);
       },
-      datenull: (options) => {
+      dateNull: (options) => {
         return client.path("/queries/date/null").get(options);
       },
       dateTimeValid: (options) => {
@@ -276,13 +276,13 @@ export default function createClient(
           .path("/queries/datetime/2012-01-01T01%3A01%3A01Z")
           .get(options);
       },
-      dateTimenull: (options) => {
+      dateTimeNull: (options) => {
         return client.path("/queries/datetime/null").get(options);
       },
       arrayStringCsvValid: (options) => {
         return client.path("/queries/array/csv/string/valid").get(options);
       },
-      arrayStringCsvnull: (options) => {
+      arrayStringCsvNull: (options) => {
         return client.path("/queries/array/csv/string/null").get(options);
       },
       arrayStringCsvEmpty: (options) => {
@@ -317,7 +317,7 @@ export default function createClient(
           )
           .get(options);
       },
-      getGlobalQuerynull: (
+      getGlobalQueryNull: (
         globalStringPath,
         pathItemStringPath,
         localStringPath,
@@ -332,7 +332,7 @@ export default function createClient(
           )
           .get(options);
       },
-      getGlobalAndLocalQuerynull: (
+      getGlobalAndLocalQueryNull: (
         globalStringPath,
         pathItemStringPath,
         localStringPath,
@@ -347,7 +347,7 @@ export default function createClient(
           )
           .get(options);
       },
-      getLocalPathItemQuerynull: (
+      getLocalPathItemQueryNull: (
         globalStringPath,
         pathItemStringPath,
         localStringPath,
