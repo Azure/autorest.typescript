@@ -303,20 +303,21 @@ export function buildUserAgentOptions(
     codeModel.options.packageDetails?.nameWithoutScope ??
     codeModel.options.packageDetails?.name ??
     "";
-  const packageVersion = codeModel.options.packageDetails?.version;
+  const packageVersion = codeModel.options.packageDetails?.version ?? "";
   if (
     !codeModel.options.isModularLibrary &&
     !clientPackageName.endsWith("-rest")
   ) {
     clientPackageName += "-rest";
   }
-  const userAgentInfoStatement = sdkUserAgentPrefix.includes("api")
-    ? "const userAgentInfo = `azsdk-js-" +
-      clientPackageName +
-      "/" +
-      packageVersion +
-      "`;"
-    : "";
+  const userAgentInfoStatement =
+    packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")
+      ? "const userAgentInfo = `azsdk-js-" +
+        clientPackageName +
+        "/" +
+        packageVersion +
+        "`;"
+      : "";
 
   if (userAgentInfoStatement) {
     userAgentStatementsArray.push(userAgentInfoStatement);
