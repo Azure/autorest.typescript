@@ -165,12 +165,12 @@ export interface PathsStringEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get null (should throw) */
-export interface PathsStringNull400Response extends HttpResponse {
+export interface PathsStringnull400Response extends HttpResponse {
   status: "400";
 }
 
 /** Get null (should throw) */
-export interface PathsStringNullDefaultResponse extends HttpResponse {
+export interface PathsStringnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -187,12 +187,12 @@ export interface PathsEnumValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null (should throw on the client before the request is sent on wire) */
-export interface PathsEnumNull400Response extends HttpResponse {
+export interface PathsEnumnull400Response extends HttpResponse {
   status: "400";
 }
 
 /** Get null (should throw on the client before the request is sent on wire) */
-export interface PathsEnumNullDefaultResponse extends HttpResponse {
+export interface PathsEnumnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -220,12 +220,12 @@ export interface PathsByteEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get null as byte array (should throw) */
-export interface PathsByteNull400Response extends HttpResponse {
+export interface PathsBytenull400Response extends HttpResponse {
   status: "400";
 }
 
 /** Get null as byte array (should throw) */
-export interface PathsByteNullDefaultResponse extends HttpResponse {
+export interface PathsBytenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -242,12 +242,12 @@ export interface PathsDateValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
-export interface PathsDateNull400Response extends HttpResponse {
+export interface PathsDatenull400Response extends HttpResponse {
   status: "400";
 }
 
 /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
-export interface PathsDateNullDefaultResponse extends HttpResponse {
+export interface PathsDatenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -264,12 +264,12 @@ export interface PathsDateTimeValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
-export interface PathsDateTimeNull400Response extends HttpResponse {
+export interface PathsDateTimenull400Response extends HttpResponse {
   status: "400";
 }
 
 /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
-export interface PathsDateTimeNullDefaultResponse extends HttpResponse {
+export interface PathsDateTimenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -330,12 +330,12 @@ export interface QueriesGetBooleanFalseDefaultResponse extends HttpResponse {
 }
 
 /** Get null Boolean value on query (query string should be absent) */
-export interface QueriesGetBooleanNull200Response extends HttpResponse {
+export interface QueriesGetBooleannull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null Boolean value on query (query string should be absent) */
-export interface QueriesGetBooleanNullDefaultResponse extends HttpResponse {
+export interface QueriesGetBooleannullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -365,12 +365,12 @@ export interface QueriesGetIntNegativeOneMillionDefaultResponse
 }
 
 /** Get null integer value (no query parameter) */
-export interface QueriesGetIntNull200Response extends HttpResponse {
+export interface QueriesGetIntnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null integer value (no query parameter) */
-export interface QueriesGetIntNullDefaultResponse extends HttpResponse {
+export interface QueriesGetIntnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -399,12 +399,12 @@ export interface QueriesGetNegativeTenBillionDefaultResponse
 }
 
 /** Get 'null 64 bit integer value (no query param in uri) */
-export interface QueriesGetLongNull200Response extends HttpResponse {
+export interface QueriesGetLongnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get 'null 64 bit integer value (no query param in uri) */
-export interface QueriesGetLongNullDefaultResponse extends HttpResponse {
+export interface QueriesGetLongnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -436,12 +436,12 @@ export interface QueriesFloatScientificNegativeDefaultResponse
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesFloatNull200Response extends HttpResponse {
+export interface QueriesFloatnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesFloatNullDefaultResponse extends HttpResponse {
+export interface QueriesFloatnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -471,12 +471,12 @@ export interface QueriesDoubleDecimalNegativeDefaultResponse
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesDoubleNull200Response extends HttpResponse {
+export interface QueriesDoublenull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesDoubleNullDefaultResponse extends HttpResponse {
+export interface QueriesDoublenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -515,12 +515,12 @@ export interface QueriesStringEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesStringNull200Response extends HttpResponse {
+export interface QueriesStringnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesStringNullDefaultResponse extends HttpResponse {
+export interface QueriesStringnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -537,12 +537,12 @@ export interface QueriesEnumValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesEnumNull200Response extends HttpResponse {
+export interface QueriesEnumnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesEnumNullDefaultResponse extends HttpResponse {
+export interface QueriesEnumnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -570,12 +570,12 @@ export interface QueriesByteEmptyDefaultResponse extends HttpResponse {
 }
 
 /** Get null as byte array (no query parameters in uri) */
-export interface QueriesByteNull200Response extends HttpResponse {
+export interface QueriesBytenull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null as byte array (no query parameters in uri) */
-export interface QueriesByteNullDefaultResponse extends HttpResponse {
+export interface QueriesBytenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -592,12 +592,12 @@ export interface QueriesDateValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null as date - this should result in no query parameters in uri */
-export interface QueriesDateNull200Response extends HttpResponse {
+export interface QueriesDatenull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null as date - this should result in no query parameters in uri */
-export interface QueriesDateNullDefaultResponse extends HttpResponse {
+export interface QueriesDatenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -614,12 +614,12 @@ export interface QueriesDateTimeValidDefaultResponse extends HttpResponse {
 }
 
 /** Get null as date-time, should result in no query parameters in uri */
-export interface QueriesDateTimeNull200Response extends HttpResponse {
+export interface QueriesDateTimenull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get null as date-time, should result in no query parameters in uri */
-export interface QueriesDateTimeNullDefaultResponse extends HttpResponse {
+export interface QueriesDateTimenullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -637,12 +637,12 @@ export interface QueriesArrayStringCsvValidDefaultResponse
 }
 
 /** Get a null array of string using the csv-array format */
-export interface QueriesArrayStringCsvNull200Response extends HttpResponse {
+export interface QueriesArrayStringCsvnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get a null array of string using the csv-array format */
-export interface QueriesArrayStringCsvNullDefaultResponse extends HttpResponse {
+export interface QueriesArrayStringCsvnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -720,38 +720,38 @@ export interface PathItemsGetAllWithValuesDefaultResponse extends HttpResponse {
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetGlobalQueryNull200Response extends HttpResponse {
+export interface PathItemsGetGlobalQuerynull200Response extends HttpResponse {
   status: "200";
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetGlobalQueryNullDefaultResponse
+export interface PathItemsGetGlobalQuerynullDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNull200Response
+export interface PathItemsGetGlobalAndLocalQuerynull200Response
   extends HttpResponse {
   status: "200";
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNullDefaultResponse
+export interface PathItemsGetGlobalAndLocalQuerynullDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNull200Response
+export interface PathItemsGetLocalPathItemQuerynull200Response
   extends HttpResponse {
   status: "200";
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNullDefaultResponse
+export interface PathItemsGetLocalPathItemQuerynullDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorModelOutput;

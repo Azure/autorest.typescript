@@ -7,7 +7,7 @@ import { BodyParam } from "./models";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
 export type PagingGetEmptyNextLinkNamePagesParameters = RequestParameters;
-export type PagingGetNullNextLinkNamePagesParameters = RequestParameters;
+export type PagingGetnullNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetSinglePagesParameters = RequestParameters;
 
 export interface PagingGetSinglePagesWithBodyParamsBodyParam {

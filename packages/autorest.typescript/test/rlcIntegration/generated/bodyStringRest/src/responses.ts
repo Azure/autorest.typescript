@@ -5,24 +5,24 @@ import { HttpResponse } from "@azure-rest/core-client";
 import { ErrorModelOutput, RefColorConstantOutput } from "./outputModels";
 
 /** Get null string value value */
-export interface StringGetNull200Response extends HttpResponse {
+export interface StringGetnull200Response extends HttpResponse {
   status: "200";
   body: string;
 }
 
 /** Get null string value value */
-export interface StringGetNullDefaultResponse extends HttpResponse {
+export interface StringGetnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Set string value null */
-export interface StringPutNull200Response extends HttpResponse {
+export interface StringPutnull200Response extends HttpResponse {
   status: "200";
 }
 
 /** Set string value null */
-export interface StringPutNullDefaultResponse extends HttpResponse {
+export interface StringPutnullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -146,14 +146,14 @@ export interface StringPutBase64UrlEncodedDefaultResponse extends HttpResponse {
 }
 
 /** Get null value that is expected to be base64url encoded */
-export interface StringGetNullBase64UrlEncoded200Response extends HttpResponse {
+export interface StringGetnullBase64UrlEncoded200Response extends HttpResponse {
   status: "200";
   /** Value may contain base64 encoded characters */
   body: string;
 }
 
 /** Get null value that is expected to be base64url encoded */
-export interface StringGetNullBase64UrlEncodedDefaultResponse
+export interface StringGetnullBase64UrlEncodedDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorModelOutput;

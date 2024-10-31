@@ -34,14 +34,14 @@ export interface PagingGetEmptyNextLinkNamePagesDefaultResponse
 }
 
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
-export interface PagingGetNullNextLinkNamePages200Response
+export interface PagingGetnullNextLinkNamePages200Response
   extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
-export interface PagingGetNullNextLinkNamePagesDefaultResponse
+export interface PagingGetnullNextLinkNamePagesDefaultResponse
   extends HttpResponse {
   status: string;
 }

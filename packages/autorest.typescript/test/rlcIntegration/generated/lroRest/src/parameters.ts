@@ -425,69 +425,69 @@ export type LROsPostAsyncRetrycanceledParameters =
     LROsPostAsyncRetrycanceledBodyParam &
     RequestParameters;
 
-export interface LRORetrysPut201CreatingSucceeded200BodyParam {
+export interface LroretrysPut201CreatingSucceeded200BodyParam {
   /** Product to put */
   body?: Product;
 }
 
-export interface LRORetrysPut201CreatingSucceeded200MediaTypesParam {
+export interface LroretrysPut201CreatingSucceeded200MediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type LRORetrysPut201CreatingSucceeded200Parameters =
-  LRORetrysPut201CreatingSucceeded200MediaTypesParam &
-    LRORetrysPut201CreatingSucceeded200BodyParam &
+export type LroretrysPut201CreatingSucceeded200Parameters =
+  LroretrysPut201CreatingSucceeded200MediaTypesParam &
+    LroretrysPut201CreatingSucceeded200BodyParam &
     RequestParameters;
 
-export interface LRORetrysPutAsyncRelativeRetrySucceededBodyParam {
+export interface LroretrysPutAsyncRelativeRetrySucceededBodyParam {
   /** Product to put */
   body?: Product;
 }
 
-export interface LRORetrysPutAsyncRelativeRetrySucceededMediaTypesParam {
+export interface LroretrysPutAsyncRelativeRetrySucceededMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type LRORetrysPutAsyncRelativeRetrySucceededParameters =
-  LRORetrysPutAsyncRelativeRetrySucceededMediaTypesParam &
-    LRORetrysPutAsyncRelativeRetrySucceededBodyParam &
+export type LroretrysPutAsyncRelativeRetrySucceededParameters =
+  LroretrysPutAsyncRelativeRetrySucceededMediaTypesParam &
+    LroretrysPutAsyncRelativeRetrySucceededBodyParam &
     RequestParameters;
-export type LRORetrysDeleteProvisioning202Accepted200SucceededParameters =
+export type LroretrysDeleteProvisioning202Accepted200SucceededParameters =
   RequestParameters;
-export type LRORetrysDelete202Retry200Parameters = RequestParameters;
-export type LRORetrysDeleteAsyncRelativeRetrySucceededParameters =
+export type LroretrysDelete202Retry200Parameters = RequestParameters;
+export type LroretrysDeleteAsyncRelativeRetrySucceededParameters =
   RequestParameters;
 
-export interface LRORetrysPost202Retry200BodyParam {
+export interface LroretrysPost202Retry200BodyParam {
   /** Product to put */
   body?: Product;
 }
 
-export interface LRORetrysPost202Retry200MediaTypesParam {
+export interface LroretrysPost202Retry200MediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type LRORetrysPost202Retry200Parameters =
-  LRORetrysPost202Retry200MediaTypesParam &
-    LRORetrysPost202Retry200BodyParam &
+export type LroretrysPost202Retry200Parameters =
+  LroretrysPost202Retry200MediaTypesParam &
+    LroretrysPost202Retry200BodyParam &
     RequestParameters;
 
-export interface LRORetrysPostAsyncRelativeRetrySucceededBodyParam {
+export interface LroretrysPostAsyncRelativeRetrySucceededBodyParam {
   /** Product to put */
   body?: Product;
 }
 
-export interface LRORetrysPostAsyncRelativeRetrySucceededMediaTypesParam {
+export interface LroretrysPostAsyncRelativeRetrySucceededMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type LRORetrysPostAsyncRelativeRetrySucceededParameters =
-  LRORetrysPostAsyncRelativeRetrySucceededMediaTypesParam &
-    LRORetrysPostAsyncRelativeRetrySucceededBodyParam &
+export type LroretrysPostAsyncRelativeRetrySucceededParameters =
+  LroretrysPostAsyncRelativeRetrySucceededMediaTypesParam &
+    LroretrysPostAsyncRelativeRetrySucceededBodyParam &
     RequestParameters;
 
 export interface LrosaDsPutNonRetry400BodyParam {

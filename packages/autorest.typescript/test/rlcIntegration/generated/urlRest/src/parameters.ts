@@ -17,16 +17,16 @@ export type PathsStringUnicodeParameters = RequestParameters;
 export type PathsStringUrlEncodedParameters = RequestParameters;
 export type PathsStringUrlNonEncodedParameters = RequestParameters;
 export type PathsStringEmptyParameters = RequestParameters;
-export type PathsStringNullParameters = RequestParameters;
+export type PathsStringnullParameters = RequestParameters;
 export type PathsEnumValidParameters = RequestParameters;
-export type PathsEnumNullParameters = RequestParameters;
+export type PathsEnumnullParameters = RequestParameters;
 export type PathsByteMultiByteParameters = RequestParameters;
 export type PathsByteEmptyParameters = RequestParameters;
-export type PathsByteNullParameters = RequestParameters;
+export type PathsBytenullParameters = RequestParameters;
 export type PathsDateValidParameters = RequestParameters;
-export type PathsDateNullParameters = RequestParameters;
+export type PathsDatenullParameters = RequestParameters;
 export type PathsDateTimeValidParameters = RequestParameters;
-export type PathsDateTimeNullParameters = RequestParameters;
+export type PathsDateTimenullParameters = RequestParameters;
 export type PathsBase64UrlParameters = RequestParameters;
 export type PathsArrayCsvInPathParameters = RequestParameters;
 export type PathsUnixTimeUrlParameters = RequestParameters;
@@ -55,16 +55,16 @@ export interface QueriesGetBooleanFalseQueryParam {
 export type QueriesGetBooleanFalseParameters =
   QueriesGetBooleanFalseQueryParam & RequestParameters;
 
-export interface QueriesGetBooleanNullQueryParamProperties {
+export interface QueriesGetBooleannullQueryParamProperties {
   /** null boolean value */
   boolQuery?: boolean;
 }
 
-export interface QueriesGetBooleanNullQueryParam {
-  queryParameters?: QueriesGetBooleanNullQueryParamProperties;
+export interface QueriesGetBooleannullQueryParam {
+  queryParameters?: QueriesGetBooleannullQueryParamProperties;
 }
 
-export type QueriesGetBooleanNullParameters = QueriesGetBooleanNullQueryParam &
+export type QueriesGetBooleannullParameters = QueriesGetBooleannullQueryParam &
   RequestParameters;
 
 export interface QueriesGetIntOneMillionQueryParamProperties {
@@ -91,16 +91,16 @@ export interface QueriesGetIntNegativeOneMillionQueryParam {
 export type QueriesGetIntNegativeOneMillionParameters =
   QueriesGetIntNegativeOneMillionQueryParam & RequestParameters;
 
-export interface QueriesGetIntNullQueryParamProperties {
+export interface QueriesGetIntnullQueryParamProperties {
   /** null integer value */
   intQuery?: number;
 }
 
-export interface QueriesGetIntNullQueryParam {
-  queryParameters?: QueriesGetIntNullQueryParamProperties;
+export interface QueriesGetIntnullQueryParam {
+  queryParameters?: QueriesGetIntnullQueryParamProperties;
 }
 
-export type QueriesGetIntNullParameters = QueriesGetIntNullQueryParam &
+export type QueriesGetIntnullParameters = QueriesGetIntnullQueryParam &
   RequestParameters;
 
 export interface QueriesGetTenBillionQueryParamProperties {
@@ -127,16 +127,16 @@ export interface QueriesGetNegativeTenBillionQueryParam {
 export type QueriesGetNegativeTenBillionParameters =
   QueriesGetNegativeTenBillionQueryParam & RequestParameters;
 
-export interface QueriesGetLongNullQueryParamProperties {
+export interface QueriesGetLongnullQueryParamProperties {
   /** null 64 bit integer value */
   longQuery?: number;
 }
 
-export interface QueriesGetLongNullQueryParam {
-  queryParameters?: QueriesGetLongNullQueryParamProperties;
+export interface QueriesGetLongnullQueryParam {
+  queryParameters?: QueriesGetLongnullQueryParamProperties;
 }
 
-export type QueriesGetLongNullParameters = QueriesGetLongNullQueryParam &
+export type QueriesGetLongnullParameters = QueriesGetLongnullQueryParam &
   RequestParameters;
 
 export interface QueriesFloatScientificPositiveQueryParamProperties {
@@ -163,16 +163,16 @@ export interface QueriesFloatScientificNegativeQueryParam {
 export type QueriesFloatScientificNegativeParameters =
   QueriesFloatScientificNegativeQueryParam & RequestParameters;
 
-export interface QueriesFloatNullQueryParamProperties {
+export interface QueriesFloatnullQueryParamProperties {
   /** null numeric value */
   floatQuery?: number;
 }
 
-export interface QueriesFloatNullQueryParam {
-  queryParameters?: QueriesFloatNullQueryParamProperties;
+export interface QueriesFloatnullQueryParam {
+  queryParameters?: QueriesFloatnullQueryParamProperties;
 }
 
-export type QueriesFloatNullParameters = QueriesFloatNullQueryParam &
+export type QueriesFloatnullParameters = QueriesFloatnullQueryParam &
   RequestParameters;
 
 export interface QueriesDoubleDecimalPositiveQueryParamProperties {
@@ -199,16 +199,16 @@ export interface QueriesDoubleDecimalNegativeQueryParam {
 export type QueriesDoubleDecimalNegativeParameters =
   QueriesDoubleDecimalNegativeQueryParam & RequestParameters;
 
-export interface QueriesDoubleNullQueryParamProperties {
+export interface QueriesDoublenullQueryParamProperties {
   /** null numeric value */
   doubleQuery?: number;
 }
 
-export interface QueriesDoubleNullQueryParam {
-  queryParameters?: QueriesDoubleNullQueryParamProperties;
+export interface QueriesDoublenullQueryParam {
+  queryParameters?: QueriesDoublenullQueryParamProperties;
 }
 
-export type QueriesDoubleNullParameters = QueriesDoubleNullQueryParam &
+export type QueriesDoublenullParameters = QueriesDoublenullQueryParam &
   RequestParameters;
 
 export interface QueriesStringUnicodeQueryParamProperties {
@@ -247,16 +247,16 @@ export interface QueriesStringEmptyQueryParam {
 export type QueriesStringEmptyParameters = QueriesStringEmptyQueryParam &
   RequestParameters;
 
-export interface QueriesStringNullQueryParamProperties {
+export interface QueriesStringnullQueryParamProperties {
   /** null string value */
   stringQuery?: string;
 }
 
-export interface QueriesStringNullQueryParam {
-  queryParameters?: QueriesStringNullQueryParamProperties;
+export interface QueriesStringnullQueryParam {
+  queryParameters?: QueriesStringnullQueryParamProperties;
 }
 
-export type QueriesStringNullParameters = QueriesStringNullQueryParam &
+export type QueriesStringnullParameters = QueriesStringnullQueryParam &
   RequestParameters;
 
 export interface QueriesEnumValidQueryParamProperties {
@@ -271,16 +271,16 @@ export interface QueriesEnumValidQueryParam {
 export type QueriesEnumValidParameters = QueriesEnumValidQueryParam &
   RequestParameters;
 
-export interface QueriesEnumNullQueryParamProperties {
+export interface QueriesEnumnullQueryParamProperties {
   /** null string value */
   enumQuery?: "red color" | "green color" | "blue color";
 }
 
-export interface QueriesEnumNullQueryParam {
-  queryParameters?: QueriesEnumNullQueryParamProperties;
+export interface QueriesEnumnullQueryParam {
+  queryParameters?: QueriesEnumnullQueryParamProperties;
 }
 
-export type QueriesEnumNullParameters = QueriesEnumNullQueryParam &
+export type QueriesEnumnullParameters = QueriesEnumnullQueryParam &
   RequestParameters;
 
 export interface QueriesByteMultiByteQueryParamProperties {
@@ -311,7 +311,7 @@ export interface QueriesByteEmptyQueryParam {
 export type QueriesByteEmptyParameters = QueriesByteEmptyQueryParam &
   RequestParameters;
 
-export interface QueriesByteNullQueryParamProperties {
+export interface QueriesBytenullQueryParamProperties {
   /**
    * null as byte array (no query parameters in uri)
    *
@@ -320,11 +320,11 @@ export interface QueriesByteNullQueryParamProperties {
   byteQuery?: string;
 }
 
-export interface QueriesByteNullQueryParam {
-  queryParameters?: QueriesByteNullQueryParamProperties;
+export interface QueriesBytenullQueryParam {
+  queryParameters?: QueriesBytenullQueryParamProperties;
 }
 
-export type QueriesByteNullParameters = QueriesByteNullQueryParam &
+export type QueriesBytenullParameters = QueriesBytenullQueryParam &
   RequestParameters;
 
 export interface QueriesDateValidQueryParamProperties {
@@ -339,16 +339,16 @@ export interface QueriesDateValidQueryParam {
 export type QueriesDateValidParameters = QueriesDateValidQueryParam &
   RequestParameters;
 
-export interface QueriesDateNullQueryParamProperties {
+export interface QueriesDatenullQueryParamProperties {
   /** null as date (no query parameters in uri) */
   dateQuery?: Date | string;
 }
 
-export interface QueriesDateNullQueryParam {
-  queryParameters?: QueriesDateNullQueryParamProperties;
+export interface QueriesDatenullQueryParam {
+  queryParameters?: QueriesDatenullQueryParamProperties;
 }
 
-export type QueriesDateNullParameters = QueriesDateNullQueryParam &
+export type QueriesDatenullParameters = QueriesDatenullQueryParam &
   RequestParameters;
 
 export interface QueriesDateTimeValidQueryParamProperties {
@@ -363,16 +363,16 @@ export interface QueriesDateTimeValidQueryParam {
 export type QueriesDateTimeValidParameters = QueriesDateTimeValidQueryParam &
   RequestParameters;
 
-export interface QueriesDateTimeNullQueryParamProperties {
+export interface QueriesDateTimenullQueryParamProperties {
   /** null as date-time (no query parameters) */
   dateTimeQuery?: Date | string;
 }
 
-export interface QueriesDateTimeNullQueryParam {
-  queryParameters?: QueriesDateTimeNullQueryParamProperties;
+export interface QueriesDateTimenullQueryParam {
+  queryParameters?: QueriesDateTimenullQueryParamProperties;
 }
 
-export type QueriesDateTimeNullParameters = QueriesDateTimeNullQueryParam &
+export type QueriesDateTimenullParameters = QueriesDateTimenullQueryParam &
   RequestParameters;
 
 export interface QueriesArrayStringCsvValidQueryParamProperties {
@@ -387,17 +387,17 @@ export interface QueriesArrayStringCsvValidQueryParam {
 export type QueriesArrayStringCsvValidParameters =
   QueriesArrayStringCsvValidQueryParam & RequestParameters;
 
-export interface QueriesArrayStringCsvNullQueryParamProperties {
+export interface QueriesArrayStringCsvnullQueryParamProperties {
   /** a null array of string using the csv-array format */
   arrayQuery?: Array<string>;
 }
 
-export interface QueriesArrayStringCsvNullQueryParam {
-  queryParameters?: QueriesArrayStringCsvNullQueryParamProperties;
+export interface QueriesArrayStringCsvnullQueryParam {
+  queryParameters?: QueriesArrayStringCsvnullQueryParamProperties;
 }
 
-export type QueriesArrayStringCsvNullParameters =
-  QueriesArrayStringCsvNullQueryParam & RequestParameters;
+export type QueriesArrayStringCsvnullParameters =
+  QueriesArrayStringCsvnullQueryParam & RequestParameters;
 
 export interface QueriesArrayStringCsvEmptyQueryParamProperties {
   /** an empty array [] of string using the csv-array format */
@@ -473,44 +473,44 @@ export interface PathItemsGetAllWithValuesQueryParam {
 export type PathItemsGetAllWithValuesParameters =
   PathItemsGetAllWithValuesQueryParam & RequestParameters;
 
-export interface PathItemsGetGlobalQueryNullQueryParamProperties {
+export interface PathItemsGetGlobalQuerynullQueryParamProperties {
   /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
   /** should contain value 'localStringQuery' */
   localStringQuery?: string;
 }
 
-export interface PathItemsGetGlobalQueryNullQueryParam {
-  queryParameters?: PathItemsGetGlobalQueryNullQueryParamProperties;
+export interface PathItemsGetGlobalQuerynullQueryParam {
+  queryParameters?: PathItemsGetGlobalQuerynullQueryParamProperties;
 }
 
-export type PathItemsGetGlobalQueryNullParameters =
-  PathItemsGetGlobalQueryNullQueryParam & RequestParameters;
+export type PathItemsGetGlobalQuerynullParameters =
+  PathItemsGetGlobalQuerynullQueryParam & RequestParameters;
 
-export interface PathItemsGetGlobalAndLocalQueryNullQueryParamProperties {
+export interface PathItemsGetGlobalAndLocalQuerynullQueryParamProperties {
   /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
   /** should contain null value */
   localStringQuery?: string;
 }
 
-export interface PathItemsGetGlobalAndLocalQueryNullQueryParam {
-  queryParameters?: PathItemsGetGlobalAndLocalQueryNullQueryParamProperties;
+export interface PathItemsGetGlobalAndLocalQuerynullQueryParam {
+  queryParameters?: PathItemsGetGlobalAndLocalQuerynullQueryParamProperties;
 }
 
-export type PathItemsGetGlobalAndLocalQueryNullParameters =
-  PathItemsGetGlobalAndLocalQueryNullQueryParam & RequestParameters;
+export type PathItemsGetGlobalAndLocalQuerynullParameters =
+  PathItemsGetGlobalAndLocalQuerynullQueryParam & RequestParameters;
 
-export interface PathItemsGetLocalPathItemQueryNullQueryParamProperties {
+export interface PathItemsGetLocalPathItemQuerynullQueryParamProperties {
   /** should contain value null */
   pathItemStringQuery?: string;
   /** should contain value null */
   localStringQuery?: string;
 }
 
-export interface PathItemsGetLocalPathItemQueryNullQueryParam {
-  queryParameters?: PathItemsGetLocalPathItemQueryNullQueryParamProperties;
+export interface PathItemsGetLocalPathItemQuerynullQueryParam {
+  queryParameters?: PathItemsGetLocalPathItemQuerynullQueryParamProperties;
 }
 
-export type PathItemsGetLocalPathItemQueryNullParameters =
-  PathItemsGetLocalPathItemQueryNullQueryParam & RequestParameters;
+export type PathItemsGetLocalPathItemQuerynullParameters =
+  PathItemsGetLocalPathItemQuerynullQueryParam & RequestParameters;
