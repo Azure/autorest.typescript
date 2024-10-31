@@ -19,19 +19,19 @@ export declare type PaymentMethods = "01";
 
 export declare type PaymentMethodsOutput = "01";
 
-export declare interface RequestRegisterCc extends CommonRegistrationRequest {
+export declare interface RequestRegisterCC extends CommonRegistrationRequest {
     payMethod: "01";
 }
 
-export declare interface RequestRegisterCcOutput extends CommonRegistrationRequestOutput {
+export declare interface RequestRegisterCCOutput extends CommonRegistrationRequestOutput {
     payMethod: "01";
 }
 
-export declare interface RequestRegisterVa {
+export declare interface RequestRegisterVA {
     prop: string;
 }
 
-export declare interface RequestRegisterVaOutput {
+export declare interface RequestRegisterVAOutput {
     prop: string;
 }
 
@@ -45,7 +45,7 @@ export declare interface RequestUnionBody200Response extends HttpResponse {
 }
 
 export declare interface RequestUnionBodyBodyParam {
-    body: RequestRegisterCc | RequestRegisterVa;
+    body: RequestRegisterCC | RequestRegisterVA;
 }
 
 export declare type RequestUnionBodyParameters = RequestUnionBodyBodyParam & RequestParameters;
@@ -56,7 +56,7 @@ export declare interface ResponseUnionBody {
 
 export declare interface ResponseUnionBody200Response extends HttpResponse {
     status: "200";
-    body: RequestRegisterCcOutput | RequestRegisterVaOutput;
+    body: RequestRegisterCCOutput | RequestRegisterVAOutput;
 }
 
 export declare type ResponseUnionBodyParameters = RequestParameters;

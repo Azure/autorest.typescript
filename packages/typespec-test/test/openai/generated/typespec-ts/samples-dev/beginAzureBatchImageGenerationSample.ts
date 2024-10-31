@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
-import createOpenAiClient, { getLongRunningPoller } from "@msinternal/openai";
+import createOpenAIClient, { getLongRunningPoller } from "@msinternal/openai";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +15,7 @@ dotenv.config();
 async function beginAzureBatchImageGenerationSample() {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createOpenAiClient(endpointParam, credential);
+  const client = createOpenAIClient(endpointParam, credential);
   const initialResponse = await client
     .path("/images/generations:submit")
     .post({

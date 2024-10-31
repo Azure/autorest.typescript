@@ -23,7 +23,7 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export type ApiVersion = "v1.1";
+export type APIVersion = "v1.1";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -36,7 +36,7 @@ export type MultivariateAlignMode = "Inner" | "Outer";
 // @public
 export interface MultivariateAlignPolicy {
     alignMode?: MultivariateAlignMode;
-    fillNaMethod?: MultivariateFillNaMethod;
+    fillNAMethod?: MultivariateFillNAMethod;
     paddingValue?: number;
 }
 
@@ -103,7 +103,7 @@ export interface MultivariateErrorResponse {
 }
 
 // @public
-export type MultivariateFillNaMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
 // @public
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
@@ -200,7 +200,7 @@ export interface MultivariateTrainMultivariateModelOptionalParams extends Operat
 // @public
 export interface MultivariateVariableState {
     effectiveCount?: number;
-    filledNaRatio?: number;
+    filledNARatio?: number;
     firstTimestamp?: Date;
     lastTimestamp?: Date;
     variable?: string;

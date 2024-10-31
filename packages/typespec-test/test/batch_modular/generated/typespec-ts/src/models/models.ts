@@ -889,7 +889,7 @@ export interface InboundEndpoint {
   /** The public IP address of the Compute Node. */
   publicIpAddress?: string;
   /** The public fully qualified domain name for the Compute Node. */
-  publicFqdn?: string;
+  publicFQDN?: string;
   /** The public port number of the endpoint. */
   frontendPort: number;
   /** The backend port number of the endpoint. */
@@ -901,7 +901,7 @@ export function inboundEndpointDeserializer(item: any): InboundEndpoint {
     name: item["name"],
     protocol: item["protocol"],
     publicIpAddress: item["publicIPAddress"],
-    publicFqdn: item["publicFQDN"],
+    publicFQDN: item["publicFQDN"],
     frontendPort: item["frontendPort"],
     backendPort: item["backendPort"],
   };
@@ -1130,29 +1130,29 @@ export function batchNodeArrayDeserializer(result: Array<BatchNode>): any[] {
 }
 
 /** The configuration for virtual machine extension instance view. */
-export interface NodeVmExtension {
+export interface NodeVMExtension {
   /** The provisioning state of the virtual machine extension. */
   provisioningState?: string;
   /** The virtual machine extension. */
-  vmExtension?: VmExtension;
+  vmExtension?: VMExtension;
   /** The vm extension instance view. */
-  instanceView?: VmExtensionInstanceView;
+  instanceView?: VMExtensionInstanceView;
 }
 
-export function nodeVmExtensionDeserializer(item: any): NodeVmExtension {
+export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
   return {
     provisioningState: item["provisioningState"],
     vmExtension: !item["vmExtension"]
       ? item["vmExtension"]
-      : vmExtensionDeserializer(item["vmExtension"]),
+      : vMExtensionDeserializer(item["vmExtension"]),
     instanceView: !item["instanceView"]
       ? item["instanceView"]
-      : vmExtensionInstanceViewDeserializer(item["instanceView"]),
+      : vMExtensionInstanceViewDeserializer(item["instanceView"]),
   };
 }
 
 /** The configuration for virtual machine extensions. */
-export interface VmExtension {
+export interface VMExtension {
   /** The name of the virtual machine extension. */
   name: string;
   /** The name of the extension handler publisher. */
@@ -1173,7 +1173,7 @@ export interface VmExtension {
   provisionAfterExtensions?: string[];
 }
 
-export function vmExtensionSerializer(item: VmExtension): any {
+export function vMExtensionSerializer(item: VMExtension): any {
   return {
     name: item["name"],
     publisher: item["publisher"],
@@ -1191,7 +1191,7 @@ export function vmExtensionSerializer(item: VmExtension): any {
   };
 }
 
-export function vmExtensionDeserializer(item: any): VmExtension {
+export function vMExtensionDeserializer(item: any): VMExtension {
   return {
     name: item["name"],
     publisher: item["publisher"],
@@ -1210,7 +1210,7 @@ export function vmExtensionDeserializer(item: any): VmExtension {
 }
 
 /** The vm extension instance view. */
-export interface VmExtensionInstanceView {
+export interface VMExtensionInstanceView {
   /** The name of the vm extension instance view. */
   name?: string;
   /** The resource status information. */
@@ -1219,9 +1219,9 @@ export interface VmExtensionInstanceView {
   subStatuses?: InstanceViewStatus[];
 }
 
-export function vmExtensionInstanceViewDeserializer(
+export function vMExtensionInstanceViewDeserializer(
   item: any,
-): VmExtensionInstanceView {
+): VMExtensionInstanceView {
   return {
     name: item["name"],
     statuses: !item["statuses"]
@@ -1269,29 +1269,29 @@ export function instanceViewStatusArrayDeserializer(
 }
 
 /** The result of listing the Compute Node extensions in a Node. */
-export interface _NodeVmExtensionList {
+export interface _NodeVMExtensionList {
   /** The list of Compute Node extensions. */
-  value?: NodeVmExtension[];
+  value?: NodeVMExtension[];
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-export function _nodeVmExtensionListDeserializer(
+export function _nodeVMExtensionListDeserializer(
   item: any,
-): _NodeVmExtensionList {
+): _NodeVMExtensionList {
   return {
     value: !item["value"]
       ? item["value"]
-      : nodeVmExtensionArrayDeserializer(item["value"]),
+      : nodeVMExtensionArrayDeserializer(item["value"]),
     odataNextLink: item["odata.nextLink"],
   };
 }
 
-export function nodeVmExtensionArrayDeserializer(
-  result: Array<NodeVmExtension>,
+export function nodeVMExtensionArrayDeserializer(
+  result: Array<NodeVMExtension>,
 ): any[] {
   return result.map((item) => {
-    return nodeVmExtensionDeserializer(item);
+    return nodeVMExtensionDeserializer(item);
   });
 }
 
@@ -2238,9 +2238,9 @@ export interface TaskStatistics {
   /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
   lastUpdateTime: Date;
   /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by the Task. */
-  userCpuTime: string;
+  userCPUTime: string;
   /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by the Task. */
-  kernelCpuTime: string;
+  kernelCPUTime: string;
   /** The total wall clock time of the Task. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If the Task was retried, this includes the wall clock time of all the Task retries. */
   wallClockTime: string;
   /** The total number of disk read operations made by the Task. */
@@ -2248,9 +2248,9 @@ export interface TaskStatistics {
   /** The total number of disk write operations made by the Task. */
   writeIOps: number;
   /** The total gibibytes read from disk by the Task. */
-  readIoGiB: number;
+  readIOGiB: number;
   /** The total gibibytes written to disk by the Task. */
-  writeIoGiB: number;
+  writeIOGiB: number;
   /** The total wait time of the Task. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). */
   waitTime: string;
 }
@@ -2260,13 +2260,13 @@ export function taskStatisticsDeserializer(item: any): TaskStatistics {
     url: item["url"],
     startTime: new Date(item["startTime"]),
     lastUpdateTime: new Date(item["lastUpdateTime"]),
-    userCpuTime: item["userCPUTime"],
-    kernelCpuTime: item["kernelCPUTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
     wallClockTime: item["wallClockTime"],
     readIOps: item["readIOps"],
     writeIOps: item["writeIOps"],
-    readIoGiB: item["readIOGiB"],
-    writeIoGiB: item["writeIOGiB"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
     waitTime: item["waitTime"],
   };
 }
@@ -3345,9 +3345,9 @@ export interface VirtualMachineConfiguration {
   /** The node placement configuration for the pool. This configuration will specify rules on how nodes in the pool will be physically allocated. */
   nodePlacementConfiguration?: NodePlacementConfiguration;
   /** The virtual machine extension for the pool. If specified, the extensions mentioned in this configuration will be installed on each node. */
-  extensions?: VmExtension[];
+  extensions?: VMExtension[];
   /** Settings for the operating system disk of the Virtual Machine. */
-  osDisk?: OsDisk;
+  osDisk?: OSDisk;
 }
 
 export function virtualMachineConfigurationSerializer(
@@ -3378,8 +3378,8 @@ export function virtualMachineConfigurationSerializer(
         ),
     extensions: !item["extensions"]
       ? item["extensions"]
-      : vmExtensionArraySerializer(item["extensions"]),
-    osDisk: !item["osDisk"] ? item["osDisk"] : osDiskSerializer(item["osDisk"]),
+      : vMExtensionArraySerializer(item["extensions"]),
+    osDisk: !item["osDisk"] ? item["osDisk"] : oSDiskSerializer(item["osDisk"]),
   };
 }
 
@@ -3411,10 +3411,10 @@ export function virtualMachineConfigurationDeserializer(
         ),
     extensions: !item["extensions"]
       ? item["extensions"]
-      : vmExtensionArrayDeserializer(item["extensions"]),
+      : vMExtensionArrayDeserializer(item["extensions"]),
     osDisk: !item["osDisk"]
       ? item["osDisk"]
-      : osDiskDeserializer(item["osDisk"]),
+      : oSDiskDeserializer(item["osDisk"]),
   };
 }
 
@@ -3614,37 +3614,37 @@ export function nodePlacementConfigurationDeserializer(
 /** NodePlacementPolicyType enums */
 export type NodePlacementPolicyType = "regional" | "zonal";
 
-export function vmExtensionArraySerializer(result: Array<VmExtension>): any[] {
+export function vMExtensionArraySerializer(result: Array<VMExtension>): any[] {
   return result.map((item) => {
-    return vmExtensionSerializer(item);
+    return vMExtensionSerializer(item);
   });
 }
 
-export function vmExtensionArrayDeserializer(
-  result: Array<VmExtension>,
+export function vMExtensionArrayDeserializer(
+  result: Array<VMExtension>,
 ): any[] {
   return result.map((item) => {
-    return vmExtensionDeserializer(item);
+    return vMExtensionDeserializer(item);
   });
 }
 
 /** Settings for the operating system disk of the compute node (VM). */
-export interface OsDisk {
+export interface OSDisk {
   /** Specifies the ephemeral Disk Settings for the operating system disk used by the compute node (VM). */
-  ephemeralOsDiskSettings?: DiffDiskSettings;
+  ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-export function osDiskSerializer(item: OsDisk): any {
+export function oSDiskSerializer(item: OSDisk): any {
   return {
-    ephemeralOSDiskSettings: !item["ephemeralOsDiskSettings"]
-      ? item["ephemeralOsDiskSettings"]
-      : diffDiskSettingsSerializer(item["ephemeralOsDiskSettings"]),
+    ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
+      ? item["ephemeralOSDiskSettings"]
+      : diffDiskSettingsSerializer(item["ephemeralOSDiskSettings"]),
   };
 }
 
-export function osDiskDeserializer(item: any): OsDisk {
+export function oSDiskDeserializer(item: any): OSDisk {
   return {
-    ephemeralOsDiskSettings: !item["ephemeralOSDiskSettings"]
+    ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
       ? item["ephemeralOSDiskSettings"]
       : diffDiskSettingsDeserializer(item["ephemeralOSDiskSettings"]),
   };
@@ -3751,14 +3751,14 @@ export type DynamicVNetAssignmentScope = "none" | "job";
 /** The endpoint configuration for a Pool. */
 export interface PoolEndpointConfiguration {
   /** A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. */
-  inboundNatPools: InboundNatPool[];
+  inboundNatPools: InboundNATPool[];
 }
 
 export function poolEndpointConfigurationSerializer(
   item: PoolEndpointConfiguration,
 ): any {
   return {
-    inboundNATPools: inboundNatPoolArraySerializer(item["inboundNatPools"]),
+    inboundNATPools: inboundNATPoolArraySerializer(item["inboundNatPools"]),
   };
 }
 
@@ -3766,7 +3766,7 @@ export function poolEndpointConfigurationDeserializer(
   item: any,
 ): PoolEndpointConfiguration {
   return {
-    inboundNatPools: inboundNatPoolArrayDeserializer(item["inboundNATPools"]),
+    inboundNatPools: inboundNATPoolArrayDeserializer(item["inboundNATPools"]),
   };
 }
 
@@ -3774,7 +3774,7 @@ export function poolEndpointConfigurationDeserializer(
  * A inbound NAT Pool that can be used to address specific ports on Compute Nodes
  * in a Batch Pool externally.
  */
-export interface InboundNatPool {
+export interface InboundNATPool {
   /** The name of the endpoint. The name must be unique within a Batch Pool, can contain letters, numbers, underscores, periods, and hyphens. Names must start with a letter or number, must end with a letter, number, or underscore, and cannot exceed 77 characters.  If any invalid values are provided the request fails with HTTP status code 400. */
   name: string;
   /** The protocol of the endpoint. */
@@ -3789,7 +3789,7 @@ export interface InboundNatPool {
   networkSecurityGroupRules?: NetworkSecurityGroupRule[];
 }
 
-export function inboundNatPoolSerializer(item: InboundNatPool): any {
+export function inboundNATPoolSerializer(item: InboundNATPool): any {
   return {
     name: item["name"],
     protocol: item["protocol"],
@@ -3804,7 +3804,7 @@ export function inboundNatPoolSerializer(item: InboundNatPool): any {
   };
 }
 
-export function inboundNatPoolDeserializer(item: any): InboundNatPool {
+export function inboundNATPoolDeserializer(item: any): InboundNATPool {
   return {
     name: item["name"],
     protocol: item["protocol"],
@@ -3880,19 +3880,19 @@ export function networkSecurityGroupRuleArrayDeserializer(
   });
 }
 
-export function inboundNatPoolArraySerializer(
-  result: Array<InboundNatPool>,
+export function inboundNATPoolArraySerializer(
+  result: Array<InboundNATPool>,
 ): any[] {
   return result.map((item) => {
-    return inboundNatPoolSerializer(item);
+    return inboundNATPoolSerializer(item);
   });
 }
 
-export function inboundNatPoolArrayDeserializer(
-  result: Array<InboundNatPool>,
+export function inboundNATPoolArrayDeserializer(
+  result: Array<InboundNATPool>,
 ): any[] {
   return result.map((item) => {
-    return inboundNatPoolDeserializer(item);
+    return inboundNATPoolDeserializer(item);
   });
 }
 
@@ -4366,9 +4366,9 @@ export interface JobScheduleStatistics {
   /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
   lastUpdateTime: Date;
   /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  userCpuTime: string;
+  userCPUTime: string;
   /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in all Jobs created under the schedule. */
-  kernelCpuTime: string;
+  kernelCPUTime: string;
   /** The total wall clock time of all the Tasks in all the Jobs created under the schedule. The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
   wallClockTime: string;
   /** The total number of disk read operations made by all Tasks in all Jobs created under the schedule. */
@@ -4376,9 +4376,9 @@ export interface JobScheduleStatistics {
   /** The total number of disk write operations made by all Tasks in all Jobs created under the schedule. */
   writeIOps: number;
   /** The total gibibytes read from disk by all Tasks in all Jobs created under the schedule. */
-  readIoGiB: number;
+  readIOGiB: number;
   /** The total gibibytes written to disk by all Tasks in all Jobs created under the schedule. */
-  writeIoGiB: number;
+  writeIOGiB: number;
   /** The total number of Tasks successfully completed during the given time range in Jobs created under the schedule. A Task completes successfully if it returns exit code 0. */
   numSucceededTasks: number;
   /** The total number of Tasks that failed during the given time range in Jobs created under the schedule. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
@@ -4396,13 +4396,13 @@ export function jobScheduleStatisticsDeserializer(
     url: item["url"],
     startTime: new Date(item["startTime"]),
     lastUpdateTime: new Date(item["lastUpdateTime"]),
-    userCpuTime: item["userCPUTime"],
-    kernelCpuTime: item["kernelCPUTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
     wallClockTime: item["wallClockTime"],
     readIOps: item["readIOps"],
     writeIOps: item["writeIOps"],
-    readIoGiB: item["readIOGiB"],
-    writeIoGiB: item["writeIOGiB"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
     numSucceededTasks: item["numSucceededTasks"],
     numFailedTasks: item["numFailedTasks"],
     numTaskRetries: item["numTaskRetries"],
@@ -4832,9 +4832,9 @@ export interface JobStatistics {
   /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
   lastUpdateTime: Date;
   /** The total user mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in the Job. */
-  userCpuTime: string;
+  userCPUTime: string;
   /** The total kernel mode CPU time (summed across all cores and all Compute Nodes) consumed by all Tasks in the Job. */
-  kernelCpuTime: string;
+  kernelCPUTime: string;
   /** The total wall clock time of all Tasks in the Job.  The wall clock time is the elapsed time from when the Task started running on a Compute Node to when it finished (or to the last time the statistics were updated, if the Task had not finished by then). If a Task was retried, this includes the wall clock time of all the Task retries. */
   wallClockTime: string;
   /** The total number of disk read operations made by all Tasks in the Job. */
@@ -4842,9 +4842,9 @@ export interface JobStatistics {
   /** The total number of disk write operations made by all Tasks in the Job. */
   writeIOps: number;
   /** The total amount of data in GiB read from disk by all Tasks in the Job. */
-  readIoGiB: number;
+  readIOGiB: number;
   /** The total amount of data in GiB written to disk by all Tasks in the Job. */
-  writeIoGiB: number;
+  writeIOGiB: number;
   /** The total number of Tasks successfully completed in the Job during the given time range. A Task completes successfully if it returns exit code 0. */
   numSucceededTasks: number;
   /** The total number of Tasks in the Job that failed during the given time range. A Task fails if it exhausts its maximum retry count without returning exit code 0. */
@@ -4860,13 +4860,13 @@ export function jobStatisticsDeserializer(item: any): JobStatistics {
     url: item["url"],
     startTime: new Date(item["startTime"]),
     lastUpdateTime: new Date(item["lastUpdateTime"]),
-    userCpuTime: item["userCPUTime"],
-    kernelCpuTime: item["kernelCPUTime"],
+    userCPUTime: item["userCPUTime"],
+    kernelCPUTime: item["kernelCPUTime"],
     wallClockTime: item["wallClockTime"],
     readIOps: item["readIOps"],
     writeIOps: item["writeIOps"],
-    readIoGiB: item["readIOGiB"],
-    writeIoGiB: item["writeIOGiB"],
+    readIOGiB: item["readIOGiB"],
+    writeIOGiB: item["writeIOGiB"],
     numSucceededTasks: item["numSucceededTasks"],
     numFailedTasks: item["numFailedTasks"],
     numTaskRetries: item["numTaskRetries"],
@@ -5305,7 +5305,7 @@ export interface ImageInformation {
   /** The reference to the Azure Virtual Machine's Marketplace Image. */
   imageReference: ImageReference;
   /** The type of operating system (e.g. Windows or Linux) of the Image. */
-  osType: OsType;
+  osType: OSType;
   /** The capabilities or features which the Image supports. Not every capability of the Image is listed. Capabilities in this list are considered of special interest and are generally related to integration with other features in the Azure Batch service. */
   capabilities?: string[];
   /** The time when the Azure Batch service will stop accepting create Pool requests for the Image. */
@@ -5332,7 +5332,7 @@ export function imageInformationDeserializer(item: any): ImageInformation {
 }
 
 /** OSType enums */
-export type OsType = "linux" | "windows";
+export type OSType = "linux" | "windows";
 /** VerificationType enums */
 export type VerificationType = "verified" | "unverified";
 

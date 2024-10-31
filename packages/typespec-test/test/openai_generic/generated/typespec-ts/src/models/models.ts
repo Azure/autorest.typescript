@@ -636,11 +636,11 @@ export interface FineTune {
     classification_n_classes?: number;
   };
   /** The list of files used for training. */
-  training_files: OpenAiFile[];
+  training_files: OpenAIFile[];
   /** The list of files used for validation. */
-  validation_files: OpenAiFile[];
+  validation_files: OpenAIFile[];
   /** The compiled results files for the fine-tuning job. */
-  result_files: OpenAiFile[];
+  result_files: OpenAIFile[];
   /** The list of events that have been observed in the lifecycle of the FineTune job. */
   events?: FineTuneEvent[];
 }
@@ -656,9 +656,9 @@ export function fineTuneDeserializer(item: any): FineTune {
     organization_id: item["organization_id"],
     status: item["status"],
     hyperparams: _fineTuneHyperparamsDeserializer(item["hyperparams"]),
-    training_files: openAiFileArrayDeserializer(item["training_files"]),
-    validation_files: openAiFileArrayDeserializer(item["validation_files"]),
-    result_files: openAiFileArrayDeserializer(item["result_files"]),
+    training_files: openAIFileArrayDeserializer(item["training_files"]),
+    validation_files: openAIFileArrayDeserializer(item["validation_files"]),
+    result_files: openAIFileArrayDeserializer(item["result_files"]),
     events: !item["events"]
       ? item["events"]
       : fineTuneEventArrayDeserializer(item["events"]),
@@ -704,7 +704,7 @@ export function _fineTuneHyperparamsDeserializer(
 }
 
 /** The `File` object represents a document that has been uploaded to OpenAI. */
-export interface OpenAiFile {
+export interface OpenAIFile {
   /** The file identifier, which can be referenced in the API endpoints. */
   id: string;
   /** The object type, which is always "file". */
@@ -735,7 +735,7 @@ export interface OpenAiFile {
   status_details?: string | null;
 }
 
-export function openAiFileDeserializer(item: any): OpenAiFile {
+export function openAIFileDeserializer(item: any): OpenAIFile {
   return {
     id: item["id"],
     object: item["object"],
@@ -748,9 +748,9 @@ export function openAiFileDeserializer(item: any): OpenAiFile {
   };
 }
 
-export function openAiFileArrayDeserializer(result: Array<OpenAiFile>): any[] {
+export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   return result.map((item) => {
-    return openAiFileDeserializer(item);
+    return openAIFileDeserializer(item);
   });
 }
 
@@ -818,13 +818,13 @@ export function listFineTuneEventsResponseDeserializer(
 /** model interface ListFilesResponse */
 export interface ListFilesResponse {
   object: string;
-  data: OpenAiFile[];
+  data: OpenAIFile[];
 }
 
 export function listFilesResponseDeserializer(item: any): ListFilesResponse {
   return {
     object: item["object"],
-    data: openAiFileArrayDeserializer(item["data"]),
+    data: openAIFileArrayDeserializer(item["data"]),
   };
 }
 

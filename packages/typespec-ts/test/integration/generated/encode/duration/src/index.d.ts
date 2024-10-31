@@ -165,11 +165,11 @@ export declare interface Int32SecondsDurationPropertyOutput {
     value: number;
 }
 
-export declare interface Iso8601DurationProperty {
+export declare interface ISO8601DurationProperty {
     value: string;
 }
 
-export declare interface Iso8601DurationPropertyOutput {
+export declare interface ISO8601DurationPropertyOutput {
     value: string;
 }
 
@@ -254,11 +254,11 @@ export declare interface PropertyIso8601 {
 
 export declare interface PropertyIso8601200Response extends HttpResponse {
     status: "200";
-    body: Iso8601DurationPropertyOutput;
+    body: ISO8601DurationPropertyOutput;
 }
 
 export declare interface PropertyIso8601BodyParam {
-    body: Iso8601DurationProperty;
+    body: ISO8601DurationProperty;
 }
 
 export declare type PropertyIso8601Parameters = PropertyIso8601BodyParam & RequestParameters;

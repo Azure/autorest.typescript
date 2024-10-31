@@ -52,14 +52,14 @@ export interface PassFailCriteriaOutput {
 /** Pass fail metric */
 export interface PassFailMetricOutput {
   /** The client metric on which the criteria should be applied. */
-  clientMetric?: PfMetricsOutput;
+  clientMetric?: PFMetricsOutput;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    */
-  aggregate?: PfAgFuncOutput;
+  aggregate?: PFAgFuncOutput;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
   condition?: string;
   /** Request name for which the Pass fail criteria has to be applied */
@@ -70,11 +70,11 @@ export interface PassFailMetricOutput {
    */
   value?: number;
   /** Action taken after the threshold is met. Default is ‘continue’. */
-  action?: PfActionOutput;
+  action?: PFActionOutput;
   /** The actual value of the client metric for the test run. */
   readonly actualValue?: number;
   /** Outcome of the test run. */
-  readonly result?: PfResultOutput;
+  readonly result?: PFResultOutput;
 }
 
 /** Secret */
@@ -294,7 +294,7 @@ export interface TestRunOutput {
   /** Collection of test run artifacts */
   readonly testArtifacts?: TestRunArtifactsOutput;
   /** Test result for pass/Fail criteria used during the test run. */
-  readonly testResult?: PfTestResultOutput;
+  readonly testResult?: PFTestResultOutput;
   /** Number of virtual users, for which test has been run. */
   readonly virtualUsers?: number;
   /** Display name of a testRun. */
@@ -547,15 +547,15 @@ export interface TestRunServerMetricConfigOutput {
   readonly lastModifiedBy?: string;
 }
 
-/** Alias for PfMetricsOutput */
-export type PfMetricsOutput =
+/** Alias for PFMetricsOutput */
+export type PFMetricsOutput =
   | "response_time_ms"
   | "latency"
   | "error"
   | "requests"
   | "requests_per_sec";
-/** Alias for PfAgFuncOutput */
-export type PfAgFuncOutput =
+/** Alias for PFAgFuncOutput */
+export type PFAgFuncOutput =
   | "count"
   | "percentage"
   | "avg"
@@ -565,10 +565,10 @@ export type PfAgFuncOutput =
   | "p99"
   | "min"
   | "max";
-/** Alias for PfActionOutput */
-export type PfActionOutput = "continue" | "stop";
-/** Alias for PfResultOutput */
-export type PfResultOutput = "passed" | "undetermined" | "failed";
+/** Alias for PFActionOutput */
+export type PFActionOutput = "continue" | "stop";
+/** Alias for PFResultOutput */
+export type PFResultOutput = "passed" | "undetermined" | "failed";
 /** Alias for SecretTypeOutput */
 export type SecretTypeOutput = "AKV_SECRET_URI" | "SECRET_VALUE";
 /** Alias for CertificateTypeOutput */
@@ -585,8 +585,8 @@ export type FileStatusOutput =
   | "VALIDATION_FAILURE"
   | "VALIDATION_INITIATED"
   | "VALIDATION_NOT_REQUIRED";
-/** Alias for PfTestResultOutput */
-export type PfTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Alias for PFTestResultOutput */
+export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Alias for StatusOutput */
 export type StatusOutput =
   | "ACCEPTED"

@@ -40,14 +40,14 @@ export interface PassFailCriteria {
 /** Pass fail metric */
 export interface PassFailMetric {
   /** The client metric on which the criteria should be applied. */
-  clientMetric?: PfMetrics;
+  clientMetric?: PFMetrics;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    */
-  aggregate?: PfAgFunc;
+  aggregate?: PFAgFunc;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
   condition?: string;
   /** Request name for which the Pass fail criteria has to be applied */
@@ -58,7 +58,7 @@ export interface PassFailMetric {
    */
   value?: number;
   /** Action taken after the threshold is met. Default is ‘continue’. */
-  action?: PfAction;
+  action?: PFAction;
 }
 
 /** Secret */
@@ -299,15 +299,15 @@ export interface TestRunServerMetricConfig {
   metrics?: Record<string, ResourceMetric>;
 }
 
-/** Alias for PfMetrics */
-export type PfMetrics =
+/** Alias for PFMetrics */
+export type PFMetrics =
   | "response_time_ms"
   | "latency"
   | "error"
   | "requests"
   | "requests_per_sec";
-/** Alias for PfAgFunc */
-export type PfAgFunc =
+/** Alias for PFAgFunc */
+export type PFAgFunc =
   | "count"
   | "percentage"
   | "avg"
@@ -317,10 +317,10 @@ export type PfAgFunc =
   | "p99"
   | "min"
   | "max";
-/** Alias for PfAction */
-export type PfAction = "continue" | "stop";
-/** Alias for PfResult */
-export type PfResult = "passed" | "undetermined" | "failed";
+/** Alias for PFAction */
+export type PFAction = "continue" | "stop";
+/** Alias for PFResult */
+export type PFResult = "passed" | "undetermined" | "failed";
 /** Alias for SecretType */
 export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 /** Alias for CertificateType */
@@ -334,8 +334,8 @@ export type FileStatus =
   | "VALIDATION_FAILURE"
   | "VALIDATION_INITIATED"
   | "VALIDATION_NOT_REQUIRED";
-/** Alias for PfTestResult */
-export type PfTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Alias for PFTestResult */
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Alias for Status */
 export type Status =
   | "ACCEPTED"

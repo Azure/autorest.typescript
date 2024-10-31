@@ -139,7 +139,7 @@ export class BatchClient {
     getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
     getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
     getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVmExtension>;
+    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
     getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
     getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
     getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
@@ -155,7 +155,7 @@ export class BatchClient {
     listJobs(options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;
     listJobSchedules(options?: ListJobSchedulesOptionalParams): PagedAsyncIterableIterator<BatchJobSchedule>;
     listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptionalParams): PagedAsyncIterableIterator<BatchJob>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVmExtension>;
+    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVMExtension>;
     listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
     listNodes(poolId: string, options?: ListNodesOptionalParams): PagedAsyncIterableIterator<BatchNode>;
     listPoolNodeCounts(options?: ListPoolNodeCountsOptionalParams): PagedAsyncIterableIterator<PoolNodeCounts>;
@@ -1077,7 +1077,7 @@ export interface ImageInformation {
     capabilities?: string[];
     imageReference: ImageReference;
     nodeAgentSkuId: string;
-    osType: OsType;
+    osType: OSType;
     verificationType: VerificationType;
 }
 
@@ -1097,7 +1097,7 @@ export interface InboundEndpoint {
     frontendPort: number;
     name: string;
     protocol: InboundEndpointProtocol;
-    publicFqdn?: string;
+    publicFQDN?: string;
     publicIpAddress?: string;
 }
 
@@ -1105,7 +1105,7 @@ export interface InboundEndpoint {
 export type InboundEndpointProtocol = "tcp" | "udp";
 
 // @public
-export interface InboundNatPool {
+export interface InboundNATPool {
     backendPort: number;
     frontendPortRangeEnd: number;
     frontendPortRangeStart: number;
@@ -1258,19 +1258,19 @@ export type JobScheduleState = "active" | "completed" | "disabled" | "terminatin
 
 // @public
 export interface JobScheduleStatistics {
-    kernelCpuTime: string;
+    kernelCPUTime: string;
     lastUpdateTime: Date;
     numFailedTasks: number;
     numSucceededTasks: number;
     numTaskRetries: number;
-    readIoGiB: number;
+    readIOGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCpuTime: string;
+    userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIoGiB: number;
+    writeIOGiB: number;
     writeIOps: number;
 }
 
@@ -1306,19 +1306,19 @@ export type JobState = "active" | "disabling" | "disabled" | "enabling" | "termi
 
 // @public
 export interface JobStatistics {
-    kernelCpuTime: string;
+    kernelCPUTime: string;
     lastUpdateTime: Date;
     numFailedTasks: number;
     numSucceededTasks: number;
     numTaskRetries: number;
-    readIoGiB: number;
+    readIOGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCpuTime: string;
+    userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIoGiB: number;
+    writeIOGiB: number;
     writeIOps: number;
 }
 
@@ -1592,10 +1592,10 @@ export interface NodeRemoveOptions {
 }
 
 // @public
-export interface NodeVmExtension {
-    instanceView?: VmExtensionInstanceView;
+export interface NodeVMExtension {
+    instanceView?: VMExtensionInstanceView;
     provisioningState?: string;
-    vmExtension?: VmExtension;
+    vmExtension?: VMExtension;
 }
 
 // @public
@@ -1605,12 +1605,12 @@ export type OnAllTasksComplete = "noaction" | "terminatejob";
 export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 // @public
-export interface OsDisk {
-    ephemeralOsDiskSettings?: DiffDiskSettings;
+export interface OSDisk {
+    ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
 // @public
-export type OsType = "linux" | "windows";
+export type OSType = "linux" | "windows";
 
 // @public
 export interface OutputFile {
@@ -1654,7 +1654,7 @@ export interface PageSettings {
 
 // @public
 export interface PoolEndpointConfiguration {
-    inboundNatPools: InboundNatPool[];
+    inboundNatPools: InboundNATPool[];
 }
 
 // @public
@@ -2069,16 +2069,16 @@ export type TaskState = "active" | "preparing" | "running" | "completed";
 
 // @public
 export interface TaskStatistics {
-    kernelCpuTime: string;
+    kernelCPUTime: string;
     lastUpdateTime: Date;
-    readIoGiB: number;
+    readIOGiB: number;
     readIOps: number;
     startTime: Date;
     url: string;
-    userCpuTime: string;
+    userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
-    writeIoGiB: number;
+    writeIOGiB: number;
     writeIOps: number;
 }
 
@@ -2205,12 +2205,12 @@ export interface VirtualMachineConfiguration {
     containerConfiguration?: ContainerConfiguration;
     dataDisks?: DataDisk[];
     diskEncryptionConfiguration?: DiskEncryptionConfiguration;
-    extensions?: VmExtension[];
+    extensions?: VMExtension[];
     imageReference: ImageReference;
     licenseType?: string;
     nodeAgentSkuId: string;
     nodePlacementConfiguration?: NodePlacementConfiguration;
-    osDisk?: OsDisk;
+    osDisk?: OSDisk;
     windowsConfiguration?: WindowsConfiguration;
 }
 
@@ -2220,7 +2220,7 @@ export interface VirtualMachineInfo {
 }
 
 // @public
-export interface VmExtension {
+export interface VMExtension {
     autoUpgradeMinorVersion?: boolean;
     enableAutomaticUpgrade?: boolean;
     name: string;
@@ -2233,7 +2233,7 @@ export interface VmExtension {
 }
 
 // @public
-export interface VmExtensionInstanceView {
+export interface VMExtensionInstanceView {
     name?: string;
     statuses?: InstanceViewStatus[];
     subStatuses?: InstanceViewStatus[];

@@ -16,7 +16,7 @@ export declare interface ClientModelLanguageOptionalParams extends OperationOpti
 
 export declare interface ClientModelOperations {
     client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
-    language: (body: TsModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
+    language: (body: TSModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
 }
 
 export declare interface ClientNameAndJsonEncodedNameModel {
@@ -39,7 +39,7 @@ export declare interface CompatibleWithEncodedNameOptionalParams extends Operati
 export declare type ExtensibleEnum = "value1" | "value2";
 
 export declare interface LanguageClientNameModel {
-    tsName: boolean;
+    tSName: boolean;
 }
 
 export declare interface LanguageOptionalParams extends OperationOptions {
@@ -72,7 +72,7 @@ export declare interface RequestOptionalParams extends OperationOptions {
 export declare interface ResponseOptionalParams extends OperationOptions {
 }
 
-export declare interface TsModel {
+export declare interface TSModel {
     defaultName: boolean;
 }
 

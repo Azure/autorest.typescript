@@ -267,7 +267,7 @@ export interface BatchImageGenerationOperationResponseOutput {
   /** The result of the operation if the operation succeeded. */
   result?: ImageGenerationsOutput;
   /** The status of the operation */
-  status: AzureOpenAiOperationStateOutput;
+  status: AzureOpenAIOperationStateOutput;
   /** The error if the operation failed. */
   error?: ErrorModel;
 }
@@ -308,7 +308,7 @@ export type ChatRoleOutput =
   | "function"
   | "tool";
 /** The state of a job or item. */
-export type AzureOpenAiOperationStateOutput =
+export type AzureOpenAIOperationStateOutput =
   | "notRunning"
   | "running"
   | "succeeded"

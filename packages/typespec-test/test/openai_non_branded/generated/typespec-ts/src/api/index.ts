@@ -4,7 +4,7 @@ export {
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
-} from "./openAiContext.js";
+} from "./openAIContext.js";
 export {
   AudioTranscriptionsCreateOptionalParams,
   AudioTranslationsCreateOptionalParams,

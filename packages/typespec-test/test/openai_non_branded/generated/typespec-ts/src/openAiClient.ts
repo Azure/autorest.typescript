@@ -39,7 +39,7 @@ import {
 } from "./api/index.js";
 import { Pipeline, KeyCredential } from "@typespec/ts-http-runtime";
 
-export { OpenAIClientOptionalParams } from "./api/openAiContext.js";
+export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;

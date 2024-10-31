@@ -98,10 +98,10 @@ import {
   uploadBatchServiceLogsResultDeserializer,
   _BatchNodeListResult,
   _batchNodeListResultDeserializer,
-  NodeVmExtension,
-  nodeVmExtensionDeserializer,
-  _NodeVmExtensionList,
-  _nodeVmExtensionListDeserializer,
+  NodeVMExtension,
+  nodeVMExtensionDeserializer,
+  _NodeVMExtensionList,
+  _nodeVMExtensionListDeserializer,
   _NodeFileListResult,
   _nodeFileListResultDeserializer,
   NodeFile,
@@ -4253,13 +4253,13 @@ export function _getNodeExtensionSend(
 
 export async function _getNodeExtensionDeserialize(
   result: PathUncheckedResponse,
-): Promise<NodeVmExtension> {
+): Promise<NodeVMExtension> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return nodeVmExtensionDeserializer(result.body);
+  return nodeVMExtensionDeserializer(result.body);
 }
 
 /** Gets information about the specified Compute Node Extension. */
@@ -4269,7 +4269,7 @@ export async function getNodeExtension(
   nodeId: string,
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
-): Promise<NodeVmExtension> {
+): Promise<NodeVMExtension> {
   const result = await _getNodeExtensionSend(
     context,
     poolId,
@@ -4304,13 +4304,13 @@ export function _listNodeExtensionsSend(
 
 export async function _listNodeExtensionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeVmExtensionList> {
+): Promise<_NodeVMExtensionList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _nodeVmExtensionListDeserializer(result.body);
+  return _nodeVMExtensionListDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
@@ -4319,7 +4319,7 @@ export function listNodeExtensions(
   poolId: string,
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<NodeVmExtension> {
+): PagedAsyncIterableIterator<NodeVMExtension> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),

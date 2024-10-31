@@ -1,4 +1,4 @@
-# OpenAi REST client library for JavaScript
+# OpenAI REST client library for JavaScript
 
 Azure OpenAI APIs for completions and search
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/openai` package
 
-Install the OpenAi REST client REST client library for JavaScript with `npm`:
+Install the OpenAI REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/openai
 ```
 
-### Create and authenticate a `OpenAiClient`
+### Create and authenticate a `OpenAIClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

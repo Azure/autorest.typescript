@@ -14,7 +14,8 @@ export enum NameType {
   Parameter,
   Operation,
   OperationGroup,
-  Method
+  Method,
+  EnumMemberName
 }
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
@@ -143,9 +144,16 @@ export function normalizeName(
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
   const parts = deconstruct(name);
+  // const parts = getNameParts(sanitizeName(name));
+  console.log("parts", parts, name, getNameParts(sanitizeName(name)));
   const [firstPart, ...otherParts] = parts;
   if (parts.length === 0) {
-    console.log("parts.length < 1", parts, name, getNameParts(sanitizeName(name)));
+    console.log(
+      "parts.length < 1",
+      parts,
+      name,
+      getNameParts(sanitizeName(name))
+    );
     return name;
   }
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
@@ -161,9 +169,30 @@ export function normalizeName(
     : normalized;
 }
 
-function deconstruct(
+function isFullyUpperCase(
   identifier: string,
-): Array<string> {
+  maxUppercasePreserve: number = 6
+) {
+  const len = identifier.length;
+  if (len > 1) {
+    if (
+      len <= maxUppercasePreserve &&
+      identifier === identifier.toUpperCase()
+    ) {
+      return true;
+    }
+
+    if (len <= maxUppercasePreserve + 1 && identifier.endsWith("s")) {
+      const i = identifier.substring(0, len - 1);
+      if (i.toUpperCase() === i) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function deconstruct(identifier: string): Array<string> {
   const parts = `${identifier}`
     .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
     .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123 => foo123 bar)
@@ -171,7 +200,8 @@ function deconstruct(
     .replace(/\b([A-Z]+)([A-Z])([a-z]+)/g, "$1 $2$3") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
     .replace(/«/g, "s")
     .trim()
-    .split(/[\W|_]+/);
+    .split(/[\W|_]+/)
+    .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()));
   return parts.filter((part) => part.trim().length > 0);
 }
 
@@ -206,6 +236,7 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Class:
     case NameType.Interface:
     case NameType.OperationGroup:
+    case NameType.EnumMemberName:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
@@ -222,10 +253,10 @@ function getCasingConvention(nameType: NameType) {
  * on Modeler four namer for this once it is stable
  */
 function toCasing(str: string, casing: CasingConvention): string {
-  let value = str;
-  if (value === value.toUpperCase()) {
-    value = str.toLowerCase();
-  }
+  const value = str;
+  // if (value === value.toUpperCase()) {
+  //   value = str.toLowerCase();
+  // }
 
   const firstChar =
     casing === CasingConvention.Pascal

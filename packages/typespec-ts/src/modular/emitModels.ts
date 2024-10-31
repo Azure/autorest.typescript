@@ -50,7 +50,6 @@ import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { getTypeExpression, normalizeModelPropertyName } from "./type-expressions/get-type-expression.js";
-import { pascal } from "../utils/casingUtils.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -309,7 +308,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
 function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: pascal(member.name),
+    name: normalizeName(member.name, NameType.EnumMemberName),
     value: member.value
   };
 

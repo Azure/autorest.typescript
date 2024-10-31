@@ -41,7 +41,7 @@ import {
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 
-export { OpenAIClientOptionalParams } from "./api/openAiContext.js";
+export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;

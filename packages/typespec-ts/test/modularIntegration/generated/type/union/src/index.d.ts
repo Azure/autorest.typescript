@@ -11,8 +11,8 @@ export declare interface Dog {
 }
 
 export declare interface EnumsOnlyCases {
-    lr: Lr | Ud;
-    ud: Ud;
+    lr: LR | UD;
+    ud: UD;
 }
 
 export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
@@ -59,7 +59,7 @@ export declare enum KnownStringExtensibleNamedUnion {
     C = "c"
 }
 
-export declare type Lr = "left" | "right";
+export declare type LR = "left" | "right";
 
 export declare interface MixedLiteralsCases {
     stringLiteral: "a" | 2 | 3.3 | true;
@@ -174,7 +174,7 @@ export declare interface StringsOnlyOperations {
 export declare interface StringsOnlySendOptionalParams extends OperationOptions {
 }
 
-export declare type Ud = "up" | "down";
+export declare type UD = "up" | "down";
 
 export declare class UnionClient {
     private _client;

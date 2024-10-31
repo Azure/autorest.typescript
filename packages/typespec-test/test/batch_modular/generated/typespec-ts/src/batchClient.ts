@@ -165,7 +165,7 @@ import {
   BatchNodeRemoteLoginSettingsResult,
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
-  NodeVmExtension,
+  NodeVMExtension,
   NodeFile,
   BatchTaskCreateOptions,
   BatchTask,
@@ -1117,7 +1117,7 @@ export class BatchClient {
     nodeId: string,
     extensionName: string,
     options: GetNodeExtensionOptionalParams = { requestOptions: {} },
-  ): Promise<NodeVmExtension> {
+  ): Promise<NodeVMExtension> {
     return getNodeExtension(
       this._client,
       poolId,
@@ -1132,7 +1132,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<NodeVmExtension> {
+  ): PagedAsyncIterableIterator<NodeVMExtension> {
     return listNodeExtensions(this._client, poolId, nodeId, options);
   }
 

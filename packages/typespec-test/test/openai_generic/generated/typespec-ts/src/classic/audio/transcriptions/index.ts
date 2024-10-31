@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../../api/openAiContext.js";
+import { OpenAIContext } from "../../../api/openAIContext.js";
 import { create } from "../../../api/audio/transcriptions/index.js";
 import { AudioTranscriptionsCreateOptionalParams } from "../../../api/options.js";
 import {

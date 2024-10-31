@@ -78,7 +78,7 @@ export interface DataProductInformation {
 export interface DataProductNetworkAcls {
     allowedQueryIpRangeList: string[];
     defaultAction: DefaultAction;
-    ipRules: IpRules[];
+    ipRules: IPRules[];
     virtualNetworkRule: VirtualNetworkRule[];
 }
 
@@ -328,7 +328,7 @@ export interface ErrorResponse {
 }
 
 // @public
-export interface IpRules {
+export interface IPRules {
     action: string;
     value?: string;
 }

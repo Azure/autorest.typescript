@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import createOpenAiClient from "@msinternal/openai";
+import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -15,7 +15,7 @@ dotenv.config();
 async function getAzureBatchImageGenerationOperationStatusSample() {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createOpenAiClient(endpointParam, credential);
+  const client = createOpenAIClient(endpointParam, credential);
   const operationId = "{Your operationId}";
   const result = await client
     .path("/operations/images/{operationId}", operationId)

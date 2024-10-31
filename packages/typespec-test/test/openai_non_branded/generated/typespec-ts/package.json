@@ -1,7 +1,7 @@
 {
   "name": "@msinternal/openai-non-branded",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for OpenAiClient.",
+  "description": "A generated SDK for OpenAIClient.",
   "engines": {
     "node": ">=18.0.0"
   },

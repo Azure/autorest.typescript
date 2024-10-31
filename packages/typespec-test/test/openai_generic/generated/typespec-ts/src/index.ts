@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { OpenAIClient } from "./openAiClient.js";
+export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -17,7 +17,7 @@ export {
   DeleteModelResponse,
   CreateFineTuneRequest,
   FineTune,
-  OpenAiFile,
+  OpenAIFile,
   FineTuneEvent,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,

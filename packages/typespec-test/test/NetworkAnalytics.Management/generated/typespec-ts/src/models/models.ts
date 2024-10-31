@@ -257,7 +257,7 @@ export interface DataProductNetworkAcls {
   /** Virtual Network Rule */
   virtualNetworkRule: VirtualNetworkRule[];
   /** IP rule with specific IP or IP range in CIDR format. */
-  ipRules: IpRules[];
+  ipRules: IPRules[];
   /** The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint. */
   allowedQueryIpRangeList: string[];
   /** Default Action */
@@ -271,7 +271,7 @@ export function dataProductNetworkAclsSerializer(
     virtualNetworkRule: virtualNetworkRuleArraySerializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: ipRulesArraySerializer(item["ipRules"]),
+    ipRules: iPRulesArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -286,7 +286,7 @@ export function dataProductNetworkAclsDeserializer(
     virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
+    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -333,33 +333,33 @@ export function virtualNetworkRuleArrayDeserializer(
 }
 
 /** IP rule with specific IP or IP range in CIDR format. */
-export interface IpRules {
+export interface IPRules {
   /** IP Rules Value */
   value?: string;
   /** The action of virtual network rule. */
   action: string;
 }
 
-export function ipRulesSerializer(item: IpRules): any {
+export function iPRulesSerializer(item: IPRules): any {
   return { value: item["value"], action: item["action"] };
 }
 
-export function ipRulesDeserializer(item: any): IpRules {
+export function iPRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
   };
 }
 
-export function ipRulesArraySerializer(result: Array<IpRules>): any[] {
+export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return ipRulesSerializer(item);
+    return iPRulesSerializer(item);
   });
 }
 
-export function ipRulesArrayDeserializer(result: Array<IpRules>): any[] {
+export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return ipRulesDeserializer(item);
+    return iPRulesDeserializer(item);
   });
 }
 

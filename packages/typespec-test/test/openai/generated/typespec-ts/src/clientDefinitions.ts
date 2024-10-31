@@ -122,6 +122,6 @@ export interface Routes {
   (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
 }
 
-export type OpenAiClient = Client & {
+export type OpenAIClient = Client & {
   path: Routes;
 };

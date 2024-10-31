@@ -450,14 +450,14 @@ export interface FilesListOptionalParams extends OperationOptions {
 // @public
 export interface FilesOperations {
     // (undocumented)
-    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAiFile>;
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
     // (undocumented)
     list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
     // (undocumented)
-    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAiFile>;
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
 // @public
@@ -482,11 +482,11 @@ export interface FineTune {
     model: string;
     object: "fine-tune";
     organizationId: string;
-    resultFiles: OpenAiFile[];
+    resultFiles: OpenAIFile[];
     status: "created" | "running" | "succeeded" | "failed" | "cancelled";
-    trainingFiles: OpenAiFile[];
+    trainingFiles: OpenAIFile[];
     updatedAt: Date;
-    validationFiles: OpenAiFile[];
+    validationFiles: OpenAIFile[];
 }
 
 // @public
@@ -660,7 +660,7 @@ export interface ImagesResponse {
 // @public
 export interface ListFilesResponse {
     // (undocumented)
-    data: OpenAiFile[];
+    data: OpenAIFile[];
     // (undocumented)
     object: string;
 }
@@ -768,7 +768,7 @@ export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface OpenAiFile {
+export interface OpenAIFile {
     bytes: number;
     createdAt: Date;
     filename: string;

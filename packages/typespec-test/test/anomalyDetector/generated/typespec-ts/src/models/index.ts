@@ -16,7 +16,7 @@ export {
   MultivariateDataSchema,
   MultivariateAlignPolicy,
   MultivariateAlignMode,
-  MultivariateFillNaMethod,
+  MultivariateFillNAMethod,
   MultivariateModelStatus,
   MultivariateDiagnosticsInfo,
   MultivariateModelState,
@@ -34,5 +34,5 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  ApiVersion,
+  APIVersion,
 } from "./models.js";

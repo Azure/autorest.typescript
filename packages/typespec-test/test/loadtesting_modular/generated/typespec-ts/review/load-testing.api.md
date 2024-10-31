@@ -135,7 +135,7 @@ export type FileType = string;
 // @public
 export interface FunctionFlexConsumptionResourceConfiguration {
     httpConcurrency: number;
-    instanceMemoryMb: number;
+    instanceMemoryMB: number;
 }
 
 // @public
@@ -230,13 +230,13 @@ export enum KnownMetricUnit {
 }
 
 // @public
-export enum KnownPfAction {
+export enum KnownPFAction {
     Continue = "continue",
     Stop = "stop"
 }
 
 // @public
-export enum KnownPfAgFunc {
+export enum KnownPFAgFunc {
     Avg = "avg",
     Count = "count",
     Max = "max",
@@ -255,7 +255,7 @@ export enum KnownPfAgFunc {
 }
 
 // @public
-export enum KnownPfMetrics {
+export enum KnownPFMetrics {
     Error = "error",
     Latency = "latency",
     Requests = "requests",
@@ -264,14 +264,14 @@ export enum KnownPfMetrics {
 }
 
 // @public
-export enum KnownPfResult {
+export enum KnownPFResult {
     Failed = "failed",
     Passed = "passed",
     Undetermined = "undetermined"
 }
 
 // @public
-export enum KnownPfTestResult {
+export enum KnownPFTestResult {
     FAILED = "FAILED",
     NOTApplicable = "NOT_APPLICABLE",
     PASSED = "PASSED"
@@ -443,7 +443,7 @@ export interface LoadTestConfiguration {
     optionalLoadTestConfig?: OptionalLoadTestConfig;
     quickStartTest?: boolean;
     regionalLoadTestConfig?: RegionalConfiguration[];
-    splitAllCsVs?: boolean;
+    splitAllCSVs?: boolean;
 }
 
 // @public (undocumented)
@@ -571,30 +571,30 @@ export interface PassFailCriteria {
 
 // @public
 export interface PassFailMetric {
-    action?: PfAction;
+    action?: PFAction;
     readonly actualValue?: number;
-    aggregate?: PfAgFunc;
-    clientMetric?: PfMetrics;
+    aggregate?: PFAgFunc;
+    clientMetric?: PFMetrics;
     condition?: string;
     requestName?: string;
-    readonly result?: PfResult;
+    readonly result?: PFResult;
     value?: number;
 }
 
 // @public
-export type PfAction = string;
+export type PFAction = string;
 
 // @public
-export type PfAgFunc = string;
+export type PFAgFunc = string;
 
 // @public
-export type PfMetrics = string;
+export type PFMetrics = string;
 
 // @public
-export type PfResult = string;
+export type PFResult = string;
 
 // @public
-export type PfTestResult = string;
+export type PFTestResult = string;
 
 // @public
 export type RecommendationCategory = string;
@@ -669,7 +669,7 @@ export interface Test {
     readonly lastModifiedDateTime?: Date;
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
-    publicIpDisabled?: boolean;
+    publicIPDisabled?: boolean;
     secrets?: Record<string, Secret>;
     subnetId?: string;
     readonly testId: string;
@@ -803,7 +803,7 @@ export interface TestRun {
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
     readonly portalUrl?: string;
-    readonly publicIpDisabled?: boolean;
+    readonly publicIPDisabled?: boolean;
     readonly regionalStatistics?: Record<string, TestRunStatistics>;
     requestDataLevel?: RequestDataLevel;
     secrets?: Record<string, Secret>;
@@ -812,7 +812,7 @@ export interface TestRun {
     readonly subnetId?: string;
     readonly testArtifacts?: TestRunArtifacts;
     testId?: string;
-    readonly testResult?: PfTestResult;
+    readonly testResult?: PFTestResult;
     readonly testRunId: string;
     readonly testRunStatistics?: Record<string, TestRunStatistics>;
     readonly virtualUsers?: number;

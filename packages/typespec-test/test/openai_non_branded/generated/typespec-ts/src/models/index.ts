@@ -15,7 +15,7 @@ export {
   DeleteModelResponse,
   CreateFineTuneRequest,
   FineTune,
-  OpenAiFile,
+  OpenAIFile,
   FineTuneEvent,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,

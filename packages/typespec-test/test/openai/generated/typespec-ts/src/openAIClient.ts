@@ -4,16 +4,16 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { OpenAiClient } from "./clientDefinitions.js";
+import { OpenAIClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
-export interface OpenAiClientOptions extends ClientOptions {
+export interface OpenAIClientOptions extends ClientOptions {
   /** The api version option of the client */
   apiVersion?: string;
 }
 
 /**
- * Initialize a new instance of `OpenAiClient`
+ * Initialize a new instance of `OpenAIClient`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
@@ -22,8 +22,8 @@ export interface OpenAiClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  { apiVersion = "2023-08-01-preview", ...options }: OpenAiClientOptions = {},
-): OpenAiClient {
+  { apiVersion = "2023-08-01-preview", ...options }: OpenAIClientOptions = {},
+): OpenAIClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;
   const userAgentInfo = `azsdk-js-openai-rest/1.0.0-beta.1`;
@@ -46,7 +46,7 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
-  const client = getClient(endpointUrl, credentials, options) as OpenAiClient;
+  const client = getClient(endpointUrl, credentials, options) as OpenAIClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({

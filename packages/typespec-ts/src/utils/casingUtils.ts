@@ -47,7 +47,7 @@ export function toPascalCase(name: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function IsFullyUpperCase(identifier: string, maxUppercasePreserve: number) {
+function isFullyUpperCase(identifier: string, maxUppercasePreserve: number = 10) {
   const len = identifier.length;
   if (len > 1) {
     if (
@@ -80,7 +80,7 @@ function deconstruct(
     .trim()
     .split(/[\W|_]+/)
     .map((each) =>
-      IsFullyUpperCase(each, maxUppercasePreserve) ? each : each.toLowerCase()
+      isFullyUpperCase(each, maxUppercasePreserve) ? each : each.toLowerCase()
     );
 }
 
@@ -130,10 +130,10 @@ function normalize(
   }
   return typeof identifier === "string"
     ? normalize(
-        deconstruct(identifier, maxUppercasePreserve),
-        removeDuplicates,
-        maxUppercasePreserve
-      )
+      deconstruct(identifier, maxUppercasePreserve),
+      removeDuplicates,
+      maxUppercasePreserve
+    )
     : removeDuplicates
       ? removeSequentialDuplicates(identifier)
       : identifier;

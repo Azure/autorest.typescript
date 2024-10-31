@@ -1548,7 +1548,7 @@ export function azureChatExtensionConfigurationSerializer(
 export type AzureChatExtensionConfigurationUnion =
   | AzureSearchChatExtensionConfiguration
   | AzureMachineLearningIndexChatExtensionConfiguration
-  | AzureCosmosDbChatExtensionConfiguration
+  | AzureCosmosDBChatExtensionConfiguration
   | ElasticsearchChatExtensionConfiguration
   | PineconeChatExtensionConfiguration
   | AzureChatExtensionConfiguration;
@@ -2238,7 +2238,7 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
  * A specific representation of configurable options for Azure Cosmos DB when using it as an Azure OpenAI chat
  * extension.
  */
-export interface AzureCosmosDbChatExtensionConfiguration
+export interface AzureCosmosDBChatExtensionConfiguration
   extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
@@ -2246,15 +2246,15 @@ export interface AzureCosmosDbChatExtensionConfiguration
    */
   type: "azure_cosmos_db";
   /** The parameters to use when configuring Azure OpenAI CosmosDB chat extensions. */
-  parameters: AzureCosmosDbChatExtensionParameters;
+  parameters: AzureCosmosDBChatExtensionParameters;
 }
 
-export function azureCosmosDbChatExtensionConfigurationSerializer(
-  item: AzureCosmosDbChatExtensionConfiguration,
+export function azureCosmosDBChatExtensionConfigurationSerializer(
+  item: AzureCosmosDBChatExtensionConfiguration,
 ): any {
   return {
     type: item["type"],
-    parameters: azureCosmosDbChatExtensionParametersSerializer(
+    parameters: azureCosmosDBChatExtensionParametersSerializer(
       item["parameters"],
     ),
   };
@@ -2264,7 +2264,7 @@ export function azureCosmosDbChatExtensionConfigurationSerializer(
  * Parameters to use when configuring Azure OpenAI On Your Data chat extensions when using Azure Cosmos DB for
  * MongoDB vCore. The supported authentication type is ConnectionString.
  */
-export interface AzureCosmosDbChatExtensionParameters {
+export interface AzureCosmosDBChatExtensionParameters {
   /**
    * The authentication method to use when accessing the defined data source.
    * Each data source type supports a specific set of available authentication methods; please see the documentation of
@@ -2300,13 +2300,13 @@ export interface AzureCosmosDbChatExtensionParameters {
   /** The MongoDB vCore index name to use with Azure Cosmos DB. */
   indexName: string;
   /** Customized field mapping behavior to use when interacting with the search index. */
-  fieldsMapping: AzureCosmosDbFieldMappingOptions;
+  fieldsMapping: AzureCosmosDBFieldMappingOptions;
   /** The embedding dependency for vector search. */
   embeddingDependency: OnYourDataVectorizationSourceUnion;
 }
 
-export function azureCosmosDbChatExtensionParametersSerializer(
-  item: AzureCosmosDbChatExtensionParameters,
+export function azureCosmosDBChatExtensionParametersSerializer(
+  item: AzureCosmosDBChatExtensionParameters,
 ): any {
   return {
     authentication: !item["authentication"]
@@ -2326,7 +2326,7 @@ export function azureCosmosDbChatExtensionParametersSerializer(
     database_name: item["databaseName"],
     container_name: item["containerName"],
     index_name: item["indexName"],
-    fields_mapping: azureCosmosDbFieldMappingOptionsSerializer(
+    fields_mapping: azureCosmosDBFieldMappingOptionsSerializer(
       item["fieldsMapping"],
     ),
     embedding_dependency: onYourDataVectorizationSourceUnionSerializer(
@@ -2336,7 +2336,7 @@ export function azureCosmosDbChatExtensionParametersSerializer(
 }
 
 /** Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. */
-export interface AzureCosmosDbFieldMappingOptions {
+export interface AzureCosmosDBFieldMappingOptions {
   /** The name of the index field to use as a title. */
   titleField?: string;
   /** The name of the index field to use as a URL. */
@@ -2351,8 +2351,8 @@ export interface AzureCosmosDbFieldMappingOptions {
   vectorFields: string[];
 }
 
-export function azureCosmosDbFieldMappingOptionsSerializer(
-  item: AzureCosmosDbFieldMappingOptions,
+export function azureCosmosDBFieldMappingOptionsSerializer(
+  item: AzureCosmosDBFieldMappingOptions,
 ): any {
   return {
     title_field: item["titleField"],
@@ -2642,7 +2642,7 @@ export interface AzureChatEnhancementConfiguration {
   /** A representation of the available options for the Azure OpenAI grounding enhancement. */
   grounding?: AzureChatGroundingEnhancementConfiguration;
   /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-  ocr?: AzureChatOcrEnhancementConfiguration;
+  ocr?: AzureChatOCREnhancementConfiguration;
 }
 
 export function azureChatEnhancementConfigurationSerializer(
@@ -2654,7 +2654,7 @@ export function azureChatEnhancementConfigurationSerializer(
       : azureChatGroundingEnhancementConfigurationSerializer(item["grounding"]),
     ocr: !item["ocr"]
       ? item["ocr"]
-      : azureChatOcrEnhancementConfigurationSerializer(item["ocr"]),
+      : azureChatOCREnhancementConfigurationSerializer(item["ocr"]),
   };
 }
 
@@ -2671,13 +2671,13 @@ export function azureChatGroundingEnhancementConfigurationSerializer(
 }
 
 /** A representation of the available options for the Azure OpenAI optical character recognition (OCR) enhancement. */
-export interface AzureChatOcrEnhancementConfiguration {
+export interface AzureChatOCREnhancementConfiguration {
   /** Specifies whether the enhancement is enabled. */
   enabled: boolean;
 }
 
-export function azureChatOcrEnhancementConfigurationSerializer(
-  item: AzureChatOcrEnhancementConfiguration,
+export function azureChatOCREnhancementConfigurationSerializer(
+  item: AzureChatOCREnhancementConfiguration,
 ): any {
   return { enabled: item["enabled"] };
 }
