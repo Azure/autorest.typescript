@@ -94,26 +94,6 @@
     "test": "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
     "build": "npm run clean && tshy && npm run extract-api"
   },
-  "//metadata": {
-    "constantPaths": [
-      {
-        "path": "src/loadTestAdministration/api/loadTestAdministrationContext.ts",
-        "prefix": "userAgentInfo"
-      },
-      {
-        "path": "src/loadTestRun/api/loadTestRunContext.ts",
-        "prefix": "userAgentInfo"
-      },
-      {
-        "path": "src/testProfileAdministration/api/testProfileAdministrationContext.ts",
-        "prefix": "userAgentInfo"
-      },
-      {
-        "path": "src/testProfileRun/api/testProfileRunContext.ts",
-        "prefix": "userAgentInfo"
-      }
-    ]
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {

@@ -20,7 +20,6 @@ export function createTestProfileRun(
 ): TestProfileRunContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-load-testing/1.0.1`;
   const userAgentPrefix = prefixFromOptions
