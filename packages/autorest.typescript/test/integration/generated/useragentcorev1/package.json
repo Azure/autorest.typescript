@@ -63,7 +63,8 @@
     "unit-test:browser": "echo skipped",
     "integration-test": "echo skipped",
     "integration-test:node": "echo skipped",
-    "integration-test:browser": "echo skipped"
+    "integration-test:browser": "echo skipped",
+    "update-snippets": "echo skipped"
   },
   "sideEffects": false,
   "//metadata": {
