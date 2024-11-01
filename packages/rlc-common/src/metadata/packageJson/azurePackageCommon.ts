@@ -115,7 +115,7 @@ function getAzurePackageCjsDevDependencies({
 
   return {
     ...(withTests && testDevDependencies),
-    "source-map-support": "^0.5.9",
+    "source-map-support": "^0.5.9"
   };
 }
 
