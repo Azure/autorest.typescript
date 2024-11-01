@@ -447,7 +447,7 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[esm] should have constantPaths in typespec modular", () => {
+    it("[esm] should read metadata from config for modular", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
@@ -455,7 +455,7 @@ describe("Package file generation", () => {
       });
 
       const metadataOption = {
-        metadata: {
+        modularMetadata: {
           "constantPaths": [
             {
               "path": "src/chatCompletions/api/chatCompletionsContext.ts",
@@ -471,7 +471,7 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property("//metadata");
     });
 
-    it("[esm] should have constantPaths in typespec rlc", () => {
+    it("[esm] should read metadata from config for rlc", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",

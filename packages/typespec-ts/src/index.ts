@@ -383,7 +383,7 @@ export async function $onEmit(context: EmitContext) {
             dependencies: {
               "@azure/core-util": "^1.9.2"
             },
-            metadata: {
+            modularMetadata: {
               constantPaths: await getFullMetadata(modularCodeModel)
             }
           };

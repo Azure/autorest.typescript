@@ -15,17 +15,15 @@ import {
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
   clientFilePaths: string[];
+  modularMetadata?: Record<string, any>;
 }
 
 /**
  * Builds the package.json for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
-export function buildAzureMonorepoPackage(
-  config: AzureMonorepoInfoConfig,
-  modularMetadata?: Record<string, any>
-) {
+export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
   const packageInfo = {
-    ...getAzureMonorepoPackageInfo(config, modularMetadata),
+    ...getAzureMonorepoPackageInfo(config),
     ...getAzureMonorepoDependencies(config),
     scripts: getAzureMonorepoScripts(config),
     ...getSampleMetadata(config)
@@ -58,8 +56,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
  * Build the common package.json config for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoPackageInfo(
-  config: AzureMonorepoInfoConfig,
-  modularMetadata?: Record<string, any>
+  config: AzureMonorepoInfoConfig
 ): Record<string, any> {
   const commonPackageInfo = getPackageCommonInfo(config);
 
@@ -76,7 +73,7 @@ export function getAzureMonorepoPackageInfo(
     }),
     prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
     "//metadata": config.isModularLibrary
-      ? modularMetadata
+      ? config.modularMetadata
       : getRLCMetadata(config)
   };
 }
