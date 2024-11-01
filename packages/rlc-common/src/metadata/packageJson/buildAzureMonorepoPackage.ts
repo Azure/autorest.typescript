@@ -20,9 +20,12 @@ export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
 /**
  * Builds the package.json for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
-export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
+export function buildAzureMonorepoPackage(
+  config: AzureMonorepoInfoConfig,
+  modularMetadata?: Record<string, any>
+) {
   const packageInfo = {
-    ...getAzureMonorepoPackageInfo(config),
+    ...getAzureMonorepoPackageInfo(config, modularMetadata),
     ...getAzureMonorepoDependencies(config),
     scripts: getAzureMonorepoScripts(config),
     ...getSampleMetadata(config)
@@ -55,20 +58,9 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
  * Build the common package.json config for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoPackageInfo(
-  config: AzureMonorepoInfoConfig
+  config: AzureMonorepoInfoConfig,
+  modularMetadata?: Record<string, any>
 ): Record<string, any> {
-  const metadata: Record<string, any> = {
-    constantPaths: []
-  };
-
-  addSwaggerMetadata(metadata, config.specSource);
-  for (const clientFilePath of config.clientFilePaths) {
-    metadata.constantPaths.push({
-      path: clientFilePath,
-      prefix: "userAgentInfo"
-    });
-  }
-
   const commonPackageInfo = getPackageCommonInfo(config);
 
   return {
@@ -83,7 +75,9 @@ export function getAzureMonorepoPackageInfo(
       homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${config.monorepoPackageDirectory}/README.md`
     }),
     prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
-    "//metadata": metadata
+    "//metadata": config.isModularLibrary
+      ? modularMetadata
+      : getRLCMetadata(config)
   };
 }
 
@@ -254,4 +248,20 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
       "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
     "unit-test:browser": "dev-tool run test:browser"
   };
+}
+
+function getRLCMetadata(config: AzureMonorepoInfoConfig) {
+  const metadata: Record<string, any> = {
+    constantPaths: []
+  };
+
+  addSwaggerMetadata(metadata, config.specSource);
+  for (const clientFilePath of config.clientFilePaths) {
+    metadata.constantPaths.push({
+      path: clientFilePath,
+      prefix: "userAgentInfo"
+    });
+  }
+
+  return metadata;
 }

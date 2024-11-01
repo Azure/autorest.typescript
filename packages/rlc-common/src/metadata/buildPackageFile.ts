@@ -51,19 +51,11 @@ export function buildPackageFile(
   };
 
   if (isAzureMonorepoPackage(model)) {
-    packageInfo = buildAzureMonorepoPackage(extendedConfig);
+    packageInfo = buildAzureMonorepoPackage(extendedConfig, metadata);
   }
 
   if (isAzureStandalonePackage(model)) {
     packageInfo = buildAzureStandalonePackage(extendedConfig);
-  }
-
-  if (
-    model.options?.moduleKind == "esm" &&
-    model.options.isModularLibrary &&
-    model.options.azureSdkForJs
-  ) {
-    packageInfo["//metadata"] = metadata;
   }
 
   const project = new Project();

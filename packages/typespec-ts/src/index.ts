@@ -382,25 +382,12 @@ export async function $onEmit(context: EmitContext) {
             ...modularPackageInfo,
             dependencies: {
               "@azure/core-util": "^1.9.2"
+            },
+            metadata: {
+              constantPaths: await getFullMetadata(modularCodeModel)
             }
           };
         }
-        const contentPath = [];
-        for (const subClient of modularCodeModel.clients) {
-          const fullPath = getClientContextPath(subClient, modularCodeModel);
-          const srcIndex = fullPath.indexOf("src");
-          const finalPath = fullPath.substring(srcIndex);
-          contentPath.push({
-            path: finalPath,
-            prefix: "userAgentInfo"
-          });
-        }
-        modularPackageInfo = {
-          ...modularPackageInfo,
-          metadata: {
-            constantPaths: contentPath
-          }
-        };
       }
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
@@ -442,6 +429,20 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
+  }
+
+  async function getFullMetadata(codeModel: ModularCodeModel) {
+    const contentPath = [];
+    for (const subClient of codeModel.clients) {
+      const fullPath = getClientContextPath(subClient, codeModel);
+      const srcIndex = fullPath.indexOf("src");
+      const finalPath = fullPath.substring(srcIndex);
+      contentPath.push({
+        path: finalPath,
+        prefix: "userAgentInfo"
+      });
+    }
+    return contentPath;
   }
 }
 

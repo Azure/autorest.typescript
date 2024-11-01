@@ -299,17 +299,12 @@ export function buildUserAgentOptions(
     "const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;";
   userAgentStatements.push(prefixFromOptions);
 
-  let clientPackageName =
+  const clientPackageName =
     codeModel.options.packageDetails?.nameWithoutScope ??
     codeModel.options.packageDetails?.name ??
     "";
   const packageVersion = codeModel.options.packageDetails?.version ?? "";
-  if (
-    !codeModel.options.isModularLibrary &&
-    !clientPackageName.endsWith("-rest")
-  ) {
-    clientPackageName += "-rest";
-  }
+
   const userAgentInfoStatement =
     packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")
       ? "const userAgentInfo = `azsdk-js-" +
