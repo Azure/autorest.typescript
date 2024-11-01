@@ -319,7 +319,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
@@ -426,7 +426,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
