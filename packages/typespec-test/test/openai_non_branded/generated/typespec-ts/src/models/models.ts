@@ -1755,7 +1755,7 @@ export interface CreateChatCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: Stop_1 | null;
+  stop?: Stop | null;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -1962,9 +1962,6 @@ export function chatCompletionFunctionCallOptionSerializer(
 ): any {
   return { name: item["name"] };
 }
-
-/** Alias for Stop */
-export type Stop_1 = string | string[];
 
 /** Represents a chat completion response returned by model, based on the provided input. */
 export interface CreateChatCompletionResponse {

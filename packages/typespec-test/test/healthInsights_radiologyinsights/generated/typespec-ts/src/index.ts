@@ -74,6 +74,7 @@ export {
   DomainResourceUnion,
   Narrative,
   RadiologyInsightsResult,
+  RepeatabilityResult,
 } from "./models/index.js";
 export {
   InferRadiologyInsightsOptionalParams,

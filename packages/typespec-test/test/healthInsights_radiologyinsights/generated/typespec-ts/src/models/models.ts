@@ -2285,3 +2285,6 @@ export function radiologyInsightsResultDeserializer(
       : radiologyInsightsInferenceResultDeserializer(item["result"]),
   };
 }
+
+/** Repeatability Result header options */
+export type RepeatabilityResult = "accepted" | "rejected";

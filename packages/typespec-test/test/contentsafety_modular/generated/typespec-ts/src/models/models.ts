@@ -25,6 +25,39 @@ export function textBlocklistDeserializer(item: any): TextBlocklist {
   };
 }
 
+/** Paged collection of TextBlocklist items */
+export interface _PagedTextBlocklist {
+  /** The TextBlocklist items on this page */
+  value: TextBlocklist[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTextBlocklistDeserializer(
+  item: any,
+): _PagedTextBlocklist {
+  return {
+    value: textBlocklistArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function textBlocklistArraySerializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistSerializer(item);
+  });
+}
+
+export function textBlocklistArrayDeserializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistDeserializer(item);
+  });
+}
+
 /** The request of adding blockItems to text blocklist. */
 export interface AddOrUpdateBlockItemsOptions {
   /** Array of blockItemInfo to add. */
@@ -112,6 +145,23 @@ export function removeBlockItemsOptionsSerializer(
     blockItemIds: item["blockItemIds"].map((p: any) => {
       return p;
     }),
+  };
+}
+
+/** Paged collection of TextBlockItem items */
+export interface _PagedTextBlockItem {
+  /** The TextBlockItem items on this page */
+  value: TextBlockItem[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTextBlockItemDeserializer(
+  item: any,
+): _PagedTextBlockItem {
+  return {
+    value: textBlockItemArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
   };
 }
 
@@ -307,54 +357,4 @@ export function textAnalyzeSeverityResultArrayDeserializer(
   return result.map((item) => {
     return textAnalyzeSeverityResultDeserializer(item);
   });
-}
-
-/** Paged collection of TextBlocklist items */
-export interface _PagedTextBlocklist {
-  /** The TextBlocklist items on this page */
-  value: TextBlocklist[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTextBlocklistDeserializer(
-  item: any,
-): _PagedTextBlocklist {
-  return {
-    value: textBlocklistArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function textBlocklistArraySerializer(
-  result: Array<TextBlocklist>,
-): any[] {
-  return result.map((item) => {
-    return textBlocklistSerializer(item);
-  });
-}
-
-export function textBlocklistArrayDeserializer(
-  result: Array<TextBlocklist>,
-): any[] {
-  return result.map((item) => {
-    return textBlocklistDeserializer(item);
-  });
-}
-
-/** Paged collection of TextBlockItem items */
-export interface _PagedTextBlockItem {
-  /** The TextBlockItem items on this page */
-  value: TextBlockItem[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTextBlockItemDeserializer(
-  item: any,
-): _PagedTextBlockItem {
-  return {
-    value: textBlockItemArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
 }

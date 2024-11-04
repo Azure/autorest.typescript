@@ -967,6 +967,48 @@ export function resourceMetricRecordDeserializer(
   return result;
 }
 
+/** Paged collection of TestFileInfo items */
+export interface _PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
+  return {
+    value: testFileInfoArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+/** Paged collection of Test items */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestDeserializer(item: any): _PagedTest {
+  return {
+    value: testArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testArraySerializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testSerializer(item);
+  });
+}
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
 /** Load test run model */
 export interface TestRun {
   /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
@@ -1999,6 +2041,33 @@ export function timeSeriesElementArrayDeserializer(
   });
 }
 
+/** Paged collection of TestRun items */
+export interface _PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
+  return {
+    value: testRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testRunArraySerializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    return testRunSerializer(item);
+  });
+}
+
+export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    return testRunDeserializer(item);
+  });
+}
+
 /** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */
 export interface TestProfile {
   /** Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
@@ -2217,6 +2286,35 @@ export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
   return result;
 }
 
+/** Paged collection of TestProfile items */
+export interface _PagedTestProfile {
+  /** The TestProfile items on this page */
+  value: TestProfile[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
+  return {
+    value: testProfileArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
+  return result.map((item) => {
+    return testProfileSerializer(item);
+  });
+}
+
+export function testProfileArrayDeserializer(
+  result: Array<TestProfile>,
+): any[] {
+  return result.map((item) => {
+    return testProfileDeserializer(item);
+  });
+}
+
 /** The Test Profile Run Model. Test Profile Run resource enables you to instantiate an already created test profile and run load tests to get recommendations on the optimal configuration for the target resource. */
 export interface TestProfileRun {
   /** Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
@@ -2411,104 +2509,6 @@ export function testProfileRunRecommendationArrayDeserializer(
 ): any[] {
   return result.map((item) => {
     return testProfileRunRecommendationDeserializer(item);
-  });
-}
-
-/** Paged collection of TestFileInfo items */
-export interface _PagedTestFileInfo {
-  /** The TestFileInfo items on this page */
-  value: TestFileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
-  return {
-    value: testFileInfoArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-/** Paged collection of Test items */
-export interface _PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestDeserializer(item: any): _PagedTest {
-  return {
-    value: testArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testArraySerializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testSerializer(item);
-  });
-}
-
-export function testArrayDeserializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testDeserializer(item);
-  });
-}
-
-/** Paged collection of TestRun items */
-export interface _PagedTestRun {
-  /** The TestRun items on this page */
-  value: TestRun[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
-  return {
-    value: testRunArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testRunArraySerializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunSerializer(item);
-  });
-}
-
-export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunDeserializer(item);
-  });
-}
-
-/** Paged collection of TestProfile items */
-export interface _PagedTestProfile {
-  /** The TestProfile items on this page */
-  value: TestProfile[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
-  return {
-    value: testProfileArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
-  return result.map((item) => {
-    return testProfileSerializer(item);
-  });
-}
-
-export function testProfileArrayDeserializer(
-  result: Array<TestProfile>,
-): any[] {
-  return result.map((item) => {
-    return testProfileDeserializer(item);
   });
 }
 

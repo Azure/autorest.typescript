@@ -501,6 +501,9 @@ export interface Reference extends Element {
 }
 
 // @public
+export type RepeatabilityResult = "accepted" | "rejected";
+
+// @public
 export interface Resource {
     additionalProperties?: Record<string, any>;
     id?: string;
