@@ -15,6 +15,7 @@ import {
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
   clientFilePaths: string[];
+  clientContextPaths?: string[];
 }
 
 /**
@@ -57,18 +58,6 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 export function getAzureMonorepoPackageInfo(
   config: AzureMonorepoInfoConfig
 ): Record<string, any> {
-  const metadata: Record<string, any> = {
-    constantPaths: []
-  };
-
-  addSwaggerMetadata(metadata, config.specSource);
-  for (const clientFilePath of config.clientFilePaths) {
-    metadata.constantPaths.push({
-      path: clientFilePath,
-      prefix: "userAgentInfo"
-    });
-  }
-
   const commonPackageInfo = getPackageCommonInfo(config);
 
   return {
@@ -83,7 +72,7 @@ export function getAzureMonorepoPackageInfo(
       homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${config.monorepoPackageDirectory}/README.md`
     }),
     prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
-    "//metadata": metadata
+    "//metadata": getMetadataInfo(config)
   };
 }
 
@@ -254,4 +243,22 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
       "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
     "unit-test:browser": "dev-tool run test:browser"
   };
+}
+
+function getMetadataInfo(config: AzureMonorepoInfoConfig) {
+  const metadata: Record<string, any> = {
+    constantPaths: []
+  };
+  const paths = config.isModularLibrary
+    ? config.clientContextPaths
+    : config.clientFilePaths;
+  addSwaggerMetadata(metadata, config.specSource);
+  for (const path of paths ?? []) {
+    metadata.constantPaths.push({
+      path: path,
+      prefix: "userAgentInfo"
+    });
+  }
+
+  return metadata;
 }

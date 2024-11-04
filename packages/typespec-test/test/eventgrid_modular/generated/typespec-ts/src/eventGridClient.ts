@@ -48,7 +48,7 @@ export class EventGridClient {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
-      : "azsdk-js-client";
+      : `azsdk-js-client`;
     this._client = createEventGrid(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },

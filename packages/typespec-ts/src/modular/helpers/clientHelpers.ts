@@ -206,7 +206,11 @@ export function buildGetClientOptionsParam(
   codeModel: ModularCodeModel,
   endpointParam: string
 ): string {
-  const userAgentOptions = buildUserAgentOptions(context, "azsdk-js-api");
+  const userAgentOptions = buildUserAgentOptions(
+    context,
+    codeModel,
+    "azsdk-js-api"
+  );
   const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
   const credentials = buildCredentials(codeModel, endpointParam);
 
@@ -287,19 +291,43 @@ function buildLoggingOptions(flavor?: PackageFlavor): string | undefined {
 
 export function buildUserAgentOptions(
   context: StatementedNode,
+  codeModel: ModularCodeModel,
   sdkUserAgentPrefix: string
 ): string {
-  const userAgentStatements = `
-    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-    const userAgentPrefix = ${
-      "prefixFromOptions ? `${prefixFromOptions} " +
-      sdkUserAgentPrefix +
-      "` : " +
-      `"${sdkUserAgentPrefix}"`
-    };
-  `;
+  const userAgentStatements = [];
+  const prefixFromOptions =
+    "const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;";
+  userAgentStatements.push(prefixFromOptions);
 
-  context.addStatements(userAgentStatements);
+  const clientPackageName =
+    codeModel.options.packageDetails?.nameWithoutScope ??
+    codeModel.options.packageDetails?.name ??
+    "";
+  const packageVersion = codeModel.options.packageDetails?.version ?? "";
+
+  const userAgentInfoStatement =
+    packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")
+      ? "const userAgentInfo = `azsdk-js-" +
+        clientPackageName +
+        "/" +
+        packageVersion +
+        "`;"
+      : "";
+
+  if (userAgentInfoStatement) {
+    userAgentStatements.push(userAgentInfoStatement);
+  }
+  const userAgentPrefix = `const userAgentPrefix = ${
+    "prefixFromOptions ? `${prefixFromOptions} " +
+    sdkUserAgentPrefix +
+    `${userAgentInfoStatement ? " ${userAgentInfo}" : ""}` +
+    "` : `" +
+    `${sdkUserAgentPrefix}` +
+    `${userAgentInfoStatement ? " ${userAgentInfo}`" : "`"}`
+  };`;
+  userAgentStatements.push(userAgentPrefix);
+
+  context.addStatements(userAgentStatements.join("\n"));
 
   return `{ userAgentPrefix }`;
 }
