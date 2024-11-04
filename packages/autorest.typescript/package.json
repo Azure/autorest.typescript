@@ -6,6 +6,7 @@
     "build:test:browser:rlc": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --browser && webpack --config webpack.config.test.js --env mode=rlc",
     "build:test:browser": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --removal && webpack --config webpack.config.test.js --env mode=hlc",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
+    "format": "echo skipped",
     "pack": "npm pack 2>&1",
     "clean": "rimraf --glob test-browser test/**/node_modules",
     "start": "node ./dist/src/main.js",

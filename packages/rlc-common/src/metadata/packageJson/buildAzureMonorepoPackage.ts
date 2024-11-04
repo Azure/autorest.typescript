@@ -174,19 +174,19 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const cjsScripts = getCjsScripts(config);
   return {
     ...getCommonPackageScripts(config),
-    audit:
-      "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": config.withSamples
       ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
       : "echo skipped",
     "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
+    clean:
+      "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
-      "rimraf review && mkdirp ./review && dev-tool run extract-api",
+      "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
     format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
@@ -199,9 +199,10 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
     lint: "eslint package.json api-extractor.json src test",
     minify:
-      "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
+      "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
-    ...cjsScripts
+    ...cjsScripts,
+    "update-snippets": "echo skipped"
   };
 }
 
@@ -214,7 +215,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
     "build:test":
       "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
     "test:node":
       "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
@@ -231,7 +232,7 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build:
-      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
     "build:debug":
