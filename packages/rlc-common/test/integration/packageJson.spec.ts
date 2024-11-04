@@ -447,39 +447,30 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[esm] should read metadata from config for modular", () => {
+    it("[esm] should read clientContextPaths from config for modular", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
         isModularLibrary: true
       });
 
-      const metadataOption = {
-        modularMetadata: {
-          "constantPaths": [
-            {
-              "path": "src/chatCompletions/api/chatCompletionsContext.ts",
-              "prefix": "userAgentInfo"
-            },
-          ]
-        }
-      }
-
-      const packageFileContent = buildPackageFile(model, metadataOption);
+      const packageFileContent = buildPackageFile(model, {
+        clientContextPaths: ["src/api/chatCompletionsContext.ts"]
+      });
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
       expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/api/chatCompletionsContext.ts", "modular");
     });
 
-    it("[esm] should read metadata from config for rlc", () => {
+    it("[esm] should read clientPath from config for rlc", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
       expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/msinternal/test.ts", "rlc");
     });
   });
 
