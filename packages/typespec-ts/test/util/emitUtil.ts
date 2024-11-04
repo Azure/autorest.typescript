@@ -367,24 +367,31 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
+export interface ModelConfigOptions {
+  needOptions?: boolean;
+  withRawContent?: boolean;
+  needAzureCore?: boolean;
+  compatibilityMode?: boolean;
+  mustEmptyDiagnostic?: boolean;
+  experimentalExtensibleEnums?: boolean;
+  [key: string]: any;
+}
+
+
 export async function emitModularModelsFromTypeSpec(
   tspContent: string,
-  {
+  options: ModelConfigOptions = {}
+) {
+  const {
     needOptions = false,
     withRawContent = false,
     needAzureCore = false,
     compatibilityMode = false,
     mustEmptyDiagnostic = true,
-    experimentalExtensibleEnums = false
-  }: {
-    needOptions?: boolean;
-    withRawContent?: boolean;
-    needAzureCore?: boolean;
-    compatibilityMode?: boolean;
-    mustEmptyDiagnostic?: boolean;
-    experimentalExtensibleEnums?: boolean;
-  } = {}
-) {
+    experimentalExtensibleEnums = false,
+    ...tspConfigs
+  } = options;
+  console.log("tspConfigs", tspConfigs);
   const context = await rlcEmitterFor(
     tspContent,
     {
@@ -394,7 +401,7 @@ export async function emitModularModelsFromTypeSpec(
       withRawContent,
     }
   );
-  const dpgContext = await createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program, false, tspConfigs);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel

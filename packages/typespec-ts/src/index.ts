@@ -441,7 +441,7 @@ export async function createContextWithDefaultOptions(
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": isArm(context),
+    "flatten-union-as-enum": context.options["flatten-union-as-enum"] ?? isArm(context),
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
