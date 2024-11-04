@@ -3888,3 +3888,11 @@ export function embeddingsUsageDeserializer(item: any): EmbeddingsUsage {
     totalTokens: item["total_tokens"],
   };
 }
+
+/** Known values of {@link ServiceApiVersions} that the service accepts. */
+export enum KnownServiceApiVersions {
+  v2022_12_01 = "2022-12-01",
+  v2023_05_15 = "2023-05-15",
+  v2024_02_01 = "2024-02-01",
+  v2024_06_01 = "2024-06-01",
+}

@@ -13,6 +13,7 @@ export {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
+  KnownAPIVersion,
 } from "./models/index.js";
 export {
   ChatProtocolClientOptionalParams,

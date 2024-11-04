@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../../logger.js";
+import { KnownAPIVersions } from "../../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -10,6 +11,7 @@ export interface LoadTestRunContext extends Client {}
 /** Optional parameters for the client. */
 export interface LoadTestRunClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownAPIVersions} that the service accepts. */
   apiVersion?: string;
 }
 

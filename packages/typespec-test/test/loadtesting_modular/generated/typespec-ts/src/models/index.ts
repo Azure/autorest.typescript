@@ -83,4 +83,5 @@ export {
   TestProfileRunRecommendation,
   KnownRecommendationCategory,
   RecommendationCategory,
+  KnownAPIVersions,
 } from "./models.js";
