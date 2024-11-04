@@ -69,7 +69,7 @@ export declare interface NestedProxyResource extends ProxyResource {
 }
 
 export declare interface NestedProxyResourceProperties {
-    readonly provisioningState?: ProvisioningState_1;
+    readonly provisioningState?: ProvisioningState;
     description?: string;
 }
 
@@ -93,10 +93,6 @@ export declare interface PageSettings {
 }
 
 export declare type ProvisioningState = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
-
-export declare type ProvisioningState_1 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
-
-export declare type ProvisioningState_2 = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
 export declare interface ProxyResource extends Resource {
 }
@@ -204,7 +200,7 @@ export declare interface TopLevelTrackedResource extends TrackedResource {
 }
 
 export declare interface TopLevelTrackedResourceProperties {
-    readonly provisioningState?: ProvisioningState_2;
+    readonly provisioningState?: ProvisioningState;
     description?: string;
 }
 

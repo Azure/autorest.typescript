@@ -2,6 +2,8 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare type RepeatabilityResult = "accepted" | "rejected";
+
 export declare interface RepeatableActionOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     repeatabilityFirstSent?: Date;
