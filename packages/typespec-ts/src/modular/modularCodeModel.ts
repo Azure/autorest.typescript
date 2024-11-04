@@ -70,7 +70,7 @@ export interface Policy {
   key: string;
 }
 
-export interface XmlMetadata {}
+export interface XmlMetadata { }
 export interface EnumValue {
   name: string;
   value: string;
@@ -80,25 +80,25 @@ export interface Type {
   name?: string;
   description?: string;
   type:
-    | "string"
-    | "Key"
-    | "OAuth2"
-    | "constant"
-    | "model"
-    | "list"
-    | "byte-array"
-    | "datetime"
-    | "float"
-    | "duration"
-    | "enum"
-    | "integer"
-    | "float"
-    | "boolean"
-    | "dict"
-    | "combined"
-    | "any"
-    | "unknown"
-    | "never";
+  | "string"
+  | "Key"
+  | "OAuth2"
+  | "constant"
+  | "model"
+  | "list"
+  | "byte-array"
+  | "datetime"
+  | "float"
+  | "duration"
+  | "enum"
+  | "integer"
+  | "float"
+  | "boolean"
+  | "dict"
+  | "combined"
+  | "any"
+  | "unknown"
+  | "never";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
@@ -145,6 +145,7 @@ export type ParameterLocation =
   | "query"
   | "path"
   | "body"
+  | "cookie"
   | "other";
 
 export interface Parameter {
