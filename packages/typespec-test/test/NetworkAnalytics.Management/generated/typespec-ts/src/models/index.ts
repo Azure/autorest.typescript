@@ -58,4 +58,5 @@ export {
   Origin,
   KnownActionType,
   ActionType,
+  KnownVersions,
 } from "./models.js";

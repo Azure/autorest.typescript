@@ -150,25 +150,41 @@ export function emitTypes(
       }
       addSerializationFunctions(context, type, sourceFile);
     } else if (type.kind === "enum") {
+      if (!type.usage) {
+        continue;
+      }
+      const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
+      const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
+      const outputUsage =
+        (type.usage & UsageFlags.Output) === UsageFlags.Output;
       if (
-        !type.usage ||
-        (type.usage !== undefined &&
-          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+        !(inputUsage || outputUsage || apiVersionEnumOnly)
       ) {
         continue;
       }
       const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
-      if (isExtensibleEnum(context, type) && !enumType.name.startsWith("_")) {
+      if (enumType.name.startsWith("_")) {
+        // skip enum generation for internal enums
+        continue;
+      }
+      if (apiVersionEnumOnly) {
+        // generate known values enum only for api version enums
         addDeclaration(
           sourceFile,
           knownValuesEnum,
           refkey(type, "knownValues")
         );
-      }
-      if (!enumType.name.startsWith("_")) {
+      } else {
+        if (isExtensibleEnum(context, type)) {
+          addDeclaration(
+            sourceFile,
+            knownValuesEnum,
+            refkey(type, "knownValues")
+          );
+        }
         addDeclaration(sourceFile, enumType, type);
       }
+
     } else if (type.kind === "union") {
       const unionType = buildUnionType(context, type);
       addDeclaration(sourceFile, unionType, type);
@@ -190,6 +206,16 @@ export function emitTypes(
   }
   addImportBySymbol("serializeRecord", sourceFile);
   return sourceFile;
+}
+
+export function getApiVersionEnum(context: SdkContext,) {
+  const apiVersionEnum = context.sdkPackage.enums.find(
+    (e) => e.usage === UsageFlags.ApiVersionEnum
+  );
+  if (!apiVersionEnum) {
+    return;
+  }
+  return apiVersionEnum;
 }
 
 export function getModelsPath(sourceRoot: string): string {
@@ -256,7 +282,7 @@ function buildUnionType(
   return unionDeclaration;
 }
 
-function buildEnumTypes(
+export function buildEnumTypes(
   context: SdkContext,
   type: SdkEnumType
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
