@@ -23,7 +23,7 @@ export class DemoServiceClient {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
-      : "azsdk-js-client";
+      : `azsdk-js-client`;
     this._client = createDemoService(endpointParam, {
       ...options,
       userAgentOptions: { userAgentPrefix },

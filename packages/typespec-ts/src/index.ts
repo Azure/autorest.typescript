@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import * as fsextra from "fs-extra";
-
 import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
@@ -60,7 +59,10 @@ import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import { buildClientContext } from "./modular/buildClientContext.js";
+import {
+  getClientContextPath,
+  buildClientContext
+} from "./modular/buildClientContext.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
@@ -379,7 +381,8 @@ export async function $onEmit(context: EmitContext) {
             ...modularPackageInfo,
             dependencies: {
               "@azure/core-util": "^1.9.2"
-            }
+            },
+            clientContextPaths: getRelativeContextPaths(modularCodeModel)
           };
         }
       }
@@ -423,6 +426,12 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
+  }
+
+  function getRelativeContextPaths(codeModel: ModularCodeModel) {
+    return codeModel.clients
+      .map((subClient) => getClientContextPath(subClient, codeModel))
+      .map((path) => path.substring(path.indexOf("src")));
   }
 }
 

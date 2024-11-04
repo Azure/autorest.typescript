@@ -22,6 +22,22 @@ import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 /**
+ * This function gets the path of the file containing the modular client context
+ */
+export function getClientContextPath(
+  _client: Client,
+  codeModel: ModularCodeModel
+): string {
+  const { subfolder, tcgcClient: client } = _client;
+  const name = getClientName(client);
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const contentPath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  return contentPath;
+}
+
+/**
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
@@ -29,18 +45,15 @@ export function buildClientContext(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, subfolder, tcgcClient: client } = _client;
+  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
   const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true
   });
-  const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }/api/${normalizeName(name, NameType.File)}Context.ts`
+    getClientContextPath(_client, codeModel)
   );
 
   clientContextFile.addInterface({

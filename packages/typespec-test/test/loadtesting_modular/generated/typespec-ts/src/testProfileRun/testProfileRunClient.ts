@@ -36,7 +36,7 @@ export class TestProfileRunClient {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
-      : "azsdk-js-client";
+      : `azsdk-js-client`;
     this._client = createTestProfileRun(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
