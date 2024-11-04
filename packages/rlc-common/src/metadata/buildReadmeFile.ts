@@ -92,17 +92,19 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 {{ description }}
 
+Key links:
+
 {{#if packageSourceURL}}
-[Source code]({{ packageSourceURL }}) |
+- [Source code]({{ packageSourceURL }})
 {{/if}}
 {{#if packageNPMURL}}
-[Package (NPM)]({{ packageNPMURL }}) |
+- [Package (NPM)]({{ packageNPMURL }})
 {{/if}}
 {{#if apiRefURL}}
-[API reference documentation]({{ apiRefURL }}) |
+- [API reference documentation]({{ apiRefURL }})
 {{/if}}
 {{#if samplesURL}}
-[Samples]({{samplesURL}})
+- [Samples]({{samplesURL}})
 {{/if}}
 
 ## Getting started

@@ -4,8 +4,10 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 
 
-[Package (NPM)](https://www.npmjs.com/package/@azure/arm-networkanalytics) |
-[API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm-networkanalytics?view=azure-node-preview) |
+Key links:
+
+- [Package (NPM)](https://www.npmjs.com/package/@azure/arm-networkanalytics)
+- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/arm-networkanalytics?view=azure-node-preview)
 
 ## Getting started
 
