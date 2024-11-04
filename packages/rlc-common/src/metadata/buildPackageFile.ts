@@ -19,11 +19,12 @@ import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
 interface PackageFileOptions {
   exports?: Record<string, any>;
   dependencies?: Record<string, string>;
+  clientContextPaths?: string[];
 }
 
 export function buildPackageFile(
   model: RLCModel,
-  { exports, dependencies }: PackageFileOptions = {}
+  { exports, dependencies, clientContextPaths }: PackageFileOptions = {}
 ) {
   const config: PackageCommonInfoConfig = {
     description: getDescription(model),
@@ -46,7 +47,8 @@ export function buildPackageFile(
     hasLro: hasPollingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
     specSource: model.options?.sourceFrom ?? "TypeSpec",
-    dependencies
+    dependencies,
+    clientContextPaths
   };
 
   if (isAzureMonorepoPackage(model)) {
