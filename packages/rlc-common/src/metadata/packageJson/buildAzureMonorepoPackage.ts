@@ -15,7 +15,7 @@ import {
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
   clientFilePaths: string[];
-  modularMetadata?: Record<string, any>;
+  clientContextPaths?: string[];
 }
 
 /**
@@ -72,9 +72,7 @@ export function getAzureMonorepoPackageInfo(
       homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${config.monorepoPackageDirectory}/README.md`
     }),
     prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
-    "//metadata": config.isModularLibrary
-      ? config.modularMetadata
-      : getRLCMetadata(config)
+    "//metadata": getMetadataInfo(config)
   };
 }
 
@@ -247,15 +245,17 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   };
 }
 
-function getRLCMetadata(config: AzureMonorepoInfoConfig) {
+function getMetadataInfo(config: AzureMonorepoInfoConfig) {
   const metadata: Record<string, any> = {
     constantPaths: []
   };
-
+  const paths = config.isModularLibrary
+    ? config.clientContextPaths
+    : config.clientFilePaths;
   addSwaggerMetadata(metadata, config.specSource);
-  for (const clientFilePath of config.clientFilePaths) {
+  for (const path of paths ?? []) {
     metadata.constantPaths.push({
-      path: clientFilePath,
+      path: path,
       prefix: "userAgentInfo"
     });
   }

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import * as fsextra from "fs-extra";
-
 import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
@@ -383,9 +382,7 @@ export async function $onEmit(context: EmitContext) {
             dependencies: {
               "@azure/core-util": "^1.9.2"
             },
-            modularMetadata: {
-              constantPaths: await getFullMetadata(modularCodeModel)
-            }
+            clientContextPaths: getRelativeContextPaths(modularCodeModel)
           };
         }
       }
@@ -431,18 +428,10 @@ export async function $onEmit(context: EmitContext) {
     }
   }
 
-  async function getFullMetadata(codeModel: ModularCodeModel) {
-    const contentPath = [];
-    for (const subClient of codeModel.clients) {
-      const fullPath = getClientContextPath(subClient, codeModel);
-      const srcIndex = fullPath.indexOf("src");
-      const finalPath = fullPath.substring(srcIndex);
-      contentPath.push({
-        path: finalPath,
-        prefix: "userAgentInfo"
-      });
-    }
-    return contentPath;
+  function getRelativeContextPaths(codeModel: ModularCodeModel) {
+    return codeModel.clients
+      .map((subClient) => getClientContextPath(subClient, codeModel))
+      .map((path) => path.substring(path.indexOf("src")));
   }
 }
 
