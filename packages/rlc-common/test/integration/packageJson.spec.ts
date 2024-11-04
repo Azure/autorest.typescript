@@ -446,6 +446,32 @@ describe("Package file generation", () => {
         'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
+
+    it("[esm] should read clientContextPaths from config for modular", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+        isModularLibrary: true
+      });
+
+      const packageFileContent = buildPackageFile(model, {
+        clientContextPaths: ["src/api/chatCompletionsContext.ts"]
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/api/chatCompletionsContext.ts", "modular");
+    });
+
+    it("[esm] should read clientPath from config for rlc", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/msinternal/test.ts", "rlc");
+    });
   });
 
   describe("Azure flavor for standalone library", () => {

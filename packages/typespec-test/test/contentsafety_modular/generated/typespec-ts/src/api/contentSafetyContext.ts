@@ -22,11 +22,11 @@ export function createContentSafety(
 ): ContentSafetyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/contentsafety`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-ai-content-safety/1.0.0`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

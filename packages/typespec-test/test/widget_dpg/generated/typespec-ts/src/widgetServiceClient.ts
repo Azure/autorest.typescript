@@ -32,7 +32,7 @@ export class WidgetServiceClient {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
-      : "azsdk-js-client";
+      : `azsdk-js-client`;
     this._client = createWidgetService(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
