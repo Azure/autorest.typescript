@@ -4,7 +4,9 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 OpenAI
 
-[Package (NPM)](https://www.npmjs.com/package/@msinternal/hierarchy-generic) |
+Key links:
+
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/hierarchy-generic)
 
 ## Getting started
 
