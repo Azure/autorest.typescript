@@ -432,7 +432,7 @@ export async function createContextWithDefaultOptions(
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": false,
+    "flatten-union-as-enum": isArm(context),
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -449,4 +449,9 @@ export async function createContextWithDefaultOptions(
     context,
     context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
   )) as SdkContext;
+}
+
+function isArm(context: EmitContext<Record<string, any>>) {
+  const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
+  return packageName?.startsWith("azure-arm-");
 }

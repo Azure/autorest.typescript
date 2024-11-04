@@ -21,7 +21,10 @@ import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
-import { SdkHttpParameter, SdkParameter } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkHttpParameter,
+  SdkParameter
+} from "@azure-tools/typespec-client-generator-core";
 
 /**
  * This function creates the file containing the modular client context
@@ -40,7 +43,8 @@ export function buildClientContext(
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
@@ -179,7 +183,10 @@ export function buildClientContext(
   return clientContextFile;
 }
 
-function getDocsWithKnownVersion(dpgContext: SdkContext, param: SdkParameter | SdkHttpParameter) {
+function getDocsWithKnownVersion(
+  dpgContext: SdkContext,
+  param: SdkParameter | SdkHttpParameter
+) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {
     return docs;
@@ -187,7 +194,9 @@ function getDocsWithKnownVersion(dpgContext: SdkContext, param: SdkParameter | S
   const apiVersionEnum = getApiVersionEnum(dpgContext);
   if (apiVersionEnum) {
     const [_, knownValuesEnum] = buildEnumTypes(dpgContext, apiVersionEnum);
-    docs.push(`Known values of {@link ${knownValuesEnum.name}} that the service accepts.`);
+    docs.push(
+      `Known values of {@link ${knownValuesEnum.name}} that the service accepts.`
+    );
   }
   return docs;
 }

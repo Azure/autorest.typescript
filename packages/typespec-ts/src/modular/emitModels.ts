@@ -157,9 +157,7 @@ export function emitTypes(
       const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
       const outputUsage =
         (type.usage & UsageFlags.Output) === UsageFlags.Output;
-      if (
-        !(inputUsage || outputUsage || apiVersionEnumOnly)
-      ) {
+      if (!(inputUsage || outputUsage || apiVersionEnumOnly)) {
         continue;
       }
       const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
@@ -184,7 +182,6 @@ export function emitTypes(
         }
         addDeclaration(sourceFile, enumType, type);
       }
-
     } else if (type.kind === "union") {
       const unionType = buildUnionType(context, type);
       addDeclaration(sourceFile, unionType, type);
@@ -208,7 +205,7 @@ export function emitTypes(
   return sourceFile;
 }
 
-export function getApiVersionEnum(context: SdkContext,) {
+export function getApiVersionEnum(context: SdkContext) {
   const apiVersionEnum = context.sdkPackage.enums.find(
     (e) => e.usage === UsageFlags.ApiVersionEnum
   );
