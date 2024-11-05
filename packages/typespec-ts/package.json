@@ -70,7 +70,7 @@
     "@azure-tools/typespec-autorest": ">=0.47.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.47.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.47.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.47.3 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.47.4 <1.0.0",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-lro": "^3.1.0",
@@ -111,7 +111,7 @@
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.47.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.47.3 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.47.4 <1.0.0",
     "@typespec/compiler": ">=0.61.2 <1.0.0",
     "@typespec/http": ">=0.61.0 <1.0.0",
     "@typespec/rest": ">=0.61.0 <1.0.0",
