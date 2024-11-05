@@ -54,6 +54,7 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { emitQueue } from "../framework/hooks/sdkTypes.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -89,7 +90,7 @@ export function emitTypes(
   const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
   if (
-    context.emitQueue.size > 0 &&
+    emitQueue.size > 0 &&
     (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)
   ) {
     sourceFile = outputProject.createSourceFile(modelsFilePath);
@@ -100,7 +101,7 @@ export function emitTypes(
     return;
   }
 
-  for (const type of context.emitQueue) {
+  for (const type of emitQueue) {
     if (!isGenerableType(type)) {
       continue;
     }
@@ -191,8 +192,6 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
     addSerializationFunctions(context, type, sourceFile);
-  } else if (type.kind === "nullable") {
-    emitType(context, type.type, sourceFile);
   }
 }
 
@@ -512,12 +511,9 @@ function buildModelProperty(
 }
 
 export function visitPackageTypes(context: SdkContext) {
-  const { sdkPackage, emitQueue } = context;
+  const { sdkPackage } = context;
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
-    if (model.kind === "model" && model.name === "ToolResource") {
-      model;
-    }
     visitType(context, model);
   }
 
@@ -601,8 +597,6 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
   if (!type) {
     return;
   }
-
-  const { emitQueue } = context;
 
   if (emitQueue.has(type)) {
     return;

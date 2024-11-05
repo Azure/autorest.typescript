@@ -5,18 +5,18 @@ import { OperationOptions } from "@azure-rest/core-client";
 import {
   ConnectionType,
   ToolDefinitionUnion,
-  ToolResources_5,
-  AgentsApiResponseFormatOption_6,
+  ToolResources,
   ThreadMessageOptions,
   MessageAttachment,
   ThreadMessage,
-  TruncationObject_3,
-  AgentsApiToolChoiceOption_3,
-  UpdateToolResourcesOptions_2,
+  TruncationObject,
+  UpdateToolResourcesOptions,
   AgentThreadCreationOptions,
   FilePurpose,
-  VectorStoreExpirationPolicy_1,
+  VectorStoreExpirationPolicy,
   VectorStoreChunkingStrategyRequestUnion,
+  AgentsApiResponseFormatOption,
+  AgentsApiToolChoiceOption,
   ListSortOrder,
   VectorStoreFileStatusFilter,
 } from "../models/models.js";
@@ -35,7 +35,7 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
    * A set of resources that are used by the agent's tools. The resources are specific to the type of tool. For example, the `code_interpreter`
    * tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.
    */
-  toolResources?: ToolResources_5 | null;
+  toolResources?: ToolResources | null;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
@@ -49,7 +49,7 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption_6 | null;
+  responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -85,7 +85,7 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
    * A set of resources that are used by the agent's tools. The resources are specific to the type of tool. For example,
    * the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.
    */
-  toolResources?: ToolResources_5;
+  toolResources?: ToolResources;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
@@ -99,7 +99,7 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption_6 | null;
+  responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -116,7 +116,7 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs.
    */
-  toolResources?: ToolResources_5 | null;
+  toolResources?: ToolResources | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -131,7 +131,7 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs
    */
-  toolResources?: ToolResources_5 | null;
+  toolResources?: ToolResources | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -216,11 +216,11 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
    */
   maxCompletionTokens?: number | null;
   /** The strategy to use for dropping messages as the context windows moves forward. */
-  truncationStrategy?: TruncationObject_3 | null;
+  truncationStrategy?: TruncationObject | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: AgentsApiToolChoiceOption_3 | null;
+  toolChoice?: AgentsApiToolChoiceOption | null;
   /** Specifies the format that the model must output. */
-  responseFormat?: AgentsApiResponseFormatOption_6 | null;
+  responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -268,7 +268,7 @@ export interface AgentsCreateThreadAndRunOptionalParams
   /** The overridden list of enabled tools the agent should use to run the thread. */
   tools?: ToolDefinitionUnion[] | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
-  toolResources?: UpdateToolResourcesOptions_2 | null;
+  toolResources?: UpdateToolResourcesOptions | null;
   /**
    * If `true`, returns a stream of events that happen during the Run as server-sent events,
    * terminating when the Run enters a terminal state with a `data: [DONE]` message.
@@ -300,11 +300,11 @@ export interface AgentsCreateThreadAndRunOptionalParams
    */
   maxCompletionTokens?: number | null;
   /** The strategy to use for dropping messages as the context windows moves forward. */
-  truncationStrategy?: TruncationObject_3 | null;
+  truncationStrategy?: TruncationObject | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: AgentsApiToolChoiceOption_3 | null;
+  toolChoice?: AgentsApiToolChoiceOption | null;
   /** Specifies the format that the model must output. */
-  responseFormat?: AgentsApiResponseFormatOption_6 | null;
+  responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -367,7 +367,7 @@ export interface AgentsCreateVectorStoreOptionalParams
   /** The name of the vector store. */
   name?: string;
   /** Details on when this vector store expires */
-  expiresAfter?: VectorStoreExpirationPolicy_1;
+  expiresAfter?: VectorStoreExpirationPolicy;
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. Only applicable if file_ids is non-empty. */
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
@@ -383,7 +383,7 @@ export interface AgentsModifyVectorStoreOptionalParams
   /** The name of the vector store. */
   name?: string | null;
   /** Details on when this vector store expires */
-  expiresAfter?: VectorStoreExpirationPolicy_1 | null;
+  expiresAfter?: VectorStoreExpirationPolicy | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }

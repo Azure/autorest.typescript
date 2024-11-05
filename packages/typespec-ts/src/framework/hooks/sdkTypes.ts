@@ -11,6 +11,8 @@ import { provideContext, useContext } from "../../contextManager.js";
 import { visitPackageTypes } from "../../modular/emitModels.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
+export const emitQueue: Set<SdkType> = new Set<SdkType>();
+
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;
   types: Map<Type, SdkType>;
@@ -53,7 +55,7 @@ export function useSdkTypes() {
 }
 
 export function provideSdkTypes(context: SdkContext) {
-  const { sdkPackage, emitQueue } = context;
+  const { sdkPackage } = context;
   const sdkTypesContext = {
     operations: new Map<Type, SdkServiceMethod<SdkHttpOperation>>(),
     types: new Map<Type, SdkType>()

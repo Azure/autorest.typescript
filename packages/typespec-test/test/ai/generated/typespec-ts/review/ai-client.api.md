@@ -19,9 +19,9 @@ export interface Agent {
     model: string;
     name: string | null;
     object: "assistant";
-    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    responseFormat?: AgentsApiResponseFormatOption | null;
     temperature: number | null;
-    toolResources: ToolResources_5 | null;
+    toolResources: ToolResources | null;
     tools: ToolDefinitionUnion[];
     topP: number | null;
 }
@@ -45,34 +45,7 @@ export type AgentsApiResponseFormatMode = "auto" | "none";
 export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
 
 // @public
-export type AgentsApiResponseFormatOption_1 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiResponseFormatOption_2 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiResponseFormatOption_3 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiResponseFormatOption_4 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiResponseFormatOption_5 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiResponseFormatOption_6 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
 export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
-
-// @public
-export type AgentsApiToolChoiceOption_1 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
-
-// @public
-export type AgentsApiToolChoiceOption_2 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
-
-// @public
-export type AgentsApiToolChoiceOption_3 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
 
 // @public
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
@@ -91,9 +64,9 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
     instructions?: string | null;
     metadata?: Record<string, string> | null;
     name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    responseFormat?: AgentsApiResponseFormatOption | null;
     temperature?: number | null;
-    toolResources?: ToolResources_5 | null;
+    toolResources?: ToolResources | null;
     tools?: ToolDefinitionUnion[];
     topP?: number | null;
 }
@@ -113,13 +86,13 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
     maxPromptTokens?: number | null;
     metadata?: Record<string, string> | null;
     model?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
-    toolChoice?: AgentsApiToolChoiceOption_3 | null;
+    toolChoice?: AgentsApiToolChoiceOption | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
-    truncationStrategy?: TruncationObject_3 | null;
+    truncationStrategy?: TruncationObject | null;
 }
 
 // @public
@@ -129,22 +102,22 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
     maxPromptTokens?: number | null;
     metadata?: Record<string, string> | null;
     model?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
     thread?: AgentThreadCreationOptions;
-    toolChoice?: AgentsApiToolChoiceOption_3 | null;
-    toolResources?: UpdateToolResourcesOptions_2 | null;
+    toolChoice?: AgentsApiToolChoiceOption | null;
+    toolResources?: UpdateToolResourcesOptions | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
-    truncationStrategy?: TruncationObject_3 | null;
+    truncationStrategy?: TruncationObject | null;
 }
 
 // @public
 export interface AgentsCreateThreadOptionalParams extends OperationOptions {
     messages?: ThreadMessageOptions[];
     metadata?: Record<string, string> | null;
-    toolResources?: ToolResources_5 | null;
+    toolResources?: ToolResources | null;
 }
 
 // @public
@@ -160,7 +133,7 @@ export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOpti
 // @public
 export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
-    expiresAfter?: VectorStoreExpirationPolicy_1;
+    expiresAfter?: VectorStoreExpirationPolicy;
     fileIds?: string[];
     metadata?: Record<string, string> | null;
     name?: string;
@@ -292,7 +265,7 @@ export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
-    expiresAfter?: VectorStoreExpirationPolicy_1 | null;
+    expiresAfter?: VectorStoreExpirationPolicy | null;
     metadata?: Record<string, string> | null;
     name?: string | null;
 }
@@ -365,9 +338,9 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
     metadata?: Record<string, string> | null;
     model?: string;
     name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    responseFormat?: AgentsApiResponseFormatOption | null;
     temperature?: number | null;
-    toolResources?: ToolResources_5;
+    toolResources?: ToolResources;
     tools?: ToolDefinitionUnion[];
     topP?: number | null;
 }
@@ -385,7 +358,7 @@ export interface AgentsUpdateRunOptionalParams extends OperationOptions {
 // @public
 export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
     metadata?: Record<string, string> | null;
-    toolResources?: ToolResources_5 | null;
+    toolResources?: ToolResources | null;
 }
 
 // @public
@@ -400,14 +373,14 @@ export interface AgentThread {
     id: string;
     metadata: Record<string, string> | null;
     object: "thread";
-    toolResources: ToolResources_5 | null;
+    toolResources: ToolResources | null;
 }
 
 // @public
 export interface AgentThreadCreationOptions {
     messages?: ThreadMessageOptions[];
     metadata?: Record<string, string> | null;
-    toolResources?: ToolResources_5 | null;
+    toolResources?: ToolResources | null;
 }
 
 // @public
@@ -735,9 +708,6 @@ export interface FunctionToolDefinition extends ToolDefinition {
 export type IncompleteRunDetails = "max_completion_tokens" | "max_prompt_tokens";
 
 // @public
-export type IncompleteRunDetails_1 = "max_completion_tokens" | "max_prompt_tokens";
-
-// @public
 export interface IndexResource {
     indexConnectionId: string;
     indexName: string;
@@ -867,11 +837,6 @@ export interface MessageImageFileDetails {
 
 // @public
 export interface MessageIncompleteDetails {
-    reason: MessageIncompleteDetailsReason;
-}
-
-// @public
-export interface MessageIncompleteDetails_1 {
     reason: MessageIncompleteDetailsReason;
 }
 
@@ -1041,15 +1006,7 @@ export interface RequiredAction {
 }
 
 // @public
-export interface RequiredAction_1 {
-    type: string;
-}
-
-// @public
-export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction_1;
-
-// @public
-export type RequiredActionUnion_1 = SubmitToolOutputsAction | RequiredAction_1;
+export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction;
 
 // @public
 export interface RequiredFunctionToolCall extends RequiredToolCall {
@@ -1080,20 +1037,7 @@ export interface RunCompletionUsage {
 }
 
 // @public
-export interface RunCompletionUsage_1 {
-    completionTokens: number;
-    promptTokens: number;
-    totalTokens: number;
-}
-
-// @public
 export interface RunError {
-    code: string;
-    message: string;
-}
-
-// @public
-export interface RunError_1 {
     code: string;
     message: string;
 }
@@ -1110,7 +1054,7 @@ export interface RunStep {
     expiredAt: Date | null;
     failedAt: Date | null;
     id: string;
-    lastError: RunStepError_1 | null;
+    lastError: RunStepError | null;
     metadata: Record<string, string> | null;
     object: "thread.run.step";
     runId: string;
@@ -1118,7 +1062,7 @@ export interface RunStep {
     stepDetails: RunStepDetailsUnion;
     threadId: string;
     type: RunStepType;
-    usage?: RunStepCompletionUsage_1 | null;
+    usage?: RunStepCompletionUsage | null;
 }
 
 // @public
@@ -1172,13 +1116,6 @@ export type RunStepCodeInterpreterToolCallOutputUnion = RunStepCodeInterpreterLo
 
 // @public
 export interface RunStepCompletionUsage {
-    completionTokens: number;
-    promptTokens: number;
-    totalTokens: number;
-}
-
-// @public
-export interface RunStepCompletionUsage_1 {
     completionTokens: number;
     promptTokens: number;
     totalTokens: number;
@@ -1303,12 +1240,6 @@ export interface RunStepError {
 }
 
 // @public
-export interface RunStepError_1 {
-    code: RunStepErrorCode;
-    message: string;
-}
-
-// @public
 export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
 
 // @public
@@ -1391,7 +1322,7 @@ export interface SharepointToolDefinition extends ToolDefinition {
 }
 
 // @public
-export interface SubmitToolOutputsAction extends RequiredAction_1 {
+export interface SubmitToolOutputsAction extends RequiredAction {
     submitToolOutputs: SubmitToolOutputsDetails;
     type: "submit_tool_outputs";
 }
@@ -1425,7 +1356,7 @@ export interface ThreadMessage {
     createdAt: Date;
     id: string;
     incompleteAt: Date | null;
-    incompleteDetails: MessageIncompleteDetails_1 | null;
+    incompleteDetails: MessageIncompleteDetails | null;
     metadata: Record<string, string> | null;
     object: "thread.message";
     role: MessageRole;
@@ -1451,27 +1382,27 @@ export interface ThreadRun {
     expiresAt: Date | null;
     failedAt: Date | null;
     id: string;
-    incompleteDetails: IncompleteRunDetails_1 | null;
+    incompleteDetails: IncompleteRunDetails | null;
     instructions: string;
-    lastError: RunError_1 | null;
+    lastError: RunError | null;
     maxCompletionTokens: number | null;
     maxPromptTokens: number | null;
     metadata: Record<string, string> | null;
     model: string;
     object: "thread.run";
     parallelToolCalls?: boolean;
-    requiredAction?: RequiredActionUnion_1 | null;
-    responseFormat: AgentsApiResponseFormatOption_6 | null;
+    requiredAction?: RequiredActionUnion | null;
+    responseFormat: AgentsApiResponseFormatOption | null;
     startedAt: Date | null;
     status: RunStatus;
     temperature?: number | null;
     threadId: string;
-    toolChoice: AgentsApiToolChoiceOption_3 | null;
-    toolResources?: UpdateToolResourcesOptions_2 | null;
+    toolChoice: AgentsApiToolChoiceOption | null;
+    toolResources?: UpdateToolResourcesOptions | null;
     tools: ToolDefinitionUnion[];
     topP?: number | null;
-    truncationStrategy: TruncationObject_3 | null;
-    usage: RunCompletionUsage_1 | null;
+    truncationStrategy: TruncationObject | null;
+    usage: RunCompletionUsage | null;
 }
 
 // @public
@@ -1502,56 +1433,6 @@ export interface ToolResources {
 }
 
 // @public
-export interface ToolResources_1 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface ToolResources_2 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface ToolResources_3 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface ToolResources_4 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface ToolResources_5 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
 export interface Trigger {
     type: string;
 }
@@ -1561,24 +1442,6 @@ export type TriggerUnion = RecurrenceTrigger | CronTrigger | Trigger;
 
 // @public
 export interface TruncationObject {
-    lastMessages?: number | null;
-    type: TruncationStrategy;
-}
-
-// @public
-export interface TruncationObject_1 {
-    lastMessages?: number | null;
-    type: TruncationStrategy;
-}
-
-// @public
-export interface TruncationObject_2 {
-    lastMessages?: number | null;
-    type: TruncationStrategy;
-}
-
-// @public
-export interface TruncationObject_3 {
     lastMessages?: number | null;
     type: TruncationStrategy;
 }
@@ -1607,29 +1470,9 @@ export interface UpdateToolResourcesOptions {
 }
 
 // @public
-export interface UpdateToolResourcesOptions_1 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
-    fileSearch?: UpdateFileSearchToolResourceOptions;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface UpdateToolResourcesOptions_2 {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
-    fileSearch?: UpdateFileSearchToolResourceOptions;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
 export interface VectorStore {
     createdAt: Date;
-    expiresAfter?: VectorStoreExpirationPolicy_1;
+    expiresAfter?: VectorStoreExpirationPolicy;
     expiresAt?: Date | null;
     fileCounts: VectorStoreFileCount;
     id: string;
@@ -1687,12 +1530,6 @@ export interface VectorStoreExpirationPolicy {
 }
 
 // @public
-export interface VectorStoreExpirationPolicy_1 {
-    anchor: VectorStoreExpirationPolicyAnchor;
-    days: number;
-}
-
-// @public
 export type VectorStoreExpirationPolicyAnchor = "last_active_at";
 
 // @public
@@ -1700,7 +1537,7 @@ export interface VectorStoreFile {
     chunkingStrategy: VectorStoreChunkingStrategyResponseUnion;
     createdAt: Date;
     id: string;
-    lastError: VectorStoreFileError_1 | null;
+    lastError: VectorStoreFileError | null;
     object: "vector_store.file";
     status: VectorStoreFileStatus;
     usageBytes: number;
@@ -1738,12 +1575,6 @@ export interface VectorStoreFileDeletionStatus {
 
 // @public
 export interface VectorStoreFileError {
-    code: VectorStoreFileErrorCode;
-    message: string;
-}
-
-// @public
-export interface VectorStoreFileError_1 {
     code: VectorStoreFileErrorCode;
     message: string;
 }

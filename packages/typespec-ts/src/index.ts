@@ -309,7 +309,15 @@ export async function $onEmit(context: EmitContext) {
     binder.resolveAllReferences(modularSourcesRoot);
 
     for (const file of project.getSourceFiles()) {
-      file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+      file.fixMissingImports(
+        {},
+        {
+          importModuleSpecifierEnding: "js",
+          importModuleSpecifierPreference: "relative",
+          includePackageJsonAutoImports: "off",
+          excludeLibrarySymbolsInNavTo: true
+        }
+      );
       file.getImportDeclarations().map((importDeclaration) => {
         importDeclaration.getNamedImports().map((namedImport) => {
           if (

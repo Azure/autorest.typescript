@@ -225,15 +225,24 @@ class BinderImp implements Binder {
    * Applies all tracked imports to their respective source files.
    */
   resolveAllReferences(sourceRoot: string): void {
-    for (const file of this.project.getSourceFiles()) {
+    this.project.getSourceFiles().map((file) => {
+      const filePath = file.getFilePath();
+      if (filePath.includes("/api/")) {
+        filePath;
+      }
       this.resolveDeclarationReferences(file);
       this.resolveDependencyReferences(file);
-    }
-
-    for (const [sourceFile, importStructures] of this.imports) {
-      for (const importStructure of importStructures) {
-        sourceFile.addImportDeclaration(importStructure);
+      const importStructures = this.imports.get(file);
+      if (importStructures) {
+        for (const importStructure of importStructures) {
+          file.addImportDeclaration(importStructure);
+        }
       }
+    });
+
+    for (const file of this.project.getSourceFiles()) {
+      const declaration = file.getImportDeclarations();
+      declaration;
     }
 
     this.cleanUnreferencedHelpers(sourceRoot);
