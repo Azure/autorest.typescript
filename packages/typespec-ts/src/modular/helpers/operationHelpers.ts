@@ -14,7 +14,6 @@ import {
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
@@ -42,6 +41,7 @@ import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,

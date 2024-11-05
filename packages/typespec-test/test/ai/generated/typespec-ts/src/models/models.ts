@@ -1361,14 +1361,6 @@ export function agentsApiResponseFormatOptionDeserializer(
   return item;
 }
 
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_1 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Represents the mode in which the model will handle the return format of a tool call. */
-export type AgentsApiResponseFormatMode = "auto" | "none";
-
 /** Represents an agent that can call the model and use tools. */
 export interface Agent {
   /** The identifier, which can be referenced in API endpoints. */
@@ -1451,7 +1443,7 @@ export interface ToolResources_2 {
 }
 
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_2 =
+export type AgentsApiResponseFormatOption_1 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -1489,7 +1481,7 @@ export function agentArrayDeserializer(result: Array<Agent>): any[] {
 }
 
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_3 =
+export type AgentsApiResponseFormatOption_2 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -1620,23 +1612,6 @@ export function messageAttachmentToolDefinitionSerializer(
 export function messageAttachmentToolDefinitionDeserializer(
   item: any,
 ): MessageAttachmentToolDefinition {
-  return item;
-}
-
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
   return item;
 }
 
@@ -1870,20 +1845,6 @@ export function messageIncompleteDetailsDeserializer(
     reason: item["reason"],
   };
 }
-
-/** Information providing additional detail about a message entering an incomplete status. */
-export interface MessageIncompleteDetails_1 {
-  /** The provided reason describing why the message was marked as incomplete. */
-  reason: MessageIncompleteDetailsReason;
-}
-
-/** A set of reasons describing why a message is marked as incomplete. */
-export type MessageIncompleteDetailsReason =
-  | "content_filter"
-  | "max_tokens"
-  | "run_cancelled"
-  | "run_failed"
-  | "run_expired";
 
 export function messageContentUnionArraySerializer(
   result: Array<MessageContentUnion>,
@@ -2253,6 +2214,20 @@ export function messageImageFileDetailsDeserializer(
   };
 }
 
+/** Information providing additional detail about a message entering an incomplete status. */
+export interface MessageIncompleteDetails_1 {
+  /** The provided reason describing why the message was marked as incomplete. */
+  reason: MessageIncompleteDetailsReason;
+}
+
+/** A set of reasons describing why a message is marked as incomplete. */
+export type MessageIncompleteDetailsReason =
+  | "content_filter"
+  | "max_tokens"
+  | "run_cancelled"
+  | "run_failed"
+  | "run_expired";
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfThreadMessage {
   /** The object type, which is always list. */
@@ -2413,15 +2388,8 @@ export function agentsApiToolChoiceOptionDeserializer(
   return item;
 }
 
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_1 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Specifies how the tool choice will be used */
-export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_4 =
+export type AgentsApiResponseFormatOption_3 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -2584,6 +2552,147 @@ export function requiredActionUnionDeserializer(
   }
 }
 
+/** The details of an error as encountered by an agent thread run. */
+export interface RunError {
+  /** The status for the error. */
+  code: string;
+  /** The human-readable text associated with the error. */
+  message: string;
+}
+
+export function runErrorDeserializer(item: any): RunError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
+export type IncompleteRunDetails =
+  | "max_completion_tokens"
+  | "max_prompt_tokens";
+
+/** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
+export interface RunCompletionUsage {
+  /** Number of completion tokens used over the course of the run. */
+  completionTokens: number;
+  /** Number of prompt tokens used over the course of the run. */
+  promptTokens: number;
+  /** Total number of tokens used (prompt + completion). */
+  totalTokens: number;
+}
+
+export function runCompletionUsageDeserializer(item: any): RunCompletionUsage {
+  return {
+    completionTokens: item["completion_tokens"],
+    promptTokens: item["prompt_tokens"],
+    totalTokens: item["total_tokens"],
+  };
+}
+
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the initial
+ * context window of the run.
+ */
+export interface TruncationObject_2 {
+  /**
+   * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will
+   * be truncated to the `lastMessages` count most recent messages in the thread. When set to `auto`, messages in the middle of the thread
+   * will be dropped to fit the context length of the model, `max_prompt_tokens`.
+   */
+  type: TruncationStrategy;
+  /** The number of most recent messages from the thread when constructing the context for the run. */
+  lastMessages?: number | null;
+}
+
+/** Alias for AgentsApiToolChoiceOption */
+export type AgentsApiToolChoiceOption_1 =
+  | string
+  | AgentsApiToolChoiceOptionMode
+  | AgentsNamedToolChoice;
+/** Alias for AgentsApiResponseFormatOption */
+export type AgentsApiResponseFormatOption_4 =
+  | string
+  | AgentsApiResponseFormatMode
+  | AgentsApiResponseFormat;
+
+/**
+ * Request object. A set of resources that are used by the agent's tools. The resources are specific to the type of tool.
+ * For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of
+ * vector store IDs.
+ */
+export interface UpdateToolResourcesOptions {
+  /**
+   * Overrides the list of file IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files
+   * associated with the tool.
+   */
+  codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
+  /** Overrides the vector store attached to this agent. There can be a maximum of 1 vector store attached to the agent. */
+  fileSearch?: UpdateFileSearchToolResourceOptions;
+  /** Overrides the list of connections to be used by the `bing_grounding` tool consisting of connection IDs. */
+  bingGrounding?: ConnectionListResource;
+  /** Overrides the list of connections to be used by the `microsoft_fabric` tool consisting of connection IDs. */
+  microsoftFabric?: ConnectionListResource;
+  /** Overrides the list of connections to be used by the `sharepoint` tool consisting of connection IDs. */
+  sharePoint?: ConnectionListResource;
+  /** Overrides the resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
+  azureAISearch?: AzureAISearchResource;
+}
+
+export function updateToolResourcesOptionsSerializer(
+  item: UpdateToolResourcesOptions,
+): any {
+  return {
+    code_interpreter: !item["codeInterpreter"]
+      ? item["codeInterpreter"]
+      : updateCodeInterpreterToolResourceOptionsSerializer(
+          item["codeInterpreter"],
+        ),
+    file_search: !item["fileSearch"]
+      ? item["fileSearch"]
+      : updateFileSearchToolResourceOptionsSerializer(item["fileSearch"]),
+    bing_grounding: !item["bingGrounding"]
+      ? item["bingGrounding"]
+      : connectionListResourceSerializer(item["bingGrounding"]),
+    microsoft_fabric: !item["microsoftFabric"]
+      ? item["microsoftFabric"]
+      : connectionListResourceSerializer(item["microsoftFabric"]),
+    sharepoint: !item["sharePoint"]
+      ? item["sharePoint"]
+      : connectionListResourceSerializer(item["sharePoint"]),
+    azure_ai_search: !item["azureAISearch"]
+      ? item["azureAISearch"]
+      : azureAISearchResourceSerializer(item["azureAISearch"]),
+  };
+}
+
+export function updateToolResourcesOptionsDeserializer(
+  item: any,
+): UpdateToolResourcesOptions {
+  return {
+    codeInterpreter: !item["code_interpreter"]
+      ? item["code_interpreter"]
+      : updateCodeInterpreterToolResourceOptionsDeserializer(
+          item["code_interpreter"],
+        ),
+    fileSearch: !item["file_search"]
+      ? item["file_search"]
+      : updateFileSearchToolResourceOptionsDeserializer(item["file_search"]),
+    bingGrounding: !item["bing_grounding"]
+      ? item["bing_grounding"]
+      : connectionListResourceDeserializer(item["bing_grounding"]),
+    microsoftFabric: !item["microsoft_fabric"]
+      ? item["microsoft_fabric"]
+      : connectionListResourceDeserializer(item["microsoft_fabric"]),
+    sharePoint: !item["sharepoint"]
+      ? item["sharepoint"]
+      : connectionListResourceDeserializer(item["sharepoint"]),
+    azureAISearch: !item["azure_ai_search"]
+      ? item["azure_ai_search"]
+      : azureAISearchResourceDeserializer(item["azure_ai_search"]),
+  };
+}
+
 /** An abstract representation of a required action for an agent thread run to continue. */
 export interface RequiredAction_1 {
   /** The object type. */
@@ -2704,53 +2813,11 @@ export function requiredFunctionToolCallDetailsDeserializer(
 }
 
 /** The details of an error as encountered by an agent thread run. */
-export interface RunError {
-  /** The status for the error. */
-  code: string;
-  /** The human-readable text associated with the error. */
-  message: string;
-}
-
-export function runErrorDeserializer(item: any): RunError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** The details of an error as encountered by an agent thread run. */
 export interface RunError_1 {
   /** The status for the error. */
   code: string;
   /** The human-readable text associated with the error. */
   message: string;
-}
-
-/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
-export type IncompleteRunDetails =
-  | "max_completion_tokens"
-  | "max_prompt_tokens";
-/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
-export type IncompleteRunDetails_1 =
-  | "max_completion_tokens"
-  | "max_prompt_tokens";
-
-/** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
-export interface RunCompletionUsage {
-  /** Number of completion tokens used over the course of the run. */
-  completionTokens: number;
-  /** Number of prompt tokens used over the course of the run. */
-  promptTokens: number;
-  /** Total number of tokens used (prompt + completion). */
-  totalTokens: number;
-}
-
-export function runCompletionUsageDeserializer(item: any): RunCompletionUsage {
-  return {
-    completionTokens: item["completion_tokens"],
-    promptTokens: item["prompt_tokens"],
-    totalTokens: item["total_tokens"],
-  };
 }
 
 /** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
@@ -2761,109 +2828,6 @@ export interface RunCompletionUsage_1 {
   promptTokens: number;
   /** Total number of tokens used (prompt + completion). */
   totalTokens: number;
-}
-
-/**
- * Controls for how a thread will be truncated prior to the run. Use this to control the initial
- * context window of the run.
- */
-export interface TruncationObject_2 {
-  /**
-   * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will
-   * be truncated to the `lastMessages` count most recent messages in the thread. When set to `auto`, messages in the middle of the thread
-   * will be dropped to fit the context length of the model, `max_prompt_tokens`.
-   */
-  type: TruncationStrategy;
-  /** The number of most recent messages from the thread when constructing the context for the run. */
-  lastMessages?: number | null;
-}
-
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_2 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_5 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-
-/**
- * Request object. A set of resources that are used by the agent's tools. The resources are specific to the type of tool.
- * For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of
- * vector store IDs.
- */
-export interface UpdateToolResourcesOptions {
-  /**
-   * Overrides the list of file IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files
-   * associated with the tool.
-   */
-  codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
-  /** Overrides the vector store attached to this agent. There can be a maximum of 1 vector store attached to the agent. */
-  fileSearch?: UpdateFileSearchToolResourceOptions;
-  /** Overrides the list of connections to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Overrides the resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
-}
-
-export function updateToolResourcesOptionsSerializer(
-  item: UpdateToolResourcesOptions,
-): any {
-  return {
-    code_interpreter: !item["codeInterpreter"]
-      ? item["codeInterpreter"]
-      : updateCodeInterpreterToolResourceOptionsSerializer(
-          item["codeInterpreter"],
-        ),
-    file_search: !item["fileSearch"]
-      ? item["fileSearch"]
-      : updateFileSearchToolResourceOptionsSerializer(item["fileSearch"]),
-    bing_grounding: !item["bingGrounding"]
-      ? item["bingGrounding"]
-      : connectionListResourceSerializer(item["bingGrounding"]),
-    microsoft_fabric: !item["microsoftFabric"]
-      ? item["microsoftFabric"]
-      : connectionListResourceSerializer(item["microsoftFabric"]),
-    sharepoint: !item["sharePoint"]
-      ? item["sharePoint"]
-      : connectionListResourceSerializer(item["sharePoint"]),
-    azure_ai_search: !item["azureAISearch"]
-      ? item["azureAISearch"]
-      : azureAISearchResourceSerializer(item["azureAISearch"]),
-  };
-}
-
-export function updateToolResourcesOptionsDeserializer(
-  item: any,
-): UpdateToolResourcesOptions {
-  return {
-    codeInterpreter: !item["code_interpreter"]
-      ? item["code_interpreter"]
-      : updateCodeInterpreterToolResourceOptionsDeserializer(
-          item["code_interpreter"],
-        ),
-    fileSearch: !item["file_search"]
-      ? item["file_search"]
-      : updateFileSearchToolResourceOptionsDeserializer(item["file_search"]),
-    bingGrounding: !item["bing_grounding"]
-      ? item["bing_grounding"]
-      : connectionListResourceDeserializer(item["bing_grounding"]),
-    microsoftFabric: !item["microsoft_fabric"]
-      ? item["microsoft_fabric"]
-      : connectionListResourceDeserializer(item["microsoft_fabric"]),
-    sharePoint: !item["sharepoint"]
-      ? item["sharepoint"]
-      : connectionListResourceDeserializer(item["sharepoint"]),
-    azureAISearch: !item["azure_ai_search"]
-      ? item["azure_ai_search"]
-      : azureAISearchResourceDeserializer(item["azure_ai_search"]),
-  };
 }
 
 /**
@@ -3064,12 +3028,12 @@ export interface TruncationObject_3 {
 }
 
 /** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_3 =
+export type AgentsApiToolChoiceOption_2 =
   | string
   | AgentsApiToolChoiceOptionMode
   | AgentsNamedToolChoice;
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_6 =
+export type AgentsApiResponseFormatOption_5 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -3623,17 +3587,6 @@ export function runStepErrorDeserializer(item: any): RunStepError {
   };
 }
 
-/** The error information associated with a failed run step. */
-export interface RunStepError_1 {
-  /** The error code for this error. */
-  code: RunStepErrorCode;
-  /** The human-readable text associated with this error. */
-  message: string;
-}
-
-/** Possible error code values attributable to a failed run step. */
-export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
-
 /** Usage statistics related to the run step. */
 export interface RunStepCompletionUsage {
   /** Number of completion tokens used over the course of the run step. */
@@ -3653,6 +3606,17 @@ export function runStepCompletionUsageDeserializer(
     totalTokens: item["total_tokens"],
   };
 }
+
+/** The error information associated with a failed run step. */
+export interface RunStepError_1 {
+  /** The error code for this error. */
+  code: RunStepErrorCode;
+  /** The human-readable text associated with this error. */
+  message: string;
+}
+
+/** Possible error code values attributable to a failed run step. */
+export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
 
 /** Usage statistics related to the run step. */
 export interface RunStepCompletionUsage_1 {
@@ -4170,21 +4134,6 @@ export function vectorStoreFileErrorDeserializer(
   };
 }
 
-/** Details on the error that may have ocurred while processing a file for this vector store */
-export interface VectorStoreFileError_1 {
-  /** One of `server_error` or `rate_limit_exceeded`. */
-  code: VectorStoreFileErrorCode;
-  /** A human-readable description of the error. */
-  message: string;
-}
-
-/** Error code variants for vector store file processing */
-export type VectorStoreFileErrorCode =
-  | "internal_error"
-  | "file_not_found"
-  | "parsing_error"
-  | "unhandled_mime_type";
-
 /** An abstract representation of a vector store chunking strategy configuration. */
 export interface VectorStoreChunkingStrategyResponse {
   /** The object type. */
@@ -4262,6 +4211,21 @@ export function vectorStoreStaticChunkingStrategyResponseDeserializer(
     ),
   };
 }
+
+/** Details on the error that may have ocurred while processing a file for this vector store */
+export interface VectorStoreFileError_1 {
+  /** One of `server_error` or `rate_limit_exceeded`. */
+  code: VectorStoreFileErrorCode;
+  /** A human-readable description of the error. */
+  message: string;
+}
+
+/** Error code variants for vector store file processing */
+export type VectorStoreFileErrorCode =
+  | "internal_error"
+  | "file_not_found"
+  | "parsing_error"
+  | "unhandled_mime_type";
 
 /** Response object for deleting a vector store file relationship. */
 export interface VectorStoreFileDeletionStatus {
@@ -5016,8 +4980,67 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
+/** Alias for AgentsApiResponseFormatOption */
+export type AgentsApiResponseFormatOption_6 =
+  | string
+  | AgentsApiResponseFormatMode
+  | AgentsApiResponseFormat;
+/** Alias for _MessageAttachmentTool */
+export type _MessageAttachmentTool =
+  | CodeInterpreterToolDefinition
+  | FileSearchToolDefinition;
+
+export function _messageAttachmentToolSerializer(
+  item: _MessageAttachmentTool,
+): any {
+  return item;
+}
+
+export function _messageAttachmentToolDeserializer(
+  item: any,
+): _MessageAttachmentTool {
+  return item;
+}
+
+/** Alias for AgentsApiToolChoiceOption */
+export type AgentsApiToolChoiceOption_3 =
+  | string
+  | AgentsApiToolChoiceOptionMode
+  | AgentsNamedToolChoice;
+/** Alias for _ */
+export type _ =
+  | ThreadStreamEvent
+  | RunStreamEvent
+  | RunStepStreamEvent
+  | MessageStreamEvent
+  | ErrorEvent
+  | DoneEvent;
+/** Alias for AgentStreamEvent */
+export type AgentStreamEvent =
+  | string
+  | (
+      | ThreadStreamEvent
+      | RunStreamEvent
+      | RunStepStreamEvent
+      | MessageStreamEvent
+      | ErrorEvent
+      | DoneEvent
+    );
+
+export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
+  return item;
+}
+
+/** Represents the mode in which the model will handle the return format of a tool call. */
+export type AgentsApiResponseFormatMode = "auto" | "none";
 /** The available sorting options when requesting a list of response objects. */
 export type ListSortOrder = "asc" | "desc";
+/** Specifies how the tool choice will be used */
+export type AgentsApiToolChoiceOptionMode = "none" | "auto";
+/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
+export type IncompleteRunDetails_1 =
+  | "max_completion_tokens"
+  | "max_prompt_tokens";
 /** Query parameter filter for vector store file retrieval endpoint */
 export type VectorStoreFileStatusFilter =
   | "in_progress"

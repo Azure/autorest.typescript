@@ -1,5 +1,8 @@
 import { RLCOptions, SchemaContext } from "@azure-tools/rlc-common";
-import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkType,
+  SdkContext as TCGCSdkContext
+} from "@azure-tools/typespec-client-generator-core";
 import { ModelProperty } from "@typespec/compiler";
 import { KnownMediaType } from "./mediaTypes.js";
 
@@ -7,6 +10,7 @@ export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
   generationPathDetail?: GenerationDirDetail;
   hasApiVersionInClient?: boolean;
+  emitQueue: Set<SdkType>;
 }
 
 export interface GenerationDirDetail {

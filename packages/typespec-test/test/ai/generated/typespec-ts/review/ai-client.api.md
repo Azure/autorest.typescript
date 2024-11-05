@@ -356,6 +356,9 @@ export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOpt
 }
 
 // @public
+export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent);
+
+// @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
     description?: string | null;
     instructions?: string | null;

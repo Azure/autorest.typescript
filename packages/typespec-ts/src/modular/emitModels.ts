@@ -17,7 +17,6 @@ import {
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
-  SdkHttpPackage,
   SdkMethod,
   SdkModelPropertyType,
   SdkModelType,
@@ -83,15 +82,14 @@ export function emitTypes(
   context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
 ) {
-  const sdkPackage = context.sdkPackage;
-  const emitQueue: Set<SdkType> = new Set();
+  const { sdkPackage } = context;
   const outputProject = useContext("outputProject");
 
-  visitPackageTypes(sdkPackage, emitQueue);
+  visitPackageTypes(context);
   const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
   if (
-    emitQueue.size > 0 &&
+    context.emitQueue.size > 0 &&
     (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)
   ) {
     sourceFile = outputProject.createSourceFile(modelsFilePath);
@@ -102,7 +100,7 @@ export function emitTypes(
     return;
   }
 
-  for (const type of emitQueue) {
+  for (const type of context.emitQueue) {
     if (!isGenerableType(type)) {
       continue;
     }
@@ -513,15 +511,19 @@ function buildModelProperty(
   return propertyStructure;
 }
 
-export function visitPackageTypes(
-  sdkPackage: SdkHttpPackage,
-  emitQueue: Set<SdkType>
-) {
+export function visitPackageTypes(context: SdkContext) {
+  const { sdkPackage, emitQueue } = context;
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
-    visitType(model, emitQueue);
+    if (model.kind === "model" && model.name === "ToolResource") {
+      model;
+    }
+    visitType(context, model);
   }
 
+  for (const union of sdkPackage.unions) {
+    emitQueue.add(union);
+  }
   // Add all enums to the queue
   for (const enumType of sdkPackage.enums) {
     if (!emitQueue.has(enumType)) {
@@ -531,37 +533,37 @@ export function visitPackageTypes(
 
   // Visit the clients to discover all models
   for (const client of sdkPackage.clients) {
-    visitClient(client, emitQueue);
+    visitClient(context, client);
   }
 }
 
 function visitClient(
-  client: SdkClientType<SdkHttpOperation>,
-  emitQueue: Set<SdkType>
+  context: SdkContext,
+  client: SdkClientType<SdkHttpOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
   // visitType(client.initialization, emitQueue);
-  client.methods.forEach((method) => visitClientMethod(method, emitQueue));
+  client.methods.forEach((method) => visitClientMethod(context, method));
 }
 
 function visitClientMethod(
-  method: SdkMethod<SdkHttpOperation>,
-  emitQueue: Set<SdkType>
+  context: SdkContext,
+  method: SdkMethod<SdkHttpOperation>
 ) {
   switch (method.kind) {
     case "lro":
     case "paging":
     case "lropaging":
     case "basic":
-      visitMethod(method, emitQueue);
-      visitOperation(method.operation, emitQueue);
+      visitMethod(context, method);
+      visitOperation(context, method.operation);
       break;
     case "clientaccessor":
       method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(responseMethod, emitQueue)
+        visitClientMethod(context, responseMethod)
       );
       method.parameters.forEach((parameter) => {
-        visitType(parameter.type, emitQueue);
+        visitType(context, parameter.type);
       });
       break;
     default:
@@ -569,38 +571,38 @@ function visitClientMethod(
   }
 }
 
-function visitOperation(operation: SdkHttpOperation, emitQueue: Set<SdkType>) {
+function visitOperation(context: SdkContext, operation: SdkHttpOperation) {
   // Visit the request
-  visitType(operation.bodyParam?.type, emitQueue);
+  visitType(context, operation.bodyParam?.type);
   // Visit the response
   operation.exceptions.forEach((exception) =>
-    visitType(exception.type, emitQueue)
+    visitType(context, exception.type)
   );
 
   operation.parameters.forEach((parameter) => {
-    visitType(parameter.type, emitQueue);
+    visitType(context, parameter.type);
   });
 
-  operation.responses.forEach((response) =>
-    visitType(response.type, emitQueue)
-  );
+  operation.responses.forEach((response) => visitType(context, response.type));
 }
 
 function visitMethod(
-  method: SdkServiceMethod<SdkHttpOperation>,
-  emitQueue: Set<SdkType>
+  context: SdkContext,
+  method: SdkServiceMethod<SdkHttpOperation>
 ) {
   // Visit the request
   method.parameters.forEach((parameter) => {
-    visitType(parameter.type, emitQueue);
+    visitType(context, parameter.type);
   });
-  visitType(method.response.type, emitQueue);
+  visitType(context, method.response.type);
 }
 
-function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
+function visitType(context: SdkContext, type: SdkType | undefined) {
   if (!type) {
     return;
   }
+
+  const { emitQueue } = context;
 
   if (emitQueue.has(type)) {
     return;
@@ -613,24 +615,24 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
     }
 
     if (type.additionalProperties) {
-      visitType(type.additionalProperties, emitQueue);
+      visitType(context, type.additionalProperties);
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type as any)) {
-        visitType(property.type, emitQueue);
+        visitType(context, property.type);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
         if (!emitQueue.has(subType as any)) {
-          visitType(subType, emitQueue);
+          visitType(context, subType);
         }
       }
     }
   }
   if (type.kind === "array") {
     if (!emitQueue.has(type.valueType as any)) {
-      visitType(type.valueType, emitQueue);
+      visitType(context, type.valueType);
     }
     if (!emitQueue.has(type)) {
       emitQueue.add(type);
@@ -638,7 +640,7 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
   }
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
-      visitType(type.valueType, emitQueue);
+      visitType(context, type.valueType);
     }
     if (!emitQueue.has(type)) {
       emitQueue.add(type);
@@ -649,21 +651,13 @@ function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
       emitQueue.add(type);
     }
   }
-  if (type.kind === "nullable") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-    }
-    if (!emitQueue.has(type.type as any)) {
-      visitType(type.type, emitQueue);
-    }
-  }
   if (type.kind === "union") {
     if (!emitQueue.has(type as any)) {
       emitQueue.add(type);
-    }
-    for (const value of type.variantTypes) {
-      if (!emitQueue.has(value as any)) {
-        visitType(value, emitQueue);
+      for (const value of type.variantTypes) {
+        if (!emitQueue.has(value as any)) {
+          visitType(context, value);
+        }
       }
     }
   }
