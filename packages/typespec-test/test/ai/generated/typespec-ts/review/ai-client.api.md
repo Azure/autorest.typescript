@@ -4,27 +4,14 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface AgentDeletionStatusOutput {
-    deleted: boolean;
-    id: string;
-    object: "assistant.deleted";
-}
-
-// @public
-export interface AgentOutput {
-    created_at: number;
+export interface Agent {
+    createdAt: Date;
     description: string | null;
     id: string;
     instructions: string | null;
@@ -32,11 +19,18 @@ export interface AgentOutput {
     model: string;
     name: string | null;
     object: "assistant";
-    response_format?: AgentsApiResponseFormatOptionOutput | null;
+    responseFormat?: AgentsApiResponseFormatOption_6 | null;
     temperature: number | null;
-    tool_resources: ToolResourcesOutput | null;
-    tools: Array<ToolDefinitionOutput>;
-    top_p: number | null;
+    toolResources: ToolResources_5 | null;
+    tools: ToolDefinitionUnion[];
+    topP: number | null;
+}
+
+// @public
+export interface AgentDeletionStatus {
+    deleted: boolean;
+    id: string;
+    object: "assistant.deleted";
 }
 
 // @public
@@ -45,958 +39,208 @@ export interface AgentsApiResponseFormat {
 }
 
 // @public
-export type AgentsApiResponseFormatMode = string;
-
-// @public
-export type AgentsApiResponseFormatModeOutput = string;
+export type AgentsApiResponseFormatMode = "auto" | "none";
 
 // @public
 export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
 
 // @public
-export type AgentsApiResponseFormatOptionOutput = string | AgentsApiResponseFormatModeOutput | AgentsApiResponseFormatOutput;
+export type AgentsApiResponseFormatOption_1 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
 
 // @public
-export interface AgentsApiResponseFormatOutput {
-    type?: ApiResponseFormatOutput;
-}
+export type AgentsApiResponseFormatOption_2 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
+
+// @public
+export type AgentsApiResponseFormatOption_3 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
+
+// @public
+export type AgentsApiResponseFormatOption_4 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
+
+// @public
+export type AgentsApiResponseFormatOption_5 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
+
+// @public
+export type AgentsApiResponseFormatOption_6 = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
 
 // @public
 export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
 
 // @public
-export type AgentsApiToolChoiceOptionMode = string;
+export type AgentsApiToolChoiceOption_1 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
 
 // @public
-export type AgentsApiToolChoiceOptionModeOutput = string;
+export type AgentsApiToolChoiceOption_2 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
 
 // @public
-export type AgentsApiToolChoiceOptionOutput = string | AgentsApiToolChoiceOptionModeOutput | AgentsNamedToolChoiceOutput;
-
-// @public (undocumented)
-export interface AgentsCancelRun {
-    post(options?: AgentsCancelRunParameters): StreamableMethod<AgentsCancelRun200Response | AgentsCancelRunDefaultResponse>;
-}
+export type AgentsApiToolChoiceOption_3 = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
 
 // @public
-export interface AgentsCancelRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
+export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
-// @public (undocumented)
-export interface AgentsCancelRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCancelRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCancelRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCancelRunParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCancelVectorStoreFileBatch {
-    post(options?: AgentsCancelVectorStoreFileBatchParameters): StreamableMethod<AgentsCancelVectorStoreFileBatch200Response | AgentsCancelVectorStoreFileBatchDefaultResponse>;
+// @public
+export interface AgentsCancelRunOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsCancelVectorStoreFileBatch200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileBatchOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCancelVectorStoreFileBatchDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCancelVectorStoreFileBatchDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCancelVectorStoreFileBatchDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCancelVectorStoreFileBatchParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateAgent {
-    get(options?: AgentsListAgentsParameters): StreamableMethod<AgentsListAgents200Response | AgentsListAgentsDefaultResponse>;
-    post(options: AgentsCreateAgentParameters): StreamableMethod<AgentsCreateAgent200Response | AgentsCreateAgentDefaultResponse>;
+export interface AgentsCancelVectorStoreFileBatchOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsCreateAgent200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateAgentBodyParam {
-    // (undocumented)
-    body: CreateAgentOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateAgentDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateAgentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateAgentDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateAgentParameters = AgentsCreateAgentBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateMessage {
-    get(options?: AgentsListMessagesParameters): StreamableMethod<AgentsListMessages200Response | AgentsListMessagesDefaultResponse>;
-    post(options: AgentsCreateMessageParameters): StreamableMethod<AgentsCreateMessage200Response | AgentsCreateMessageDefaultResponse>;
+export interface AgentsCreateAgentOptionalParams extends OperationOptions {
+    description?: string | null;
+    instructions?: string | null;
+    metadata?: Record<string, string> | null;
+    name?: string | null;
+    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    temperature?: number | null;
+    toolResources?: ToolResources_5 | null;
+    tools?: ToolDefinitionUnion[];
+    topP?: number | null;
 }
 
 // @public
-export interface AgentsCreateMessage200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadMessageOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateMessageBodyParam {
-    // (undocumented)
-    body: ThreadMessageOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateMessageDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateMessageDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateMessageDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateMessageParameters = AgentsCreateMessageBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateRun {
-    get(options?: AgentsListRunsParameters): StreamableMethod<AgentsListRuns200Response | AgentsListRunsDefaultResponse>;
-    post(options: AgentsCreateRunParameters): StreamableMethod<AgentsCreateRun200Response | AgentsCreateRunDefaultResponse>;
+export interface AgentsCreateMessageOptionalParams extends OperationOptions {
+    attachments?: MessageAttachment[] | null;
+    metadata?: Record<string, string> | null;
 }
 
 // @public
-export interface AgentsCreateRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateRunBodyParam {
-    // (undocumented)
-    body: CreateRunOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateRunParameters = AgentsCreateRunBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateThread {
-    post(options: AgentsCreateThreadParameters): StreamableMethod<AgentsCreateThread200Response | AgentsCreateThreadDefaultResponse>;
+export interface AgentsCreateRunOptionalParams extends OperationOptions {
+    additionalInstructions?: string | null;
+    additionalMessages?: ThreadMessage[] | null;
+    instructions?: string | null;
+    maxCompletionTokens?: number | null;
+    maxPromptTokens?: number | null;
+    metadata?: Record<string, string> | null;
+    model?: string | null;
+    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    stream?: boolean;
+    temperature?: number | null;
+    toolChoice?: AgentsApiToolChoiceOption_3 | null;
+    tools?: ToolDefinitionUnion[] | null;
+    topP?: number | null;
+    truncationStrategy?: TruncationObject_3 | null;
 }
 
 // @public
-export interface AgentsCreateThread200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentThreadOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadAndRun {
-    post(options: AgentsCreateThreadAndRunParameters): StreamableMethod<AgentsCreateThreadAndRun200Response | AgentsCreateThreadAndRunDefaultResponse>;
-}
-
-// @public
-export interface AgentsCreateThreadAndRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadAndRunBodyParam {
-    // (undocumented)
-    body: CreateAndRunThreadOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadAndRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadAndRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateThreadAndRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateThreadAndRunParameters = AgentsCreateThreadAndRunBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateThreadBodyParam {
-    // (undocumented)
-    body: AgentThreadCreationOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateThreadDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateThreadDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateThreadParameters = AgentsCreateThreadBodyParam & RequestParameters;
-
-// @public
-export interface AgentsCreateVectorStore200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreBodyParam {
-    // (undocumented)
-    body: VectorStoreOptions;
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateVectorStoreDefaultHeaders;
-    // (undocumented)
-    status: string;
+export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
+    instructions?: string | null;
+    maxCompletionTokens?: number | null;
+    maxPromptTokens?: number | null;
+    metadata?: Record<string, string> | null;
+    model?: string | null;
+    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    stream?: boolean;
+    temperature?: number | null;
+    thread?: AgentThreadCreationOptions;
+    toolChoice?: AgentsApiToolChoiceOption_3 | null;
+    toolResources?: UpdateToolResourcesOptions_2 | null;
+    tools?: ToolDefinitionUnion[] | null;
+    topP?: number | null;
+    truncationStrategy?: TruncationObject_3 | null;
 }
 
 // @public
-export interface AgentsCreateVectorStoreFile200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileBatch {
-    post(options: AgentsCreateVectorStoreFileBatchParameters): StreamableMethod<AgentsCreateVectorStoreFileBatch200Response | AgentsCreateVectorStoreFileBatchDefaultResponse>;
+export interface AgentsCreateThreadOptionalParams extends OperationOptions {
+    messages?: ThreadMessageOptions[];
+    metadata?: Record<string, string> | null;
+    toolResources?: ToolResources_5 | null;
 }
 
 // @public
-export interface AgentsCreateVectorStoreFileBatch200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileBatchOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileBatchBodyParam {
-    // (undocumented)
-    body: {
-        file_ids: string[];
-        chunking_strategy?: VectorStoreChunkingStrategyRequest;
-    };
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileBatchDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileBatchDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateVectorStoreFileBatchDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateVectorStoreFileBatchParameters = AgentsCreateVectorStoreFileBatchBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileBodyParam {
-    // (undocumented)
-    body: {
-        file_id: string;
-        chunking_strategy?: VectorStoreChunkingStrategyRequest;
-    };
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsCreateVectorStoreFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsCreateVectorStoreFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsCreateVectorStoreFileParameters = AgentsCreateVectorStoreFileBodyParam & RequestParameters;
-
-// @public (undocumented)
-export type AgentsCreateVectorStoreParameters = AgentsCreateVectorStoreBodyParam & RequestParameters;
-
-// @public
-export interface AgentsDeleteAgent200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentDeletionStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsDeleteAgentDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsDeleteAgentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsDeleteAgentDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsDeleteAgentParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsDeleteFile {
-    delete(options?: AgentsDeleteFileParameters): StreamableMethod<AgentsDeleteFile200Response | AgentsDeleteFileDefaultResponse>;
-    get(options?: AgentsGetFileParameters): StreamableMethod<AgentsGetFile200Response | AgentsGetFileDefaultResponse>;
+export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
 }
 
 // @public
-export interface AgentsDeleteFile200Response extends HttpResponse {
-    // (undocumented)
-    body: FileDeletionStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsDeleteFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsDeleteFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsDeleteFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsDeleteFileParameters = RequestParameters;
-
-// @public
-export interface AgentsDeleteThread200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadDeletionStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsDeleteThreadDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsDeleteThreadDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsDeleteThreadDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsDeleteThreadParameters = RequestParameters;
-
-// @public
-export interface AgentsDeleteVectorStore200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreDeletionStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsDeleteVectorStoreDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsDeleteVectorStoreDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsDeleteVectorStoreDefaultHeaders;
-    // (undocumented)
-    status: string;
+export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
 }
 
 // @public
-export interface AgentsDeleteVectorStoreFile200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileDeletionStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsDeleteVectorStoreFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsDeleteVectorStoreFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsDeleteVectorStoreFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsDeleteVectorStoreFileParameters = RequestParameters;
-
-// @public (undocumented)
-export type AgentsDeleteVectorStoreParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetAgent {
-    delete(options?: AgentsDeleteAgentParameters): StreamableMethod<AgentsDeleteAgent200Response | AgentsDeleteAgentDefaultResponse>;
-    get(options?: AgentsGetAgentParameters): StreamableMethod<AgentsGetAgent200Response | AgentsGetAgentDefaultResponse>;
-    post(options: AgentsUpdateAgentParameters): StreamableMethod<AgentsUpdateAgent200Response | AgentsUpdateAgentDefaultResponse>;
+export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    expiresAfter?: VectorStoreExpirationPolicy_1;
+    fileIds?: string[];
+    metadata?: Record<string, string> | null;
+    name?: string;
 }
 
 // @public
-export interface AgentsGetAgent200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetAgentDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetAgentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetAgentDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetAgentParameters = RequestParameters;
-
-// @public
-export interface AgentsGetFile200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetFileContent {
-    get(options?: AgentsGetFileContentParameters): StreamableMethod<AgentsGetFileContent200Response | AgentsGetFileContentDefaultResponse>;
+export interface AgentsDeleteAgentOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetFileContent200Response extends HttpResponse {
-    // (undocumented)
-    body: FileContentResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetFileContentDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetFileContentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetFileContentDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetFileContentParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetFileParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetMessage {
-    get(options?: AgentsGetMessageParameters): StreamableMethod<AgentsGetMessage200Response | AgentsGetMessageDefaultResponse>;
-    post(options: AgentsUpdateMessageParameters): StreamableMethod<AgentsUpdateMessage200Response | AgentsUpdateMessageDefaultResponse>;
+export interface AgentsDeleteFileOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetMessage200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadMessageOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetMessageDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetMessageDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetMessageDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetMessageParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetRun {
-    get(options?: AgentsGetRunParameters): StreamableMethod<AgentsGetRun200Response | AgentsGetRunDefaultResponse>;
-    post(options: AgentsUpdateRunParameters): StreamableMethod<AgentsUpdateRun200Response | AgentsUpdateRunDefaultResponse>;
+export interface AgentsDeleteThreadOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetRunParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetRunStep {
-    get(options?: AgentsGetRunStepParameters): StreamableMethod<AgentsGetRunStep200Response | AgentsGetRunStepDefaultResponse>;
+export interface AgentsDeleteVectorStoreFileOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetRunStep200Response extends HttpResponse {
-    // (undocumented)
-    body: RunStepOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetRunStepDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetRunStepDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetRunStepDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetRunStepParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetThread {
-    delete(options?: AgentsDeleteThreadParameters): StreamableMethod<AgentsDeleteThread200Response | AgentsDeleteThreadDefaultResponse>;
-    get(options?: AgentsGetThreadParameters): StreamableMethod<AgentsGetThread200Response | AgentsGetThreadDefaultResponse>;
-    post(options: AgentsUpdateThreadParameters): StreamableMethod<AgentsUpdateThread200Response | AgentsUpdateThreadDefaultResponse>;
+export interface AgentsDeleteVectorStoreOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetThread200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentThreadOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetThreadDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetThreadDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetThreadDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetThreadParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetVectorStore {
-    delete(options?: AgentsDeleteVectorStoreParameters): StreamableMethod<AgentsDeleteVectorStore200Response | AgentsDeleteVectorStoreDefaultResponse>;
-    get(options?: AgentsGetVectorStoreParameters): StreamableMethod<AgentsGetVectorStore200Response | AgentsGetVectorStoreDefaultResponse>;
-    post(options: AgentsModifyVectorStoreParameters): StreamableMethod<AgentsModifyVectorStore200Response | AgentsModifyVectorStoreDefaultResponse>;
+export interface AgentsGetAgentOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetVectorStore200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetVectorStoreDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFile {
-    delete(options?: AgentsDeleteVectorStoreFileParameters): StreamableMethod<AgentsDeleteVectorStoreFile200Response | AgentsDeleteVectorStoreFileDefaultResponse>;
-    get(options?: AgentsGetVectorStoreFileParameters): StreamableMethod<AgentsGetVectorStoreFile200Response | AgentsGetVectorStoreFileDefaultResponse>;
+export interface AgentsGetFileContentOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetVectorStoreFile200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFileBatch {
-    get(options?: AgentsGetVectorStoreFileBatchParameters): StreamableMethod<AgentsGetVectorStoreFileBatch200Response | AgentsGetVectorStoreFileBatchDefaultResponse>;
+export interface AgentsGetFileOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AgentsGetVectorStoreFileBatch200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreFileBatchOutput;
-    // (undocumented)
-    status: "200";
+export interface AgentsGetMessageOptionalParams extends OperationOptions {
 }
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFileBatchDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFileBatchDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetVectorStoreFileBatchDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetVectorStoreFileBatchParameters = RequestParameters;
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsGetVectorStoreFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsGetVectorStoreFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsGetVectorStoreFileParameters = RequestParameters;
-
-// @public (undocumented)
-export type AgentsGetVectorStoreParameters = RequestParameters;
 
 // @public
-export interface AgentsListAgents200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfAgentOutput;
-    // (undocumented)
-    status: "200";
+export interface AgentsGetRunOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface AgentsListAgentsDefaultHeaders {
-    "x-ms-error-code"?: string;
+// @public
+export interface AgentsGetRunStepOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface AgentsListAgentsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListAgentsDefaultHeaders;
-    // (undocumented)
-    status: string;
+// @public
+export interface AgentsGetThreadOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export type AgentsListAgentsParameters = AgentsListAgentsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListAgentsQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListAgentsQueryParamProperties;
+// @public
+export interface AgentsGetVectorStoreFileBatchOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface AgentsListAgentsQueryParamProperties {
+// @public
+export interface AgentsGetVectorStoreFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetVectorStoreOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsListAgentsOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
     order?: ListSortOrder;
 }
 
-// @public (undocumented)
-export interface AgentsListFiles {
-    get(options?: AgentsListFilesParameters): StreamableMethod<AgentsListFiles200Response | AgentsListFilesDefaultResponse>;
-    post(options: AgentsUploadFileParameters): StreamableMethod<AgentsUploadFile200Response | AgentsUploadFileDefaultResponse>;
-}
-
 // @public
-export interface AgentsListFiles200Response extends HttpResponse {
-    // (undocumented)
-    body: FileListResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListFilesDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListFilesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListFilesDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListFilesParameters = AgentsListFilesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListFilesQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListFilesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListFilesQueryParamProperties {
+export interface AgentsListFilesOptionalParams extends OperationOptions {
     purpose?: FilePurpose;
 }
 
 // @public
-export interface AgentsListMessages200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfThreadMessageOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListMessagesDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListMessagesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListMessagesDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListMessagesParameters = AgentsListMessagesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListMessagesQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListMessagesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListMessagesQueryParamProperties {
+export interface AgentsListMessagesOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
@@ -1005,129 +249,23 @@ export interface AgentsListMessagesQueryParamProperties {
 }
 
 // @public
-export interface AgentsListRuns200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListRunsDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListRunsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListRunsDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListRunsParameters = AgentsListRunsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListRunsQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListRunsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListRunsQueryParamProperties {
+export interface AgentsListRunsOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
     order?: ListSortOrder;
 }
 
-// @public (undocumented)
-export interface AgentsListRunSteps {
-    get(options?: AgentsListRunStepsParameters): StreamableMethod<AgentsListRunSteps200Response | AgentsListRunStepsDefaultResponse>;
-}
-
 // @public
-export interface AgentsListRunSteps200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfRunStepOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListRunStepsDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListRunStepsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListRunStepsDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListRunStepsParameters = AgentsListRunStepsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListRunStepsQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListRunStepsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListRunStepsQueryParamProperties {
+export interface AgentsListRunStepsOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
     order?: ListSortOrder;
 }
 
-// @public (undocumented)
-export interface AgentsListVectorStoreFileBatchFiles {
-    get(options?: AgentsListVectorStoreFileBatchFilesParameters): StreamableMethod<AgentsListVectorStoreFileBatchFiles200Response | AgentsListVectorStoreFileBatchFilesDefaultResponse>;
-}
-
 // @public
-export interface AgentsListVectorStoreFileBatchFiles200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfVectorStoreFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFileBatchFilesDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFileBatchFilesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListVectorStoreFileBatchFilesDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListVectorStoreFileBatchFilesParameters = AgentsListVectorStoreFileBatchFilesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFileBatchFilesQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListVectorStoreFileBatchFilesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFileBatchFilesQueryParamProperties {
+export interface AgentsListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     filter?: VectorStoreFileStatusFilter;
@@ -1135,46 +273,8 @@ export interface AgentsListVectorStoreFileBatchFilesQueryParamProperties {
     order?: ListSortOrder;
 }
 
-// @public (undocumented)
-export interface AgentsListVectorStoreFiles {
-    get(options?: AgentsListVectorStoreFilesParameters): StreamableMethod<AgentsListVectorStoreFiles200Response | AgentsListVectorStoreFilesDefaultResponse>;
-    post(options: AgentsCreateVectorStoreFileParameters): StreamableMethod<AgentsCreateVectorStoreFile200Response | AgentsCreateVectorStoreFileDefaultResponse>;
-}
-
 // @public
-export interface AgentsListVectorStoreFiles200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfVectorStoreFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFilesDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFilesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListVectorStoreFilesDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListVectorStoreFilesParameters = AgentsListVectorStoreFilesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFilesQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListVectorStoreFilesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoreFilesQueryParamProperties {
+export interface AgentsListVectorStoreFilesOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     filter?: VectorStoreFileStatusFilter;
@@ -1182,46 +282,8 @@ export interface AgentsListVectorStoreFilesQueryParamProperties {
     order?: ListSortOrder;
 }
 
-// @public (undocumented)
-export interface AgentsListVectorStores {
-    get(options?: AgentsListVectorStoresParameters): StreamableMethod<AgentsListVectorStores200Response | AgentsListVectorStoresDefaultResponse>;
-    post(options: AgentsCreateVectorStoreParameters): StreamableMethod<AgentsCreateVectorStore200Response | AgentsCreateVectorStoreDefaultResponse>;
-}
-
 // @public
-export interface AgentsListVectorStores200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIPageableListOfVectorStoreOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoresDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoresDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsListVectorStoresDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsListVectorStoresParameters = AgentsListVectorStoresQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface AgentsListVectorStoresQueryParam {
-    // (undocumented)
-    queryParameters?: AgentsListVectorStoresQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AgentsListVectorStoresQueryParamProperties {
+export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
@@ -1229,36 +291,11 @@ export interface AgentsListVectorStoresQueryParamProperties {
 }
 
 // @public
-export interface AgentsModifyVectorStore200Response extends HttpResponse {
-    // (undocumented)
-    body: VectorStoreOutput;
-    // (undocumented)
-    status: "200";
+export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
+    expiresAfter?: VectorStoreExpirationPolicy_1 | null;
+    metadata?: Record<string, string> | null;
+    name?: string | null;
 }
-
-// @public (undocumented)
-export interface AgentsModifyVectorStoreBodyParam {
-    // (undocumented)
-    body: VectorStoreUpdateOptions;
-}
-
-// @public (undocumented)
-export interface AgentsModifyVectorStoreDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsModifyVectorStoreDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsModifyVectorStoreDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsModifyVectorStoreParameters = AgentsModifyVectorStoreBodyParam & RequestParameters;
 
 // @public
 export interface AgentsNamedToolChoice {
@@ -1267,270 +304,114 @@ export interface AgentsNamedToolChoice {
 }
 
 // @public
-export interface AgentsNamedToolChoiceOutput {
-    function?: FunctionNameOutput;
-    type: AgentsNamedToolChoiceTypeOutput;
+export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_search" | "bing_grounding" | "microsoft_fabric" | "sharepoint" | "azure_ai_search";
+
+// @public
+export interface AgentsOperations {
+    cancelRun: (threadId: string, runId: string, options?: AgentsCancelRunOptionalParams) => Promise<ThreadRun>;
+    cancelVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsCancelVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) => Promise<Agent>;
+    createMessage: (threadId: string, role: MessageRole, content: string, options?: AgentsCreateMessageOptionalParams) => Promise<ThreadMessage>;
+    createRun: (threadId: string, assistantId: string, options?: AgentsCreateRunOptionalParams) => Promise<ThreadRun>;
+    createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
+    createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) => Promise<ThreadRun>;
+    createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
+    createVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
+    createVectorStoreFileBatch: (vectorStoreId: string, fileIds: string[], options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) => Promise<AgentDeletionStatus>;
+    deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) => Promise<FileDeletionStatus>;
+    deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) => Promise<ThreadDeletionStatus>;
+    deleteVectorStore: (vectorStoreId: string, options?: AgentsDeleteVectorStoreOptionalParams) => Promise<VectorStoreDeletionStatus>;
+    deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
+    getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
+    getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
+    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<FileContentResponse>;
+    getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
+    getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
+    getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;
+    getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) => Promise<AgentThread>;
+    getVectorStore: (vectorStoreId: string, options?: AgentsGetVectorStoreOptionalParams) => Promise<VectorStore>;
+    getVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsGetVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
+    getVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsGetVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    listAgents: (options?: AgentsListAgentsOptionalParams) => Promise<OpenAIPageableListOfAgent>;
+    listFiles: (options?: AgentsListFilesOptionalParams) => Promise<FileListResponse>;
+    listMessages: (threadId: string, options?: AgentsListMessagesOptionalParams) => Promise<OpenAIPageableListOfThreadMessage>;
+    listRuns: (threadId: string, options?: AgentsListRunsOptionalParams) => Promise<OpenAIPageableListOfThreadRun>;
+    listRunSteps: (threadId: string, runId: string, options?: AgentsListRunStepsOptionalParams) => Promise<OpenAIPageableListOfRunStep>;
+    listVectorStoreFileBatchFiles: (vectorStoreId: string, batchId: string, options?: AgentsListVectorStoreFileBatchFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
+    listVectorStoreFiles: (vectorStoreId: string, options?: AgentsListVectorStoreFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
+    listVectorStores: (options?: AgentsListVectorStoresOptionalParams) => Promise<OpenAIPageableListOfVectorStore>;
+    modifyVectorStore: (vectorStoreId: string, options?: AgentsModifyVectorStoreOptionalParams) => Promise<VectorStore>;
+    submitToolOutputsToRun: (threadId: string, runId: string, toolOutputs: ToolOutput[], options?: AgentsSubmitToolOutputsToRunOptionalParams) => Promise<ThreadRun>;
+    updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) => Promise<Agent>;
+    updateMessage: (threadId: string, messageId: string, options?: AgentsUpdateMessageOptionalParams) => Promise<ThreadMessage>;
+    updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) => Promise<ThreadRun>;
+    updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) => Promise<AgentThread>;
+    uploadFile: (file: Uint8Array, purpose: FilePurpose, options?: AgentsUploadFileOptionalParams) => Promise<OpenAIFile>;
 }
 
 // @public
-export type AgentsNamedToolChoiceType = string;
-
-// @public
-export type AgentsNamedToolChoiceTypeOutput = string;
-
-// @public (undocumented)
-export interface AgentsSubmitToolOutputsToRun {
-    post(options: AgentsSubmitToolOutputsToRunParameters): StreamableMethod<AgentsSubmitToolOutputsToRun200Response | AgentsSubmitToolOutputsToRunDefaultResponse>;
+export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
+    stream?: boolean | null;
 }
 
 // @public
-export interface AgentsSubmitToolOutputsToRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsSubmitToolOutputsToRunBodyParam {
-    // (undocumented)
-    body: {
-        tool_outputs: Array<ToolOutput>;
-        stream?: boolean | null;
-    };
-}
-
-// @public (undocumented)
-export interface AgentsSubmitToolOutputsToRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsSubmitToolOutputsToRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsSubmitToolOutputsToRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsSubmitToolOutputsToRunParameters = AgentsSubmitToolOutputsToRunBodyParam & RequestParameters;
-
-// @public
-export interface AgentsUpdateAgent200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsUpdateAgentBodyParam {
-    // (undocumented)
-    body: UpdateAgentOptions;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateAgentDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateAgentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsUpdateAgentDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsUpdateAgentParameters = AgentsUpdateAgentBodyParam & RequestParameters;
-
-// @public
-export interface AgentsUpdateMessage200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadMessageOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsUpdateMessageBodyParam {
-    // (undocumented)
-    body: {
-        metadata?: Record<string, string> | null;
-    };
-}
-
-// @public (undocumented)
-export interface AgentsUpdateMessageDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateMessageDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsUpdateMessageDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsUpdateMessageParameters = AgentsUpdateMessageBodyParam & RequestParameters;
-
-// @public
-export interface AgentsUpdateRun200Response extends HttpResponse {
-    // (undocumented)
-    body: ThreadRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsUpdateRunBodyParam {
-    // (undocumented)
-    body: {
-        metadata?: Record<string, string> | null;
-    };
-}
-
-// @public (undocumented)
-export interface AgentsUpdateRunDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateRunDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsUpdateRunDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsUpdateRunParameters = AgentsUpdateRunBodyParam & RequestParameters;
-
-// @public
-export interface AgentsUpdateThread200Response extends HttpResponse {
-    // (undocumented)
-    body: AgentThreadOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsUpdateThreadBodyParam {
-    // (undocumented)
-    body: UpdateAgentThreadOptions;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateThreadDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsUpdateThreadDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsUpdateThreadDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type AgentsUpdateThreadParameters = AgentsUpdateThreadBodyParam & RequestParameters;
-
-// @public
-export interface AgentsUploadFile200Response extends HttpResponse {
-    // (undocumented)
-    body: OpenAIFileOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface AgentsUploadFileBodyParam {
-    // (undocumented)
-    body: FormData | Array<{
-        name: "file";
-        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-        filename?: string;
-        contentType?: string;
-    } | {
-        name: "purpose";
-        body: FilePurpose;
-        filename?: string;
-        contentType?: string;
-    } | {
-        name: "filename";
-        body: string;
-    }>;
-}
-
-// @public (undocumented)
-export interface AgentsUploadFileDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface AgentsUploadFileDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & AgentsUploadFileDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface AgentsUploadFileMediaTypesParam {
-    contentType: "multipart/form-data";
-}
-
-// @public (undocumented)
-export type AgentsUploadFileParameters = AgentsUploadFileMediaTypesParam & AgentsUploadFileBodyParam & RequestParameters;
-
-// @public
-export interface AgentThreadCreationOptions {
-    messages?: Array<ThreadMessageOptions>;
+export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
+    description?: string | null;
+    instructions?: string | null;
     metadata?: Record<string, string> | null;
-    tool_resources?: ToolResources | null;
+    model?: string;
+    name?: string | null;
+    responseFormat?: AgentsApiResponseFormatOption_6 | null;
+    temperature?: number | null;
+    toolResources?: ToolResources_5;
+    tools?: ToolDefinitionUnion[];
+    topP?: number | null;
 }
 
 // @public
-export interface AgentThreadOutput {
-    created_at: number;
+export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
+    metadata?: Record<string, string> | null;
+}
+
+// @public
+export interface AgentsUpdateRunOptionalParams extends OperationOptions {
+    metadata?: Record<string, string> | null;
+}
+
+// @public
+export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
+    metadata?: Record<string, string> | null;
+    toolResources?: ToolResources_5 | null;
+}
+
+// @public
+export interface AgentsUploadFileOptionalParams extends OperationOptions {
+    contentType?: string;
+    filename?: string;
+}
+
+// @public
+export interface AgentThread {
+    createdAt: Date;
     id: string;
     metadata: Record<string, string> | null;
     object: "thread";
-    tool_resources: ToolResourcesOutput | null;
+    toolResources: ToolResources_5 | null;
 }
 
 // @public
-export type ApiResponseFormat = string;
-
-// @public
-export type ApiResponseFormatOutput = string;
-
-// @public
-export interface AppInsightsConfiguration extends InputDataParent {
-    query: string;
-    resourceId: string;
-    serviceName: string;
+export interface AgentThreadCreationOptions {
+    messages?: ThreadMessageOptions[];
+    metadata?: Record<string, string> | null;
+    toolResources?: ToolResources_5 | null;
 }
 
 // @public
-export interface AppInsightsConfigurationOutput extends InputDataOutputParent {
+export type ApiResponseFormat = "text" | "json_object";
+
+// @public
+export interface AppInsightsConfiguration extends InputData {
     query: string;
     resourceId: string;
     serviceName: string;
@@ -1539,889 +420,298 @@ export interface AppInsightsConfigurationOutput extends InputDataOutputParent {
 }
 
 // @public
-export type AuthenticationTypeOutput = "ApiKey" | "AAD" | "SAS";
-
-// @public
-export interface AzureAISearchResource {
-    indexes?: Array<IndexResource>;
-}
-
-// @public
-export interface AzureAISearchResourceOutput {
-    indexes?: Array<IndexResourceOutput>;
-}
-
-// @public
-export interface AzureAISearchToolDefinition extends ToolDefinitionParent {
-    type: "azure_ai_search";
-}
-
-// @public
-export interface AzureAISearchToolDefinitionOutput extends ToolDefinitionOutputParent {
-    type: "azure_ai_search";
-}
-
-// @public
-export interface BingGroundingToolDefinition extends ToolDefinitionParent {
-    type: "bing_grounding";
-}
-
-// @public
-export interface BingGroundingToolDefinitionOutput extends ToolDefinitionOutputParent {
-    type: "bing_grounding";
-}
+export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
 
 // @public (undocumented)
-export type ClientClient = Client & {
-    path: Routes;
-};
+export class AzureAIClient {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AzureAIClientOptionalParams);
+    readonly agents: AgentsOperations;
+    readonly connections: ConnectionsOperations;
+    readonly evaluations: EvaluationsOperations;
+    readonly pipeline: Pipeline;
+}
 
 // @public
-export interface ClientClientOptions extends ClientOptions {
+export interface AzureAIClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
 // @public
-export interface CodeInterpreterToolDefinition extends ToolDefinitionParent {
-    type: "code_interpreter";
+export interface AzureAISearchResource {
+    indexList?: IndexResource[];
 }
 
 // @public
-export interface CodeInterpreterToolDefinitionOutput extends ToolDefinitionOutputParent {
+export interface AzureAISearchToolDefinition extends ToolDefinition {
+    type: "azure_ai_search";
+}
+
+// @public
+export interface BingGroundingToolDefinition extends ToolDefinition {
+    type: "bing_grounding";
+}
+
+// @public
+export interface CodeInterpreterToolDefinition extends ToolDefinition {
     type: "code_interpreter";
 }
 
 // @public
 export interface CodeInterpreterToolResource {
-    file_ids?: string[];
-}
-
-// @public
-export interface CodeInterpreterToolResourceOutput {
-    file_ids?: string[];
+    fileIds?: string[];
 }
 
 // @public
 export interface ConnectionListResource {
-    connections?: Array<ConnectionResource>;
+    connectionList?: ConnectionResource[];
 }
 
 // @public
-export interface ConnectionListResourceOutput {
-    connections?: Array<ConnectionResourceOutput>;
+export interface ConnectionProperties {
+    authType: AuthenticationType;
 }
 
 // @public
-export interface ConnectionPropertiesAADAuthOutput extends ConnectionPropertiesOutputParent {
+export interface ConnectionPropertiesAADAuth extends ConnectionProperties {
     authType: "AAD";
-    category: ConnectionTypeOutput;
+    category: ConnectionType;
     target: string;
 }
 
 // @public
-export interface ConnectionPropertiesApiKeyAuthOutput extends ConnectionPropertiesOutputParent {
+export interface ConnectionPropertiesApiKeyAuth extends ConnectionProperties {
     authType: "ApiKey";
-    category: ConnectionTypeOutput;
-    credentials: CredentialsApiKeyAuthOutput;
+    category: ConnectionType;
+    credentials: CredentialsApiKeyAuth;
     target: string;
 }
 
 // @public
-export type ConnectionPropertiesOutput = ConnectionPropertiesOutputParent | ConnectionPropertiesApiKeyAuthOutput | ConnectionPropertiesAADAuthOutput | ConnectionPropertiesSASAuthOutput;
-
-// @public
-export interface ConnectionPropertiesOutputParent {
-    // (undocumented)
-    authType: AuthenticationTypeOutput;
-}
-
-// @public
-export interface ConnectionPropertiesSASAuthOutput extends ConnectionPropertiesOutputParent {
+export interface ConnectionPropertiesSASAuth extends ConnectionProperties {
     authType: "SAS";
-    category: ConnectionTypeOutput;
-    credentials: CredentialsSASAuthOutput;
+    category: ConnectionType;
+    credentials: CredentialsSASAuth;
     target: string;
 }
+
+// @public
+export type ConnectionPropertiesUnion = ConnectionPropertiesApiKeyAuth | ConnectionPropertiesAADAuth | ConnectionPropertiesSASAuth | ConnectionProperties;
 
 // @public
 export interface ConnectionResource {
-    connection_id: string;
+    connectionId: string;
 }
 
 // @public
-export interface ConnectionResourceOutput {
-    connection_id: string;
-}
-
-// @public (undocumented)
-export interface ConnectionsGet {
-    get(options?: ConnectionsGetParameters): StreamableMethod<ConnectionsGet200Response | ConnectionsGetDefaultResponse>;
+export interface ConnectionsGetOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ConnectionsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: ConnectionsListSecretsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ConnectionsGetDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface ConnectionsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ConnectionsGetDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ConnectionsGetParameters = RequestParameters;
-
-// @public (undocumented)
-export interface ConnectionsList {
-    get(options?: ConnectionsListParameters): StreamableMethod<ConnectionsList200Response | ConnectionsListDefaultResponse>;
-}
-
-// @public
-export interface ConnectionsList200Response extends HttpResponse {
-    // (undocumented)
-    body: ConnectionsListResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ConnectionsListDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface ConnectionsListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ConnectionsListDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ConnectionsListParameters = ConnectionsListQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConnectionsListQueryParam {
-    // (undocumented)
-    queryParameters?: ConnectionsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConnectionsListQueryParamProperties {
+export interface ConnectionsListOptionalParams extends OperationOptions {
     category?: ConnectionType;
     includeAll?: boolean;
     target?: string;
 }
 
 // @public
-export interface ConnectionsListResponseOutput {
-    value: Array<ConnectionsListSecretsResponseOutput>;
-}
-
-// @public (undocumented)
-export interface ConnectionsListSecrets {
-    post(options: ConnectionsListSecretsParameters): StreamableMethod<ConnectionsListSecrets200Response | ConnectionsListSecretsDefaultResponse>;
+export interface ConnectionsListResponse {
+    value: ConnectionsListSecretsResponse[];
 }
 
 // @public
-export interface ConnectionsListSecrets200Response extends HttpResponse {
-    // (undocumented)
-    body: ConnectionsListSecretsResponseOutput;
-    // (undocumented)
-    status: "200";
+export interface ConnectionsListSecretsOptionalParams extends OperationOptions {
 }
-
-// @public (undocumented)
-export interface ConnectionsListSecretsBodyParam {
-    // (undocumented)
-    body: {
-        ignored: string;
-    };
-}
-
-// @public (undocumented)
-export interface ConnectionsListSecretsDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface ConnectionsListSecretsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ConnectionsListSecretsDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ConnectionsListSecretsParameters = ConnectionsListSecretsBodyParam & RequestParameters;
 
 // @public
-export interface ConnectionsListSecretsResponseOutput {
+export interface ConnectionsListSecretsResponse {
     id: string;
     name: string;
-    properties: ConnectionPropertiesOutput;
+    properties: ConnectionPropertiesUnion;
+}
+
+// @public
+export interface ConnectionsOperations {
+    get: (connectionName: string, options?: ConnectionsGetOptionalParams) => Promise<ConnectionsListSecretsResponse>;
+    list: (options?: ConnectionsListOptionalParams) => Promise<ConnectionsListResponse>;
+    listSecrets: (connectionName: string, ignored: string, options?: ConnectionsListSecretsOptionalParams) => Promise<ConnectionsListSecretsResponse>;
 }
 
 // @public
 export type ConnectionType = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices";
 
 // @public
-export type ConnectionTypeOutput = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices";
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
-export interface CreateAgentOptions {
-    description?: string | null;
-    instructions?: string | null;
-    metadata?: Record<string, string> | null;
-    model: string;
-    name?: string | null;
-    response_format?: AgentsApiResponseFormatOption | null;
-    temperature?: number | null;
-    tool_resources?: ToolResources | null;
-    tools?: Array<ToolDefinition>;
-    top_p?: number | null;
-}
-
-// @public
-export interface CreateAndRunThreadOptions {
-    assistant_id: string;
-    instructions?: string | null;
-    max_completion_tokens?: number | null;
-    max_prompt_tokens?: number | null;
-    metadata?: Record<string, string> | null;
-    model?: string | null;
-    response_format?: AgentsApiResponseFormatOption | null;
-    stream?: boolean;
-    temperature?: number | null;
-    thread?: AgentThreadCreationOptions;
-    tool_choice?: AgentsApiToolChoiceOption | null;
-    tool_resources?: UpdateToolResourcesOptions | null;
-    tools?: Array<ToolDefinition> | null;
-    top_p?: number | null;
-    truncation_strategy?: TruncationObject | null;
-}
-
-// @public
-function createClient(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credentials: TokenCredential, { apiVersion, ...options }?: ClientClientOptions): ClientClient;
-export default createClient;
-
-// @public
-export interface CreateRunOptions {
-    additional_instructions?: string | null;
-    additional_messages?: Array<ThreadMessage> | null;
-    assistant_id: string;
-    instructions?: string | null;
-    max_completion_tokens?: number | null;
-    max_prompt_tokens?: number | null;
-    metadata?: Record<string, string> | null;
-    model?: string | null;
-    response_format?: AgentsApiResponseFormatOption | null;
-    stream?: boolean;
-    temperature?: number | null;
-    tool_choice?: AgentsApiToolChoiceOption | null;
-    tools?: Array<ToolDefinition> | null;
-    top_p?: number | null;
-    truncation_strategy?: TruncationObject | null;
-}
-
-// @public
-export interface CredentialsApiKeyAuthOutput {
+export interface CredentialsApiKeyAuth {
     key: string;
 }
 
 // @public
-export interface CredentialsSASAuthOutput {
-    SAS: string;
+export interface CredentialsSASAuth {
+    sas: string;
 }
 
 // @public
-export interface CronTrigger extends TriggerParent {
-    expression: string;
-}
-
-// @public
-export interface CronTriggerOutput extends TriggerOutputParent {
+export interface CronTrigger extends Trigger {
     expression: string;
     // (undocumented)
     readonly type: "Cron";
 }
 
 // @public
-export interface Dataset extends InputDataParent {
-    id: string;
-}
-
-// @public
-export interface DatasetOutput extends InputDataOutputParent {
+export interface Dataset extends InputData {
     id: string;
     // (undocumented)
     readonly type: "dataset";
 }
 
 // @public
+export type DoneEvent = "done";
+
+// @public
+export type ErrorEvent = "error";
+
+// @public
 export interface Evaluation {
-    data: InputData;
+    data: InputDataUnion;
     description?: string;
     displayName?: string;
     evaluators: Record<string, EvaluatorConfiguration>;
-    properties?: Record<string, string>;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface EvaluationOutput {
-    data: InputDataOutput;
-    description?: string;
-    displayName?: string;
-    evaluators: Record<string, EvaluatorConfigurationOutput>;
     readonly id: string;
     properties?: Record<string, string>;
     readonly status?: string;
-    readonly systemData?: SystemDataOutput;
+    readonly systemData?: SystemData;
     tags?: Record<string, string>;
 }
-
-// @public
-export type EvaluationResourceMergeAndPatch = Partial<Evaluation>;
 
 // @public
 export interface EvaluationSchedule {
-    data: InputData;
+    data: InputDataUnion;
     description?: string;
     displayName?: string;
     evaluators: Record<string, EvaluatorConfiguration>;
-    properties?: Record<string, string>;
-    samplingStrategy: SamplingStrategy;
-    tags?: Record<string, string>;
-    trigger: Trigger;
-}
-
-// @public
-export interface EvaluationScheduleOutput {
-    data: InputDataOutput;
-    description?: string;
-    displayName?: string;
-    evaluators: Record<string, EvaluatorConfigurationOutput>;
     readonly id: string;
     properties?: Record<string, string>;
     readonly provisioningStatus?: string;
-    samplingStrategy: SamplingStrategyOutput;
-    readonly systemData?: SystemDataOutput;
+    samplingStrategy: SamplingStrategy;
+    readonly systemData?: SystemData;
     tags?: Record<string, string>;
-    trigger: TriggerOutput;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreate {
-    post(options: EvaluationsCreateParameters): StreamableMethod<EvaluationsCreate201Response>;
+    trigger: TriggerUnion;
 }
 
 // @public
-export interface EvaluationsCreate201Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationOutput;
-    // (undocumented)
-    status: "201";
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateBodyParam {
-    body: Evaluation;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceSchedule200Headers {
-    "x-ms-client-request-id"?: string;
+export interface EvaluationsCreateOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface EvaluationsCreateOrReplaceSchedule200Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationScheduleOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsCreateOrReplaceSchedule200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceSchedule201Headers {
-    "x-ms-client-request-id"?: string;
+export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
-export interface EvaluationsCreateOrReplaceSchedule201Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationScheduleOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsCreateOrReplaceSchedule201Headers;
-    // (undocumented)
-    status: "201";
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceScheduleBodyParam {
-    body: EvaluationSchedule;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceScheduleDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceScheduleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsCreateOrReplaceScheduleDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceScheduleHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsCreateOrReplaceScheduleHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsCreateOrReplaceScheduleHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsCreateOrReplaceScheduleParameters = EvaluationsCreateOrReplaceScheduleHeaderParam & EvaluationsCreateOrReplaceScheduleBodyParam & RequestParameters;
-
-// @public (undocumented)
-export type EvaluationsCreateParameters = EvaluationsCreateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsDeleteSchedule204Headers {
-    "x-ms-client-request-id"?: string;
+export interface EvaluationsDeleteScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
-export interface EvaluationsDeleteSchedule204Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsDeleteSchedule204Headers;
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface EvaluationsDeleteScheduleDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsDeleteScheduleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsDeleteScheduleDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsDeleteScheduleHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsDeleteScheduleHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsDeleteScheduleHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsDeleteScheduleParameters = EvaluationsDeleteScheduleHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsGet {
-    get(options?: EvaluationsGetParameters): StreamableMethod<EvaluationsGet200Response | EvaluationsGetDefaultResponse>;
-    patch(options: EvaluationsUpdateParameters): StreamableMethod<EvaluationsUpdate200Response | EvaluationsUpdateDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface EvaluationsGet200Headers {
-    "x-ms-client-request-id"?: string;
+export interface EvaluationsGetOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
-export interface EvaluationsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsGet200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EvaluationsGetDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsGetDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsGetParameters = EvaluationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsGetSchedule {
-    delete(options?: EvaluationsDeleteScheduleParameters): StreamableMethod<EvaluationsDeleteSchedule204Response | EvaluationsDeleteScheduleDefaultResponse>;
-    get(options?: EvaluationsGetScheduleParameters): StreamableMethod<EvaluationsGetSchedule200Response | EvaluationsGetScheduleDefaultResponse>;
-    put(options: EvaluationsCreateOrReplaceScheduleParameters): StreamableMethod<EvaluationsCreateOrReplaceSchedule200Response | EvaluationsCreateOrReplaceSchedule201Response | EvaluationsCreateOrReplaceScheduleDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetSchedule200Headers {
-    "x-ms-client-request-id"?: string;
+export interface EvaluationsGetScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
-export interface EvaluationsGetSchedule200Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationScheduleOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsGetSchedule200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EvaluationsGetScheduleDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetScheduleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsGetScheduleDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetScheduleHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsGetScheduleHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsGetScheduleHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsGetScheduleParameters = EvaluationsGetScheduleHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsList {
-    get(options?: EvaluationsListParameters): StreamableMethod<EvaluationsList200Response | EvaluationsListDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface EvaluationsList200Headers {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public
-export interface EvaluationsList200Response extends HttpResponse {
-    // (undocumented)
-    body: PagedEvaluationOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsList200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EvaluationsListDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsListDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsListHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsListHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsListHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsListParameters = EvaluationsListQueryParam & EvaluationsListHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsListQueryParam {
-    // (undocumented)
-    queryParameters?: EvaluationsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface EvaluationsListQueryParamProperties {
+export interface EvaluationsListOptionalParams extends OperationOptions {
+    clientRequestId?: string;
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
-// @public (undocumented)
-export interface EvaluationsListSchedule {
-    get(options?: EvaluationsListScheduleParameters): StreamableMethod<EvaluationsListSchedule200Response | EvaluationsListScheduleDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface EvaluationsListSchedule200Headers {
-    "x-ms-client-request-id"?: string;
-}
-
 // @public
-export interface EvaluationsListSchedule200Response extends HttpResponse {
-    // (undocumented)
-    body: PagedEvaluationScheduleOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsListSchedule200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EvaluationsListScheduleDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsListScheduleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsListScheduleDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsListScheduleHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsListScheduleHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsListScheduleHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export type EvaluationsListScheduleParameters = EvaluationsListScheduleQueryParam & EvaluationsListScheduleHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface EvaluationsListScheduleQueryParam {
-    // (undocumented)
-    queryParameters?: EvaluationsListScheduleQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface EvaluationsListScheduleQueryParamProperties {
+export interface EvaluationsListScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
-// @public (undocumented)
-export interface EvaluationsUpdate200Headers {
-    "x-ms-client-request-id"?: string;
+// @public
+export interface EvaluationsOperations {
+    create: (evaluation: Evaluation, options?: EvaluationsCreateOptionalParams) => Promise<Evaluation>;
+    createOrReplaceSchedule: (id: string, resource: EvaluationSchedule, options?: EvaluationsCreateOrReplaceScheduleOptionalParams) => Promise<EvaluationSchedule>;
+    deleteSchedule: (id: string, options?: EvaluationsDeleteScheduleOptionalParams) => Promise<void>;
+    get: (id: string, options?: EvaluationsGetOptionalParams) => Promise<Evaluation>;
+    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
+    list: (options?: EvaluationsListOptionalParams) => PagedAsyncIterableIterator<Evaluation>;
+    listSchedule: (options?: EvaluationsListScheduleOptionalParams) => PagedAsyncIterableIterator<EvaluationSchedule>;
+    update: (id: string, resource: Evaluation, options?: EvaluationsUpdateOptionalParams) => Promise<Evaluation>;
 }
 
 // @public
-export interface EvaluationsUpdate200Response extends HttpResponse {
-    // (undocumented)
-    body: EvaluationOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsUpdate200Headers;
-    // (undocumented)
-    status: "200";
+export interface EvaluationsUpdateOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    contentType?: string;
 }
-
-// @public (undocumented)
-export interface EvaluationsUpdateBodyParam {
-    body: EvaluationResourceMergeAndPatch;
-}
-
-// @public (undocumented)
-export interface EvaluationsUpdateDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsUpdateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & EvaluationsUpdateDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsUpdateHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EvaluationsUpdateHeaders;
-}
-
-// @public (undocumented)
-export interface EvaluationsUpdateHeaders {
-    "x-ms-client-request-id"?: string;
-}
-
-// @public (undocumented)
-export interface EvaluationsUpdateMediaTypesParam {
-    contentType: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type EvaluationsUpdateParameters = EvaluationsUpdateHeaderParam & EvaluationsUpdateMediaTypesParam & EvaluationsUpdateBodyParam & RequestParameters;
 
 // @public
 export interface EvaluatorConfiguration {
-    dataMapping?: Record<string, string>;
-    id: string;
-    initParams?: Record<string, unknown>;
-}
-
-// @public
-export interface EvaluatorConfigurationOutput {
     dataMapping?: Record<string, string>;
     id: string;
     initParams?: Record<string, any>;
 }
 
 // @public
-export interface FileContentResponseOutput {
-    content: string;
+export interface FileContentResponse {
+    content: Uint8Array;
 }
 
 // @public
-export interface FileDeletionStatusOutput {
+export interface FileDeletionStatus {
     deleted: boolean;
     id: string;
     object: "file";
 }
 
 // @public
-export interface FileListResponseOutput {
-    data: Array<OpenAIFileOutput>;
+export interface FileListResponse {
+    data: OpenAIFile[];
     object: "list";
 }
 
 // @public
-export type FilePurpose = string;
+export type FilePurpose = "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output" | "batch" | "batch_output" | "vision";
 
 // @public
-export type FilePurposeOutput = string;
-
-// @public
-export interface FileSearchToolDefinition extends ToolDefinitionParent {
-    file_search?: FileSearchToolDefinitionDetails;
+export interface FileSearchToolDefinition extends ToolDefinition {
+    fileSearch?: FileSearchToolDefinitionDetails;
     type: "file_search";
 }
 
 // @public
 export interface FileSearchToolDefinitionDetails {
-    max_num_results?: number;
-}
-
-// @public
-export interface FileSearchToolDefinitionDetailsOutput {
-    max_num_results?: number;
-}
-
-// @public
-export interface FileSearchToolDefinitionOutput extends ToolDefinitionOutputParent {
-    file_search?: FileSearchToolDefinitionDetailsOutput;
-    type: "file_search";
+    maxNumResults?: number;
 }
 
 // @public
 export interface FileSearchToolResource {
-    vector_store_ids?: string[];
+    vectorStoreIds?: string[];
 }
 
 // @public
-export interface FileSearchToolResourceOutput {
-    vector_store_ids?: string[];
-}
+export type FileState = "uploaded" | "pending" | "running" | "processed" | "error" | "deleting" | "deleted";
 
 // @public
-export type FileStateOutput = string;
-
-// @public
-export type Frequency = string;
-
-// @public
-export type FrequencyOutput = string;
+export type Frequency = "Month" | "Week" | "Day" | "Hour" | "Minute";
 
 // @public
 export interface FunctionDefinition {
-    description?: string;
-    name: string;
-    parameters: unknown;
-}
-
-// @public
-export interface FunctionDefinitionOutput {
     description?: string;
     name: string;
     parameters: any;
@@ -2433,273 +723,143 @@ export interface FunctionName {
 }
 
 // @public
-export interface FunctionNameOutput {
-    name: string;
-}
-
-// @public
-export interface FunctionToolDefinition extends ToolDefinitionParent {
+export interface FunctionToolDefinition extends ToolDefinition {
     function: FunctionDefinition;
     type: "function";
 }
 
 // @public
-export interface FunctionToolDefinitionOutput extends ToolDefinitionOutputParent {
-    function: FunctionDefinitionOutput;
-    type: "function";
-}
+export type IncompleteRunDetails = "max_completion_tokens" | "max_prompt_tokens";
 
 // @public
-export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
-
-// @public
-export type GetPage<TPage> = (pageLink: string) => Promise<{
-    page: TPage;
-    nextPageLink?: string;
-}>;
-
-// @public
-export type IncompleteRunDetailsOutput = string;
+export type IncompleteRunDetails_1 = "max_completion_tokens" | "max_prompt_tokens";
 
 // @public
 export interface IndexResource {
-    index_connection_id: string;
-    index_name: string;
+    indexConnectionId: string;
+    indexName: string;
 }
 
 // @public
-export interface IndexResourceOutput {
-    index_connection_id: string;
-    index_name: string;
-}
-
-// @public
-export type InputData = InputDataParent | AppInsightsConfiguration | Dataset;
-
-// @public
-export type InputDataOutput = InputDataOutputParent | AppInsightsConfigurationOutput | DatasetOutput;
-
-// @public
-export interface InputDataOutputParent {
-    // (undocumented)
+export interface InputData {
     type: string;
 }
 
 // @public
-export interface InputDataParent {
-    // (undocumented)
-    type: string;
-}
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateAgent200Response | AgentsCreateAgentDefaultResponse): response is AgentsCreateAgentDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListAgents200Response | AgentsListAgentsDefaultResponse): response is AgentsListAgentsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetAgent200Response | AgentsGetAgentDefaultResponse): response is AgentsGetAgentDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsUpdateAgent200Response | AgentsUpdateAgentDefaultResponse): response is AgentsUpdateAgentDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsDeleteAgent200Response | AgentsDeleteAgentDefaultResponse): response is AgentsDeleteAgentDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateThread200Response | AgentsCreateThreadDefaultResponse): response is AgentsCreateThreadDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetThread200Response | AgentsGetThreadDefaultResponse): response is AgentsGetThreadDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsUpdateThread200Response | AgentsUpdateThreadDefaultResponse): response is AgentsUpdateThreadDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsDeleteThread200Response | AgentsDeleteThreadDefaultResponse): response is AgentsDeleteThreadDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateMessage200Response | AgentsCreateMessageDefaultResponse): response is AgentsCreateMessageDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListMessages200Response | AgentsListMessagesDefaultResponse): response is AgentsListMessagesDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetMessage200Response | AgentsGetMessageDefaultResponse): response is AgentsGetMessageDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsUpdateMessage200Response | AgentsUpdateMessageDefaultResponse): response is AgentsUpdateMessageDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateRun200Response | AgentsCreateRunDefaultResponse): response is AgentsCreateRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListRuns200Response | AgentsListRunsDefaultResponse): response is AgentsListRunsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetRun200Response | AgentsGetRunDefaultResponse): response is AgentsGetRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsUpdateRun200Response | AgentsUpdateRunDefaultResponse): response is AgentsUpdateRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsSubmitToolOutputsToRun200Response | AgentsSubmitToolOutputsToRunDefaultResponse): response is AgentsSubmitToolOutputsToRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCancelRun200Response | AgentsCancelRunDefaultResponse): response is AgentsCancelRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateThreadAndRun200Response | AgentsCreateThreadAndRunDefaultResponse): response is AgentsCreateThreadAndRunDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetRunStep200Response | AgentsGetRunStepDefaultResponse): response is AgentsGetRunStepDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListRunSteps200Response | AgentsListRunStepsDefaultResponse): response is AgentsListRunStepsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListFiles200Response | AgentsListFilesDefaultResponse): response is AgentsListFilesDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsUploadFile200Response | AgentsUploadFileDefaultResponse): response is AgentsUploadFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsDeleteFile200Response | AgentsDeleteFileDefaultResponse): response is AgentsDeleteFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetFile200Response | AgentsGetFileDefaultResponse): response is AgentsGetFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetFileContent200Response | AgentsGetFileContentDefaultResponse): response is AgentsGetFileContentDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListVectorStores200Response | AgentsListVectorStoresDefaultResponse): response is AgentsListVectorStoresDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateVectorStore200Response | AgentsCreateVectorStoreDefaultResponse): response is AgentsCreateVectorStoreDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetVectorStore200Response | AgentsGetVectorStoreDefaultResponse): response is AgentsGetVectorStoreDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsModifyVectorStore200Response | AgentsModifyVectorStoreDefaultResponse): response is AgentsModifyVectorStoreDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsDeleteVectorStore200Response | AgentsDeleteVectorStoreDefaultResponse): response is AgentsDeleteVectorStoreDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListVectorStoreFiles200Response | AgentsListVectorStoreFilesDefaultResponse): response is AgentsListVectorStoreFilesDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateVectorStoreFile200Response | AgentsCreateVectorStoreFileDefaultResponse): response is AgentsCreateVectorStoreFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetVectorStoreFile200Response | AgentsGetVectorStoreFileDefaultResponse): response is AgentsGetVectorStoreFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsDeleteVectorStoreFile200Response | AgentsDeleteVectorStoreFileDefaultResponse): response is AgentsDeleteVectorStoreFileDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCreateVectorStoreFileBatch200Response | AgentsCreateVectorStoreFileBatchDefaultResponse): response is AgentsCreateVectorStoreFileBatchDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsGetVectorStoreFileBatch200Response | AgentsGetVectorStoreFileBatchDefaultResponse): response is AgentsGetVectorStoreFileBatchDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsCancelVectorStoreFileBatch200Response | AgentsCancelVectorStoreFileBatchDefaultResponse): response is AgentsCancelVectorStoreFileBatchDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: AgentsListVectorStoreFileBatchFiles200Response | AgentsListVectorStoreFileBatchFilesDefaultResponse): response is AgentsListVectorStoreFileBatchFilesDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: ConnectionsList200Response | ConnectionsListDefaultResponse): response is ConnectionsListDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: ConnectionsGet200Response | ConnectionsGetDefaultResponse): response is ConnectionsGetDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: ConnectionsListSecrets200Response | ConnectionsListSecretsDefaultResponse): response is ConnectionsListSecretsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsGet200Response | EvaluationsGetDefaultResponse): response is EvaluationsGetDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsUpdate200Response | EvaluationsUpdateDefaultResponse): response is EvaluationsUpdateDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsList200Response | EvaluationsListDefaultResponse): response is EvaluationsListDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsGetSchedule200Response | EvaluationsGetScheduleDefaultResponse): response is EvaluationsGetScheduleDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsCreateOrReplaceSchedule200Response | EvaluationsCreateOrReplaceSchedule201Response | EvaluationsCreateOrReplaceScheduleDefaultResponse): response is EvaluationsCreateOrReplaceScheduleDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsDeleteSchedule204Response | EvaluationsDeleteScheduleDefaultResponse): response is EvaluationsDeleteScheduleDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: EvaluationsListSchedule200Response | EvaluationsListScheduleDefaultResponse): response is EvaluationsListScheduleDefaultResponse;
+export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
 
 // @public
-export type ListSortOrder = string;
+export type ListSortOrder = "asc" | "desc";
 
 // @public
 export interface MessageAttachment {
-    file_id: string;
+    fileId: string;
     tools: MessageAttachmentToolDefinition[];
-}
-
-// @public
-export interface MessageAttachmentOutput {
-    file_id: string;
-    tools: MessageAttachmentToolDefinitionOutput[];
 }
 
 // @public
 export type MessageAttachmentToolDefinition = CodeInterpreterToolDefinition | FileSearchToolDefinition;
 
 // @public
-export type MessageAttachmentToolDefinitionOutput = CodeInterpreterToolDefinitionOutput | FileSearchToolDefinitionOutput;
-
-// @public
-export type MessageContent = MessageContentParent | MessageTextContent | MessageImageFileContent;
-
-// @public
-export type MessageContentOutput = MessageContentOutputParent | MessageTextContentOutput | MessageImageFileContentOutput;
-
-// @public
-export interface MessageContentOutputParent {
-    // (undocumented)
+export interface MessageContent {
     type: string;
 }
 
 // @public
-export interface MessageContentParent {
-    // (undocumented)
+export type MessageContentUnion = MessageTextContent | MessageImageFileContent | MessageContent;
+
+// @public
+export interface MessageDelta {
+    content: MessageDeltaContentUnion[];
+    role: MessageRole;
+}
+
+// @public
+export interface MessageDeltaChunk {
+    delta: MessageDelta;
+    id: string;
+    object: "thread.message.delta";
+}
+
+// @public
+export interface MessageDeltaContent {
+    index: number;
     type: string;
 }
 
 // @public
-export interface MessageImageFileContent extends MessageContentParent {
-    image_file: MessageImageFileDetails;
+export type MessageDeltaContentUnion = MessageDeltaImageFileContent | MessageDeltaTextContent | MessageDeltaContent;
+
+// @public
+export interface MessageDeltaImageFileContent extends MessageDeltaContent {
+    imageFile?: MessageDeltaImageFileContentObject;
     type: "image_file";
 }
 
 // @public
-export interface MessageImageFileContentOutput extends MessageContentOutputParent {
-    image_file: MessageImageFileDetailsOutput;
+export interface MessageDeltaImageFileContentObject {
+    fileId?: string;
+}
+
+// @public
+export interface MessageDeltaTextAnnotation {
+    index: number;
+    type: string;
+}
+
+// @public
+export type MessageDeltaTextAnnotationUnion = MessageDeltaTextFileCitationAnnotation | MessageDeltaTextFilePathAnnotation | MessageDeltaTextAnnotation;
+
+// @public
+export interface MessageDeltaTextContent extends MessageDeltaContent {
+    text?: MessageDeltaTextContentObject;
+    type: "text";
+}
+
+// @public
+export interface MessageDeltaTextContentObject {
+    annotations?: MessageDeltaTextAnnotationUnion[];
+    value?: string;
+}
+
+// @public
+export interface MessageDeltaTextFileCitationAnnotation extends MessageDeltaTextAnnotation {
+    endIndex?: number;
+    fileCitation?: MessageDeltaTextFileCitationAnnotationObject;
+    startIndex?: number;
+    text?: string;
+    type: "file_citation";
+}
+
+// @public
+export interface MessageDeltaTextFileCitationAnnotationObject {
+    fileId?: string;
+    quote?: string;
+}
+
+// @public
+export interface MessageDeltaTextFilePathAnnotation extends MessageDeltaTextAnnotation {
+    endIndex?: number;
+    filePath?: MessageDeltaTextFilePathAnnotationObject;
+    startIndex?: number;
+    text?: string;
+    type: "file_path";
+}
+
+// @public
+export interface MessageDeltaTextFilePathAnnotationObject {
+    fileId?: string;
+}
+
+// @public
+export interface MessageImageFileContent extends MessageContent {
+    imageFile: MessageImageFileDetails;
     type: "image_file";
 }
 
 // @public
 export interface MessageImageFileDetails {
-    file_id: string;
-}
-
-// @public
-export interface MessageImageFileDetailsOutput {
-    file_id: string;
+    fileId: string;
 }
 
 // @public
@@ -2708,239 +868,151 @@ export interface MessageIncompleteDetails {
 }
 
 // @public
-export interface MessageIncompleteDetailsOutput {
-    reason: MessageIncompleteDetailsReasonOutput;
+export interface MessageIncompleteDetails_1 {
+    reason: MessageIncompleteDetailsReason;
 }
 
 // @public
-export type MessageIncompleteDetailsReason = string;
+export type MessageIncompleteDetailsReason = "content_filter" | "max_tokens" | "run_cancelled" | "run_failed" | "run_expired";
 
 // @public
-export type MessageIncompleteDetailsReasonOutput = string;
+export type MessageRole = "user" | "assistant";
 
 // @public
-export type MessageRole = string;
+export type MessageStatus = "in_progress" | "incomplete" | "completed";
 
 // @public
-export type MessageRoleOutput = string;
+export type MessageStreamEvent = "thread.message.created" | "thread.message.in_progress" | "thread.message.delta" | "thread.message.completed" | "thread.message.incomplete";
 
 // @public
-export type MessageStatus = string;
-
-// @public
-export type MessageStatusOutput = string;
-
-// @public
-export type MessageTextAnnotation = MessageTextAnnotationParent | MessageTextFileCitationAnnotation | MessageTextFilePathAnnotation;
-
-// @public
-export type MessageTextAnnotationOutput = MessageTextAnnotationOutputParent | MessageTextFileCitationAnnotationOutput | MessageTextFilePathAnnotationOutput;
-
-// @public
-export interface MessageTextAnnotationOutputParent {
+export interface MessageTextAnnotation {
     text: string;
-    // (undocumented)
     type: string;
 }
 
 // @public
-export interface MessageTextAnnotationParent {
-    text: string;
-    // (undocumented)
-    type: string;
-}
+export type MessageTextAnnotationUnion = MessageTextFileCitationAnnotation | MessageTextFilePathAnnotation | MessageTextAnnotation;
 
 // @public
-export interface MessageTextContent extends MessageContentParent {
+export interface MessageTextContent extends MessageContent {
     text: MessageTextDetails;
     type: "text";
 }
 
 // @public
-export interface MessageTextContentOutput extends MessageContentOutputParent {
-    text: MessageTextDetailsOutput;
-    type: "text";
-}
-
-// @public
 export interface MessageTextDetails {
-    annotations: Array<MessageTextAnnotation>;
+    annotations: MessageTextAnnotationUnion[];
     value: string;
 }
 
 // @public
-export interface MessageTextDetailsOutput {
-    annotations: Array<MessageTextAnnotationOutput>;
-    value: string;
-}
-
-// @public
-export interface MessageTextFileCitationAnnotation extends MessageTextAnnotationParent {
-    end_index?: number;
-    file_citation: MessageTextFileCitationDetails;
-    start_index?: number;
-    type: "file_citation";
-}
-
-// @public
-export interface MessageTextFileCitationAnnotationOutput extends MessageTextAnnotationOutputParent {
-    end_index?: number;
-    file_citation: MessageTextFileCitationDetailsOutput;
-    start_index?: number;
+export interface MessageTextFileCitationAnnotation extends MessageTextAnnotation {
+    endIndex?: number;
+    fileCitation: MessageTextFileCitationDetails;
+    startIndex?: number;
     type: "file_citation";
 }
 
 // @public
 export interface MessageTextFileCitationDetails {
-    file_id: string;
+    fileId: string;
     quote: string;
 }
 
 // @public
-export interface MessageTextFileCitationDetailsOutput {
-    file_id: string;
-    quote: string;
-}
-
-// @public
-export interface MessageTextFilePathAnnotation extends MessageTextAnnotationParent {
-    end_index?: number;
-    file_path: MessageTextFilePathDetails;
-    start_index?: number;
-    type: "file_path";
-}
-
-// @public
-export interface MessageTextFilePathAnnotationOutput extends MessageTextAnnotationOutputParent {
-    end_index?: number;
-    file_path: MessageTextFilePathDetailsOutput;
-    start_index?: number;
+export interface MessageTextFilePathAnnotation extends MessageTextAnnotation {
+    endIndex?: number;
+    filePath: MessageTextFilePathDetails;
+    startIndex?: number;
     type: "file_path";
 }
 
 // @public
 export interface MessageTextFilePathDetails {
-    file_id: string;
+    fileId: string;
 }
 
 // @public
-export interface MessageTextFilePathDetailsOutput {
-    file_id: string;
-}
-
-// @public
-export interface MicrosoftFabricToolDefinition extends ToolDefinitionParent {
+export interface MicrosoftFabricToolDefinition extends ToolDefinition {
     type: "microsoft_fabric";
 }
 
 // @public
-export interface MicrosoftFabricToolDefinitionOutput extends ToolDefinitionOutputParent {
-    type: "microsoft_fabric";
-}
-
-// @public
-export interface OpenAIFileOutput {
+export interface OpenAIFile {
     bytes: number;
-    created_at: number;
+    createdAt: Date;
     filename: string;
     id: string;
     object: "file";
-    purpose: FilePurposeOutput;
-    status?: FileStateOutput;
-    status_details?: string;
+    purpose: FilePurpose;
+    status?: FileState;
+    statusDetails?: string;
 }
 
 // @public
-export interface OpenAIPageableListOfAgentOutput {
-    data: Array<AgentOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfAgent {
+    data: Agent[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface OpenAIPageableListOfRunStepOutput {
-    data: Array<RunStepOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfRunStep {
+    data: RunStep[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface OpenAIPageableListOfThreadMessageOutput {
-    data: Array<ThreadMessageOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfThreadMessage {
+    data: ThreadMessage[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface OpenAIPageableListOfThreadRunOutput {
-    data: Array<ThreadRunOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfThreadRun {
+    data: ThreadRun[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface OpenAIPageableListOfVectorStoreFileOutput {
-    data: Array<VectorStoreFileOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfVectorStore {
+    data: VectorStore[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface OpenAIPageableListOfVectorStoreOutput {
-    data: Array<VectorStoreOutput>;
-    first_id: string;
-    has_more: boolean;
-    last_id: string;
+export interface OpenAIPageableListOfVectorStoreFile {
+    data: VectorStoreFile[];
+    firstId: string;
+    hasMore: boolean;
+    lastId: string;
     object: "list";
 }
 
 // @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PagedEvaluationOutput {
-    nextLink?: string;
-    value: Array<EvaluationOutput>;
-}
-
-// @public
-export interface PagedEvaluationScheduleOutput {
-    nextLink?: string;
-    value: Array<EvaluationScheduleOutput>;
 }
 
 // @public
 export interface PageSettings {
     continuationToken?: string;
-}
-
-// @public
-export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
-
-// @public
-export type PaginateReturn<TResult> = TResult extends {
-    body: {
-        value?: infer TPage;
-    };
-} ? GetArrayType<TPage> : Array<unknown>;
-
-// @public
-export interface PagingOptions<TResponse> {
-    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 // @public
@@ -2952,270 +1024,358 @@ export interface RecurrenceSchedule {
 }
 
 // @public
-export interface RecurrenceScheduleOutput {
-    hours: number[];
-    minutes: number[];
-    monthDays: number[];
-    weekDays: WeekDaysOutput[];
-}
-
-// @public
-export interface RecurrenceTrigger extends TriggerParent {
+export interface RecurrenceTrigger extends Trigger {
     frequency: Frequency;
     interval: number;
     schedule: RecurrenceSchedule;
-}
-
-// @public
-export interface RecurrenceTriggerOutput extends TriggerOutputParent {
-    frequency: FrequencyOutput;
-    interval: number;
-    schedule: RecurrenceScheduleOutput;
     // (undocumented)
     readonly type: "Recurrence";
 }
 
 // @public
-export type RequiredActionOutput = RequiredActionOutputParent | SubmitToolOutputsActionOutput;
-
-// @public
-export interface RequiredActionOutputParent {
-    // (undocumented)
+export interface RequiredAction {
     type: string;
 }
 
 // @public
-export interface RequiredFunctionToolCallDetailsOutput {
+export interface RequiredAction_1 {
+    type: string;
+}
+
+// @public
+export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction_1;
+
+// @public
+export type RequiredActionUnion_1 = SubmitToolOutputsAction | RequiredAction_1;
+
+// @public
+export interface RequiredFunctionToolCall extends RequiredToolCall {
+    function: RequiredFunctionToolCallDetails;
+    type: "function";
+}
+
+// @public
+export interface RequiredFunctionToolCallDetails {
     arguments: string;
     name: string;
 }
 
 // @public
-export interface RequiredFunctionToolCallOutput extends RequiredToolCallOutputParent {
-    function: RequiredFunctionToolCallDetailsOutput;
-    type: "function";
-}
-
-// @public
-export type RequiredToolCallOutput = RequiredToolCallOutputParent | RequiredFunctionToolCallOutput;
-
-// @public
-export interface RequiredToolCallOutputParent {
+export interface RequiredToolCall {
     id: string;
-    // (undocumented)
     type: string;
 }
 
-// @public (undocumented)
-export interface Routes {
-    (path: "/assistants"): AgentsCreateAgent;
-    (path: "/assistants/{assistantId}", assistantId: string): AgentsGetAgent;
-    (path: "/threads"): AgentsCreateThread;
-    (path: "/threads/{threadId}", threadId: string): AgentsGetThread;
-    (path: "/threads/{threadId}/messages", threadId: string): AgentsCreateMessage;
-    (path: "/threads/{threadId}/messages/{messageId}", threadId: string, messageId: string): AgentsGetMessage;
-    (path: "/threads/{threadId}/runs", threadId: string): AgentsCreateRun;
-    (path: "/threads/{threadId}/runs/{runId}", threadId: string, runId: string): AgentsGetRun;
-    (path: "/threads/{threadId}/runs/{runId}/submit_tool_outputs", threadId: string, runId: string): AgentsSubmitToolOutputsToRun;
-    (path: "/threads/{threadId}/runs/{runId}/cancel", threadId: string, runId: string): AgentsCancelRun;
-    (path: "/threads/runs"): AgentsCreateThreadAndRun;
-    (path: "/threads/{threadId}/runs/{runId}/steps/{stepId}", threadId: string, runId: string, stepId: string): AgentsGetRunStep;
-    (path: "/threads/{threadId}/runs/{runId}/steps", threadId: string, runId: string): AgentsListRunSteps;
-    (path: "/files"): AgentsListFiles;
-    (path: "/files/{fileId}", fileId: string): AgentsDeleteFile;
-    (path: "/files/{fileId}/content", fileId: string): AgentsGetFileContent;
-    (path: "/vector_stores"): AgentsListVectorStores;
-    (path: "/vector_stores/{vectorStoreId}", vectorStoreId: string): AgentsGetVectorStore;
-    (path: "/vector_stores/{vectorStoreId}/files", vectorStoreId: string): AgentsListVectorStoreFiles;
-    (path: "/vector_stores/{vectorStoreId}/files/{fileId}", vectorStoreId: string, fileId: string): AgentsGetVectorStoreFile;
-    (path: "/vector_stores/{vectorStoreId}/file_batches", vectorStoreId: string): AgentsCreateVectorStoreFileBatch;
-    (path: "/vector_stores/{vectorStoreId}/file_batches/{batchId}", vectorStoreId: string, batchId: string): AgentsGetVectorStoreFileBatch;
-    (path: "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel", vectorStoreId: string, batchId: string): AgentsCancelVectorStoreFileBatch;
-    (path: "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files", vectorStoreId: string, batchId: string): AgentsListVectorStoreFileBatchFiles;
-    (path: "/connections"): ConnectionsList;
-    (path: "/connections/{connectionName}", connectionName: string): ConnectionsGet;
-    (path: "/connections/{connectionName}/listsecrets", connectionName: string): ConnectionsListSecrets;
-    (path: "/evaluations/runs/{id}", id: string): EvaluationsGet;
-    (path: "/evaluations/runs:run"): EvaluationsCreate;
-    (path: "/evaluations/runs"): EvaluationsList;
-    (path: "/evaluations/schedules/{id}", id: string): EvaluationsGetSchedule;
-    (path: "/evaluations/schedules"): EvaluationsListSchedule;
+// @public
+export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
+
+// @public
+export interface RunCompletionUsage {
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
 }
 
 // @public
-export interface RunCompletionUsageOutput {
-    completion_tokens: number;
-    prompt_tokens: number;
-    total_tokens: number;
+export interface RunCompletionUsage_1 {
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
 }
 
 // @public
-export interface RunErrorOutput {
+export interface RunError {
     code: string;
     message: string;
 }
 
 // @public
-export type RunStatusOutput = string;
+export interface RunError_1 {
+    code: string;
+    message: string;
+}
 
 // @public
-export interface RunStepAzureAISearchToolCallOutput extends RunStepToolCallOutputParent {
-    azure_ai_search: Record<string, string>;
+export type RunStatus = "queued" | "in_progress" | "requires_action" | "cancelling" | "cancelled" | "failed" | "completed" | "expired";
+
+// @public
+export interface RunStep {
+    assistantId: string;
+    cancelledAt: Date | null;
+    completedAt: Date | null;
+    createdAt: Date;
+    expiredAt: Date | null;
+    failedAt: Date | null;
+    id: string;
+    lastError: RunStepError_1 | null;
+    metadata: Record<string, string> | null;
+    object: "thread.run.step";
+    runId: string;
+    status: RunStepStatus;
+    stepDetails: RunStepDetailsUnion;
+    threadId: string;
+    type: RunStepType;
+    usage?: RunStepCompletionUsage_1 | null;
+}
+
+// @public
+export interface RunStepAzureAISearchToolCall extends RunStepToolCall {
+    azureAISearch: Record<string, string>;
     type: "azure_ai_search";
 }
 
 // @public
-export interface RunStepBingGroundingToolCallOutput extends RunStepToolCallOutputParent {
-    bing_grounding: Record<string, string>;
+export interface RunStepBingGroundingToolCall extends RunStepToolCall {
+    bingGrounding: Record<string, string>;
     type: "bing_grounding";
 }
 
 // @public
-export interface RunStepCodeInterpreterImageOutputOutput extends RunStepCodeInterpreterToolCallOutputOutputParent {
-    image: RunStepCodeInterpreterImageReferenceOutput;
+export interface RunStepCodeInterpreterImageOutput extends RunStepCodeInterpreterToolCallOutput {
+    image: RunStepCodeInterpreterImageReference;
     type: "image";
 }
 
 // @public
-export interface RunStepCodeInterpreterImageReferenceOutput {
-    file_id: string;
+export interface RunStepCodeInterpreterImageReference {
+    fileId: string;
 }
 
 // @public
-export interface RunStepCodeInterpreterLogOutputOutput extends RunStepCodeInterpreterToolCallOutputOutputParent {
+export interface RunStepCodeInterpreterLogOutput extends RunStepCodeInterpreterToolCallOutput {
     logs: string;
     type: "logs";
 }
 
 // @public
-export interface RunStepCodeInterpreterToolCallDetailsOutput {
-    input: string;
-    outputs: Array<RunStepCodeInterpreterToolCallOutputOutput>;
-}
-
-// @public
-export interface RunStepCodeInterpreterToolCallOutput extends RunStepToolCallOutputParent {
-    code_interpreter: RunStepCodeInterpreterToolCallDetailsOutput;
+export interface RunStepCodeInterpreterToolCall extends RunStepToolCall {
+    codeInterpreter: RunStepCodeInterpreterToolCallDetails;
     type: "code_interpreter";
 }
 
 // @public
-export type RunStepCodeInterpreterToolCallOutputOutput = RunStepCodeInterpreterToolCallOutputOutputParent | RunStepCodeInterpreterLogOutputOutput | RunStepCodeInterpreterImageOutputOutput;
+export interface RunStepCodeInterpreterToolCallDetails {
+    input: string;
+    outputs: RunStepCodeInterpreterToolCallOutputUnion[];
+}
 
 // @public
-export interface RunStepCodeInterpreterToolCallOutputOutputParent {
-    // (undocumented)
+export interface RunStepCodeInterpreterToolCallOutput {
     type: string;
 }
 
 // @public
-export interface RunStepCompletionUsageOutput {
-    completion_tokens: number;
-    prompt_tokens: number;
-    total_tokens: number;
+export type RunStepCodeInterpreterToolCallOutputUnion = RunStepCodeInterpreterLogOutput | RunStepCodeInterpreterImageOutput | RunStepCodeInterpreterToolCallOutput;
+
+// @public
+export interface RunStepCompletionUsage {
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
 }
 
 // @public
-export type RunStepDetailsOutput = RunStepDetailsOutputParent | RunStepMessageCreationDetailsOutput | RunStepToolCallDetailsOutput;
-
-// @public
-export interface RunStepDetailsOutputParent {
-    // (undocumented)
-    type: RunStepTypeOutput;
+export interface RunStepCompletionUsage_1 {
+    completionTokens: number;
+    promptTokens: number;
+    totalTokens: number;
 }
 
 // @public
-export type RunStepErrorCodeOutput = string;
-
-// @public
-export interface RunStepErrorOutput {
-    code: RunStepErrorCodeOutput;
-    message: string;
+export interface RunStepDelta {
+    stepDetails?: RunStepDeltaDetailUnion;
 }
 
 // @public
-export interface RunStepFileSearchToolCallOutput extends RunStepToolCallOutputParent {
-    file_search: Record<string, string>;
+export interface RunStepDeltaChunk {
+    delta: RunStepDelta;
+    id: string;
+    object: "thread.run.step.delta";
+}
+
+// @public
+export interface RunStepDeltaCodeInterpreterDetailItemObject {
+    input?: string;
+    outputs?: RunStepDeltaCodeInterpreterOutputUnion[];
+}
+
+// @public
+export interface RunStepDeltaCodeInterpreterImageOutput extends RunStepDeltaCodeInterpreterOutput {
+    image?: RunStepDeltaCodeInterpreterImageOutputObject;
+    type: "image";
+}
+
+// @public
+export interface RunStepDeltaCodeInterpreterImageOutputObject {
+    fileId?: string;
+}
+
+// @public
+export interface RunStepDeltaCodeInterpreterLogOutput extends RunStepDeltaCodeInterpreterOutput {
+    logs?: string;
+    type: "logs";
+}
+
+// @public
+export interface RunStepDeltaCodeInterpreterOutput {
+    index: number;
+    type: string;
+}
+
+// @public
+export type RunStepDeltaCodeInterpreterOutputUnion = RunStepDeltaCodeInterpreterLogOutput | RunStepDeltaCodeInterpreterImageOutput | RunStepDeltaCodeInterpreterOutput;
+
+// @public
+export interface RunStepDeltaCodeInterpreterToolCall extends RunStepDeltaToolCall {
+    codeInterpreter?: RunStepDeltaCodeInterpreterDetailItemObject;
+    type: "code_interpreter";
+}
+
+// @public
+export interface RunStepDeltaDetail {
+    type: string;
+}
+
+// @public
+export type RunStepDeltaDetailUnion = RunStepDeltaMessageCreation | RunStepDeltaToolCallObject | RunStepDeltaDetail;
+
+// @public
+export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
+    fileSearch?: Record<string, string>;
     type: "file_search";
 }
 
 // @public
-export interface RunStepFunctionToolCallDetailsOutput {
+export interface RunStepDeltaFunction {
+    arguments?: string;
+    name?: string;
+    output?: string | null;
+}
+
+// @public
+export interface RunStepDeltaFunctionToolCall extends RunStepDeltaToolCall {
+    function?: RunStepDeltaFunction;
+    type: "function";
+}
+
+// @public
+export interface RunStepDeltaMessageCreation extends RunStepDeltaDetail {
+    messageCreation?: RunStepDeltaMessageCreationObject;
+    type: "message_creation";
+}
+
+// @public
+export interface RunStepDeltaMessageCreationObject {
+    messageId?: string;
+}
+
+// @public
+export interface RunStepDeltaToolCall {
+    id: string;
+    index: number;
+    type: string;
+}
+
+// @public
+export interface RunStepDeltaToolCallObject extends RunStepDeltaDetail {
+    toolCalls?: RunStepDeltaToolCallUnion[];
+    type: "tool_calls";
+}
+
+// @public
+export type RunStepDeltaToolCallUnion = RunStepDeltaFunctionToolCall | RunStepDeltaFileSearchToolCall | RunStepDeltaCodeInterpreterToolCall | RunStepDeltaToolCall;
+
+// @public
+export interface RunStepDetails {
+    type: RunStepType;
+}
+
+// @public
+export type RunStepDetailsUnion = RunStepMessageCreationDetails | RunStepToolCallDetails | RunStepDetails;
+
+// @public
+export interface RunStepError {
+    code: RunStepErrorCode;
+    message: string;
+}
+
+// @public
+export interface RunStepError_1 {
+    code: RunStepErrorCode;
+    message: string;
+}
+
+// @public
+export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
+
+// @public
+export interface RunStepFileSearchToolCall extends RunStepToolCall {
+    fileSearch: Record<string, string>;
+    type: "file_search";
+}
+
+// @public
+export interface RunStepFunctionToolCall extends RunStepToolCall {
+    function: RunStepFunctionToolCallDetails;
+    type: "function";
+}
+
+// @public
+export interface RunStepFunctionToolCallDetails {
     arguments: string;
     name: string;
     output: string | null;
 }
 
 // @public
-export interface RunStepFunctionToolCallOutput extends RunStepToolCallOutputParent {
-    function: RunStepFunctionToolCallDetailsOutput;
-    type: "function";
-}
-
-// @public
-export interface RunStepMessageCreationDetailsOutput extends RunStepDetailsOutputParent {
-    message_creation: RunStepMessageCreationReferenceOutput;
+export interface RunStepMessageCreationDetails extends RunStepDetails {
+    messageCreation: RunStepMessageCreationReference;
     type: "message_creation";
 }
 
 // @public
-export interface RunStepMessageCreationReferenceOutput {
-    message_id: string;
+export interface RunStepMessageCreationReference {
+    messageId: string;
 }
 
 // @public
-export interface RunStepMicrosoftFabricToolCallOutput extends RunStepToolCallOutputParent {
-    microsoft_fabric: Record<string, string>;
+export interface RunStepMicrosoftFabricToolCall extends RunStepToolCall {
+    microsoftFabric: Record<string, string>;
     type: "microsoft_fabric";
 }
 
 // @public
-export interface RunStepOutput {
-    assistant_id: string;
-    cancelled_at: number | null;
-    completed_at: number | null;
-    created_at: number;
-    expired_at: number | null;
-    failed_at: number | null;
-    id: string;
-    last_error: RunStepErrorOutput | null;
-    metadata: Record<string, string> | null;
-    object: "thread.run.step";
-    run_id: string;
-    status: RunStepStatusOutput;
-    step_details: RunStepDetailsOutput;
-    thread_id: string;
-    type: RunStepTypeOutput;
-    usage?: RunStepCompletionUsageOutput | null;
-}
-
-// @public
-export interface RunStepSharepointToolCallOutput extends RunStepToolCallOutputParent {
-    sharepoint: Record<string, string>;
+export interface RunStepSharepointToolCall extends RunStepToolCall {
+    sharePoint: Record<string, string>;
     type: "sharepoint";
 }
 
 // @public
-export type RunStepStatusOutput = string;
+export type RunStepStatus = "in_progress" | "cancelled" | "failed" | "completed" | "expired";
 
 // @public
-export interface RunStepToolCallDetailsOutput extends RunStepDetailsOutputParent {
-    tool_calls: Array<RunStepToolCallOutput>;
-    type: "tool_calls";
-}
+export type RunStepStreamEvent = "thread.run.step.created" | "thread.run.step.in_progress" | "thread.run.step.delta" | "thread.run.step.completed" | "thread.run.step.failed" | "thread.run.step.cancelled" | "thread.run.step.expired";
 
 // @public
-export type RunStepToolCallOutput = RunStepToolCallOutputParent | RunStepCodeInterpreterToolCallOutput | RunStepFileSearchToolCallOutput | RunStepBingGroundingToolCallOutput | RunStepAzureAISearchToolCallOutput | RunStepSharepointToolCallOutput | RunStepMicrosoftFabricToolCallOutput | RunStepFunctionToolCallOutput;
-
-// @public
-export interface RunStepToolCallOutputParent {
+export interface RunStepToolCall {
     id: string;
-    // (undocumented)
     type: string;
 }
 
 // @public
-export type RunStepTypeOutput = string;
+export interface RunStepToolCallDetails extends RunStepDetails {
+    toolCalls: RunStepToolCallUnion[];
+    type: "tool_calls";
+}
+
+// @public
+export type RunStepToolCallUnion = RunStepCodeInterpreterToolCall | RunStepFileSearchToolCall | RunStepBingGroundingToolCall | RunStepAzureAISearchToolCall | RunStepSharepointToolCall | RunStepMicrosoftFabricToolCall | RunStepFunctionToolCall | RunStepToolCall;
+
+// @public
+export type RunStepType = "message_creation" | "tool_calls";
+
+// @public
+export type RunStreamEvent = "thread.run.created" | "thread.run.queued" | "thread.run.in_progress" | "thread.run.requires_action" | "thread.run.completed" | "thread.run.failed" | "thread.run.cancelling" | "thread.run.cancelled" | "thread.run.expired";
 
 // @public
 export interface SamplingStrategy {
@@ -3223,45 +1383,31 @@ export interface SamplingStrategy {
 }
 
 // @public
-export interface SamplingStrategyOutput {
-    rate: number;
-}
-
-// @public
-export interface SharepointToolDefinition extends ToolDefinitionParent {
+export interface SharepointToolDefinition extends ToolDefinition {
     type: "sharepoint";
 }
 
 // @public
-export interface SharepointToolDefinitionOutput extends ToolDefinitionOutputParent {
-    type: "sharepoint";
-}
-
-// @public
-export interface SubmitToolOutputsActionOutput extends RequiredActionOutputParent {
-    submit_tool_outputs: SubmitToolOutputsDetailsOutput;
+export interface SubmitToolOutputsAction extends RequiredAction_1 {
+    submitToolOutputs: SubmitToolOutputsDetails;
     type: "submit_tool_outputs";
 }
 
 // @public
-export interface SubmitToolOutputsDetailsOutput {
-    tool_calls: Array<RequiredToolCallOutput>;
+export interface SubmitToolOutputsDetails {
+    toolCalls: RequiredToolCallUnion[];
 }
 
 // @public
 export interface SystemData {
-}
-
-// @public
-export interface SystemDataOutput {
-    readonly createdAt?: string;
+    readonly createdAt?: Date;
     readonly createdBy?: string;
     readonly createdByType?: string;
-    readonly lastModifiedAt?: string;
+    readonly lastModifiedAt?: Date;
 }
 
 // @public
-export interface ThreadDeletionStatusOutput {
+export interface ThreadDeletionStatus {
     deleted: boolean;
     id: string;
     object: "thread.deleted";
@@ -3269,256 +1415,263 @@ export interface ThreadDeletionStatusOutput {
 
 // @public
 export interface ThreadMessage {
-    assistant_id: string | null;
-    attachments: Array<MessageAttachment> | null;
-    completed_at: number | null;
-    content: Array<MessageContent>;
-    created_at: number;
+    assistantId: string | null;
+    attachments: MessageAttachment[] | null;
+    completedAt: Date | null;
+    content: MessageContentUnion[];
+    createdAt: Date;
     id: string;
-    incomplete_at: number | null;
-    incomplete_details: MessageIncompleteDetails | null;
+    incompleteAt: Date | null;
+    incompleteDetails: MessageIncompleteDetails_1 | null;
     metadata: Record<string, string> | null;
     object: "thread.message";
     role: MessageRole;
-    run_id: string | null;
+    runId: string | null;
     status: MessageStatus;
-    thread_id: string;
+    threadId: string;
 }
 
 // @public
 export interface ThreadMessageOptions {
-    attachments?: Array<MessageAttachment> | null;
+    attachments?: MessageAttachment[] | null;
     content: string;
     metadata?: Record<string, string> | null;
     role: MessageRole;
 }
 
 // @public
-export interface ThreadMessageOutput {
-    assistant_id: string | null;
-    attachments: Array<MessageAttachmentOutput> | null;
-    completed_at: number | null;
-    content: Array<MessageContentOutput>;
-    created_at: number;
+export interface ThreadRun {
+    assistantId: string;
+    cancelledAt: Date | null;
+    completedAt: Date | null;
+    createdAt: Date;
+    expiresAt: Date | null;
+    failedAt: Date | null;
     id: string;
-    incomplete_at: number | null;
-    incomplete_details: MessageIncompleteDetailsOutput | null;
-    metadata: Record<string, string> | null;
-    object: "thread.message";
-    role: MessageRoleOutput;
-    run_id: string | null;
-    status: MessageStatusOutput;
-    thread_id: string;
-}
-
-// @public
-export interface ThreadRunOutput {
-    assistant_id: string;
-    cancelled_at: number | null;
-    completed_at: number | null;
-    created_at: number;
-    expires_at: number | null;
-    failed_at: number | null;
-    id: string;
-    incomplete_details: IncompleteRunDetailsOutput | null;
+    incompleteDetails: IncompleteRunDetails_1 | null;
     instructions: string;
-    last_error: RunErrorOutput | null;
-    max_completion_tokens: number | null;
-    max_prompt_tokens: number | null;
+    lastError: RunError_1 | null;
+    maxCompletionTokens: number | null;
+    maxPromptTokens: number | null;
     metadata: Record<string, string> | null;
     model: string;
     object: "thread.run";
     parallelToolCalls?: boolean;
-    required_action?: RequiredActionOutput | null;
-    response_format: AgentsApiResponseFormatOptionOutput | null;
-    started_at: number | null;
-    status: RunStatusOutput;
+    requiredAction?: RequiredActionUnion_1 | null;
+    responseFormat: AgentsApiResponseFormatOption_6 | null;
+    startedAt: Date | null;
+    status: RunStatus;
     temperature?: number | null;
-    thread_id: string;
-    tool_choice: AgentsApiToolChoiceOptionOutput | null;
-    tool_resources?: UpdateToolResourcesOptionsOutput | null;
-    tools: Array<ToolDefinitionOutput>;
-    top_p?: number | null;
-    truncation_strategy: TruncationObjectOutput | null;
-    usage: RunCompletionUsageOutput | null;
+    threadId: string;
+    toolChoice: AgentsApiToolChoiceOption_3 | null;
+    toolResources?: UpdateToolResourcesOptions_2 | null;
+    tools: ToolDefinitionUnion[];
+    topP?: number | null;
+    truncationStrategy: TruncationObject_3 | null;
+    usage: RunCompletionUsage_1 | null;
 }
 
 // @public
-export type ToolDefinition = ToolDefinitionParent | CodeInterpreterToolDefinition | FileSearchToolDefinition | FunctionToolDefinition | BingGroundingToolDefinition | MicrosoftFabricToolDefinition | SharepointToolDefinition | AzureAISearchToolDefinition;
+export type ThreadStreamEvent = "thread.created";
 
 // @public
-export type ToolDefinitionOutput = ToolDefinitionOutputParent | CodeInterpreterToolDefinitionOutput | FileSearchToolDefinitionOutput | FunctionToolDefinitionOutput | BingGroundingToolDefinitionOutput | MicrosoftFabricToolDefinitionOutput | SharepointToolDefinitionOutput | AzureAISearchToolDefinitionOutput;
-
-// @public
-export interface ToolDefinitionOutputParent {
-    // (undocumented)
+export interface ToolDefinition {
     type: string;
 }
 
 // @public
-export interface ToolDefinitionParent {
-    // (undocumented)
-    type: string;
-}
+export type ToolDefinitionUnion = CodeInterpreterToolDefinition | FileSearchToolDefinition | FunctionToolDefinition | BingGroundingToolDefinition | MicrosoftFabricToolDefinition | SharepointToolDefinition | AzureAISearchToolDefinition | ToolDefinition;
 
 // @public
 export interface ToolOutput {
     output?: string;
-    tool_call_id?: string;
+    toolCallId?: string;
 }
 
 // @public
 export interface ToolResources {
-    azure_ai_search?: AzureAISearchResource;
-    bing_grounding?: ConnectionListResource;
-    code_interpreter?: CodeInterpreterToolResource;
-    file_search?: FileSearchToolResource;
-    microsoft_fabric?: ConnectionListResource;
-    sharepoint?: ConnectionListResource;
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
 }
 
 // @public
-export interface ToolResourcesOutput {
-    azure_ai_search?: AzureAISearchResourceOutput;
-    bing_grounding?: ConnectionListResourceOutput;
-    code_interpreter?: CodeInterpreterToolResourceOutput;
-    file_search?: FileSearchToolResourceOutput;
-    microsoft_fabric?: ConnectionListResourceOutput;
-    sharepoint?: ConnectionListResourceOutput;
+export interface ToolResources_1 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
 }
 
 // @public
-export type Trigger = TriggerParent | RecurrenceTrigger | CronTrigger;
+export interface ToolResources_2 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
+}
 
 // @public
-export type TriggerOutput = TriggerOutputParent | RecurrenceTriggerOutput | CronTriggerOutput;
+export interface ToolResources_3 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
+}
 
 // @public
-export interface TriggerOutputParent {
-    // (undocumented)
+export interface ToolResources_4 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
+}
+
+// @public
+export interface ToolResources_5 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: CodeInterpreterToolResource;
+    fileSearch?: FileSearchToolResource;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
+}
+
+// @public
+export interface Trigger {
     type: string;
 }
 
 // @public
-export interface TriggerParent {
-    // (undocumented)
-    type: string;
-}
+export type TriggerUnion = RecurrenceTrigger | CronTrigger | Trigger;
 
 // @public
 export interface TruncationObject {
-    last_messages?: number | null;
+    lastMessages?: number | null;
     type: TruncationStrategy;
 }
 
 // @public
-export interface TruncationObjectOutput {
-    last_messages?: number | null;
-    type: TruncationStrategyOutput;
+export interface TruncationObject_1 {
+    lastMessages?: number | null;
+    type: TruncationStrategy;
 }
 
 // @public
-export type TruncationStrategy = string;
-
-// @public
-export type TruncationStrategyOutput = string;
-
-// @public
-export interface UpdateAgentOptions {
-    description?: string | null;
-    instructions?: string | null;
-    metadata?: Record<string, string> | null;
-    model?: string;
-    name?: string | null;
-    response_format?: AgentsApiResponseFormatOption | null;
-    temperature?: number | null;
-    tool_resources?: ToolResources;
-    tools?: Array<ToolDefinition>;
-    top_p?: number | null;
+export interface TruncationObject_2 {
+    lastMessages?: number | null;
+    type: TruncationStrategy;
 }
 
 // @public
-export interface UpdateAgentThreadOptions {
-    metadata?: Record<string, string> | null;
-    tool_resources?: ToolResources | null;
+export interface TruncationObject_3 {
+    lastMessages?: number | null;
+    type: TruncationStrategy;
 }
+
+// @public
+export type TruncationStrategy = "auto" | "last_messages";
 
 // @public
 export interface UpdateCodeInterpreterToolResourceOptions {
-    file_ids?: string[];
-}
-
-// @public
-export interface UpdateCodeInterpreterToolResourceOptionsOutput {
-    file_ids?: string[];
+    fileIds?: string[];
 }
 
 // @public
 export interface UpdateFileSearchToolResourceOptions {
-    vector_store_ids?: string[];
-}
-
-// @public
-export interface UpdateFileSearchToolResourceOptionsOutput {
-    vector_store_ids?: string[];
+    vectorStoreIds?: string[];
 }
 
 // @public
 export interface UpdateToolResourcesOptions {
-    azure_ai_search?: AzureAISearchResource;
-    bing_grounding?: ConnectionListResource;
-    code_interpreter?: UpdateCodeInterpreterToolResourceOptions;
-    file_search?: UpdateFileSearchToolResourceOptions;
-    microsoft_fabric?: ConnectionListResource;
-    sharepoint?: ConnectionListResource;
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
+    fileSearch?: UpdateFileSearchToolResourceOptions;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
 }
 
 // @public
-export interface UpdateToolResourcesOptionsOutput {
-    azure_ai_search?: AzureAISearchResourceOutput;
-    bing_grounding?: ConnectionListResourceOutput;
-    code_interpreter?: UpdateCodeInterpreterToolResourceOptionsOutput;
-    file_search?: UpdateFileSearchToolResourceOptionsOutput;
-    microsoft_fabric?: ConnectionListResourceOutput;
-    sharepoint?: ConnectionListResourceOutput;
+export interface UpdateToolResourcesOptions_1 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
+    fileSearch?: UpdateFileSearchToolResourceOptions;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
 }
 
 // @public
-export interface VectorStoreAutoChunkingStrategyRequest extends VectorStoreChunkingStrategyRequestParent {
+export interface UpdateToolResourcesOptions_2 {
+    azureAISearch?: AzureAISearchResource;
+    bingGrounding?: ConnectionListResource;
+    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
+    fileSearch?: UpdateFileSearchToolResourceOptions;
+    microsoftFabric?: ConnectionListResource;
+    sharePoint?: ConnectionListResource;
+}
+
+// @public
+export interface VectorStore {
+    createdAt: Date;
+    expiresAfter?: VectorStoreExpirationPolicy_1;
+    expiresAt?: Date | null;
+    fileCounts: VectorStoreFileCount;
+    id: string;
+    lastActiveAt: Date | null;
+    metadata: Record<string, string> | null;
+    name: string;
+    object: "vector_store";
+    status: VectorStoreStatus;
+    usageBytes: number;
+}
+
+// @public
+export interface VectorStoreAutoChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
     type: "auto";
 }
 
 // @public
-export interface VectorStoreAutoChunkingStrategyResponseOutput extends VectorStoreChunkingStrategyResponseOutputParent {
+export interface VectorStoreAutoChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
     type: "other";
 }
 
 // @public
-export type VectorStoreChunkingStrategyRequest = VectorStoreChunkingStrategyRequestParent | VectorStoreAutoChunkingStrategyRequest | VectorStoreStaticChunkingStrategyRequest;
-
-// @public
-export interface VectorStoreChunkingStrategyRequestParent {
-    // (undocumented)
+export interface VectorStoreChunkingStrategyRequest {
     type: VectorStoreChunkingStrategyRequestType;
 }
 
 // @public
-export type VectorStoreChunkingStrategyRequestType = string;
+export type VectorStoreChunkingStrategyRequestType = "auto" | "static";
 
 // @public
-export type VectorStoreChunkingStrategyResponseOutput = VectorStoreChunkingStrategyResponseOutputParent | VectorStoreAutoChunkingStrategyResponseOutput | VectorStoreStaticChunkingStrategyResponseOutput;
+export type VectorStoreChunkingStrategyRequestUnion = VectorStoreAutoChunkingStrategyRequest | VectorStoreStaticChunkingStrategyRequest | VectorStoreChunkingStrategyRequest;
 
 // @public
-export interface VectorStoreChunkingStrategyResponseOutputParent {
-    // (undocumented)
-    type: VectorStoreChunkingStrategyResponseTypeOutput;
+export interface VectorStoreChunkingStrategyResponse {
+    type: VectorStoreChunkingStrategyResponseType;
 }
 
 // @public
-export type VectorStoreChunkingStrategyResponseTypeOutput = string;
+export type VectorStoreChunkingStrategyResponseType = "other" | "static";
 
 // @public
-export interface VectorStoreDeletionStatusOutput {
+export type VectorStoreChunkingStrategyResponseUnion = VectorStoreAutoChunkingStrategyResponse | VectorStoreStaticChunkingStrategyResponse | VectorStoreChunkingStrategyResponse;
+
+// @public
+export interface VectorStoreDeletionStatus {
     deleted: boolean;
     id: string;
     object: "vector_store.deleted";
@@ -3531,136 +1684,99 @@ export interface VectorStoreExpirationPolicy {
 }
 
 // @public
-export type VectorStoreExpirationPolicyAnchor = string;
-
-// @public
-export type VectorStoreExpirationPolicyAnchorOutput = string;
-
-// @public
-export interface VectorStoreExpirationPolicyOutput {
-    anchor: VectorStoreExpirationPolicyAnchorOutput;
+export interface VectorStoreExpirationPolicy_1 {
+    anchor: VectorStoreExpirationPolicyAnchor;
     days: number;
 }
 
 // @public
-export interface VectorStoreFileBatchOutput {
-    created_at: number;
-    file_counts: VectorStoreFileCountOutput;
+export type VectorStoreExpirationPolicyAnchor = "last_active_at";
+
+// @public
+export interface VectorStoreFile {
+    chunkingStrategy: VectorStoreChunkingStrategyResponseUnion;
+    createdAt: Date;
     id: string;
-    object: "vector_store.files_batch";
-    status: VectorStoreFileBatchStatusOutput;
-    vector_store_id: string;
+    lastError: VectorStoreFileError_1 | null;
+    object: "vector_store.file";
+    status: VectorStoreFileStatus;
+    usageBytes: number;
+    vectorStoreId: string;
 }
 
 // @public
-export type VectorStoreFileBatchStatusOutput = string;
+export interface VectorStoreFileBatch {
+    createdAt: Date;
+    fileCounts: VectorStoreFileCount;
+    id: string;
+    object: "vector_store.files_batch";
+    status: VectorStoreFileBatchStatus;
+    vectorStoreId: string;
+}
 
 // @public
-export interface VectorStoreFileCountOutput {
+export type VectorStoreFileBatchStatus = "in_progress" | "completed" | "cancelled" | "failed";
+
+// @public
+export interface VectorStoreFileCount {
     cancelled: number;
     completed: number;
     failed: number;
-    in_progress: number;
+    inProgress: number;
     total: number;
 }
 
 // @public
-export interface VectorStoreFileDeletionStatusOutput {
+export interface VectorStoreFileDeletionStatus {
     deleted: boolean;
     id: string;
     object: "vector_store.file.deleted";
 }
 
 // @public
-export type VectorStoreFileErrorCodeOutput = string;
-
-// @public
-export interface VectorStoreFileErrorOutput {
-    code: VectorStoreFileErrorCodeOutput;
+export interface VectorStoreFileError {
+    code: VectorStoreFileErrorCode;
     message: string;
 }
 
 // @public
-export interface VectorStoreFileOutput {
-    chunking_strategy: VectorStoreChunkingStrategyResponseOutput;
-    created_at: number;
-    id: string;
-    last_error: VectorStoreFileErrorOutput | null;
-    object: "vector_store.file";
-    status: VectorStoreFileStatusOutput;
-    usage_bytes: number;
-    vector_store_id: string;
+export interface VectorStoreFileError_1 {
+    code: VectorStoreFileErrorCode;
+    message: string;
 }
 
 // @public
-export type VectorStoreFileStatusFilter = string;
+export type VectorStoreFileErrorCode = "internal_error" | "file_not_found" | "parsing_error" | "unhandled_mime_type";
 
 // @public
-export type VectorStoreFileStatusOutput = string;
+export type VectorStoreFileStatus = "in_progress" | "completed" | "failed" | "cancelled";
 
 // @public
-export interface VectorStoreOptions {
-    chunking_strategy?: VectorStoreChunkingStrategyRequest;
-    expires_after?: VectorStoreExpirationPolicy;
-    file_ids?: string[];
-    metadata?: Record<string, string> | null;
-    name?: string;
-}
-
-// @public
-export interface VectorStoreOutput {
-    created_at: number;
-    expires_after?: VectorStoreExpirationPolicyOutput;
-    expires_at?: number | null;
-    file_counts: VectorStoreFileCountOutput;
-    id: string;
-    last_active_at: number | null;
-    metadata: Record<string, string> | null;
-    name: string;
-    object: "vector_store";
-    status: VectorStoreStatusOutput;
-    usage_bytes: number;
-}
+export type VectorStoreFileStatusFilter = "in_progress" | "completed" | "failed" | "cancelled";
 
 // @public
 export interface VectorStoreStaticChunkingStrategyOptions {
-    chunk_overlap_tokens: number;
-    max_chunk_size_tokens: number;
+    chunkOverlapTokens: number;
+    maxChunkSizeTokens: number;
 }
 
 // @public
-export interface VectorStoreStaticChunkingStrategyOptionsOutput {
-    chunk_overlap_tokens: number;
-    max_chunk_size_tokens: number;
-}
-
-// @public
-export interface VectorStoreStaticChunkingStrategyRequest extends VectorStoreChunkingStrategyRequestParent {
+export interface VectorStoreStaticChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
     static: VectorStoreStaticChunkingStrategyOptions;
     type: "static";
 }
 
 // @public
-export interface VectorStoreStaticChunkingStrategyResponseOutput extends VectorStoreChunkingStrategyResponseOutputParent {
-    static: VectorStoreStaticChunkingStrategyOptionsOutput;
+export interface VectorStoreStaticChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
+    static: VectorStoreStaticChunkingStrategyOptions;
     type: "static";
 }
 
 // @public
-export type VectorStoreStatusOutput = string;
+export type VectorStoreStatus = "expired" | "in_progress" | "completed";
 
 // @public
-export interface VectorStoreUpdateOptions {
-    expires_after?: VectorStoreExpirationPolicy | null;
-    metadata?: Record<string, string> | null;
-    name?: string | null;
-}
-
-// @public
-export type WeekDays = string;
-
-// @public
-export type WeekDaysOutput = string;
+export type WeekDays = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
 // (No @packageDocumentation comment for this package)
 
