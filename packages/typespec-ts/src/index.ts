@@ -465,11 +465,8 @@ export async function createContextWithDefaultOptions(
     ...tcgcSettings
   };
 
-  return {
-    ...(await createSdkContext(
+  return (await createSdkContext(
       context,
       context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
-    )),
-    emitQueue: new Set<SdkType>()
-  } as SdkContext;
+    )) as SdkContext;
 }

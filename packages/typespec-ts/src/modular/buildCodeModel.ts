@@ -348,9 +348,6 @@ export function getType(
   }
 
   if (isTypespecType(type)) {
-    if (newValue.name === "_CustomPage") {
-      newValue;
-    }
     newValue.tcgcType = getClientType(context, effectiveModel as any);
     newValue.name = !newValue.tcgcType.isGeneratedName
       ? normalizeModelName(context, newValue.tcgcType)
@@ -631,9 +628,6 @@ function emitResponse(
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent
 ): Response {
-  if (operation.interface?.name === "Evaluations") {
-    operation;
-  }
   let type = undefined;
   if (
     innerResponse.body?.type &&

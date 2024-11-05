@@ -240,10 +240,6 @@ class BinderImp implements Binder {
       }
     });
 
-    for (const file of this.project.getSourceFiles()) {
-      const declaration = file.getImportDeclarations();
-      declaration;
-    }
 
     this.cleanUnreferencedHelpers(sourceRoot);
   }

@@ -71,18 +71,11 @@ export function addDeclaration(
   }
 
   const stringRefkey = typeof refkey === "string" ? refkey : getRefKey(refkey);
-  if (binder.resolveReference(stringRefkey)) {
-    stringRefkey;
-  }
   const trackedDeclarationName = binder.trackDeclaration(
     stringRefkey,
     declaration.name,
     sourceFile
   );
-
-  if (trackedDeclarationName.indexOf("_") > 0) {
-    trackedDeclarationName;
-  }
 
   // Update the declaration name to be unique
   const trackedDeclaration = { ...declaration, name: trackedDeclarationName };
