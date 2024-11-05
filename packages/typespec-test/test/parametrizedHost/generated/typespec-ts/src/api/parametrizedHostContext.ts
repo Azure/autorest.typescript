@@ -24,11 +24,11 @@ export function createParametrizedHost(
   const sufix = options.sufix ?? "three";
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${host}.${subdomain}.${sufix}.com`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-parametrized-host/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

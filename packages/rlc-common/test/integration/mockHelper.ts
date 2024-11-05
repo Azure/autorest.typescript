@@ -19,6 +19,7 @@ export type TestModelConfig = {
   hasLro?: boolean;
   hasPaging?: boolean;
   isModularLibrary?: boolean;
+  azureSdkForJs?: boolean;
 };
 
 export function createMockModel(config: TestModelConfig = {}): RLCModel {
@@ -48,7 +49,7 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       generateSample: config.withSamples ?? false,
       moduleKind: config.moduleKind,
       sourceFrom: config.source ?? "TypeSpec",
-      isModularLibrary: config.isModularLibrary ?? false
+      isModularLibrary: config.isModularLibrary ?? false,
     },
     helperDetails: {
       hasPaging: config.hasPaging ?? false,

@@ -43,7 +43,11 @@ function getAzureStandaloneDependencies(
     dependencies: {
       ...getAzurePackageDependencies(config)
     },
-    devDependencies: getStandaloneDevDependencies(config)
+    devDependencies: {
+      ...getStandaloneDevDependencies(config),
+      rimraf: "^5.0.5",
+      mkdirp: "^3.0.1"
+    }
   };
 }
 
@@ -65,7 +69,8 @@ function getStandaloneCjsDevDependencies(config: AzurePackageInfoConfig) {
     "@rollup/plugin-multi-entry": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     rollup: "^2.66.1",
-    "rollup-plugin-sourcemaps": "^0.6.3"
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "uglify-js": "^3.4.9"
   };
 }
 
