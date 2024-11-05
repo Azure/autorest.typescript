@@ -25,7 +25,6 @@ op fullBackupStatus is Azure.Core.Foundations.Operation<
     /**
      * The id returned as part of the backup request
      */
-    @path
     jobId: string;
   },
   FullBackupOperation
@@ -122,7 +121,6 @@ op restoreStatus is Azure.Core.Foundations.Operation<
     /**
      * The Job Id returned part of the restore operation
      */
-    @path
     jobId: string;
   },
   RestoreOperation
@@ -220,7 +218,6 @@ op selectiveKeyRestoreOperation is Azure.Core.Foundations.Operation<
     /**
      * The name of the key to be restored from the user supplied backup
      */
-    @path
     keyName: string;
 
     /**
@@ -263,7 +260,7 @@ op selectiveKeyRestoreOperation is Azure.Core.Foundations.Operation<
 op updateSetting is Azure.Core.Foundations.Operation<
   {
     /** The name of the account setting. Must be a valid settings option. */
-    @path settingName: string;
+    settingName: string;
 
     /**
      * The parameters to update an account setting.
@@ -286,7 +283,7 @@ op updateSetting is Azure.Core.Foundations.Operation<
 op getSetting is Azure.Core.Foundations.Operation<
   {
     /** The name of the account setting. Must be a valid settings option. */
-    @path settingName: string;
+    settingName: string;
   },
   Setting
 >;
@@ -312,13 +309,11 @@ interface RoleDefinitions {
       /**
        * The scope of the role definition to delete. Managed HSM only supports '/'.
        */
-      @path
       scope: url;
 
       /**
        * The name (GUID) of the role definition to delete.
        */
-      @path
       roleDefinitionName: string;
     },
     RoleDefinition
@@ -335,13 +330,11 @@ interface RoleDefinitions {
        * The scope of the role definition to create or update. Managed HSM only supports
        * '/'.
        */
-      @path
       scope: url;
 
       /**
        * The name of the role definition to create or update. It can be any valid GUID.
        */
-      @path
       roleDefinitionName: string;
 
       /**
@@ -363,13 +356,11 @@ interface RoleDefinitions {
       /**
        * The scope of the role definition to get. Managed HSM only supports '/'.
        */
-      @path
       scope: url;
 
       /**
        * The name of the role definition to get.
        */
-      @path
       roleDefinitionName: string;
     },
     RoleDefinition
@@ -385,7 +376,6 @@ interface RoleDefinitions {
       /**
        * The scope of the role definition.
        */
-      @path
       scope: url;
 
       /**
@@ -411,13 +401,11 @@ interface RoleAssignments {
       /**
        * The scope of the role assignment to delete.
        */
-      @path
       scope: url;
 
       /**
        * The name of the role assignment to delete.
        */
-      @path
       roleAssignmentName: string;
     },
     RoleAssignment
@@ -433,13 +421,11 @@ interface RoleAssignments {
       /**
        * The scope of the role assignment to create.
        */
-      @path
       scope: url;
 
       /**
        * The name of the role assignment to create. It can be any valid GUID.
        */
-      @path
       roleAssignmentName: string;
 
       /**
@@ -461,13 +447,11 @@ interface RoleAssignments {
       /**
        * The scope of the role assignment.
        */
-      @path
       scope: url;
 
       /**
        * The name of the role assignment to get.
        */
-      @path
       roleAssignmentName: string;
     },
     RoleAssignment
@@ -483,7 +467,6 @@ interface RoleAssignments {
       /**
        * The scope of the role assignments.
        */
-      @path
       scope: url;
 
       /**

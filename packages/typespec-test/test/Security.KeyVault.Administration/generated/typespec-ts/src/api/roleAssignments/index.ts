@@ -36,7 +36,7 @@ export function _$deleteSend(
   return context
     .path(
       "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      scope,
+      { value: scope, allowReserved: true },
       roleAssignmentName,
     )
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -84,7 +84,7 @@ export function _createSend(
   return context
     .path(
       "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      scope,
+      { value: scope, allowReserved: true },
       roleAssignmentName,
     )
     .put({
@@ -131,7 +131,7 @@ export function _getSend(
   return context
     .path(
       "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      scope,
+      { value: scope, allowReserved: true },
       roleAssignmentName,
     )
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -165,7 +165,10 @@ export function _listForScopeSend(
   options: RoleAssignmentsListForScopeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/{scope}/providers/Microsoft.Authorization/roleAssignments", scope)
+    .path("/{scope}/providers/Microsoft.Authorization/roleAssignments", {
+      value: scope,
+      allowReserved: true,
+    })
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: { $filter: options?.$filter },
