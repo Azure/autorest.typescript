@@ -145,7 +145,6 @@ export type ParameterLocation =
   | "query"
   | "path"
   | "body"
-  | "cookie"
   | "other";
 
 export interface Parameter {

@@ -44,6 +44,7 @@ import {
   ModularCodeModel,
   OperationGroup,
   Parameter,
+  ParameterLocation,
   Property,
   Response
 } from "./modularCodeModel.js";
@@ -505,7 +506,14 @@ function emitBodyParameter(
   }
   return undefined;
 }
-
+function notSupportCookie(
+  parameter: HttpOperationParameter | HttpServerParameter
+): ParameterLocation {
+  if (parameter.type === "cookie") {
+    return "header";
+  }
+  return parameter.type;
+}
 function emitParameter(
   context: SdkContext,
   parameter: HttpOperationParameter | HttpServerParameter,
@@ -525,9 +533,13 @@ function emitParameter(
     clientDefaultValue = type["value"];
     type = type["valueType"];
   }
+
   const paramMap = {
     restApiName: parameter.name,
-    location: parameter.type,
+    location:
+      parameter.type !== "cookie"
+        ? parameter.type
+        : notSupportCookie(parameter),
     type: base.format ? { ...type, format: base.format } : type,
     implementation: implementation,
     skipUrlEncoding:

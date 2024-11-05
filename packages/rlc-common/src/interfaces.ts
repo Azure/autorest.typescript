@@ -119,8 +119,7 @@ export type ApiVersionPosition =
   | "query"
   | "baseurl"
   | "duplicate"
-  | "none"
-  | "cookie";
+  | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
