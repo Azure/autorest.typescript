@@ -52,10 +52,10 @@
     "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
     "eslint": "^8.55.0",
-    "rimraf": "^5.0.5",
-    "mkdirp": "^3.0.1",
     "typescript": "~5.6.2",
-    "tshy": "^2.0.0"
+    "tshy": "^2.0.0",
+    "rimraf": "^5.0.5",
+    "mkdirp": "^3.0.1"
   },
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",

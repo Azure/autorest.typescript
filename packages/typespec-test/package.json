@@ -28,6 +28,7 @@
     "smoke-test:contoso": "node --max-old-space-size=4096 ./eng/smoke-test.js -- contoso",
     "smoke-test:workers": "node ./eng/smoke-test-main.js",
     "build": "echo skip",
+    "format": "echo skipped",
     "regen-test-baselines": "npm run smoke-test",
     "check:tree": "node ./eng/check-clean-tree.js"
   },

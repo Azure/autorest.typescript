@@ -89,11 +89,8 @@ function regularAutorestPackage(
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
       ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
-      ...(!useCoreV2 && { "@azure/core-http": "^3.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.6.0" }),
-      ...(useCoreV2 &&
-        coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "^1.14.0"
       }),
@@ -183,9 +180,13 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["rimraf"];
+    delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
-      "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+      "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
+    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
+    packageInfo.scripts["update-snippets"] = "echo skipped";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";

@@ -1391,7 +1391,7 @@ export interface Agent {
    * A set of resources that are used by the agent's tools. The resources are specific to the type of tool. For example, the `code_interpreter`
    * tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs.
    */
-  toolResources: ToolResources_9 | null;
+  toolResources: ToolResources_5 | null;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
@@ -1405,7 +1405,7 @@ export interface Agent {
    */
   topP: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption_3 | null;
+  responseFormat?: AgentsApiResponseFormatOption_6 | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -1455,11 +1455,6 @@ export type AgentsApiResponseFormatOption_2 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_3 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
 
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfAgent {
@@ -1494,12 +1489,7 @@ export function agentArrayDeserializer(result: Array<Agent>): any[] {
 }
 
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_4 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_5 =
+export type AgentsApiResponseFormatOption_3 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -1691,7 +1681,7 @@ export interface AgentThread {
    * of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list
    * of vector store IDs.
    */
-  toolResources: ToolResources_9 | null;
+  toolResources: ToolResources_5 | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -2431,12 +2421,7 @@ export type AgentsApiToolChoiceOption_1 =
 /** Specifies how the tool choice will be used */
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_6 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_7 =
+export type AgentsApiResponseFormatOption_4 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -2488,15 +2473,15 @@ export interface ThreadRun {
   /** The maximum number of completion tokens specified to have been used over the course of the run. */
   maxCompletionTokens: number | null;
   /** The strategy to use for dropping messages as the context windows moves forward. */
-  truncationStrategy: TruncationObject_5 | null;
+  truncationStrategy: TruncationObject_3 | null;
   /** Controls whether or not and which tool is called by the model. */
   toolChoice: AgentsApiToolChoiceOption_3 | null;
   /** The response format of the tool calls used in this run. */
-  responseFormat: AgentsApiResponseFormatOption_9 | null;
+  responseFormat: AgentsApiResponseFormatOption_6 | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
-  toolResources?: UpdateToolResourcesOptions_3 | null;
+  toolResources?: UpdateToolResourcesOptions_2 | null;
   /** Determines if tools can be executed in parallel within the run. */
   parallelToolCalls?: boolean;
 }
@@ -2798,18 +2783,8 @@ export type AgentsApiToolChoiceOption_2 =
   | string
   | AgentsApiToolChoiceOptionMode
   | AgentsNamedToolChoice;
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_3 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_8 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_9 =
+export type AgentsApiResponseFormatOption_5 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -3033,7 +3008,7 @@ export interface AgentThreadCreationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs.
    */
-  toolResources?: ToolResources_9 | null;
+  toolResources?: ToolResources_5 | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -3048,26 +3023,6 @@ export function agentThreadCreationOptionsSerializer(
     tool_resources: item["toolResources"],
     metadata: item["metadata"],
   };
-}
-
-/**
- * A set of resources that are used by the agent's tools. The resources are specific to the type of
- * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
- * tool requires a list of vector store IDs.
- */
-export interface ToolResources_6 {
-  /** Resources to be used by the `code_interpreter tool` consisting of file IDs. */
-  codeInterpreter?: CodeInterpreterToolResource;
-  /** Resources to be used by the `file_search` tool consisting of vector store IDs. */
-  fileSearch?: FileSearchToolResource;
-  /** Resources to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Resources to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Resources to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
 }
 
 /**
@@ -3109,22 +3064,12 @@ export interface TruncationObject_3 {
 }
 
 /** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_4 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_5 =
+export type AgentsApiToolChoiceOption_3 =
   | string
   | AgentsApiToolChoiceOptionMode
   | AgentsNamedToolChoice;
 /** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_10 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_11 =
+export type AgentsApiResponseFormatOption_6 =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat;
@@ -3910,7 +3855,7 @@ export interface VectorStore {
   /** The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use. */
   status: VectorStoreStatus;
   /** Details on when this vector store expires */
-  expiresAfter?: VectorStoreExpirationPolicy_2;
+  expiresAfter?: VectorStoreExpirationPolicy_1;
   /** The Unix timestamp (in seconds) for when the vector store will expire. */
   expiresAt?: Date | null;
   /** The Unix timestamp (in seconds) for when the vector store was last active. */
@@ -5112,187 +5057,3 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
-
-/**
- * A set of resources that are used by the agent's tools. The resources are specific to the type of
- * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
- * tool requires a list of vector store IDs.
- */
-export interface ToolResources_7 {
-  /** Resources to be used by the `code_interpreter tool` consisting of file IDs. */
-  codeInterpreter?: CodeInterpreterToolResource;
-  /** Resources to be used by the `file_search` tool consisting of vector store IDs. */
-  fileSearch?: FileSearchToolResource;
-  /** Resources to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Resources to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Resources to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
-}
-
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_12 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_13 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_14 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_15 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-
-/**
- * A set of resources that are used by the agent's tools. The resources are specific to the type of
- * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
- * tool requires a list of vector store IDs.
- */
-export interface ToolResources_8 {
-  /** Resources to be used by the `code_interpreter tool` consisting of file IDs. */
-  codeInterpreter?: CodeInterpreterToolResource;
-  /** Resources to be used by the `file_search` tool consisting of vector store IDs. */
-  fileSearch?: FileSearchToolResource;
-  /** Resources to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Resources to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Resources to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
-}
-
-/**
- * A set of resources that are used by the agent's tools. The resources are specific to the type of
- * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
- * tool requires a list of vector store IDs.
- */
-export interface ToolResources_9 {
-  /** Resources to be used by the `code_interpreter tool` consisting of file IDs. */
-  codeInterpreter?: CodeInterpreterToolResource;
-  /** Resources to be used by the `file_search` tool consisting of vector store IDs. */
-  fileSearch?: FileSearchToolResource;
-  /** Resources to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Resources to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Resources to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
-}
-
-/**
- * Controls for how a thread will be truncated prior to the run. Use this to control the initial
- * context window of the run.
- */
-export interface TruncationObject_4 {
-  /**
-   * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will
-   * be truncated to the `lastMessages` count most recent messages in the thread. When set to `auto`, messages in the middle of the thread
-   * will be dropped to fit the context length of the model, `max_prompt_tokens`.
-   */
-  type: TruncationStrategy;
-  /** The number of most recent messages from the thread when constructing the context for the run. */
-  lastMessages?: number | null;
-}
-
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_6 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_7 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_16 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_17 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-
-/**
- * Request object. A set of resources that are used by the agent's tools. The resources are specific to the type of tool.
- * For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of
- * vector store IDs.
- */
-export interface UpdateToolResourcesOptions_3 {
-  /**
-   * Overrides the list of file IDs made available to the `code_interpreter` tool. There can be a maximum of 20 files
-   * associated with the tool.
-   */
-  codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
-  /** Overrides the vector store attached to this agent. There can be a maximum of 1 vector store attached to the agent. */
-  fileSearch?: UpdateFileSearchToolResourceOptions;
-  /** Overrides the list of connections to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
-  /** Overrides the resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
-  azureAISearch?: AzureAISearchResource;
-}
-
-/**
- * Controls for how a thread will be truncated prior to the run. Use this to control the initial
- * context window of the run.
- */
-export interface TruncationObject_5 {
-  /**
-   * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will
-   * be truncated to the `lastMessages` count most recent messages in the thread. When set to `auto`, messages in the middle of the thread
-   * will be dropped to fit the context length of the model, `max_prompt_tokens`.
-   */
-  type: TruncationStrategy;
-  /** The number of most recent messages from the thread when constructing the context for the run. */
-  lastMessages?: number | null;
-}
-
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_8 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption_9 =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_18 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption_19 =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-
-/** The expiration policy for a vector store. */
-export interface VectorStoreExpirationPolicy_2 {
-  /** Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`. */
-  anchor: VectorStoreExpirationPolicyAnchor;
-  /** The anchor timestamp after which the expiration policy applies. */
-  days: number;
-}
