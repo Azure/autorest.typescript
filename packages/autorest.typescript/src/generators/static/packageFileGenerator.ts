@@ -206,22 +206,24 @@ function regularAutorestPackage(
     packageInfo.devDependencies["tsx"] = "^4.7.1";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
-    packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/node"] = "^18.0.0";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
 
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] =
-      "cross-env TEST_MODE=playback npm run integration-test:node";
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
+      packageInfo.scripts["unit-test:node"] =
+        "dev-tool run vendored cross-env TEST_MODE=playback npm run integration-test:node";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
+      packageInfo.devDependencies["cross-env"] = "^7.0.2";
+      packageInfo.scripts["unit-test:node"] =
+        "cross-env TEST_MODE=playback npm run integration-test:node";
       packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
     }
   }
