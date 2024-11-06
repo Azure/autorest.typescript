@@ -57,6 +57,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { Bar } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -171,6 +172,7 @@ describe("anonymous model", () => {
           optionFile?.getFullText()!,
           `
         import { OperationOptions  } from "@azure-rest/core-client";
+        import { Bar } from "../models/models.js";
         
         /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
@@ -301,6 +303,7 @@ describe("anonymous model", () => {
           optionFile?.getFullText()!,
           `
         import { OperationOptions  } from "@azure-rest/core-client";
+        import { Bar } from "../models/models.js";
         
         /** Optional parameters. */
         export interface ReadOptionalParams extends OperationOptions  {
@@ -454,6 +457,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { Foo, fooSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -525,6 +529,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { _readRequestSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -609,6 +614,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { _readRequestSerializer, Bar } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -695,6 +701,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { Test, testSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -771,6 +778,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { Test, testSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -821,6 +829,7 @@ describe("anonymous model", () => {
           operationDetail,
           `
         import { TestingContext as Client } from "./index.js";
+        import { ${returnType !== "Record<string, any>" ? returnType + "," : ""} ${deserializer ?? normalizeName(returnType, NameType.Operation)}Deserializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -950,6 +959,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]!.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { _readResponseDeserializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -1109,6 +1119,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "./index.js";
+        import { ReturnBody, returnBodyDeserializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -1325,6 +1336,7 @@ describe("anonymous model", () => {
           operationFiles?.[0]?.getFullText()!,
           `
           import { TestingContext as Client } from "./index.js";
+          import { Foz, fozDeserializer } from "../models/models.js";
           import {
             StreamableMethod,
             PathUncheckedResponse,

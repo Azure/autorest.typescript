@@ -68,6 +68,7 @@ describe("header parameters", () => {
           paramOutput?.[0]?.getFullText()!,
           `
           import { DemoServiceContext as Client } from "./index.js";
+          import { SchemaContentTypeValues } from "../models/models.js";
           import {
             StreamableMethod,
             PathUncheckedResponse,

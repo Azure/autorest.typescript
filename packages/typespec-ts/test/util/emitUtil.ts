@@ -37,6 +37,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
+import { removeUnusedImports } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -426,20 +427,25 @@ export async function emitModularModelsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
+        emitTypes(dpgContext, { sourceRoot: "" });
         modelFile = buildApiOptions(
           dpgContext,
           modularCodeModel.clients[0],
           modularCodeModel
         );
+        binder.resolveAllReferences("/");
+        removeUnusedImports(modelFile);
+        modelFile.fixUnusedIdentifiers();
       } else {
         modelFile = emitTypes(dpgContext, { sourceRoot: "" });
+        binder.resolveAllReferences("/");
       }
     }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-  binder.resolveAllReferences("/");
+
   return modelFile;
 }
 
@@ -509,6 +515,7 @@ export async function emitModularOperationsFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
+      emitTypes(dpgContext, { sourceRoot: "" });
       const res = buildOperationFiles(
         modularCodeModel.clients[0],
         dpgContext,
@@ -517,7 +524,11 @@ export async function emitModularOperationsFromTypeSpec(
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
+      for (const file of res) {
+        removeUnusedImports(file);
+        file.fixUnusedIdentifiers();
+      }
       return res;
     }
   }

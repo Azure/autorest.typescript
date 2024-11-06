@@ -230,6 +230,7 @@ describe("modular encode test for property type datetime", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -366,6 +367,7 @@ describe("modular encode test for property type datetime", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -448,6 +450,7 @@ describe("modular encode test for property type datetime", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -526,6 +529,7 @@ describe("modular encode test for property type datetime", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -592,6 +596,7 @@ describe("modular encode test for property type duration", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -657,6 +662,7 @@ describe("modular encode test for property type duration", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod, 
         PathUncheckedResponse,
@@ -725,6 +731,7 @@ describe("modular encode test for property type duration", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -820,6 +827,7 @@ describe("modular encode test for property type bytes", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -912,6 +920,7 @@ describe("modular encode test for property type bytes", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1004,6 +1013,7 @@ describe("modular encode test for property type bytes", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1175,6 +1185,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Cat, catDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1276,6 +1287,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Cat, catDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1387,6 +1399,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Cat, catDeserializer } from "../models/models.js";
       import {
         StreamableMethod, 
         PathUncheckedResponse,
@@ -1515,6 +1528,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { petUnionDeserializer, PetUnion } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1687,6 +1701,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
        import { TestingContext as Client } from "./index.js";
+       import { petUnionDeserializer, PetUnion } from "../models/models.js";
        import {
          StreamableMethod,
          PathUncheckedResponse,
@@ -1776,6 +1791,7 @@ describe("inheritance & polymorphism", () => {
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "./index.js";
+      import { Foo, fooDeserializer } from "../models/models.js";
       import {
         StreamableMethod,
         PathUncheckedResponse,
@@ -1963,6 +1979,7 @@ describe("inheritance & polymorphism", () => {
         paramOutput?.[0]?.getFullText()!,
         `
         import { DemoServiceContext as Client } from "./index.js";
+        import { SchemaContentTypeValues } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
