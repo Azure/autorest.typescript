@@ -1,4 +1,4 @@
-# Should generate optional body in option parameter
+# only: Should generate optional body in option parameter
 
 Should generate optional body in option parameter.
 

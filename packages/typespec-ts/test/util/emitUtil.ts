@@ -439,7 +439,7 @@ export async function emitModularModelsFromTypeSpec(
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-  binder.resolveAllReferences("/modularPackageFolder/src");
+  binder.resolveAllReferences("/");
   return modelFile;
 }
 

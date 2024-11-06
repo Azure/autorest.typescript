@@ -226,10 +226,6 @@ class BinderImp implements Binder {
    */
   resolveAllReferences(sourceRoot: string): void {
     this.project.getSourceFiles().map((file) => {
-      const filePath = file.getFilePath();
-      if (filePath.includes("/api/")) {
-        filePath;
-      }
       this.resolveDeclarationReferences(file);
       this.resolveDependencyReferences(file);
       const importStructures = this.imports.get(file);
@@ -249,6 +245,9 @@ class BinderImp implements Binder {
     }
     for (const dependency of Object.values(this.dependencies)) {
       const placeholder = this.serializePlaceholder(refkey(dependency));
+      if (placeholder === "__PLACEHOLDER_o13__") {
+        dependency;
+      }
       const { name, module } = dependency;
       const occurences = countPlaceholderOccurrences(file, placeholder);
       if (occurences > 0) {
