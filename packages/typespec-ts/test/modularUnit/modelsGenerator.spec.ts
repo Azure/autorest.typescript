@@ -1112,10 +1112,6 @@ describe("inheritance & polymorphism", () => {
       /** Alias for _ReadResponse */
       export type _ReadResponse = Cat | Dog;
       
-      export function _readResponseSerializer(item: _ReadResponse): any {
-        return item;
-      }
-      
       export function _readResponseDeserializer(item: any): _ReadResponse {
         return item;
       }

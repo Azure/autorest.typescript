@@ -243,8 +243,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** Type of JsonContentType */
-          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
           
@@ -254,11 +252,8 @@ describe("header parameters", () => {
             return item;
           }
           
-          export function schemaContentTypeValuesDeserializer(
-            item: any,
-          ): SchemaContentTypeValues {
-            return item;
-          }
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           `
         );
       });
@@ -304,8 +299,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** Type of JsonContentType */
-          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
            
@@ -315,11 +308,8 @@ describe("header parameters", () => {
              return item;
            }
            
-           export function schemaContentTypeValuesDeserializer(
-             item: any,
-           ): SchemaContentTypeValues {
-             return item;
-           }
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           `
         );
       });
@@ -409,8 +399,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** Type of JsonContentType */
-          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
           
@@ -420,11 +408,8 @@ describe("header parameters", () => {
             return item;
           }
           
-          export function schemaContentTypeValuesDeserializer(
-            item: any,
-          ): SchemaContentTypeValues {
-            return item;
-          }
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           `
         );
       });
@@ -470,8 +455,6 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
-          /** Type of JsonContentType */
-          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
           export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
           
@@ -481,11 +464,8 @@ describe("header parameters", () => {
             return item;
           }
           
-          export function schemaContentTypeValuesDeserializer(
-            item: any,
-          ): SchemaContentTypeValues {
-            return item;
-          }   
+          /** Type of JsonContentType */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           `
         );
       });
@@ -798,7 +778,7 @@ describe("header parameters", () => {
         `
         /** Type of EnumTest */
         export type EnumTest = 1 | 2 | 3 | 4;
-`
+      `
       );
     });
 
@@ -858,8 +838,7 @@ describe("header parameters", () => {
           return item;
         }
                
-        /** Type of EnumTest */
-        export type EnumTest = 1 | 2 | 3 | 4;
+
         /** Alias for MixedTypes */
         export type MixedTypes = EnumTest | string | Foo;
       
@@ -867,9 +846,8 @@ describe("header parameters", () => {
           return item;
         }
         
-        export function mixedTypesDeserializer(item: any): MixedTypes {
-          return item;
-        }
+        /** Type of EnumTest */
+        export type EnumTest = 1 | 2 | 3 | 4;
       `
       );
     });

@@ -209,24 +209,12 @@ export function _simpleModelPropSimpleUnionSerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnion {
-  return item;
-}
-
 /** Alias for _SimpleModelPropSimpleUnionOptional */
 export type _SimpleModelPropSimpleUnionOptional = string | boolean | number;
 
 export function _simpleModelPropSimpleUnionOptionalSerializer(
   item: _SimpleModelPropSimpleUnionOptional,
 ): any {
-  return item;
-}
-
-export function _simpleModelPropSimpleUnionOptionalDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionOptional {
   return item;
 }
 
@@ -239,10 +227,12 @@ export function _simpleModelPropMixedTypeLiteralSerializer(
   return item;
 }
 
-export function _simpleModelPropMixedTypeLiteralDeserializer(
-  item: any,
-): _SimpleModelPropMixedTypeLiteral {
-  return item;
+export function simpleModelPropSimpleUnionArrayArraySerializer(
+  result: Array<_SimpleModelPropSimpleUnionArray>,
+): any[] {
+  return result.map((item) => {
+    return _simpleModelPropSimpleUnionArraySerializer(item);
+  });
 }
 
 /** Alias for _SimpleModelPropSimpleUnionArray */
@@ -254,25 +244,11 @@ export function _simpleModelPropSimpleUnionArraySerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionArrayDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionArray {
-  return item;
-}
-
-export function simpleModelPropSimpleUnionArrayArraySerializer(
-  result: Array<_SimpleModelPropSimpleUnionArray>,
+export function simpleModelPropSimpleUnionArrayOptionalArraySerializer(
+  result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
 ): any[] {
   return result.map((item) => {
-    return _simpleModelPropSimpleUnionArraySerializer(item);
-  });
-}
-
-export function simpleModelPropSimpleUnionArrayArrayDeserializer(
-  result: Array<_SimpleModelPropSimpleUnionArray>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropSimpleUnionArrayDeserializer(item);
+    return _simpleModelPropSimpleUnionArrayOptionalSerializer(item);
   });
 }
 
@@ -288,14 +264,27 @@ export function _simpleModelPropSimpleUnionArrayOptionalSerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionArrayOptionalDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionArrayOptional {
+export function simpleModelPropRecordOfSimpleUnionRecordSerializer(
+  item: Record<string, _SimpleModelPropRecordOfSimpleUnion>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : _simpleModelPropRecordOfSimpleUnionSerializer(item[key]);
+  });
+  return result;
+}
+/** Alias for _SimpleModelPropRecordOfSimpleUnion */ export type _SimpleModelPropRecordOfSimpleUnion =
+  string | boolean | number;
+export function _simpleModelPropRecordOfSimpleUnionSerializer(
+  item: _SimpleModelPropRecordOfSimpleUnion,
+): any {
   return item;
 }
 
-export function simpleModelPropSimpleUnionArrayOptionalArraySerializer(
-  result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
+export function simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
+  item: Record<string, Array<_SimpleModelPropRecordOfUnionArray>>
 ): any[] {
   return result.map((item) => {
     return _simpleModelPropSimpleUnionArrayOptionalSerializer(item);
