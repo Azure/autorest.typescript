@@ -240,7 +240,6 @@ class BinderImp implements Binder {
       }
     });
 
-
     this.cleanUnreferencedHelpers(sourceRoot);
   }
 

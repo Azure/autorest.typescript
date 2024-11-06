@@ -67,10 +67,7 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import {
-  createSdkContext,
-  SdkType
-} from "@azure-tools/typespec-client-generator-core";
+import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
@@ -466,7 +463,7 @@ export async function createContextWithDefaultOptions(
   };
 
   return (await createSdkContext(
-      context,
-      context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
-    )) as SdkContext;
+    context,
+    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
+  )) as SdkContext;
 }
