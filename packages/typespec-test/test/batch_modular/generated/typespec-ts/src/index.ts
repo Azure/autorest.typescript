@@ -200,6 +200,7 @@ export {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
+  KnownVersions,
 } from "./models/index.js";
 export {
   BatchClientOptionalParams,

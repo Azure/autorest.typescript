@@ -72,4 +72,5 @@ export {
   DomainResourceUnion,
   Narrative,
   RadiologyInsightsResult,
+  KnownApiVersion,
 } from "./models.js";

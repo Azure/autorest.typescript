@@ -15,6 +15,7 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
+  KnownServiceApiVersions,
 } from "./models/index.js";
 export {
   EventGridClientOptionalParams,

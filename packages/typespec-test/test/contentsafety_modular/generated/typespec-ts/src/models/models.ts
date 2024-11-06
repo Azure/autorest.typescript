@@ -309,6 +309,11 @@ export function textAnalyzeSeverityResultArrayDeserializer(
   });
 }
 
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  v2023_10_01 = "2023-10-01",
+}
+
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
