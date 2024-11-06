@@ -6,6 +6,7 @@ describe("#normalizeName", () => {
   describe("for enum member name", () => {
     it("should normalize the name with pascal case", () => {
       expect(normalizeName("BasicGetNull", NameType.EnumMemberName, true)).to.equal("BasicGetNull");
+      expect(normalizeName("size256x256", NameType.EnumMemberName, true)).to.equal("Size256X256");
       expect(normalizeName("LRORetrysPut201CreatingSucceeded200BodyParam", NameType.EnumMemberName, true)).to.equal("LRORetrysPut201CreatingSucceeded200BodyParam");
       expect(normalizeName("PagingGetNullNextLinkNamePagesParameters", NameType.EnumMemberName, true)).to.equal("PagingGetNullNextLinkNamePagesParameters");
       expect(normalizeName("AKV_cert_URI", NameType.EnumMemberName, true)).to.equal("AKVCertURI");
@@ -18,6 +19,16 @@ describe("#normalizeName", () => {
       expect(normalizeName("C", NameType.EnumMemberName, true)).to.equal("C");
       expect(normalizeName("splitAllCSVs", NameType.EnumMemberName, true)).to.equal("SplitAllCSVs");
       expect(normalizeName("publicIPDisabled", NameType.EnumMemberName, true)).to.equal("PublicIPDisabled");
+    });
+  });
+  describe("for property", () => {
+    it("should remove $ char", () => {
+      expect(normalizeName("$select", NameType.Parameter, true)).to.equal(
+        "select"
+      );
+      expect(normalizeName("hate/threatening", NameType.Parameter, true)).to.equal(
+        "hateThreatening"
+      );
     });
   });
   describe("for parameter", () => {
