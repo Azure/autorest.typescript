@@ -390,8 +390,7 @@ export function getType(
   }
   if (
     type.kind === "Model" &&
-    newValue.type === "dict" &&
-    newValue.name !== "Record" &&
+    newValue.tcgcType.additionalProperties &&
     !context.rlcOptions?.compatibilityMode
   ) {
     reportDiagnostic(context.program, {

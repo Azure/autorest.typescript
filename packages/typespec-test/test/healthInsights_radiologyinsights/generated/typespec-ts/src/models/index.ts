@@ -72,4 +72,5 @@ export {
   DomainResourceUnion,
   Narrative,
   RadiologyInsightsResult,
+  RepeatabilityResult,
 } from "./models.js";

@@ -144,8 +144,8 @@ export declare interface NullableModelValueGetOptionalParams extends OperationOp
 }
 
 export declare interface NullableModelValueOperations {
-    get: (options?: NullableModelValueGetOptionalParams) => Promise<(InnerModel | null)[]>;
-    put: (body: (InnerModel | null)[], options?: NullableModelValuePutOptionalParams) => Promise<void>;
+    get: (options?: NullableModelValueGetOptionalParams) => Promise<(InnerModel | null | null)[]>;
+    put: (body: (InnerModel | null | null)[], options?: NullableModelValuePutOptionalParams) => Promise<void>;
 }
 
 export declare interface NullableModelValuePutOptionalParams extends OperationOptions {

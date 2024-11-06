@@ -427,6 +427,7 @@ export async function emitModularModelsFromTypeSpec(
     ) {
       if (needOptions) {
         modelFile = buildApiOptions(
+          dpgContext,
           modularCodeModel.clients[0],
           modularCodeModel
         );

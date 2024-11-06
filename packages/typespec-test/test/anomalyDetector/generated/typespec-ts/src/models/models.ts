@@ -62,6 +62,14 @@ export type MultivariateMultivariateBatchDetectionStatus =
   | "READY"
   | "FAILED";
 
+export function multivariateErrorResponseArrayDeserializer(
+  result: Array<MultivariateErrorResponse>,
+): any[] {
+  return result.map((item) => {
+    return multivariateErrorResponseDeserializer(item);
+  });
+}
+
 /** ErrorResponse contains code and message that shows the error information. */
 export interface MultivariateErrorResponse {
   /** The error code. */
@@ -79,11 +87,19 @@ export function multivariateErrorResponseDeserializer(
   };
 }
 
-export function multivariateErrorResponseArrayDeserializer(
-  result: Array<MultivariateErrorResponse>,
+export function multivariateVariableStateArraySerializer(
+  result: Array<MultivariateVariableState>,
 ): any[] {
   return result.map((item) => {
-    return multivariateErrorResponseDeserializer(item);
+    return multivariateVariableStateSerializer(item);
+  });
+}
+
+export function multivariateVariableStateArrayDeserializer(
+  result: Array<MultivariateVariableState>,
+): any[] {
+  return result.map((item) => {
+    return multivariateVariableStateDeserializer(item);
   });
 }
 
@@ -127,22 +143,6 @@ export function multivariateVariableStateDeserializer(
       ? item["lastTimestamp"]
       : new Date(item["lastTimestamp"]),
   };
-}
-
-export function multivariateVariableStateArraySerializer(
-  result: Array<MultivariateVariableState>,
-): any[] {
-  return result.map((item) => {
-    return multivariateVariableStateSerializer(item);
-  });
-}
-
-export function multivariateVariableStateArrayDeserializer(
-  result: Array<MultivariateVariableState>,
-): any[] {
-  return result.map((item) => {
-    return multivariateVariableStateDeserializer(item);
-  });
 }
 
 /**
@@ -195,6 +195,14 @@ export function multivariateMultivariateBatchDetectionOptionsDeserializer(
     startTime: new Date(item["startTime"]),
     endTime: new Date(item["endTime"]),
   };
+}
+
+export function multivariateAnomalyStateArrayDeserializer(
+  result: Array<MultivariateAnomalyState>,
+): any[] {
+  return result.map((item) => {
+    return multivariateAnomalyStateDeserializer(item);
+  });
 }
 
 /** Anomaly status and information. */
@@ -254,6 +262,14 @@ export function multivariateAnomalyValueDeserializer(
   };
 }
 
+export function multivariateAnomalyInterpretationArrayDeserializer(
+  result: Array<MultivariateAnomalyInterpretation>,
+): any[] {
+  return result.map((item) => {
+    return multivariateAnomalyInterpretationDeserializer(item);
+  });
+}
+
 /** Interpretation of the anomalous timestamp. */
 export interface MultivariateAnomalyInterpretation {
   /** Variable. */
@@ -295,22 +311,6 @@ export function multivariateCorrelationChangesDeserializer(
           return p;
         }),
   };
-}
-
-export function multivariateAnomalyInterpretationArrayDeserializer(
-  result: Array<MultivariateAnomalyInterpretation>,
-): any[] {
-  return result.map((item) => {
-    return multivariateAnomalyInterpretationDeserializer(item);
-  });
-}
-
-export function multivariateAnomalyStateArrayDeserializer(
-  result: Array<MultivariateAnomalyState>,
-): any[] {
-  return result.map((item) => {
-    return multivariateAnomalyStateDeserializer(item);
-  });
 }
 
 /**
@@ -649,6 +649,14 @@ export function multivariateMultivariateLastDetectionOptionsSerializer(
   };
 }
 
+export function multivariateVariableValuesArraySerializer(
+  result: Array<MultivariateVariableValues>,
+): any[] {
+  return result.map((item) => {
+    return multivariateVariableValuesSerializer(item);
+  });
+}
+
 /** Variable values. */
 export interface MultivariateVariableValues {
   /** Variable name of last detection request. */
@@ -671,14 +679,6 @@ export function multivariateVariableValuesSerializer(
       return p;
     }),
   };
-}
-
-export function multivariateVariableValuesArraySerializer(
-  result: Array<MultivariateVariableValues>,
-): any[] {
-  return result.map((item) => {
-    return multivariateVariableValuesSerializer(item);
-  });
 }
 
 /** Results of last detection. */
@@ -764,6 +764,14 @@ export function univariateUnivariateDetectionOptionsSerializer(
   };
 }
 
+export function univariateTimeSeriesPointArraySerializer(
+  result: Array<UnivariateTimeSeriesPoint>,
+): any[] {
+  return result.map((item) => {
+    return univariateTimeSeriesPointSerializer(item);
+  });
+}
+
 /** The definition of input timeseries points. */
 export interface UnivariateTimeSeriesPoint {
   /** Optional argument, timestamp of a data point (ISO8601 format). */
@@ -776,14 +784,6 @@ export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
   return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
-}
-
-export function univariateTimeSeriesPointArraySerializer(
-  result: Array<UnivariateTimeSeriesPoint>,
-): any[] {
-  return result.map((item) => {
-    return univariateTimeSeriesPointSerializer(item);
-  });
 }
 
 /** Type of UnivariateTimeGranularity */

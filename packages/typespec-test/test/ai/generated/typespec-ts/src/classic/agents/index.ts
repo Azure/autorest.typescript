@@ -44,6 +44,7 @@ import {
   cancelVectorStoreFileBatch,
   listVectorStoreFileBatchFiles,
 } from "../../api/agents/index.js";
+import { Agent } from "http";
 import {
   AgentsCreateAgentOptionalParams,
   AgentsListAgentsOptionalParams,
@@ -111,7 +112,6 @@ import {
   VectorStoreFile,
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
-  Agent
 } from "../../models/models.js";
 
 /** Interface representing a Agents operations. */

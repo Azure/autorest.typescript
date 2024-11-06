@@ -991,10 +991,7 @@ export interface CreatePerson202Response extends HttpResponse {
 // @public (undocumented)
 export interface CreatePersonBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -1758,6 +1755,99 @@ export interface FaceErrorOutput {
     message: string;
 }
 
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    faceIds: string[];
+    maxNumOfCandidatesReturned?: number;
+    mode?: FindSimilarMatchMode;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    faceListId: string;
+    maxNumOfCandidatesReturned?: number;
+    mode?: FindSimilarMatchMode;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    largeFaceListId: string;
+    maxNumOfCandidatesReturned?: number;
+    mode?: FindSimilarMatchMode;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    confidenceThreshold?: number;
+    faceIds: string[];
+    maxNumOfCandidatesReturned?: number;
+    personGroupId: string;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    confidenceThreshold?: number;
+    faceIds: string[];
+    largePersonGroupId: string;
+    maxNumOfCandidatesReturned?: number;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    confidenceThreshold?: number;
+    faceIds: string[];
+    maxNumOfCandidatesReturned?: number;
+    personIds: string[];
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    confidenceThreshold?: number;
+    dynamicPersonGroupId: string;
+    faceIds: string[];
+    maxNumOfCandidatesReturned?: number;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId1: string;
+    faceId2: string;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    personGroupId: string;
+    personId: string;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    largePersonGroupId: string;
+    personId: string;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceId: string;
+    personId: string;
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    faceIds: string[];
+}
+
+// @public (undocumented)
+export interface FaceErrorResponse {
+    name: string;
+    userData?: string;
+}
+
 // @public
 export interface FaceErrorResponseOutput {
     error: FaceErrorOutput;
@@ -1853,12 +1943,7 @@ export interface FindSimilar200Response extends HttpResponse {
 // @public (undocumented)
 export interface FindSimilarBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        maxNumOfCandidatesReturned?: number;
-        mode?: FindSimilarMatchMode;
-        faceIds: string[];
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -1887,12 +1972,7 @@ export interface FindSimilarFromFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface FindSimilarFromFaceListBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        maxNumOfCandidatesReturned?: number;
-        mode?: FindSimilarMatchMode;
-        faceListId: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -1924,12 +2004,7 @@ export interface FindSimilarFromLargeFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface FindSimilarFromLargeFaceListBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        maxNumOfCandidatesReturned?: number;
-        mode?: FindSimilarMatchMode;
-        largeFaceListId: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -3187,9 +3262,7 @@ export interface Group200Response extends HttpResponse {
 // @public (undocumented)
 export interface GroupBodyParam {
     // (undocumented)
-    body: {
-        faceIds: string[];
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -3262,12 +3335,7 @@ export interface IdentifyFromDynamicPersonGroup200Response extends HttpResponse 
 // @public (undocumented)
 export interface IdentifyFromDynamicPersonGroupBodyParam {
     // (undocumented)
-    body: {
-        faceIds: string[];
-        dynamicPersonGroupId: string;
-        maxNumOfCandidatesReturned?: number;
-        confidenceThreshold?: number;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -3299,12 +3367,7 @@ export interface IdentifyFromLargePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface IdentifyFromLargePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        faceIds: string[];
-        largePersonGroupId: string;
-        maxNumOfCandidatesReturned?: number;
-        confidenceThreshold?: number;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -3336,12 +3399,7 @@ export interface IdentifyFromPersonDirectory200Response extends HttpResponse {
 // @public (undocumented)
 export interface IdentifyFromPersonDirectoryBodyParam {
     // (undocumented)
-    body: {
-        faceIds: string[];
-        personIds: string[];
-        maxNumOfCandidatesReturned?: number;
-        confidenceThreshold?: number;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -3381,12 +3439,7 @@ export interface IdentifyFromPersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface IdentifyFromPersonGroupBodyParam {
     // (undocumented)
-    body: {
-        faceIds: string[];
-        personGroupId: string;
-        maxNumOfCandidatesReturned?: number;
-        confidenceThreshold?: number;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -4683,10 +4736,7 @@ export interface VerifyFaceToFace200Response extends HttpResponse {
 // @public (undocumented)
 export interface VerifyFaceToFaceBodyParam {
     // (undocumented)
-    body: {
-        faceId1: string;
-        faceId2: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -4718,11 +4768,7 @@ export interface VerifyFromLargePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface VerifyFromLargePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        largePersonGroupId: string;
-        personId: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -4754,10 +4800,7 @@ export interface VerifyFromPersonDirectory200Response extends HttpResponse {
 // @public (undocumented)
 export interface VerifyFromPersonDirectoryBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        personId: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)
@@ -4789,11 +4832,7 @@ export interface VerifyFromPersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface VerifyFromPersonGroupBodyParam {
     // (undocumented)
-    body: {
-        faceId: string;
-        personGroupId: string;
-        personId: string;
-    };
+    body: FaceErrorResponse;
 }
 
 // @public (undocumented)

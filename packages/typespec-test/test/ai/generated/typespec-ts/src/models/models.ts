@@ -1323,6 +1323,27 @@ export function toolDefinitionUnionArrayDeserializer(
   });
 }
 
+/** Alias for AgentsApiResponseFormatOption */
+export type AgentsApiResponseFormatOption =
+  | string
+  | AgentsApiResponseFormatMode
+  | AgentsApiResponseFormat;
+
+export function agentsApiResponseFormatOptionSerializer(
+  item: AgentsApiResponseFormatOption,
+): any {
+  return item;
+}
+
+export function agentsApiResponseFormatOptionDeserializer(
+  item: any,
+): AgentsApiResponseFormatOption {
+  return item;
+}
+
+/** Represents the mode in which the model will handle the return format of a tool call. */
+export type AgentsApiResponseFormatMode = "auto" | "none";
+
 /** Represents an agent that can call the model and use tools. */
 export interface Agent {
   /** The identifier, which can be referenced in API endpoints. */
@@ -1474,6 +1495,22 @@ export function threadMessageOptionsSerializer(
 /** The possible values for roles attributed to messages in a thread. */
 export type MessageRole = "user" | "assistant";
 
+export function messageAttachmentArraySerializer(
+  result: Array<MessageAttachment>,
+): any[] {
+  return result.map((item) => {
+    return messageAttachmentSerializer(item);
+  });
+}
+
+export function messageAttachmentArrayDeserializer(
+  result: Array<MessageAttachment>,
+): any[] {
+  return result.map((item) => {
+    return messageAttachmentDeserializer(item);
+  });
+}
+
 /** This describes to which tools a file has been attached. */
 export interface MessageAttachment {
   /** The ID of the file to attach to the message. */
@@ -1526,6 +1563,23 @@ export function messageAttachmentToolDefinitionSerializer(
 export function messageAttachmentToolDefinitionDeserializer(
   item: any,
 ): MessageAttachmentToolDefinition {
+  return item;
+}
+
+/** Alias for _MessageAttachmentTool */
+export type _MessageAttachmentTool =
+  | CodeInterpreterToolDefinition
+  | FileSearchToolDefinition;
+
+export function _messageAttachmentToolSerializer(
+  item: _MessageAttachmentTool,
+): any {
+  return item;
+}
+
+export function _messageAttachmentToolDeserializer(
+  item: any,
+): _MessageAttachmentTool {
   return item;
 }
 
@@ -1679,6 +1733,34 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
 
 /** The possible execution status values for a thread message. */
 export type MessageStatus = "in_progress" | "incomplete" | "completed";
+
+/** Information providing additional detail about a message entering an incomplete status. */
+export interface MessageIncompleteDetails {
+  /** The provided reason describing why the message was marked as incomplete. */
+  reason: MessageIncompleteDetailsReason;
+}
+
+export function messageIncompleteDetailsSerializer(
+  item: MessageIncompleteDetails,
+): any {
+  return { reason: item["reason"] };
+}
+
+export function messageIncompleteDetailsDeserializer(
+  item: any,
+): MessageIncompleteDetails {
+  return {
+    reason: item["reason"],
+  };
+}
+
+/** A set of reasons describing why a message is marked as incomplete. */
+export type MessageIncompleteDetailsReason =
+  | "content_filter"
+  | "max_tokens"
+  | "run_cancelled"
+  | "run_failed"
+  | "run_expired";
 
 export function messageContentUnionArraySerializer(
   result: Array<MessageContentUnion>,
@@ -2048,34 +2130,6 @@ export function messageImageFileDetailsDeserializer(
   };
 }
 
-/** Information providing additional detail about a message entering an incomplete status. */
-export interface MessageIncompleteDetails {
-  /** The provided reason describing why the message was marked as incomplete. */
-  reason: MessageIncompleteDetailsReason;
-}
-
-export function messageIncompleteDetailsSerializer(
-  item: MessageIncompleteDetails,
-): any {
-  return { reason: item["reason"] };
-}
-
-export function messageIncompleteDetailsDeserializer(
-  item: any,
-): MessageIncompleteDetails {
-  return {
-    reason: item["reason"],
-  };
-}
-
-/** A set of reasons describing why a message is marked as incomplete. */
-export type MessageIncompleteDetailsReason =
-  | "content_filter"
-  | "max_tokens"
-  | "run_cancelled"
-  | "run_failed"
-  | "run_expired";
-
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfThreadMessage {
   /** The object type, which is always list. */
@@ -2202,6 +2256,27 @@ export function functionNameDeserializer(item: any): FunctionName {
     name: item["name"],
   };
 }
+
+/** Alias for AgentsApiToolChoiceOption */
+export type AgentsApiToolChoiceOption =
+  | string
+  | AgentsApiToolChoiceOptionMode
+  | AgentsNamedToolChoice;
+
+export function agentsApiToolChoiceOptionSerializer(
+  item: AgentsApiToolChoiceOption,
+): any {
+  return item;
+}
+
+export function agentsApiToolChoiceOptionDeserializer(
+  item: any,
+): AgentsApiToolChoiceOption {
+  return item;
+}
+
+/** Specifies how the tool choice will be used */
+export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 /** Data representing a single evaluation run of an agent thread. */
 export interface ThreadRun {
@@ -2484,6 +2559,11 @@ export function runErrorDeserializer(item: any): RunError {
     message: item["message"],
   };
 }
+
+/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
+export type IncompleteRunDetails =
+  | "max_completion_tokens"
+  | "max_prompt_tokens";
 
 /** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
 export interface RunCompletionUsage {
@@ -3769,6 +3849,30 @@ export type VectorStoreFileStatus =
   | "failed"
   | "cancelled";
 
+/** Details on the error that may have ocurred while processing a file for this vector store */
+export interface VectorStoreFileError {
+  /** One of `server_error` or `rate_limit_exceeded`. */
+  code: VectorStoreFileErrorCode;
+  /** A human-readable description of the error. */
+  message: string;
+}
+
+export function vectorStoreFileErrorDeserializer(
+  item: any,
+): VectorStoreFileError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** Error code variants for vector store file processing */
+export type VectorStoreFileErrorCode =
+  | "internal_error"
+  | "file_not_found"
+  | "parsing_error"
+  | "unhandled_mime_type";
+
 /** An abstract representation of a vector store chunking strategy configuration. */
 export interface VectorStoreChunkingStrategyResponse {
   /** The object type. */
@@ -3846,30 +3950,6 @@ export function vectorStoreStaticChunkingStrategyResponseDeserializer(
     ),
   };
 }
-
-/** Details on the error that may have ocurred while processing a file for this vector store */
-export interface VectorStoreFileError {
-  /** One of `server_error` or `rate_limit_exceeded`. */
-  code: VectorStoreFileErrorCode;
-  /** A human-readable description of the error. */
-  message: string;
-}
-
-export function vectorStoreFileErrorDeserializer(
-  item: any,
-): VectorStoreFileError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** Error code variants for vector store file processing */
-export type VectorStoreFileErrorCode =
-  | "internal_error"
-  | "file_not_found"
-  | "parsing_error"
-  | "unhandled_mime_type";
 
 /** Response object for deleting a vector store file relationship. */
 export interface VectorStoreFileDeletionStatus {
@@ -4624,59 +4704,6 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
-
-export function agentsApiResponseFormatOptionSerializer(
-  item: AgentsApiResponseFormatOption,
-): any {
-  return item;
-}
-
-export function agentsApiResponseFormatOptionDeserializer(
-  item: any,
-): AgentsApiResponseFormatOption {
-  return item;
-}
-
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
-  return item;
-}
-
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-
-export function agentsApiToolChoiceOptionSerializer(
-  item: AgentsApiToolChoiceOption,
-): any {
-  return item;
-}
-
-export function agentsApiToolChoiceOptionDeserializer(
-  item: any,
-): AgentsApiToolChoiceOption {
-  return item;
-}
-
 /** Alias for _ */
 export type _ =
   | ThreadStreamEvent
@@ -4685,38 +4712,6 @@ export type _ =
   | MessageStreamEvent
   | ErrorEvent
   | DoneEvent;
-/** Alias for AgentStreamEvent */
-export type AgentStreamEvent =
-  | string
-  | (
-      | ThreadStreamEvent
-      | RunStreamEvent
-      | RunStepStreamEvent
-      | MessageStreamEvent
-      | ErrorEvent
-      | DoneEvent
-    );
-
-export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
-  return item;
-}
-
-/** Represents the mode in which the model will handle the return format of a tool call. */
-export type AgentsApiResponseFormatMode = "auto" | "none";
-/** The available sorting options when requesting a list of response objects. */
-export type ListSortOrder = "asc" | "desc";
-/** Specifies how the tool choice will be used */
-export type AgentsApiToolChoiceOptionMode = "none" | "auto";
-/** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
-export type IncompleteRunDetails =
-  | "max_completion_tokens"
-  | "max_prompt_tokens";
-/** Query parameter filter for vector store file retrieval endpoint */
-export type VectorStoreFileStatusFilter =
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "cancelled";
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */
@@ -4750,3 +4745,27 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
+/** Alias for AgentStreamEvent */
+export type AgentStreamEvent =
+  | string
+  | (
+      | ThreadStreamEvent
+      | RunStreamEvent
+      | RunStepStreamEvent
+      | MessageStreamEvent
+      | ErrorEvent
+      | DoneEvent
+    );
+
+export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
+  return item;
+}
+
+/** The available sorting options when requesting a list of response objects. */
+export type ListSortOrder = "asc" | "desc";
+/** Query parameter filter for vector store file retrieval endpoint */
+export type VectorStoreFileStatusFilter =
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "cancelled";

@@ -122,7 +122,7 @@ export interface CreateChatCompletionRequest {
     model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
     presence_penalty?: number | null;
-    stop?: Stop_1 | null;
+    stop?: Stop | null;
     stream?: boolean | null;
     temperature?: number | null;
     top_p?: number | null;
@@ -784,9 +784,6 @@ export type Prompt = string | string[] | number[] | number[][];
 
 // @public
 export type Stop = string | string[];
-
-// @public
-export type Stop_1 = string | string[];
 
 // (No @packageDocumentation comment for this package)
 

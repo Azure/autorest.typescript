@@ -86,7 +86,6 @@ export function emitTypes(
   const { sdkPackage } = context;
   const outputProject = useContext("outputProject");
 
-  visitPackageTypes(context);
   const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
   if (
@@ -512,13 +511,14 @@ function buildModelProperty(
 
 export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
+  emitQueue.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);
   }
 
   for (const union of sdkPackage.unions) {
-    emitQueue.add(union);
+    visitType(context, union);
   }
   // Add all enums to the queue
   for (const enumType of sdkPackage.enums) {
@@ -628,31 +628,24 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
     if (!emitQueue.has(type.valueType as any)) {
       visitType(context, type.valueType);
     }
-    if (!emitQueue.has(type)) {
-      emitQueue.add(type);
-    }
   }
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
       visitType(context, type.valueType);
     }
-    if (!emitQueue.has(type)) {
-      emitQueue.add(type);
-    }
-  }
-  if (type.kind === "enum") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-    }
   }
   if (type.kind === "union") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-      for (const value of type.variantTypes) {
-        if (!emitQueue.has(value as any)) {
-          visitType(context, value);
-        }
+    emitQueue.add(type);
+    for (const value of type.variantTypes) {
+      if (!emitQueue.has(value as any)) {
+        visitType(context, value);
       }
+    }
+  }
+  if (type.kind === "nullable") {
+    emitQueue.add(type);
+    if (!emitQueue.has(type.type)) {
+      visitType(context, type.type);
     }
   }
 }
