@@ -4769,3 +4769,9 @@ export type VectorStoreFileStatusFilter =
   | "completed"
   | "failed"
   | "cancelled";
+
+/** Azure AI API versions */
+export enum KnownVersions {
+  /** Azure AI API version 2024-07-01-preview. */
+  "2024-07-01-preview" = "2024-07-01-preview",
+}

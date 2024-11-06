@@ -244,3 +244,8 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     finishReason: item["finish_reason"],
   };
 }
+
+/** Known values of {@link APIVersion} that the service accepts. */
+export enum KnownAPIVersion {
+  v20231001Preview = "2023-10-01-preview",
+}

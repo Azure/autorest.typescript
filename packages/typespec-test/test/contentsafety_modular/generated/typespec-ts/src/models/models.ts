@@ -358,3 +358,8 @@ export function textAnalyzeSeverityResultDeserializer(
     severity: item["severity"],
   };
 }
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  v2023_10_01 = "2023-10-01",
+}

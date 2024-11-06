@@ -136,6 +136,17 @@ export type SchemaContentTypeValues =
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
+
+/** Represents the Schema Registry API version to use for requests. */
+export enum KnownServiceApiVersions {
+  /** Azure Schema Registry 2021-10 Version */
+  V2021_10 = "2021-10",
+  /** Azure Schema Registry 2022-10 Version */
+  V2022_10 = "2022-10",
+  /** Azure Schema Registry 2023-07-01 Version. This is the default version. */
+  V2023_07_01 = "2023-07-01",
+}
+
 /** The content type for the schema. */
 export type ContentTypeEnum =
   | "application/octet-stream"

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 export { WidgetManagerClient } from "./widgetManagerClient.js";
+export { KnownVersions } from "./models/index.js";
 export {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,

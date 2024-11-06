@@ -20,4 +20,5 @@ export {
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  KnownVersions,
 } from "./models.js";

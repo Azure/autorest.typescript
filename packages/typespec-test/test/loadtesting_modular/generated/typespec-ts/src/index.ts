@@ -90,6 +90,7 @@ export {
   TestProfileRunRecommendation,
   KnownRecommendationCategory,
   RecommendationCategory,
+  KnownAPIVersions,
 } from "./models/index.js";
 export {
   LoadTestAdministrationClientOptionalParams,

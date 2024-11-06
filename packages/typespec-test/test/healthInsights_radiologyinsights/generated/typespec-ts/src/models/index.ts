@@ -73,4 +73,5 @@ export {
   Narrative,
   RadiologyInsightsResult,
   RepeatabilityResult,
+  KnownApiVersion,
 } from "./models.js";

@@ -66,6 +66,7 @@ export {
   Origin,
   KnownActionType,
   ActionType,
+  KnownVersions,
 } from "./models/index.js";
 export {
   NetworkAnalyticsClientOptionalParams,

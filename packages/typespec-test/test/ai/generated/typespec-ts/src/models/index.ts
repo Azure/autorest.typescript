@@ -205,4 +205,5 @@ export {
   AgentStreamEvent,
   ListSortOrder,
   VectorStoreFileStatusFilter,
+  KnownVersions,
 } from "./models.js";

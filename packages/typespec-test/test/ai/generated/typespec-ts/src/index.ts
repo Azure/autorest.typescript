@@ -212,6 +212,7 @@ export {
   AgentStreamEvent,
   ListSortOrder,
   VectorStoreFileStatusFilter,
+  KnownVersions,
 } from "./models/index.js";
 export {
   AzureAIClientOptionalParams,
