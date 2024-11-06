@@ -1,4 +1,4 @@
-# Should flatten extensible enum if enabling `flatten-union-as-enum`
+# Should flatten extensible enum if enabling `experimentalExtensibleEnums`
 
 Sample generation should arm template and operations successfully.
 
@@ -60,7 +60,6 @@ Should enable `flatten-union-as-enum` option:
 
 ```yaml
 withRawContent: true
-flatten-union-as-enum: true
 experimentalExtensibleEnums: true
 ```
 
@@ -93,7 +92,7 @@ export enum KnownProvisioningState {
   /** The resource is being deleted */
   Deleting = "Deleting",
   /** The resource create request has been accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -114,6 +113,6 @@ export type ProvisioningState = string;
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  v2021_10_01_preview = "2021-10-01-preview"
+  v2021_10_01_preview = "2021-10-01-preview",
 }
 ```

@@ -53,22 +53,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _fooSend(
   context: Client,
   apiVersion: Versions,
-  options: FooOptionalParams = { requestOptions: {} }
+  options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: { "api-version": apiVersion }
-  });
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { "api-version": apiVersion },
+    });
 }
 
 export async function _fooDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -81,7 +83,7 @@ export async function _fooDeserialize(
 export async function foo(
   context: Client,
   apiVersion: Versions,
-  options: FooOptionalParams = { requestOptions: {} }
+  options: FooOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fooSend(context, apiVersion, options);
   return _fooDeserialize(result);

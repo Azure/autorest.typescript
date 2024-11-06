@@ -389,9 +389,7 @@ export async function emitModularModelsFromTypeSpec(
     compatibilityMode = false,
     mustEmptyDiagnostic = true,
     experimentalExtensibleEnums = false,
-    ...tspConfigs
   } = options;
-  console.log("tspConfigs", tspConfigs);
   const context = await rlcEmitterFor(
     tspContent,
     {
@@ -401,7 +399,7 @@ export async function emitModularModelsFromTypeSpec(
       withRawContent,
     }
   );
-  const dpgContext = await createDpgContextTestHelper(context.program, false, tspConfigs);
+  const dpgContext = await createDpgContextTestHelper(context.program, false, options);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
