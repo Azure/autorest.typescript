@@ -559,7 +559,7 @@ describe("header parameters", () => {
       });
     });
     describe("extensible", async () => {
-      it("in regular headers", async () => {
+      it.only("in regular headers", async () => {
         const tspDefinition = `
         import "@typespec/http";
         import "@typespec/rest";
@@ -582,6 +582,7 @@ describe("header parameters", () => {
           {
             needOptions: false,
             withRawContent: true,
+            experimentalExtensibleEnums: true
           }
         );
         assert.isUndefined(schemaOutput);
