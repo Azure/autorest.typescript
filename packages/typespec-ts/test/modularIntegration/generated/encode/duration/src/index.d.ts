@@ -52,9 +52,9 @@ export declare interface HeaderOperations {
     default: (duration: string, options?: HeaderDefaultOptionalParams) => Promise<void>;
     iso8601: (duration: string, options?: HeaderIso8601OptionalParams) => Promise<void>;
     iso8601Array: (duration: string[], options?: HeaderIso8601ArrayOptionalParams) => Promise<void>;
-    int32Seconds: (duration: number, options?: HeaderInt32SecondsOptionalParams) => Promise<void>;
-    floatSeconds: (duration: number, options?: HeaderFloatSecondsOptionalParams) => Promise<void>;
-    float64Seconds: (duration: number, options?: HeaderFloat64SecondsOptionalParams) => Promise<void>;
+    int32Seconds: (duration: string, options?: HeaderInt32SecondsOptionalParams) => Promise<void>;
+    floatSeconds: (duration: string, options?: HeaderFloatSecondsOptionalParams) => Promise<void>;
+    float64Seconds: (duration: string, options?: HeaderFloat64SecondsOptionalParams) => Promise<void>;
 }
 
 export declare interface Int32SecondsDurationProperty {
@@ -113,9 +113,9 @@ export declare interface QueryIso8601OptionalParams extends OperationOptions {
 export declare interface QueryOperations {
     default: (input: string, options?: QueryDefaultOptionalParams) => Promise<void>;
     iso8601: (input: string, options?: QueryIso8601OptionalParams) => Promise<void>;
-    int32Seconds: (input: number, options?: QueryInt32SecondsOptionalParams) => Promise<void>;
-    floatSeconds: (input: number, options?: QueryFloatSecondsOptionalParams) => Promise<void>;
-    float64Seconds: (input: number, options?: QueryFloat64SecondsOptionalParams) => Promise<void>;
+    int32Seconds: (input: string, options?: QueryInt32SecondsOptionalParams) => Promise<void>;
+    floatSeconds: (input: string, options?: QueryFloatSecondsOptionalParams) => Promise<void>;
+    float64Seconds: (input: string, options?: QueryFloat64SecondsOptionalParams) => Promise<void>;
     int32SecondsArray: (input: number[], options?: QueryInt32SecondsArrayOptionalParams) => Promise<void>;
 }
 

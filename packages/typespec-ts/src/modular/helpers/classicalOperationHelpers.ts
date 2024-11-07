@@ -61,7 +61,7 @@ export function getClassicalOperation(
   >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operationGroup.operations.map((operation) => {
-      const declarations = getOperationFunction(operation, modularClientName);
+      const declarations = getOperationFunction(dpgContext, operation, modularClientName);
       operationMap.set(declarations, operation.oriName);
       return declarations;
     });

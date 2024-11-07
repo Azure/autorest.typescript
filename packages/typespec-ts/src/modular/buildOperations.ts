@@ -93,7 +93,7 @@ export function buildOperationFiles(
     });
 
     operationGroup.operations.forEach((o) => {
-      const operationDeclaration = getOperationFunction(o, clientType);
+      const operationDeclaration = getOperationFunction(dpgContext, o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
         o,
