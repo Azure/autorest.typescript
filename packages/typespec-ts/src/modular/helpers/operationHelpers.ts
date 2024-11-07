@@ -48,7 +48,11 @@ export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  const parameters = getOperationSignatureParameters(dpgContext, operation, clientType);
+  const parameters = getOperationSignatureParameters(
+    dpgContext,
+    operation,
+    clientType
+  );
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
 
@@ -218,9 +222,10 @@ function getOperationSignatureParameters(
         !p.optional
     )
     .map((p) => {
-      return {name: p.clientName,
-      type: getTypeExpression(context, p.type.tcgcType!)
-      }
+      return {
+        name: p.clientName,
+        type: getTypeExpression(context, p.type.tcgcType!)
+      };
     })
     .forEach((p) => {
       parameters.set(p.name, p);
@@ -231,10 +236,7 @@ function getOperationSignatureParameters(
       hasQuestionToken: operation.bodyParameter.optional,
       ...{
         name: operation.bodyParameter.clientName,
-        type: getTypeExpression(
-          context,
-          operation.bodyParameter.type.tcgcType!
-        )
+        type: getTypeExpression(context, operation.bodyParameter.type.tcgcType!)
       }
     });
   }
@@ -281,7 +283,7 @@ export function getOperationFunction(
   if (response.type?.type) {
     const type =
       extractPagingType(response.type, operation.itemName) ?? response.type;
-    returnType = { 
+    returnType = {
       name: type.name ?? "",
       type: getTypeExpression(context, type.tcgcType!)
     };
@@ -314,7 +316,11 @@ export function getOperationFunction(
   };
 }
 
-function getLroOnlyOperationFunction(context: SdkContext, operation: Operation, clientType: string) {
+function getLroOnlyOperationFunction(
+  context: SdkContext,
+  operation: Operation,
+  clientType: string
+) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(context, operation, clientType);
