@@ -245,9 +245,6 @@ class BinderImp implements Binder {
     }
     for (const dependency of Object.values(this.dependencies)) {
       const placeholder = this.serializePlaceholder(refkey(dependency));
-      if (placeholder === "__PLACEHOLDER_o13__") {
-        dependency;
-      }
       const { name, module } = dependency;
       const occurences = countPlaceholderOccurrences(file, placeholder);
       if (occurences > 0) {
