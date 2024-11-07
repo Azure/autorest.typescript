@@ -66,7 +66,7 @@ export declare interface Delete202Headers {
 
 export declare interface Delete202Response extends HttpResponse {
     status: "202";
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
     headers: RawHttpHeaders & Delete202Headers;
 }
 
@@ -82,7 +82,7 @@ export declare interface DeleteDefaultResponse extends HttpResponse {
 
 export declare interface DeleteLogicalResponse extends HttpResponse {
     status: "200";
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
 }
 
 export declare type DeleteParameters = RequestParameters;
@@ -97,7 +97,7 @@ export declare interface Export202Headers {
 
 export declare interface Export202Response extends HttpResponse {
     status: "202";
-    body: ResourceOperationStatusUserExportedUserErrorOutput;
+    body: ResourceOperationStatusOutput;
     headers: RawHttpHeaders & Export202Headers;
 }
 
@@ -118,7 +118,7 @@ export declare interface ExportedUserOutput {
 
 export declare interface ExportLogicalResponse extends HttpResponse {
     status: "200";
-    body: ResourceOperationStatusUserExportedUserErrorOutput;
+    body: ResourceOperationStatusOutput;
 }
 
 export declare type ExportParameters = ExportQueryParam & RequestParameters;
@@ -145,13 +145,13 @@ export declare function isUnexpected(response: Export202Response | ExportLogical
 
 export declare type OperationStateOutput = string;
 
-export declare interface OperationStatusErrorOutput {
+export declare interface OperationStatusOutput {
     id: string;
     status: OperationStateOutput;
     error?: ErrorModel;
 }
 
-export declare interface ResourceOperationStatusUserExportedUserErrorOutput {
+export declare interface ResourceOperationStatusOutput {
     id: string;
     status: OperationStateOutput;
     error?: ErrorModel;

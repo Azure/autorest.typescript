@@ -74,7 +74,10 @@ import {
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getUnionAsEnum } from "@azure-tools/typespec-azure-core";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
 
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -602,7 +605,7 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  let overridedModelName =
+  const overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -612,27 +615,28 @@ function getSchemaForModel(
       .join("") + model.name;
   let name = model.name;
   if (
-    overridedModelName === name &&
+    !overridedModelName &&
     model.templateMapper &&
     model.templateMapper.args &&
-    model.templateMapper.args.length > 0
+    model.templateMapper.args.length > 0 &&
+    getPagedResult(program, model)
   ) {
     const templateTypes = model.templateMapper.args.filter((it) =>
       isType(it)
     ) as Type[];
-    name += templateTypes
-      .map((it: Type) => {
-        switch (it.kind) {
-          case "Model":
-            return it.name;
-          case "String":
-            return it.value;
-          default:
-            return "";
-        }
-      })
-      .join("");
-    overridedModelName = name;
+    name =
+      templateTypes
+        .map((it: Type) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("") + "List";
   }
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);

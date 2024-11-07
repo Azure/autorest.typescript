@@ -26,7 +26,7 @@ export declare type ComplexHttpPartsModelRequest = FormData | Array<ComplexHttpP
 
 export declare interface ComplexHttpPartsModelRequestAddressPartDescriptor {
     name: "address";
-    body: HttpPartAddress;
+    body: HttpPart;
 }
 
 export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
@@ -36,21 +36,17 @@ export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
 
 export declare interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
     name: "pictures";
-    body: Array<HttpPartFileRequiredMetaData>;
-    filename?: string;
-    contentType?: string;
+    body: Array<HttpPart>;
 }
 
 export declare interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
     name: "previousAddresses";
-    body: HttpPartArray;
+    body: HttpPart;
 }
 
 export declare interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileRequiredMetaData;
-    filename?: string;
-    contentType?: string;
+    body: HttpPart;
 }
 
 export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
@@ -86,27 +82,21 @@ export declare type FileWithHttpPartOptionalContentTypeRequest = FormData | Arra
 
 export declare interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileOptionalContentType;
-    filename?: string;
-    contentType?: string;
+    body: HttpPart;
 }
 
 export declare type FileWithHttpPartRequiredContentTypeRequest = FormData | Array<FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileRequiredMetaData;
-    filename?: string;
-    contentType?: string;
+    body: HttpPart;
 }
 
 export declare type FileWithHttpPartSpecificContentTypeRequest = FormData | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileSpecificContentType;
-    filename?: string;
-    contentType?: string;
+    body: HttpPart;
 }
 
 export declare interface FormDataAnonymousModel {
@@ -334,21 +324,6 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
 
 export declare interface HttpPart {
-}
-
-export declare interface HttpPartAddress {
-}
-
-export declare interface HttpPartArray {
-}
-
-export declare interface HttpPartFileOptionalContentType {
-}
-
-export declare interface HttpPartFileRequiredMetaData {
-}
-
-export declare interface HttpPartFileSpecificContentType {
 }
 
 export declare type JsonPartRequest = FormData | Array<JsonPartRequestAddressPartDescriptor | JsonPartRequestProfileImagePartDescriptor>;
