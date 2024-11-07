@@ -91,7 +91,9 @@ export async function test2(
 
 export function _test3Send(
   context: Client,
-  body: { prop: string },
+  body: {
+    prop: string;
+  },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -115,7 +117,9 @@ export async function _test3Deserialize(
 
 export async function test3(
   context: Client,
-  body: { prop: string },
+  body: {
+    prop: string;
+  },
   options: ATest3OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test3Send(context, body, options);
@@ -124,7 +128,9 @@ export async function test3(
 
 export function _test4Send(
   context: Client,
-  body: { prop: string },
+  body: {
+    prop: string;
+  },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -148,7 +154,9 @@ export async function _test4Deserialize(
 
 export async function test4(
   context: Client,
-  body: { prop: string },
+  body: {
+    prop: string;
+  },
   options: ATest4OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _test4Send(context, body, options);

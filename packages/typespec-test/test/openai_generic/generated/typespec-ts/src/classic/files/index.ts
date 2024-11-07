@@ -10,18 +10,18 @@ import {
   download,
 } from "../../api/files/index.js";
 import {
+  OpenAIFile,
+  ListFilesResponse,
+  CreateFileRequest,
+  DeleteFileResponse,
+} from "../../models/models.js";
+import {
   FilesListOptionalParams,
   FilesCreateOptionalParams,
   FilesRetrieveOptionalParams,
   FilesDeleteOptionalParams,
   FilesDownloadOptionalParams,
 } from "../../api/options.js";
-import {
-  ListFilesResponse,
-  CreateFileRequest,
-  OpenAIFile,
-  DeleteFileResponse,
-} from "../../models/models.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {

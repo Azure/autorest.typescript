@@ -3,8 +3,8 @@
 
 import { ParametrizedHostContext } from "../../api/parametrizedHostContext.js";
 import { listCollections } from "../../api/confidentialLedger/index.js";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/options.js";
 import { Collection } from "../../models/models.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/options.js";
 
 /** Interface representing a ConfidentialLedger operations. */
 export interface ConfidentialLedgerOperations {

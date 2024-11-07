@@ -114,7 +114,7 @@ export interface Delete202Headers {
 // @public
 export interface Delete202Response extends HttpResponse {
     // (undocumented)
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
     // (undocumented)
     headers: RawHttpHeaders & Delete202Headers;
     // (undocumented)
@@ -144,7 +144,7 @@ export interface DeleteDeployment202Headers {
 // @public
 export interface DeleteDeployment202Response extends HttpResponse {
     // (undocumented)
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
     // (undocumented)
     headers: RawHttpHeaders & DeleteDeployment202Headers;
     // (undocumented)
@@ -169,7 +169,7 @@ export interface DeleteDeploymentDefaultResponse extends HttpResponse {
 // @public
 export interface DeleteDeploymentLogicalResponse extends HttpResponse {
     // (undocumented)
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
     // (undocumented)
     status: "200";
 }
@@ -180,7 +180,7 @@ export type DeleteDeploymentParameters = RequestParameters;
 // @public
 export interface DeleteLogicalResponse extends HttpResponse {
     // (undocumented)
-    body: OperationStatusErrorOutput;
+    body: OperationStatusOutput;
     // (undocumented)
     status: "200";
 }
@@ -730,7 +730,7 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
 export type OperationStateOutput = string;
 
 // @public
-export interface OperationStatusErrorOutput {
+export interface OperationStatusOutput {
     error?: ErrorModel;
     id: string;
     status: OperationStateOutput;

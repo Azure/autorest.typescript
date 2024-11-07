@@ -44,7 +44,33 @@ import {
   cancelVectorStoreFileBatch,
   listVectorStoreFileBatchFiles,
 } from "../../api/agents/index.js";
-import { Agent } from "http";
+import {
+  Agent,
+  OpenAIPageableListOfAgent,
+  AgentDeletionStatus,
+  MessageRole,
+  AgentThread,
+  ThreadDeletionStatus,
+  ThreadMessage,
+  OpenAIPageableListOfThreadMessage,
+  ThreadRun,
+  OpenAIPageableListOfThreadRun,
+  ToolOutput,
+  RunStep,
+  OpenAIPageableListOfRunStep,
+  FileListResponse,
+  OpenAIFile,
+  FilePurpose,
+  FileDeletionStatus,
+  FileContentResponse,
+  OpenAIPageableListOfVectorStore,
+  VectorStore,
+  VectorStoreDeletionStatus,
+  OpenAIPageableListOfVectorStoreFile,
+  VectorStoreFile,
+  VectorStoreFileDeletionStatus,
+  VectorStoreFileBatch,
+} from "../../models/models.js";
 import {
   AgentsCreateAgentOptionalParams,
   AgentsListAgentsOptionalParams,
@@ -87,32 +113,6 @@ import {
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsListVectorStoreFileBatchFilesOptionalParams,
 } from "../../api/options.js";
-import {
-  OpenAIPageableListOfAgent,
-  AgentDeletionStatus,
-  AgentThread,
-  ThreadDeletionStatus,
-  MessageRole,
-  ThreadMessage,
-  OpenAIPageableListOfThreadMessage,
-  ThreadRun,
-  OpenAIPageableListOfThreadRun,
-  ToolOutput,
-  RunStep,
-  OpenAIPageableListOfRunStep,
-  FileListResponse,
-  FilePurpose,
-  OpenAIFile,
-  FileDeletionStatus,
-  FileContentResponse,
-  OpenAIPageableListOfVectorStore,
-  VectorStore,
-  VectorStoreDeletionStatus,
-  OpenAIPageableListOfVectorStoreFile,
-  VectorStoreFile,
-  VectorStoreFileDeletionStatus,
-  VectorStoreFileBatch,
-} from "../../models/models.js";
 
 /** Interface representing a Agents operations. */
 export interface AgentsOperations {
