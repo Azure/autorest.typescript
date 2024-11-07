@@ -74,10 +74,7 @@ import {
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
+import { getUnionAsEnum } from "@azure-tools/typespec-azure-core";
 
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -422,18 +419,18 @@ function getSchemaForUnion(
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-            .map(
-              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
-            )
-            .join(" | ");
+          .map(
+            (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+          )
+          .join(" | ");
     const outputUnionAlias =
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-            .map(
-              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
-            )
-            .join(" | ");
+          .map(
+            (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+          )
+          .join(" | ");
     if (!union.expression) {
       const unionName = union.name
         ? normalizeName(union.name, NameType.Interface)
@@ -605,7 +602,7 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  const overridedModelName =
+  let overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -615,28 +612,27 @@ function getSchemaForModel(
       .join("") + model.name;
   let name = model.name;
   if (
-    !overridedModelName &&
+    overridedModelName === name &&
     model.templateMapper &&
     model.templateMapper.args &&
-    model.templateMapper.args.length > 0 &&
-    getPagedResult(program, model)
+    model.templateMapper.args.length > 0
   ) {
     const templateTypes = model.templateMapper.args.filter((it) =>
       isType(it)
     ) as Type[];
-    name =
-      templateTypes
-        .map((it: Type) => {
-          switch (it.kind) {
-            case "Model":
-              return it.name;
-            case "String":
-              return it.value;
-            default:
-              return "";
-          }
-        })
-        .join("") + "List";
+    name += templateTypes
+      .map((it: Type) => {
+        switch (it.kind) {
+          case "Model":
+            return it.name;
+          case "String":
+            return it.value;
+          default:
+            return "";
+        }
+      })
+      .join("");
+    overridedModelName = name;
   }
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
@@ -1107,13 +1103,11 @@ function getSchemaForRecordModel(
         schema.outputValueTypeName = `${valueType.outputTypeName}`;
       }
     } else if (isUnknownType(indexer.value!)) {
-      schema.typeName = `Record<string, ${
-        valueType.typeName ?? valueType.type
-      }>`;
-      if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = `Record<string, ${
-          valueType.outputTypeName ?? valueType.type
+      schema.typeName = `Record<string, ${valueType.typeName ?? valueType.type
         }>`;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Record<string, ${valueType.outputTypeName ?? valueType.type
+          }>`;
       }
     } else {
       schema.typeName = `Record<string, ${getTypeName(valueType, [
