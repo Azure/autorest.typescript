@@ -474,13 +474,15 @@ export async function emitModularOperationsFromTypeSpec(
     needNamespaces = true,
     needAzureCore = false,
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    experimentalExtensibleEnums = false
   }: {
     mustEmptyDiagnostic?: boolean;
     needNamespaces?: boolean;
     needAzureCore?: boolean;
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    experimentalExtensibleEnums?: boolean;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -503,6 +505,7 @@ export async function emitModularOperationsFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
+    dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
     serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
     const modularCodeModel = emitCodeModel(

@@ -559,7 +559,7 @@ describe("header parameters", () => {
       });
     });
     describe("extensible", async () => {
-      it.only("in regular headers", async () => {
+      it("in regular headers", async () => {
         const tspDefinition = `
         import "@typespec/http";
         import "@typespec/rest";
@@ -594,6 +594,7 @@ describe("header parameters", () => {
             needNamespaces: false,
             needAzureCore: false,
             withRawContent: true,
+            experimentalExtensibleEnums: true
           }
         );
         assert.ok(paramOutput);
@@ -611,7 +612,7 @@ describe("header parameters", () => {
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
-            testHeader: string | "A" | "B",
+            testHeader: string,
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
           ): StreamableMethod {
@@ -632,7 +633,7 @@ describe("header parameters", () => {
           }
           export async function get(
             context: Client,
-            testHeader: string | "A" | "B",
+            testHeader: string,
             body: string,
             options: GetOptionalParams = { requestOptions: {} },
           ): Promise<void> {
