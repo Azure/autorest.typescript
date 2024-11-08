@@ -224,7 +224,7 @@ function getOperationSignatureParameters(
     .map((p) => {
       return {
         name: p.clientName,
-        type: getTypeExpression(context, p.type.tcgcType!)
+        type: getTypeExpression(context, p.tcgcType ?? p.type.tcgcType!)
       };
     })
     .forEach((p) => {
@@ -274,6 +274,9 @@ export function getOperationFunction(
     // https://github.com/Azure/autorest.typescript/issues/2313
   }
 
+  if (operation.name === "floatSeconds") {
+    operation;
+  }
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(context, operation, clientType);
