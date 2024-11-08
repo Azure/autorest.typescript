@@ -18,6 +18,13 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
+export enum KnownServiceApiVersions {
+    V2021_10 = "2021-10",
+    V2022_10 = "2022-10",
+    V2023_07_01 = "2023-07-01"
+}
+
+// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;

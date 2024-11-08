@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
@@ -28,6 +29,7 @@ export interface AnomalyDetectorContext extends Client {}
 /** Optional parameters for the client. */
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
   /** Api Version */
+  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 

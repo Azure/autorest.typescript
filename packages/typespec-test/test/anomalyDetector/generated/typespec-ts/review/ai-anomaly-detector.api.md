@@ -31,6 +31,12 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
+export enum KnownVersions {
+    // (undocumented)
+    v1_1 = "v1.1"
+}
+
+// @public
 export type MultivariateAlignMode = "Inner" | "Outer";
 
 // @public
