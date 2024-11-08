@@ -1634,8 +1634,8 @@ export function dimensionValueListDeserializer(item: any): DimensionValueList {
     value: !item["value"]
       ? item["value"]
       : item["value"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     nextLink: item["nextLink"],
   };
 }
@@ -1689,8 +1689,8 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
     supportedAggregationTypes: !item["supportedAggregationTypes"]
       ? item["supportedAggregationTypes"]
       : item["supportedAggregationTypes"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     unit: item["unit"],
     metricAvailabilities: !item["metricAvailabilities"]
       ? item["metricAvailabilities"]
@@ -1938,8 +1938,8 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
     values: !item["values"]
       ? item["values"]
       : item["values"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
   };
 }
 
@@ -2101,8 +2101,8 @@ export function testProfileSerializer(item: TestProfile): any {
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionSerializer(
-        item["targetResourceConfigurations"],
-      ),
+          item["targetResourceConfigurations"],
+        ),
   };
 }
 
@@ -2116,8 +2116,8 @@ export function testProfileDeserializer(item: any): TestProfile {
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
-        item["targetResourceConfigurations"],
-      ),
+          item["targetResourceConfigurations"],
+        ),
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
@@ -2218,8 +2218,8 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
     configurations: !item["configurations"]
       ? item["configurations"]
       : functionFlexConsumptionResourceConfigurationRecordSerializer(
-        item["configurations"],
-      ),
+          item["configurations"],
+        ),
   };
 }
 
@@ -2231,8 +2231,8 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
     configurations: !item["configurations"]
       ? item["configurations"]
       : functionFlexConsumptionResourceConfigurationRecordDeserializer(
-        item["configurations"],
-      ),
+          item["configurations"],
+        ),
   };
 }
 
@@ -2374,8 +2374,8 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
       : targetResourceConfigurationsUnionDeserializer(
-        item["targetResourceConfigurations"],
-      ),
+          item["targetResourceConfigurations"],
+        ),
     status: item["status"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
@@ -2481,8 +2481,8 @@ export function testProfileRunRecommendationDeserializer(
     configurations: !item["configurations"]
       ? item["configurations"]
       : item["configurations"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
   };
 }
 
@@ -2543,4 +2543,16 @@ export function testProfileRunArrayDeserializer(
   return result.map((item) => {
     return testProfileRunDeserializer(item);
   });
+}
+
+/** Azure Load Testing API versions. */
+export enum KnownAPIVersions {
+  /** The 2022-11-01 version of the Azure Load Testing API. */
+  v2022_11_01 = "2022-11-01",
+  /** The 2023-04-01-preview version of the Azure Load Testing API. */
+  v2023_04_01_preview = "2023-04-01-preview",
+  /** The 2024-03-01-preview version of the Azure Load Testing API. */
+  v2024_03_01_preview = "2024-03-01-preview",
+  /** The 2024-05-01-preview version of the Azure Load Testing API. */
+  v2024_05_01_preview = "2024-05-01-preview",
 }

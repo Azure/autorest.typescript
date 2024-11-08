@@ -119,8 +119,8 @@ export function metaSerializer(item: Meta): any {
     profile: !item["profile"]
       ? item["profile"]
       : item["profile"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     security: !item["security"]
       ? item["security"]
       : codingArraySerializer(item["security"]),
@@ -136,8 +136,8 @@ export function metaDeserializer(item: any): Meta {
     profile: !item["profile"]
       ? item["profile"]
       : item["profile"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     security: !item["security"]
       ? item["security"]
       : codingArrayDeserializer(item["security"]),
@@ -299,8 +299,8 @@ export function patientDocumentSerializer(item: PatientDocument): any {
     administrativeMetadata: !item["administrativeMetadata"]
       ? item["administrativeMetadata"]
       : documentAdministrativeMetadataSerializer(
-        item["administrativeMetadata"],
-      ),
+          item["administrativeMetadata"],
+        ),
     content: documentContentSerializer(item["content"]),
   };
 }
@@ -984,8 +984,8 @@ export function radiologyInsightsModelConfigurationSerializer(
     inferenceTypes: !item["inferenceTypes"]
       ? item["inferenceTypes"]
       : item["inferenceTypes"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     inferenceOptions: !item["inferenceOptions"]
       ? item["inferenceOptions"]
       : radiologyInsightsInferenceOptionsSerializer(item["inferenceOptions"]),
@@ -2135,13 +2135,13 @@ export function followupCommunicationInferenceDeserializer(
     dateTime: !item["dateTime"]
       ? item["dateTime"]
       : item["dateTime"].map((p: any) => {
-        return new Date(p);
-      }),
+          return new Date(p);
+        }),
     recipient: !item["recipient"]
       ? item["recipient"]
       : item["recipient"].map((p: any) => {
-        return p;
-      }),
+          return p;
+        }),
     wasAcknowledged: item["wasAcknowledged"],
   };
 }
@@ -2285,6 +2285,9 @@ export function radiologyInsightsResultDeserializer(
       : radiologyInsightsInferenceResultDeserializer(item["result"]),
   };
 }
+
+/** Repeatability Result header options */
+export type RepeatabilityResult = "accepted" | "rejected";
 
 /** Known values of {@link ApiVersion} that the service accepts. */
 export enum KnownApiVersion {
