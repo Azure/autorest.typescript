@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import * as fsextra from "fs-extra";
-
 import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
@@ -60,7 +59,10 @@ import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import { buildClientContext } from "./modular/buildClientContext.js";
+import {
+  getClientContextPath,
+  buildClientContext
+} from "./modular/buildClientContext.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
@@ -379,7 +381,8 @@ export async function $onEmit(context: EmitContext) {
             ...modularPackageInfo,
             dependencies: {
               "@azure/core-util": "^1.9.2"
-            }
+            },
+            clientContextPaths: getRelativeContextPaths(modularCodeModel)
           };
         }
       }
@@ -424,15 +427,25 @@ export async function $onEmit(context: EmitContext) {
       );
     }
   }
+
+  function getRelativeContextPaths(codeModel: ModularCodeModel) {
+    return codeModel.clients
+      .map((subClient) => getClientContextPath(subClient, codeModel))
+      .map((path) => path.substring(path.indexOf("src")));
+  }
 }
 
 export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
+  const flattenUnionAsEnum =
+    context.options["experimentalExtensibleEnums"] === undefined
+      ? isArm(context)
+      : context.options["experimentalExtensibleEnums"];
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": false,
+    "flatten-union-as-enum": flattenUnionAsEnum,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -449,4 +462,10 @@ export async function createContextWithDefaultOptions(
     context,
     context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
   )) as SdkContext;
+}
+
+// TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
+function isArm(context: EmitContext<Record<string, any>>) {
+  const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
+  return packageName?.startsWith("@azure/arm-");
 }

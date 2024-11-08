@@ -143,6 +143,7 @@ export {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
+  KnownServiceApiVersions,
 } from "./models/index.js";
 export {
   OpenAIClientOptionalParams,

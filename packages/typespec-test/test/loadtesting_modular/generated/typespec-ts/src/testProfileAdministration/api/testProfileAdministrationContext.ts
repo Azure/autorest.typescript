@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../../logger.js";
+import { KnownAPIVersions } from "../../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -11,6 +12,7 @@ export interface TestProfileAdministrationContext extends Client {}
 export interface TestProfileAdministrationClientOptionalParams
   extends ClientOptions {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownAPIVersions} that the service accepts. */
   apiVersion?: string;
 }
 
@@ -21,11 +23,11 @@ export function createTestProfileAdministration(
 ): TestProfileAdministrationContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-load-testing/1.0.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

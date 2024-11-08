@@ -181,8 +181,8 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
     categories: !item["categories"]
       ? item["categories"]
       : item["categories"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     outputType: item["outputType"],
   };
 }
@@ -268,13 +268,13 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
     categories: !item["categories"]
       ? item["categories"]
       : item["categories"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     blocklistNames: !item["blocklistNames"]
       ? item["blocklistNames"]
       : item["blocklistNames"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     breakByBlocklists: item["breakByBlocklists"],
     outputType: item["outputType"],
   };
@@ -298,8 +298,8 @@ export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
     blocklistsMatchResults: !item["blocklistsMatchResults"]
       ? item["blocklistsMatchResults"]
       : textBlocklistMatchResultArrayDeserializer(
-          item["blocklistsMatchResults"],
-        ),
+        item["blocklistsMatchResults"],
+      ),
     analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
       item["analyzeResults"],
     ),

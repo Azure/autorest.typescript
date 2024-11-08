@@ -36,10 +36,18 @@ export declare enum KnownCreatedByType {
     Key = "Key"
 }
 
-export declare enum KnownResourceProvisioningState {
+export declare enum KnownProvisioningState {
     Succeeded = "Succeeded",
     Failed = "Failed",
-    Canceled = "Canceled"
+    Canceled = "Canceled",
+    Provisioning = "Provisioning",
+    Updating = "Updating",
+    Deleting = "Deleting",
+    Accepted = "Accepted"
+}
+
+export declare enum KnownVersions {
+    v2023_12_01_preview = "2023-12-01-preview"
 }
 
 export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
@@ -92,7 +100,7 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-export declare type ProvisioningState = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+export declare type ProvisioningState = string;
 
 export declare interface ProxyResource extends Resource {
 }
@@ -103,8 +111,6 @@ export declare interface Resource {
     readonly type?: string;
     readonly systemData?: SystemData;
 }
-
-export declare type ResourceProvisioningState = string;
 
 export declare class ResourcesClient {
     private _client;
