@@ -7,6 +7,31 @@ import {
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
+  describe("cookie parameters", () => {
+    it("should report warning for cookie parameter", async () => {
+      try {
+        await emitParameterFromTypeSpec(
+          `
+          op test(@cookie token: string): string;
+          `
+        );
+        assert.fail("should throw error");
+      } catch (e: any) {
+        assert.strictEqual("Parameter 'token' with type 'cookie' is not supported and we would ignore this parameter.", e[0].message);
+      }
+    });
+
+    it("should not include cookie parameter", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
+        op test(@cookie token: string): string;
+        `
+        , {
+          mustEmptyDiagnostic: false
+        });
+      assert.notDeepInclude(parameters?.content, "token");
+    });
+  });
   describe("query parameters", () => {
     describe("apiVersion in query", () => {
       it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
