@@ -511,6 +511,7 @@ function emitParameter(
   implementation: string
 ): Parameter | undefined {
   if (parameter.type === "cookie") {
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
     reportDiagnostic(context.program, {
       code: "parameter-type-not-supported",
       format: {
