@@ -124,6 +124,12 @@ export interface ImageData {
 }
 
 // @public
+export enum KnownVersions {
+    // (undocumented)
+    v2023_10_01 = "2023-10-01"
+}
+
+// @public
 export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;

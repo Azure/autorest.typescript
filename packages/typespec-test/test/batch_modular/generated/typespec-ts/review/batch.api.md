@@ -1323,6 +1323,11 @@ export interface JobStatistics {
 }
 
 // @public
+export enum KnownVersions {
+    "2023-05-01.17.0" = "2023-05-01.17.0"
+}
+
+// @public
 export interface LinuxUserConfiguration {
     gid?: number;
     sshPrivateKey?: string;

@@ -194,6 +194,14 @@ export enum KnownAggregationType {
 }
 
 // @public
+export enum KnownAPIVersions {
+    v2022_11_01 = "2022-11-01",
+    v2023_04_01_preview = "2023-04-01-preview",
+    v2024_03_01_preview = "2024-03-01-preview",
+    v2024_05_01_preview = "2024-05-01-preview"
+}
+
+// @public
 export enum KnownCertificateType {
     AKV_CERT_URI = "AKV_CERT_URI"
 }

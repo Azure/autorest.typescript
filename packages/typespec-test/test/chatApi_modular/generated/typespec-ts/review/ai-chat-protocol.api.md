@@ -87,6 +87,12 @@ export interface CreateStreamingOptionalParams extends OperationOptions {
 export type FinishReason = "stop" | "length";
 
 // @public
+export enum KnownAPIVersion {
+    // (undocumented)
+    v20231001Preview = "2023-10-01-preview"
+}
+
+// @public
 export interface StreamingChatCompletionOptionsRecord {
     context?: Record<string, any>;
     messages: ChatMessage[];
