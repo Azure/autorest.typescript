@@ -257,18 +257,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/TodoAttachment"
-                      }
-                    }
-                  },
-                  "required": [
-                    "items"
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoAttachment"
+                  }
                 }
               }
             }

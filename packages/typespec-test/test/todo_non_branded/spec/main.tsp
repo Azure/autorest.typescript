@@ -249,9 +249,9 @@ namespace TodoItems {
 
   @route("{itemId}/attachments")
   namespace Attachments {
-    @list op list(
+    op list(
       @path itemId: TodoItem.id,
-    ): { @pageItems items: TodoAttachment[] } | NotFoundResponse;
+    ): TodoAttachment[] | NotFoundResponse;
 
     @sharedRoute
     @post

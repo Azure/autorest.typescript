@@ -135,7 +135,7 @@ export interface TodoItemsDelete404Response extends HttpResponse {
 /** The request has succeeded. */
 export interface TodoItemsAttachmentsList200Response extends HttpResponse {
   status: "200";
-  body: { items: TodoAttachmentOutput[] };
+  body: TodoAttachmentOutput[];
 }
 
 /** The server cannot find the requested resource. */
