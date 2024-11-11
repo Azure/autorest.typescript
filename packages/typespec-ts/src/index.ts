@@ -56,7 +56,7 @@ import { provideContext, useContext } from "./contextManager.js";
 
 import { EmitterOptions } from "./lib.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
-import { Project } from "ts-morph";
+import { Project, SourceFile } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import {
@@ -279,7 +279,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     for (const subClient of modularCodeModel.clients) {
-      buildApiOptions(subClient, modularCodeModel);
+      buildApiOptions(dpgContext, subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
       buildRestorePoller(modularCodeModel, subClient);
@@ -306,29 +306,16 @@ export async function $onEmit(context: EmitContext) {
     binder.resolveAllReferences(modularSourcesRoot);
 
     for (const file of project.getSourceFiles()) {
-      file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
-      file.getImportDeclarations().map((importDeclaration) => {
-        importDeclaration.getNamedImports().map((namedImport) => {
-          if (
-            namedImport
-              .getNameNode()
-              .findReferencesAsNodes()
-              .filter((n) => {
-                return n.getSourceFile().getFilePath() === file.getFilePath();
-              }).length === 1
-          ) {
-            namedImport.remove();
-          }
-        });
-        if (importDeclaration.getNamedImports().length === 0) {
-          importDeclaration.remove();
+      file.fixMissingImports(
+        {},
+        {
+          importModuleSpecifierEnding: "js",
+          importModuleSpecifierPreference: "relative",
+          includePackageJsonAutoImports: "off",
+          excludeLibrarySymbolsInNavTo: true
         }
-      });
-      file.getExportDeclarations().map((exportDeclaration) => {
-        if (exportDeclaration.getNamedExports().length === 0) {
-          exportDeclaration.remove();
-        }
-      });
+      );
+      await removeUnusedImports(file);
       file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,
@@ -433,6 +420,33 @@ export async function $onEmit(context: EmitContext) {
       .map((subClient) => getClientContextPath(subClient, codeModel))
       .map((path) => path.substring(path.indexOf("src")));
   }
+}
+
+export async function removeUnusedImports(file: SourceFile) {
+  file.getImportDeclarations().map((importDeclaration) => {
+    importDeclaration.getFullText();
+    importDeclaration.getNamedImports().map((namedImport) => {
+      namedImport.getFullText();
+      if (
+        namedImport
+          .getNameNode()
+          .findReferencesAsNodes()
+          .filter((n) => {
+            return n.getSourceFile().getFilePath() === file.getFilePath();
+          }).length === 1
+      ) {
+        namedImport.remove();
+      }
+    });
+    if (importDeclaration.getNamedImports().length === 0) {
+      importDeclaration.remove();
+    }
+  });
+  file.getExportDeclarations().map((exportDeclaration) => {
+    if (exportDeclaration.getNamedExports().length === 0) {
+      exportDeclaration.remove();
+    }
+  });
 }
 
 export async function createContextWithDefaultOptions(

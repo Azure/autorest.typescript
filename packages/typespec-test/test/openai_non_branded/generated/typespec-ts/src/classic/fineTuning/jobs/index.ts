@@ -9,18 +9,18 @@ import {
   cancel,
 } from "../../../api/fineTuning/jobs/index.js";
 import {
+  CreateFineTuningJobRequest,
+  FineTuningJob,
+  ListPaginatedFineTuningJobsResponse,
+  ListFineTuningJobEventsResponse,
+} from "../../../models/models.js";
+import {
   FineTuningJobsCreateOptionalParams,
   FineTuningJobsListOptionalParams,
   FineTuningJobsRetrieveOptionalParams,
   FineTuningJobsListEventsOptionalParams,
   FineTuningJobsCancelOptionalParams,
 } from "../../../api/options.js";
-import {
-  CreateFineTuningJobRequest,
-  FineTuningJob,
-  ListPaginatedFineTuningJobsResponse,
-  ListFineTuningJobEventsResponse,
-} from "../../../models/models.js";
 
 /** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {

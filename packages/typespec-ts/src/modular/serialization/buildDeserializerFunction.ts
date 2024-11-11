@@ -31,7 +31,7 @@ export function buildModelDeserializer(
   if (!isSupportedSerializeType(type)) {
     return undefined;
   }
-  if (type.kind === "model") {
+  if (type.kind === "model" || type.kind === "union" || type.kind === "enum") {
     if (
       !type.usage ||
       (type.usage !== undefined &&
