@@ -170,9 +170,7 @@ export interface TodoItemsAttachmentsList {
 // @public
 export interface TodoItemsAttachmentsList200Response extends HttpResponse {
     // (undocumented)
-    body: {
-        items: TodoAttachmentOutput[];
-    };
+    body: TodoAttachmentOutput[];
     // (undocumented)
     status: "200";
 }
