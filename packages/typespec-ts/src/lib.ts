@@ -267,6 +267,12 @@ const libDef = {
       messages: {
         default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
       }
+    },
+    "parameter-type-not-supported": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
+      }
     }
   },
   emitter: {
