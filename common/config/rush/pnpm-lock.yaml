@@ -231,9 +231,9 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/cadl-ranch': ^0.16.1
+      '@azure-tools/cadl-ranch': ^0.15.0
       '@azure-tools/cadl-ranch-api': ^0.5.0
-      '@azure-tools/cadl-ranch-expect': ^0.15.6
+      '@azure-tools/cadl-ranch-expect': ^0.15.5
       '@azure-tools/cadl-ranch-specs': ^0.38.0
       '@azure-tools/rlc-common': workspace:^0.34.0
       '@azure-tools/typespec-autorest': '>=0.48.0 <1.0.0'
@@ -290,7 +290,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/cadl-ranch': 0.16.1_maorf56vredk4k7ivyf3kw4p7i
+      '@azure-tools/cadl-ranch': 0.15.0_maorf56vredk4k7ivyf3kw4p7i
       '@azure-tools/cadl-ranch-api': 0.5.0
       '@azure-tools/cadl-ranch-expect': 0.15.6_f5giq3reeireto67b6daw62k5y
       '@azure-tools/cadl-ranch-specs': 0.38.0_uv4m3qq5ivkac27hpehot5vivy
@@ -513,45 +513,6 @@ packages:
       '@typespec/compiler': 0.61.2
       '@typespec/http': 0.61.0_@typespec+compiler@0.61.2
       '@typespec/rest': 0.61.0_rd6g2np7ypwc24nhrvozahtdfy
-      ajv: 8.17.1
-      axios: 1.7.7
-      body-parser: 1.20.3
-      deep-equal: 2.2.2
-      express: 4.21.1
-      express-promise-router: 4.1.1_express@4.21.1
-      form-data: 3.0.2
-      glob: 11.0.0
-      jackspeak: 4.0.1
-      js-yaml: 4.1.0
-      morgan: 1.10.0
-      multer: 1.4.5-lts.1
-      node-fetch: 3.3.2
-      picocolors: 1.1.0
-      source-map-support: 0.5.21
-      winston: 3.14.1
-      xml2js: 0.6.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/express'
-      - '@typespec/streams'
-      - '@typespec/versioning'
-      - debug
-      - supports-color
-    dev: true
-
-  /@azure-tools/cadl-ranch/0.16.1_maorf56vredk4k7ivyf3kw4p7i:
-    resolution: {integrity: sha512-4tyd+2GDsZjkcsiB14T2m5imkPCokJkFLKrPe0mINb5Z6DVVzk/2BkhId//zk9KinpYL0ThG9ewM1ZeJ0jnoeg==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@azure-tools/cadl-ranch-api': 0.5.0
-      '@azure-tools/cadl-ranch-coverage-sdk': 0.9.0
-      '@azure-tools/cadl-ranch-expect': 0.15.6_f5giq3reeireto67b6daw62k5y
-      '@azure/identity': 4.4.1
-      '@types/js-yaml': 4.0.6
-      '@typespec/compiler': 0.62.0
-      '@typespec/http': 0.62.0_@typespec+compiler@0.62.0
-      '@typespec/rest': 0.62.0_ehpjn7t5lr2snllrxt4bmumehe
       ajv: 8.17.1
       axios: 1.7.7
       body-parser: 1.20.3
