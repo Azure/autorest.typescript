@@ -40,8 +40,6 @@ withRawContent: true
 Model generated.
 
 ```ts models
-/** Type of Baz */
-export type Baz = "test" | "foo";
 /** Alias for Foo */
 export type Foo = "bar" | Baz | string;
 
@@ -49,7 +47,6 @@ export function fooSerializer(item: Foo): any {
   return item;
 }
 
-export function fooDeserializer(item: any): Foo {
-  return item;
-}
+/** Type of Baz */
+export type Baz = "test" | "foo";
 ```

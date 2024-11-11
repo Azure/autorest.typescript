@@ -93,6 +93,14 @@ export function receiveResultDeserializer(item: any): ReceiveResult {
   };
 }
 
+export function receiveDetailsArrayDeserializer(
+  result: Array<ReceiveDetails>,
+): any[] {
+  return result.map((item) => {
+    return receiveDetailsDeserializer(item);
+  });
+}
+
 /** Receive operation details per Cloud Event. */
 export interface ReceiveDetails {
   /** The Event Broker details. */
@@ -121,14 +129,6 @@ export function brokerPropertiesDeserializer(item: any): BrokerProperties {
     lockToken: item["lockToken"],
     deliveryCount: item["deliveryCount"],
   };
-}
-
-export function receiveDetailsArrayDeserializer(
-  result: Array<ReceiveDetails>,
-): any[] {
-  return result.map((item) => {
-    return receiveDetailsDeserializer(item);
-  });
 }
 
 /** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
@@ -164,6 +164,14 @@ export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
   };
 }
 
+export function failedLockTokenArrayDeserializer(
+  result: Array<FailedLockToken>,
+): any[] {
+  return result.map((item) => {
+    return failedLockTokenDeserializer(item);
+  });
+}
+
 /** Failed LockToken information. */
 export interface FailedLockToken {
   /** LockToken value */
@@ -180,14 +188,6 @@ export function failedLockTokenDeserializer(item: any): FailedLockToken {
     errorCode: item["errorCode"],
     errorDescription: item["errorDescription"],
   };
-}
-
-export function failedLockTokenArrayDeserializer(
-  result: Array<FailedLockToken>,
-): any[] {
-  return result.map((item) => {
-    return failedLockTokenDeserializer(item);
-  });
 }
 
 /** Array of lock token strings for the corresponding received Cloud Events to be released. */

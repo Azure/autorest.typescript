@@ -6,6 +6,8 @@ export declare enum KnownVersions {
     v2022_12_01_preview = "2022-12-01-preview"
 }
 
+export declare type RepeatabilityResult = "accepted" | "rejected";
+
 export declare interface RepeatableActionOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     repeatabilityFirstSent?: Date;
