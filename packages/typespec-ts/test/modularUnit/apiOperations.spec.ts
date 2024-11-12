@@ -166,6 +166,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _uploadFileRequestSerializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -247,6 +248,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _uploadFilesRequestSerializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -439,6 +441,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _downloadFileResponseDeserializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -520,6 +523,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _downloadFileResponseDeserializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,

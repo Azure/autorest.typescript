@@ -9,18 +9,18 @@ import {
   cancel,
 } from "../../api/fineTunes/index.js";
 import {
+  CreateFineTuneRequest,
+  FineTune,
+  ListFineTunesResponse,
+  ListFineTuneEventsResponse,
+} from "../../models/models.js";
+import {
   FineTunesCreateOptionalParams,
   FineTunesListOptionalParams,
   FineTunesRetrieveOptionalParams,
   FineTunesListEventsOptionalParams,
   FineTunesCancelOptionalParams,
 } from "../../api/options.js";
-import {
-  CreateFineTuneRequest,
-  FineTune,
-  ListFineTunesResponse,
-  ListFineTuneEventsResponse,
-} from "../../models/models.js";
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {

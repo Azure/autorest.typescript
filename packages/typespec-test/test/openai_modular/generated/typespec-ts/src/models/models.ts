@@ -109,6 +109,14 @@ export function audioTranscriptionDeserializer(item: any): AudioTranscription {
 /** Defines the possible descriptors for available audio operation responses. */
 export type AudioTaskLabel = "transcribe" | "translate";
 
+export function audioTranscriptionSegmentArrayDeserializer(
+  result: Array<AudioTranscriptionSegment>,
+): any[] {
+  return result.map((item) => {
+    return audioTranscriptionSegmentDeserializer(item);
+  });
+}
+
 /**
  * Extended information about a single segment of transcribed audio data.
  * Segments generally represent roughly 5-10 seconds of speech. Segment boundaries typically occur between words but not
@@ -162,11 +170,11 @@ export function audioTranscriptionSegmentDeserializer(
   };
 }
 
-export function audioTranscriptionSegmentArrayDeserializer(
-  result: Array<AudioTranscriptionSegment>,
+export function audioTranscriptionWordArrayDeserializer(
+  result: Array<AudioTranscriptionWord>,
 ): any[] {
   return result.map((item) => {
-    return audioTranscriptionSegmentDeserializer(item);
+    return audioTranscriptionWordDeserializer(item);
   });
 }
 
@@ -188,14 +196,6 @@ export function audioTranscriptionWordDeserializer(
     start: item["start"],
     end: item["end"],
   };
-}
-
-export function audioTranscriptionWordArrayDeserializer(
-  result: Array<AudioTranscriptionWord>,
-): any[] {
-  return result.map((item) => {
-    return audioTranscriptionWordDeserializer(item);
-  });
 }
 
 /** The configuration information for an audio translation request. */
@@ -274,6 +274,14 @@ export function audioTranslationDeserializer(item: any): AudioTranslation {
   };
 }
 
+export function audioTranslationSegmentArrayDeserializer(
+  result: Array<AudioTranslationSegment>,
+): any[] {
+  return result.map((item) => {
+    return audioTranslationSegmentDeserializer(item);
+  });
+}
+
 /**
  * Extended information about a single segment of translated audio data.
  * Segments generally represent roughly 5-10 seconds of speech. Segment boundaries typically occur between words but not
@@ -325,14 +333,6 @@ export function audioTranslationSegmentDeserializer(
     }),
     seek: item["seek"],
   };
-}
-
-export function audioTranslationSegmentArrayDeserializer(
-  result: Array<AudioTranslationSegment>,
-): any[] {
-  return result.map((item) => {
-    return audioTranslationSegmentDeserializer(item);
-  });
 }
 
 /**
@@ -498,6 +498,14 @@ export function completionsDeserializer(item: any): Completions {
   };
 }
 
+export function contentFilterResultsForPromptArrayDeserializer(
+  result: Array<ContentFilterResultsForPrompt>,
+): any[] {
+  return result.map((item) => {
+    return contentFilterResultsForPromptDeserializer(item);
+  });
+}
+
 /** Content filtering results for a single prompt in the request. */
 export interface ContentFilterResultsForPrompt {
   /** The index of this prompt in the set of prompt results */
@@ -645,6 +653,14 @@ export function contentFilterDetailedResultsDeserializer(
   };
 }
 
+export function contentFilterBlocklistIdResultArrayDeserializer(
+  result: Array<ContentFilterBlocklistIdResult>,
+): any[] {
+  return result.map((item) => {
+    return contentFilterBlocklistIdResultDeserializer(item);
+  });
+}
+
 /** Represents the outcome of an evaluation against a custom blocklist as performed by content filtering. */
 export interface ContentFilterBlocklistIdResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -662,19 +678,9 @@ export function contentFilterBlocklistIdResultDeserializer(
   };
 }
 
-export function contentFilterBlocklistIdResultArrayDeserializer(
-  result: Array<ContentFilterBlocklistIdResult>,
-): any[] {
+export function choiceArrayDeserializer(result: Array<Choice>): any[] {
   return result.map((item) => {
-    return contentFilterBlocklistIdResultDeserializer(item);
-  });
-}
-
-export function contentFilterResultsForPromptArrayDeserializer(
-  result: Array<ContentFilterResultsForPrompt>,
-): any[] {
-  return result.map((item) => {
-    return contentFilterResultsForPromptDeserializer(item);
+    return choiceDeserializer(item);
   });
 }
 
@@ -853,12 +859,6 @@ export type CompletionsFinishReason =
   | "content_filter"
   | "function_call"
   | "tool_calls";
-
-export function choiceArrayDeserializer(result: Array<Choice>): any[] {
-  return result.map((item) => {
-    return choiceDeserializer(item);
-  });
-}
 
 /**
  * Representation of the token counts processed for a completions request.
@@ -1043,6 +1043,14 @@ export function chatCompletionsOptionsSerializer(
   };
 }
 
+export function chatRequestMessageUnionArraySerializer(
+  result: Array<ChatRequestMessageUnion>,
+): any[] {
+  return result.map((item) => {
+    return chatRequestMessageUnionSerializer(item);
+  });
+}
+
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessage {
   /** The chat role associated with this message. */
@@ -1146,10 +1154,12 @@ export function _chatRequestUserMessageContentSerializer(
   return item;
 }
 
-export function _chatRequestUserMessageContentDeserializer(
-  item: any,
-): _ChatRequestUserMessageContent {
-  return item;
+export function chatMessageContentItemUnionArraySerializer(
+  result: Array<ChatMessageContentItemUnion>,
+): any[] {
+  return result.map((item) => {
+    return chatMessageContentItemUnionSerializer(item);
+  });
 }
 
 /** An abstract representation of a structured content item within a chat message. */
@@ -1239,14 +1249,6 @@ export function chatMessageImageUrlSerializer(item: ChatMessageImageUrl): any {
 /** A representation of the possible image detail levels for image-based chat completions message content. */
 export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
 
-export function chatMessageContentItemUnionArraySerializer(
-  result: Array<ChatMessageContentItemUnion>,
-): any[] {
-  return result.map((item) => {
-    return chatMessageContentItemUnionSerializer(item);
-  });
-}
-
 /** A request chat message representing response or action from the assistant. */
 export interface ChatRequestAssistantMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'assistant' for assistant messages. */
@@ -1281,6 +1283,22 @@ export function chatRequestAssistantMessageSerializer(
       ? item["functionCall"]
       : functionCallSerializer(item["functionCall"]),
   };
+}
+
+export function chatCompletionsToolCallUnionArraySerializer(
+  result: Array<ChatCompletionsToolCallUnion>,
+): any[] {
+  return result.map((item) => {
+    return chatCompletionsToolCallUnionSerializer(item);
+  });
+}
+
+export function chatCompletionsToolCallUnionArrayDeserializer(
+  result: Array<ChatCompletionsToolCallUnion>,
+): any[] {
+  return result.map((item) => {
+    return chatCompletionsToolCallUnionDeserializer(item);
+  });
 }
 
 /**
@@ -1399,22 +1417,6 @@ export function functionCallDeserializer(item: any): FunctionCall {
   };
 }
 
-export function chatCompletionsToolCallUnionArraySerializer(
-  result: Array<ChatCompletionsToolCallUnion>,
-): any[] {
-  return result.map((item) => {
-    return chatCompletionsToolCallUnionSerializer(item);
-  });
-}
-
-export function chatCompletionsToolCallUnionArrayDeserializer(
-  result: Array<ChatCompletionsToolCallUnion>,
-): any[] {
-  return result.map((item) => {
-    return chatCompletionsToolCallUnionDeserializer(item);
-  });
-}
-
 /** A request chat message representing requested output from a configured tool. */
 export interface ChatRequestToolMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'tool' for tool messages. */
@@ -1451,11 +1453,11 @@ export function chatRequestFunctionMessageSerializer(
   return { role: item["role"], name: item["name"], content: item["content"] };
 }
 
-export function chatRequestMessageUnionArraySerializer(
-  result: Array<ChatRequestMessageUnion>,
+export function functionDefinitionArraySerializer(
+  result: Array<FunctionDefinition>,
 ): any[] {
   return result.map((item) => {
-    return chatRequestMessageUnionSerializer(item);
+    return functionDefinitionSerializer(item);
   });
 }
 
@@ -1480,14 +1482,6 @@ export function functionDefinitionSerializer(item: FunctionDefinition): any {
   };
 }
 
-export function functionDefinitionArraySerializer(
-  result: Array<FunctionDefinition>,
-): any[] {
-  return result.map((item) => {
-    return functionDefinitionSerializer(item);
-  });
-}
-
 /** Alias for _ChatCompletionsOptionsFunctionCall */
 export type _ChatCompletionsOptionsFunctionCall =
   | FunctionCallPreset
@@ -1496,12 +1490,6 @@ export type _ChatCompletionsOptionsFunctionCall =
 export function _chatCompletionsOptionsFunctionCallSerializer(
   item: _ChatCompletionsOptionsFunctionCall,
 ): any {
-  return item;
-}
-
-export function _chatCompletionsOptionsFunctionCallDeserializer(
-  item: any,
-): _ChatCompletionsOptionsFunctionCall {
   return item;
 }
 
@@ -1522,6 +1510,14 @@ export interface FunctionName {
 
 export function functionNameSerializer(item: FunctionName): any {
   return { name: item["name"] };
+}
+
+export function azureChatExtensionConfigurationUnionArraySerializer(
+  result: Array<AzureChatExtensionConfigurationUnion>,
+): any[] {
+  return result.map((item) => {
+    return azureChatExtensionConfigurationUnionSerializer(item);
+  });
 }
 
 /**
@@ -2629,14 +2625,6 @@ export function pineconeFieldMappingOptionsSerializer(
   };
 }
 
-export function azureChatExtensionConfigurationUnionArraySerializer(
-  result: Array<AzureChatExtensionConfigurationUnion>,
-): any[] {
-  return result.map((item) => {
-    return azureChatExtensionConfigurationUnionSerializer(item);
-  });
-}
-
 /** A representation of the available Azure OpenAI enhancement configurations. */
 export interface AzureChatEnhancementConfiguration {
   /** A representation of the available options for the Azure OpenAI grounding enhancement. */
@@ -2752,6 +2740,14 @@ export function chatCompletionsJsonResponseFormatSerializer(
   return { type: item["type"] };
 }
 
+export function chatCompletionsToolDefinitionUnionArraySerializer(
+  result: Array<ChatCompletionsToolDefinitionUnion>,
+): any[] {
+  return result.map((item) => {
+    return chatCompletionsToolDefinitionUnionSerializer(item);
+  });
+}
+
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
 export interface ChatCompletionsToolDefinition {
   /** The object type. */
@@ -2802,14 +2798,6 @@ export function chatCompletionsFunctionToolDefinitionSerializer(
   };
 }
 
-export function chatCompletionsToolDefinitionUnionArraySerializer(
-  result: Array<ChatCompletionsToolDefinitionUnion>,
-): any[] {
-  return result.map((item) => {
-    return chatCompletionsToolDefinitionUnionSerializer(item);
-  });
-}
-
 /** Alias for _ChatCompletionsOptionsToolChoice */
 export type _ChatCompletionsOptionsToolChoice =
   | ChatCompletionsToolSelectionPreset
@@ -2818,12 +2806,6 @@ export type _ChatCompletionsOptionsToolChoice =
 export function _chatCompletionsOptionsToolChoiceSerializer(
   item: _ChatCompletionsOptionsToolChoice,
 ): any {
-  return item;
-}
-
-export function _chatCompletionsOptionsToolChoiceDeserializer(
-  item: any,
-): _ChatCompletionsOptionsToolChoice {
   return item;
 }
 
@@ -2941,6 +2923,12 @@ export function chatCompletionsDeserializer(item: any): ChatCompletions {
     systemFingerprint: item["system_fingerprint"],
     usage: completionsUsageDeserializer(item["usage"]),
   };
+}
+
+export function chatChoiceArrayDeserializer(result: Array<ChatChoice>): any[] {
+  return result.map((item) => {
+    return chatChoiceDeserializer(item);
+  });
 }
 
 /**
@@ -3081,6 +3069,14 @@ export function azureChatExtensionsMessageContextDeserializer(
   };
 }
 
+export function azureChatExtensionDataSourceResponseCitationArrayDeserializer(
+  result: Array<AzureChatExtensionDataSourceResponseCitation>,
+): any[] {
+  return result.map((item) => {
+    return azureChatExtensionDataSourceResponseCitationDeserializer(item);
+  });
+}
+
 /**
  * A single instance of additional context information available when Azure OpenAI chat extensions are involved
  * in the generation of a corresponding chat completions response. This context information is only populated when
@@ -3111,11 +3107,11 @@ export function azureChatExtensionDataSourceResponseCitationDeserializer(
   };
 }
 
-export function azureChatExtensionDataSourceResponseCitationArrayDeserializer(
-  result: Array<AzureChatExtensionDataSourceResponseCitation>,
+export function azureChatExtensionRetrievedDocumentArrayDeserializer(
+  result: Array<AzureChatExtensionRetrievedDocument>,
 ): any[] {
   return result.map((item) => {
-    return azureChatExtensionDataSourceResponseCitationDeserializer(item);
+    return azureChatExtensionRetrievedDocumentDeserializer(item);
   });
 }
 
@@ -3168,14 +3164,6 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
 /** The reason for filtering the retrieved document. */
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
-export function azureChatExtensionRetrievedDocumentArrayDeserializer(
-  result: Array<AzureChatExtensionRetrievedDocument>,
-): any[] {
-  return result.map((item) => {
-    return azureChatExtensionRetrievedDocumentDeserializer(item);
-  });
-}
-
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
   /** The list of log probability information entries for the choice's message content tokens, as requested via the 'logprobs' option. */
@@ -3194,6 +3182,14 @@ export function chatChoiceLogProbabilityInfoDeserializer(
             return chatTokenLogProbabilityResultDeserializer(p);
           }),
   };
+}
+
+export function chatTokenLogProbabilityResultArrayDeserializer(
+  result: Array<ChatTokenLogProbabilityResult>,
+): any[] {
+  return result.map((item) => {
+    return chatTokenLogProbabilityResultDeserializer(item);
+  });
 }
 
 /** A representation of the log probability information for a single content token, including a list of most likely tokens if 'top_logprobs' were requested. */
@@ -3231,6 +3227,14 @@ export function chatTokenLogProbabilityResultDeserializer(
   };
 }
 
+export function chatTokenLogProbabilityInfoArrayDeserializer(
+  result: Array<ChatTokenLogProbabilityInfo>,
+): any[] {
+  return result.map((item) => {
+    return chatTokenLogProbabilityInfoDeserializer(item);
+  });
+}
+
 /** A representation of the log probability information for a single message content token. */
 export interface ChatTokenLogProbabilityInfo {
   /** The message content token. */
@@ -3255,22 +3259,6 @@ export function chatTokenLogProbabilityInfoDeserializer(
             return p;
           }),
   };
-}
-
-export function chatTokenLogProbabilityInfoArrayDeserializer(
-  result: Array<ChatTokenLogProbabilityInfo>,
-): any[] {
-  return result.map((item) => {
-    return chatTokenLogProbabilityInfoDeserializer(item);
-  });
-}
-
-export function chatTokenLogProbabilityResultArrayDeserializer(
-  result: Array<ChatTokenLogProbabilityResult>,
-): any[] {
-  return result.map((item) => {
-    return chatTokenLogProbabilityResultDeserializer(item);
-  });
 }
 
 /** An abstract representation of structured information about why a chat completions response terminated. */
@@ -3372,6 +3360,14 @@ export function azureGroundingEnhancementDeserializer(
   };
 }
 
+export function azureGroundingEnhancementLineArrayDeserializer(
+  result: Array<AzureGroundingEnhancementLine>,
+): any[] {
+  return result.map((item) => {
+    return azureGroundingEnhancementLineDeserializer(item);
+  });
+}
+
 /** A content line object consisting of an adjacent sequence of content elements, such as words and selection marks. */
 export interface AzureGroundingEnhancementLine {
   /** The text within the line. */
@@ -3387,6 +3383,14 @@ export function azureGroundingEnhancementLineDeserializer(
     text: item["text"],
     spans: azureGroundingEnhancementLineSpanArrayDeserializer(item["spans"]),
   };
+}
+
+export function azureGroundingEnhancementLineSpanArrayDeserializer(
+  result: Array<AzureGroundingEnhancementLineSpan>,
+): any[] {
+  return result.map((item) => {
+    return azureGroundingEnhancementLineSpanDeserializer(item);
+  });
 }
 
 /** A span object that represents a detected object and its bounding box information. */
@@ -3417,6 +3421,14 @@ export function azureGroundingEnhancementLineSpanDeserializer(
   };
 }
 
+export function azureGroundingEnhancementCoordinatePointArrayDeserializer(
+  result: Array<AzureGroundingEnhancementCoordinatePoint>,
+): any[] {
+  return result.map((item) => {
+    return azureGroundingEnhancementCoordinatePointDeserializer(item);
+  });
+}
+
 /** A representation of a single polygon point as used by the Azure grounding enhancement. */
 export interface AzureGroundingEnhancementCoordinatePoint {
   /** The x-coordinate (horizontal axis) of the point. */
@@ -3432,36 +3444,6 @@ export function azureGroundingEnhancementCoordinatePointDeserializer(
     x: item["x"],
     y: item["y"],
   };
-}
-
-export function azureGroundingEnhancementCoordinatePointArrayDeserializer(
-  result: Array<AzureGroundingEnhancementCoordinatePoint>,
-): any[] {
-  return result.map((item) => {
-    return azureGroundingEnhancementCoordinatePointDeserializer(item);
-  });
-}
-
-export function azureGroundingEnhancementLineSpanArrayDeserializer(
-  result: Array<AzureGroundingEnhancementLineSpan>,
-): any[] {
-  return result.map((item) => {
-    return azureGroundingEnhancementLineSpanDeserializer(item);
-  });
-}
-
-export function azureGroundingEnhancementLineArrayDeserializer(
-  result: Array<AzureGroundingEnhancementLine>,
-): any[] {
-  return result.map((item) => {
-    return azureGroundingEnhancementLineDeserializer(item);
-  });
-}
-
-export function chatChoiceArrayDeserializer(result: Array<ChatChoice>): any[] {
-  return result.map((item) => {
-    return chatChoiceDeserializer(item);
-  });
 }
 
 /** Represents the request data used to generate images. */
@@ -3567,6 +3549,14 @@ export function imageGenerationsDeserializer(item: any): ImageGenerations {
     created: new Date(item["created"]),
     data: imageGenerationDataArrayDeserializer(item["data"]),
   };
+}
+
+export function imageGenerationDataArrayDeserializer(
+  result: Array<ImageGenerationData>,
+): any[] {
+  return result.map((item) => {
+    return imageGenerationDataDeserializer(item);
+  });
 }
 
 /**
@@ -3727,14 +3717,6 @@ export function imageGenerationPromptFilterResultsDeserializer(
   };
 }
 
-export function imageGenerationDataArrayDeserializer(
-  result: Array<ImageGenerationData>,
-): any[] {
-  return result.map((item) => {
-    return imageGenerationDataDeserializer(item);
-  });
-}
-
 /** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface SpeechGenerationOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
@@ -3846,6 +3828,14 @@ export function embeddingsDeserializer(item: any): Embeddings {
   };
 }
 
+export function embeddingItemArrayDeserializer(
+  result: Array<EmbeddingItem>,
+): any[] {
+  return result.map((item) => {
+    return embeddingItemDeserializer(item);
+  });
+}
+
 /** Representation of a single embeddings relatedness comparison. */
 export interface EmbeddingItem {
   /**
@@ -3864,14 +3854,6 @@ export function embeddingItemDeserializer(item: any): EmbeddingItem {
     }),
     index: item["index"],
   };
-}
-
-export function embeddingItemArrayDeserializer(
-  result: Array<EmbeddingItem>,
-): any[] {
-  return result.map((item) => {
-    return embeddingItemDeserializer(item);
-  });
 }
 
 /** Measurement of the amount of tokens used in this request and response. */
