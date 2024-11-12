@@ -13,7 +13,7 @@ export declare interface FromOneRequiredOptionalParams extends OperationOptions 
 }
 
 export declare enum KnownVersions {
-    v1 = "v1"
+    V1 = "v1"
 }
 
 export declare class ResiliencyServiceDrivenClient {
