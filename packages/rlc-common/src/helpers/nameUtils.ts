@@ -182,11 +182,10 @@ export function normalizeNumericLiteralName(
   name: string,
   nameType: NameType
 ): string {
-  if (nameType === NameType.EnumMemberName) {
+  if (isNumericLiteralName(name) && nameType === NameType.EnumMemberName) {
     return `Number${name}`;
-  } else {
-    return name;
   }
+  return name;
 }
 
 function isFullyUpperCase(

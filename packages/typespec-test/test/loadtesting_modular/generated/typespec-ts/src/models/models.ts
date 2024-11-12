@@ -220,15 +220,15 @@ export function passFailMetricDeserializer(item: any): PassFailMetric {
 /** Metrics for pass/fail criteria. */
 export enum KnownPFMetrics {
   /** Pass fail criteria for response time metric in milliseconds. */
-  ResponseTimeMs = "response_time_ms",
+  response_time_ms = "response_time_ms",
   /** Pass fail criteria for latency metric in milliseconds. */
-  Latency = "latency",
+  latency = "latency",
   /** Pass fail criteria for error metric. */
-  Error = "error",
+  error = "error",
   /** Pass fail criteria for total requests. */
-  Requests = "requests",
+  requests = "requests",
   /** Pass fail criteria for request per second. */
-  RequestsPerSec = "requests_per_sec",
+  requests_per_sec = "requests_per_sec",
 }
 
 /**
@@ -247,35 +247,35 @@ export type PFMetrics = string;
 /** Aggregation functions for pass/fail criteria. */
 export enum KnownPFAgFunc {
   /** Criteria applies for count value. */
-  Count = "count",
+  count = "count",
   /** Criteria applies for given percentage value. */
-  Percentage = "percentage",
+  percentage = "percentage",
   /** Criteria applies for avg value. */
-  Avg = "avg",
+  avg = "avg",
   /** Criteria applies for 50th percentile value. */
-  P50 = "p50",
+  p50 = "p50",
   /** Criteria applies for 75th percentile value. */
-  P75 = "p75",
+  p75 = "p75",
   /** Criteria applies for 90th percentile value. */
-  P90 = "p90",
+  p90 = "p90",
   /** Criteria applies for 95th percentile value. */
-  P95 = "p95",
+  p95 = "p95",
   /** Criteria applies for 96th percentile value. */
-  P96 = "p96",
+  p96 = "p96",
   /** Criteria applies for 97th percentile value. */
-  P97 = "p97",
+  p97 = "p97",
   /** Criteria applies for 98th percentile value. */
-  P98 = "p98",
+  p98 = "p98",
   /** Criteria applies for 99th percentile value. */
-  P99 = "p99",
+  p99 = "p99",
   /** Criteria applies for 99.9th percentile value. */
-  P999 = "p99.9",
+  "p99.9" = "p99.9",
   /** Criteria applies for 99.99th percentile value. */
-  P9999 = "p99.99",
+  "p99.99" = "p99.99",
   /** Criteria applies for minimum value. */
-  Min = "min",
+  min = "min",
   /** Criteria applies for maximum value. */
-  Max = "max",
+  max = "max",
 }
 
 /**
@@ -304,9 +304,9 @@ export type PFAgFunc = string;
 /** Action to take on failure of pass/fail criteria. */
 export enum KnownPFAction {
   /** Test will continue to run even if pass fail metric criteria metric gets failed. */
-  Continue = "continue",
+  "continue" = "continue",
   /** Test run will stop if pass fail criteria metric is not passed. */
-  Stop = "stop",
+  stop = "stop",
 }
 
 /**
@@ -322,11 +322,11 @@ export type PFAction = string;
 /** Pass/fail criteria result. */
 export enum KnownPFResult {
   /** Given pass fail criteria metric has passed. */
-  Passed = "passed",
+  passed = "passed",
   /** Given pass fail criteria metric couldn't determine. */
-  Undetermined = "undetermined",
+  undetermined = "undetermined",
   /** Given pass fail criteria metric has failed. */
-  Failed = "failed",
+  failed = "failed",
 }
 
 /**
@@ -408,9 +408,9 @@ export function secretDeserializer(item: any): Secret {
 /** Types of secrets supported. */
 export enum KnownSecretType {
   /** If the secret is stored in an Azure Key Vault. */
-  AKVSECRETURI = "AKV_SECRET_URI",
+  AKV_SECRET_URI = "AKV_SECRET_URI",
   /** If the secret value provided as plain text. */
-  SECRETVALUE = "SECRET_VALUE",
+  SECRET_VALUE = "SECRET_VALUE",
 }
 
 /**
@@ -450,7 +450,7 @@ export function certificateMetadataDeserializer(
 /** Types of certificates supported. */
 export enum KnownCertificateType {
   /** If the certificate is stored in an Azure Key Vault. */
-  AKVCERTURI = "AKV_CERT_URI",
+  AKV_CERT_URI = "AKV_CERT_URI",
 }
 
 /**
@@ -672,17 +672,17 @@ export function testFileInfoDeserializer(item: any): TestFileInfo {
 /** Types of file supported. */
 export enum KnownFileType {
   /** If the file is a JMX script. */
-  JMXFILE = "JMX_FILE",
+  JMX_FILE = "JMX_FILE",
   /** If the file is a user properties file. */
-  USERProperties = "USER_PROPERTIES",
+  USER_PROPERTIES = "USER_PROPERTIES",
   /** If the file is not among any of the other supported file types. */
-  AdditionalArtifacts = "ADDITIONAL_ARTIFACTS",
+  ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
   /** If the file is a compressed archive containing a collection of various artifacts or resources. */
-  ZIPPEDArtifacts = "ZIPPED_ARTIFACTS",
+  ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS",
   /** If the file is a JSON config file to define the requests for a URL test. */
-  URLTESTCONFIG = "URL_TEST_CONFIG",
+  URL_TEST_CONFIG = "URL_TEST_CONFIG",
   /** If the file is a test script. */
-  TESTSCRIPT = "TEST_SCRIPT",
+  TEST_SCRIPT = "TEST_SCRIPT",
 }
 
 /**
@@ -702,15 +702,15 @@ export type FileType = string;
 /** File status. */
 export enum KnownFileStatus {
   /** File is not validated. */
-  NOTValidated = "NOT_VALIDATED",
+  NOT_VALIDATED = "NOT_VALIDATED",
   /** File is validated. */
-  ValidationSuccess = "VALIDATION_SUCCESS",
+  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
   /** File validation is failed. */
-  ValidationFailure = "VALIDATION_FAILURE",
+  VALIDATION_FAILURE = "VALIDATION_FAILURE",
   /** File validation is in progress. */
-  ValidationInitiated = "VALIDATION_INITIATED",
+  VALIDATION_INITIATED = "VALIDATION_INITIATED",
   /** Validation is not required. */
-  ValidationNOTRequired = "VALIDATION_NOT_REQUIRED",
+  VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
 }
 
 /**
@@ -1432,7 +1432,7 @@ export enum KnownPFTestResult {
   /** Pass/fail criteria has passed. */
   PASSED = "PASSED",
   /** Pass/fail criteria is not applicable. */
-  NOTApplicable = "NOT_APPLICABLE",
+  NOT_APPLICABLE = "NOT_APPLICABLE",
   /** Pass/fail criteria has failed. */
   FAILED = "FAILED",
 }
@@ -1451,37 +1451,37 @@ export type PFTestResult = string;
 /** Test run status. */
 export enum KnownStatus {
   /** Test run request is accepted. */
-  Accepted = "ACCEPTED",
+  ACCEPTED = "ACCEPTED",
   /** Test run is not yet started. */
-  Notstarted = "NOTSTARTED",
+  NOTSTARTED = "NOTSTARTED",
   /** Test run is provisioning. */
-  Provisioning = "PROVISIONING",
+  PROVISIONING = "PROVISIONING",
   /** Test run is provisioned. */
-  Provisioned = "PROVISIONED",
+  PROVISIONED = "PROVISIONED",
   /** Test run is getting configured. */
-  Configuring = "CONFIGURING",
+  CONFIGURING = "CONFIGURING",
   /** Test run configuration is done. */
-  Configured = "CONFIGURED",
+  CONFIGURED = "CONFIGURED",
   /** Test run has started executing. */
-  Executing = "EXECUTING",
+  EXECUTING = "EXECUTING",
   /** Test run execution is completed. */
-  Executed = "EXECUTED",
+  EXECUTED = "EXECUTED",
   /** Test run is getting deprovisioned. */
-  Deprovisioning = "DEPROVISIONING",
+  DEPROVISIONING = "DEPROVISIONING",
   /** Test run is deprovisioned. */
-  Deprovisioned = "DEPROVISIONED",
+  DEPROVISIONED = "DEPROVISIONED",
   /** Test run is completed. */
   DONE = "DONE",
   /** Test run is being cancelled. */
-  Cancelling = "CANCELLING",
+  CANCELLING = "CANCELLING",
   /** Test run request is cancelled. */
-  Cancelled = "CANCELLED",
+  CANCELLED = "CANCELLED",
   /** Test run request is failed. */
   FAILED = "FAILED",
   /** Test run JMX file is validated. */
-  ValidationSuccess = "VALIDATION_SUCCESS",
+  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
   /** Test run JMX file validation is failed. */
-  ValidationFailure = "VALIDATION_FAILURE",
+  VALIDATION_FAILURE = "VALIDATION_FAILURE",
 }
 
 /**
@@ -2407,17 +2407,17 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
 /** Test profile run status. */
 export enum KnownTestProfileRunStatus {
   /** Test profile run request is accepted. */
-  Accepted = "ACCEPTED",
+  ACCEPTED = "ACCEPTED",
   /** Test profile run is not yet started. */
-  Notstarted = "NOTSTARTED",
+  NOTSTARTED = "NOTSTARTED",
   /** Test profile run has started executing. */
-  Executing = "EXECUTING",
+  EXECUTING = "EXECUTING",
   /** Test profile run has completed successfully. */
   DONE = "DONE",
   /** Test profile run is being cancelled. */
-  Cancelling = "CANCELLING",
+  CANCELLING = "CANCELLING",
   /** Test profile run is cancelled. */
-  Cancelled = "CANCELLED",
+  CANCELLED = "CANCELLED",
   /** Test profile run has failed. */
   FAILED = "FAILED",
 }

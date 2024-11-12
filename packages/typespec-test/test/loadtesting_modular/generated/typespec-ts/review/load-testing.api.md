@@ -203,26 +203,26 @@ export enum KnownAPIVersions {
 
 // @public
 export enum KnownCertificateType {
-    AKVCERTURI = "AKV_CERT_URI"
+    AKV_CERT_URI = "AKV_CERT_URI"
 }
 
 // @public
 export enum KnownFileStatus {
-    NOTValidated = "NOT_VALIDATED",
-    ValidationFailure = "VALIDATION_FAILURE",
-    ValidationInitiated = "VALIDATION_INITIATED",
-    ValidationNOTRequired = "VALIDATION_NOT_REQUIRED",
-    ValidationSuccess = "VALIDATION_SUCCESS"
+    NOT_VALIDATED = "NOT_VALIDATED",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_INITIATED = "VALIDATION_INITIATED",
+    VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
 }
 
 // @public
 export enum KnownFileType {
-    AdditionalArtifacts = "ADDITIONAL_ARTIFACTS",
-    JMXFILE = "JMX_FILE",
-    TESTSCRIPT = "TEST_SCRIPT",
-    URLTESTCONFIG = "URL_TEST_CONFIG",
-    USERProperties = "USER_PROPERTIES",
-    ZIPPEDArtifacts = "ZIPPED_ARTIFACTS"
+    ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
+    JMX_FILE = "JMX_FILE",
+    TEST_SCRIPT = "TEST_SCRIPT",
+    URL_TEST_CONFIG = "URL_TEST_CONFIG",
+    USER_PROPERTIES = "USER_PROPERTIES",
+    ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS"
 }
 
 // @public
@@ -239,49 +239,49 @@ export enum KnownMetricUnit {
 
 // @public
 export enum KnownPFAction {
-    Continue = "continue",
-    Stop = "stop"
+    "continue" = "continue",
+    stop = "stop"
 }
 
 // @public
 export enum KnownPFAgFunc {
-    Avg = "avg",
-    Count = "count",
-    Max = "max",
-    Min = "min",
-    P50 = "p50",
-    P75 = "p75",
-    P90 = "p90",
-    P95 = "p95",
-    P96 = "p96",
-    P97 = "p97",
-    P98 = "p98",
-    P99 = "p99",
-    P999 = "p99.9",
-    P9999 = "p99.99",
-    Percentage = "percentage"
+    "p99.9" = "p99.9",
+    "p99.99" = "p99.99",
+    avg = "avg",
+    count = "count",
+    max = "max",
+    min = "min",
+    p50 = "p50",
+    p75 = "p75",
+    p90 = "p90",
+    p95 = "p95",
+    p96 = "p96",
+    p97 = "p97",
+    p98 = "p98",
+    p99 = "p99",
+    percentage = "percentage"
 }
 
 // @public
 export enum KnownPFMetrics {
-    Error = "error",
-    Latency = "latency",
-    Requests = "requests",
-    RequestsPerSec = "requests_per_sec",
-    ResponseTimeMs = "response_time_ms"
+    error = "error",
+    latency = "latency",
+    requests = "requests",
+    requests_per_sec = "requests_per_sec",
+    response_time_ms = "response_time_ms"
 }
 
 // @public
 export enum KnownPFResult {
-    Failed = "failed",
-    Passed = "passed",
-    Undetermined = "undetermined"
+    failed = "failed",
+    passed = "passed",
+    undetermined = "undetermined"
 }
 
 // @public
 export enum KnownPFTestResult {
     FAILED = "FAILED",
-    NOTApplicable = "NOT_APPLICABLE",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
     PASSED = "PASSED"
 }
 
@@ -304,28 +304,28 @@ export enum KnownResourceKind {
 
 // @public
 export enum KnownSecretType {
-    AKVSECRETURI = "AKV_SECRET_URI",
-    SECRETVALUE = "SECRET_VALUE"
+    AKV_SECRET_URI = "AKV_SECRET_URI",
+    SECRET_VALUE = "SECRET_VALUE"
 }
 
 // @public
 export enum KnownStatus {
-    Accepted = "ACCEPTED",
-    Cancelled = "CANCELLED",
-    Cancelling = "CANCELLING",
-    Configured = "CONFIGURED",
-    Configuring = "CONFIGURING",
-    Deprovisioned = "DEPROVISIONED",
-    Deprovisioning = "DEPROVISIONING",
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
+    CONFIGURED = "CONFIGURED",
+    CONFIGURING = "CONFIGURING",
+    DEPROVISIONED = "DEPROVISIONED",
+    DEPROVISIONING = "DEPROVISIONING",
     DONE = "DONE",
-    Executed = "EXECUTED",
-    Executing = "EXECUTING",
+    EXECUTED = "EXECUTED",
+    EXECUTING = "EXECUTING",
     FAILED = "FAILED",
-    Notstarted = "NOTSTARTED",
-    Provisioned = "PROVISIONED",
-    Provisioning = "PROVISIONING",
-    ValidationFailure = "VALIDATION_FAILURE",
-    ValidationSuccess = "VALIDATION_SUCCESS"
+    NOTSTARTED = "NOTSTARTED",
+    PROVISIONED = "PROVISIONED",
+    PROVISIONING = "PROVISIONING",
+    VALIDATION_FAILURE = "VALIDATION_FAILURE",
+    VALIDATION_SUCCESS = "VALIDATION_SUCCESS"
 }
 
 // @public
@@ -337,13 +337,13 @@ export enum KnownTestKind {
 
 // @public
 export enum KnownTestProfileRunStatus {
-    Accepted = "ACCEPTED",
-    Cancelled = "CANCELLED",
-    Cancelling = "CANCELLING",
+    ACCEPTED = "ACCEPTED",
+    CANCELLED = "CANCELLED",
+    CANCELLING = "CANCELLING",
     DONE = "DONE",
-    Executing = "EXECUTING",
+    EXECUTING = "EXECUTING",
     FAILED = "FAILED",
-    Notstarted = "NOTSTARTED"
+    NOTSTARTED = "NOTSTARTED"
 }
 
 // @public
