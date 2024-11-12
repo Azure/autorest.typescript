@@ -5,6 +5,16 @@ import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 describe("#normalizeName", () => {
   describe("for enum member name", () => {
     it("should normalize the name with pascal case", () => {
+      expect(normalizeName("$DO_NOT_NORMALIZE$VALIDATION_NOT_REQUIRED", NameType.EnumMemberName, true)).to.equal("VALIDATION_NOT_REQUIRED");
+      expect(normalizeName("_10Min", NameType.EnumMemberName, true)).to.equal("Number10Min");
+      expect(normalizeName("090", NameType.EnumMemberName, true)).to.equal("Number090");
+      expect(normalizeName("10", NameType.EnumMemberName, true)).to.equal("Number10");
+      // pls note `1` is a numeric literal number but `1.0` is not
+      expect(normalizeName("1", NameType.EnumMemberName, true)).to.equal("Number1");
+      expect(normalizeName("1.0", NameType.EnumMemberName, true)).to.equal("Number10");
+      expect(normalizeName("$DO_NOT_NORMALIZE$Number1.0", NameType.EnumMemberName, true)).to.equal("Number1.0");
+      expect(normalizeName("1.1", NameType.EnumMemberName, true)).to.equal("Number1.1");
+      expect(normalizeName("-1.1", NameType.EnumMemberName, true)).to.equal("Number-1.1");
       expect(normalizeName("BasicGetNull", NameType.EnumMemberName, true)).to.equal("BasicGetNull");
       expect(normalizeName("size256x256", NameType.EnumMemberName, true)).to.equal("Size256X256");
       expect(normalizeName("LRORetrysPut201CreatingSucceeded200BodyParam", NameType.EnumMemberName, true)).to.equal("LRORetrysPut201CreatingSucceeded200BodyParam");

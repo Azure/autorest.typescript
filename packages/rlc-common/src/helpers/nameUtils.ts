@@ -132,17 +132,24 @@ function getSuffix(nameType?: NameType) {
   }
 }
 
+function isNumericLiteralName(name: string) {
+  return (+name).toString() === name;
+}
+
 export function normalizeName(
   name: string,
   nameType: NameType,
   shouldGuard?: boolean,
   customReservedNames: ReservedName[] = [],
-  casingOverride?: CasingConvention
+  casingOverride?: CasingConvention,
 ): string {
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
+  if (isNumericLiteralName(name)) {
+    return normalizeNumericLiteralName(name, nameType);
+  }
   const parts = deconstruct(name);
   if (parts.length === 0) {
     return name;
@@ -154,9 +161,33 @@ export function normalizeName(
     .join("");
 
   const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);
-  return shouldGuard
+  const result = shouldGuard
     ? guardReservedNames(normalized, nameType, customReservedNames)
     : normalized;
+  return handleNumberStart(result, nameType);
+}
+
+function handleNumberStart(name: string, nameType: NameType): string {
+  if (!name.match(/^\d/)) {
+    return name;
+  }
+  if (nameType === NameType.EnumMemberName) {
+    return `Number${name}`;
+  } else {
+    throw new Error(`Numeric literal names are not supported for ${nameType}`);
+  }
+}
+
+export function normalizeNumericLiteralName(
+  name: string,
+  nameType: NameType): string {
+  if (nameType === NameType.EnumMemberName) {
+    return `Number${name}`;
+  } else {
+    // TODO: Add support for other name types if needed
+    throw new Error(`Numeric literal names are not supported for ${nameType}`);
+  }
+
 }
 
 function isFullyUpperCase(
@@ -225,6 +256,22 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Parameter:
     case NameType.Method:
       return CasingConvention.Camel;
+  }
+}
+
+function getNumberPrefix(nameType: NameType) {
+  switch (nameType) {
+    case NameType.EnumMemberName:
+      return true;
+    case NameType.Class:
+    case NameType.Interface:
+    case NameType.OperationGroup:
+    case NameType.File:
+    case NameType.Property:
+    case NameType.Operation:
+    case NameType.Parameter:
+    case NameType.Method:
+      return false;
   }
 }
 

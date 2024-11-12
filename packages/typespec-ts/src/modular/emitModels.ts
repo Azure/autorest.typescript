@@ -8,7 +8,11 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  normalizeNumericLiteralName
+} from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
   SdkBodyModelPropertyType,
@@ -288,7 +292,7 @@ export function buildEnumTypes(
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map(emitEnumMember)
+    members: type.values.map((value) => emitEnumMember(context, value))
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -332,10 +336,15 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
   ].join(" \n");
 }
 
-function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
+function emitEnumMember(
+  context: SdkContext,
+  member: SdkEnumValueType
+): EnumMemberStructure {
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: normalizeName(member.name, NameType.EnumMemberName),
+    name: context.rlcOptions?.ignoreEnumMemberNameNormalize
+      ? normalizeNumericLiteralName(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
+      : normalizeName(member.name, NameType.EnumMemberName, true),
     value: member.value
   };
 
