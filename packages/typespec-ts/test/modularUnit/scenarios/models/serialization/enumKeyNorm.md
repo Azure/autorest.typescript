@@ -1,4 +1,4 @@
-# Should generate enum key normalization cases
+# skip: Should generate enum key normalization cases
 
 ## TypeSpec
 

@@ -1222,17 +1222,17 @@ describe("model type", () => {
         `
       );
       await assertEqualContent(
-        modelFile!.getTypeAlias("Lr")?.getFullText()!,
+        modelFile!.getTypeAlias("LR")?.getFullText()!,
         `
-        /** Type of Lr */
-        export type Lr = "left" | "right";
+        /** Type of LR */
+        export type LR = "left" | "right";
         `
       );
       await assertEqualContent(
-        modelFile!.getTypeAlias("Ud")?.getFullText()!,
+        modelFile!.getTypeAlias("UD")?.getFullText()!,
         `
-        /** Type of Ud */
-        export type Ud = "up" | "down";
+        /** Type of UD */
+        export type UD = "up" | "down";
         `
       );
     });
