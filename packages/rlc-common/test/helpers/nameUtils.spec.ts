@@ -106,6 +106,12 @@ describe("#normalizeName", () => {
       expect(
         normalizeName("LoadTest_Administration ", NameType.OperationGroup, true)
       ).to.equal("LoadTestAdministration");
+      expect(
+        normalizeName("LRORetrysPostAsyncRelativeRetrySucceeded", NameType.OperationGroup, true)
+      ).to.equal("LRORetrysPostAsyncRelativeRetrySucceeded");
+      expect(
+        normalizeName("_LRORetrysPostAsyncRelativeRetrySucceeded", NameType.OperationGroup, true)
+      ).to.equal("LRORetrysPostAsyncRelativeRetrySucceeded");
     });
   });
 });
