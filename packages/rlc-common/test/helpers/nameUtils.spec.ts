@@ -5,6 +5,7 @@ import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 describe("#normalizeName", () => {
   describe("for enum member name", () => {
     it("should normalize the name with pascal case", () => {
+      expect(normalizeName("LRORetrysPut201CreatingSucceeded200BodyParam", NameType.EnumMemberName, true)).to.equal("LRORetrysPut201CreatingSucceeded200BodyParam");
       expect(normalizeName("$DO_NOT_NORMALIZE$VALIDATION_NOT_REQUIRED", NameType.EnumMemberName, true)).to.equal("VALIDATION_NOT_REQUIRED");
       expect(normalizeName("_10Min", NameType.EnumMemberName, true)).to.equal("Number10Min");
       expect(normalizeName("090", NameType.EnumMemberName, true)).to.equal("Number090");

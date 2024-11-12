@@ -174,7 +174,7 @@ function handleNumberStart(name: string, nameType: NameType): string {
   if (nameType === NameType.EnumMemberName) {
     return `Number${name}`;
   } else {
-    throw new Error(`Numeric literal names are not supported for ${nameType}`);
+    return name;
   }
 }
 
@@ -184,8 +184,7 @@ export function normalizeNumericLiteralName(
   if (nameType === NameType.EnumMemberName) {
     return `Number${name}`;
   } else {
-    // TODO: Add support for other name types if needed
-    throw new Error(`Numeric literal names are not supported for ${nameType}`);
+    return name;
   }
 
 }
