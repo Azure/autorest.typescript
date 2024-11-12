@@ -3873,8 +3873,8 @@ export function embeddingsUsageDeserializer(item: any): EmbeddingsUsage {
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
-  v2022_12_01 = "2022-12-01",
-  v2023_05_15 = "2023-05-15",
-  v2024_02_01 = "2024-02-01",
-  v2024_06_01 = "2024-06-01",
+  V20221201 = "2022-12-01",
+  V20230515 = "2023-05-15",
+  V20240201 = "2024-02-01",
+  V20240601 = "2024-06-01",
 }

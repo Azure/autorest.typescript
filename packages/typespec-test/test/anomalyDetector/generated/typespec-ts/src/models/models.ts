@@ -1076,5 +1076,5 @@ export type APIVersion = "v1.1";
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
-  v1_1 = "v1.1",
+  V11 = "v1.1",
 }

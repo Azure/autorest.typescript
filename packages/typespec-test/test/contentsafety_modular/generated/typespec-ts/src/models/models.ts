@@ -361,5 +361,5 @@ export function textAnalyzeSeverityResultDeserializer(
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
-  v2023_10_01 = "2023-10-01",
+  V20231001 = "2023-10-01",
 }

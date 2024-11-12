@@ -233,7 +233,7 @@ export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "can
 // @public
 export enum KnownApiVersion {
     // (undocumented)
-    v2023_09_01_Preview = "2023-09-01-preview"
+    V20230901Preview = "2023-09-01-preview"
 }
 
 // @public
