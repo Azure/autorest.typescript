@@ -15,14 +15,16 @@ export function buildLogger(model: RLCModel) {
   }
   const project = new Project();
   const { srcPath } = model;
-  const { packageDetails } = model.options;
+  const { packageDetails, rlcSourceDir } = model.options;
   const filePath = path.join(
-    srcPath.substring(
-      0,
-      srcPath.includes("generated") && !srcPath.includes("src")
-        ? srcPath.lastIndexOf("generated") + 10
-        : srcPath.lastIndexOf("src") + 4
-    ),
+    model.options.sourceFrom == "Swagger"
+      ? srcPath.substring(
+          0,
+          srcPath.includes("generated") && !srcPath.includes("src")
+            ? srcPath.lastIndexOf("generated") + 10
+            : srcPath.lastIndexOf("src") + 4
+        )
+      : rlcSourceDir!,
     `logger.ts`
   );
   const loggerFile = project.createSourceFile("logger.ts", undefined, {

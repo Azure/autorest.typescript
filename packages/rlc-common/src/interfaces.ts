@@ -248,6 +248,7 @@ export interface RLCOptions {
   experimentalExtensibleEnums?: boolean;
   clearOutputFolder?: boolean;
   ignorePropertyNameNormalize?: boolean;
+  rlcSourceDir?: string;
 }
 
 export interface ServiceInfo {
