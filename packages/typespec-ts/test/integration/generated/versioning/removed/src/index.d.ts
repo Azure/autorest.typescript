@@ -11,6 +11,10 @@ export declare type EnumV2 = "enumMemberV2";
 
 export declare type EnumV2Output = "enumMemberV2";
 
+export declare type EnumV3 = "enumMemberV1" | "enumMemberV2Preview";
+
+export declare type EnumV3Output = "enumMemberV1" | "enumMemberV2Preview";
+
 export declare interface ModelV2 {
     prop: string;
     enumProp: EnumV2;
@@ -23,8 +27,34 @@ export declare interface ModelV2Output {
     unionProp: UnionV2Output;
 }
 
+export declare interface ModelV3 {
+    post(options: ModelV3Parameters): StreamableMethod<ModelV3200Response>;
+}
+
+export declare interface ModelV3200Response extends HttpResponse {
+    status: "200";
+    body: ModelV3Output;
+}
+
+declare interface ModelV3_2 {
+    id: string;
+    enumProp: EnumV3;
+}
+
+export declare interface ModelV3BodyParam {
+    body: ModelV3_2;
+}
+
+export declare interface ModelV3Output {
+    id: string;
+    enumProp: EnumV3Output;
+}
+
+export declare type ModelV3Parameters = ModelV3BodyParam & RequestParameters;
+
 export declare interface Routes {
     (path: "/v2"): V2;
+    (path: "/v3"): ModelV3;
 }
 
 export declare type UnionV2 = string | number;
@@ -53,6 +83,6 @@ export declare type VersioningRemovedClient = Client & {
 export declare interface VersioningRemovedClientOptions extends ClientOptions {
 }
 
-export declare type Versions = "v1" | "v2";
+export declare type Versions = "v1" | "v2preview" | "v2";
 
 export { }
