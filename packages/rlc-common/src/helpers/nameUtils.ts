@@ -141,7 +141,7 @@ export function normalizeName(
   nameType: NameType,
   shouldGuard?: boolean,
   customReservedNames: ReservedName[] = [],
-  casingOverride?: CasingConvention,
+  casingOverride?: CasingConvention
 ): string {
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
@@ -180,13 +180,13 @@ function handleNumberStart(name: string, nameType: NameType): string {
 
 export function normalizeNumericLiteralName(
   name: string,
-  nameType: NameType): string {
+  nameType: NameType
+): string {
   if (nameType === NameType.EnumMemberName) {
     return `Number${name}`;
   } else {
     return name;
   }
-
 }
 
 function isFullyUpperCase(

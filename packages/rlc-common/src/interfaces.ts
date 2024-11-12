@@ -318,9 +318,9 @@ export interface ArraySchema extends Schema {
   items?: Schema;
 }
 
-export interface Property extends Schema { }
+export interface Property extends Schema {}
 
-export interface Parameter extends Schema { }
+export interface Parameter extends Schema {}
 
 export interface PackageDetails {
   name: string;
