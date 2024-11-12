@@ -268,6 +268,12 @@ const libDef = {
       messages: {
         default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
       }
+    },
+    "prefix-adding-in-enum-member": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "Number" prefix.`
+      }
     }
   },
   emitter: {

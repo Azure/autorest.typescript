@@ -340,11 +340,25 @@ function emitEnumMember(
   context: SdkContext,
   member: SdkEnumValueType
 ): EnumMemberStructure {
+  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+    ? normalizeNumericLiteralName(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName, true);
+  if (
+    normalizedMemberName.toLowerCase().startsWith("number") &&
+    !member.name.toLowerCase().startsWith("number")
+  ) {
+    reportDiagnostic(context.program, {
+      code: "prefix-adding-in-enum-member",
+      format: {
+        memberName: member.name,
+        normalizedName: normalizedMemberName
+      },
+      target: NoTarget
+    });
+  }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: context.rlcOptions?.ignoreEnumMemberNameNormalize
-      ? normalizeNumericLiteralName(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
-      : normalizeName(member.name, NameType.EnumMemberName, true),
+    name: normalizedMemberName,
     value: member.value
   };
 

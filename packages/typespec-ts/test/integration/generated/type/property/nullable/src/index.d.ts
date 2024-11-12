@@ -4,57 +4,57 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-export declare interface BytesGetNonnull {
-    get(options?: BytesGetNonnullParameters): StreamableMethod<BytesGetNonnull200Response>;
-    patch(options: BytesPatchNonnullParameters): StreamableMethod<BytesPatchNonnull204Response>;
+export declare interface BytesGetNonNull {
+    get(options?: BytesGetNonNullParameters): StreamableMethod<BytesGetNonNull200Response>;
+    patch(options: BytesPatchNonNullParameters): StreamableMethod<BytesPatchNonNull204Response>;
 }
 
-export declare interface BytesGetNonnull200Response extends HttpResponse {
+export declare interface BytesGetNonNull200Response extends HttpResponse {
     status: "200";
     body: BytesPropertyOutput;
 }
 
-export declare type BytesGetNonnullParameters = RequestParameters;
+export declare type BytesGetNonNullParameters = RequestParameters;
 
-export declare interface BytesGetnull {
-    get(options?: BytesGetnullParameters): StreamableMethod<BytesGetnull200Response>;
-    patch(options: BytesPatchnullParameters): StreamableMethod<BytesPatchnull204Response>;
+export declare interface BytesGetNull {
+    get(options?: BytesGetNullParameters): StreamableMethod<BytesGetNull200Response>;
+    patch(options: BytesPatchNullParameters): StreamableMethod<BytesPatchNull204Response>;
 }
 
-export declare interface BytesGetnull200Response extends HttpResponse {
+export declare interface BytesGetNull200Response extends HttpResponse {
     status: "200";
     body: BytesPropertyOutput;
 }
 
-export declare type BytesGetnullParameters = RequestParameters;
+export declare type BytesGetNullParameters = RequestParameters;
 
-export declare interface BytesPatchNonnull204Response extends HttpResponse {
+export declare interface BytesPatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface BytesPatchNonnullBodyParam {
+export declare interface BytesPatchNonNullBodyParam {
     body: BytesPropertyResourceMergeAndPatch;
 }
 
-export declare interface BytesPatchNonnullMediaTypesParam {
+export declare interface BytesPatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type BytesPatchNonnullParameters = BytesPatchNonnullMediaTypesParam & BytesPatchNonnullBodyParam & RequestParameters;
+export declare type BytesPatchNonNullParameters = BytesPatchNonNullMediaTypesParam & BytesPatchNonNullBodyParam & RequestParameters;
 
-export declare interface BytesPatchnull204Response extends HttpResponse {
+export declare interface BytesPatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface BytesPatchnullBodyParam {
+export declare interface BytesPatchNullBodyParam {
     body: BytesPropertyResourceMergeAndPatch;
 }
 
-export declare interface BytesPatchnullMediaTypesParam {
+export declare interface BytesPatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type BytesPatchnullParameters = BytesPatchnullMediaTypesParam & BytesPatchnullBodyParam & RequestParameters;
+export declare type BytesPatchNullParameters = BytesPatchNullMediaTypesParam & BytesPatchNullBodyParam & RequestParameters;
 
 export declare interface BytesProperty {
     requiredProperty: string;
@@ -68,57 +68,57 @@ export declare interface BytesPropertyOutput {
 
 export declare type BytesPropertyResourceMergeAndPatch = Partial<BytesProperty>;
 
-export declare interface CollectionsByteGetNonnull {
-    get(options?: CollectionsByteGetNonnullParameters): StreamableMethod<CollectionsByteGetNonnull200Response>;
-    patch(options: CollectionsBytePatchNonnullParameters): StreamableMethod<CollectionsBytePatchNonnull204Response>;
+export declare interface CollectionsByteGetNonNull {
+    get(options?: CollectionsByteGetNonNullParameters): StreamableMethod<CollectionsByteGetNonNull200Response>;
+    patch(options: CollectionsBytePatchNonNullParameters): StreamableMethod<CollectionsBytePatchNonNull204Response>;
 }
 
-export declare interface CollectionsByteGetNonnull200Response extends HttpResponse {
+export declare interface CollectionsByteGetNonNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsBytePropertyOutput;
 }
 
-export declare type CollectionsByteGetNonnullParameters = RequestParameters;
+export declare type CollectionsByteGetNonNullParameters = RequestParameters;
 
-export declare interface CollectionsByteGetnull {
-    get(options?: CollectionsByteGetnullParameters): StreamableMethod<CollectionsByteGetnull200Response>;
-    patch(options: CollectionsBytePatchnullParameters): StreamableMethod<CollectionsBytePatchnull204Response>;
+export declare interface CollectionsByteGetNull {
+    get(options?: CollectionsByteGetNullParameters): StreamableMethod<CollectionsByteGetNull200Response>;
+    patch(options: CollectionsBytePatchNullParameters): StreamableMethod<CollectionsBytePatchNull204Response>;
 }
 
-export declare interface CollectionsByteGetnull200Response extends HttpResponse {
+export declare interface CollectionsByteGetNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsBytePropertyOutput;
 }
 
-export declare type CollectionsByteGetnullParameters = RequestParameters;
+export declare type CollectionsByteGetNullParameters = RequestParameters;
 
-export declare interface CollectionsBytePatchNonnull204Response extends HttpResponse {
+export declare interface CollectionsBytePatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsBytePatchNonnullBodyParam {
+export declare interface CollectionsBytePatchNonNullBodyParam {
     body: CollectionsBytePropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsBytePatchNonnullMediaTypesParam {
+export declare interface CollectionsBytePatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsBytePatchNonnullParameters = CollectionsBytePatchNonnullMediaTypesParam & CollectionsBytePatchNonnullBodyParam & RequestParameters;
+export declare type CollectionsBytePatchNonNullParameters = CollectionsBytePatchNonNullMediaTypesParam & CollectionsBytePatchNonNullBodyParam & RequestParameters;
 
-export declare interface CollectionsBytePatchnull204Response extends HttpResponse {
+export declare interface CollectionsBytePatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsBytePatchnullBodyParam {
+export declare interface CollectionsBytePatchNullBodyParam {
     body: CollectionsBytePropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsBytePatchnullMediaTypesParam {
+export declare interface CollectionsBytePatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsBytePatchnullParameters = CollectionsBytePatchnullMediaTypesParam & CollectionsBytePatchnullBodyParam & RequestParameters;
+export declare type CollectionsBytePatchNullParameters = CollectionsBytePatchNullMediaTypesParam & CollectionsBytePatchNullBodyParam & RequestParameters;
 
 export declare interface CollectionsByteProperty {
     requiredProperty: string;
@@ -132,57 +132,57 @@ export declare interface CollectionsBytePropertyOutput {
 
 export declare type CollectionsBytePropertyResourceMergeAndPatch = Partial<CollectionsByteProperty>;
 
-export declare interface CollectionsModelGetNonnull {
-    get(options?: CollectionsModelGetNonnullParameters): StreamableMethod<CollectionsModelGetNonnull200Response>;
-    patch(options: CollectionsModelPatchNonnullParameters): StreamableMethod<CollectionsModelPatchNonnull204Response>;
+export declare interface CollectionsModelGetNonNull {
+    get(options?: CollectionsModelGetNonNullParameters): StreamableMethod<CollectionsModelGetNonNull200Response>;
+    patch(options: CollectionsModelPatchNonNullParameters): StreamableMethod<CollectionsModelPatchNonNull204Response>;
 }
 
-export declare interface CollectionsModelGetNonnull200Response extends HttpResponse {
+export declare interface CollectionsModelGetNonNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsModelPropertyOutput;
 }
 
-export declare type CollectionsModelGetNonnullParameters = RequestParameters;
+export declare type CollectionsModelGetNonNullParameters = RequestParameters;
 
-export declare interface CollectionsModelGetnull {
-    get(options?: CollectionsModelGetnullParameters): StreamableMethod<CollectionsModelGetnull200Response>;
-    patch(options: CollectionsModelPatchnullParameters): StreamableMethod<CollectionsModelPatchnull204Response>;
+export declare interface CollectionsModelGetNull {
+    get(options?: CollectionsModelGetNullParameters): StreamableMethod<CollectionsModelGetNull200Response>;
+    patch(options: CollectionsModelPatchNullParameters): StreamableMethod<CollectionsModelPatchNull204Response>;
 }
 
-export declare interface CollectionsModelGetnull200Response extends HttpResponse {
+export declare interface CollectionsModelGetNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsModelPropertyOutput;
 }
 
-export declare type CollectionsModelGetnullParameters = RequestParameters;
+export declare type CollectionsModelGetNullParameters = RequestParameters;
 
-export declare interface CollectionsModelPatchNonnull204Response extends HttpResponse {
+export declare interface CollectionsModelPatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsModelPatchNonnullBodyParam {
+export declare interface CollectionsModelPatchNonNullBodyParam {
     body: CollectionsModelPropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsModelPatchNonnullMediaTypesParam {
+export declare interface CollectionsModelPatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsModelPatchNonnullParameters = CollectionsModelPatchNonnullMediaTypesParam & CollectionsModelPatchNonnullBodyParam & RequestParameters;
+export declare type CollectionsModelPatchNonNullParameters = CollectionsModelPatchNonNullMediaTypesParam & CollectionsModelPatchNonNullBodyParam & RequestParameters;
 
-export declare interface CollectionsModelPatchnull204Response extends HttpResponse {
+export declare interface CollectionsModelPatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsModelPatchnullBodyParam {
+export declare interface CollectionsModelPatchNullBodyParam {
     body: CollectionsModelPropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsModelPatchnullMediaTypesParam {
+export declare interface CollectionsModelPatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsModelPatchnullParameters = CollectionsModelPatchnullMediaTypesParam & CollectionsModelPatchnullBodyParam & RequestParameters;
+export declare type CollectionsModelPatchNullParameters = CollectionsModelPatchNullMediaTypesParam & CollectionsModelPatchNullBodyParam & RequestParameters;
 
 export declare interface CollectionsModelProperty {
     requiredProperty: string;
@@ -196,57 +196,57 @@ export declare interface CollectionsModelPropertyOutput {
 
 export declare type CollectionsModelPropertyResourceMergeAndPatch = Partial<CollectionsModelProperty>;
 
-export declare interface CollectionsStringGetNonnull {
-    get(options?: CollectionsStringGetNonnullParameters): StreamableMethod<CollectionsStringGetNonnull200Response>;
-    patch(options: CollectionsStringPatchNonnullParameters): StreamableMethod<CollectionsStringPatchNonnull204Response>;
+export declare interface CollectionsStringGetNonNull {
+    get(options?: CollectionsStringGetNonNullParameters): StreamableMethod<CollectionsStringGetNonNull200Response>;
+    patch(options: CollectionsStringPatchNonNullParameters): StreamableMethod<CollectionsStringPatchNonNull204Response>;
 }
 
-export declare interface CollectionsStringGetNonnull200Response extends HttpResponse {
+export declare interface CollectionsStringGetNonNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsStringPropertyOutput;
 }
 
-export declare type CollectionsStringGetNonnullParameters = RequestParameters;
+export declare type CollectionsStringGetNonNullParameters = RequestParameters;
 
-export declare interface CollectionsStringGetnull {
-    get(options?: CollectionsStringGetnullParameters): StreamableMethod<CollectionsStringGetnull200Response>;
-    patch(options: CollectionsStringPatchnullParameters): StreamableMethod<CollectionsStringPatchnull204Response>;
+export declare interface CollectionsStringGetNull {
+    get(options?: CollectionsStringGetNullParameters): StreamableMethod<CollectionsStringGetNull200Response>;
+    patch(options: CollectionsStringPatchNullParameters): StreamableMethod<CollectionsStringPatchNull204Response>;
 }
 
-export declare interface CollectionsStringGetnull200Response extends HttpResponse {
+export declare interface CollectionsStringGetNull200Response extends HttpResponse {
     status: "200";
     body: CollectionsStringPropertyOutput;
 }
 
-export declare type CollectionsStringGetnullParameters = RequestParameters;
+export declare type CollectionsStringGetNullParameters = RequestParameters;
 
-export declare interface CollectionsStringPatchNonnull204Response extends HttpResponse {
+export declare interface CollectionsStringPatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsStringPatchNonnullBodyParam {
+export declare interface CollectionsStringPatchNonNullBodyParam {
     body: CollectionsStringPropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsStringPatchNonnullMediaTypesParam {
+export declare interface CollectionsStringPatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsStringPatchNonnullParameters = CollectionsStringPatchNonnullMediaTypesParam & CollectionsStringPatchNonnullBodyParam & RequestParameters;
+export declare type CollectionsStringPatchNonNullParameters = CollectionsStringPatchNonNullMediaTypesParam & CollectionsStringPatchNonNullBodyParam & RequestParameters;
 
-export declare interface CollectionsStringPatchnull204Response extends HttpResponse {
+export declare interface CollectionsStringPatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface CollectionsStringPatchnullBodyParam {
+export declare interface CollectionsStringPatchNullBodyParam {
     body: CollectionsStringPropertyResourceMergeAndPatch;
 }
 
-export declare interface CollectionsStringPatchnullMediaTypesParam {
+export declare interface CollectionsStringPatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type CollectionsStringPatchnullParameters = CollectionsStringPatchnullMediaTypesParam & CollectionsStringPatchnullBodyParam & RequestParameters;
+export declare type CollectionsStringPatchNullParameters = CollectionsStringPatchNullMediaTypesParam & CollectionsStringPatchNullBodyParam & RequestParameters;
 
 export declare interface CollectionsStringProperty {
     requiredProperty: string;
@@ -263,57 +263,57 @@ export declare type CollectionsStringPropertyResourceMergeAndPatch = Partial<Col
 declare function createClient(options?: NullableClientOptions): NullableClient;
 export default createClient;
 
-export declare interface DatetimeGetNonnull {
-    get(options?: DatetimeGetNonnullParameters): StreamableMethod<DatetimeGetNonnull200Response>;
-    patch(options: DatetimePatchNonnullParameters): StreamableMethod<DatetimePatchNonnull204Response>;
+export declare interface DatetimeGetNonNull {
+    get(options?: DatetimeGetNonNullParameters): StreamableMethod<DatetimeGetNonNull200Response>;
+    patch(options: DatetimePatchNonNullParameters): StreamableMethod<DatetimePatchNonNull204Response>;
 }
 
-export declare interface DatetimeGetNonnull200Response extends HttpResponse {
+export declare interface DatetimeGetNonNull200Response extends HttpResponse {
     status: "200";
     body: DatetimePropertyOutput;
 }
 
-export declare type DatetimeGetNonnullParameters = RequestParameters;
+export declare type DatetimeGetNonNullParameters = RequestParameters;
 
-export declare interface DatetimeGetnull {
-    get(options?: DatetimeGetnullParameters): StreamableMethod<DatetimeGetnull200Response>;
-    patch(options: DatetimePatchnullParameters): StreamableMethod<DatetimePatchnull204Response>;
+export declare interface DatetimeGetNull {
+    get(options?: DatetimeGetNullParameters): StreamableMethod<DatetimeGetNull200Response>;
+    patch(options: DatetimePatchNullParameters): StreamableMethod<DatetimePatchNull204Response>;
 }
 
-export declare interface DatetimeGetnull200Response extends HttpResponse {
+export declare interface DatetimeGetNull200Response extends HttpResponse {
     status: "200";
     body: DatetimePropertyOutput;
 }
 
-export declare type DatetimeGetnullParameters = RequestParameters;
+export declare type DatetimeGetNullParameters = RequestParameters;
 
-export declare interface DatetimePatchNonnull204Response extends HttpResponse {
+export declare interface DatetimePatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface DatetimePatchNonnullBodyParam {
+export declare interface DatetimePatchNonNullBodyParam {
     body: DatetimePropertyResourceMergeAndPatch;
 }
 
-export declare interface DatetimePatchNonnullMediaTypesParam {
+export declare interface DatetimePatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type DatetimePatchNonnullParameters = DatetimePatchNonnullMediaTypesParam & DatetimePatchNonnullBodyParam & RequestParameters;
+export declare type DatetimePatchNonNullParameters = DatetimePatchNonNullMediaTypesParam & DatetimePatchNonNullBodyParam & RequestParameters;
 
-export declare interface DatetimePatchnull204Response extends HttpResponse {
+export declare interface DatetimePatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface DatetimePatchnullBodyParam {
+export declare interface DatetimePatchNullBodyParam {
     body: DatetimePropertyResourceMergeAndPatch;
 }
 
-export declare interface DatetimePatchnullMediaTypesParam {
+export declare interface DatetimePatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type DatetimePatchnullParameters = DatetimePatchnullMediaTypesParam & DatetimePatchnullBodyParam & RequestParameters;
+export declare type DatetimePatchNullParameters = DatetimePatchNullMediaTypesParam & DatetimePatchNullBodyParam & RequestParameters;
 
 export declare interface DatetimeProperty {
     requiredProperty: string;
@@ -327,57 +327,57 @@ export declare interface DatetimePropertyOutput {
 
 export declare type DatetimePropertyResourceMergeAndPatch = Partial<DatetimeProperty>;
 
-export declare interface DurationGetNonnull {
-    get(options?: DurationGetNonnullParameters): StreamableMethod<DurationGetNonnull200Response>;
-    patch(options: DurationPatchNonnullParameters): StreamableMethod<DurationPatchNonnull204Response>;
+export declare interface DurationGetNonNull {
+    get(options?: DurationGetNonNullParameters): StreamableMethod<DurationGetNonNull200Response>;
+    patch(options: DurationPatchNonNullParameters): StreamableMethod<DurationPatchNonNull204Response>;
 }
 
-export declare interface DurationGetNonnull200Response extends HttpResponse {
+export declare interface DurationGetNonNull200Response extends HttpResponse {
     status: "200";
     body: DurationPropertyOutput;
 }
 
-export declare type DurationGetNonnullParameters = RequestParameters;
+export declare type DurationGetNonNullParameters = RequestParameters;
 
-export declare interface DurationGetnull {
-    get(options?: DurationGetnullParameters): StreamableMethod<DurationGetnull200Response>;
-    patch(options: DurationPatchnullParameters): StreamableMethod<DurationPatchnull204Response>;
+export declare interface DurationGetNull {
+    get(options?: DurationGetNullParameters): StreamableMethod<DurationGetNull200Response>;
+    patch(options: DurationPatchNullParameters): StreamableMethod<DurationPatchNull204Response>;
 }
 
-export declare interface DurationGetnull200Response extends HttpResponse {
+export declare interface DurationGetNull200Response extends HttpResponse {
     status: "200";
     body: DurationPropertyOutput;
 }
 
-export declare type DurationGetnullParameters = RequestParameters;
+export declare type DurationGetNullParameters = RequestParameters;
 
-export declare interface DurationPatchNonnull204Response extends HttpResponse {
+export declare interface DurationPatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface DurationPatchNonnullBodyParam {
+export declare interface DurationPatchNonNullBodyParam {
     body: DurationPropertyResourceMergeAndPatch;
 }
 
-export declare interface DurationPatchNonnullMediaTypesParam {
+export declare interface DurationPatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type DurationPatchNonnullParameters = DurationPatchNonnullMediaTypesParam & DurationPatchNonnullBodyParam & RequestParameters;
+export declare type DurationPatchNonNullParameters = DurationPatchNonNullMediaTypesParam & DurationPatchNonNullBodyParam & RequestParameters;
 
-export declare interface DurationPatchnull204Response extends HttpResponse {
+export declare interface DurationPatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface DurationPatchnullBodyParam {
+export declare interface DurationPatchNullBodyParam {
     body: DurationPropertyResourceMergeAndPatch;
 }
 
-export declare interface DurationPatchnullMediaTypesParam {
+export declare interface DurationPatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type DurationPatchnullParameters = DurationPatchnullMediaTypesParam & DurationPatchnullBodyParam & RequestParameters;
+export declare type DurationPatchNullParameters = DurationPatchNullMediaTypesParam & DurationPatchNullBodyParam & RequestParameters;
 
 export declare interface DurationProperty {
     requiredProperty: string;
@@ -407,73 +407,73 @@ export declare interface NullableClientOptions extends ClientOptions {
 }
 
 export declare interface Routes {
-    (path: "/type/property/nullable/string/non-null"): StringModelGetNonnull;
-    (path: "/type/property/nullable/string/null"): StringModelGetnull;
-    (path: "/type/property/nullable/bytes/non-null"): BytesGetNonnull;
-    (path: "/type/property/nullable/bytes/null"): BytesGetnull;
-    (path: "/type/property/nullable/datetime/non-null"): DatetimeGetNonnull;
-    (path: "/type/property/nullable/datetime/null"): DatetimeGetnull;
-    (path: "/type/property/nullable/duration/non-null"): DurationGetNonnull;
-    (path: "/type/property/nullable/duration/null"): DurationGetnull;
-    (path: "/type/property/nullable/collections/bytes/non-null"): CollectionsByteGetNonnull;
-    (path: "/type/property/nullable/collections/bytes/null"): CollectionsByteGetnull;
-    (path: "/type/property/nullable/collections/model/non-null"): CollectionsModelGetNonnull;
-    (path: "/type/property/nullable/collections/model/null"): CollectionsModelGetnull;
-    (path: "/type/property/nullable/collections/string/non-null"): CollectionsStringGetNonnull;
-    (path: "/type/property/nullable/collections/string/null"): CollectionsStringGetnull;
+    (path: "/type/property/nullable/string/non-null"): StringModelGetNonNull;
+    (path: "/type/property/nullable/string/null"): StringModelGetNull;
+    (path: "/type/property/nullable/bytes/non-null"): BytesGetNonNull;
+    (path: "/type/property/nullable/bytes/null"): BytesGetNull;
+    (path: "/type/property/nullable/datetime/non-null"): DatetimeGetNonNull;
+    (path: "/type/property/nullable/datetime/null"): DatetimeGetNull;
+    (path: "/type/property/nullable/duration/non-null"): DurationGetNonNull;
+    (path: "/type/property/nullable/duration/null"): DurationGetNull;
+    (path: "/type/property/nullable/collections/bytes/non-null"): CollectionsByteGetNonNull;
+    (path: "/type/property/nullable/collections/bytes/null"): CollectionsByteGetNull;
+    (path: "/type/property/nullable/collections/model/non-null"): CollectionsModelGetNonNull;
+    (path: "/type/property/nullable/collections/model/null"): CollectionsModelGetNull;
+    (path: "/type/property/nullable/collections/string/non-null"): CollectionsStringGetNonNull;
+    (path: "/type/property/nullable/collections/string/null"): CollectionsStringGetNull;
 }
 
-export declare interface StringModelGetNonnull {
-    get(options?: StringModelGetNonnullParameters): StreamableMethod<StringModelGetNonnull200Response>;
-    patch(options: StringModelPatchNonnullParameters): StreamableMethod<StringModelPatchNonnull204Response>;
+export declare interface StringModelGetNonNull {
+    get(options?: StringModelGetNonNullParameters): StreamableMethod<StringModelGetNonNull200Response>;
+    patch(options: StringModelPatchNonNullParameters): StreamableMethod<StringModelPatchNonNull204Response>;
 }
 
-export declare interface StringModelGetNonnull200Response extends HttpResponse {
+export declare interface StringModelGetNonNull200Response extends HttpResponse {
     status: "200";
     body: StringPropertyOutput;
 }
 
-export declare type StringModelGetNonnullParameters = RequestParameters;
+export declare type StringModelGetNonNullParameters = RequestParameters;
 
-export declare interface StringModelGetnull {
-    get(options?: StringModelGetnullParameters): StreamableMethod<StringModelGetnull200Response>;
-    patch(options: StringModelPatchnullParameters): StreamableMethod<StringModelPatchnull204Response>;
+export declare interface StringModelGetNull {
+    get(options?: StringModelGetNullParameters): StreamableMethod<StringModelGetNull200Response>;
+    patch(options: StringModelPatchNullParameters): StreamableMethod<StringModelPatchNull204Response>;
 }
 
-export declare interface StringModelGetnull200Response extends HttpResponse {
+export declare interface StringModelGetNull200Response extends HttpResponse {
     status: "200";
     body: StringPropertyOutput;
 }
 
-export declare type StringModelGetnullParameters = RequestParameters;
+export declare type StringModelGetNullParameters = RequestParameters;
 
-export declare interface StringModelPatchNonnull204Response extends HttpResponse {
+export declare interface StringModelPatchNonNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface StringModelPatchNonnullBodyParam {
+export declare interface StringModelPatchNonNullBodyParam {
     body: StringPropertyResourceMergeAndPatch;
 }
 
-export declare interface StringModelPatchNonnullMediaTypesParam {
+export declare interface StringModelPatchNonNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type StringModelPatchNonnullParameters = StringModelPatchNonnullMediaTypesParam & StringModelPatchNonnullBodyParam & RequestParameters;
+export declare type StringModelPatchNonNullParameters = StringModelPatchNonNullMediaTypesParam & StringModelPatchNonNullBodyParam & RequestParameters;
 
-export declare interface StringModelPatchnull204Response extends HttpResponse {
+export declare interface StringModelPatchNull204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface StringModelPatchnullBodyParam {
+export declare interface StringModelPatchNullBodyParam {
     body: StringPropertyResourceMergeAndPatch;
 }
 
-export declare interface StringModelPatchnullMediaTypesParam {
+export declare interface StringModelPatchNullMediaTypesParam {
     contentType: "application/merge-patch+json";
 }
 
-export declare type StringModelPatchnullParameters = StringModelPatchnullMediaTypesParam & StringModelPatchnullBodyParam & RequestParameters;
+export declare type StringModelPatchNullParameters = StringModelPatchNullMediaTypesParam & StringModelPatchNullBodyParam & RequestParameters;
 
 export declare interface StringProperty {
     requiredProperty: string;
