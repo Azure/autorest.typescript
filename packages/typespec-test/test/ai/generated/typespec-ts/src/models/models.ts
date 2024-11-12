@@ -696,12 +696,12 @@ export function connectionPropertiesSASAuthDeserializer(
 /** The credentials needed for Shared Access Signatures (SAS) authentication */
 export interface CredentialsSASAuth {
   /** The Shared Access Signatures (SAS) token */
-  sas: string;
+  sAS: string;
 }
 
 export function credentialsSASAuthDeserializer(item: any): CredentialsSASAuth {
   return {
-    sas: item["SAS"],
+    sAS: item["SAS"],
   };
 }
 
@@ -4773,5 +4773,5 @@ export type VectorStoreFileStatusFilter =
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  "2024-07-01-preview" = "2024-07-01-preview",
+  Number20240701Preview = "2024-07-01-preview",
 }
