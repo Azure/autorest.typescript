@@ -294,6 +294,22 @@ export function dataProductNetworkAclsDeserializer(
   };
 }
 
+export function virtualNetworkRuleArraySerializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleSerializer(item);
+  });
+}
+
+export function virtualNetworkRuleArrayDeserializer(
+  result: Array<VirtualNetworkRule>,
+): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleDeserializer(item);
+  });
+}
+
 /** Virtual Network Rule */
 export interface VirtualNetworkRule {
   /** Resource ID of a subnet */
@@ -316,19 +332,15 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
-export function virtualNetworkRuleArraySerializer(
-  result: Array<VirtualNetworkRule>,
-): any[] {
+export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return virtualNetworkRuleSerializer(item);
+    return iPRulesSerializer(item);
   });
 }
 
-export function virtualNetworkRuleArrayDeserializer(
-  result: Array<VirtualNetworkRule>,
-): any[] {
+export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return virtualNetworkRuleDeserializer(item);
+    return iPRulesDeserializer(item);
   });
 }
 
@@ -349,18 +361,6 @@ export function iPRulesDeserializer(item: any): IPRules {
     value: item["value"],
     action: item["action"],
   };
-}
-
-export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
-  return result.map((item) => {
-    return iPRulesSerializer(item);
-  });
-}
-
-export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
-  return result.map((item) => {
-    return iPRulesDeserializer(item);
-  });
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
@@ -493,29 +493,6 @@ export enum KnownManagedServiceIdentityType {
  */
 export type ManagedServiceIdentityType = string;
 
-/** User assigned identity properties */
-export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  readonly principalId?: string;
-  /** The client ID of the assigned identity. */
-  readonly clientId?: string;
-}
-
-export function userAssignedIdentitySerializer(
-  item: UserAssignedIdentity,
-): any {
-  return item;
-}
-
-export function userAssignedIdentityDeserializer(
-  item: any,
-): UserAssignedIdentity {
-  return {
-    principalId: item["principalId"],
-    clientId: item["clientId"],
-  };
-}
-
 export function userAssignedIdentityRecordSerializer(
   item: Record<string, UserAssignedIdentity>,
 ): Record<string, any> {
@@ -538,6 +515,29 @@ export function userAssignedIdentityRecordDeserializer(
       : userAssignedIdentityDeserializer(item[key]);
   });
   return result;
+}
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
+  /** The client ID of the assigned identity. */
+  readonly clientId?: string;
+}
+
+export function userAssignedIdentitySerializer(
+  item: UserAssignedIdentity,
+): any {
+  return item;
+}
+
+export function userAssignedIdentityDeserializer(
+  item: any,
+): UserAssignedIdentity {
+  return {
+    principalId: item["principalId"],
+    clientId: item["clientId"],
+  };
 }
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
@@ -697,6 +697,14 @@ export function errorDetailArrayDeserializer(
   });
 }
 
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>,
+): any[] {
+  return result.map((item) => {
+    return errorAdditionalInfoDeserializer(item);
+  });
+}
+
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfo {
   /** The additional info type. */
@@ -723,14 +731,6 @@ export function _errorAdditionalInfoInfoDeserializer(
   item: any,
 ): _ErrorAdditionalInfoInfo {
   return item;
-}
-
-export function errorAdditionalInfoArrayDeserializer(
-  result: Array<ErrorAdditionalInfo>,
-): any[] {
-  return result.map((item) => {
-    return errorAdditionalInfoDeserializer(item);
-  });
 }
 
 /** The type used for update operations of the DataProduct. */
@@ -1248,6 +1248,14 @@ export function dataProductsCatalogPropertiesDeserializer(
   };
 }
 
+export function publisherInformationArrayDeserializer(
+  result: Array<PublisherInformation>,
+): any[] {
+  return result.map((item) => {
+    return publisherInformationDeserializer(item);
+  });
+}
+
 /** Details for Publisher Information. */
 export interface PublisherInformation {
   /** Name of the publisher. */
@@ -1263,6 +1271,14 @@ export function publisherInformationDeserializer(
     publisherName: item["publisherName"],
     dataProducts: dataProductInformationArrayDeserializer(item["dataProducts"]),
   };
+}
+
+export function dataProductInformationArrayDeserializer(
+  result: Array<DataProductInformation>,
+): any[] {
+  return result.map((item) => {
+    return dataProductInformationDeserializer(item);
+  });
 }
 
 /** Data Product Information */
@@ -1287,6 +1303,14 @@ export function dataProductInformationDeserializer(
   };
 }
 
+export function dataProductVersionArrayDeserializer(
+  result: Array<DataProductVersion>,
+): any[] {
+  return result.map((item) => {
+    return dataProductVersionDeserializer(item);
+  });
+}
+
 /** Data Product Version. */
 export interface DataProductVersion {
   /** Version of data product */
@@ -1297,30 +1321,6 @@ export function dataProductVersionDeserializer(item: any): DataProductVersion {
   return {
     version: item["version"],
   };
-}
-
-export function dataProductVersionArrayDeserializer(
-  result: Array<DataProductVersion>,
-): any[] {
-  return result.map((item) => {
-    return dataProductVersionDeserializer(item);
-  });
-}
-
-export function dataProductInformationArrayDeserializer(
-  result: Array<DataProductInformation>,
-): any[] {
-  return result.map((item) => {
-    return dataProductInformationDeserializer(item);
-  });
-}
-
-export function publisherInformationArrayDeserializer(
-  result: Array<PublisherInformation>,
-): any[] {
-  return result.map((item) => {
-    return publisherInformationDeserializer(item);
-  });
 }
 
 /** The response of a DataProductsCatalog list operation. */
@@ -1363,6 +1363,12 @@ export function _operationListResultDeserializer(
     value: operationArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function operationArrayDeserializer(result: Array<Operation>): any[] {
+  return result.map((item) => {
+    return operationDeserializer(item);
+  });
 }
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
@@ -1448,8 +1454,8 @@ export enum KnownActionType {
  */
 export type ActionType = string;
 
-export function operationArrayDeserializer(result: Array<Operation>): any[] {
-  return result.map((item) => {
-    return operationDeserializer(item);
-  });
+/** The available API versions for the Microsoft.NetworkAnalytics RP. */
+export enum KnownVersions {
+  /** The 2023-11-15 stable version. */
+  v2023_11_15 = "2023-11-15",
 }

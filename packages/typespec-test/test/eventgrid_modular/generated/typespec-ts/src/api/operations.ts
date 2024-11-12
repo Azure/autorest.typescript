@@ -41,7 +41,9 @@ import {
 export function _publishCloudEventSend(
   context: Client,
   topicName: string,
-  event: { event: CloudEvent },
+  event: {
+    event: CloudEvent;
+  },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -70,7 +72,9 @@ export async function _publishCloudEventDeserialize(
 export async function publishCloudEvent(
   context: Client,
   topicName: string,
-  event: { event: CloudEvent },
+  event: {
+    event: CloudEvent;
+  },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
   const result = await _publishCloudEventSend(

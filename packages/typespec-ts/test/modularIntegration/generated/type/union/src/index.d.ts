@@ -151,9 +151,9 @@ export declare type StringExtensibleNamedUnion = string;
 
 export declare interface StringExtensibleOperations {
     get: (options?: StringExtensibleGetOptionalParams) => Promise<{
-        prop: string | "b" | "c";
+        prop: string;
     }>;
-    send: (prop: string | "b" | "c", options?: StringExtensibleSendOptionalParams) => Promise<void>;
+    send: (prop: string, options?: StringExtensibleSendOptionalParams) => Promise<void>;
 }
 
 export declare interface StringExtensibleSendOptionalParams extends OperationOptions {

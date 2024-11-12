@@ -143,6 +143,28 @@ export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
   };
 }
 
+export function passFailMetricRecordSerializer(
+  item: Record<string, PassFailMetric>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : passFailMetricSerializer(item[key]);
+  });
+  return result;
+}
+
+export function passFailMetricRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, PassFailMetric> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : passFailMetricDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Pass fail metric */
 export interface PassFailMetric {
   /** The client metric on which the criteria should be applied. */
@@ -318,28 +340,6 @@ export enum KnownPFResult {
  */
 export type PFResult = string;
 
-export function passFailMetricRecordSerializer(
-  item: Record<string, PassFailMetric>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : passFailMetricSerializer(item[key]);
-  });
-  return result;
-}
-
-export function passFailMetricRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, PassFailMetric> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : passFailMetricDeserializer(item[key]);
-  });
-  return result;
-}
-
 /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
 export interface AutoStopCriteria {
   /** Whether auto-stop should be disabled. The default value is false. */
@@ -364,6 +364,26 @@ export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
     errorRate: item["errorRate"],
     errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
   };
+}
+
+export function secretRecordSerializer(
+  item: Record<string, Secret>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : secretSerializer(item[key]);
+  });
+  return result;
+}
+
+export function secretRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, Secret> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : secretDeserializer(item[key]);
+  });
+  return result;
 }
 
 /** Secret */
@@ -402,26 +422,6 @@ export enum KnownSecretType {
  * **SECRET_VALUE**: If the secret value provided as plain text.
  */
 export type SecretType = string;
-
-export function secretRecordSerializer(
-  item: Record<string, Secret>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : secretSerializer(item[key]);
-  });
-  return result;
-}
-
-export function secretRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, Secret> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : secretDeserializer(item[key]);
-  });
-  return result;
-}
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -558,6 +558,22 @@ export function optionalLoadTestConfigDeserializer(
   };
 }
 
+export function regionalConfigurationArraySerializer(
+  result: Array<RegionalConfiguration>,
+): any[] {
+  return result.map((item) => {
+    return regionalConfigurationSerializer(item);
+  });
+}
+
+export function regionalConfigurationArrayDeserializer(
+  result: Array<RegionalConfiguration>,
+): any[] {
+  return result.map((item) => {
+    return regionalConfigurationDeserializer(item);
+  });
+}
+
 /** Region distribution configuration for the load test. */
 export interface RegionalConfiguration {
   /**   The number of engine instances to execute load test in specified region. Supported values are in range of 1-400. */
@@ -583,22 +599,6 @@ export function regionalConfigurationDeserializer(
     engineInstances: item["engineInstances"],
     region: item["region"],
   };
-}
-
-export function regionalConfigurationArraySerializer(
-  result: Array<RegionalConfiguration>,
-): any[] {
-  return result.map((item) => {
-    return regionalConfigurationSerializer(item);
-  });
-}
-
-export function regionalConfigurationArrayDeserializer(
-  result: Array<RegionalConfiguration>,
-): any[] {
-  return result.map((item) => {
-    return regionalConfigurationDeserializer(item);
-  });
 }
 
 /** The input artifacts for the test. */
@@ -794,6 +794,26 @@ export function testAppComponentsDeserializer(item: any): TestAppComponents {
   };
 }
 
+export function appComponentRecordSerializer(
+  item: Record<string, AppComponent>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : appComponentSerializer(item[key]);
+  });
+  return result;
+}
+
+export function appComponentRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, AppComponent> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : appComponentDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
 export interface AppComponent {
   /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
@@ -831,26 +851,6 @@ export function appComponentDeserializer(item: any): AppComponent {
     subscriptionId: item["subscriptionId"],
     kind: item["kind"],
   };
-}
-
-export function appComponentRecordSerializer(
-  item: Record<string, AppComponent>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : appComponentSerializer(item[key]);
-  });
-  return result;
-}
-
-export function appComponentRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, AppComponent> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : appComponentDeserializer(item[key]);
-  });
-  return result;
 }
 
 /** Test server metrics configuration */
@@ -894,6 +894,28 @@ export function testServerMetricConfigDeserializer(
       : new Date(item["lastModifiedDateTime"]),
     lastModifiedBy: item["lastModifiedBy"],
   };
+}
+
+export function resourceMetricRecordSerializer(
+  item: Record<string, ResourceMetric>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : resourceMetricSerializer(item[key]);
+  });
+  return result;
+}
+
+export function resourceMetricRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, ResourceMetric> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : resourceMetricDeserializer(item[key]);
+  });
+  return result;
 }
 
 /**
@@ -945,26 +967,46 @@ export function resourceMetricDeserializer(item: any): ResourceMetric {
   };
 }
 
-export function resourceMetricRecordSerializer(
-  item: Record<string, ResourceMetric>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : resourceMetricSerializer(item[key]);
-  });
-  return result;
+/** Paged collection of TestFileInfo items */
+export interface _PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
-export function resourceMetricRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, ResourceMetric> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : resourceMetricDeserializer(item[key]);
+export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
+  return {
+    value: testFileInfoArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+/** Paged collection of Test items */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestDeserializer(item: any): _PagedTest {
+  return {
+    value: testArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testArraySerializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testSerializer(item);
   });
-  return result;
+}
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
 }
 
 /** Load test run model */
@@ -1137,6 +1179,14 @@ export function testRunDeserializer(item: any): TestRun {
   };
 }
 
+export function errorDetailsArrayDeserializer(
+  result: Array<ErrorDetails>,
+): any[] {
+  return result.map((item) => {
+    return errorDetailsDeserializer(item);
+  });
+}
+
 /** Error details if there is any failure in load test run */
 export interface ErrorDetails {
   /** Error details in case test run was not successfully run. */
@@ -1149,12 +1199,16 @@ export function errorDetailsDeserializer(item: any): ErrorDetails {
   };
 }
 
-export function errorDetailsArrayDeserializer(
-  result: Array<ErrorDetails>,
-): any[] {
-  return result.map((item) => {
-    return errorDetailsDeserializer(item);
+export function testRunStatisticsRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, TestRunStatistics> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : testRunStatisticsDeserializer(item[key]);
   });
+  return result;
 }
 
 /** Test run statistics. */
@@ -1224,18 +1278,6 @@ export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
     receivedKBytesPerSec: item["receivedKBytesPerSec"],
     sentKBytesPerSec: item["sentKBytesPerSec"],
   };
-}
-
-export function testRunStatisticsRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, TestRunStatistics> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : testRunStatisticsDeserializer(item[key]);
-  });
-  return result;
 }
 
 /** Collection of test run artifacts */
@@ -1612,6 +1654,14 @@ export function metricDefinitionCollectionDeserializer(
   };
 }
 
+export function metricDefinitionArrayDeserializer(
+  result: Array<MetricDefinition>,
+): any[] {
+  return result.map((item) => {
+    return metricDefinitionDeserializer(item);
+  });
+}
+
 /** Metric definition */
 export interface MetricDefinition {
   /** List of dimensions */
@@ -1656,6 +1706,14 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
   };
 }
 
+export function nameAndDescArrayDeserializer(
+  result: Array<NameAndDesc>,
+): any[] {
+  return result.map((item) => {
+    return nameAndDescDeserializer(item);
+  });
+}
+
 /** The name and description */
 export interface NameAndDesc {
   /** The description */
@@ -1669,14 +1727,6 @@ export function nameAndDescDeserializer(item: any): NameAndDesc {
     description: item["description"],
     name: item["name"],
   };
-}
-
-export function nameAndDescArrayDeserializer(
-  result: Array<NameAndDesc>,
-): any[] {
-  return result.map((item) => {
-    return nameAndDescDeserializer(item);
-  });
 }
 
 /** Aggregation type. */
@@ -1766,6 +1816,14 @@ export enum KnownMetricUnit {
  */
 export type MetricUnit = string;
 
+export function metricAvailabilityArrayDeserializer(
+  result: Array<MetricAvailability>,
+): any[] {
+  return result.map((item) => {
+    return metricAvailabilityDeserializer(item);
+  });
+}
+
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
   /**
@@ -1808,22 +1866,6 @@ export enum KnownTimeGrain {
  */
 export type TimeGrain = string;
 
-export function metricAvailabilityArrayDeserializer(
-  result: Array<MetricAvailability>,
-): any[] {
-  return result.map((item) => {
-    return metricAvailabilityDeserializer(item);
-  });
-}
-
-export function metricDefinitionArrayDeserializer(
-  result: Array<MetricDefinition>,
-): any[] {
-  return result.map((item) => {
-    return metricDefinitionDeserializer(item);
-  });
-}
-
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
   /** The values for the metric namespaces. */
@@ -1836,6 +1878,14 @@ export function metricNamespaceCollectionDeserializer(
   return {
     value: metricNamespaceArrayDeserializer(item["value"]),
   };
+}
+
+export function metricNamespaceArrayDeserializer(
+  result: Array<MetricNamespace>,
+): any[] {
+  return result.map((item) => {
+    return metricNamespaceDeserializer(item);
+  });
 }
 
 /** Metric namespace class specifies the metadata for a metric namespace. */
@@ -1851,14 +1901,6 @@ export function metricNamespaceDeserializer(item: any): MetricNamespace {
     description: item["description"],
     name: item["name"],
   };
-}
-
-export function metricNamespaceArrayDeserializer(
-  result: Array<MetricNamespace>,
-): any[] {
-  return result.map((item) => {
-    return metricNamespaceDeserializer(item);
-  });
 }
 
 /** Filters to fetch the set of metric. */
@@ -1882,6 +1924,14 @@ export function metricRequestPayloadSerializer(
   };
 }
 
+export function dimensionFilterArraySerializer(
+  result: Array<DimensionFilter>,
+): any[] {
+  return result.map((item) => {
+    return dimensionFilterSerializer(item);
+  });
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
@@ -1901,14 +1951,6 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
   };
 }
 
-export function dimensionFilterArraySerializer(
-  result: Array<DimensionFilter>,
-): any[] {
-  return result.map((item) => {
-    return dimensionFilterSerializer(item);
-  });
-}
-
 /** The response to a metrics query. */
 export interface _Metrics {
   /** The TimeSeriesElement items on this page */
@@ -1922,6 +1964,14 @@ export function _metricsDeserializer(item: any): _Metrics {
     value: timeSeriesElementArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
+}
+
+export function timeSeriesElementArrayDeserializer(
+  result: Array<TimeSeriesElement>,
+): any[] {
+  return result.map((item) => {
+    return timeSeriesElementDeserializer(item);
+  });
 }
 
 /** The time series returned when a data query is performed. */
@@ -1943,6 +1993,14 @@ export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
   };
 }
 
+export function metricValueArrayDeserializer(
+  result: Array<MetricValue>,
+): any[] {
+  return result.map((item) => {
+    return metricValueDeserializer(item);
+  });
+}
+
 /** Represents a metric value. */
 export interface MetricValue {
   /** The timestamp for the metric value in RFC 3339 format. */
@@ -1960,11 +2018,11 @@ export function metricValueDeserializer(item: any): MetricValue {
   };
 }
 
-export function metricValueArrayDeserializer(
-  result: Array<MetricValue>,
+export function dimensionValueArrayDeserializer(
+  result: Array<DimensionValue>,
 ): any[] {
   return result.map((item) => {
-    return metricValueDeserializer(item);
+    return dimensionValueDeserializer(item);
   });
 }
 
@@ -1983,19 +2041,30 @@ export function dimensionValueDeserializer(item: any): DimensionValue {
   };
 }
 
-export function dimensionValueArrayDeserializer(
-  result: Array<DimensionValue>,
-): any[] {
+/** Paged collection of TestRun items */
+export interface _PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
+  return {
+    value: testRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testRunArraySerializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
-    return dimensionValueDeserializer(item);
+    return testRunSerializer(item);
   });
 }
 
-export function timeSeriesElementArrayDeserializer(
-  result: Array<TimeSeriesElement>,
-): any[] {
+export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
-    return timeSeriesElementDeserializer(item);
+    return testRunDeserializer(item);
   });
 }
 
@@ -2167,6 +2236,30 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
   };
 }
 
+export function functionFlexConsumptionResourceConfigurationRecordSerializer(
+  item: Record<string, FunctionFlexConsumptionResourceConfiguration>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : functionFlexConsumptionResourceConfigurationSerializer(item[key]);
+  });
+  return result;
+}
+
+export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, FunctionFlexConsumptionResourceConfiguration> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key]
+      ? item[key]
+      : functionFlexConsumptionResourceConfigurationDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Resource configuration instance for a Flex Consumption based Azure Function App. */
 export interface FunctionFlexConsumptionResourceConfiguration {
   /** Memory size of the instance. Supported values are 2048, 4096. */
@@ -2193,28 +2286,33 @@ export function functionFlexConsumptionResourceConfigurationDeserializer(
   };
 }
 
-export function functionFlexConsumptionResourceConfigurationRecordSerializer(
-  item: Record<string, FunctionFlexConsumptionResourceConfiguration>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : functionFlexConsumptionResourceConfigurationSerializer(item[key]);
-  });
-  return result;
+/** Paged collection of TestProfile items */
+export interface _PagedTestProfile {
+  /** The TestProfile items on this page */
+  value: TestProfile[];
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
-export function functionFlexConsumptionResourceConfigurationRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, FunctionFlexConsumptionResourceConfiguration> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : functionFlexConsumptionResourceConfigurationDeserializer(item[key]);
+export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
+  return {
+    value: testProfileArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
+  return result.map((item) => {
+    return testProfileSerializer(item);
   });
-  return result;
+}
+
+export function testProfileArrayDeserializer(
+  result: Array<TestProfile>,
+): any[] {
+  return result.map((item) => {
+    return testProfileDeserializer(item);
+  });
 }
 
 /** The Test Profile Run Model. Test Profile Run resource enables you to instantiate an already created test profile and run load tests to get recommendations on the optimal configuration for the target resource. */
@@ -2339,6 +2437,16 @@ export enum KnownTestProfileRunStatus {
  */
 export type TestProfileRunStatus = string;
 
+export function testRunDetailRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, TestRunDetail> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : testRunDetailDeserializer(item[key]);
+  });
+  return result;
+}
+
 /** Details of a particular test run for a test profile run. */
 export interface TestRunDetail {
   /** Status of the test run. */
@@ -2357,14 +2465,12 @@ export function testRunDetailDeserializer(item: any): TestRunDetail {
   };
 }
 
-export function testRunDetailRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, TestRunDetail> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : testRunDetailDeserializer(item[key]);
+export function testProfileRunRecommendationArrayDeserializer(
+  result: Array<TestProfileRunRecommendation>,
+): any[] {
+  return result.map((item) => {
+    return testProfileRunRecommendationDeserializer(item);
   });
-  return result;
 }
 
 /** A recommendation object that provides a list of configuration that optimizes its category. */
@@ -2406,112 +2512,6 @@ export enum KnownRecommendationCategory {
  */
 export type RecommendationCategory = string;
 
-export function testProfileRunRecommendationArrayDeserializer(
-  result: Array<TestProfileRunRecommendation>,
-): any[] {
-  return result.map((item) => {
-    return testProfileRunRecommendationDeserializer(item);
-  });
-}
-
-/** Paged collection of TestFileInfo items */
-export interface _PagedTestFileInfo {
-  /** The TestFileInfo items on this page */
-  value: TestFileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
-  return {
-    value: testFileInfoArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-/** Paged collection of Test items */
-export interface _PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestDeserializer(item: any): _PagedTest {
-  return {
-    value: testArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testArraySerializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testSerializer(item);
-  });
-}
-
-export function testArrayDeserializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testDeserializer(item);
-  });
-}
-
-/** Paged collection of TestRun items */
-export interface _PagedTestRun {
-  /** The TestRun items on this page */
-  value: TestRun[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
-  return {
-    value: testRunArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testRunArraySerializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunSerializer(item);
-  });
-}
-
-export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunDeserializer(item);
-  });
-}
-
-/** Paged collection of TestProfile items */
-export interface _PagedTestProfile {
-  /** The TestProfile items on this page */
-  value: TestProfile[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
-  return {
-    value: testProfileArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
-  return result.map((item) => {
-    return testProfileSerializer(item);
-  });
-}
-
-export function testProfileArrayDeserializer(
-  result: Array<TestProfile>,
-): any[] {
-  return result.map((item) => {
-    return testProfileDeserializer(item);
-  });
-}
-
 /** Paged collection of TestProfileRun items */
 export interface _PagedTestProfileRun {
   /** The TestProfileRun items on this page */
@@ -2543,4 +2543,16 @@ export function testProfileRunArrayDeserializer(
   return result.map((item) => {
     return testProfileRunDeserializer(item);
   });
+}
+
+/** Azure Load Testing API versions. */
+export enum KnownAPIVersions {
+  /** The 2022-11-01 version of the Azure Load Testing API. */
+  v2022_11_01 = "2022-11-01",
+  /** The 2023-04-01-preview version of the Azure Load Testing API. */
+  v2023_04_01_preview = "2023-04-01-preview",
+  /** The 2024-03-01-preview version of the Azure Load Testing API. */
+  v2024_03_01_preview = "2024-03-01-preview",
+  /** The 2024-05-01-preview version of the Azure Load Testing API. */
+  v2024_05_01_preview = "2024-05-01-preview",
 }

@@ -231,6 +231,12 @@ export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
 export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
 
 // @public
+export enum KnownApiVersion {
+    // (undocumented)
+    v2023_09_01_Preview = "2023-09-01-preview"
+}
+
+// @public
 export interface LateralityDiscrepancyInference extends RadiologyInsightsInference {
     discrepancyType: LateralityDiscrepancyType;
     kind: "lateralityDiscrepancy";
@@ -499,6 +505,9 @@ export interface Reference extends Element {
     reference?: string;
     type?: string;
 }
+
+// @public
+export type RepeatabilityResult = "accepted" | "rejected";
 
 // @public
 export interface Resource {

@@ -2,11 +2,11 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/moderations/index.js";
-import { ModerationsCreateOptionalParams } from "../../api/options.js";
 import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
+import { ModerationsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Moderations operations. */
 export interface ModerationsOperations {

@@ -43,7 +43,6 @@ export {
   ChatCompletionFunctions,
   ChatCompletionFunctionParameters,
   ChatCompletionFunctionCallOption,
-  Stop_1,
   CreateChatCompletionResponse,
   ChatCompletionResponseMessage,
   CreateTranslationRequest,

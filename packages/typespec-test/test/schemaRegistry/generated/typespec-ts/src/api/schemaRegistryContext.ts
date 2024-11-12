@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -11,6 +12,7 @@ export interface SchemaRegistryContext extends Client {}
 /** Optional parameters for the client. */
 export interface SchemaRegistryClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
   apiVersion?: string;
 }
 

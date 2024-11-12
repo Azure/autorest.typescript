@@ -3,10 +3,10 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 import {
-  BatchJobTerminateOptions,
   NodeRebootOptions,
   NodeReimageOptions,
   NodeDisableSchedulingOptions,
+  BatchJobTerminateOptions,
 } from "../models/models.js";
 
 /** Optional parameters. */
