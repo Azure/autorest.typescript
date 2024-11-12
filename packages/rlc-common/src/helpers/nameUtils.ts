@@ -258,22 +258,6 @@ function getCasingConvention(nameType: NameType) {
   }
 }
 
-function getNumberPrefix(nameType: NameType) {
-  switch (nameType) {
-    case NameType.EnumMemberName:
-      return true;
-    case NameType.Class:
-    case NameType.Interface:
-    case NameType.OperationGroup:
-    case NameType.File:
-    case NameType.Property:
-    case NameType.Operation:
-    case NameType.Parameter:
-    case NameType.Method:
-      return false;
-  }
-}
-
 /**
  * TODO: Improve this function to handle cases such as TEST -> test. Current basic implementation
  * results in TEST -> test or Test (depending on the CasingConvention). We should switch to relay
