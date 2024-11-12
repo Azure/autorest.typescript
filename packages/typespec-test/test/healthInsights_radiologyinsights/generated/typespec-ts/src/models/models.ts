@@ -51,6 +51,18 @@ export function patientInfoSerializer(item: PatientInfo): any {
 /** The patient's sex. */
 export type PatientInfoSex = "female" | "male" | "unspecified";
 
+export function resourceArraySerializer(result: Array<Resource>): any[] {
+  return result.map((item) => {
+    return resourceSerializer(item);
+  });
+}
+
+export function resourceArrayDeserializer(result: Array<Resource>): any[] {
+  return result.map((item) => {
+    return resourceDeserializer(item);
+  });
+}
+
 /**
  * Resource is the ancestor of DomainResource from which most resources are derived. Bundle, Parameters, and Binary extend Resource directly.
  * Based on [FHIR Resource](https://www.hl7.org/fhir/r4/resource.html
@@ -145,6 +157,18 @@ export function metaDeserializer(item: any): Meta {
   };
 }
 
+export function codingArraySerializer(result: Array<Coding>): any[] {
+  return result.map((item) => {
+    return codingSerializer(item);
+  });
+}
+
+export function codingArrayDeserializer(result: Array<Coding>): any[] {
+  return result.map((item) => {
+    return codingDeserializer(item);
+  });
+}
+
 /**
  * A Coding is a representation of a defined concept using a symbol from a defined "code system".
  * Based on [FHIR Coding](https://www.hl7.org/fhir/R4/datatypes.html#Coding)
@@ -186,27 +210,9 @@ export function codingDeserializer(item: any): Coding {
   };
 }
 
-export function codingArraySerializer(result: Array<Coding>): any[] {
+export function encounterArraySerializer(result: Array<Encounter>): any[] {
   return result.map((item) => {
-    return codingSerializer(item);
-  });
-}
-
-export function codingArrayDeserializer(result: Array<Coding>): any[] {
-  return result.map((item) => {
-    return codingDeserializer(item);
-  });
-}
-
-export function resourceArraySerializer(result: Array<Resource>): any[] {
-  return result.map((item) => {
-    return resourceSerializer(item);
-  });
-}
-
-export function resourceArrayDeserializer(result: Array<Resource>): any[] {
-  return result.map((item) => {
-    return resourceDeserializer(item);
+    return encounterSerializer(item);
   });
 }
 
@@ -257,9 +263,11 @@ export type EncounterClass =
   | "virtual"
   | "healthHome";
 
-export function encounterArraySerializer(result: Array<Encounter>): any[] {
+export function patientDocumentArraySerializer(
+  result: Array<PatientDocument>,
+): any[] {
   return result.map((item) => {
-    return encounterSerializer(item);
+    return patientDocumentSerializer(item);
   });
 }
 
@@ -322,6 +330,14 @@ export type ClinicalDocumentType =
   | "laboratory"
   | "pathologyReport";
 
+export function documentAuthorArraySerializer(
+  result: Array<DocumentAuthor>,
+): any[] {
+  return result.map((item) => {
+    return documentAuthorSerializer(item);
+  });
+}
+
 /** Document author */
 export interface DocumentAuthor {
   /** author id */
@@ -332,14 +348,6 @@ export interface DocumentAuthor {
 
 export function documentAuthorSerializer(item: DocumentAuthor): any {
   return { id: item["id"], fullName: item["fullName"] };
-}
-
-export function documentAuthorArraySerializer(
-  result: Array<DocumentAuthor>,
-): any[] {
-  return result.map((item) => {
-    return documentAuthorSerializer(item);
-  });
 }
 
 /** Known values codes that can be used to indicate the type of the Specialty. */
@@ -362,6 +370,22 @@ export function documentAdministrativeMetadataSerializer(
       : orderedProcedureArraySerializer(item["orderedProcedures"]),
     encounterId: item["encounterId"],
   };
+}
+
+export function orderedProcedureArraySerializer(
+  result: Array<OrderedProcedure>,
+): any[] {
+  return result.map((item) => {
+    return orderedProcedureSerializer(item);
+  });
+}
+
+export function orderedProcedureArrayDeserializer(
+  result: Array<OrderedProcedure>,
+): any[] {
+  return result.map((item) => {
+    return orderedProcedureDeserializer(item);
+  });
 }
 
 /** Procedure information */
@@ -433,22 +457,6 @@ export function codeableConceptDeserializer(item: any): CodeableConcept {
   };
 }
 
-export function orderedProcedureArraySerializer(
-  result: Array<OrderedProcedure>,
-): any[] {
-  return result.map((item) => {
-    return orderedProcedureSerializer(item);
-  });
-}
-
-export function orderedProcedureArrayDeserializer(
-  result: Array<OrderedProcedure>,
-): any[] {
-  return result.map((item) => {
-    return orderedProcedureDeserializer(item);
-  });
-}
-
 /** The content of the patient document. */
 export interface DocumentContent {
   /**
@@ -471,14 +479,6 @@ export function documentContentSerializer(item: DocumentContent): any {
  * In case the source type is 'reference', the content is given as a URI.
  */
 export type DocumentContentSourceType = "inline" | "reference";
-
-export function patientDocumentArraySerializer(
-  result: Array<PatientDocument>,
-): any[] {
-  return result.map((item) => {
-    return patientDocumentSerializer(item);
-  });
-}
 
 /**
  * The base definition for all elements contained inside a resource.
@@ -507,6 +507,18 @@ export function elementDeserializer(item: any): Element {
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
   };
+}
+
+export function extensionArraySerializer(result: Array<Extension>): any[] {
+  return result.map((item) => {
+    return extensionSerializer(item);
+  });
+}
+
+export function extensionArrayDeserializer(result: Array<Extension>): any[] {
+  return result.map((item) => {
+    return extensionDeserializer(item);
+  });
 }
 
 /**
@@ -923,18 +935,6 @@ export function identifierDeserializer(item: any): Identifier {
   };
 }
 
-export function extensionArraySerializer(result: Array<Extension>): any[] {
-  return result.map((item) => {
-    return extensionSerializer(item);
-  });
-}
-
-export function extensionArrayDeserializer(result: Array<Extension>): any[] {
-  return result.map((item) => {
-    return extensionDeserializer(item);
-  });
-}
-
 /** FHIR extendible element */
 export interface Extendible {
   /** Additional Content defined by implementations */
@@ -1131,6 +1131,14 @@ export function radiologyInsightsInferenceResultDeserializer(
   };
 }
 
+export function radiologyInsightsPatientResultArrayDeserializer(
+  result: Array<RadiologyInsightsPatientResult>,
+): any[] {
+  return result.map((item) => {
+    return radiologyInsightsPatientResultDeserializer(item);
+  });
+}
+
 /** The results of the model's work for a single patient. */
 export interface RadiologyInsightsPatientResult {
   /** The identifier given for the patient in the request. */
@@ -1148,6 +1156,14 @@ export function radiologyInsightsPatientResultDeserializer(
       item["inferences"],
     ),
   };
+}
+
+export function radiologyInsightsInferenceUnionArrayDeserializer(
+  result: Array<RadiologyInsightsInferenceUnion>,
+): any[] {
+  return result.map((item) => {
+    return radiologyInsightsInferenceUnionDeserializer(item);
+  });
 }
 
 /**
@@ -1620,6 +1636,12 @@ export type ObservationStatusCodeType =
   | "entered-in-error"
   | "unknown";
 
+export function annotationArrayDeserializer(result: Array<Annotation>): any[] {
+  return result.map((item) => {
+    return annotationDeserializer(item);
+  });
+}
+
 /**
  * A text note which also  contains information about who made the statement and when
  * Based on [FHIR Annotation](https://www.hl7.org/fhir/R4/datatypes.html#Annotation)
@@ -1645,9 +1667,11 @@ export function annotationDeserializer(item: any): Annotation {
   };
 }
 
-export function annotationArrayDeserializer(result: Array<Annotation>): any[] {
+export function observationReferenceRangeArrayDeserializer(
+  result: Array<ObservationReferenceRange>,
+): any[] {
   return result.map((item) => {
-    return annotationDeserializer(item);
+    return observationReferenceRangeDeserializer(item);
   });
 }
 
@@ -1687,14 +1711,6 @@ export function observationReferenceRangeDeserializer(
   };
 }
 
-export function observationReferenceRangeArrayDeserializer(
-  result: Array<ObservationReferenceRange>,
-): any[] {
-  return result.map((item) => {
-    return observationReferenceRangeDeserializer(item);
-  });
-}
-
 export function referenceArraySerializer(result: Array<Reference>): any[] {
   return result.map((item) => {
     return referenceSerializer(item);
@@ -1704,6 +1720,14 @@ export function referenceArraySerializer(result: Array<Reference>): any[] {
 export function referenceArrayDeserializer(result: Array<Reference>): any[] {
   return result.map((item) => {
     return referenceDeserializer(item);
+  });
+}
+
+export function observationComponentArrayDeserializer(
+  result: Array<ObservationComponent>,
+): any[] {
+  return result.map((item) => {
+    return observationComponentDeserializer(item);
   });
 }
 
@@ -1793,14 +1817,6 @@ export function observationComponentDeserializer(
   };
 }
 
-export function observationComponentArrayDeserializer(
-  result: Array<ObservationComponent>,
-): any[] {
-  return result.map((item) => {
-    return observationComponentDeserializer(item);
-  });
-}
-
 /** Identifies and highlights potential Critical Findings found in a clinical document. */
 export interface CriticalResultInference extends RadiologyInsightsInference {
   /** The type of the inference. */
@@ -1869,6 +1885,14 @@ export function radiologyProcedureInferenceDeserializer(
   };
 }
 
+export function imagingProcedureArrayDeserializer(
+  result: Array<ImagingProcedure>,
+): any[] {
+  return result.map((item) => {
+    return imagingProcedureDeserializer(item);
+  });
+}
+
 /** Order Procedure - is this always a radiology procedure? */
 export interface ImagingProcedure {
   /** The procedure modality */
@@ -1914,14 +1938,6 @@ export function radiologyCodeWithTypesDeserializer(
     code: codeableConceptDeserializer(item["code"]),
     types: codeableConceptArrayDeserializer(item["types"]),
   };
-}
-
-export function imagingProcedureArrayDeserializer(
-  result: Array<ImagingProcedure>,
-): any[] {
-  return result.map((item) => {
-    return imagingProcedureDeserializer(item);
-  });
 }
 
 /** Recommendation Inference */
@@ -1983,6 +1999,14 @@ export function followupRecommendationInferenceDeserializer(
   };
 }
 
+export function recommendationFindingArrayDeserializer(
+  result: Array<RecommendationFinding>,
+): any[] {
+  return result.map((item) => {
+    return recommendationFindingDeserializer(item);
+  });
+}
+
 /** Recommendation Finding - finding reference for recommendation */
 export interface RecommendationFinding extends Extendible {
   /** finding inference */
@@ -2016,14 +2040,6 @@ export type RecommendationFindingStatusType =
   | "differential"
   | "ruleOut"
   | "conditional";
-
-export function recommendationFindingArrayDeserializer(
-  result: Array<RecommendationFinding>,
-): any[] {
-  return result.map((item) => {
-    return recommendationFindingDeserializer(item);
-  });
-}
 
 /** Radiology Insights abstract procedure. */
 export interface ProcedureRecommendation {
@@ -2153,22 +2169,6 @@ export type MedicalProfessionalType =
   | "nurse"
   | "midwife"
   | "physicianAssistant";
-
-export function radiologyInsightsInferenceUnionArrayDeserializer(
-  result: Array<RadiologyInsightsInferenceUnion>,
-): any[] {
-  return result.map((item) => {
-    return radiologyInsightsInferenceUnionDeserializer(item);
-  });
-}
-
-export function radiologyInsightsPatientResultArrayDeserializer(
-  result: Array<RadiologyInsightsPatientResult>,
-): any[] {
-  return result.map((item) => {
-    return radiologyInsightsPatientResultDeserializer(item);
-  });
-}
 
 /**
  * A resource with narrative, extensions, and contained resources

@@ -4,15 +4,15 @@
 import { OpenAIContext } from "../../api/openAIContext.js";
 import { list, retrieve, $delete } from "../../api/models/index.js";
 import {
-  ModelsListOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsDeleteOptionalParams,
-} from "../../api/options.js";
-import {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
+import {
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsDeleteOptionalParams,
+} from "../../api/options.js";
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {

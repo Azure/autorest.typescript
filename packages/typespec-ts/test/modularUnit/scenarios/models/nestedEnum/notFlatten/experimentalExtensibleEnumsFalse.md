@@ -90,10 +90,6 @@ export function provisioningStateSerializer(item: ProvisioningState): any {
   return item;
 }
 
-export function provisioningStateDeserializer(item: any): ProvisioningState {
-  return item;
-}
-
 /** The provisioning state of a resource type. */
 export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 

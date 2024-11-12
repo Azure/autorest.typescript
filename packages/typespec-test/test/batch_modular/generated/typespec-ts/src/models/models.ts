@@ -66,6 +66,14 @@ export function errorMessageDeserializer(item: any): ErrorMessage {
   };
 }
 
+export function batchErrorDetailArrayDeserializer(
+  result: Array<BatchErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    return batchErrorDetailDeserializer(item);
+  });
+}
+
 /** An item of additional information included in an Azure Batch error response. */
 export interface BatchErrorDetail {
   /** An identifier specifying the meaning of the Value property. */
@@ -79,14 +87,6 @@ export function batchErrorDetailDeserializer(item: any): BatchErrorDetail {
     key: item["key"],
     value: item["value"],
   };
-}
-
-export function batchErrorDetailArrayDeserializer(
-  result: Array<BatchErrorDetail>,
-): any[] {
-  return result.map((item) => {
-    return batchErrorDetailDeserializer(item);
-  });
 }
 
 /** Options for updating a user account for RDP or SSH access on an Azure Batch Compute Node. */
@@ -234,6 +234,14 @@ export type BatchNodeState =
 /** SchedulingState enums */
 export type SchedulingState = "enabled" | "disabled";
 
+export function taskInformationArrayDeserializer(
+  result: Array<TaskInformation>,
+): any[] {
+  return result.map((item) => {
+    return taskInformationDeserializer(item);
+  });
+}
+
 /** Information about a Task running on a Compute Node. */
 export interface TaskInformation {
   /** The URL of the Task. */
@@ -365,6 +373,14 @@ export function taskFailureInformationDeserializer(
 /** ErrorCategory enums */
 export type ErrorCategory = "usererror" | "servererror";
 
+export function nameValuePairArrayDeserializer(
+  result: Array<NameValuePair>,
+): any[] {
+  return result.map((item) => {
+    return nameValuePairDeserializer(item);
+  });
+}
+
 /** Represents a name-value pair. */
 export interface NameValuePair {
   /** The name in the name-value pair. */
@@ -380,24 +396,8 @@ export function nameValuePairDeserializer(item: any): NameValuePair {
   };
 }
 
-export function nameValuePairArrayDeserializer(
-  result: Array<NameValuePair>,
-): any[] {
-  return result.map((item) => {
-    return nameValuePairDeserializer(item);
-  });
-}
-
 /** TaskExecutionResult enums */
 export type TaskExecutionResult = "success" | "failure";
-
-export function taskInformationArrayDeserializer(
-  result: Array<TaskInformation>,
-): any[] {
-  return result.map((item) => {
-    return taskInformationDeserializer(item);
-  });
-}
 
 /**
  * Batch will retry Tasks when a recovery operation is triggered on a Node.
@@ -571,6 +571,22 @@ export type ContainerWorkingDirectory =
   | "taskWorkingDirectory"
   | "containerImageDefault";
 
+export function resourceFileArraySerializer(
+  result: Array<ResourceFile>,
+): any[] {
+  return result.map((item) => {
+    return resourceFileSerializer(item);
+  });
+}
+
+export function resourceFileArrayDeserializer(
+  result: Array<ResourceFile>,
+): any[] {
+  return result.map((item) => {
+    return resourceFileDeserializer(item);
+  });
+}
+
 /** A single file or multiple files to be downloaded to a Compute Node. */
 export interface ResourceFile {
   /** The storage container name in the auto storage Account. The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. */
@@ -617,19 +633,19 @@ export function resourceFileDeserializer(item: any): ResourceFile {
   };
 }
 
-export function resourceFileArraySerializer(
-  result: Array<ResourceFile>,
+export function environmentSettingArraySerializer(
+  result: Array<EnvironmentSetting>,
 ): any[] {
   return result.map((item) => {
-    return resourceFileSerializer(item);
+    return environmentSettingSerializer(item);
   });
 }
 
-export function resourceFileArrayDeserializer(
-  result: Array<ResourceFile>,
+export function environmentSettingArrayDeserializer(
+  result: Array<EnvironmentSetting>,
 ): any[] {
   return result.map((item) => {
-    return resourceFileDeserializer(item);
+    return environmentSettingDeserializer(item);
   });
 }
 
@@ -650,22 +666,6 @@ export function environmentSettingDeserializer(item: any): EnvironmentSetting {
     name: item["name"],
     value: item["value"],
   };
-}
-
-export function environmentSettingArraySerializer(
-  result: Array<EnvironmentSetting>,
-): any[] {
-  return result.map((item) => {
-    return environmentSettingSerializer(item);
-  });
-}
-
-export function environmentSettingArrayDeserializer(
-  result: Array<EnvironmentSetting>,
-): any[] {
-  return result.map((item) => {
-    return environmentSettingDeserializer(item);
-  });
 }
 
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
@@ -769,6 +769,22 @@ export function startTaskInformationDeserializer(
 /** StartTaskState enums */
 export type StartTaskState = "running" | "completed";
 
+export function certificateReferenceArraySerializer(
+  result: Array<CertificateReference>,
+): any[] {
+  return result.map((item) => {
+    return certificateReferenceSerializer(item);
+  });
+}
+
+export function certificateReferenceArrayDeserializer(
+  result: Array<CertificateReference>,
+): any[] {
+  return result.map((item) => {
+    return certificateReferenceDeserializer(item);
+  });
+}
+
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export interface CertificateReference {
   /** The thumbprint of the Certificate. */
@@ -820,19 +836,11 @@ export type CertificateStoreLocation = "currentuser" | "localmachine";
 /** CertificateVisibility enums */
 export type CertificateVisibility = "starttask" | "task" | "remoteuser";
 
-export function certificateReferenceArraySerializer(
-  result: Array<CertificateReference>,
+export function batchNodeErrorArrayDeserializer(
+  result: Array<BatchNodeError>,
 ): any[] {
   return result.map((item) => {
-    return certificateReferenceSerializer(item);
-  });
-}
-
-export function certificateReferenceArrayDeserializer(
-  result: Array<CertificateReference>,
-): any[] {
-  return result.map((item) => {
-    return certificateReferenceDeserializer(item);
+    return batchNodeErrorDeserializer(item);
   });
 }
 
@@ -856,14 +864,6 @@ export function batchNodeErrorDeserializer(item: any): BatchNodeError {
   };
 }
 
-export function batchNodeErrorArrayDeserializer(
-  result: Array<BatchNodeError>,
-): any[] {
-  return result.map((item) => {
-    return batchNodeErrorDeserializer(item);
-  });
-}
-
 /** The endpoint configuration for the Compute Node. */
 export interface BatchNodeEndpointConfiguration {
   /** The list of inbound endpoints that are accessible on the Compute Node. */
@@ -878,6 +878,14 @@ export function batchNodeEndpointConfigurationDeserializer(
       item["inboundEndpoints"],
     ),
   };
+}
+
+export function inboundEndpointArrayDeserializer(
+  result: Array<InboundEndpoint>,
+): any[] {
+  return result.map((item) => {
+    return inboundEndpointDeserializer(item);
+  });
 }
 
 /** An inbound endpoint on a Compute Node. */
@@ -909,14 +917,6 @@ export function inboundEndpointDeserializer(item: any): InboundEndpoint {
 
 /** InboundEndpointProtocol enums */
 export type InboundEndpointProtocol = "tcp" | "udp";
-
-export function inboundEndpointArrayDeserializer(
-  result: Array<InboundEndpoint>,
-): any[] {
-  return result.map((item) => {
-    return inboundEndpointDeserializer(item);
-  });
-}
 
 /**
  * The Batch Compute Node agent is a program that runs on each Compute Node in the
@@ -1233,6 +1233,14 @@ export function vMExtensionInstanceViewDeserializer(
   };
 }
 
+export function instanceViewStatusArrayDeserializer(
+  result: Array<InstanceViewStatus>,
+): any[] {
+  return result.map((item) => {
+    return instanceViewStatusDeserializer(item);
+  });
+}
+
 /** The instance view status. */
 export interface InstanceViewStatus {
   /** The status code. */
@@ -1259,14 +1267,6 @@ export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
 
 /** Level code. */
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
-
-export function instanceViewStatusArrayDeserializer(
-  result: Array<InstanceViewStatus>,
-): any[] {
-  return result.map((item) => {
-    return instanceViewStatusDeserializer(item);
-  });
-}
 
 /** The result of listing the Compute Node extensions in a Node. */
 export interface _NodeVMExtensionList {
@@ -1317,6 +1317,12 @@ export function _nodeFileListResultDeserializer(
   };
 }
 
+export function nodeFileArrayDeserializer(result: Array<NodeFile>): any[] {
+  return result.map((item) => {
+    return nodeFileDeserializer(item);
+  });
+}
+
 /** Information about a file or directory on a Compute Node. */
 export interface NodeFile {
   /** The file path. */
@@ -1364,12 +1370,6 @@ export function filePropertiesDeserializer(item: any): FileProperties {
     contentType: item["contentType"],
     fileMode: item["fileMode"],
   };
-}
-
-export function nodeFileArrayDeserializer(result: Array<NodeFile>): any[] {
-  return result.map((item) => {
-    return nodeFileDeserializer(item);
-  });
 }
 
 /** Options for creating an Azure Batch Task. */
@@ -1513,6 +1513,22 @@ export function exitConditionsDeserializer(item: any): ExitConditions {
   };
 }
 
+export function exitCodeMappingArraySerializer(
+  result: Array<ExitCodeMapping>,
+): any[] {
+  return result.map((item) => {
+    return exitCodeMappingSerializer(item);
+  });
+}
+
+export function exitCodeMappingArrayDeserializer(
+  result: Array<ExitCodeMapping>,
+): any[] {
+  return result.map((item) => {
+    return exitCodeMappingDeserializer(item);
+  });
+}
+
 /**
  * How the Batch service should respond if a Task exits with a particular exit
  * code.
@@ -1565,19 +1581,19 @@ export type JobAction = "none" | "disable" | "terminate";
 /** DependencyAction enums */
 export type DependencyAction = "satisfy" | "block";
 
-export function exitCodeMappingArraySerializer(
-  result: Array<ExitCodeMapping>,
+export function exitCodeRangeMappingArraySerializer(
+  result: Array<ExitCodeRangeMapping>,
 ): any[] {
   return result.map((item) => {
-    return exitCodeMappingSerializer(item);
+    return exitCodeRangeMappingSerializer(item);
   });
 }
 
-export function exitCodeMappingArrayDeserializer(
-  result: Array<ExitCodeMapping>,
+export function exitCodeRangeMappingArrayDeserializer(
+  result: Array<ExitCodeRangeMapping>,
 ): any[] {
   return result.map((item) => {
-    return exitCodeMappingDeserializer(item);
+    return exitCodeRangeMappingDeserializer(item);
   });
 }
 
@@ -1614,19 +1630,15 @@ export function exitCodeRangeMappingDeserializer(
   };
 }
 
-export function exitCodeRangeMappingArraySerializer(
-  result: Array<ExitCodeRangeMapping>,
-): any[] {
+export function outputFileArraySerializer(result: Array<OutputFile>): any[] {
   return result.map((item) => {
-    return exitCodeRangeMappingSerializer(item);
+    return outputFileSerializer(item);
   });
 }
 
-export function exitCodeRangeMappingArrayDeserializer(
-  result: Array<ExitCodeRangeMapping>,
-): any[] {
+export function outputFileArrayDeserializer(result: Array<OutputFile>): any[] {
   return result.map((item) => {
-    return exitCodeRangeMappingDeserializer(item);
+    return outputFileDeserializer(item);
   });
 }
 
@@ -1724,6 +1736,18 @@ export function outputFileBlobContainerDestinationDeserializer(
   };
 }
 
+export function httpHeaderArraySerializer(result: Array<HttpHeader>): any[] {
+  return result.map((item) => {
+    return httpHeaderSerializer(item);
+  });
+}
+
+export function httpHeaderArrayDeserializer(result: Array<HttpHeader>): any[] {
+  return result.map((item) => {
+    return httpHeaderDeserializer(item);
+  });
+}
+
 /** An HTTP header name-value pair */
 export interface HttpHeader {
   /** The case-insensitive name of the header to be used while uploading output files. */
@@ -1741,18 +1765,6 @@ export function httpHeaderDeserializer(item: any): HttpHeader {
     name: item["name"],
     value: item["value"],
   };
-}
-
-export function httpHeaderArraySerializer(result: Array<HttpHeader>): any[] {
-  return result.map((item) => {
-    return httpHeaderSerializer(item);
-  });
-}
-
-export function httpHeaderArrayDeserializer(result: Array<HttpHeader>): any[] {
-  return result.map((item) => {
-    return httpHeaderDeserializer(item);
-  });
 }
 
 /**
@@ -1783,18 +1795,6 @@ export type OutputFileUploadCondition =
   | "tasksuccess"
   | "taskfailure"
   | "taskcompletion";
-
-export function outputFileArraySerializer(result: Array<OutputFile>): any[] {
-  return result.map((item) => {
-    return outputFileSerializer(item);
-  });
-}
-
-export function outputFileArrayDeserializer(result: Array<OutputFile>): any[] {
-  return result.map((item) => {
-    return outputFileDeserializer(item);
-  });
-}
 
 /**
  * A locality hint that can be used by the Batch service to select a Compute Node
@@ -1920,6 +1920,20 @@ export function taskDependenciesDeserializer(item: any): TaskDependencies {
   };
 }
 
+export function taskIdRangeArraySerializer(result: Array<TaskIdRange>): any[] {
+  return result.map((item) => {
+    return taskIdRangeSerializer(item);
+  });
+}
+
+export function taskIdRangeArrayDeserializer(
+  result: Array<TaskIdRange>,
+): any[] {
+  return result.map((item) => {
+    return taskIdRangeDeserializer(item);
+  });
+}
+
 /**
  * The start and end of the range are inclusive. For example, if a range has start
  * 9 and end 12, then it represents Tasks '9', '10', '11' and '12'.
@@ -1942,17 +1956,19 @@ export function taskIdRangeDeserializer(item: any): TaskIdRange {
   };
 }
 
-export function taskIdRangeArraySerializer(result: Array<TaskIdRange>): any[] {
+export function applicationPackageReferenceArraySerializer(
+  result: Array<ApplicationPackageReference>,
+): any[] {
   return result.map((item) => {
-    return taskIdRangeSerializer(item);
+    return applicationPackageReferenceSerializer(item);
   });
 }
 
-export function taskIdRangeArrayDeserializer(
-  result: Array<TaskIdRange>,
+export function applicationPackageReferenceArrayDeserializer(
+  result: Array<ApplicationPackageReference>,
 ): any[] {
   return result.map((item) => {
-    return taskIdRangeDeserializer(item);
+    return applicationPackageReferenceDeserializer(item);
   });
 }
 
@@ -1977,22 +1993,6 @@ export function applicationPackageReferenceDeserializer(
     applicationId: item["applicationId"],
     version: item["version"],
   };
-}
-
-export function applicationPackageReferenceArraySerializer(
-  result: Array<ApplicationPackageReference>,
-): any[] {
-  return result.map((item) => {
-    return applicationPackageReferenceSerializer(item);
-  });
-}
-
-export function applicationPackageReferenceArrayDeserializer(
-  result: Array<ApplicationPackageReference>,
-): any[] {
-  return result.map((item) => {
-    return applicationPackageReferenceDeserializer(item);
-  });
 }
 
 /**
@@ -2048,6 +2048,18 @@ export function _batchTaskListResultDeserializer(
       : batchTaskArrayDeserializer(item["value"]),
     odataNextLink: item["odata.nextLink"],
   };
+}
+
+export function batchTaskArraySerializer(result: Array<BatchTask>): any[] {
+  return result.map((item) => {
+    return batchTaskSerializer(item);
+  });
+}
+
+export function batchTaskArrayDeserializer(result: Array<BatchTask>): any[] {
+  return result.map((item) => {
+    return batchTaskDeserializer(item);
+  });
 }
 
 /**
@@ -2271,18 +2283,6 @@ export function taskStatisticsDeserializer(item: any): TaskStatistics {
   };
 }
 
-export function batchTaskArraySerializer(result: Array<BatchTask>): any[] {
-  return result.map((item) => {
-    return batchTaskSerializer(item);
-  });
-}
-
-export function batchTaskArrayDeserializer(result: Array<BatchTask>): any[] {
-  return result.map((item) => {
-    return batchTaskDeserializer(item);
-  });
-}
-
 /** A collection of Azure Batch Tasks to add. */
 export interface BatchTaskCollection {
   /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
@@ -2315,6 +2315,14 @@ export function taskAddCollectionResultDeserializer(
       ? item["value"]
       : taskAddResultArrayDeserializer(item["value"]),
   };
+}
+
+export function taskAddResultArrayDeserializer(
+  result: Array<TaskAddResult>,
+): any[] {
+  return result.map((item) => {
+    return taskAddResultDeserializer(item);
+  });
 }
 
 /** Result for a single Task added as part of an add Task collection operation. */
@@ -2351,14 +2359,6 @@ export function taskAddResultDeserializer(item: any): TaskAddResult {
 /** TaskAddStatus enums */
 export type TaskAddStatus = "Success" | "clienterror" | "servererror";
 
-export function taskAddResultArrayDeserializer(
-  result: Array<TaskAddResult>,
-): any[] {
-  return result.map((item) => {
-    return taskAddResultDeserializer(item);
-  });
-}
-
 /** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
@@ -2373,6 +2373,14 @@ export function batchTaskListSubtasksResultDeserializer(
       ? item["value"]
       : subtaskInformationArrayDeserializer(item["value"]),
   };
+}
+
+export function subtaskInformationArrayDeserializer(
+  result: Array<SubtaskInformation>,
+): any[] {
+  return result.map((item) => {
+    return subtaskInformationDeserializer(item);
+  });
 }
 
 /** Information about an Azure Batch subtask. */
@@ -2434,14 +2442,6 @@ export function subtaskInformationDeserializer(item: any): SubtaskInformation {
 
 /** SubtaskState enums */
 export type SubtaskState = "preparing" | "running" | "completed";
-
-export function subtaskInformationArrayDeserializer(
-  result: Array<SubtaskInformation>,
-): any[] {
-  return result.map((item) => {
-    return subtaskInformationDeserializer(item);
-  });
-}
 
 /**
  * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
@@ -3438,6 +3438,18 @@ export function windowsConfigurationDeserializer(
   };
 }
 
+export function dataDiskArraySerializer(result: Array<DataDisk>): any[] {
+  return result.map((item) => {
+    return dataDiskSerializer(item);
+  });
+}
+
+export function dataDiskArrayDeserializer(result: Array<DataDisk>): any[] {
+  return result.map((item) => {
+    return dataDiskDeserializer(item);
+  });
+}
+
 /**
  * Settings which will be used by the data disks associated to Compute Nodes in
  * the Pool. When using attached data disks, you need to mount and format the
@@ -3476,18 +3488,6 @@ export function dataDiskDeserializer(item: any): DataDisk {
 export type CachingType = "none" | "readonly" | "readwrite";
 /** StorageAccountType enums */
 export type StorageAccountType = "standard_lrs" | "premium_lrs";
-
-export function dataDiskArraySerializer(result: Array<DataDisk>): any[] {
-  return result.map((item) => {
-    return dataDiskSerializer(item);
-  });
-}
-
-export function dataDiskArrayDeserializer(result: Array<DataDisk>): any[] {
-  return result.map((item) => {
-    return dataDiskDeserializer(item);
-  });
-}
 
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
@@ -3770,6 +3770,22 @@ export function poolEndpointConfigurationDeserializer(
   };
 }
 
+export function inboundNATPoolArraySerializer(
+  result: Array<InboundNATPool>,
+): any[] {
+  return result.map((item) => {
+    return inboundNATPoolSerializer(item);
+  });
+}
+
+export function inboundNATPoolArrayDeserializer(
+  result: Array<InboundNATPool>,
+): any[] {
+  return result.map((item) => {
+    return inboundNATPoolDeserializer(item);
+  });
+}
+
 /**
  * A inbound NAT Pool that can be used to address specific ports on Compute Nodes
  * in a Batch Pool externally.
@@ -3819,6 +3835,22 @@ export function inboundNATPoolDeserializer(item: any): InboundNATPool {
   };
 }
 
+export function networkSecurityGroupRuleArraySerializer(
+  result: Array<NetworkSecurityGroupRule>,
+): any[] {
+  return result.map((item) => {
+    return networkSecurityGroupRuleSerializer(item);
+  });
+}
+
+export function networkSecurityGroupRuleArrayDeserializer(
+  result: Array<NetworkSecurityGroupRule>,
+): any[] {
+  return result.map((item) => {
+    return networkSecurityGroupRuleDeserializer(item);
+  });
+}
+
 /** A network security group rule to apply to an inbound endpoint. */
 export interface NetworkSecurityGroupRule {
   /** The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. */
@@ -3864,38 +3896,6 @@ export function networkSecurityGroupRuleDeserializer(
 /** NetworkSecurityGroupRuleAccess enums */
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
-export function networkSecurityGroupRuleArraySerializer(
-  result: Array<NetworkSecurityGroupRule>,
-): any[] {
-  return result.map((item) => {
-    return networkSecurityGroupRuleSerializer(item);
-  });
-}
-
-export function networkSecurityGroupRuleArrayDeserializer(
-  result: Array<NetworkSecurityGroupRule>,
-): any[] {
-  return result.map((item) => {
-    return networkSecurityGroupRuleDeserializer(item);
-  });
-}
-
-export function inboundNATPoolArraySerializer(
-  result: Array<InboundNATPool>,
-): any[] {
-  return result.map((item) => {
-    return inboundNATPoolSerializer(item);
-  });
-}
-
-export function inboundNATPoolArrayDeserializer(
-  result: Array<InboundNATPool>,
-): any[] {
-  return result.map((item) => {
-    return inboundNATPoolDeserializer(item);
-  });
-}
-
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIpAddressConfiguration {
   /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
@@ -3935,6 +3935,20 @@ export type IpAddressProvisioningType =
   | "batchmanaged"
   | "usermanaged"
   | "nopublicipaddresses";
+
+export function userAccountArraySerializer(result: Array<UserAccount>): any[] {
+  return result.map((item) => {
+    return userAccountSerializer(item);
+  });
+}
+
+export function userAccountArrayDeserializer(
+  result: Array<UserAccount>,
+): any[] {
+  return result.map((item) => {
+    return userAccountDeserializer(item);
+  });
+}
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
@@ -4034,17 +4048,19 @@ export function windowsUserConfigurationDeserializer(
 /** LoginMode enums */
 export type LoginMode = "batch" | "interactive";
 
-export function userAccountArraySerializer(result: Array<UserAccount>): any[] {
+export function metadataItemArraySerializer(
+  result: Array<MetadataItem>,
+): any[] {
   return result.map((item) => {
-    return userAccountSerializer(item);
+    return metadataItemSerializer(item);
   });
 }
 
-export function userAccountArrayDeserializer(
-  result: Array<UserAccount>,
+export function metadataItemArrayDeserializer(
+  result: Array<MetadataItem>,
 ): any[] {
   return result.map((item) => {
-    return userAccountDeserializer(item);
+    return metadataItemDeserializer(item);
   });
 }
 
@@ -4070,19 +4086,19 @@ export function metadataItemDeserializer(item: any): MetadataItem {
   };
 }
 
-export function metadataItemArraySerializer(
-  result: Array<MetadataItem>,
+export function mountConfigurationArraySerializer(
+  result: Array<MountConfiguration>,
 ): any[] {
   return result.map((item) => {
-    return metadataItemSerializer(item);
+    return mountConfigurationSerializer(item);
   });
 }
 
-export function metadataItemArrayDeserializer(
-  result: Array<MetadataItem>,
+export function mountConfigurationArrayDeserializer(
+  result: Array<MountConfiguration>,
 ): any[] {
   return result.map((item) => {
-    return metadataItemDeserializer(item);
+    return mountConfigurationDeserializer(item);
   });
 }
 
@@ -4294,22 +4310,6 @@ export function azureFileShareConfigurationDeserializer(
     relativeMountPath: item["relativeMountPath"],
     mountOptions: item["mountOptions"],
   };
-}
-
-export function mountConfigurationArraySerializer(
-  result: Array<MountConfiguration>,
-): any[] {
-  return result.map((item) => {
-    return mountConfigurationSerializer(item);
-  });
-}
-
-export function mountConfigurationArrayDeserializer(
-  result: Array<MountConfiguration>,
-): any[] {
-  return result.map((item) => {
-    return mountConfigurationDeserializer(item);
-  });
 }
 
 /** NodeCommunicationMode enums */
@@ -5067,6 +5067,14 @@ export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
   };
 }
 
+export function jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
+  result: Array<JobPreparationAndReleaseTaskExecutionInformation>,
+): any[] {
+  return result.map((item) => {
+    return jobPreparationAndReleaseTaskExecutionInformationDeserializer(item);
+  });
+}
+
 /** The status of the Job Preparation and Job Release Tasks on a Compute Node. */
 export interface JobPreparationAndReleaseTaskExecutionInformation {
   /** The ID of the Pool containing the Compute Node to which this entry refers. */
@@ -5205,14 +5213,6 @@ export function jobReleaseTaskExecutionInformationDeserializer(
 /** JobReleaseTaskState enums */
 export type JobReleaseTaskState = "running" | "completed";
 
-export function jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
-  result: Array<JobPreparationAndReleaseTaskExecutionInformation>,
-): any[] {
-  return result.map((item) => {
-    return jobPreparationAndReleaseTaskExecutionInformationDeserializer(item);
-  });
-}
-
 /** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResult {
   /** The number of Tasks per state. */
@@ -5295,6 +5295,14 @@ export function _accountListSupportedImagesResultDeserializer(
   };
 }
 
+export function imageInformationArrayDeserializer(
+  result: Array<ImageInformation>,
+): any[] {
+  return result.map((item) => {
+    return imageInformationDeserializer(item);
+  });
+}
+
 /**
  * A reference to the Azure Virtual Machines Marketplace Image and additional
  * information about the Image.
@@ -5336,14 +5344,6 @@ export type OSType = "linux" | "windows";
 /** VerificationType enums */
 export type VerificationType = "verified" | "unverified";
 
-export function imageInformationArrayDeserializer(
-  result: Array<ImageInformation>,
-): any[] {
-  return result.map((item) => {
-    return imageInformationDeserializer(item);
-  });
-}
-
 /** The result of listing the Compute Node counts in the Account. */
 export interface _PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
@@ -5361,6 +5361,14 @@ export function _poolNodeCountsListResultDeserializer(
       : poolNodeCountsArrayDeserializer(item["value"]),
     odataNextLink: item["odata.nextLink"],
   };
+}
+
+export function poolNodeCountsArrayDeserializer(
+  result: Array<PoolNodeCounts>,
+): any[] {
+  return result.map((item) => {
+    return poolNodeCountsDeserializer(item);
+  });
 }
 
 /** The number of Compute Nodes in each state for a Pool. */
@@ -5436,14 +5444,6 @@ export function nodeCountsDeserializer(item: any): NodeCounts {
   };
 }
 
-export function poolNodeCountsArrayDeserializer(
-  result: Array<PoolNodeCounts>,
-): any[] {
-  return result.map((item) => {
-    return poolNodeCountsDeserializer(item);
-  });
-}
-
 /** The result of a listing the usage metrics for an Account. */
 export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
@@ -5461,6 +5461,14 @@ export function _poolListUsageMetricsResultDeserializer(
       : poolUsageMetricsArrayDeserializer(item["value"]),
     odataNextLink: item["odata.nextLink"],
   };
+}
+
+export function poolUsageMetricsArrayDeserializer(
+  result: Array<PoolUsageMetrics>,
+): any[] {
+  return result.map((item) => {
+    return poolUsageMetricsDeserializer(item);
+  });
 }
 
 /** Usage metrics for a Pool across an aggregation interval. */
@@ -5485,14 +5493,6 @@ export function poolUsageMetricsDeserializer(item: any): PoolUsageMetrics {
     vmSize: item["vmSize"],
     totalCoreHours: item["totalCoreHours"],
   };
-}
-
-export function poolUsageMetricsArrayDeserializer(
-  result: Array<PoolUsageMetrics>,
-): any[] {
-  return result.map((item) => {
-    return poolUsageMetricsDeserializer(item);
-  });
 }
 
 /** Options for creating an Azure Batch Pool. */
@@ -5625,6 +5625,12 @@ export function _batchPoolListResultDeserializer(
       : batchPoolArrayDeserializer(item["value"]),
     odataNextLink: item["odata.nextLink"],
   };
+}
+
+export function batchPoolArrayDeserializer(result: Array<BatchPool>): any[] {
+  return result.map((item) => {
+    return batchPoolDeserializer(item);
+  });
 }
 
 /** A Pool in the Azure Batch service. */
@@ -5806,6 +5812,14 @@ export type PoolState = "active" | "deleting";
 /** AllocationState enums */
 export type AllocationState = "steady" | "resizing" | "stopping";
 
+export function resizeErrorArrayDeserializer(
+  result: Array<ResizeError>,
+): any[] {
+  return result.map((item) => {
+    return resizeErrorDeserializer(item);
+  });
+}
+
 /** An error that occurred when resizing a Pool. */
 export interface ResizeError {
   /** An identifier for the Pool resize error. Codes are invariant and are intended to be consumed programmatically. */
@@ -5824,14 +5838,6 @@ export function resizeErrorDeserializer(item: any): ResizeError {
       ? item["values"]
       : nameValuePairArrayDeserializer(item["values"]),
   };
-}
-
-export function resizeErrorArrayDeserializer(
-  result: Array<ResizeError>,
-): any[] {
-  return result.map((item) => {
-    return resizeErrorDeserializer(item);
-  });
 }
 
 /** The results and errors from an execution of a Pool autoscale formula. */
@@ -5988,6 +5994,14 @@ export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
 /** PoolIdentityType enums */
 export type PoolIdentityType = "UserAssigned" | "None";
 
+export function userAssignedIdentityArrayDeserializer(
+  result: Array<UserAssignedIdentity>,
+): any[] {
+  return result.map((item) => {
+    return userAssignedIdentityDeserializer(item);
+  });
+}
+
 /** The user assigned Identity */
 export interface UserAssignedIdentity {
   /** The ARM resource id of the user assigned identity. */
@@ -6006,20 +6020,6 @@ export function userAssignedIdentityDeserializer(
     clientId: item["clientId"],
     principalId: item["principalId"],
   };
-}
-
-export function userAssignedIdentityArrayDeserializer(
-  result: Array<UserAssignedIdentity>,
-): any[] {
-  return result.map((item) => {
-    return userAssignedIdentityDeserializer(item);
-  });
-}
-
-export function batchPoolArrayDeserializer(result: Array<BatchPool>): any[] {
-  return result.map((item) => {
-    return batchPoolDeserializer(item);
-  });
 }
 
 /** Options for updating an Azure Batch Pool. */
@@ -6202,6 +6202,14 @@ export function _applicationListResultDeserializer(
   };
 }
 
+export function batchApplicationArrayDeserializer(
+  result: Array<BatchApplication>,
+): any[] {
+  return result.map((item) => {
+    return batchApplicationDeserializer(item);
+  });
+}
+
 /** Contains information about an application in an Azure Batch Account. */
 export interface BatchApplication {
   /** A string that uniquely identifies the application within the Account. */
@@ -6220,14 +6228,6 @@ export function batchApplicationDeserializer(item: any): BatchApplication {
       return p;
     }),
   };
-}
-
-export function batchApplicationArrayDeserializer(
-  result: Array<BatchApplication>,
-): any[] {
-  return result.map((item) => {
-    return batchApplicationDeserializer(item);
-  });
 }
 
 /** The Azure Batch service version. */

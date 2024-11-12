@@ -70,6 +70,14 @@ export function addOrUpdateBlockItemsOptionsSerializer(
   return { blockItems: textBlockItemInfoArraySerializer(item["blockItems"]) };
 }
 
+export function textBlockItemInfoArraySerializer(
+  result: Array<TextBlockItemInfo>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemInfoSerializer(item);
+  });
+}
+
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -80,14 +88,6 @@ export interface TextBlockItemInfo {
 
 export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
   return { description: item["description"], text: item["text"] };
-}
-
-export function textBlockItemInfoArraySerializer(
-  result: Array<TextBlockItemInfo>,
-): any[] {
-  return result.map((item) => {
-    return textBlockItemInfoSerializer(item);
-  });
 }
 
 /** The response of adding blockItems to text blocklist. */
@@ -106,6 +106,14 @@ export function addOrUpdateBlockItemsResultDeserializer(
   };
 }
 
+export function textBlockItemArrayDeserializer(
+  result: Array<TextBlockItem>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemDeserializer(item);
+  });
+}
+
 /** Item in TextBlocklist. */
 export interface TextBlockItem {
   /** Block Item Id. It will be uuid. */
@@ -122,14 +130,6 @@ export function textBlockItemDeserializer(item: any): TextBlockItem {
     description: item["description"],
     text: item["text"],
   };
-}
-
-export function textBlockItemArrayDeserializer(
-  result: Array<TextBlockItem>,
-): any[] {
-  return result.map((item) => {
-    return textBlockItemDeserializer(item);
-  });
 }
 
 /** The request of removing blockItems from text blocklist. */
@@ -223,6 +223,14 @@ export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
   };
 }
 
+export function imageAnalyzeSeverityResultArrayDeserializer(
+  result: Array<ImageAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    return imageAnalyzeSeverityResultDeserializer(item);
+  });
+}
+
 /** Image analysis result. */
 export interface ImageAnalyzeSeverityResult {
   /** The image category. */
@@ -238,14 +246,6 @@ export function imageAnalyzeSeverityResultDeserializer(
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-export function imageAnalyzeSeverityResultArrayDeserializer(
-  result: Array<ImageAnalyzeSeverityResult>,
-): any[] {
-  return result.map((item) => {
-    return imageAnalyzeSeverityResultDeserializer(item);
-  });
 }
 
 /** The analysis request of the text. */
@@ -306,6 +306,14 @@ export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   };
 }
 
+export function textBlocklistMatchResultArrayDeserializer(
+  result: Array<TextBlocklistMatchResult>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistMatchResultDeserializer(item);
+  });
+}
+
 /** The result of blocklist match. */
 export interface TextBlocklistMatchResult {
   /** The name of matched blocklist. */
@@ -326,11 +334,11 @@ export function textBlocklistMatchResultDeserializer(
   };
 }
 
-export function textBlocklistMatchResultArrayDeserializer(
-  result: Array<TextBlocklistMatchResult>,
+export function textAnalyzeSeverityResultArrayDeserializer(
+  result: Array<TextAnalyzeSeverityResult>,
 ): any[] {
   return result.map((item) => {
-    return textBlocklistMatchResultDeserializer(item);
+    return textAnalyzeSeverityResultDeserializer(item);
   });
 }
 
@@ -349,14 +357,6 @@ export function textAnalyzeSeverityResultDeserializer(
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-export function textAnalyzeSeverityResultArrayDeserializer(
-  result: Array<TextAnalyzeSeverityResult>,
-): any[] {
-  return result.map((item) => {
-    return textAnalyzeSeverityResultDeserializer(item);
-  });
 }
 
 /** Known values of {@link Versions} that the service accepts. */

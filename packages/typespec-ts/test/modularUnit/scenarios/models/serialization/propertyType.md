@@ -209,24 +209,12 @@ export function _simpleModelPropSimpleUnionSerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnion {
-  return item;
-}
-
 /** Alias for _SimpleModelPropSimpleUnionOptional */
 export type _SimpleModelPropSimpleUnionOptional = string | boolean | number;
 
 export function _simpleModelPropSimpleUnionOptionalSerializer(
   item: _SimpleModelPropSimpleUnionOptional,
 ): any {
-  return item;
-}
-
-export function _simpleModelPropSimpleUnionOptionalDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionOptional {
   return item;
 }
 
@@ -239,10 +227,12 @@ export function _simpleModelPropMixedTypeLiteralSerializer(
   return item;
 }
 
-export function _simpleModelPropMixedTypeLiteralDeserializer(
-  item: any,
-): _SimpleModelPropMixedTypeLiteral {
-  return item;
+export function simpleModelPropSimpleUnionArrayArraySerializer(
+  result: Array<_SimpleModelPropSimpleUnionArray>,
+): any[] {
+  return result.map((item) => {
+    return _simpleModelPropSimpleUnionArraySerializer(item);
+  });
 }
 
 /** Alias for _SimpleModelPropSimpleUnionArray */
@@ -254,25 +244,11 @@ export function _simpleModelPropSimpleUnionArraySerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionArrayDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionArray {
-  return item;
-}
-
-export function simpleModelPropSimpleUnionArrayArraySerializer(
-  result: Array<_SimpleModelPropSimpleUnionArray>,
+export function simpleModelPropSimpleUnionArrayOptionalArraySerializer(
+  result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
 ): any[] {
   return result.map((item) => {
-    return _simpleModelPropSimpleUnionArraySerializer(item);
-  });
-}
-
-export function simpleModelPropSimpleUnionArrayArrayDeserializer(
-  result: Array<_SimpleModelPropSimpleUnionArray>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropSimpleUnionArrayDeserializer(item);
+    return _simpleModelPropSimpleUnionArrayOptionalSerializer(item);
   });
 }
 
@@ -288,43 +264,6 @@ export function _simpleModelPropSimpleUnionArrayOptionalSerializer(
   return item;
 }
 
-export function _simpleModelPropSimpleUnionArrayOptionalDeserializer(
-  item: any,
-): _SimpleModelPropSimpleUnionArrayOptional {
-  return item;
-}
-
-export function simpleModelPropSimpleUnionArrayOptionalArraySerializer(
-  result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropSimpleUnionArrayOptionalSerializer(item);
-  });
-}
-
-export function simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
-  result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropSimpleUnionArrayOptionalDeserializer(item);
-  });
-}
-
-/** Alias for _SimpleModelPropRecordOfSimpleUnion */
-export type _SimpleModelPropRecordOfSimpleUnion = string | boolean | number;
-
-export function _simpleModelPropRecordOfSimpleUnionSerializer(
-  item: _SimpleModelPropRecordOfSimpleUnion,
-): any {
-  return item;
-}
-
-export function _simpleModelPropRecordOfSimpleUnionDeserializer(
-  item: any,
-): _SimpleModelPropRecordOfSimpleUnion {
-  return item;
-}
-
 export function simpleModelPropRecordOfSimpleUnionRecordSerializer(
   item: Record<string, _SimpleModelPropRecordOfSimpleUnion>,
 ): Record<string, any> {
@@ -337,47 +276,13 @@ export function simpleModelPropRecordOfSimpleUnionRecordSerializer(
   return result;
 }
 
-export function simpleModelPropRecordOfSimpleUnionRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, _SimpleModelPropRecordOfSimpleUnion> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _simpleModelPropRecordOfSimpleUnionDeserializer(item[key]);
-  });
-  return result;
-}
+/** Alias for _SimpleModelPropRecordOfSimpleUnion */
+export type _SimpleModelPropRecordOfSimpleUnion = string | boolean | number;
 
-/** Alias for _SimpleModelPropRecordOfUnionArray */
-export type _SimpleModelPropRecordOfUnionArray = string | boolean | number;
-
-export function _simpleModelPropRecordOfUnionArraySerializer(
-  item: _SimpleModelPropRecordOfUnionArray,
+export function _simpleModelPropRecordOfSimpleUnionSerializer(
+  item: _SimpleModelPropRecordOfSimpleUnion,
 ): any {
   return item;
-}
-
-export function _simpleModelPropRecordOfUnionArrayDeserializer(
-  item: any,
-): _SimpleModelPropRecordOfUnionArray {
-  return item;
-}
-
-export function simpleModelPropRecordOfUnionArrayArraySerializer(
-  result: Array<_SimpleModelPropRecordOfUnionArray>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropRecordOfUnionArraySerializer(item);
-  });
-}
-
-export function simpleModelPropRecordOfUnionArrayArrayDeserializer(
-  result: Array<_SimpleModelPropRecordOfUnionArray>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropRecordOfUnionArrayDeserializer(item);
-  });
 }
 
 export function simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
@@ -392,50 +297,21 @@ export function simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
   return result;
 }
 
-export function simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, Array<_SimpleModelPropRecordOfUnionArray>> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : simpleModelPropRecordOfUnionArrayArrayDeserializer(item[key]);
+export function simpleModelPropRecordOfUnionArrayArraySerializer(
+  result: Array<_SimpleModelPropRecordOfUnionArray>,
+): any[] {
+  return result.map((item) => {
+    return _simpleModelPropRecordOfUnionArraySerializer(item);
   });
-  return result;
 }
 
-/** Alias for _SimpleModelPropRecordOfUnionArrayOptional */
-export type _SimpleModelPropRecordOfUnionArrayOptional =
-  | string
-  | boolean
-  | number;
+/** Alias for _SimpleModelPropRecordOfUnionArray */
+export type _SimpleModelPropRecordOfUnionArray = string | boolean | number;
 
-export function _simpleModelPropRecordOfUnionArrayOptionalSerializer(
-  item: _SimpleModelPropRecordOfUnionArrayOptional,
+export function _simpleModelPropRecordOfUnionArraySerializer(
+  item: _SimpleModelPropRecordOfUnionArray,
 ): any {
   return item;
-}
-
-export function _simpleModelPropRecordOfUnionArrayOptionalDeserializer(
-  item: any,
-): _SimpleModelPropRecordOfUnionArrayOptional {
-  return item;
-}
-
-export function simpleModelPropRecordOfUnionArrayOptionalArraySerializer(
-  result: Array<_SimpleModelPropRecordOfUnionArrayOptional>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropRecordOfUnionArrayOptionalSerializer(item);
-  });
-}
-
-export function simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(
-  result: Array<_SimpleModelPropRecordOfUnionArrayOptional>,
-): any[] {
-  return result.map((item) => {
-    return _simpleModelPropRecordOfUnionArrayOptionalDeserializer(item);
-  });
 }
 
 export function simpleModelPropRecordOfUnionArrayOptionalArrayRecordSerializer(
@@ -450,31 +326,32 @@ export function simpleModelPropRecordOfUnionArrayOptionalArrayRecordSerializer(
   return result;
 }
 
-export function simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, Array<_SimpleModelPropRecordOfUnionArrayOptional>> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(item[key]);
+export function simpleModelPropRecordOfUnionArrayOptionalArraySerializer(
+  result: Array<_SimpleModelPropRecordOfUnionArrayOptional>,
+): any[] {
+  return result.map((item) => {
+    return _simpleModelPropRecordOfUnionArrayOptionalSerializer(item);
   });
-  return result;
 }
 
-/** Alias for _SimpleModelPropArrayOfRecordOfUnion */
-export type _SimpleModelPropArrayOfRecordOfUnion = string | boolean | number;
+/** Alias for _SimpleModelPropRecordOfUnionArrayOptional */
+export type _SimpleModelPropRecordOfUnionArrayOptional =
+  | string
+  | boolean
+  | number;
 
-export function _simpleModelPropArrayOfRecordOfUnionSerializer(
-  item: _SimpleModelPropArrayOfRecordOfUnion,
+export function _simpleModelPropRecordOfUnionArrayOptionalSerializer(
+  item: _SimpleModelPropRecordOfUnionArrayOptional,
 ): any {
   return item;
 }
 
-export function _simpleModelPropArrayOfRecordOfUnionDeserializer(
-  item: any,
-): _SimpleModelPropArrayOfRecordOfUnion {
-  return item;
+export function simpleModelPropArrayOfRecordOfUnionRecordArraySerializer(
+  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnion>>,
+): any[] {
+  return result.map((item) => {
+    return simpleModelPropArrayOfRecordOfUnionRecordSerializer(item);
+  });
 }
 
 export function simpleModelPropArrayOfRecordOfUnionRecordSerializer(
@@ -489,50 +366,21 @@ export function simpleModelPropArrayOfRecordOfUnionRecordSerializer(
   return result;
 }
 
-export function simpleModelPropArrayOfRecordOfUnionRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, _SimpleModelPropArrayOfRecordOfUnion> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _simpleModelPropArrayOfRecordOfUnionDeserializer(item[key]);
-  });
-  return result;
-}
+/** Alias for _SimpleModelPropArrayOfRecordOfUnion */
+export type _SimpleModelPropArrayOfRecordOfUnion = string | boolean | number;
 
-export function simpleModelPropArrayOfRecordOfUnionRecordArraySerializer(
-  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnion>>,
-): any[] {
-  return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionRecordSerializer(item);
-  });
-}
-
-export function simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
-  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnion>>,
-): any[] {
-  return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionRecordDeserializer(item);
-  });
-}
-
-/** Alias for _SimpleModelPropArrayOfRecordOfUnionOptional */
-export type _SimpleModelPropArrayOfRecordOfUnionOptional =
-  | string
-  | boolean
-  | number;
-
-export function _simpleModelPropArrayOfRecordOfUnionOptionalSerializer(
-  item: _SimpleModelPropArrayOfRecordOfUnionOptional,
+export function _simpleModelPropArrayOfRecordOfUnionSerializer(
+  item: _SimpleModelPropArrayOfRecordOfUnion,
 ): any {
   return item;
 }
 
-export function _simpleModelPropArrayOfRecordOfUnionOptionalDeserializer(
-  item: any,
-): _SimpleModelPropArrayOfRecordOfUnionOptional {
-  return item;
+export function simpleModelPropArrayOfRecordOfUnionOptionalRecordArraySerializer(
+  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional>>,
+): any[] {
+  return result.map((item) => {
+    return simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(item);
+  });
 }
 
 export function simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(
@@ -547,31 +395,15 @@ export function simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(
   return result;
 }
 
-export function simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _simpleModelPropArrayOfRecordOfUnionOptionalDeserializer(item[key]);
-  });
-  return result;
-}
+/** Alias for _SimpleModelPropArrayOfRecordOfUnionOptional */
+export type _SimpleModelPropArrayOfRecordOfUnionOptional =
+  | string
+  | boolean
+  | number;
 
-export function simpleModelPropArrayOfRecordOfUnionOptionalRecordArraySerializer(
-  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional>>,
-): any[] {
-  return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(item);
-  });
-}
-
-export function simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
-  result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional>>,
-): any[] {
-  return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(item);
-  });
+export function _simpleModelPropArrayOfRecordOfUnionOptionalSerializer(
+  item: _SimpleModelPropArrayOfRecordOfUnionOptional,
+): any {
+  return item;
 }
 ```

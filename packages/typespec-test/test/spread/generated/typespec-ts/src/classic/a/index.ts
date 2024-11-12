@@ -20,11 +20,15 @@ export interface AOperations {
   ) => Promise<void>;
   test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
   test3: (
-    body: { prop: string },
+    body: {
+      prop: string;
+    },
     options?: ATest3OptionalParams,
   ) => Promise<void>;
   test4: (
-    body: { prop: string },
+    body: {
+      prop: string;
+    },
     options?: ATest4OptionalParams,
   ) => Promise<void>;
 }
@@ -35,10 +39,18 @@ export function getA(context: DemoServiceContext) {
       test1(context, a, b, c, options),
     test2: (prop: string, options?: ATest2OptionalParams) =>
       test2(context, prop, options),
-    test3: (body: { prop: string }, options?: ATest3OptionalParams) =>
-      test3(context, body, options),
-    test4: (body: { prop: string }, options?: ATest4OptionalParams) =>
-      test4(context, body, options),
+    test3: (
+      body: {
+        prop: string;
+      },
+      options?: ATest3OptionalParams,
+    ) => test3(context, body, options),
+    test4: (
+      body: {
+        prop: string;
+      },
+      options?: ATest4OptionalParams,
+    ) => test4(context, body, options),
   };
 }
 
