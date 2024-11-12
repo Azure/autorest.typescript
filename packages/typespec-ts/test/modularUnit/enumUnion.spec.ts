@@ -980,13 +980,15 @@ describe("model type", () => {
   });
 
   describe("number | numeric literal | nullable", () => {
-    it("number enum", async () => {
+    it("number enum and ignore warnings", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
           color: 1 | 2;
         }
         op read(@body body: Test): void;
-        `);
+        `, {
+        mustEmptyDiagnostic: false
+      });
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
@@ -1006,6 +1008,21 @@ describe("model type", () => {
         };`,
         true
       );
+    });
+
+    it("number enum and not ignore warnings", async () => {
+      try {
+        await emitModularModelsFromTypeSpec(`
+          model Test {
+            color: 1 | 2;
+          }
+          op read(@body body: Test): void;
+          `, {
+          mustEmptyDiagnostic: true
+        });
+      } catch (e: any) {
+        assert.strictEqual(e[0].message, 'Enum member name 1 is normalized to Number1 with "Number" prefix.');
+      }
     });
 
     it("number enum member", async () => {
