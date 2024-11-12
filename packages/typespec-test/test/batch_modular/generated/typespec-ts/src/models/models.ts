@@ -6233,5 +6233,5 @@ export function batchApplicationDeserializer(item: any): BatchApplication {
 /** The Azure Batch service version. */
 export enum KnownVersions {
   /** API Version 2023-05-01.17.0 */
-  "2023-05-01.17.0" = "2023-05-01.17.0",
+  Number20230501170 = "2023-05-01.17.0",
 }
