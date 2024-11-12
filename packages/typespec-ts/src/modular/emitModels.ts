@@ -54,6 +54,7 @@ import {
   getTypeExpression,
   normalizeModelPropertyName
 } from "./type-expressions/get-type-expression.js";
+import { emitQueue } from "../framework/hooks/sdkTypes.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
