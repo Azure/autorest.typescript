@@ -268,7 +268,13 @@ export declare interface QueryUnixTimestampArrayQueryParam {
 }
 
 export declare interface QueryUnixTimestampArrayQueryParamProperties {
+    value: number[] | QueryUnixTimestampArrayValueQueryParam;
+}
+
+export declare interface QueryUnixTimestampArrayValueQueryParam {
     value: number[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryUnixTimestampParameters = QueryUnixTimestampQueryParam & RequestParameters;

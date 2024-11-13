@@ -176,6 +176,7 @@ export type PathParameter = {
   type: string;
   description?: string;
   value?: string | number | boolean;
+  wrapperType?: Schema;
 };
 
 export interface OperationHelperDetail {
@@ -249,6 +250,7 @@ export interface RLCOptions {
   experimentalExtensibleEnums?: boolean;
   clearOutputFolder?: boolean;
   ignorePropertyNameNormalize?: boolean;
+  compatibilityQueryMultiFormat?: boolean;
 }
 
 export interface ServiceInfo {
@@ -361,7 +363,12 @@ export interface ParameterBodySchema extends Schema {
 export interface ParameterMetadata {
   type: "query" | "path" | "header";
   name: string;
-  param: Schema;
+  param: ParameterSchema;
+}
+
+export interface ParameterSchema extends Schema {
+  // the detailed wrapper type for the parameter and codegen needs to build this type directly
+  wrapperType?: Schema;
 }
 
 export interface OperationResponse {

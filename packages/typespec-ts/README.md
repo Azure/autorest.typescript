@@ -153,6 +153,22 @@ If we enable this option `clearOutputFolder` we would empty the whole output fol
 clearOutputFolder: true
 ```
 
+### compatibilityMode
+
+By default, this option will be disabled. If this option is enabled, it will affect the generation of the additional property feature for the Modular client.
+
+```yaml
+compatibilityMode: true
+```
+
+### compatibilityQueryMultiFormat
+
+By default, this option will be disabled. If this option is enabled, we should generate the backward-compatible code for query parameter serialization for array types in RLC.
+
+```yaml
+compatibilityQueryMultiFormat: true
+```
+
 # Contributing
 
 If you want to contribute on this project read the [contrubuting document](./CONTRIBUTING.md) for more details.

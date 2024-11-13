@@ -223,7 +223,13 @@ export declare interface QueryBase64urlArrayQueryParam {
 }
 
 export declare interface QueryBase64urlArrayQueryParamProperties {
+    value: string[] | QueryBase64urlArrayValueQueryParam;
+}
+
+export declare interface QueryBase64urlArrayValueQueryParam {
     value: string[];
+    explode: false;
+    style: "form";
 }
 
 export declare type QueryBase64urlParameters = QueryBase64urlQueryParam & RequestParameters;
