@@ -182,6 +182,7 @@ namespace TodoItems {
 
   model TodoPage {
     /** The items in the page */
+    @pageItems
     items: TodoItem[];
 
     pagination: {
@@ -248,7 +249,7 @@ namespace TodoItems {
 
   @route("{itemId}/attachments")
   namespace Attachments {
-    @list op list(
+    op list(
       @path itemId: TodoItem.id,
     ): TodoAttachment[] | NotFoundResponse;
 
