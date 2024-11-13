@@ -68,7 +68,6 @@ function extractRLCOptions(
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
-  const rlcSourceDir = dpgContext.generationPathDetail?.rlcSourcesDir;
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -87,8 +86,7 @@ function extractRLCOptions(
     enableModelNamespace,
     hierarchyClient,
     azureArm: dpgContext.arm,
-    clearOutputFolder,
-    rlcSourceDir
+    clearOutputFolder
   };
 }
 
