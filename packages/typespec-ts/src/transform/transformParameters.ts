@@ -46,6 +46,7 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
+import { reportDiagnostic } from "../lib.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -168,11 +169,10 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${
-        serializeInfo.hasMultiCollection
+      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-      }.`;
+        }.`;
     }
   }
 
