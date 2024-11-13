@@ -75,6 +75,9 @@ export function getTypeExpression(
       }
       return String(type.value);
     case "duration":
+      if (type.encode === "seconds") {
+        return "number";
+      }
       return getTypeExpression(context, type.wireType, options);
     case "credential":
       // Credential comes from @useAuth decorator

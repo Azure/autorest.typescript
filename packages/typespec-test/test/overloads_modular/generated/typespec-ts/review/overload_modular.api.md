@@ -28,6 +28,11 @@ export interface FooOperationsOperations {
     getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 
+// @public
+export enum KnownVersions {
+    "2022-08-30" = "2022-08-30"
+}
+
 // @public (undocumented)
 export class WidgetManagerClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams);

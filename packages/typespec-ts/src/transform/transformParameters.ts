@@ -29,7 +29,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { Type, isVoidType } from "@typespec/compiler";
+import { NoTarget, Type, isVoidType } from "@typespec/compiler";
 import {
   getBodyType,
   getFormattedPropertyDoc,
@@ -111,6 +111,8 @@ export function transformToParameterTypes(
     );
     // transform path param
     const pathParams = transformPathParameters(dpgContext, parameters, options);
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+    transformCookieParameters(dpgContext, parameters);
     // transform header param including content-type
     const headerParams = transformHeaderParameters(
       dpgContext,
@@ -204,6 +206,25 @@ function getParameterName(name: string) {
     return "contentType";
   }
   return `"${name}"`;
+}
+
+function transformCookieParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters
+) {
+  // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+  parameters.parameters
+    .filter((p) => p.type === "cookie")
+    .forEach((p) => {
+      reportDiagnostic(dpgContext.program, {
+        code: "parameter-type-not-supported",
+        format: {
+          paramName: p.name,
+          paramType: p.type
+        },
+        target: NoTarget
+      });
+    });
 }
 
 function transformQueryParameters(

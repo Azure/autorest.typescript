@@ -15,6 +15,7 @@ export {
   SchemaFormat,
   Schema,
   SchemaContentTypeValues,
+  KnownServiceApiVersions,
   ContentTypeEnum,
 } from "./models/index.js";
 export {

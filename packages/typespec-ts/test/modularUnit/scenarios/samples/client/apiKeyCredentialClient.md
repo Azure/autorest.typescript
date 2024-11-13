@@ -71,7 +71,7 @@ import { DemoServiceClient } from "@azure/internal-test";
 async function read() {
   const credential = { key: "INPUT_YOUR_KEY_HERE" };
   const client = new DemoServiceClient(credential);
-  const result = await client.read("test");
+  const result = await client.read();
   console.log(result);
 }
 

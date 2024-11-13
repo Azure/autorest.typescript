@@ -12,4 +12,5 @@ export {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
+  KnownAPIVersion,
 } from "./models.js";

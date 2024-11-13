@@ -38,6 +38,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
+import { removeUnusedImports } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -381,24 +382,29 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
+export interface ModelConfigOptions {
+  needOptions?: boolean;
+  withRawContent?: boolean;
+  needAzureCore?: boolean;
+  compatibilityMode?: boolean;
+  mustEmptyDiagnostic?: boolean;
+  experimentalExtensibleEnums?: boolean;
+  [key: string]: any;
+}
+
+
 export async function emitModularModelsFromTypeSpec(
   tspContent: string,
-  {
+  options: ModelConfigOptions = {}
+) {
+  const {
     needOptions = false,
     withRawContent = false,
     needAzureCore = false,
     compatibilityMode = false,
     mustEmptyDiagnostic = true,
-    experimentalExtensibleEnums = false
-  }: {
-    needOptions?: boolean;
-    withRawContent?: boolean;
-    needAzureCore?: boolean;
-    compatibilityMode?: boolean;
-    mustEmptyDiagnostic?: boolean;
-    experimentalExtensibleEnums?: boolean;
-  } = {}
-) {
+    experimentalExtensibleEnums = false,
+  } = options;
   const context = await rlcEmitterFor(
     tspContent,
     {
@@ -408,7 +414,7 @@ export async function emitModularModelsFromTypeSpec(
       withRawContent,
     }
   );
-  const dpgContext = await createDpgContextTestHelper(context.program);
+  const dpgContext = await createDpgContextTestHelper(context.program, false, options);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
@@ -440,19 +446,25 @@ export async function emitModularModelsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
+        emitTypes(dpgContext, { sourceRoot: "" });
         modelFile = buildApiOptions(
+          dpgContext,
           modularCodeModel.clients[0],
           modularCodeModel
         );
+        binder.resolveAllReferences("/");
+        removeUnusedImports(modelFile);
+        modelFile.fixUnusedIdentifiers();
       } else {
         modelFile = emitTypes(dpgContext, { sourceRoot: "" });
+        binder.resolveAllReferences("/");
       }
     }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-  binder.resolveAllReferences("/modularPackageFolder/src");
+
   return modelFile;
 }
 
@@ -476,13 +488,15 @@ export async function emitModularOperationsFromTypeSpec(
     needNamespaces = true,
     needAzureCore = false,
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    experimentalExtensibleEnums = false
   }: {
     mustEmptyDiagnostic?: boolean;
     needNamespaces?: boolean;
     needAzureCore?: boolean;
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    experimentalExtensibleEnums?: boolean;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -505,6 +519,7 @@ export async function emitModularOperationsFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
+    dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
     serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
     const modularCodeModel = emitCodeModel(
@@ -522,6 +537,7 @@ export async function emitModularOperationsFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
+      emitTypes(dpgContext, { sourceRoot: "" });
       const res = buildOperationFiles(
         modularCodeModel.clients[0],
         dpgContext,
@@ -530,7 +546,11 @@ export async function emitModularOperationsFromTypeSpec(
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
+      for (const file of res) {
+        removeUnusedImports(file);
+        file.fixUnusedIdentifiers();
+      }
       return res;
     }
   }

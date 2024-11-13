@@ -110,7 +110,7 @@ async function read() {
     offsetDateTimeProp: "2022-08-26T18:38:00Z",
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
-    additionalProp: "additional prop"
+    additionalProp: "additional prop",
   });
   console.log(result);
 }

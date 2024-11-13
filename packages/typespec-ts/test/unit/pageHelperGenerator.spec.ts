@@ -23,7 +23,7 @@ async function generatePagingHelper(code: string) {
     @doc("List of items.")
     customizedItems: T[];
   
-    @nextLink
+    @global.Azure.Core.nextLink
     @doc("Link to fetch more items.")
     #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
     \`@odata.nextLink\`?: string;

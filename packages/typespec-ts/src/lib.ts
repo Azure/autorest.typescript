@@ -274,6 +274,12 @@ const libDef = {
       messages: {
         default: paramMessage`The parameter ${"paramName"} with explode: ${"explode"} and format: ${"format"} is not supported.`
       }
+    },
+    "parameter-type-not-supported": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
+      }
     }
   },
   emitter: {

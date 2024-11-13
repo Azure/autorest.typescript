@@ -99,6 +99,7 @@ export function buildClassicalClient(
       if (x === "options") {
         return `{...options, userAgentOptions: ${buildUserAgentOptions(
           constructor,
+          codeModel,
           "azsdk-js-client"
         )}}`;
       } else {
@@ -163,7 +164,7 @@ function buildClientOperationGroups(
     );
     if (groupName === "") {
       operationGroup.operations.forEach((op) => {
-        const declarations = getOperationFunction(op, clientType);
+        const declarations = getOperationFunction(dpgContext, op, clientType);
         const method: MethodDeclarationStructure = {
           docs: declarations.docs,
           name: declarations.propertyName ?? declarations.name ?? "FIXME",
