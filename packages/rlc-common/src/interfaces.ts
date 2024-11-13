@@ -14,6 +14,7 @@ export interface RLCModel {
   urlInfo?: UrlInfo;
   telemetryOptions?: TelemetryInfo;
   sampleGroups?: RLCSampleGroup[];
+  rlcSourceDir?: string;
 }
 
 export interface ImportInfo {
