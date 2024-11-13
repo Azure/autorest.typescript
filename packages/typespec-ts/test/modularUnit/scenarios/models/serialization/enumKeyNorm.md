@@ -68,6 +68,7 @@ op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
 // Issue here: https://github.com/microsoft/typespec/issues/5081
 // @@clientName(ExtensibleNumber.3, "Enum3");
+// TODO: renaming is not working in compiler v0.61 but should be fixed in v0.62
 @@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
 
