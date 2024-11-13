@@ -509,7 +509,19 @@ function emitParameter(
   context: SdkContext,
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
-): Parameter {
+): Parameter | undefined {
+  if (parameter.type === "cookie") {
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+    reportDiagnostic(context.program, {
+      code: "parameter-type-not-supported",
+      format: {
+        paramType: parameter.type,
+        paramName: parameter.name
+      },
+      target: NoTarget
+    });
+    return undefined;
+  }
   const base = emitParamBase(context, parameter.param);
   let type = getType(context, parameter.param.type, {
     usage: UsageFlags.Input
@@ -857,6 +869,9 @@ function emitBasicOperation(
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
+    if (emittedParam === undefined) {
+      continue;
+    }
     if (isApiVersion(context, param)) {
       emittedParam.isApiVersion = true;
       methodApiVersionParam = emittedParam;
@@ -1719,6 +1734,9 @@ function emitServerParams(
         serverParameter,
         "Client"
       );
+      if (emittedParameter === undefined) {
+        continue;
+      }
       endpointPathParameters.push(emittedParameter);
       if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;
