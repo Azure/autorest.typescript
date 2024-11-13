@@ -6,14 +6,17 @@ This is tsp definition.
 
 ```tsp
 import "@typespec/http";
+import "@typespec/versioning";
 import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
+using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
 @service({
   title: "Microsoft.Contoso management service",
 })
+@versioned(Microsoft.Contoso.Versions)
 namespace Microsoft.Contoso;
 
 union ExtensibleString {
@@ -48,6 +51,14 @@ union ExtensibleNumber {
   3,
   int8,
 }
+
+
+enum Versions {
+  PreviewVersion: "2024-07-01-preview",
+  `2024-07-01`,
+  `2024-08-01-preview`
+}
+
 model Foo {
   extensibleString: ExtensibleString;
   extensibleNumber: ExtensibleNumber;
@@ -55,8 +66,9 @@ model Foo {
 op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`-2.0`, "$DO_NOT_NORMALIZE$Item-1.0");
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
-// cannot locate the number enum item and issue here: https://github.com/microsoft/typespec/issues/5081
+// Issue here: https://github.com/microsoft/typespec/issues/5081
 // @@clientName(ExtensibleNumber.3, "Enum3");
+@@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
 
 This is the tspconfig.yaml.
@@ -122,4 +134,11 @@ export enum KnownExtensibleNumber {
 
 /** Type of ExtensibleNumber */
 export type ExtensibleNumber = number;
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  PreviewVersion = "2024-07-01-preview",
+  Number20240701 = "2024-07-01",
+  Number20240801Preview = "2024-08-01-preview"
+}
 ```
