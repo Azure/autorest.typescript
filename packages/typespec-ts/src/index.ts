@@ -219,10 +219,6 @@ export async function $onEmit(context: EmitContext) {
 
   async function generateRLCSources() {
     for (const rlcModels of rlcCodeModels) {
-      if (dpgContext.generationPathDetail?.rlcSourcesDir) {
-        rlcModels.options!.rlcSourceDir =
-          dpgContext.generationPathDetail?.rlcSourcesDir;
-      }
       await emitModels(rlcModels, program);
       await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
       await emitContentByBuilder(program, buildResponseTypes, rlcModels);
