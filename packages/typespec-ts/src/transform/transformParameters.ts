@@ -169,10 +169,14 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-        }.`;
+      }.`;
+    }
+    if ((parameter as any).format === "tsv") {
+      description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
     }
   }
 
