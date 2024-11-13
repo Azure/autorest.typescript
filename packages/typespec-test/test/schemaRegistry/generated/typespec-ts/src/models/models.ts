@@ -1,6 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/** Paged collection of SchemaGroup items */
+export interface _PagedSchemaGroup {
+  /** The SchemaGroup items on this page */
+  value: SchemaGroup[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
+  return {
+    value: schemaGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function schemaGroupArrayDeserializer(
+  result: Array<SchemaGroup>,
+): any[] {
+  return result.map((item) => {
+    return schemaGroupDeserializer(item);
+  });
+}
+
 /** Schema Group resource. */
 export interface SchemaGroup {
   /** Name of schema group. */
@@ -11,6 +34,29 @@ export function schemaGroupDeserializer(item: any): SchemaGroup {
   return {
     groupName: item["groupName"],
   };
+}
+
+/** Paged collection of Version items */
+export interface _PagedVersion {
+  /** The Version items on this page */
+  value: SchemaVersion[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedVersionDeserializer(item: any): _PagedVersion {
+  return {
+    value: schemaVersionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function schemaVersionArrayDeserializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    return schemaVersionDeserializer(item);
+  });
 }
 
 /** Schema versions resource. */
@@ -107,49 +153,3 @@ export type ContentTypeEnum =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
-
-/** Paged collection of SchemaGroup items */
-export interface _PagedSchemaGroup {
-  /** The SchemaGroup items on this page */
-  value: SchemaGroup[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
-  return {
-    value: schemaGroupArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function schemaGroupArrayDeserializer(
-  result: Array<SchemaGroup>,
-): any[] {
-  return result.map((item) => {
-    return schemaGroupDeserializer(item);
-  });
-}
-
-/** Paged collection of Version items */
-export interface _PagedVersion {
-  /** The Version items on this page */
-  value: SchemaVersion[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedVersionDeserializer(item: any): _PagedVersion {
-  return {
-    value: schemaVersionArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function schemaVersionArrayDeserializer(
-  result: Array<SchemaVersion>,
-): any[] {
-  return result.map((item) => {
-    return schemaVersionDeserializer(item);
-  });
-}

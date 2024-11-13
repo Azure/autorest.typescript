@@ -18,6 +18,8 @@ import {
   TextBlocklist,
   textBlocklistSerializer,
   textBlocklistDeserializer,
+  _PagedTextBlocklist,
+  _pagedTextBlocklistDeserializer,
   AddOrUpdateBlockItemsOptions,
   addOrUpdateBlockItemsOptionsSerializer,
   AddOrUpdateBlockItemsResult,
@@ -26,6 +28,8 @@ import {
   textBlockItemDeserializer,
   RemoveBlockItemsOptions,
   removeBlockItemsOptionsSerializer,
+  _PagedTextBlockItem,
+  _pagedTextBlockItemDeserializer,
   AnalyzeImageOptions,
   analyzeImageOptionsSerializer,
   AnalyzeImageResult,
@@ -34,10 +38,6 @@ import {
   analyzeTextOptionsSerializer,
   AnalyzeTextResult,
   analyzeTextResultDeserializer,
-  _PagedTextBlocklist,
-  _pagedTextBlocklistDeserializer,
-  _PagedTextBlockItem,
-  _pagedTextBlockItemDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,

@@ -49,6 +49,7 @@ Should normal operation with enum parameter:
 
 ```ts operations
 import { ContosoContext as Client } from "./index.js";
+import { Versions } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

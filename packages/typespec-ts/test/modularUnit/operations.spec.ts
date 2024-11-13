@@ -286,6 +286,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { barArraySerializer } from "../models/models.js";
         import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
@@ -475,6 +476,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Foo, fooSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -538,6 +540,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Foo, fooDeserializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -605,6 +608,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { _Bar, _barDeserializer } from "../models/models.js";
         import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,
@@ -680,6 +684,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Bar, barDeserializer } from "../models/models.js";
         import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
@@ -738,6 +743,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { _Child, _childDeserializer } from "../models/models.js";
         import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,
