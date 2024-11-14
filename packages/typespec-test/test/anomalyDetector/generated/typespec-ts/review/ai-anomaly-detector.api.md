@@ -23,9 +23,6 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export type APIVersion = "v1.1";
-
-// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };

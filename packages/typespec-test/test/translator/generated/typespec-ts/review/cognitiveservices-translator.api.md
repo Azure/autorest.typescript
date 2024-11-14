@@ -591,8 +591,15 @@ export interface TranslateQueryParamProperties {
     profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
     textType?: TextTypes;
-    to: string;
+    to: TranslateToQueryParam | string;
     toScript?: string;
+}
+
+// @public
+export interface TranslateToQueryParam {
+    explode: true;
+    style: "form";
+    value: string[];
 }
 
 // @public

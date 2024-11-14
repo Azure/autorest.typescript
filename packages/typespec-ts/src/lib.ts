@@ -94,6 +94,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     clearOutputFolder: { type: "boolean", nullable: true },
     ignorePropertyNameNormalize: { type: "boolean", nullable: true },
     ignoreEnumMemberNameNormalize: { type: "boolean", nullable: true }
+    compatibilityQueryMultiFormat: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -270,9 +271,18 @@ const libDef = {
       }
     },
     "prefix-adding-in-enum-member": {
+    "un-supported-format-cases": {
+      severity: "warning",
+      messages: {
       severity: "warning",
       messages: {
         default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "Number" prefix.`
+      }
+    },
+    "parameter-type-not-supported": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
       }
     }
   },

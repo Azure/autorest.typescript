@@ -1071,9 +1071,6 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
   };
 }
 
-/** Type of APIVersion */
-export type APIVersion = "v1.1";
-
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   V11 = "v1.1",
