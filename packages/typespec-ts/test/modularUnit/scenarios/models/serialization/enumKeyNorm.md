@@ -68,7 +68,6 @@ op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
 // Issue here: https://github.com/microsoft/typespec/issues/5081
 // @@clientName(ExtensibleNumber.3, "Enum3");
-// TODO: renaming is not working in compiler v0.61 but should be fixed in v0.62
 @@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
 
@@ -139,7 +138,7 @@ export type ExtensibleNumber = number;
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
-  Number20240701 = "2024-07-01",
+  StableVersion = "2024-07-01",
   Number20240801Preview = "2024-08-01-preview"
 }
 ```
