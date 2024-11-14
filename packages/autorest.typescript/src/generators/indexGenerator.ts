@@ -25,14 +25,14 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
     file.addExportDeclaration({
-      moduleSpecifier: "./pagingHelper",
+      moduleSpecifier: "./pagingHelper.js",
       namedExports: ["getContinuationToken"]
     });
   }
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: "./models"
+      moduleSpecifier: "./models/index.js"
     },
     {
       moduleSpecifier: `./${clientDetails.sourceFileName}`,
@@ -47,7 +47,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (operationGroups.length) {
     file.addExportDeclarations([
       {
-        moduleSpecifier: "./operationsInterfaces"
+        moduleSpecifier: "./operationsInterfaces/index.js"
       }
     ]);
   }

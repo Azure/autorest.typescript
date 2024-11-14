@@ -88,7 +88,7 @@ export function generateOperations(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: `./${fileName}`
+          moduleSpecifier: `./${fileName}.js`
         } as ExportDeclarationStructure;
       })
     );
