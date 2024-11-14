@@ -3,12 +3,19 @@ import AuthHttpCustomClientFactory, {
 } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
 describe("AuthHttpCustomClient Rest Client", () => {
-  let client: AuthHttpCustomClient;
+  let validKeyClient: AuthHttpCustomClient;
+  let invalidKeyClient: AuthHttpCustomClient;
 
   beforeEach(() => {
-    client = AuthHttpCustomClientFactory(
+    validKeyClient = AuthHttpCustomClientFactory(
       {
         key: "valid-key"
+      },
+      { allowInsecureConnection: true }
+    );
+    invalidKeyClient = AuthHttpCustomClientFactory(
+      {
+        key: "invalid-key"
       },
       { allowInsecureConnection: true }
     );
@@ -16,7 +23,7 @@ describe("AuthHttpCustomClient Rest Client", () => {
 
   it("should return 204 when the apiKey is valid", async () => {
     try {
-      const result = await client
+      const result = await validKeyClient
         .path("/authentication/http/custom/valid")
         .get();
       assert.strictEqual(result.status, "204");
@@ -28,7 +35,7 @@ describe("AuthHttpCustomClient Rest Client", () => {
 
   it("should return 403 when the apiKey is invalid", async () => {
     try {
-      const result = await client
+      const result = await invalidKeyClient
         .path("/authentication/http/custom/invalid")
         .get();
       assert.strictEqual(result.status, "403");
