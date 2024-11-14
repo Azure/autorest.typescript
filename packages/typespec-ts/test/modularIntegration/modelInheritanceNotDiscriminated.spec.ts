@@ -16,29 +16,17 @@ describe("NotDiscriminatedClient Rest Client", () => {
 
   const validBody: Siamese = { name: "abc", age: 32, smart: true };
   it("should get valid", async () => {
-    try {
-      const result = await client.getValid();
-      assert.deepEqual(result, validBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getValid();
+    assert.deepEqual(result, validBody);
   });
 
   it("should put valid", async () => {
-    try {
-      const result = await client.putValid(validBody);
-      assert.deepEqual(result, validBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.putValid(validBody);
+    assert.deepEqual(result, validBody);
   });
 
   it("should post valid", async () => {
-    try {
-      const result = await client.postValid(validBody);
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.postValid(validBody);
+    assert.isUndefined(result);
   });
 });

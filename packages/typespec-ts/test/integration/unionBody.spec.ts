@@ -12,24 +12,16 @@ describe("UnionBodyClient Rest Client", () => {
   });
 
   it("should have no compile error for request body", async () => {
-    try {
-      const result = await client.path("/request-union-body").post({
-        body: {
-          prop: "test"
-        }
-      });
-      assert.strictEqual(result.status, "404");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/request-union-body").post({
+      body: {
+        prop: "test"
+      }
+    });
+    assert.strictEqual(result.status, "404");
   });
 
   it("should have no compile error for response body", async () => {
-    try {
-      const result = await client.path("/response-union-body").get();
-      assert.strictEqual(result.status, "404");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/response-union-body").get();
+    assert.strictEqual(result.status, "404");
   });
 });

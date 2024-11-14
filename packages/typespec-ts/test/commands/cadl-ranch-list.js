@@ -251,6 +251,7 @@ export const rlcTsps = [
     outputPath: "versioning/madeOptional",
     inputPath: "versioning/madeOptional"
   },
+  // disable it as https://github.com/Azure/autorest.typescript/issues/2902
   // {
   //   outputPath: "versioning/removed",
   //   inputPath: "versioning/removed"

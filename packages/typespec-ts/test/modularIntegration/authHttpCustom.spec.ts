@@ -27,12 +27,8 @@ describe("CustomClient Classical Client", () => {
   });
 
   it("should not throw exception if apiKey is valid", async () => {
-    try {
-      const result = await validKeyClient.valid();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await validKeyClient.valid();
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the apiKey is invalid", async () => {
