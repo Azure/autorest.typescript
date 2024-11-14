@@ -142,7 +142,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
     clientFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: `./lroImpl`
+      moduleSpecifier: `./lroImpl.js`
     });
   }
 
@@ -156,7 +156,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}Impl`
       ),
-      moduleSpecifier: "./operations"
+      moduleSpecifier: "./operations/index.js"
     });
 
     clientFile.addImportDeclaration({
@@ -168,7 +168,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}`
       ),
-      moduleSpecifier: "./operationsInterfaces"
+      moduleSpecifier: "./operationsInterfaces/index.js"
     });
   }
 
@@ -176,7 +176,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     addTracingOperationImports(clientFile, ".");
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: "./models/parameters"
+      moduleSpecifier: "./models/parameters.js"
     });
   }
 
@@ -184,7 +184,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasInlineOperations && hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: "./models/mappers"
+      moduleSpecifier: "./models/mappers.js"
     });
   }
 
@@ -193,8 +193,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: !useCoreV2
       ? "coreHttp.ServiceClient"
       : coreHttpCompatMode
-      ? "coreHttpCompat.ExtendedServiceClient"
-      : "coreClient.ServiceClient",
+        ? "coreHttpCompat.ExtendedServiceClient"
+        : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -241,7 +241,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (importedModels.size) {
     clientFile.addImportDeclaration({
       namedImports: [...importedModels],
-      moduleSpecifier: "./models"
+      moduleSpecifier: "./models/index.js"
     });
   }
 
@@ -476,12 +476,11 @@ function writeConstructor(
   ]);
   if (useCoreV2 && apiVersionParam) {
     clientConstructor.addStatements(
-      `this.addCustomApiVersionPolicy(${
-        !apiVersionParam.required ||
+      `this.addCustomApiVersionPolicy(${!apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
         apiVersionParam.schemaType === SchemaType.Constant
-          ? "options."
-          : ""
+        ? "options."
+        : ""
       }apiVersion);`
     );
   }
@@ -667,9 +666,8 @@ function getTrack2DefaultContent(
   }
   `;
 
-  const defaultContent = `${
-    clientDetails.hasTenantLevelOperation ? overloadDefaults : ""
-  }
+  const defaultContent = `${clientDetails.hasTenantLevelOperation ? overloadDefaults : ""
+    }
   // Initializing default values for options
   if (!options) {
     options = {};
@@ -677,9 +675,9 @@ function getTrack2DefaultContent(
   ${defaults}
 
   const packageDetails = \`azsdk-js-${packageDetails.name.replace(
-    /@.*\//,
-    ""
-  )}/${packageDetails.version}\`;
+      /@.*\//,
+      ""
+    )}/${packageDetails.version}\`;
   const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
@@ -768,11 +766,11 @@ function writeDefaultOptions(
   return !useCoreV2
     ? getTrack1DefaultContent(addScopes, hasCredentials)
     : getTrack2DefaultContent(
-        addScopes,
-        defaults,
-        packageDetails,
-        clientDetails
-      );
+      addScopes,
+      defaults,
+      packageDetails,
+      clientDetails
+    );
 }
 
 function isAddScopes(
@@ -789,15 +787,13 @@ function isAddScopes(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ?? ${
-    endpoint ? `"${endpoint}"` : `""`
-  };`;
+  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : `""`
+    };`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ?? options.baseUri ?? ${
-    endpoint ? `"${endpoint}"` : `""`
-  }`;
+  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : `""`
+    }`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {

@@ -164,7 +164,7 @@ function addInterface(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: "../models"
+      moduleSpecifier: "../models/index.js"
     });
   }
 }

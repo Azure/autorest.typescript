@@ -328,8 +328,8 @@ function buildRequestBody({
       required = rb.required
         ? rb.required
         : rb.parameter.groupedBy && rb.parameter.groupedBy.required
-        ? rb.parameter.groupedBy.required
-        : required;
+          ? rb.parameter.groupedBy.required
+          : required;
 
       if (required) break;
     }
@@ -526,7 +526,7 @@ function addClass(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: "../models"
+      moduleSpecifier: "../models/index.js"
     });
   }
 }
@@ -750,14 +750,13 @@ function compileOperationOptionsToRequestOptionsBase(
   // In Lro we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
   return isLro
-    ? `this.getOperationOptions(${options}${
-        lroResourceLocationConfig === undefined
-          ? ""
-          : `, "${lroResourceLocationConfig}"`
-      })`
+    ? `this.getOperationOptions(${options}${lroResourceLocationConfig === undefined
+      ? ""
+      : `, "${lroResourceLocationConfig}"`
+    })`
     : !useCoreV2
-    ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
-    : `options || {}`;
+      ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
+      : `options || {}`;
 }
 
 function writeNoOverloadsOperationBody(
@@ -910,11 +909,11 @@ function writeLroOperationBody(
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
       ${getTracingClientWithSpanStatement(
-        sendRequestStatement,
-        responseName,
-        isTracingEnabled,
-        spanName
-      )}
+      sendRequestStatement,
+      responseName,
+      isTracingEnabled,
+      spanName
+    )}
       };
       const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
         const response = await directSendOperation(args, spec);
@@ -956,21 +955,18 @@ function writeLroOperationBody(
       }};
   }`;
 
-  const commonOptions = `intervalInMs: options?.updateIntervalInMs${
-    lroResourceLocationConfig
-      ? `, ${
-          useLegacyLro ? "lroResourceLocationConfig" : "resourceLocationConfig"
-        }: "${lroResourceLocationConfig.toLowerCase()}"`
-      : ""
-  }`;
+  const commonOptions = `intervalInMs: options?.updateIntervalInMs${lroResourceLocationConfig
+    ? `, ${useLegacyLro ? "lroResourceLocationConfig" : "resourceLocationConfig"
+    }: "${lroResourceLocationConfig.toLowerCase()}"`
+    : ""
+    }`;
   methodDeclaration.addStatements([
     sendOperationStatement,
     `const lro = createLroSpec({sendOperationFn, args: ${operationParamsName},
       spec: ${operationSpecName}})`,
-    `const poller = ${
-      useLegacyLro
-        ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
-        : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
+    `const poller = ${useLegacyLro
+      ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
+      : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
     };`,
     "await poller.poll();",
     "return poller;"
@@ -1254,7 +1250,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${operationGroupInterfaceName}`],
-    moduleSpecifier: "../operationsInterfaces"
+    moduleSpecifier: "../operationsInterfaces/index.js"
   });
 
   if (!useCoreV2) {
@@ -1284,14 +1280,14 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: "../models/mappers"
+      moduleSpecifier: "../models/mappers.js"
     });
   }
 
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: "../models/parameters"
+      moduleSpecifier: "../models/parameters.js"
     });
   }
 
@@ -1301,7 +1297,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${clientClassName}`],
-    moduleSpecifier: `../${clientFileName}`
+    moduleSpecifier: `../${clientFileName}.js`
   });
 
   if (hasLroOperation(operationGroupDetails)) {
@@ -1311,7 +1307,7 @@ function addImports(
     });
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: `../lroImpl`
+      moduleSpecifier: `../lroImpl.js`
     });
   }
 }

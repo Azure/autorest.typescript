@@ -63,7 +63,7 @@ export function addPagingImports(
       },
       {
         namedImports: ["setContinuationToken"],
-        moduleSpecifier: isClient ? "./pagingHelper" : "../pagingHelper"
+        moduleSpecifier: isClient ? "./pagingHelper.js" : "../pagingHelper.js"
       }
     ]);
   }
@@ -227,9 +227,9 @@ export function writeAsyncIterators(
         },
         nextMethod: nextMethodParameters
           ? {
-              name: `${operation.namePrefix}${nextOperationName}`,
-              parameters: nextMethodParameters
-            }
+            name: `${operation.namePrefix}${nextOperationName}`,
+            parameters: nextMethodParameters
+          }
           : undefined,
         publicMethod: {
           name: getPublicMethodName(operation),
