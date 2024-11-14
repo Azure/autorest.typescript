@@ -10,25 +10,37 @@ dotenv.config();
  *
  * @summary call operation Create
  */
-async function usersCreateSample() {
+async function todoItemsCreateSample() {
   const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
   const client = createTodoClient(endpointParam, credential);
   const result = await client
-    .path("/users")
+    .path("/items")
     .post({
       body: {
-        username: "{Your username}",
-        email: "{Your email}",
-        password: "{Your password}",
-        validated: true,
+        item: {
+          title: "{Your title}",
+          assignedTo: 123,
+          description: "{Your description}",
+          status: "NotStarted",
+          labels: "{Your labels}",
+          _dummy: "{Your _dummy}",
+        },
+        attachments: [
+          {
+            filename: "{Your filename}",
+            mediaType: "{Your mediaType}",
+            contents: "{Your contents}",
+          },
+        ],
       },
+      contentType: "application/json",
     });
   console.log(result);
 }
 
 async function main() {
-  usersCreateSample();
+  todoItemsCreateSample();
 }
 
 main().catch(console.error);

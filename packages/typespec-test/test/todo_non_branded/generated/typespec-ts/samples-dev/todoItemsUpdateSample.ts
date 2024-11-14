@@ -19,12 +19,10 @@ async function todoItemsUpdateSample() {
     .path("/items/{id}", id)
     .patch({
       body: {
-        patch: {
-          title: "{Your title}",
-          ownedBy: 123,
-          description: "{Your description}",
-          status: "NotStarted",
-        },
+        title: "{Your title}",
+        assignedTo: 123,
+        description: "{Your description}",
+        status: "NotStarted",
       },
       contentType: "application/merge-patch+json",
     });

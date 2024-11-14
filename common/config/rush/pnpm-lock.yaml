@@ -201,6 +201,7 @@ importers:
       '@types/node': ^18.0.0
       '@typespec/compiler': '>=0.62.0 <1.0.0'
       '@typespec/http': '>=0.62.0 <1.0.0'
+      '@typespec/json-schema': '>=0.62.0 <1.0.0'
       '@typespec/openapi': '>=0.62.0 <1.0.0'
       '@typespec/openapi3': '>=0.62.0 <1.0.0'
       '@typespec/rest': '>=0.62.0 <1.0.0'
@@ -217,6 +218,7 @@ importers:
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 0.62.0
       '@typespec/http': 0.62.0_@typespec+compiler@0.62.0
+      '@typespec/json-schema': 0.62.0_@typespec+compiler@0.62.0
       '@typespec/openapi': 0.62.0_ehpjn7t5lr2snllrxt4bmumehe
       '@typespec/openapi3': 0.62.0_w4ienkqkqg3jsox2pddtpe4f5m
       '@typespec/rest': 0.62.0_ehpjn7t5lr2snllrxt4bmumehe
@@ -2490,6 +2492,16 @@ packages:
         optional: true
     dependencies:
       '@typespec/compiler': 0.62.0
+
+  /@typespec/json-schema/0.62.0_@typespec+compiler@0.62.0:
+    resolution: {integrity: sha512-8wM+ENB8NY9y4mhevk6XImYqzgiZdQFlq9fMwsoJGT7jsNA4MYAHsDrVH2jWfOnR1EssCHNV5bu1DttfXpaZvg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.62.0
+    dependencies:
+      '@typespec/compiler': 0.62.0
+      yaml: 2.5.1
+    dev: false
 
   /@typespec/openapi/0.62.0_ehpjn7t5lr2snllrxt4bmumehe:
     resolution: {integrity: sha512-Xtm0Nd2BuSmEfSWGtc10ok22jyomYm9L2jY+kVTy+v5J89DrVh0o6+YpipUl1QhcItM1YMBphWHIHPfwkDRbnw==}

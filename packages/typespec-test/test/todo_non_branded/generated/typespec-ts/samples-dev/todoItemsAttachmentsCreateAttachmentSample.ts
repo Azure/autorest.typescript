@@ -6,29 +6,29 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to call operation Create
+ * This sample demonstrates how to call operation CreateAttachment
  *
- * @summary call operation Create
+ * @summary call operation CreateAttachment
  */
-async function usersCreateSample() {
+async function todoItemsAttachmentsCreateAttachmentSample() {
   const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
   const client = createTodoClient(endpointParam, credential);
+  const itemId = 123;
   const result = await client
-    .path("/users")
+    .path("/items/{itemId}/attachments", itemId)
     .post({
       body: {
-        username: "{Your username}",
-        email: "{Your email}",
-        password: "{Your password}",
-        validated: true,
+        filename: "{Your filename}",
+        mediaType: "{Your mediaType}",
+        contents: "{Your contents}",
       },
     });
   console.log(result);
 }
 
 async function main() {
-  usersCreateSample();
+  todoItemsAttachmentsCreateAttachmentSample();
 }
 
 main().catch(console.error);
