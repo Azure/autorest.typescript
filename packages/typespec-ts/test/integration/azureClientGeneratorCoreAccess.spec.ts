@@ -21,9 +21,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -35,9 +35,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -49,9 +49,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -63,9 +63,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -77,9 +77,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -91,9 +91,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/sharedModelInOperation/public"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -105,9 +105,9 @@ describe("Access Client", () => {
         .path(
           "/azure/client-generator-core/access/sharedModelInOperation/internal"
         )
-        .get({ queryParameters: { name: "myname" } });
+        .get({ queryParameters: { name: "sample" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
+      assert.strictEqual(result.body.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }

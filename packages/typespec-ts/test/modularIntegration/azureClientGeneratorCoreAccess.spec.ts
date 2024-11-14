@@ -15,8 +15,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get no decorator in public operation", async () => {
     try {
-      const result = await client.noDecoratorInPublic("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.noDecoratorInPublic("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -24,8 +24,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get public decorator in public operation", async () => {
     try {
-      const result = await client.publicDecoratorInPublic("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.publicDecoratorInPublic("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -33,8 +33,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get no decorator in internal operation", async () => {
     try {
-      const result = await client.noDecoratorInInternal("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.noDecoratorInInternal("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -42,8 +42,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get internal decorator in internal operation", async () => {
     try {
-      const result = await client.internalDecoratorInInternal("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.internalDecoratorInInternal("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -51,8 +51,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get public decorator in internal operation", async () => {
     try {
-      const result = await client.publicDecoratorInInternal("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.publicDecoratorInInternal("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -60,8 +60,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get public shared model in operation", async () => {
     try {
-      const result = await client.public("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.public("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -69,8 +69,8 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get internal shared model in operation", async () => {
     try {
-      const result = await client.internal("myname");
-      assert.equal(result.name, "myname");
+      const result = await client.internal("sample");
+      assert.equal(result.name, "sample");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -78,7 +78,7 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get relative model in operation", async () => {
     try {
-      const result = await client.operation("myname");
+      const result = await client.operation("Madge");
       assert.equal(result.name, "Madge");
       assert.equal(result.inner.name, "Madge");
     } catch (err) {
@@ -88,7 +88,7 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get relative model in discriminator", async () => {
     try {
-      const result = await client.discriminator("myname");
+      const result = await client.discriminator("real");
       assert.equal(result.name, "Madge");
       assert.equal(result.kind, "real");
     } catch (err) {

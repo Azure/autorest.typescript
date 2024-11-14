@@ -251,10 +251,10 @@ export const rlcTsps = [
     outputPath: "versioning/madeOptional",
     inputPath: "versioning/madeOptional"
   },
-  {
-    outputPath: "versioning/removed",
-    inputPath: "versioning/removed"
-  },
+  // {
+  //   outputPath: "versioning/removed",
+  //   inputPath: "versioning/removed"
+  // },
   {
     outputPath: "versioning/renamedFrom",
     inputPath: "versioning/renamedFrom"
