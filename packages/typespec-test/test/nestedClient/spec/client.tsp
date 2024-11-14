@@ -3,9 +3,14 @@ import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
 
-model ClientInitialization {
+model StorageClientInitialization {
+    accountName: string;
+}
+model BlobClientInitialization {
+    accountName: string;
     blobName: string;
 }
 
-@@clientInitialization(StorageClient, ClientInitialization);
-@@clientInitialization(StorageClient.BlobClient, ClientInitialization);
+@@clientInitialization(StorageClient, StorageClientInitialization);
+@@clientInitialization(StorageClient.BlobClient, BlobClientInitialization);
+

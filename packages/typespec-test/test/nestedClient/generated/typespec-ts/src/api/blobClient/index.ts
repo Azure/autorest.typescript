@@ -14,11 +14,12 @@ import {
 
 export function _downloadSend(
   context: Client,
+  accountName: string,
   blobName: string,
   options: BlobClientDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/blob/{blobName}", blobName)
+    .path("/account/{accountName}/blob/{blobName}", accountName, blobName)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -35,9 +36,10 @@ export async function _downloadDeserialize(
 
 export async function download(
   context: Client,
+  accountName: string,
   blobName: string,
   options: BlobClientDownloadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _downloadSend(context, blobName, options);
+  const result = await _downloadSend(context, accountName, blobName, options);
   return _downloadDeserialize(result);
 }

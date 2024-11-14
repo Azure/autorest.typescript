@@ -3,12 +3,14 @@ import "@typespec/http";
 using TypeSpec.Http;
 
 @service
+@route("/account/{accountName}")
 namespace StorageClient {
-  @route("/account/{accountName}")
+  
   op download(@path accountName: string): void;
 
-  interface BlobClient {
-    @route("/blob/{blobName}")
-    download(@path blobName: string): void;
+  @route("/blob/{blobName}")
+  namespace BlobClient {
+    
+    op download(@path accountName: string, @path blobName: string): void;
   }
 }

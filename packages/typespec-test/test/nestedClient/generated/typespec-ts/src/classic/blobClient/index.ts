@@ -8,6 +8,7 @@ import { BlobClientDownloadOptionalParams } from "../../api/options.js";
 /** Interface representing a BlobClient operations. */
 export interface BlobClientOperations {
   download: (
+    accountName: string,
     blobName: string,
     options?: BlobClientDownloadOptionalParams,
   ) => Promise<void>;
@@ -15,8 +16,11 @@ export interface BlobClientOperations {
 
 export function getBlobClient(context: StorageContext) {
   return {
-    download: (blobName: string, options?: BlobClientDownloadOptionalParams) =>
-      download(context, blobName, options),
+    download: (
+      accountName: string,
+      blobName: string,
+      options?: BlobClientDownloadOptionalParams,
+    ) => download(context, accountName, blobName, options),
   };
 }
 

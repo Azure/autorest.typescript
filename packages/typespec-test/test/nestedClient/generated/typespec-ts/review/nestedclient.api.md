@@ -15,7 +15,7 @@ export interface BlobClientDownloadOptionalParams extends OperationOptions {
 // @public
 export interface BlobClientOperations {
     // (undocumented)
-    download: (blobName: string, options?: BlobClientDownloadOptionalParams) => Promise<void>;
+    download: (accountName: string, blobName: string, options?: BlobClientDownloadOptionalParams) => Promise<void>;
 }
 
 // @public
@@ -27,7 +27,7 @@ export class StorageClient {
     constructor(endpointParam: string, options?: StorageClientOptionalParams);
     readonly blobClient: BlobClientOperations;
     // (undocumented)
-    download(blobName: string, options?: DownloadOptionalParams): Promise<void>;
+    download(accountName: string, options?: DownloadOptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 
