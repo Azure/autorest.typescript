@@ -16,12 +16,8 @@ describe("Single Server Path Client", () => {
   });
 
   it("should work with no param", async () => {
-    try {
-      const result = await client.myOp();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.myOp();
+    assert.isUndefined(result);
   });
 });
 
@@ -38,21 +34,13 @@ describe("Multiple Server Path Client", () => {
   });
 
   it("should work with no param", async () => {
-    try {
-      const result = await client.noOperationParams();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.noOperationParams();
+    assert.isUndefined(result);
   });
 
   it("should work with param", async () => {
-    try {
-      const result = await client.withOperationPathParam("test");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withOperationPathParam("test");
+    assert.isUndefined(result);
   });
 });
 
@@ -69,30 +57,18 @@ describe("NotVersioned Server Version Client", () => {
   });
 
   it("should work without apiVersion", async () => {
-    try {
-      const result = await client.withoutApiVersion();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withoutApiVersion();
+    assert.isUndefined(result);
   });
 
   it("should work with param", async () => {
-    try {
-      const result = await client.withQueryApiVersion("v1.0");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withQueryApiVersion("v1.0");
+    assert.isUndefined(result);
   });
 
   it("should work with path param", async () => {
-    try {
-      const result = await client.withPathApiVersion("v1.0");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withPathApiVersion("v1.0");
+    assert.isUndefined(result);
   });
 });
 
@@ -109,51 +85,31 @@ describe("Versioned Server Version Client", () => {
   });
 
   it("should work without apiVersion", async () => {
-    try {
-      const result = await client.withoutApiVersion();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withoutApiVersion();
+    assert.isUndefined(result);
   });
 
   it("should work with param with default value", async () => {
-    try {
-      const result = await client.withQueryApiVersion();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withQueryApiVersion();
+    assert.isUndefined(result);
   });
 
   it("should work with param with explicit value", async () => {
-    try {
-      const result = await client.withQueryApiVersion({
-        apiVersion: "2022-12-01-preview"
-      });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withQueryApiVersion({
+      apiVersion: "2022-12-01-preview"
+    });
+    assert.isUndefined(result);
   });
 
   it("should work with path param", async () => {
-    try {
-      const result = await client.withPathApiVersion("2022-12-01-preview");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withPathApiVersion("2022-12-01-preview");
+    assert.isUndefined(result);
   });
 
   it("should work with param with old value", async () => {
-    try {
-      const result = await client.withQueryOldApiVersion({
-        apiVersion: "2021-01-01-preview"
-      });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.withQueryOldApiVersion({
+      apiVersion: "2021-01-01-preview"
+    });
+    assert.isUndefined(result);
   });
 });
