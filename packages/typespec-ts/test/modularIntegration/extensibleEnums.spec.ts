@@ -11,42 +11,26 @@ describe("ExtensibleEnums Rest Client", () => {
   });
 
   it("should get known value", async () => {
-    try {
-      const result = await client.string.getKnownValue();
-      assert.strictEqual(result, "Monday");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.string.getKnownValue();
+    assert.strictEqual(result, "Monday");
   });
 
   it("should get unknown value", async () => {
-    try {
-      const result = await client.string.getUnknownValue();
-      assert.strictEqual(result, "Weekend");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.string.getUnknownValue();
+    assert.strictEqual(result, "Weekend");
   });
 
   it("should put known value", async () => {
-    try {
-      const result = await client.string.putKnownValue("Monday", {
-        requestOptions: { headers: { "content-type": "text/plain" } }
-      });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.string.putKnownValue("Monday", {
+      requestOptions: { headers: { "content-type": "text/plain" } }
+    });
+    assert.isUndefined(result);
   });
 
   it("should put unknown value and receives 500", async () => {
-    try {
-      const result = await client.string.putUnknownValue("Weekend" as any, {
-        requestOptions: { headers: { "content-type": "text/plain" } }
-      });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.string.putUnknownValue("Weekend" as any, {
+      requestOptions: { headers: { "content-type": "text/plain" } }
+    });
+    assert.isUndefined(result);
   });
 });

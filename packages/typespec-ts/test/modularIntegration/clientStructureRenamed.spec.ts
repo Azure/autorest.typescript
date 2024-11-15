@@ -14,56 +14,32 @@ describe("Client Structure Renamed-Operation Rest Client", () => {
   });
 
   it("should call operation one correctly", async () => {
-    try {
-      const result = await client.renamedOne();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.renamedOne();
+    assert.strictEqual(result, undefined);
   });
 
   it("should call operation two correctly", async () => {
-    try {
-      const result = await client.group.renamedTwo();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.group.renamedTwo();
+    assert.strictEqual(result, undefined);
   });
 
   it("should call operation three correctly", async () => {
-    try {
-      const result = await client.renamedThree();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.renamedThree();
+    assert.strictEqual(result, undefined);
   });
 
   it("should call operation four correctly", async () => {
-    try {
-      const result = await client.group.renamedFour();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.group.renamedFour();
+    assert.strictEqual(result, undefined);
   });
 
   it("should call operation five correctly", async () => {
-    try {
-      const result = await client.renamedFive();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.renamedFive();
+    assert.strictEqual(result, undefined);
   });
 
   it("should call operation six correctly", async () => {
-    try {
-      const result = await client.group.renamedSix();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.group.renamedSix();
+    assert.strictEqual(result, undefined);
   });
 });

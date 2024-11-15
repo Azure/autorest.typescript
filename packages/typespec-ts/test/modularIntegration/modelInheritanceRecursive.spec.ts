@@ -31,20 +31,12 @@ describe("Recursive Client", () => {
   });
 
   it("Inheritance Recursive put test", async () => {
-    try {
-      const result = await client.put(body);
-      assert.isNotNull(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.put(body);
+    assert.isNotNull(result);
   });
 
   it("Inheritance Recursive get test", async () => {
-    try {
-      const result = await client.get();
-      assert.isNotNull(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.get();
+    assert.isNotNull(result);
   });
 });

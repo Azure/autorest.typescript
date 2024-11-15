@@ -14,25 +14,21 @@ describe("RpcClient Rest Client", () => {
   });
 
   it("should post LRO response", async () => {
-    try {
-      const initialResponse = await client
-        .path("/azure/core/lro/rpc/generations:submit")
-        .post({
-          body: { prompt: "text" }
-        });
-      const poller = await getLongRunningPoller(client, initialResponse);
-      const result = await poller.pollUntilDone();
-      assert.equal(result.status, "200");
-      assert.strictEqual(initialResponse.status, "202");
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.equal(result.status, "200");
-      if (result.status === "200") {
-        assert.equal(result.body.result?.data, "text data");
-      }
-    } catch (err) {
-      assert.fail(err as string);
+    const initialResponse = await client
+      .path("/azure/core/lro/rpc/generations:submit")
+      .post({
+        body: { prompt: "text" }
+      });
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const result = await poller.pollUntilDone();
+    assert.equal(result.status, "200");
+    assert.strictEqual(initialResponse.status, "202");
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.equal(result.status, "200");
+    if (result.status === "200") {
+      assert.equal(result.body.result?.data, "text data");
     }
   });
 });

@@ -40,66 +40,38 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     }
   };
   it("should get model with single discriminator", async () => {
-    try {
-      const result = await client.getModel();
-      assert.deepEqual(result, validBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getModel();
+    assert.deepEqual(result, validBody);
   });
 
   it("should put model with single discriminator", async () => {
-    try {
-      const result = await client.putModel(validBody);
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.putModel(validBody);
+    assert.isUndefined(result);
   });
 
   it("should get recursive model with single discriminator", async () => {
-    try {
-      const result = await client.getRecursiveModel();
-      assert.deepEqual(result, validRecursiveBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getRecursiveModel();
+    assert.deepEqual(result, validRecursiveBody);
   });
 
   it("should put recursive model with single discriminator", async () => {
-    try {
-      const result = await client.putRecursiveModel(validRecursiveBody);
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.putRecursiveModel(validRecursiveBody);
+    assert.isUndefined(result);
   });
 
   it("should get if missing discriminator", async () => {
-    try {
-      const result = await client.getMissingDiscriminator();
-      assert.deepEqual(result.wingspan, 1);
-      assert.isUndefined(result.kind);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getMissingDiscriminator();
+    assert.deepEqual(result.wingspan, 1);
+    assert.isUndefined(result.kind);
   });
 
   it("should get if wrong discriminator", async () => {
-    try {
-      const result = await client.getWrongDiscriminator();
-      assert.deepEqual(result, { wingspan: 1, kind: "wrongKind" });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getWrongDiscriminator();
+    assert.deepEqual(result, { wingspan: 1, kind: "wrongKind" });
   });
 
   it("should get legacy model", async () => {
-    try {
-      const result = await client.getLegacyModel();
-      assert.deepEqual(result, { size: 20, kind: "t-rex" });
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getLegacyModel();
+    assert.deepEqual(result, { size: 20, kind: "t-rex" });
   });
 });
