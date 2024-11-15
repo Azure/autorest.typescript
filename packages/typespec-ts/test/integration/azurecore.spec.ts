@@ -35,68 +35,52 @@ describe("Azure Core Rest Client", () => {
   };
   const expectBody = { users: [validUser, validUser2] };
   it("should put user", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).put({
-        body: {
-          name: "Madge"
-        },
-        contentType: "application/json"
-      });
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validUser);
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client.path("/azure/core/basic/users/{id}", 1).put({
+      body: {
+        name: "Madge"
+      },
+      contentType: "application/json"
+    });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should patch user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}", 1)
-        .patch({
-          contentType: "application/merge-patch+json",
-          body: {
-            name: "Madge"
-          }
-        });
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validUser);
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/azure/core/basic/users/{id}", 1)
+      .patch({
+        contentType: "application/merge-patch+json",
+        body: {
+          name: "Madge"
+        }
+      });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should get user", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).get();
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validUser);
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client.path("/azure/core/basic/users/{id}", 1).get();
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should delete user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}", 1)
-        .delete();
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/azure/core/basic/users/{id}", 1)
+      .delete();
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "204");
   });
 
   it("should list users", async () => {
@@ -138,40 +122,32 @@ describe("Azure Core Rest Client", () => {
   });
 
   it("should export a user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}:export", 1)
-        .post({
-          queryParameters: {
-            format: "json"
-          }
-        });
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validUser);
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/azure/core/basic/users/{id}:export", 1)
+      .post({
+        queryParameters: {
+          format: "json"
+        }
+      });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should export all users", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users:exportallusers")
-        .post({
-          queryParameters: {
-            format: "json"
-          }
-        });
-      if (isUnexpected(result)) {
-        throw Error("Unexpected status code");
-      }
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, expectBody);
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/azure/core/basic/users:exportallusers")
+      .post({
+        queryParameters: {
+          format: "json"
+        }
+      });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, expectBody);
   });
 });
