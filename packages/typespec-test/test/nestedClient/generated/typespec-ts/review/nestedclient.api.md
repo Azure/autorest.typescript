@@ -8,14 +8,16 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public
-export interface BlobClientDownloadOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class BlobClient {
+    constructor(endpointParam: string, accountName: string, blobName: string, options?: StorageClientOptionalParams);
+    // (undocumented)
+    download(options?: BlobClientDownloadOptionalParams): Promise<void>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface BlobClientOperations {
-    // (undocumented)
-    download: (accountName: string, blobName: string, options?: BlobClientDownloadOptionalParams) => Promise<void>;
+export interface BlobClientDownloadOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -24,10 +26,9 @@ export interface DownloadOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class StorageClient {
-    constructor(endpointParam: string, options?: StorageClientOptionalParams);
-    readonly blobClient: BlobClientOperations;
+    constructor(endpointParam: string, accountName: string, options?: StorageClientOptionalParams);
     // (undocumented)
-    download(accountName: string, options?: DownloadOptionalParams): Promise<void>;
+    download(options?: DownloadOptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 

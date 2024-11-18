@@ -3,24 +3,26 @@
 
 import {
   download,
-  DownloadOptionalParams,
+  BlobClientDownloadOptionalParams,
   createStorage,
   StorageContext,
   StorageClientOptionalParams,
 } from "./api/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { StorageClientOptionalParams } from "./api/storageContext.js";
+export { StorageClientOptionalParams } from "../api/storageContext.js";
 
-export class StorageClient {
+export class BlobClient {
   private _client: StorageContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
   private accountName: string;
+  private blobName: string;
 
   constructor(
     endpointParam: string,
     accountName: string,
+    blobName: string,
     options: StorageClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -33,11 +35,12 @@ export class StorageClient {
     });
     this.pipeline = this._client.pipeline;
     this.accountName = accountName;
+    this.blobName = blobName;
   }
 
   download(
-    options: DownloadOptionalParams = { requestOptions: {} },
+    options: BlobClientDownloadOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return download(this._client, this.accountName, options);
+    return download(this._client, this.accountName, this.blobName, options);
   }
 }

@@ -3,10 +3,10 @@
 
 export { download } from "./operations.js";
 export {
-  DownloadOptionalParams,
+  BlobClientDownloadOptionalParams,
 } from "./options.js";
 export {
   createStorage,
   StorageContext,
   StorageClientOptionalParams,
-} from "./storageContext.js";
+} from "../../api/storageContext.js";
