@@ -656,11 +656,7 @@ function getSchemaForModel(
     fromCore: isCoreModel
   };
   // normalized the output name
-  modelSchema.name = normalizeName(
-    modelSchema.name,
-    NameType.Interface,
-    true /** shouldGuard */
-  );
+  modelSchema.name = normalizeName(modelSchema.name, NameType.Interface);
 
   if (model.name === "Record" && isRecordModelType(program, model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });

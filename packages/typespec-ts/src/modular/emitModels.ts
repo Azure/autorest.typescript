@@ -11,7 +11,7 @@ import {
 import {
   NameType,
   normalizeName,
-  normalizeNumericLiteralName
+  escapeNumericLiteral
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
@@ -341,8 +341,8 @@ function emitEnumMember(
   member: SdkEnumValueType
 ): EnumMemberStructure {
   const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
-    ? normalizeNumericLiteralName(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
-    : normalizeName(member.name, NameType.EnumMemberName, true);
+    ? escapeNumericLiteral(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName);
   if (
     normalizedMemberName.toLowerCase().startsWith("number") &&
     !member.name.toLowerCase().startsWith("number")
@@ -488,7 +488,7 @@ export function normalizeModelName(
   if (type.isGeneratedName) {
     internalModelPrefix = "_";
   }
-  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
+  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType)}`;
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {

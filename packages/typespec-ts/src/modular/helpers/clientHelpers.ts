@@ -145,7 +145,7 @@ export function getClientParameterName(
     return "endpointParam";
   }
 
-  return normalizeName(parameter.name, NameType.Parameter, true);
+  return normalizeName(parameter.name, NameType.Parameter);
 }
 
 export function buildGetClientEndpointParam(

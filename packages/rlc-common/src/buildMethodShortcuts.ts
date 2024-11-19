@@ -27,9 +27,11 @@ export function buildMethodShortcutImplementation(paths: Paths) {
     const groupName = normalizeName(
       paths[path].operationGroupName,
       NameType.OperationGroup,
-      true,
-      REST_CLIENT_RESERVED,
-      CasingConvention.Camel
+      {
+        shouldGuard: true,
+        casingOverride: CasingConvention.Camel,
+        customReservedNames: REST_CLIENT_RESERVED
+      }
     );
 
     if (keys[groupName]) {

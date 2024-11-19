@@ -226,11 +226,7 @@ function getObjectBaseName(
   schemaUsage: SchemaContext[]
 ) {
   const nameSuffix = schemaUsage.includes(SchemaContext.Output) ? "Output" : "";
-  const name = normalizeName(
-    objectSchema.name,
-    NameType.Interface,
-    true /** guard name */
-  );
+  const name = normalizeName(objectSchema.name, NameType.Interface);
 
   return `${name}${nameSuffix}`;
 }
@@ -259,11 +255,7 @@ function getPolymorphicTypeAlias(
     const nameSuffix = schemaUsage.includes(SchemaContext.Output)
       ? "Output"
       : "";
-    const name = normalizeName(
-      child.name,
-      NameType.Interface,
-      true /** shouldGuard */
-    );
+    const name = normalizeName(child.name, NameType.Interface);
 
     unionTypes.push(`${name}${nameSuffix}`);
   }
@@ -516,11 +508,7 @@ export function getImmediateParentsNames(
                 ? parent.outputTypeName
                 : parent.typeName) ?? parent.name
             }`
-        : `${normalizeName(
-            parent.name,
-            NameType.Interface,
-            true /** shouldGuard */
-          )}${nameSuffix}`;
+        : `${normalizeName(parent.name, NameType.Interface)}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
         ? `${name}Parent`

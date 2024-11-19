@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export interface NormalizeNameOption {
+  shouldGuard?: boolean;
+  customReservedNames?: ReservedName[];
+  casingOverride?: CasingConvention;
+  numberPrefixOverride?: string;
+}
+
 export interface ReservedName {
   name: string;
   reservedFor: NameType[];
@@ -132,60 +139,54 @@ function getSuffix(nameType?: NameType) {
   }
 }
 
-function isNumericLiteralName(name: string) {
-  return (+name).toString() === name;
-}
-
 export function normalizeName(
   name: string,
   nameType: NameType,
-  shouldGuard?: boolean,
-  customReservedNames: ReservedName[] = [],
-  casingOverride?: CasingConvention
+  options: NormalizeNameOption = {
+    shouldGuard: true,
+    customReservedNames: [],
+    casingOverride: undefined,
+    numberPrefixOverride: "Num"
+  }
 ): string {
+  const { shouldGuard, customReservedNames, casingOverride } = options;
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
-  if (isNumericLiteralName(name)) {
-    return normalizeNumericLiteralName(name, nameType);
-  }
   const parts = deconstruct(name);
   if (parts.length === 0) {
     return name;
   }
   const [firstPart, ...otherParts] = parts;
-  const normalizedFirstPart = toCasing(firstPart, casingConvention);
+  const normalizedFirstPart = toCasing(firstPart, casingConvention, true);
   const normalizedParts = (otherParts || [])
     .map((part) => toCasing(part, CasingConvention.Pascal))
     .join("");
 
-  const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);
+  const normalized = `${normalizedFirstPart}${normalizedParts}`;
   const result = shouldGuard
     ? guardReservedNames(normalized, nameType, customReservedNames)
     : normalized;
-  return handleNumberStart(result, nameType);
+  return escapeNumericLiteral(result, nameType, options);
 }
 
-function handleNumberStart(name: string, nameType: NameType): string {
-  if (!name.match(/^\d/)) {
-    return name;
-  }
-  if (nameType === NameType.EnumMemberName) {
-    return `Number${name}`;
-  } else {
-    return name;
-  }
-}
-
-export function normalizeNumericLiteralName(
+export function escapeNumericLiteral(
   name: string,
-  nameType: NameType
-): string {
-  if (isNumericLiteralName(name) && nameType === NameType.EnumMemberName) {
-    return `Number${name}`;
+  nameType: NameType,
+  options: NormalizeNameOption = {
+    shouldGuard: true,
+    customReservedNames: [],
+    casingOverride: undefined,
+    numberPrefixOverride: "Num"
   }
-  return name;
+): string {
+  const casingConvention =
+    options.casingOverride ?? getCasingConvention(nameType);
+  if (!name.match(/^[\-\.]?\d/)) {
+    return name;
+  }
+  return `${toCasing(options.numberPrefixOverride!, casingConvention)}${name}`;
 }
 
 function isFullyUpperCase(
@@ -219,16 +220,28 @@ function deconstruct(identifier: string): Array<string> {
     .replace(/\b([_-]*)([A-Z]+)([A-Z])([a-z]+)/g, "$1$2 $3$4") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
     .replace(/«/g, "s")
     .trim()
-    .split(/[\W|_]+/)
-    .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()));
-  return parts.filter((part) => part.trim().length > 0);
+    .split(/[^A-Za-z0-9\_\-.]+/);
+  // Split by non-alphanumeric characters and try to keep _-. between numbers
+  const refinedParts: string[] = [];
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    const isPrevNumber = isNumber(parts[i - 1]);
+    const isNextNumber = isNumber(parts[i + 1]);
+    if ((isPrevNumber || isNextNumber) && ["_", "-", "."].includes(part)) {
+      refinedParts.push(part);
+    } else {
+      refinedParts.push(
+        ...parts[i]
+          .split(/[\W|_]+/)
+          .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()))
+      );
+    }
+  }
+  return refinedParts.filter((part) => part.trim().length > 0);
 }
 
-function checkBeginning(name: string): string {
-  if (name.startsWith("@")) {
-    return name.substring(1);
-  }
-  return name;
+function isNumber(value?: string) {
+  return value && value.match(/^\d+$/);
 }
 
 export function getModelsName(title: string): string {
@@ -262,12 +275,20 @@ function getCasingConvention(nameType: NameType) {
  * results in TEST -> test or Test (depending on the CasingConvention). We should switch to relay
  * on Modeler four namer for this once it is stable
  */
-function toCasing(str: string, casing: CasingConvention): string {
+function toCasing(
+  str: string,
+  casing: CasingConvention,
+  keepConsistent = false
+): string {
   const firstChar =
     casing === CasingConvention.Pascal
       ? str.charAt(0).toUpperCase()
       : str.charAt(0).toLowerCase();
-  return `${firstChar}${str.substring(1)}`;
+  const allLowerCases =
+    casing !== CasingConvention.Pascal &&
+    keepConsistent &&
+    str.toUpperCase() === str;
+  return allLowerCases ? str.toLowerCase() : `${firstChar}${str.substring(1)}`;
 }
 
 export function pascalCase(str: string) {

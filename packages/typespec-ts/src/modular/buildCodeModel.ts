@@ -442,8 +442,7 @@ function emitParamBase(
     optional = parameter.optional;
     name = normalizeName(
       getLibraryName(context, parameter),
-      NameType.Parameter,
-      true
+      NameType.Parameter
     );
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
@@ -1081,8 +1080,7 @@ export function emitModel(
     : undefined;
   const overridedModelName = normalizeName(
     getLibraryName(context, type) ?? getFriendlyName(context.program, type),
-    NameType.Interface,
-    true
+    NameType.Interface
   );
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)

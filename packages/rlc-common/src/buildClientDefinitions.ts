@@ -245,9 +245,11 @@ function getShortcutName(interfaceName: string) {
   const clientProperty = normalizeName(
     interfaceName.substring(0, endIndex),
     NameType.OperationGroup,
-    true,
-    REST_CLIENT_RESERVED,
-    CasingConvention.Camel
+    {
+      shouldGuard: true,
+      casingOverride: CasingConvention.Camel,
+      customReservedNames: REST_CLIENT_RESERVED
+    }
   );
 
   return {
