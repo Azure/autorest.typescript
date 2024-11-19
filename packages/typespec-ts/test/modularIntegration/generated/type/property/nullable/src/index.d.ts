@@ -166,7 +166,7 @@ export declare class NullableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NullableClientOptionalParams);
-    readonly string: StringModelOperations;
+    readonly string: StringOperations;
     readonly bytes: BytesOperations;
     readonly datetime: DatetimeOperations;
     readonly duration: DurationOperations;
@@ -178,24 +178,24 @@ export declare class NullableClient {
 export declare interface NullableClientOptionalParams extends ClientOptions {
 }
 
-export declare interface StringModelGetNonNullOptionalParams extends OperationOptions {
+export declare interface StringGetNonNullOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelGetNullOptionalParams extends OperationOptions {
+export declare interface StringGetNullOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelOperations {
-    getNonNull: (options?: StringModelGetNonNullOptionalParams) => Promise<StringProperty>;
-    getNull: (options?: StringModelGetNullOptionalParams) => Promise<StringProperty>;
-    patchNonNull: (body: StringProperty, options?: StringModelPatchNonNullOptionalParams) => Promise<void>;
-    patchNull: (body: StringProperty, options?: StringModelPatchNullOptionalParams) => Promise<void>;
+export declare interface StringOperations {
+    getNonNull: (options?: StringGetNonNullOptionalParams) => Promise<StringProperty>;
+    getNull: (options?: StringGetNullOptionalParams) => Promise<StringProperty>;
+    patchNonNull: (body: StringProperty, options?: StringPatchNonNullOptionalParams) => Promise<void>;
+    patchNull: (body: StringProperty, options?: StringPatchNullOptionalParams) => Promise<void>;
 }
 
-export declare interface StringModelPatchNonNullOptionalParams extends OperationOptions {
+export declare interface StringPatchNonNullOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-export declare interface StringModelPatchNullOptionalParams extends OperationOptions {
+export declare interface StringPatchNullOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
