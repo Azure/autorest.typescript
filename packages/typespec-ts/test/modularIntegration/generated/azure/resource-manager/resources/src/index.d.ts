@@ -47,7 +47,7 @@ export declare enum KnownProvisioningState {
 }
 
 export declare enum KnownVersions {
-    V20231201Preview = "2023-12-01-preview"
+    V2023_12_01Preview = "2023-12-01-preview"
 }
 
 export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {

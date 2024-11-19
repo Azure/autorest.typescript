@@ -180,8 +180,8 @@ function getPathFirstRoutesInterfaceDefinition(
             /{/g,
             "\\{"
           )}' has methods for the following verbs: ${Object.keys(
-          paths[key].methods
-        ).join(", ")}`
+            paths[key].methods
+          ).join(", ")}`
       ],
       parameters: [
         { name: "path", type: `"${key}"` },
@@ -245,11 +245,9 @@ function getShortcutName(interfaceName: string) {
   const clientProperty = normalizeName(
     interfaceName.substring(0, endIndex),
     NameType.OperationGroup,
-    {
-      shouldGuard: true,
-      casingOverride: CasingConvention.Camel,
-      customReservedNames: REST_CLIENT_RESERVED
-    }
+    true,
+    REST_CLIENT_RESERVED,
+    CasingConvention.Camel
   );
 
   return {

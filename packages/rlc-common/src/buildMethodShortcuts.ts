@@ -27,11 +27,9 @@ export function buildMethodShortcutImplementation(paths: Paths) {
     const groupName = normalizeName(
       paths[path].operationGroupName,
       NameType.OperationGroup,
-      {
-        shouldGuard: true,
-        casingOverride: CasingConvention.Camel,
-        customReservedNames: REST_CLIENT_RESERVED
-      }
+      true,
+      REST_CLIENT_RESERVED,
+      CasingConvention.Camel
     );
 
     if (keys[groupName]) {
@@ -68,9 +66,8 @@ function generateOperationDeclaration(
   method: string,
   pathParams: PathParameter[] = []
 ): string {
-  const pathParamNames = `${
-    pathParams.length > 0 ? `${pathParams.map((p) => p.name)},` : ""
-  }`;
+  const pathParamNames = `${pathParams.length > 0 ? `${pathParams.map((p) => p.name)},` : ""
+    }`;
   return `"${operationName}": (${pathParamNames} options) => {
       return client.path("${path}", ${pathParamNames}).${method}(options);
     }`;

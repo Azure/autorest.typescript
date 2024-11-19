@@ -226,7 +226,11 @@ function getObjectBaseName(
   schemaUsage: SchemaContext[]
 ) {
   const nameSuffix = schemaUsage.includes(SchemaContext.Output) ? "Output" : "";
-  const name = normalizeName(objectSchema.name, NameType.Interface);
+  const name = normalizeName(
+    objectSchema.name,
+    NameType.Interface,
+    true /** guard name */
+  );
 
   return `${name}${nameSuffix}`;
 }
@@ -255,7 +259,11 @@ function getPolymorphicTypeAlias(
     const nameSuffix = schemaUsage.includes(SchemaContext.Output)
       ? "Output"
       : "";
-    const name = normalizeName(child.name, NameType.Interface);
+    const name = normalizeName(
+      child.name,
+      NameType.Interface,
+      true /** shouldGuard */
+    );
 
     unionTypes.push(`${name}${nameSuffix}`);
   }
@@ -492,23 +500,26 @@ export function getImmediateParentsNames(
         : "";
       const name = isDictionarySchema(parent)
         ? Object.entries(objectSchema.properties!)?.some((prop) => {
-            const typeName = prop[1].typeName ?? prop[1].type;
-            return (
-              `Record<string, ${typeName}>` !== parent.typeName &&
-              !(parent as any).additionalProperties?.typeName?.includes(
-                typeName
-              )
-            );
-          })
+          const typeName = prop[1].typeName ?? prop[1].type;
+          return (
+            `Record<string, ${typeName}>` !== parent.typeName &&
+            !(parent as any).additionalProperties?.typeName?.includes(
+              typeName
+            )
+          );
+        })
           ? schemaUsage.includes(SchemaContext.Output)
             ? "Record<string, any>"
             : "Record<string, unknown>"
-          : `${
-              (schemaUsage.includes(SchemaContext.Output)
-                ? parent.outputTypeName
-                : parent.typeName) ?? parent.name
-            }`
-        : `${normalizeName(parent.name, NameType.Interface)}${nameSuffix}`;
+          : `${(schemaUsage.includes(SchemaContext.Output)
+            ? parent.outputTypeName
+            : parent.typeName) ?? parent.name
+          }`
+        : `${normalizeName(
+          parent.name,
+          NameType.Interface,
+          true /** shouldGuard */
+        )}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
         ? `${name}Parent`
@@ -546,8 +557,8 @@ function getPropertySignatures(
 function isBinaryArray(schema: Schema): boolean {
   return Boolean(
     isArraySchema(schema) &&
-      (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
-        schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
+    (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
+      schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
   );
 }
 
@@ -593,7 +604,7 @@ export function getPropertySignature(
     type = schema.typeName;
     importedModels.add(
       (schema as any).additionalProperties.typeName ??
-        (schema as any).additionalProperties.name
+      (schema as any).additionalProperties.name
     );
   } else {
     type =

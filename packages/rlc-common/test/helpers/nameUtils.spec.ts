@@ -6,6 +6,9 @@ describe("#normalizeName", () => {
   describe("for enum member name", () => {
     it("should normalize any chars including digits properly", () => {
       expect(normalizeName("-10Min", NameType.EnumMemberName)).to.equal("Num-10Min");
+      expect(normalizeName("LROsPut202Retry200_202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_202Response");
+      expect(normalizeName("LROsPut202Retry200_Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200Response");
+      expect(normalizeName("LROsPut202Retry200 202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200202Response");
       expect(normalizeName("090", NameType.EnumMemberName)).to.equal("Num090");
       expect(normalizeName("10", NameType.EnumMemberName)).to.equal("Num10");
       // pls note `1` is a numeric literal number but `1.0` is not

@@ -142,14 +142,32 @@ function getSuffix(nameType?: NameType) {
 export function normalizeName(
   name: string,
   nameType: NameType,
-  options: NormalizeNameOption = {
-    shouldGuard: true,
-    customReservedNames: [],
-    casingOverride: undefined,
-    numberPrefixOverride: "Num"
-  }
+  shouldGuard?: boolean,
+  customReservedNames?: ReservedName[],
+  casingOverride?: CasingConvention): string;
+export function normalizeName(
+  name: string,
+  nameType: NameType,
+  options?: NormalizeNameOption
+): string;
+export function normalizeName(
+  name: string,
+  nameType: NameType,
+  optionsOrShouldGuard?: NormalizeNameOption | boolean,
+  optionalCustomReservedNames?: ReservedName[],
+  optionalCasingOverride?: CasingConvention
 ): string {
-  const { shouldGuard, customReservedNames, casingOverride } = options;
+  let shouldGuard: boolean | undefined, customReservedNames: ReservedName[], casingOverride: CasingConvention | undefined, numberPrefixOverride: string | undefined;
+  if (typeof optionsOrShouldGuard === "boolean") {
+    shouldGuard = optionsOrShouldGuard;
+    customReservedNames = optionalCustomReservedNames ?? [];
+    casingOverride = optionalCasingOverride;
+  } else {
+    shouldGuard = optionsOrShouldGuard?.shouldGuard;
+    customReservedNames = optionsOrShouldGuard?.customReservedNames ?? [];
+    casingOverride = optionsOrShouldGuard?.casingOverride;
+    numberPrefixOverride = optionsOrShouldGuard?.numberPrefixOverride;
+  }
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
@@ -168,25 +186,19 @@ export function normalizeName(
   const result = shouldGuard
     ? guardReservedNames(normalized, nameType, customReservedNames)
     : normalized;
-  return escapeNumericLiteral(result, nameType, options);
+  return escapeNumericLiteralStart(result, nameType, numberPrefixOverride);
 }
 
-export function escapeNumericLiteral(
+export function escapeNumericLiteralStart(
   name: string,
   nameType: NameType,
-  options: NormalizeNameOption = {
-    shouldGuard: true,
-    customReservedNames: [],
-    casingOverride: undefined,
-    numberPrefixOverride: "Num"
-  }
+  prefix: string = "Num"
 ): string {
-  const casingConvention =
-    options.casingOverride ?? getCasingConvention(nameType);
-  if (!name.match(/^[\-\.]?\d/)) {
+  const casingConvention = getCasingConvention(nameType);
+  if (!name || !name.match(/^[\-\.]?\d/)) {
     return name;
   }
-  return `${toCasing(options.numberPrefixOverride!, casingConvention)}${name}`;
+  return `${toCasing(prefix, casingConvention)}${name}`;
 }
 
 function isFullyUpperCase(
