@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { logger } from "../logger.js";
+import { logger } from "../../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface StorageContext extends Client {
+export interface BlobContext extends Client {
   accountName: string;
+  blobName: string;
 }
 
 /** Optional parameters for the client. */
-export interface StorageClientOptionalParams extends ClientOptions {}
+export interface BlobClientOptionalParams extends ClientOptions { }
 
-export function createStorage(
+export function createBlob(
   endpointParam: string,
   accountName: string,
-  options: StorageClientOptionalParams = {},
-): StorageContext {
+  blobName: string,
+  options: BlobClientOptionalParams = {},
+): BlobContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-nestedclient/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -37,5 +39,5 @@ export function createStorage(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, accountName };
+  return { ...clientContext, accountName, blobName };
 }

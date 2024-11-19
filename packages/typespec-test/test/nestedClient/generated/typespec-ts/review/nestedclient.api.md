@@ -10,7 +10,7 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
 export class BlobClient {
-    constructor(endpointParam: string, accountName: string, blobName: string, options?: StorageClientOptionalParams);
+    constructor(endpointParam: string, accountName: string, blobName: string, options?: BlobClientOptionalParams);
     // (undocumented)
     download(options?: BlobClientDownloadOptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
@@ -18,6 +18,10 @@ export class BlobClient {
 
 // @public
 export interface BlobClientDownloadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface BlobClientOptionalParams extends ClientOptions {
 }
 
 // @public

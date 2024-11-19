@@ -4,43 +4,38 @@
 import {
   download,
   BlobClientDownloadOptionalParams,
-  createStorage,
-  StorageContext,
-  StorageClientOptionalParams,
+  BlobClientOptionalParams,
 } from "./api/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { BlobContext, createBlob } from "./api/blobContext.js";
 
-export { StorageClientOptionalParams } from "../api/storageContext.js";
+export { BlobClientOptionalParams } from "./api/blobContext.js";
 
 export class BlobClient {
-  private _client: StorageContext;
+  private _client: BlobContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  private accountName: string;
-  private blobName: string;
 
   constructor(
     endpointParam: string,
     accountName: string,
     blobName: string,
-    options: StorageClientOptionalParams = {},
+    options: BlobClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createStorage(endpointParam, {
+    this._client = createBlob(endpointParam, accountName, blobName, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.accountName = accountName;
-    this.blobName = blobName;
   }
 
   download(
     options: BlobClientDownloadOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return download(this._client, this.accountName, this.blobName, options);
+    return download(this._client, options);
   }
 }

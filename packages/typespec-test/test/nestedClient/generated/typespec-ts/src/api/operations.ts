@@ -11,11 +11,10 @@ import {
 
 export function _downloadSend(
   context: Client,
-  accountName: string,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/account/{accountName}", accountName)
+    .path("/account/{accountName}", context.accountName)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -32,9 +31,8 @@ export async function _downloadDeserialize(
 
 export async function download(
   context: Client,
-  accountName: string,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _downloadSend(context, accountName, options);
+  const result = await _downloadSend(context, options);
   return _downloadDeserialize(result);
 }

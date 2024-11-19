@@ -18,7 +18,6 @@ export class StorageClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
   private endpointParam: string;
-  private accountName: string;
 
   constructor(
     endpointParam: string,
@@ -29,22 +28,21 @@ export class StorageClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createStorage(endpointParam, {
+    this._client = createStorage(endpointParam, accountName, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.accountName = accountName;
     this.endpointParam = endpointParam;
   }
 
   download(
     options: DownloadOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return download(this._client, this.accountName, options);
+    return download(this._client, options);
   }
 
   getBlobClient(blobName: string): BlobClient {
-    return new BlobClient(this.endpointParam, this.accountName, blobName);
+    return new BlobClient(this.endpointParam, this._client.accountName, blobName);
   }
 }

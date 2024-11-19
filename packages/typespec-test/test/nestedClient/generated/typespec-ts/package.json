@@ -13,7 +13,8 @@
       ".": "./src/index.ts",
       "./models": "./src/models/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/blobClient": "./src/api/blobClient/index.ts"
+      "./blob": "./src/blob/index.ts",
+      "./blob/api": "./src/blob/api/index.ts"
     },
     "dialects": [
       "esm",

@@ -6,7 +6,7 @@ export {
   BlobClientDownloadOptionalParams,
 } from "./options.js";
 export {
-  createStorage,
-  StorageContext,
-  StorageClientOptionalParams,
-} from "../../api/storageContext.js";
+  createBlob,
+  BlobContext,
+  BlobClientOptionalParams,
+} from "./blobContext.js";
