@@ -148,7 +148,7 @@ export function getOperationGroupName(
 
   return namespaceNames
     .map((name) => {
-      return normalizeName(name, NameType.Interface);
+      return normalizeName(name, NameType.Interface, true);
     })
     .join("");
 }
@@ -158,7 +158,8 @@ export function getOperationName(dpgContext: SdkContext, operation: Operation) {
 
   return normalizeName(
     projectedOperationName ?? operation.name,
-    NameType.Interface
+    NameType.Interface,
+    true
   );
 }
 

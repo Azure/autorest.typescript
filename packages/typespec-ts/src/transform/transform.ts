@@ -156,7 +156,7 @@ export function transformUrlInfo(
         }
         urlParameters.push({
           oriName: key,
-          name: normalizeName(key, NameType.Parameter),
+          name: normalizeName(key, NameType.Parameter, true),
           type: getTypeName(schema, usage),
           description:
             (getDoc(program, property) &&

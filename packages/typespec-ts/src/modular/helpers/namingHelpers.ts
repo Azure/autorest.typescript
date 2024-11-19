@@ -52,7 +52,7 @@ export function getOperationName(
   }
 
   return {
-    name: normalizeName(casingFn(operation.name), NameType.Operation)
+    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
   };
 }
 

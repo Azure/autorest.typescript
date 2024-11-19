@@ -11,7 +11,7 @@ import {
 import {
   NameType,
   normalizeName,
-  escapeNumericLiteral
+  escapeNumericLiteralStart
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
@@ -341,14 +341,14 @@ function emitEnumMember(
   member: SdkEnumValueType
 ): EnumMemberStructure {
   const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
-    ? escapeNumericLiteral(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
+    ? escapeNumericLiteralStart(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, {
         numberPrefixOverride:
-          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : undefined
+          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : "num"
       });
   if (
-    normalizedMemberName.toLowerCase().startsWith("number") &&
-    !member.name.toLowerCase().startsWith("number")
+    normalizedMemberName.toLowerCase().startsWith("num") &&
+    !member.name.toLowerCase().startsWith("num")
   ) {
     reportDiagnostic(context.program, {
       code: "prefix-adding-in-enum-member",
