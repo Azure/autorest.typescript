@@ -997,7 +997,7 @@ export function serializeRequestValue(
         case "headerDefault":
           return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
         case "unixTimestamp":
-          return `((${nullOrUndefinedPrefix}${clientValue}.getTime() / 1000) | 0)`;
+          return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${
