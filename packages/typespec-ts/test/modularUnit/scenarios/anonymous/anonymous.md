@@ -4,40 +4,25 @@ Anonymous model should flatten alias if spread in the payload with required para
 
 ## TypeSpec
 
-This is a basic TypeSpec with one model and one operation. The `tsp` language block heading indicates to the test runner that this is the input TypeSpec for the scenario.
-
 ```tsp
 alias Foo = {
-    prop1: string;
-    prop2: int64;
-    prop3: utcDateTime;
-    prop4: offsetDateTime;
-    prop5: Bar;
+  prop1: string;
+  prop2: int64;
+  prop3: utcDateTime;
+  prop4: offsetDateTime;
+  prop5: Bar;
 };
 model Bar {
-    prop1: string;
-    prop2: int64;
+  prop1: string;
+  prop2: int64;
 }
 op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
 ```
 
-## Models
-
-```ts models
-/** model interface Bar */
-export interface Bar {
-  prop1: string;
-  prop2: number;
-}
-
-export function barSerializer(item: Bar): any {
-  return { prop1: item["prop1"], prop2: item["prop2"] };
-}
-```
-
-## Bar Model
+## Model Bar
 
 ```ts models interface Bar
+/** model interface Bar */
 export interface Bar {
   prop1: string;
   prop2: number;
@@ -53,7 +38,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -65,23 +50,25 @@ export function _readSend(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}", pathParam).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { queryParam: queryParam },
-    body: {
-      prop1: prop1,
-      prop2: prop2,
-      prop3: prop3.toISOString(),
-      prop4: prop4,
-      prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] }
-    }
-  });
+  return context
+    .path("/{pathParam}", pathParam)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { queryParam: queryParam },
+      body: {
+        prop1: prop1,
+        prop2: prop2,
+        prop3: prop3.toISOString(),
+        prop4: prop4,
+        prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] },
+      },
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -100,7 +87,7 @@ export async function read(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
     context,
@@ -111,7 +98,7 @@ export async function read(
     prop3,
     prop4,
     prop5,
-    options
+    options,
   );
   return _readDeserialize(result);
 }
@@ -136,30 +123,25 @@ model Bar {
 op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
 ```
 
-## Models
+## Models Bar
 
-```ts models
+```ts models interface Bar
 /** model interface Bar */
 export interface Bar {
   prop1: string;
   prop2: number;
 }
+```
 
+## Models function barSerializer
+
+```ts models function barSerializer
 export function barSerializer(item: Bar): any {
   return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 
-## Bar Model
-
-```ts models interface Bar
-export interface Bar {
-  prop1: string;
-  prop2: number;
-}
-```
-
-## Bar Model withOptions
+## Models withOptions
 
 ```ts models:withOptions
 import { OperationOptions } from "@azure-rest/core-client";
@@ -180,7 +162,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -190,26 +172,28 @@ export function _readSend(
   prop1: string,
   prop2: number,
   prop4: string,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}", pathParam).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { queryParam: queryParam },
-    body: {
-      prop1: prop1,
-      prop2: prop2,
-      prop3: options?.prop3?.toISOString(),
-      prop4: prop4,
-      prop5: {
-        prop1: options?.prop5?.["prop1"],
-        prop2: options?.prop5?.["prop2"]
-      }
-    }
-  });
+  return context
+    .path("/{pathParam}", pathParam)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { queryParam: queryParam },
+      body: {
+        prop1: prop1,
+        prop2: prop2,
+        prop3: options?.prop3?.toISOString(),
+        prop4: prop4,
+        prop5: {
+          prop1: options?.prop5?.["prop1"],
+          prop2: options?.prop5?.["prop2"],
+        },
+      },
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -226,7 +210,7 @@ export async function read(
   prop1: string,
   prop2: number,
   prop4: string,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
     context,
@@ -235,7 +219,7 @@ export async function read(
     prop1,
     prop2,
     prop4,
-    options
+    options,
   );
   return _readDeserialize(result);
 }
@@ -262,15 +246,19 @@ model Bar {
 op read(@path pathParam: string, ...Foo, @query queryParam: string): OkResponse;
 ```
 
-## Models
+## Models Bar
 
-```ts models
+```ts models interface Bar
 /** model interface Bar */
 export interface Bar {
   prop1: string;
   prop2: number;
 }
+```
 
+## Models function barSerializer
+
+```ts models function barSerializer
 export function barSerializer(item: Bar): any {
   return { prop1: item["prop1"], prop2: item["prop2"] };
 }
@@ -297,7 +285,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -307,24 +295,26 @@ export function _readSend(
   prop4: string,
   queryParam: string,
   prop2: number,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}/{prop1}", pathParam, prop1).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { prop4: prop4, queryParam: queryParam },
-    body: {
-      prop2: prop2,
-      prop3: options?.prop3?.toISOString(),
-      prop5: {
-        prop1: options?.prop5?.["prop1"],
-        prop2: options?.prop5?.["prop2"]
-      }
-    }
-  });
+  return context
+    .path("/{pathParam}/{prop1}", pathParam, prop1)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { prop4: prop4, queryParam: queryParam },
+      body: {
+        prop2: prop2,
+        prop3: options?.prop3?.toISOString(),
+        prop5: {
+          prop1: options?.prop5?.["prop1"],
+          prop2: options?.prop5?.["prop2"],
+        },
+      },
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -341,7 +331,7 @@ export async function read(
   prop4: string,
   queryParam: string,
   prop2: number,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
     context,
@@ -350,7 +340,7 @@ export async function read(
     prop4,
     queryParam,
     prop2,
-    options
+    options,
   );
   return _readDeserialize(result);
 }
@@ -375,9 +365,19 @@ model Bar {
 op read(@path pathParam: string, @query queryParam: string, @body body: Foo): OkResponse;
 ```
 
-## Models
+## Models Bar
 
-```ts models
+```ts models interface Bar
+/** model interface Bar */
+export interface Bar {
+  prop1: string;
+  prop2: number;
+}
+```
+
+## Models Foo
+
+```ts models interface Foo
 /** model interface Foo */
 export interface Foo {
   prop1: string;
@@ -386,25 +386,27 @@ export interface Foo {
   prop4: string;
   prop5: Bar;
 }
+```
 
+## Models function barSerializer
+
+```ts models function barSerializer
+export function barSerializer(item: Bar): any {
+  return { prop1: item["prop1"], prop2: item["prop2"] };
+}
+```
+
+## Models function fooSerializer
+
+```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],
-    prop5: barSerializer(item["prop5"])
+    prop5: barSerializer(item["prop5"]),
   };
-}
-
-/** model interface Bar */
-export interface Bar {
-  prop1: string;
-  prop2: number;
-}
-
-export function barSerializer(item: Bar): any {
-  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 
@@ -417,7 +419,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -425,17 +427,19 @@ export function _readSend(
   pathParam: string,
   queryParam: string,
   body: Foo,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}", pathParam).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { queryParam: queryParam },
-    body: fooSerializer(body)
-  });
+  return context
+    .path("/{pathParam}", pathParam)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { queryParam: queryParam },
+      body: fooSerializer(body),
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -450,7 +454,7 @@ export async function read(
   pathParam: string,
   queryParam: string,
   body: Foo,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, body, options);
   return _readDeserialize(result);
@@ -485,7 +489,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -493,17 +497,19 @@ export function _readSend(
   pathParam: string,
   queryParam: string,
   body: Record<string, any>,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}", pathParam).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { queryParam: queryParam },
-    body: _readRequestSerializer(body)
-  });
+  return context
+    .path("/{pathParam}", pathParam)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { queryParam: queryParam },
+      body: _readRequestSerializer(body),
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -518,7 +524,7 @@ export async function read(
   pathParam: string,
   queryParam: string,
   body: Record<string, any>,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, body, options);
   return _readDeserialize(result);
@@ -540,25 +546,19 @@ op read(@path pathParam: string, @query queryParam: string, @body test: {
 }): OkResponse;
 ```
 
-## Models
+## Models Bar
 
-```ts models
-/** model interface _ReadRequest */
-export interface _ReadRequest {
-  prop1: string;
-  prop2: Bar;
-}
-
-export function _readRequestSerializer(item: _ReadRequest): any {
-  return { prop1: item["prop1"], prop2: barSerializer(item["prop2"]) };
-}
-
+```ts models interface Bar
 /** model interface Bar */
 export interface Bar {
   prop1: string;
   prop2: number;
 }
+```
 
+## Models function barSerializer
+
+```ts models function barSerializer
 export function barSerializer(item: Bar): any {
   return { prop1: item["prop1"], prop2: item["prop2"] };
 }
@@ -573,7 +573,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -584,17 +584,19 @@ export function _readSend(
     prop1: string;
     prop2: Bar;
   },
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/{pathParam}", pathParam).post({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { queryParam: queryParam },
-    body: _readRequestSerializer(test)
-  });
+  return context
+    .path("/{pathParam}", pathParam)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { queryParam: queryParam },
+      body: _readRequestSerializer(test),
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -612,7 +614,7 @@ export async function read(
     prop1: string;
     prop2: Bar;
   },
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, test, options);
   return _readDeserialize(result);
@@ -630,23 +632,20 @@ model Test {
 op read(@body body: Test): void;
 ```
 
-## Models
+## Models Test
 
-```ts models
+```ts models interface Test
 /** model interface Test */
 export interface Test {
   color: Record<string, any>;
 }
+```
 
+## Models function testSerializer
+
+```ts models function testSerializer
 export function testSerializer(item: Test): any {
   return { color: _testColorSerializer(item["color"]) };
-}
-
-/** model interface _TestColor */
-export interface _TestColor {}
-
-export function _testColorSerializer(item: _TestColor): any {
-  return item;
 }
 ```
 
@@ -659,22 +658,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    body: testSerializer(body)
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: testSerializer(body),
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -687,7 +688,7 @@ export async function _readDeserialize(
 export async function read(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, body, options);
   return _readDeserialize(result);
@@ -707,27 +708,22 @@ model Test {
 op read(@bodyRoot body: Test): void;
 ```
 
-## Models
+## Models Test
 
-```ts models
+```ts models interface Test
 /** model interface Test */
 export interface Test {
   color: {
     foo?: string;
   };
 }
+```
 
+## Models function testSerializer
+
+```ts models function testSerializer
 export function testSerializer(item: Test): any {
   return { color: _testColorSerializer(item["color"]) };
-}
-
-/** model interface _TestColor */
-export interface _TestColor {
-  foo?: string;
-}
-
-export function _testColorSerializer(item: _TestColor): any {
-  return { foo: item["foo"] };
 }
 ```
 
@@ -740,22 +736,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    body: testSerializer(body)
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: testSerializer(body),
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -768,7 +766,7 @@ export async function _readDeserialize(
 export async function read(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, body, options);
   return _readDeserialize(result);
@@ -783,6 +781,17 @@ export async function read(
 op read(): { @body _: {}; };
 ```
 
+## Models
+
+```ts models
+/** model interface _ReadResponse */
+export interface _ReadResponse {}
+
+export function _readResponseDeserializer(item: any): _ReadResponse {
+  return item;
+}
+```
+
 ## Operations
 
 ```ts operations
@@ -792,12 +801,12 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
@@ -805,7 +814,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -817,7 +826,7 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -854,12 +863,12 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
@@ -867,7 +876,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<PublishResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -879,7 +888,7 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -908,7 +917,7 @@ export interface _ReadResponse {
 
 export function _readResponseDeserializer(item: any): _ReadResponse {
   return {
-    foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"])
+    foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"]),
   };
 }
 
@@ -919,7 +928,7 @@ export interface _ReadResponseFoo {
 
 export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
   return {
-    bar: item["bar"]
+    bar: item["bar"],
   };
 }
 ```
@@ -933,12 +942,12 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
@@ -960,7 +969,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<{
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<{
   foo?: {
     bar: string | null;
@@ -1006,14 +1015,14 @@ export function returnBodyDeserializer(item: any): ReturnBody {
   return {
     emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
     emptyAnomyousArray: returnBodyEmptyAnomyousArrayArrayDeserializer(
-      item["emptyAnomyousArray"]
+      item["emptyAnomyousArray"],
     ),
     emptyAnomyousDict: returnBodyEmptyAnomyousDictRecordDeserializer(
-      item["emptyAnomyousDict"]
+      item["emptyAnomyousDict"],
     ),
     emptyModel: emptyModelDeserializer(item["emptyModel"]),
     emptyModelArray: emptyModelArrayDeserializer(item["emptyModelArray"]),
-    emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"])
+    emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"]),
   };
 }
 
@@ -1021,13 +1030,13 @@ export function returnBodyDeserializer(item: any): ReturnBody {
 export interface _ReturnBodyEmptyAnomyous {}
 
 export function _returnBodyEmptyAnomyousDeserializer(
-  item: any
+  item: any,
 ): _ReturnBodyEmptyAnomyous {
   return item;
 }
 
 export function returnBodyEmptyAnomyousArrayArrayDeserializer(
-  result: Array<_ReturnBodyEmptyAnomyousArray>
+  result: Array<_ReturnBodyEmptyAnomyousArray>,
 ): any[] {
   return result.map((item) => {
     return _returnBodyEmptyAnomyousArrayDeserializer(item);
@@ -1038,13 +1047,13 @@ export function returnBodyEmptyAnomyousArrayArrayDeserializer(
 export interface _ReturnBodyEmptyAnomyousArray {}
 
 export function _returnBodyEmptyAnomyousArrayDeserializer(
-  item: any
+  item: any,
 ): _ReturnBodyEmptyAnomyousArray {
   return item;
 }
 
 export function returnBodyEmptyAnomyousDictRecordDeserializer(
-  item: Record<string, any>
+  item: Record<string, any>,
 ): Record<string, _ReturnBodyEmptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1059,7 +1068,7 @@ export function returnBodyEmptyAnomyousDictRecordDeserializer(
 export interface _ReturnBodyEmptyAnomyousDict {}
 
 export function _returnBodyEmptyAnomyousDictDeserializer(
-  item: any
+  item: any,
 ): _ReturnBodyEmptyAnomyousDict {
   return item;
 }
@@ -1078,7 +1087,7 @@ export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
 }
 
 export function emptyModelRecordDeserializer(
-  item: Record<string, any>
+  item: Record<string, any>,
 ): Record<string, EmptyModel> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1097,12 +1106,12 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
@@ -1110,7 +1119,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<ReturnBody> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -1122,7 +1131,7 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<ReturnBody> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -1177,7 +1186,7 @@ export interface Foz {
 
 export function fozDeserializer(item: any): Foz {
   return {
-    baz: _fozBazDeserializer(item["baz"])
+    baz: _fozBazDeserializer(item["baz"]),
   };
 }
 
@@ -1210,19 +1219,19 @@ export function _fozBazDeserializer(item: any): _FozBaz {
       ? item["test"]
       : simpleModelArrayDeserializer(item["test"]),
     nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
-      item["nonemptyAnomyous"]
+      item["nonemptyAnomyous"],
     ),
     nonemptyAnomyousArray: fozBazNonemptyAnomyousArrayArrayDeserializer(
-      item["nonemptyAnomyousArray"]
+      item["nonemptyAnomyousArray"],
     ),
     nonemptyAnomyousDict: fozBazNonemptyAnomyousDictRecordDeserializer(
-      item["nonemptyAnomyousDict"]
-    )
+      item["nonemptyAnomyousDict"],
+    ),
   };
 }
 
 export function simpleModelArrayDeserializer(
-  result: Array<SimpleModel>
+  result: Array<SimpleModel>,
 ): any[] {
   return result.map((item) => {
     return simpleModelDeserializer(item);
@@ -1236,7 +1245,7 @@ export interface SimpleModel {
 
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
-    test: item["test"]
+    test: item["test"],
   };
 }
 
@@ -1246,15 +1255,15 @@ export interface _FozBazNonemptyAnomyous {
 }
 
 export function _fozBazNonemptyAnomyousDeserializer(
-  item: any
+  item: any,
 ): _FozBazNonemptyAnomyous {
   return {
-    a: item["a"]
+    a: item["a"],
   };
 }
 
 export function fozBazNonemptyAnomyousArrayArrayDeserializer(
-  result: Array<_FozBazNonemptyAnomyousArray>
+  result: Array<_FozBazNonemptyAnomyousArray>,
 ): any[] {
   return result.map((item) => {
     return _fozBazNonemptyAnomyousArrayDeserializer(item);
@@ -1267,15 +1276,15 @@ export interface _FozBazNonemptyAnomyousArray {
 }
 
 export function _fozBazNonemptyAnomyousArrayDeserializer(
-  item: any
+  item: any,
 ): _FozBazNonemptyAnomyousArray {
   return {
-    b: item["b"]
+    b: item["b"],
   };
 }
 
 export function fozBazNonemptyAnomyousDictRecordDeserializer(
-  item: Record<string, any>
+  item: Record<string, any>,
 ): Record<string, _FozBazNonemptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1292,12 +1301,12 @@ export interface _FozBazNonemptyAnomyousDict {
 }
 
 export function _fozBazNonemptyAnomyousDictDeserializer(
-  item: any
+  item: any,
 ): _FozBazNonemptyAnomyousDict {
   return {
     c: item["c"].map((p: any) => {
       return p;
-    })
+    }),
   };
 }
 ```
@@ -1311,12 +1320,12 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
@@ -1324,7 +1333,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<Foz> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -1336,7 +1345,7 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foz> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
