@@ -130,7 +130,7 @@ describe("Azure Arm Resources Rest Client", () => {
       )
       .patch({
         body: {
-          location: "eastus2",
+          location: "eastus",
           properties: {
             description: "valid2"
           }
@@ -146,7 +146,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.body.id, validSingletonResource.id);
     assert.strictEqual(result.body.name, validSingletonResource.name);
     assert.strictEqual(result.body.type, validSingletonResource.type);
-    assert.strictEqual(result.body.location, "eastus2");
+    assert.strictEqual(result.body.location, "eastus");
     assert.strictEqual(result.body.properties?.description, "valid2");
   });
 

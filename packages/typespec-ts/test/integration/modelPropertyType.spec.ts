@@ -140,36 +140,28 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
 
   matrix([testedTypes], async (params: TypeDetail) => {
     it(`should get a ${params.type} value`, async () => {
-      try {
-        const result = await client
-          .path(`/type/property/value-types/${params.type}` as any)
-          .get();
-        assert.strictEqual(result.status, "200");
-        assert.deepEqual(result.body.property, params.defaultValue);
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/property/value-types/${params.type}` as any)
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body.property, params.defaultValue);
     });
 
     it(`should put a ${params.type} value`, async () => {
-      try {
-        let property;
-        if (params.convertedToFn) {
-          property = params.convertedToFn(params.defaultValue);
-        } else {
-          property = params.defaultValue;
-        }
-        const result = await client
-          .path(`/type/property/value-types/${params.type}` as any)
-          .put({
-            body: {
-              property
-            }
-          });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
+      let property;
+      if (params.convertedToFn) {
+        property = params.convertedToFn(params.defaultValue);
+      } else {
+        property = params.defaultValue;
       }
+      const result = await client
+        .path(`/type/property/value-types/${params.type}` as any)
+        .put({
+          body: {
+            property
+          }
+        });
+      assert.strictEqual(result.status, "204");
     });
   });
 });

@@ -22,23 +22,15 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     sharktype: "goblin"
   };
   it("should get valid", async () => {
-    try {
-      const result = await client.getModel();
-      assert.strictEqual(result.age, 1);
-      assert.strictEqual(result.kind, "shark");
-      assert.strictEqual((result as Shark).sharktype, "goblin");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getModel();
+    assert.strictEqual(result.age, 1);
+    assert.strictEqual(result.kind, "shark");
+    assert.strictEqual((result as Shark).sharktype, "goblin");
   });
 
   it("should put valid", async () => {
-    try {
-      const result = await client.putModel(validBody);
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.putModel(validBody);
+    assert.isUndefined(result);
   });
 
   const validRecursiveBody: Salmon = {
@@ -99,49 +91,33 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     }
   };
   it("should get recursive body", async () => {
-    try {
-      const result = await client.getRecursiveModel();
+    const result = await client.getRecursiveModel();
+    assert.strictEqual(
+      JSON.stringify(result, Object.keys(result).sort()),
+      JSON.stringify(validRecursiveBody, Object.keys(validRecursiveBody).sort())
+    );
+    if (result.kind === "salmon") {
       assert.strictEqual(
-        JSON.stringify(result, Object.keys(result).sort()),
-        JSON.stringify(validRecursiveBody, Object.keys(validRecursiveBody).sort())
+        (result as Salmon).partner?.kind,
+        validRecursiveBody.partner?.kind
       );
-      if (result.kind === "salmon") {
-        assert.strictEqual(
-          (result as Salmon).partner?.kind,
-          validRecursiveBody.partner?.kind
-        );
-      }
-    } catch (err) {
-      assert.fail(err as string);
     }
   });
 
   it("should put recursive body", async () => {
-    try {
-      const result = await client.putRecursiveModel(validRecursiveBody);
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.putRecursiveModel(validRecursiveBody);
+    assert.isUndefined(result);
   });
 
   it("should get missing discriminator body", async () => {
-    try {
-      const result = await client.getMissingDiscriminator();
-      assert.strictEqual(result.age, 1);
-      assert.isUndefined(result.kind);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getMissingDiscriminator();
+    assert.strictEqual(result.age, 1);
+    assert.isUndefined(result.kind);
   });
 
   it("should get wrong discriminator body", async () => {
-    try {
-      const result = await client.getWrongDiscriminator();
-      assert.strictEqual(result.age, 1);
-      assert.strictEqual(result.kind, "wrongKind");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.getWrongDiscriminator();
+    assert.strictEqual(result.age, 1);
+    assert.strictEqual(result.kind, "wrongKind");
   });
 });

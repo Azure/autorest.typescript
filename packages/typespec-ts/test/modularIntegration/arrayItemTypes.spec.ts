@@ -79,114 +79,106 @@ describe("Array Item-Types Client", () => {
   });
   for (let item of testedTypes) {
     it(`should get ${item.type} value`, async () => {
-      try {
-        let result: any;
-        switch (item.type) {
-          case "int32":
-            result = await client.int32Value.get();
-            break;
-          case "int64":
-            result = await client.int64Value.get();
-            break;
-          case "boolean":
-            result = await client.booleanValue.get();
-            break;
-          case "string":
-            result = await client.stringValue.get();
-            break;
-          case "float32":
-            result = await client.float32Value.get();
-            break;
-          case "datetime":
-            result = await client.datetimeValue.get();
-            break;
-          case "duration":
-            result = await client.durationValue.get();
-            break;
-          case "unknown":
-            result = await client.unknownValue.get();
-            break;
-          // case "model":
-          //   result = await client.modelValue.get();
-          //   break;
-          case "nullable-float":
-            result = await client.nullableFloatValue.get();
-            break;
-          case "nullable-int32":
-            result = await client.nullableInt32Value.get();
-            break;
-          case "nullable-string":
-            result = await client.nullableStringValue.get();
-            break;
-          case "nullable-boolean":
-            result = await client.nullableBooleanValue.get();
-            break;
-          // case "nullable-model":
-          //   result = await client.nullableModelValue.get();
-          //   break;
-          default:
-            break;
-        }
-        assert.deepEqual(result, item.defaultValue);
-      } catch (err) {
-        assert.fail(err as string);
+      let result: any;
+      switch (item.type) {
+        case "int32":
+          result = await client.int32Value.get();
+          break;
+        case "int64":
+          result = await client.int64Value.get();
+          break;
+        case "boolean":
+          result = await client.booleanValue.get();
+          break;
+        case "string":
+          result = await client.stringValue.get();
+          break;
+        case "float32":
+          result = await client.float32Value.get();
+          break;
+        case "datetime":
+          result = await client.datetimeValue.get();
+          break;
+        case "duration":
+          result = await client.durationValue.get();
+          break;
+        case "unknown":
+          result = await client.unknownValue.get();
+          break;
+        // case "model":
+        //   result = await client.modelValue.get();
+        //   break;
+        case "nullable-float":
+          result = await client.nullableFloatValue.get();
+          break;
+        case "nullable-int32":
+          result = await client.nullableInt32Value.get();
+          break;
+        case "nullable-string":
+          result = await client.nullableStringValue.get();
+          break;
+        case "nullable-boolean":
+          result = await client.nullableBooleanValue.get();
+          break;
+        // case "nullable-model":
+        //   result = await client.nullableModelValue.get();
+        //   break;
+        default:
+          break;
       }
+      assert.deepEqual(result, item.defaultValue);
     });
   }
   for (let item of testedTypes) {
     it(`should put ${item.type} vaule`, async () => {
-      try {
-        let result: any;
-        switch (item.type) {
-          case "int32":
-            result = await client.int32Value.put(item.defaultValue);
-            break;
-          case "int64":
-            result = await client.int64Value.put(item.defaultValue);
-            break;
-          case "boolean":
-            result = await client.booleanValue.put(item.defaultValue);
-            break;
-          case "string":
-            result = await client.stringValue.put(item.defaultValue);
-            break;
-          case "float32":
-            result = await client.float32Value.put(item.defaultValue);
-            break;
-          case "datetime":
-            result = await client.datetimeValue.put(item.defaultValue);
-            break;
-          case "duration":
-            result = await client.durationValue.put(item.defaultValue);
-            break;
-          case "unknown":
-            result = await client.unknownValue.put(item.defaultValue);
-            break;
-          case "model":
-            result = await client.modelValue.put(item.defaultValue);
-            break;
-          case "nullable-float":
-            result = await client.nullableFloatValue.put(item.defaultValue);
-            break;
-          case "nullable-boolean":
-            result = await client.nullableBooleanValue.put(item.defaultValue);
-            break;
-          case "nullable-int32":
-            result = await client.nullableInt32Value.put(item.defaultValue);
-            break;
-          case "nullable-string":
-            result = await client.nullableStringValue.put(item.defaultValue);
-            break;
-          case "nullable-model":
-            result = await client.nullableModelValue.put(item.defaultValue);
-            break;
-          default:
-            break;
-        }
-        assert.isUndefined(result);
-      } catch (err) {
-        assert.fail(err as string);
+      let result: any;
+      switch (item.type) {
+        case "int32":
+          result = await client.int32Value.put(item.defaultValue);
+          break;
+        case "int64":
+          result = await client.int64Value.put(item.defaultValue);
+          break;
+        case "boolean":
+          result = await client.booleanValue.put(item.defaultValue);
+          break;
+        case "string":
+          result = await client.stringValue.put(item.defaultValue);
+          break;
+        case "float32":
+          result = await client.float32Value.put(item.defaultValue);
+          break;
+        case "datetime":
+          result = await client.datetimeValue.put(item.defaultValue);
+          break;
+        case "duration":
+          result = await client.durationValue.put(item.defaultValue);
+          break;
+        case "unknown":
+          result = await client.unknownValue.put(item.defaultValue);
+          break;
+        case "model":
+          result = await client.modelValue.put(item.defaultValue);
+          break;
+        case "nullable-float":
+          result = await client.nullableFloatValue.put(item.defaultValue);
+          break;
+        case "nullable-boolean":
+          result = await client.nullableBooleanValue.put(item.defaultValue);
+          break;
+        case "nullable-int32":
+          result = await client.nullableInt32Value.put(item.defaultValue);
+          break;
+        case "nullable-string":
+          result = await client.nullableStringValue.put(item.defaultValue);
+          break;
+        case "nullable-model":
+          result = await client.nullableModelValue.put(item.defaultValue);
+          break;
+        default:
+          break;
       }
+      assert.isUndefined(result);
     });
   }
 });
