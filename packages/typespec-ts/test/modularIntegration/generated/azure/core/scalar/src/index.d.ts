@@ -13,7 +13,7 @@ export declare interface HeaderOptionalParams extends OperationOptions {
 }
 
 export declare enum KnownVersions {
-    V20221201Preview = "2022-12-01-preview"
+    V2022_12_01Preview = "2022-12-01-preview"
 }
 
 export declare interface PostOptionalParams extends OperationOptions {

@@ -190,7 +190,7 @@ export declare class OptionalClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: OptionalClientOptionalParams);
-    readonly string: StringOperations;
+    readonly string: StringModelOperations;
     readonly bytes: BytesOperations;
     readonly datetime: DatetimeOperations;
     readonly duration: DurationOperations;
@@ -281,12 +281,6 @@ export declare interface RequiredAndOptionalPutAllOptionalParams extends Operati
 export declare interface RequiredAndOptionalPutRequiredOnlyOptionalParams extends OperationOptions {
 }
 
-export declare interface StringGetAllOptionalParams extends OperationOptions {
-}
-
-export declare interface StringGetDefaultOptionalParams extends OperationOptions {
-}
-
 export declare interface StringLiteralGetAllOptionalParams extends OperationOptions {
 }
 
@@ -310,21 +304,27 @@ export declare interface StringLiteralPutAllOptionalParams extends OperationOpti
 export declare interface StringLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface StringOperations {
-    getAll: (options?: StringGetAllOptionalParams) => Promise<StringProperty>;
-    getDefault: (options?: StringGetDefaultOptionalParams) => Promise<StringProperty>;
-    putAll: (body: StringProperty, options?: StringPutAllOptionalParams) => Promise<void>;
-    putDefault: (body: StringProperty, options?: StringPutDefaultOptionalParams) => Promise<void>;
+export declare interface StringModelGetAllOptionalParams extends OperationOptions {
+}
+
+export declare interface StringModelGetDefaultOptionalParams extends OperationOptions {
+}
+
+export declare interface StringModelOperations {
+    getAll: (options?: StringModelGetAllOptionalParams) => Promise<StringProperty>;
+    getDefault: (options?: StringModelGetDefaultOptionalParams) => Promise<StringProperty>;
+    putAll: (body: StringProperty, options?: StringModelPutAllOptionalParams) => Promise<void>;
+    putDefault: (body: StringProperty, options?: StringModelPutDefaultOptionalParams) => Promise<void>;
+}
+
+export declare interface StringModelPutAllOptionalParams extends OperationOptions {
+}
+
+export declare interface StringModelPutDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface StringProperty {
     property?: string;
-}
-
-export declare interface StringPutAllOptionalParams extends OperationOptions {
-}
-
-export declare interface StringPutDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionFloatLiteralGetAllOptionalParams extends OperationOptions {

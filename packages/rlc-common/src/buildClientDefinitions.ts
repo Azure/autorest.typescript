@@ -180,8 +180,8 @@ function getPathFirstRoutesInterfaceDefinition(
             /{/g,
             "\\{"
           )}' has methods for the following verbs: ${Object.keys(
-            paths[key].methods
-          ).join(", ")}`
+          paths[key].methods
+        ).join(", ")}`
       ],
       parameters: [
         { name: "path", type: `"${key}"` },

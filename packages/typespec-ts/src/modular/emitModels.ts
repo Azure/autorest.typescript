@@ -343,8 +343,9 @@ function emitEnumMember(
   const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
     ? escapeNumericLiteral(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, {
-      numberPrefixOverride: member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : undefined
-    });
+        numberPrefixOverride:
+          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : undefined
+      });
   if (
     normalizedMemberName.toLowerCase().startsWith("number") &&
     !member.name.toLowerCase().startsWith("number")

@@ -66,8 +66,9 @@ function generateOperationDeclaration(
   method: string,
   pathParams: PathParameter[] = []
 ): string {
-  const pathParamNames = `${pathParams.length > 0 ? `${pathParams.map((p) => p.name)},` : ""
-    }`;
+  const pathParamNames = `${
+    pathParams.length > 0 ? `${pathParams.map((p) => p.name)},` : ""
+  }`;
   return `"${operationName}": (${pathParamNames} options) => {
       return client.path("${path}", ${pathParamNames}).${method}(options);
     }`;

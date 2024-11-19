@@ -144,7 +144,8 @@ export function normalizeName(
   nameType: NameType,
   shouldGuard?: boolean,
   customReservedNames?: ReservedName[],
-  casingOverride?: CasingConvention): string;
+  casingOverride?: CasingConvention
+): string;
 export function normalizeName(
   name: string,
   nameType: NameType,
@@ -157,7 +158,10 @@ export function normalizeName(
   optionalCustomReservedNames?: ReservedName[],
   optionalCasingOverride?: CasingConvention
 ): string {
-  let shouldGuard: boolean | undefined, customReservedNames: ReservedName[], casingOverride: CasingConvention | undefined, numberPrefixOverride: string | undefined;
+  let shouldGuard: boolean | undefined,
+    customReservedNames: ReservedName[],
+    casingOverride: CasingConvention | undefined,
+    numberPrefixOverride: string | undefined;
   if (typeof optionsOrShouldGuard === "boolean") {
     shouldGuard = optionsOrShouldGuard;
     customReservedNames = optionalCustomReservedNames ?? [];
