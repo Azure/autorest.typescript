@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AccountSasParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,14 +34,14 @@ async function storageAccountListAccountSas() {
     protocols: "https,http",
     resourceTypes: "s",
     services: "b",
-    sharedAccessStartTime: new Date("2017-05-24T10:42:03.1567373Z")
+    sharedAccessStartTime: new Date("2017-05-24T10:42:03.1567373Z"),
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.listAccountSAS(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

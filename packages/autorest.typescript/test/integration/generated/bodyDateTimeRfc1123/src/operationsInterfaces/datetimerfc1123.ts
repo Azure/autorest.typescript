@@ -22,7 +22,7 @@ import {
   Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse,
   Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeOptionalParams,
-  Datetimerfc1123GetUtcMinDateTimeResponse
+  Datetimerfc1123GetUtcMinDateTimeResponse,
 } from "../models";
 
 /** Interface representing a Datetimerfc1123. */
@@ -32,28 +32,28 @@ export interface Datetimerfc1123 {
    * @param options The options parameters.
    */
   getNull(
-    options?: Datetimerfc1123GetNullOptionalParams
+    options?: Datetimerfc1123GetNullOptionalParams,
   ): Promise<Datetimerfc1123GetNullResponse>;
   /**
    * Get invalid datetime value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: Datetimerfc1123GetInvalidOptionalParams
+    options?: Datetimerfc1123GetInvalidOptionalParams,
   ): Promise<Datetimerfc1123GetInvalidResponse>;
   /**
    * Get overflow datetime value
    * @param options The options parameters.
    */
   getOverflow(
-    options?: Datetimerfc1123GetOverflowOptionalParams
+    options?: Datetimerfc1123GetOverflowOptionalParams,
   ): Promise<Datetimerfc1123GetOverflowResponse>;
   /**
    * Get underflow datetime value
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: Datetimerfc1123GetUnderflowOptionalParams
+    options?: Datetimerfc1123GetUnderflowOptionalParams,
   ): Promise<Datetimerfc1123GetUnderflowResponse>;
   /**
    * Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT
@@ -62,21 +62,21 @@ export interface Datetimerfc1123 {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams
+    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get max datetime value fri, 31 dec 9999 23:59:59 gmt
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse>;
   /**
    * Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse>;
   /**
    * Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT
@@ -85,13 +85,13 @@ export interface Datetimerfc1123 {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams
+    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse>;
 }

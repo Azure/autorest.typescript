@@ -41,7 +41,7 @@ import {
   BlobRestoreParameters,
   StorageAccountsRestoreBlobRangesOptionalParams,
   StorageAccountsRestoreBlobRangesResponse,
-  StorageAccountsRevokeUserDelegationKeysOptionalParams
+  StorageAccountsRevokeUserDelegationKeysOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -53,7 +53,7 @@ export interface StorageAccounts {
    * @param options The options parameters.
    */
   list(
-    options?: StorageAccountsListOptionalParams
+    options?: StorageAccountsListOptionalParams,
   ): PagedAsyncIterableIterator<StorageAccount>;
   /**
    * Lists all the storage accounts available under the given resource group. Note that storage keys are
@@ -64,7 +64,7 @@ export interface StorageAccounts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: StorageAccountsListByResourceGroupOptionalParams
+    options?: StorageAccountsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<StorageAccount>;
   /**
    * Checks that the storage account name is valid and is not already in use.
@@ -75,7 +75,7 @@ export interface StorageAccounts {
    */
   checkNameAvailability(
     accountName: StorageAccountCheckNameAvailabilityParameters,
-    options?: StorageAccountsCheckNameAvailabilityOptionalParams
+    options?: StorageAccountsCheckNameAvailabilityOptionalParams,
   ): Promise<StorageAccountsCheckNameAvailabilityResponse>;
   /**
    * Asynchronously creates a new storage account with the specified parameters. If an account is already
@@ -94,7 +94,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
-    options?: StorageAccountsCreateOptionalParams
+    options?: StorageAccountsCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAccountsCreateResponse>,
@@ -118,7 +118,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountCreateParameters,
-    options?: StorageAccountsCreateOptionalParams
+    options?: StorageAccountsCreateOptionalParams,
   ): Promise<StorageAccountsCreateResponse>;
   /**
    * Deletes a storage account in Microsoft Azure.
@@ -132,7 +132,7 @@ export interface StorageAccounts {
   delete(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsDeleteOptionalParams
+    options?: StorageAccountsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Returns the properties for the specified storage account including but not limited to name, SKU
@@ -147,7 +147,7 @@ export interface StorageAccounts {
   getProperties(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsGetPropertiesOptionalParams
+    options?: StorageAccountsGetPropertiesOptionalParams,
   ): Promise<StorageAccountsGetPropertiesResponse>;
   /**
    * The update operation can be used to update the SKU, encryption, access tier, or tags for a storage
@@ -169,7 +169,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: StorageAccountUpdateParameters,
-    options?: StorageAccountsUpdateOptionalParams
+    options?: StorageAccountsUpdateOptionalParams,
   ): Promise<StorageAccountsUpdateResponse>;
   /**
    * Lists the access keys or Kerberos keys (if active directory enabled) for the specified storage
@@ -184,7 +184,7 @@ export interface StorageAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsListKeysOptionalParams
+    options?: StorageAccountsListKeysOptionalParams,
   ): Promise<StorageAccountsListKeysResponse>;
   /**
    * Regenerates one of the access keys or Kerberos keys for the specified storage account.
@@ -201,7 +201,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     regenerateKey: StorageAccountRegenerateKeyParameters,
-    options?: StorageAccountsRegenerateKeyOptionalParams
+    options?: StorageAccountsRegenerateKeyOptionalParams,
   ): Promise<StorageAccountsRegenerateKeyResponse>;
   /**
    * List SAS credentials of a storage account.
@@ -217,7 +217,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: AccountSasParameters,
-    options?: StorageAccountsListAccountSASOptionalParams
+    options?: StorageAccountsListAccountSASOptionalParams,
   ): Promise<StorageAccountsListAccountSASResponse>;
   /**
    * List service SAS credentials of a specific resource.
@@ -233,7 +233,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: ServiceSasParameters,
-    options?: StorageAccountsListServiceSASOptionalParams
+    options?: StorageAccountsListServiceSASOptionalParams,
   ): Promise<StorageAccountsListServiceSASResponse>;
   /**
    * Failover request can be triggered for a storage account in case of availability issues. The failover
@@ -249,7 +249,7 @@ export interface StorageAccounts {
   beginFailover(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsFailoverOptionalParams
+    options?: StorageAccountsFailoverOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Failover request can be triggered for a storage account in case of availability issues. The failover
@@ -265,7 +265,7 @@ export interface StorageAccounts {
   beginFailoverAndWait(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsFailoverOptionalParams
+    options?: StorageAccountsFailoverOptionalParams,
   ): Promise<void>;
   /**
    * Live Migration of storage account to enable Hns
@@ -284,7 +284,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     requestType: string,
-    options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams
+    options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Live Migration of storage account to enable Hns
@@ -303,7 +303,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     requestType: string,
-    options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams
+    options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams,
   ): Promise<void>;
   /**
    * Abort live Migration of storage account to enable Hns
@@ -317,7 +317,7 @@ export interface StorageAccounts {
   beginAbortHierarchicalNamespaceMigration(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams
+    options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Abort live Migration of storage account to enable Hns
@@ -331,7 +331,7 @@ export interface StorageAccounts {
   beginAbortHierarchicalNamespaceMigrationAndWait(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams
+    options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams,
   ): Promise<void>;
   /**
    * Restore blobs in the specified blob ranges
@@ -347,7 +347,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,
-    options?: StorageAccountsRestoreBlobRangesOptionalParams
+    options?: StorageAccountsRestoreBlobRangesOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAccountsRestoreBlobRangesResponse>,
@@ -368,7 +368,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     parameters: BlobRestoreParameters,
-    options?: StorageAccountsRestoreBlobRangesOptionalParams
+    options?: StorageAccountsRestoreBlobRangesOptionalParams,
   ): Promise<StorageAccountsRestoreBlobRangesResponse>;
   /**
    * Revoke user delegation keys.
@@ -382,6 +382,6 @@ export interface StorageAccounts {
   revokeUserDelegationKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: StorageAccountsRevokeUserDelegationKeysOptionalParams
+    options?: StorageAccountsRevokeUserDelegationKeysOptionalParams,
   ): Promise<void>;
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   HubIpConfiguration,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,18 +30,18 @@ async function virtualHubIPConfigurationPut() {
   const ipConfigName = "ipconfig1";
   const parameters: HubIpConfiguration = {
     subnet: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1"
-    }
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualHubIpConfiguration.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    virtualHubName,
-    ipConfigName,
-    parameters
-  );
+  const result =
+    await client.virtualHubIpConfiguration.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualHubName,
+      ipConfigName,
+      parameters,
+    );
   console.log(result);
 }
 

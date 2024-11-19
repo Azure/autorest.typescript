@@ -16,9 +16,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -27,10 +27,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -40,9 +40,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringBody: OperationParameter = {
@@ -50,9 +50,9 @@ export const stringBody: OperationParameter = {
   mapper: {
     serializedName: "stringBody",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringBody1: OperationParameter = {
@@ -62,9 +62,9 @@ export const stringBody1: OperationParameter = {
     isConstant: true,
     serializedName: "stringBody",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringBody2: OperationParameter = {
@@ -75,9 +75,9 @@ export const stringBody2: OperationParameter = {
     isConstant: true,
     serializedName: "stringBody",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringBody3: OperationParameter = {
@@ -88,9 +88,9 @@ export const stringBody3: OperationParameter = {
     isConstant: true,
     serializedName: "stringBody",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringBody4: OperationParameter = {
@@ -99,9 +99,9 @@ export const stringBody4: OperationParameter = {
     serializedName: "stringBody",
     required: true,
     type: {
-      name: "Base64Url"
-    }
-  }
+      name: "Base64Url",
+    },
+  },
 };
 
 export const stringBody5: OperationParameter = {
@@ -111,9 +111,9 @@ export const stringBody5: OperationParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["red color", "green-color", "blue_color"]
-    }
-  }
+      allowedValues: ["red color", "green-color", "blue_color"],
+    },
+  },
 };
 
 export const enumStringBody: OperationParameter = {
@@ -123,12 +123,12 @@ export const enumStringBody: OperationParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["red color", "green-color", "blue_color"]
-    }
-  }
+      allowedValues: ["red color", "green-color", "blue_color"],
+    },
+  },
 };
 
 export const enumStringBody1: OperationParameter = {
   parameterPath: "enumStringBody",
-  mapper: RefColorConstantMapper
+  mapper: RefColorConstantMapper,
 };

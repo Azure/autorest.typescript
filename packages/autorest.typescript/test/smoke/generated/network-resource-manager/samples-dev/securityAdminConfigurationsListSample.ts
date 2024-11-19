@@ -30,7 +30,7 @@ async function listSecurityAdminConfigurationsInANetworkManager() {
   const resArray = new Array();
   for await (let item of client.securityAdminConfigurations.list(
     resourceGroupName,
-    networkManagerName
+    networkManagerName,
   )) {
     resArray.push(item);
   }

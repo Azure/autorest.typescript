@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   CreateOrUpdate200Response,
@@ -8,14 +8,14 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation202Response,
+  Delete202Response,
   DeleteLogicalResponse,
-  DeleteOperationDefaultResponse,
+  DeleteDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  ExportOperation202Response,
+  Export202Response,
   ExportLogicalResponse,
-  ExportOperationDefaultResponse,
+  ExportDefaultResponse,
   Importx202Response,
   ImportxLogicalResponse,
   ImportxDefaultResponse,
@@ -44,19 +44,19 @@ import {
   GetSupportedLanguagesDefaultResponse,
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "GET /authoring/analyze-text/projects/{projectName}": ["200"],
+  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],
-  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:export": ["200", "202"],
-  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:importx": ["200", "202"],
-  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["200"],
   "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
@@ -64,11 +64,11 @@ const responseMap: Record<string, string[]> = {
   "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
-  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
-    "202",
-  ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "200",
+    "202",
+  ],
+  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
@@ -86,74 +86,71 @@ export function isUnexpected(
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
     | CreateOrUpdateLogicalResponse
-    | CreateOrUpdateDefaultResponse
+    | CreateOrUpdateDefaultResponse,
 ): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: Get200Response | GetDefaultResponse
+  response: Get200Response | GetDefaultResponse,
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response:
-    | DeleteOperation202Response
-    | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse
-): response is DeleteOperationDefaultResponse;
+  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse,
+): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response: ListProjects200Response | ListProjectsDefaultResponse
+  response: ListProjects200Response | ListProjectsDefaultResponse,
 ): response is ListProjectsDefaultResponse;
 export function isUnexpected(
-  response:
-    | ExportOperation202Response
-    | ExportLogicalResponse
-    | ExportOperationDefaultResponse
-): response is ExportOperationDefaultResponse;
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse,
+): response is ExportDefaultResponse;
 export function isUnexpected(
-  response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse
+  response:
+    | Importx202Response
+    | ImportxLogicalResponse
+    | ImportxDefaultResponse,
 ): response is ImportxDefaultResponse;
 export function isUnexpected(
-  response: Train202Response | TrainLogicalResponse | TrainDefaultResponse
+  response: Train202Response | TrainLogicalResponse | TrainDefaultResponse,
 ): response is TrainDefaultResponse;
 export function isUnexpected(
-  response: GetDeployment200Response | GetDeploymentDefaultResponse
+  response: GetDeployment200Response | GetDeploymentDefaultResponse,
 ): response is GetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
     | DeployProject200Response
     | DeployProject201Response
     | DeployProjectLogicalResponse
-    | DeployProjectDefaultResponse
+    | DeployProjectDefaultResponse,
 ): response is DeployProjectDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteDeployment202Response
     | DeleteDeploymentLogicalResponse
-    | DeleteDeploymentDefaultResponse
+    | DeleteDeploymentDefaultResponse,
 ): response is DeleteDeploymentDefaultResponse;
 export function isUnexpected(
-  response: ListDeployments200Response | ListDeploymentsDefaultResponse
+  response: ListDeployments200Response | ListDeploymentsDefaultResponse,
 ): response is ListDeploymentsDefaultResponse;
 export function isUnexpected(
   response:
     | SwapDeployments202Response
     | SwapDeploymentsLogicalResponse
-    | SwapDeploymentsDefaultResponse
+    | SwapDeploymentsDefaultResponse,
 ): response is SwapDeploymentsDefaultResponse;
 export function isUnexpected(
-  response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
+  response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse,
 ): response is GetDeploymentStatusDefaultResponse;
 export function isUnexpected(
   response:
     | GetSwapDeploymentsStatus200Response
-    | GetSwapDeploymentsStatusDefaultResponse
+    | GetSwapDeploymentsStatusDefaultResponse,
 ): response is GetSwapDeploymentsStatusDefaultResponse;
 export function isUnexpected(
   response:
     | GetSupportedLanguages200Response
-    | GetSupportedLanguagesDefaultResponse
+    | GetSupportedLanguagesDefaultResponse,
 ): response is GetSupportedLanguagesDefaultResponse;
 export function isUnexpected(
   response:
     | ListTrainingConfigVersions200Response
-    | ListTrainingConfigVersionsDefaultResponse
+    | ListTrainingConfigVersionsDefaultResponse,
 ): response is ListTrainingConfigVersionsDefaultResponse;
 export function isUnexpected(
   response:
@@ -163,14 +160,14 @@ export function isUnexpected(
     | CreateOrUpdateDefaultResponse
     | Get200Response
     | GetDefaultResponse
-    | DeleteOperation202Response
+    | Delete202Response
     | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse
+    | DeleteDefaultResponse
     | ListProjects200Response
     | ListProjectsDefaultResponse
-    | ExportOperation202Response
+    | Export202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse
+    | ExportDefaultResponse
     | Importx202Response
     | ImportxLogicalResponse
     | ImportxDefaultResponse
@@ -198,13 +195,13 @@ export function isUnexpected(
     | GetSupportedLanguages200Response
     | GetSupportedLanguagesDefaultResponse
     | ListTrainingConfigVersions200Response
-    | ListTrainingConfigVersionsDefaultResponse
+    | ListTrainingConfigVersionsDefaultResponse,
 ): response is
   | CreateOrUpdateDefaultResponse
   | GetDefaultResponse
-  | DeleteOperationDefaultResponse
+  | DeleteDefaultResponse
   | ListProjectsDefaultResponse
-  | ExportOperationDefaultResponse
+  | ExportDefaultResponse
   | ImportxDefaultResponse
   | TrainDefaultResponse
   | GetDeploymentDefaultResponse
@@ -264,7 +261,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -28,7 +28,7 @@ async function virtualHubGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.get(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   );
   console.log(result);
 }

@@ -1,0 +1,44 @@
+trigger: none
+pr: none
+
+parameters:
+- name: UseTypeSpecNext
+  displayName: Use TypeSpec "next" version
+  type: boolean
+  default: true
+
+resources:
+  repositories:
+  - repository: sdk-repository
+    type: github
+    endpoint: Azure
+    name: Azure/azure-sdk-for-js
+    ref: refs/heads/main
+  - repository: azure-sdk-tools
+    type: github
+    endpoint: Azure
+    name: Azure/azure-sdk-tools
+    ref: refs/heads/main
+
+pool:
+  name: azsdk-pool-mms-win-2022-general
+  vmImage: windows-2022
+
+extends:
+  template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
+  parameters:
+    RegenerationJobCount: 1
+    BuildPrereleaseVersion: true
+    PublishInternal: true
+    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
+    EmitterPackageJsonPath: packages/typespec-ts/package.json
+    Packages:
+    - name: generator
+      file: autorest-typescript-*.tgz
+      type: npm
+    - name: emitter
+      file: azure-tools-typespec-ts-*.tgz
+      type: npm
+    - name: common
+      file: azure-tools-rlc-common-*.tgz
+      type: npm

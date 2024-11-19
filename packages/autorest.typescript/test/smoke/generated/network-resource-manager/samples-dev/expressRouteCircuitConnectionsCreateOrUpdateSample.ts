@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteCircuitConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,28 +29,28 @@ async function expressRouteCircuitConnectionCreate() {
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
   const connectionName = "circuitConnectionUSAUS";
-  const expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection = {
-    addressPrefix: "10.0.0.0/29",
-    authorizationKey: "946a1918-b7a2-4917-b43c-8c4cdaee006a",
-    expressRouteCircuitPeering: {
-      id:
-        "/subscriptions/subid1/resourceGroups/dedharcktinit/providers/Microsoft.Network/expressRouteCircuits/dedharcktlocal/peerings/AzurePrivatePeering"
-    },
-    ipv6CircuitConnectionConfig: { addressPrefix: "aa:bb::/125" },
-    peerExpressRouteCircuitPeering: {
-      id:
-        "/subscriptions/subid2/resourceGroups/dedharcktpeer/providers/Microsoft.Network/expressRouteCircuits/dedharcktremote/peerings/AzurePrivatePeering"
-    }
-  };
+  const expressRouteCircuitConnectionParameters: ExpressRouteCircuitConnection =
+    {
+      addressPrefix: "10.0.0.0/29",
+      authorizationKey: "946a1918-b7a2-4917-b43c-8c4cdaee006a",
+      expressRouteCircuitPeering: {
+        id: "/subscriptions/subid1/resourceGroups/dedharcktinit/providers/Microsoft.Network/expressRouteCircuits/dedharcktlocal/peerings/AzurePrivatePeering",
+      },
+      ipv6CircuitConnectionConfig: { addressPrefix: "aa:bb::/125" },
+      peerExpressRouteCircuitPeering: {
+        id: "/subscriptions/subid2/resourceGroups/dedharcktpeer/providers/Microsoft.Network/expressRouteCircuits/dedharcktremote/peerings/AzurePrivatePeering",
+      },
+    };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCircuitConnections.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    circuitName,
-    peeringName,
-    connectionName,
-    expressRouteCircuitConnectionParameters
-  );
+  const result =
+    await client.expressRouteCircuitConnections.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      connectionName,
+      expressRouteCircuitConnectionParameters,
+    );
   console.log(result);
 }
 

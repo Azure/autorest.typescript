@@ -27,7 +27,7 @@ import {
   HttpSuccessPatch204OptionalParams,
   HttpSuccessPost204OptionalParams,
   HttpSuccessDelete204OptionalParams,
-  HttpSuccessHead404OptionalParams
+  HttpSuccessHead404OptionalParams,
 } from "../models";
 
 /** Interface representing a HttpSuccess. */
@@ -42,14 +42,14 @@ export interface HttpSuccess {
    * @param options The options parameters.
    */
   get200(
-    options?: HttpSuccessGet200OptionalParams
+    options?: HttpSuccessGet200OptionalParams,
   ): Promise<HttpSuccessGet200Response>;
   /**
    * Options 200 success
    * @param options The options parameters.
    */
   options200(
-    options?: HttpSuccessOptions200OptionalParams
+    options?: HttpSuccessOptions200OptionalParams,
   ): Promise<HttpSuccessOptions200Response>;
   /**
    * Put boolean value true returning 200 success

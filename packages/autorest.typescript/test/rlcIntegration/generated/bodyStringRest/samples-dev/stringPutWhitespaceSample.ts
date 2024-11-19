@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
@@ -17,8 +17,7 @@ async function stringPutWhitespace() {
   const result = await client
     .path("/string/whitespace")
     .put({
-      body:
-        "    Now is the time for all good men to come to the aid of their country    "
+      body: "    Now is the time for all good men to come to the aid of their country    ",
     });
   console.log(result);
 }

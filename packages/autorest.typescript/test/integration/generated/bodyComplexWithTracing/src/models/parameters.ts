@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   BasicDef as BasicDefMapper,
@@ -29,7 +29,7 @@ import {
   Siamese as SiameseMapper,
   Fish as FishMapper,
   Salmon as SalmonMapper,
-  ReadonlyObj as ReadonlyObjMapper
+  ReadonlyObj as ReadonlyObjMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -39,9 +39,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -50,10 +50,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -63,14 +63,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const complexBody: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: BasicDefMapper
+  mapper: BasicDefMapper,
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -80,92 +80,92 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const complexBody1: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: IntWrapperMapper
+  mapper: IntWrapperMapper,
 };
 
 export const complexBody2: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: LongWrapperMapper
+  mapper: LongWrapperMapper,
 };
 
 export const complexBody3: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: FloatWrapperMapper
+  mapper: FloatWrapperMapper,
 };
 
 export const complexBody4: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: DoubleWrapperMapper
+  mapper: DoubleWrapperMapper,
 };
 
 export const complexBody5: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: BooleanWrapperMapper
+  mapper: BooleanWrapperMapper,
 };
 
 export const complexBody6: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: StringWrapperMapper
+  mapper: StringWrapperMapper,
 };
 
 export const complexBody7: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: DateWrapperMapper
+  mapper: DateWrapperMapper,
 };
 
 export const complexBody8: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: DatetimeWrapperMapper
+  mapper: DatetimeWrapperMapper,
 };
 
 export const complexBody9: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: Datetimerfc1123WrapperMapper
+  mapper: Datetimerfc1123WrapperMapper,
 };
 
 export const complexBody10: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: DurationWrapperMapper
+  mapper: DurationWrapperMapper,
 };
 
 export const complexBody11: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: ByteWrapperMapper
+  mapper: ByteWrapperMapper,
 };
 
 export const complexBody12: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: ArrayWrapperMapper
+  mapper: ArrayWrapperMapper,
 };
 
 export const complexBody13: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: DictionaryWrapperMapper
+  mapper: DictionaryWrapperMapper,
 };
 
 export const complexBody14: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: SiameseMapper
+  mapper: SiameseMapper,
 };
 
 export const complexBody15: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: FishMapper
+  mapper: FishMapper,
 };
 
 export const complexBody16: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: SalmonMapper
+  mapper: SalmonMapper,
 };
 
 export const complexBody17: OperationParameter = {
   parameterPath: "complexBody",
-  mapper: ReadonlyObjMapper
+  mapper: ReadonlyObjMapper,
 };

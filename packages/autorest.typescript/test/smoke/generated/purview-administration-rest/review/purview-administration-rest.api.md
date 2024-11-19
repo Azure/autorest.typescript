@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -558,10 +557,10 @@ interface ComplexReplacerConfigOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: PurviewMetadataPoliciesClientOptions): PurviewMetadataPoliciesClient;
 
 // @public
-function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
+function createClient_2(endpoint: string, credentials: TokenCredential, { apiVersion, ...options }?: PurviewAccountClientOptions): PurviewAccountClient;
 
 // @public
 interface DataPlaneAccountUpdateParameters {
@@ -702,13 +701,13 @@ type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 type GetArrayType_2<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
 
 // @public
-type GetPage_2<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+type GetPage_2<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -1131,14 +1130,40 @@ declare namespace OutputModels_2 {
 }
 
 // @public
+interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+interface PagedAsyncIterableIterator_2<TElement, TPage = TElement[], TPageSettings = PageSettings_2> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator_2<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+interface PageSettings_2 {
+    continuationToken?: string;
+}
+
+// @public
 function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 // @public
-function paginate_2<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions_2<TResponse>): PagedAsyncIterableIterator<PaginateReturn_2<TResponse>>;
+function paginate_2<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions_2<TResponse>): PagedAsyncIterableIterator_2<PaginateReturn_2<TResponse>>;
 
 declare namespace PaginateHelper {
     export {
         paginate,
+        PageSettings,
+        PagedAsyncIterableIterator,
         GetArrayType,
         GetPage,
         PagingOptions,
@@ -1149,6 +1174,8 @@ declare namespace PaginateHelper {
 declare namespace PaginateHelper_2 {
     export {
         paginate_2 as paginate,
+        PageSettings_2 as PageSettings,
+        PagedAsyncIterableIterator_2 as PagedAsyncIterableIterator,
         GetArrayType_2 as GetArrayType,
         GetPage_2 as GetPage,
         PagingOptions_2 as PagingOptions,
@@ -1312,6 +1339,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 declare namespace PurviewAccount {
     export {
         createClient_2 as createClient,
+        PurviewAccountClientOptions,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1328,9 +1356,15 @@ type PurviewAccountClient = Client & {
     path: Routes_2;
 };
 
+// @public
+interface PurviewAccountClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
 declare namespace PurviewMetadataPolicies {
     export {
         createClient,
+        PurviewMetadataPoliciesClientOptions,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1346,6 +1380,11 @@ export { PurviewMetadataPolicies }
 type PurviewMetadataPoliciesClient = Client & {
     path: Routes;
 };
+
+// @public
+interface PurviewMetadataPoliciesClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
 
 // @public (undocumented)
 interface RegexReplacer {

@@ -27,11 +27,12 @@ async function backendAddressPoolDelete() {
   const backendAddressPoolName = "backend";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.loadBalancerBackendAddressPools.beginDeleteAndWait(
-    resourceGroupName,
-    loadBalancerName,
-    backendAddressPoolName
-  );
+  const result =
+    await client.loadBalancerBackendAddressPools.beginDeleteAndWait(
+      resourceGroupName,
+      loadBalancerName,
+      backendAddressPoolName,
+    );
   console.log(result);
 }
 

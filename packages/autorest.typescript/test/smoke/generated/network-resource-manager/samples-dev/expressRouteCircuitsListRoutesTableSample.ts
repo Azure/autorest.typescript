@@ -32,7 +32,7 @@ async function listRouteTables() {
     resourceGroupName,
     circuitName,
     peeringName,
-    devicePath
+    devicePath,
   );
   console.log(result);
 }

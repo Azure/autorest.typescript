@@ -28,7 +28,7 @@ async function deleteNetworkSecurityGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkSecurityGroups.beginDeleteAndWait(
     resourceGroupName,
-    networkSecurityGroupName
+    networkSecurityGroupName,
   );
   console.log(result);
 }

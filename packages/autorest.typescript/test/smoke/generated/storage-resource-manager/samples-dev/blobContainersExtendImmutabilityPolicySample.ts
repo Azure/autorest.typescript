@@ -11,7 +11,7 @@
 import {
   ImmutabilityPolicy,
   BlobContainersExtendImmutabilityPolicyOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,10 +31,10 @@ async function extendImmutabilityPolicy() {
   const containerName = "container5023";
   const ifMatch = '"8d59f830d0c3bf9"';
   const parameters: ImmutabilityPolicy = {
-    immutabilityPeriodSinceCreationInDays: 100
+    immutabilityPeriodSinceCreationInDays: 100,
   };
   const options: BlobContainersExtendImmutabilityPolicyOptionalParams = {
-    parameters
+    parameters,
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -43,7 +43,7 @@ async function extendImmutabilityPolicy() {
     accountName,
     containerName,
     ifMatch,
-    options
+    options,
   );
   console.log(result);
 }

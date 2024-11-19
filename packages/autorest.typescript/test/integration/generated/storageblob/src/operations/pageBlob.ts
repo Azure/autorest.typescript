@@ -6,7 +6,7 @@ import * as Parameters from "../models/parameters";
 import { StorageBlobClient } from "../storageBlobClient";
 import {
   PageBlobUploadPagesOptionalParams,
-  PageBlobUploadPagesResponse
+  PageBlobUploadPagesResponse,
 } from "../models";
 
 /** Class containing PageBlob operations. */
@@ -30,11 +30,11 @@ export class PageBlobImpl implements PageBlob {
   uploadPages(
     contentLength: number,
     body: coreRestPipeline.RequestBodyType,
-    options?: PageBlobUploadPagesOptionalParams
+    options?: PageBlobUploadPagesOptionalParams,
   ): Promise<PageBlobUploadPagesResponse> {
     return this.client.sendOperationRequest(
       { contentLength, body, options },
-      uploadPagesOperationSpec
+      uploadPagesOperationSpec,
     );
   }
 }
@@ -46,12 +46,12 @@ const uploadPagesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     201: {
-      headersMapper: Mappers.PageBlobUploadPagesHeaders
+      headersMapper: Mappers.PageBlobUploadPagesHeaders,
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.PageBlobUploadPagesExceptionHeaders
-    }
+      headersMapper: Mappers.PageBlobUploadPagesExceptionHeaders,
+    },
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.comp, Parameters.timeout],
@@ -78,10 +78,10 @@ const uploadPagesOperationSpec: coreClient.OperationSpec = {
     Parameters.ifNoneMatch,
     Parameters.ifTags,
     Parameters.version,
-    Parameters.requestId
+    Parameters.requestId,
   ],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "binary",
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };

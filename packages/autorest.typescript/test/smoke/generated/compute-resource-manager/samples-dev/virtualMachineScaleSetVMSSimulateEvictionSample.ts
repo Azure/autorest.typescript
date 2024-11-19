@@ -30,7 +30,7 @@ async function simulateEvictionAVirtualMachine() {
   const result = await client.virtualMachineScaleSetVMs.simulateEviction(
     resourceGroupName,
     vmScaleSetName,
-    instanceId
+    instanceId,
   );
   console.log(result);
 }

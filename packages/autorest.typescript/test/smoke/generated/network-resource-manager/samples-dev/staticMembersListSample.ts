@@ -32,7 +32,7 @@ async function staticMembersList() {
   for await (let item of client.staticMembers.list(
     resourceGroupName,
     networkManagerName,
-    networkGroupName
+    networkGroupName,
   )) {
     resArray.push(item);
   }

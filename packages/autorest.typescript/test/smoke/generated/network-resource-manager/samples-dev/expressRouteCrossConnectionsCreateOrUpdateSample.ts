@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteCrossConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,15 +29,16 @@ async function updateExpressRouteCrossConnection() {
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const parameters: ExpressRouteCrossConnection = {
-    serviceProviderProvisioningState: "NotProvisioned"
+    serviceProviderProvisioningState: "NotProvisioned",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCrossConnections.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    crossConnectionName,
-    parameters
-  );
+  const result =
+    await client.expressRouteCrossConnections.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      crossConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

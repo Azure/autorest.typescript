@@ -127,7 +127,7 @@ import {
   DictionaryGetDictionaryItemEmptyResponse,
   DictionaryGetDictionaryValidOptionalParams,
   DictionaryGetDictionaryValidResponse,
-  DictionaryPutDictionaryValidOptionalParams
+  DictionaryPutDictionaryValidOptionalParams,
 } from "../models";
 
 /** Class containing Dictionary operations. */
@@ -147,7 +147,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNull(
-    options?: DictionaryGetNullOptionalParams
+    options?: DictionaryGetNullOptionalParams,
   ): Promise<DictionaryGetNullResponse> {
     return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
@@ -157,7 +157,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: DictionaryGetEmptyOptionalParams
+    options?: DictionaryGetEmptyOptionalParams,
   ): Promise<DictionaryGetEmptyResponse> {
     return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
@@ -169,11 +169,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putEmpty(
     arrayBody: { [propertyName: string]: string },
-    options?: DictionaryPutEmptyOptionalParams
+    options?: DictionaryPutEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putEmptyOperationSpec
+      putEmptyOperationSpec,
     );
   }
 
@@ -182,11 +182,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNullValue(
-    options?: DictionaryGetNullValueOptionalParams
+    options?: DictionaryGetNullValueOptionalParams,
   ): Promise<DictionaryGetNullValueResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullValueOperationSpec
+      getNullValueOperationSpec,
     );
   }
 
@@ -195,11 +195,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getNullKey(
-    options?: DictionaryGetNullKeyOptionalParams
+    options?: DictionaryGetNullKeyOptionalParams,
   ): Promise<DictionaryGetNullKeyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullKeyOperationSpec
+      getNullKeyOperationSpec,
     );
   }
 
@@ -208,11 +208,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getEmptyStringKey(
-    options?: DictionaryGetEmptyStringKeyOptionalParams
+    options?: DictionaryGetEmptyStringKeyOptionalParams,
   ): Promise<DictionaryGetEmptyStringKeyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyStringKeyOperationSpec
+      getEmptyStringKeyOperationSpec,
     );
   }
 
@@ -221,11 +221,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: DictionaryGetInvalidOptionalParams
+    options?: DictionaryGetInvalidOptionalParams,
   ): Promise<DictionaryGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 
@@ -234,11 +234,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: DictionaryGetBooleanTfftOptionalParams
+    options?: DictionaryGetBooleanTfftOptionalParams,
   ): Promise<DictionaryGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanTfftOperationSpec
+      getBooleanTfftOperationSpec,
     );
   }
 
@@ -249,11 +249,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putBooleanTfft(
     arrayBody: { [propertyName: string]: boolean },
-    options?: DictionaryPutBooleanTfftOptionalParams
+    options?: DictionaryPutBooleanTfftOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putBooleanTfftOperationSpec
+      putBooleanTfftOperationSpec,
     );
   }
 
@@ -262,11 +262,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: DictionaryGetBooleanInvalidNullOptionalParams
+    options?: DictionaryGetBooleanInvalidNullOptionalParams,
   ): Promise<DictionaryGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanInvalidNullOperationSpec
+      getBooleanInvalidNullOperationSpec,
     );
   }
 
@@ -275,11 +275,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: DictionaryGetBooleanInvalidStringOptionalParams
+    options?: DictionaryGetBooleanInvalidStringOptionalParams,
   ): Promise<DictionaryGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanInvalidStringOperationSpec
+      getBooleanInvalidStringOperationSpec,
     );
   }
 
@@ -288,11 +288,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: DictionaryGetIntegerValidOptionalParams
+    options?: DictionaryGetIntegerValidOptionalParams,
   ): Promise<DictionaryGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntegerValidOperationSpec
+      getIntegerValidOperationSpec,
     );
   }
 
@@ -303,11 +303,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putIntegerValid(
     arrayBody: { [propertyName: string]: number },
-    options?: DictionaryPutIntegerValidOptionalParams
+    options?: DictionaryPutIntegerValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putIntegerValidOperationSpec
+      putIntegerValidOperationSpec,
     );
   }
 
@@ -316,11 +316,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: DictionaryGetIntInvalidNullOptionalParams
+    options?: DictionaryGetIntInvalidNullOptionalParams,
   ): Promise<DictionaryGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntInvalidNullOperationSpec
+      getIntInvalidNullOperationSpec,
     );
   }
 
@@ -329,11 +329,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: DictionaryGetIntInvalidStringOptionalParams
+    options?: DictionaryGetIntInvalidStringOptionalParams,
   ): Promise<DictionaryGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntInvalidStringOperationSpec
+      getIntInvalidStringOperationSpec,
     );
   }
 
@@ -342,11 +342,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongValid(
-    options?: DictionaryGetLongValidOptionalParams
+    options?: DictionaryGetLongValidOptionalParams,
   ): Promise<DictionaryGetLongValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongValidOperationSpec
+      getLongValidOperationSpec,
     );
   }
 
@@ -357,11 +357,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putLongValid(
     arrayBody: { [propertyName: string]: number },
-    options?: DictionaryPutLongValidOptionalParams
+    options?: DictionaryPutLongValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putLongValidOperationSpec
+      putLongValidOperationSpec,
     );
   }
 
@@ -370,11 +370,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: DictionaryGetLongInvalidNullOptionalParams
+    options?: DictionaryGetLongInvalidNullOptionalParams,
   ): Promise<DictionaryGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongInvalidNullOperationSpec
+      getLongInvalidNullOperationSpec,
     );
   }
 
@@ -383,11 +383,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: DictionaryGetLongInvalidStringOptionalParams
+    options?: DictionaryGetLongInvalidStringOptionalParams,
   ): Promise<DictionaryGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongInvalidStringOperationSpec
+      getLongInvalidStringOperationSpec,
     );
   }
 
@@ -396,11 +396,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: DictionaryGetFloatValidOptionalParams
+    options?: DictionaryGetFloatValidOptionalParams,
   ): Promise<DictionaryGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatValidOperationSpec
+      getFloatValidOperationSpec,
     );
   }
 
@@ -411,11 +411,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putFloatValid(
     arrayBody: { [propertyName: string]: number },
-    options?: DictionaryPutFloatValidOptionalParams
+    options?: DictionaryPutFloatValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putFloatValidOperationSpec
+      putFloatValidOperationSpec,
     );
   }
 
@@ -424,11 +424,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: DictionaryGetFloatInvalidNullOptionalParams
+    options?: DictionaryGetFloatInvalidNullOptionalParams,
   ): Promise<DictionaryGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatInvalidNullOperationSpec
+      getFloatInvalidNullOperationSpec,
     );
   }
 
@@ -437,11 +437,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: DictionaryGetFloatInvalidStringOptionalParams
+    options?: DictionaryGetFloatInvalidStringOptionalParams,
   ): Promise<DictionaryGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatInvalidStringOperationSpec
+      getFloatInvalidStringOperationSpec,
     );
   }
 
@@ -450,11 +450,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: DictionaryGetDoubleValidOptionalParams
+    options?: DictionaryGetDoubleValidOptionalParams,
   ): Promise<DictionaryGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleValidOperationSpec
+      getDoubleValidOperationSpec,
     );
   }
 
@@ -465,11 +465,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDoubleValid(
     arrayBody: { [propertyName: string]: number },
-    options?: DictionaryPutDoubleValidOptionalParams
+    options?: DictionaryPutDoubleValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDoubleValidOperationSpec
+      putDoubleValidOperationSpec,
     );
   }
 
@@ -478,11 +478,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: DictionaryGetDoubleInvalidNullOptionalParams
+    options?: DictionaryGetDoubleInvalidNullOptionalParams,
   ): Promise<DictionaryGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleInvalidNullOperationSpec
+      getDoubleInvalidNullOperationSpec,
     );
   }
 
@@ -491,11 +491,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: DictionaryGetDoubleInvalidStringOptionalParams
+    options?: DictionaryGetDoubleInvalidStringOptionalParams,
   ): Promise<DictionaryGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleInvalidStringOperationSpec
+      getDoubleInvalidStringOperationSpec,
     );
   }
 
@@ -504,11 +504,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringValid(
-    options?: DictionaryGetStringValidOptionalParams
+    options?: DictionaryGetStringValidOptionalParams,
   ): Promise<DictionaryGetStringValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringValidOperationSpec
+      getStringValidOperationSpec,
     );
   }
 
@@ -519,11 +519,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putStringValid(
     arrayBody: { [propertyName: string]: string },
-    options?: DictionaryPutStringValidOptionalParams
+    options?: DictionaryPutStringValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putStringValidOperationSpec
+      putStringValidOperationSpec,
     );
   }
 
@@ -532,11 +532,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: DictionaryGetStringWithNullOptionalParams
+    options?: DictionaryGetStringWithNullOptionalParams,
   ): Promise<DictionaryGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringWithNullOperationSpec
+      getStringWithNullOperationSpec,
     );
   }
 
@@ -545,11 +545,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: DictionaryGetStringWithInvalidOptionalParams
+    options?: DictionaryGetStringWithInvalidOptionalParams,
   ): Promise<DictionaryGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringWithInvalidOperationSpec
+      getStringWithInvalidOperationSpec,
     );
   }
 
@@ -558,11 +558,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateValid(
-    options?: DictionaryGetDateValidOptionalParams
+    options?: DictionaryGetDateValidOptionalParams,
   ): Promise<DictionaryGetDateValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateValidOperationSpec
+      getDateValidOperationSpec,
     );
   }
 
@@ -573,11 +573,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: DictionaryPutDateValidOptionalParams
+    options?: DictionaryPutDateValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateValidOperationSpec
+      putDateValidOperationSpec,
     );
   }
 
@@ -586,11 +586,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: DictionaryGetDateInvalidNullOptionalParams
+    options?: DictionaryGetDateInvalidNullOptionalParams,
   ): Promise<DictionaryGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateInvalidNullOperationSpec
+      getDateInvalidNullOperationSpec,
     );
   }
 
@@ -599,11 +599,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: DictionaryGetDateInvalidCharsOptionalParams
+    options?: DictionaryGetDateInvalidCharsOptionalParams,
   ): Promise<DictionaryGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateInvalidCharsOperationSpec
+      getDateInvalidCharsOperationSpec,
     );
   }
 
@@ -613,11 +613,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: DictionaryGetDateTimeValidOptionalParams
+    options?: DictionaryGetDateTimeValidOptionalParams,
   ): Promise<DictionaryGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeValidOperationSpec
+      getDateTimeValidOperationSpec,
     );
   }
 
@@ -630,11 +630,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateTimeValid(
     arrayBody: { [propertyName: string]: Date },
-    options?: DictionaryPutDateTimeValidOptionalParams
+    options?: DictionaryPutDateTimeValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateTimeValidOperationSpec
+      putDateTimeValidOperationSpec,
     );
   }
 
@@ -643,11 +643,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: DictionaryGetDateTimeInvalidNullOptionalParams
+    options?: DictionaryGetDateTimeInvalidNullOptionalParams,
   ): Promise<DictionaryGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeInvalidNullOperationSpec
+      getDateTimeInvalidNullOperationSpec,
     );
   }
 
@@ -656,11 +656,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: DictionaryGetDateTimeInvalidCharsOptionalParams
+    options?: DictionaryGetDateTimeInvalidCharsOptionalParams,
   ): Promise<DictionaryGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeInvalidCharsOperationSpec
+      getDateTimeInvalidCharsOperationSpec,
     );
   }
 
@@ -670,11 +670,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: DictionaryGetDateTimeRfc1123ValidOptionalParams
+    options?: DictionaryGetDateTimeRfc1123ValidOptionalParams,
   ): Promise<DictionaryGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeRfc1123ValidOperationSpec
+      getDateTimeRfc1123ValidOperationSpec,
     );
   }
 
@@ -687,11 +687,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDateTimeRfc1123Valid(
     arrayBody: { [propertyName: string]: Date },
-    options?: DictionaryPutDateTimeRfc1123ValidOptionalParams
+    options?: DictionaryPutDateTimeRfc1123ValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateTimeRfc1123ValidOperationSpec
+      putDateTimeRfc1123ValidOperationSpec,
     );
   }
 
@@ -700,11 +700,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: DictionaryGetDurationValidOptionalParams
+    options?: DictionaryGetDurationValidOptionalParams,
   ): Promise<DictionaryGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDurationValidOperationSpec
+      getDurationValidOperationSpec,
     );
   }
 
@@ -715,11 +715,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDurationValid(
     arrayBody: { [propertyName: string]: string },
-    options?: DictionaryPutDurationValidOptionalParams
+    options?: DictionaryPutDurationValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDurationValidOperationSpec
+      putDurationValidOperationSpec,
     );
   }
 
@@ -729,11 +729,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: DictionaryGetByteValidOptionalParams
+    options?: DictionaryGetByteValidOptionalParams,
   ): Promise<DictionaryGetByteValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getByteValidOperationSpec
+      getByteValidOperationSpec,
     );
   }
 
@@ -746,11 +746,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putByteValid(
     arrayBody: { [propertyName: string]: Uint8Array },
-    options?: DictionaryPutByteValidOptionalParams
+    options?: DictionaryPutByteValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putByteValidOperationSpec
+      putByteValidOperationSpec,
     );
   }
 
@@ -759,11 +759,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: DictionaryGetByteInvalidNullOptionalParams
+    options?: DictionaryGetByteInvalidNullOptionalParams,
   ): Promise<DictionaryGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getByteInvalidNullOperationSpec
+      getByteInvalidNullOperationSpec,
     );
   }
 
@@ -773,11 +773,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: DictionaryGetBase64UrlOptionalParams
+    options?: DictionaryGetBase64UrlOptionalParams,
   ): Promise<DictionaryGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBase64UrlOperationSpec
+      getBase64UrlOperationSpec,
     );
   }
 
@@ -786,11 +786,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: DictionaryGetComplexNullOptionalParams
+    options?: DictionaryGetComplexNullOptionalParams,
   ): Promise<DictionaryGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexNullOperationSpec
+      getComplexNullOperationSpec,
     );
   }
 
@@ -799,11 +799,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: DictionaryGetComplexEmptyOptionalParams
+    options?: DictionaryGetComplexEmptyOptionalParams,
   ): Promise<DictionaryGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexEmptyOperationSpec
+      getComplexEmptyOperationSpec,
     );
   }
 
@@ -813,11 +813,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: DictionaryGetComplexItemNullOptionalParams
+    options?: DictionaryGetComplexItemNullOptionalParams,
   ): Promise<DictionaryGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexItemNullOperationSpec
+      getComplexItemNullOperationSpec,
     );
   }
 
@@ -827,11 +827,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: DictionaryGetComplexItemEmptyOptionalParams
+    options?: DictionaryGetComplexItemEmptyOptionalParams,
   ): Promise<DictionaryGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexItemEmptyOperationSpec
+      getComplexItemEmptyOperationSpec,
     );
   }
 
@@ -841,11 +841,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: DictionaryGetComplexValidOptionalParams
+    options?: DictionaryGetComplexValidOptionalParams,
   ): Promise<DictionaryGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexValidOperationSpec
+      getComplexValidOperationSpec,
     );
   }
 
@@ -858,11 +858,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putComplexValid(
     arrayBody: { [propertyName: string]: Widget },
-    options?: DictionaryPutComplexValidOptionalParams
+    options?: DictionaryPutComplexValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putComplexValidOperationSpec
+      putComplexValidOperationSpec,
     );
   }
 
@@ -871,11 +871,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: DictionaryGetArrayNullOptionalParams
+    options?: DictionaryGetArrayNullOptionalParams,
   ): Promise<DictionaryGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayNullOperationSpec
+      getArrayNullOperationSpec,
     );
   }
 
@@ -884,11 +884,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: DictionaryGetArrayEmptyOptionalParams
+    options?: DictionaryGetArrayEmptyOptionalParams,
   ): Promise<DictionaryGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayEmptyOperationSpec
+      getArrayEmptyOperationSpec,
     );
   }
 
@@ -897,11 +897,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: DictionaryGetArrayItemNullOptionalParams
+    options?: DictionaryGetArrayItemNullOptionalParams,
   ): Promise<DictionaryGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayItemNullOperationSpec
+      getArrayItemNullOperationSpec,
     );
   }
 
@@ -910,11 +910,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: DictionaryGetArrayItemEmptyOptionalParams
+    options?: DictionaryGetArrayItemEmptyOptionalParams,
   ): Promise<DictionaryGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayItemEmptyOperationSpec
+      getArrayItemEmptyOperationSpec,
     );
   }
 
@@ -923,11 +923,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: DictionaryGetArrayValidOptionalParams
+    options?: DictionaryGetArrayValidOptionalParams,
   ): Promise<DictionaryGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayValidOperationSpec
+      getArrayValidOperationSpec,
     );
   }
 
@@ -939,11 +939,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putArrayValid(
     arrayBody: { [propertyName: string]: string[] },
-    options?: DictionaryPutArrayValidOptionalParams
+    options?: DictionaryPutArrayValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putArrayValidOperationSpec
+      putArrayValidOperationSpec,
     );
   }
 
@@ -952,11 +952,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: DictionaryGetDictionaryNullOptionalParams
+    options?: DictionaryGetDictionaryNullOptionalParams,
   ): Promise<DictionaryGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryNullOperationSpec
+      getDictionaryNullOperationSpec,
     );
   }
 
@@ -965,11 +965,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: DictionaryGetDictionaryEmptyOptionalParams
+    options?: DictionaryGetDictionaryEmptyOptionalParams,
   ): Promise<DictionaryGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryEmptyOperationSpec
+      getDictionaryEmptyOperationSpec,
     );
   }
 
@@ -979,11 +979,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: DictionaryGetDictionaryItemNullOptionalParams
+    options?: DictionaryGetDictionaryItemNullOptionalParams,
   ): Promise<DictionaryGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryItemNullOperationSpec
+      getDictionaryItemNullOperationSpec,
     );
   }
 
@@ -993,11 +993,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: DictionaryGetDictionaryItemEmptyOptionalParams
+    options?: DictionaryGetDictionaryItemEmptyOptionalParams,
   ): Promise<DictionaryGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryItemEmptyOperationSpec
+      getDictionaryItemEmptyOperationSpec,
     );
   }
 
@@ -1008,11 +1008,11 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: DictionaryGetDictionaryValidOptionalParams
+    options?: DictionaryGetDictionaryValidOptionalParams,
   ): Promise<DictionaryGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryValidOperationSpec
+      getDictionaryValidOperationSpec,
     );
   }
 
@@ -1027,11 +1027,11 @@ export class DictionaryImpl implements Dictionary {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: { [propertyName: string]: string } },
-    options?: DictionaryPutDictionaryValidOptionalParams
+    options?: DictionaryPutDictionaryValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDictionaryValidOperationSpec
+      putDictionaryValidOperationSpec,
     );
   }
 }
@@ -1044,16 +1044,16 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/empty",
@@ -1061,16 +1061,16 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/empty",
@@ -1078,14 +1078,14 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getNullValueOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/nullvalue",
@@ -1093,16 +1093,16 @@ const getNullValueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNullKeyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/nullkey",
@@ -1110,16 +1110,16 @@ const getNullKeyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyStringKeyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/keyemptystring",
@@ -1127,16 +1127,16 @@ const getEmptyStringKeyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/invalid",
@@ -1144,16 +1144,16 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/boolean/tfft",
@@ -1161,16 +1161,16 @@ const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/boolean/tfft",
@@ -1178,14 +1178,14 @@ const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/boolean/true.null.false",
@@ -1193,16 +1193,16 @@ const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/boolean/true.boolean.false",
@@ -1210,16 +1210,16 @@ const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntegerValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/integer/1.-1.3.300",
@@ -1227,16 +1227,16 @@ const getIntegerValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putIntegerValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/integer/1.-1.3.300",
@@ -1244,14 +1244,14 @@ const putIntegerValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/integer/1.null.zero",
@@ -1259,16 +1259,16 @@ const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/integer/1.integer.0",
@@ -1276,16 +1276,16 @@ const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLongValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/long/1.-1.3.300",
@@ -1293,16 +1293,16 @@ const getLongValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putLongValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/long/1.-1.3.300",
@@ -1310,14 +1310,14 @@ const putLongValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/long/1.null.zero",
@@ -1325,16 +1325,16 @@ const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/long/1.integer.0",
@@ -1342,16 +1342,16 @@ const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getFloatValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/float/0--0.01-1.2e20",
@@ -1359,16 +1359,16 @@ const getFloatValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putFloatValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/float/0--0.01-1.2e20",
@@ -1376,14 +1376,14 @@ const putFloatValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/float/0.0-null-1.2e20",
@@ -1391,16 +1391,16 @@ const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/float/1.number.0",
@@ -1408,16 +1408,16 @@ const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDoubleValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/double/0--0.01-1.2e20",
@@ -1425,16 +1425,16 @@ const getDoubleValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDoubleValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/double/0--0.01-1.2e20",
@@ -1442,14 +1442,14 @@ const putDoubleValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/double/0.0-null-1.2e20",
@@ -1457,16 +1457,16 @@ const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/double/1.number.0",
@@ -1474,16 +1474,16 @@ const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getStringValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/string/foo1.foo2.foo3",
@@ -1491,16 +1491,16 @@ const getStringValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putStringValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/string/foo1.foo2.foo3",
@@ -1508,14 +1508,14 @@ const putStringValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getStringWithNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/string/foo.null.foo2",
@@ -1523,16 +1523,16 @@ const getStringWithNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/string/foo.123.foo2",
@@ -1540,16 +1540,16 @@ const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date/valid",
@@ -1557,16 +1557,16 @@ const getDateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Date" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date/valid",
@@ -1574,14 +1574,14 @@ const putDateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date/invalidnull",
@@ -1589,16 +1589,16 @@ const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Date" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date/invalidchars",
@@ -1606,16 +1606,16 @@ const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Date" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time/valid",
@@ -1623,16 +1623,16 @@ const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time/valid",
@@ -1640,14 +1640,14 @@ const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time/invalidnull",
@@ -1655,16 +1655,16 @@ const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time/invalidchars",
@@ -1672,16 +1672,16 @@ const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time-rfc1123/valid",
@@ -1691,17 +1691,17 @@ const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "DateTimeRfc1123" } }
-        }
-      }
+          value: { type: { name: "DateTimeRfc1123" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/date-time-rfc1123/valid",
@@ -1709,14 +1709,14 @@ const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDurationValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/duration/valid",
@@ -1724,16 +1724,16 @@ const getDurationValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "TimeSpan" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "TimeSpan" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDurationValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/duration/valid",
@@ -1741,14 +1741,14 @@ const putDurationValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody6,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getByteValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/byte/valid",
@@ -1756,16 +1756,16 @@ const getByteValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "ByteArray" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "ByteArray" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putByteValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/byte/valid",
@@ -1773,14 +1773,14 @@ const putByteValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody7,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/byte/invalidnull",
@@ -1788,16 +1788,16 @@ const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "ByteArray" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "ByteArray" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBase64UrlOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/prim/base64url/valid",
@@ -1805,16 +1805,16 @@ const getBase64UrlOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Base64Url" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Base64Url" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/null",
@@ -1824,17 +1824,17 @@ const getComplexNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "Widget" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "Widget" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/empty",
@@ -1844,17 +1844,17 @@ const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "Widget" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "Widget" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/itemnull",
@@ -1864,17 +1864,17 @@ const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "Widget" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "Widget" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/itemempty",
@@ -1884,17 +1884,17 @@ const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "Widget" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "Widget" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/valid",
@@ -1904,17 +1904,17 @@ const getComplexValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "Widget" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "Widget" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putComplexValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/complex/valid",
@@ -1922,14 +1922,14 @@ const putComplexValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody8,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getArrayNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/null",
@@ -1940,18 +1940,18 @@ const getArrayNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/empty",
@@ -1962,18 +1962,18 @@ const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/itemnull",
@@ -1984,18 +1984,18 @@ const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/itemempty",
@@ -2006,18 +2006,18 @@ const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/valid",
@@ -2028,18 +2028,18 @@ const getArrayValidOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putArrayValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/array/valid",
@@ -2047,14 +2047,14 @@ const putArrayValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody9,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/null",
@@ -2065,18 +2065,18 @@ const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/empty",
@@ -2087,18 +2087,18 @@ const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/itemnull",
@@ -2109,18 +2109,18 @@ const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/itemempty",
@@ -2131,18 +2131,18 @@ const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/valid",
@@ -2153,18 +2153,18 @@ const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDictionaryValidOperationSpec: coreClient.OperationSpec = {
   path: "/dictionary/dictionary/valid",
@@ -2172,12 +2172,12 @@ const putDictionaryValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody10,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

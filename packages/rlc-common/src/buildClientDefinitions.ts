@@ -14,6 +14,7 @@ import * as path from "path";
 
 import {
   buildMethodDefinitions,
+  getGeneratedWrapperTypes,
   getPathParamDefinitions
 } from "./helpers/operationHelpers.js";
 import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
@@ -111,6 +112,21 @@ export function buildClientDefinitions(model: RLCModel) {
     });
   }
 
+  if (
+    (model.importInfo.internalImports.rlcClientDefinition.importsSet?.size ??
+      0) > 0
+  ) {
+    clientDefinitionsFile.addImportDeclaration({
+      namedImports: Array.from(
+        model.importInfo.internalImports.rlcClientDefinition.importsSet!
+      ),
+      moduleSpecifier: getImportModuleName(
+        { cjsName: "./models", esModulesName: "./models.js" },
+        model
+      )
+    });
+  }
+
   options.clientImports.add("Client");
   options.clientImports.add("StreamableMethod");
   clientDefinitionsFile.addImportDeclarations([
@@ -153,6 +169,9 @@ function getPathFirstRoutesInterfaceDefinition(
       sourcefile
     );
     const pathParams = paths[key].pathParameters;
+    getGeneratedWrapperTypes(pathParams).forEach((p) =>
+      options.importedParameters.add(p.name ?? p.type)
+    );
     signatures.push({
       docs: [
         `Resource for '${key

@@ -26,10 +26,11 @@ async function showNetworkInterfaceEffectiveRouteTables() {
   const networkInterfaceName = "nic1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkInterfaces.beginGetEffectiveRouteTableAndWait(
-    resourceGroupName,
-    networkInterfaceName
-  );
+  const result =
+    await client.networkInterfaces.beginGetEffectiveRouteTableAndWait(
+      resourceGroupName,
+      networkInterfaceName,
+    );
   console.log(result);
 }
 

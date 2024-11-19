@@ -11,7 +11,7 @@ import {
   PetGetPetByIdResponse,
   PetDoSomethingOptionalParams,
   PetDoSomethingResponse,
-  PetHasModelsParamOptionalParams
+  PetHasModelsParamOptionalParams,
 } from "../models";
 
 /** Interface representing a Pet. */
@@ -23,7 +23,7 @@ export interface Pet {
    */
   getPetById(
     petId: string,
-    options?: PetGetPetByIdOptionalParams
+    options?: PetGetPetByIdOptionalParams,
   ): Promise<PetGetPetByIdResponse>;
   /**
    * Asks pet to do something
@@ -32,7 +32,7 @@ export interface Pet {
    */
   doSomething(
     whatAction: string,
-    options?: PetDoSomethingOptionalParams
+    options?: PetDoSomethingOptionalParams,
   ): Promise<PetDoSomethingResponse>;
   /**
    * Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't

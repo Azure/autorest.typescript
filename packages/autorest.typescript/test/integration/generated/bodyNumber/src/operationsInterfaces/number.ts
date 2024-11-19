@@ -44,7 +44,7 @@ import {
   NumberGetSmallDoubleResponse,
   NumberPutSmallDecimalOptionalParams,
   NumberGetSmallDecimalOptionalParams,
-  NumberGetSmallDecimalResponse
+  NumberGetSmallDecimalResponse,
 } from "../models";
 
 /** Interface representing a NumberOperations. */
@@ -54,28 +54,28 @@ export interface NumberOperations {
    * @param options The options parameters.
    */
   getNull(
-    options?: NumberGetNullOptionalParams
+    options?: NumberGetNullOptionalParams,
   ): Promise<NumberGetNullResponse>;
   /**
    * Get invalid float Number value
    * @param options The options parameters.
    */
   getInvalidFloat(
-    options?: NumberGetInvalidFloatOptionalParams
+    options?: NumberGetInvalidFloatOptionalParams,
   ): Promise<NumberGetInvalidFloatResponse>;
   /**
    * Get invalid double Number value
    * @param options The options parameters.
    */
   getInvalidDouble(
-    options?: NumberGetInvalidDoubleOptionalParams
+    options?: NumberGetInvalidDoubleOptionalParams,
   ): Promise<NumberGetInvalidDoubleResponse>;
   /**
    * Get invalid decimal Number value
    * @param options The options parameters.
    */
   getInvalidDecimal(
-    options?: NumberGetInvalidDecimalOptionalParams
+    options?: NumberGetInvalidDecimalOptionalParams,
   ): Promise<NumberGetInvalidDecimalResponse>;
   /**
    * Put big float value 3.402823e+20
@@ -84,14 +84,14 @@ export interface NumberOperations {
    */
   putBigFloat(
     numberBody: number,
-    options?: NumberPutBigFloatOptionalParams
+    options?: NumberPutBigFloatOptionalParams,
   ): Promise<void>;
   /**
    * Get big float value 3.402823e+20
    * @param options The options parameters.
    */
   getBigFloat(
-    options?: NumberGetBigFloatOptionalParams
+    options?: NumberGetBigFloatOptionalParams,
   ): Promise<NumberGetBigFloatResponse>;
   /**
    * Put big double value 2.5976931e+101
@@ -100,42 +100,42 @@ export interface NumberOperations {
    */
   putBigDouble(
     numberBody: number,
-    options?: NumberPutBigDoubleOptionalParams
+    options?: NumberPutBigDoubleOptionalParams,
   ): Promise<void>;
   /**
    * Get big double value 2.5976931e+101
    * @param options The options parameters.
    */
   getBigDouble(
-    options?: NumberGetBigDoubleOptionalParams
+    options?: NumberGetBigDoubleOptionalParams,
   ): Promise<NumberGetBigDoubleResponse>;
   /**
    * Put big double value 99999999.99
    * @param options The options parameters.
    */
   putBigDoublePositiveDecimal(
-    options?: NumberPutBigDoublePositiveDecimalOptionalParams
+    options?: NumberPutBigDoublePositiveDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get big double value 99999999.99
    * @param options The options parameters.
    */
   getBigDoublePositiveDecimal(
-    options?: NumberGetBigDoublePositiveDecimalOptionalParams
+    options?: NumberGetBigDoublePositiveDecimalOptionalParams,
   ): Promise<NumberGetBigDoublePositiveDecimalResponse>;
   /**
    * Put big double value -99999999.99
    * @param options The options parameters.
    */
   putBigDoubleNegativeDecimal(
-    options?: NumberPutBigDoubleNegativeDecimalOptionalParams
+    options?: NumberPutBigDoubleNegativeDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get big double value -99999999.99
    * @param options The options parameters.
    */
   getBigDoubleNegativeDecimal(
-    options?: NumberGetBigDoubleNegativeDecimalOptionalParams
+    options?: NumberGetBigDoubleNegativeDecimalOptionalParams,
   ): Promise<NumberGetBigDoubleNegativeDecimalResponse>;
   /**
    * Put big decimal value 2.5976931e+101
@@ -144,42 +144,42 @@ export interface NumberOperations {
    */
   putBigDecimal(
     numberBody: number,
-    options?: NumberPutBigDecimalOptionalParams
+    options?: NumberPutBigDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get big decimal value 2.5976931e+101
    * @param options The options parameters.
    */
   getBigDecimal(
-    options?: NumberGetBigDecimalOptionalParams
+    options?: NumberGetBigDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalResponse>;
   /**
    * Put big decimal value 99999999.99
    * @param options The options parameters.
    */
   putBigDecimalPositiveDecimal(
-    options?: NumberPutBigDecimalPositiveDecimalOptionalParams
+    options?: NumberPutBigDecimalPositiveDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get big decimal value 99999999.99
    * @param options The options parameters.
    */
   getBigDecimalPositiveDecimal(
-    options?: NumberGetBigDecimalPositiveDecimalOptionalParams
+    options?: NumberGetBigDecimalPositiveDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalPositiveDecimalResponse>;
   /**
    * Put big decimal value -99999999.99
    * @param options The options parameters.
    */
   putBigDecimalNegativeDecimal(
-    options?: NumberPutBigDecimalNegativeDecimalOptionalParams
+    options?: NumberPutBigDecimalNegativeDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get big decimal value -99999999.99
    * @param options The options parameters.
    */
   getBigDecimalNegativeDecimal(
-    options?: NumberGetBigDecimalNegativeDecimalOptionalParams
+    options?: NumberGetBigDecimalNegativeDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalNegativeDecimalResponse>;
   /**
    * Put small float value 3.402823e-20
@@ -188,14 +188,14 @@ export interface NumberOperations {
    */
   putSmallFloat(
     numberBody: number,
-    options?: NumberPutSmallFloatOptionalParams
+    options?: NumberPutSmallFloatOptionalParams,
   ): Promise<void>;
   /**
    * Get big double value 3.402823e-20
    * @param options The options parameters.
    */
   getSmallFloat(
-    options?: NumberGetSmallFloatOptionalParams
+    options?: NumberGetSmallFloatOptionalParams,
   ): Promise<NumberGetSmallFloatResponse>;
   /**
    * Put small double value 2.5976931e-101
@@ -204,14 +204,14 @@ export interface NumberOperations {
    */
   putSmallDouble(
     numberBody: number,
-    options?: NumberPutSmallDoubleOptionalParams
+    options?: NumberPutSmallDoubleOptionalParams,
   ): Promise<void>;
   /**
    * Get big double value 2.5976931e-101
    * @param options The options parameters.
    */
   getSmallDouble(
-    options?: NumberGetSmallDoubleOptionalParams
+    options?: NumberGetSmallDoubleOptionalParams,
   ): Promise<NumberGetSmallDoubleResponse>;
   /**
    * Put small decimal value 2.5976931e-101
@@ -220,13 +220,13 @@ export interface NumberOperations {
    */
   putSmallDecimal(
     numberBody: number,
-    options?: NumberPutSmallDecimalOptionalParams
+    options?: NumberPutSmallDecimalOptionalParams,
   ): Promise<void>;
   /**
    * Get small decimal value 2.5976931e-101
    * @param options The options parameters.
    */
   getSmallDecimal(
-    options?: NumberGetSmallDecimalOptionalParams
+    options?: NumberGetSmallDecimalOptionalParams,
   ): Promise<NumberGetSmallDecimalResponse>;
 }

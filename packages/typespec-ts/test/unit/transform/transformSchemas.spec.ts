@@ -138,165 +138,279 @@ describe("#transformSchemas", () => {
       assert.strictEqual(property!.isConstant, true);
     });
 
-    it("generate literal union", async () => {
-      const property = await verifyFirstProperty(`true | "test" | 1`);
-      assert.isNotNull(property);
-      assert.strictEqual(property!.type, `union`);
-      assert.strictEqual(property!.typeName, 'true | "test" | 1');
-      assert.strictEqual(property!.outputTypeName, 'true | "test" | 1');
-      assert.isUndefined(property!.isConstant);
-      assert.strictEqual(property!.enum!.length, 3);
-      assert.strictEqual(property!.enum![0].type, "true");
-      assert.strictEqual(property!.enum![0].isConstant, true);
-    });
+    describe("union", () => {
+      describe("named union", () => {
+        it("should generate a name for union", async () => {
+          const schemaOutput = await emitSchemasFromTypeSpec(
+            `
+            @doc("Translation Language Values")
+            union TranslationLanguageValues {
+              @doc("English descriptions")
+              English: "English",
 
-    it("generate string literal union", async () => {
-      const property = await verifyFirstProperty(`"a" | "test"`);
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        enum: [
-          { type: '"a"', isConstant: true },
-          { type: '"test"', isConstant: true }
-        ],
-        type: "union",
-        typeName: '"a" | "test"',
-        outputTypeName: '"a" | "test"',
-        required: true,
-        usage: ["input", "output"],
-        description: undefined
-      } as any);
-    });
-
-    it("generate primitive union", async () => {
-      const property = await verifyFirstProperty(
-        `string | int32 | boolean | utcDateTime`
-      );
-      assert.isNotNull(property);
-      // console.log(property);
-      assert.deepEqual(property, {
-        enum: [
-          {
-            type: "string",
-            description: "A sequence of textual characters."
-          },
-          { type: "number", format: "int32" },
-          { type: "boolean", description: undefined },
-          {
-            type: "string",
-            format: undefined,
+              @doc("Chinese descriptions")
+              Chinese: "Chinese",
+            }
+            model Test {
+              prop: TranslationLanguageValues;
+            }
+            @route("/models")
+            @get
+            op getModel(@body input: Test): Test;
+          `,
+            {
+              needAzureCore: true
+            }
+          );
+          assert.isNotNull(schemaOutput);
+          const first = schemaOutput?.[0] as ObjectSchema;
+          const property = first.properties![`"prop"`];
+          // console.log(first, property, property?.enum);
+          assert.isNotNull(property);
+          assert.deepEqual(property, {
+            name: "TranslationLanguageValues",
+            type: "object",
+            typeName: "TranslationLanguageValues",
+            outputTypeName: "TranslationLanguageValuesOutput",
+            alias: '"English" | "Chinese"',
+            outputAlias: '"English" | "Chinese"',
+            required: true,
+            usage: ["input", "output"],
             description: undefined,
-            typeName: "Date | string",
-            outputTypeName: "string"
+            enum: [
+              {
+                isConstant: true,
+                type: '"English"'
+              },
+              {
+                isConstant: true,
+                type: '"Chinese"'
+              }
+            ]
+          } as any);
+        });
+
+        it("union of union should be generated correctly", async () => {
+          const schemaOutput = await emitSchemasFromTypeSpec(
+            `
+            @doc("Translation Language Values")
+            union TranslationLanguageValues {
+              @doc("English descriptions")
+              English: "English",
+
+              @doc("Chinese descriptions")
+              Chinese: "Chinese",
+
+              Others: OtherValues
+            }
+
+            union OtherValues {
+              "Japanese"
+            }
+            model Test {
+              prop: TranslationLanguageValues;
+            }
+            @route("/models")
+            @get
+            op getModel(@body input: Test): Test;
+          `,
+            {
+              needAzureCore: true
+            }
+          );
+          assert.isNotNull(schemaOutput);
+          const first = schemaOutput?.[0] as ObjectSchema;
+          const property = first.properties![`"prop"`];
+          // console.log(first, property, property?.enum);
+          assert.isNotNull(property);
+          assert.deepEqual(property, {
+            name: "TranslationLanguageValues",
+            type: "object",
+            typeName: "TranslationLanguageValues",
+            outputTypeName: "TranslationLanguageValuesOutput",
+            alias: '"English" | "Chinese" | OtherValues',
+            outputAlias: '"English" | "Chinese" | OtherValuesOutput',
+            required: true,
+            usage: ["input", "output"],
+            description: undefined,
+            enum: [
+              {
+                isConstant: true,
+                type: '"English"'
+              },
+              {
+                isConstant: true,
+                type: '"Chinese"'
+              },
+              {
+                enum: [
+                  {
+                    isConstant: true,
+                    type: '"Japanese"'
+                  }
+                ],
+                name: "OtherValues",
+                type: "object",
+                typeName: "OtherValues",
+                outputTypeName: "OtherValuesOutput",
+                alias: '"Japanese"',
+                outputAlias: '"Japanese"'
+              }
+            ]
+          } as any);
+        });
+      });
+      describe("anonymous union", () => {
+        it("generate literal union", async () => {
+          const property = await verifyFirstProperty(`true | "test" | 1`);
+          assert.isNotNull(property);
+          assert.strictEqual(property!.type, `union`);
+          assert.strictEqual(property!.typeName, 'true | "test" | 1');
+          assert.strictEqual(property!.outputTypeName, 'true | "test" | 1');
+          assert.isUndefined(property!.isConstant);
+          assert.strictEqual(property!.enum!.length, 3);
+          assert.strictEqual(property!.enum![0].type, "true");
+          assert.strictEqual(property!.enum![0].isConstant, true);
+        });
+
+        it("generate string literal union", async () => {
+          const property = await verifyFirstProperty(`"a" | "test"`);
+          assert.isNotNull(property);
+          assert.deepEqual(property, {
+            enum: [
+              { type: '"a"', isConstant: true },
+              { type: '"test"', isConstant: true }
+            ],
+            type: "union",
+            typeName: '"a" | "test"',
+            outputTypeName: '"a" | "test"',
+            required: true,
+            usage: ["input", "output"],
+            description: undefined
+          } as any);
+        });
+
+        it("generate primitive union", async () => {
+          const property = await verifyFirstProperty(
+            `string | int32 | boolean | utcDateTime`
+          );
+          assert.isNotNull(property);
+          // console.log(property);
+          assert.deepEqual(property, {
+            enum: [
+              {
+                type: "string",
+                description: "A sequence of textual characters."
+              },
+              { type: "number", format: "int32" },
+              { type: "boolean", description: undefined },
+              {
+                type: "string",
+                format: undefined,
+                description: undefined,
+                typeName: "Date | string",
+                outputTypeName: "string"
+              }
+            ],
+            type: "union",
+            typeName: "string | number | boolean | Date | string",
+            outputTypeName: "string | number | boolean | string",
+            required: true,
+            usage: ["input", "output"],
+            description: undefined
+          } as any);
+        });
+      });
+    });
+
+    describe("enum", () => {
+      it("should generate enum name", async () => {
+        const schemaOutput = await emitSchemasFromTypeSpec(
+          `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
           }
-        ],
-        type: "union",
-        typeName: "string | number | boolean | Date | string",
-        outputTypeName: "string | number | boolean | string",
-        required: true,
-        usage: ["input", "output"],
-        description: undefined
-      } as any);
-    });
+          model Test {
+              prop: TranslationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: Test): Test;
+        `,
+          {
+            needAzureCore: true
+          }
+        );
+        assert.isNotNull(schemaOutput);
+        const first = schemaOutput?.[0] as ObjectSchema;
+        const property = first.properties![`"prop"`];
+        // console.log(first, property, property?.enum);
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          type: "object",
+          name: "TranslationLanguageValues",
+          typeName: "TranslationLanguageValues",
+          outputTypeName: "TranslationLanguageValuesOutput",
+          description: undefined,
+          memberType: "string",
+          enum: [
+            {
+              description: "English descriptions",
+              isConstant: true,
+              type: '"English"'
+            },
+            {
+              description: "Chinese descriptions",
+              isConstant: true,
+              type: '"Chinese"'
+            }
+          ],
+          alias: '"English" | "Chinese"',
+          outputAlias: '"English" | "Chinese"',
+          required: true,
+          usage: ["input", "output"]
+        } as any);
+      });
 
-    it("generate fixed enum", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      // console.log(first, property, property?.enum);
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English"|"Chinese"',
-        description: undefined,
-        enum: ["English", "Chinese"],
-        required: true,
-        usage: ["input", "output"]
-      } as any);
-    });
-
-    it("generate extensible enum", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English"|"Chinese"',
-        name: "string",
-        typeName: "string",
-        description: "Possible values: English, Chinese",
-        enum: ["English", "Chinese"],
-        required: true,
-        usage: ["input", "output"]
-      } as any);
-    });
-
-    it("generate enum member", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues.English;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English"',
-        description: undefined,
-        isConstant: true,
-        required: true,
-        usage: ["input", "output"]
-      } as any);
+      it("generate enum member", async () => {
+        const schemaOutput = await emitSchemasFromTypeSpec(
+          `
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }
+          model Test {
+              prop: TranslationLanguageValues.English;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: Test): Test;
+        `,
+          {
+            needAzureCore: true
+          }
+        );
+        assert.isNotNull(schemaOutput);
+        const first = schemaOutput?.[0] as ObjectSchema;
+        const property = first.properties![`"prop"`];
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          type: '"English"',
+          description: undefined,
+          isConstant: true,
+          required: true,
+          usage: ["input", "output"]
+        } as any);
+      });
     });
 
     it("generate union model", async () => {
@@ -315,7 +429,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -332,6 +448,8 @@ describe("#transformSchemas", () => {
             name: "A",
             type: "object",
             description: "",
+            fromCore: false,
+            isMultipartBody: false,
             typeName: "A",
             properties: {
               '"foo"': {
@@ -348,6 +466,8 @@ describe("#transformSchemas", () => {
             name: "B",
             type: "object",
             description: "",
+            fromCore: false,
+            isMultipartBody: false,
             typeName: "B",
             properties: {
               '"bar"': {
@@ -379,7 +499,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -395,6 +517,8 @@ describe("#transformSchemas", () => {
           name: "A",
           type: "object",
           description: "",
+          fromCore: false,
+          isMultipartBody: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -418,7 +542,7 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {needAzureCore: true}
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -436,6 +560,8 @@ describe("#transformSchemas", () => {
           name: "A",
           type: "object",
           description: "",
+          fromCore: false,
+          isMultipartBody: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -462,7 +588,9 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -480,6 +608,8 @@ describe("#transformSchemas", () => {
               name: "A",
               type: "object",
               description: "",
+              fromCore: false,
+              isMultipartBody: false,
               typeName: "A",
               properties: {
                 '"foo"': {
@@ -496,6 +626,8 @@ describe("#transformSchemas", () => {
               name: "B",
               type: "object",
               description: "",
+              fromCore: false,
+              isMultipartBody: false,
               typeName: "B",
               properties: {
                 '"baz"': {
@@ -527,6 +659,8 @@ describe("#transformSchemas", () => {
         name: "",
         type: "unknown",
         description: undefined,
+        fromCore: false,
+        isMultipartBody: false,
         typeName: "Record<string, unknown>",
         outputTypeName: "Record<string, any>",
         properties: {},
@@ -549,6 +683,8 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": string;"arguments": string;}',
         outputTypeName: '{"name": string;"arguments": string;}',
         properties: {
@@ -580,6 +716,8 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": {"foo": {"bar": string;};};}',
         outputTypeName: '{"name": {"foo": {"bar": string;};};}',
         properties: {
@@ -587,6 +725,8 @@ describe("#transformSchemas", () => {
             name: "",
             type: "object",
             description: undefined,
+            fromCore: false,
+            isMultipartBody: false,
             typeName: '{"foo": {"bar": string;};}',
             outputTypeName: '{"foo": {"bar": string;};}',
             required: true,
@@ -595,6 +735,8 @@ describe("#transformSchemas", () => {
               '"foo"': {
                 name: "",
                 type: "object",
+                fromCore: false,
+                isMultipartBody: false,
                 description: undefined,
                 typeName: '{"bar": string;}',
                 outputTypeName: '{"bar": string;}',
@@ -627,6 +769,8 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": Test;}',
         outputTypeName: '{"name": TestOutput;}',
         properties: {
@@ -634,6 +778,8 @@ describe("#transformSchemas", () => {
             name: "Test",
             type: "object",
             description: undefined,
+            fromCore: false,
+            isMultipartBody: false,
             typeName: "Test",
             outputTypeName: "TestOutput",
             properties: {},
@@ -664,6 +810,8 @@ describe("#transformSchemas", () => {
           name: "",
           type: "object",
           description: "",
+          fromCore: false,
+          isMultipartBody: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -699,6 +847,8 @@ describe("#transformSchemas", () => {
           name: "",
           type: "object",
           description: "",
+          fromCore: false,
+          isMultipartBody: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -733,6 +883,8 @@ describe("#transformSchemas", () => {
             name: "",
             type: "object",
             description: "",
+            fromCore: false,
+            isMultipartBody: false,
             typeName: '{"name": string;}',
             outputTypeName: '{"name": string;}',
             properties: {
@@ -745,7 +897,7 @@ describe("#transformSchemas", () => {
             },
             usage: ["input", "output"]
           },
-          { type: "null" }
+          { name: "null", type: "null" }
         ]
       } as any);
     });

@@ -29,7 +29,7 @@ async function listSecretsForAStaticSite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.listStaticSiteSecrets(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

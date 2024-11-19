@@ -30,7 +30,7 @@ async function listManagedInstancesByInstancePool() {
   const resArray = new Array();
   for await (let item of client.managedInstances.listByInstancePool(
     resourceGroupName,
-    instancePoolName
+    instancePoolName,
   )) {
     resArray.push(item);
   }
@@ -53,7 +53,7 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
   const resArray = new Array();
   for await (let item of client.managedInstances.listByInstancePool(
     resourceGroupName,
-    instancePoolName
+    instancePoolName,
   )) {
     resArray.push(item);
   }

@@ -29,7 +29,7 @@ async function listPacketCaptures() {
   const resArray = new Array();
   for await (let item of client.packetCaptures.list(
     resourceGroupName,
-    networkWatcherName
+    networkWatcherName,
   )) {
     resArray.push(item);
   }

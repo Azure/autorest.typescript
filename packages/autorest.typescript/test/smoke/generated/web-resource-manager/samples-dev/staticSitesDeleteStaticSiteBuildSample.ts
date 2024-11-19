@@ -31,7 +31,7 @@ async function deleteAStaticSiteBuild() {
   const result = await client.staticSites.beginDeleteStaticSiteBuildAndWait(
     resourceGroupName,
     name,
-    environmentName
+    environmentName,
   );
   console.log(result);
 }

@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { OperationGroupClashClient } from "../operationGroupClashClient";
 import {
   ProductApiV1ValueGetOptionalParams,
-  ProductApiV1ValueGetResponse
+  ProductApiV1ValueGetResponse,
 } from "../models";
 
 /** Class containing ProductOperations operations. */
@@ -22,11 +22,11 @@ export class ProductOperationsImpl implements ProductOperations {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ProductApiV1ValueGetOptionalParams
+    options?: ProductApiV1ValueGetOptionalParams,
   ): Promise<ProductApiV1ValueGetResponse> {
     return this.client.sendOperationRequest(
       { options },
-      apiV1ValueGetOperationSpec
+      apiV1ValueGetOperationSpec,
     );
   }
 }
@@ -39,12 +39,12 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
-    }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
+    },
   },
   queryParameters: [Parameters.pageRange],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
-  serializer
+  serializer,
 };

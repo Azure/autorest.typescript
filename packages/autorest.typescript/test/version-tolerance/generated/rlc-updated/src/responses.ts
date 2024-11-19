@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 
 /** Head request, no params. Initially has no query parameters. After evolution, a new optional query parameter is added */
-export interface HeadNoParams200Response extends HttpResponse {
+export interface ParamsHeadNoParams200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
@@ -13,19 +13,19 @@ export interface HeadNoParams200Response extends HttpResponse {
  * Get true Boolean value on path.
  *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
  */
-export interface GetRequired200Response extends HttpResponse {
+export interface ParamsGetRequired200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
-export interface PutRequiredOptional200Response extends HttpResponse {
+export interface ParamsPutRequiredOptional200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** POST a JSON or a JPEG */
-export interface PostParameters200Response extends HttpResponse {
+export interface ParamsPostParameters200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
@@ -34,16 +34,15 @@ export interface PostParameters200Response extends HttpResponse {
  * Delete something.
  *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path
  */
-export interface DeleteParameters204Response extends HttpResponse {
+export interface ParamsDeleteParameters204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /**
  * Get true Boolean value on path.
  *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
  */
-export interface GetOptional200Response extends HttpResponse {
+export interface ParamsGetOptional200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
@@ -52,7 +51,7 @@ export interface GetOptional200Response extends HttpResponse {
  * I'm a new operation.
  *  Initiallty neither path or method exist for this operation. After evolution, this is a new method in a new path
  */
-export interface GetNewOperation200Response extends HttpResponse {
+export interface ParamsGetNewOperation200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }

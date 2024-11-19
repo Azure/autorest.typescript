@@ -30,7 +30,7 @@ async function getAServerAutomaticTuningSettings() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAutomaticTuningOperations.get(
     resourceGroupName,
-    serverName
+    serverName,
   );
   console.log(result);
 }

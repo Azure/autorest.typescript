@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRoutePortAuthorization,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,12 +31,13 @@ async function createExpressRoutePortAuthorization() {
   const authorizationParameters: ExpressRoutePortAuthorization = {};
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRoutePortAuthorizations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    expressRoutePortName,
-    authorizationName,
-    authorizationParameters
-  );
+  const result =
+    await client.expressRoutePortAuthorizations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      expressRoutePortName,
+      authorizationName,
+      authorizationParameters,
+    );
   console.log(result);
 }
 

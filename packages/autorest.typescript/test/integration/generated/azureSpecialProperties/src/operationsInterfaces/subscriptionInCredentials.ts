@@ -11,7 +11,7 @@ import {
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
-  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
 } from "../models";
 
 /** Interface representing a SubscriptionInCredentials. */
@@ -22,7 +22,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalValid(
-    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to null,
@@ -30,7 +30,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalNull(
-    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -38,7 +38,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postMethodGlobalNotProvidedValid(
-    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -46,7 +46,7 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postPathGlobalValid(
-    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -54,6 +54,6 @@ export interface SubscriptionInCredentials {
    * @param options The options parameters.
    */
   postSwaggerGlobalValid(
-    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
   ): Promise<void>;
 }

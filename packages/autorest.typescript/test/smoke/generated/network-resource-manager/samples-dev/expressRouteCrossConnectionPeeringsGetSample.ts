@@ -31,7 +31,7 @@ async function getExpressRouteCrossConnectionBgpPeering() {
   const result = await client.expressRouteCrossConnectionPeerings.get(
     resourceGroupName,
     crossConnectionName,
-    peeringName
+    peeringName,
   );
   console.log(result);
 }

@@ -30,7 +30,7 @@ async function getAllElasticPoolsInAServer() {
   const resArray = new Array();
   for await (let item of client.elasticPools.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

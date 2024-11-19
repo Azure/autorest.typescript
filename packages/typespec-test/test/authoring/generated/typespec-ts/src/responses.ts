@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
@@ -11,9 +11,9 @@ import {
   PagedDeploymentOutput,
   DeploymentJobOutput,
   SwapDeploymentsJobOutput,
-  PagedSupportedLanguageOutput,
-  PagedTrainingConfigVersionOutput,
-} from "./outputModels";
+  SupportedLanguagesOutput,
+  TrainingConfigVersionsOutput,
+} from "./outputModels.js";
 
 export interface CreateOrUpdate200Headers {
   /** The location for monitoring the operation state. */
@@ -73,27 +73,27 @@ export interface GetDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetDefaultHeaders;
 }
 
-export interface DeleteOperation202Headers {
+export interface Delete202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface DeleteOperation202Response extends HttpResponse {
+export interface Delete202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
-  headers: RawHttpHeaders & DeleteOperation202Headers;
+  headers: RawHttpHeaders & Delete202Headers;
 }
 
-export interface DeleteOperationDefaultHeaders {
+export interface DeleteDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface DeleteOperationDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
+  headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
 /** The final response for long-running delete operation */
@@ -119,26 +119,26 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & ListProjectsDefaultHeaders;
 }
 
-export interface ExportOperation202Headers {
+export interface Export202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ExportOperation202Response extends HttpResponse {
+export interface Export202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & ExportOperation202Headers;
+  headers: RawHttpHeaders & Export202Headers;
 }
 
-export interface ExportOperationDefaultHeaders {
+export interface ExportDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ExportOperationDefaultResponse extends HttpResponse {
+export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ExportOperationDefaultHeaders;
+  headers: RawHttpHeaders & ExportDefaultHeaders;
 }
 
 /** The final response for long-running export operation */
@@ -368,7 +368,7 @@ export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetSupportedLanguages200Response extends HttpResponse {
   status: "200";
-  body: PagedSupportedLanguageOutput;
+  body: SupportedLanguagesOutput;
 }
 
 export interface GetSupportedLanguagesDefaultHeaders {
@@ -385,7 +385,7 @@ export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListTrainingConfigVersions200Response extends HttpResponse {
   status: "200";
-  body: PagedTrainingConfigVersionOutput;
+  body: TrainingConfigVersionsOutput;
 }
 
 export interface ListTrainingConfigVersionsDefaultHeaders {

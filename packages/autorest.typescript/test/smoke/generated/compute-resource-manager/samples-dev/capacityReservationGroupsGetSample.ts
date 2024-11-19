@@ -28,7 +28,7 @@ async function getACapacityReservationGroup() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.capacityReservationGroups.get(
     resourceGroupName,
-    capacityReservationGroupName
+    capacityReservationGroupName,
   );
   console.log(result);
 }

@@ -1,28 +1,54 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const esLintConfig = {
-  plugins: ["@azure/azure-sdk"],
-  extends: ["plugin:@azure/azure-sdk/azure-sdk-base"],
-  rules: {
-    "@azure/azure-sdk/ts-modules-only-named": "warn",
-    "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
-    "@azure/azure-sdk/ts-package-json-types": "warn",
-    "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
-    "tsdoc/syntax": "warn"
+const eslintConfig = `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+
+export default [
+  ...azsdkEslint.configs.recommended,
+  {
+    rules: {
+      "@azure/azure-sdk/ts-modules-only-named": "warn",
+      "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
+      "tsdoc/syntax": "warn"
+    }
   }
-};
+];
+`;
+
+const esLintConfigEsm = `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+
+export default [
+  ...azsdkEslint.configs.recommended,
+  {
+    rules: {
+      "@azure/azure-sdk/ts-modules-only-named": "warn",
+      "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
+      "@azure/azure-sdk/ts-package-json-module": "off",
+      "@azure/azure-sdk/ts-package-json-files-required": "off",
+      "@azure/azure-sdk/ts-package-json-main-is-cjs": "off",
+      "tsdoc/syntax": "warn"
+    }
+  }
+];
+`;
 
 export function buildEsLintConfig(model: RLCModel) {
-  const branded = model.options?.branded ?? true;
-  if (branded === false) {
+  if (model.options?.flavor !== "azure") {
     return;
   }
   const project = new Project();
-  const filePath = ".eslintrc.json";
+  const filePath = "eslint.config.mjs";
+
   const configFile = project.createSourceFile(
-    ".eslintrc.json",
-    JSON.stringify(esLintConfig),
+    "eslint.config.mjs",
+    model.options?.moduleKind === "esm" ? esLintConfigEsm : eslintConfig,
     {
       overwrite: true
     }

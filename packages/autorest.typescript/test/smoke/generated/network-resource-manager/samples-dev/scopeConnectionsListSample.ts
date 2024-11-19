@@ -30,7 +30,7 @@ async function listNetworkManagerScopeConnection() {
   const resArray = new Array();
   for await (let item of client.scopeConnections.list(
     resourceGroupName,
-    networkManagerName
+    networkManagerName,
   )) {
     resArray.push(item);
   }

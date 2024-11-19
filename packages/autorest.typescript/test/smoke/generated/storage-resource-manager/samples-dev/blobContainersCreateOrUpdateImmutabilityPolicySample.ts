@@ -11,7 +11,7 @@
 import {
   ImmutabilityPolicy,
   BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,18 +31,17 @@ async function createOrUpdateImmutabilityPolicy() {
   const containerName = "container6397";
   const parameters: ImmutabilityPolicy = {
     allowProtectedAppendWrites: true,
-    immutabilityPeriodSinceCreationInDays: 3
+    immutabilityPeriodSinceCreationInDays: 3,
   };
-  const options: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams = {
-    parameters
-  };
+  const options: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams =
+    { parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.createOrUpdateImmutabilityPolicy(
     resourceGroupName,
     accountName,
     containerName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -60,18 +59,17 @@ async function createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll
   const containerName = "container6397";
   const parameters: ImmutabilityPolicy = {
     allowProtectedAppendWritesAll: true,
-    immutabilityPeriodSinceCreationInDays: 3
+    immutabilityPeriodSinceCreationInDays: 3,
   };
-  const options: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams = {
-    parameters
-  };
+  const options: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams =
+    { parameters };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobContainers.createOrUpdateImmutabilityPolicy(
     resourceGroupName,
     accountName,
     containerName,
-    options
+    options,
   );
   console.log(result);
 }

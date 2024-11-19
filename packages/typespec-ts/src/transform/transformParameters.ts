@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import {
+  ApiVersionInfo,
   Imports,
   ObjectSchema,
   OperationParameter,
@@ -10,90 +11,117 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
-  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
 } from "@typespec/http";
 import {
-  getImportedModelName,
-  getTypeName,
-  getSchemaForType,
-  getFormattedPropertyDoc,
+  KnownMediaType,
+  extractMediaTypes,
+  hasMediaType,
+  isMediaTypeJsonMergePatch
+} from "../utils/mediaTypes.js";
+import {
+  SdkClient,
+  getHttpOperationWithCache,
+  isApiVersion,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import { NoTarget, Type, isVoidType } from "@typespec/compiler";
+import {
   getBodyType,
-  predictDefaultValue,
-  enrichBinaryTypeInBody
+  getFormattedPropertyDoc,
+  getImportedModelName,
+  getSchemaForType,
+  getTypeName,
+  isArrayType,
+  isBodyRequired
 } from "../utils/modelUtils.js";
-
 import {
   getOperationGroupName,
   getOperationName,
-  getSpecialSerializeInfo,
-  isBinaryPayload
+  getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
-import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../utils/interfaces.js";
+import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
+import { reportDiagnostic } from "../lib.js";
+
+interface ParameterTransformationOptions {
+  apiVersionInfo?: ApiVersionInfo;
+  operationGroupName?: string;
+  operationName?: string;
+  importModels?: Set<string>;
+}
 
 export function transformToParameterTypes(
-  importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  importDetails: Imports,
+  apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
-  const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformToParameterTypesForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToParameterTypesForRoute(program, route);
+      transformToParameterTypesForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformToParameterTypesForRoute(program, route);
-  }
+
   if (outputImportedSet.size > 0) {
     importDetails.parameter.importsSet = outputImportedSet;
   }
-  function transformToParameterTypesForRoute(
-    program: Program,
-    route: HttpOperation
-  ) {
+  function transformToParameterTypesForRoute(route: HttpOperation) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(dpgContext, route),
-      operationName: getOperationName(program, route.operation),
+      operationName: getOperationName(dpgContext, route.operation),
       parameters: []
     };
+    const options = {
+      apiVersionInfo,
+      operationGroupName: rlcParameter.operationGroup,
+      operationName: rlcParameter.operationName,
+      importModels: outputImportedSet
+    };
     // transform query param
-    const queryParams = transformQueryParameters(dpgContext, parameters);
+    const queryParams = transformQueryParameters(
+      dpgContext,
+      parameters,
+      options
+    );
     // transform path param
-    const pathParams = transformPathParameters();
-    // transform header param includeing content-type
-    const headerParams = transformHeaderParameters(dpgContext, parameters);
+    const pathParams = transformPathParameters(dpgContext, parameters, options);
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+    transformCookieParameters(dpgContext, parameters);
+    // transform header param including content-type
+    const headerParams = transformHeaderParameters(
+      dpgContext,
+      parameters,
+      options
+    );
     // transform body
-    const bodyType = getBodyType(program, route);
+    const bodyType = getBodyType(route);
     let bodyParameter = undefined;
     if (bodyType) {
       bodyParameter = transformBodyParameters(
@@ -116,61 +144,63 @@ export function transformToParameterTypes(
 function getParameterMetadata(
   dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
-  parameter: HttpOperationParameter
+  parameter: HttpOperationParameter,
+  options: ParameterTransformationOptions
 ): ParameterMetadata {
   const program = dpgContext.program;
+  const importedModels = options.importModels ?? new Set<string>();
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
-  const schema = getSchemaForType(
-    dpgContext,
-    parameter.param.type,
-    schemaContext,
-    false,
-    parameter.param
-  ) as Schema;
-  let type =
-    paramType === "query"
-      ? getTypeName(schema, schemaContext)
-      : getTypeName(schema);
+  const schema = getSchemaForType(dpgContext, parameter.param.type, {
+    usage: schemaContext,
+    needRef: false,
+    relevantProperty: parameter.param
+  }) as Schema;
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
+      dpgContext,
       parameter.type,
       (parameter as any).format
     );
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
-      serializeInfo.hasCsvCollection
-    ) {
-      type = "string";
-      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
+      description += `${description ? "\n" : ""}This parameter could be formatted as ${serializeInfo.collectionInfo.join(
         ", "
-      )} collection, we provide ${serializeInfo.descriptions.join(
+      )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
       )} from serializeHelper.ts to help${
         serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-      }`;
+      }.`;
+    }
+    if ((parameter as any).format === "tsv") {
+      description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
     }
   }
+
+  getImportedModelName(schema, schemaContext)?.forEach(
+    importedModels.add,
+    importedModels
+  );
+  const serializationType = getParameterSerializationInfo(
+    dpgContext,
+    parameter,
+    schema,
+    options.operationGroupName,
+    options.operationName
+  );
   return {
     type: paramType,
     name,
     param: {
       name,
-      type,
+      type: serializationType.typeName,
+      typeName: serializationType.typeName,
       required: !parameter.param.optional,
-      description
+      description,
+      wrapperType: serializationType.wrapperType
     }
   };
 }
@@ -182,20 +212,43 @@ function getParameterName(name: string) {
   return `"${name}"`;
 }
 
-function transformQueryParameters(
+function transformCookieParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters
+) {
+  // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+  parameters.parameters
+    .filter((p) => p.type === "cookie")
+    .forEach((p) => {
+      reportDiagnostic(dpgContext.program, {
+        code: "parameter-type-not-supported",
+        format: {
+          paramName: p.name,
+          paramType: p.type
+        },
+        target: NoTarget
+      });
+    });
+}
+
+function transformQueryParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters,
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && predictDefaultValue(dpgContext, p.param))
+      !(
+        isApiVersion(dpgContext, p) &&
+        options.apiVersionInfo?.definedPosition === "query"
+      )
   );
   if (!queryParameters.length) {
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "query", qp)
+    getParameterMetadata(dpgContext, "query", qp, options)
   );
 }
 
@@ -203,15 +256,27 @@ function transformQueryParameters(
  * Only support to take the global path parameter as path parameter
  * @returns
  */
-function transformPathParameters() {
-  // TODO
-  // issue tracked https://github.com/Azure/autorest.typescript/issues/1521
-  return [];
+function transformPathParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters,
+  options: ParameterTransformationOptions
+) {
+  // build wrapper path parameters
+  const pathParameters = parameters.parameters.filter((p) => p.type === "path");
+  if (!pathParameters.length) {
+    return [];
+  }
+  // only need to build path parameters for wrapper type
+  const params = pathParameters
+    .map((qp) => getParameterMetadata(dpgContext, "path", qp, options))
+    .filter((p) => p.param.wrapperType);
+  return params;
 }
 
-function transformHeaderParameters(
+export function transformHeaderParameters(
   dpgContext: SdkContext,
-  parameters: HttpOperationParameters
+  parameters: HttpOperationParameters,
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
     (p) => p.type === "header"
@@ -220,7 +285,7 @@ function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "header", qp)
+    getParameterMetadata(dpgContext, "header", qp, options)
   );
 }
 
@@ -234,51 +299,36 @@ function transformBodyParameters(
   const bodyType =
     (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
       ? inputBodyType
-      : parameters.bodyType ?? parameters.bodyParameter?.type;
-  if (!bodyType) {
+      : (parameters.bodyType ?? parameters.bodyParameter?.type);
+  if (!bodyType || isVoidType(bodyType)) {
     return;
   }
-  const { hasBinaryContent } = getBodyDetail(dpgContext, bodyType, headers);
-
-  return transformNormalBody(
+  return transformRequestBody(
     dpgContext,
     bodyType,
     parameters,
     importedModels,
-    headers,
-    hasBinaryContent
+    headers
   );
 }
 
-function transformNormalBody(
+function transformRequestBody(
   dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
-  headers: ParameterMetadata[],
-  hasBinaryContent: boolean
+  headers: ParameterMetadata[]
 ) {
-  const descriptions = extractDescriptionsFromBody(
-    dpgContext,
-    bodyType,
-    parameters
-  );
-  if (hasBinaryContent) {
-    descriptions.push("Value may contain any sequence of octets");
-  }
-  const type = extractNameFromTypeSpecType(
-    dpgContext,
-    bodyType,
-    [SchemaContext.Input],
-    importedModels,
-    headers
-  );
-  let schema = getSchemaForType(dpgContext, bodyType);
-  let overrideType = undefined;
-  if (hasBinaryContent) {
-    schema = enrichBinaryTypeInBody(schema);
-    overrideType = schema.typeName;
-  }
+  const contentTypes = extractMediaTypes(parameters.body?.contentTypes ?? []);
+  const schema = getSchemaForType(dpgContext, bodyType, {
+    mediaTypes: contentTypes,
+    isRequestBody: true,
+    usage: [SchemaContext.Input, SchemaContext.Exception]
+  });
+
+  const descriptions = getBodyDescriptions(dpgContext, schema, parameters);
+  const type = getRequestBodyType(schema, importedModels, headers);
+
   return {
     isPartialBody: false,
     body: [
@@ -286,41 +336,24 @@ function transformNormalBody(
         properties: schema.properties,
         typeName: schema.name,
         name: "body",
-        type: overrideType ?? type,
-        required: parameters?.bodyParameter?.optional === false,
+        type,
+        required: isBodyRequired(parameters),
         description: descriptions.join("\n\n"),
+        isMultipartBody:
+          hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+          contentTypes.length === 1,
         oriSchema: schema
       }
     ]
   };
 }
 
-function getBodyDetail(
-  dpgContext: SdkContext,
-  bodyType: Type,
-  headers: ParameterMetadata[]
-) {
-  const contentTypes: string[] = headers
-    .filter((h) => h.name === "contentType")
-    .map((h) => h.param.type);
-  const hasBinaryContent = contentTypes.some((c) =>
-    isBinaryPayload(dpgContext, bodyType, c)
-  );
-  const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
-  return { hasBinaryContent, hasFormContent };
-}
-
-function extractNameFromTypeSpecType(
-  dpgContext: SdkContext,
-  type: Type,
-  schemaUsage: SchemaContext[],
+function getRequestBodyType(
+  bodySchema: Schema,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(dpgContext, type, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
+  const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
   const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
   importedNames.forEach(importedModels.add, importedModels);
 
@@ -328,19 +361,20 @@ function extractNameFromTypeSpecType(
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
-  const hasMergeAndPatchType =
-    contentTypes &&
-    contentTypes.length === 1 &&
-    contentTypes[0]?.includes("application/merge-patch+json");
-  if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
+  const hasMergeAndPatchType = isMediaTypeJsonMergePatch(contentTypes ?? []);
+  if (
+    hasMergeAndPatchType &&
+    Boolean(bodySchema.name) &&
+    (bodySchema as ObjectSchema).properties
+  ) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
 }
 
-function extractDescriptionsFromBody(
+function getBodyDescriptions(
   dpgContext: SdkContext,
-  bodyType: Type,
+  bodySchema: Schema,
   parameters: HttpOperationParameters
 ) {
   const description =
@@ -348,10 +382,7 @@ function extractDescriptionsFromBody(
     getFormattedPropertyDoc(
       dpgContext.program,
       parameters.bodyParameter,
-      getSchemaForType(dpgContext, bodyType, [
-        SchemaContext.Input,
-        SchemaContext.Exception
-      ])
+      bodySchema
     );
   return description ? [description] : [];
 }

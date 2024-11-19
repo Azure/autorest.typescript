@@ -32,7 +32,7 @@ async function listUsersForAStaticSite() {
   for await (let item of client.staticSites.listStaticSiteUsers(
     resourceGroupName,
     name,
-    authprovider
+    authprovider,
   )) {
     resArray.push(item);
   }

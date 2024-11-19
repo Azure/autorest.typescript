@@ -25,9 +25,8 @@ async function getsWafDefaultManifest() {
   const location = "westus";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationGatewayWafDynamicManifestsDefault.get(
-    location
-  );
+  const result =
+    await client.applicationGatewayWafDynamicManifestsDefault.get(location);
   console.log(result);
 }
 

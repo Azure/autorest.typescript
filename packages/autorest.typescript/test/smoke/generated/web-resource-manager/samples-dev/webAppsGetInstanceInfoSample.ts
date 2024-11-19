@@ -31,7 +31,7 @@ async function getSiteInstanceInfo() {
   const result = await client.webApps.getInstanceInfo(
     resourceGroupName,
     name,
-    instanceId
+    instanceId,
   );
   console.log(result);
 }

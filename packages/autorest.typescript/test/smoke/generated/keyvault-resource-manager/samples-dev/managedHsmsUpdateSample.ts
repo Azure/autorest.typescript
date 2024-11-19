@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedHsm,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function updateAnExistingManagedHsmPool() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "hsm-group";
   const name = "hsm1";
   const parameters: ManagedHsm = {
-    tags: { dept: "hsm", environment: "dogfood", slice: "A" }
+    tags: { dept: "hsm", environment: "dogfood", slice: "A" },
   };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginUpdateAndWait(
     resourceGroupName,
     name,
-    parameters
+    parameters,
   );
   console.log(result);
 }

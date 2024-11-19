@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function networkGroupsPut() {
     resourceGroupName,
     networkManagerName,
     networkGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

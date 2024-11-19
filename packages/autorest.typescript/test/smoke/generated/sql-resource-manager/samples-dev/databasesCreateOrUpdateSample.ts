@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   Database,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
   const databaseName = "testdb";
   const parameters: Database = {
     location: "southeastasia",
-    sku: { name: "BC", capacity: 2, family: "Gen4" }
+    sku: { name: "BC", capacity: 2, family: "Gen4" },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -60,7 +60,7 @@ async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
   const databaseName = "testdb";
   const parameters: Database = {
     location: "southeastasia",
-    sku: { name: "BC_Gen4", capacity: 2 }
+    sku: { name: "BC_Gen4", capacity: 2 },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -68,7 +68,7 @@ async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -91,7 +91,7 @@ async function createsADatabaseAsACopy() {
     location: "southeastasia",
     sku: { name: "S0", tier: "Standard" },
     sourceDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/testsvr/databases/testdb"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/testsvr/databases/testdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -99,7 +99,7 @@ async function createsADatabaseAsACopy() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -123,7 +123,7 @@ async function createsADatabaseAsAnOnLineSecondary() {
     secondaryType: "Geo",
     sku: { name: "S0", tier: "Standard" },
     sourceDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-NorthEurope/providers/Microsoft.Sql/servers/testsvr1/databases/testdb"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-NorthEurope/providers/Microsoft.Sql/servers/testsvr1/databases/testdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -131,7 +131,7 @@ async function createsADatabaseAsAnOnLineSecondary() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -155,7 +155,7 @@ async function createsADatabaseAsNamedReplicaSecondary() {
     secondaryType: "Named",
     sku: { name: "HS_Gen4", capacity: 2, tier: "Hyperscale" },
     sourceDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-NorthEurope/providers/Microsoft.Sql/servers/testsvr1/databases/primarydb"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-NorthEurope/providers/Microsoft.Sql/servers/testsvr1/databases/primarydb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -163,7 +163,7 @@ async function createsADatabaseAsNamedReplicaSecondary() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -186,7 +186,7 @@ async function createsADatabaseFromPointInTimeRestore() {
     location: "southeastasia",
     restorePointInTime: new Date("2020-10-22T05:35:31.503Z"),
     sourceDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SoutheastAsia/providers/Microsoft.Sql/servers/testsvr/databases/testdb"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SoutheastAsia/providers/Microsoft.Sql/servers/testsvr/databases/testdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -194,7 +194,7 @@ async function createsADatabaseFromPointInTimeRestore() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -217,7 +217,7 @@ async function createsADatabaseWithDefaultMode() {
     createMode: "Default",
     location: "southeastasia",
     maxSizeBytes: 1073741824,
-    sku: { name: "S0", tier: "Standard" }
+    sku: { name: "S0", tier: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -225,7 +225,7 @@ async function createsADatabaseWithDefaultMode() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -250,7 +250,7 @@ async function createsADatabaseWithLedgerOn() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -275,7 +275,7 @@ async function createsADatabaseWithMinimumNumberOfParameters() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -300,7 +300,7 @@ async function createsADatabaseWithPreferredMaintenanceWindow() {
     maintenanceConfigurationId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_SouthEastAsia_1",
     maxSizeBytes: 1073741824,
-    sku: { name: "S2", tier: "Standard" }
+    sku: { name: "S2", tier: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -308,7 +308,7 @@ async function createsADatabaseWithPreferredMaintenanceWindow() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -328,7 +328,7 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
   const databaseName = "testdb";
   const parameters: Database = {
     location: "southeastasia",
-    requestedBackupStorageRedundancy: "Zone"
+    requestedBackupStorageRedundancy: "Zone",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -336,7 +336,7 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   InboundSecurityRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,18 +33,19 @@ async function createNetworkVirtualApplianceInboundSecurityRules() {
       {
         destinationPortRange: 22,
         sourceAddressPrefix: "50.20.121.5/32",
-        protocol: "TCP"
-      }
-    ]
+        protocol: "TCP",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.inboundSecurityRuleOperations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    networkVirtualApplianceName,
-    ruleCollectionName,
-    parameters
-  );
+  const result =
+    await client.inboundSecurityRuleOperations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      networkVirtualApplianceName,
+      ruleCollectionName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -1,0 +1,10 @@
+{
+  "browser": {
+    "./utils/stream-helpers.js": "./utils/stream-helpers.browser.js",
+    "./utils/fileSystem.js": "./utils/fileSystem.browser.js",
+    "./utils/path.js": "./utils/path.browser.js"
+  },
+  "dependencies": {
+    "@azure/core-lro": "^3.0.0"
+  }
+}

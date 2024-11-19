@@ -33,7 +33,7 @@ async function getDatabaseSchema() {
     resourceGroupName,
     serverName,
     databaseName,
-    schemaName
+    schemaName,
   );
   console.log(result);
 }

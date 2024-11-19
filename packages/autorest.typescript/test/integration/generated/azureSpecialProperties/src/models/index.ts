@@ -169,21 +169,24 @@ export interface HeaderCustomNamedRequestIdOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the customNamedRequestId operation. */
-export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders;
+export type HeaderCustomNamedRequestIdResponse =
+  HeaderCustomNamedRequestIdHeaders;
 
 /** Optional parameters. */
 export interface HeaderCustomNamedRequestIdParamGroupingOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the customNamedRequestIdParamGrouping operation. */
-export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders;
+export type HeaderCustomNamedRequestIdParamGroupingResponse =
+  HeaderCustomNamedRequestIdParamGroupingHeaders;
 
 /** Optional parameters. */
 export interface HeaderCustomNamedRequestIdHeadOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the customNamedRequestIdHead operation. */
-export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders;
+export type HeaderCustomNamedRequestIdHeadResponse =
+  HeaderCustomNamedRequestIdHeadHeaders;
 
 /** Optional parameters. */
 export interface AzureSpecialPropertiesClientOptionalParams

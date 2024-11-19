@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -18,7 +18,7 @@ async function oAuthTokensGetCascadeDeleteJobDetails() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOBID123";
   const result = await client.path("/oauth/tokens/remove/{jobId}", jobId).get();

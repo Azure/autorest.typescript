@@ -28,7 +28,7 @@ async function deleteIPAllocation() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipAllocations.beginDeleteAndWait(
     resourceGroupName,
-    ipAllocationName
+    ipAllocationName,
   );
   console.log(result);
 }

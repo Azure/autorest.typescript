@@ -28,7 +28,7 @@ async function getVirtualNetworkTap() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkTaps.get(
     resourceGroupName,
-    tapName
+    tapName,
   );
   console.log(result);
 }

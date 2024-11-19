@@ -144,7 +144,7 @@ export async function generateTypeScriptLibrary(
 
     // Format the contents if necessary
     if (isJson || isSourceCode) {
-      fileContents = prettier.format(
+      fileContents = await prettier.format(
         fileContents,
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );

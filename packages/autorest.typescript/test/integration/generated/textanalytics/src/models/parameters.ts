@@ -9,12 +9,12 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   AnalyzeBatchInput as AnalyzeBatchInputMapper,
   MultiLanguageBatchInput as MultiLanguageBatchInputMapper,
-  LanguageBatchInput as LanguageBatchInputMapper
+  LanguageBatchInput as LanguageBatchInputMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -24,14 +24,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: AnalyzeBatchInputMapper
+  mapper: AnalyzeBatchInputMapper,
 };
 
 export const accept: OperationParameter = {
@@ -41,9 +41,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const endpoint: OperationURLParameter = {
@@ -52,10 +52,10 @@ export const endpoint: OperationURLParameter = {
     serializedName: "Endpoint",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const jobId: OperationURLParameter = {
@@ -64,9 +64,9 @@ export const jobId: OperationURLParameter = {
     serializedName: "jobId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const includeStatistics: OperationQueryParameter = {
@@ -74,9 +74,9 @@ export const includeStatistics: OperationQueryParameter = {
   mapper: {
     serializedName: "showStats",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const top: OperationQueryParameter = {
@@ -85,13 +85,13 @@ export const top: OperationQueryParameter = {
     defaultValue: 20,
     constraints: {
       InclusiveMaximum: 50,
-      InclusiveMinimum: 1
+      InclusiveMinimum: 1,
     },
     serializedName: "$top",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const skip: OperationQueryParameter = {
@@ -99,13 +99,13 @@ export const skip: OperationQueryParameter = {
   mapper: {
     defaultValue: 0,
     constraints: {
-      InclusiveMinimum: 0
+      InclusiveMinimum: 0,
     },
     serializedName: "$skip",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const jobId1: OperationURLParameter = {
@@ -114,14 +114,14 @@ export const jobId1: OperationURLParameter = {
     serializedName: "jobId",
     required: true,
     type: {
-      name: "Uuid"
-    }
-  }
+      name: "Uuid",
+    },
+  },
 };
 
 export const input: OperationParameter = {
   parameterPath: "input",
-  mapper: MultiLanguageBatchInputMapper
+  mapper: MultiLanguageBatchInputMapper,
 };
 
 export const modelVersion: OperationQueryParameter = {
@@ -129,9 +129,9 @@ export const modelVersion: OperationQueryParameter = {
   mapper: {
     serializedName: "model-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringIndexType: OperationQueryParameter = {
@@ -139,9 +139,9 @@ export const stringIndexType: OperationQueryParameter = {
   mapper: {
     serializedName: "stringIndexType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const domain: OperationQueryParameter = {
@@ -149,33 +149,33 @@ export const domain: OperationQueryParameter = {
   mapper: {
     serializedName: "domain",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const piiCategories: OperationQueryParameter = {
   parameterPath: ["options", "piiCategories"],
   mapper: {
     constraints: {
-      UniqueItems: true
+      UniqueItems: true,
     },
     serializedName: "piiCategories",
     type: {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "CSV"
+  collectionFormat: "CSV",
 };
 
 export const input1: OperationParameter = {
   parameterPath: "input",
-  mapper: LanguageBatchInputMapper
+  mapper: LanguageBatchInputMapper,
 };
 
 export const opinionMining: OperationQueryParameter = {
@@ -183,7 +183,7 @@ export const opinionMining: OperationQueryParameter = {
   mapper: {
     serializedName: "opinionMining",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };

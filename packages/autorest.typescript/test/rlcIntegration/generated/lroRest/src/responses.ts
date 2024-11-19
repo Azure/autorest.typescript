@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
@@ -7,7 +7,7 @@ import {
   ProductOutput,
   CloudErrorOutput,
   SkuOutput,
-  SubProductOutput
+  SubProductOutput,
 } from "./outputModels";
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */

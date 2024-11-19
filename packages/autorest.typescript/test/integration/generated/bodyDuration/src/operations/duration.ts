@@ -18,7 +18,7 @@ import {
   DurationGetPositiveDurationOptionalParams,
   DurationGetPositiveDurationResponse,
   DurationGetInvalidOptionalParams,
-  DurationGetInvalidResponse
+  DurationGetInvalidResponse,
 } from "../models";
 
 /** Class containing Duration operations. */
@@ -38,7 +38,7 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getNull(
-    options?: DurationGetNullOptionalParams
+    options?: DurationGetNullOptionalParams,
   ): Promise<DurationGetNullResponse> {
     return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
@@ -50,11 +50,11 @@ export class DurationImpl implements Duration {
    */
   putPositiveDuration(
     durationBody: string,
-    options?: DurationPutPositiveDurationOptionalParams
+    options?: DurationPutPositiveDurationOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { durationBody, options },
-      putPositiveDurationOperationSpec
+      putPositiveDurationOperationSpec,
     );
   }
 
@@ -63,11 +63,11 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getPositiveDuration(
-    options?: DurationGetPositiveDurationOptionalParams
+    options?: DurationGetPositiveDurationOptionalParams,
   ): Promise<DurationGetPositiveDurationResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getPositiveDurationOperationSpec
+      getPositiveDurationOperationSpec,
     );
   }
 
@@ -76,11 +76,11 @@ export class DurationImpl implements Duration {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: DurationGetInvalidOptionalParams
+    options?: DurationGetInvalidOptionalParams,
   ): Promise<DurationGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 }
@@ -92,15 +92,15 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" } }
+      bodyMapper: { type: { name: "TimeSpan" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putPositiveDurationOperationSpec: coreClient.OperationSpec = {
   path: "/duration/positiveduration",
@@ -108,42 +108,42 @@ const putPositiveDurationOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.durationBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getPositiveDurationOperationSpec: coreClient.OperationSpec = {
   path: "/duration/positiveduration",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" } }
+      bodyMapper: { type: { name: "TimeSpan" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/duration/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "TimeSpan" } }
+      bodyMapper: { type: { name: "TimeSpan" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

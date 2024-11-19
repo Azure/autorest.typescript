@@ -31,7 +31,7 @@ async function deleteAzureActiveDirectoryAdministrator() {
   const result = await client.serverAzureADAdministrators.beginDeleteAndWait(
     resourceGroupName,
     serverName,
-    administratorName
+    administratorName,
   );
   console.log(result);
 }

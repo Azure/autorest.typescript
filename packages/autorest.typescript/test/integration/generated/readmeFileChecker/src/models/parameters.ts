@@ -1,12 +1,12 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   SecretSetParameters as SecretSetParametersMapper,
   SecretUpdateParameters as SecretUpdateParametersMapper,
-  SecretRestoreParameters as SecretRestoreParametersMapper
+  SecretRestoreParameters as SecretRestoreParametersMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -16,9 +16,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -28,29 +28,29 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const value: OperationParameter = {
   parameterPath: "value",
-  mapper: SecretSetParametersMapper
+  mapper: SecretSetParametersMapper,
 };
 
 export const tags: OperationParameter = {
   parameterPath: ["options", "tags"],
-  mapper: SecretSetParametersMapper
+  mapper: SecretSetParametersMapper,
 };
 
 export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
-  mapper: SecretSetParametersMapper
+  mapper: SecretSetParametersMapper,
 };
 
 export const secretAttributes: OperationParameter = {
   parameterPath: ["options", "secretAttributes"],
-  mapper: SecretSetParametersMapper
+  mapper: SecretSetParametersMapper,
 };
 
 export const vaultBaseUrl: OperationURLParameter = {
@@ -59,24 +59,24 @@ export const vaultBaseUrl: OperationURLParameter = {
     serializedName: "vaultBaseUrl",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const secretName: OperationURLParameter = {
   parameterPath: "secretName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[0-9a-zA-Z-]+$")
+      Pattern: new RegExp("^[0-9a-zA-Z-]+$"),
     },
     serializedName: "secret-name",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -85,9 +85,9 @@ export const apiVersion: OperationQueryParameter = {
     serializedName: "api-version",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const secretName1: OperationURLParameter = {
@@ -96,24 +96,24 @@ export const secretName1: OperationURLParameter = {
     serializedName: "secret-name",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
-  mapper: SecretUpdateParametersMapper
+  mapper: SecretUpdateParametersMapper,
 };
 
 export const secretAttributes1: OperationParameter = {
   parameterPath: ["options", "secretAttributes"],
-  mapper: SecretUpdateParametersMapper
+  mapper: SecretUpdateParametersMapper,
 };
 
 export const tags1: OperationParameter = {
   parameterPath: ["options", "tags"],
-  mapper: SecretUpdateParametersMapper
+  mapper: SecretUpdateParametersMapper,
 };
 
 export const secretVersion: OperationURLParameter = {
@@ -122,9 +122,9 @@ export const secretVersion: OperationURLParameter = {
     serializedName: "secret-version",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const maxresults: OperationQueryParameter = {
@@ -132,18 +132,18 @@ export const maxresults: OperationQueryParameter = {
   mapper: {
     constraints: {
       InclusiveMaximum: 25,
-      InclusiveMinimum: 1
+      InclusiveMinimum: 1,
     },
     serializedName: "maxresults",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const secretBundleBackup: OperationParameter = {
   parameterPath: "secretBundleBackup",
-  mapper: SecretRestoreParametersMapper
+  mapper: SecretRestoreParametersMapper,
 };
 
 export const nextLink: OperationURLParameter = {
@@ -152,8 +152,8 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };

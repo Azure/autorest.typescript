@@ -33,7 +33,7 @@ async function getAPrivateEndpointConnectionForASite() {
     resourceGroupName,
     name,
     privateEndpointConnectionName,
-    slot
+    slot,
   );
   console.log(result);
 }

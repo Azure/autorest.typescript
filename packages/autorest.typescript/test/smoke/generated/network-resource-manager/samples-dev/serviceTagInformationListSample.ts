@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServiceTagInformationListOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function getListOfServiceTags() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serviceTagInformationOperations.list(
-    location
+    location,
   )) {
     resArray.push(item);
   }
@@ -48,14 +48,14 @@ async function getListOfServiceTagsWithNoAddressPrefixes() {
   const location = "westeurope";
   const noAddressPrefixes = true;
   const options: ServiceTagInformationListOptionalParams = {
-    noAddressPrefixes
+    noAddressPrefixes,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.serviceTagInformationOperations.list(
     location,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -78,7 +78,7 @@ async function getListOfServiceTagsWithTagName() {
   const resArray = new Array();
   for await (let item of client.serviceTagInformationOperations.list(
     location,
-    options
+    options,
   )) {
     resArray.push(item);
   }

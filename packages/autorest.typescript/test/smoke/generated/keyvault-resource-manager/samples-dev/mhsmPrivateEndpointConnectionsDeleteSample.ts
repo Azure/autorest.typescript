@@ -31,7 +31,7 @@ async function managedHsmDeletePrivateEndpointConnection() {
   const result = await client.mhsmPrivateEndpointConnections.beginDeleteAndWait(
     resourceGroupName,
     name,
-    privateEndpointConnectionName
+    privateEndpointConnectionName,
   );
   console.log(result);
 }

@@ -30,7 +30,7 @@ async function loadBalancerLoadBalancingRuleGet() {
   const result = await client.loadBalancerLoadBalancingRules.get(
     resourceGroupName,
     loadBalancerName,
-    loadBalancingRuleName
+    loadBalancingRuleName,
   );
   console.log(result);
 }

@@ -16,7 +16,7 @@ import {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
   FishUnion,
-  PolymorphicrecursivePutValidOptionalParams
+  PolymorphicrecursivePutValidOptionalParams,
 } from "../models";
 
 /** Class containing Polymorphicrecursive operations. */
@@ -36,7 +36,7 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
    * @param options The options parameters.
    */
   async getValid(
-    options?: PolymorphicrecursiveGetValidOptionalParams
+    options?: PolymorphicrecursiveGetValidOptionalParams,
   ): Promise<PolymorphicrecursiveGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -44,9 +44,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<PolymorphicrecursiveGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -109,7 +109,7 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
    */
   async putValid(
     complexBody: FishUnion,
-    options?: PolymorphicrecursivePutValidOptionalParams
+    options?: PolymorphicrecursivePutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -117,9 +117,9 @@ export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 }
@@ -131,15 +131,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Fish
+      bodyMapper: Mappers.Fish,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphicrecursive/valid",
@@ -147,12 +147,12 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

@@ -4,64 +4,127 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
 
-// @public (undocumented)
+// @public
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
 }
 
-// @public (undocumented)
-export interface CreateWidget {
-    color: "red" | "blue";
-    weight: number;
+// @public
+export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
+    apiVersion?: string;
+    updateIntervalInMs?: number;
 }
 
-// @public (undocumented)
-export interface UpdateWidget {
-    color?: "red" | "blue";
-    weight?: number;
+// @public
+export interface BudgetsOperations {
+    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
 }
 
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
+export enum KnownVersions {
+    "1.0.0" = "1.0.0"
+}
+
+// @public
+export interface NonReferencedModel {
+    prop1: number;
+    prop2: string;
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+
 // @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => Promise<TResult>;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface User {
+    id: string;
+    readonly name: string;
+    role: string;
+}
+
+// @public
 export interface Widget {
     color: "red" | "blue";
     id: string;
     weight: number;
 }
 
-// @public (undocumented)
-export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
+// @public
+export interface WidgetError {
+    code: number;
+    message: string;
 }
 
-// @public (undocumented)
-export interface WidgetsCreateWidgetOptions extends OperationOptions {
+// @public
+export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface WidgetsDeleteWidgetOptions extends OperationOptions {
+// @public
+export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
+    apiVersion?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential, options?: WidgetServiceClientOptionalParams);
+    readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
 }
 
-// @public (undocumented)
-export interface WidgetServiceClientOptions extends ClientOptions {
+// @public
+export interface WidgetServiceClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
-// @public (undocumented)
-export interface WidgetsGetWidgetOptions extends OperationOptions {
+// @public
+export interface WidgetsGetWidgetOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface WidgetsListWidgetsOptions extends OperationOptions {
+// @public
+export interface WidgetsListWidgetsOptionalParams extends OperationOptions {
     // (undocumented)
     nullableDateHeader?: Date | null;
     // (undocumented)
@@ -72,24 +135,33 @@ export interface WidgetsListWidgetsOptions extends OperationOptions {
     optionalHeader?: string;
 }
 
-// @public (undocumented)
-export interface WidgetsOperations {
-    // (undocumented)
-    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
-    // (undocumented)
-    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
-    // (undocumented)
-    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptions) => Promise<void>;
-    // (undocumented)
-    getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
-    // (undocumented)
-    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
-    // (undocumented)
-    updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
+// @public
+export interface WidgetsListWidgetsPagesOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface WidgetsUpdateWidgetOptions extends OperationOptions {
+// @public
+export interface WidgetsOperations {
+    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
+    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
+    createWidget: (weight: number, color: "red" | "blue", options?: WidgetsCreateWidgetOptionalParams) => Promise<Widget>;
+    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) => Promise<void>;
+    getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) => Promise<Widget>;
+    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
+    // (undocumented)
+    listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
+    // (undocumented)
+    queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
+    updateWidget: (id: string, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
+}
+
+// @public
+export interface WidgetsQueryWidgetsPagesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
+    color?: "red" | "blue";
+    weight?: number;
 }
 
 // (No @packageDocumentation comment for this package)

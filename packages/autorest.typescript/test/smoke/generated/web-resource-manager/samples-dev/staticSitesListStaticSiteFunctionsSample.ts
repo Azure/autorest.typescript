@@ -30,7 +30,7 @@ async function getsTheFunctionsOfAStaticSite() {
   const resArray = new Array();
   for await (let item of client.staticSites.listStaticSiteFunctions(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

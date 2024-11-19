@@ -38,7 +38,7 @@ import {
   PolicyDefinitionsGetAtManagementGroupResponse,
   PolicyDefinitionsListNextResponse,
   PolicyDefinitionsListBuiltInNextResponse,
-  PolicyDefinitionsListByManagementGroupNextResponse
+  PolicyDefinitionsListByManagementGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -59,7 +59,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   public list(
-    options?: PolicyDefinitionsListOptionalParams
+    options?: PolicyDefinitionsListOptionalParams,
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listPagingAll(options);
     return {
@@ -74,13 +74,13 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: PolicyDefinitionsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result: PolicyDefinitionsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -101,7 +101,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listPagingAll(
-    options?: PolicyDefinitionsListOptionalParams
+    options?: PolicyDefinitionsListOptionalParams,
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -113,7 +113,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   public listBuiltIn(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
+    options?: PolicyDefinitionsListBuiltInOptionalParams,
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listBuiltInPagingAll(options);
     return {
@@ -128,13 +128,13 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listBuiltInPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listBuiltInPagingPage(
     options?: PolicyDefinitionsListBuiltInOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result: PolicyDefinitionsListBuiltInResponse;
     let continuationToken = settings?.continuationToken;
@@ -155,7 +155,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   }
 
   private async *listBuiltInPagingAll(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
+    options?: PolicyDefinitionsListBuiltInOptionalParams,
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listBuiltInPagingPage(options)) {
       yield* page;
@@ -169,11 +169,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   public listByManagementGroup(
     managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams,
   ): PagedAsyncIterableIterator<PolicyDefinition> {
     const iter = this.listByManagementGroupPagingAll(
       managementGroupId,
-      options
+      options,
     );
     return {
       next() {
@@ -189,16 +189,16 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
         return this.listByManagementGroupPagingPage(
           managementGroupId,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByManagementGroupPagingPage(
     managementGroupId: string,
     options?: PolicyDefinitionsListByManagementGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<PolicyDefinition[]> {
     let result: PolicyDefinitionsListByManagementGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -213,7 +213,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
       result = await this._listByManagementGroupNext(
         managementGroupId,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -224,11 +224,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
 
   private async *listByManagementGroupPagingAll(
     managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams,
   ): AsyncIterableIterator<PolicyDefinition> {
     for await (const page of this.listByManagementGroupPagingPage(
       managementGroupId,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -243,11 +243,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   createOrUpdate(
     policyDefinitionName: string,
     parameters: PolicyDefinition,
-    options?: PolicyDefinitionsCreateOrUpdateOptionalParams
+    options?: PolicyDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<PolicyDefinitionsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, parameters, options },
-      createOrUpdateOperationSpec
+      createOrUpdateOperationSpec,
     );
   }
 
@@ -258,11 +258,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   delete(
     policyDefinitionName: string,
-    options?: PolicyDefinitionsDeleteOptionalParams
+    options?: PolicyDefinitionsDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -273,11 +273,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   get(
     policyDefinitionName: string,
-    options?: PolicyDefinitionsGetOptionalParams
+    options?: PolicyDefinitionsGetOptionalParams,
   ): Promise<PolicyDefinitionsGetResponse> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -288,11 +288,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   getBuiltIn(
     policyDefinitionName: string,
-    options?: PolicyDefinitionsGetBuiltInOptionalParams
+    options?: PolicyDefinitionsGetBuiltInOptionalParams,
   ): Promise<PolicyDefinitionsGetBuiltInResponse> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, options },
-      getBuiltInOperationSpec
+      getBuiltInOperationSpec,
     );
   }
 
@@ -308,11 +308,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
     policyDefinitionName: string,
     managementGroupId: string,
     parameters: PolicyDefinition,
-    options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
+    options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   ): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, managementGroupId, parameters, options },
-      createOrUpdateAtManagementGroupOperationSpec
+      createOrUpdateAtManagementGroupOperationSpec,
     );
   }
 
@@ -325,11 +325,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   deleteAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams
+    options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, managementGroupId, options },
-      deleteAtManagementGroupOperationSpec
+      deleteAtManagementGroupOperationSpec,
     );
   }
 
@@ -342,11 +342,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   getAtManagementGroup(
     policyDefinitionName: string,
     managementGroupId: string,
-    options?: PolicyDefinitionsGetAtManagementGroupOptionalParams
+    options?: PolicyDefinitionsGetAtManagementGroupOptionalParams,
   ): Promise<PolicyDefinitionsGetAtManagementGroupResponse> {
     return this.client.sendOperationRequest(
       { policyDefinitionName, managementGroupId, options },
-      getAtManagementGroupOperationSpec
+      getAtManagementGroupOperationSpec,
     );
   }
 
@@ -355,7 +355,7 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   private _list(
-    options?: PolicyDefinitionsListOptionalParams
+    options?: PolicyDefinitionsListOptionalParams,
   ): Promise<PolicyDefinitionsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -365,11 +365,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    * @param options The options parameters.
    */
   private _listBuiltIn(
-    options?: PolicyDefinitionsListBuiltInOptionalParams
+    options?: PolicyDefinitionsListBuiltInOptionalParams,
   ): Promise<PolicyDefinitionsListBuiltInResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listBuiltInOperationSpec
+      listBuiltInOperationSpec,
     );
   }
 
@@ -380,11 +380,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listByManagementGroup(
     managementGroupId: string,
-    options?: PolicyDefinitionsListByManagementGroupOptionalParams
+    options?: PolicyDefinitionsListByManagementGroupOptionalParams,
   ): Promise<PolicyDefinitionsListByManagementGroupResponse> {
     return this.client.sendOperationRequest(
       { managementGroupId, options },
-      listByManagementGroupOperationSpec
+      listByManagementGroupOperationSpec,
     );
   }
 
@@ -395,11 +395,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listNext(
     nextLink: string,
-    options?: PolicyDefinitionsListNextOptionalParams
+    options?: PolicyDefinitionsListNextOptionalParams,
   ): Promise<PolicyDefinitionsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 
@@ -410,11 +410,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
    */
   private _listBuiltInNext(
     nextLink: string,
-    options?: PolicyDefinitionsListBuiltInNextOptionalParams
+    options?: PolicyDefinitionsListBuiltInNextOptionalParams,
   ): Promise<PolicyDefinitionsListBuiltInNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listBuiltInNextOperationSpec
+      listBuiltInNextOperationSpec,
     );
   }
 
@@ -427,11 +427,11 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
   private _listByManagementGroupNext(
     managementGroupId: string,
     nextLink: string,
-    options?: PolicyDefinitionsListByManagementGroupNextOptionalParams
+    options?: PolicyDefinitionsListByManagementGroupNextOptionalParams,
   ): Promise<PolicyDefinitionsListByManagementGroupNextResponse> {
     return this.client.sendOperationRequest(
       { managementGroupId, nextLink, options },
-      listByManagementGroupNextOperationSpec
+      listByManagementGroupNextOperationSpec,
     );
   }
 }
@@ -439,250 +439,241 @@ export class PolicyDefinitionsImpl implements PolicyDefinitions {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "PUT",
   responses: {
     201: {
-      bodyMapper: Mappers.PolicyDefinition
+      bodyMapper: Mappers.PolicyDefinition,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinition
+      bodyMapper: Mappers.PolicyDefinition,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBuiltInOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinition
+      bodyMapper: Mappers.PolicyDefinition,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.policyDefinitionName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateAtManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "PUT",
   responses: {
     201: {
-      bodyMapper: Mappers.PolicyDefinition
+      bodyMapper: Mappers.PolicyDefinition,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteAtManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getAtManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
+  path: "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinition
+      bodyMapper: Mappers.PolicyDefinition,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.policyDefinitionName
+    Parameters.policyDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listBuiltInOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Authorization/policyDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByManagementGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions",
+  path: "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.managementGroupId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listBuiltInNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByManagementGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyDefinitionListResult
+      bodyMapper: Mappers.PolicyDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

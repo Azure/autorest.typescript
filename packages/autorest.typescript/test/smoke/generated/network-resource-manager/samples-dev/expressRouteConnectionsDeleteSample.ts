@@ -31,7 +31,7 @@ async function expressRouteConnectionDelete() {
   const result = await client.expressRouteConnections.beginDeleteAndWait(
     resourceGroupName,
     expressRouteGatewayName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

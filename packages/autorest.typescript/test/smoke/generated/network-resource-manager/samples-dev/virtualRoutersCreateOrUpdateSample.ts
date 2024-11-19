@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualRouter,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,18 +29,17 @@ async function createVirtualRouter() {
   const virtualRouterName = "virtualRouter";
   const parameters: VirtualRouter = {
     hostedGateway: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vnetGateway"
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vnetGateway",
     },
     location: "West US",
-    tags: { key1: "value1" }
+    tags: { key1: "value1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouters.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualRouterName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

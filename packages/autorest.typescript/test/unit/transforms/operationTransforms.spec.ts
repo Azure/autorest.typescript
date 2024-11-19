@@ -253,6 +253,7 @@ describe("OperationTransforms", () => {
               usedModels: []
             },
             name: "MockOperation",
+            propertyName: "MockOperation",
             description: "",
             schemaType: SchemaType.String,
             implementationLocation: ImplementationLocation.Method,

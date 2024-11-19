@@ -37,6 +37,7 @@ import { PropertyKind } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getAutorestOptions } from "../autorestSession";
 import { DictionaryMapper } from "@azure/core-client";
+import { ReservedModelNames } from "@azure-tools/rlc-common";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -55,6 +56,7 @@ const buildCredentialsParameter = (): ParameterDetails => {
     description:
       "Subscription credentials which uniquely identify client subscription.",
     name: "credentials",
+    propertyName: "credentials",
     serializedName: "credentials",
     location: ParameterLocation.None,
     required: true,
@@ -81,6 +83,7 @@ const buildEndpointParameter = (): ParameterDetails => ({
   nameRef: "endpoint",
   description: "Overrides client endpoint.",
   name: "endpoint",
+  propertyName: "endpoint",
   serializedName: "endpoint",
   location: ParameterLocation.None,
   required: false,
@@ -108,7 +111,7 @@ export function transformParameters(
   const { addCredentials } = getSecurityInfoFromModel(codeModel.security);
 
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
-  extractOperationParameters(codeModel).forEach(p =>
+  extractOperationParameters(codeModel).forEach((p) =>
     populateOperationParameters(
       p.parameter,
       parameters,
@@ -148,32 +151,39 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           }
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
-          ).map(p => { 
+          ).map((p) => {
             if (p.required) {
               p.language.default.isTopLevelParameter = true;
+              p.schema.language.default.isTopLevelParameter = true;
             }
             return {
-              parameter: p, 
-              operationName 
-            }  
+              parameter: p,
+              operationName
+            };
           });
 
           // Operations may have multiple requests, each with their own set of parameters.
           // This is known to be the case when an operation can consume multiple media types.
           // We need to ensure that the parameters from each request (method overload) is accounted for.
           const requestParams: OperationParameterDetails[] = [];
-          requests.map(request => {
-            request.parameters?.map(parameter => {
+          requests.map((request) => {
+            request.parameters?.map((parameter) => {
               requestParams.push({
                 operationName,
                 parameter,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
               if (parameter.required) {
-                if ((parameter as any)['targetProperty'] !== undefined) {
-                  (parameter as any)['targetProperty'].language.default.isTopLevelParameter = true;
+                if ((parameter as any)["targetProperty"] !== undefined) {
+                  (parameter as any)[
+                    "targetProperty"
+                  ].language.default.isTopLevelParameter = true;
+                  (parameter as any)[
+                    "targetProperty"
+                  ].schema.language.default.isTopLevelParameter = true;
                 }
                 parameter.language.default.isTopLevelParameter = true;
+                parameter.schema.language.default.isTopLevelParameter = true;
               }
               return parameter;
             });
@@ -250,11 +260,15 @@ export function populateOperationParameters(
   const name = normalizeName(
     parameterName,
     NameType.Parameter,
-    parameter.language.default.isTopLevelParameter /** shouldGuard */
+    true /** shouldGuard */
   );
-
+  const propertyName = normalizeName(
+    parameterName,
+    NameType.Property,
+    true  /** shouldGuard */
+  )
   const sameNameParams = operationParameters.filter(
-    p => p.name === name || p.nameRef === name
+    (p) => p.name === name || p.nameRef === name
   );
   description += getSchemaTypeDocumentation(parameter.schema);
   const isRequired = getParameterRequired(parameter);
@@ -269,6 +283,7 @@ export function populateOperationParameters(
         ? undefined
         : description,
     name,
+    propertyName,
     serializedName,
     operationsIn: {
       [operationName]: {
@@ -351,21 +366,27 @@ function getParameterPath(parameter: Parameter) {
     parameter.language.default.isTopLevelParameter ? true: false /** shouldGuard */
   );
 
+  const propertyName = normalizeName(
+    metadata.name,
+    NameType.Property,
+    true
+  );
   if (parameter.groupedBy) {
-    const groupedByName = getLanguageMetadata(parameter.groupedBy.language)
-      .name;
+    const groupedByName = getLanguageMetadata(
+      parameter.groupedBy.language
+    ).name;
     return [
       ...(!parameter.required && !parameter.groupedBy.required
         ? ["options"]
         : []),
       normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
-      name
+      propertyName
     ];
   }
 
   return isClientImplementation(parameter) || parameter.required
     ? name
-    : ["options", name];
+    : ["options", propertyName];
 }
 
 const isClientImplementation = (parameter: Parameter) =>
@@ -409,7 +430,7 @@ function getCollectionFormat(parameter: Parameter): string | undefined {
 
   const getStyle = (value: QueryCollectionFormat) =>
     Object.keys(QueryCollectionFormat).find(
-      key => (QueryCollectionFormat as any)[key] === value
+      (key) => (QueryCollectionFormat as any)[key] === value
     );
 
   let queryCollectionFormat: QueryCollectionFormat;
@@ -512,7 +533,7 @@ export function disambiguateParameter(
   description: string
 ) {
   const param = getComparableParameter(parameter);
-  const existingParam = sameNameParams.find(p =>
+  const existingParam = sameNameParams.find((p) =>
     isEqual(getComparableParameter(p), param)
   );
 

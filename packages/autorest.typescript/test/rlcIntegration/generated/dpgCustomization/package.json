@@ -1,86 +1,90 @@
 {
   "name": "@msinternal/dpg-customization-rest",
-  "sdk-type": "client",
-  "author": "Microsoft Corporation",
   "version": "1.0.0-preview1",
   "description": "A generated SDK for DPGCustomizationClient.",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
-  "license": "MIT",
-  "main": "dist/index.js",
-  "module": "./dist-esm/index.js",
-  "types": "./types/dpg-customization-rest.d.ts",
-  "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "files": [
-    "dist/",
-    "dist-esm/",
-    "types/dpg-customization-rest.d.ts",
-    "README.md",
-    "LICENSE",
-    "review/*"
-  ],
-  "engines": { "node": ">=18.0.0" },
-  "scripts": {
-    "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
-    "build:browser": "tsc -p . && dev-tool run bundle",
-    "build:node": "tsc -p . && dev-tool run bundle",
-    "build:samples": "echo skipped.",
-    "build:test": "echo skipped.",
-    "build:debug": "tsc -p . && dev-tool run bundle && api-extractor run --local",
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
-    "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    "execute:samples": "dev-tool samples run samples-dev",
-    "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
-    "generate:client": "autorest --typescript swagger/README.md && npm run format",
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
-    "integration-test": "echo skipped",
-    "lint:fix": "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
-    "lint": "eslint package.json api-extractor.json src  --ext .ts",
-    "pack": "npm pack 2>&1",
-    "test:browser": "echo skipped",
-    "test:node": "echo skipped",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "unit-test": "echo skipped",
-    "unit-test:node": "echo skipped",
-    "unit-test:browser": "echo skipped",
-    "build": "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local"
+  "engines": {
+    "node": ">=18.0.0"
   },
   "sideEffects": false,
   "autoPublish": false,
+  "main": "dist/src/index.js",
+  "module": "./dist-esm/src/index.js",
+  "types": "./types/src/dpg-customization-rest.d.ts",
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "dist-esm/src/",
+    "types/dpg-customization-rest.d.ts",
+    "README.md",
+    "LICENSE",
+    "review/*",
+    "CHANGELOG.md"
+  ],
+  "sdk-type": "mgmt",
+  "repository": "github:Azure/azure-sdk-for-js",
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
+  "prettier": "@azure/eslint-plugin-azure-sdk/prettier.json",
+  "//metadata": {
+    "constantPaths": [
+      {
+        "path": "swagger/README.md",
+        "prefix": "package-version"
+      },
+      {
+        "path": "src/dPGCustomizationClient.ts",
+        "prefix": "userAgentInfo"
+      }
+    ]
+  },
   "dependencies": {
-    "@azure/core-auth": "^1.3.0",
-    "@azure-rest/core-client": "^1.1.4",
-    "@azure/core-rest-pipeline": "^1.12.0",
+    "@azure-rest/core-client": "^1.4.0",
+    "@azure/core-auth": "^1.6.0",
+    "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.2.0",
-    "@azure/core-paging": "^1.5.0",
-    "@azure/core-lro": "^2.5.4",
-    "@azure/abort-controller": "^1.0.0"
+    "tslib": "^2.6.2",
+    "@azure/core-lro": "^3.1.0",
+    "@azure/abort-controller": "^2.1.2"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.31.1",
-    "autorest": "latest",
-    "@types/node": "^18.0.0",
     "dotenv": "^16.0.0",
-    "eslint": "^8.0.0",
-    "mkdirp": "^2.1.2",
-    "prettier": "^2.5.1",
-    "rimraf": "^5.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
+    "@types/node": "^18.0.0",
+    "eslint": "^8.55.0",
+    "typescript": "~5.6.2",
+    "autorest": "latest",
     "source-map-support": "^0.5.9",
-    "typescript": "~5.2.0",
     "@azure/dev-tool": "^1.0.0",
     "@azure/eslint-plugin-azure-sdk": "^3.0.0"
   },
-  "//metadata": {
-    "constantPaths": [
-      { "path": "src/dPGCustomizationClient.ts", "prefix": "userAgentInfo" },
-      { "path": "swagger/README.md", "prefix": "package-version" }
-    ]
+  "scripts": {
+    "clean": "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+    "extract-api": "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+    "pack": "npm pack 2>&1",
+    "lint": "eslint package.json api-extractor.json src test",
+    "lint:fix": "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    "build:samples": "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f",
+    "check-format": "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" \"samples-dev/*.ts\"",
+    "execute:samples": "dev-tool samples run samples-dev",
+    "format": "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" \"samples-dev/*.ts\"",
+    "integration-test:browser": "dev-tool run test:browser",
+    "integration-test:node": "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",
+    "generate:client": "echo skipped",
+    "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
+    "minify": "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
+    "build": "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
+    "build:test": "tsc -p . && dev-tool run bundle",
+    "build:debug": "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
+    "unit-test:node": "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
+    "unit-test:browser": "dev-tool run test:browser",
+    "update-snippets": "echo skipped"
   },
   "//sampleConfiguration": {
-    "productName": "DPGCustomizationClient",
+    "productName": "@msinternal/dpg-customization-rest",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/dpg-customization-rest"

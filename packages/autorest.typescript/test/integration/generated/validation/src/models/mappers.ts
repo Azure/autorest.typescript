@@ -16,77 +16,77 @@ export const Product: coreClient.CompositeMapper = {
       displayNames: {
         constraints: {
           MaxItems: 6,
-          UniqueItems: true
+          UniqueItems: true,
         },
         serializedName: "display_names",
         type: {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       capacity: {
         constraints: {
           ExclusiveMaximum: 100,
-          ExclusiveMinimum: 0
+          ExclusiveMinimum: 0,
         },
         serializedName: "capacity",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       image: {
         constraints: {
-          Pattern: new RegExp("http:\\/\\/\\w+")
+          Pattern: new RegExp("http:\\/\\/\\w+"),
         },
         serializedName: "image",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       child: {
         serializedName: "child",
         type: {
           name: "Composite",
-          className: "ChildProduct"
-        }
+          className: "ChildProduct",
+        },
       },
       constChild: {
         serializedName: "constChild",
         type: {
           name: "Composite",
-          className: "ConstantProduct"
-        }
+          className: "ConstantProduct",
+        },
       },
       constInt: {
         defaultValue: 0,
         isConstant: true,
         serializedName: "constInt",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       constString: {
         defaultValue: "constant",
         isConstant: true,
         serializedName: "constString",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       constStringAsEnum: {
         defaultValue: "constant_string_as_enum",
         isConstant: true,
         serializedName: "constStringAsEnum",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ChildProduct: coreClient.CompositeMapper = {
@@ -99,17 +99,17 @@ export const ChildProduct: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "constProperty",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       count: {
         serializedName: "count",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const ConstantProduct: coreClient.CompositeMapper = {
@@ -122,19 +122,19 @@ export const ConstantProduct: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "constProperty",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       constProperty2: {
         defaultValue: "constant2",
         isConstant: true,
         serializedName: "constProperty2",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -145,21 +145,21 @@ export const ErrorModel: coreClient.CompositeMapper = {
       code: {
         serializedName: "code",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       fields: {
         serializedName: "fields",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

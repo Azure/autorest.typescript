@@ -715,7 +715,7 @@ export enum KnownProvisioningState {
   /** Warned */
   Warned = "Warned",
   /** SystemMaintenance */
-  SystemMaintenance = "SystemMaintenance"
+  SystemMaintenance = "SystemMaintenance",
 }
 
 /**
@@ -746,7 +746,7 @@ export enum KnownPrivateEndpointServiceConnectionStatus {
   /** Approved */
   Approved = "Approved",
   /** Rejected */
-  Rejected = "Rejected"
+  Rejected = "Rejected",
 }
 
 /**
@@ -769,7 +769,7 @@ export enum KnownPrivateEndpointConnectionProvisioningState {
   /** Deleting */
   Deleting = "Deleting",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -789,7 +789,7 @@ export enum KnownPublicNetworkAccess {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -811,7 +811,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -831,7 +831,7 @@ export enum KnownManagedServiceIdentityType {
   /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
   /** None */
-  None = "None"
+  None = "None",
 }
 
 /**
@@ -849,7 +849,7 @@ export enum KnownIotIdentityResolutionType {
   /** Create */
   Create = "Create",
   /** Lookup */
-  Lookup = "Lookup"
+  Lookup = "Lookup",
 }
 
 /**
@@ -867,7 +867,7 @@ export enum KnownFhirServiceKind {
   /** FhirStu3 */
   FhirStu3 = "fhir-Stu3",
   /** FhirR4 */
-  FhirR4 = "fhir-R4"
+  FhirR4 = "fhir-R4",
 }
 
 /**
@@ -883,7 +883,7 @@ export type FhirServiceKind = string;
 /** Known values of {@link ActionType} that the service accepts. */
 export enum KnownActionType {
   /** Internal */
-  Internal = "Internal"
+  Internal = "Internal",
 }
 
 /**
@@ -906,7 +906,7 @@ export enum KnownOperationResultStatus {
   /** Requested */
   Requested = "Requested",
   /** Running */
-  Running = "Running"
+  Running = "Running",
 }
 
 /**
@@ -985,7 +985,8 @@ export interface ServicesCheckNameAvailabilityOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
-export type ServicesCheckNameAvailabilityResponse = ServicesNameAvailabilityInfo;
+export type ServicesCheckNameAvailabilityResponse =
+  ServicesNameAvailabilityInfo;
 
 /** Optional parameters. */
 export interface ServicesListNextOptionalParams
@@ -999,21 +1000,24 @@ export interface ServicesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ServicesListByResourceGroupNextResponse = ServicesDescriptionListResult;
+export type ServicesListByResourceGroupNextResponse =
+  ServicesDescriptionListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsListByServiceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByService operation. */
-export type PrivateEndpointConnectionsListByServiceResponse = PrivateEndpointConnectionListResultDescription;
+export type PrivateEndpointConnectionsListByServiceResponse =
+  PrivateEndpointConnectionListResultDescription;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnectionDescription;
+export type PrivateEndpointConnectionsGetResponse =
+  PrivateEndpointConnectionDescription;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams
@@ -1025,7 +1029,8 @@ export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnectionDescription;
+export type PrivateEndpointConnectionsCreateOrUpdateResponse =
+  PrivateEndpointConnectionDescription;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsDeleteOptionalParams
@@ -1041,7 +1046,8 @@ export interface PrivateLinkResourcesListByServiceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByService operation. */
-export type PrivateLinkResourcesListByServiceResponse = PrivateLinkResourceListResultDescription;
+export type PrivateLinkResourcesListByServiceResponse =
+  PrivateLinkResourceListResultDescription;
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesGetOptionalParams
@@ -1231,14 +1237,16 @@ export interface FhirDestinationsListByIotConnectorOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByIotConnector operation. */
-export type FhirDestinationsListByIotConnectorResponse = IotFhirDestinationCollection;
+export type FhirDestinationsListByIotConnectorResponse =
+  IotFhirDestinationCollection;
 
 /** Optional parameters. */
 export interface FhirDestinationsListByIotConnectorNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByIotConnectorNext operation. */
-export type FhirDestinationsListByIotConnectorNextResponse = IotFhirDestinationCollection;
+export type FhirDestinationsListByIotConnectorNextResponse =
+  IotFhirDestinationCollection;
 
 /** Optional parameters. */
 export interface IotConnectorFhirDestinationGetOptionalParams
@@ -1257,7 +1265,8 @@ export interface IotConnectorFhirDestinationCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type IotConnectorFhirDestinationCreateOrUpdateResponse = IotFhirDestination;
+export type IotConnectorFhirDestinationCreateOrUpdateResponse =
+  IotFhirDestination;
 
 /** Optional parameters. */
 export interface IotConnectorFhirDestinationDeleteOptionalParams

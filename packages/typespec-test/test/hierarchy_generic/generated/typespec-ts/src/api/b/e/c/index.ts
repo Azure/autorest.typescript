@@ -1,35 +1,34 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { BEA } from "../../../../models/models.js";
-import {
-  BecOp1204Response,
-  FooContext as Client,
-} from "../../../../rest/index.js";
+import { BECOp1OptionalParams, FooContext as Client } from "../../../index.js";
+import { Bea, beaSerializer } from "../../../../models/models.js";
 import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { BECOp1Options } from "../../../../models/options.js";
 
 export function _op1Send(
   context: Client,
-  body: BEA,
-  options: BECOp1Options = { requestOptions: {} }
-): StreamableMethod<BecOp1204Response> {
+  body: Bea,
+  options: BECOp1OptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { prop3: body["prop3"] },
+      body: beaSerializer(body),
     });
 }
 
 export async function _op1Deserialize(
-  result: BecOp1204Response
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (result.status !== "204") {
-    throw result.body;
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
   return;
@@ -37,8 +36,8 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BEA,
-  options: BECOp1Options = { requestOptions: {} }
+  body: Bea,
+  options: BECOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);

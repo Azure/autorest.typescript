@@ -12,7 +12,7 @@ import {
   FilesGetFileLargeOptionalParams,
   FilesGetFileLargeResponse,
   FilesGetEmptyFileOptionalParams,
-  FilesGetEmptyFileResponse
+  FilesGetEmptyFileResponse,
 } from "../models";
 
 /** Interface representing a Files. */
@@ -27,13 +27,13 @@ export interface Files {
    * @param options The options parameters.
    */
   getFileLarge(
-    options?: FilesGetFileLargeOptionalParams
+    options?: FilesGetFileLargeOptionalParams,
   ): Promise<FilesGetFileLargeResponse>;
   /**
    * Get empty file
    * @param options The options parameters.
    */
   getEmptyFile(
-    options?: FilesGetEmptyFileOptionalParams
+    options?: FilesGetEmptyFileOptionalParams,
   ): Promise<FilesGetEmptyFileResponse>;
 }

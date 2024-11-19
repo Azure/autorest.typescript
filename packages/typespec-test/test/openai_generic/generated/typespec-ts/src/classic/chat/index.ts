@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   ChatCompletionsOperations,
   getChatCompletionsOperations,
 } from "./completions/index.js";
 
+/** Interface representing a Chat operations. */
 export interface ChatOperations {
   completions: ChatCompletionsOperations;
 }

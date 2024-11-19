@@ -32,7 +32,7 @@ import {
   ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse,
   ManagementLocksDeleteAtSubscriptionLevelOptionalParams,
   ManagementLocksGetAtSubscriptionLevelOptionalParams,
-  ManagementLocksGetAtSubscriptionLevelResponse
+  ManagementLocksGetAtSubscriptionLevelResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -45,7 +45,7 @@ export interface ManagementLocks {
    */
   listAtResourceGroupLevel(
     resourceGroupName: string,
-    options?: ManagementLocksListAtResourceGroupLevelOptionalParams
+    options?: ManagementLocksListAtResourceGroupLevelOptionalParams,
   ): PagedAsyncIterableIterator<ManagementLockObject>;
   /**
    * Gets all the management locks for a resource or any level below resource.
@@ -63,14 +63,14 @@ export interface ManagementLocks {
     parentResourcePath: string,
     resourceType: string,
     resourceName: string,
-    options?: ManagementLocksListAtResourceLevelOptionalParams
+    options?: ManagementLocksListAtResourceLevelOptionalParams,
   ): PagedAsyncIterableIterator<ManagementLockObject>;
   /**
    * Gets all the management locks for a subscription.
    * @param options The options parameters.
    */
   listAtSubscriptionLevel(
-    options?: ManagementLocksListAtSubscriptionLevelOptionalParams
+    options?: ManagementLocksListAtSubscriptionLevelOptionalParams,
   ): PagedAsyncIterableIterator<ManagementLockObject>;
   /**
    * Gets all the management locks for a scope.
@@ -83,7 +83,7 @@ export interface ManagementLocks {
    */
   listByScope(
     scope: string,
-    options?: ManagementLocksListByScopeOptionalParams
+    options?: ManagementLocksListByScopeOptionalParams,
   ): PagedAsyncIterableIterator<ManagementLockObject>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create
@@ -100,7 +100,7 @@ export interface ManagementLocks {
     resourceGroupName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
+    options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams,
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -113,7 +113,7 @@ export interface ManagementLocks {
   deleteAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams
+    options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams,
   ): Promise<void>;
   /**
    * Gets a management lock at the resource group level.
@@ -124,7 +124,7 @@ export interface ManagementLocks {
   getAtResourceGroupLevel(
     resourceGroupName: string,
     lockName: string,
-    options?: ManagementLocksGetAtResourceGroupLevelOptionalParams
+    options?: ManagementLocksGetAtResourceGroupLevelOptionalParams,
   ): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
   /**
    * Create or update a management lock by scope.
@@ -141,7 +141,7 @@ export interface ManagementLocks {
     scope: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: ManagementLocksCreateOrUpdateByScopeOptionalParams
+    options?: ManagementLocksCreateOrUpdateByScopeOptionalParams,
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
   /**
    * Delete a management lock by scope.
@@ -152,7 +152,7 @@ export interface ManagementLocks {
   deleteByScope(
     scope: string,
     lockName: string,
-    options?: ManagementLocksDeleteByScopeOptionalParams
+    options?: ManagementLocksDeleteByScopeOptionalParams,
   ): Promise<void>;
   /**
    * Get a management lock by scope.
@@ -163,7 +163,7 @@ export interface ManagementLocks {
   getByScope(
     scope: string,
     lockName: string,
-    options?: ManagementLocksGetByScopeOptionalParams
+    options?: ManagementLocksGetByScopeOptionalParams,
   ): Promise<ManagementLocksGetByScopeResponse>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create
@@ -188,7 +188,7 @@ export interface ManagementLocks {
     resourceName: string,
     lockName: string,
     parameters: ManagementLockObject,
-    options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
+    options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams,
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -211,7 +211,7 @@ export interface ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: ManagementLocksDeleteAtResourceLevelOptionalParams
+    options?: ManagementLocksDeleteAtResourceLevelOptionalParams,
   ): Promise<void>;
   /**
    * Get the management lock of a resource or any level below resource.
@@ -230,7 +230,7 @@ export interface ManagementLocks {
     resourceType: string,
     resourceName: string,
     lockName: string,
-    options?: ManagementLocksGetAtResourceLevelOptionalParams
+    options?: ManagementLocksGetAtResourceLevelOptionalParams,
   ): Promise<ManagementLocksGetAtResourceLevelResponse>;
   /**
    * When you apply a lock at a parent scope, all child resources inherit the same lock. To create
@@ -245,7 +245,7 @@ export interface ManagementLocks {
   createOrUpdateAtSubscriptionLevel(
     lockName: string,
     parameters: ManagementLockObject,
-    options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
+    options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams,
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
   /**
    * To delete management locks, you must have access to Microsoft.Authorization/* or
@@ -256,7 +256,7 @@ export interface ManagementLocks {
    */
   deleteAtSubscriptionLevel(
     lockName: string,
-    options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams
+    options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams,
   ): Promise<void>;
   /**
    * Gets a management lock at the subscription level.
@@ -265,6 +265,6 @@ export interface ManagementLocks {
    */
   getAtSubscriptionLevel(
     lockName: string,
-    options?: ManagementLocksGetAtSubscriptionLevelOptionalParams
+    options?: ManagementLocksGetAtSubscriptionLevelOptionalParams,
   ): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
 }

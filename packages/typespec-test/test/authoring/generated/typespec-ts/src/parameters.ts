@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
@@ -7,7 +7,7 @@ import {
   TrainingJobOptions,
   Deployment,
   SwapDeploymentsOptions,
-} from "./models";
+} from "./models.js";
 
 /** The resource instance. */
 export type ProjectResourceMergeAndPatch = Partial<Project>;

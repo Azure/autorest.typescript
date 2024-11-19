@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SshPublicKeyResource,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function createANewSshPublicKeyResource() {
   const sshPublicKeyName = "mySshPublicKeyName";
   const parameters: SshPublicKeyResource = {
     location: "westus",
-    publicKey: "{ssh-rsa public key}"
+    publicKey: "{ssh-rsa public key}",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.sshPublicKeys.create(
     resourceGroupName,
     sshPublicKeyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -8,13 +8,13 @@
 
 import {
   FlattencomplexGetValidOptionalParams,
-  FlattencomplexGetValidResponse
+  FlattencomplexGetValidResponse,
 } from "../models";
 
 /** Interface representing a Flattencomplex. */
 export interface Flattencomplex {
   /** @param options The options parameters. */
   getValid(
-    options?: FlattencomplexGetValidOptionalParams
+    options?: FlattencomplexGetValidOptionalParams,
   ): Promise<FlattencomplexGetValidResponse>;
 }

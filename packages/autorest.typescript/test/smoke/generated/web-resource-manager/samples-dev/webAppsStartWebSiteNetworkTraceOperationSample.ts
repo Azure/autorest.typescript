@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   WebAppsStartWebSiteNetworkTraceOperationOptionalParams,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,15 +30,16 @@ async function startANewNetworkTraceOperationForASite() {
   const name = "SampleApp";
   const durationInSeconds = 60;
   const options: WebAppsStartWebSiteNetworkTraceOperationOptionalParams = {
-    durationInSeconds
+    durationInSeconds,
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.webApps.beginStartWebSiteNetworkTraceOperationAndWait(
-    resourceGroupName,
-    name,
-    options
-  );
+  const result =
+    await client.webApps.beginStartWebSiteNetworkTraceOperationAndWait(
+      resourceGroupName,
+      name,
+      options,
+    );
   console.log(result);
 }
 

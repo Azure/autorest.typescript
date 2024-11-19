@@ -1,15 +1,16 @@
+import { NameType } from "@azure-tools/rlc-common";
+import { SourceFile } from "ts-morph";
+import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import {
   Client,
   ModularCodeModel,
   OperationGroup
 } from "./modularCodeModel.js";
-import { NameType } from "@azure-tools/rlc-common";
-import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
-import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { SourceFile } from "ts-morph";
-import { importModels } from "./buildOperations.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicOperationFiles(
+  dpgContext: SdkContext,
   codeModel: ModularCodeModel,
   client: Client
 ) {
@@ -40,20 +41,10 @@ export function buildClassicOperationFiles(
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
         );
-      getClassicalOperation(classicFile, client, operationGroup);
+      getClassicalOperation(dpgContext, client, classicFile, operationGroup);
 
-      // Import models used from ./models.ts
-      // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-      importModels(
-        srcPath,
-        classicFile,
-        codeModel.project,
-        subfolder,
-        operationGroup.namespaceHierarchies.length
-      );
       importApis(classicFile, client, codeModel, operationGroup);
-      classicFile.fixMissingImports();
-      classicFile.fixUnusedIdentifiers();
+      // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
       classicOperationFiles.set(classicOperationFileName, classicFile);
     }
   }
@@ -85,14 +76,14 @@ export function buildClassicOperationFiles(
               subfolder && subfolder !== "" ? subfolder + "/" : ""
             }classic/${classicOperationFileName}.ts`
           );
-        getClassicalOperation(classicFile, client, operationGroup, layer);
-
-        // Import models used from ./models.ts
-        // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-        importModels(srcPath, classicFile, codeModel.project, subfolder, layer);
+        getClassicalOperation(
+          dpgContext,
+          client,
+          classicFile,
+          operationGroup,
+          layer
+        );
         importApis(classicFile, client, codeModel, operationGroup, layer);
-        classicFile.fixMissingImports();
-        classicFile.fixUnusedIdentifiers();
         classicOperationFiles.set(classicOperationFileName, classicFile);
       }
     }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ConnectivityConfiguration,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,8 +37,8 @@ async function connectivityConfigurationsPut() {
         isGlobal: "False",
         networkGroupId:
           "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkManagers/testNetworkManager/networkGroups/group1",
-        useHubGateway: "True"
-      }
+        useHubGateway: "True",
+      },
     ],
     connectivityTopology: "HubAndSpoke",
     deleteExistingPeering: "True",
@@ -46,10 +46,10 @@ async function connectivityConfigurationsPut() {
       {
         resourceId:
           "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myTestConnectivityConfig",
-        resourceType: "Microsoft.Network/virtualNetworks"
-      }
+        resourceType: "Microsoft.Network/virtualNetworks",
+      },
     ],
-    isGlobal: "True"
+    isGlobal: "True",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -57,7 +57,7 @@ async function connectivityConfigurationsPut() {
     resourceGroupName,
     networkManagerName,
     configurationName,
-    connectivityConfiguration
+    connectivityConfiguration,
   );
   console.log(result);
 }

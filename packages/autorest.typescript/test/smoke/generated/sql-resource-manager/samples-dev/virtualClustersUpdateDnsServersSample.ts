@@ -29,7 +29,7 @@ async function synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTh
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualClusters.updateDnsServers(
     resourceGroupName,
-    virtualClusterName
+    virtualClusterName,
   );
   console.log(result);
 }

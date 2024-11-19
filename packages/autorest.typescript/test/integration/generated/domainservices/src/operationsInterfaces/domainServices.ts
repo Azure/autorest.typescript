@@ -10,7 +10,7 @@ import {
   DomainServicesGetResponse,
   DomainServicesDeleteOptionalParams,
   DomainServicesUpdateOptionalParams,
-  DomainServicesUpdateResponse
+  DomainServicesUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -22,7 +22,7 @@ export interface DomainServices {
    * @param options The options parameters.
    */
   list(
-    options?: DomainServicesListOptionalParams
+    options?: DomainServicesListOptionalParams,
   ): PagedAsyncIterableIterator<DomainService>;
   /**
    * The List Domain Services in Resource Group operation lists all the domain services available under
@@ -33,7 +33,7 @@ export interface DomainServices {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: DomainServicesListByResourceGroupOptionalParams
+    options?: DomainServicesListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<DomainService>;
   /**
    * The Create Domain Service operation creates a new domain service with the specified parameters. If
@@ -49,7 +49,7 @@ export interface DomainServices {
     resourceGroupName: string,
     domainServiceName: string,
     domainService: DomainService,
-    options?: DomainServicesCreateOrUpdateOptionalParams
+    options?: DomainServicesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DomainServicesCreateOrUpdateResponse>,
@@ -70,7 +70,7 @@ export interface DomainServices {
     resourceGroupName: string,
     domainServiceName: string,
     domainService: DomainService,
-    options?: DomainServicesCreateOrUpdateOptionalParams
+    options?: DomainServicesCreateOrUpdateOptionalParams,
   ): Promise<DomainServicesCreateOrUpdateResponse>;
   /**
    * The Get Domain Service operation retrieves a json representation of the Domain Service.
@@ -82,7 +82,7 @@ export interface DomainServices {
   get(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: DomainServicesGetOptionalParams
+    options?: DomainServicesGetOptionalParams,
   ): Promise<DomainServicesGetResponse>;
   /**
    * The Delete Domain Service operation deletes an existing Domain Service.
@@ -94,7 +94,7 @@ export interface DomainServices {
   beginDelete(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: DomainServicesDeleteOptionalParams
+    options?: DomainServicesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * The Delete Domain Service operation deletes an existing Domain Service.
@@ -106,7 +106,7 @@ export interface DomainServices {
   beginDeleteAndWait(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: DomainServicesDeleteOptionalParams
+    options?: DomainServicesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * The Update Domain Service operation can be used to update the existing deployment. The update call
@@ -121,7 +121,7 @@ export interface DomainServices {
     resourceGroupName: string,
     domainServiceName: string,
     domainService: DomainService,
-    options?: DomainServicesUpdateOptionalParams
+    options?: DomainServicesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DomainServicesUpdateResponse>,
@@ -141,6 +141,6 @@ export interface DomainServices {
     resourceGroupName: string,
     domainServiceName: string,
     domainService: DomainService,
-    options?: DomainServicesUpdateOptionalParams
+    options?: DomainServicesUpdateOptionalParams,
   ): Promise<DomainServicesUpdateResponse>;
 }

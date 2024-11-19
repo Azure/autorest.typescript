@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CheckPrivateLinkServiceVisibilityRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,15 @@ async function checkPrivateLinkServiceVisibility() {
   const location = "westus";
   const parameters: CheckPrivateLinkServiceVisibilityRequest = {
     privateLinkServiceAlias:
-      "mypls.00000000-0000-0000-0000-000000000000.azure.privatelinkservice"
+      "mypls.00000000-0000-0000-0000-000000000000.azure.privatelinkservice",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.privateLinkServices.beginCheckPrivateLinkServiceVisibilityAndWait(
-    location,
-    parameters
-  );
+  const result =
+    await client.privateLinkServices.beginCheckPrivateLinkServiceVisibilityAndWait(
+      location,
+      parameters,
+    );
   console.log(result);
 }
 

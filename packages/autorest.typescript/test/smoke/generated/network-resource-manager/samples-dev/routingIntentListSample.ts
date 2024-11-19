@@ -29,7 +29,7 @@ async function routingIntentList() {
   const resArray = new Array();
   for await (let item of client.routingIntentOperations.list(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   )) {
     resArray.push(item);
   }

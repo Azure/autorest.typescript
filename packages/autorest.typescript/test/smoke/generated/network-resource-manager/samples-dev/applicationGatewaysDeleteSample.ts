@@ -28,7 +28,7 @@ async function deleteApplicationGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginDeleteAndWait(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   );
   console.log(result);
 }

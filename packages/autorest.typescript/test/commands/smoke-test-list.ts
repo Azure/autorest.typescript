@@ -32,7 +32,7 @@ const getArmReadmes = (): SpecDefinition[] => {
     "package-managedapplications-2018-06",
     "package-deploymentscripts-2019-10-preview"
   ];
-  return armTags.map(tag => ({
+  return armTags.map((tag) => ({
     path: joinPath(
       `${__dirname}`,
       "..",
@@ -47,10 +47,7 @@ const getArmReadmes = (): SpecDefinition[] => {
             AutorestParams.NotAzureSdkForJs,
             `--tag=${tag}`
           ]
-        : [
-            AutorestParams.NotAzureSdkForJs,
-            `--tag=${tag}`
-          ],
+        : [AutorestParams.NotAzureSdkForJs, `--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));

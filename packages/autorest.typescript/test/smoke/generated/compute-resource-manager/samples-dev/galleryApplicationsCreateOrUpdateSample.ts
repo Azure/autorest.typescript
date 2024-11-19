@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryApplication,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function createOrUpdateASimpleGalleryApplication() {
     location: "West US",
     privacyStatementUri: "myPrivacyStatementUri}",
     releaseNoteUri: "myReleaseNoteUri",
-    supportedOSType: "Windows"
+    supportedOSType: "Windows",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -42,7 +42,7 @@ async function createOrUpdateASimpleGalleryApplication() {
     resourceGroupName,
     galleryName,
     galleryApplicationName,
-    galleryApplication
+    galleryApplication,
   );
   console.log(result);
 }

@@ -2889,7 +2889,7 @@ export enum KnownOrigin {
   /** System */
   System = "system",
   /** UserSystem */
-  UserSystem = "user,system"
+  UserSystem = "user,system",
 }
 
 /**
@@ -2906,7 +2906,7 @@ export type Origin = string;
 /** Known values of {@link ActionType} that the service accepts. */
 export enum KnownActionType {
   /** Internal */
-  Internal = "Internal"
+  Internal = "Internal",
 }
 
 /**
@@ -2923,7 +2923,7 @@ export enum KnownBareMetalMachineCordonStatus {
   /** Cordoned */
   Cordoned = "Cordoned",
   /** Uncordoned */
-  Uncordoned = "Uncordoned"
+  Uncordoned = "Uncordoned",
 }
 
 /**
@@ -2949,7 +2949,7 @@ export enum KnownBareMetalMachineDetailedStatus {
   /** Provisioned */
   Provisioned = "Provisioned",
   /** Deprovisioning */
-  Deprovisioning = "Deprovisioning"
+  Deprovisioning = "Deprovisioning",
 }
 
 /**
@@ -2971,7 +2971,7 @@ export enum KnownBareMetalMachineHardwareValidationResult {
   /** Pass */
   Pass = "Pass",
   /** Fail */
-  Fail = "Fail"
+  Fail = "Fail",
 }
 
 /**
@@ -2989,7 +2989,7 @@ export enum KnownBareMetalMachinePowerState {
   /** On */
   On = "On",
   /** Off */
-  Off = "Off"
+  Off = "Off",
 }
 
 /**
@@ -3013,7 +3013,7 @@ export enum KnownBareMetalMachineProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -3034,7 +3034,7 @@ export enum KnownBareMetalMachineReadyState {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3056,7 +3056,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -3078,7 +3078,7 @@ export enum KnownCloudServicesNetworkDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -3097,7 +3097,7 @@ export enum KnownCloudServicesNetworkEnableDefaultEgressEndpoints {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3121,7 +3121,7 @@ export enum KnownCloudServicesNetworkProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -3150,7 +3150,7 @@ export enum KnownClusterManagerDetailedStatus {
   /** Updating */
   Updating = "Updating",
   /** UpdateFailed */
-  UpdateFailed = "UpdateFailed"
+  UpdateFailed = "UpdateFailed",
 }
 
 /**
@@ -3180,7 +3180,7 @@ export enum KnownClusterManagerProvisioningState {
   /** Accepted */
   Accepted = "Accepted",
   /** Updating */
-  Updating = "Updating"
+  Updating = "Updating",
 }
 
 /**
@@ -3202,7 +3202,7 @@ export enum KnownControlImpact {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3220,7 +3220,7 @@ export enum KnownWorkloadImpact {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3240,7 +3240,7 @@ export enum KnownClusterConnectionStatus {
   /** Timeout */
   Timeout = "Timeout",
   /** Undefined */
-  Undefined = "Undefined"
+  Undefined = "Undefined",
 }
 
 /**
@@ -3259,7 +3259,7 @@ export enum KnownClusterManagerConnectionStatus {
   /** Connected */
   Connected = "Connected",
   /** Unreachable */
-  Unreachable = "Unreachable"
+  Unreachable = "Unreachable",
 }
 
 /**
@@ -3277,7 +3277,7 @@ export enum KnownClusterType {
   /** SingleRack */
   SingleRack = "SingleRack",
   /** MultiRack */
-  MultiRack = "MultiRack"
+  MultiRack = "MultiRack",
 }
 
 /**
@@ -3295,7 +3295,7 @@ export enum KnownValidationThresholdGrouping {
   /** PerCluster */
   PerCluster = "PerCluster",
   /** PerRack */
-  PerRack = "PerRack"
+  PerRack = "PerRack",
 }
 
 /**
@@ -3313,7 +3313,7 @@ export enum KnownValidationThresholdType {
   /** CountSuccess */
   CountSuccess = "CountSuccess",
   /** PercentSuccess */
-  PercentSuccess = "PercentSuccess"
+  PercentSuccess = "PercentSuccess",
 }
 
 /**
@@ -3343,7 +3343,7 @@ export enum KnownClusterDetailedStatus {
   /** Disconnected */
   Disconnected = "Disconnected",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -3375,7 +3375,7 @@ export enum KnownClusterProvisioningState {
   /** Validating */
   Validating = "Validating",
   /** Updating */
-  Updating = "Updating"
+  Updating = "Updating",
 }
 
 /**
@@ -3397,7 +3397,7 @@ export enum KnownAvailabilityLifecycle {
   /** Preview */
   Preview = "Preview",
   /** GenerallyAvailable */
-  GenerallyAvailable = "GenerallyAvailable"
+  GenerallyAvailable = "GenerallyAvailable",
 }
 
 /**
@@ -3417,7 +3417,7 @@ export enum KnownKubernetesClusterDetailedStatus {
   /** Error */
   Error = "Error",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -3438,7 +3438,7 @@ export enum KnownFeatureDetailedStatus {
   /** Failed */
   Failed = "Failed",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -3457,7 +3457,7 @@ export enum KnownHugepagesSize {
   /** TwoM */
   TwoM = "2M",
   /** OneG */
-  OneG = "1G"
+  OneG = "1G",
 }
 
 /**
@@ -3481,7 +3481,7 @@ export enum KnownKubernetesPluginType {
   /** Macvlan */
   Macvlan = "MACVLAN",
   /** Ipvlan */
-  Ipvlan = "IPVLAN"
+  Ipvlan = "IPVLAN",
 }
 
 /**
@@ -3502,7 +3502,7 @@ export enum KnownL3NetworkConfigurationIpamEnabled {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3522,7 +3522,7 @@ export enum KnownAgentPoolMode {
   /** User */
   User = "User",
   /** NotApplicable */
-  NotApplicable = "NotApplicable"
+  NotApplicable = "NotApplicable",
 }
 
 /**
@@ -3541,7 +3541,7 @@ export enum KnownAdvertiseToFabric {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3559,7 +3559,7 @@ export enum KnownBfdEnabled {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3577,7 +3577,7 @@ export enum KnownBgpMultiHop {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3595,7 +3595,7 @@ export enum KnownFabricPeeringEnabled {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3625,7 +3625,7 @@ export enum KnownKubernetesClusterNodeDetailedStatus {
   /** Terminating */
   Terminating = "Terminating",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -3649,7 +3649,7 @@ export enum KnownDefaultGateway {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3669,7 +3669,7 @@ export enum KnownVirtualMachineIPAllocationMethod {
   /** Static */
   Static = "Static",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -3690,7 +3690,7 @@ export enum KnownKubernetesNodePowerState {
   /** Off */
   Off = "Off",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -3709,7 +3709,7 @@ export enum KnownKubernetesNodeRole {
   /** ControlPlane */
   ControlPlane = "ControlPlane",
   /** Worker */
-  Worker = "Worker"
+  Worker = "Worker",
 }
 
 /**
@@ -3739,7 +3739,7 @@ export enum KnownKubernetesClusterProvisioningState {
   /** Updating */
   Updating = "Updating",
   /** Deleting */
-  Deleting = "Deleting"
+  Deleting = "Deleting",
 }
 
 /**
@@ -3765,7 +3765,7 @@ export enum KnownL2NetworkDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -3786,7 +3786,7 @@ export enum KnownHybridAksPluginType {
   /** Sriov */
   Sriov = "SRIOV",
   /** OSDevice */
-  OSDevice = "OSDevice"
+  OSDevice = "OSDevice",
 }
 
 /**
@@ -3811,7 +3811,7 @@ export enum KnownL2NetworkProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -3834,7 +3834,7 @@ export enum KnownL3NetworkDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -3853,7 +3853,7 @@ export enum KnownHybridAksIpamEnabled {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -3873,7 +3873,7 @@ export enum KnownIpAllocationType {
   /** IPV6 */
   IPV6 = "IPV6",
   /** DualStack */
-  DualStack = "DualStack"
+  DualStack = "DualStack",
 }
 
 /**
@@ -3898,7 +3898,7 @@ export enum KnownL3NetworkProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -3917,7 +3917,7 @@ export type L3NetworkProvisioningState = string;
 /** Known values of {@link BootstrapProtocol} that the service accepts. */
 export enum KnownBootstrapProtocol {
   /** PXE */
-  PXE = "PXE"
+  PXE = "PXE",
 }
 
 /**
@@ -3938,7 +3938,7 @@ export enum KnownMachineSkuDiskConnectionType {
   /** Raid */
   Raid = "RAID",
   /** SAS */
-  SAS = "SAS"
+  SAS = "SAS",
 }
 
 /**
@@ -3958,7 +3958,7 @@ export enum KnownDiskType {
   /** HDD */
   HDD = "HDD",
   /** SSD */
-  SSD = "SSD"
+  SSD = "SSD",
 }
 
 /**
@@ -3974,7 +3974,7 @@ export type DiskType = string;
 /** Known values of {@link DeviceConnectionType} that the service accepts. */
 export enum KnownDeviceConnectionType {
   /** PCI */
-  PCI = "PCI"
+  PCI = "PCI",
 }
 
 /**
@@ -3989,7 +3989,7 @@ export type DeviceConnectionType = string;
 /** Known values of {@link RackSkuProvisioningState} that the service accepts. */
 export enum KnownRackSkuProvisioningState {
   /** Succeeded */
-  Succeeded = "Succeeded"
+  Succeeded = "Succeeded",
 }
 
 /**
@@ -4008,7 +4008,7 @@ export enum KnownRackSkuType {
   /** Compute */
   Compute = "Compute",
   /** Single */
-  Single = "Single"
+  Single = "Single",
 }
 
 /**
@@ -4029,7 +4029,7 @@ export enum KnownRackDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4054,7 +4054,7 @@ export enum KnownRackProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4077,7 +4077,7 @@ export enum KnownStorageApplianceDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4102,7 +4102,7 @@ export enum KnownStorageApplianceProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4123,7 +4123,7 @@ export enum KnownRemoteVendorManagementFeature {
   /** Supported */
   Supported = "Supported",
   /** Unsupported */
-  Unsupported = "Unsupported"
+  Unsupported = "Unsupported",
 }
 
 /**
@@ -4143,7 +4143,7 @@ export enum KnownRemoteVendorManagementStatus {
   /** Disabled */
   Disabled = "Disabled",
   /** Unsupported */
-  Unsupported = "Unsupported"
+  Unsupported = "Unsupported",
 }
 
 /**
@@ -4164,7 +4164,7 @@ export enum KnownTrunkedNetworkDetailedStatus {
   /** Available */
   Available = "Available",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4189,7 +4189,7 @@ export enum KnownTrunkedNetworkProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4210,7 +4210,7 @@ export enum KnownVirtualMachineBootMethod {
   /** Uefi */
   Uefi = "UEFI",
   /** Bios */
-  Bios = "BIOS"
+  Bios = "BIOS",
 }
 
 /**
@@ -4240,7 +4240,7 @@ export enum KnownVirtualMachineDetailedStatus {
   /** Terminating */
   Terminating = "Terminating",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -4264,7 +4264,7 @@ export enum KnownVirtualMachineIsolateEmulatorThread {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -4282,7 +4282,7 @@ export enum KnownVirtualMachinePlacementHintType {
   /** Affinity */
   Affinity = "Affinity",
   /** AntiAffinity */
-  AntiAffinity = "AntiAffinity"
+  AntiAffinity = "AntiAffinity",
 }
 
 /**
@@ -4300,7 +4300,7 @@ export enum KnownVirtualMachineSchedulingExecution {
   /** Hard */
   Hard = "Hard",
   /** Soft */
-  Soft = "Soft"
+  Soft = "Soft",
 }
 
 /**
@@ -4318,7 +4318,7 @@ export enum KnownVirtualMachinePlacementHintPodAffinityScope {
   /** Rack */
   Rack = "Rack",
   /** Machine */
-  Machine = "Machine"
+  Machine = "Machine",
 }
 
 /**
@@ -4338,7 +4338,7 @@ export enum KnownVirtualMachinePowerState {
   /** Off */
   Off = "Off",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -4363,7 +4363,7 @@ export enum KnownVirtualMachineProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4382,7 +4382,7 @@ export type VirtualMachineProvisioningState = string;
 /** Known values of {@link OsDiskCreateOption} that the service accepts. */
 export enum KnownOsDiskCreateOption {
   /** Ephemeral */
-  Ephemeral = "Ephemeral"
+  Ephemeral = "Ephemeral",
 }
 
 /**
@@ -4397,7 +4397,7 @@ export type OsDiskCreateOption = string;
 /** Known values of {@link OsDiskDeleteOption} that the service accepts. */
 export enum KnownOsDiskDeleteOption {
   /** Delete */
-  Delete = "Delete"
+  Delete = "Delete",
 }
 
 /**
@@ -4414,7 +4414,7 @@ export enum KnownVirtualMachineVirtioInterfaceType {
   /** Modern */
   Modern = "Modern",
   /** Transitional */
-  Transitional = "Transitional"
+  Transitional = "Transitional",
 }
 
 /**
@@ -4432,7 +4432,7 @@ export enum KnownVirtualMachineDeviceModelType {
   /** T1 */
   T1 = "T1",
   /** T2 */
-  T2 = "T2"
+  T2 = "T2",
 }
 
 /**
@@ -4452,7 +4452,7 @@ export enum KnownVolumeDetailedStatus {
   /** Active */
   Active = "Active",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4477,7 +4477,7 @@ export enum KnownVolumeProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4498,7 +4498,7 @@ export enum KnownBareMetalMachineEvacuate {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -4516,7 +4516,7 @@ export enum KnownBareMetalMachineSkipShutdown {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -4538,7 +4538,7 @@ export enum KnownBareMetalMachineKeySetDetailedStatus {
   /** AllInvalid */
   AllInvalid = "AllInvalid",
   /** Validating */
-  Validating = "Validating"
+  Validating = "Validating",
 }
 
 /**
@@ -4558,7 +4558,7 @@ export enum KnownBareMetalMachineKeySetPrivilegeLevel {
   /** Standard */
   Standard = "Standard",
   /** Superuser */
-  Superuser = "Superuser"
+  Superuser = "Superuser",
 }
 
 /**
@@ -4582,7 +4582,7 @@ export enum KnownBareMetalMachineKeySetProvisioningState {
   /** Accepted */
   Accepted = "Accepted",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4603,7 +4603,7 @@ export enum KnownBareMetalMachineKeySetUserSetupStatus {
   /** Active */
   Active = "Active",
   /** Invalid */
-  Invalid = "Invalid"
+  Invalid = "Invalid",
 }
 
 /**
@@ -4625,7 +4625,7 @@ export enum KnownBmcKeySetDetailedStatus {
   /** AllInvalid */
   AllInvalid = "AllInvalid",
   /** Validating */
-  Validating = "Validating"
+  Validating = "Validating",
 }
 
 /**
@@ -4645,7 +4645,7 @@ export enum KnownBmcKeySetPrivilegeLevel {
   /** ReadOnly */
   ReadOnly = "ReadOnly",
   /** Administrator */
-  Administrator = "Administrator"
+  Administrator = "Administrator",
 }
 
 /**
@@ -4669,7 +4669,7 @@ export enum KnownBmcKeySetProvisioningState {
   /** Accepted */
   Accepted = "Accepted",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4692,7 +4692,7 @@ export enum KnownClusterMetricsConfigurationDetailedStatus {
   /** Applied */
   Applied = "Applied",
   /** Error */
-  Error = "Error"
+  Error = "Error",
 }
 
 /**
@@ -4717,7 +4717,7 @@ export enum KnownClusterMetricsConfigurationProvisioningState {
   /** Accepted */
   Accepted = "Accepted",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4740,7 +4740,7 @@ export enum KnownAgentPoolDetailedStatus {
   /** Error */
   Error = "Error",
   /** Provisioning */
-  Provisioning = "Provisioning"
+  Provisioning = "Provisioning",
 }
 
 /**
@@ -4769,7 +4769,7 @@ export enum KnownAgentPoolProvisioningState {
   /** Succeeded */
   Succeeded = "Succeeded",
   /** Updating */
-  Updating = "Updating"
+  Updating = "Updating",
 }
 
 /**
@@ -4792,7 +4792,7 @@ export enum KnownConsoleDetailedStatus {
   /** Ready */
   Ready = "Ready",
   /** Error */
-  Error = "Error"
+  Error = "Error",
 }
 
 /**
@@ -4810,7 +4810,7 @@ export enum KnownConsoleEnabled {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -4834,7 +4834,7 @@ export enum KnownConsoleProvisioningState {
   /** Provisioning */
   Provisioning = "Provisioning",
   /** Accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -4855,7 +4855,7 @@ export enum KnownSkipShutdown {
   /** True */
   True = "True",
   /** False */
-  False = "False"
+  False = "False",
 }
 
 /**
@@ -5069,28 +5069,32 @@ export interface BareMetalMachinesListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type BareMetalMachinesListBySubscriptionNextResponse = BareMetalMachineList;
+export type BareMetalMachinesListBySubscriptionNextResponse =
+  BareMetalMachineList;
 
 /** Optional parameters. */
 export interface BareMetalMachinesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type BareMetalMachinesListByResourceGroupNextResponse = BareMetalMachineList;
+export type BareMetalMachinesListByResourceGroupNextResponse =
+  BareMetalMachineList;
 
 /** Optional parameters. */
 export interface CloudServicesNetworksListBySubscriptionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type CloudServicesNetworksListBySubscriptionResponse = CloudServicesNetworkList;
+export type CloudServicesNetworksListBySubscriptionResponse =
+  CloudServicesNetworkList;
 
 /** Optional parameters. */
 export interface CloudServicesNetworksListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type CloudServicesNetworksListByResourceGroupResponse = CloudServicesNetworkList;
+export type CloudServicesNetworksListByResourceGroupResponse =
+  CloudServicesNetworkList;
 
 /** Optional parameters. */
 export interface CloudServicesNetworksGetOptionalParams
@@ -5139,14 +5143,16 @@ export interface CloudServicesNetworksListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type CloudServicesNetworksListBySubscriptionNextResponse = CloudServicesNetworkList;
+export type CloudServicesNetworksListBySubscriptionNextResponse =
+  CloudServicesNetworkList;
 
 /** Optional parameters. */
 export interface CloudServicesNetworksListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type CloudServicesNetworksListByResourceGroupNextResponse = CloudServicesNetworkList;
+export type CloudServicesNetworksListByResourceGroupNextResponse =
+  CloudServicesNetworkList;
 
 /** Optional parameters. */
 export interface ClusterManagersListBySubscriptionOptionalParams
@@ -5315,14 +5321,16 @@ export interface KubernetesClustersListBySubscriptionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type KubernetesClustersListBySubscriptionResponse = KubernetesClusterList;
+export type KubernetesClustersListBySubscriptionResponse =
+  KubernetesClusterList;
 
 /** Optional parameters. */
 export interface KubernetesClustersListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type KubernetesClustersListByResourceGroupResponse = KubernetesClusterList;
+export type KubernetesClustersListByResourceGroupResponse =
+  KubernetesClusterList;
 
 /** Optional parameters. */
 export interface KubernetesClustersGetOptionalParams
@@ -5383,14 +5391,16 @@ export interface KubernetesClustersListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type KubernetesClustersListBySubscriptionNextResponse = KubernetesClusterList;
+export type KubernetesClustersListBySubscriptionNextResponse =
+  KubernetesClusterList;
 
 /** Optional parameters. */
 export interface KubernetesClustersListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type KubernetesClustersListByResourceGroupNextResponse = KubernetesClusterList;
+export type KubernetesClustersListByResourceGroupNextResponse =
+  KubernetesClusterList;
 
 /** Optional parameters. */
 export interface L2NetworksListBySubscriptionOptionalParams
@@ -5678,7 +5688,8 @@ export interface StorageAppliancesDisableRemoteVendorManagementOptionalParams
 }
 
 /** Contains response data for the disableRemoteVendorManagement operation. */
-export type StorageAppliancesDisableRemoteVendorManagementResponse = OperationStatusResult;
+export type StorageAppliancesDisableRemoteVendorManagementResponse =
+  OperationStatusResult;
 
 /** Optional parameters. */
 export interface StorageAppliancesEnableRemoteVendorManagementOptionalParams
@@ -5692,21 +5703,24 @@ export interface StorageAppliancesEnableRemoteVendorManagementOptionalParams
 }
 
 /** Contains response data for the enableRemoteVendorManagement operation. */
-export type StorageAppliancesEnableRemoteVendorManagementResponse = OperationStatusResult;
+export type StorageAppliancesEnableRemoteVendorManagementResponse =
+  OperationStatusResult;
 
 /** Optional parameters. */
 export interface StorageAppliancesListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type StorageAppliancesListBySubscriptionNextResponse = StorageApplianceList;
+export type StorageAppliancesListBySubscriptionNextResponse =
+  StorageApplianceList;
 
 /** Optional parameters. */
 export interface StorageAppliancesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type StorageAppliancesListByResourceGroupNextResponse = StorageApplianceList;
+export type StorageAppliancesListByResourceGroupNextResponse =
+  StorageApplianceList;
 
 /** Optional parameters. */
 export interface TrunkedNetworksListBySubscriptionOptionalParams
@@ -5964,7 +5978,8 @@ export interface BareMetalMachineKeySetsListByClusterOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByCluster operation. */
-export type BareMetalMachineKeySetsListByClusterResponse = BareMetalMachineKeySetList;
+export type BareMetalMachineKeySetsListByClusterResponse =
+  BareMetalMachineKeySetList;
 
 /** Optional parameters. */
 export interface BareMetalMachineKeySetsGetOptionalParams
@@ -5983,7 +5998,8 @@ export interface BareMetalMachineKeySetsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type BareMetalMachineKeySetsCreateOrUpdateResponse = BareMetalMachineKeySet;
+export type BareMetalMachineKeySetsCreateOrUpdateResponse =
+  BareMetalMachineKeySet;
 
 /** Optional parameters. */
 export interface BareMetalMachineKeySetsDeleteOptionalParams
@@ -6013,7 +6029,8 @@ export interface BareMetalMachineKeySetsListByClusterNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByClusterNext operation. */
-export type BareMetalMachineKeySetsListByClusterNextResponse = BareMetalMachineKeySetList;
+export type BareMetalMachineKeySetsListByClusterNextResponse =
+  BareMetalMachineKeySetList;
 
 /** Optional parameters. */
 export interface BmcKeySetsListByClusterOptionalParams
@@ -6076,7 +6093,8 @@ export interface MetricsConfigurationsListByClusterOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByCluster operation. */
-export type MetricsConfigurationsListByClusterResponse = ClusterMetricsConfigurationList;
+export type MetricsConfigurationsListByClusterResponse =
+  ClusterMetricsConfigurationList;
 
 /** Optional parameters. */
 export interface MetricsConfigurationsGetOptionalParams
@@ -6095,7 +6113,8 @@ export interface MetricsConfigurationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type MetricsConfigurationsCreateOrUpdateResponse = ClusterMetricsConfiguration;
+export type MetricsConfigurationsCreateOrUpdateResponse =
+  ClusterMetricsConfiguration;
 
 /** Optional parameters. */
 export interface MetricsConfigurationsDeleteOptionalParams
@@ -6125,7 +6144,8 @@ export interface MetricsConfigurationsListByClusterNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByClusterNext operation. */
-export type MetricsConfigurationsListByClusterNextResponse = ClusterMetricsConfigurationList;
+export type MetricsConfigurationsListByClusterNextResponse =
+  ClusterMetricsConfigurationList;
 
 /** Optional parameters. */
 export interface AgentPoolsListByKubernetesClusterOptionalParams

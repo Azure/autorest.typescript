@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createLoadTestRun,
-  LoadTestRunClientOptions,
-  AzureLoadTestingContext,
-} from "./LoadTestRunContext.js";
+  LoadTestRunContext,
+  LoadTestRunClientOptionalParams,
+} from "./loadTestRunContext.js";
 export {
-  testRun,
+  createOrUpdateTestRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
   deleteTestRun,
@@ -22,3 +22,19 @@ export {
   listTestRuns,
   stopTestRun,
 } from "./operations.js";
+export {
+  CreateOrUpdateTestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
+} from "./options.js";

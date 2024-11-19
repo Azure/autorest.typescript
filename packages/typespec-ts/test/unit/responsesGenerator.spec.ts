@@ -7,11 +7,12 @@ import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Responses.ts", () => {
   describe("property name generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header("Operation-Location")
             operationLocation: ResourceLocation<SimpleModel>;
@@ -19,7 +20,7 @@ describe("Responses.ts", () => {
         op read(): LongRunningStatusLocation;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -38,11 +39,12 @@ describe("Responses.ts", () => {
       );
     });
 
-    it("should generate property name without custome name", async () => {
+    it("should generate property name without custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header
             operationLocation: ResourceLocation<SimpleModel>;
@@ -50,7 +52,7 @@ describe("Responses.ts", () => {
         op read(): LongRunningStatusLocation;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -71,7 +73,7 @@ describe("Responses.ts", () => {
   });
 
   describe("statusCode generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
       @doc("Error")
       @error
@@ -85,11 +87,11 @@ describe("Responses.ts", () => {
       op read(): Key | Error;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput, ErrorModelOutput } from "./outputModels";
+      import { KeyOutput, ErrorModelOutput } from "./outputModels.js";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -107,12 +109,30 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
+    it("void as response body should be omitted", async () => {
+      const parameters = await emitResponsesFromTypeSpec(`
+      @post op read(): {@body body: void; @statusCode _: 204; };
+      `);
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+    
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Read204Response extends HttpResponse {
+          status: "204";
+        }
+      `
+      );
+    });
+
     it("unknown array response generation", async () => {
       const parameters = await emitResponsesFromTypeSpec(`
       @post op read():  unknown[];
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -135,11 +155,11 @@ describe("Responses.ts", () => {
       @post op read(@body body: SimpleModel[]): Record<SimpleModel>;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { SimpleModelOutput } from "./outputModels";
+        import { SimpleModelOutput } from "./outputModels.js";
     
         /** The request has succeeded. */
         export interface Read200Response extends HttpResponse {
@@ -155,7 +175,7 @@ describe("Responses.ts", () => {
         op read(): Record<unknown>;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { HttpResponse } from "@azure-rest/core-client";
@@ -173,16 +193,22 @@ describe("Responses.ts", () => {
       @get op read(): {@header contentType: "image/png", @body body: bytes};
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
       
+      export interface Read200Headers {
+        "content-type": "image/png";
+      }
+
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
         status: "200";
         /** Value may contain any sequence of octets */
         body: Uint8Array;
+        headers: RawHttpHeaders & Read200Headers;
       }
       `
       );
@@ -192,16 +218,22 @@ describe("Responses.ts", () => {
       @get op read(): {@header contentType: "text/plain", @body body: bytes};
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
+      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
-      
-      /** The request has succeeded. */
-      export interface Read200Response extends HttpResponse {
-        status: "200";
-        body: string;
+       
+      export interface Read200Headers {
+        "content-type": "text/plain";
       }
+      
+       /** The request has succeeded. */
+       export interface Read200Response extends HttpResponse {
+         status: "200";
+         body: string;
+         headers: RawHttpHeaders & Read200Headers;
+       }
       `
       );
     });
@@ -214,10 +246,12 @@ describe("Responses.ts", () => {
       @doc("testing")
       @get op read(): Azure.Core.Foundations.ErrorResponse;
       `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -256,10 +290,10 @@ describe("Responses.ts", () => {
       @doc("testing")
       @get op read(): ErrorResponse;
     `;
-      const parameters = await emitResponsesFromTypeSpec(tsp, false);
-      const models = await emitModelsFromTypeSpec(tsp, false);
+      const parameters = await emitResponsesFromTypeSpec(tsp);
+      const models = await emitModelsFromTypeSpec(tsp);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         models?.outputModelFile?.content!,
         `
       export interface ErrorResponseOutput {
@@ -273,11 +307,11 @@ describe("Responses.ts", () => {
         code: string | null;
       } `
       );
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { ErrorResponseOutput } from "./outputModels";
+        import { ErrorResponseOutput } from "./outputModels.js";
 
         export interface ReadDefaultResponse extends HttpResponse {
           status: string;
@@ -299,16 +333,17 @@ describe("Responses.ts", () => {
           | {@header contentType: "image/png", @body body: bytes, @header bar: string };
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput } from "./outputModels";
+      import { KeyOutput } from "./outputModels.js";
       
       export interface Read200Headers {
         foo: string;
         bar: string;
+        "content-type": "image/png";
       }
       
       /** The request has succeeded. */
@@ -329,7 +364,7 @@ describe("Responses.ts", () => {
       @get op read(): string[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -348,7 +383,7 @@ describe("Responses.ts", () => {
       @get op read(): int32[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -367,7 +402,7 @@ describe("Responses.ts", () => {
       @get op read(): int64[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -386,7 +421,7 @@ describe("Responses.ts", () => {
       @get op read(): float32[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -405,7 +440,7 @@ describe("Responses.ts", () => {
       @get op read(): boolean[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -424,7 +459,7 @@ describe("Responses.ts", () => {
       @get op read(): bytes[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -443,7 +478,7 @@ describe("Responses.ts", () => {
       @get op read(): plainDate[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -462,7 +497,7 @@ describe("Responses.ts", () => {
       @get op read(): utcDateTime[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -481,7 +516,7 @@ describe("Responses.ts", () => {
       @get op read(): duration[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -504,11 +539,11 @@ describe("Responses.ts", () => {
       @get op read(): SimpleModel[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { SimpleModelOutput } from "./outputModels";
+      import { SimpleModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -528,11 +563,11 @@ describe("Responses.ts", () => {
       @get op read(): InnerModel[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { InnerModelOutput } from "./outputModels";
+      import { InnerModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {

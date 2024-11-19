@@ -28,7 +28,7 @@ async function getSecurityPartnerProvider() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityPartnerProviders.get(
     resourceGroupName,
-    securityPartnerProviderName
+    securityPartnerProviderName,
   );
   console.log(result);
 }

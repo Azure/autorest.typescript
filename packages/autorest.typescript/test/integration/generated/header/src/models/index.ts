@@ -109,7 +109,8 @@ export interface HeaderResponseExistingKeyOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseExistingKey operation. */
-export type HeaderResponseExistingKeyResponse = HeaderResponseExistingKeyHeaders;
+export type HeaderResponseExistingKeyResponse =
+  HeaderResponseExistingKeyHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamProtectedKeyOptionalParams
@@ -120,7 +121,8 @@ export interface HeaderResponseProtectedKeyOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseProtectedKey operation. */
-export type HeaderResponseProtectedKeyResponse = HeaderResponseProtectedKeyHeaders;
+export type HeaderResponseProtectedKeyResponse =
+  HeaderResponseProtectedKeyHeaders;
 
 /** Optional parameters. */
 export interface HeaderParamIntegerOptionalParams
@@ -225,7 +227,8 @@ export interface HeaderResponseDatetimeRfc1123OptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the responseDatetimeRfc1123 operation. */
-export type HeaderResponseDatetimeRfc1123Response = HeaderResponseDatetimeRfc1123Headers;
+export type HeaderResponseDatetimeRfc1123Response =
+  HeaderResponseDatetimeRfc1123Headers;
 
 /** Optional parameters. */
 export interface HeaderParamDurationOptionalParams

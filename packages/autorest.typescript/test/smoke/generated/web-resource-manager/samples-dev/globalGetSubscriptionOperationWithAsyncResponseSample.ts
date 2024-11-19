@@ -29,7 +29,7 @@ async function getsAnOperationInASubscriptionAndGivenRegion() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.global.getSubscriptionOperationWithAsyncResponse(
     location,
-    operationId
+    operationId,
   );
   console.log(result);
 }

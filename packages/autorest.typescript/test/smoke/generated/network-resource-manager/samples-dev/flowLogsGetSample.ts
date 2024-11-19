@@ -30,7 +30,7 @@ async function getFlowLog() {
   const result = await client.flowLogs.get(
     resourceGroupName,
     networkWatcherName,
-    flowLogName
+    flowLogName,
   );
   console.log(result);
 }

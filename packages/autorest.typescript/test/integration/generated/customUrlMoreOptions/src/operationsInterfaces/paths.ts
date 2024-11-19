@@ -21,6 +21,6 @@ export interface Paths {
     vault: string,
     secret: string,
     keyName: string,
-    options?: PathsGetEmptyOptionalParams
+    options?: PathsGetEmptyOptionalParams,
   ): Promise<void>;
 }

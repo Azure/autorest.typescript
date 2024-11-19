@@ -32,7 +32,7 @@ async function lockImmutabilityPolicy() {
     resourceGroupName,
     accountName,
     containerName,
-    ifMatch
+    ifMatch,
   );
   console.log(result);
 }

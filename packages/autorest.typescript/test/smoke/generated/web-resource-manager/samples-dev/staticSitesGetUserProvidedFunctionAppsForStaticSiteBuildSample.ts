@@ -32,7 +32,7 @@ async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSiteB
   for await (let item of client.staticSites.listUserProvidedFunctionAppsForStaticSiteBuild(
     resourceGroupName,
     name,
-    environmentName
+    environmentName,
   )) {
     resArray.push(item);
   }

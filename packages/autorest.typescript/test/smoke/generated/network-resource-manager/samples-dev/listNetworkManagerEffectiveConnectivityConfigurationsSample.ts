@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   QueryRequestOptions,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,11 +31,12 @@ async function listEffectiveConnectivityConfiguration() {
   const parameters: QueryRequestOptions = { skipToken: "FakeSkipTokenCode" };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.listNetworkManagerEffectiveConnectivityConfigurations(
-    resourceGroupName,
-    virtualNetworkName,
-    parameters
-  );
+  const result =
+    await client.listNetworkManagerEffectiveConnectivityConfigurations(
+      resourceGroupName,
+      virtualNetworkName,
+      parameters,
+    );
   console.log(result);
 }
 

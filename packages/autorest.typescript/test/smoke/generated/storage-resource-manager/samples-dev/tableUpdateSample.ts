@@ -30,7 +30,7 @@ async function tableOperationPatch() {
   const result = await client.tableOperations.update(
     resourceGroupName,
     accountName,
-    tableName
+    tableName,
   );
   console.log(result);
 }

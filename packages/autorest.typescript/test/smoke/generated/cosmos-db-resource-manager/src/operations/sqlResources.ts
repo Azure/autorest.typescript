@@ -15,7 +15,7 @@ import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -101,7 +101,7 @@ import {
   SqlResourcesDeleteSqlRoleAssignmentOptionalParams,
   ContinuousBackupRestoreLocation,
   SqlResourcesRetrieveContinuousBackupInformationOptionalParams,
-  SqlResourcesRetrieveContinuousBackupInformationResponse
+  SqlResourcesRetrieveContinuousBackupInformationResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -126,12 +126,12 @@ export class SqlResourcesImpl implements SqlResources {
   public listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlDatabasesOptionalParams
+    options?: SqlResourcesListSqlDatabasesOptionalParams,
   ): PagedAsyncIterableIterator<SqlDatabaseGetResults> {
     const iter = this.listSqlDatabasesPagingAll(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return {
       next() {
@@ -148,9 +148,9 @@ export class SqlResourcesImpl implements SqlResources {
           resourceGroupName,
           accountName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -158,13 +158,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesListSqlDatabasesOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlDatabaseGetResults[]> {
     let result: SqlResourcesListSqlDatabasesResponse;
     result = await this._listSqlDatabases(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -172,12 +172,12 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlDatabasesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlDatabasesOptionalParams
+    options?: SqlResourcesListSqlDatabasesOptionalParams,
   ): AsyncIterableIterator<SqlDatabaseGetResults> {
     for await (const page of this.listSqlDatabasesPagingPage(
       resourceGroupName,
       accountName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -194,13 +194,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesListSqlContainersOptionalParams
+    options?: SqlResourcesListSqlContainersOptionalParams,
   ): PagedAsyncIterableIterator<SqlContainerGetResults> {
     const iter = this.listSqlContainersPagingAll(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return {
       next() {
@@ -218,9 +218,9 @@ export class SqlResourcesImpl implements SqlResources {
           accountName,
           databaseName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -229,14 +229,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     options?: SqlResourcesListSqlContainersOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlContainerGetResults[]> {
     let result: SqlResourcesListSqlContainersResponse;
     result = await this._listSqlContainers(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -245,13 +245,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesListSqlContainersOptionalParams
+    options?: SqlResourcesListSqlContainersOptionalParams,
   ): AsyncIterableIterator<SqlContainerGetResults> {
     for await (const page of this.listSqlContainersPagingPage(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -270,14 +270,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlStoredProceduresOptionalParams
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams,
   ): PagedAsyncIterableIterator<SqlStoredProcedureGetResults> {
     const iter = this.listSqlStoredProceduresPagingAll(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return {
       next() {
@@ -296,9 +296,9 @@ export class SqlResourcesImpl implements SqlResources {
           databaseName,
           containerName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -308,7 +308,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     options?: SqlResourcesListSqlStoredProceduresOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlStoredProcedureGetResults[]> {
     let result: SqlResourcesListSqlStoredProceduresResponse;
     result = await this._listSqlStoredProcedures(
@@ -316,7 +316,7 @@ export class SqlResourcesImpl implements SqlResources {
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -326,14 +326,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlStoredProceduresOptionalParams
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams,
   ): AsyncIterableIterator<SqlStoredProcedureGetResults> {
     for await (const page of this.listSqlStoredProceduresPagingPage(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -352,14 +352,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   ): PagedAsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
     const iter = this.listSqlUserDefinedFunctionsPagingAll(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return {
       next() {
@@ -378,9 +378,9 @@ export class SqlResourcesImpl implements SqlResources {
           databaseName,
           containerName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -390,7 +390,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults[]> {
     let result: SqlResourcesListSqlUserDefinedFunctionsResponse;
     result = await this._listSqlUserDefinedFunctions(
@@ -398,7 +398,7 @@ export class SqlResourcesImpl implements SqlResources {
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -408,14 +408,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults> {
     for await (const page of this.listSqlUserDefinedFunctionsPagingPage(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -434,14 +434,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlTriggersOptionalParams
+    options?: SqlResourcesListSqlTriggersOptionalParams,
   ): PagedAsyncIterableIterator<SqlTriggerGetResults> {
     const iter = this.listSqlTriggersPagingAll(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return {
       next() {
@@ -460,9 +460,9 @@ export class SqlResourcesImpl implements SqlResources {
           databaseName,
           containerName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -472,7 +472,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     options?: SqlResourcesListSqlTriggersOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlTriggerGetResults[]> {
     let result: SqlResourcesListSqlTriggersResponse;
     result = await this._listSqlTriggers(
@@ -480,7 +480,7 @@ export class SqlResourcesImpl implements SqlResources {
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -490,14 +490,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlTriggersOptionalParams
+    options?: SqlResourcesListSqlTriggersOptionalParams,
   ): AsyncIterableIterator<SqlTriggerGetResults> {
     for await (const page of this.listSqlTriggersPagingPage(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -512,12 +512,12 @@ export class SqlResourcesImpl implements SqlResources {
   public listSqlRoleDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<SqlRoleDefinitionGetResults> {
     const iter = this.listSqlRoleDefinitionsPagingAll(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return {
       next() {
@@ -534,9 +534,9 @@ export class SqlResourcesImpl implements SqlResources {
           resourceGroupName,
           accountName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -544,13 +544,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesListSqlRoleDefinitionsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlRoleDefinitionGetResults[]> {
     let result: SqlResourcesListSqlRoleDefinitionsResponse;
     result = await this._listSqlRoleDefinitions(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -558,12 +558,12 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlRoleDefinitionsPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams,
   ): AsyncIterableIterator<SqlRoleDefinitionGetResults> {
     for await (const page of this.listSqlRoleDefinitionsPagingPage(
       resourceGroupName,
       accountName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -578,12 +578,12 @@ export class SqlResourcesImpl implements SqlResources {
   public listSqlRoleAssignments(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams,
   ): PagedAsyncIterableIterator<SqlRoleAssignmentGetResults> {
     const iter = this.listSqlRoleAssignmentsPagingAll(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return {
       next() {
@@ -600,9 +600,9 @@ export class SqlResourcesImpl implements SqlResources {
           resourceGroupName,
           accountName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -610,13 +610,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesListSqlRoleAssignmentsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<SqlRoleAssignmentGetResults[]> {
     let result: SqlResourcesListSqlRoleAssignmentsResponse;
     result = await this._listSqlRoleAssignments(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -624,12 +624,12 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlRoleAssignmentsPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams,
   ): AsyncIterableIterator<SqlRoleAssignmentGetResults> {
     for await (const page of this.listSqlRoleAssignmentsPagingPage(
       resourceGroupName,
       accountName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -644,11 +644,11 @@ export class SqlResourcesImpl implements SqlResources {
   private _listSqlDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlDatabasesOptionalParams
+    options?: SqlResourcesListSqlDatabasesOptionalParams,
   ): Promise<SqlResourcesListSqlDatabasesResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, options },
-      listSqlDatabasesOperationSpec
+      listSqlDatabasesOperationSpec,
     );
   }
 
@@ -663,11 +663,11 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesGetSqlDatabaseOptionalParams
+    options?: SqlResourcesGetSqlDatabaseOptionalParams,
   ): Promise<SqlResourcesGetSqlDatabaseResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      getSqlDatabaseOperationSpec
+      getSqlDatabaseOperationSpec,
     );
   }
 
@@ -684,7 +684,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
+    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
@@ -693,21 +693,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlDatabaseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -716,8 +715,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -725,8 +724,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -737,16 +736,16 @@ export class SqlResourcesImpl implements SqlResources {
         accountName,
         databaseName,
         createUpdateSqlDatabaseParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlDatabaseOperationSpec
+      spec: createUpdateSqlDatabaseOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlDatabaseResponse,
       OperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -765,14 +764,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
+    options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlDatabaseResponse> {
     const poller = await this.beginCreateUpdateSqlDatabase(
       resourceGroupName,
       accountName,
       databaseName,
       createUpdateSqlDatabaseParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -788,25 +787,24 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesDeleteSqlDatabaseOptionalParams
+    options?: SqlResourcesDeleteSqlDatabaseOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -815,8 +813,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -824,19 +822,19 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: deleteSqlDatabaseOperationSpec
+      spec: deleteSqlDatabaseOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -853,13 +851,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesDeleteSqlDatabaseOptionalParams
+    options?: SqlResourcesDeleteSqlDatabaseOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlDatabase(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -876,11 +874,11 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesGetSqlDatabaseThroughputOptionalParams
+    options?: SqlResourcesGetSqlDatabaseThroughputOptionalParams,
   ): Promise<SqlResourcesGetSqlDatabaseThroughputResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      getSqlDatabaseThroughputOperationSpec
+      getSqlDatabaseThroughputOperationSpec,
     );
   }
 
@@ -898,7 +896,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
+    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
@@ -907,21 +905,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesUpdateSqlDatabaseThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -930,8 +927,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -939,8 +936,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -951,16 +948,16 @@ export class SqlResourcesImpl implements SqlResources {
         accountName,
         databaseName,
         updateThroughputParameters,
-        options
+        options,
       },
-      spec: updateSqlDatabaseThroughputOperationSpec
+      spec: updateSqlDatabaseThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesUpdateSqlDatabaseThroughputResponse,
       OperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -980,14 +977,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
+    options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams,
   ): Promise<SqlResourcesUpdateSqlDatabaseThroughputResponse> {
     const poller = await this.beginUpdateSqlDatabaseThroughput(
       resourceGroupName,
       accountName,
       databaseName,
       updateThroughputParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1003,7 +1000,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
+    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
@@ -1012,21 +1009,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1035,8 +1031,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1044,22 +1040,22 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: migrateSqlDatabaseToAutoscaleOperationSpec
+      spec: migrateSqlDatabaseToAutoscaleOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
       OperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1076,13 +1072,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
+    options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams,
   ): Promise<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse> {
     const poller = await this.beginMigrateSqlDatabaseToAutoscale(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1098,7 +1094,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
+    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>,
@@ -1107,21 +1103,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1130,8 +1125,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1139,22 +1134,22 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: migrateSqlDatabaseToManualThroughputOperationSpec
+      spec: migrateSqlDatabaseToManualThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
       OperationState<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1171,13 +1166,13 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
+    options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams,
   ): Promise<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse> {
     const poller = await this.beginMigrateSqlDatabaseToManualThroughput(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1193,11 +1188,11 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesListSqlContainersOptionalParams
+    options?: SqlResourcesListSqlContainersOptionalParams,
   ): Promise<SqlResourcesListSqlContainersResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      listSqlContainersOperationSpec
+      listSqlContainersOperationSpec,
     );
   }
 
@@ -1214,11 +1209,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesGetSqlContainerOptionalParams
+    options?: SqlResourcesGetSqlContainerOptionalParams,
   ): Promise<SqlResourcesGetSqlContainerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, containerName, options },
-      getSqlContainerOperationSpec
+      getSqlContainerOperationSpec,
     );
   }
 
@@ -1237,7 +1232,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
+    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
@@ -1246,21 +1241,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlContainerResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1269,8 +1263,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1278,8 +1272,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1291,16 +1285,16 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         createUpdateSqlContainerParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlContainerOperationSpec
+      spec: createUpdateSqlContainerOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlContainerResponse,
       OperationState<SqlResourcesCreateUpdateSqlContainerResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1321,7 +1315,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
+    options?: SqlResourcesCreateUpdateSqlContainerOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlContainerResponse> {
     const poller = await this.beginCreateUpdateSqlContainer(
       resourceGroupName,
@@ -1329,7 +1323,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       createUpdateSqlContainerParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1347,25 +1341,24 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesDeleteSqlContainerOptionalParams
+    options?: SqlResourcesDeleteSqlContainerOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1374,8 +1367,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1383,8 +1376,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1395,13 +1388,13 @@ export class SqlResourcesImpl implements SqlResources {
         accountName,
         databaseName,
         containerName,
-        options
+        options,
       },
-      spec: deleteSqlContainerOperationSpec
+      spec: deleteSqlContainerOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1420,14 +1413,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesDeleteSqlContainerOptionalParams
+    options?: SqlResourcesDeleteSqlContainerOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlContainer(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1445,11 +1438,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesGetSqlContainerThroughputOptionalParams
+    options?: SqlResourcesGetSqlContainerThroughputOptionalParams,
   ): Promise<SqlResourcesGetSqlContainerThroughputResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, containerName, options },
-      getSqlContainerThroughputOperationSpec
+      getSqlContainerThroughputOperationSpec,
     );
   }
 
@@ -1469,7 +1462,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
+    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
@@ -1478,21 +1471,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesUpdateSqlContainerThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1501,8 +1493,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1510,8 +1502,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1523,16 +1515,16 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         updateThroughputParameters,
-        options
+        options,
       },
-      spec: updateSqlContainerThroughputOperationSpec
+      spec: updateSqlContainerThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesUpdateSqlContainerThroughputResponse,
       OperationState<SqlResourcesUpdateSqlContainerThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1554,7 +1546,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
+    options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams,
   ): Promise<SqlResourcesUpdateSqlContainerThroughputResponse> {
     const poller = await this.beginUpdateSqlContainerThroughput(
       resourceGroupName,
@@ -1562,7 +1554,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       updateThroughputParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1580,7 +1572,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
+    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
@@ -1589,21 +1581,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesMigrateSqlContainerToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1612,8 +1603,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1621,8 +1612,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1633,16 +1624,16 @@ export class SqlResourcesImpl implements SqlResources {
         accountName,
         databaseName,
         containerName,
-        options
+        options,
       },
-      spec: migrateSqlContainerToAutoscaleOperationSpec
+      spec: migrateSqlContainerToAutoscaleOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesMigrateSqlContainerToAutoscaleResponse,
       OperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1661,14 +1652,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
+    options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams,
   ): Promise<SqlResourcesMigrateSqlContainerToAutoscaleResponse> {
     const poller = await this.beginMigrateSqlContainerToAutoscale(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1686,7 +1677,7 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
+    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesMigrateSqlContainerToManualThroughputResponse>,
@@ -1695,21 +1686,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesMigrateSqlContainerToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1718,8 +1708,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1727,8 +1717,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1739,16 +1729,16 @@ export class SqlResourcesImpl implements SqlResources {
         accountName,
         databaseName,
         containerName,
-        options
+        options,
       },
-      spec: migrateSqlContainerToManualThroughputOperationSpec
+      spec: migrateSqlContainerToManualThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesMigrateSqlContainerToManualThroughputResponse,
       OperationState<SqlResourcesMigrateSqlContainerToManualThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1767,14 +1757,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
+    options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams,
   ): Promise<SqlResourcesMigrateSqlContainerToManualThroughputResponse> {
     const poller = await this.beginMigrateSqlContainerToManualThroughput(
       resourceGroupName,
       accountName,
       databaseName,
       containerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1792,11 +1782,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlStoredProceduresOptionalParams
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams,
   ): Promise<SqlResourcesListSqlStoredProceduresResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, containerName, options },
-      listSqlStoredProceduresOperationSpec
+      listSqlStoredProceduresOperationSpec,
     );
   }
 
@@ -1815,7 +1805,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: SqlResourcesGetSqlStoredProcedureOptionalParams
+    options?: SqlResourcesGetSqlStoredProcedureOptionalParams,
   ): Promise<SqlResourcesGetSqlStoredProcedureResponse> {
     return this.client.sendOperationRequest(
       {
@@ -1824,9 +1814,9 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         storedProcedureName,
-        options
+        options,
       },
-      getSqlStoredProcedureOperationSpec
+      getSqlStoredProcedureOperationSpec,
     );
   }
 
@@ -1848,7 +1838,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
+    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
@@ -1857,21 +1847,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlStoredProcedureResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1880,8 +1869,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1889,8 +1878,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1903,16 +1892,16 @@ export class SqlResourcesImpl implements SqlResources {
         containerName,
         storedProcedureName,
         createUpdateSqlStoredProcedureParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlStoredProcedureOperationSpec
+      spec: createUpdateSqlStoredProcedureOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlStoredProcedureResponse,
       OperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1936,7 +1925,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     storedProcedureName: string,
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
+    options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlStoredProcedureResponse> {
     const poller = await this.beginCreateUpdateSqlStoredProcedure(
       resourceGroupName,
@@ -1945,7 +1934,7 @@ export class SqlResourcesImpl implements SqlResources {
       containerName,
       storedProcedureName,
       createUpdateSqlStoredProcedureParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1965,25 +1954,24 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
+    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1992,8 +1980,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2001,8 +1989,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2014,13 +2002,13 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         storedProcedureName,
-        options
+        options,
       },
-      spec: deleteSqlStoredProcedureOperationSpec
+      spec: deleteSqlStoredProcedureOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2041,7 +2029,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     storedProcedureName: string,
-    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
+    options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlStoredProcedure(
       resourceGroupName,
@@ -2049,7 +2037,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       storedProcedureName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2067,11 +2055,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
   ): Promise<SqlResourcesListSqlUserDefinedFunctionsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, containerName, options },
-      listSqlUserDefinedFunctionsOperationSpec
+      listSqlUserDefinedFunctionsOperationSpec,
     );
   }
 
@@ -2090,7 +2078,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: SqlResourcesGetSqlUserDefinedFunctionOptionalParams
+    options?: SqlResourcesGetSqlUserDefinedFunctionOptionalParams,
   ): Promise<SqlResourcesGetSqlUserDefinedFunctionResponse> {
     return this.client.sendOperationRequest(
       {
@@ -2099,9 +2087,9 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         userDefinedFunctionName,
-        options
+        options,
       },
-      getSqlUserDefinedFunctionOperationSpec
+      getSqlUserDefinedFunctionOperationSpec,
     );
   }
 
@@ -2123,7 +2111,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
+    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
@@ -2132,21 +2120,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2155,8 +2142,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2164,8 +2151,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2178,16 +2165,16 @@ export class SqlResourcesImpl implements SqlResources {
         containerName,
         userDefinedFunctionName,
         createUpdateSqlUserDefinedFunctionParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlUserDefinedFunctionOperationSpec
+      spec: createUpdateSqlUserDefinedFunctionOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse,
       OperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2211,7 +2198,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
+    options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse> {
     const poller = await this.beginCreateUpdateSqlUserDefinedFunction(
       resourceGroupName,
@@ -2220,7 +2207,7 @@ export class SqlResourcesImpl implements SqlResources {
       containerName,
       userDefinedFunctionName,
       createUpdateSqlUserDefinedFunctionParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2240,25 +2227,24 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
+    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2267,8 +2253,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2276,8 +2262,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2289,13 +2275,13 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         userDefinedFunctionName,
-        options
+        options,
       },
-      spec: deleteSqlUserDefinedFunctionOperationSpec
+      spec: deleteSqlUserDefinedFunctionOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2316,7 +2302,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     userDefinedFunctionName: string,
-    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
+    options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlUserDefinedFunction(
       resourceGroupName,
@@ -2324,7 +2310,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       userDefinedFunctionName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2342,11 +2328,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlTriggersOptionalParams
+    options?: SqlResourcesListSqlTriggersOptionalParams,
   ): Promise<SqlResourcesListSqlTriggersResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, containerName, options },
-      listSqlTriggersOperationSpec
+      listSqlTriggersOperationSpec,
     );
   }
 
@@ -2365,7 +2351,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: SqlResourcesGetSqlTriggerOptionalParams
+    options?: SqlResourcesGetSqlTriggerOptionalParams,
   ): Promise<SqlResourcesGetSqlTriggerResponse> {
     return this.client.sendOperationRequest(
       {
@@ -2374,9 +2360,9 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         triggerName,
-        options
+        options,
       },
-      getSqlTriggerOperationSpec
+      getSqlTriggerOperationSpec,
     );
   }
 
@@ -2397,7 +2383,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
+    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
@@ -2406,21 +2392,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlTriggerResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2429,8 +2414,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2438,8 +2423,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2452,16 +2437,16 @@ export class SqlResourcesImpl implements SqlResources {
         containerName,
         triggerName,
         createUpdateSqlTriggerParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlTriggerOperationSpec
+      spec: createUpdateSqlTriggerOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlTriggerResponse,
       OperationState<SqlResourcesCreateUpdateSqlTriggerResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2484,7 +2469,7 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     triggerName: string,
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
+    options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlTriggerResponse> {
     const poller = await this.beginCreateUpdateSqlTrigger(
       resourceGroupName,
@@ -2493,7 +2478,7 @@ export class SqlResourcesImpl implements SqlResources {
       containerName,
       triggerName,
       createUpdateSqlTriggerParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2513,25 +2498,24 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: SqlResourcesDeleteSqlTriggerOptionalParams
+    options?: SqlResourcesDeleteSqlTriggerOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2540,8 +2524,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2549,8 +2533,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2562,13 +2546,13 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         triggerName,
-        options
+        options,
       },
-      spec: deleteSqlTriggerOperationSpec
+      spec: deleteSqlTriggerOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2589,7 +2573,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     triggerName: string,
-    options?: SqlResourcesDeleteSqlTriggerOptionalParams
+    options?: SqlResourcesDeleteSqlTriggerOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlTrigger(
       resourceGroupName,
@@ -2597,7 +2581,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       triggerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2613,11 +2597,11 @@ export class SqlResourcesImpl implements SqlResources {
     roleDefinitionId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesGetSqlRoleDefinitionOptionalParams
+    options?: SqlResourcesGetSqlRoleDefinitionOptionalParams,
   ): Promise<SqlResourcesGetSqlRoleDefinitionResponse> {
     return this.client.sendOperationRequest(
       { roleDefinitionId, resourceGroupName, accountName, options },
-      getSqlRoleDefinitionOperationSpec
+      getSqlRoleDefinitionOperationSpec,
     );
   }
 
@@ -2635,7 +2619,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
+    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
@@ -2644,21 +2628,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlRoleDefinitionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2667,8 +2650,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2676,8 +2659,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2688,16 +2671,16 @@ export class SqlResourcesImpl implements SqlResources {
         resourceGroupName,
         accountName,
         createUpdateSqlRoleDefinitionParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlRoleDefinitionOperationSpec
+      spec: createUpdateSqlRoleDefinitionOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlRoleDefinitionResponse,
       OperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2717,14 +2700,14 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
+    options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlRoleDefinitionResponse> {
     const poller = await this.beginCreateUpdateSqlRoleDefinition(
       roleDefinitionId,
       resourceGroupName,
       accountName,
       createUpdateSqlRoleDefinitionParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2740,25 +2723,24 @@ export class SqlResourcesImpl implements SqlResources {
     roleDefinitionId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
+    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2767,8 +2749,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2776,19 +2758,19 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { roleDefinitionId, resourceGroupName, accountName, options },
-      spec: deleteSqlRoleDefinitionOperationSpec
+      spec: deleteSqlRoleDefinitionOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2805,13 +2787,13 @@ export class SqlResourcesImpl implements SqlResources {
     roleDefinitionId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
+    options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlRoleDefinition(
       roleDefinitionId,
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2825,11 +2807,11 @@ export class SqlResourcesImpl implements SqlResources {
   private _listSqlRoleDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams,
   ): Promise<SqlResourcesListSqlRoleDefinitionsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, options },
-      listSqlRoleDefinitionsOperationSpec
+      listSqlRoleDefinitionsOperationSpec,
     );
   }
 
@@ -2844,11 +2826,11 @@ export class SqlResourcesImpl implements SqlResources {
     roleAssignmentId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesGetSqlRoleAssignmentOptionalParams
+    options?: SqlResourcesGetSqlRoleAssignmentOptionalParams,
   ): Promise<SqlResourcesGetSqlRoleAssignmentResponse> {
     return this.client.sendOperationRequest(
       { roleAssignmentId, resourceGroupName, accountName, options },
-      getSqlRoleAssignmentOperationSpec
+      getSqlRoleAssignmentOperationSpec,
     );
   }
 
@@ -2866,7 +2848,7 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
+    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
@@ -2875,21 +2857,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesCreateUpdateSqlRoleAssignmentResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2898,8 +2879,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2907,8 +2888,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -2919,16 +2900,16 @@ export class SqlResourcesImpl implements SqlResources {
         resourceGroupName,
         accountName,
         createUpdateSqlRoleAssignmentParameters,
-        options
+        options,
       },
-      spec: createUpdateSqlRoleAssignmentOperationSpec
+      spec: createUpdateSqlRoleAssignmentOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesCreateUpdateSqlRoleAssignmentResponse,
       OperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2948,14 +2929,14 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
-    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
+    options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams,
   ): Promise<SqlResourcesCreateUpdateSqlRoleAssignmentResponse> {
     const poller = await this.beginCreateUpdateSqlRoleAssignment(
       roleAssignmentId,
       resourceGroupName,
       accountName,
       createUpdateSqlRoleAssignmentParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2971,25 +2952,24 @@ export class SqlResourcesImpl implements SqlResources {
     roleAssignmentId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
+    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2998,8 +2978,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -3007,19 +2987,19 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { roleAssignmentId, resourceGroupName, accountName, options },
-      spec: deleteSqlRoleAssignmentOperationSpec
+      spec: deleteSqlRoleAssignmentOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -3036,13 +3016,13 @@ export class SqlResourcesImpl implements SqlResources {
     roleAssignmentId: string,
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
+    options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteSqlRoleAssignment(
       roleAssignmentId,
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -3056,11 +3036,11 @@ export class SqlResourcesImpl implements SqlResources {
   private _listSqlRoleAssignments(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams,
   ): Promise<SqlResourcesListSqlRoleAssignmentsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, options },
-      listSqlRoleAssignmentsOperationSpec
+      listSqlRoleAssignmentsOperationSpec,
     );
   }
 
@@ -3079,7 +3059,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     location: ContinuousBackupRestoreLocation,
-    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
+    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<SqlResourcesRetrieveContinuousBackupInformationResponse>,
@@ -3088,21 +3068,20 @@ export class SqlResourcesImpl implements SqlResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<SqlResourcesRetrieveContinuousBackupInformationResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -3111,8 +3090,8 @@ export class SqlResourcesImpl implements SqlResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -3120,8 +3099,8 @@ export class SqlResourcesImpl implements SqlResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -3133,9 +3112,9 @@ export class SqlResourcesImpl implements SqlResources {
         databaseName,
         containerName,
         location,
-        options
+        options,
       },
-      spec: retrieveContinuousBackupInformationOperationSpec
+      spec: retrieveContinuousBackupInformationOperationSpec,
     });
     const poller = await createHttpPoller<
       SqlResourcesRetrieveContinuousBackupInformationResponse,
@@ -3143,7 +3122,7 @@ export class SqlResourcesImpl implements SqlResources {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -3164,7 +3143,7 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     location: ContinuousBackupRestoreLocation,
-    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
+    options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams,
   ): Promise<SqlResourcesRetrieveContinuousBackupInformationResponse> {
     const poller = await this.beginRetrieveContinuousBackupInformation(
       resourceGroupName,
@@ -3172,7 +3151,7 @@ export class SqlResourcesImpl implements SqlResources {
       databaseName,
       containerName,
       location,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -3181,32 +3160,12 @@ export class SqlResourcesImpl implements SqlResources {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listSqlDatabasesOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlDatabaseListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getSqlDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlDatabaseGetResults
-    }
+      bodyMapper: Mappers.SqlDatabaseListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3214,28 +3173,45 @@ const getSqlDatabaseOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getSqlDatabaseOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlDatabaseGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createUpdateSqlDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlDatabaseGetResults
+      bodyMapper: Mappers.SqlDatabaseGetResults,
     },
     201: {
-      bodyMapper: Mappers.SqlDatabaseGetResults
+      bodyMapper: Mappers.SqlDatabaseGetResults,
     },
     202: {
-      bodyMapper: Mappers.SqlDatabaseGetResults
+      bodyMapper: Mappers.SqlDatabaseGetResults,
     },
     204: {
-      bodyMapper: Mappers.SqlDatabaseGetResults
-    }
+      bodyMapper: Mappers.SqlDatabaseGetResults,
+    },
   },
   requestBody: Parameters.createUpdateSqlDatabaseParameters,
   queryParameters: [Parameters.apiVersion],
@@ -3244,15 +3220,14 @@ const createUpdateSqlDatabaseOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSqlDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -3261,18 +3236,17 @@ const deleteSqlDatabaseOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
-  serializer
+  serializer,
 };
 const getSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3280,28 +3254,27 @@ const getSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
   },
   requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
@@ -3310,32 +3283,31 @@ const updateSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const migrateSqlDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3343,51 +3315,50 @@ const migrateSqlDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const migrateSqlDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+const migrateSqlDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const listSqlContainersOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlContainerListResult
-    }
+      bodyMapper: Mappers.SqlContainerListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3395,231 +3366,18 @@ const listSqlContainersOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSqlContainerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlContainerGetResults
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createUpdateSqlContainerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlContainerGetResults
+      bodyMapper: Mappers.SqlContainerGetResults,
     },
-    201: {
-      bodyMapper: Mappers.SqlContainerGetResults
-    },
-    202: {
-      bodyMapper: Mappers.SqlContainerGetResults
-    },
-    204: {
-      bodyMapper: Mappers.SqlContainerGetResults
-    }
-  },
-  requestBody: Parameters.createUpdateSqlContainerParameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
-const deleteSqlContainerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  serializer
-};
-const getSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const updateSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
-  },
-  requestBody: Parameters.updateThroughputParameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
-const migrateSqlContainerToAutoscaleOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToAutoscale",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const migrateSqlContainerToManualThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToManualThroughput",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listSqlStoredProceduresOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlStoredProcedureListResult
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlStoredProcedureGetResults
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3629,28 +3387,232 @@ const getSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.storedProcedureName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const createUpdateSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
+const createUpdateSqlContainerOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlStoredProcedureGetResults
+      bodyMapper: Mappers.SqlContainerGetResults,
     },
     201: {
-      bodyMapper: Mappers.SqlStoredProcedureGetResults
+      bodyMapper: Mappers.SqlContainerGetResults,
     },
     202: {
-      bodyMapper: Mappers.SqlStoredProcedureGetResults
+      bodyMapper: Mappers.SqlContainerGetResults,
     },
     204: {
-      bodyMapper: Mappers.SqlStoredProcedureGetResults
-    }
+      bodyMapper: Mappers.SqlContainerGetResults,
+    },
+  },
+  requestBody: Parameters.createUpdateSqlContainerParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer,
+};
+const deleteSqlContainerOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
+  httpMethod: "DELETE",
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  serializer,
+};
+const getSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const updateSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+  },
+  requestBody: Parameters.updateThroughputParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer,
+};
+const migrateSqlContainerToAutoscaleOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToAutoscale",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    default: {
+      bodyMapper: Mappers.CloudError,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const migrateSqlContainerToManualThroughputOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToManualThroughput",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
+    },
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+      Parameters.containerName,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const listSqlStoredProceduresOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlStoredProcedureListResult,
+    },
+    default: {
+      bodyMapper: Mappers.CloudError,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const getSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+    Parameters.storedProcedureName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const createUpdateSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults,
+    },
+    201: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults,
+    },
+    202: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults,
+    },
+    204: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults,
+    },
   },
   requestBody: Parameters.createUpdateSqlStoredProcedureParameters,
   queryParameters: [Parameters.apiVersion],
@@ -3661,15 +3623,14 @@ const createUpdateSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.storedProcedureName
+    Parameters.storedProcedureName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -3680,18 +3641,17 @@ const deleteSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.storedProcedureName
+    Parameters.storedProcedureName,
   ],
-  serializer
+  serializer,
 };
 const listSqlUserDefinedFunctionsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionListResult
-    }
+      bodyMapper: Mappers.SqlUserDefinedFunctionListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3700,19 +3660,18 @@ const listSqlUserDefinedFunctionsOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.containerName
+    Parameters.containerName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
-    }
+      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3722,47 +3681,46 @@ const getSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.userDefinedFunctionName
+    Parameters.userDefinedFunctionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const createUpdateSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
+const createUpdateSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
+    httpMethod: "PUT",
+    responses: {
+      200: {
+        bodyMapper: Mappers.SqlUserDefinedFunctionGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.SqlUserDefinedFunctionGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.SqlUserDefinedFunctionGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.SqlUserDefinedFunctionGetResults,
+      },
     },
-    201: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
-    },
-    202: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
-    },
-    204: {
-      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
-    }
-  },
-  requestBody: Parameters.createUpdateSqlUserDefinedFunctionParameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName,
-    Parameters.userDefinedFunctionName
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
+    requestBody: Parameters.createUpdateSqlUserDefinedFunctionParameters,
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+      Parameters.containerName,
+      Parameters.userDefinedFunctionName,
+    ],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };
 const deleteSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -3773,39 +3731,17 @@ const deleteSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.userDefinedFunctionName
+    Parameters.userDefinedFunctionName,
   ],
-  serializer
+  serializer,
 };
 const listSqlTriggersOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlTriggerListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getSqlTriggerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlTriggerGetResults
-    }
+      bodyMapper: Mappers.SqlTriggerListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3815,28 +3751,47 @@ const getSqlTriggerOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.triggerName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getSqlTriggerOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlTriggerGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.containerName,
+    Parameters.triggerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createUpdateSqlTriggerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlTriggerGetResults
+      bodyMapper: Mappers.SqlTriggerGetResults,
     },
     201: {
-      bodyMapper: Mappers.SqlTriggerGetResults
+      bodyMapper: Mappers.SqlTriggerGetResults,
     },
     202: {
-      bodyMapper: Mappers.SqlTriggerGetResults
+      bodyMapper: Mappers.SqlTriggerGetResults,
     },
     204: {
-      bodyMapper: Mappers.SqlTriggerGetResults
-    }
+      bodyMapper: Mappers.SqlTriggerGetResults,
+    },
   },
   requestBody: Parameters.createUpdateSqlTriggerParameters,
   queryParameters: [Parameters.apiVersion],
@@ -3847,15 +3802,14 @@ const createUpdateSqlTriggerOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.triggerName
+    Parameters.triggerName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSqlTriggerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -3866,21 +3820,20 @@ const deleteSqlTriggerOperationSpec: coreClient.OperationSpec = {
     Parameters.accountName,
     Parameters.databaseName,
     Parameters.containerName,
-    Parameters.triggerName
+    Parameters.triggerName,
   ],
-  serializer
+  serializer,
 };
 const getSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3888,31 +3841,30 @@ const getSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleDefinitionId
+    Parameters.roleDefinitionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createUpdateSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults,
     },
     201: {
-      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults,
     },
     202: {
-      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults,
     },
     204: {
-      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.createUpdateSqlRoleDefinitionParameters,
   queryParameters: [Parameters.apiVersion],
@@ -3921,15 +3873,14 @@ const createUpdateSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleDefinitionId
+    Parameters.roleDefinitionId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions/{roleDefinitionId}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -3937,8 +3888,8 @@ const deleteSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3946,44 +3897,21 @@ const deleteSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleDefinitionId
+    Parameters.roleDefinitionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listSqlRoleDefinitionsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlRoleDefinitionListResult
+      bodyMapper: Mappers.SqlRoleDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+      bodyMapper: Mappers.CloudError,
     },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -3991,31 +3919,51 @@ const getSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleAssignmentId
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults,
+    },
+    default: {
+      bodyMapper: Mappers.CloudError,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.roleAssignmentId,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createUpdateSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults,
     },
     201: {
-      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults,
     },
     202: {
-      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults,
     },
     204: {
-      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.createUpdateSqlRoleAssignmentParameters,
   queryParameters: [Parameters.apiVersion],
@@ -4024,15 +3972,14 @@ const createUpdateSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleAssignmentId
+    Parameters.roleAssignmentId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments/{roleAssignmentId}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -4040,8 +3987,8 @@ const deleteSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -4049,65 +3996,64 @@ const deleteSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.roleAssignmentId
+    Parameters.roleAssignmentId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listSqlRoleAssignmentsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlRoleAssignments",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SqlRoleAssignmentListResult
+      bodyMapper: Mappers.SqlRoleAssignmentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const retrieveContinuousBackupInformationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/retrieveContinuousBackupInformation",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.BackupInformation
-    },
-    201: {
-      bodyMapper: Mappers.BackupInformation
-    },
-    202: {
-      bodyMapper: Mappers.BackupInformation
-    },
-    204: {
-      bodyMapper: Mappers.BackupInformation
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  requestBody: Parameters.location,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.containerName
   ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
+  headerParameters: [Parameters.accept],
+  serializer,
 };
+const retrieveContinuousBackupInformationOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/retrieveContinuousBackupInformation",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.BackupInformation,
+      },
+      201: {
+        bodyMapper: Mappers.BackupInformation,
+      },
+      202: {
+        bodyMapper: Mappers.BackupInformation,
+      },
+      204: {
+        bodyMapper: Mappers.BackupInformation,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
+    },
+    requestBody: Parameters.location,
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+      Parameters.containerName,
+    ],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };

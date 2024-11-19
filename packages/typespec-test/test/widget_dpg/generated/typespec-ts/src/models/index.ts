@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-export { Widget, CreateWidget, UpdateWidget, AnalyzeResult } from "./models.js";
 export {
-  WidgetsListWidgetsOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
-} from "./options.js";
+  User,
+  Widget,
+  WidgetError,
+  AnalyzeResult,
+  NonReferencedModel,
+  KnownVersions,
+} from "./models.js";

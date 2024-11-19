@@ -16,7 +16,7 @@ import {
   BoolGetNullOptionalParams,
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
-  BoolGetInvalidResponse
+  BoolGetInvalidResponse,
 } from "../models";
 
 /** Interface representing a Bool. */
@@ -33,7 +33,7 @@ export interface Bool {
    */
   putTrue(
     boolBody: boolean,
-    options?: BoolPutTrueOptionalParams
+    options?: BoolPutTrueOptionalParams,
   ): Promise<void>;
   /**
    * Get false Boolean value
@@ -47,7 +47,7 @@ export interface Bool {
    */
   putFalse(
     boolBody: boolean,
-    options?: BoolPutFalseOptionalParams
+    options?: BoolPutFalseOptionalParams,
   ): Promise<void>;
   /**
    * Get null Boolean value
@@ -59,6 +59,6 @@ export interface Bool {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: BoolGetInvalidOptionalParams
+    options?: BoolGetInvalidOptionalParams,
   ): Promise<BoolGetInvalidResponse>;
 }

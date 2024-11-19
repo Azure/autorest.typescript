@@ -32,7 +32,7 @@ import {
   HttpSuccessPatch204OptionalParams,
   HttpSuccessPost204OptionalParams,
   HttpSuccessDelete204OptionalParams,
-  HttpSuccessHead404OptionalParams
+  HttpSuccessHead404OptionalParams,
 } from "../models";
 
 /** Class containing HttpSuccess operations. */
@@ -60,7 +60,7 @@ export class HttpSuccessImpl implements HttpSuccess {
    * @param options The options parameters.
    */
   get200(
-    options?: HttpSuccessGet200OptionalParams
+    options?: HttpSuccessGet200OptionalParams,
   ): Promise<HttpSuccessGet200Response> {
     return this.client.sendOperationRequest({ options }, get200OperationSpec);
   }
@@ -70,11 +70,11 @@ export class HttpSuccessImpl implements HttpSuccess {
    * @param options The options parameters.
    */
   options200(
-    options?: HttpSuccessOptions200OptionalParams
+    options?: HttpSuccessOptions200OptionalParams,
   ): Promise<HttpSuccessOptions200Response> {
     return this.client.sendOperationRequest(
       { options },
-      options200OperationSpec
+      options200OperationSpec,
     );
   }
 
@@ -109,7 +109,7 @@ export class HttpSuccessImpl implements HttpSuccess {
   delete200(options?: HttpSuccessDelete200OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete200OperationSpec
+      delete200OperationSpec,
     );
   }
 
@@ -160,7 +160,7 @@ export class HttpSuccessImpl implements HttpSuccess {
   delete202(options?: HttpSuccessDelete202OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete202OperationSpec
+      delete202OperationSpec,
     );
   }
 
@@ -203,7 +203,7 @@ export class HttpSuccessImpl implements HttpSuccess {
   delete204(options?: HttpSuccessDelete204OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete204OperationSpec
+      delete204OperationSpec,
     );
   }
 
@@ -224,42 +224,42 @@ const head200OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const options200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
   httpMethod: "OPTIONS",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
@@ -267,14 +267,14 @@ const put200OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
@@ -282,14 +282,14 @@ const patch200OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
@@ -297,14 +297,14 @@ const post200OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete200OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/200",
@@ -312,14 +312,14 @@ const delete200OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const put201OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/201",
@@ -327,14 +327,14 @@ const put201OperationSpec: coreClient.OperationSpec = {
   responses: {
     201: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post201OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/201",
@@ -342,14 +342,14 @@ const post201OperationSpec: coreClient.OperationSpec = {
   responses: {
     201: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const put202OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/202",
@@ -357,14 +357,14 @@ const put202OperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch202OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/202",
@@ -372,14 +372,14 @@ const patch202OperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post202OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/202",
@@ -387,14 +387,14 @@ const post202OperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete202OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/202",
@@ -402,14 +402,14 @@ const delete202OperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const head204OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/204",
@@ -417,12 +417,12 @@ const head204OperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put204OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/204",
@@ -430,14 +430,14 @@ const put204OperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch204OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/204",
@@ -445,14 +445,14 @@ const patch204OperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post204OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/204",
@@ -460,14 +460,14 @@ const post204OperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete204OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/204",
@@ -475,14 +475,14 @@ const delete204OperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const head404OperationSpec: coreClient.OperationSpec = {
   path: "/http/success/404",
@@ -491,10 +491,10 @@ const head404OperationSpec: coreClient.OperationSpec = {
     204: {},
     404: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

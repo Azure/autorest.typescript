@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
-  HeadNoParamsParameters,
-  GetRequiredParameters,
-  PutRequiredOptionalParameters,
-  PostParametersParameters,
-  GetOptionalParameters
+  ParamsHeadNoParamsParameters,
+  ParamsGetRequiredParameters,
+  ParamsPutRequiredOptionalParameters,
+  ParamsPostParametersParameters,
+  ParamsGetOptionalParameters,
 } from "./parameters";
 import {
-  HeadNoParams200Response,
-  GetRequired200Response,
-  PutRequiredOptional200Response,
-  PostParameters200Response,
-  GetOptional200Response
+  ParamsHeadNoParams200Response,
+  ParamsGetRequired200Response,
+  ParamsPutRequiredOptional200Response,
+  ParamsPostParameters200Response,
+  ParamsGetOptional200Response,
 } from "./responses";
-import { Client } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Params operations */
 export interface ParamsOperations {
@@ -24,26 +24,30 @@ export interface ParamsOperations {
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
   headNoParams(
-    options?: HeadNoParamsParameters
-  ): Promise<HeadNoParams200Response>;
+    options?: ParamsHeadNoParamsParameters,
+  ): StreamableMethod<ParamsHeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
    *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
    */
-  getRequired(options: GetRequiredParameters): Promise<GetRequired200Response>;
+  getRequired(
+    options: ParamsGetRequiredParameters,
+  ): StreamableMethod<ParamsGetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   putRequiredOptional(
-    options: PutRequiredOptionalParameters
-  ): Promise<PutRequiredOptional200Response>;
+    options: ParamsPutRequiredOptionalParameters,
+  ): StreamableMethod<ParamsPutRequiredOptional200Response>;
   /** POST a JSON */
   postParameters(
-    options: PostParametersParameters
-  ): Promise<PostParameters200Response>;
+    options: ParamsPostParametersParameters,
+  ): StreamableMethod<ParamsPostParameters200Response>;
   /**
    * Get true Boolean value on path.
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
-  getOptional(options?: GetOptionalParameters): Promise<GetOptional200Response>;
+  getOptional(
+    options?: ParamsGetOptionalParameters,
+  ): StreamableMethod<ParamsGetOptional200Response>;
 }
 
 export interface HeadNoParams {
@@ -51,18 +55,24 @@ export interface HeadNoParams {
    * Head request, no params.
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
-  head(options?: HeadNoParamsParameters): Promise<HeadNoParams200Response>;
+  head(
+    options?: ParamsHeadNoParamsParameters,
+  ): StreamableMethod<ParamsHeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
    *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
    */
-  get(options: GetRequiredParameters): Promise<GetRequired200Response>;
+  get(
+    options: ParamsGetRequiredParameters,
+  ): StreamableMethod<ParamsGetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   put(
-    options: PutRequiredOptionalParameters
-  ): Promise<PutRequiredOptional200Response>;
+    options: ParamsPutRequiredOptionalParameters,
+  ): StreamableMethod<ParamsPutRequiredOptional200Response>;
   /** POST a JSON */
-  post(options: PostParametersParameters): Promise<PostParameters200Response>;
+  post(
+    options: ParamsPostParametersParameters,
+  ): StreamableMethod<ParamsPostParameters200Response>;
 }
 
 export interface GetOptional {
@@ -70,7 +80,9 @@ export interface GetOptional {
    * Get true Boolean value on path.
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
-  get(options?: GetOptionalParameters): Promise<GetOptional200Response>;
+  get(
+    options?: ParamsGetOptionalParameters,
+  ): StreamableMethod<ParamsGetOptional200Response>;
 }
 
 export interface Routes {

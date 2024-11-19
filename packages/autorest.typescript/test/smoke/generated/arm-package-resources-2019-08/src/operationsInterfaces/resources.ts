@@ -31,7 +31,7 @@ import {
   ResourcesUpdateByIdOptionalParams,
   ResourcesUpdateByIdResponse,
   ResourcesGetByIdOptionalParams,
-  ResourcesGetByIdResponse
+  ResourcesGetByIdResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -44,14 +44,14 @@ export interface Resources {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: ResourcesListByResourceGroupOptionalParams
+    options?: ResourcesListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<GenericResourceExpanded>;
   /**
    * Get all the resources in a subscription.
    * @param options The options parameters.
    */
   list(
-    options?: ResourcesListOptionalParams
+    options?: ResourcesListOptionalParams,
   ): PagedAsyncIterableIterator<GenericResourceExpanded>;
   /**
    * The resources to move must be in the same source resource group. The target resource group may be in
@@ -65,7 +65,7 @@ export interface Resources {
   beginMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: ResourcesMoveResourcesOptionalParams
+    options?: ResourcesMoveResourcesOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * The resources to move must be in the same source resource group. The target resource group may be in
@@ -79,7 +79,7 @@ export interface Resources {
   beginMoveResourcesAndWait(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: ResourcesMoveResourcesOptionalParams
+    options?: ResourcesMoveResourcesOptionalParams,
   ): Promise<void>;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
@@ -95,7 +95,7 @@ export interface Resources {
   beginValidateMoveResources(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: ResourcesValidateMoveResourcesOptionalParams
+    options?: ResourcesValidateMoveResourcesOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
@@ -111,7 +111,7 @@ export interface Resources {
   beginValidateMoveResourcesAndWait(
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
-    options?: ResourcesValidateMoveResourcesOptionalParams
+    options?: ResourcesValidateMoveResourcesOptionalParams,
   ): Promise<void>;
   /**
    * Checks whether a resource exists.
@@ -131,7 +131,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: ResourcesCheckExistenceOptionalParams
+    options?: ResourcesCheckExistenceOptionalParams,
   ): Promise<void>;
   /**
    * Deletes a resource.
@@ -151,7 +151,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: ResourcesDeleteOptionalParams
+    options?: ResourcesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a resource.
@@ -171,7 +171,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: ResourcesDeleteOptionalParams
+    options?: ResourcesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Creates a resource.
@@ -193,7 +193,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateOptionalParams
+    options?: ResourcesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ResourcesCreateOrUpdateResponse>,
@@ -220,7 +220,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateOptionalParams
+    options?: ResourcesCreateOrUpdateOptionalParams,
   ): Promise<ResourcesCreateOrUpdateResponse>;
   /**
    * Updates a resource.
@@ -242,7 +242,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesUpdateOptionalParams
+    options?: ResourcesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ResourcesUpdateResponse>,
@@ -269,7 +269,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesUpdateOptionalParams
+    options?: ResourcesUpdateOptionalParams,
   ): Promise<ResourcesUpdateResponse>;
   /**
    * Gets a resource.
@@ -289,7 +289,7 @@ export interface Resources {
     resourceType: string,
     resourceName: string,
     apiVersion: string,
-    options?: ResourcesGetOptionalParams
+    options?: ResourcesGetOptionalParams,
   ): Promise<ResourcesGetResponse>;
   /**
    * Checks by ID whether a resource exists.
@@ -302,7 +302,7 @@ export interface Resources {
   checkExistenceById(
     resourceId: string,
     apiVersion: string,
-    options?: ResourcesCheckExistenceByIdOptionalParams
+    options?: ResourcesCheckExistenceByIdOptionalParams,
   ): Promise<void>;
   /**
    * Deletes a resource by ID.
@@ -315,7 +315,7 @@ export interface Resources {
   beginDeleteById(
     resourceId: string,
     apiVersion: string,
-    options?: ResourcesDeleteByIdOptionalParams
+    options?: ResourcesDeleteByIdOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a resource by ID.
@@ -328,7 +328,7 @@ export interface Resources {
   beginDeleteByIdAndWait(
     resourceId: string,
     apiVersion: string,
-    options?: ResourcesDeleteByIdOptionalParams
+    options?: ResourcesDeleteByIdOptionalParams,
   ): Promise<void>;
   /**
    * Create a resource by ID.
@@ -343,7 +343,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateByIdOptionalParams
+    options?: ResourcesCreateOrUpdateByIdOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ResourcesCreateOrUpdateByIdResponse>,
@@ -363,7 +363,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesCreateOrUpdateByIdOptionalParams
+    options?: ResourcesCreateOrUpdateByIdOptionalParams,
   ): Promise<ResourcesCreateOrUpdateByIdResponse>;
   /**
    * Updates a resource by ID.
@@ -378,7 +378,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesUpdateByIdOptionalParams
+    options?: ResourcesUpdateByIdOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ResourcesUpdateByIdResponse>,
@@ -398,7 +398,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     parameters: GenericResource,
-    options?: ResourcesUpdateByIdOptionalParams
+    options?: ResourcesUpdateByIdOptionalParams,
   ): Promise<ResourcesUpdateByIdResponse>;
   /**
    * Gets a resource by ID.
@@ -411,6 +411,6 @@ export interface Resources {
   getById(
     resourceId: string,
     apiVersion: string,
-    options?: ResourcesGetByIdOptionalParams
+    options?: ResourcesGetByIdOptionalParams,
   ): Promise<ResourcesGetByIdResponse>;
 }

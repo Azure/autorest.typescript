@@ -30,7 +30,7 @@ async function hubVirtualNetworkConnectionGet() {
   const result = await client.hubVirtualNetworkConnections.get(
     resourceGroupName,
     virtualHubName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

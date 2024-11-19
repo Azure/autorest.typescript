@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkManagerCommit,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,16 +32,16 @@ async function networkManageCommitPost() {
   const parameters: NetworkManagerCommit = {
     commitType: "SecurityAdmin",
     configurationIds: [
-      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resoureGroupSample/providers/Microsoft.Network/networkManagers/testNetworkManager/securityAdminConfigurations/SampleSecurityAdminConfig"
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resoureGroupSample/providers/Microsoft.Network/networkManagers/testNetworkManager/securityAdminConfigurations/SampleSecurityAdminConfig",
     ],
-    targetLocations: ["useast"]
+    targetLocations: ["useast"],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkManagerCommits.beginPostAndWait(
     resourceGroupName,
     networkManagerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

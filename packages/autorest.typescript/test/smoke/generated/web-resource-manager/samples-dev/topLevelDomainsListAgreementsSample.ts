@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TopLevelDomainAgreementOption,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function listTopLevelDomainAgreements() {
   const name = "in";
   const agreementOption: TopLevelDomainAgreementOption = {
     forTransfer: false,
-    includePrivacy: true
+    includePrivacy: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.topLevelDomains.listAgreements(
     name,
-    agreementOption
+    agreementOption,
   )) {
     resArray.push(item);
   }

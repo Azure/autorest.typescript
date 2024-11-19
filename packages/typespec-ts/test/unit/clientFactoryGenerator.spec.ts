@@ -15,20 +15,22 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
-        import { testClient } from "./clientDefinitions";
-        
+        import { logger } from "./logger.js";
+        import { testClient } from "./clientDefinitions.js";
+
+        /** The optional parameters for the client */
+        export interface testClientOptions extends ClientOptions {}
+
         /**
          * Initialize a new instance of \`testClient\`
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`localhost\`;
-        
+        export default function createClient(options: testClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`localhost\`;
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -43,9 +45,13 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
         };
-        
-        const client = getClient(baseUrl, options) as testClient;
-        
+        const client = getClient(endpointUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }
+
         return client;
     }
     `
@@ -66,24 +72,26 @@ describe("Client Factory generation", () => {
           scalar Endpoint extends string;
           `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
-          import { logger } from "./logger";
-          import { testClient } from "./clientDefinitions";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
+          
+          /** The optional parameters for the client */
+          export interface testClientOptions extends ClientOptions {}
 
           /**
            * Initialize a new instance of \`testClient\`
-           * @param endpoint - The endpoint to use.
+           * @param endpointParam - The endpoint to use.
            * @param options - the parameter for all optional parameters
            */
           export default function createClient(
-            endpoint: string,
-            options: ClientOptions = {}
+            endpointParam: string,
+            options: testClientOptions = {}
           ): testClient {
-            const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
-          
+            const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
             const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
             const userAgentPrefix =
               options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -98,9 +106,13 @@ describe("Client Factory generation", () => {
                 logger: options.loggingOptions?.logger ?? logger.info
               },
             };
-          
-            const client = getClient(baseUrl, options) as testClient;
-          
+            const client = getClient(endpointUrl, options) as testClient;
+
+            client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+            if (options.apiVersion) {
+              logger.warning("This client does not support client api-version, please change it at the operation level");
+            }
+    
             return client;
         }
         `
@@ -108,53 +120,56 @@ describe("Client Factory generation", () => {
     });
 
     it("should handle two parameters", async () => {
-      const models = await emitClientFactoryFromTypeSpec(
-        `
-            @server(
-              "{Endpoint}/language/{Version}",
-              "Language Service",
-              {
-                Endpoint: Endpoint,
-                Version: Version
-              }
-            )
-            @service( {title: "PetStoreClient"})
-            namespace PetStore;
-            @doc("The endpoint to use.")
-            scalar Endpoint extends string;
+      const tsp = `
+      @server(
+        "{Endpoint}/language/{Version}",
+        "Language Service",
+        {
+          Endpoint: Endpoint,
+          Version: Version
+        }
+      )
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      @doc("The endpoint to use.")
+      scalar Endpoint extends string;
 
-            #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-            @doc("The version to use")
-            @fixed
-            enum Version {
-              V1,
-              V2
-            }
-            `,
-        true
-      );
-      assert.ok(models);
-      assertEqualContent(
-        models!.content,
+      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+      @doc("The version to use")
+      @fixed
+      enum Version {
+        V1,
+        V2
+      }
+      `;
+      const clientFactory = await emitClientFactoryFromTypeSpec(tsp, {
+        needAzureCore: true,
+      });
+      assert.ok(clientFactory);
+      await assertEqualContent(
+        clientFactory!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
+            import { Version } from "./models.js";
+            
+            /** The optional parameters for the client */
+            export interface testClientOptions extends ClientOptions {}
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint - The endpoint to use.
+             * @param endpointParam - The endpoint to use.
              * @param version - The version to use
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              endpoint: string,
-              version: "V1" | "V2",
-              options: ClientOptions = {}
+              endpointParam: string,
+              version: Version,
+              options: testClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
-            
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -169,9 +184,13 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
-              const client = getClient(baseUrl, options) as testClient;
-            
+              const client = getClient(endpointUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+              if (options.apiVersion) {
+                logger.warning("This client does not support client api-version, please change it at the operation level");
+              }
+      
               return client;
           }
           `
@@ -199,29 +218,34 @@ describe("Client Factory generation", () => {
               v1_1: "v1.1",
             }
             `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
+            import { Versions } from "./models.js";
             
+            /** The optional parameters for the client */
+            export interface testClientOptions extends ClientOptions {}
+
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint - The endpoint to use.
-             * @param version - The version to use. Possible values: v1.1
+             * @param endpointParam - The endpoint to use.
+             * @param version - The version to use.
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              endpoint: string,
-              version: string,
-              options: ClientOptions = {}
+              endpointParam: string,
+              version: Versions,
+              options: testClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
-            
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -236,9 +260,13 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
-              const client = getClient(baseUrl, options) as testClient;
-            
+              const client = getClient(endpointUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+              if (options.apiVersion) {
+                logger.warning("This client does not support client api-version, please change it at the operation level");
+              }
+      
               return client;
           }
           `
@@ -267,32 +295,36 @@ describe("Client Factory generation", () => {
               v1_1: "v1.1",
             }
             `,
-        true
+        {
+          needAzureCore: true
+        }
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
-
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
+            import { Versions } from "./models.js";
+            
+            /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {
-              endpoint?: string;
+              /** The endpoint to use. */
+              endpointParam?: string;
             }
 
             /**
              * Initialize a new instance of \`testClient\`
-             * @param version - The version to use. Possible values: v1.1
+             * @param version - The version to use.
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              version: string,
+              version: Versions,
               options: testClientOptions = {}
             ): testClient {
-              const endpoint = options.endpoint ?? "http://localhost:3000";
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
-            
+              const endpointParam = options.endpointParam ?? "http://localhost:3000";
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -307,9 +339,13 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
-              const client = getClient(baseUrl, options) as testClient;
-            
+              const client = getClient(endpointUrl, options) as testClient;
+              
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+              if (options.apiVersion) {
+                logger.warning("This client does not support client api-version, please change it at the operation level");
+              }
+      
               return client;
           }
           `
@@ -324,21 +360,23 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
-        import { testClient } from "./clientDefinitions";
+        import { logger } from "./logger.js";
+        import { testClient } from "./clientDefinitions.js";
         
+        /** The optional parameters for the client */
+        export interface testClientOptions extends ClientOptions {}
+
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
+         * @param endpointParam - The parameter endpointParam
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-        
+        export default function createClient(endpointParam: string, options: testClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -353,9 +391,13 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
         };
-        
-        const client = getClient(baseUrl, options) as testClient;
-        
+        const client = getClient(endpointUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }
+
         return client;
     }
     `
@@ -377,8 +419,6 @@ describe("Client Factory generation", () => {
           @service( {title: "PetStoreClient"})
           namespace PetStore;
         `,
-          false,
-          true
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {
@@ -403,29 +443,32 @@ describe("Client Factory generation", () => {
         @service( {title: "PetStoreClient"})
         namespace PetStore;
       `,
-        false,
-        false
+        {
+          mustEmptyDiagnostic: false
+        }
       );
 
       assert.ok(factoryFile);
       // console.log(factoryFile!.content);
-      assertEqualContent(
+      await assertEqualContent(
         factoryFile!.content,
         `
       import { getClient, ClientOptions } from "@azure-rest/core-client";
-      import { logger } from "./logger";
+      import { logger } from "./logger.js";
       import { TokenCredential } from "@azure/core-auth";
-      import { testClient } from "./clientDefinitions";
+      import { testClient } from "./clientDefinitions.js";
+      
+      /** The optional parameters for the client */
+      export interface testClientOptions extends ClientOptions {}
 
       /**
        * Initialize a new instance of \`testClient\`
-       * @param endpoint - The parameter endpoint
+       * @param endpointParam - The parameter endpointParam
        * @param credentials - uniquely identify client credential
        * @param options - the parameter for all optional parameters
        */
-      export default function createClient(endpoint: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-        
+      export default function createClient(endpointParam: string, credentials: TokenCredential, options: testClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`: \`\${userAgentInfo}\`;;
         options = {
@@ -437,11 +480,15 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
             credentials: {
-              scopes: options.credentials?.scopes ?? [\`\${baseUrl}/.default\`],
+              scopes: options.credentials?.scopes ?? [\`\${endpointUrl}/.default\`],
             },
         };
+        const client = getClient(endpointUrl, credentials, options) as testClient;
 
-        const client = getClient(baseUrl, credentials, options) as testClient;
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }
 
         return client;
       }
@@ -462,23 +509,25 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
+        import { logger } from "./logger.js";
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions";
+        import { testClient } from "./clientDefinitions.js";
         
+        /** The optional parameters for the client */
+        export interface testClientOptions extends ClientOptions {}
+
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
+         * @param endpointParam - The parameter endpointParam
          * @param credentials - uniquely identify client credential
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-        
+        export default function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options: testClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -497,11 +546,97 @@ describe("Client Factory generation", () => {
               apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
             },
         };
-        
-        const client = getClient(baseUrl, credentials, options) as testClient;
-        
+        const client = getClient(endpointUrl, credentials, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }
+
         return client;
     }
+    `
+      );
+    });
+
+    it("should generate both credentials if include BearerAuth and OAuth2Auth", async () => {
+      const models = await emitClientFactoryFromTypeSpec(`
+      @useAuth(
+        BearerAuth |
+          OAuth2Auth<[{
+            type: OAuth2FlowType.implicit,
+            authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            scopes: ["https://petstor.com/default"]
+          }]>)
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      `);
+      assert.ok(models);
+      await assertEqualContent(
+        models!.content,
+        `
+        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger.js";
+        import {
+          TokenCredential,
+          KeyCredential,
+          isKeyCredential,
+        } from "@azure/core-auth";
+        import { testClient } from "./clientDefinitions.js";
+        
+        /** The optional parameters for the client */
+        export interface testClientOptions extends ClientOptions {}
+        
+        /**
+         * Initialize a new instance of \`testClient\`
+         * @param endpointParam - The parameter endpointParam
+         * @param credentials - uniquely identify client credential
+         * @param options - the parameter for all optional parameters
+         */
+        export default function createClient(
+          endpointParam: string,
+          credentials: TokenCredential | KeyCredential,
+          options: testClientOptions = {},
+        ): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
+            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
+            ...options,
+            userAgentOptions: {
+              userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info,
+            },
+            credentials: {
+              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
+            },
+          };
+          const client = getClient(endpointUrl, credentials, options) as testClient;
+        
+          client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+          if (options.apiVersion) {
+            logger.warning(
+              "This client does not support client api-version, please change it at the operation level",
+            );
+          }
+        
+          if (isKeyCredential(credentials)) {
+            client.pipeline.addPolicy({
+              name: "customKeyCredentialPolicy",
+              async sendRequest(request, next) {
+                request.headers.set("Authorization", "Bearer " + credentials.key);
+                return next(request);
+              },
+            });
+          }
+        
+          return client;
+        }
     `
       );
     });

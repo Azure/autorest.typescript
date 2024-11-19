@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecurityAdminConfigurationsDeleteOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function deleteNetworkManagerSecurityAdminConfiguration() {
     resourceGroupName,
     networkManagerName,
     configurationName,
-    options
+    options,
   );
   console.log(result);
 }

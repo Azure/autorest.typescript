@@ -26,10 +26,11 @@ async function getVirtualNetworkGatewayVpnclientConnectionHealth() {
   const virtualNetworkGatewayName = "vpnp2sgw";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginGetVpnclientConnectionHealthAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName
-  );
+  const result =
+    await client.virtualNetworkGateways.beginGetVpnclientConnectionHealthAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+    );
   console.log(result);
 }
 

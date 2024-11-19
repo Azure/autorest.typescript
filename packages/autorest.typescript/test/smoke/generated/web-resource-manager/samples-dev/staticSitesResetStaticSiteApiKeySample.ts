@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteResetPropertiesARMResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function resetTheApiKeyForAStaticSite() {
   const name = "testStaticSite0";
   const resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource = {
     repositoryToken: "repoToken123",
-    shouldUpdateRepository: true
+    shouldUpdateRepository: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.resetStaticSiteApiKey(
     resourceGroupName,
     name,
-    resetPropertiesEnvelope
+    resetPropertiesEnvelope,
   );
   console.log(result);
 }

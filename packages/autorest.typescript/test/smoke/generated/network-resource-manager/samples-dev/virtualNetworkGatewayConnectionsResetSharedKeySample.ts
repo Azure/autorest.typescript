@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ConnectionResetSharedKey,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,11 +30,12 @@ async function resetVirtualNetworkGatewayConnectionSharedKey() {
   const parameters: ConnectionResetSharedKey = { keyLength: 128 };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginResetSharedKeyAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName,
-    parameters
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginResetSharedKeyAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

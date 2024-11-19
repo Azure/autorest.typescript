@@ -32,7 +32,7 @@ async function getAppServiceEnvironmentDetectorResponses() {
   const result = await client.diagnostics.getHostingEnvironmentDetectorResponse(
     resourceGroupName,
     name,
-    detectorName
+    detectorName,
   );
   console.log(result);
 }

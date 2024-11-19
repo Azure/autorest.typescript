@@ -1,6 +1,6 @@
 import ArrayItemTypesClientFactory, {
   ArrayItemTypesClient
-} from "./generated/arrays/itemTypes/src/index.js";
+} from "./generated/type/array/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 
@@ -29,7 +29,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float32",
-    defaultValue: [42.42]
+    defaultValue: [43.125]
   },
   {
     type: "datetime",
@@ -49,7 +49,23 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "nullable-float",
-    defaultValue: [1.2, null, 3.0]
+    defaultValue: [1.25, null, 3.0]
+  },
+  {
+    type: "nullable-boolean",
+    defaultValue: [true, null, false]
+  },
+  {
+    type: "nullable-int32",
+    defaultValue: [1, null, 3]
+  },
+  {
+    type: "nullable-string",
+    defaultValue: ["hello", null, "world"]
+  },
+  {
+    type: "nullable-model",
+    defaultValue: [{ property: "hello" }, null, { property: "world" }]
   }
 ];
 describe("Array Item-Types Client", () => {
@@ -63,34 +79,26 @@ describe("Array Item-Types Client", () => {
 
   matrix([testedTypes], async (params: TypeDetail) => {
     it(`should get a ${params.type} value`, async () => {
-      try {
-        const result = await client
-          .path(`/type/array/${params.type}` as any)
-          .get();
-        assert.strictEqual(result.status, "200");
-        assert.deepEqual(result.body, params.defaultValue);
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/array/${params.type}` as any)
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, params.defaultValue);
     });
 
     it(`should put a ${params.type} value`, async () => {
-      try {
-        let property;
-        if (params.convertedToFn) {
-          property = params.convertedToFn(params.defaultValue);
-        } else {
-          property = params.defaultValue;
-        }
-        const result = await client
-          .path(`/type/array/${params.type}` as any)
-          .put({
-            body: property
-          });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
+      let property;
+      if (params.convertedToFn) {
+        property = params.convertedToFn(params.defaultValue);
+      } else {
+        property = params.defaultValue;
       }
+      const result = await client
+        .path(`/type/array/${params.type}` as any)
+        .put({
+          body: property
+        });
+      assert.strictEqual(result.status, "204");
     });
   });
 });

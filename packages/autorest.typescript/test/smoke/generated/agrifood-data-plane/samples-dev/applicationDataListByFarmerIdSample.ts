@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  paginate
+  paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,7 +20,7 @@ async function applicationDataListByFarmerId() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const initialResponse = await client

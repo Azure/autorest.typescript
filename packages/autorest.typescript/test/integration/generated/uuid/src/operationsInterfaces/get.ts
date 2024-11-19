@@ -16,6 +16,6 @@ export interface Get {
    */
   uuid(
     testUuid: string,
-    options?: GetUuidOptionalParams
+    options?: GetUuidOptionalParams,
   ): Promise<GetUuidResponse>;
 }

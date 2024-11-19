@@ -30,7 +30,7 @@ async function getADedicatedHost() {
   const result = await client.dedicatedHosts.get(
     resourceGroupName,
     hostGroupName,
-    hostName
+    hostName,
   );
   console.log(result);
 }

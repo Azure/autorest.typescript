@@ -30,7 +30,7 @@ async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite(
   const resArray = new Array();
   for await (let item of client.staticSites.listUserProvidedFunctionAppsForStaticSite(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

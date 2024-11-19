@@ -15,9 +15,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -26,10 +26,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const userAgent: OperationParameter = {
@@ -38,9 +38,9 @@ export const userAgent: OperationParameter = {
     serializedName: "User-Agent",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -49,9 +49,9 @@ export const contentType: OperationParameter = {
     serializedName: "Content-Type",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const scenario: OperationParameter = {
@@ -60,9 +60,9 @@ export const scenario: OperationParameter = {
     serializedName: "scenario",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const value: OperationParameter = {
@@ -71,9 +71,9 @@ export const value: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const value1: OperationParameter = {
@@ -82,9 +82,9 @@ export const value1: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const value2: OperationParameter = {
@@ -93,9 +93,9 @@ export const value2: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const value3: OperationParameter = {
@@ -103,9 +103,9 @@ export const value3: OperationParameter = {
   mapper: {
     serializedName: "value",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const value4: OperationParameter = {
@@ -114,9 +114,9 @@ export const value4: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "Date"
-    }
-  }
+      name: "Date",
+    },
+  },
 };
 
 export const value5: OperationParameter = {
@@ -125,9 +125,9 @@ export const value5: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const value6: OperationParameter = {
@@ -135,9 +135,9 @@ export const value6: OperationParameter = {
   mapper: {
     serializedName: "value",
     type: {
-      name: "DateTimeRfc1123"
-    }
-  }
+      name: "DateTimeRfc1123",
+    },
+  },
 };
 
 export const value7: OperationParameter = {
@@ -146,9 +146,9 @@ export const value7: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "TimeSpan"
-    }
-  }
+      name: "TimeSpan",
+    },
+  },
 };
 
 export const value8: OperationParameter = {
@@ -157,9 +157,9 @@ export const value8: OperationParameter = {
     serializedName: "value",
     required: true,
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const value9: OperationParameter = {
@@ -168,7 +168,7 @@ export const value9: OperationParameter = {
     serializedName: "value",
     type: {
       name: "Enum",
-      allowedValues: ["White", "black", "GREY"]
-    }
-  }
+      allowedValues: ["White", "black", "GREY"],
+    },
+  },
 };

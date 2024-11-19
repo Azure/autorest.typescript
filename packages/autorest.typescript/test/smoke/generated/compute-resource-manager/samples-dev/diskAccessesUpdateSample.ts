@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DiskAccessUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function updateADiskAccessResource() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const diskAccess: DiskAccessUpdate = {
-    tags: { department: "Development", project: "PrivateEndpoints" }
+    tags: { department: "Development", project: "PrivateEndpoints" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskAccesses.beginUpdateAndWait(
     resourceGroupName,
     diskAccessName,
-    diskAccess
+    diskAccess,
   );
   console.log(result);
 }

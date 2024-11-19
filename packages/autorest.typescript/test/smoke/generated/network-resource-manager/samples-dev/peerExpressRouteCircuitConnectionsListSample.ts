@@ -31,7 +31,7 @@ async function listPeerExpressRouteCircuitConnection() {
   for await (let item of client.peerExpressRouteCircuitConnections.list(
     resourceGroupName,
     circuitName,
-    peeringName
+    peeringName,
   )) {
     resArray.push(item);
   }

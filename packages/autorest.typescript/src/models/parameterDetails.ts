@@ -17,6 +17,7 @@ export interface ParameterDetails {
   defaultValue?: any;
   description?: string;
   name: string;
+  propertyName: string;
   serializedName: string;
   location: ParameterLocation;
   required?: boolean;

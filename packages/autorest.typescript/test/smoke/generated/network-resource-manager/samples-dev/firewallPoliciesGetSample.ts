@@ -28,7 +28,7 @@ async function getFirewallPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicies.get(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   );
   console.log(result);
 }

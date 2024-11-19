@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const contentType: OperationParameter = {
@@ -19,9 +19,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const data: OperationParameter = {
@@ -30,9 +30,9 @@ export const data: OperationParameter = {
     serializedName: "data",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -42,9 +42,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -53,10 +53,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const excluded: OperationQueryParameter = {
@@ -67,11 +67,11 @@ export const excluded: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -81,9 +81,9 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const data1: OperationParameter = {
@@ -92,9 +92,9 @@ export const data1: OperationParameter = {
     serializedName: "data",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -104,9 +104,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType2: OperationParameter = {
@@ -116,9 +116,9 @@ export const contentType2: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const thing: OperationURLParameter = {
@@ -127,7 +127,7 @@ export const thing: OperationURLParameter = {
     serializedName: "thing",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

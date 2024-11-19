@@ -10,11 +10,11 @@ export const StorageError: coreClient.CompositeMapper = {
         serializedName: "Message",
         xmlName: "Message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const QueueGetPropertiesHeaders: coreClient.CompositeMapper = {
@@ -29,25 +29,25 @@ export const QueueGetPropertiesHeaders: coreClient.CompositeMapper = {
         xmlName: "x-ms-meta",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       approximateMessagesCount: {
         serializedName: "x-ms-approximate-messages-count",
         xmlName: "x-ms-approximate-messages-count",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       requestId: {
         serializedName: "x-ms-request-id",
         xmlName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const QueueGetPropertiesExceptionHeaders: coreClient.CompositeMapper = {
@@ -60,9 +60,9 @@ export const QueueGetPropertiesExceptionHeaders: coreClient.CompositeMapper = {
         serializedName: "x-ms-error-code",
         xmlName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

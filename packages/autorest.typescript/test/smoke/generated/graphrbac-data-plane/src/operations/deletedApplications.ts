@@ -21,7 +21,7 @@ import {
   DeletedApplicationsListNextResponse,
   DeletedApplicationsRestoreOptionalParams,
   DeletedApplicationsRestoreResponse,
-  DeletedApplicationsHardDeleteOptionalParams
+  DeletedApplicationsHardDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -42,7 +42,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    * @param options The options parameters.
    */
   public list(
-    options?: DeletedApplicationsListOptionalParams
+    options?: DeletedApplicationsListOptionalParams,
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listPagingAll(options);
     return {
@@ -57,13 +57,13 @@ export class DeletedApplicationsImpl implements DeletedApplications {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: DeletedApplicationsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Application[]> {
     let result: DeletedApplicationsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -84,7 +84,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
   }
 
   private async *listPagingAll(
-    options?: DeletedApplicationsListOptionalParams
+    options?: DeletedApplicationsListOptionalParams,
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -98,7 +98,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   public listNext(
     nextLink: string,
-    options?: DeletedApplicationsListNextOptionalParams
+    options?: DeletedApplicationsListNextOptionalParams,
   ): PagedAsyncIterableIterator<Application> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -113,14 +113,14 @@ export class DeletedApplicationsImpl implements DeletedApplications {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
     options?: DeletedApplicationsListNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Application[]> {
     let result: DeletedApplicationsListNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -142,7 +142,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: DeletedApplicationsListNextOptionalParams
+    options?: DeletedApplicationsListNextOptionalParams,
   ): AsyncIterableIterator<Application> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -156,11 +156,11 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   restore(
     objectId: string,
-    options?: DeletedApplicationsRestoreOptionalParams
+    options?: DeletedApplicationsRestoreOptionalParams,
   ): Promise<DeletedApplicationsRestoreResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      restoreOperationSpec
+      restoreOperationSpec,
     );
   }
 
@@ -169,7 +169,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    * @param options The options parameters.
    */
   private _list(
-    options?: DeletedApplicationsListOptionalParams
+    options?: DeletedApplicationsListOptionalParams,
   ): Promise<DeletedApplicationsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -181,11 +181,11 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   hardDelete(
     applicationObjectId: string,
-    options?: DeletedApplicationsHardDeleteOptionalParams
+    options?: DeletedApplicationsHardDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { applicationObjectId, options },
-      hardDeleteOperationSpec
+      hardDeleteOperationSpec,
     );
   }
 
@@ -196,11 +196,11 @@ export class DeletedApplicationsImpl implements DeletedApplications {
    */
   private _listNext(
     nextLink: string,
-    options?: DeletedApplicationsListNextOptionalParams
+    options?: DeletedApplicationsListNextOptionalParams,
   ): Promise<DeletedApplicationsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -212,32 +212,32 @@ const restoreOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Application
+      bodyMapper: Mappers.Application,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/deletedApplications",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationListResult
+      bodyMapper: Mappers.ApplicationListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const hardDeleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/deletedApplications/{applicationObjectId}",
@@ -245,31 +245,31 @@ const hardDeleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.applicationObjectId
+    Parameters.applicationObjectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationListResult
+      bodyMapper: Mappers.ApplicationListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

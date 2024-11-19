@@ -16,20 +16,20 @@ export const ManagedServiceIdentity: coreClient.CompositeMapper = {
       type: {
         serializedName: "type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       userAssignedIdentities: {
         serializedName: "userAssignedIdentities",
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Composite", className: "UserAssignedIdentity" }
-          }
-        }
-      }
-    }
-  }
+            type: { name: "Composite", className: "UserAssignedIdentity" },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const UserAssignedIdentity: coreClient.CompositeMapper = {
@@ -40,17 +40,17 @@ export const UserAssignedIdentity: coreClient.CompositeMapper = {
       principalId: {
         serializedName: "principalId",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       clientId: {
         serializedName: "clientId",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SystemData: coreClient.CompositeMapper = {
@@ -61,41 +61,41 @@ export const SystemData: coreClient.CompositeMapper = {
       createdBy: {
         serializedName: "createdBy",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       createdByType: {
         serializedName: "createdByType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       createdAt: {
         serializedName: "createdAt",
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       lastModifiedBy: {
         serializedName: "lastModifiedBy",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModifiedByType: {
         serializedName: "lastModifiedByType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModifiedAt: {
         serializedName: "lastModifiedAt",
         type: {
-          name: "DateTime"
-        }
-      }
-    }
-  }
+          name: "DateTime",
+        },
+      },
+    },
+  },
 };
 
 export const AzureResourceBase: coreClient.CompositeMapper = {
@@ -107,25 +107,25 @@ export const AzureResourceBase: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       name: {
         serializedName: "name",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       type: {
         serializedName: "type",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DeploymentScriptsError: coreClient.CompositeMapper = {
@@ -137,11 +137,11 @@ export const DeploymentScriptsError: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "ErrorResponse"
-        }
-      }
-    }
-  }
+          className: "ErrorResponse",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorResponse: coreClient.CompositeMapper = {
@@ -153,22 +153,22 @@ export const ErrorResponse: coreClient.CompositeMapper = {
         serializedName: "code",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       target: {
         serializedName: "target",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       details: {
         serializedName: "details",
@@ -178,10 +178,10 @@ export const ErrorResponse: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ErrorResponse"
-            }
-          }
-        }
+              className: "ErrorResponse",
+            },
+          },
+        },
       },
       additionalInfo: {
         serializedName: "additionalInfo",
@@ -191,13 +191,13 @@ export const ErrorResponse: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ErrorAdditionalInfo"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "ErrorAdditionalInfo",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
@@ -209,19 +209,19 @@ export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
         serializedName: "type",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       info: {
         serializedName: "info",
         readOnly: true,
         type: {
           name: "Dictionary",
-          value: { type: { name: "any" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "any" } },
+        },
+      },
+    },
+  },
 };
 
 export const DeploymentScriptListResult: coreClient.CompositeMapper = {
@@ -236,20 +236,20 @@ export const DeploymentScriptListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DeploymentScript"
-            }
-          }
-        }
+              className: "DeploymentScript",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ScriptLogsList: coreClient.CompositeMapper = {
@@ -264,13 +264,13 @@ export const ScriptLogsList: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ScriptLog"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "ScriptLog",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const DeploymentScriptPropertiesBase: coreClient.CompositeMapper = {
@@ -282,35 +282,35 @@ export const DeploymentScriptPropertiesBase: coreClient.CompositeMapper = {
         serializedName: "containerSettings",
         type: {
           name: "Composite",
-          className: "ContainerConfiguration"
-        }
+          className: "ContainerConfiguration",
+        },
       },
       storageAccountSettings: {
         serializedName: "storageAccountSettings",
         type: {
           name: "Composite",
-          className: "StorageAccountConfiguration"
-        }
+          className: "StorageAccountConfiguration",
+        },
       },
       cleanupPreference: {
         serializedName: "cleanupPreference",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       provisioningState: {
         serializedName: "provisioningState",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         type: {
           name: "Composite",
-          className: "ScriptStatus"
-        }
+          className: "ScriptStatus",
+        },
       },
       outputs: {
         serializedName: "outputs",
@@ -318,12 +318,12 @@ export const DeploymentScriptPropertiesBase: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
-        }
-      }
-    }
-  }
+            type: { name: "Dictionary", value: { type: { name: "any" } } },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const ContainerConfiguration: coreClient.CompositeMapper = {
@@ -334,15 +334,15 @@ export const ContainerConfiguration: coreClient.CompositeMapper = {
       containerGroupName: {
         constraints: {
           MaxLength: 63,
-          MinLength: 1
+          MinLength: 1,
         },
         serializedName: "containerGroupName",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const StorageAccountConfiguration: coreClient.CompositeMapper = {
@@ -353,17 +353,17 @@ export const StorageAccountConfiguration: coreClient.CompositeMapper = {
       storageAccountName: {
         serializedName: "storageAccountName",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       storageAccountKey: {
         serializedName: "storageAccountKey",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ScriptStatus: coreClient.CompositeMapper = {
@@ -375,46 +375,46 @@ export const ScriptStatus: coreClient.CompositeMapper = {
         serializedName: "containerInstanceId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       storageAccountId: {
         serializedName: "storageAccountId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       startTime: {
         serializedName: "startTime",
         readOnly: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       endTime: {
         serializedName: "endTime",
         readOnly: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       expirationTime: {
         serializedName: "expirationTime",
         readOnly: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       error: {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "ErrorResponse"
-        }
-      }
-    }
-  }
+          className: "ErrorResponse",
+        },
+      },
+    },
+  },
 };
 
 export const ScriptConfigurationBase: coreClient.CompositeMapper = {
@@ -425,8 +425,8 @@ export const ScriptConfigurationBase: coreClient.CompositeMapper = {
       primaryScriptUri: {
         serializedName: "primaryScriptUri",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       supportingScriptUris: {
         serializedName: "supportingScriptUris",
@@ -434,25 +434,25 @@ export const ScriptConfigurationBase: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       scriptContent: {
         constraints: {
-          MaxLength: 32000
+          MaxLength: 32000,
         },
         serializedName: "scriptContent",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       arguments: {
         serializedName: "arguments",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       environmentVariables: {
         serializedName: "environmentVariables",
@@ -461,32 +461,32 @@ export const ScriptConfigurationBase: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "EnvironmentVariable"
-            }
-          }
-        }
+              className: "EnvironmentVariable",
+            },
+          },
+        },
       },
       forceUpdateTag: {
         serializedName: "forceUpdateTag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       retentionInterval: {
         serializedName: "retentionInterval",
         required: true,
         type: {
-          name: "TimeSpan"
-        }
+          name: "TimeSpan",
+        },
       },
       timeout: {
         serializedName: "timeout",
         type: {
-          name: "TimeSpan"
-        }
-      }
-    }
-  }
+          name: "TimeSpan",
+        },
+      },
+    },
+  },
 };
 
 export const EnvironmentVariable: coreClient.CompositeMapper = {
@@ -498,23 +498,23 @@ export const EnvironmentVariable: coreClient.CompositeMapper = {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       value: {
         serializedName: "value",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       secureValue: {
         serializedName: "secureValue",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DeploymentScript: coreClient.CompositeMapper = {
@@ -525,7 +525,7 @@ export const DeploymentScript: coreClient.CompositeMapper = {
     uberParent: "AzureResourceBase",
     polymorphicDiscriminator: {
       serializedName: "kind",
-      clientName: "kind"
+      clientName: "kind",
     },
     modelProperties: {
       ...AzureResourceBase.type.modelProperties,
@@ -533,39 +533,39 @@ export const DeploymentScript: coreClient.CompositeMapper = {
         serializedName: "identity",
         type: {
           name: "Composite",
-          className: "ManagedServiceIdentity"
-        }
+          className: "ManagedServiceIdentity",
+        },
       },
       location: {
         serializedName: "location",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       kind: {
         serializedName: "kind",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       systemData: {
         serializedName: "systemData",
         type: {
           name: "Composite",
-          className: "SystemData"
-        }
-      }
-    }
-  }
+          className: "SystemData",
+        },
+      },
+    },
+  },
 };
 
 export const DeploymentScriptUpdateParameter: coreClient.CompositeMapper = {
@@ -578,11 +578,11 @@ export const DeploymentScriptUpdateParameter: coreClient.CompositeMapper = {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "String" } },
+        },
+      },
+    },
+  },
 };
 
 export const ScriptLog: coreClient.CompositeMapper = {
@@ -595,11 +595,11 @@ export const ScriptLog: coreClient.CompositeMapper = {
         serializedName: "properties.log",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const AzurePowerShellScriptProperties: coreClient.CompositeMapper = {
@@ -613,11 +613,11 @@ export const AzurePowerShellScriptProperties: coreClient.CompositeMapper = {
         serializedName: "azPowerShellVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const AzureCliScriptProperties: coreClient.CompositeMapper = {
@@ -631,11 +631,11 @@ export const AzureCliScriptProperties: coreClient.CompositeMapper = {
         serializedName: "azCliVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const AzurePowerShellScript: coreClient.CompositeMapper = {
@@ -651,35 +651,35 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
         serializedName: "properties.containerSettings",
         type: {
           name: "Composite",
-          className: "ContainerConfiguration"
-        }
+          className: "ContainerConfiguration",
+        },
       },
       storageAccountSettings: {
         serializedName: "properties.storageAccountSettings",
         type: {
           name: "Composite",
-          className: "StorageAccountConfiguration"
-        }
+          className: "StorageAccountConfiguration",
+        },
       },
       cleanupPreference: {
         serializedName: "properties.cleanupPreference",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       provisioningState: {
         serializedName: "properties.provisioningState",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "properties.status",
         type: {
           name: "Composite",
-          className: "ScriptStatus"
-        }
+          className: "ScriptStatus",
+        },
       },
       outputs: {
         serializedName: "properties.outputs",
@@ -687,15 +687,15 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
-        }
+            type: { name: "Dictionary", value: { type: { name: "any" } } },
+          },
+        },
       },
       primaryScriptUri: {
         serializedName: "properties.primaryScriptUri",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       supportingScriptUris: {
         serializedName: "properties.supportingScriptUris",
@@ -703,25 +703,25 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       scriptContent: {
         constraints: {
-          MaxLength: 32000
+          MaxLength: 32000,
         },
         serializedName: "properties.scriptContent",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       arguments: {
         serializedName: "properties.arguments",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       environmentVariables: {
         serializedName: "properties.environmentVariables",
@@ -730,39 +730,39 @@ export const AzurePowerShellScript: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "EnvironmentVariable"
-            }
-          }
-        }
+              className: "EnvironmentVariable",
+            },
+          },
+        },
       },
       forceUpdateTag: {
         serializedName: "properties.forceUpdateTag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       retentionInterval: {
         serializedName: "properties.retentionInterval",
         required: true,
         type: {
-          name: "TimeSpan"
-        }
+          name: "TimeSpan",
+        },
       },
       timeout: {
         serializedName: "properties.timeout",
         type: {
-          name: "TimeSpan"
-        }
+          name: "TimeSpan",
+        },
       },
       azPowerShellVersion: {
         serializedName: "properties.azPowerShellVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const AzureCliScript: coreClient.CompositeMapper = {
@@ -778,35 +778,35 @@ export const AzureCliScript: coreClient.CompositeMapper = {
         serializedName: "properties.containerSettings",
         type: {
           name: "Composite",
-          className: "ContainerConfiguration"
-        }
+          className: "ContainerConfiguration",
+        },
       },
       storageAccountSettings: {
         serializedName: "properties.storageAccountSettings",
         type: {
           name: "Composite",
-          className: "StorageAccountConfiguration"
-        }
+          className: "StorageAccountConfiguration",
+        },
       },
       cleanupPreference: {
         serializedName: "properties.cleanupPreference",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       provisioningState: {
         serializedName: "properties.provisioningState",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "properties.status",
         type: {
           name: "Composite",
-          className: "ScriptStatus"
-        }
+          className: "ScriptStatus",
+        },
       },
       outputs: {
         serializedName: "properties.outputs",
@@ -814,15 +814,15 @@ export const AzureCliScript: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Dictionary", value: { type: { name: "any" } } }
-          }
-        }
+            type: { name: "Dictionary", value: { type: { name: "any" } } },
+          },
+        },
       },
       primaryScriptUri: {
         serializedName: "properties.primaryScriptUri",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       supportingScriptUris: {
         serializedName: "properties.supportingScriptUris",
@@ -830,25 +830,25 @@ export const AzureCliScript: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       scriptContent: {
         constraints: {
-          MaxLength: 32000
+          MaxLength: 32000,
         },
         serializedName: "properties.scriptContent",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       arguments: {
         serializedName: "properties.arguments",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       environmentVariables: {
         serializedName: "properties.environmentVariables",
@@ -857,43 +857,43 @@ export const AzureCliScript: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "EnvironmentVariable"
-            }
-          }
-        }
+              className: "EnvironmentVariable",
+            },
+          },
+        },
       },
       forceUpdateTag: {
         serializedName: "properties.forceUpdateTag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       retentionInterval: {
         serializedName: "properties.retentionInterval",
         required: true,
         type: {
-          name: "TimeSpan"
-        }
+          name: "TimeSpan",
+        },
       },
       timeout: {
         serializedName: "properties.timeout",
         type: {
-          name: "TimeSpan"
-        }
+          name: "TimeSpan",
+        },
       },
       azCliVersion: {
         serializedName: "properties.azCliVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export let discriminators = {
   "AzureResourceBase.DeploymentScript": DeploymentScript,
   "DeploymentScript.AzurePowerShell": AzurePowerShellScript,
-  "DeploymentScript.AzureCLI": AzureCliScript
+  "DeploymentScript.AzureCLI": AzureCliScript,
 };

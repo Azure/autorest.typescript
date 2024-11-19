@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
@@ -32,7 +32,7 @@ import {
   QueueServicesImpl,
   QueueImpl,
   TableServicesImpl,
-  TableOperationsImpl
+  TableOperationsImpl,
 } from "./operations";
 import {
   Operations,
@@ -53,7 +53,7 @@ import {
   QueueServices,
   Queue,
   TableServices,
-  TableOperations
+  TableOperations,
 } from "./operationsInterfaces";
 import { StorageManagementClientOptionalParams } from "./models";
 
@@ -71,7 +71,7 @@ export class StorageManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: StorageManagementClientOptionalParams
+    options?: StorageManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -86,7 +86,7 @@ export class StorageManagementClient extends coreClient.ServiceClient {
     }
     const defaults: StorageManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-storage-resource-manager/1.0.0-beta.1`;
@@ -99,10 +99,10 @@ export class StorageManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -120,9 +120,8 @@ export class StorageManagementClient extends coreClient.ServiceClient {
     this.blobInventoryPolicies = new BlobInventoryPoliciesImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
     this.privateLinkResources = new PrivateLinkResourcesImpl(this);
-    this.objectReplicationPoliciesOperations = new ObjectReplicationPoliciesOperationsImpl(
-      this
-    );
+    this.objectReplicationPoliciesOperations =
+      new ObjectReplicationPoliciesOperationsImpl(this);
     this.encryptionScopes = new EncryptionScopesImpl(this);
     this.blobServices = new BlobServicesImpl(this);
     this.blobContainers = new BlobContainersImpl(this);
@@ -144,7 +143,7 @@ export class StorageManagementClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -158,7 +157,7 @@ export class StorageManagementClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

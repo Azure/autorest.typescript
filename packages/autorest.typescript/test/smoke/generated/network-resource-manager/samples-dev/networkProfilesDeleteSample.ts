@@ -28,7 +28,7 @@ async function deleteNetworkProfile() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.beginDeleteAndWait(
     resourceGroupName,
-    networkProfileName
+    networkProfileName,
   );
   console.log(result);
 }

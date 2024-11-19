@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VaultPatchParameters,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -49,7 +49,7 @@ async function updateAnExistingVault() {
               "deleteissuers",
               "manageissuers",
               "recover",
-              "purge"
+              "purge",
             ],
             keys: [
               "encrypt",
@@ -67,7 +67,7 @@ async function updateAnExistingVault() {
               "backup",
               "restore",
               "recover",
-              "purge"
+              "purge",
             ],
             secrets: [
               "get",
@@ -77,26 +77,26 @@ async function updateAnExistingVault() {
               "backup",
               "restore",
               "recover",
-              "purge"
-            ]
+              "purge",
+            ],
           },
-          tenantId: "00000000-0000-0000-0000-000000000000"
-        }
+          tenantId: "00000000-0000-0000-0000-000000000000",
+        },
       ],
       enabledForDeployment: true,
       enabledForDiskEncryption: true,
       enabledForTemplateDeployment: true,
       publicNetworkAccess: "Enabled",
       sku: { name: "standard", family: "A" },
-      tenantId: "00000000-0000-0000-0000-000000000000"
-    }
+      tenantId: "00000000-0000-0000-0000-000000000000",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.vaults.update(
     resourceGroupName,
     vaultName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

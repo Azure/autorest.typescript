@@ -357,7 +357,7 @@
       ],
       "x-ms-enum": {
         "name": "AzureOpenAIOperationState",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "notRunning",
@@ -608,7 +608,7 @@
       ],
       "x-ms-enum": {
         "name": "ChatRole",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "system",
@@ -722,7 +722,7 @@
       ],
       "x-ms-enum": {
         "name": "CompletionsFinishReason",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "stopped",
@@ -968,7 +968,7 @@
       ],
       "x-ms-enum": {
         "name": "ContentFilterSeverity",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "safe",
@@ -1113,9 +1113,35 @@
           "default": 1
         },
         "size": {
-          "$ref": "#/definitions/ImageSize",
+          "type": "string",
           "description": "The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).",
-          "default": "1024x1024"
+          "default": "1024x1024",
+          "enum": [
+            "256x256",
+            "512x512",
+            "1024x1024"
+          ],
+          "x-ms-enum": {
+            "name": "ImageSize",
+            "modelAsString": false,
+            "values": [
+              {
+                "name": "Size256x256",
+                "value": "256x256",
+                "description": "Image size of 256x256."
+              },
+              {
+                "name": "Size512x512",
+                "value": "512x512",
+                "description": "Image size of 512x512."
+              },
+              {
+                "name": "Size1024x1024",
+                "value": "1024x1024",
+                "description": "Image size of 1024x1024."
+              }
+            ]
+          }
         },
         "response_format": {
           "$ref": "#/definitions/ImageGenerationResponseFormat",
@@ -1140,7 +1166,7 @@
       ],
       "x-ms-enum": {
         "name": "ImageGenerationResponseFormat",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Url",
@@ -1211,7 +1237,7 @@
       ],
       "x-ms-enum": {
         "name": "ImageSize",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "Size256x256",
@@ -1250,42 +1276,6 @@
       "required": [
         "prompt_index"
       ]
-    },
-    "ServiceApiVersions": {
-      "type": "string",
-      "enum": [
-        "2022-12-01",
-        "2023-05-15",
-        "2023-06-01-preview",
-        "2023-07-01-preview",
-        "2023-08-01-preview"
-      ],
-      "x-ms-enum": {
-        "name": "ServiceApiVersions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "v2022_12_01",
-            "value": "2022-12-01"
-          },
-          {
-            "name": "v2023_05_15",
-            "value": "2023-05-15"
-          },
-          {
-            "name": "v2023_06_01_Preview",
-            "value": "2023-06-01-preview"
-          },
-          {
-            "name": "v2023_07_01_Preview",
-            "value": "2023-07-01-preview"
-          },
-          {
-            "name": "v2023_08_01_Preview",
-            "value": "2023-08-01-preview"
-          }
-        ]
-      }
     }
   },
   "parameters": {

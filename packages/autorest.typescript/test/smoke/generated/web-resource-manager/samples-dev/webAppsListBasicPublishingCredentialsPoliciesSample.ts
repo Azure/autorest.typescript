@@ -30,7 +30,7 @@ async function listPublishingCredentialsPolicies() {
   const resArray = new Array();
   for await (let item of client.webApps.listBasicPublishingCredentialsPolicies(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

@@ -4,18 +4,16 @@
 
 ```ts
 
-/// <reference types="node" />
-
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -478,6 +476,11 @@ export type AzureAgriFoodPlatformDataPlaneServiceClient = Client & {
 };
 
 // @public
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
 export interface BoundariesCreateCascadeDeleteJob202Response extends HttpResponse {
     // (undocumented)
     body: CascadeDeleteJobOutput;
@@ -875,7 +878,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureAgriFoodPlatformDataPlaneServiceClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public
@@ -2093,7 +2096,7 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -3121,6 +3124,18 @@ export interface OAuthTokensListQueryParamProperties {
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -4207,6 +4222,28 @@ export interface SeasonsListQueryParamProperties {
     propertyFilters?: string;
     statuses?: string;
     years?: string;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // @public

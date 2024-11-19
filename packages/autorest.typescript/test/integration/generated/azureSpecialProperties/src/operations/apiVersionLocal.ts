@@ -15,7 +15,7 @@ import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
   ApiVersionLocalGetPathLocalValidOptionalParams,
-  ApiVersionLocalGetSwaggerLocalValidOptionalParams
+  ApiVersionLocalGetSwaggerLocalValidOptionalParams,
 } from "../models";
 
 /** Class containing ApiVersionLocal operations. */
@@ -35,11 +35,11 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getMethodLocalValid(
-    options?: ApiVersionLocalGetMethodLocalValidOptionalParams
+    options?: ApiVersionLocalGetMethodLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getMethodLocalValidOperationSpec
+      getMethodLocalValidOperationSpec,
     );
   }
 
@@ -48,11 +48,11 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getMethodLocalNull(
-    options?: ApiVersionLocalGetMethodLocalNullOptionalParams
+    options?: ApiVersionLocalGetMethodLocalNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getMethodLocalNullOperationSpec
+      getMethodLocalNullOperationSpec,
     );
   }
 
@@ -61,11 +61,11 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getPathLocalValid(
-    options?: ApiVersionLocalGetPathLocalValidOptionalParams
+    options?: ApiVersionLocalGetPathLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getPathLocalValidOperationSpec
+      getPathLocalValidOperationSpec,
     );
   }
 
@@ -74,11 +74,11 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    * @param options The options parameters.
    */
   getSwaggerLocalValid(
-    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
+    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getSwaggerLocalValidOperationSpec
+      getSwaggerLocalValidOperationSpec,
     );
   }
 }
@@ -91,13 +91,13 @@ const getMethodLocalValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMethodLocalNullOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/apiVersion/method/string/none/query/local/null",
@@ -105,13 +105,13 @@ const getMethodLocalNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getPathLocalValidOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/apiVersion/path/string/none/query/local/2.0",
@@ -119,13 +119,13 @@ const getPathLocalValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/apiVersion/swagger/string/none/query/local/2.0",
@@ -133,11 +133,11 @@ const getSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

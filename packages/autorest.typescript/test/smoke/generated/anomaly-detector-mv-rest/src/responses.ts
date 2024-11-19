@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
@@ -8,7 +8,7 @@ import {
   ErrorResponseOutput,
   ModelOutput,
   ModelListOutput,
-  LastDetectionResultOutput
+  LastDetectionResultOutput,
 } from "./outputModels";
 
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */

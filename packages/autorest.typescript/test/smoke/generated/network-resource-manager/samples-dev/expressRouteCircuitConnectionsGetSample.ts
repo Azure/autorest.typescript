@@ -32,7 +32,7 @@ async function expressRouteCircuitConnectionGet() {
     resourceGroupName,
     circuitName,
     peeringName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

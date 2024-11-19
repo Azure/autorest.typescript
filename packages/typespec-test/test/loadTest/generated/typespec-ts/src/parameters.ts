@@ -1,16 +1,18 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
   Test,
+  FileType,
   TestAppComponents,
   TestServerMetricConfig,
   TestRun,
+  Interval,
   MetricRequestPayload,
   TestRunAppComponents,
   TestRunServerMetricConfig,
-} from "./models";
+} from "./models.js";
 
 /** Load test model */
 export type TestResourceMergeAndPatch = Partial<Test>;
@@ -78,12 +80,8 @@ export interface LoadTestAdministrationUploadTestFileBodyParam {
 }
 
 export interface LoadTestAdministrationUploadTestFileQueryParamProperties {
-  /**
-   * File type
-   *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
-   */
-  fileType?: string;
+  /** File type */
+  fileType?: FileType;
 }
 
 export interface LoadTestAdministrationUploadTestFileQueryParam {
@@ -228,12 +226,8 @@ export interface LoadTestRunListMetricsBodyParam {
 export interface LoadTestRunListMetricsQueryParamProperties {
   /** The aggregation */
   aggregation?: string;
-  /**
-   * The interval (i.e. timegrain) of the query.
-   *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
-   */
-  interval?: string;
+  /** The interval (i.e. timegrain) of the query. */
+  interval?: Interval;
   /** Metric name */
   metricName?: string;
   /** Metric namespace to query metric definitions for. */
@@ -255,12 +249,8 @@ export type LoadTestRunListMetricsParameters =
     RequestParameters;
 
 export interface LoadTestRunListMetricDimensionValuesQueryParamProperties {
-  /**
-   * The interval (i.e. timegrain) of the query.
-   *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
-   */
-  interval?: string;
+  /** The interval (i.e. timegrain) of the query. */
+  interval?: Interval;
   /** Metric name */
   metricName?: string;
   /** Metric namespace to query metric definitions for. */

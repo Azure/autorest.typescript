@@ -31,7 +31,7 @@ async function getASecret() {
   const result = await client.secrets.get(
     resourceGroupName,
     vaultName,
-    secretName
+    secretName,
   );
   console.log(result);
 }

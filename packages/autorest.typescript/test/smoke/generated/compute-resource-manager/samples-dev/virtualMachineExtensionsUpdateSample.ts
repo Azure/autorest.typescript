@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualMachineExtensionUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function updateVMExtension() {
     publisher: "extPublisher",
     settings: { UserName: "xyz@microsoft.com" },
     suppressFailures: true,
-    typeHandlerVersion: "1.2"
+    typeHandlerVersion: "1.2",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -42,7 +42,7 @@ async function updateVMExtension() {
     resourceGroupName,
     vmName,
     vmExtensionName,
-    extensionParameters
+    extensionParameters,
   );
   console.log(result);
 }

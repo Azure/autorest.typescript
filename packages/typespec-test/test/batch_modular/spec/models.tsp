@@ -1,11 +1,13 @@
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Reflection;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.Batch;
 
@@ -208,7 +210,7 @@ enum NetworkSecurityGroupRuleAccess {
 }
 
 @doc("IPAddressProvisioningType enums")
-@projectedName("client", "IpAddressProvisioningType")
+@clientName("IpAddressProvisioningType")
 enum IPAddressProvisioningType {
   @doc("A public IP will be created and managed by Batch. There may be multiple public IPs depending on the size of the Pool.")
   BatchManaged: "batchmanaged",
@@ -217,7 +219,7 @@ enum IPAddressProvisioningType {
   UserManaged: "usermanaged",
 
   @doc("No public IP Address will be created.")
-  @projectedName("client", "NoPublicIpAddresses")
+  @clientName("NoPublicIpAddresses")
   NoPublicIPAddresses: "nopublicipaddresses",
 }
 
@@ -584,7 +586,7 @@ model ApplicationListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -640,7 +642,7 @@ model PoolListUsageMetricsResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -671,7 +673,7 @@ model AccountListSupportedImagesResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -682,7 +684,7 @@ information about the Image.
 model ImageInformation {
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The ID of the Compute Node agent SKU which the Image supports.")
-  @projectedName("client", "nodeAgentSkuId")
+  @clientName("nodeAgentSkuId")
   nodeAgentSKUId: string;
 
   @doc("The reference to the Azure Virtual Machine's Marketplace Image.")
@@ -736,7 +738,7 @@ model PoolNodeCountsListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -837,7 +839,7 @@ model ResourceStatistics {
   lastUpdateTime: utcDateTime;
 
   @doc("The average CPU usage across all Compute Nodes in the Pool (percentage per node).")
-  @projectedName("client", "avgCpuPercentage")
+  @clientName("avgCpuPercentage")
   avgCPUPercentage: float32;
 
   @doc("The average memory usage in GiB across all Compute Nodes in the Pool.")
@@ -999,7 +1001,7 @@ model CertificateListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -1015,7 +1017,7 @@ model NodeFileListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -1721,7 +1723,7 @@ model VirtualMachineConfiguration {
   imageReference: ImageReference;
 
   @doc("The SKU of the Batch Compute Node agent to be provisioned on Compute Nodes in the Pool. The Batch Compute Node agent is a program that runs on each Compute Node in the Pool, and provides the command-and-control interface between the Compute Node and the Batch service. There are different implementations of the Compute Node agent, known as SKUs, for different operating systems. You must specify a Compute Node agent SKU which matches the selected Image reference. To get the list of supported Compute Node agent SKUs along with their list of verified Image references, see the 'List supported Compute Node agent SKUs' operation.")
-  @projectedName("client", "nodeAgentSkuId")
+  @clientName("nodeAgentSkuId")
   nodeAgentSKUId: string;
 
   @doc("Windows operating system settings on the virtual machine. This property must not be specified if the imageReference property specifies a Linux OS Image.")
@@ -1779,7 +1781,7 @@ model DataDisk {
   caching?: CachingType;
 
   @doc("The initial disk size in gigabytes.")
-  @projectedName("client", "diskSizeGb")
+  @clientName("diskSizeGb")
   diskSizeGB: int32;
 
   @doc("The storage Account type to be used for the data disk. If omitted, the default is \"standard_lrs\".")
@@ -1884,7 +1886,7 @@ model NetworkConfiguration {
   endpointConfiguration?: PoolEndpointConfiguration;
 
   @doc("The Public IPAddress configuration for Compute Nodes in the Batch Pool. Public IP configuration property is only supported on Pools with the virtualMachineConfiguration property.")
-  @projectedName("client", "publicIpAddressConfiguration")
+  @clientName("publicIpAddressConfiguration")
   publicIPAddressConfiguration?: PublicIPAddressConfiguration;
 
   @doc("Whether this pool should enable accelerated networking. Accelerated networking enables single root I/O virtualization (SR-IOV) to a VM, which may lead to improved networking performance. For more details, see: https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview.")
@@ -1895,7 +1897,7 @@ model NetworkConfiguration {
 @doc("The endpoint configuration for a Pool.")
 model PoolEndpointConfiguration {
   @doc("A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses.")
-  @projectedName("client", "inboundNatPools")
+  @clientName("inboundNatPools")
   inboundNATPools: InboundNATPool[];
 }
 
@@ -1941,10 +1943,10 @@ model NetworkSecurityGroupRule {
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
 @doc("The public IP Address configuration of the networking configuration of a Pool.")
-@projectedName("client", "PublicIpAddressConfiguration")
+@clientName("PublicIpAddressConfiguration")
 model PublicIPAddressConfiguration {
   @doc("The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged.")
-  @projectedName("client", "IpAddressProvisioningType")
+  @clientName("IpAddressProvisioningType")
   provision?: IPAddressProvisioningType;
 
   @doc("The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.")
@@ -2099,7 +2101,7 @@ model AzureBlobFileSystemConfiguration {
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
 @doc("Information used to connect to an NFS file system.")
-@projectedName("client", "NfsMountConfiguration")
+@clientName("NfsMountConfiguration")
 model NFSMountConfiguration {
   @doc("The URI of the file system to mount.")
   source: string;
@@ -2226,7 +2228,7 @@ model BatchJobScheduleListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -2459,7 +2461,7 @@ model BatchJobListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -2475,7 +2477,7 @@ model BatchJobListPreparationAndReleaseTaskStatusResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -2996,7 +2998,7 @@ model BatchPoolListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3420,7 +3422,7 @@ model BatchTaskListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3688,7 +3690,7 @@ model InboundEndpoint {
   protocol: InboundEndpointProtocol;
 
   @doc("The public IP address of the Compute Node.")
-  @projectedName("client", "publicIpAddress")
+  @clientName("publicIpAddress")
   publicIPAddress?: string;
 
   @doc("The public fully qualified domain name for the Compute Node.")
@@ -3741,7 +3743,7 @@ model NodeDisableSchedulingOptions {
 @doc("The remote login settings for a Compute Node.")
 model BatchNodeRemoteLoginSettingsResult {
   @doc("The IP address used for remote login to the Compute Node.")
-  @projectedName("client", "remoteLoginIpAddress")
+  @clientName("remoteLoginIpAddress")
   remoteLoginIPAddress: string;
 
   @doc("The port used for remote login to the Compute Node.")
@@ -3781,7 +3783,7 @@ model BatchNodeListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3838,6 +3840,6 @@ model NodeVMExtensionList {
   value?: NodeVMExtension[];
 
   @doc("The URL to get the next set of results.")
-  @nextLink
+  @Azure.Core.nextLink
   `odata.nextLink`?: string;
 }

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -20,7 +20,7 @@ async function getMultivariateModel() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const result = await client

@@ -29,7 +29,7 @@ async function natRuleList() {
   const resArray = new Array();
   for await (let item of client.natRules.listByVpnGateway(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   )) {
     resArray.push(item);
   }

@@ -32,7 +32,7 @@ async function getADatabaseAutomaticTuningSettings() {
   const result = await client.databaseAutomaticTuningOperations.get(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

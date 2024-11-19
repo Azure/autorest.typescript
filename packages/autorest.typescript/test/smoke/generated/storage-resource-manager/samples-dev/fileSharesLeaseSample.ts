@@ -11,7 +11,7 @@
 import {
   LeaseShareRequest,
   FileSharesLeaseOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function acquireALeaseOnAShare() {
     breakPeriod: undefined,
     leaseDuration: -1,
     leaseId: undefined,
-    proposedLeaseId: undefined
+    proposedLeaseId: undefined,
   };
   const options: FileSharesLeaseOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
@@ -43,7 +43,7 @@ async function acquireALeaseOnAShare() {
     resourceGroupName,
     accountName,
     shareName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -64,7 +64,7 @@ async function breakALeaseOnAShare() {
     breakPeriod: undefined,
     leaseDuration: undefined,
     leaseId: "8698f513-fa75-44a1-b8eb-30ba336af27d",
-    proposedLeaseId: undefined
+    proposedLeaseId: undefined,
   };
   const options: FileSharesLeaseOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
@@ -73,7 +73,7 @@ async function breakALeaseOnAShare() {
     resourceGroupName,
     accountName,
     shareName,
-    options
+    options,
   );
   console.log(result);
 }

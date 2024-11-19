@@ -28,7 +28,7 @@ async function getAGallery() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.communityGalleries.get(
     location,
-    publicGalleryName
+    publicGalleryName,
   );
   console.log(result);
 }

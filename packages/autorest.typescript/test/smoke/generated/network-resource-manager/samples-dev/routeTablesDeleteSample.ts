@@ -28,7 +28,7 @@ async function deleteRouteTable() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeTables.beginDeleteAndWait(
     resourceGroupName,
-    routeTableName
+    routeTableName,
   );
   console.log(result);
 }

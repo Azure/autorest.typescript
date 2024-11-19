@@ -30,7 +30,7 @@ async function getResourceNavigationLinks() {
   const result = await client.resourceNavigationLinks.list(
     resourceGroupName,
     virtualNetworkName,
-    subnetName
+    subnetName,
   );
   console.log(result);
 }

@@ -28,7 +28,7 @@ async function deleteAzureFirewall() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.beginDeleteAndWait(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }

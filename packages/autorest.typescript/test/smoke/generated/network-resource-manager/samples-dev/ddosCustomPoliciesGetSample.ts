@@ -28,7 +28,7 @@ async function getDDoSCustomPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosCustomPolicies.get(
     resourceGroupName,
-    ddosCustomPolicyName
+    ddosCustomPolicyName,
   );
   console.log(result);
 }

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -18,7 +18,7 @@ async function seasonalFieldsDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const seasonalFieldId = "SEASONALFIELD123";
@@ -26,7 +26,7 @@ async function seasonalFieldsDelete() {
     .path(
       "/farmers/{farmerId}/seasonal-fields/{seasonalFieldId}",
       farmerId,
-      seasonalFieldId
+      seasonalFieldId,
     )
     .delete();
   console.log(result);

@@ -28,7 +28,7 @@ async function getLoadBalancer() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.get(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getLoadBalancerWithInboundNatRulePortMapping() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.get(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   );
   console.log(result);
 }

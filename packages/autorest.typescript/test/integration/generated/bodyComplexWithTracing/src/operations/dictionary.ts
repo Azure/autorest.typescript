@@ -23,7 +23,7 @@ import {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
   DictionaryGetNotProvidedOptionalParams,
-  DictionaryGetNotProvidedResponse
+  DictionaryGetNotProvidedResponse,
 } from "../models";
 
 /** Class containing Dictionary operations. */
@@ -43,7 +43,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getValid(
-    options?: DictionaryGetValidOptionalParams
+    options?: DictionaryGetValidOptionalParams,
   ): Promise<DictionaryGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -51,9 +51,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<DictionaryGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -65,7 +65,7 @@ export class DictionaryImpl implements Dictionary {
    */
   async putValid(
     complexBody: DictionaryWrapper,
-    options?: DictionaryPutValidOptionalParams
+    options?: DictionaryPutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -73,9 +73,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -84,7 +84,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getEmpty(
-    options?: DictionaryGetEmptyOptionalParams
+    options?: DictionaryGetEmptyOptionalParams,
   ): Promise<DictionaryGetEmptyResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getEmpty",
@@ -92,9 +92,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getEmptyOperationSpec
+          getEmptyOperationSpec,
         ) as Promise<DictionaryGetEmptyResponse>;
-      }
+      },
     );
   }
 
@@ -105,7 +105,7 @@ export class DictionaryImpl implements Dictionary {
    */
   async putEmpty(
     complexBody: DictionaryWrapper,
-    options?: DictionaryPutEmptyOptionalParams
+    options?: DictionaryPutEmptyOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putEmpty",
@@ -113,9 +113,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putEmptyOperationSpec
+          putEmptyOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -124,7 +124,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getNull(
-    options?: DictionaryGetNullOptionalParams
+    options?: DictionaryGetNullOptionalParams,
   ): Promise<DictionaryGetNullResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getNull",
@@ -132,9 +132,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getNullOperationSpec
+          getNullOperationSpec,
         ) as Promise<DictionaryGetNullResponse>;
-      }
+      },
     );
   }
 
@@ -143,7 +143,7 @@ export class DictionaryImpl implements Dictionary {
    * @param options The options parameters.
    */
   async getNotProvided(
-    options?: DictionaryGetNotProvidedOptionalParams
+    options?: DictionaryGetNotProvidedOptionalParams,
   ): Promise<DictionaryGetNotProvidedResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getNotProvided",
@@ -151,9 +151,9 @@ export class DictionaryImpl implements Dictionary {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getNotProvidedOperationSpec
+          getNotProvidedOperationSpec,
         ) as Promise<DictionaryGetNotProvidedResponse>;
-      }
+      },
     );
   }
 }
@@ -165,15 +165,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DictionaryWrapper
+      bodyMapper: Mappers.DictionaryWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/valid",
@@ -181,29 +181,29 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DictionaryWrapper
+      bodyMapper: Mappers.DictionaryWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/empty",
@@ -211,42 +211,42 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/null",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DictionaryWrapper
+      bodyMapper: Mappers.DictionaryWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNotProvidedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/dictionary/typed/notprovided",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DictionaryWrapper
+      bodyMapper: Mappers.DictionaryWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

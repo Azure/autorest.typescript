@@ -34,7 +34,7 @@ async function getsAListOfAvailableMaintenanceWindowsForASelectedDatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    maintenanceWindowOptionsName
+    maintenanceWindowOptionsName,
   );
   console.log(result);
 }

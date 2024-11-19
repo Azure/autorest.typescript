@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { ErrorModel } from "@azure-rest/core-client";
-
-/** A specific deployment */
-export interface DeploymentOutput {
-  /** Specifies either the model deployment name (when using Azure OpenAI) or model name (when using non-Azure OpenAI) to use for this request. */
-  readonly deploymentId: string;
-}
 
 /**
  * Representation of the response data from an embeddings request.
@@ -107,12 +101,8 @@ export interface ContentFilterResultsOutput {
 
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResultOutput {
-  /**
-   * Ratings for the intensity and risk level of filtered content.
-   *
-   * Possible values: safe, low, medium, high
-   */
-  severity: string;
+  /** Ratings for the intensity and risk level of filtered content. */
+  severity: ContentFilterSeverityOutput;
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
 }
@@ -136,7 +126,7 @@ export interface ChoiceOutput {
   /** The log probabilities model for tokens associated with this completions choice. */
   logprobs: CompletionsLogProbabilityModelOutput | null;
   /** Reason for finishing */
-  finish_reason: string | null;
+  finish_reason: CompletionsFinishReasonOutput | null;
 }
 
 /** Representation of a log probabilities model for a completions generation. */
@@ -167,12 +157,8 @@ export interface CompletionsUsageOutput {
 
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessageOutput {
-  /**
-   * The role associated with this message payload.
-   *
-   * Possible values: system, assistant, user, function, tool
-   */
-  role: string;
+  /** The role associated with this message payload. */
+  role: ChatRoleOutput;
   /** The text associated with this message payload. */
   content: string | null;
   /**
@@ -259,7 +245,7 @@ export interface ChatChoiceOutput {
   /** The ordered index associated with this chat completions choice. */
   index: number;
   /** The reason that this chat completions choice completed its generated. */
-  finish_reason: string | null;
+  finish_reason: CompletionsFinishReasonOutput | null;
   /** The delta message content for a streaming response. */
   delta?: ChatMessageOutput;
   /**
@@ -280,12 +266,8 @@ export interface BatchImageGenerationOperationResponseOutput {
   expires?: number;
   /** The result of the operation if the operation succeeded. */
   result?: ImageGenerationsOutput;
-  /**
-   * The status of the operation
-   *
-   * Possible values: notRunning, running, succeeded, canceled, failed
-   */
-  status: string;
+  /** The status of the operation */
+  status: AzureOpenAIOperationStateOutput;
   /** The error if the operation failed. */
   error?: ErrorModel;
 }
@@ -310,25 +292,25 @@ export interface ImagePayloadOutput {
   b64_json: string;
 }
 
-/** Represents the request data used to generate images. */
-export interface ImageGenerationOptionsOutput {
-  /** A description of the desired images. */
-  prompt: string;
-  /** The number of images to generate (defaults to 1). */
-  n?: number;
-  /**
-   * The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).
-   *
-   * Possible values: 256x256, 512x512, 1024x1024
-   */
-  size?: string;
-  /**
-   *   The format in which image generation response items should be presented.
-   *   Azure OpenAI only supports URL response items.
-   *
-   * Possible values: url, b64_json
-   */
-  response_format?: string;
-  /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
-  user?: string;
-}
+/** Ratings for the intensity and risk level of harmful content. */
+export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
+/** Representation of the manner in which a completions response concluded. */
+export type CompletionsFinishReasonOutput =
+  | "stop"
+  | "length"
+  | "content_filter"
+  | "function_call";
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export type ChatRoleOutput =
+  | "system"
+  | "assistant"
+  | "user"
+  | "function"
+  | "tool";
+/** The state of a job or item. */
+export type AzureOpenAIOperationStateOutput =
+  | "notRunning"
+  | "running"
+  | "succeeded"
+  | "canceled"
+  | "failed";

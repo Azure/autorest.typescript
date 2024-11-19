@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkManagerConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,15 @@ async function createOrUpdateSubscriptionNetworkManagerConnection() {
   const networkManagerConnectionName = "TestNMConnection";
   const parameters: NetworkManagerConnection = {
     networkManagerId:
-      "/subscriptions/subscriptionC/resourceGroup/rg1/providers/Microsoft.Network/networkManagers/testNetworkManager"
+      "/subscriptions/subscriptionC/resourceGroup/rg1/providers/Microsoft.Network/networkManagers/testNetworkManager",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.subscriptionNetworkManagerConnections.createOrUpdate(
-    networkManagerConnectionName,
-    parameters
-  );
+  const result =
+    await client.subscriptionNetworkManagerConnections.createOrUpdate(
+      networkManagerConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

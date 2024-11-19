@@ -9,7 +9,7 @@
 import {
   AzureMetricsDocument,
   MetricsCreateOptionalParams,
-  MetricsCreateResponse
+  MetricsCreateResponse,
 } from "../models";
 
 /** Interface representing a Metrics. */
@@ -38,6 +38,6 @@ export interface Metrics {
     resourceTypeName: string,
     resourceName: string,
     body: AzureMetricsDocument,
-    options?: MetricsCreateOptionalParams
+    options?: MetricsCreateOptionalParams,
   ): Promise<MetricsCreateResponse>;
 }

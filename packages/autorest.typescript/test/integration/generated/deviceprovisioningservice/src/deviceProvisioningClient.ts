@@ -2,17 +2,17 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import {
   OperationsImpl,
   DpsCertificateImpl,
-  IotDpsResourceImpl
+  IotDpsResourceImpl,
 } from "./operations";
 import {
   Operations,
   DpsCertificate,
-  IotDpsResource
+  IotDpsResource,
 } from "./operationsInterfaces";
 import { DeviceProvisioningClientOptionalParams } from "./models";
 
@@ -28,7 +28,7 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: DeviceProvisioningClientOptionalParams
+    options?: DeviceProvisioningClientOptionalParams,
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
@@ -39,7 +39,7 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: DeviceProvisioningClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-deviceprovisioning/1.0.0-preview1`;
@@ -52,10 +52,10 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -79,7 +79,7 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -93,7 +93,7 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

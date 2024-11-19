@@ -1,6 +1,6 @@
 import {
   FileUploadRangeFromURLOptionalParams,
-  FileUploadRangeFromURLResponse
+  FileUploadRangeFromURLResponse,
 } from "../models";
 
 /** Interface representing a File. */
@@ -22,6 +22,6 @@ export interface File {
     range: string,
     copySource: string,
     contentLength: number,
-    options?: FileUploadRangeFromURLOptionalParams
+    options?: FileUploadRangeFromURLOptionalParams,
   ): Promise<FileUploadRangeFromURLResponse>;
 }

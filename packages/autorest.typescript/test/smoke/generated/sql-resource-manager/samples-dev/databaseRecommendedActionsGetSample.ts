@@ -36,7 +36,7 @@ async function getDatabaseRecommendedAction() {
     serverName,
     databaseName,
     advisorName,
-    recommendedActionName
+    recommendedActionName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CapacityReservationGroup,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createOrUpdateACapacityReservationGroup() {
   const parameters: CapacityReservationGroup = {
     location: "westus",
     tags: { department: "finance" },
-    zones: ["1", "2"]
+    zones: ["1", "2"],
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.capacityReservationGroups.createOrUpdate(
     resourceGroupName,
     capacityReservationGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

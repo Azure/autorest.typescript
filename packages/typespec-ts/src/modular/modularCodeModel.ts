@@ -1,9 +1,22 @@
-import { Imports } from "@azure-tools/rlc-common";
-import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import {
+  HelperFunctionDetails,
+  Imports,
+  OperationResponse,
+  RLCOptions
+} from "@azure-tools/rlc-common";
+import {
+  SdkBodyParameter,
+  SdkClientType,
+  SdkHttpOperation,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
+import { UsageFlags, Type as TypespecType } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
+  compatibilityMode: boolean;
+  experimentalExtensibleEnums: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -38,11 +51,12 @@ export interface BodyParameter {
   restApiName: string;
   location: "body";
   optional: boolean;
+  format?: string;
   description: string;
   clientName: string;
   inOverload: boolean;
-  defaultContentType: string;
   isBinaryPayload: boolean;
+  tcgcType: SdkBodyParameter;
 }
 
 export interface OperationGroup {
@@ -63,7 +77,6 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
-  nullable?: boolean;
   name?: string;
   description?: string;
   type:
@@ -84,13 +97,15 @@ export interface Type {
     | "dict"
     | "combined"
     | "any"
-    | "unknown";
+    | "unknown"
+    | "never";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
   value?: string;
   values?: EnumValue[];
   isFixed?: boolean;
+  isNonExhaustive?: boolean;
   valueType?: Type;
   elementType?: Type;
   parents?: Type[];
@@ -98,7 +113,17 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
-  isCoreErrorType?: boolean;
+  coreTypeInfo?: "ErrorType" | "LroType";
+  usage?: UsageFlags;
+  alias?: string;
+  aliasType?: string;
+  discriminator?: string;
+  discriminatorValue?: string;
+  isPolymorphicBaseModel?: boolean;
+  tcgcType?: SdkType;
+  __raw?: TypespecType;
+  nullable?: boolean;
+  optional?: boolean;
 }
 
 export interface Client {
@@ -110,6 +135,8 @@ export interface Client {
   apiVersions: any[];
   rlcClientName: string;
   subfolder?: string;
+  rlcHelperDetails: HelperFunctionDetails;
+  tcgcClient: SdkClientType<SdkHttpOperation>;
 }
 
 export type ParameterLocation =
@@ -140,6 +167,7 @@ export interface Parameter {
   inOverriden?: boolean;
   isApiVersion?: boolean;
   format?: string;
+  tcgcType?: SdkType;
 }
 
 export interface Response {
@@ -172,4 +200,12 @@ export interface Operation {
   addedOn?: string;
   rlcResponse?: OperationResponse;
   namespaceHierarchies: string[];
+  lroMetadata?: LroOperationMetadata;
+}
+
+export interface LroOperationMetadata {
+  finalStateVia?: string;
+  finalResult?: Type;
+  /** The path to the field in the 'finalEnvelopeResult' that contains the 'finalResult'. */
+  finalResultPath?: string;
 }

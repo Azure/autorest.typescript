@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DatabaseAdvisorsListByDatabaseOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function listOfDatabaseAdvisors() {
   const result = await client.databaseAdvisors.listByDatabase(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }
@@ -61,7 +61,7 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors() {
     resourceGroupName,
     serverName,
     databaseName,
-    options
+    options,
   );
   console.log(result);
 }

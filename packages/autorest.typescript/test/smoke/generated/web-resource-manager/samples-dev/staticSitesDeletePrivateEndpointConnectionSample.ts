@@ -28,11 +28,12 @@ async function deleteAPrivateEndpointConnectionForASite() {
   const privateEndpointConnectionName = "connection";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginDeletePrivateEndpointConnectionAndWait(
-    resourceGroupName,
-    name,
-    privateEndpointConnectionName
-  );
+  const result =
+    await client.staticSites.beginDeletePrivateEndpointConnectionAndWait(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+    );
   console.log(result);
 }
 

@@ -30,7 +30,7 @@ async function deleteFlowLog() {
   const result = await client.flowLogs.beginDeleteAndWait(
     resourceGroupName,
     networkWatcherName,
-    flowLogName
+    flowLogName,
   );
   console.log(result);
 }

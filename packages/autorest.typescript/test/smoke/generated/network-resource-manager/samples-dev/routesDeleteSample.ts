@@ -30,7 +30,7 @@ async function deleteRoute() {
   const result = await client.routes.beginDeleteAndWait(
     resourceGroupName,
     routeTableName,
-    routeName
+    routeName,
   );
   console.log(result);
 }

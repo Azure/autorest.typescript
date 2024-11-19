@@ -30,7 +30,7 @@ async function getPrivateDnsZoneGroup() {
   const result = await client.privateDnsZoneGroups.get(
     resourceGroupName,
     privateEndpointName,
-    privateDnsZoneGroupName
+    privateDnsZoneGroupName,
   );
   console.log(result);
 }

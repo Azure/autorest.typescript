@@ -15,7 +15,7 @@ import {
   ArrayGetEmptyResponse,
   ArrayPutEmptyOptionalParams,
   ArrayGetNotProvidedOptionalParams,
-  ArrayGetNotProvidedResponse
+  ArrayGetNotProvidedResponse,
 } from "../models";
 
 /** Interface representing a Array. */
@@ -25,7 +25,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getValid(
-    options?: ArrayGetValidOptionalParams
+    options?: ArrayGetValidOptionalParams,
   ): Promise<ArrayGetValidResponse>;
   /**
    * Put complex types with array property
@@ -35,14 +35,14 @@ export interface Array {
    */
   putValid(
     complexBody: ArrayWrapper,
-    options?: ArrayPutValidOptionalParams
+    options?: ArrayPutValidOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with array property which is empty
    * @param options The options parameters.
    */
   getEmpty(
-    options?: ArrayGetEmptyOptionalParams
+    options?: ArrayGetEmptyOptionalParams,
   ): Promise<ArrayGetEmptyResponse>;
   /**
    * Put complex types with array property which is empty
@@ -51,13 +51,13 @@ export interface Array {
    */
   putEmpty(
     complexBody: ArrayWrapper,
-    options?: ArrayPutEmptyOptionalParams
+    options?: ArrayPutEmptyOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with array property while server doesn't provide a response payload
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: ArrayGetNotProvidedOptionalParams
+    options?: ArrayGetNotProvidedOptionalParams,
   ): Promise<ArrayGetNotProvidedResponse>;
 }

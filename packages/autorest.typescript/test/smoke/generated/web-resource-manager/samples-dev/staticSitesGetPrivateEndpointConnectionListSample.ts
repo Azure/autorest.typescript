@@ -30,7 +30,7 @@ async function getAListOfPrivateEndpointConnectionsAssociatedWithASite() {
   const resArray = new Array();
   for await (let item of client.staticSites.listPrivateEndpointConnectionList(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

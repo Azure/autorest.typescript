@@ -30,7 +30,7 @@ async function listTheKeysForAManagedInstance() {
   const resArray = new Array();
   for await (let item of client.managedInstanceKeys.listByInstance(
     resourceGroupName,
-    managedInstanceName
+    managedInstanceName,
   )) {
     resArray.push(item);
   }

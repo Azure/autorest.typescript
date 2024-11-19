@@ -11,7 +11,7 @@
 import {
   VpnPacketCaptureStartParameters,
   VirtualNetworkGatewaysStartPacketCaptureOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,18 +30,19 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithFilter() {
   const virtualNetworkGatewayName = "vpngw";
   const parameters: VpnPacketCaptureStartParameters = {
     filterData:
-      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}"
+      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}",
   };
   const options: VirtualNetworkGatewaysStartPacketCaptureOptionalParams = {
-    parameters
+    parameters,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    options
-  );
+  const result =
+    await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      options,
+    );
   console.log(result);
 }
 
@@ -57,10 +58,11 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithoutFilter() {
   const virtualNetworkGatewayName = "vpngw";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName
-  );
+  const result =
+    await client.virtualNetworkGateways.beginStartPacketCaptureAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+    );
   console.log(result);
 }
 

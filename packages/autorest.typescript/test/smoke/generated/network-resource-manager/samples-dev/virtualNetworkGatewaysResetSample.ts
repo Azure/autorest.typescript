@@ -28,7 +28,7 @@ async function resetVirtualNetworkGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginResetAndWait(
     resourceGroupName,
-    virtualNetworkGatewayName
+    virtualNetworkGatewayName,
   );
   console.log(result);
 }

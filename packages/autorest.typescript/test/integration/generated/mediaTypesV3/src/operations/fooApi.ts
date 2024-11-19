@@ -17,7 +17,7 @@ import {
   FooApiPostSendOnDefaultResponse,
   FooApiPostSend$binaryOptionalParams,
   FooApiPostSend$textOptionalParams,
-  FooApiPostSendResponse
+  FooApiPostSendResponse,
 } from "../models";
 
 /** Class containing FooApi operations. */
@@ -41,7 +41,7 @@ export class FooApiImpl implements FooApi {
   postSendOnDefault(
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
-    options?: FooApiPostSendOnDefault$binaryOptionalParams
+    options?: FooApiPostSendOnDefault$binaryOptionalParams,
   ): Promise<FooApiPostSendOnDefaultResponse>;
   /**
    * Send payload to Foo service.
@@ -52,7 +52,7 @@ export class FooApiImpl implements FooApi {
   postSendOnDefault(
     contentType: "text/plain",
     data: string,
-    options?: FooApiPostSendOnDefault$textOptionalParams
+    options?: FooApiPostSendOnDefault$textOptionalParams,
   ): Promise<FooApiPostSendOnDefaultResponse>;
   /**
    * Send payload to Foo service.
@@ -63,7 +63,7 @@ export class FooApiImpl implements FooApi {
       | [
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          FooApiPostSendOnDefault$binaryOptionalParams?
+          FooApiPostSendOnDefault$binaryOptionalParams?,
         ]
       | ["text/plain", string, FooApiPostSendOnDefault$textOptionalParams?]
   ): Promise<FooApiPostSendOnDefaultResponse> {
@@ -75,7 +75,7 @@ export class FooApiImpl implements FooApi {
       operationArguments = {
         contentType: args[0],
         data: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else if (args[0] === "text/plain") {
@@ -83,12 +83,12 @@ export class FooApiImpl implements FooApi {
       operationArguments = {
         contentType: args[0],
         data: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -106,7 +106,7 @@ export class FooApiImpl implements FooApi {
     thing: string,
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
-    options?: FooApiPostSend$binaryOptionalParams
+    options?: FooApiPostSend$binaryOptionalParams,
   ): Promise<FooApiPostSendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
@@ -119,7 +119,7 @@ export class FooApiImpl implements FooApi {
     thing: string,
     contentType: "text/plain",
     data: string,
-    options?: FooApiPostSend$textOptionalParams
+    options?: FooApiPostSend$textOptionalParams,
   ): Promise<FooApiPostSendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
@@ -131,7 +131,7 @@ export class FooApiImpl implements FooApi {
           string,
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          FooApiPostSend$binaryOptionalParams?
+          FooApiPostSend$binaryOptionalParams?,
         ]
       | [string, "text/plain", string, FooApiPostSend$textOptionalParams?]
   ): Promise<FooApiPostSendResponse> {
@@ -144,7 +144,7 @@ export class FooApiImpl implements FooApi {
         thing: args[0],
         contentType: args[1],
         data: args[2],
-        options: args[3]
+        options: args[3],
       };
       options = args[3];
     } else if (args[1] === "text/plain") {
@@ -153,12 +153,12 @@ export class FooApiImpl implements FooApi {
         thing: args[0],
         contentType: args[1],
         data: args[2],
-        options: args[3]
+        options: args[3],
       };
       options = args[3];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[1]}".`
+        `"contentType" must be a valid value but instead was "${args[1]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -174,15 +174,15 @@ const postSendOnDefault$binaryOperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const postSendOnDefault$textOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1",
@@ -190,15 +190,15 @@ const postSendOnDefault$textOperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
-  serializer
+  serializer,
 };
 const postSend$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
@@ -206,15 +206,15 @@ const postSend$binaryOperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const postSend$textOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
@@ -222,13 +222,13 @@ const postSend$textOperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
-  serializer
+  serializer,
 };

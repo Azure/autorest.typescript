@@ -9,7 +9,6 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
-    hierarchyClient: false
     packageDetails:
       name: "@msinternal/client-structure-default"
       description: "Client Structure Default Test Service"

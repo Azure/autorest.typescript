@@ -29,7 +29,7 @@ async function storageAccountListObjectReplicationPolicies() {
   const resArray = new Array();
   for await (let item of client.objectReplicationPoliciesOperations.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }

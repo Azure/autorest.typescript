@@ -23,7 +23,7 @@ export class StorageBlobClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: StorageBlobClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-storageblob/1.0.0-preview1`;
@@ -36,9 +36,9 @@ export class StorageBlobClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{url}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{url}",
     };
     super(optionsWithDefaults);
     // Parameter assignments

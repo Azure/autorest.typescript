@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecretCreateOrUpdateParameters,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function createASecret() {
   const vaultName = "sample-vault";
   const secretName = "secret-name";
   const parameters: SecretCreateOrUpdateParameters = {
-    properties: { value: "secret-value" }
+    properties: { value: "secret-value" },
   };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function createASecret() {
     resourceGroupName,
     vaultName,
     secretName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

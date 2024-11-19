@@ -10,6 +10,9 @@ export function buildRecordedClientFile(model: RLCModel) {
   });
   return {
     path: "test/public/utils/recordedClient.ts",
-    content: recordedClientFileContents({})
+    content: recordedClientFileContents({
+      isEsm: model.options?.moduleKind === "esm",
+      isCjs: model.options?.moduleKind === "cjs"
+    })
   };
 }

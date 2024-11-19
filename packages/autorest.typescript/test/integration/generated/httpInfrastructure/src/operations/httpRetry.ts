@@ -21,7 +21,7 @@ import {
   HttpRetryPost503OptionalParams,
   HttpRetryDelete503OptionalParams,
   HttpRetryPut504OptionalParams,
-  HttpRetryPatch504OptionalParams
+  HttpRetryPatch504OptionalParams,
 } from "../models";
 
 /** Class containing HttpRetry operations. */
@@ -73,11 +73,11 @@ export class HttpRetryImpl implements HttpRetry {
    * @param options The options parameters.
    */
   options502(
-    options?: HttpRetryOptions502OptionalParams
+    options?: HttpRetryOptions502OptionalParams,
   ): Promise<HttpRetryOptions502Response> {
     return this.client.sendOperationRequest(
       { options },
-      options502OperationSpec
+      options502OperationSpec,
     );
   }
 
@@ -96,7 +96,7 @@ export class HttpRetryImpl implements HttpRetry {
   delete503(options?: HttpRetryDelete503OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete503OperationSpec
+      delete503OperationSpec,
     );
   }
 
@@ -125,12 +125,12 @@ const head408OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put500OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/500",
@@ -138,14 +138,14 @@ const put500OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch500OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/500",
@@ -153,14 +153,14 @@ const patch500OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const get502OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/502",
@@ -168,27 +168,27 @@ const get502OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const options502OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/502",
   httpMethod: "OPTIONS",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const post503OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/503",
@@ -196,14 +196,14 @@ const post503OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete503OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/503",
@@ -211,14 +211,14 @@ const delete503OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const put504OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/504",
@@ -226,14 +226,14 @@ const put504OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch504OperationSpec: coreClient.OperationSpec = {
   path: "/http/retry/504",
@@ -241,12 +241,12 @@ const patch504OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

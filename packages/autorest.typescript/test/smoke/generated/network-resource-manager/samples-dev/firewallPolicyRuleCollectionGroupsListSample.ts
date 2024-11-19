@@ -30,7 +30,7 @@ async function listAllFirewallPolicyRuleCollectionGroupWithWebCategories() {
   const resArray = new Array();
   for await (let item of client.firewallPolicyRuleCollectionGroups.list(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   )) {
     resArray.push(item);
   }
@@ -52,7 +52,7 @@ async function listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy(
   const resArray = new Array();
   for await (let item of client.firewallPolicyRuleCollectionGroups.list(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   )) {
     resArray.push(item);
   }
@@ -74,7 +74,7 @@ async function listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFir
   const resArray = new Array();
   for await (let item of client.firewallPolicyRuleCollectionGroups.list(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   )) {
     resArray.push(item);
   }

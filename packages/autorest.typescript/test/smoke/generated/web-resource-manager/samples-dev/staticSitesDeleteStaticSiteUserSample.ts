@@ -33,7 +33,7 @@ async function deleteAUserForAStaticSite() {
     resourceGroupName,
     name,
     authprovider,
-    userid
+    userid,
   );
   console.log(result);
 }

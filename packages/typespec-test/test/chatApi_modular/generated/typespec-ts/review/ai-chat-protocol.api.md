@@ -11,86 +11,92 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface ChatChoice {
-    context?: Record<string, unknown>;
+export interface ChatChoiceRecord {
+    context?: Record<string, any>;
     finishReason: FinishReason;
     index: number;
     message: ChatMessage;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public
-export interface ChatCompletion {
-    choices: ChatChoice[];
+export interface ChatCompletionChunkRecord {
+    choices: ChoiceDeltaRecord[];
 }
 
 // @public
-export interface ChatCompletionChunk {
-    choices: ChoiceDelta[];
-}
-
-// @public
-export interface ChatCompletionOptions {
-    context?: Record<string, unknown>;
+export interface ChatCompletionOptionsRecord {
+    context?: Record<string, any>;
     messages: ChatMessage[];
-    sessionState?: unknown;
+    sessionState?: any;
     stream: false;
+}
+
+// @public
+export interface ChatCompletionRecord {
+    choices: ChatChoiceRecord[];
 }
 
 // @public
 export interface ChatMessage {
     content: string;
     role: ChatRole;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public
 export interface ChatMessageDelta {
     content?: string;
     role?: ChatRole;
-    sessionState?: unknown;
+    sessionState?: any;
 }
 
 // @public (undocumented)
 export class ChatProtocolClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
-    create(body: ChatCompletionOptions, options?: CreateOptions): Promise<ChatCompletion>;
-    createStreaming(body: StreamingChatCompletionOptions, options?: CreateStreamingOptions): Promise<ChatCompletionChunk>;
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptionalParams);
+    create(body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
+    createStreaming(body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
-export interface ChatProtocolClientOptions extends ClientOptions {
+// @public
+export interface ChatProtocolClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export type ChatRole = string;
+export type ChatRole = "user" | "system" | "assistant";
 
 // @public
-export interface ChoiceDelta {
-    context?: Record<string, unknown>;
+export interface ChoiceDeltaRecord {
+    context?: Record<string, any>;
     delta: ChatMessageDelta;
     finishReason?: FinishReason;
     index: number;
-    sessionState?: unknown;
-}
-
-// @public (undocumented)
-export interface CreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CreateStreamingOptions extends OperationOptions {
+    sessionState?: any;
 }
 
 // @public
-export type FinishReason = string;
+export interface CreateOptionalParams extends OperationOptions {
+}
 
 // @public
-export interface StreamingChatCompletionOptions {
-    context?: Record<string, unknown>;
+export interface CreateStreamingOptionalParams extends OperationOptions {
+}
+
+// @public
+export type FinishReason = "stop" | "length";
+
+// @public
+export enum KnownAPIVersion {
+    // (undocumented)
+    v20231001Preview = "2023-10-01-preview"
+}
+
+// @public
+export interface StreamingChatCompletionOptionsRecord {
+    context?: Record<string, any>;
     messages: ChatMessage[];
-    sessionState?: unknown;
+    sessionState?: any;
     stream: true;
 }
 

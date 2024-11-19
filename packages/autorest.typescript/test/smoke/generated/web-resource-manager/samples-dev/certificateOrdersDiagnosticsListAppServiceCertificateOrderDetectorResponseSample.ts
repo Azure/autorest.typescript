@@ -31,7 +31,7 @@ async function listAppServiceCertificateDetectorResponse() {
   const resArray = new Array();
   for await (let item of client.certificateOrdersDiagnostics.listAppServiceCertificateOrderDetectorResponse(
     resourceGroupName,
-    certificateOrderName
+    certificateOrderName,
   )) {
     resArray.push(item);
   }

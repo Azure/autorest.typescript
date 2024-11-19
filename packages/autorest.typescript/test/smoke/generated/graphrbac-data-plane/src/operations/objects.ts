@@ -19,7 +19,7 @@ import {
   GetObjectsParameters,
   ObjectsGetObjectsByObjectIdsOptionalParams,
   ObjectsGetObjectsByObjectIdsResponse,
-  ObjectsGetObjectsByObjectIdsNextResponse
+  ObjectsGetObjectsByObjectIdsNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -43,7 +43,7 @@ export class ObjectsImpl implements Objects {
    */
   public listObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: ObjectsGetObjectsByObjectIdsOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsPagingAll(parameters, options);
     return {
@@ -60,16 +60,16 @@ export class ObjectsImpl implements Objects {
         return this.getObjectsByObjectIdsPagingPage(
           parameters,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getObjectsByObjectIdsPagingPage(
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: ObjectsGetObjectsByObjectIdsResponse;
     let continuationToken = settings?.continuationToken;
@@ -83,7 +83,7 @@ export class ObjectsImpl implements Objects {
     while (continuationToken) {
       result = await this._getObjectsByObjectIdsNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.value || [];
@@ -94,11 +94,11 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsPagingAll(
     parameters: GetObjectsParameters,
-    options?: ObjectsGetObjectsByObjectIdsOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getObjectsByObjectIdsPagingPage(
       parameters,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -111,7 +111,7 @@ export class ObjectsImpl implements Objects {
    */
   public listObjectsByObjectIdsNext(
     nextLink: string,
-    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getObjectsByObjectIdsNextPagingAll(nextLink, options);
     return {
@@ -128,16 +128,16 @@ export class ObjectsImpl implements Objects {
         return this.getObjectsByObjectIdsNextPagingPage(
           nextLink,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getObjectsByObjectIdsNextPagingPage(
     nextLink: string,
     options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: ObjectsGetObjectsByObjectIdsNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -151,7 +151,7 @@ export class ObjectsImpl implements Objects {
     while (continuationToken) {
       result = await this._getObjectsByObjectIdsNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.value || [];
@@ -162,11 +162,11 @@ export class ObjectsImpl implements Objects {
 
   private async *getObjectsByObjectIdsNextPagingAll(
     nextLink: string,
-    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getObjectsByObjectIdsNextPagingPage(
       nextLink,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -180,11 +180,11 @@ export class ObjectsImpl implements Objects {
    */
   private _getObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: ObjectsGetObjectsByObjectIdsOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams,
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      getObjectsByObjectIdsOperationSpec
+      getObjectsByObjectIdsOperationSpec,
     );
   }
 
@@ -195,11 +195,11 @@ export class ObjectsImpl implements Objects {
    */
   private _getObjectsByObjectIdsNext(
     nextLink: string,
-    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
   ): Promise<ObjectsGetObjectsByObjectIdsNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getObjectsByObjectIdsNextOperationSpec
+      getObjectsByObjectIdsNextOperationSpec,
     );
   }
 }
@@ -211,26 +211,26 @@ const getObjectsByObjectIdsOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
-    }
+      bodyMapper: Mappers.DirectoryObjectListResult,
+    },
   },
   requestBody: Parameters.parameters14,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getObjectsByObjectIdsNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
-    }
+      bodyMapper: Mappers.DirectoryObjectListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

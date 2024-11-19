@@ -11,12 +11,12 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface AddOrUpdateBlockItemsOptions {
-    blockItems: TextBlockItemInfo[];
+export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
+// @public
+export interface AddOrUpdateBlockItemsOptions {
+    blockItems: TextBlockItemInfo[];
 }
 
 // @public
@@ -25,22 +25,26 @@ export interface AddOrUpdateBlockItemsResult {
 }
 
 // @public
+export interface AnalyzeImageOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface AnalyzeImageOptions {
     categories?: ImageCategory[];
-    image: ImageData_2;
+    image: ImageData;
     outputType?: AnalyzeImageOutputType;
 }
 
 // @public
-export type AnalyzeImageOutputType = string;
-
-// @public (undocumented)
-export interface AnalyzeImageRequestOptions extends OperationOptions {
-}
+export type AnalyzeImageOutputType = "FourLevels";
 
 // @public
 export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
+}
+
+// @public
+export interface AnalyzeTextOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -53,11 +57,7 @@ export interface AnalyzeTextOptions {
 }
 
 // @public
-export type AnalyzeTextOutputType = string;
-
-// @public (undocumented)
-export interface AnalyzeTextRequestOptions extends OperationOptions {
-}
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 // @public
 export interface AnalyzeTextResult {
@@ -67,39 +67,45 @@ export interface AnalyzeTextResult {
 
 // @public (undocumented)
 export class ContentSafetyClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
-    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsRequestOptions): Promise<AddOrUpdateBlockItemsResult>;
-    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageRequestOptions): Promise<AnalyzeImageResult>;
-    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextRequestOptions): Promise<AnalyzeTextResult>;
-    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
-    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
-    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
-    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<PagedTextBlockItem>;
-    listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<PagedTextBlocklist>;
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptionalParams);
+    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsOptionalParams): Promise<AddOrUpdateBlockItemsResult>;
+    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
+    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
+    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
+    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlockItem>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlockItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
-    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
+    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
 }
 
-// @public (undocumented)
-export interface ContentSafetyClientOptions extends ClientOptions {
+// @public
+export interface ContentSafetyClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
-// @public (undocumented)
-export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
+export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface DeleteTextBlocklistOptions extends OperationOptions {
+// @public
+export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface GetTextBlocklistItemOptions extends OperationOptions {
+// @public
+export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface GetTextBlocklistOptions extends OperationOptions {
+// @public
+export interface GetTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -109,45 +115,50 @@ export interface ImageAnalyzeSeverityResult {
 }
 
 // @public
-export type ImageCategory = string;
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
 // @public
-interface ImageData_2 {
+export interface ImageData {
     blobUrl?: string;
     content?: Uint8Array;
 }
-export { ImageData_2 as ImageData }
 
-// @public (undocumented)
-export interface ListTextBlocklistItemsOptions extends OperationOptions {
+// @public
+export enum KnownVersions {
+    // (undocumented)
+    v2023_10_01 = "2023-10-01"
+}
+
+// @public
+export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
-// @public (undocumented)
-export interface ListTextBlocklistsOptions extends OperationOptions {
+// @public
+export interface ListTextBlocklistsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface PagedTextBlockItem {
-    nextLink?: string;
-    value: TextBlockItem[];
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
 }
 
 // @public
-export interface PagedTextBlocklist {
-    nextLink?: string;
-    value: TextBlocklist[];
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export interface RemoveBlockItemsOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface RemoveBlockItemsOptions {
     blockItemIds: string[];
-}
-
-// @public (undocumented)
-export interface RemoveBlockItemsRequestOptions extends OperationOptions {
 }
 
 // @public
@@ -158,7 +169,7 @@ export interface TextAnalyzeSeverityResult {
 
 // @public
 export interface TextBlockItem {
-    readonly blockItemId: string;
+    blockItemId: string;
     description?: string;
     text: string;
 }
@@ -171,7 +182,7 @@ export interface TextBlockItemInfo {
 
 // @public
 export interface TextBlocklist {
-    readonly blocklistName: string;
+    blocklistName: string;
     description?: string;
 }
 
@@ -183,7 +194,7 @@ export interface TextBlocklistMatchResult {
 }
 
 // @public
-export type TextCategory = string;
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
 // (No @packageDocumentation comment for this package)
 

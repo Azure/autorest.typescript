@@ -30,7 +30,7 @@ async function deleteNetworkSecurityRuleFromNetworkSecurityGroup() {
   const result = await client.securityRules.beginDeleteAndWait(
     resourceGroupName,
     networkSecurityGroupName,
-    securityRuleName
+    securityRuleName,
   );
   console.log(result);
 }

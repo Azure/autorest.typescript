@@ -28,7 +28,7 @@ async function deleteSecurityPartnerProvider() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.securityPartnerProviders.beginDeleteAndWait(
     resourceGroupName,
-    securityPartnerProviderName
+    securityPartnerProviderName,
   );
   console.log(result);
 }

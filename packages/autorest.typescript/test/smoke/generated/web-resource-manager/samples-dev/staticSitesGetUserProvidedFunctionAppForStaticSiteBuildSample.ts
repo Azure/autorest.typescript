@@ -29,12 +29,13 @@ async function getDetailsOfTheUserProvidedFunctionAppRegisteredWithAStaticSiteBu
   const functionAppName = "testFunctionApp";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.getUserProvidedFunctionAppForStaticSiteBuild(
-    resourceGroupName,
-    name,
-    environmentName,
-    functionAppName
-  );
+  const result =
+    await client.staticSites.getUserProvidedFunctionAppForStaticSiteBuild(
+      resourceGroupName,
+      name,
+      environmentName,
+      functionAppName,
+    );
   console.log(result);
 }
 

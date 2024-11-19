@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ApplicationGatewayOnDemandProbe,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,24 +30,23 @@ async function testBackendHealth() {
   const probeRequest: ApplicationGatewayOnDemandProbe = {
     path: "/",
     backendAddressPool: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendaddressPools/MFAnalyticsPool"
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendaddressPools/MFAnalyticsPool",
     },
     backendHttpSettings: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendHttpSettingsCollection/MFPoolSettings"
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/applicationGateways/appgw/backendHttpSettingsCollection/MFPoolSettings",
     },
     pickHostNameFromBackendHttpSettings: true,
     timeout: 30,
-    protocol: "Http"
+    protocol: "Http",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationGateways.beginBackendHealthOnDemandAndWait(
-    resourceGroupName,
-    applicationGatewayName,
-    probeRequest
-  );
+  const result =
+    await client.applicationGateways.beginBackendHealthOnDemandAndWait(
+      resourceGroupName,
+      applicationGatewayName,
+      probeRequest,
+    );
   console.log(result);
 }
 

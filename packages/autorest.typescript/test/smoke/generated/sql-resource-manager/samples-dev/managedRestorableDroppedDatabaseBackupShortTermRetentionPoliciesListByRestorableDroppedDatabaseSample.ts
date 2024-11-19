@@ -33,7 +33,7 @@ async function getTheShortTermRetentionPolicyListForTheDatabase() {
   for await (let item of client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.listByRestorableDroppedDatabase(
     resourceGroupName,
     managedInstanceName,
-    restorableDroppedDatabaseId
+    restorableDroppedDatabaseId,
   )) {
     resArray.push(item);
   }

@@ -31,7 +31,7 @@ async function getNetworkTracesForASite() {
   const result = await client.webApps.getNetworkTraces(
     resourceGroupName,
     name,
-    operationId
+    operationId,
   );
   console.log(result);
 }

@@ -525,84 +525,96 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidOptio
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError200Valid operation. */
-export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse = MyException;
+export type MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError204Valid operation. */
-export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse = MyException;
+export type MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError201Invalid operation. */
-export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse = MyException;
+export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError202None operation. */
-export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse = MyException;
+export type MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model204NoModelDefaultError400Valid operation. */
-export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse = MyException;
+export type MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model201ModelDefaultError200Valid operation. */
-export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse = MyException;
+export type MultipleResponsesGet200Model201ModelDefaultError200ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model201ModelDefaultError201Valid operation. */
-export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse = MyException;
+export type MultipleResponsesGet200Model201ModelDefaultError201ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200Model201ModelDefaultError400Valid operation. */
-export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse = MyException;
+export type MultipleResponsesGet200Model201ModelDefaultError400ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError200Valid operation. */
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse = MyException;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError201Valid operation. */
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse = MyException;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError404Valid operation. */
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse = MyException;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get200ModelA201ModelC404ModelDDefaultError400Valid operation. */
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse = MyException;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse =
+  MyException;
 
 /** Optional parameters. */
 export interface MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams

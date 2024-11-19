@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import {
+  ArraySchema,
   ObjectSchema,
   RLCModel,
   Schema,
@@ -10,6 +11,12 @@ import {
 
 export interface IsDictionaryOptions {
   filterEmpty?: boolean;
+}
+
+export function isArraySchema(schema: Schema): schema is ArraySchema {
+  return (
+    schema.type === "array" || typeof (schema as any).items !== "undefined"
+  );
 }
 
 export function isDictionarySchema(
@@ -24,7 +31,7 @@ export function isDictionarySchema(
   return false;
 }
 
-export function isObjectSchema(schema: Schema) {
+export function isObjectSchema(schema: Schema): schema is ObjectSchema {
   if (schema.type === "object") {
     return true;
   }

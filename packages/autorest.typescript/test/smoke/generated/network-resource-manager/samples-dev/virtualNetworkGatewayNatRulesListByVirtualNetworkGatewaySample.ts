@@ -29,7 +29,7 @@ async function virtualNetworkGatewayNatRuleList() {
   const resArray = new Array();
   for await (let item of client.virtualNetworkGatewayNatRules.listByVirtualNetworkGateway(
     resourceGroupName,
-    virtualNetworkGatewayName
+    virtualNetworkGatewayName,
   )) {
     resArray.push(item);
   }

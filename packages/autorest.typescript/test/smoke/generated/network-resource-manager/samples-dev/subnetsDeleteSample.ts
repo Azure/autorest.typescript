@@ -30,7 +30,7 @@ async function deleteSubnet() {
   const result = await client.subnets.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkName,
-    subnetName
+    subnetName,
   );
   console.log(result);
 }

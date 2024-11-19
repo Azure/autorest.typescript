@@ -32,7 +32,7 @@ async function getARecoverableDatabase() {
   const result = await client.recoverableDatabases.get(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

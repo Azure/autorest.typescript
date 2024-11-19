@@ -1,12 +1,14 @@
 import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 
 import "./routes.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "OpenAI is a case-sensitive name"
 @useAuth(
@@ -59,7 +61,7 @@ enum ServiceApiVersions {
 model Deployment {
   @visibility("read")
   @doc("Specifies either the model deployment name (when using Azure OpenAI) or model name (when using non-Azure OpenAI) to use for this request.")
-  @projectedName("java", "deploymentOrModelName")
+  @clientName("deploymentOrModelName", "java")
   @key
   deploymentId: string;
 }

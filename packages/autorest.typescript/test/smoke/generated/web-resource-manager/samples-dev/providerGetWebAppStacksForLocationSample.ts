@@ -26,7 +26,7 @@ async function getLocationsWebAppStacks() {
   const client = new WebSiteManagementClient(credential);
   const resArray = new Array();
   for await (let item of client.provider.listWebAppStacksForLocation(
-    location
+    location,
   )) {
     resArray.push(item);
   }

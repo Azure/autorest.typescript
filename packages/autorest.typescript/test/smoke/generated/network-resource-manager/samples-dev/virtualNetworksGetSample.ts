@@ -28,7 +28,7 @@ async function getVirtualNetwork() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.get(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getVirtualNetworkWithADelegatedSubnet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.get(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   );
   console.log(result);
 }
@@ -66,7 +66,7 @@ async function getVirtualNetworkWithServiceAssociationLinks() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.get(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   );
   console.log(result);
 }

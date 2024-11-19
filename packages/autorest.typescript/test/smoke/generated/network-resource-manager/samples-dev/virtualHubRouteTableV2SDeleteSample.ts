@@ -30,7 +30,7 @@ async function virtualHubRouteTableV2Delete() {
   const result = await client.virtualHubRouteTableV2S.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
-    routeTableName
+    routeTableName,
   );
   console.log(result);
 }

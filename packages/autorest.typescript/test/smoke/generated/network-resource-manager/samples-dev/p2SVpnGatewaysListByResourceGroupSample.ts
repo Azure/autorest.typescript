@@ -27,7 +27,7 @@ async function p2SVpnGatewayListByResourceGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.p2SVpnGateways.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

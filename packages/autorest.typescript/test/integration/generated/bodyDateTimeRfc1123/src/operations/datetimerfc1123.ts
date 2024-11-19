@@ -27,7 +27,7 @@ import {
   Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse,
   Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeOptionalParams,
-  Datetimerfc1123GetUtcMinDateTimeResponse
+  Datetimerfc1123GetUtcMinDateTimeResponse,
 } from "../models";
 
 /** Class containing Datetimerfc1123 operations. */
@@ -47,7 +47,7 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getNull(
-    options?: Datetimerfc1123GetNullOptionalParams
+    options?: Datetimerfc1123GetNullOptionalParams,
   ): Promise<Datetimerfc1123GetNullResponse> {
     return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
@@ -57,11 +57,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: Datetimerfc1123GetInvalidOptionalParams
+    options?: Datetimerfc1123GetInvalidOptionalParams,
   ): Promise<Datetimerfc1123GetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 
@@ -70,11 +70,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getOverflow(
-    options?: Datetimerfc1123GetOverflowOptionalParams
+    options?: Datetimerfc1123GetOverflowOptionalParams,
   ): Promise<Datetimerfc1123GetOverflowResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getOverflowOperationSpec
+      getOverflowOperationSpec,
     );
   }
 
@@ -83,11 +83,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: Datetimerfc1123GetUnderflowOptionalParams
+    options?: Datetimerfc1123GetUnderflowOptionalParams,
   ): Promise<Datetimerfc1123GetUnderflowResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUnderflowOperationSpec
+      getUnderflowOperationSpec,
     );
   }
 
@@ -98,11 +98,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams
+    options?: Datetimerfc1123PutUtcMaxDateTimeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { datetimeBody, options },
-      putUtcMaxDateTimeOperationSpec
+      putUtcMaxDateTimeOperationSpec,
     );
   }
 
@@ -111,11 +111,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUtcLowercaseMaxDateTimeOperationSpec
+      getUtcLowercaseMaxDateTimeOperationSpec,
     );
   }
 
@@ -124,11 +124,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUtcUppercaseMaxDateTimeOperationSpec
+      getUtcUppercaseMaxDateTimeOperationSpec,
     );
   }
 
@@ -139,11 +139,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams
+    options?: Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { datetimeBody, options },
-      putUtcMinDateTimeOperationSpec
+      putUtcMinDateTimeOperationSpec,
     );
   }
 
@@ -152,11 +152,11 @@ export class Datetimerfc1123Impl implements Datetimerfc1123 {
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams
+    options?: Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   ): Promise<Datetimerfc1123GetUtcMinDateTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUtcMinDateTimeOperationSpec
+      getUtcMinDateTimeOperationSpec,
     );
   }
 }
@@ -168,60 +168,60 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOverflowOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/overflow",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUnderflowOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/underflow",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putUtcMaxDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/max",
@@ -229,44 +229,44 @@ const putUtcMaxDateTimeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getUtcLowercaseMaxDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/max/lowercase",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUtcUppercaseMaxDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/max/uppercase",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putUtcMinDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/min",
@@ -274,27 +274,27 @@ const putUtcMinDateTimeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.datetimeBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getUtcMinDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/datetimerfc1123/min",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "DateTimeRfc1123" } }
+      bodyMapper: { type: { name: "DateTimeRfc1123" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

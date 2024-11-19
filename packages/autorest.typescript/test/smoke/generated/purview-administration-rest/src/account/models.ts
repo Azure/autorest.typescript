@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountSystemData extends SystemData {}

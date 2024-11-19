@@ -30,7 +30,7 @@ async function getARestorePoint() {
   const result = await client.restorePoints.get(
     resourceGroupName,
     restorePointCollectionName,
-    restorePointName
+    restorePointName,
   );
   console.log(result);
 }

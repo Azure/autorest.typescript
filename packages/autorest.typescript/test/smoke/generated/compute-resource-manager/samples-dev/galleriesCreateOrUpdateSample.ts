@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   Gallery,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createOrUpdateASimpleGalleryWithSharingProfile() {
   const gallery: Gallery = {
     description: "This is the gallery description.",
     location: "West US",
-    sharingProfile: { permissions: "Groups" }
+    sharingProfile: { permissions: "Groups" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
-    gallery
+    gallery,
   );
   console.log(result);
 }
@@ -55,14 +55,14 @@ async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled() {
   const gallery: Gallery = {
     description: "This is the gallery description.",
     location: "West US",
-    softDeletePolicy: { isSoftDeleteEnabled: true }
+    softDeletePolicy: { isSoftDeleteEnabled: true },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
-    gallery
+    gallery,
   );
   console.log(result);
 }
@@ -79,14 +79,14 @@ async function createOrUpdateASimpleGallery() {
   const galleryName = "myGalleryName";
   const gallery: Gallery = {
     description: "This is the gallery description.",
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginCreateOrUpdateAndWait(
     resourceGroupName,
     galleryName,
-    gallery
+    gallery,
   );
   console.log(result);
 }

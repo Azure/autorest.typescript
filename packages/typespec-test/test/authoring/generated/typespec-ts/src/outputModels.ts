@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { Paged } from "@azure/core-paging";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The details of a project. */
@@ -9,10 +8,7 @@ export interface ProjectOutput {
   /** The project name. */
   readonly projectName: string;
   /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
+  projectKind: ProjectKindOutput;
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -43,17 +39,33 @@ export interface OperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
-  status: string;
+  status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
+}
+
+/** Paged collection of Project items */
+export interface PagedProjectOutput {
+  /** The Project items on this page */
+  value: Array<ProjectOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
   readonly name: string;
+}
+
+/** Paged collection of Deployment items */
+export interface PagedDeploymentOutput {
+  /** The Deployment items on this page */
+  value: Array<DeploymentOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** The details of a deployment job. */
@@ -67,14 +79,7 @@ export interface DeploymentJobOutput {
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
   /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  status: JobStatusOutput;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
@@ -102,20 +107,21 @@ export interface SwapDeploymentsJobOutput {
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
   /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  status: JobStatusOutput;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModel;
   /** The job ID. */
   readonly id: string;
+}
+
+/** A collection of SupportedLanguage resources. */
+export interface SupportedLanguagesOutput {
+  /** The SupportedLanguage items on this page */
+  value: Array<SupportedLanguageOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Represents a supported language. */
@@ -126,6 +132,14 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
+/** A collection of TrainingConfigVersion resources. */
+export interface TrainingConfigVersionsOutput {
+  /** The TrainingConfigVersion items on this page */
+  value: Array<TrainingConfigVersionOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Represents a training config version. */
 export interface TrainingConfigVersionOutput {
   /** Represents the version of the config. */
@@ -134,12 +148,19 @@ export interface TrainingConfigVersionOutput {
   modelExpirationDate: string;
 }
 
-/** Paged collection of Project items */
-export type PagedProjectOutput = Paged<ProjectOutput>;
-/** Paged collection of Deployment items */
-export type PagedDeploymentOutput = Paged<DeploymentOutput>;
-/** A collection of SupportedLanguage resources. */
-export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
-/** A collection of TrainingConfigVersion resources. */
-export type PagedTrainingConfigVersionOutput =
-  Paged<TrainingConfigVersionOutput>;
+/** Represents the project kind. */
+export type ProjectKindOutput =
+  | "CustomSingleLabelClassification"
+  | "CustomMultiLabelClassification"
+  | "CustomEntityRecognition";
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
+/** Represents the job status. */
+export type JobStatusOutput =
+  | "notStarted"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled"
+  | "cancelling"
+  | "partiallyCompleted";

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteCircuitPeering,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,16 +32,17 @@ async function createExpressRouteCircuitPeerings() {
     peerASN: 200,
     primaryPeerAddressPrefix: "192.168.16.252/30",
     secondaryPeerAddressPrefix: "192.168.18.252/30",
-    vlanId: 200
+    vlanId: 200,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCircuitPeerings.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    circuitName,
-    peeringName,
-    peeringParameters
-  );
+  const result =
+    await client.expressRouteCircuitPeerings.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      peeringParameters,
+    );
   console.log(result);
 }
 

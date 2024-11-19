@@ -36,7 +36,7 @@ async function getAppDetector() {
     siteName,
     diagnosticCategory,
     detectorName,
-    slot
+    slot,
   );
   console.log(result);
 }
@@ -63,7 +63,7 @@ async function getAppSlotDetector() {
     siteName,
     diagnosticCategory,
     detectorName,
-    slot
+    slot,
   );
   console.log(result);
 }

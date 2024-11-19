@@ -20,19 +20,19 @@ export const OperationListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Operation"
-            }
-          }
-        }
+              className: "Operation",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Operation: coreClient.CompositeMapper = {
@@ -43,18 +43,18 @@ export const Operation: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       display: {
         serializedName: "display",
         type: {
           name: "Composite",
-          className: "OperationDisplay"
-        }
-      }
-    }
-  }
+          className: "OperationDisplay",
+        },
+      },
+    },
+  },
 };
 
 export const OperationDisplay: coreClient.CompositeMapper = {
@@ -65,23 +65,23 @@ export const OperationDisplay: coreClient.CompositeMapper = {
       provider: {
         serializedName: "provider",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       resource: {
         serializedName: "resource",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       operation: {
         serializedName: "operation",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ManagementLockObject: coreClient.CompositeMapper = {
@@ -93,35 +93,35 @@ export const ManagementLockObject: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       type: {
         serializedName: "type",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       name: {
         serializedName: "name",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       level: {
         serializedName: "properties.level",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       notes: {
         serializedName: "properties.notes",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       owners: {
         serializedName: "properties.owners",
@@ -130,13 +130,13 @@ export const ManagementLockObject: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ManagementLockOwner"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "ManagementLockOwner",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const ManagementLockOwner: coreClient.CompositeMapper = {
@@ -147,11 +147,11 @@ export const ManagementLockOwner: coreClient.CompositeMapper = {
       applicationId: {
         serializedName: "applicationId",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ManagementLockListResult: coreClient.CompositeMapper = {
@@ -166,17 +166,17 @@ export const ManagementLockListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ManagementLockObject"
-            }
-          }
-        }
+              className: "ManagementLockObject",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

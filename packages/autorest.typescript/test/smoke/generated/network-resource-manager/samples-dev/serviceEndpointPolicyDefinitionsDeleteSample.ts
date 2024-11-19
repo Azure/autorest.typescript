@@ -27,11 +27,12 @@ async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy()
   const serviceEndpointPolicyDefinitionName = "testDefinition";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.serviceEndpointPolicyDefinitions.beginDeleteAndWait(
-    resourceGroupName,
-    serviceEndpointPolicyName,
-    serviceEndpointPolicyDefinitionName
-  );
+  const result =
+    await client.serviceEndpointPolicyDefinitions.beginDeleteAndWait(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      serviceEndpointPolicyDefinitionName,
+    );
   console.log(result);
 }
 

@@ -30,7 +30,7 @@ async function virtualHubVirtualHubRouteTableV2Get() {
   const result = await client.virtualHubBgpConnection.get(
     resourceGroupName,
     virtualHubName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSitesWorkflowPreviewRequest,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,15 +32,15 @@ async function generatesAPreviewWorkflowFileForTheStaticSite() {
     buildProperties: {
       apiLocation: "api",
       appArtifactLocation: "build",
-      appLocation: "app"
+      appLocation: "app",
     },
-    repositoryUrl: "https://github.com/username/RepoName"
+    repositoryUrl: "https://github.com/username/RepoName",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.previewWorkflow(
     location,
-    staticSitesWorkflowPreviewRequest
+    staticSitesWorkflowPreviewRequest,
   );
   console.log(result);
 }

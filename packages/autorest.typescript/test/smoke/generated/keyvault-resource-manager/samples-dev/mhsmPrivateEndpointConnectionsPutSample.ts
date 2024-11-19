@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   MhsmPrivateEndpointConnection,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,8 +32,8 @@ async function managedHsmPutPrivateEndpointConnection() {
   const properties: MhsmPrivateEndpointConnection = {
     privateLinkServiceConnectionState: {
       description: "My name is Joe and I'm approving this.",
-      status: "Approved"
-    }
+      status: "Approved",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
@@ -41,7 +41,7 @@ async function managedHsmPutPrivateEndpointConnection() {
     resourceGroupName,
     name,
     privateEndpointConnectionName,
-    properties
+    properties,
   );
   console.log(result);
 }

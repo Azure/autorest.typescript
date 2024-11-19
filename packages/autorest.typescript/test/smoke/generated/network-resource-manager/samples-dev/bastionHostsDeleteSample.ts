@@ -28,7 +28,7 @@ async function deleteBastionHost() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.bastionHosts.beginDeleteAndWait(
     resourceGroupName,
-    bastionHostName
+    bastionHostName,
   );
   console.log(result);
 }

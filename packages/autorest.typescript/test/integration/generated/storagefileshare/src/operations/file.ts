@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { StorageFileShareClient } from "../storageFileShareClient";
 import {
   FileUploadRangeFromURLOptionalParams,
-  FileUploadRangeFromURLResponse
+  FileUploadRangeFromURLResponse,
 } from "../models";
 
 /** Class containing File operations. */
@@ -37,11 +37,11 @@ export class FileImpl implements File {
     range: string,
     copySource: string,
     contentLength: number,
-    options?: FileUploadRangeFromURLOptionalParams
+    options?: FileUploadRangeFromURLOptionalParams,
   ): Promise<FileUploadRangeFromURLResponse> {
     return this.client.sendOperationRequest(
       { range, copySource, contentLength, options },
-      uploadRangeFromURLOperationSpec
+      uploadRangeFromURLOperationSpec,
     );
   }
 }
@@ -53,12 +53,12 @@ const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     201: {
-      headersMapper: Mappers.FileUploadRangeFromURLHeaders
+      headersMapper: Mappers.FileUploadRangeFromURLHeaders,
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.FileUploadRangeFromURLExceptionHeaders
-    }
+      headersMapper: Mappers.FileUploadRangeFromURLExceptionHeaders,
+    },
   },
   queryParameters: [Parameters.comp, Parameters.timeout],
   urlParameters: [Parameters.url],
@@ -73,8 +73,8 @@ const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
     Parameters.sourceIfMatchCrc64,
     Parameters.sourceIfNoneMatchCrc64,
     Parameters.version,
-    Parameters.leaseId
+    Parameters.leaseId,
   ],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };

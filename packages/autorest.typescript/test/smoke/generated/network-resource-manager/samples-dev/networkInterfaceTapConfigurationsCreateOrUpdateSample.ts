@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkInterfaceTapConfiguration,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,18 +30,18 @@ async function createNetworkInterfaceTapConfigurations() {
   const tapConfigurationName = "tapconfiguration1";
   const tapConfigurationParameters: NetworkInterfaceTapConfiguration = {
     virtualNetworkTap: {
-      id:
-        "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworkTaps/testvtap"
-    }
+      id: "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworkTaps/testvtap",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkInterfaceTapConfigurations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    networkInterfaceName,
-    tapConfigurationName,
-    tapConfigurationParameters
-  );
+  const result =
+    await client.networkInterfaceTapConfigurations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      networkInterfaceName,
+      tapConfigurationName,
+      tapConfigurationParameters,
+    );
   console.log(result);
 }
 

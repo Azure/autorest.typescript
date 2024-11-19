@@ -33,7 +33,7 @@ async function getsSecurityAdminRuleCollection() {
     resourceGroupName,
     networkManagerName,
     configurationName,
-    ruleCollectionName
+    ruleCollectionName,
   );
   console.log(result);
 }

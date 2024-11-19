@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 import DictClientFactory, {
   DictClient
-} from "./generated/dictionary/src/index.js";
+} from "./generated/type/dictionary/src/index.js";
 
 interface TypeDetail {
   type: string;
@@ -29,7 +29,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float32",
-    defaultValue: { k1: 42.42 }
+    defaultValue: { k1: 43.125 }
   },
   {
     type: "datetime",
@@ -59,7 +59,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "nullable-float",
-    defaultValue: { k1: 1.2, k2: 0.5, k3: null }
+    defaultValue: { k1: 1.25, k2: 0.5, k3: null }
   }
 ];
 describe("Dictionary Client", () => {
@@ -73,34 +73,26 @@ describe("Dictionary Client", () => {
 
   matrix([testedTypes], async (params: TypeDetail) => {
     it(`should get a ${params.type} value`, async () => {
-      try {
-        const result = await client
-          .path(`/type/dictionary/${params.type}` as any)
-          .get();
-        assert.strictEqual(result.status, "200");
-        assert.deepEqual(result.body, params.defaultValue);
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/dictionary/${params.type}` as any)
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, params.defaultValue);
     });
 
     it(`should put a ${params.type} value`, async () => {
-      try {
-        let property;
-        if (params.convertedToFn) {
-          property = params.convertedToFn(params.defaultValue);
-        } else {
-          property = params.defaultValue;
-        }
-        const result = await client
-          .path(`/type/dictionary/${params.type}` as any)
-          .put({
-            body: property
-          });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
+      let property;
+      if (params.convertedToFn) {
+        property = params.convertedToFn(params.defaultValue);
+      } else {
+        property = params.defaultValue;
       }
+      const result = await client
+        .path(`/type/dictionary/${params.type}` as any)
+        .put({
+          body: property
+        });
+      assert.strictEqual(result.status, "204");
     });
   });
 });

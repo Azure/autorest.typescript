@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "./pagingHelper";
@@ -56,7 +56,7 @@ import {
   GetKeysNextResponse,
   GetKeyValuesNextResponse,
   GetLabelsNextResponse,
-  GetRevisionsNextResponse
+  GetRevisionsNextResponse,
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -72,7 +72,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   constructor(
     endpoint: string,
-    options?: AppConfigurationClientOptionalParams
+    options?: AppConfigurationClientOptionalParams,
   ) {
     if (endpoint === undefined) {
       throw new Error("'endpoint' cannot be null");
@@ -83,7 +83,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: AppConfigurationClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-appconfiguration/1.0.0-preview1`;
@@ -96,9 +96,9 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{endpoint}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{endpoint}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -118,7 +118,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -132,7 +132,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }
@@ -142,7 +142,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   public listKeys(
-    options?: GetKeysOptionalParams
+    options?: GetKeysOptionalParams,
   ): PagedAsyncIterableIterator<Key> {
     const iter = this.getKeysPagingAll(options);
     return {
@@ -157,13 +157,13 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getKeysPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getKeysPagingPage(
     options?: GetKeysOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Key[]> {
     let result: GetKeysResponse;
     let continuationToken = settings?.continuationToken;
@@ -184,7 +184,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   private async *getKeysPagingAll(
-    options?: GetKeysOptionalParams
+    options?: GetKeysOptionalParams,
   ): AsyncIterableIterator<Key> {
     for await (const page of this.getKeysPagingPage(options)) {
       yield* page;
@@ -196,7 +196,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   public listKeyValues(
-    options?: GetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams,
   ): PagedAsyncIterableIterator<KeyValue> {
     const iter = this.getKeyValuesPagingAll(options);
     return {
@@ -211,13 +211,13 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getKeyValuesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getKeyValuesPagingPage(
     options?: GetKeyValuesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<KeyValue[]> {
     let result: GetKeyValuesResponse;
     let continuationToken = settings?.continuationToken;
@@ -238,7 +238,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   private async *getKeyValuesPagingAll(
-    options?: GetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams,
   ): AsyncIterableIterator<KeyValue> {
     for await (const page of this.getKeyValuesPagingPage(options)) {
       yield* page;
@@ -250,7 +250,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   public listLabels(
-    options?: GetLabelsOptionalParams
+    options?: GetLabelsOptionalParams,
   ): PagedAsyncIterableIterator<Label> {
     const iter = this.getLabelsPagingAll(options);
     return {
@@ -265,13 +265,13 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getLabelsPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getLabelsPagingPage(
     options?: GetLabelsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Label[]> {
     let result: GetLabelsResponse;
     let continuationToken = settings?.continuationToken;
@@ -292,7 +292,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   private async *getLabelsPagingAll(
-    options?: GetLabelsOptionalParams
+    options?: GetLabelsOptionalParams,
   ): AsyncIterableIterator<Label> {
     for await (const page of this.getLabelsPagingPage(options)) {
       yield* page;
@@ -304,7 +304,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   public listRevisions(
-    options?: GetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams,
   ): PagedAsyncIterableIterator<KeyValue> {
     const iter = this.getRevisionsPagingAll(options);
     return {
@@ -319,13 +319,13 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getRevisionsPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getRevisionsPagingPage(
     options?: GetRevisionsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<KeyValue[]> {
     let result: GetRevisionsResponse;
     let continuationToken = settings?.continuationToken;
@@ -346,7 +346,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   private async *getRevisionsPagingAll(
-    options?: GetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams,
   ): AsyncIterableIterator<KeyValue> {
     for await (const page of this.getRevisionsPagingPage(options)) {
       yield* page;
@@ -374,7 +374,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   private _getKeyValues(
-    options?: GetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams,
   ): Promise<GetKeyValuesResponse> {
     return this.sendOperationRequest({ options }, getKeyValuesOperationSpec);
   }
@@ -384,7 +384,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   checkKeyValues(
-    options?: CheckKeyValuesOptionalParams
+    options?: CheckKeyValuesOptionalParams,
   ): Promise<CheckKeyValuesResponse> {
     return this.sendOperationRequest({ options }, checkKeyValuesOperationSpec);
   }
@@ -396,11 +396,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   getKeyValue(
     key: string,
-    options?: GetKeyValueOptionalParams
+    options?: GetKeyValueOptionalParams,
   ): Promise<GetKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
-      getKeyValueOperationSpec
+      getKeyValueOperationSpec,
     );
   }
 
@@ -411,11 +411,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   putKeyValue(
     key: string,
-    options?: PutKeyValueOptionalParams
+    options?: PutKeyValueOptionalParams,
   ): Promise<PutKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
-      putKeyValueOperationSpec
+      putKeyValueOperationSpec,
     );
   }
 
@@ -426,11 +426,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   deleteKeyValue(
     key: string,
-    options?: DeleteKeyValueOptionalParams
+    options?: DeleteKeyValueOptionalParams,
   ): Promise<DeleteKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
-      deleteKeyValueOperationSpec
+      deleteKeyValueOperationSpec,
     );
   }
 
@@ -441,11 +441,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   checkKeyValue(
     key: string,
-    options?: CheckKeyValueOptionalParams
+    options?: CheckKeyValueOptionalParams,
   ): Promise<CheckKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
-      checkKeyValueOperationSpec
+      checkKeyValueOperationSpec,
     );
   }
 
@@ -454,7 +454,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   private _getLabels(
-    options?: GetLabelsOptionalParams
+    options?: GetLabelsOptionalParams,
   ): Promise<GetLabelsResponse> {
     return this.sendOperationRequest({ options }, getLabelsOperationSpec);
   }
@@ -464,7 +464,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   checkLabels(
-    options?: CheckLabelsOptionalParams
+    options?: CheckLabelsOptionalParams,
   ): Promise<CheckLabelsResponse> {
     return this.sendOperationRequest({ options }, checkLabelsOperationSpec);
   }
@@ -476,7 +476,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   putLock(
     key: string,
-    options?: PutLockOptionalParams
+    options?: PutLockOptionalParams,
   ): Promise<PutLockResponse> {
     return this.sendOperationRequest({ key, options }, putLockOperationSpec);
   }
@@ -488,7 +488,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   deleteLock(
     key: string,
-    options?: DeleteLockOptionalParams
+    options?: DeleteLockOptionalParams,
   ): Promise<DeleteLockResponse> {
     return this.sendOperationRequest({ key, options }, deleteLockOperationSpec);
   }
@@ -498,7 +498,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   private _getRevisions(
-    options?: GetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams,
   ): Promise<GetRevisionsResponse> {
     return this.sendOperationRequest({ options }, getRevisionsOperationSpec);
   }
@@ -508,7 +508,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   checkRevisions(
-    options?: CheckRevisionsOptionalParams
+    options?: CheckRevisionsOptionalParams,
   ): Promise<CheckRevisionsResponse> {
     return this.sendOperationRequest({ options }, checkRevisionsOperationSpec);
   }
@@ -520,11 +520,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   private _getKeysNext(
     nextLink: string,
-    options?: GetKeysNextOptionalParams
+    options?: GetKeysNextOptionalParams,
   ): Promise<GetKeysNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
-      getKeysNextOperationSpec
+      getKeysNextOperationSpec,
     );
   }
 
@@ -535,11 +535,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   private _getKeyValuesNext(
     nextLink: string,
-    options?: GetKeyValuesNextOptionalParams
+    options?: GetKeyValuesNextOptionalParams,
   ): Promise<GetKeyValuesNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
-      getKeyValuesNextOperationSpec
+      getKeyValuesNextOperationSpec,
     );
   }
 
@@ -550,11 +550,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   private _getLabelsNext(
     nextLink: string,
-    options?: GetLabelsNextOptionalParams
+    options?: GetLabelsNextOptionalParams,
   ): Promise<GetLabelsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
-      getLabelsNextOperationSpec
+      getLabelsNextOperationSpec,
     );
   }
 
@@ -565,11 +565,11 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
    */
   private _getRevisionsNext(
     nextLink: string,
-    options?: GetRevisionsNextOptionalParams
+    options?: GetRevisionsNextOptionalParams,
   ): Promise<GetRevisionsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
-      getRevisionsNextOperationSpec
+      getRevisionsNextOperationSpec,
     );
   }
 }
@@ -582,34 +582,34 @@ const getKeysOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyListResult,
-      headersMapper: Mappers.AppConfigurationClientGetKeysHeaders
+      headersMapper: Mappers.AppConfigurationClientGetKeysHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.name, Parameters.apiVersion, Parameters.after],
   urlParameters: [Parameters.endpoint],
   headerParameters: [
     Parameters.accept,
     Parameters.syncToken,
-    Parameters.acceptDatetime
+    Parameters.acceptDatetime,
   ],
-  serializer
+  serializer,
 };
 const checkKeysOperationSpec: coreClient.OperationSpec = {
   path: "/keys",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.AppConfigurationClientCheckKeysHeaders
+      headersMapper: Mappers.AppConfigurationClientCheckKeysHeaders,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.name, Parameters.apiVersion, Parameters.after],
   urlParameters: [Parameters.endpoint],
   headerParameters: [Parameters.syncToken, Parameters.acceptDatetime],
-  serializer
+  serializer,
 };
 const getKeyValuesOperationSpec: coreClient.OperationSpec = {
   path: "/kv",
@@ -617,46 +617,46 @@ const getKeyValuesOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValueListResult,
-      headersMapper: Mappers.AppConfigurationClientGetKeyValuesHeaders
+      headersMapper: Mappers.AppConfigurationClientGetKeyValuesHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.after,
     Parameters.key,
     Parameters.label,
-    Parameters.select
+    Parameters.select,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept1
+    Parameters.accept1,
   ],
-  serializer
+  serializer,
 };
 const checkKeyValuesOperationSpec: coreClient.OperationSpec = {
   path: "/kv",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.AppConfigurationClientCheckKeyValuesHeaders
+      headersMapper: Mappers.AppConfigurationClientCheckKeyValuesHeaders,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.after,
     Parameters.key,
     Parameters.label,
-    Parameters.select1
+    Parameters.select1,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [Parameters.syncToken, Parameters.acceptDatetime],
-  serializer
+  serializer,
 };
 const getKeyValueOperationSpec: coreClient.OperationSpec = {
   path: "/kv/{key}",
@@ -664,16 +664,16 @@ const getKeyValueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValue,
-      headersMapper: Mappers.AppConfigurationClientGetKeyValueHeaders
+      headersMapper: Mappers.AppConfigurationClientGetKeyValueHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.label,
-    Parameters.select2
+    Parameters.select2,
   ],
   urlParameters: [Parameters.endpoint, Parameters.key1],
   headerParameters: [
@@ -681,9 +681,9 @@ const getKeyValueOperationSpec: coreClient.OperationSpec = {
     Parameters.acceptDatetime,
     Parameters.accept2,
     Parameters.ifMatch,
-    Parameters.ifNoneMatch
+    Parameters.ifNoneMatch,
   ],
-  serializer
+  serializer,
 };
 const putKeyValueOperationSpec: coreClient.OperationSpec = {
   path: "/kv/{key}",
@@ -691,11 +691,11 @@ const putKeyValueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValue,
-      headersMapper: Mappers.AppConfigurationClientPutKeyValueHeaders
+      headersMapper: Mappers.AppConfigurationClientPutKeyValueHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.entity,
   queryParameters: [Parameters.apiVersion, Parameters.label],
@@ -705,10 +705,10 @@ const putKeyValueOperationSpec: coreClient.OperationSpec = {
     Parameters.accept2,
     Parameters.ifMatch,
     Parameters.ifNoneMatch,
-    Parameters.contentType
+    Parameters.contentType,
   ],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteKeyValueOperationSpec: coreClient.OperationSpec = {
   path: "/kv/{key}",
@@ -716,46 +716,46 @@ const deleteKeyValueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValue,
-      headersMapper: Mappers.AppConfigurationClientDeleteKeyValueHeaders
+      headersMapper: Mappers.AppConfigurationClientDeleteKeyValueHeaders,
     },
     204: {
-      headersMapper: Mappers.AppConfigurationClientDeleteKeyValueHeaders
+      headersMapper: Mappers.AppConfigurationClientDeleteKeyValueHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.label],
   urlParameters: [Parameters.endpoint, Parameters.key1],
   headerParameters: [
     Parameters.syncToken,
     Parameters.accept2,
-    Parameters.ifMatch
+    Parameters.ifMatch,
   ],
-  serializer
+  serializer,
 };
 const checkKeyValueOperationSpec: coreClient.OperationSpec = {
   path: "/kv/{key}",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.AppConfigurationClientCheckKeyValueHeaders
+      headersMapper: Mappers.AppConfigurationClientCheckKeyValueHeaders,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.label,
-    Parameters.select3
+    Parameters.select3,
   ],
   urlParameters: [Parameters.endpoint, Parameters.key1],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
     Parameters.ifMatch,
-    Parameters.ifNoneMatch
+    Parameters.ifNoneMatch,
   ],
-  serializer
+  serializer,
 };
 const getLabelsOperationSpec: coreClient.OperationSpec = {
   path: "/labels",
@@ -763,44 +763,44 @@ const getLabelsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.LabelListResult,
-      headersMapper: Mappers.AppConfigurationClientGetLabelsHeaders
+      headersMapper: Mappers.AppConfigurationClientGetLabelsHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.name,
     Parameters.apiVersion,
     Parameters.after,
-    Parameters.select4
+    Parameters.select4,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept3
+    Parameters.accept3,
   ],
-  serializer
+  serializer,
 };
 const checkLabelsOperationSpec: coreClient.OperationSpec = {
   path: "/labels",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.AppConfigurationClientCheckLabelsHeaders
+      headersMapper: Mappers.AppConfigurationClientCheckLabelsHeaders,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.name,
     Parameters.apiVersion,
     Parameters.after,
-    Parameters.select4
+    Parameters.select4,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [Parameters.syncToken, Parameters.acceptDatetime],
-  serializer
+  serializer,
 };
 const putLockOperationSpec: coreClient.OperationSpec = {
   path: "/locks/{key}",
@@ -808,11 +808,11 @@ const putLockOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValue,
-      headersMapper: Mappers.AppConfigurationClientPutLockHeaders
+      headersMapper: Mappers.AppConfigurationClientPutLockHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.label],
   urlParameters: [Parameters.endpoint, Parameters.key1],
@@ -820,9 +820,9 @@ const putLockOperationSpec: coreClient.OperationSpec = {
     Parameters.syncToken,
     Parameters.accept2,
     Parameters.ifMatch,
-    Parameters.ifNoneMatch
+    Parameters.ifNoneMatch,
   ],
-  serializer
+  serializer,
 };
 const deleteLockOperationSpec: coreClient.OperationSpec = {
   path: "/locks/{key}",
@@ -830,11 +830,11 @@ const deleteLockOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValue,
-      headersMapper: Mappers.AppConfigurationClientDeleteLockHeaders
+      headersMapper: Mappers.AppConfigurationClientDeleteLockHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.label],
   urlParameters: [Parameters.endpoint, Parameters.key1],
@@ -842,9 +842,9 @@ const deleteLockOperationSpec: coreClient.OperationSpec = {
     Parameters.syncToken,
     Parameters.accept2,
     Parameters.ifMatch,
-    Parameters.ifNoneMatch
+    Parameters.ifNoneMatch,
   ],
-  serializer
+  serializer,
 };
 const getRevisionsOperationSpec: coreClient.OperationSpec = {
   path: "/revisions",
@@ -852,46 +852,46 @@ const getRevisionsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValueListResult,
-      headersMapper: Mappers.AppConfigurationClientGetRevisionsHeaders
+      headersMapper: Mappers.AppConfigurationClientGetRevisionsHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.after,
     Parameters.key,
     Parameters.label,
-    Parameters.select5
+    Parameters.select5,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept1
+    Parameters.accept1,
   ],
-  serializer
+  serializer,
 };
 const checkRevisionsOperationSpec: coreClient.OperationSpec = {
   path: "/revisions",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.AppConfigurationClientCheckRevisionsHeaders
+      headersMapper: Mappers.AppConfigurationClientCheckRevisionsHeaders,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.after,
     Parameters.key,
     Parameters.label,
-    Parameters.select6
+    Parameters.select6,
   ],
   urlParameters: [Parameters.endpoint],
   headerParameters: [Parameters.syncToken, Parameters.acceptDatetime],
-  serializer
+  serializer,
 };
 const getKeysNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
@@ -899,19 +899,19 @@ const getKeysNextOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyListResult,
-      headersMapper: Mappers.AppConfigurationClientGetKeysNextHeaders
+      headersMapper: Mappers.AppConfigurationClientGetKeysNextHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.syncToken,
-    Parameters.acceptDatetime
+    Parameters.acceptDatetime,
   ],
-  serializer
+  serializer,
 };
 const getKeyValuesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
@@ -919,19 +919,19 @@ const getKeyValuesNextOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValueListResult,
-      headersMapper: Mappers.AppConfigurationClientGetKeyValuesNextHeaders
+      headersMapper: Mappers.AppConfigurationClientGetKeyValuesNextHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept1
+    Parameters.accept1,
   ],
-  serializer
+  serializer,
 };
 const getLabelsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
@@ -939,19 +939,19 @@ const getLabelsNextOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.LabelListResult,
-      headersMapper: Mappers.AppConfigurationClientGetLabelsNextHeaders
+      headersMapper: Mappers.AppConfigurationClientGetLabelsNextHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept3
+    Parameters.accept3,
   ],
-  serializer
+  serializer,
 };
 const getRevisionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
@@ -959,17 +959,17 @@ const getRevisionsNextOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.KeyValueListResult,
-      headersMapper: Mappers.AppConfigurationClientGetRevisionsNextHeaders
+      headersMapper: Mappers.AppConfigurationClientGetRevisionsNextHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,
     Parameters.acceptDatetime,
-    Parameters.accept1
+    Parameters.accept1,
   ],
-  serializer
+  serializer,
 };

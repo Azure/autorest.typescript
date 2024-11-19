@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteZipDeploymentARMResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,15 +35,16 @@ async function deployASiteFromAZippedPackage() {
       "https://teststorageaccount.net/happy-sea-15afae3e-master-81828877/app-zipdeploy.zip",
     deploymentTitle: "Update index.html",
     functionLanguage: "testFunctionLanguage",
-    provider: "testProvider"
+    provider: "testProvider",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginCreateZipDeploymentForStaticSiteAndWait(
-    resourceGroupName,
-    name,
-    staticSiteZipDeploymentEnvelope
-  );
+  const result =
+    await client.staticSites.beginCreateZipDeploymentForStaticSiteAndWait(
+      resourceGroupName,
+      name,
+      staticSiteZipDeploymentEnvelope,
+    );
   console.log(result);
 }
 

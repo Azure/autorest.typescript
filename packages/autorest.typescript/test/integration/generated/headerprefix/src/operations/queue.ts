@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { HeaderPrefixClient } from "../headerPrefixClient";
 import {
   QueueGetPropertiesOptionalParams,
-  QueueGetPropertiesResponse
+  QueueGetPropertiesResponse,
 } from "../models";
 
 /** Class containing Queue operations. */
@@ -26,11 +26,11 @@ export class QueueImpl implements Queue {
    * @param options The options parameters.
    */
   getProperties(
-    options?: QueueGetPropertiesOptionalParams
+    options?: QueueGetPropertiesOptionalParams,
   ): Promise<QueueGetPropertiesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getPropertiesOperationSpec
+      getPropertiesOperationSpec,
     );
   }
 }
@@ -42,19 +42,19 @@ const getPropertiesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      headersMapper: Mappers.QueueGetPropertiesHeaders
+      headersMapper: Mappers.QueueGetPropertiesHeaders,
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.QueueGetPropertiesExceptionHeaders
-    }
+      headersMapper: Mappers.QueueGetPropertiesExceptionHeaders,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.requestId,
-    Parameters.metadata
+    Parameters.metadata,
   ],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };

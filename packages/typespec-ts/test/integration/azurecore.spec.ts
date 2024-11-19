@@ -1,19 +1,19 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
   AzureCoreClient,
-  buildMultiCollection,
   isUnexpected
-} from "./generated/azure/core/src/index.js";
-import AzureCoreTraitsClientFactory, {
-  AzureCoreTraitsClient
-} from "./generated/azure/core-traits/src/index.js";
+} from "./generated/azure/core/basic/src/index.js";
+
+function buildExplodedFormStyle(values: string[]) {
+  return {
+    value: values,
+    explode: true,
+    style: "form"
+  } as const;
+}
+
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
-  const validUser = {
-    id: 1,
-    name: "Madge",
-    etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-  };
 
   beforeEach(() => {
     client = AzureCoreClientFactory({
@@ -23,148 +23,131 @@ describe("Azure Core Rest Client", () => {
       }
     });
   });
-
+  const validUser = {
+    id: 1,
+    name: "Madge",
+    etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
+  const validUser2 = {
+    id: 2,
+    name: "John",
+    etag: "22bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
+  const expectBody = { users: [validUser, validUser2] };
   it("should put user", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).put({
+    const result = await client.path("/azure/core/basic/users/{id}", 1).put({
+      body: {
+        name: "Madge"
+      },
+      contentType: "application/json"
+    });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
+  });
+
+  it("should patch user", async () => {
+    const result = await client
+      .path("/azure/core/basic/users/{id}", 1)
+      .patch({
+        contentType: "application/merge-patch+json",
         body: {
           name: "Madge"
-        },
-        contentType: "application/json"
+        }
       });
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
-  });
-  it("should patch user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}", 1)
-        .patch({
-          contentType: "application/merge-patch+json",
-          body: {
-            name: "Madge"
-          }
-        });
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should get user", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).get();
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client.path("/azure/core/basic/users/{id}", 1).get();
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
 
   it("should delete user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}", 1)
-        .delete();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/azure/core/basic/users/{id}", 1)
+      .delete();
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "204");
   });
 
   it("should list users", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/users").get({
-        queryParameters: {
-          top: 5,
-          skip: 10,
-          orderby: "id",
-          filter: "id lt 10",
-          select: buildMultiCollection(["id", "orders", "etag"], "select"),
-          expand: "orders"
+    const result = await client.path("/azure/core/basic/users").get({
+      queryParameters: {
+        top: 5,
+        skip: 10,
+        orderby: {
+          value: ["id"],
+          explode: true,
+          style: "form"
         },
-        skipUrlEncoding: true
-      });
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should list with pages", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/page").get();
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should list with custom pages", async () => {
-    try {
-      const result = await client.path("/azure/core/basic/custom-page").get();
-      if (isUnexpected(result)) {
-        assert.fail("Unexpected status " + result.status);
+        filter: "id lt 10",
+        select: buildExplodedFormStyle(["id", "orders", "etag"]),
+        expand: buildExplodedFormStyle(["orders"])
       }
-      assert.strictEqual(result.status, "200");
-      assert.isNotEmpty(result.body.items);
-    } catch (err) {
-      assert.fail(err as string);
+    });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    const responseBody = {
+      value: [
+        {
+          id: 1,
+          name: "Madge",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59",
+          orders: [{ id: 1, userId: 1, detail: "a recorder" }]
+        },
+        {
+          id: 2,
+          name: "John",
+          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b5a",
+          orders: [{ id: 2, userId: 2, detail: "a TV" }]
+        }
+      ]
+    };
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, responseBody);
   });
 
   it("should export a user", async () => {
-    try {
-      const result = await client
-        .path("/azure/core/basic/users/{id}:export", 1)
-        .post({
-          queryParameters: {
-            format: "json"
-          }
-        });
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validUser);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-});
-
-describe("Azure Core Traits Rest Client", () => {
-  let client: AzureCoreTraitsClient;
-
-  beforeEach(() => {
-    client = AzureCoreTraitsClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
-    });
-  });
-
-  it("should get user traits", async () => {
-    try {
-      const result = await client.path("/azure/core/traits/user/{id}", 1).get({
-        headers: {
-          foo: "123",
-          "If-Match": '"valid"',
-          "If-None-Match": '"invalid"',
-          "If-Modified-Since": "Thu, 26 Aug 2021 14:38:00 GMT",
-          "If-Unmodified-Since": "Fri, 26 Aug 2022 14:38:00 GMT"
+    const result = await client
+      .path("/azure/core/basic/users/{id}:export", 1)
+      .post({
+        queryParameters: {
+          format: "json"
         }
       });
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
     }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validUser);
   });
-  // it("should delete user traits", async () => {
-  //   try {
-  //     const result = await client.path("/azure/traits/api/{apiVersion}/user/{id}", "2022-12-01-preview", 1).delete();
-  //     assert.strictEqual(result.status, "204");
-  //   } catch (err) {
-  //     assert.fail(err as string);
-  //   }
-  // });
+
+  it("should export all users", async () => {
+    const result = await client
+      .path("/azure/core/basic/users:exportallusers")
+      .post({
+        queryParameters: {
+          format: "json"
+        }
+      });
+    if (isUnexpected(result)) {
+      throw Error("Unexpected status code");
+    }
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, expectBody);
+  });
 });

@@ -3,19 +3,27 @@
 
 import {
   InterfaceDeclarationStructure,
+  OptionalKind,
   PropertySignatureStructure,
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
-import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
 import {
+  isArraySchema,
+  isDictionarySchema,
+  isObjectSchema
+} from "./helpers/schemaHelpers.js";
+import {
+  ArraySchema,
   ObjectSchema,
   Parameter,
   Property,
   RLCModel,
+  Schema,
   SchemaContext
 } from "./interfaces.js";
+import { getMultipartPartTypeName } from "./helpers/nameConstructors.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -40,6 +48,19 @@ export function buildObjectInterfaces(
     ) {
       continue;
     }
+
+    // FIXME: disabling new multipart generation for modular while we figure out the story
+    if (objectSchema.isMultipartBody && !model.options?.isModularLibrary) {
+      objectInterfaces.push(
+        ...buildMultipartPartDefinitions(
+          objectSchema,
+          importedModels,
+          schemaUsage
+        )
+      );
+      continue;
+    }
+
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       model,
@@ -52,6 +73,66 @@ export function buildObjectInterfaces(
     objectInterfaces.push(interfaceDeclaration);
   }
   return objectInterfaces;
+}
+
+const MULTIPART_FILE_METADATA_PROPERTIES: OptionalKind<PropertySignatureStructure>[] =
+  [
+    {
+      name: "filename",
+      hasQuestionToken: true,
+      type: "string"
+    },
+    {
+      name: "contentType",
+      hasQuestionToken: true,
+      type: "string"
+    }
+  ];
+
+function buildMultipartPartDefinitions(
+  schema: ObjectSchema,
+  importedModels: Set<string>,
+  schemaUsage: SchemaContext[]
+): InterfaceDeclarationStructure[] {
+  if (!schema.isMultipartBody) {
+    return [];
+  }
+
+  // Transform property signatures into individual models
+  const propertySignatures = getPropertySignatures(
+    schema.properties ?? {},
+    schemaUsage,
+    importedModels,
+    { flattenBinaryArrays: true }
+  );
+
+  const structures: InterfaceDeclarationStructure[] = [];
+
+  for (const signature of propertySignatures) {
+    const name = signature.name;
+    const typeName = getMultipartPartTypeName(schema.name, name);
+
+    const isFileUpload = signature.type?.toString().includes("File") ?? false;
+
+    structures.push({
+      kind: StructureKind.Interface,
+      isExported: true,
+      name: typeName,
+      properties: [
+        {
+          name: "name",
+          type: name
+        },
+        {
+          name: "body",
+          type: signature.type
+        },
+        ...(isFileUpload ? MULTIPART_FILE_METADATA_PROPERTIES : [])
+      ]
+    });
+  }
+
+  return structures;
 }
 
 export function buildObjectAliases(
@@ -67,22 +148,45 @@ export function buildObjectAliases(
   const objectAliases: TypeAliasDeclarationStructure[] = [];
 
   for (const objectSchema of objectSchemas) {
+    // FIXME: disabling new multipart generation for modular while we figure out the story
+    if (objectSchema.isMultipartBody && !model.options?.isModularLibrary) {
+      const propertySignatures = getPropertySignatures(
+        objectSchema.properties ?? {},
+        schemaUsage,
+        importedModels,
+        { flattenBinaryArrays: true }
+      );
+
+      const objectTypeNames = propertySignatures.map((sig) =>
+        getMultipartPartTypeName(objectSchema.name, sig.name)
+      );
+
+      objectAliases.push({
+        kind: StructureKind.TypeAlias,
+        ...(objectSchema.description && {
+          docs: [{ description: objectSchema.description }]
+        }),
+        name: objectSchema.typeName!,
+        type: `FormData | Array<${objectTypeNames.join("|") || "unknown"}>`,
+        isExported: true
+      });
+    }
+
     if (objectSchema.alias || objectSchema.outputAlias) {
       const description = objectSchema.description;
+      const modelName = schemaUsage.includes(SchemaContext.Input)
+        ? `${objectSchema.typeName}`
+        : `${objectSchema.outputTypeName}`;
       objectAliases.push({
         kind: StructureKind.TypeAlias,
         ...(description && { docs: [{ description }] }),
-        name: schemaUsage.includes(SchemaContext.Input)
-          ? `${objectSchema.typeName}`
-          : `${objectSchema.outputTypeName}`,
+        name: modelName,
         type: schemaUsage.includes(SchemaContext.Input)
           ? `${objectSchema.alias}`
           : `${objectSchema.outputAlias}`,
-        isExported: true
+        isExported: true,
+        docs: [description ?? "Alias for " + modelName]
       });
-      if (objectSchema.alias?.startsWith("Paged<")) {
-        importedModels.add("Paged");
-      }
     }
   }
   return objectAliases;
@@ -179,7 +283,7 @@ function getPolymorphicTypeAlias(
  * Builds the interface for the current object schema. If it is a polymorphic
  * root node it will suffix it with Base.
  */
-function getObjectInterfaceDeclaration(
+export function getObjectInterfaceDeclaration(
   model: RLCModel,
   baseName: string,
   objectSchema: ObjectSchema,
@@ -203,7 +307,8 @@ function getObjectInterfaceDeclaration(
   propertySignatures = addDiscriminatorProperty(
     model,
     objectSchema,
-    propertySignatures
+    propertySignatures,
+    schemaUsage
   );
 
   // Calculate the parents of the current object
@@ -227,9 +332,14 @@ function isPolymorphicParent(objectSchema: ObjectSchema) {
 function addDiscriminatorProperty(
   model: RLCModel,
   objectSchema: ObjectSchema,
-  properties: PropertySignatureStructure[]
+  properties: PropertySignatureStructure[],
+  schemaUsage: SchemaContext[]
 ): PropertySignatureStructure[] {
-  const polymorphicProperty = getDiscriminatorProperty(model, objectSchema);
+  const polymorphicProperty = getDiscriminatorProperty(
+    model,
+    objectSchema,
+    schemaUsage
+  );
 
   if (polymorphicProperty) {
     // It is possible that the polymorphic property needs to override an existing property.
@@ -249,7 +359,8 @@ function addDiscriminatorProperty(
  */
 function getDiscriminatorProperty(
   model: RLCModel,
-  objectSchema: ObjectSchema
+  objectSchema: ObjectSchema,
+  schemaUsage: SchemaContext[]
 ): PropertySignatureStructure | undefined {
   const discriminatorValue = objectSchema.discriminatorValue;
   if (!discriminatorValue && !objectSchema.discriminator) {
@@ -265,10 +376,17 @@ function getDiscriminatorProperty(
         `getDiscriminatorProperty: Expected object ${objectSchema.name} to have a discriminator in its hierarchy but found none`
       );
     }
+    const inputTypeName =
+      objectSchema.discriminator?.typeName ?? objectSchema.discriminator?.type;
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`
+      type:
+        model.options?.sourceFrom === "Swagger"
+          ? discriminators
+          : schemaUsage.includes(SchemaContext.Output)
+            ? objectSchema.discriminator?.outputTypeName ?? inputTypeName
+            : inputTypeName
     };
   }
 
@@ -300,8 +418,8 @@ function getDiscriminatorValue(objectSchema: ObjectSchema): string | undefined {
   const discriminatorValue = objectSchema.discriminatorValue
     ? objectSchema.discriminatorValue
     : objectSchema.discriminator
-    ? objectSchema.name
-    : undefined;
+      ? objectSchema.name
+      : undefined;
   const children = objectSchema.children?.immediate ?? [];
 
   // If the current object has a discriminatorValue but doesn't have any children
@@ -366,24 +484,38 @@ export function getImmediateParentsNames(
   // If an immediate parent is an empty DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
   if (
-    objectSchema.parents.immediate.find((im) => isDictionarySchema(im, {filterEmpty: true}))
+    objectSchema.parents.immediate.find((im) =>
+      isDictionarySchema(im, { filterEmpty: true })
+    )
   ) {
     extendFrom.push("Record<string, unknown>");
   }
 
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
-    .filter((p) => !isDictionarySchema(p, {filterEmpty: true}))
+    .filter((p) => !isDictionarySchema(p, { filterEmpty: true }))
     .map((parent) => {
       const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
         : "";
       const name = isDictionarySchema(parent)
-        ? `${
-            (schemaUsage.includes(SchemaContext.Output)
-              ? parent.outputTypeName
-              : parent.typeName) ?? parent.name
-          }`
+        ? Object.entries(objectSchema.properties!)?.some((prop) => {
+            const typeName = prop[1].typeName ?? prop[1].type;
+            return (
+              `Record<string, ${typeName}>` !== parent.typeName &&
+              !(parent as any).additionalProperties?.typeName?.includes(
+                typeName
+              )
+            );
+          })
+          ? schemaUsage.includes(SchemaContext.Output)
+            ? "Record<string, any>"
+            : "Record<string, unknown>"
+          : `${
+              (schemaUsage.includes(SchemaContext.Output)
+                ? parent.outputTypeName
+                : parent.typeName) ?? parent.name
+            }`
         : `${normalizeName(
             parent.name,
             NameType.Interface,
@@ -398,10 +530,15 @@ export function getImmediateParentsNames(
   return [...parents, ...extendFrom];
 }
 
+interface GetPropertySignatureOptions {
+  flattenBinaryArrays?: boolean;
+}
+
 function getPropertySignatures(
   properties: { [key: string]: Property },
   schemaUsage: SchemaContext[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  options: GetPropertySignatureOptions = {}
 ) {
   let validProperties = Object.keys(properties);
   const readOnlyFilter = (name: string) =>
@@ -412,63 +549,82 @@ function getPropertySignatures(
     getPropertySignature(
       { ...properties[p], name: p },
       schemaUsage,
-      importedModels
+      importedModels,
+      options
     )
+  );
+}
+
+function isBinaryArray(schema: Schema): boolean {
+  return Boolean(
+    isArraySchema(schema) &&
+      (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
+        schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
   );
 }
 
 /**
  * Builds a Typescript property or parameter signature
- * @param property - Property or parameter to get the Typescript signature for
+ * @param schema - Property or parameter to get the Typescript signature for
  * @param importedModels - Set to track the models that need to be imported
  * @returns a PropertySignatureStructure for the property.
  */
 export function getPropertySignature(
   property: Property | Parameter,
   schemaUsage: SchemaContext[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  options: GetPropertySignatureOptions = {}
 ): PropertySignatureStructure {
-  const propertyName = property.name;
-  const description = property.description;
+  let schema: Schema;
+  if (options.flattenBinaryArrays && isBinaryArray(property)) {
+    schema = {
+      ...((property as ArraySchema).items ?? property),
+      name: property.name
+    };
+  } else {
+    schema = property;
+  }
+
+  const propertyName = schema.name;
+  const description = schema.description;
   let type;
   const hasCoreInArray =
-    property.type === "array" &&
-    (property as any).items &&
-    (property as any).items.fromCore;
+    schema.type === "array" &&
+    (schema as any).items &&
+    (schema as any).items.fromCore;
   const hasCoreInRecord =
-    property.type === "dictionary" &&
-    (property as any).additionalProperties &&
-    (property as any).additionalProperties.fromCore;
-  if (hasCoreInArray && property.typeName) {
-    type = property.typeName;
+    schema.type === "dictionary" &&
+    (schema as any).additionalProperties &&
+    (schema as any).additionalProperties.fromCore;
+  if (hasCoreInArray && schema.typeName) {
+    type = schema.typeName;
     importedModels.add(
-      (property as any).items.typeName ?? (property as any).items.name
+      (schema as any).items.typeName ?? (schema as any).items.name
     );
-  } else if (hasCoreInRecord && property.typeName) {
-    type = property.typeName;
+  } else if (hasCoreInRecord && schema.typeName) {
+    type = schema.typeName;
     importedModels.add(
-      (property as any).additionalProperties.typeName ??
-        (property as any).additionalProperties.name
+      (schema as any).additionalProperties.typeName ??
+        (schema as any).additionalProperties.name
     );
   } else {
     type =
-      generateForOutput(schemaUsage, property.usage) && property.outputTypeName
-        ? property.outputTypeName
-        : property.typeName
-        ? property.typeName
-        : property.type;
-    if (property.typeName && property.fromCore) {
-      importedModels.add(property.typeName);
-      type = property.typeName;
+      generateForOutput(schemaUsage, schema.usage) && schema.outputTypeName
+        ? schema.outputTypeName
+        : schema.typeName
+          ? schema.typeName
+          : schema.type;
+    if (schema.typeName && schema.fromCore) {
+      importedModels.add(schema.typeName);
+      type = schema.typeName;
     }
   }
 
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),
-    hasQuestionToken: !property.required,
-    isReadonly:
-      generateForOutput(schemaUsage, property.usage) && property.readOnly,
+    hasQuestionToken: !schema.required,
+    isReadonly: generateForOutput(schemaUsage, schema.usage) && schema.readOnly,
     type,
     kind: StructureKind.PropertySignature
   };

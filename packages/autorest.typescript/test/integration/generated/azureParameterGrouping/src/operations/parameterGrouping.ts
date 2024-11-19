@@ -18,7 +18,7 @@ import {
   ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
-  ParameterGroupingGroupWithConstantOptionalParams
+  ParameterGroupingGroupWithConstantOptionalParams,
 } from "../models";
 
 /** Class containing ParameterGrouping operations. */
@@ -40,11 +40,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    */
   postRequired(
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
-    options?: ParameterGroupingPostRequiredOptionalParams
+    options?: ParameterGroupingPostRequiredOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { parameterGroupingPostRequiredParameters, options },
-      postRequiredOperationSpec
+      postRequiredOperationSpec,
     );
   }
 
@@ -53,11 +53,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    * @param options The options parameters.
    */
   postOptional(
-    options?: ParameterGroupingPostOptionalOptionalParams
+    options?: ParameterGroupingPostOptionalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalOperationSpec
+      postOptionalOperationSpec,
     );
   }
 
@@ -66,11 +66,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    * @param options The options parameters.
    */
   postReservedWords(
-    options?: ParameterGroupingPostReservedWordsOptionalParams
+    options?: ParameterGroupingPostReservedWordsOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postReservedWordsOperationSpec
+      postReservedWordsOperationSpec,
     );
   }
 
@@ -79,11 +79,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    * @param options The options parameters.
    */
   postMultiParamGroups(
-    options?: ParameterGroupingPostMultiParamGroupsOptionalParams
+    options?: ParameterGroupingPostMultiParamGroupsOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postMultiParamGroupsOperationSpec
+      postMultiParamGroupsOperationSpec,
     );
   }
 
@@ -92,11 +92,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    * @param options The options parameters.
    */
   postSharedParameterGroupObject(
-    options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+    options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postSharedParameterGroupObjectOperationSpec
+      postSharedParameterGroupObjectOperationSpec,
     );
   }
 
@@ -105,11 +105,11 @@ export class ParameterGroupingImpl implements ParameterGrouping {
    * @param options The options parameters.
    */
   groupWithConstant(
-    options?: ParameterGroupingGroupWithConstantOptionalParams
+    options?: ParameterGroupingGroupWithConstantOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      groupWithConstantOperationSpec
+      groupWithConstantOperationSpec,
     );
   }
 }
@@ -122,8 +122,8 @@ const postRequiredOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.query],
@@ -131,10 +131,10 @@ const postRequiredOperationSpec: coreClient.OperationSpec = {
   headerParameters: [
     Parameters.contentType,
     Parameters.accept,
-    Parameters.customHeader
+    Parameters.customHeader,
   ],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalOperationSpec: coreClient.OperationSpec = {
   path: "/parameterGrouping/postOptional",
@@ -142,13 +142,13 @@ const postOptionalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.query1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.customHeader1],
-  serializer
+  serializer,
 };
 const postReservedWordsOperationSpec: coreClient.OperationSpec = {
   path: "/parameterGrouping/postReservedWords",
@@ -156,13 +156,13 @@ const postReservedWordsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
-  queryParameters: [Parameters.from, Parameters.accept1],
+  queryParameters: [Parameters.fromParam, Parameters.accept1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postMultiParamGroupsOperationSpec: coreClient.OperationSpec = {
   path: "/parameterGrouping/postMultipleParameterGroups",
@@ -170,17 +170,17 @@ const postMultiParamGroupsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.queryOne, Parameters.queryTwo],
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.headerOne,
-    Parameters.headerTwo
+    Parameters.headerTwo,
   ],
-  serializer
+  serializer,
 };
 const postSharedParameterGroupObjectOperationSpec: coreClient.OperationSpec = {
   path: "/parameterGrouping/sharedParameterGroupObject",
@@ -188,13 +188,13 @@ const postSharedParameterGroupObjectOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.queryOne],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerOne],
-  serializer
+  serializer,
 };
 const groupWithConstantOperationSpec: coreClient.OperationSpec = {
   path: "/parameterGrouping/groupWithConstant",
@@ -202,14 +202,14 @@ const groupWithConstantOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.groupedConstant,
-    Parameters.groupedParameter
+    Parameters.groupedParameter,
   ],
-  serializer
+  serializer,
 };

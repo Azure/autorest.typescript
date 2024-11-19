@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AvailabilitySet,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createAnAvailabilitySet() {
   const parameters: AvailabilitySet = {
     location: "westus",
     platformFaultDomainCount: 2,
-    platformUpdateDomainCount: 20
+    platformUpdateDomainCount: 20,
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.availabilitySets.createOrUpdate(
     resourceGroupName,
     availabilitySetName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

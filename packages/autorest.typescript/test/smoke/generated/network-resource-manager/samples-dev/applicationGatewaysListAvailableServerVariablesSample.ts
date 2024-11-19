@@ -25,7 +25,8 @@ async function getAvailableServerVariables() {
     process.env["SUBSCRIPTION_ID"] || "72f988bf-86f1-41af-91ab-2d7cd0dddd4";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationGateways.listAvailableServerVariables();
+  const result =
+    await client.applicationGateways.listAvailableServerVariables();
   console.log(result);
 }
 

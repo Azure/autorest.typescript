@@ -29,7 +29,7 @@ async function listsTheConfiguredRolesForAStaticSite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.listStaticSiteConfiguredRoles(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

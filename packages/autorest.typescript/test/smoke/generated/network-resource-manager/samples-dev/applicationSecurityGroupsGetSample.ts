@@ -28,7 +28,7 @@ async function getApplicationSecurityGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationSecurityGroups.get(
     resourceGroupName,
-    applicationSecurityGroupName
+    applicationSecurityGroupName,
   );
   console.log(result);
 }

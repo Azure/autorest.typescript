@@ -20,28 +20,50 @@ import {
   getImportModuleName
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
+import { isAzurePackage } from "./helpers/packageUtil.js";
 
 function getClientOptionsInterface(
+  model: RLCModel,
   clientName: string,
   optionalUrlParameters?: PathParameter[]
 ): OptionalKind<InterfaceDeclarationStructure> | undefined {
-  if (!optionalUrlParameters || optionalUrlParameters.length === 0) {
+  if (
+    (!optionalUrlParameters || optionalUrlParameters.length === 0) &&
+    !model.apiVersionInfo
+  ) {
     return undefined;
   }
 
-  const properties = optionalUrlParameters.map((param) => {
-    return {
-      name: param.name,
-      type: param.type,
-      hasQuestionToken: true
-    };
-  });
+  const properties =
+    optionalUrlParameters?.map((param) => {
+      return {
+        name: param.name,
+        type: param.type,
+        hasQuestionToken: true,
+        docs: [
+          param.description ?? "client level optional parameter " + param.name
+        ]
+      };
+    }) ?? [];
 
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+    (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required)
+  ) {
+    properties.push({
+      name: "apiVersion",
+      type: "string",
+      hasQuestionToken: true,
+      docs: ["The api version option of the client"]
+    });
+  }
   return {
     name: `${clientName}Options`,
     extends: ["ClientOptions"],
     isExported: true,
-    properties
+    properties,
+    docs: ["The optional parameters for the client"]
   };
 }
 
@@ -69,6 +91,7 @@ export function buildClient(model: RLCModel): File | undefined {
   );
 
   const clientOptionsInterface = getClientOptionsInterface(
+    model,
     clientInterfaceName,
     optionalUrlParameters
   );
@@ -86,7 +109,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialScopes,
     credentialKeyHeaderName,
     customHttpAuthHeaderName,
-    branded
+    customHttpAuthSharedKeyPrefix
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
@@ -112,10 +135,30 @@ export function buildClient(model: RLCModel): File | undefined {
         ])
   ];
 
+  let apiVersionStatement: string = "";
+  // Set the default api-version when we have a default AND its position is query
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !!model.apiVersionInfo?.defaultValue
+  ) {
+    apiVersionStatement = `
+    apiVersion = "${model.apiVersionInfo?.defaultValue}"`;
+  } else if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.apiVersionInfo.required
+  ) {
+    apiVersionStatement = `
+    apiVersion`;
+  }
+
   const allClientParams = [
     ...commonClientParams,
     {
-      name: "options",
+      name:
+        apiVersionStatement === ""
+          ? "options"
+          : `{${apiVersionStatement}, ...options}`,
+      documentName: "options",
       type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
@@ -127,10 +170,10 @@ export function buildClient(model: RLCModel): File | undefined {
     docs: [
       {
         description:
-          `Initialize a new instance of \`${clientInterfaceName}\` \n` +
+          `Initialize a new instance of \`${clientInterfaceName}\`\n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} - ${
+              return `@param ${param.documentName ?? param.name} - ${
                 param.description ?? "The parameter " + param.name
               }`;
             })
@@ -139,7 +182,9 @@ export function buildClient(model: RLCModel): File | undefined {
     ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
-    statements: getClientFactoryBody(model, clientInterfaceName)
+    statements: getClientFactoryBody(model, clientInterfaceName, {
+      isMultipleCredential: credentialTypes.length > 1
+    })
   };
 
   if (!multiClient || !batch || batch.length === 1) {
@@ -168,7 +213,7 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
-  if (branded !== false) {
+  if (isAzurePackage(model)) {
     clientFile.addImportDeclarations([
       {
         namedImports: ["logger"],
@@ -183,6 +228,11 @@ export function buildClient(model: RLCModel): File | undefined {
     ]);
   }
 
+  const includeKeyCredentialHelper =
+    customHttpAuthHeaderName &&
+    customHttpAuthSharedKeyPrefix &&
+    credentialTypes.length > 1 &&
+    credentialTypes.includes("KeyCredential");
   if (
     addCredentials &&
     isSecurityInfoDefined(
@@ -193,7 +243,9 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
-        namedImports: credentialTypes,
+        namedImports: credentialTypes.concat(
+          includeKeyCredentialHelper ? ["isKeyCredential"] : []
+        ),
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
           model.importInfo.runtimeImports
@@ -213,6 +265,25 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
+  if (
+    (model.importInfo.internalImports?.rlcClientFactory?.importsSet?.size ??
+      0) > 0
+  ) {
+    clientFile.addImportDeclarations([
+      {
+        namedImports: Array.from(
+          model.importInfo.internalImports.rlcClientFactory.importsSet!
+        ),
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `./models`,
+            esModulesName: `./models.js`
+          },
+          model
+        )
+      }
+    ]);
+  }
   return { path: filePath, content: clientFile.getFullText() };
 }
 
@@ -226,15 +297,19 @@ function isSecurityInfoDefined(
   );
 }
 
+interface GetClientFactoryOptions {
+  isMultipleCredential: boolean;
+}
+
 export function getClientFactoryBody(
   model: RLCModel,
-  clientTypeName: string
+  clientTypeName: string,
+  options: GetClientFactoryOptions = { isMultipleCredential: false }
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails, branded, addCredentials } =
-    model.options;
+  const { includeShortcuts, packageDetails, addCredentials } = model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
@@ -243,16 +318,19 @@ export function getClientFactoryBody(
   const optionalUrlParameters: string[] = [];
 
   for (const param of urlParameters ?? []) {
+    if (param.name === "apiVersion") {
+      continue;
+    }
     if (param.value) {
       const value =
         typeof param.value === "string" ? `"${param.value}"` : param.value;
       optionalUrlParameters.push(
-        `const ${param.name} = options.${param.name} ?? ${value}`
+        `const ${param.name} = options.${param.name} ?? ${value};`
       );
     }
   }
 
-  let baseUrl: string;
+  let endpointUrl: string;
   if (urlParameters && endpoint) {
     let parsedEndpoint = endpoint;
     urlParameters.forEach((urlParameter) => {
@@ -262,24 +340,15 @@ export function getClientFactoryBody(
       );
     });
 
-    baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
-    baseUrl = `options.baseUrl ?? "${endpoint}"`;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
 
-  let apiVersionStatement: string = "";
-  // Set the default api-version when we have a default AND its position is query/none
-  if (
-    (model.apiVersionInfo?.definedPosition === "query" ||
-      model.apiVersionInfo?.definedPosition === "none") &&
-    !!model.apiVersionInfo?.defaultValue
-  ) {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
+  if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {
+    clientPackageName += "-rest";
   }
 
-  if (!clientPackageName.endsWith("-rest")) {
-    clientPackageName = clientPackageName + "-rest";
-  }
   const userAgentInfoStatement =
     "const userAgentInfo = `azsdk-js-" +
     clientPackageName +
@@ -303,16 +372,16 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const baseUrlStatement: VariableStatementStructure = {
+  const endpointUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
-    declarations: [{ name: "baseUrl", initializer: baseUrl }]
+    declarations: [{ name: "endpointUrl", initializer: endpointUrl }]
   };
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
-      "`${baseUrl}/.default`"
+      "`${endpointUrl}/.default`"
     : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
@@ -321,13 +390,12 @@ export function getClientFactoryBody(
   const apiKeyHeaderName = credentialKeyHeaderName
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
-  const loggerOptions =
-    branded !== false
-      ? `,
+  const loggerOptions = isAzurePackage(model)
+    ? `,
   loggingOptions: {
     logger: options.loggingOptions?.logger ?? logger.info
   }`
-      : "";
+    : "";
 
   const credentialsOptions =
     (scopes || apiKeyHeaderName) && addCredentials
@@ -342,23 +410,75 @@ export function getClientFactoryBody(
         userAgentOptions: {
           userAgentPrefix
         }${loggerOptions}${customHeaderOptions}${credentialsOptions}
-      }`;
-
+      };`;
   const getClient = `const client = getClient(
-        baseUrl, ${credentialsOptions ? "credentials," : ""} options
+        endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
     model.options;
   let customHttpAuthStatement = "";
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
-    customHttpAuthStatement = `
+    if (options.isMultipleCredential) {
+      customHttpAuthStatement = `if (isKeyCredential(credentials)) {
+        client.pipeline.addPolicy({
+          name: "customKeyCredentialPolicy",
+          async sendRequest(request, next) {
+            request.headers.set("Authorization", "Bearer " + credentials.key);
+            return next(request);
+          },
+        });
+      }`;
+    } else {
+      customHttpAuthStatement = `
       client.pipeline.addPolicy({
         name: "customKeyCredentialPolicy",
         async sendRequest(request, next) {
           request.headers.set("${customHttpAuthHeaderName}", "${customHttpAuthSharedKeyPrefix} " + credentials.key);
           return next(request);
         }
+      });`;
+    }
+  }
+
+  let apiVersionPolicyStatement = `client.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+  if (
+    isAzurePackage(model) &&
+    model.apiVersionInfo?.isCrossedVersion !== false
+  ) {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support client api-version, please change it at the operation level");
+      }`;
+  } else if (
+    isAzurePackage(model) &&
+    !model.apiVersionInfo?.defaultValue &&
+    model.apiVersionInfo?.required
+  ) {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support to set api-version in options, please change it at positional argument");
+      }`;
+  }
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    model.apiVersionInfo?.definedPosition === "query"
+  ) {
+    apiVersionPolicyStatement += `
+      client.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVersion defined in request url directly
+          // Append one if there is no apiVersion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version") && apiVersion) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${apiVersion}\`;
+          }
+    
+          return next(req);
+        },
       });`;
   }
   let returnStatement = `return client;`;
@@ -380,12 +500,12 @@ export function getClientFactoryBody(
 
   return [
     ...optionalUrlParameters,
-    baseUrlStatement,
-    apiVersionStatement,
+    endpointUrlStatement,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,
     getClient,
+    apiVersionPolicyStatement,
     customHttpAuthStatement,
     returnStatement
   ];

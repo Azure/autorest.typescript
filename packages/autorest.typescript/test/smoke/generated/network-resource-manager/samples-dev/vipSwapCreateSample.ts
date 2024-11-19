@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SwapResource,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function putVipSwapOperation() {
   const result = await client.vipSwap.beginCreateAndWait(
     groupName,
     resourceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

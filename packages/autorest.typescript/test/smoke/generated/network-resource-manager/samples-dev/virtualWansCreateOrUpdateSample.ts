@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualWAN,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,14 +31,14 @@ async function virtualWanCreate() {
     typePropertiesType: "Basic",
     disableVpnEncryption: false,
     location: "West US",
-    tags: { key1: "value1" }
+    tags: { key1: "value1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualWans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualWANName,
-    wANParameters
+    wANParameters,
   );
   console.log(result);
 }

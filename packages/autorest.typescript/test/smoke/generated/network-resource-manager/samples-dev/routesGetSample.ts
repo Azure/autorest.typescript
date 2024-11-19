@@ -30,7 +30,7 @@ async function getRoute() {
   const result = await client.routes.get(
     resourceGroupName,
     routeTableName,
-    routeName
+    routeName,
   );
   console.log(result);
 }

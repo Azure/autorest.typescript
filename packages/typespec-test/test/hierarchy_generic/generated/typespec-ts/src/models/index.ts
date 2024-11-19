@@ -1,11 +1,4 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-export { A, BA, BEA } from "./models.js";
-export {
-  Op1Options,
-  BOp1Options,
-  BECOp1Options,
-  BCOp1Options,
-  DOp1Options,
-} from "./options.js";
+export { A, Ba, Bea } from "./models.js";

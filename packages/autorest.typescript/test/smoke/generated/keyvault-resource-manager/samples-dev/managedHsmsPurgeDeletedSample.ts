@@ -29,7 +29,7 @@ async function purgeAManagedHsmPool() {
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginPurgeDeletedAndWait(
     name,
-    location
+    location,
   );
   console.log(result);
 }

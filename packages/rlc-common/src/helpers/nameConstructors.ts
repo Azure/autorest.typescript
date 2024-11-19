@@ -116,22 +116,27 @@ export interface ModuleName {
  * library being generated
  */
 export function getImportModuleName(name: ModuleName, codeModel: RLCModel) {
-  if (codeModel.options?.isModularLibrary) {
-    return name.esModulesName;
+  if (codeModel.options?.moduleKind === "cjs") {
+    return name.cjsName;
   }
-
-  return name.cjsName;
+  return name.esModulesName;
 }
 
 export function getClientName(model: RLCModel) {
   const clientName = model.libraryName;
-  let clientInterfaceName = clientName.endsWith("Client")
+  const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
 
-  if (model.options?.isModularLibrary) {
-    clientInterfaceName = `${clientName.replace("Client", "")}Context`;
-  }
-
   return clientInterfaceName;
+}
+
+export function getMultipartPartTypeName(schemaName: string, partName: string) {
+  const name = normalizeName(partName, NameType.Interface);
+  const bodyParamName = normalizeName(schemaName, NameType.Interface);
+
+  return normalizeName(
+    `${bodyParamName}_${name}_PartDescriptor`,
+    NameType.Interface
+  );
 }

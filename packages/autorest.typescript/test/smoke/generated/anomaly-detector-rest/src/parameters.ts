@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
@@ -7,7 +7,7 @@ import {
   ChangePointDetectRequest,
   ModelInfo,
   DetectionRequest,
-  LastDetectionRequest
+  LastDetectionRequest,
 } from "./models";
 
 export interface DetectEntireSeriesBodyParam {
@@ -63,9 +63,10 @@ export interface CreateMultivariateModelMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type CreateMultivariateModelParameters = CreateMultivariateModelMediaTypesParam &
-  CreateMultivariateModelBodyParam &
-  RequestParameters;
+export type CreateMultivariateModelParameters =
+  CreateMultivariateModelMediaTypesParam &
+    CreateMultivariateModelBodyParam &
+    RequestParameters;
 
 export interface ListMultivariateModelQueryParamProperties {
   /** Skip indicates how many models will be skipped. */

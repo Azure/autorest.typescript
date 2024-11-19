@@ -11,7 +11,7 @@
 import {
   StaticSiteUserProvidedFunctionAppARMResource,
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,24 +32,25 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
   const environmentName = "default";
   const functionAppName = "testFunctionApp";
   const isForced = true;
-  const staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource = {
-    functionAppRegion: "West US 2",
-    functionAppResourceId:
-      "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp"
-  };
-  const options: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams = {
-    isForced
-  };
+  const staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource =
+    {
+      functionAppRegion: "West US 2",
+      functionAppResourceId:
+        "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp",
+    };
+  const options: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams =
+    { isForced };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
-    resourceGroupName,
-    name,
-    environmentName,
-    functionAppName,
-    staticSiteUserProvidedFunctionEnvelope,
-    options
-  );
+  const result =
+    await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteBuildAndWait(
+      resourceGroupName,
+      name,
+      environmentName,
+      functionAppName,
+      staticSiteUserProvidedFunctionEnvelope,
+      options,
+    );
   console.log(result);
 }
 

@@ -39,7 +39,7 @@ async function getAJobStepTargetExecution() {
     jobName,
     jobExecutionId,
     stepName,
-    targetId
+    targetId,
   );
   console.log(result);
 }

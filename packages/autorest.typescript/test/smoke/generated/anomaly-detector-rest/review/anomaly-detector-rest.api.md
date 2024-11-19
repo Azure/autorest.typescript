@@ -4,17 +4,17 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -41,6 +41,10 @@ export interface AnomalyDetectorErrorOutput {
 export type AnomalyDetectorRestClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface AnomalyDetectorRestClientOptions extends ClientOptions {
+}
 
 // @public (undocumented)
 export interface AnomalyInterpretationOutput {
@@ -143,7 +147,7 @@ export interface CorrelationChangesOutput {
 }
 
 // @public
-function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
+function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: AnomalyDetectorRestClientOptions): AnomalyDetectorRestClient;
 export default createClient;
 
 // @public (undocumented)
@@ -496,7 +500,7 @@ export interface GetMultivariateModelDefaultResponse extends HttpResponse {
 export type GetMultivariateModelParameters = RequestParameters;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -698,6 +702,18 @@ export interface ModelStateOutput {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 // @public
@@ -726,6 +742,28 @@ export interface Routes {
     (path: "/multivariate/models/{modelId}", modelId: string): DeleteMultivariateModel;
     (path: "/multivariate/models/{modelId}:detect-batch", modelId: string): BatchDetectAnomaly;
     (path: "/multivariate/models/{modelId}:detect-last", modelId: string): LastDetectAnomaly;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // @public

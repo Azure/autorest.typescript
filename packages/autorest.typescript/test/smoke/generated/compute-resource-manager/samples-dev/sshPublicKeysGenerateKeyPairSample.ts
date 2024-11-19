@@ -28,7 +28,7 @@ async function generateAnSshKeyPair() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.sshPublicKeys.generateKeyPair(
     resourceGroupName,
-    sshPublicKeyName
+    sshPublicKeyName,
   );
   console.log(result);
 }

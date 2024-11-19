@@ -126,7 +126,7 @@ import {
   ManagedInstancesImpl,
   RestorableDroppedDatabasesImpl,
   RestorableDroppedManagedDatabasesImpl,
-  ServerConnectionPoliciesImpl
+  ServerConnectionPoliciesImpl,
 } from "./operations";
 import {
   RecoverableDatabases,
@@ -246,7 +246,7 @@ import {
   ManagedInstances,
   RestorableDroppedDatabases,
   RestorableDroppedManagedDatabases,
-  ServerConnectionPolicies
+  ServerConnectionPolicies,
 } from "./operationsInterfaces";
 import { SqlManagementClientOptionalParams } from "./models";
 
@@ -263,7 +263,7 @@ export class SqlManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: SqlManagementClientOptionalParams
+    options?: SqlManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -278,7 +278,7 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     }
     const defaults: SqlManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-sql-resource-manager/1.0.0-beta.1`;
@@ -291,10 +291,10 @@ export class SqlManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -313,42 +313,35 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     this.serviceObjectives = new ServiceObjectivesImpl(this);
     this.elasticPoolActivities = new ElasticPoolActivitiesImpl(this);
     this.elasticPoolDatabaseActivities = new ElasticPoolDatabaseActivitiesImpl(
-      this
+      this,
     );
     this.serverUsages = new ServerUsagesImpl(this);
-    this.extendedDatabaseBlobAuditingPolicies = new ExtendedDatabaseBlobAuditingPoliciesImpl(
-      this
-    );
-    this.extendedServerBlobAuditingPolicies = new ExtendedServerBlobAuditingPoliciesImpl(
-      this
-    );
+    this.extendedDatabaseBlobAuditingPolicies =
+      new ExtendedDatabaseBlobAuditingPoliciesImpl(this);
+    this.extendedServerBlobAuditingPolicies =
+      new ExtendedServerBlobAuditingPoliciesImpl(this);
     this.serverBlobAuditingPolicies = new ServerBlobAuditingPoliciesImpl(this);
     this.databaseBlobAuditingPolicies = new DatabaseBlobAuditingPoliciesImpl(
-      this
+      this,
     );
     this.databaseAdvisors = new DatabaseAdvisorsImpl(this);
-    this.databaseAutomaticTuningOperations = new DatabaseAutomaticTuningOperationsImpl(
-      this
-    );
+    this.databaseAutomaticTuningOperations =
+      new DatabaseAutomaticTuningOperationsImpl(this);
     this.databaseColumns = new DatabaseColumnsImpl(this);
     this.databaseRecommendedActions = new DatabaseRecommendedActionsImpl(this);
     this.databaseSchemas = new DatabaseSchemasImpl(this);
     this.databaseSecurityAlertPolicies = new DatabaseSecurityAlertPoliciesImpl(
-      this
+      this,
     );
     this.databaseTables = new DatabaseTablesImpl(this);
-    this.databaseVulnerabilityAssessmentRuleBaselines = new DatabaseVulnerabilityAssessmentRuleBaselinesImpl(
-      this
-    );
-    this.databaseVulnerabilityAssessments = new DatabaseVulnerabilityAssessmentsImpl(
-      this
-    );
-    this.databaseVulnerabilityAssessmentScans = new DatabaseVulnerabilityAssessmentScansImpl(
-      this
-    );
-    this.dataWarehouseUserActivitiesOperations = new DataWarehouseUserActivitiesOperationsImpl(
-      this
-    );
+    this.databaseVulnerabilityAssessmentRuleBaselines =
+      new DatabaseVulnerabilityAssessmentRuleBaselinesImpl(this);
+    this.databaseVulnerabilityAssessments =
+      new DatabaseVulnerabilityAssessmentsImpl(this);
+    this.databaseVulnerabilityAssessmentScans =
+      new DatabaseVulnerabilityAssessmentScansImpl(this);
+    this.dataWarehouseUserActivitiesOperations =
+      new DataWarehouseUserActivitiesOperationsImpl(this);
     this.deletedServers = new DeletedServersImpl(this);
     this.elasticPoolOperations = new ElasticPoolOperationsImpl(this);
     this.encryptionProtectors = new EncryptionProtectorsImpl(this);
@@ -367,111 +360,92 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     this.jobVersions = new JobVersionsImpl(this);
     this.capabilities = new CapabilitiesImpl(this);
     this.longTermRetentionPolicies = new LongTermRetentionPoliciesImpl(this);
-    this.maintenanceWindowOptionsOperations = new MaintenanceWindowOptionsOperationsImpl(
-      this
-    );
+    this.maintenanceWindowOptionsOperations =
+      new MaintenanceWindowOptionsOperationsImpl(this);
     this.maintenanceWindowsOperations = new MaintenanceWindowsOperationsImpl(
-      this
+      this,
     );
-    this.managedBackupShortTermRetentionPolicies = new ManagedBackupShortTermRetentionPoliciesImpl(
-      this
-    );
+    this.managedBackupShortTermRetentionPolicies =
+      new ManagedBackupShortTermRetentionPoliciesImpl(this);
     this.managedDatabaseColumns = new ManagedDatabaseColumnsImpl(this);
     this.managedDatabaseQueries = new ManagedDatabaseQueriesImpl(this);
     this.managedDatabaseRestoreDetails = new ManagedDatabaseRestoreDetailsImpl(
-      this
+      this,
     );
     this.managedDatabases = new ManagedDatabasesImpl(this);
     this.managedDatabaseSchemas = new ManagedDatabaseSchemasImpl(this);
-    this.managedDatabaseSecurityAlertPolicies = new ManagedDatabaseSecurityAlertPoliciesImpl(
-      this
-    );
+    this.managedDatabaseSecurityAlertPolicies =
+      new ManagedDatabaseSecurityAlertPoliciesImpl(this);
     this.managedDatabaseSecurityEvents = new ManagedDatabaseSecurityEventsImpl(
-      this
+      this,
     );
-    this.managedDatabaseSensitivityLabels = new ManagedDatabaseSensitivityLabelsImpl(
-      this
-    );
-    this.managedDatabaseRecommendedSensitivityLabels = new ManagedDatabaseRecommendedSensitivityLabelsImpl(
-      this
-    );
+    this.managedDatabaseSensitivityLabels =
+      new ManagedDatabaseSensitivityLabelsImpl(this);
+    this.managedDatabaseRecommendedSensitivityLabels =
+      new ManagedDatabaseRecommendedSensitivityLabelsImpl(this);
     this.managedDatabaseTables = new ManagedDatabaseTablesImpl(this);
-    this.managedDatabaseTransparentDataEncryption = new ManagedDatabaseTransparentDataEncryptionImpl(
-      this
-    );
-    this.managedDatabaseVulnerabilityAssessmentRuleBaselines = new ManagedDatabaseVulnerabilityAssessmentRuleBaselinesImpl(
-      this
-    );
-    this.managedDatabaseVulnerabilityAssessments = new ManagedDatabaseVulnerabilityAssessmentsImpl(
-      this
-    );
-    this.managedDatabaseVulnerabilityAssessmentScans = new ManagedDatabaseVulnerabilityAssessmentScansImpl(
-      this
-    );
+    this.managedDatabaseTransparentDataEncryption =
+      new ManagedDatabaseTransparentDataEncryptionImpl(this);
+    this.managedDatabaseVulnerabilityAssessmentRuleBaselines =
+      new ManagedDatabaseVulnerabilityAssessmentRuleBaselinesImpl(this);
+    this.managedDatabaseVulnerabilityAssessments =
+      new ManagedDatabaseVulnerabilityAssessmentsImpl(this);
+    this.managedDatabaseVulnerabilityAssessmentScans =
+      new ManagedDatabaseVulnerabilityAssessmentScansImpl(this);
     this.managedInstanceAdministrators = new ManagedInstanceAdministratorsImpl(
-      this
+      this,
     );
-    this.managedInstanceAzureADOnlyAuthentications = new ManagedInstanceAzureADOnlyAuthenticationsImpl(
-      this
-    );
-    this.managedInstanceEncryptionProtectors = new ManagedInstanceEncryptionProtectorsImpl(
-      this
-    );
+    this.managedInstanceAzureADOnlyAuthentications =
+      new ManagedInstanceAzureADOnlyAuthenticationsImpl(this);
+    this.managedInstanceEncryptionProtectors =
+      new ManagedInstanceEncryptionProtectorsImpl(this);
     this.managedInstanceKeys = new ManagedInstanceKeysImpl(this);
-    this.managedInstanceLongTermRetentionPolicies = new ManagedInstanceLongTermRetentionPoliciesImpl(
-      this
-    );
+    this.managedInstanceLongTermRetentionPolicies =
+      new ManagedInstanceLongTermRetentionPoliciesImpl(this);
     this.managedInstanceOperations = new ManagedInstanceOperationsImpl(this);
-    this.managedInstancePrivateEndpointConnections = new ManagedInstancePrivateEndpointConnectionsImpl(
-      this
-    );
-    this.managedInstancePrivateLinkResources = new ManagedInstancePrivateLinkResourcesImpl(
-      this
-    );
-    this.managedInstanceTdeCertificates = new ManagedInstanceTdeCertificatesImpl(
-      this
-    );
-    this.managedInstanceVulnerabilityAssessments = new ManagedInstanceVulnerabilityAssessmentsImpl(
-      this
-    );
-    this.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies = new ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImpl(
-      this
-    );
-    this.managedServerSecurityAlertPolicies = new ManagedServerSecurityAlertPoliciesImpl(
-      this
-    );
+    this.managedInstancePrivateEndpointConnections =
+      new ManagedInstancePrivateEndpointConnectionsImpl(this);
+    this.managedInstancePrivateLinkResources =
+      new ManagedInstancePrivateLinkResourcesImpl(this);
+    this.managedInstanceTdeCertificates =
+      new ManagedInstanceTdeCertificatesImpl(this);
+    this.managedInstanceVulnerabilityAssessments =
+      new ManagedInstanceVulnerabilityAssessmentsImpl(this);
+    this.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies =
+      new ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImpl(
+        this,
+      );
+    this.managedServerSecurityAlertPolicies =
+      new ManagedServerSecurityAlertPoliciesImpl(this);
     this.operations = new OperationsImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
     this.privateLinkResources = new PrivateLinkResourcesImpl(this);
     this.recoverableManagedDatabases = new RecoverableManagedDatabasesImpl(
-      this
+      this,
     );
     this.restorePoints = new RestorePointsImpl(this);
     this.sensitivityLabels = new SensitivityLabelsImpl(this);
     this.recommendedSensitivityLabels = new RecommendedSensitivityLabelsImpl(
-      this
+      this,
     );
     this.serverAdvisors = new ServerAdvisorsImpl(this);
-    this.serverAutomaticTuningOperations = new ServerAutomaticTuningOperationsImpl(
-      this
-    );
+    this.serverAutomaticTuningOperations =
+      new ServerAutomaticTuningOperationsImpl(this);
     this.serverAzureADAdministrators = new ServerAzureADAdministratorsImpl(
-      this
+      this,
     );
-    this.serverAzureADOnlyAuthentications = new ServerAzureADOnlyAuthenticationsImpl(
-      this
-    );
+    this.serverAzureADOnlyAuthentications =
+      new ServerAzureADOnlyAuthenticationsImpl(this);
     this.serverDevOpsAuditSettings = new ServerDevOpsAuditSettingsImpl(this);
     this.serverDnsAliases = new ServerDnsAliasesImpl(this);
     this.serverKeys = new ServerKeysImpl(this);
     this.serverOperations = new ServerOperationsImpl(this);
     this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesImpl(
-      this
+      this,
     );
     this.serverTrustGroups = new ServerTrustGroupsImpl(this);
-    this.serverVulnerabilityAssessments = new ServerVulnerabilityAssessmentsImpl(
-      this
-    );
+    this.serverVulnerabilityAssessments =
+      new ServerVulnerabilityAssessmentsImpl(this);
     this.sqlAgent = new SqlAgentImpl(this);
     this.subscriptionUsages = new SubscriptionUsagesImpl(this);
     this.syncAgents = new SyncAgentsImpl(this);
@@ -484,29 +458,26 @@ export class SqlManagementClient extends coreClient.ServiceClient {
     this.workloadClassifiers = new WorkloadClassifiersImpl(this);
     this.workloadGroups = new WorkloadGroupsImpl(this);
     this.transparentDataEncryptions = new TransparentDataEncryptionsImpl(this);
-    this.backupShortTermRetentionPolicies = new BackupShortTermRetentionPoliciesImpl(
-      this
-    );
+    this.backupShortTermRetentionPolicies =
+      new BackupShortTermRetentionPoliciesImpl(this);
     this.databaseExtensionsOperations = new DatabaseExtensionsOperationsImpl(
-      this
+      this,
     );
     this.databaseOperations = new DatabaseOperationsImpl(this);
     this.databaseUsages = new DatabaseUsagesImpl(this);
     this.ledgerDigestUploadsOperations = new LedgerDigestUploadsOperationsImpl(
-      this
+      this,
     );
     this.outboundFirewallRules = new OutboundFirewallRulesImpl(this);
     this.servers = new ServersImpl(this);
     this.usages = new UsagesImpl(this);
     this.longTermRetentionBackups = new LongTermRetentionBackupsImpl(this);
-    this.longTermRetentionManagedInstanceBackups = new LongTermRetentionManagedInstanceBackupsImpl(
-      this
-    );
+    this.longTermRetentionManagedInstanceBackups =
+      new LongTermRetentionManagedInstanceBackupsImpl(this);
     this.managedInstances = new ManagedInstancesImpl(this);
     this.restorableDroppedDatabases = new RestorableDroppedDatabasesImpl(this);
-    this.restorableDroppedManagedDatabases = new RestorableDroppedManagedDatabasesImpl(
-      this
-    );
+    this.restorableDroppedManagedDatabases =
+      new RestorableDroppedManagedDatabasesImpl(this);
     this.serverConnectionPolicies = new ServerConnectionPoliciesImpl(this);
   }
 

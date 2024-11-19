@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation Export
  */
 async function exportSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAuthoringClient(endpoint, credential);
+  const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:export", projectName)

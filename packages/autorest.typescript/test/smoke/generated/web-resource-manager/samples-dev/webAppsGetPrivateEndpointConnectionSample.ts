@@ -31,7 +31,7 @@ async function getAPrivateEndpointConnectionForASite() {
   const result = await client.webApps.getPrivateEndpointConnection(
     resourceGroupName,
     name,
-    privateEndpointConnectionName
+    privateEndpointConnectionName,
   );
   console.log(result);
 }

@@ -35,7 +35,7 @@ async function listDatabaseUsageMetrics() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    filter
+    filter,
   )) {
     resArray.push(item);
   }

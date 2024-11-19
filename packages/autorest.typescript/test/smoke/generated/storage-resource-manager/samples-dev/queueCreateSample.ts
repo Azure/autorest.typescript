@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageQueue,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function queueOperationPut() {
     resourceGroupName,
     accountName,
     queueName,
-    queue
+    queue,
   );
   console.log(result);
 }
@@ -52,7 +52,7 @@ async function queueOperationPutWithMetadata() {
   const accountName = "sto328";
   const queueName = "queue6185";
   const queue: StorageQueue = {
-    metadata: { sample1: "meta1", sample2: "meta2" }
+    metadata: { sample1: "meta1", sample2: "meta2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -60,7 +60,7 @@ async function queueOperationPutWithMetadata() {
     resourceGroupName,
     accountName,
     queueName,
-    queue
+    queue,
   );
   console.log(result);
 }

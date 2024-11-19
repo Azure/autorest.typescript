@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
@@ -22,7 +22,7 @@ import {
   UsersImpl,
   ObjectsImpl,
   DomainsImpl,
-  OAuth2PermissionGrantOperationsImpl
+  OAuth2PermissionGrantOperationsImpl,
 } from "./operations";
 import {
   SignedInUser,
@@ -33,7 +33,7 @@ import {
   Users,
   Objects,
   Domains,
-  OAuth2PermissionGrantOperations
+  OAuth2PermissionGrantOperations,
 } from "./operationsInterfaces";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
@@ -51,7 +51,7 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     tenantID: string,
-    options?: GraphRbacManagementClientOptionalParams
+    options?: GraphRbacManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -66,7 +66,7 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
     }
     const defaults: GraphRbacManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-graphrbac-data-plane/1.0.0-beta.1`;
@@ -79,10 +79,10 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://graph.windows.net"
+        options.endpoint ?? options.baseUri ?? "https://graph.windows.net",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -99,9 +99,8 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
     this.users = new UsersImpl(this);
     this.objects = new ObjectsImpl(this);
     this.domains = new DomainsImpl(this);
-    this.oAuth2PermissionGrantOperations = new OAuth2PermissionGrantOperationsImpl(
-      this
-    );
+    this.oAuth2PermissionGrantOperations =
+      new OAuth2PermissionGrantOperationsImpl(this);
     this.addCustomApiVersionPolicy(options.apiVersion);
   }
 
@@ -114,7 +113,7 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -128,7 +127,7 @@ export class GraphRbacManagementClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

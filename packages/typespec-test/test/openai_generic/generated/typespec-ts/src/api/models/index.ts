@@ -1,61 +1,50 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
+  OpenAIContext as Client,
+  ModelsDeleteOptionalParams,
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+} from "../index.js";
+import {
   ListModelsResponse,
+  listModelsResponseDeserializer,
   Model,
+  modelDeserializer,
   DeleteModelResponse,
+  deleteModelResponseDeserializer,
 } from "../../models/models.js";
 import {
-  isUnexpected,
-  ModelsDeleteOperation200Response,
-  ModelsDeleteOperationDefaultResponse,
-  ModelsList200Response,
-  ModelsListDefaultResponse,
-  ModelsRetrieve200Response,
-  ModelsRetrieveDefaultResponse,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
-import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ModelsListOptions,
-  ModelsRetrieveOptions,
-  ModelsDeleteOperationOptions,
-} from "../../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
-): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
+  options: ModelsListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/models")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
-  result: ModelsList200Response | ModelsListDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<ListModelsResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      created: new Date(p["created"]),
-      ownedBy: p["owned_by"],
-    })),
-  };
+  return listModelsResponseDeserializer(result.body);
 }
 
 export async function list(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
+  options: ModelsListOptionalParams = { requestOptions: {} },
 ): Promise<ListModelsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -64,70 +53,64 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
-): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
+  options: ModelsRetrieveOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/models/{model}", model)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _retrieveDeserialize(
-  result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<Model> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    ownedBy: result.body["owned_by"],
-  };
+  return modelDeserializer(result.body);
 }
 
 export async function retrieve(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<Model> {
   const result = await _retrieveSend(context, model, options);
   return _retrieveDeserialize(result);
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} }
-): StreamableMethod<
-  ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
-> {
+  options: ModelsDeleteOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/models/{model}", model)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result:
-    | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse
+export async function _$deleteDeserialize(
+  result: PathUncheckedResponse,
 ): Promise<DeleteModelResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return deleteModelResponseDeserializer(result.body);
 }
 
-export async function deleteOperation(
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export async function $delete(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} }
+  options: ModelsDeleteOptionalParams = { requestOptions: {} },
 ): Promise<DeleteModelResponse> {
-  const result = await _deleteOperationSend(context, model, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _$deleteSend(context, model, options);
+  return _$deleteDeserialize(result);
 }

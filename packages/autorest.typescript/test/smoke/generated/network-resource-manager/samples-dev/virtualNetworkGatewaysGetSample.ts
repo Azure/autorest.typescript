@@ -28,7 +28,7 @@ async function getVirtualNetworkGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.get(
     resourceGroupName,
-    virtualNetworkGatewayName
+    virtualNetworkGatewayName,
   );
   console.log(result);
 }

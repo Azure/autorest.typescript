@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 
-/** The result of a list request. */
-export interface KeyListResult {
+/** The parent result of a list request. */
+export interface TestParentList {
   /** The collection value. */
   items?: Key[];
   /** The URI that can be used to request the next set of paged results. */
@@ -66,6 +66,16 @@ export interface LabelListResult {
 export interface Label {
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly name?: string;
+}
+
+/** The result of a list request. */
+export interface KeyListResult extends TestParentList {
+  /** The roll out count summary of the savings plans */
+  summary?: string;
+  /** The collection value. */
+  items?: Key[];
+  /** The URI that can be used to request the next set of paged results. */
+  nextLink?: string;
 }
 
 /** Defines headers for AppConfigurationClient_getKeys operation. */
@@ -209,7 +219,7 @@ export enum KnownGet6ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -245,7 +255,7 @@ export enum KnownHead6ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -281,7 +291,7 @@ export enum KnownGet7ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -317,7 +327,7 @@ export enum KnownHead7ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -353,7 +363,7 @@ export enum KnownEnum4 {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -389,7 +399,7 @@ export enum KnownEnum5 {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -470,7 +480,8 @@ export interface CheckKeyValuesOptionalParams
 }
 
 /** Contains response data for the checkKeyValues operation. */
-export type CheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders;
+export type CheckKeyValuesResponse =
+  AppConfigurationClientCheckKeyValuesHeaders;
 
 /** Optional parameters. */
 export interface GetKeyValueOptionalParams extends coreClient.OperationOptions {
@@ -516,8 +527,8 @@ export interface DeleteKeyValueOptionalParams
 }
 
 /** Contains response data for the deleteKeyValue operation. */
-export type DeleteKeyValueResponse = AppConfigurationClientDeleteKeyValueHeaders &
-  KeyValue;
+export type DeleteKeyValueResponse =
+  AppConfigurationClientDeleteKeyValueHeaders & KeyValue;
 
 /** Optional parameters. */
 export interface CheckKeyValueOptionalParams
@@ -630,7 +641,8 @@ export interface CheckRevisionsOptionalParams
 }
 
 /** Contains response data for the checkRevisions operation. */
-export type CheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders;
+export type CheckRevisionsResponse =
+  AppConfigurationClientCheckRevisionsHeaders;
 
 /** Optional parameters. */
 export interface GetKeysNextOptionalParams extends coreClient.OperationOptions {
@@ -650,8 +662,8 @@ export interface GetKeyValuesNextOptionalParams
 }
 
 /** Contains response data for the getKeyValuesNext operation. */
-export type GetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHeaders &
-  KeyValueListResult;
+export type GetKeyValuesNextResponse =
+  AppConfigurationClientGetKeyValuesNextHeaders & KeyValueListResult;
 
 /** Optional parameters. */
 export interface GetLabelsNextOptionalParams
@@ -672,8 +684,8 @@ export interface GetRevisionsNextOptionalParams
 }
 
 /** Contains response data for the getRevisionsNext operation. */
-export type GetRevisionsNextResponse = AppConfigurationClientGetRevisionsNextHeaders &
-  KeyValueListResult;
+export type GetRevisionsNextResponse =
+  AppConfigurationClientGetRevisionsNextHeaders & KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientOptionalParams

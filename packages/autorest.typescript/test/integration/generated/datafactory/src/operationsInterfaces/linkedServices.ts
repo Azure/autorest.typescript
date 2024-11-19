@@ -6,7 +6,7 @@ import {
   LinkedServicesCreateOrUpdateResponse,
   LinkedServicesGetOptionalParams,
   LinkedServicesGetResponse,
-  LinkedServicesDeleteOptionalParams
+  LinkedServicesDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -21,7 +21,7 @@ export interface LinkedServices {
   listByFactory(
     resourceGroupName: string,
     factoryName: string,
-    options?: LinkedServicesListByFactoryOptionalParams
+    options?: LinkedServicesListByFactoryOptionalParams,
   ): PagedAsyncIterableIterator<LinkedServiceResource>;
   /**
    * Creates or updates a linked service.
@@ -36,7 +36,7 @@ export interface LinkedServices {
     factoryName: string,
     linkedServiceName: string,
     linkedService: LinkedServiceResource,
-    options?: LinkedServicesCreateOrUpdateOptionalParams
+    options?: LinkedServicesCreateOrUpdateOptionalParams,
   ): Promise<LinkedServicesCreateOrUpdateResponse>;
   /**
    * Gets a linked service.
@@ -49,7 +49,7 @@ export interface LinkedServices {
     resourceGroupName: string,
     factoryName: string,
     linkedServiceName: string,
-    options?: LinkedServicesGetOptionalParams
+    options?: LinkedServicesGetOptionalParams,
   ): Promise<LinkedServicesGetResponse>;
   /**
    * Deletes a linked service.
@@ -62,6 +62,6 @@ export interface LinkedServices {
     resourceGroupName: string,
     factoryName: string,
     linkedServiceName: string,
-    options?: LinkedServicesDeleteOptionalParams
+    options?: LinkedServicesDeleteOptionalParams,
   ): Promise<void>;
 }

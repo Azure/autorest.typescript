@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   QueryTroubleshootingParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,15 +29,16 @@ async function getTroubleshootResult() {
   const networkWatcherName = "nw1";
   const parameters: QueryTroubleshootingParameters = {
     targetResourceId:
-      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
+      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkWatchers.beginGetTroubleshootingResultAndWait(
-    resourceGroupName,
-    networkWatcherName,
-    parameters
-  );
+  const result =
+    await client.networkWatchers.beginGetTroubleshootingResultAndWait(
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+    );
   console.log(result);
 }
 

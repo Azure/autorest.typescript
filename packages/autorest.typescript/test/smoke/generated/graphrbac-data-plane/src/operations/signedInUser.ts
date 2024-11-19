@@ -20,7 +20,7 @@ import {
   SignedInUserListOwnedObjectsResponse,
   SignedInUserListOwnedObjectsNextResponse,
   SignedInUserGetOptionalParams,
-  SignedInUserGetResponse
+  SignedInUserGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -41,7 +41,7 @@ export class SignedInUserImpl implements SignedInUser {
    * @param options The options parameters.
    */
   public listOwnedObjects(
-    options?: SignedInUserListOwnedObjectsOptionalParams
+    options?: SignedInUserListOwnedObjectsOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsPagingAll(options);
     return {
@@ -56,13 +56,13 @@ export class SignedInUserImpl implements SignedInUser {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listOwnedObjectsPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listOwnedObjectsPagingPage(
     options?: SignedInUserListOwnedObjectsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: SignedInUserListOwnedObjectsResponse;
     let continuationToken = settings?.continuationToken;
@@ -83,7 +83,7 @@ export class SignedInUserImpl implements SignedInUser {
   }
 
   private async *listOwnedObjectsPagingAll(
-    options?: SignedInUserListOwnedObjectsOptionalParams
+    options?: SignedInUserListOwnedObjectsOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnedObjectsPagingPage(options)) {
       yield* page;
@@ -97,7 +97,7 @@ export class SignedInUserImpl implements SignedInUser {
    */
   public listOwnedObjectsNext(
     nextLink: string,
-    options?: SignedInUserListOwnedObjectsNextOptionalParams
+    options?: SignedInUserListOwnedObjectsNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnedObjectsNextPagingAll(nextLink, options);
     return {
@@ -112,14 +112,14 @@ export class SignedInUserImpl implements SignedInUser {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listOwnedObjectsNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listOwnedObjectsNextPagingPage(
     nextLink: string,
     options?: SignedInUserListOwnedObjectsNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: SignedInUserListOwnedObjectsNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -141,11 +141,11 @@ export class SignedInUserImpl implements SignedInUser {
 
   private async *listOwnedObjectsNextPagingAll(
     nextLink: string,
-    options?: SignedInUserListOwnedObjectsNextOptionalParams
+    options?: SignedInUserListOwnedObjectsNextOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnedObjectsNextPagingPage(
       nextLink,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -156,7 +156,7 @@ export class SignedInUserImpl implements SignedInUser {
    * @param options The options parameters.
    */
   get(
-    options?: SignedInUserGetOptionalParams
+    options?: SignedInUserGetOptionalParams,
   ): Promise<SignedInUserGetResponse> {
     return this.client.sendOperationRequest({ options }, getOperationSpec);
   }
@@ -166,11 +166,11 @@ export class SignedInUserImpl implements SignedInUser {
    * @param options The options parameters.
    */
   private _listOwnedObjects(
-    options?: SignedInUserListOwnedObjectsOptionalParams
+    options?: SignedInUserListOwnedObjectsOptionalParams,
   ): Promise<SignedInUserListOwnedObjectsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listOwnedObjectsOperationSpec
+      listOwnedObjectsOperationSpec,
     );
   }
 
@@ -181,11 +181,11 @@ export class SignedInUserImpl implements SignedInUser {
    */
   private _listOwnedObjectsNext(
     nextLink: string,
-    options?: SignedInUserListOwnedObjectsNextOptionalParams
+    options?: SignedInUserListOwnedObjectsNextOptionalParams,
   ): Promise<SignedInUserListOwnedObjectsNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listOwnedObjectsNextOperationSpec
+      listOwnedObjectsNextOperationSpec,
     );
   }
 }
@@ -197,46 +197,46 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.User
+      bodyMapper: Mappers.User,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOwnedObjectsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/me/ownedObjects",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOwnedObjectsNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualApplianceSite,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,8 +31,8 @@ async function createNetworkVirtualApplianceSite() {
   const parameters: VirtualApplianceSite = {
     addressPrefix: "192.168.1.0/24",
     o365Policy: {
-      breakOutCategories: { default: true, allow: true, optimize: true }
-    }
+      breakOutCategories: { default: true, allow: true, optimize: true },
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createNetworkVirtualApplianceSite() {
     resourceGroupName,
     networkVirtualApplianceName,
     siteName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

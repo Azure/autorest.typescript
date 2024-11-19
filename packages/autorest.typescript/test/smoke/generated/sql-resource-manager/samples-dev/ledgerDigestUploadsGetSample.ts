@@ -33,7 +33,7 @@ async function getsTheCurrentLedgerDigestUploadConfigurationForADatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    ledgerDigestUploads
+    ledgerDigestUploads,
   );
   console.log(result);
 }

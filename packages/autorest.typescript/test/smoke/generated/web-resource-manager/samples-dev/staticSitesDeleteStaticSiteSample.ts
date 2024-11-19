@@ -29,7 +29,7 @@ async function deleteAStaticSite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.beginDeleteStaticSiteAndWait(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

@@ -31,7 +31,7 @@ async function vpnSiteLinkConnectionList() {
   for await (let item of client.vpnLinkConnections.listByVpnConnection(
     resourceGroupName,
     gatewayName,
-    connectionName
+    connectionName,
   )) {
     resArray.push(item);
   }

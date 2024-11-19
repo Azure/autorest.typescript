@@ -1,7 +1,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   CertificateBodyDescription as CertificateBodyDescriptionMapper,
@@ -9,7 +9,7 @@ import {
   ProvisioningServiceDescription as ProvisioningServiceDescriptionMapper,
   TagsResource as TagsResourceMapper,
   OperationInputs as OperationInputsMapper,
-  PrivateEndpointConnection as PrivateEndpointConnectionMapper
+  PrivateEndpointConnection as PrivateEndpointConnectionMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -19,9 +19,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -30,10 +30,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -43,9 +43,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const nextLink: OperationURLParameter = {
@@ -54,10 +54,10 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const certificateName: OperationURLParameter = {
@@ -66,9 +66,9 @@ export const certificateName: OperationURLParameter = {
     serializedName: "certificateName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -77,9 +77,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -88,9 +88,9 @@ export const resourceGroupName: OperationURLParameter = {
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const provisioningServiceName: OperationURLParameter = {
@@ -99,9 +99,9 @@ export const provisioningServiceName: OperationURLParameter = {
     serializedName: "provisioningServiceName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const ifMatch: OperationParameter = {
@@ -109,9 +109,9 @@ export const ifMatch: OperationParameter = {
   mapper: {
     serializedName: "If-Match",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -121,28 +121,28 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateDescription: OperationParameter = {
   parameterPath: "certificateDescription",
-  mapper: CertificateBodyDescriptionMapper
+  mapper: CertificateBodyDescriptionMapper,
 };
 
 export const certificateName1: OperationURLParameter = {
   parameterPath: "certificateName",
   mapper: {
     constraints: {
-      MaxLength: 256
+      MaxLength: 256,
     },
     serializedName: "certificateName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const ifMatch1: OperationParameter = {
@@ -151,9 +151,9 @@ export const ifMatch1: OperationParameter = {
     serializedName: "If-Match",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateName11: OperationQueryParameter = {
@@ -161,9 +161,9 @@ export const certificateName11: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.name",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateRawBytes: OperationQueryParameter = {
@@ -171,9 +171,9 @@ export const certificateRawBytes: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.rawBytes",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const certificateIsVerified: OperationQueryParameter = {
@@ -181,9 +181,9 @@ export const certificateIsVerified: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.isVerified",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const certificatePurpose: OperationQueryParameter = {
@@ -191,9 +191,9 @@ export const certificatePurpose: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.purpose",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateCreated: OperationQueryParameter = {
@@ -201,9 +201,9 @@ export const certificateCreated: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.created",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const certificateLastUpdated: OperationQueryParameter = {
@@ -211,9 +211,9 @@ export const certificateLastUpdated: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.lastUpdated",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const certificateHasPrivateKey: OperationQueryParameter = {
@@ -221,9 +221,9 @@ export const certificateHasPrivateKey: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.hasPrivateKey",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const certificateNonce: OperationQueryParameter = {
@@ -231,24 +231,24 @@ export const certificateNonce: OperationQueryParameter = {
   mapper: {
     serializedName: "certificate.nonce",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const request: OperationParameter = {
   parameterPath: "request",
-  mapper: VerificationCodeRequestMapper
+  mapper: VerificationCodeRequestMapper,
 };
 
 export const iotDpsDescription: OperationParameter = {
   parameterPath: "iotDpsDescription",
-  mapper: ProvisioningServiceDescriptionMapper
+  mapper: ProvisioningServiceDescriptionMapper,
 };
 
 export const provisioningServiceTags: OperationParameter = {
   parameterPath: "provisioningServiceTags",
-  mapper: TagsResourceMapper
+  mapper: TagsResourceMapper,
 };
 
 export const operationId: OperationURLParameter = {
@@ -257,9 +257,9 @@ export const operationId: OperationURLParameter = {
     serializedName: "operationId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const asyncinfo: OperationQueryParameter = {
@@ -269,14 +269,14 @@ export const asyncinfo: OperationQueryParameter = {
     serializedName: "asyncinfo",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const argumentsParam: OperationParameter = {
   parameterPath: "argumentsParam",
-  mapper: OperationInputsMapper
+  mapper: OperationInputsMapper,
 };
 
 export const keyName: OperationURLParameter = {
@@ -285,9 +285,9 @@ export const keyName: OperationURLParameter = {
     serializedName: "keyName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceName: OperationURLParameter = {
@@ -296,9 +296,9 @@ export const resourceName: OperationURLParameter = {
     serializedName: "resourceName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const groupId: OperationURLParameter = {
@@ -307,9 +307,9 @@ export const groupId: OperationURLParameter = {
     serializedName: "groupId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const privateEndpointConnectionName: OperationURLParameter = {
@@ -318,12 +318,12 @@ export const privateEndpointConnectionName: OperationURLParameter = {
     serializedName: "privateEndpointConnectionName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const privateEndpointConnection: OperationParameter = {
   parameterPath: "privateEndpointConnection",
-  mapper: PrivateEndpointConnectionMapper
+  mapper: PrivateEndpointConnectionMapper,
 };

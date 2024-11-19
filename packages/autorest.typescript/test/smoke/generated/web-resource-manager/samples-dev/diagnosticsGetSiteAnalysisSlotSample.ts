@@ -36,7 +36,7 @@ async function getAppAnalysis() {
     siteName,
     diagnosticCategory,
     analysisName,
-    slot
+    slot,
   );
   console.log(result);
 }
@@ -63,7 +63,7 @@ async function getAppSlotAnalysis() {
     siteName,
     diagnosticCategory,
     analysisName,
-    slot
+    slot,
   );
   console.log(result);
 }

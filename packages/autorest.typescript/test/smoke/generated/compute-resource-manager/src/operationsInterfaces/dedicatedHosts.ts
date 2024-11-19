@@ -18,7 +18,7 @@ import {
   DedicatedHostsUpdateResponse,
   DedicatedHostsDeleteOptionalParams,
   DedicatedHostsGetOptionalParams,
-  DedicatedHostsGetResponse
+  DedicatedHostsGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +34,7 @@ export interface DedicatedHosts {
   listByHostGroup(
     resourceGroupName: string,
     hostGroupName: string,
-    options?: DedicatedHostsListByHostGroupOptionalParams
+    options?: DedicatedHostsListByHostGroupOptionalParams,
   ): PagedAsyncIterableIterator<DedicatedHost>;
   /**
    * Create or update a dedicated host .
@@ -49,7 +49,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHost,
-    options?: DedicatedHostsCreateOrUpdateOptionalParams
+    options?: DedicatedHostsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DedicatedHostsCreateOrUpdateResponse>,
@@ -69,7 +69,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHost,
-    options?: DedicatedHostsCreateOrUpdateOptionalParams
+    options?: DedicatedHostsCreateOrUpdateOptionalParams,
   ): Promise<DedicatedHostsCreateOrUpdateResponse>;
   /**
    * Update an dedicated host .
@@ -84,7 +84,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHostUpdate,
-    options?: DedicatedHostsUpdateOptionalParams
+    options?: DedicatedHostsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DedicatedHostsUpdateResponse>,
@@ -104,7 +104,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     parameters: DedicatedHostUpdate,
-    options?: DedicatedHostsUpdateOptionalParams
+    options?: DedicatedHostsUpdateOptionalParams,
   ): Promise<DedicatedHostsUpdateResponse>;
   /**
    * Delete a dedicated host.
@@ -117,7 +117,7 @@ export interface DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: DedicatedHostsDeleteOptionalParams
+    options?: DedicatedHostsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete a dedicated host.
@@ -130,7 +130,7 @@ export interface DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: DedicatedHostsDeleteOptionalParams
+    options?: DedicatedHostsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Retrieves information about a dedicated host.
@@ -143,6 +143,6 @@ export interface DedicatedHosts {
     resourceGroupName: string,
     hostGroupName: string,
     hostName: string,
-    options?: DedicatedHostsGetOptionalParams
+    options?: DedicatedHostsGetOptionalParams,
   ): Promise<DedicatedHostsGetResponse>;
 }

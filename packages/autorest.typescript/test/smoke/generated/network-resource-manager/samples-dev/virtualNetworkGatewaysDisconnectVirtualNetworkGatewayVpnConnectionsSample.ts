@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   P2SVpnConnectionRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,15 +28,16 @@ async function disconnectVpnConnectionsFromVirtualNetworkGateway() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vpn-gateway-test";
   const virtualNetworkGatewayName = "vpngateway";
   const request: P2SVpnConnectionRequest = {
-    vpnConnectionIds: ["vpnconnId1", "vpnconnId2"]
+    vpnConnectionIds: ["vpnconnId1", "vpnconnId2"],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginDisconnectVirtualNetworkGatewayVpnConnectionsAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    request
-  );
+  const result =
+    await client.virtualNetworkGateways.beginDisconnectVirtualNetworkGatewayVpnConnectionsAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      request,
+    );
   console.log(result);
 }
 

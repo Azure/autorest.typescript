@@ -27,7 +27,7 @@ import {
   StringGetBase64UrlEncodedResponse,
   StringPutBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedOptionalParams,
-  StringGetNullBase64UrlEncodedResponse
+  StringGetNullBase64UrlEncodedResponse,
 } from "../models";
 
 /** Interface representing a StringOperations. */
@@ -37,7 +37,7 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getNull(
-    options?: StringGetNullOptionalParams
+    options?: StringGetNullOptionalParams,
   ): Promise<StringGetNullResponse>;
   /**
    * Set string value null
@@ -49,7 +49,7 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: StringGetEmptyOptionalParams
+    options?: StringGetEmptyOptionalParams,
   ): Promise<StringGetEmptyResponse>;
   /**
    * Set string value empty ''
@@ -61,7 +61,7 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getMbcs(
-    options?: StringGetMbcsOptionalParams
+    options?: StringGetMbcsOptionalParams,
   ): Promise<StringGetMbcsResponse>;
   /**
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
@@ -74,7 +74,7 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getWhitespace(
-    options?: StringGetWhitespaceOptionalParams
+    options?: StringGetWhitespaceOptionalParams,
   ): Promise<StringGetWhitespaceResponse>;
   /**
    * Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all
@@ -87,21 +87,21 @@ export interface StringOperations {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: StringGetNotProvidedOptionalParams
+    options?: StringGetNotProvidedOptionalParams,
   ): Promise<StringGetNotProvidedResponse>;
   /**
    * Get value that is base64 encoded
    * @param options The options parameters.
    */
   getBase64Encoded(
-    options?: StringGetBase64EncodedOptionalParams
+    options?: StringGetBase64EncodedOptionalParams,
   ): Promise<StringGetBase64EncodedResponse>;
   /**
    * Get value that is base64url encoded
    * @param options The options parameters.
    */
   getBase64UrlEncoded(
-    options?: StringGetBase64UrlEncodedOptionalParams
+    options?: StringGetBase64UrlEncodedOptionalParams,
   ): Promise<StringGetBase64UrlEncodedResponse>;
   /**
    * Put value that is base64url encoded
@@ -110,13 +110,13 @@ export interface StringOperations {
    */
   putBase64UrlEncoded(
     stringBody: Uint8Array,
-    options?: StringPutBase64UrlEncodedOptionalParams
+    options?: StringPutBase64UrlEncodedOptionalParams,
   ): Promise<void>;
   /**
    * Get null value that is expected to be base64url encoded
    * @param options The options parameters.
    */
   getNullBase64UrlEncoded(
-    options?: StringGetNullBase64UrlEncodedOptionalParams
+    options?: StringGetNullBase64UrlEncodedOptionalParams,
   ): Promise<StringGetNullBase64UrlEncodedResponse>;
 }

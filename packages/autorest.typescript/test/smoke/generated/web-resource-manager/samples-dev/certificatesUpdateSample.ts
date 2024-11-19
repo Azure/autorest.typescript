@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CertificatePatchResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function patchCertificate() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg123";
   const name = "testc6282";
   const certificateEnvelope: CertificatePatchResource = {
-    password: "<password>"
+    password: "<password>",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.certificates.update(
     resourceGroupName,
     name,
-    certificateEnvelope
+    certificateEnvelope,
   );
   console.log(result);
 }

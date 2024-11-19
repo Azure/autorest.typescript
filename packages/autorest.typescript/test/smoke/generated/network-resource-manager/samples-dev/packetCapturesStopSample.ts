@@ -30,7 +30,7 @@ async function stopPacketCapture() {
   const result = await client.packetCaptures.beginStopAndWait(
     resourceGroupName,
     networkWatcherName,
-    packetCaptureName
+    packetCaptureName,
   );
   console.log(result);
 }

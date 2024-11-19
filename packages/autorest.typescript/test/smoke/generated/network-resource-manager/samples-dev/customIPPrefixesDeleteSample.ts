@@ -28,7 +28,7 @@ async function deleteCustomIPPrefix() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.customIPPrefixes.beginDeleteAndWait(
     resourceGroupName,
-    customIpPrefixName
+    customIpPrefixName,
   );
   console.log(result);
 }

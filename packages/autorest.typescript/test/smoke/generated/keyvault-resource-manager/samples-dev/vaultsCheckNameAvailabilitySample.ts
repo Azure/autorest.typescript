@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VaultCheckNameAvailabilityParameters,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,7 +28,7 @@ async function validateAVaultName() {
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const vaultName: VaultCheckNameAvailabilityParameters = {
     name: "sample-vault",
-    type: "Microsoft.KeyVault/vaults"
+    type: "Microsoft.KeyVault/vaults",
   };
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);

@@ -30,7 +30,7 @@ async function getAllBuildsForAStaticSite() {
   const resArray = new Array();
   for await (let item of client.staticSites.listStaticSiteBuilds(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

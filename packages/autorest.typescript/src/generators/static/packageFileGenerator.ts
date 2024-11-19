@@ -87,15 +87,12 @@ function regularAutorestPackage(
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
+      ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
-      ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
-      ...(useCoreV2 &&
-        coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.6.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.12.0"
+        "@azure/core-rest-pipeline": "^1.14.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.0.0"
@@ -109,8 +106,8 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      mkdirp: "^2.1.2",
-      typescript: "~5.2.0",
+      mkdirp: "^3.0.1",
+      typescript: "~5.6.2",
       "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
@@ -147,7 +144,6 @@ function regularAutorestPackage(
       pack: "npm pack 2>&1",
       "extract-api": "api-extractor run --local",
       lint: "echo skipped",
-      audit: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
@@ -184,8 +180,13 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["rimraf"];
+    delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
-      "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+      "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
+    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
+    packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
+    packageInfo.scripts["update-snippets"] = "echo skipped";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -197,12 +198,12 @@ function regularAutorestPackage(
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["esm"] = "^3.2.18";
+    packageInfo.devDependencies["tsx"] = "^4.7.1";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";

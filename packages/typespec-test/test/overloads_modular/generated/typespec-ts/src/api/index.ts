@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
+  FooOperationsGetAvatarAsPngOptionalParams,
+  FooOperationsGetAvatarAsJpegOptionalParams,
+} from "./options.js";
+export {
   createWidgetManager,
-  WidgetManagerClientOptions,
   WidgetManagerContext,
-} from "./WidgetManagerContext.js";
+  WidgetManagerClientOptionalParams,
+} from "./widgetManagerContext.js";

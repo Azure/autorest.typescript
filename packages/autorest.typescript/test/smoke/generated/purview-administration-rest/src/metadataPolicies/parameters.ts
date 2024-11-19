@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import { MetadataPolicy } from "./models";
@@ -28,7 +28,8 @@ export interface MetadataPolicyUpdateMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type MetadataPolicyUpdateParameters = MetadataPolicyUpdateMediaTypesParam &
-  MetadataPolicyUpdateBodyParam &
-  RequestParameters;
+export type MetadataPolicyUpdateParameters =
+  MetadataPolicyUpdateMediaTypesParam &
+    MetadataPolicyUpdateBodyParam &
+    RequestParameters;
 export type MetadataPolicyGetParameters = RequestParameters;

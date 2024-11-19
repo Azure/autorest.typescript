@@ -2,12 +2,36 @@
 // Licensed under the MIT License.
 
 import {
+  ArraySchema,
+  DictionarySchema,
+  NameType,
+  ObjectSchema,
+  Schema,
+  SchemaContext,
+  isArraySchema,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import {
+  BooleanLiteral,
   Discriminator,
+  EncodeData,
   Enum,
   EnumMember,
+  Model,
+  ModelProperty,
+  NoTarget,
+  NumericLiteral,
+  Program,
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
+  getEncode,
   getFormat,
   getFriendlyName,
   getMaxLength,
@@ -19,83 +43,74 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
+  isArrayModelType,
   isNeverType,
+  isNullType,
   isNumericType,
+  isRecordModelType,
   isSecret,
   isStringType,
   isTemplateDeclaration,
+  isType,
   isUnknownType,
-  Model,
-  ModelProperty,
-  Type,
-  Union,
-  isNullType,
-  Scalar,
-  UnionVariant,
-  getProjectedName,
-  StringLiteral,
-  BooleanLiteral,
-  NoTarget,
-  NumericLiteral,
-  Service,
-  listServices,
-  Program,
-  getEncode,
-  EncodeData,
-  isRecordModelType,
-  isArrayModelType
+  listServices
 } from "@typespec/compiler";
-import { reportDiagnostic } from "../lib.js";
+import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
-  ArraySchema,
-  DictionarySchema,
-  NameType,
-  normalizeName,
-  ObjectSchema,
-  Schema,
-  SchemaContext
-} from "@azure-tools/rlc-common";
-import { getResourceOperation } from "@typespec/rest";
-import {
+  HttpOperation,
+  HttpOperationParameters,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isStatusCode,
-  HttpOperation
+  isStatusCode
 } from "@typespec/http";
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
-import { extractPagedMetadataNested } from "./operationUtil.js";
+import {
+  KnownMediaType,
+  hasMediaType,
+  isMediaTypeMultipartFormData
+} from "./mediaTypes.js";
 import {
   getDefaultApiVersion,
+  getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { SdkContext } from "./interfaces.js";
+import {
+  getPagedResult,
+  getUnionAsEnum
+} from "@azure-tools/typespec-azure-core";
+
 import { getModelNamespaceName } from "./namespaceUtils.js";
+import { reportDiagnostic } from "../lib.js";
+
+export const BINARY_TYPE_UNION =
+  "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+
+export const BINARY_AND_FILE_TYPE_UNION = `${BINARY_TYPE_UNION} | File`;
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
     ? "Uint8Array"
-    : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+    : BINARY_TYPE_UNION;
 }
 
 export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
   const schema = getSchemaForType(dpgContext, type);
-  return isByteType(schema) || isByteUnion(schema);
+  return isBytesType(schema) || isBytesUnion(schema);
 }
 
-function isByteType(schema: any) {
+function isBytesType(schema: any) {
   return (
     schema.type === "string" &&
-    (schema.format === "byte" || schema.format === "binary")
+    (schema.format === "bytes" || schema.format === "binary")
   );
 }
 
-function isByteUnion(schema: any) {
+function isBytesUnion(schema: any) {
   if (!Array.isArray(schema.enum)) {
     return false;
   }
   for (const ele of schema.enum) {
-    if (isByteType(ele)) {
+    if (isBytesType(ele)) {
       return true;
     }
   }
@@ -112,12 +127,12 @@ function refineByteType(schema: any) {
 }
 
 export function enrichBinaryTypeInBody(schema: any) {
-  if (isByteType(schema)) {
+  if (isBytesType(schema)) {
     refineByteType(schema);
-  } else if (isByteUnion(schema)) {
+  } else if (isBytesUnion(schema)) {
     const inputType: string[] = [];
     for (const item of schema.enum) {
-      if (isByteType(item)) {
+      if (isBytesType(item)) {
         refineByteType(item);
       }
       // ignore the string type for input because we already have it in bytes union
@@ -134,12 +149,11 @@ export function enrichBinaryTypeInBody(schema: any) {
 export function getSchemaForType(
   dpgContext: SdkContext,
   typeInput: Type,
-  usage?: SchemaContext[],
-  needRef: boolean = false,
-  relevantProperty?: ModelProperty
+  options?: GetSchemaOptions
 ) {
   const program = dpgContext.program;
-  const type = getEffectiveModelFromType(program, typeInput);
+  const { usage } = options ?? {};
+  const type = getEffectiveModelFromType(dpgContext, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
@@ -150,8 +164,13 @@ export function getSchemaForType(
     }
     return builtinType;
   }
+
+  if (type.kind === "ModelProperty") {
+    return getSchemaForType(dpgContext, type.type, options);
+  }
+
   if (type.kind === "Model") {
-    const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
+    const schema = getSchemaForModel(dpgContext, type, options) as any;
     if (isAnonymousObjectSchema(schema)) {
       if (Object.keys(schema.properties ?? {}).length === 0) {
         // Handle empty anonymous model as Record
@@ -170,7 +189,10 @@ export function getSchemaForType(
           });
         }
         schema.typeName = getModelInlineSigniture(schema, {
-          usage: [SchemaContext.Input]
+          usage: [SchemaContext.Input],
+          multipart:
+            options?.isRequestBody &&
+            isMediaTypeMultipartFormData(options?.mediaTypes ?? [])
         });
         schema.type = "object";
       }
@@ -186,18 +208,18 @@ export function getSchemaForType(
     schema.usage = usage;
     return schema;
   } else if (type.kind === "Union") {
-    return getSchemaForUnion(dpgContext, type, usage);
+    return getSchemaForUnion(dpgContext, type, options);
   } else if (type.kind === "UnionVariant") {
-    return getSchemaForUnionVariant(dpgContext, type, usage);
+    return getSchemaForUnionVariant(dpgContext, type, options);
   } else if (type.kind === "Enum") {
-    return getSchemaForEnum(program, type);
+    return getSchemaForEnum(dpgContext, type);
   } else if (type.kind === "Scalar") {
-    return getSchemaForScalar(dpgContext, type, relevantProperty);
+    return getSchemaForScalar(dpgContext, type, options);
   } else if (type.kind === "EnumMember") {
     return getSchemaForEnumMember(program, type);
   }
   if (isUnknownType(type)) {
-    const returnType: any = { type: "unknown" };
+    const returnType: any = { name: "unknown", type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
       returnType.outputTypeName = "any";
       returnType.typeName = "unknown";
@@ -205,36 +227,45 @@ export function getSchemaForType(
     return returnType;
   }
   if (isNeverType(type)) {
-    return { type: "never" };
+    return { name: "never", type: "never" };
   }
   if (isNullType(type)) {
-    return { type: "null" };
+    return { name: "null", type: "null" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
-    format: { type: type.kind },
+    format: {
+      type: type.kind,
+      property: options?.relevantProperty?.name ?? ""
+    },
     target: type
   });
   return undefined;
 }
-export function getEffectiveModelFromType(program: Program, type: Type): Type {
-  if (type.kind === "Model") {
-    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+export function getEffectiveModelFromType(
+  context: SdkContext,
+  type: Type
+): Type {
+  /**
+   * If type is an anonymous model, tries to find a named model that has the same
+   * set of properties when non-schema properties are excluded.
+   */
+  if (type.kind === "Model" && type.name === "") {
+    const effective = getEffectiveModelType(context.program, type, (property) =>
+      isSchemaProperty(context.program, property)
+    );
     if (effective.name) {
       return effective;
     }
   }
-  function isSchemaProperty(property: ModelProperty) {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeInfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
-  }
   return type;
 }
-export function includeDerivedModel(model: Model): boolean {
+export function includeDerivedModel(
+  model: Model,
+  needRef: boolean = false
+): boolean {
   return (
+    !needRef &&
     !isTemplateDeclaration(model) &&
     (!model.templateMapper ||
       !model.templateMapper.args ||
@@ -268,78 +299,149 @@ function applyEncoding(
 
 function mergeFormatAndEncoding(
   format: string | undefined,
-  encoding: string,
+  encoding: string | undefined,
   encodeAsFormat: string | undefined
-): string {
+): string | undefined {
   switch (format) {
     case undefined:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
     case "date-time":
       return encoding;
     case "duration":
     default:
-      return encodeAsFormat ?? encoding;
+      return encodeAsFormat ?? encoding ?? format;
   }
 }
 
 function getSchemaForScalar(
   dpgContext: SdkContext,
   scalar: Scalar,
-  relevantProperty?: ModelProperty
+  options?: GetSchemaOptions
 ) {
-  let result = {};
+  let result = {} as any;
   const isStd = dpgContext.program.checker.isStdType(scalar);
+  const {
+    relevantProperty,
+    isRequestBody,
+    isParentRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   if (isStd) {
-    result = getSchemaForStdScalar(
-      dpgContext.program,
-      scalar,
+    result = getSchemaForStdScalar(dpgContext.program, scalar, {
       relevantProperty
-    );
+    });
   } else if (scalar.baseScalar) {
     result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
-  const withDecorators = applyEncoding(
-    dpgContext,
-    scalar,
-    result
-      ? applyIntrinsicDecorators(dpgContext.program, scalar, result)
-      : undefined
-  );
-  if (withDecorators.type === "string" && withDecorators.format === "binary") {
-    withDecorators.typeName =
-      "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
-    withDecorators.outputTypeName = "Uint8Array";
+
+  if (isBinaryAsRequestBody()) {
+    // bytes in the body of application/octet-stream is the raw binary payload/file
+    result.typeName = BINARY_TYPE_UNION;
+    result.outputTypeName = "Uint8Array";
+    return result;
+  } else if (isFormDataBytesInRequestBody()) {
+    // bytes inside a multipart part (for now) is assumed to be file
+    result.typeName = BINARY_AND_FILE_TYPE_UNION;
+    result.outputTypeName = "Uint8Array";
+    return result;
+  } else {
+    // for other cases we would trust the @encode decorator if not present we would treat it as string
+    const withDecorators = applyEncoding(
+      dpgContext,
+      scalar,
+      result
+        ? applyIntrinsicDecorators(dpgContext.program, scalar, result)
+        : undefined
+    );
+    if (
+      withDecorators.type === "string" &&
+      withDecorators.format === "binary"
+    ) {
+      withDecorators.typeName = BINARY_TYPE_UNION;
+      withDecorators.outputTypeName = "Uint8Array";
+    }
+    return withDecorators;
   }
-  return withDecorators;
+
+  function isBinaryAsRequestBody() {
+    return (
+      hasMediaType(KnownMediaType.Binary, contentTypes) &&
+      isRequestBody &&
+      isBytesType(result)
+    );
+  }
+
+  function isFormDataBytesInRequestBody() {
+    return (
+      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+      isParentRequestBody &&
+      isBytesType(result)
+    );
+  }
 }
 
 function getSchemaForUnion(
   dpgContext: SdkContext,
   union: Union,
-  usage?: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
+  const [asEnum, _] = getUnionAsEnum(union);
   const variants = Array.from(union.variants.values());
+
   const values = [];
+  let namedUnionMember = false;
 
-  for (const variant of variants) {
-    // We already know it's not a model type
-    values.push(getSchemaForType(dpgContext, variant.type, usage));
+  if (asEnum?.open && asEnum.members.size > 0) {
+    for (const [_, member] of asEnum.members.entries()) {
+      const memberType = getSchemaForType(dpgContext, member.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(memberType);
+      if (memberType.name) {
+        namedUnionMember = true;
+      }
+    }
+  } else {
+    for (const variant of variants) {
+      // We already know it's not a model type
+      const variantType = getSchemaForType(dpgContext, variant.type, {
+        ...options,
+        needRef: false
+      });
+      values.push(variantType);
+      if (variantType.typeName) {
+        namedUnionMember = true;
+      }
+    }
   }
-
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    const unionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
-      .join(" | ");
-    const outputUnionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
-      .join(" | ");
+    const unionAlias =
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
+    const outputUnionAlias =
+      asEnum?.open && asEnum?.kind && !namedUnionMember
+        ? asEnum.kind + (asEnum.nullable ? " | null" : "")
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     if (!union.expression) {
-      schema.name = union.name;
+      const unionName = union.name
+        ? normalizeName(union.name, NameType.Interface)
+        : undefined;
+      schema.name = unionName;
       schema.type = "object";
-      schema.typeName = union.name;
-      schema.outputTypeName = union.name + "Output";
+      schema.typeName = unionName;
+      schema.outputTypeName = unionName + "Output";
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     } else if (union.expression && !union.name) {
@@ -349,6 +451,9 @@ function getSchemaForUnion(
     } else {
       schema.type = "union";
       schema.typeName = union.name ?? unionAlias;
+      schema.outputTypeName = union.name
+        ? union.name + "Output"
+        : outputUnionAlias;
     }
   }
 
@@ -358,9 +463,9 @@ function getSchemaForUnion(
 function getSchemaForUnionVariant(
   dpgContext: SdkContext,
   variant: UnionVariant,
-  usage?: SchemaContext[]
+  options?: GetSchemaOptions
 ): Schema {
-  return getSchemaForType(dpgContext, variant, usage);
+  return getSchemaForType(dpgContext, variant.type, options);
 }
 
 // An openapi "string" can be defined in several different ways in typespec
@@ -374,6 +479,9 @@ function isOasString(type: Type): boolean {
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
     return type.options.every((o) => isOasString(o));
+  } else if (type.kind === "UnionVariant") {
+    // A union variant where the type is an OasString
+    return isOasString(type.type);
   }
   return false;
 }
@@ -383,7 +491,8 @@ function isStringLiteral(type: Type): boolean {
     type.kind === "String" ||
     (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
     (type.kind === "EnumMember" &&
-      typeof (type.value ?? type.name) === "string")
+      typeof (type.value ?? type.name) === "string") ||
+    (type.kind === "UnionVariant" && type.type.kind === "String")
   );
 }
 
@@ -398,6 +507,8 @@ function getStringValues(type: Type): string[] {
         .filter((x) => x !== undefined);
     case "EnumMember":
       return typeof type.value !== "number" ? [type.value ?? type.name] : [];
+    case "UnionVariant":
+      return getStringValues(type.type);
     default:
       return [];
   }
@@ -477,43 +588,32 @@ function validateDiscriminator(
   }
   return retVals.every((v) => v);
 }
-/**
- * A "schema property" here is a property that is emitted to OpenAPI schema.
- *
- * Headers, parameters, status codes are not schema properties even they are
- * represented as properties in typespec.
- */
-function isSchemaProperty(program: Program, property: ModelProperty) {
-  const headerInfo = getHeaderFieldName(program, property);
-  const queryInfo = getQueryParamName(program, property);
-  const pathInfo = getPathParamName(program, property);
-  const statusCodeinfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
 
 function getSchemaForModel(
   dpgContext: SdkContext,
   model: Model,
-  usage?: SchemaContext[],
-  needRef?: boolean
+  options?: GetSchemaOptions
 ) {
+  const {
+    usage,
+    needRef,
+    isRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
-    return getSchemaForArrayModel(dpgContext, model, usage!);
+    return getSchemaForArrayModel(dpgContext, model, options);
   }
 
   const program = dpgContext.program;
   const overridedModelName =
-    getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
+    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
-    overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
       .map((nsName) => {
         return normalizeName(nsName, NameType.Interface);
       })
       .join("") + model.name;
-  let name = dpgContext.rlcOptions?.enableModelNamespace
-    ? fullNamespaceName
-    : model.name;
+  let name = model.name;
   if (
     !overridedModelName &&
     model.templateMapper &&
@@ -521,9 +621,12 @@ function getSchemaForModel(
     model.templateMapper.args.length > 0 &&
     getPagedResult(program, model)
   ) {
+    const templateTypes = model.templateMapper.args.filter((it) =>
+      isType(it)
+    ) as Type[];
     name =
-      model.templateMapper.args
-        .map((it) => {
+      templateTypes
+        .map((it: Type) => {
           switch (it.kind) {
             case "Model":
               return it.name;
@@ -536,10 +639,21 @@ function getSchemaForModel(
         .join("") + "List";
   }
 
+  const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
+
+  const isCoreModel = isAzureCoreErrorType(program, model);
   const modelSchema: ObjectSchema = {
-    name: overridedModelName ?? name,
+    name: isCoreModel
+      ? name
+      : overridedModelName !== name
+        ? overridedModelName
+        : dpgContext.rlcOptions?.enableModelNamespace
+          ? fullNamespaceName
+          : name,
     type: "object",
-    description: getDoc(program, model) ?? ""
+    isMultipartBody,
+    description: getDoc(program, model) ?? "",
+    fromCore: isCoreModel
   };
   // normalized the output name
   modelSchema.name = normalizeName(
@@ -548,51 +662,22 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
-  if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
-    return getSchemaForRecordModel(dpgContext, model, usage!);
+  if (model.name === "Record" && isRecordModelType(program, model)) {
+    return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;
   if (usage && usage.includes(SchemaContext.Output)) {
     modelSchema.outputTypeName = modelSchema.name + "Output";
   }
 
-  if (isAzureCoreErrorType(model)) {
-    modelSchema.fromCore = true;
-  }
-
-  if (getPagedResult(program, model)) {
-    const paged = extractPagedMetadataNested(program, model);
-    if (paged && paged.itemsProperty) {
-      const items = paged.itemsProperty as unknown as Model;
-      if (items && items.templateMapper && items.templateMapper.args) {
-        const templateName = items.templateMapper.args
-          ?.map((it) => {
-            switch (it.kind) {
-              case "Model":
-                return it.name;
-              case "String":
-                return it.value;
-              default:
-                return "";
-            }
-          })
-          .join("");
-        if (
-          paged.itemsProperty.name === "value" &&
-          paged.nextLinkProperty?.name === "nextLink"
-        ) {
-          modelSchema.alias = `Paged<${templateName}>`;
-          modelSchema.outputAlias = `Paged<${templateName}Output>`;
-        }
-      }
-    }
-  }
   modelSchema.properties = {};
-
-  const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
   // getSchemaOrRef on all children to push them into components.schemas
   const discriminator = getDiscriminator(program, model);
+  // should respect needRef for derived models unless there's a discriminator in base model
+  const derivedModels = model.derivedModels.filter((dm) => {
+    return includeDerivedModel(dm, discriminator ? false : needRef);
+  });
   if (derivedModels.length > 0) {
     modelSchema.children = {
       all: [],
@@ -600,16 +685,17 @@ function getSchemaForModel(
     };
   }
   for (const child of derivedModels) {
-    const childSchema = getSchemaForType(dpgContext, child, usage, true);
+    const childSchema = getSchemaForType(dpgContext, child, {
+      usage,
+      needRef: true
+    });
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(
-          dpgContext,
-          prop.type,
+        const propSchema = getSchemaForType(dpgContext, prop.type, {
           usage,
-          !isAnonymousModelType(prop.type),
-          prop
-        );
+          needRef: !isAnonymousModelType(prop.type),
+          relevantProperty: prop
+        });
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
@@ -634,10 +720,9 @@ function getSchemaForModel(
     modelSchema.discriminator = {
       name: propertyName,
       type: "string",
-      required: true,
       description: `Discriminator property for ${model.name}.`
     };
-
+    modelSchema.discriminatorValue = propertyName;
     modelSchema.isPolyParent = true;
   }
 
@@ -647,24 +732,25 @@ function getSchemaForModel(
   }
   if (isRecordModelType(program, model)) {
     modelSchema.parents = {
-      all: [getSchemaForRecordModel(dpgContext, model, usage!)],
-      immediate: [getSchemaForRecordModel(dpgContext, model, usage!)]
+      all: [getSchemaForRecordModel(dpgContext, model, { usage })],
+      immediate: [getSchemaForRecordModel(dpgContext, model, { usage })]
     };
   }
   for (const [propName, prop] of model.properties) {
-    const restApiName = getProjectedName(program, prop, "json");
+    const restApiName = getWireName(dpgContext, prop);
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
 
-    const propSchema = getSchemaForType(
-      dpgContext,
-      prop.type,
+    const propSchema = getSchemaForType(dpgContext, prop.type, {
       usage,
-      isAnonymousModelType(prop.type) ? false : true,
-      prop
-    );
+      needRef: isAnonymousModelType(prop.type) ? false : true,
+      relevantProperty: prop,
+      isParentRequestBody: isRequestBody,
+      isRequestBody: false,
+      mediaTypes: contentTypes
+    });
 
     if (propSchema === undefined) {
       continue;
@@ -672,21 +758,34 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    if (name === '"propBoolean"') {
+      prop;
+    }
     const propertyDescription = getFormattedPropertyDoc(
       program,
       prop,
       propSchema
     );
     propSchema.usage = usage;
-    // Use the description from ModelProperty not devired from Model Type
+    // Use the description from ModelProperty not derived from Model Type
     propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
-    if (model.baseModel) {
-      const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (propertyName && name === `"${propertyName}"`) {
-        continue;
-      }
+    const { propertyName } = getDiscriminator(program, model) || {};
+    if (
+      propertyName &&
+      name === `"${propertyName}"` &&
+      modelSchema.discriminator
+    ) {
+      modelSchema.discriminator = {
+        ...modelSchema.discriminator,
+        ...{
+          type: propSchema.typeName ?? propSchema.type,
+          typeName: propSchema.typeName,
+          outputTypeName: propSchema.outputTypeName
+        }
+      };
+      continue;
     }
 
     // Apply decorators on the property to the type's schema
@@ -720,10 +819,24 @@ function getSchemaForModel(
   }
 
   if (model.baseModel) {
-    modelSchema.parents = {
-      all: [getSchemaForType(dpgContext, model.baseModel, usage, true)],
-      immediate: [getSchemaForType(dpgContext, model.baseModel, usage, true)]
-    };
+    if (modelSchema.parents === undefined) {
+      modelSchema.parents = {
+        all: [],
+        immediate: []
+      };
+    }
+    modelSchema.parents.all?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
+    modelSchema.parents.immediate?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
   }
   return modelSchema;
 }
@@ -759,11 +872,6 @@ function applyIntrinsicDecorators(
 
   if (isString && !target?.documentation && docStr) {
     newTarget.description = docStr;
-  }
-
-  const restApiName = getProjectedName(program, type, "json");
-  if (restApiName) {
-    newTarget.name = restApiName;
   }
 
   const summaryStr = getSummary(program, type);
@@ -815,35 +923,48 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
   return { type, description: getDoc(program, e), isConstant: true };
 }
 
-function getSchemaForEnum(program: Program, e: Enum) {
+function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
-  const type = enumMemberType(e.members.values().next().value);
-  for (const option of e.members.values()) {
+  const memberValues = Array.from(e.members.values());
+  if (memberValues.length === 0) {
+    return {};
+  }
+  const type = enumMemberType(memberValues[0]!);
+  for (const option of memberValues) {
     if (type !== enumMemberType(option)) {
-      reportDiagnostic(program, { code: "union-unsupported", target: e });
+      reportDiagnostic(dpgContext.program, {
+        code: "union-unsupported",
+        target: e
+      });
       continue;
     }
 
-    values.push(option.value ?? option.name);
+    values.push(getSchemaForType(dpgContext, option));
   }
 
-  const schema: any = { type, description: getDoc(program, e) };
+  const schema: any = {
+    type: "object",
+    name: e.name,
+    typeName: normalizeName(e.name, NameType.Interface),
+    outputTypeName: normalizeName(e.name, NameType.Interface) + "Output",
+    description: getDoc(dpgContext.program, e),
+    memberType: type
+  };
+
   if (values.length > 0) {
     schema.enum = values;
-    schema.type =
-      type === "string"
-        ? values.map((item) => `"${item}"`).join("|")
-        : values.map((item) => `${item}`).join("|");
-    if (!isFixed(program, e)) {
-      schema.name = "string";
-      schema.typeName = "string";
-    }
+    const unionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
+      .join(" | ");
+    schema.alias = unionAlias;
+    schema.outputAlias = unionAlias;
   }
   return schema;
 }
 
 function enumMemberType(member: EnumMember) {
-  if (typeof member.value === "number") {
+  const memberValue = member.value;
+  if (typeof memberValue === "number") {
     return "number";
   }
   return "string";
@@ -854,10 +975,15 @@ function enumMemberType(member: EnumMember) {
 function getSchemaForArrayModel(
   dpgContext: SdkContext,
   type: Model,
-  usage: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
+  const {
+    usage,
+    isParentRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
@@ -865,12 +991,19 @@ function getSchemaForArrayModel(
   if (isArrayModelType(program, type)) {
     schema = {
       type: "array",
-      items: getSchemaForType(
-        dpgContext,
-        indexer.value!,
+      items: getSchemaForType(dpgContext, indexer.value!, {
         usage,
-        !isAnonymousModelType(indexer.value!)
-      ),
+        isRequestBody: false,
+        mediaTypes: contentTypes,
+        // special handling for array in formdata
+        isParentRequestBody: hasMediaType(
+          KnownMediaType.MultipartFormData,
+          contentTypes
+        )
+          ? isParentRequestBody
+          : false,
+        needRef: !isAnonymousModelType(indexer.value!)
+      }),
       description: getDoc(program, type)
     };
     if (
@@ -888,15 +1021,21 @@ function getSchemaForArrayModel(
       if (schema.items.typeName) {
         if (schema.items.type === "dictionary") {
           schema.typeName = `${schema.items.typeName}[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (
-          schema.items.format === "binary" &&
+          schema.items.typeName.includes(BINARY_TYPE_UNION) &&
           schema.items.type === "string"
         ) {
-          schema.typeName = `Array<${schema.items.typeName}>`;
+          schema.typeName = `(${schema.items.typeName})[]`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
           }
         } else if (isAnonymousObjectSchema(schema.items)) {
           schema.typeName = `${schema.items.typeName}[]`;
@@ -937,21 +1076,20 @@ function getSchemaForArrayModel(
 function getSchemaForRecordModel(
   dpgContext: SdkContext,
   type: Model,
-  usage: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
+  const { usage } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
   }
   if (isRecordModelType(program, type)) {
-    const valueType = getSchemaForType(
-      dpgContext,
-      indexer?.value,
+    const valueType = getSchemaForType(dpgContext, indexer?.value, {
       usage,
-      !isAnonymousModelType(indexer.value)
-    );
+      needRef: !isAnonymousModelType(indexer.value)
+    });
     schema = {
       type: "dictionary",
       additionalProperties: valueType,
@@ -994,11 +1132,24 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
+export function isObjectOrDictType(schema: Schema) {
+  return (
+    (schema.type === "object" &&
+      (schema as ObjectSchema).properties !== undefined) ||
+    schema.type === "dictionary"
+  );
+}
+
+export function isArrayType(schema: Schema) {
+  return schema.type === "array";
+}
+
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
-  relevantProperty?: ModelProperty
+  options?: GetSchemaOptions
 ) {
+  const { relevantProperty } = options ?? {};
   if (!program.checker.isStdType(type)) {
     return undefined;
   }
@@ -1020,7 +1171,7 @@ function getSchemaForStdScalar(
   const description = getSummary(program, type);
   switch (name) {
     case "bytes":
-      return { type: "string", format: "byte", description };
+      return { type: "string", format: "bytes", description };
     case "integer":
       return applyIntrinsicDecorators(program, type, {
         type: "number"
@@ -1048,7 +1199,7 @@ function getSchemaForStdScalar(
     case "safeint":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "int64"
+        format: "safeint"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
@@ -1073,17 +1224,43 @@ function getSchemaForStdScalar(
     case "float64":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "double"
+        format: "float64"
       });
     case "float32":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "float"
+        format: "float32"
       });
     case "float":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
+      });
+    case "decimal":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? NoTarget
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal",
+        description: "decimal"
+      });
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? NoTarget
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal128",
+        description: "decimal128"
       });
     case "string":
       if (format === "binary") {
@@ -1091,8 +1268,7 @@ function getSchemaForStdScalar(
           type: "string",
           format: "binary",
           description,
-          typeName:
-            "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream",
+          typeName: BINARY_TYPE_UNION,
           outputTypeName: "Uint8Array"
         };
       }
@@ -1106,7 +1282,7 @@ function getSchemaForStdScalar(
         type: "string",
         format,
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "utcDateTime":
@@ -1130,7 +1306,7 @@ function getSchemaForStdScalar(
         type: "string",
         format: "time",
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "duration":
@@ -1175,7 +1351,7 @@ export function getImportedModelName(
     case "array": {
       const ret = new Set<string>();
       [(schema as ArraySchema).items]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1202,7 +1378,7 @@ export function getImportedModelName(
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1212,7 +1388,7 @@ export function getImportedModelName(
     case "union": {
       const ret = new Set<string>();
       ((schema as Schema).enum ?? [])
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1228,13 +1404,48 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
   return usage &&
     usage.includes(SchemaContext.Input) &&
     !usage.includes(SchemaContext.Output)
-    ? schema.typeName ?? schema.name
-    : schema.outputTypeName ?? schema.typeName ?? schema.name;
+    ? (schema.typeName ?? schema.name)
+    : (schema.outputTypeName ?? schema.typeName ?? schema.name);
 }
 
 function getEnumStringDescription(type: any) {
-  if (type.name === "string" && type.enum && type.enum.length > 0) {
-    return `Possible values: ${type.enum.join(", ")}`;
+  if (
+    (type.name === "string" ||
+      type.alias === "string" ||
+      type.name === "number" ||
+      type.alias === "number" ||
+      type.name === "boolean" ||
+      type.alias === "boolean") &&
+    type.enum &&
+    type.enum.length > 0
+  ) {
+    return `Possible values: ${type.enum
+      .map((e: Schema) => {
+        return e.type;
+      })
+      .join(", ")}`;
+  }
+  return undefined;
+}
+
+function getBinaryDescription(type: any) {
+  if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
+    return `Value may contain any sequence of octets`;
+  }
+  return undefined;
+}
+
+function getDecimalDescription(type: any) {
+  if (
+    (type.format === "decimal" || type.format === "decimal128") &&
+    type.type === "number"
+  ) {
+    return `NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+   `;
   }
   return undefined;
 }
@@ -1246,53 +1457,18 @@ export function getFormattedPropertyDoc(
   sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, type);
-  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  const enhancedDocFromType =
+    getEnumStringDescription(schemaType) ??
+    getDecimalDescription(schemaType) ??
+    getBinaryDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
   return propertyDoc ?? enhancedDocFromType;
 }
 
-export function getBodyType(
-  program: Program,
-  route: HttpOperation
-): Type | undefined {
-  let bodyModel = route.parameters.bodyType;
-  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-    const resourceType = getResourceOperation(
-      program,
-      route.operation
-    )?.resourceType;
-    if (resourceType && route.responses && route.responses.length > 0) {
-      const resp = route.responses[0];
-      if (resp && resp.responses && resp.responses.length > 0) {
-        const responseBody = resp.responses[0]?.body;
-        if (responseBody) {
-          const bodyTypeInResponse = getEffectiveModelFromType(
-            program,
-
-            responseBody.type
-          );
-          // response body type is reosurce type, and request body type (if templated) contains resource type
-          if (
-            bodyTypeInResponse === resourceType &&
-            bodyModel.templateMapper &&
-            bodyModel.templateMapper.args &&
-            bodyModel.templateMapper.args.some((it) => {
-              return it.kind === "Model" || it.kind === "Union"
-                ? it === bodyTypeInResponse
-                : false;
-            })
-          ) {
-            bodyModel = resourceType;
-          }
-        }
-      }
-    }
-    if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
-    }
-  }
+export function getBodyType(route: HttpOperation): Type | undefined {
+  const bodyModel = route.parameters.body?.type;
   return bodyModel;
 }
 
@@ -1321,7 +1497,7 @@ export function predictDefaultValue(
   if (!serviceNamespace) {
     return;
   }
-  const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
+  const defaultApiVersion = getDefaultApiVersionString(dpgContext);
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion;
   }
@@ -1362,31 +1538,16 @@ export function getDefaultService(program: Program): Service | undefined {
   }
   return services[0];
 }
-
 /**
- * Get the default api-version both from versioned and service decorator
- * TODO: remember to switch to TCGC once the fix is done
- * @param program
- * @param dpgContext
- * @returns default api-version value
+ * Return the default api version from the program; undefined if no default
  */
-export function getEnrichedDefaultApiVersion(
-  program: Program,
+export function getDefaultApiVersionString(
   dpgContext: SdkContext
 ): string | undefined {
-  const serviceNamespace = getDefaultService(program);
-  if (!serviceNamespace) {
-    return;
-  }
-
-  const defaultVersion = getDefaultApiVersion(
-    dpgContext,
-    serviceNamespace!.type
-  );
-  if (defaultVersion) {
-    return defaultVersion.value;
-  }
-  return serviceNamespace.version;
+  const program = dpgContext.program;
+  return getDefaultService(program)
+    ? getDefaultApiVersion(dpgContext, getDefaultService(program)!.type)?.value
+    : undefined;
 }
 
 export function trimUsage(model: any) {
@@ -1404,16 +1565,62 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
-export function isAzureCoreErrorType(t?: Type): boolean {
-  if (
-    t?.kind !== "Model" ||
-    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
-  )
+export function buildCoreTypeInfo(program: Program, t?: Type) {
+  return isAzureCoreErrorType(program, t)
+    ? "ErrorType"
+    : isAzureCoreLroType(t)
+      ? "LroType"
+      : undefined;
+}
+
+export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
+  if (!t || t.kind !== "Model") {
     return false;
-  const namespaces = ".Azure.Core.Foundations".split(".");
+  }
+  const effective = getEffectiveSchemaType(program, t);
+  if (
+    !["error", "errorresponse", "innererror"].includes(
+      effective.name.toLowerCase()
+    )
+  ) {
+    return false;
+  }
+  return isAzureCoreFoundationsNamespace(effective);
+}
+
+// Check if the type in the Azure.Core.Foundations has an LRO type in core
+export function isAzureCoreLroType(t?: Type): boolean {
+  if (
+    !(
+      ((t?.kind === "Enum" || t?.kind === "Union") &&
+        ["operationstate"].includes((t.name ?? "").toLowerCase())) ||
+      (t?.kind === "Model" &&
+        ["resourceoperationstatus", "operationstatus"].includes(
+          t.name.toLowerCase()
+        ))
+    )
+  ) {
+    return false;
+  }
+  return (
+    isAzureCoreFoundationsNamespace(t) ||
+    isAzureCoreFoundationsNamespace(t, true)
+  );
+}
+
+function isAzureCoreFoundationsNamespace(
+  t?: Type,
+  skipFoundation: boolean = false
+): boolean {
+  const namespaces = (
+    skipFoundation ? ".Azure.Core" : ".Azure.Core.Foundations"
+  ).split(".");
   while (
     namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    (t?.kind === "Model" ||
+      t?.kind === "Enum" ||
+      t?.kind === "Union" ||
+      t?.kind === "Namespace") &&
     t.namespace?.name === namespaces.pop()
   ) {
     t = t.namespace;
@@ -1442,9 +1649,21 @@ export function isAnonymousModelType(type: Type) {
  */
 export function getModelInlineSigniture(
   schema: ObjectSchema,
-  options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
+  options: {
+    importedModels?: Set<string>;
+    usage?: SchemaContext[];
+    multipart?: boolean;
+  } = {}
 ) {
-  let schemaSigiture = `{`;
+  if (options.multipart) {
+    return getMultipartInlineSignature(
+      schema,
+      options.importedModels,
+      options.usage
+    );
+  }
+
+  let schemaSignature = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
     const propTypeName = getTypeName(propType, options.usage);
@@ -1461,9 +1680,104 @@ export function getModelInlineSigniture(
       }
     }
     const isOptional = propType.required ? "" : "?";
-    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
+    schemaSignature += `${propName}${isOptional}: ${propTypeName};`;
   }
 
-  schemaSigiture += `}`;
-  return schemaSigiture;
+  schemaSignature += `}`;
+  return schemaSignature;
+}
+
+function getMultipartInlineSignature(
+  schema: ObjectSchema,
+  importedModels?: Set<string>,
+  usage?: SchemaContext[]
+): string {
+  const types = Object.entries(schema.properties ?? {})
+    .map(([propertyName, property]) => {
+      let schema: Schema;
+
+      // Flatten arrays for file uploads
+      if (
+        isArraySchema(property) &&
+        property.items &&
+        getTypeName(property.items, usage).includes(BINARY_AND_FILE_TYPE_UNION)
+      ) {
+        schema = property.items;
+      } else {
+        schema = property;
+      }
+
+      const typeName = getTypeName(schema, usage);
+      if (!typeName) {
+        return undefined;
+      }
+
+      const importNames = getImportedModelName(schema);
+      if (importedModels && importNames) {
+        importNames.forEach(importedModels.add.bind(importedModels));
+      }
+
+      if (typeName.includes("File")) {
+        return `{ name: ${propertyName}, body: ${typeName}, filename?: string, contentType?: string }`;
+      } else {
+        return `{ name: ${propertyName}, body: ${typeName} }`;
+      }
+    })
+    .filter(Boolean)
+    .join(" | ");
+
+  return `FormData | Array<${types}>`;
+}
+
+/**
+ * A "schema property" here is a property that is emitted to OpenAPI schema.
+ *
+ * Headers, parameters, status codes are not schema properties even they are
+ * represented as properties in typespec.
+ */
+export function isSchemaProperty(
+  program: Program,
+  property: ModelProperty
+): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeInfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+}
+
+export function getEffectiveSchemaType(
+  program: Program,
+  type: Model | Union
+): Model {
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
+  if (type.kind === "Union") {
+    const nonNullOptions = [...type.variants.values()]
+      .map((x) => x.type)
+      .filter((t) => !isNullType(t));
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
+      effective = getEffectiveModelType(program, nonNullOptions[0]);
+    }
+    return type as any;
+  } else if (type.name === "") {
+    effective = getEffectiveModelType(program, type, (property) =>
+      isSchemaProperty(program, property)
+    );
+  }
+
+  if (effective?.name) {
+    return effective;
+  }
+  return type as Model;
+}
+
+export function isBodyRequired(parameter: HttpOperationParameters) {
+  return parameter.body?.type && parameter.body?.property?.optional !== true
+    ? true
+    : false;
 }

@@ -9,31 +9,31 @@ export const SecretSetParameters: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       contentType: {
         serializedName: "contentType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       secretAttributes: {
         serializedName: "attributes",
         type: {
           name: "Composite",
-          className: "SecretAttributes"
-        }
-      }
-    }
-  }
+          className: "SecretAttributes",
+        },
+      },
+    },
+  },
 };
 
 export const Attributes: coreClient.CompositeMapper = {
@@ -44,37 +44,37 @@ export const Attributes: coreClient.CompositeMapper = {
       enabled: {
         serializedName: "enabled",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       notBefore: {
         serializedName: "nbf",
         type: {
-          name: "UnixTime"
-        }
+          name: "UnixTime",
+        },
       },
       expires: {
         serializedName: "exp",
         type: {
-          name: "UnixTime"
-        }
+          name: "UnixTime",
+        },
       },
       created: {
         serializedName: "created",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
+          name: "UnixTime",
+        },
       },
       updated: {
         serializedName: "updated",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
-      }
-    }
-  }
+          name: "UnixTime",
+        },
+      },
+    },
+  },
 };
 
 export const SecretBundle: coreClient.CompositeMapper = {
@@ -85,51 +85,51 @@ export const SecretBundle: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       id: {
         serializedName: "id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentType: {
         serializedName: "contentType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       attributes: {
         serializedName: "attributes",
         type: {
           name: "Composite",
-          className: "SecretAttributes"
-        }
+          className: "SecretAttributes",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       kid: {
         serializedName: "kid",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       managed: {
         serializedName: "managed",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const KeyVaultError: coreClient.CompositeMapper = {
@@ -141,11 +141,11 @@ export const KeyVaultError: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "ErrorModel"
-        }
-      }
-    }
-  }
+          className: "ErrorModel",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -157,25 +157,25 @@ export const ErrorModel: coreClient.CompositeMapper = {
         serializedName: "code",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       innerError: {
         serializedName: "innererror",
         type: {
           name: "Composite",
-          className: "ErrorModel"
-        }
-      }
-    }
-  }
+          className: "ErrorModel",
+        },
+      },
+    },
+  },
 };
 
 export const SecretUpdateParameters: coreClient.CompositeMapper = {
@@ -186,25 +186,25 @@ export const SecretUpdateParameters: coreClient.CompositeMapper = {
       contentType: {
         serializedName: "contentType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       secretAttributes: {
         serializedName: "attributes",
         type: {
           name: "Composite",
-          className: "SecretAttributes"
-        }
+          className: "SecretAttributes",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "String" } },
+        },
+      },
+    },
+  },
 };
 
 export const SecretListResult: coreClient.CompositeMapper = {
@@ -220,20 +220,20 @@ export const SecretListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "SecretItem"
-            }
-          }
-        }
+              className: "SecretItem",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SecretItem: coreClient.CompositeMapper = {
@@ -244,38 +244,38 @@ export const SecretItem: coreClient.CompositeMapper = {
       id: {
         serializedName: "id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       attributes: {
         serializedName: "attributes",
         type: {
           name: "Composite",
-          className: "SecretAttributes"
-        }
+          className: "SecretAttributes",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       contentType: {
         serializedName: "contentType",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       managed: {
         serializedName: "managed",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const DeletedSecretListResult: coreClient.CompositeMapper = {
@@ -291,20 +291,20 @@ export const DeletedSecretListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DeletedSecretItem"
-            }
-          }
-        }
+              className: "DeletedSecretItem",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BackupSecretResult: coreClient.CompositeMapper = {
@@ -316,11 +316,11 @@ export const BackupSecretResult: coreClient.CompositeMapper = {
         serializedName: "value",
         readOnly: true,
         type: {
-          name: "Base64Url"
-        }
-      }
-    }
-  }
+          name: "Base64Url",
+        },
+      },
+    },
+  },
 };
 
 export const SecretRestoreParameters: coreClient.CompositeMapper = {
@@ -332,11 +332,11 @@ export const SecretRestoreParameters: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Base64Url"
-        }
-      }
-    }
-  }
+          name: "Base64Url",
+        },
+      },
+    },
+  },
 };
 
 export const SecretProperties: coreClient.CompositeMapper = {
@@ -347,11 +347,11 @@ export const SecretProperties: coreClient.CompositeMapper = {
       contentType: {
         serializedName: "contentType",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SecretAttributes: coreClient.CompositeMapper = {
@@ -364,18 +364,18 @@ export const SecretAttributes: coreClient.CompositeMapper = {
         serializedName: "recoverableDays",
         readOnly: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       recoveryLevel: {
         serializedName: "recoveryLevel",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DeletedSecretBundle: coreClient.CompositeMapper = {
@@ -387,25 +387,25 @@ export const DeletedSecretBundle: coreClient.CompositeMapper = {
       recoveryId: {
         serializedName: "recoveryId",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       scheduledPurgeDate: {
         serializedName: "scheduledPurgeDate",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
+          name: "UnixTime",
+        },
       },
       deletedDate: {
         serializedName: "deletedDate",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
-      }
-    }
-  }
+          name: "UnixTime",
+        },
+      },
+    },
+  },
 };
 
 export const DeletedSecretItem: coreClient.CompositeMapper = {
@@ -417,23 +417,23 @@ export const DeletedSecretItem: coreClient.CompositeMapper = {
       recoveryId: {
         serializedName: "recoveryId",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       scheduledPurgeDate: {
         serializedName: "scheduledPurgeDate",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
+          name: "UnixTime",
+        },
       },
       deletedDate: {
         serializedName: "deletedDate",
         readOnly: true,
         type: {
-          name: "UnixTime"
-        }
-      }
-    }
-  }
+          name: "UnixTime",
+        },
+      },
+    },
+  },
 };

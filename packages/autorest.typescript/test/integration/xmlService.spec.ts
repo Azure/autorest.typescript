@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 import { should } from "chai";
-import { AbortController, AbortError } from "@azure/abort-controller";
+import { AbortError } from "@azure/abort-controller";
 import {
   XmlServiceClient,
   Slideshow,

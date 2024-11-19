@@ -140,7 +140,7 @@ export enum KnownFlattenedProductPropertiesProvisioningStateValues {
   /** Deleted */
   Deleted = "Deleted",
   /** OK */
-  OK = "OK"
+  OK = "OK",
 }
 
 /**

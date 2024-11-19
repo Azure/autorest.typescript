@@ -30,7 +30,7 @@ async function getImmutabilityPolicy() {
   const result = await client.blobContainers.getImmutabilityPolicy(
     resourceGroupName,
     accountName,
-    containerName
+    containerName,
   );
   console.log(result);
 }

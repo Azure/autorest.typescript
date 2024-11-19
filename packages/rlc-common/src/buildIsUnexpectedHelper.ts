@@ -32,70 +32,70 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     for (const [methodName, methodDetails] of Object.entries(details.methods)) {
       const originalMethod = methodName.toUpperCase();
       const operation = `${originalMethod} ${path}`;
-      const success = methodDetails[0].successStatus;
-      map = { ...map, ...{ [operation]: success } };
+      const successCodeSet = new Set<string>(map.operation ?? []);
+      for (const detail of methodDetails) {
+        detail.successStatus.forEach(successCodeSet.add, successCodeSet);
+        // LROs may call the same path but with GET
+        // to get the operation status.
+        if (
+          detail.operationHelperDetail?.lroDetails?.isLongRunning &&
+          originalMethod !== "GET"
+        ) {
+          const operation = `GET ${path}`;
+          const logicalSuccessCodes = detail.operationHelperDetail?.lroDetails
+            ?.logicalResponseTypes?.success
+            ? ["200"]
+            : [];
+          const initialSuccessCodes =
+            (pathDictionary[path].methods["get"] &&
+              pathDictionary[path].methods["get"][0]?.successStatus) ??
+            detail.successStatus;
+          map = {
+            ...map,
+            ...{
+              [operation]: Array.from(
+                new Set(logicalSuccessCodes.concat(initialSuccessCodes))
+              )
+            }
+          };
+        }
 
-      // LROs may call the same path but with GET
-      // to get the operation status.
-      if (
-        methodDetails[0].operationHelperDetail?.lroDetails?.isLongRunning &&
-        originalMethod !== "GET"
-      ) {
-        const operation = `GET ${path}`;
-        const logicalSuccessCodes = methodDetails[0].operationHelperDetail
-          ?.lroDetails?.logicalResponseTypes?.success
-          ? ["200"]
-          : [];
-        const initalSuccessCodes =
-          (pathDictionary[path].methods["get"] &&
-            pathDictionary[path].methods["get"][0]?.successStatus) ??
-          methodDetails[0].successStatus;
-        const successSet = new Set(
-          logicalSuccessCodes.concat(initalSuccessCodes)
-        );
+        const successTypes = [...detail.responseTypes.success];
+        const errorTypes = [...detail.responseTypes.error];
 
-        map = { ...map, ...{ [operation]: Array.from(successSet) } };
+        if (
+          model.helperDetails?.clientLroOverload &&
+          detail.operationHelperDetail?.lroDetails?.logicalResponseTypes
+            ?.success
+        ) {
+          successTypes.push(
+            ...(detail.operationHelperDetail.lroDetails.logicalResponseTypes
+              .success ?? [])
+          );
+        }
+
+        if (!successTypes.length || !errorTypes.length || !errorTypes[0]) {
+          continue;
+        }
+
+        successTypes.forEach((t) => allResponseTypes.add(t));
+        errorTypes.forEach((t) => {
+          allResponseTypes.add(t);
+          allErrorTypes.add(t);
+        });
+
+        overloads.push({
+          isExported: true,
+          parameters: [
+            {
+              name: "response",
+              type: [...successTypes, ...errorTypes].join(" | ")
+            }
+          ],
+          returnType: `response is ${errorTypes[0]}`
+        });
       }
-
-      const successTypes = [
-        ...methodDetails.flatMap((md) => md.responseTypes.success)
-      ];
-      const errorTypes = methodDetails[0].responseTypes.error;
-
-      if (
-        model.helperDetails?.clientLroOverload &&
-        methodDetails[0].operationHelperDetail?.lroDetails?.logicalResponseTypes
-          ?.success
-      ) {
-        successTypes.push(
-          ...methodDetails.flatMap(
-            (md) =>
-              md.operationHelperDetail?.lroDetails?.logicalResponseTypes
-                ?.success ?? ""
-          )
-        );
-      }
-
-      if (!successTypes.length || !errorTypes.length || !errorTypes[0]) {
-        continue;
-      }
-
-      successTypes.forEach((t) => allResponseTypes.add(t));
-      errorTypes.forEach((t) => {
-        allResponseTypes.add(t);
-        allErrorTypes.add(t);
-      });
-
-      overloads.push({
-        isExported: true,
-        parameters: [
-          {
-            name: "response",
-            type: [...successTypes, ...errorTypes].join(" | ")
-          }
-        ],
-        returnType: `response is ${errorTypes[0]}`
-      });
+      map = { ...map, ...{ [operation]: Array.from(successCodeSet) } };
     }
   }
   isErrorHelper.addImportDeclaration({

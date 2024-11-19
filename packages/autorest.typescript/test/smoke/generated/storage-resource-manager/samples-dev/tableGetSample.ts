@@ -30,7 +30,7 @@ async function tableOperationGet() {
   const result = await client.tableOperations.get(
     resourceGroupName,
     accountName,
-    tableName
+    tableName,
   );
   console.log(result);
 }

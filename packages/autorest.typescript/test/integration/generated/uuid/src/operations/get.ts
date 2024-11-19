@@ -30,11 +30,11 @@ export class GetImpl implements Get {
    */
   uuid(
     testUuid: string,
-    options?: GetUuidOptionalParams
+    options?: GetUuidOptionalParams,
   ): Promise<GetUuidResponse> {
     return this.client.sendOperationRequest(
       { testUuid, options },
-      uuidOperationSpec
+      uuidOperationSpec,
     );
   }
 }
@@ -46,10 +46,10 @@ const uuidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.testUuid],
-  serializer
+  serializer,
 };

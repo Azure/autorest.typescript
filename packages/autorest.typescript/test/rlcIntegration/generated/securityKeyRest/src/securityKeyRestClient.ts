@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { SecurityKeyRestClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface SecurityKeyRestClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `SecurityKeyRestClient`
@@ -13,9 +16,10 @@ import { SecurityKeyRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: SecurityKeyRestClientOptions = {},
 ): SecurityKeyRestClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-security-key-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -24,28 +28,34 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key"
-    }
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key",
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as SecurityKeyRestClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return {
     ...client,
     ...{
       head: (options) => {
         return client.path("/securitykey").head(options);
-      }
-    }
+      },
+    },
   };
 }

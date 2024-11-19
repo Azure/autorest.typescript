@@ -9,7 +9,7 @@
 import {
   IdpsQueryObject,
   FirewallPolicyIdpsSignaturesListOptionalParams,
-  FirewallPolicyIdpsSignaturesListResponse
+  FirewallPolicyIdpsSignaturesListResponse,
 } from "../models";
 
 /** Interface representing a FirewallPolicyIdpsSignatures. */
@@ -25,6 +25,6 @@ export interface FirewallPolicyIdpsSignatures {
     resourceGroupName: string,
     firewallPolicyName: string,
     parameters: IdpsQueryObject,
-    options?: FirewallPolicyIdpsSignaturesListOptionalParams
+    options?: FirewallPolicyIdpsSignaturesListOptionalParams,
   ): Promise<FirewallPolicyIdpsSignaturesListResponse>;
 }

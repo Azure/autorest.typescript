@@ -46,7 +46,7 @@ import {
   QueriesArrayStringNoCollectionFormatEmptyOptionalParams,
   QueriesArrayStringSsvValidOptionalParams,
   QueriesArrayStringTsvValidOptionalParams,
-  QueriesArrayStringPipesValidOptionalParams
+  QueriesArrayStringPipesValidOptionalParams,
 } from "../models";
 
 /** Class containing Queries operations. */
@@ -68,7 +68,7 @@ export class QueriesImpl implements Queries {
   getBooleanTrue(options?: QueriesGetBooleanTrueOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanTrueOperationSpec
+      getBooleanTrueOperationSpec,
     );
   }
 
@@ -77,11 +77,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: QueriesGetBooleanFalseOptionalParams
+    options?: QueriesGetBooleanFalseOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanFalseOperationSpec
+      getBooleanFalseOperationSpec,
     );
   }
 
@@ -92,7 +92,7 @@ export class QueriesImpl implements Queries {
   getBooleanNull(options?: QueriesGetBooleanNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanNullOperationSpec
+      getBooleanNullOperationSpec,
     );
   }
 
@@ -101,11 +101,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: QueriesGetIntOneMillionOptionalParams
+    options?: QueriesGetIntOneMillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getIntOneMillionOperationSpec
+      getIntOneMillionOperationSpec,
     );
   }
 
@@ -114,11 +114,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: QueriesGetIntNegativeOneMillionOptionalParams
+    options?: QueriesGetIntNegativeOneMillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getIntNegativeOneMillionOperationSpec
+      getIntNegativeOneMillionOperationSpec,
     );
   }
 
@@ -129,7 +129,7 @@ export class QueriesImpl implements Queries {
   getIntNull(options?: QueriesGetIntNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getIntNullOperationSpec
+      getIntNullOperationSpec,
     );
   }
 
@@ -140,7 +140,7 @@ export class QueriesImpl implements Queries {
   getTenBillion(options?: QueriesGetTenBillionOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getTenBillionOperationSpec
+      getTenBillionOperationSpec,
     );
   }
 
@@ -149,11 +149,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: QueriesGetNegativeTenBillionOptionalParams
+    options?: QueriesGetNegativeTenBillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getNegativeTenBillionOperationSpec
+      getNegativeTenBillionOperationSpec,
     );
   }
 
@@ -164,7 +164,7 @@ export class QueriesImpl implements Queries {
   getLongNull(options?: QueriesGetLongNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getLongNullOperationSpec
+      getLongNullOperationSpec,
     );
   }
 
@@ -173,11 +173,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: QueriesFloatScientificPositiveOptionalParams
+    options?: QueriesFloatScientificPositiveOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      floatScientificPositiveOperationSpec
+      floatScientificPositiveOperationSpec,
     );
   }
 
@@ -186,11 +186,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: QueriesFloatScientificNegativeOptionalParams
+    options?: QueriesFloatScientificNegativeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      floatScientificNegativeOperationSpec
+      floatScientificNegativeOperationSpec,
     );
   }
 
@@ -201,7 +201,7 @@ export class QueriesImpl implements Queries {
   floatNull(options?: QueriesFloatNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      floatNullOperationSpec
+      floatNullOperationSpec,
     );
   }
 
@@ -210,11 +210,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: QueriesDoubleDecimalPositiveOptionalParams
+    options?: QueriesDoubleDecimalPositiveOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      doubleDecimalPositiveOperationSpec
+      doubleDecimalPositiveOperationSpec,
     );
   }
 
@@ -223,11 +223,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: QueriesDoubleDecimalNegativeOptionalParams
+    options?: QueriesDoubleDecimalNegativeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      doubleDecimalNegativeOperationSpec
+      doubleDecimalNegativeOperationSpec,
     );
   }
 
@@ -238,7 +238,7 @@ export class QueriesImpl implements Queries {
   doubleNull(options?: QueriesDoubleNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      doubleNullOperationSpec
+      doubleNullOperationSpec,
     );
   }
 
@@ -249,7 +249,7 @@ export class QueriesImpl implements Queries {
   stringUnicode(options?: QueriesStringUnicodeOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringUnicodeOperationSpec
+      stringUnicodeOperationSpec,
     );
   }
 
@@ -258,11 +258,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: QueriesStringUrlEncodedOptionalParams
+    options?: QueriesStringUrlEncodedOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringUrlEncodedOperationSpec
+      stringUrlEncodedOperationSpec,
     );
   }
 
@@ -273,7 +273,7 @@ export class QueriesImpl implements Queries {
   stringEmpty(options?: QueriesStringEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringEmptyOperationSpec
+      stringEmptyOperationSpec,
     );
   }
 
@@ -284,7 +284,7 @@ export class QueriesImpl implements Queries {
   stringNull(options?: QueriesStringNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringNullOperationSpec
+      stringNullOperationSpec,
     );
   }
 
@@ -295,7 +295,7 @@ export class QueriesImpl implements Queries {
   enumValid(options?: QueriesEnumValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      enumValidOperationSpec
+      enumValidOperationSpec,
     );
   }
 
@@ -314,7 +314,7 @@ export class QueriesImpl implements Queries {
   byteMultiByte(options?: QueriesByteMultiByteOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      byteMultiByteOperationSpec
+      byteMultiByteOperationSpec,
     );
   }
 
@@ -325,7 +325,7 @@ export class QueriesImpl implements Queries {
   byteEmpty(options?: QueriesByteEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      byteEmptyOperationSpec
+      byteEmptyOperationSpec,
     );
   }
 
@@ -344,7 +344,7 @@ export class QueriesImpl implements Queries {
   dateValid(options?: QueriesDateValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      dateValidOperationSpec
+      dateValidOperationSpec,
     );
   }
 
@@ -363,7 +363,7 @@ export class QueriesImpl implements Queries {
   dateTimeValid(options?: QueriesDateTimeValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      dateTimeValidOperationSpec
+      dateTimeValidOperationSpec,
     );
   }
 
@@ -374,7 +374,7 @@ export class QueriesImpl implements Queries {
   dateTimeNull(options?: QueriesDateTimeNullOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      dateTimeNullOperationSpec
+      dateTimeNullOperationSpec,
     );
   }
 
@@ -384,11 +384,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringCsvValid(
-    options?: QueriesArrayStringCsvValidOptionalParams
+    options?: QueriesArrayStringCsvValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringCsvValidOperationSpec
+      arrayStringCsvValidOperationSpec,
     );
   }
 
@@ -397,11 +397,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringCsvNull(
-    options?: QueriesArrayStringCsvNullOptionalParams
+    options?: QueriesArrayStringCsvNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringCsvNullOperationSpec
+      arrayStringCsvNullOperationSpec,
     );
   }
 
@@ -410,11 +410,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringCsvEmpty(
-    options?: QueriesArrayStringCsvEmptyOptionalParams
+    options?: QueriesArrayStringCsvEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringCsvEmptyOperationSpec
+      arrayStringCsvEmptyOperationSpec,
     );
   }
 
@@ -424,11 +424,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringNoCollectionFormatEmpty(
-    options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams
+    options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringNoCollectionFormatEmptyOperationSpec
+      arrayStringNoCollectionFormatEmptyOperationSpec,
     );
   }
 
@@ -438,11 +438,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringSsvValid(
-    options?: QueriesArrayStringSsvValidOptionalParams
+    options?: QueriesArrayStringSsvValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringSsvValidOperationSpec
+      arrayStringSsvValidOperationSpec,
     );
   }
 
@@ -452,11 +452,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringTsvValid(
-    options?: QueriesArrayStringTsvValidOptionalParams
+    options?: QueriesArrayStringTsvValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringTsvValidOperationSpec
+      arrayStringTsvValidOperationSpec,
     );
   }
 
@@ -466,11 +466,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringPipesValid(
-    options?: QueriesArrayStringPipesValidOptionalParams
+    options?: QueriesArrayStringPipesValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringPipesValidOperationSpec
+      arrayStringPipesValidOperationSpec,
     );
   }
 }
@@ -483,13 +483,13 @@ const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.boolQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   path: "/queries/bool/false",
@@ -497,13 +497,13 @@ const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.boolQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/bool/null",
@@ -511,13 +511,13 @@ const getBooleanNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.boolQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/1000000",
@@ -525,13 +525,13 @@ const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.intQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/-1000000",
@@ -539,13 +539,13 @@ const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.intQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/int/null",
@@ -553,13 +553,13 @@ const getIntNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.intQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/10000000000",
@@ -567,13 +567,13 @@ const getTenBillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.longQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/-10000000000",
@@ -581,13 +581,13 @@ const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.longQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLongNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/long/null",
@@ -595,13 +595,13 @@ const getLongNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.longQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/1.034E+20",
@@ -609,13 +609,13 @@ const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.floatQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/-1.034E-20",
@@ -623,13 +623,13 @@ const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.floatQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const floatNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/float/null",
@@ -637,13 +637,13 @@ const floatNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.floatQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/9999999.999",
@@ -651,13 +651,13 @@ const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.doubleQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/-9999999.999",
@@ -665,13 +665,13 @@ const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.doubleQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doubleNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/double/null",
@@ -679,13 +679,13 @@ const doubleNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.doubleQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/unicode/",
@@ -693,28 +693,27 @@ const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.stringQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
+  path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.stringQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/empty",
@@ -722,13 +721,13 @@ const stringEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.stringQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/string/null",
@@ -736,13 +735,13 @@ const stringNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.stringQuery3],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const enumValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/enum/green%20color",
@@ -750,13 +749,13 @@ const enumValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.enumQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const enumNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/enum/null",
@@ -764,13 +763,13 @@ const enumNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.enumQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/multibyte",
@@ -778,13 +777,13 @@ const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.byteQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/empty",
@@ -792,13 +791,13 @@ const byteEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.byteQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/byte/null",
@@ -806,13 +805,13 @@ const byteNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.byteQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/date/2012-01-01",
@@ -820,13 +819,13 @@ const dateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.dateQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/date/null",
@@ -834,13 +833,13 @@ const dateNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.dateQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
@@ -848,13 +847,13 @@ const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.dateTimeQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/datetime/null",
@@ -862,13 +861,13 @@ const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.dateTimeQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringCsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/valid",
@@ -876,13 +875,13 @@ const arrayStringCsvValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringCsvNullOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/null",
@@ -890,13 +889,13 @@ const arrayStringCsvNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringCsvEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/csv/string/empty",
@@ -904,41 +903,42 @@ const arrayStringCsvEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const arrayStringNoCollectionFormatEmptyOperationSpec: coreClient.OperationSpec = {
-  path: "/queries/array/none/string/empty",
-  httpMethod: "GET",
-  responses: {
-    200: {},
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+const arrayStringNoCollectionFormatEmptyOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/queries/array/none/string/empty",
+    httpMethod: "GET",
+    responses: {
+      200: {},
+      default: {
+        bodyMapper: Mappers.ErrorModel,
+      },
+    },
+    queryParameters: [Parameters.arrayQuery],
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const arrayStringSsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/ssv/string/valid",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringTsvValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/tsv/string/valid",
@@ -946,13 +946,13 @@ const arrayStringTsvValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringPipesValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/pipes/string/valid",
@@ -960,11 +960,11 @@ const arrayStringPipesValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery3],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

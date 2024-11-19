@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
@@ -8,7 +8,7 @@ import {
   PetOutput,
   FelineOutput,
   CatOutput,
-  KittenOutput
+  KittenOutput,
 } from "./outputModels";
 
 /** Get a horse with name 'Fred' and isAShowHorse true */

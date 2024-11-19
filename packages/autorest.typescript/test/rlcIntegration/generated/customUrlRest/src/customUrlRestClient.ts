@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { CustomUrlRestClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface CustomUrlRestClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `CustomUrlRestClient`
@@ -12,9 +15,10 @@ import { CustomUrlRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   host: string,
-  options: ClientOptions = {}
+  options: CustomUrlRestClientOptions = {},
 ): CustomUrlRestClient {
-  const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://{accountName}${host}`;
   const userAgentInfo = `azsdk-js-custom-url-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -23,21 +27,27 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
+  const client = getClient(endpointUrl, options) as CustomUrlRestClient;
 
-  const client = getClient(baseUrl, options) as CustomUrlRestClient;
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return {
     ...client,
     paths: {
       getEmpty: (options) => {
         return client.path("/customuri").get(options);
-      }
-    }
+      },
+    },
   };
 }

@@ -29,7 +29,7 @@ async function virtualHubRouteTableV2List() {
   const resArray = new Array();
   for await (let item of client.virtualHubRouteTableV2S.list(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   )) {
     resArray.push(item);
   }

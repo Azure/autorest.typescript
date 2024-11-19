@@ -33,7 +33,7 @@ async function getNetworkTracesForASite() {
     resourceGroupName,
     name,
     operationId,
-    slot
+    slot,
   );
   console.log(result);
 }

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   GetLanguagesParameters,
@@ -9,7 +9,7 @@ import {
   BreakSentenceParameters,
   DictionaryLookupParameters,
   DictionaryExamplesParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetLanguages200Response,
   GetLanguagesDefaultResponse,
@@ -25,48 +25,48 @@ import {
   DictionaryLookupDefaultResponse,
   DictionaryExamples200Response,
   DictionaryExamplesDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetLanguages {
   /** Gets the set of languages currently supported by other operations of the Translator. */
   get(
-    options?: GetLanguagesParameters
+    options?: GetLanguagesParameters,
   ): StreamableMethod<GetLanguages200Response | GetLanguagesDefaultResponse>;
 }
 
 export interface Translate {
   /** Translate Text */
   post(
-    options: TranslateParameters
+    options: TranslateParameters,
   ): StreamableMethod<Translate200Response | TranslateDefaultResponse>;
 }
 
 export interface Transliterate {
   /** Transliterate Text */
   post(
-    options: TransliterateParameters
+    options: TransliterateParameters,
   ): StreamableMethod<Transliterate200Response | TransliterateDefaultResponse>;
 }
 
 export interface Detect {
   /** Detect Languages */
   post(
-    options: DetectParameters
+    options: DetectParameters,
   ): StreamableMethod<Detect200Response | DetectDefaultResponse>;
 }
 
 export interface BreakSentence {
   /** Break Sentence */
   post(
-    options: BreakSentenceParameters
+    options: BreakSentenceParameters,
   ): StreamableMethod<BreakSentence200Response | BreakSentenceDefaultResponse>;
 }
 
 export interface DictionaryLookup {
   /** Dictionary Lookup */
   post(
-    options: DictionaryLookupParameters
+    options: DictionaryLookupParameters,
   ): StreamableMethod<
     DictionaryLookup200Response | DictionaryLookupDefaultResponse
   >;
@@ -75,7 +75,7 @@ export interface DictionaryLookup {
 export interface DictionaryExamples {
   /** Dictionary Examples */
   post(
-    options: DictionaryExamplesParameters
+    options: DictionaryExamplesParameters,
   ): StreamableMethod<
     DictionaryExamples200Response | DictionaryExamplesDefaultResponse
   >;

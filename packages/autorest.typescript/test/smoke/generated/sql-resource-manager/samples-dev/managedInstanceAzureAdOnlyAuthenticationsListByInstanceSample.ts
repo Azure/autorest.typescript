@@ -31,7 +31,7 @@ async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject() {
   const resArray = new Array();
   for await (let item of client.managedInstanceAzureADOnlyAuthentications.listByInstance(
     resourceGroupName,
-    managedInstanceName
+    managedInstanceName,
   )) {
     resArray.push(item);
   }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AppServicePlan,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,14 +31,14 @@ async function createOrUpdateAppServicePlan() {
   const appServicePlan: AppServicePlan = {
     kind: "app",
     location: "East US",
-    sku: { name: "P1", capacity: 1, family: "P", size: "P1", tier: "Premium" }
+    sku: { name: "P1", capacity: 1, family: "P", size: "P1", tier: "Premium" },
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.appServicePlans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     name,
-    appServicePlan
+    appServicePlan,
   );
   console.log(result);
 }

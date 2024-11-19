@@ -1,10 +1,16 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { SynapseArtifactsClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface SynapseArtifactsClientOptions extends ClientOptions {
+  /** The api version option of the client */
+  apiVersion?: string;
+}
 
 /**
  * Initialize a new instance of `SynapseArtifactsClient`
@@ -15,10 +21,12 @@ import { SynapseArtifactsClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  {
+    apiVersion = "2021-11-01-preview",
+    ...options
+  }: SynapseArtifactsClientOptions = {},
 ): SynapseArtifactsClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -27,30 +35,46 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       scopes: options.credentials?.scopes ?? [
-        "https://dev.azuresynapse.net/.default"
-      ]
-    }
+        "https://dev.azuresynapse.net/.default",
+      ],
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as SynapseArtifactsClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return {
     ...client,
     kqlScripts: {
       getAll: (options) => {
         return client.path("/kqlScripts").get(options);
-      }
+      },
     },
     kqlScript: {
       createOrUpdate: (kqlScriptName, options) => {
@@ -72,7 +96,7 @@ export default function createClient(
         return client
           .path("/kqlScripts/{kqlScriptName}/rename", kqlScriptName)
           .post(options);
-      }
+      },
     },
     metastore: {
       register: (id, options) => {
@@ -92,7 +116,7 @@ export default function createClient(
       },
       delete: (id, options) => {
         return client.path("/metastore/databases/{id}", id).delete(options);
-      }
+      },
     },
     sparkConfiguration: {
       getSparkConfigurationsByWorkspace: (options) => {
@@ -102,7 +126,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .put(options);
       },
@@ -110,7 +134,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .get(options);
       },
@@ -118,7 +142,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .delete(options);
       },
@@ -126,10 +150,10 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}/rename",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .post(options);
-      }
+      },
     },
     bigDataPools: {
       list: (options) => {
@@ -139,7 +163,7 @@ export default function createClient(
         return client
           .path("/bigDataPools/{bigDataPoolName}", bigDataPoolName)
           .get(options);
-      }
+      },
     },
     dataFlow: {
       createOrUpdateDataFlow: (dataFlowName, options) => {
@@ -164,7 +188,7 @@ export default function createClient(
       },
       getDataFlowsByWorkspace: (options) => {
         return client.path("/dataflows").get(options);
-      }
+      },
     },
     dataFlowDebugSession: {
       createDataFlowDebugSession: (options) => {
@@ -181,7 +205,7 @@ export default function createClient(
       },
       executeCommand: (options) => {
         return client.path("/executeDataFlowDebugCommand").post(options);
-      }
+      },
     },
     dataset: {
       getDatasetsByWorkspace: (options) => {
@@ -202,12 +226,12 @@ export default function createClient(
         return client
           .path("/datasets/{datasetName}/rename", datasetName)
           .post(options);
-      }
+      },
     },
     workspaceGitRepoManagement: {
       getGitHubAccessToken: (options) => {
         return client.path("/getGitHubAccessToken").post(options);
-      }
+      },
     },
     integrationRuntimes: {
       list: (options) => {
@@ -217,10 +241,10 @@ export default function createClient(
         return client
           .path(
             "/integrationRuntimes/{integrationRuntimeName}",
-            integrationRuntimeName
+            integrationRuntimeName,
           )
           .get(options);
-      }
+      },
     },
     library: {
       list: (options) => {
@@ -255,7 +279,7 @@ export default function createClient(
         return client
           .path("/libraries/{libraryName}", libraryName)
           .put(options);
-      }
+      },
     },
     linkedService: {
       getLinkedServicesByWorkspace: (options) => {
@@ -280,7 +304,7 @@ export default function createClient(
         return client
           .path("/linkedservices/{linkedServiceName}/rename", linkedServiceName)
           .post(options);
-      }
+      },
     },
     notebook: {
       getNotebooksByWorkspace: (options) => {
@@ -308,14 +332,14 @@ export default function createClient(
         return client
           .path("/notebooks/{notebookName}/rename", notebookName)
           .post(options);
-      }
+      },
     },
     notebookOperationResult: {
       get: (operationId, options) => {
         return client
           .path("/notebookOperationResults/{operationId}", operationId)
           .get(options);
-      }
+      },
     },
     pipelineOperations: {
       getPipelinesByWorkspace: (options) => {
@@ -345,7 +369,7 @@ export default function createClient(
         return client
           .path("/pipelines/{pipelineName}/createRun", pipelineName)
           .post(options);
-      }
+      },
     },
     pipelineRun: {
       queryPipelineRunsByWorkspace: (options) => {
@@ -359,13 +383,13 @@ export default function createClient(
           .path(
             "/pipelines/{pipelineName}/pipelineruns/{runId}/queryActivityruns",
             pipelineName,
-            runId
+            runId,
           )
           .post(options);
       },
       cancelPipelineRun: (runId, options) => {
         return client.path("/pipelineruns/{runId}/cancel", runId).post(options);
-      }
+      },
     },
     sparkJobDefinition: {
       getSparkJobDefinitionsByWorkspace: (options) => {
@@ -375,7 +399,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .put(options);
       },
@@ -383,7 +407,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .get(options);
       },
@@ -391,7 +415,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .delete(options);
       },
@@ -399,7 +423,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}/execute",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .post(options);
       },
@@ -407,13 +431,13 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}/rename",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .post(options);
       },
       debugSparkJobDefinition: (options) => {
         return client.path("/debugSparkJobDefinition").post(options);
-      }
+      },
     },
     sqlPools: {
       list: (options) => {
@@ -421,7 +445,7 @@ export default function createClient(
       },
       get: (sqlPoolName, options) => {
         return client.path("/sqlPools/{sqlPoolName}", sqlPoolName).get(options);
-      }
+      },
     },
     sqlScript: {
       getSqlScriptsByWorkspace: (options) => {
@@ -446,7 +470,7 @@ export default function createClient(
         return client
           .path("/sqlScripts/{sqlScriptName}/rename", sqlScriptName)
           .post(options);
-      }
+      },
     },
     trigger: {
       getTriggersByWorkspace: (options) => {
@@ -472,7 +496,7 @@ export default function createClient(
         return client
           .path(
             "/triggers/{triggerName}/getEventSubscriptionStatus",
-            triggerName
+            triggerName,
           )
           .post(options);
       },
@@ -490,7 +514,7 @@ export default function createClient(
         return client
           .path("/triggers/{triggerName}/stop", triggerName)
           .post(options);
-      }
+      },
     },
     triggerRun: {
       rerunTriggerInstance: (triggerName, runId, options) => {
@@ -498,7 +522,7 @@ export default function createClient(
           .path(
             "/triggers/{triggerName}/triggerRuns/{runId}/rerun",
             triggerName,
-            runId
+            runId,
           )
           .post(options);
       },
@@ -507,18 +531,18 @@ export default function createClient(
           .path(
             "/triggers/{triggerName}/triggerRuns/{runId}/cancel",
             triggerName,
-            runId
+            runId,
           )
           .post(options);
       },
       queryTriggerRunsByWorkspace: (options) => {
         return client.path("/queryTriggerRuns").post(options);
-      }
+      },
     },
     workspace: {
       get: (options) => {
         return client.path("/workspace").get(options);
-      }
-    }
+      },
+    },
   };
 }

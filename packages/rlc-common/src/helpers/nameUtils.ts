@@ -22,6 +22,9 @@ const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
 export const ReservedModelNames: ReservedName[] = [
   { name: "any", reservedFor: [NameType.Parameter] },
   { name: "as", reservedFor: [NameType.Parameter] },
+  { name: "assert", reservedFor: [NameType.Parameter] },
+  { name: "async", reservedFor: [NameType.Parameter] },
+  { name: "await", reservedFor: [NameType.Parameter] },
   { name: "boolean", reservedFor: [NameType.Parameter, ...Newable] },
   { name: "break", reservedFor: [NameType.Parameter] },
   { name: "case", reservedFor: [NameType.Parameter] },
@@ -62,7 +65,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "package", reservedFor: [NameType.Parameter] },
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
-  { name: "public", reservedFor: [NameType.Parameter] },
+  { name: "public", reservedFor: [NameType.Parameter, NameType.Operation] },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter] },
   { name: "return", reservedFor: [NameType.Parameter] },
@@ -84,8 +87,11 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "with", reservedFor: [NameType.Parameter] },
   { name: "yield", reservedFor: [NameType.Parameter] },
   { name: "arguments", reservedFor: [NameType.Parameter] },
+  { name: "global", reservedFor: [...Newable] },
   // reserve client for codegen
-  { name: "client", reservedFor: [NameType.Parameter] }
+  { name: "client", reservedFor: [NameType.Parameter] },
+  { name: "endpoint", reservedFor: [NameType.Parameter] },
+  { name: "apiVersion", reservedFor: [NameType.Parameter] }
 ];
 
 export enum CasingConvention {
@@ -109,10 +115,10 @@ export function guardReservedNames(
 function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
-    case NameType.Property:
-      return "";
     case NameType.Operation:
-      return "Operation";
+      return "";
+    case NameType.Property:
+      return "Property";
     case NameType.OperationGroup:
       return "Operations";
     case NameType.Parameter:

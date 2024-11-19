@@ -30,7 +30,7 @@ async function getExpressRouteCircuitPeering() {
   const result = await client.expressRouteCircuitPeerings.get(
     resourceGroupName,
     circuitName,
-    peeringName
+    peeringName,
   );
   console.log(result);
 }

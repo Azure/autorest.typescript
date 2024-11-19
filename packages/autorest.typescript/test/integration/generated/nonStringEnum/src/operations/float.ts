@@ -14,7 +14,7 @@ import {
   FloatPutOptionalParams,
   FloatPutResponse,
   FloatGetOptionalParams,
-  FloatGetResponse
+  FloatGetResponse,
 } from "../models";
 
 /** Class containing Float operations. */
@@ -53,24 +53,24 @@ const putOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.input1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/nonStringEnums/float/get",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
-    }
+      bodyMapper: { type: { name: "Number" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

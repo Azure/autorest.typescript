@@ -32,7 +32,7 @@ async function getAnExtendedDatabaseBlobAuditingPolicy() {
   const result = await client.extendedDatabaseBlobAuditingPolicies.get(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

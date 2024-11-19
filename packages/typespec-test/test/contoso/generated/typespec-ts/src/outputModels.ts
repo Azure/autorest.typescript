@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { Paged } from "@azure/core-paging";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** A widget. */
@@ -29,9 +28,9 @@ export interface ResourceOperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
-  status: string;
+  status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
   /** The result of the operation. */
@@ -45,12 +44,20 @@ export interface OperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
-  status: string;
+  status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
 }
 
 /** Paged collection of Widget items */
-export type PagedWidgetOutput = Paged<WidgetOutput>;
+export interface PagedWidgetOutput {
+  /** The Widget items on this page */
+  value: Array<WidgetOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;

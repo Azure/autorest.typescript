@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   TestOutput,
-  PagedTestOutput,
+  TestsListOutput,
   FileInfoOutput,
-  PagedFileInfoOutput,
+  FileInfoListOutput,
   TestAppComponentsOutput,
   TestServerMetricConfigOutput,
   TestRunOutput,
-  PagedTestRunOutput,
+  TestRunsListOutput,
   MetricNamespaceCollectionOutput,
   MetricDefinitionCollectionOutput,
-  PagedTimeSeriesElementOutput,
+  MetricsOutput,
   PagedDimensionValueListOutput,
   TestRunAppComponentsOutput,
   TestRunServerMetricConfigOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface LoadTestAdministrationCreateOrUpdateTest200Response
@@ -87,7 +87,7 @@ export interface LoadTestAdministrationGetTestDefaultResponse
 export interface LoadTestAdministrationListTests200Response
   extends HttpResponse {
   status: "200";
-  body: PagedTestOutput;
+  body: TestsListOutput;
 }
 
 export interface LoadTestAdministrationListTestsDefaultHeaders {
@@ -162,7 +162,7 @@ export interface LoadTestAdministrationDeleteTestFileDefaultResponse
 export interface LoadTestAdministrationListTestFiles200Response
   extends HttpResponse {
   status: "200";
-  body: PagedFileInfoOutput;
+  body: FileInfoListOutput;
 }
 
 export interface LoadTestAdministrationListTestFilesDefaultHeaders {
@@ -369,7 +369,7 @@ export interface LoadTestRunGetTestRunFileDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface LoadTestRunListTestRuns200Response extends HttpResponse {
   status: "200";
-  body: PagedTestRunOutput;
+  body: TestRunsListOutput;
 }
 
 export interface LoadTestRunListTestRunsDefaultHeaders {
@@ -441,7 +441,7 @@ export interface LoadTestRunListMetricDefinitionsDefaultResponse
 /** The request has succeeded. */
 export interface LoadTestRunListMetrics200Response extends HttpResponse {
   status: "200";
-  body: PagedTimeSeriesElementOutput;
+  body: MetricsOutput;
 }
 
 export interface LoadTestRunListMetricsDefaultHeaders {

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,14 +32,14 @@ async function updateAServer() {
     administratorLogin: "dummylogin",
     administratorLoginPassword: "placeholder",
     publicNetworkAccess: "Disabled",
-    restrictOutboundNetworkAccess: "Enabled"
+    restrictOutboundNetworkAccess: "Enabled",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.servers.beginUpdateAndWait(
     resourceGroupName,
     serverName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

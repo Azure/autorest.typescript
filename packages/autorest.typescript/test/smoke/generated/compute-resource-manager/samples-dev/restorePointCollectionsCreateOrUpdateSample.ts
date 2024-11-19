@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RestorePointCollection,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,17 +30,16 @@ async function createOrUpdateARestorePointCollection() {
   const parameters: RestorePointCollection = {
     location: "norwayeast",
     source: {
-      id:
-        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM"
+      id: "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
     },
-    tags: { myTag1: "tagValue1" }
+    tags: { myTag1: "tagValue1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePointCollections.createOrUpdate(
     resourceGroupName,
     restorePointCollectionName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

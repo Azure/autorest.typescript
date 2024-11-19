@@ -1,32 +1,127 @@
 import { assert } from "chai";
-import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitClientFactoryFromTypeSpec,
+  emitModelsFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
-  describe("query parameters", () => {
-    describe("apiVersion in query", () => {
-      it("should't generate apiVersion if there's a client level apiVersion", async () => {
-        const parameters = await emitParameterFromTypeSpec(
+  describe("cookie parameters", () => {
+    it("should report warning for cookie parameter", async () => {
+      try {
+        await emitParameterFromTypeSpec(
           `
-          model ApiVersionParameter {
-            @query
-            "api-version": string;
-          }
-          op test(...ApiVersionParameter): string;
+          op test(@cookie token: string): string;
           `
         );
+        assert.fail("should throw error");
+      } catch (e: any) {
+        assert.strictEqual("Parameter 'token' with type 'cookie' is not supported and we would ignore this parameter.", e[0].message);
+      }
+    });
+
+    it("should not include cookie parameter", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
+        op test(@cookie token: string): string;
+        `
+        , {
+          mustEmptyDiagnostic: false
+        });
+      assert.notDeepInclude(parameters?.content, "token");
+    });
+  });
+  describe("query parameters", () => {
+    describe("apiVersion in query", () => {
+      it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
+        const tspContent = `
+        model ApiVersionParameter {
+          @query
+          "api-version": string;
+        }
+        op test(...ApiVersionParameter): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
             
-            export type TestParameters =  RequestParameters;
+            export type TestParameters = RequestParameters;
             `
+        );
+        const models = await emitClientFactoryFromTypeSpec(
+          tspContent,
+          {
+            needNamespaces: true
+          }
+        );
+        assert.ok(models);
+        await assertEqualContent(
+          models!.content,
+          `
+          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
+          
+          /** The optional parameters for the client */
+          export interface testClientOptions extends ClientOptions {}
+
+          /**
+           * Initialize a new instance of \`testClient\`
+           * @param endpointParam - The parameter endpointParam
+           * @param apiVersion - The parameter apiVersion
+           * @param options - the parameter for all optional parameters
+           */
+          export default function createClient(endpointParam: string, apiVersion: string, options: testClientOptions = {}): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
+              options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
+              ...options,
+              userAgentOptions: {
+              userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
+              },
+          };
+          const client = getClient(endpointUrl, options) as testClient;
+
+          client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+          if (options.apiVersion) {
+            logger.warning(
+              "This client does not support to set api-version in options, please change it at positional argument",
+            );
+          }
+          client.pipeline.addPolicy({
+            name: 'ClientApiVersionPolicy',
+            sendRequest: (req, next) => {
+              // Use the apiVersion defined in request url directly
+              // Append one if there is no apiVersion and we have one at client options
+              const url = new URL(req.url);
+              if (!url.searchParams.get("api-version") && apiVersion) {
+                req.url = \`\${req.url}\${
+                  Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+                }api-version=\${apiVersion}\`;
+              }
+
+              return next(req);
+            },
+          });
+
+          return client;
+      }
+      `
         );
       });
 
-      it("should generate apiVersion if there's no client level apiVersion", async () => {
+      it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
@@ -35,11 +130,39 @@ describe("Parameters.ts", () => {
           }
           op test(...ApiVersionParameter): string;
           `,
-          false,
-          true
+          {
+            needTCGC: true,
+            withVersionedApiVersion: true
+          }
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
+          parameters?.content!,
+          `
+            import { RequestParameters } from "@azure-rest/core-client";
+            
+            export type TestParameters = RequestParameters;
+            `
+        );
+      });
+      it("should generate apiVersion in query parameter if there's no client level apiVersion", async () => {
+        const parameters = await emitParameterFromTypeSpec(
+          `
+          model ApiVersionParameter {
+            @query
+            "api-version": string;
+          }
+          @route("/test")
+          op test(...ApiVersionParameter): string;
+          @route("/test1")
+          op test1(): string;
+          `,
+          {
+            needTCGC: true
+          }
+        );
+        assert.ok(parameters);
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -53,6 +176,7 @@ describe("Parameters.ts", () => {
             }
             
             export type TestParameters = TestQueryParam & RequestParameters;
+            export type Test1Parameters = RequestParameters;
             `
         );
       });
@@ -69,7 +193,7 @@ describe("Parameters.ts", () => {
             `
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
           import { RequestParameters } from "@azure-rest/core-client";
@@ -98,7 +222,7 @@ describe("Parameters.ts", () => {
           `
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -116,6 +240,109 @@ describe("Parameters.ts", () => {
         );
       });
     });
+
+    describe("union and enum", () => {
+      it("should generate string union literal query param", async () => {
+        const tspContent = `
+        model CustomerQuery {
+          @query
+          "foo": "bar" | "baz";
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+
+          export interface TestQueryParamProperties {
+              "foo": "bar" | "baz";
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+      });
+
+      it("should import name for named union as query param", async () => {
+        const tspContent = `
+        union Foo {
+          "bar";
+          "baz";
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
+        );
+      });
+
+      it("should import name for enum as query param", async () => {
+        const tspContent = `
+        enum Foo {
+          "bar",
+          "baz",
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
+        );
+      });
+    });
   });
 
   describe("header parameters", () => {
@@ -130,7 +357,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         ` import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
           import { RequestParameters } from "@azure-rest/core-client";
@@ -149,219 +376,13 @@ describe("Parameters.ts", () => {
     });
   });
 
-  describe("binary request", () => {
-    it("bytes request with application/json will be treated as string", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface ReadBodyParam {
-          body: string;
-        }
-        
-        export type ReadParameters = ReadBodyParam & RequestParameters;
-        `
-      );
-    });
-
-    it("bytes request should respect @header contentType and use binary format when not json or text", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@header contentType: "image/png", @body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-
-        export interface ReadBodyParam {
-          /** Value may contain any sequence of octets */
-          body: 
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface ReadMediaTypesParam {
-          contentType: "image/png";
-        }
-        
-        export type ReadParameters = ReadMediaTypesParam &
-          ReadBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    // TODO: we need more discussions about current behavior
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1486
-    it("multiple contentTypes defined @header", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@header contentType: "image/png" | "application/json", @body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-
-        export interface ReadBodyParam {
-          /** Value may contain any sequence of octets */
-          body: 
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface ReadMediaTypesParam {
-          contentType: "image/png" | "application/json";
-        }
-        
-        export type ReadParameters = ReadMediaTypesParam &
-          ReadBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has binary data", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @route("/uploadFileViaBody")
-        @post op uploadFileViaBody(
-          @header contentType: "application/octet-stream",
-          @body body: bytes
-        ): void;
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface UploadFileViaBodyBodyParam {
-          /** Value may contain any sequence of octets */
-          body:
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface UploadFileViaBodyMediaTypesParam {
-          contentType: "application/octet-stream";
-        }
-        
-        export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
-        UploadFileViaBodyBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has multiple form data", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @route("/uploadFile")
-        @post op uploadFile(
-        @header contentType: "multipart/form-data",
-        @body body: {
-          name: string;
-          @encode("binary")
-          file: bytes;
-        }
-      ): void;
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-      import { RequestParameters } from "@azure-rest/core-client";
-      
-      export interface UploadFileBodyParam {
-        body: {
-          name: string;
-          file:
-            | string
-            | Uint8Array
-            | ReadableStream<Uint8Array>
-            | NodeJS.ReadableStream;
-        };
-      }
-      
-      export interface UploadFileMediaTypesParam {
-        contentType: "multipart/form-data";
-      }
-      
-      export type UploadFileParameters = UploadFileMediaTypesParam &
-        UploadFileBodyParam &
-        RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has array data defined in form body", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @encode("binary")
-        scalar BinaryBytes extends bytes;
-
-        @route("/uploadFiles")
-        @post op uploadFiles(
-        @header contentType: "multipart/form-data",
-        @body body: {
-          files: BinaryBytes[];
-        }
-      ): void;
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-      
-        export interface UploadFilesBodyParam {
-          body: {
-            files: Array<
-              string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
-            >;
-          };
-        }
-        
-        export interface UploadFilesMediaTypesParam {
-          contentType: "multipart/form-data";
-        }
-        
-        export type UploadFilesParameters = UploadFilesMediaTypesParam &
-          UploadFilesBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-  });
-
   describe("array as request body", () => {
     it("unknown array request generation", async () => {
       const parameters = await emitParameterFromTypeSpec(`
       @post op read(@body body: unknown[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -379,7 +400,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: string[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -398,7 +419,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: int32[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -417,7 +438,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: int64[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -436,7 +457,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: float32[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -455,7 +476,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: boolean[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -474,7 +495,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: bytes[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -493,13 +514,13 @@ describe("Parameters.ts", () => {
       @post op read(@body body: plainDate[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
-          body: Date[] | string[];
+          body: string[];
         }  
 
         export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -512,7 +533,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: utcDateTime[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -531,7 +552,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body:  duration[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -554,11 +575,11 @@ describe("Parameters.ts", () => {
       @post op read(@body body: SimpleModel[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -578,11 +599,11 @@ describe("Parameters.ts", () => {
       @post op read(@body body: InnerModel[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { InnerModel } from "./models";
+        import { InnerModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
@@ -604,17 +625,33 @@ describe("Parameters.ts", () => {
       @post op read(@body body: Record<SimpleModel>): SimpleModel;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body: Record<string, SimpleModel>;
         }  
 
         export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+  });
+
+  describe("void as request body", () => {
+    it("void request body should be emitted", async () => {
+      const parameters = await emitParameterFromTypeSpec(`
+      op read(@body param: void): void;`);
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export type ReadParameters = RequestParameters;
       `
       );
     });

@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const accept: OperationParameter = {
@@ -19,9 +19,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const url: OperationURLParameter = {
@@ -30,10 +30,10 @@ export const url: OperationURLParameter = {
     serializedName: "url",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const fileSystem: OperationURLParameter = {
@@ -42,14 +42,14 @@ export const fileSystem: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$"),
       MaxLength: 63,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "filesystem",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const path: OperationURLParameter = {
@@ -58,9 +58,9 @@ export const path: OperationURLParameter = {
     serializedName: "path",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const requestId: OperationParameter = {
@@ -68,22 +68,22 @@ export const requestId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-client-request-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const timeout: OperationQueryParameter = {
   parameterPath: ["options", "timeout"],
   mapper: {
     constraints: {
-      InclusiveMinimum: 0
+      InclusiveMinimum: 0,
     },
     serializedName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const version: OperationParameter = {
@@ -93,9 +93,9 @@ export const version: OperationParameter = {
     isConstant: true,
     serializedName: "x-ms-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resource: OperationQueryParameter = {
@@ -104,9 +104,9 @@ export const resource: OperationQueryParameter = {
     serializedName: "resource",
     type: {
       name: "Enum",
-      allowedValues: ["directory", "file"]
-    }
-  }
+      allowedValues: ["directory", "file"],
+    },
+  },
 };
 
 export const continuation: OperationQueryParameter = {
@@ -114,9 +114,9 @@ export const continuation: OperationQueryParameter = {
   mapper: {
     serializedName: "continuation",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const mode: OperationQueryParameter = {
@@ -125,9 +125,9 @@ export const mode: OperationQueryParameter = {
     serializedName: "mode",
     type: {
       name: "Enum",
-      allowedValues: ["legacy", "posix"]
-    }
-  }
+      allowedValues: ["legacy", "posix"],
+    },
+  },
 };
 
 export const cacheControl: OperationParameter = {
@@ -135,9 +135,9 @@ export const cacheControl: OperationParameter = {
   mapper: {
     serializedName: "x-ms-cache-control",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentEncoding: OperationParameter = {
@@ -145,9 +145,9 @@ export const contentEncoding: OperationParameter = {
   mapper: {
     serializedName: "x-ms-content-encoding",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentLanguage: OperationParameter = {
@@ -155,9 +155,9 @@ export const contentLanguage: OperationParameter = {
   mapper: {
     serializedName: "x-ms-content-language",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentDisposition: OperationParameter = {
@@ -165,9 +165,9 @@ export const contentDisposition: OperationParameter = {
   mapper: {
     serializedName: "x-ms-content-disposition",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -175,9 +175,9 @@ export const contentType: OperationParameter = {
   mapper: {
     serializedName: "x-ms-content-type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const renameSource: OperationParameter = {
@@ -185,9 +185,9 @@ export const renameSource: OperationParameter = {
   mapper: {
     serializedName: "x-ms-rename-source",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const leaseId: OperationParameter = {
@@ -195,9 +195,9 @@ export const leaseId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-lease-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const sourceLeaseId: OperationParameter = {
@@ -205,9 +205,9 @@ export const sourceLeaseId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-source-lease-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties: OperationParameter = {
@@ -215,9 +215,9 @@ export const properties: OperationParameter = {
   mapper: {
     serializedName: "x-ms-properties",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const permissions: OperationParameter = {
@@ -225,9 +225,9 @@ export const permissions: OperationParameter = {
   mapper: {
     serializedName: "x-ms-permissions",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const umask: OperationParameter = {
@@ -235,9 +235,9 @@ export const umask: OperationParameter = {
   mapper: {
     serializedName: "x-ms-umask",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const ifMatch: OperationParameter = {
@@ -245,9 +245,9 @@ export const ifMatch: OperationParameter = {
   mapper: {
     serializedName: "If-Match",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const ifNoneMatch: OperationParameter = {
@@ -255,9 +255,9 @@ export const ifNoneMatch: OperationParameter = {
   mapper: {
     serializedName: "If-None-Match",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const ifModifiedSince: OperationParameter = {
@@ -265,9 +265,9 @@ export const ifModifiedSince: OperationParameter = {
   mapper: {
     serializedName: "If-Modified-Since",
     type: {
-      name: "DateTimeRfc1123"
-    }
-  }
+      name: "DateTimeRfc1123",
+    },
+  },
 };
 
 export const ifUnmodifiedSince: OperationParameter = {
@@ -275,9 +275,9 @@ export const ifUnmodifiedSince: OperationParameter = {
   mapper: {
     serializedName: "If-Unmodified-Since",
     type: {
-      name: "DateTimeRfc1123"
-    }
-  }
+      name: "DateTimeRfc1123",
+    },
+  },
 };
 
 export const sourceIfMatch: OperationParameter = {
@@ -285,51 +285,51 @@ export const sourceIfMatch: OperationParameter = {
   mapper: {
     serializedName: "x-ms-source-if-match",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const sourceIfNoneMatch: OperationParameter = {
   parameterPath: [
     "options",
     "sourceModifiedAccessConditions",
-    "sourceIfNoneMatch"
+    "sourceIfNoneMatch",
   ],
   mapper: {
     serializedName: "x-ms-source-if-none-match",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const sourceIfModifiedSince: OperationParameter = {
   parameterPath: [
     "options",
     "sourceModifiedAccessConditions",
-    "sourceIfModifiedSince"
+    "sourceIfModifiedSince",
   ],
   mapper: {
     serializedName: "x-ms-source-if-modified-since",
     type: {
-      name: "DateTimeRfc1123"
-    }
-  }
+      name: "DateTimeRfc1123",
+    },
+  },
 };
 
 export const sourceIfUnmodifiedSince: OperationParameter = {
   parameterPath: [
     "options",
     "sourceModifiedAccessConditions",
-    "sourceIfUnmodifiedSince"
+    "sourceIfUnmodifiedSince",
   ],
   mapper: {
     serializedName: "x-ms-source-if-unmodified-since",
     type: {
-      name: "DateTimeRfc1123"
-    }
-  }
+      name: "DateTimeRfc1123",
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -339,9 +339,9 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
@@ -350,9 +350,9 @@ export const body: OperationParameter = {
     serializedName: "body",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -362,9 +362,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const action: OperationQueryParameter = {
@@ -379,23 +379,23 @@ export const action: OperationQueryParameter = {
         "flush",
         "setProperties",
         "setAccessControl",
-        "setAccessControlRecursive"
-      ]
-    }
-  }
+        "setAccessControlRecursive",
+      ],
+    },
+  },
 };
 
 export const maxRecords: OperationQueryParameter = {
   parameterPath: ["options", "maxRecords"],
   mapper: {
     constraints: {
-      InclusiveMinimum: 1
+      InclusiveMinimum: 1,
     },
     serializedName: "maxRecords",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const mode1: OperationQueryParameter = {
@@ -405,9 +405,9 @@ export const mode1: OperationQueryParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["set", "modify", "remove"]
-    }
-  }
+      allowedValues: ["set", "modify", "remove"],
+    },
+  },
 };
 
 export const forceFlag: OperationQueryParameter = {
@@ -415,9 +415,9 @@ export const forceFlag: OperationQueryParameter = {
   mapper: {
     serializedName: "forceFlag",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const position: OperationQueryParameter = {
@@ -425,9 +425,9 @@ export const position: OperationQueryParameter = {
   mapper: {
     serializedName: "position",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const retainUncommittedData: OperationQueryParameter = {
@@ -435,9 +435,9 @@ export const retainUncommittedData: OperationQueryParameter = {
   mapper: {
     serializedName: "retainUncommittedData",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const close: OperationQueryParameter = {
@@ -445,22 +445,22 @@ export const close: OperationQueryParameter = {
   mapper: {
     serializedName: "close",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const contentLength: OperationParameter = {
   parameterPath: ["options", "contentLength"],
   mapper: {
     constraints: {
-      InclusiveMinimum: 0
+      InclusiveMinimum: 0,
     },
     serializedName: "Content-Length",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const contentMD5: OperationParameter = {
@@ -468,9 +468,9 @@ export const contentMD5: OperationParameter = {
   mapper: {
     serializedName: "x-ms-content-md5",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const owner: OperationParameter = {
@@ -478,9 +478,9 @@ export const owner: OperationParameter = {
   mapper: {
     serializedName: "x-ms-owner",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const group: OperationParameter = {
@@ -488,9 +488,9 @@ export const group: OperationParameter = {
   mapper: {
     serializedName: "x-ms-group",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const acl: OperationParameter = {
@@ -498,9 +498,9 @@ export const acl: OperationParameter = {
   mapper: {
     serializedName: "x-ms-acl",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const xMsLeaseAction: OperationParameter = {
@@ -510,9 +510,9 @@ export const xMsLeaseAction: OperationParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["acquire", "break", "change", "renew", "release"]
-    }
-  }
+      allowedValues: ["acquire", "break", "change", "renew", "release"],
+    },
+  },
 };
 
 export const xMsLeaseDuration: OperationParameter = {
@@ -520,9 +520,9 @@ export const xMsLeaseDuration: OperationParameter = {
   mapper: {
     serializedName: "x-ms-lease-duration",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const xMsLeaseBreakPeriod: OperationParameter = {
@@ -530,9 +530,9 @@ export const xMsLeaseBreakPeriod: OperationParameter = {
   mapper: {
     serializedName: "x-ms-lease-break-period",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const proposedLeaseId: OperationParameter = {
@@ -540,9 +540,9 @@ export const proposedLeaseId: OperationParameter = {
   mapper: {
     serializedName: "x-ms-proposed-lease-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const range: OperationParameter = {
@@ -550,9 +550,9 @@ export const range: OperationParameter = {
   mapper: {
     serializedName: "Range",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const xMsRangeGetContentMd5: OperationParameter = {
@@ -560,9 +560,9 @@ export const xMsRangeGetContentMd5: OperationParameter = {
   mapper: {
     serializedName: "x-ms-range-get-content-md5",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const action1: OperationQueryParameter = {
@@ -571,9 +571,9 @@ export const action1: OperationQueryParameter = {
     serializedName: "action",
     type: {
       name: "Enum",
-      allowedValues: ["getAccessControl", "getStatus"]
-    }
-  }
+      allowedValues: ["getAccessControl", "getStatus"],
+    },
+  },
 };
 
 export const upn: OperationQueryParameter = {
@@ -581,9 +581,9 @@ export const upn: OperationQueryParameter = {
   mapper: {
     serializedName: "upn",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const recursive: OperationQueryParameter = {
@@ -591,7 +591,7 @@ export const recursive: OperationQueryParameter = {
   mapper: {
     serializedName: "recursive",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };

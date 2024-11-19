@@ -34,7 +34,7 @@ async function executeSiteAnalysis() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    analysisName
+    analysisName,
   );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function executeSiteSlotAnalysis() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    analysisName
+    analysisName,
   );
   console.log(result);
 }

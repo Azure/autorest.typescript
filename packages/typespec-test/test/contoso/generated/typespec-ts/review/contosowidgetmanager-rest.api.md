@@ -4,6 +4,8 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
@@ -11,16 +13,13 @@ import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, { apiVersion, ...options }?: WidgetManagerClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -152,7 +151,7 @@ export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogical
 export function getLongRunningPoller<TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse>(client: Client, initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -268,14 +267,32 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 export type ListWidgetsParameters = RequestParameters;
 
 // @public
+export type OperationStateOutput = string;
+
+// @public
 export interface OperationStatusOutput {
     error?: ErrorModel;
     id: string;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public
-export type PagedWidgetOutput = Paged<WidgetOutput>;
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PagedWidgetOutput {
+    nextLink?: string;
+    value: Array<WidgetOutput>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -297,7 +314,7 @@ export interface ResourceOperationStatusOutput {
     error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public (undocumented)
@@ -305,6 +322,28 @@ export interface Routes {
     (path: "/widgets/{widgetName}", widgetName: string): GetWidget;
     (path: "/widgets/{widgetName}/operations/{operationId}", widgetName: string, operationId: string): GetWidgetOperationStatus;
     (path: "/widgets"): ListWidgets;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // @public
@@ -317,6 +356,11 @@ export interface Widget {
 export type WidgetManagerClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface WidgetManagerClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
 
 // @public
 export interface WidgetOutput {

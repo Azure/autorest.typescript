@@ -28,7 +28,7 @@ async function deletesAWafPolicyWithinAResourceGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webApplicationFirewallPolicies.beginDeleteAndWait(
     resourceGroupName,
-    policyName
+    policyName,
   );
   console.log(result);
 }

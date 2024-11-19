@@ -30,7 +30,7 @@ async function getPacketCapture() {
   const result = await client.packetCaptures.get(
     resourceGroupName,
     networkWatcherName,
-    packetCaptureName
+    packetCaptureName,
   );
   console.log(result);
 }

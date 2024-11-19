@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageAccountCreateParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -39,19 +39,19 @@ async function nfsV3AccountCreate() {
       virtualNetworkRules: [
         {
           virtualNetworkResourceId:
-            "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.Network/virtualNetworks/net123/subnets/subnet12"
-        }
-      ]
+            "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.Network/virtualNetworks/net123/subnets/subnet12",
+        },
+      ],
     },
     sku: { name: "Premium_LRS" },
-    enableHttpsTrafficOnly: false
+    enableHttpsTrafficOnly: false,
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -75,8 +75,8 @@ async function storageAccountCreate() {
       requireInfrastructureEncryption: false,
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     extendedLocation: { name: "losangeles001", type: "EdgeZone" },
     isHnsEnabled: true,
@@ -87,18 +87,18 @@ async function storageAccountCreate() {
     routingPreference: {
       publishInternetEndpoints: true,
       publishMicrosoftEndpoints: true,
-      routingChoice: "MicrosoftRouting"
+      routingChoice: "MicrosoftRouting",
     },
     sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" },
     sku: { name: "Standard_GRS" },
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -121,8 +121,8 @@ async function storageAccountCreateDisallowPublicNetworkAccess() {
       requireInfrastructureEncryption: false,
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     extendedLocation: { name: "losangeles001", type: "EdgeZone" },
     isHnsEnabled: true,
@@ -134,18 +134,18 @@ async function storageAccountCreateDisallowPublicNetworkAccess() {
     routingPreference: {
       publishInternetEndpoints: true,
       publishMicrosoftEndpoints: true,
-      routingChoice: "MicrosoftRouting"
+      routingChoice: "MicrosoftRouting",
     },
     sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" },
     sku: { name: "Standard_GRS" },
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -168,8 +168,8 @@ async function storageAccountCreateEnablePublicNetworkAccess() {
       requireInfrastructureEncryption: false,
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     extendedLocation: { name: "losangeles001", type: "EdgeZone" },
     isHnsEnabled: true,
@@ -181,18 +181,18 @@ async function storageAccountCreateEnablePublicNetworkAccess() {
     routingPreference: {
       publishInternetEndpoints: true,
       publishMicrosoftEndpoints: true,
-      routingChoice: "MicrosoftRouting"
+      routingChoice: "MicrosoftRouting",
     },
     sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" },
     sku: { name: "Standard_GRS" },
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -211,35 +211,36 @@ async function storageAccountCreateUserAssignedEncryptionIdentityWithCmk() {
     encryption: {
       encryptionIdentity: {
         encryptionUserAssignedIdentity:
-          "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{managed-identity-name}"
+          "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{managed-identity-name}",
       },
       keySource: "Microsoft.Keyvault",
       keyVaultProperties: {
         keyName: "wrappingKey",
         keyVaultUri: "https://myvault8569.vault.azure.net",
-        keyVersion: ""
+        keyVersion: "",
       },
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     identity: {
       type: "UserAssigned",
       userAssignedIdentities: {
-        "/subscriptions/{subscriptionId}/resourceGroups/res9101/providers/MicrosoftManagedIdentity/userAssignedIdentities/{managedIdentityName}": {}
-      }
+        "/subscriptions/{subscriptionId}/resourceGroups/res9101/providers/MicrosoftManagedIdentity/userAssignedIdentities/{managedIdentityName}":
+          {},
+      },
     },
     kind: "Storage",
     location: "eastus",
-    sku: { name: "Standard_LRS" }
+    sku: { name: "Standard_LRS" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -261,19 +262,19 @@ async function storageAccountCreateWithImmutabilityPolicy() {
       immutabilityPolicy: {
         allowProtectedAppendWrites: true,
         immutabilityPeriodSinceCreationInDays: 15,
-        state: "Unlocked"
-      }
+        state: "Unlocked",
+      },
     },
     kind: "Storage",
     location: "eastus",
-    sku: { name: "Standard_GRS" }
+    sku: { name: "Standard_GRS" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginCreateAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

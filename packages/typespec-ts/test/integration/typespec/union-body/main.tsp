@@ -28,7 +28,7 @@ model ReturnResponse {
 namespace NicepayPlatform {
   @post
   @route("/request-union-body")
-  op requestUnionBody(@body request: RequestRegisterCC | RequestRegisterVA): {};
+  op requestUnionBody(@body request: RequestRegisterCC | RequestRegisterVA): {@body _ : {};};
 
   @get
   @route("/response-union-body")

@@ -28,7 +28,7 @@ async function deleteNetworkVirtualAppliance() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.beginDeleteAndWait(
     resourceGroupName,
-    networkVirtualApplianceName
+    networkVirtualApplianceName,
   );
   console.log(result);
 }

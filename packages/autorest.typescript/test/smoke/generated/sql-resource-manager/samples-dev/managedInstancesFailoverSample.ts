@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstancesFailoverOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function failoverAManagedInstance() {
   const result = await client.managedInstances.beginFailoverAndWait(
     resourceGroupName,
     managedInstanceName,
-    options
+    options,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FileSharesGetOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function getShareStats() {
     resourceGroupName,
     accountName,
     shareName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -57,7 +57,7 @@ async function getShares() {
   const result = await client.fileShares.get(
     resourceGroupName,
     accountName,
-    shareName
+    shareName,
   );
   console.log(result);
 }

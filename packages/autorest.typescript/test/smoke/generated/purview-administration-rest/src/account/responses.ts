@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
@@ -11,7 +11,7 @@ import {
   CollectionNameResponseListOutput,
   CollectionPathResponseOutput,
   ResourceSetRuleConfigOutput,
-  ResourceSetRuleConfigListOutput
+  ResourceSetRuleConfigListOutput,
 } from "./outputModels";
 
 /** Get an account */

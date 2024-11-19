@@ -30,7 +30,7 @@ async function getAServerBlobExtendedAuditingPolicy() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.extendedServerBlobAuditingPolicies.get(
     resourceGroupName,
-    serverName
+    serverName,
   );
   console.log(result);
 }

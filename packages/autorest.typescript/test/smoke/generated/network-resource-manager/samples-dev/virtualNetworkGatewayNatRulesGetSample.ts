@@ -30,7 +30,7 @@ async function virtualNetworkGatewayNatRuleGet() {
   const result = await client.virtualNetworkGatewayNatRules.get(
     resourceGroupName,
     virtualNetworkGatewayName,
-    natRuleName
+    natRuleName,
   );
   console.log(result);
 }

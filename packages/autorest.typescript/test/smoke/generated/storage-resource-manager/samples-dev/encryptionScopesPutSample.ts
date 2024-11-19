@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   EncryptionScope,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function storageAccountPutEncryptionScope() {
     resourceGroupName,
     accountName,
     encryptionScopeName,
-    encryptionScope
+    encryptionScope,
   );
   console.log(result);
 }
@@ -54,7 +54,7 @@ async function storageAccountPutEncryptionScopeWithInfrastructureEncryption() {
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
   const encryptionScope: EncryptionScope = {
-    requireInfrastructureEncryption: true
+    requireInfrastructureEncryption: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -62,7 +62,7 @@ async function storageAccountPutEncryptionScopeWithInfrastructureEncryption() {
     resourceGroupName,
     accountName,
     encryptionScopeName,
-    encryptionScope
+    encryptionScope,
   );
   console.log(result);
 }

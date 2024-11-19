@@ -14,7 +14,7 @@ import {
   HttpClientFailureImpl,
   HttpServerFailureImpl,
   HttpRetryImpl,
-  MultipleResponsesImpl
+  MultipleResponsesImpl,
 } from "./operations";
 import {
   HttpFailure,
@@ -23,7 +23,7 @@ import {
   HttpClientFailure,
   HttpServerFailure,
   HttpRetry,
-  MultipleResponses
+  MultipleResponses,
 } from "./operationsInterfaces";
 import { HttpInfrastructureClientOptionalParams } from "./models";
 
@@ -40,7 +40,7 @@ export class HttpInfrastructureClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: HttpInfrastructureClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-httpInfrastructure/1.0.0-preview1`;
@@ -53,9 +53,9 @@ export class HttpInfrastructureClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 

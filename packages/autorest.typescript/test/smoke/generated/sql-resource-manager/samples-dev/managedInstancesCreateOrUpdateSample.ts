@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstance,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function createManagedInstanceWithAllProperties() {
       login: "bob@contoso.com",
       principalType: "User",
       sid: "00000011-1111-2222-2222-123456789111",
-      tenantId: "00000011-1111-2222-2222-123456789111"
+      tenantId: "00000011-1111-2222-2222-123456789111",
     },
     collation: "SQL_Latin1_General_CP1_CI_AS",
     dnsZonePartner:
@@ -58,14 +58,14 @@ async function createManagedInstanceWithAllProperties() {
       "/subscriptions/20D7082A-0FC7-4468-82BD-542694D5042B/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1",
     tags: { tagKey1: "TagValue1" },
     timezoneId: "UTC",
-    vCores: 8
+    vCores: 8,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginCreateOrUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -90,14 +90,14 @@ async function createManagedInstanceWithMinimalProperties() {
     storageSizeInGB: 1024,
     subnetId:
       "/subscriptions/20D7082A-0FC7-4468-82BD-542694D5042B/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1",
-    vCores: 8
+    vCores: 8,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginCreateOrUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

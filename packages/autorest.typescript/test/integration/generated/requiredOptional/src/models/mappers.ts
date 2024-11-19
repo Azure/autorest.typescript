@@ -16,17 +16,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const IntWrapper: coreClient.CompositeMapper = {
@@ -38,11 +38,11 @@ export const IntWrapper: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const IntOptionalWrapper: coreClient.CompositeMapper = {
@@ -53,11 +53,11 @@ export const IntOptionalWrapper: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const StringWrapper: coreClient.CompositeMapper = {
@@ -69,11 +69,11 @@ export const StringWrapper: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const StringOptionalWrapper: coreClient.CompositeMapper = {
@@ -84,11 +84,11 @@ export const StringOptionalWrapper: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Product: coreClient.CompositeMapper = {
@@ -100,17 +100,17 @@ export const Product: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ClassWrapper: coreClient.CompositeMapper = {
@@ -122,11 +122,11 @@ export const ClassWrapper: coreClient.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Composite",
-          className: "Product"
-        }
-      }
-    }
-  }
+          className: "Product",
+        },
+      },
+    },
+  },
 };
 
 export const ClassOptionalWrapper: coreClient.CompositeMapper = {
@@ -138,11 +138,11 @@ export const ClassOptionalWrapper: coreClient.CompositeMapper = {
         serializedName: "value",
         type: {
           name: "Composite",
-          className: "Product"
-        }
-      }
-    }
-  }
+          className: "Product",
+        },
+      },
+    },
+  },
 };
 
 export const ArrayWrapper: coreClient.CompositeMapper = {
@@ -157,13 +157,13 @@ export const ArrayWrapper: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const ArrayOptionalWrapper: coreClient.CompositeMapper = {
@@ -177,11 +177,11 @@ export const ArrayOptionalWrapper: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };

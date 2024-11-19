@@ -35,7 +35,7 @@ import {
   GetKittenResponse,
   Kitten,
   PutKittenOptionalParams,
-  PutKittenResponse
+  PutKittenResponse,
 } from "./models";
 
 export class MultipleInheritanceClient extends coreClient.ServiceClient {
@@ -51,7 +51,7 @@ export class MultipleInheritanceClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: MultipleInheritanceClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-multiple-inheritance/1.0.0-preview1`;
@@ -64,9 +64,9 @@ export class MultipleInheritanceClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -89,7 +89,7 @@ export class MultipleInheritanceClient extends coreClient.ServiceClient {
    */
   putHorse(
     horse: Horse,
-    options?: PutHorseOptionalParams
+    options?: PutHorseOptionalParams,
   ): Promise<PutHorseResponse> {
     return this.sendOperationRequest({ horse, options }, putHorseOperationSpec);
   }
@@ -126,11 +126,11 @@ export class MultipleInheritanceClient extends coreClient.ServiceClient {
    */
   putFeline(
     feline: Feline,
-    options?: PutFelineOptionalParams
+    options?: PutFelineOptionalParams,
   ): Promise<PutFelineResponse> {
     return this.sendOperationRequest(
       { feline, options },
-      putFelineOperationSpec
+      putFelineOperationSpec,
     );
   }
 
@@ -168,11 +168,11 @@ export class MultipleInheritanceClient extends coreClient.ServiceClient {
    */
   putKitten(
     kitten: Kitten,
-    options?: PutKittenOptionalParams
+    options?: PutKittenOptionalParams,
   ): Promise<PutKittenResponse> {
     return this.sendOperationRequest(
       { kitten, options },
-      putKittenOperationSpec
+      putKittenOperationSpec,
     );
   }
 }
@@ -184,143 +184,143 @@ const getHorseOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Horse
+      bodyMapper: Mappers.Horse,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putHorseOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/horse",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.horse,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getPetOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/pet",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Pet
+      bodyMapper: Mappers.Pet,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putPetOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/pet",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.pet,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getFelineOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/feline",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Feline
+      bodyMapper: Mappers.Feline,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putFelineOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/feline",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.feline,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getCatOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/cat",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Cat
+      bodyMapper: Mappers.Cat,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putCatOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/cat",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.cat,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getKittenOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/kitten",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Kitten
+      bodyMapper: Mappers.Kitten,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putKittenOperationSpec: coreClient.OperationSpec = {
   path: "/multipleInheritance/kitten",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.kitten,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

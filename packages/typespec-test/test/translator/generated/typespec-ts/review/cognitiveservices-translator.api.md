@@ -109,7 +109,7 @@ export interface CommonScriptModelOutput {
 }
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): TranslatorClient;
+function createClient(endpointParam: string, { apiVersion, ...options }?: TranslatorClientOptions): TranslatorClient;
 export default createClient;
 
 // @public (undocumented)
@@ -463,6 +463,12 @@ export interface MtErrorResponseOutput {
     error: ErrorDetailsOutput;
 }
 
+// @public
+export type ProfanityActions = "NoAction" | "Marked" | "Deleted";
+
+// @public
+export type ProfanityMarkers = "Asterisk" | "Tag";
+
 // @public (undocumented)
 export interface Routes {
     (path: "/languages"): GetLanguages;
@@ -500,6 +506,9 @@ export interface TargetDictionaryLanguageOutput {
     name: string;
     nativeName: string;
 }
+
+// @public
+export type TextTypes = "plain" | "html";
 
 // @public (undocumented)
 export interface Translate {
@@ -578,12 +587,19 @@ export interface TranslateQueryParamProperties {
     fromScript?: string;
     includeAlignment?: boolean;
     includeSentenceLength?: boolean;
-    profanityAction?: "NoAction" | "Marked" | "Deleted";
-    profanityMarker?: "Asterisk" | "Tag";
+    profanityAction?: ProfanityActions;
+    profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
-    textType?: "plain" | "html";
-    to: string;
+    textType?: TextTypes;
+    to: TranslateToQueryParam | string;
     toScript?: string;
+}
+
+// @public
+export interface TranslateToQueryParam {
+    explode: true;
+    style: "form";
+    value: string[];
 }
 
 // @public
@@ -606,6 +622,11 @@ export interface TranslationOutput {
 export type TranslatorClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface TranslatorClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
 
 // @public
 export interface TransliterableScriptOutput extends CommonScriptModelOutput {

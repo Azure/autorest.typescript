@@ -26,10 +26,11 @@ async function resetVpnClientSharedKey() {
   const virtualNetworkGatewayName = "vpngw";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginResetVpnClientSharedKeyAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName
-  );
+  const result =
+    await client.virtualNetworkGateways.beginResetVpnClientSharedKeyAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+    );
   console.log(result);
 }
 

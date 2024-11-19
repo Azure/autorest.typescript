@@ -3,12 +3,15 @@
 
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
+import { isAzurePackage } from "../helpers/packageUtil.js";
 
 export function buildRollupConfig(model: RLCModel) {
   const azureSdkForJs = Boolean(model.options?.azureSdkForJs);
-  const isBranded = model.options?.branded ?? true;
   // Only generate the file when it is not in sdk repo
-  if (isBranded && (azureSdkForJs === true || azureSdkForJs === undefined)) {
+  if (
+    isAzurePackage(model) &&
+    (azureSdkForJs === true || azureSdkForJs === undefined)
+  ) {
     return;
   }
 

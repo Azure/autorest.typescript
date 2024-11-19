@@ -5,6 +5,7 @@ options:
     multiClient: false
     azureSdkForJs: false
     isModularLibrary: true
+    generateMetadata: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/widget_dpg"

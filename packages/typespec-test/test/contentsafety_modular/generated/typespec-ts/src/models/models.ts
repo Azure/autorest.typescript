@@ -1,5 +1,252 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
+
+import { uint8ArrayToString } from "@azure/core-util";
+
+/** Text Blocklist. */
+export interface TextBlocklist {
+  /** Text blocklist name. */
+  blocklistName: string;
+  /** Text blocklist description. */
+  description?: string;
+}
+
+export function textBlocklistSerializer(item: TextBlocklist): any {
+  return {
+    blocklistName: item["blocklistName"],
+    description: item["description"],
+  };
+}
+
+export function textBlocklistDeserializer(item: any): TextBlocklist {
+  return {
+    blocklistName: item["blocklistName"],
+    description: item["description"],
+  };
+}
+
+/** Paged collection of TextBlocklist items */
+export interface _PagedTextBlocklist {
+  /** The TextBlocklist items on this page */
+  value: TextBlocklist[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTextBlocklistDeserializer(
+  item: any,
+): _PagedTextBlocklist {
+  return {
+    value: textBlocklistArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function textBlocklistArraySerializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistSerializer(item);
+  });
+}
+
+export function textBlocklistArrayDeserializer(
+  result: Array<TextBlocklist>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistDeserializer(item);
+  });
+}
+
+/** The request of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
+}
+
+export function addOrUpdateBlockItemsOptionsSerializer(
+  item: AddOrUpdateBlockItemsOptions,
+): any {
+  return { blockItems: textBlockItemInfoArraySerializer(item["blockItems"]) };
+}
+
+export function textBlockItemInfoArraySerializer(
+  result: Array<TextBlockItemInfo>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemInfoSerializer(item);
+  });
+}
+
+/** Block item info in text blocklist. */
+export interface TextBlockItemInfo {
+  /** Block item description. */
+  description?: string;
+  /** Block item content. */
+  text: string;
+}
+
+export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
+  return { description: item["description"], text: item["text"] };
+}
+
+/** The response of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsResult {
+  /** Array of blockItems added. */
+  value?: TextBlockItem[];
+}
+
+export function addOrUpdateBlockItemsResultDeserializer(
+  item: any,
+): AddOrUpdateBlockItemsResult {
+  return {
+    value: !item["value"]
+      ? item["value"]
+      : textBlockItemArrayDeserializer(item["value"]),
+  };
+}
+
+export function textBlockItemArrayDeserializer(
+  result: Array<TextBlockItem>,
+): any[] {
+  return result.map((item) => {
+    return textBlockItemDeserializer(item);
+  });
+}
+
+/** Item in TextBlocklist. */
+export interface TextBlockItem {
+  /** Block Item Id. It will be uuid. */
+  blockItemId: string;
+  /** Block item description. */
+  description?: string;
+  /** Block item content. */
+  text: string;
+}
+
+export function textBlockItemDeserializer(item: any): TextBlockItem {
+  return {
+    blockItemId: item["blockItemId"],
+    description: item["description"],
+    text: item["text"],
+  };
+}
+
+/** The request of removing blockItems from text blocklist. */
+export interface RemoveBlockItemsOptions {
+  /** Array of blockItemIds to remove. */
+  blockItemIds: string[];
+}
+
+export function removeBlockItemsOptionsSerializer(
+  item: RemoveBlockItemsOptions,
+): any {
+  return {
+    blockItemIds: item["blockItemIds"].map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+/** Paged collection of TextBlockItem items */
+export interface _PagedTextBlockItem {
+  /** The TextBlockItem items on this page */
+  value: TextBlockItem[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTextBlockItemDeserializer(
+  item: any,
+): _PagedTextBlockItem {
+  return {
+    value: textBlockItemArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+/** The analysis request of the image. */
+export interface AnalyzeImageOptions {
+  /** The image needs to be analyzed. */
+  image: ImageData;
+  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
+  categories?: ImageCategory[];
+  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeImageOutputType;
+}
+
+export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
+  return {
+    image: imageDataSerializer(item["image"]),
+    categories: !item["categories"]
+      ? item["categories"]
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
+    outputType: item["outputType"],
+  };
+}
+
+/** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
+export interface ImageData {
+  /** Base64 encoding of image. */
+  content?: Uint8Array;
+  /** The blob url of image. */
+  blobUrl?: string;
+}
+
+export function imageDataSerializer(item: ImageData): any {
+  return {
+    content: !item["content"]
+      ? item["content"]
+      : uint8ArrayToString(item["content"], "base64"),
+    blobUrl: item["blobUrl"],
+  };
+}
+
+/** Image analyze category */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of image analysis output. */
+export type AnalyzeImageOutputType = "FourLevels";
+
+/** The analysis response of the image. */
+export interface AnalyzeImageResult {
+  /** Analysis result for categories. */
+  analyzeResults: ImageAnalyzeSeverityResult[];
+}
+
+export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
+  return {
+    analyzeResults: imageAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
+  };
+}
+
+export function imageAnalyzeSeverityResultArrayDeserializer(
+  result: Array<ImageAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    return imageAnalyzeSeverityResultDeserializer(item);
+  });
+}
+
+/** Image analysis result. */
+export interface ImageAnalyzeSeverityResult {
+  /** The image category. */
+  category: ImageCategory;
+  /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
+  severity?: number;
+}
+
+export function imageAnalyzeSeverityResultDeserializer(
+  item: any,
+): ImageAnalyzeSeverityResult {
+  return {
+    category: item["category"],
+    severity: item["severity"],
+  };
+}
 
 /** The analysis request of the text. */
 export interface AnalyzeTextOptions {
@@ -15,12 +262,28 @@ export interface AnalyzeTextOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
+export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
+  return {
+    text: item["text"],
+    categories: !item["categories"]
+      ? item["categories"]
+      : item["categories"].map((p: any) => {
+          return p;
+        }),
+    blocklistNames: !item["blocklistNames"]
+      ? item["blocklistNames"]
+      : item["blocklistNames"].map((p: any) => {
+          return p;
+        }),
+    breakByBlocklists: item["breakByBlocklists"],
+    outputType: item["outputType"],
+  };
+}
+
 /** Text analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type TextCategory = string;
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-/** "FourLevels", "EightLevels" */
-export type AnalyzeTextOutputType = string;
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
@@ -28,6 +291,27 @@ export interface AnalyzeTextResult {
   blocklistsMatchResults?: TextBlocklistMatchResult[];
   /** Analysis result for categories. */
   analyzeResults: TextAnalyzeSeverityResult[];
+}
+
+export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
+  return {
+    blocklistsMatchResults: !item["blocklistsMatchResults"]
+      ? item["blocklistsMatchResults"]
+      : textBlocklistMatchResultArrayDeserializer(
+          item["blocklistsMatchResults"],
+        ),
+    analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
+      item["analyzeResults"],
+    ),
+  };
+}
+
+export function textBlocklistMatchResultArrayDeserializer(
+  result: Array<TextBlocklistMatchResult>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistMatchResultDeserializer(item);
+  });
 }
 
 /** The result of blocklist match. */
@@ -40,6 +324,24 @@ export interface TextBlocklistMatchResult {
   blockItemText: string;
 }
 
+export function textBlocklistMatchResultDeserializer(
+  item: any,
+): TextBlocklistMatchResult {
+  return {
+    blocklistName: item["blocklistName"],
+    blockItemId: item["blockItemId"],
+    blockItemText: item["blockItemText"],
+  };
+}
+
+export function textAnalyzeSeverityResultArrayDeserializer(
+  result: Array<TextAnalyzeSeverityResult>,
+): any[] {
+  return result.map((item) => {
+    return textAnalyzeSeverityResultDeserializer(item);
+  });
+}
+
 /** Text analysis result. */
 export interface TextAnalyzeSeverityResult {
   /** The text category. */
@@ -48,101 +350,16 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
-/** The analysis request of the image. */
-export interface AnalyzeImageOptions {
-  /** The image needs to be analyzed. */
-  image: ImageData;
-  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: ImageCategory[];
-  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
-  outputType?: AnalyzeImageOutputType;
+export function textAnalyzeSeverityResultDeserializer(
+  item: any,
+): TextAnalyzeSeverityResult {
+  return {
+    category: item["category"],
+    severity: item["severity"],
+  };
 }
 
-/** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
-export interface ImageData {
-  /** Base64 encoding of image. */
-  content?: Uint8Array;
-  /** The blob url of image. */
-  blobUrl?: string;
-}
-
-/** Image analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type ImageCategory = string;
-/** The type of image analysis output. */
-/** "FourLevels" */
-export type AnalyzeImageOutputType = string;
-
-/** The analysis response of the image. */
-export interface AnalyzeImageResult {
-  /** Analysis result for categories. */
-  analyzeResults: ImageAnalyzeSeverityResult[];
-}
-
-/** Image analysis result. */
-export interface ImageAnalyzeSeverityResult {
-  /** The image category. */
-  category: ImageCategory;
-  /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
-  severity?: number;
-}
-
-/** Text Blocklist. */
-export interface TextBlocklist {
-  /** Text blocklist name. */
-  readonly blocklistName: string;
-  /** Text blocklist description. */
-  description?: string;
-}
-
-/** The request of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
-}
-
-/** Block item info in text blocklist. */
-export interface TextBlockItemInfo {
-  /** Block item description. */
-  description?: string;
-  /** Block item content. */
-  text: string;
-}
-
-/** The response of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsResult {
-  /** Array of blockItems added. */
-  value?: TextBlockItem[];
-}
-
-/** Item in TextBlocklist. */
-export interface TextBlockItem {
-  /** Block Item Id. It will be uuid. */
-  readonly blockItemId: string;
-  /** Block item description. */
-  description?: string;
-  /** Block item content. */
-  text: string;
-}
-
-/** The request of removing blockItems from text blocklist. */
-export interface RemoveBlockItemsOptions {
-  /** Array of blockItemIds to remove. */
-  blockItemIds: string[];
-}
-
-/** Paged collection of TextBlocklist items */
-export interface PagedTextBlocklist {
-  /** The TextBlocklist items on this page */
-  value: TextBlocklist[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Paged collection of TextBlockItem items */
-export interface PagedTextBlockItem {
-  /** The TextBlockItem items on this page */
-  value: TextBlockItem[];
-  /** The link to the next page of items */
-  nextLink?: string;
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  v2023_10_01 = "2023-10-01",
 }

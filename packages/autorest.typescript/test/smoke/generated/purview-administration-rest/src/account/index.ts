@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import * as Parameters from "./parameters";
 import * as Responses from "./responses";
@@ -9,7 +9,7 @@ import * as OutputModels from "./outputModels";
 import * as PaginateHelper from "./paginateHelper";
 import * as UnexpectedHelper from "./isUnexpected";
 
-export { createClient } from "./purviewAccount";
+export { createClient, PurviewAccountClientOptions } from "./purviewAccount";
 export {
   Parameters,
   Responses,
@@ -17,5 +17,5 @@ export {
   Models,
   OutputModels,
   PaginateHelper,
-  UnexpectedHelper
+  UnexpectedHelper,
 };

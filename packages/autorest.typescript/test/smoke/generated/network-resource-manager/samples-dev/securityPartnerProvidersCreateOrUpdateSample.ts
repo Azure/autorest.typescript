@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecurityPartnerProvider,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,17 +32,17 @@ async function createSecurityPartnerProvider() {
     securityProviderName: "ZScaler",
     tags: { key1: "value1" },
     virtualHub: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1"
-    }
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.securityPartnerProviders.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    securityPartnerProviderName,
-    parameters
-  );
+  const result =
+    await client.securityPartnerProviders.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      securityPartnerProviderName,
+      parameters,
+    );
   console.log(result);
 }
 

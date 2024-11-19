@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   QueryRequestOptions,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function listEffectiveSecurityAdminRules() {
   const result = await client.listNetworkManagerEffectiveSecurityAdminRules(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

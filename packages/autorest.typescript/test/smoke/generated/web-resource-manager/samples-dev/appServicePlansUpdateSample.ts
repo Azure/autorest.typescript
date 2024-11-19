@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AppServicePlanPatchResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function patchServicePlan() {
   const result = await client.appServicePlans.update(
     resourceGroupName,
     name,
-    appServicePlan
+    appServicePlan,
   );
   console.log(result);
 }

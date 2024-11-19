@@ -50,6 +50,7 @@ export function generateModelFiles(
     importedModels,
     schemaContext
   );
+
   if (
     objectTypeAliases.length ||
     objectsDefinitions.length ||
@@ -62,15 +63,6 @@ export function generateModelFiles(
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
     modelsFile.addTypeAliases(objectAliases);
-    if (importedModels.has("Paged")) {
-      modelsFile.addImportDeclarations([
-        {
-          namedImports: ["Paged"],
-          moduleSpecifier: "@azure/core-paging"
-        }
-      ]);
-      importedModels.delete("Paged");
-    }
     if (importedModels.size > 0) {
       modelsFile.addImportDeclarations([
         {

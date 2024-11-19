@@ -5,7 +5,7 @@ import {
   BlockBlobUploadOptionalParams,
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
-  BlockBlobPutBlobFromUrlResponse
+  BlockBlobPutBlobFromUrlResponse,
 } from "../models";
 
 /** Interface representing a BlockBlob. */
@@ -23,7 +23,7 @@ export interface BlockBlob {
     blockId: string,
     contentLength: number,
     body: coreRestPipeline.RequestBodyType,
-    options?: BlockBlobStageBlockOptionalParams
+    options?: BlockBlobStageBlockOptionalParams,
   ): Promise<BlockBlobStageBlockResponse>;
   /**
    * The Upload Block Blob operation updates the content of an existing block blob. Updating an existing
@@ -37,7 +37,7 @@ export interface BlockBlob {
   upload(
     contentLength: number,
     body: coreRestPipeline.RequestBodyType,
-    options?: BlockBlobUploadOptionalParams
+    options?: BlockBlobUploadOptionalParams,
   ): Promise<BlockBlobUploadResponse>;
   /**
    * The Put Blob from URL operation creates a new Block Blob where the contents of the blob are read
@@ -55,6 +55,6 @@ export interface BlockBlob {
   putBlobFromUrl(
     contentLength: number,
     copySource: string,
-    options?: BlockBlobPutBlobFromUrlOptionalParams
+    options?: BlockBlobPutBlobFromUrlOptionalParams,
   ): Promise<BlockBlobPutBlobFromUrlResponse>;
 }

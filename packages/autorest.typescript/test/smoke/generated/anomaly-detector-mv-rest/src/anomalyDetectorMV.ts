@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorMVClient } from "./clientDefinitions";
 
+/** The optional parameters for the client */
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
+  /** Api Version */
   apiVersion?: "v1.1";
 }
 
@@ -19,12 +21,12 @@ export interface AnomalyDetectorMVClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorMVClientOptions = {}
+  { apiVersion = "v1.1", ...options }: AnomalyDetectorMVClientOptions = {},
 ): AnomalyDetectorMVClient {
-  const apiVersion = options.apiVersion ?? "v1.1";
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
-
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpoint}/anomalydetector/${apiVersion}`;
   const userAgentInfo = `azsdk-js-anomaly-detector-mv-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -33,22 +35,23 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
-    }
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as AnomalyDetectorMVClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

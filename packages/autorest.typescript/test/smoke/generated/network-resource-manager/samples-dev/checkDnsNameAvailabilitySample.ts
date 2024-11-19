@@ -28,7 +28,7 @@ async function checkDnsNameAvailability() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.checkDnsNameAvailability(
     location,
-    domainNameLabel
+    domainNameLabel,
   );
   console.log(result);
 }

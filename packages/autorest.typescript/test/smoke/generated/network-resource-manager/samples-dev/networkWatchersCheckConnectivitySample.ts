@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ConnectivityParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,15 +32,15 @@ async function checkConnectivity() {
     preferredIPVersion: "IPv4",
     source: {
       resourceId:
-        "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
-    }
+        "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginCheckConnectivityAndWait(
     resourceGroupName,
     networkWatcherName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

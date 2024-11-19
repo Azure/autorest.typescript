@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AvailableProvidersListParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,15 +31,16 @@ async function getAvailableProvidersList() {
     azureLocations: ["West US"],
     city: "seattle",
     country: "United States",
-    state: "washington"
+    state: "washington",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkWatchers.beginListAvailableProvidersAndWait(
-    resourceGroupName,
-    networkWatcherName,
-    parameters
-  );
+  const result =
+    await client.networkWatchers.beginListAvailableProvidersAndWait(
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -80,7 +80,7 @@ export enum KnownLockLevel {
   /** CanNotDelete */
   CanNotDelete = "CanNotDelete",
   /** ReadOnly */
-  ReadOnly = "ReadOnly"
+  ReadOnly = "ReadOnly",
 }
 
 /**
@@ -113,7 +113,8 @@ export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtResourceGroupLevel operation. */
-export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject;
+export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse =
+  ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams
@@ -124,7 +125,8 @@ export interface ManagementLocksGetAtResourceGroupLevelOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtResourceGroupLevel operation. */
-export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject;
+export type ManagementLocksGetAtResourceGroupLevelResponse =
+  ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksCreateOrUpdateByScopeOptionalParams
@@ -149,7 +151,8 @@ export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtResourceLevel operation. */
-export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject;
+export type ManagementLocksCreateOrUpdateAtResourceLevelResponse =
+  ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtResourceLevelOptionalParams
@@ -167,7 +170,8 @@ export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtSubscriptionLevel operation. */
-export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject;
+export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse =
+  ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams
@@ -178,7 +182,8 @@ export interface ManagementLocksGetAtSubscriptionLevelOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionLevel operation. */
-export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject;
+export type ManagementLocksGetAtSubscriptionLevelResponse =
+  ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceGroupLevelOptionalParams
@@ -188,7 +193,8 @@ export interface ManagementLocksListAtResourceGroupLevelOptionalParams
 }
 
 /** Contains response data for the listAtResourceGroupLevel operation. */
-export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult;
+export type ManagementLocksListAtResourceGroupLevelResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceLevelOptionalParams
@@ -198,7 +204,8 @@ export interface ManagementLocksListAtResourceLevelOptionalParams
 }
 
 /** Contains response data for the listAtResourceLevel operation. */
-export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult;
+export type ManagementLocksListAtResourceLevelResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtSubscriptionLevelOptionalParams
@@ -208,7 +215,8 @@ export interface ManagementLocksListAtSubscriptionLevelOptionalParams
 }
 
 /** Contains response data for the listAtSubscriptionLevel operation. */
-export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult;
+export type ManagementLocksListAtSubscriptionLevelResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListByScopeOptionalParams
@@ -225,21 +233,24 @@ export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtResourceGroupLevelNext operation. */
-export type ManagementLocksListAtResourceGroupLevelNextResponse = ManagementLockListResult;
+export type ManagementLocksListAtResourceGroupLevelNextResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceLevelNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtResourceLevelNext operation. */
-export type ManagementLocksListAtResourceLevelNextResponse = ManagementLockListResult;
+export type ManagementLocksListAtResourceLevelNextResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionLevelNext operation. */
-export type ManagementLocksListAtSubscriptionLevelNextResponse = ManagementLockListResult;
+export type ManagementLocksListAtSubscriptionLevelNextResponse =
+  ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListByScopeNextOptionalParams

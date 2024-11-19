@@ -1,75 +1,57 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
+  OpenAIContext as Client,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+  ImagesCreateVariationOptionalParams,
+} from "../index.js";
+import {
   CreateImageRequest,
+  createImageRequestSerializer,
   ImagesResponse,
+  imagesResponseDeserializer,
   CreateImageEditRequest,
+  createImageEditRequestSerializer,
   CreateImageVariationRequest,
+  createImageVariationRequestSerializer,
 } from "../../models/models.js";
 import {
-  ImagesCreate200Response,
-  ImagesCreateDefaultResponse,
-  ImagesCreateEdit200Response,
-  ImagesCreateEditDefaultResponse,
-  ImagesCreateVariation200Response,
-  ImagesCreateVariationDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
-import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
-import {
-  ImagesCreateOptions,
-  ImagesCreateEditOptions,
-  ImagesCreateVariationOptions,
-} from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
-): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: image["prompt"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageRequestSerializer(image),
     });
 }
 
 export async function _createDeserialize(
-  result: ImagesCreate200Response | ImagesCreateDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function create(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createSend(context, image, options);
   return _createDeserialize(result);
@@ -78,50 +60,32 @@ export async function create(
 export function _createEditSend(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
-): StreamableMethod<
-  ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
-> {
+  options: ImagesCreateEditOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/images/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        prompt: image["prompt"],
-        image: image["image"],
-        mask: image["mask"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageEditRequestSerializer(image),
     });
 }
 
 export async function _createEditDeserialize(
-  result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createEdit(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
+  options: ImagesCreateEditOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createEditSend(context, image, options);
   return _createEditDeserialize(result);
@@ -130,50 +94,32 @@ export async function createEdit(
 export function _createVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
-): StreamableMethod<
-  ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
-> {
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/images/variations")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        image: image["image"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: createImageVariationRequestSerializer(image),
     });
 }
 
 export async function _createVariationDeserialize(
-  result:
-    | ImagesCreateVariation200Response
-    | ImagesCreateVariationDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return imagesResponseDeserializer(result.body);
 }
 
 export async function createVariation(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createVariationSend(context, image, options);
   return _createVariationDeserialize(result);

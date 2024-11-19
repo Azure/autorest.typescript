@@ -750,7 +750,7 @@ export enum KnownUserType {
   /** Member */
   Member = "Member",
   /** Guest */
-  Guest = "Guest"
+  Guest = "Guest",
 }
 
 /**
@@ -770,7 +770,7 @@ export enum KnownGroupMembershipClaimTypes {
   /** SecurityGroup */
   SecurityGroup = "SecurityGroup",
   /** All */
-  All = "All"
+  All = "All",
 }
 
 /**
@@ -789,7 +789,7 @@ export enum KnownConsentType {
   /** AllPrincipals */
   AllPrincipals = "AllPrincipals",
   /** Principal */
-  Principal = "Principal"
+  Principal = "Principal",
 }
 
 /**
@@ -821,7 +821,8 @@ export interface SignedInUserListOwnedObjectsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnedObjectsNext operation. */
-export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult;
+export type SignedInUserListOwnedObjectsNextResponse =
+  DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ApplicationsCreateOptionalParams
@@ -886,7 +887,8 @@ export interface ApplicationsListPasswordCredentialsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
-export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult;
+export type ApplicationsListPasswordCredentialsResponse =
+  PasswordCredentialListResult;
 
 /** Optional parameters. */
 export interface ApplicationsUpdatePasswordCredentialsOptionalParams
@@ -897,7 +899,8 @@ export interface ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServicePrincipalsIdByAppId operation. */
-export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult;
+export type ApplicationsGetServicePrincipalsIdByAppIdResponse =
+  ServicePrincipalObjectResult;
 
 /** Optional parameters. */
 export interface ApplicationsListNextOptionalParams
@@ -1076,7 +1079,8 @@ export interface ServicePrincipalsListKeyCredentialsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listKeyCredentials operation. */
-export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult;
+export type ServicePrincipalsListKeyCredentialsResponse =
+  KeyCredentialListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsUpdateKeyCredentialsOptionalParams
@@ -1087,7 +1091,8 @@ export interface ServicePrincipalsListPasswordCredentialsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
-export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult;
+export type ServicePrincipalsListPasswordCredentialsResponse =
+  PasswordCredentialListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams
@@ -1165,7 +1170,8 @@ export interface ObjectsGetObjectsByObjectIdsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getObjectsByObjectIdsNext operation. */
-export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult;
+export type ObjectsGetObjectsByObjectIdsNextResponse =
+  DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface DomainsListOptionalParams extends coreClient.OperationOptions {
@@ -1211,7 +1217,8 @@ export interface OAuth2PermissionGrantListNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult;
+export type OAuth2PermissionGrantListNextResponse =
+  OAuth2PermissionGrantListResult;
 
 /** Optional parameters. */
 export interface GraphRbacManagementClientOptionalParams

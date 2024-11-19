@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { DataFactoryClient } from "../dataFactoryClient";
 import {
   PrivateLinkResourcesGetOptionalParams,
-  PrivateLinkResourcesGetResponse
+  PrivateLinkResourcesGetResponse,
 } from "../models";
 
 /** Class containing PrivateLinkResources operations. */
@@ -29,11 +29,11 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   get(
     resourceGroupName: string,
     factoryName: string,
-    options?: PrivateLinkResourcesGetOptionalParams
+    options?: PrivateLinkResourcesGetOptionalParams,
   ): Promise<PrivateLinkResourcesGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, factoryName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 }
@@ -41,24 +41,23 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateLinkResources",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateLinkResources",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PrivateLinkResourcesWrapper
+      bodyMapper: Mappers.PrivateLinkResourcesWrapper,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.factoryName
+    Parameters.factoryName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

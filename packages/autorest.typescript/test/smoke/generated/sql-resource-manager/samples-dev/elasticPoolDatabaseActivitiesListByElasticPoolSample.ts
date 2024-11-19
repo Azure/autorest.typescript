@@ -32,7 +32,7 @@ async function listElasticPoolDatabaseActivity() {
   for await (let item of client.elasticPoolDatabaseActivities.listByElasticPool(
     resourceGroupName,
     serverName,
-    elasticPoolName
+    elasticPoolName,
   )) {
     resArray.push(item);
   }

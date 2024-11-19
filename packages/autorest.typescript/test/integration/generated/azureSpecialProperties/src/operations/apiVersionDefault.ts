@@ -15,7 +15,7 @@ import {
   ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ApiVersionDefaultGetPathGlobalValidOptionalParams,
-  ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
+  ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
 } from "../models";
 
 /** Class containing ApiVersionDefault operations. */
@@ -35,11 +35,11 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getMethodGlobalValid(
-    options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getMethodGlobalValidOperationSpec
+      getMethodGlobalValidOperationSpec,
     );
   }
 
@@ -48,11 +48,11 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getMethodGlobalNotProvidedValid(
-    options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams
+    options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getMethodGlobalNotProvidedValidOperationSpec
+      getMethodGlobalNotProvidedValidOperationSpec,
     );
   }
 
@@ -61,11 +61,11 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getPathGlobalValid(
-    options?: ApiVersionDefaultGetPathGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetPathGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getPathGlobalValidOperationSpec
+      getPathGlobalValidOperationSpec,
     );
   }
 
@@ -74,11 +74,11 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
    * @param options The options parameters.
    */
   getSwaggerGlobalValid(
-    options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getSwaggerGlobalValidOperationSpec
+      getSwaggerGlobalValidOperationSpec,
     );
   }
 }
@@ -86,62 +86,58 @@ export class ApiVersionDefaultImpl implements ApiVersionDefault {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getMethodGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
+  path: "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
+  path: "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getPathGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
+  path: "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSwaggerGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
+  path: "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

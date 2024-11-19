@@ -1,20 +1,21 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
-import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/edits/index.js";
-import { EditsCreateOptions } from "../../models/options.js";
+import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
+import { EditsCreateOptionalParams } from "../../api/options.js";
 
+/** Interface representing a Edits operations. */
 export interface EditsOperations {
   create: (
     edit: CreateEditRequest,
-    options?: EditsCreateOptions
+    options?: EditsCreateOptionalParams,
   ) => Promise<CreateEditResponse>;
 }
 
 export function getEdits(context: OpenAIContext) {
   return {
-    create: (edit: CreateEditRequest, options?: EditsCreateOptions) =>
+    create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) =>
       create(context, edit, options),
   };
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DatabasesFailoverOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function failoverAnDatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    options
+    options,
   );
   console.log(result);
 }

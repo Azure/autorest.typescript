@@ -31,7 +31,7 @@ async function getTheCurrentStatusOfANetworkTraceOperationForASite() {
   const result = await client.webApps.getNetworkTraceOperation(
     resourceGroupName,
     name,
-    operationId
+    operationId,
   );
   console.log(result);
 }

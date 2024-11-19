@@ -26,10 +26,11 @@ async function p2SVpnGatewayGetConnectionHealth() {
   const gatewayName = "p2sVpnGateway1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.p2SVpnGateways.beginGetP2SVpnConnectionHealthAndWait(
-    resourceGroupName,
-    gatewayName
-  );
+  const result =
+    await client.p2SVpnGateways.beginGetP2SVpnConnectionHealthAndWait(
+      resourceGroupName,
+      gatewayName,
+    );
   console.log(result);
 }
 

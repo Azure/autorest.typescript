@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecurityRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function createSecurityRule() {
     priority: 100,
     sourceAddressPrefix: "10.0.0.0/8",
     sourcePortRange: "*",
-    protocol: "*"
+    protocol: "*",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -44,7 +44,7 @@ async function createSecurityRule() {
     resourceGroupName,
     networkSecurityGroupName,
     securityRuleName,
-    securityRuleParameters
+    securityRuleParameters,
   );
   console.log(result);
 }

@@ -13,7 +13,8 @@ describe("UsageContext Classical Client", () => {
 
   beforeEach(() => {
     client = new UsageClient({
-      allowInsecureConnection: true
+      allowInsecureConnection: true,
+      endpoint: "http://localhost:3004"
     });
   });
 
@@ -54,7 +55,8 @@ describe("UsageContext API Operations", () => {
 
   beforeEach(() => {
     context = createUsage({
-      allowInsecureConnection: true
+      allowInsecureConnection: true,
+      endpoint: "http://localhost:3004"
     });
   });
 

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryImageVersionsGetOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function getAGalleryImageVersionWithReplicationStatus() {
     galleryName,
     galleryImageName,
     galleryImageVersionName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -61,7 +61,7 @@ async function getAGalleryImageVersionWithSnapshotsAsASource() {
     resourceGroupName,
     galleryName,
     galleryImageName,
-    galleryImageVersionName
+    galleryImageVersionName,
   );
   console.log(result);
 }
@@ -84,7 +84,7 @@ async function getAGalleryImageVersionWithVhdAsASource() {
     resourceGroupName,
     galleryName,
     galleryImageName,
-    galleryImageVersionName
+    galleryImageVersionName,
   );
   console.log(result);
 }
@@ -107,7 +107,7 @@ async function getAGalleryImageVersion() {
     resourceGroupName,
     galleryName,
     galleryImageName,
-    galleryImageVersionName
+    galleryImageVersionName,
   );
   console.log(result);
 }

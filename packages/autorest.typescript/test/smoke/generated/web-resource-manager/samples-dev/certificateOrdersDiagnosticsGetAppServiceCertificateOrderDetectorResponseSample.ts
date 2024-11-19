@@ -29,11 +29,12 @@ async function getAppServiceCertificateOrderDetectorResponse() {
   const detectorName = "AutoRenewStatus";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.certificateOrdersDiagnostics.getAppServiceCertificateOrderDetectorResponse(
-    resourceGroupName,
-    certificateOrderName,
-    detectorName
-  );
+  const result =
+    await client.certificateOrdersDiagnostics.getAppServiceCertificateOrderDetectorResponse(
+      resourceGroupName,
+      certificateOrderName,
+      detectorName,
+    );
   console.log(result);
 }
 

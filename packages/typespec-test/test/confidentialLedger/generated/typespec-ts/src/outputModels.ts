@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 /** Identifier for collections. */
 export interface CollectionOutput {
@@ -12,7 +12,7 @@ export interface PagedLedgerEntriesOutput {
   /** Array of ledger entries. */
   entries: Array<LedgerEntryOutput>;
   /** State of the ledger query. */
-  state: "Loading" | "Ready";
+  state: LedgerQueryStateOutput;
   /** Path from which to retrieve the next page of results. */
   nextLink?: string;
 }
@@ -32,7 +32,7 @@ export interface TransactionReceiptOutput {
   /** The receipt contents. */
   receipt: ReceiptContentsOutput;
   /** The state of the ledger query. */
-  state: "Loading" | "Ready";
+  state: LedgerQueryStateOutput;
   /** The transaction ID. */
   transactionId: string;
 }
@@ -43,7 +43,7 @@ export interface ReceiptContentsOutput {}
 /** Response returned to a query for the transaction status. */
 export interface TransactionStatusOutput {
   /** The transaction state. */
-  state: "Committed" | "Pending";
+  state: TransactionStateOutput;
   /** The transaction ID. */
   transactionId: string;
 }
@@ -53,5 +53,12 @@ export interface LedgerUserOutput {
   /** The user id, either an AAD object ID or certificate fingerprint. */
   readonly userId: string;
   /** The user's assigned role. */
-  assignedRole: "Administrator" | "Contributor" | "Reader";
+  assignedRole: LedgerUserRoleOutput;
 }
+
+/** State of a ledger query. */
+export type LedgerQueryStateOutput = "Loading" | "Ready";
+/** Represents the state of the transaction. */
+export type TransactionStateOutput = "Committed" | "Pending";
+/** Represents an assignable role. */
+export type LedgerUserRoleOutput = "Administrator" | "Contributor" | "Reader";

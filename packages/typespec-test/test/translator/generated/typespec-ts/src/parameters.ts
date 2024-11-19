@@ -1,9 +1,15 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { InputTextElement, DictionaryExampleTextElement } from "./models";
+import {
+  TextTypes,
+  ProfanityActions,
+  ProfanityMarkers,
+  InputTextElement,
+  DictionaryExampleTextElement,
+} from "./models.js";
 
 export interface GetLanguagesHeaders {
   /** A client-generated GUID to uniquely identify the request. */
@@ -57,14 +63,25 @@ export interface TranslateBodyParam {
   body: Array<InputTextElement>;
 }
 
+/** This is the wrapper object for the parameter `to` with explode set to true and style set to form. */
+export interface TranslateToQueryParam {
+  /** Value of the parameter */
+  value: string[];
+  /** Should we explode the value? */
+  explode: true;
+  /** Style of the value */
+  style: "form";
+}
+
 export interface TranslateQueryParamProperties {
   /**
    * Specifies the language of the output text. The target language must be one of the supported languages included
    * in the translation scope. For example, use to=de to translate to German.
    * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
-   * For example, use to=de&to=it to translate to German and Italian. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
+   * For example, use to=de&to=it to translate to German and Italian.
+   * This parameter could be formatted as multi collection string, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request.
    */
-  to: string;
+  to: TranslateToQueryParam | string;
   /**
    * Specifies the language of the input text. Find which languages are available to translate from by
    * looking up supported languages using the translation scope. If the from parameter isn't specified,
@@ -78,7 +95,7 @@ export interface TranslateQueryParamProperties {
    * Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed,
    * complete element. Possible values are: plain (default) or html.
    */
-  textType?: "plain" | "html";
+  textType?: TextTypes;
   /**
    * A string specifying the category (domain) of the translation. This parameter is used to get translations
    * from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
@@ -89,12 +106,12 @@ export interface TranslateQueryParamProperties {
    * Specifies how profanities should be treated in translations.
    * Possible values are: NoAction (default), Marked or Deleted.
    */
-  profanityAction?: "NoAction" | "Marked" | "Deleted";
+  profanityAction?: ProfanityActions;
   /**
    * Specifies how profanities should be marked in translations.
    * Possible values are: Asterisk (default) or Tag.
    */
-  profanityMarker?: "Asterisk" | "Tag";
+  profanityMarker?: ProfanityMarkers;
   /**
    * Specifies whether to include alignment projection from source text to translated text.
    * Possible values are: true or false (default).

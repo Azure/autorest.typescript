@@ -1,7 +1,8 @@
 {
+  "cSpell.words": ["Autorest", "SDKs"],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Autorest", "SDKs"],
+  "eslint.workingDirectories": [{ "pattern": "./packages/*" }],
   "markdownlint.config": {
     "MD028": false,
     "MD025": {
@@ -9,6 +10,12 @@
     }
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   }
 }

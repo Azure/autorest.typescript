@@ -1,55 +1,67 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import {
+  getUnivariateOperations,
+  UnivariateOperations,
+} from "./classic/univariate/index.js";
+import {
+  getMultivariateOperations,
+  MultivariateOperations,
+} from "./classic/multivariate/index.js";
+import {
+  createAnomalyDetector,
+  AnomalyDetectorContext,
+  AnomalyDetectorClientOptionalParams,
+} from "./api/index.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
-import { AnomalyDetectorClient } from "./clientDefinitions";
 
-export interface AnomalyDetectorClientOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
 
-/**
- * Initialize a new instance of `AnomalyDetectorClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
- * https://westus2.api.cognitive.microsoft.com).
- * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
- */
-export default function createClient(
-  endpoint: string,
-  credentials: KeyCredential,
-  options: AnomalyDetectorClientOptions = {}
-): AnomalyDetectorClient {
-  const apiVersion = options.apiVersion ?? "v1.1";
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
+export class AnomalyDetectorClient {
+  private _client: AnomalyDetectorContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
-  const userAgentInfo = `azsdk-js-ai-anomaly-detector-rest/1.0.0-beta.1`;
-  const userAgentPrefix =
-    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
-      : `${userAgentInfo}`;
-  options = {
-    ...options,
-    userAgentOptions: {
-      userAgentPrefix,
-    },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
-    },
-    credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
-    },
-  };
+  /**
+   * The Anomaly Detector API detects anomalies automatically in time series data.
+   * It supports two kinds of mode, one is for stateless using, another is for
+   * stateful using. In stateless mode, there are three functionalities. Entire
+   * Detect is for detecting the whole series with model trained by the time series,
+   * Last Detect is detecting last point with model trained by points before.
+   * ChangePoint Detect is for detecting trend changes in time series. In stateful
+   * mode, user can store time series, the stored time series will be used for
+   * detection anomalies. Under this mode, user can still use the above three
+   * functionalities by only giving a time range without preparing time series in
+   * client side. Besides the above three functionalities, stateful model also
+   * provide group based detection and labeling service. By leveraging labeling
+   * service user can provide labels for each detection result, these labels will be
+   * used for retuning or regenerating detection models. Inconsistency detection is
+   * a kind of group based detection, this detection will find inconsistency ones in
+   * a set of time series. By using anomaly detector service, business customers can
+   * discover incidents and establish a logic flow for root cause analysis.
+   */
+  constructor(
+    endpointParam: string,
+    credential: KeyCredential,
+    options: AnomalyDetectorClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : `azsdk-js-client`;
+    this._client = createAnomalyDetector(endpointParam, credential, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
+    this.pipeline = this._client.pipeline;
+    this.univariate = getUnivariateOperations(this._client);
+    this.multivariate = getMultivariateOperations(this._client);
+  }
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as AnomalyDetectorClient;
-
-  return client;
+  /** The operation groups for Univariate */
+  public readonly univariate: UnivariateOperations;
+  /** The operation groups for Multivariate */
+  public readonly multivariate: MultivariateOperations;
 }

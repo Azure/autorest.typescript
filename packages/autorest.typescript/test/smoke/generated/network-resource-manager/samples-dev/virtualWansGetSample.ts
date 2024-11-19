@@ -28,7 +28,7 @@ async function virtualWanGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualWans.get(
     resourceGroupName,
-    virtualWANName
+    virtualWANName,
   );
   console.log(result);
 }

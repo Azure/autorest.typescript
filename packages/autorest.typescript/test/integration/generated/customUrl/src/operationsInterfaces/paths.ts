@@ -17,6 +17,6 @@ export interface Paths {
    */
   getEmpty(
     accountName: string,
-    options?: PathsGetEmptyOptionalParams
+    options?: PathsGetEmptyOptionalParams,
   ): Promise<void>;
 }

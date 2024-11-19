@@ -13,7 +13,7 @@ import {
   ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
-  ParameterGroupingGroupWithConstantOptionalParams
+  ParameterGroupingGroupWithConstantOptionalParams,
 } from "../models";
 
 /** Interface representing a ParameterGrouping. */
@@ -25,41 +25,41 @@ export interface ParameterGrouping {
    */
   postRequired(
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
-    options?: ParameterGroupingPostRequiredOptionalParams
+    options?: ParameterGroupingPostRequiredOptionalParams,
   ): Promise<void>;
   /**
    * Post a bunch of optional parameters grouped
    * @param options The options parameters.
    */
   postOptional(
-    options?: ParameterGroupingPostOptionalOptionalParams
+    options?: ParameterGroupingPostOptionalOptionalParams,
   ): Promise<void>;
   /**
    * Post a grouped parameters with reserved words
    * @param options The options parameters.
    */
   postReservedWords(
-    options?: ParameterGroupingPostReservedWordsOptionalParams
+    options?: ParameterGroupingPostReservedWordsOptionalParams,
   ): Promise<void>;
   /**
    * Post parameters from multiple different parameter groups
    * @param options The options parameters.
    */
   postMultiParamGroups(
-    options?: ParameterGroupingPostMultiParamGroupsOptionalParams
+    options?: ParameterGroupingPostMultiParamGroupsOptionalParams,
   ): Promise<void>;
   /**
    * Post parameters with a shared parameter group object
    * @param options The options parameters.
    */
   postSharedParameterGroupObject(
-    options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
+    options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
   ): Promise<void>;
   /**
    * Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for groupedParameter.
    * @param options The options parameters.
    */
   groupWithConstant(
-    options?: ParameterGroupingGroupWithConstantOptionalParams
+    options?: ParameterGroupingGroupWithConstantOptionalParams,
   ): Promise<void>;
 }

@@ -174,7 +174,7 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
         },
         model
       ),
-      namedExports: [`${createClientFuncName}`]
+      namedExports: [`${createClientFuncName}`, `${clientName}ClientOptions`]
     },
     {
       namedExports: [...exports]

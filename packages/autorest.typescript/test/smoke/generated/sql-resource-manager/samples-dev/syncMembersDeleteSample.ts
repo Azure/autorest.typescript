@@ -36,7 +36,7 @@ async function deleteASyncMember() {
     serverName,
     databaseName,
     syncGroupName,
-    syncMemberName
+    syncMemberName,
   );
   console.log(result);
 }

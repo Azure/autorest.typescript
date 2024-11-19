@@ -32,7 +32,7 @@ async function getAppDiagnosticCategory() {
   const result = await client.diagnostics.getSiteDiagnosticCategory(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   );
   console.log(result);
 }
@@ -55,7 +55,7 @@ async function getAppSlotDiagnosticCategory() {
   const result = await client.diagnostics.getSiteDiagnosticCategory(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   );
   console.log(result);
 }

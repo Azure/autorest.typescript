@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ElasticPoolUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function assignsMaintenanceConfigurationToAnElasticPool() {
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {
     maintenanceConfigurationId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_JapanEast_1"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_JapanEast_1",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -39,7 +39,7 @@ async function assignsMaintenanceConfigurationToAnElasticPool() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -58,7 +58,7 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {
     maintenanceConfigurationId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -66,7 +66,7 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -87,7 +87,7 @@ async function updateAnElasticPoolWithAllParameter() {
     licenseType: "LicenseIncluded",
     perDatabaseSettings: { maxCapacity: 1, minCapacity: 0.25 },
     sku: { name: "BC_Gen4", capacity: 2, tier: "BusinessCritical" },
-    zoneRedundant: true
+    zoneRedundant: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -95,7 +95,7 @@ async function updateAnElasticPoolWithAllParameter() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -119,7 +119,7 @@ async function updateAnElasticPoolWithMinimumParameters() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

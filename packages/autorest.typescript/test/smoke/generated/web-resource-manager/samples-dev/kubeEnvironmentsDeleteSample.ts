@@ -29,7 +29,7 @@ async function deleteKubeEnvironmentByName() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.kubeEnvironments.beginDeleteAndWait(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

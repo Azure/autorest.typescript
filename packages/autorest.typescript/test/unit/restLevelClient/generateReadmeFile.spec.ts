@@ -23,6 +23,7 @@ describe("generateReadmeFile", () => {
         scopeName: "azure-rest",
         version: "1.0.0-beta.1"
       },
+      flavor: "azure",
       azureOutputDirectory: "sdk/agrifood/agrifood-farming-rest",
       licenseHeader: false,
       hideClients: true,

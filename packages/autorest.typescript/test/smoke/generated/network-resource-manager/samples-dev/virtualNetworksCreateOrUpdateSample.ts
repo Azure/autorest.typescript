@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualNetwork,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createVirtualNetwork() {
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     flowTimeoutInMinutes: 10,
-    location: "eastus"
+    location: "eastus",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -56,14 +56,14 @@ async function createVirtualNetworkWithBgpCommunities() {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     bgpCommunities: { virtualNetworkCommunity: "12076:20000" },
     location: "eastus",
-    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }]
+    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -88,18 +88,18 @@ async function createVirtualNetworkWithDelegatedSubnets() {
         delegations: [
           {
             name: "myDelegation",
-            serviceName: "Microsoft.Sql/managedInstances"
-          }
-        ]
-      }
-    ]
+            serviceName: "Microsoft.Sql/managedInstances",
+          },
+        ],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -118,14 +118,14 @@ async function createVirtualNetworkWithEncryption() {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     encryption: { enabled: true, enforcement: "AllowUnencrypted" },
     location: "eastus",
-    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }]
+    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -147,16 +147,16 @@ async function createVirtualNetworkWithServiceEndpoints() {
       {
         name: "test-1",
         addressPrefix: "10.0.0.0/16",
-        serviceEndpoints: [{ service: "Microsoft.Storage" }]
-      }
-    ]
+        serviceEndpoints: [{ service: "Microsoft.Storage" }],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -180,20 +180,19 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
         addressPrefix: "10.0.0.0/16",
         serviceEndpointPolicies: [
           {
-            id:
-              "/subscriptions/subid/resourceGroups/vnetTest/providers/Microsoft.Network/serviceEndpointPolicies/ServiceEndpointPolicy1"
-          }
+            id: "/subscriptions/subid/resourceGroups/vnetTest/providers/Microsoft.Network/serviceEndpointPolicies/ServiceEndpointPolicy1",
+          },
         ],
-        serviceEndpoints: [{ service: "Microsoft.Storage" }]
-      }
-    ]
+        serviceEndpoints: [{ service: "Microsoft.Storage" }],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -211,14 +210,14 @@ async function createVirtualNetworkWithSubnet() {
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     location: "eastus",
-    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }]
+    subnets: [{ name: "test-1", addressPrefix: "10.0.0.0/24" }],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -237,15 +236,15 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
     location: "eastus",
     subnets: [
-      { name: "test-2", addressPrefixes: ["10.0.0.0/28", "10.0.1.0/28"] }
-    ]
+      { name: "test-2", addressPrefixes: ["10.0.0.0/28", "10.0.1.0/28"] },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

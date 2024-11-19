@@ -28,7 +28,7 @@ async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutom
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSets.get(
     resourceGroupName,
-    vmScaleSetName
+    vmScaleSetName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getAVirtualMachineScaleSetWithUserData() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachineScaleSets.get(
     resourceGroupName,
-    vmScaleSetName
+    vmScaleSetName,
   );
   console.log(result);
 }

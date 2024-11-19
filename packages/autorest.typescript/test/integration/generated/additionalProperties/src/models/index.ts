@@ -105,7 +105,8 @@ export interface PetsCreateAPInPropertiesWithAPStringOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createAPInPropertiesWithAPString operation. */
-export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString;
+export type PetsCreateAPInPropertiesWithAPStringResponse =
+  PetAPInPropertiesWithAPString;
 
 /** Optional parameters. */
 export interface AdditionalPropertiesClientOptionalParams

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerDnsAliasAcquisition,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function acquireServerDnsAlias() {
   const dnsAliasName = "dns-alias-name-1";
   const parameters: ServerDnsAliasAcquisition = {
     oldServerDnsAliasId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/servers/dns-alias-old-server/dnsAliases/dns-alias-name-1"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/servers/dns-alias-old-server/dnsAliases/dns-alias-name-1",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -39,7 +39,7 @@ async function acquireServerDnsAlias() {
     resourceGroupName,
     serverName,
     dnsAliasName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -1,10 +1,16 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger";
 import { KeyCredential } from "@azure/core-auth";
 import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface PurviewMetadataPoliciesClientOptions extends ClientOptions {
+  /** The api version option of the client */
+  apiVersion?: string;
+}
 
 /**
  * Initialize a new instance of `PurviewMetadataPoliciesClient`
@@ -15,10 +21,13 @@ import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 export function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  {
+    apiVersion = "2021-07-01-preview",
+    ...options
+  }: PurviewMetadataPoliciesClientOptions = {},
 ): PurviewMetadataPoliciesClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}/policyStore`;
-  options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `${endpoint}/policyStore`;
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -27,21 +36,37 @@ export function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth"
-    }
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth",
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as PurviewMetadataPoliciesClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

@@ -31,7 +31,7 @@ async function stopACurrentlyRunningNetworkTraceOperationForASite() {
   const result = await client.webApps.stopWebSiteNetworkTraceSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   );
   console.log(result);
 }

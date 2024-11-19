@@ -58,7 +58,7 @@ import {
   LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams,
   LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams,
-  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse,
 } from "../models";
 
 /** Interface representing a LrosaDs. */
@@ -68,7 +68,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry400(
-    options?: LrosaDsPutNonRetry400OptionalParams
+    options?: LrosaDsPutNonRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutNonRetry400Response>,
@@ -80,7 +80,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry400AndWait(
-    options?: LrosaDsPutNonRetry400OptionalParams
+    options?: LrosaDsPutNonRetry400OptionalParams,
   ): Promise<LrosaDsPutNonRetry400Response>;
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201
@@ -88,7 +88,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry201Creating400(
-    options?: LrosaDsPutNonRetry201Creating400OptionalParams
+    options?: LrosaDsPutNonRetry201Creating400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutNonRetry201Creating400Response>,
@@ -101,7 +101,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry201Creating400AndWait(
-    options?: LrosaDsPutNonRetry201Creating400OptionalParams
+    options?: LrosaDsPutNonRetry201Creating400OptionalParams,
   ): Promise<LrosaDsPutNonRetry201Creating400Response>;
   /**
    * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201
@@ -109,7 +109,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry201Creating400InvalidJson(
-    options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
+    options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>,
@@ -122,7 +122,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutNonRetry201Creating400InvalidJsonAndWait(
-    options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
+    options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams,
   ): Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>;
   /**
    * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint
@@ -130,7 +130,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetry400(
-    options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsPutAsyncRelativeRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutAsyncRelativeRetry400Response>,
@@ -143,14 +143,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetry400AndWait(
-    options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsPutAsyncRelativeRetry400OptionalParams,
   ): Promise<LrosaDsPutAsyncRelativeRetry400Response>;
   /**
    * Long running delete request, service returns a 400 with an error body
    * @param options The options parameters.
    */
   beginDeleteNonRetry400(
-    options?: LrosaDsDeleteNonRetry400OptionalParams
+    options?: LrosaDsDeleteNonRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDeleteNonRetry400Response>,
@@ -162,14 +162,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteNonRetry400AndWait(
-    options?: LrosaDsDeleteNonRetry400OptionalParams
+    options?: LrosaDsDeleteNonRetry400OptionalParams,
   ): Promise<LrosaDsDeleteNonRetry400Response>;
   /**
    * Long running delete request, service returns a 202 with a location header
    * @param options The options parameters.
    */
   beginDelete202NonRetry400(
-    options?: LrosaDsDelete202NonRetry400OptionalParams
+    options?: LrosaDsDelete202NonRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDelete202NonRetry400Response>,
@@ -181,7 +181,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDelete202NonRetry400AndWait(
-    options?: LrosaDsDelete202NonRetry400OptionalParams
+    options?: LrosaDsDelete202NonRetry400OptionalParams,
   ): Promise<LrosaDsDelete202NonRetry400Response>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
@@ -189,7 +189,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetry400(
-    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
@@ -202,14 +202,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetry400AndWait(
-    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams,
   ): Promise<LrosaDsDeleteAsyncRelativeRetry400Response>;
   /**
    * Long running post request, service returns a 400 with no error body
    * @param options The options parameters.
    */
   beginPostNonRetry400(
-    options?: LrosaDsPostNonRetry400OptionalParams
+    options?: LrosaDsPostNonRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPostNonRetry400Response>,
@@ -221,14 +221,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostNonRetry400AndWait(
-    options?: LrosaDsPostNonRetry400OptionalParams
+    options?: LrosaDsPostNonRetry400OptionalParams,
   ): Promise<LrosaDsPostNonRetry400Response>;
   /**
    * Long running post request, service returns a 202 with a location header
    * @param options The options parameters.
    */
   beginPost202NonRetry400(
-    options?: LrosaDsPost202NonRetry400OptionalParams
+    options?: LrosaDsPost202NonRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPost202NonRetry400Response>,
@@ -240,7 +240,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPost202NonRetry400AndWait(
-    options?: LrosaDsPost202NonRetry400OptionalParams
+    options?: LrosaDsPost202NonRetry400OptionalParams,
   ): Promise<LrosaDsPost202NonRetry400Response>;
   /**
    * Long running post request, service returns a 202 to the initial request Poll the endpoint indicated
@@ -248,7 +248,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetry400(
-    options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsPostAsyncRelativeRetry400OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPostAsyncRelativeRetry400Response>,
@@ -261,14 +261,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetry400AndWait(
-    options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
+    options?: LrosaDsPostAsyncRelativeRetry400OptionalParams,
   ): Promise<LrosaDsPostAsyncRelativeRetry400Response>;
   /**
    * Long running put request, service returns a 201 to the initial request with no payload
    * @param options The options parameters.
    */
   beginPutError201NoProvisioningStatePayload(
-    options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
+    options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>,
@@ -280,7 +280,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutError201NoProvisioningStatePayloadAndWait(
-    options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
+    options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams,
   ): Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
@@ -289,7 +289,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryNoStatus(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>,
@@ -303,7 +303,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryNoStatusAndWait(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams,
   ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
@@ -312,7 +312,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryNoStatusPayload(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>,
@@ -326,21 +326,21 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryNoStatusPayloadAndWait(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams,
   ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>;
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
   beginDelete204Succeeded(
-    options?: LrosaDsDelete204SucceededOptionalParams
+    options?: LrosaDsDelete204SucceededOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
    */
   beginDelete204SucceededAndWait(
-    options?: LrosaDsDelete204SucceededOptionalParams
+    options?: LrosaDsDelete204SucceededOptionalParams,
   ): Promise<void>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
@@ -348,7 +348,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryNoStatus(
-    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
@@ -361,14 +361,14 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryNoStatusAndWait(
-    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams,
   ): Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, without a location header.
    * @param options The options parameters.
    */
   beginPost202NoLocation(
-    options?: LrosaDsPost202NoLocationOptionalParams
+    options?: LrosaDsPost202NoLocationOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPost202NoLocationResponse>,
@@ -380,7 +380,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPost202NoLocationAndWait(
-    options?: LrosaDsPost202NoLocationOptionalParams
+    options?: LrosaDsPost202NoLocationOptionalParams,
   ): Promise<LrosaDsPost202NoLocationResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
@@ -389,7 +389,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryNoPayload(
-    options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>,
@@ -403,7 +403,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryNoPayloadAndWait(
-    options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams,
   ): Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that is not a
@@ -411,7 +411,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPut200InvalidJson(
-    options?: LrosaDsPut200InvalidJsonOptionalParams
+    options?: LrosaDsPut200InvalidJsonOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPut200InvalidJsonResponse>,
@@ -424,7 +424,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPut200InvalidJsonAndWait(
-    options?: LrosaDsPut200InvalidJsonOptionalParams
+    options?: LrosaDsPut200InvalidJsonOptionalParams,
   ): Promise<LrosaDsPut200InvalidJsonResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
@@ -432,7 +432,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryInvalidHeader(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>,
@@ -445,7 +445,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryInvalidHeaderAndWait(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>;
   /**
    * Long running put request, service returns a 200 to the initial request, with an entity that contains
@@ -454,7 +454,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryInvalidJsonPolling(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>,
@@ -468,7 +468,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetryInvalidJsonPollingAndWait(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request receing a reponse with an
@@ -476,7 +476,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDelete202RetryInvalidHeader(
-    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
+    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
@@ -489,7 +489,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDelete202RetryInvalidHeaderAndWait(
-    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
+    options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams,
   ): Promise<LrosaDsDelete202RetryInvalidHeaderResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. The endpoint indicated in
@@ -497,7 +497,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryInvalidHeader(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
@@ -510,7 +510,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryInvalidHeaderAndWait(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
@@ -518,7 +518,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>,
@@ -531,7 +531,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPollingAndWait(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with invalid 'Location' and
@@ -539,7 +539,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPost202RetryInvalidHeader(
-    options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
+    options?: LrosaDsPost202RetryInvalidHeaderOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPost202RetryInvalidHeaderResponse>,
@@ -552,7 +552,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPost202RetryInvalidHeaderAndWait(
-    options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
+    options?: LrosaDsPost202RetryInvalidHeaderOptionalParams,
   ): Promise<LrosaDsPost202RetryInvalidHeaderResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
@@ -561,7 +561,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryInvalidHeader(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>,
@@ -575,7 +575,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryInvalidHeaderAndWait(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams,
   ): Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>;
   /**
    * Long running post request, service returns a 202 to the initial request, with an entity that
@@ -584,7 +584,7 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryInvalidJsonPolling(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>,
@@ -598,6 +598,6 @@ export interface LrosaDs {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetryInvalidJsonPollingAndWait(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
+    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   ): Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>;
 }

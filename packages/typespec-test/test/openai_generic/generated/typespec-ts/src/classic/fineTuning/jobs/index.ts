@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../../api/OpenAIContext.js";
-import {
-  CreateFineTuningJobRequest,
-  FineTuningJob,
-  ListPaginatedFineTuningJobsResponse,
-  ListFineTuningJobEventsResponse,
-} from "../../../models/models.js";
+import { OpenAIContext } from "../../../api/openAIContext.js";
 import {
   create,
   list,
@@ -16,32 +10,47 @@ import {
   cancel,
 } from "../../../api/fineTuning/jobs/index.js";
 import {
-  FineTuningJobsCreateOptions,
-  FineTuningJobsListOptions,
-  FineTuningJobsRetrieveOptions,
-  FineTuningJobsListEventsOptions,
-  FineTuningJobsCancelOptions,
-} from "../../../models/options.js";
+  CreateFineTuningJobRequest,
+  FineTuningJob,
+  ListPaginatedFineTuningJobsResponse,
+  ListFineTuningJobEventsResponse,
+} from "../../../models/models.js";
+import {
+  FineTuningJobsCreateOptionalParams,
+  FineTuningJobsListOptionalParams,
+  FineTuningJobsRetrieveOptionalParams,
+  FineTuningJobsListEventsOptionalParams,
+  FineTuningJobsCancelOptionalParams,
+} from "../../../api/options.js";
 
+/** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {
+  /**
+   * Creates a job that fine-tunes a specified model from a given dataset.
+   *
+   * Response includes details of the enqueued job including job status and the name of the
+   * fine-tuned models once complete.
+   *
+   * [Learn more about fine-tuning](/docs/guides/fine-tuning)
+   */
   create: (
     job: CreateFineTuningJobRequest,
-    options?: FineTuningJobsCreateOptions
+    options?: FineTuningJobsCreateOptionalParams,
   ) => Promise<FineTuningJob>;
   list: (
-    options?: FineTuningJobsListOptions
+    options?: FineTuningJobsListOptionalParams,
   ) => Promise<ListPaginatedFineTuningJobsResponse>;
   retrieve: (
     fineTuningJobId: string,
-    options?: FineTuningJobsRetrieveOptions
+    options?: FineTuningJobsRetrieveOptionalParams,
   ) => Promise<FineTuningJob>;
   listEvents: (
     fineTuningJobId: string,
-    options?: FineTuningJobsListEventsOptions
+    options?: FineTuningJobsListEventsOptionalParams,
   ) => Promise<ListFineTuningJobEventsResponse>;
   cancel: (
     fineTuningJobId: string,
-    options?: FineTuningJobsCancelOptions
+    options?: FineTuningJobsCancelOptionalParams,
   ) => Promise<FineTuningJob>;
 }
 
@@ -49,24 +58,27 @@ export function getFineTuningJobs(context: OpenAIContext) {
   return {
     create: (
       job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions
+      options?: FineTuningJobsCreateOptionalParams,
     ) => create(context, job, options),
-    list: (options?: FineTuningJobsListOptions) => list(context, options),
+    list: (options?: FineTuningJobsListOptionalParams) =>
+      list(context, options),
     retrieve: (
       fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions
+      options?: FineTuningJobsRetrieveOptionalParams,
     ) => retrieve(context, fineTuningJobId, options),
     listEvents: (
       fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions
+      options?: FineTuningJobsListEventsOptionalParams,
     ) => listEvents(context, fineTuningJobId, options),
-    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
-      cancel(context, fineTuningJobId, options),
+    cancel: (
+      fineTuningJobId: string,
+      options?: FineTuningJobsCancelOptionalParams,
+    ) => cancel(context, fineTuningJobId, options),
   };
 }
 
 export function getFineTuningJobsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): FineTuningJobsOperations {
   return {
     ...getFineTuningJobs(context),

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   createLoadTestAdministration,
-  LoadTestAdministrationClientOptions,
-  AzureLoadTestingContext,
-} from "./LoadTestAdministrationContext.js";
+  LoadTestAdministrationContext,
+  LoadTestAdministrationClientOptionalParams,
+} from "./loadTestAdministrationContext.js";
 export {
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -20,3 +20,17 @@ export {
   deleteTestFile,
   deleteTest,
 } from "./operations.js";
+export {
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
+} from "./options.js";

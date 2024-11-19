@@ -33,7 +33,7 @@ async function deleteTheLongTermRetentionBackup() {
     locationName,
     longTermRetentionServerName,
     longTermRetentionDatabaseName,
-    backupName
+    backupName,
   );
   console.log(result);
 }

@@ -29,7 +29,7 @@ async function keyVaultListPrivateLinkResources() {
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.mhsmPrivateLinkResources.listByMhsmResource(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

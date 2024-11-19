@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation GetChatCompletions
  */
 async function getChatCompletionsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createOpenAIClient(endpoint, credential);
+  const client = createOpenAIClient(endpointParam, credential);
   const deploymentId = "{Your deploymentId}";
   const result = await client
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)

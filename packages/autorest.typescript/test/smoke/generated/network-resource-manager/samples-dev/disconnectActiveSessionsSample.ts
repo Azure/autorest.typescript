@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SessionIds,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function deletesTheSpecifiedActiveSession() {
   for await (let item of client.listDisconnectActiveSessions(
     resourceGroupName,
     bastionHostName,
-    sessionIds
+    sessionIds,
   )) {
     resArray.push(item);
   }

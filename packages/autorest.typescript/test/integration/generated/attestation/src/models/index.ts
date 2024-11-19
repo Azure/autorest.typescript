@@ -35,7 +35,7 @@ export enum KnownAttestationType {
   /** OpenEnclave extensions to SGX */
   OpenEnclave = "OpenEnclave",
   /** Edge TPM Virtualization Based Security */
-  Tpm = "Tpm"
+  Tpm = "Tpm",
 }
 
 /**
@@ -54,7 +54,7 @@ export enum KnownDataType {
   /** The contents of the field should be treated as binary and not interpreted by MAA. */
   Binary = "Binary",
   /** The contents of the field should be treated as a JSON object and may be further interpreted by MAA. */
-  Json = "JSON"
+  Json = "JSON",
 }
 
 /**

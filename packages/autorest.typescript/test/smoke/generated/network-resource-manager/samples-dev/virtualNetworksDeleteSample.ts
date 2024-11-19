@@ -28,7 +28,7 @@ async function deleteVirtualNetwork() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworks.beginDeleteAndWait(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   );
   console.log(result);
 }

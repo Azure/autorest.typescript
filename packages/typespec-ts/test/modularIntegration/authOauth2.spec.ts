@@ -22,7 +22,8 @@ describe("OAuth2Context in API Layer", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 
@@ -44,12 +45,8 @@ describe("OAuth2Context in API Layer", () => {
   });
 
   it("should not throw exception if token is valid", async () => {
-    try {
-      const result = await valid(context);
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await valid(context);
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the token is invalid", async () => {
@@ -57,7 +54,7 @@ describe("OAuth2Context in API Layer", () => {
       await invalid(context);
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
-      assert.strictEqual(err.error, "invalid-grant");
+      assert.strictEqual(err.message, "Unexpected status code: 403");
     }
   });
 });

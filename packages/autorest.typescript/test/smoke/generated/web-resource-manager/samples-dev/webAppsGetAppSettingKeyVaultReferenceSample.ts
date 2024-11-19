@@ -31,7 +31,7 @@ async function getAzureKeyVaultAppSettingReference() {
   const result = await client.webApps.getAppSettingKeyVaultReference(
     resourceGroupName,
     name,
-    appSettingKey
+    appSettingKey,
   );
   console.log(result);
 }

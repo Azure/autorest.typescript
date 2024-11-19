@@ -12,7 +12,7 @@ import * as Mappers from "./models/mappers";
 import {
   MapperRequiredClientOptionalParams,
   UpdateCertificateIssuerOptionalParams,
-  UpdateCertificateIssuerResponse
+  UpdateCertificateIssuerResponse,
 } from "./models";
 
 export class MapperRequiredClient extends coreClient.ServiceClient {
@@ -33,7 +33,7 @@ export class MapperRequiredClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: MapperRequiredClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-mapperrequired/1.0.0-preview1`;
@@ -46,9 +46,9 @@ export class MapperRequiredClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -63,11 +63,11 @@ export class MapperRequiredClient extends coreClient.ServiceClient {
    */
   updateCertificateIssuer(
     issuerName: string,
-    options?: UpdateCertificateIssuerOptionalParams
+    options?: UpdateCertificateIssuerOptionalParams,
   ): Promise<UpdateCertificateIssuerResponse> {
     return this.sendOperationRequest(
       { issuerName, options },
-      updateCertificateIssuerOperationSpec
+      updateCertificateIssuerOperationSpec,
     );
   }
 }
@@ -79,15 +79,15 @@ const updateCertificateIssuerOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: {
     parameterPath: { provider: ["options", "provider"] },
-    mapper: { ...Mappers.CertificateIssuerUpdateParameters, required: true }
+    mapper: { ...Mappers.CertificateIssuerUpdateParameters, required: true },
   },
   urlParameters: [Parameters.$host, Parameters.issuerName],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };

@@ -33,7 +33,7 @@ async function getAzureKeyVaultSlotAppSettingReference() {
     resourceGroupName,
     name,
     appSettingKey,
-    slot
+    slot,
   );
   console.log(result);
 }

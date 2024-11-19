@@ -29,7 +29,7 @@ async function listPeerings() {
   const resArray = new Array();
   for await (let item of client.virtualNetworkPeerings.list(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   )) {
     resArray.push(item);
   }
@@ -51,7 +51,7 @@ async function listPeeringsWithRemoteVirtualNetworkEncryption() {
   const resArray = new Array();
   for await (let item of client.virtualNetworkPeerings.list(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   )) {
     resArray.push(item);
   }

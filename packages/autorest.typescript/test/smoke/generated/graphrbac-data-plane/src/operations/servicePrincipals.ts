@@ -41,7 +41,7 @@ import {
   ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   PasswordCredentialsUpdateParameters,
   ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
-  ServicePrincipalsListOwnersNextResponse
+  ServicePrincipalsListOwnersNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -62,7 +62,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    * @param options The options parameters.
    */
   public list(
-    options?: ServicePrincipalsListOptionalParams
+    options?: ServicePrincipalsListOptionalParams,
   ): PagedAsyncIterableIterator<ServicePrincipal> {
     const iter = this.listPagingAll(options);
     return {
@@ -77,13 +77,13 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: ServicePrincipalsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ServicePrincipal[]> {
     let result: ServicePrincipalsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -104,7 +104,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   }
 
   private async *listPagingAll(
-    options?: ServicePrincipalsListOptionalParams
+    options?: ServicePrincipalsListOptionalParams,
   ): AsyncIterableIterator<ServicePrincipal> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -118,7 +118,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listOwners(
     objectId: string,
-    options?: ServicePrincipalsListOwnersOptionalParams
+    options?: ServicePrincipalsListOwnersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
@@ -133,14 +133,14 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listOwnersPagingPage(objectId, options, settings);
-      }
+      },
     };
   }
 
   private async *listOwnersPagingPage(
     objectId: string,
     options?: ServicePrincipalsListOwnersOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: ServicePrincipalsListOwnersResponse;
     let continuationToken = settings?.continuationToken;
@@ -162,7 +162,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listOwnersPagingAll(
     objectId: string,
-    options?: ServicePrincipalsListOwnersOptionalParams
+    options?: ServicePrincipalsListOwnersOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnersPagingPage(objectId, options)) {
       yield* page;
@@ -176,7 +176,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listKeyCredentials(
     objectId: string,
-    options?: ServicePrincipalsListKeyCredentialsOptionalParams
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<KeyCredential> {
     const iter = this.listKeyCredentialsPagingAll(objectId, options);
     return {
@@ -191,14 +191,14 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listKeyCredentialsPagingPage(objectId, options, settings);
-      }
+      },
     };
   }
 
   private async *listKeyCredentialsPagingPage(
     objectId: string,
     options?: ServicePrincipalsListKeyCredentialsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<KeyCredential[]> {
     let result: ServicePrincipalsListKeyCredentialsResponse;
     result = await this._listKeyCredentials(objectId, options);
@@ -207,11 +207,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listKeyCredentialsPagingAll(
     objectId: string,
-    options?: ServicePrincipalsListKeyCredentialsOptionalParams
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams,
   ): AsyncIterableIterator<KeyCredential> {
     for await (const page of this.listKeyCredentialsPagingPage(
       objectId,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -224,7 +224,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listPasswordCredentials(
     objectId: string,
-    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<PasswordCredential> {
     const iter = this.listPasswordCredentialsPagingAll(objectId, options);
     return {
@@ -241,16 +241,16 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this.listPasswordCredentialsPagingPage(
           objectId,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listPasswordCredentialsPagingPage(
     objectId: string,
     options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<PasswordCredential[]> {
     let result: ServicePrincipalsListPasswordCredentialsResponse;
     result = await this._listPasswordCredentials(objectId, options);
@@ -259,11 +259,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listPasswordCredentialsPagingAll(
     objectId: string,
-    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
   ): AsyncIterableIterator<PasswordCredential> {
     for await (const page of this.listPasswordCredentialsPagingPage(
       objectId,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -276,7 +276,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   public listNext(
     nextLink: string,
-    options?: ServicePrincipalsListNextOptionalParams
+    options?: ServicePrincipalsListNextOptionalParams,
   ): PagedAsyncIterableIterator<ServicePrincipal> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -291,14 +291,14 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
     options?: ServicePrincipalsListNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ServicePrincipal[]> {
     let result: ServicePrincipalsListNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -320,7 +320,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: ServicePrincipalsListNextOptionalParams
+    options?: ServicePrincipalsListNextOptionalParams,
   ): AsyncIterableIterator<ServicePrincipal> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -334,11 +334,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   create(
     parameters: ServicePrincipalCreateParameters,
-    options?: ServicePrincipalsCreateOptionalParams
+    options?: ServicePrincipalsCreateOptionalParams,
   ): Promise<ServicePrincipalsCreateResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      createOperationSpec
+      createOperationSpec,
     );
   }
 
@@ -347,7 +347,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    * @param options The options parameters.
    */
   private _list(
-    options?: ServicePrincipalsListOptionalParams
+    options?: ServicePrincipalsListOptionalParams,
   ): Promise<ServicePrincipalsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -361,11 +361,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   update(
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
-    options?: ServicePrincipalsUpdateOptionalParams
+    options?: ServicePrincipalsUpdateOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      updateOperationSpec
+      updateOperationSpec,
     );
   }
 
@@ -376,11 +376,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   delete(
     objectId: string,
-    options?: ServicePrincipalsDeleteOptionalParams
+    options?: ServicePrincipalsDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -392,11 +392,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   get(
     objectId: string,
-    options?: ServicePrincipalsGetOptionalParams
+    options?: ServicePrincipalsGetOptionalParams,
   ): Promise<ServicePrincipalsGetResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -407,11 +407,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listOwners(
     objectId: string,
-    options?: ServicePrincipalsListOwnersOptionalParams
+    options?: ServicePrincipalsListOwnersOptionalParams,
   ): Promise<ServicePrincipalsListOwnersResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      listOwnersOperationSpec
+      listOwnersOperationSpec,
     );
   }
 
@@ -422,11 +422,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listKeyCredentials(
     objectId: string,
-    options?: ServicePrincipalsListKeyCredentialsOptionalParams
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams,
   ): Promise<ServicePrincipalsListKeyCredentialsResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      listKeyCredentialsOperationSpec
+      listKeyCredentialsOperationSpec,
     );
   }
 
@@ -439,11 +439,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   updateKeyCredentials(
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
+    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      updateKeyCredentialsOperationSpec
+      updateKeyCredentialsOperationSpec,
     );
   }
 
@@ -454,11 +454,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listPasswordCredentials(
     objectId: string,
-    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
   ): Promise<ServicePrincipalsListPasswordCredentialsResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      listPasswordCredentialsOperationSpec
+      listPasswordCredentialsOperationSpec,
     );
   }
 
@@ -471,11 +471,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   updatePasswordCredentials(
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
+    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      updatePasswordCredentialsOperationSpec
+      updatePasswordCredentialsOperationSpec,
     );
   }
 
@@ -486,11 +486,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
    */
   private _listNext(
     nextLink: string,
-    options?: ServicePrincipalsListNextOptionalParams
+    options?: ServicePrincipalsListNextOptionalParams,
   ): Promise<ServicePrincipalsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 
@@ -503,11 +503,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   private _listOwnersNext(
     objectId: string,
     nextLink: string,
-    options?: ServicePrincipalsListOwnersNextOptionalParams
+    options?: ServicePrincipalsListOwnersNextOptionalParams,
   ): Promise<ServicePrincipalsListOwnersNextResponse> {
     return this.client.sendOperationRequest(
       { objectId, nextLink, options },
-      listOwnersNextOperationSpec
+      listOwnersNextOperationSpec,
     );
   }
 }
@@ -519,34 +519,34 @@ const createOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.ServicePrincipal
+      bodyMapper: Mappers.ServicePrincipal,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters9,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ServicePrincipalListResult
+      bodyMapper: Mappers.ServicePrincipalListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
@@ -554,15 +554,15 @@ const updateOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters10,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
@@ -570,61 +570,61 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ServicePrincipal
+      bodyMapper: Mappers.ServicePrincipal,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOwnersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/owners",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/keyCredentials",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.KeyCredentialListResult
+      bodyMapper: Mappers.KeyCredentialListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/keyCredentials",
@@ -632,31 +632,31 @@ const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listPasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/passwordCredentials",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PasswordCredentialListResult
+      bodyMapper: Mappers.PasswordCredentialListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/passwordCredentials",
@@ -664,49 +664,49 @@ const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ServicePrincipalListResult
+      bodyMapper: Mappers.ServicePrincipalListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOwnersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
     Parameters.nextLink,
-    Parameters.objectId
+    Parameters.objectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

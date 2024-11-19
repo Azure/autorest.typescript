@@ -9,7 +9,7 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
+// @public
 export interface AudioOperations {
     // (undocumented)
     transcriptions: AudioTranscriptionsOperations;
@@ -17,46 +17,50 @@ export interface AudioOperations {
     translations: AudioTranslationsOperations;
 }
 
-// @public (undocumented)
-export interface AudioTranscriptionsCreateOptions extends OperationOptions {
+// @public
+export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranscriptionsOperations {
     // (undocumented)
-    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptions) => Promise<CreateTranscriptionResponse>;
+    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptionalParams) => Promise<CreateTranscriptionResponse>;
 }
 
-// @public (undocumented)
-export interface AudioTranslationsCreateOptions extends OperationOptions {
+// @public
+export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface AudioTranslationsOperations {
     // (undocumented)
-    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptions) => Promise<CreateTranslationResponse>;
+    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionFunctionCallOption {
     name: string;
 }
 
-// @public (undocumented)
+// @public
+export interface ChatCompletionFunctionParameters extends Record<string, any> {
+}
+
+// @public
 export interface ChatCompletionFunctions {
     description?: string;
     name: string;
-    parameters: Record<string, unknown>;
+    parameters: ChatCompletionFunctionParameters;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionRequestMessage {
     content: string | null;
-    functionCall?: {
+    function_call?: {
         name: string;
         arguments: string;
     };
@@ -64,64 +68,64 @@ export interface ChatCompletionRequestMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionResponseMessage {
     content: string | null;
-    functionCall?: {
+    function_call?: {
         name: string;
         arguments: string;
     };
     role: "system" | "user" | "assistant" | "function";
 }
 
-// @public (undocumented)
-export interface ChatCompletionsCreateOptions extends OperationOptions {
+// @public
+export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletionsOperations {
     // (undocumented)
-    create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptions) => Promise<CreateChatCompletionResponse>;
+    create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptionalParams) => Promise<CreateChatCompletionResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatOperations {
     // (undocumented)
     completions: ChatCompletionsOperations;
 }
 
-// @public (undocumented)
-export interface CompletionsCreateOptions extends OperationOptions {
+// @public
+export interface CompletionsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface CompletionsOperations {
     // (undocumented)
-    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptions) => Promise<CreateCompletionResponse>;
+    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) => Promise<CreateCompletionResponse>;
 }
 
 // @public
 export interface CompletionUsage {
-    completionTokens: number;
-    promptTokens: number;
-    totalTokens: number;
+    completion_tokens: number;
+    prompt_tokens: number;
+    total_tokens: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateChatCompletionRequest {
-    frequencyPenalty?: number | null;
-    functionCall?: "none" | "auto" | ChatCompletionFunctionCallOption;
+    frequency_penalty?: number | null;
+    function_call?: "none" | "auto" | ChatCompletionFunctionCallOption;
     functions?: ChatCompletionFunctions[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number | null;
+    logit_bias?: Record<string, number> | null;
+    max_tokens?: number | null;
     messages: ChatCompletionRequestMessage[];
-    model: string | "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
+    model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
-    presencePenalty?: number | null;
-    stop?: string | string[];
+    presence_penalty?: number | null;
+    stop?: Stop | null;
     stream?: boolean | null;
     temperature?: number | null;
-    topP?: number | null;
+    top_p?: number | null;
     user?: string;
 }
 
@@ -130,7 +134,7 @@ export interface CreateChatCompletionResponse {
     choices: {
         index: number;
         message: ChatCompletionResponseMessage;
-        finishReason: "stop" | "length" | "function_call" | "content_filter";
+        finish_reason: "stop" | "length" | "function_call" | "content_filter";
     }[];
     created: Date;
     id: string;
@@ -140,23 +144,23 @@ export interface CreateChatCompletionResponse {
     usage?: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateCompletionRequest {
-    bestOf?: number | null;
+    best_of?: number | null;
     echo?: boolean | null;
-    frequencyPenalty?: number | null;
-    logitBias?: Record<string, number>;
+    frequency_penalty?: number | null;
+    logit_bias?: Record<string, number> | null;
     logprobs?: number | null;
-    maxTokens?: number | null;
-    model: string | "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
+    max_tokens?: number | null;
+    model: "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
     n?: number | null;
-    presencePenalty?: number | null;
-    prompt: string | string[] | number[] | number[][];
-    stop?: string | string[];
+    presence_penalty?: number | null;
+    prompt: Prompt | null;
+    stop?: Stop | null;
     stream?: boolean | null;
     suffix?: string | null;
     temperature?: number | null;
-    topP?: number | null;
+    top_p?: number | null;
     user?: string;
 }
 
@@ -167,11 +171,11 @@ export interface CreateCompletionResponse {
         text: string;
         logprobs: {
             tokens: string[];
-            tokenLogprobs: number[];
-            topLogprobs: Record<string, number>[];
-            textOffset: number[];
+            token_logprobs: number[];
+            top_logprobs: Record<string, number>[];
+            text_offset: number[];
         } | null;
-        finishReason: "stop" | "length" | "content_filter";
+        finish_reason: "stop" | "length" | "content_filter";
     }[];
     created: Date;
     id: string;
@@ -181,22 +185,22 @@ export interface CreateCompletionResponse {
     usage?: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEditRequest {
     input?: string | null;
     instruction: string;
-    model: string | "text-davinci-edit-001" | "code-davinci-edit-001";
+    model: "text-davinci-edit-001" | "code-davinci-edit-001";
     n?: number | null;
     temperature?: number | null;
-    topP?: number | null;
+    top_p?: number | null;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEditResponse {
     choices: {
         text: string;
         index: number;
-        finishReason: "stop" | "length";
+        finish_reason: "stop" | "length";
     }[];
     created: Date;
     object: "edit";
@@ -204,97 +208,97 @@ export interface CreateEditResponse {
     usage: CompletionUsage;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEmbeddingRequest {
     input: string | string[] | number[] | number[][];
-    model: string | "text-embedding-ada-002";
+    model: "text-embedding-ada-002";
     // (undocumented)
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateEmbeddingResponse {
     data: Embedding[];
     model: string;
     object: "embedding";
     usage: {
-        promptTokens: number;
-        totalTokens: number;
+        prompt_tokens: number;
+        total_tokens: number;
     };
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFileRequest {
     file: Uint8Array;
     purpose: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFineTuneRequest {
-    batchSize?: number | null;
-    classificationBetas?: number[] | null;
-    classificationNClasses?: number | null;
-    classificationPositiveClass?: string | null;
-    computeClassificationMetrics?: boolean | null;
-    learningRateMultiplier?: number | null;
-    model?: string | "ada" | "babbage" | "curie" | "davinci";
-    nEpochs?: number | null;
-    promptLossRate?: number | null;
+    batch_size?: number | null;
+    classification_betas?: number[] | null;
+    classification_n_classes?: number | null;
+    classification_positive_class?: string | null;
+    compute_classification_metrics?: boolean | null;
+    learning_rate_multiplier?: number | null;
+    model?: ("ada" | "babbage" | "curie" | "davinci") | null;
+    n_epochs?: number | null;
+    prompt_loss_rate?: number | null;
     suffix?: string | null;
-    trainingFile: string;
-    validationFile?: string | null;
+    training_file: string;
+    validation_file?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
-        nEpochs?: "auto" | number;
+        n_epochs?: "auto" | number;
     };
-    model: string | "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
+    model: "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
     suffix?: string | null;
-    trainingFile: string;
-    validationFile?: string | null;
+    training_file: string;
+    validation_file?: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateImageEditRequest {
     image: Uint8Array;
     mask?: Uint8Array;
     n?: number | null;
     prompt: string;
-    responseFormat?: "url" | "b64_json";
-    size?: "256x256" | "512x512" | "1024x1024";
+    response_format?: ("url" | "b64_json") | null;
+    size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
-    responseFormat?: "url" | "b64_json";
-    size?: "256x256" | "512x512" | "1024x1024";
+    response_format?: ("url" | "b64_json") | null;
+    size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
-    responseFormat?: "url" | "b64_json";
-    size?: "256x256" | "512x512" | "1024x1024";
+    response_format?: ("url" | "b64_json") | null;
+    size?: ("256x256" | "512x512" | "1024x1024") | null;
     // (undocumented)
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationRequest {
     input: string | string[];
-    model?: string | "text-moderation-latest" | "text-moderation-stable";
+    model?: "text-moderation-latest" | "text-moderation-stable";
 }
 
-// @public (undocumented)
+// @public
 export interface CreateModerationResponse {
     id: string;
     model: string;
@@ -305,22 +309,22 @@ export interface CreateModerationResponse {
             "hate/threatening": boolean;
             harassment: boolean;
             "harassment/threatening": boolean;
-            selfHarm: boolean;
-            "selfHarm/intent": boolean;
-            "selfHarm/instructive": boolean;
+            "self-harm": boolean;
+            "self-harm/intent": boolean;
+            "self-harm/instructive": boolean;
             sexual: boolean;
             "sexual/minors": boolean;
             violence: boolean;
             "violence/graphic": boolean;
         };
-        categoryScores: {
+        category_scores: {
             hate: number;
             "hate/threatening": number;
             harassment: number;
             "harassment/threatening": number;
-            selfHarm: number;
-            "selfHarm/intent": number;
-            "selfHarm/instructive": number;
+            "self-harm": number;
+            "self-harm/intent": number;
+            "self-harm/instructive": number;
             sexual: number;
             "sexual/minors": number;
             violence: number;
@@ -329,38 +333,38 @@ export interface CreateModerationResponse {
     }[];
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
     language?: string;
-    model: string | "whisper-1";
+    model: "whisper-1";
     prompt?: string;
-    responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+    response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTranscriptionResponse {
     // (undocumented)
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTranslationRequest {
     file: Uint8Array;
-    model: string | "whisper-1";
+    model: "whisper-1";
     prompt?: string;
-    responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+    response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
     temperature?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CreateTranslationResponse {
     // (undocumented)
     text: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteFileResponse {
     // (undocumented)
     deleted: boolean;
@@ -370,7 +374,7 @@ export interface DeleteFileResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeleteModelResponse {
     // (undocumented)
     deleted: boolean;
@@ -380,14 +384,14 @@ export interface DeleteModelResponse {
     object: string;
 }
 
-// @public (undocumented)
-export interface EditsCreateOptions extends OperationOptions {
+// @public
+export interface EditsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface EditsOperations {
     // (undocumented)
-    create: (edit: CreateEditRequest, options?: EditsCreateOptions) => Promise<CreateEditResponse>;
+    create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) => Promise<CreateEditResponse>;
 }
 
 // @public
@@ -397,18 +401,18 @@ export interface Embedding {
     object: "embedding";
 }
 
-// @public (undocumented)
-export interface EmbeddingsCreateOptions extends OperationOptions {
+// @public
+export interface EmbeddingsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface EmbeddingsOperations {
     // (undocumented)
-    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptions) => Promise<CreateEmbeddingResponse>;
+    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
 
-// @public (undocumented)
-interface Error_2 {
+// @public
+export interface ErrorModel {
     // (undocumented)
     code: string | null;
     // (undocumented)
@@ -418,73 +422,77 @@ interface Error_2 {
     // (undocumented)
     type: string;
 }
-export { Error_2 as Error }
 
-// @public (undocumented)
-export interface FilesCreateOptions extends OperationOptions {
+// @public
+export interface ErrorResponse {
+    // (undocumented)
+    error: ErrorModel;
+}
+
+// @public
+export interface FilesCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface FilesDeleteOperationOptions extends OperationOptions {
+// @public
+export interface FilesDeleteOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FilesDownloadOptions extends OperationOptions {
+// @public
+export interface FilesDownloadOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FilesListOptions extends OperationOptions {
+// @public
+export interface FilesListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FilesOperations {
     // (undocumented)
-    create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
+    delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
     // (undocumented)
-    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) => Promise<DeleteFileResponse>;
+    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
     // (undocumented)
-    download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
+    list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
     // (undocumented)
-    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
-    // (undocumented)
-    retrieve: (fileId: string, options?: FilesRetrieveOptions) => Promise<OpenAIFile>;
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
-// @public (undocumented)
-export interface FilesRetrieveOptions extends OperationOptions {
+// @public
+export interface FilesRetrieveOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface FineTune {
-    createdAt: Date;
+    created_at: Date;
     events?: FineTuneEvent[];
-    fineTunedModel: string | null;
+    fine_tuned_model: string | null;
     hyperparams: {
-        nEpochs: number;
-        batchSize: number;
-        promptLossWeight: number;
-        learningRateMultiplier: number;
-        computeClassificationMetrics?: boolean;
-        classificationPositiveClass?: string;
-        classificationNClasses?: number;
+        n_epochs: number;
+        batch_size: number;
+        prompt_loss_weight: number;
+        learning_rate_multiplier: number;
+        compute_classification_metrics?: boolean;
+        classification_positive_class?: string;
+        classification_n_classes?: number;
     };
     id: string;
     model: string;
     object: "fine-tune";
-    organizationId: string;
-    resultFiles: OpenAIFile[];
+    organization_id: string;
+    result_files: OpenAIFile[];
     status: "created" | "running" | "succeeded" | "failed" | "cancelled";
-    trainingFiles: OpenAIFile[];
-    updatedAt: Date;
-    validationFiles: OpenAIFile[];
+    training_files: OpenAIFile[];
+    updated_at: Date;
+    validation_files: OpenAIFile[];
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuneEvent {
     // (undocumented)
-    createdAt: Date;
+    created_at: Date;
     // (undocumented)
     level: string;
     // (undocumented)
@@ -493,69 +501,69 @@ export interface FineTuneEvent {
     object: string;
 }
 
-// @public (undocumented)
-export interface FineTunesCancelOptions extends OperationOptions {
+// @public
+export interface FineTunesCancelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FineTunesCreateOptions extends OperationOptions {
+// @public
+export interface FineTunesCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FineTunesListEventsOptions extends OperationOptions {
+// @public
+export interface FineTunesListEventsOptionalParams extends OperationOptions {
     stream?: boolean;
 }
 
-// @public (undocumented)
-export interface FineTunesListOptions extends OperationOptions {
+// @public
+export interface FineTunesListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTunesOperations {
     // (undocumented)
-    cancel: (fineTuneId: string, options?: FineTunesCancelOptions) => Promise<FineTune>;
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
     // (undocumented)
-    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptions) => Promise<FineTune>;
+    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptionalParams) => Promise<FineTune>;
     // (undocumented)
-    list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+    list: (options?: FineTunesListOptionalParams) => Promise<ListFineTunesResponse>;
     // (undocumented)
-    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) => Promise<ListFineTuneEventsResponse>;
+    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptionalParams) => Promise<ListFineTuneEventsResponse>;
     // (undocumented)
-    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) => Promise<FineTune>;
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
 }
 
-// @public (undocumented)
-export interface FineTunesRetrieveOptions extends OperationOptions {
+// @public
+export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJob {
-    createdAt: Date;
+    created_at: Date;
     error: {
         message?: string;
         code?: string;
         param?: string | null;
     } | null;
-    fineTunedModel: string | null;
-    finishedAt: Date | null;
+    fine_tuned_model: string | null;
+    finished_at: Date | null;
     hyperparameters: {
-        nEpochs?: "auto" | number;
+        n_epochs?: "auto" | number;
     };
     id: string;
     model: string;
     object: "fine_tuning.job";
-    organizationId: string;
-    resultFiles: string[];
+    organization_id: string;
+    result_files: string[];
     status: "created" | "pending" | "running" | "succeeded" | "failed" | "cancelled";
-    trainedTokens: number | null;
-    trainingFile: string;
-    validationFile: string | null;
+    trained_tokens: number | null;
+    training_file: string;
+    validation_file: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobEvent {
     // (undocumented)
-    createdAt: Date;
+    created_at: Date;
     // (undocumented)
     id: string;
     // (undocumented)
@@ -566,92 +574,90 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
-// @public (undocumented)
-export interface FineTuningJobsCancelOptions extends OperationOptions {
+// @public
+export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FineTuningJobsCreateOptions extends OperationOptions {
+// @public
+export interface FineTuningJobsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface FineTuningJobsListEventsOptions extends OperationOptions {
+// @public
+export interface FineTuningJobsListEventsOptionalParams extends OperationOptions {
     after?: string;
     limit?: number;
 }
 
-// @public (undocumented)
-export interface FineTuningJobsListOptions extends OperationOptions {
+// @public
+export interface FineTuningJobsListOptionalParams extends OperationOptions {
     after?: string;
     limit?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningJobsOperations {
     // (undocumented)
-    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) => Promise<FineTuningJob>;
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptionalParams) => Promise<FineTuningJob>;
+    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptionalParams) => Promise<FineTuningJob>;
     // (undocumented)
-    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptions) => Promise<FineTuningJob>;
+    list: (options?: FineTuningJobsListOptionalParams) => Promise<ListPaginatedFineTuningJobsResponse>;
     // (undocumented)
-    list: (options?: FineTuningJobsListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
+    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptionalParams) => Promise<ListFineTuningJobEventsResponse>;
     // (undocumented)
-    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
-    // (undocumented)
-    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptions) => Promise<FineTuningJob>;
+    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptionalParams) => Promise<FineTuningJob>;
 }
 
-// @public (undocumented)
-export interface FineTuningJobsRetrieveOptions extends OperationOptions {
+// @public
+export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface FineTuningOperations {
     // (undocumented)
     jobs: FineTuningJobsOperations;
 }
 
 // @public
-interface Image_2 {
-    b64Json?: Uint8Array;
+export interface Image {
+    b64_json?: Uint8Array;
     url?: string;
 }
-export { Image_2 as Image }
 
-// @public (undocumented)
-export interface ImagesCreateEditOptions extends OperationOptions {
+// @public
+export interface ImagesCreateEditOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface ImagesCreateOptions extends OperationOptions {
+// @public
+export interface ImagesCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface ImagesCreateVariationOptions extends OperationOptions {
+// @public
+export interface ImagesCreateVariationOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesOperations {
     // (undocumented)
-    create: (image: CreateImageRequest, options?: ImagesCreateOptions) => Promise<ImagesResponse>;
+    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) => Promise<ImagesResponse>;
     // (undocumented)
-    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptions) => Promise<ImagesResponse>;
+    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) => Promise<ImagesResponse>;
     // (undocumented)
-    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptions) => Promise<ImagesResponse>;
+    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptionalParams) => Promise<ImagesResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ImagesResponse {
     // (undocumented)
     created: Date;
     // (undocumented)
-    data: Image_2[];
+    data: Image[];
 }
 
-// @public (undocumented)
+// @public
 export interface ListFilesResponse {
     // (undocumented)
     data: OpenAIFile[];
@@ -659,7 +665,7 @@ export interface ListFilesResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTuneEventsResponse {
     // (undocumented)
     data: FineTuneEvent[];
@@ -667,7 +673,7 @@ export interface ListFineTuneEventsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTunesResponse {
     // (undocumented)
     data: FineTune[];
@@ -675,7 +681,7 @@ export interface ListFineTunesResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListFineTuningJobEventsResponse {
     // (undocumented)
     data: FineTuningJobEvent[];
@@ -683,7 +689,7 @@ export interface ListFineTuningJobEventsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListModelsResponse {
     // (undocumented)
     data: Model[];
@@ -691,12 +697,12 @@ export interface ListModelsResponse {
     object: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListPaginatedFineTuningJobsResponse {
     // (undocumented)
     data: FineTuningJob[];
     // (undocumented)
-    hasMore: boolean;
+    has_more: boolean;
     // (undocumented)
     object: string;
 }
@@ -706,44 +712,43 @@ export interface Model {
     created: Date;
     id: string;
     object: "model";
-    ownedBy: string;
+    owned_by: string;
 }
 
-// @public (undocumented)
-export interface ModelsDeleteOperationOptions extends OperationOptions {
+// @public
+export interface ModelsDeleteOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface ModelsListOptions extends OperationOptions {
+// @public
+export interface ModelsListOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModelsOperations {
+    delete: (model: string, options?: ModelsDeleteOptionalParams) => Promise<DeleteModelResponse>;
     // (undocumented)
-    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) => Promise<DeleteModelResponse>;
+    list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
     // (undocumented)
-    list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
-    // (undocumented)
-    retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
+    retrieve: (model: string, options?: ModelsRetrieveOptionalParams) => Promise<Model>;
 }
 
-// @public (undocumented)
-export interface ModelsRetrieveOptions extends OperationOptions {
+// @public
+export interface ModelsRetrieveOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export interface ModerationsCreateOptions extends OperationOptions {
+// @public
+export interface ModerationsCreateOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface ModerationsOperations {
     // (undocumented)
-    create: (content: CreateModerationRequest, options?: ModerationsCreateOptions) => Promise<CreateModerationResponse>;
+    create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
 }
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(credential: KeyCredential, options?: OpenAIClientOptions);
+    constructor(credential: KeyCredential, options?: OpenAIClientOptionalParams);
     readonly audio: AudioOperations;
     readonly chat: ChatOperations;
     readonly completions: CompletionsOperations;
@@ -758,8 +763,8 @@ export class OpenAIClient {
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
-export interface OpenAIClientOptions extends ClientOptions {
+// @public
+export interface OpenAIClientOptionalParams extends ClientOptions {
 }
 
 // @public
@@ -771,8 +776,14 @@ export interface OpenAIFile {
     object: "file";
     purpose: string;
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
-    statusDetails?: string | null;
+    status_details?: string | null;
 }
+
+// @public
+export type Prompt = string | string[] | number[] | number[][];
+
+// @public
+export type Stop = string | string[];
 
 // (No @packageDocumentation comment for this package)
 

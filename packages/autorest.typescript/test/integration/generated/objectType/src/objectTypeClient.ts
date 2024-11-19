@@ -12,7 +12,7 @@ import {
   ObjectTypeClientOptionalParams,
   GetOptionalParams,
   GetResponse,
-  PutOptionalParams
+  PutOptionalParams,
 } from "./models";
 
 export class ObjectTypeClient extends coreClient.ServiceClient {
@@ -28,7 +28,7 @@ export class ObjectTypeClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: ObjectTypeClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-object-type/1.0.0-preview1`;
@@ -41,9 +41,9 @@ export class ObjectTypeClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -68,7 +68,7 @@ export class ObjectTypeClient extends coreClient.ServiceClient {
    */
   put(
     putObject: Record<string, unknown>,
-    options?: PutOptionalParams
+    options?: PutOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest({ putObject, options }, putOperationSpec);
   }
@@ -82,18 +82,18 @@ const getOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "any" } } },
+      },
     },
     default: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
-    }
+        type: { name: "Dictionary", value: { type: { name: "any" } } },
+      },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putOperationSpec: coreClient.OperationSpec = {
   path: "/objectType/put",
@@ -102,13 +102,13 @@ const putOperationSpec: coreClient.OperationSpec = {
     200: {},
     default: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
-    }
+        type: { name: "Dictionary", value: { type: { name: "any" } } },
+      },
+    },
   },
   requestBody: Parameters.putObject,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

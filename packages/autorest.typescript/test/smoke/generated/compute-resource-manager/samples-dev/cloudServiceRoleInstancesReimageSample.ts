@@ -30,7 +30,7 @@ async function reimageCloudServiceRoleInstance() {
   const result = await client.cloudServiceRoleInstances.beginReimageAndWait(
     roleInstanceName,
     resourceGroupName,
-    cloudServiceName
+    cloudServiceName,
   );
   console.log(result);
 }

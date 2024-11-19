@@ -29,7 +29,7 @@ async function vnetGetUsage() {
   const resArray = new Array();
   for await (let item of client.virtualNetworks.listUsage(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   )) {
     resArray.push(item);
   }

@@ -29,7 +29,7 @@ async function deleteServer() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.servers.beginDeleteAndWait(
     resourceGroupName,
-    serverName
+    serverName,
   );
   console.log(result);
 }

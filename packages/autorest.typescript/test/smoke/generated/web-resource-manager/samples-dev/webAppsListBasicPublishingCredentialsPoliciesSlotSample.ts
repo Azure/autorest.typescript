@@ -32,7 +32,7 @@ async function listPublishingCredentialsPolicies() {
   for await (let item of client.webApps.listBasicPublishingCredentialsPoliciesSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

@@ -1,15 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  paramMessage,
-  createTypeSpecLibrary,
-  JSONSchemaType
-} from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
+import {
+  createTypeSpecLibrary,
+  JSONSchemaType,
+  paramMessage
+} from "@typespec/compiler";
 import { Options } from "prettier";
 
-export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
+export interface EmitterOptions extends RLCOptions {
+  branded?: boolean;
+}
+
+export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
@@ -77,7 +81,19 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     enableOperationGroup: { type: "boolean", nullable: true },
     enableModelNamespace: { type: "boolean", nullable: true },
     hierarchyClient: { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true, default: true }
+    branded: { type: "boolean", nullable: true },
+    flavor: { type: "string", nullable: true },
+    moduleKind: {
+      type: "string",
+      nullable: true,
+      enum: ["esm", "cjs"],
+      default: "esm"
+    },
+    compatibilityMode: { type: "boolean", nullable: true },
+    experimentalExtensibleEnums: { type: "boolean", nullable: true },
+    clearOutputFolder: { type: "boolean", nullable: true },
+    ignorePropertyNameNormalize: { type: "boolean", nullable: true },
+    compatibilityQueryMultiFormat: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -139,7 +155,7 @@ const libDef = {
     "invalid-schema": {
       severity: "error",
       messages: {
-        default: paramMessage`Couldn't get schema for type ${"type"}`
+        default: paramMessage`Couldn't get schema for type ${"type"} with property ${"property"}`
       }
     },
     "union-null": {
@@ -191,6 +207,78 @@ const libDef = {
       messages: {
         default:
           "Required header cannot be nullable. Please remove the nullable modifier."
+      }
+    },
+    "no-paging-items-defined": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please specify @items property for the paging operation - ${"operationName"}.`
+      }
+    },
+    "decimal-to-number": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - ${"propertyName"}.`
+      }
+    },
+    "unable-serialized-type": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the header ${"type"} is not serializable.`
+      }
+    },
+    "compatible-additional-properties": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
+      }
+    },
+    "default-response-body-type": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the body type of default response for operation - ${"operationName"} is not a model type.`
+      }
+    },
+    "un-supported-credential": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Authentication type ${"credentialType"} is not supported.`
+      }
+    },
+    "un-supported-finalStateVia": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The LRO final-state-via ${"finalStateVia"} is not supported.`
+      }
+    },
+    "required-sample-parameter": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} in ${"exampleName"} is required but no value provided.`
+      }
+    },
+    "property-name-normalized": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Property name ${"propertyName"} is normalized to ${"normalizedName"}.`
+      }
+    },
+    "optional-path-param": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
+      }
+    },
+    "un-supported-format-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} with explode: ${"explode"} and format: ${"format"} is not supported.`
+      }
+    },
+    "parameter-type-not-supported": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
       }
     }
   },

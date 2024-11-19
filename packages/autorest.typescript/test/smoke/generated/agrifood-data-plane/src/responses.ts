@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
@@ -41,7 +41,7 @@ import {
   TillageDataOutput,
   WeatherDataListResponseOutput,
   WeatherDataIngestionJobOutput,
-  WeatherDataDeleteJobOutput
+  WeatherDataDeleteJobOutput,
 } from "./outputModels";
 
 /** Returns a paginated list of application data resources under a particular farm. */

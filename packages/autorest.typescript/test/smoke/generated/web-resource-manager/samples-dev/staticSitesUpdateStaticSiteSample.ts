@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSitePatchResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function patchAStaticSite() {
   const result = await client.staticSites.updateStaticSite(
     resourceGroupName,
     name,
-    staticSiteEnvelope
+    staticSiteEnvelope,
   );
   console.log(result);
 }

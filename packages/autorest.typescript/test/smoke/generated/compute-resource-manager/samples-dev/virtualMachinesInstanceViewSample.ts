@@ -28,7 +28,7 @@ async function getVirtualMachineInstanceView() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.instanceView(
     resourceGroupName,
-    vmName
+    vmName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getInstanceViewOfAVirtualMachinePlacedOnADedicatedHostGroupThroug
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.instanceView(
     resourceGroupName,
-    vmName
+    vmName,
   );
   console.log(result);
 }

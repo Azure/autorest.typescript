@@ -28,7 +28,7 @@ async function deletePrivateEndpoint() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.beginDeleteAndWait(
     resourceGroupName,
-    privateEndpointName
+    privateEndpointName,
   );
   console.log(result);
 }

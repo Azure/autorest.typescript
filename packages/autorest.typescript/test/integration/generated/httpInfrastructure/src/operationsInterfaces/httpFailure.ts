@@ -12,7 +12,7 @@ import {
   HttpFailureGetNoModelErrorOptionalParams,
   HttpFailureGetNoModelErrorResponse,
   HttpFailureGetNoModelEmptyOptionalParams,
-  HttpFailureGetNoModelEmptyResponse
+  HttpFailureGetNoModelEmptyResponse,
 } from "../models";
 
 /** Interface representing a HttpFailure. */
@@ -22,20 +22,20 @@ export interface HttpFailure {
    * @param options The options parameters.
    */
   getEmptyError(
-    options?: HttpFailureGetEmptyErrorOptionalParams
+    options?: HttpFailureGetEmptyErrorOptionalParams,
   ): Promise<HttpFailureGetEmptyErrorResponse>;
   /**
    * Get empty error form server
    * @param options The options parameters.
    */
   getNoModelError(
-    options?: HttpFailureGetNoModelErrorOptionalParams
+    options?: HttpFailureGetNoModelErrorOptionalParams,
   ): Promise<HttpFailureGetNoModelErrorResponse>;
   /**
    * Get empty response from server
    * @param options The options parameters.
    */
   getNoModelEmpty(
-    options?: HttpFailureGetNoModelEmptyOptionalParams
+    options?: HttpFailureGetNoModelEmptyOptionalParams,
   ): Promise<HttpFailureGetNoModelEmptyResponse>;
 }

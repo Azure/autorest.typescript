@@ -15,9 +15,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const grantType: OperationParameter = {
@@ -27,9 +27,9 @@ export const grantType: OperationParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["refresh_token", "password"]
-    }
-  }
+      allowedValues: ["refresh_token", "password"],
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -38,8 +38,8 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };

@@ -22,7 +22,7 @@ import {
   StorageAppliancesDisableRemoteVendorManagementOptionalParams,
   StorageAppliancesDisableRemoteVendorManagementResponse,
   StorageAppliancesEnableRemoteVendorManagementOptionalParams,
-  StorageAppliancesEnableRemoteVendorManagementResponse
+  StorageAppliancesEnableRemoteVendorManagementResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +33,7 @@ export interface StorageAppliances {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: StorageAppliancesListBySubscriptionOptionalParams
+    options?: StorageAppliancesListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<StorageAppliance>;
   /**
    * Get a list of storage appliances in the provided resource group.
@@ -42,7 +42,7 @@ export interface StorageAppliances {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: StorageAppliancesListByResourceGroupOptionalParams
+    options?: StorageAppliancesListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<StorageAppliance>;
   /**
    * Get properties of the provided storage appliance.
@@ -53,7 +53,7 @@ export interface StorageAppliances {
   get(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesGetOptionalParams
+    options?: StorageAppliancesGetOptionalParams,
   ): Promise<StorageAppliancesGetResponse>;
   /**
    * Create a new storage appliance or update the properties of the existing one.
@@ -68,7 +68,7 @@ export interface StorageAppliances {
     resourceGroupName: string,
     storageApplianceName: string,
     storageApplianceParameters: StorageAppliance,
-    options?: StorageAppliancesCreateOrUpdateOptionalParams
+    options?: StorageAppliancesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesCreateOrUpdateResponse>,
@@ -88,7 +88,7 @@ export interface StorageAppliances {
     resourceGroupName: string,
     storageApplianceName: string,
     storageApplianceParameters: StorageAppliance,
-    options?: StorageAppliancesCreateOrUpdateOptionalParams
+    options?: StorageAppliancesCreateOrUpdateOptionalParams,
   ): Promise<StorageAppliancesCreateOrUpdateResponse>;
   /**
    * Delete the provided storage appliance.
@@ -101,7 +101,7 @@ export interface StorageAppliances {
   beginDelete(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDeleteOptionalParams
+    options?: StorageAppliancesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided storage appliance.
@@ -114,7 +114,7 @@ export interface StorageAppliances {
   beginDeleteAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDeleteOptionalParams
+    options?: StorageAppliancesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Update properties of the provided storage appliance, or update tags associated with the storage
@@ -126,7 +126,7 @@ export interface StorageAppliances {
   beginUpdate(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesUpdateOptionalParams
+    options?: StorageAppliancesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesUpdateResponse>,
@@ -143,7 +143,7 @@ export interface StorageAppliances {
   beginUpdateAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesUpdateOptionalParams
+    options?: StorageAppliancesUpdateOptionalParams,
   ): Promise<StorageAppliancesUpdateResponse>;
   /**
    * Disable remote vendor management of the provided storage appliance.
@@ -154,7 +154,7 @@ export interface StorageAppliances {
   beginDisableRemoteVendorManagement(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesDisableRemoteVendorManagementResponse>,
@@ -170,7 +170,7 @@ export interface StorageAppliances {
   beginDisableRemoteVendorManagementAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams,
   ): Promise<StorageAppliancesDisableRemoteVendorManagementResponse>;
   /**
    * Enable remote vendor management of the provided storage appliance.
@@ -181,7 +181,7 @@ export interface StorageAppliances {
   beginEnableRemoteVendorManagement(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesEnableRemoteVendorManagementResponse>,
@@ -197,6 +197,6 @@ export interface StorageAppliances {
   beginEnableRemoteVendorManagementAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams,
   ): Promise<StorageAppliancesEnableRemoteVendorManagementResponse>;
 }

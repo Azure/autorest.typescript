@@ -1,66 +1,50 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
+  OpenAIContext as Client,
+  EmbeddingsCreateOptionalParams,
+} from "../index.js";
+import {
   CreateEmbeddingRequest,
+  createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
+  createEmbeddingResponseDeserializer,
 } from "../../models/models.js";
 import {
-  EmbeddingsCreate200Response,
-  EmbeddingsCreateDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../rest/index.js";
-import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} }
-): StreamableMethod<
-  EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
-> {
+  options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/embeddings")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        model: embedding["model"],
-        input: embedding["input"],
-        user: embedding["user"],
-      },
+      body: createEmbeddingRequestSerializer(embedding),
     });
 }
 
 export async function _createDeserialize(
-  result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<CreateEmbeddingResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    model: result.body["model"],
-    data: result.body["data"].map((p) => ({
-      index: p["index"],
-      object: p["object"],
-      embedding: p["embedding"],
-    })),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  return createEmbeddingResponseDeserializer(result.body);
 }
 
 export async function create(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateEmbeddingResponse> {
   const result = await _createSend(context, embedding, options);
   return _createDeserialize(result);

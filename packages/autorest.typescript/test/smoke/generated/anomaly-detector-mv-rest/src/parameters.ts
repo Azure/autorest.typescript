@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import { ModelInfo, DetectionRequest, LastDetectionRequest } from "./models";
@@ -16,9 +16,10 @@ export interface CreateAndTrainMultivariateModelMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelMediaTypesParam &
-  CreateAndTrainMultivariateModelBodyParam &
-  RequestParameters;
+export type CreateAndTrainMultivariateModelParameters =
+  CreateAndTrainMultivariateModelMediaTypesParam &
+    CreateAndTrainMultivariateModelBodyParam &
+    RequestParameters;
 
 export interface ListMultivariateModelsQueryParamProperties {
   /** Skip indicates how many models will be skipped. */
@@ -31,8 +32,8 @@ export interface ListMultivariateModelsQueryParam {
   queryParameters?: ListMultivariateModelsQueryParamProperties;
 }
 
-export type ListMultivariateModelsParameters = ListMultivariateModelsQueryParam &
-  RequestParameters;
+export type ListMultivariateModelsParameters =
+  ListMultivariateModelsQueryParam & RequestParameters;
 export type DeleteMultivariateModelParameters = RequestParameters;
 export type GetMultivariateModelParameters = RequestParameters;
 
@@ -46,9 +47,10 @@ export interface DetectMultivariateBatchAnomalyMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DetectMultivariateBatchAnomalyParameters = DetectMultivariateBatchAnomalyMediaTypesParam &
-  DetectMultivariateBatchAnomalyBodyParam &
-  RequestParameters;
+export type DetectMultivariateBatchAnomalyParameters =
+  DetectMultivariateBatchAnomalyMediaTypesParam &
+    DetectMultivariateBatchAnomalyBodyParam &
+    RequestParameters;
 
 export interface DetectMultivariateLastAnomalyBodyParam {
   /** Request for last detection */
@@ -60,6 +62,7 @@ export interface DetectMultivariateLastAnomalyMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DetectMultivariateLastAnomalyParameters = DetectMultivariateLastAnomalyMediaTypesParam &
-  DetectMultivariateLastAnomalyBodyParam &
-  RequestParameters;
+export type DetectMultivariateLastAnomalyParameters =
+  DetectMultivariateLastAnomalyMediaTypesParam &
+    DetectMultivariateLastAnomalyBodyParam &
+    RequestParameters;

@@ -17,7 +17,7 @@ import {
   EnumGetReferencedConstantOptionalParams,
   EnumGetReferencedConstantResponse,
   RefColorConstant,
-  EnumPutReferencedConstantOptionalParams
+  EnumPutReferencedConstantOptionalParams,
 } from "../models";
 
 /** Interface representing a Enum. */
@@ -27,7 +27,7 @@ export interface Enum {
    * @param options The options parameters.
    */
   getNotExpandable(
-    options?: EnumGetNotExpandableOptionalParams
+    options?: EnumGetNotExpandableOptionalParams,
   ): Promise<EnumGetNotExpandableResponse>;
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
@@ -36,14 +36,14 @@ export interface Enum {
    */
   putNotExpandable(
     stringBody: Colors,
-    options?: EnumPutNotExpandableOptionalParams
+    options?: EnumPutNotExpandableOptionalParams,
   ): Promise<void>;
   /**
    * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    * @param options The options parameters.
    */
   getReferenced(
-    options?: EnumGetReferencedOptionalParams
+    options?: EnumGetReferencedOptionalParams,
   ): Promise<EnumGetReferencedResponse>;
   /**
    * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
@@ -52,14 +52,14 @@ export interface Enum {
    */
   putReferenced(
     enumStringBody: Colors,
-    options?: EnumPutReferencedOptionalParams
+    options?: EnumPutReferencedOptionalParams,
   ): Promise<void>;
   /**
    * Get value 'green-color' from the constant.
    * @param options The options parameters.
    */
   getReferencedConstant(
-    options?: EnumGetReferencedConstantOptionalParams
+    options?: EnumGetReferencedConstantOptionalParams,
   ): Promise<EnumGetReferencedConstantResponse>;
   /**
    * Sends value 'green-color' from a constant
@@ -68,6 +68,6 @@ export interface Enum {
    */
   putReferencedConstant(
     enumStringBody: RefColorConstant,
-    options?: EnumPutReferencedConstantOptionalParams
+    options?: EnumPutReferencedConstantOptionalParams,
   ): Promise<void>;
 }

@@ -10,7 +10,7 @@ import {
   DomainServiceOperationsListNextOptionalParams,
   DomainServiceOperationsListOptionalParams,
   DomainServiceOperationsListResponse,
-  DomainServiceOperationsListNextResponse
+  DomainServiceOperationsListNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -31,7 +31,7 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
    * @param options The options parameters.
    */
   public list(
-    options?: DomainServiceOperationsListOptionalParams
+    options?: DomainServiceOperationsListOptionalParams,
   ): PagedAsyncIterableIterator<OperationEntity> {
     const iter = this.listPagingAll(options);
     return {
@@ -46,13 +46,13 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: DomainServiceOperationsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<OperationEntity[]> {
     let result: DomainServiceOperationsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -73,7 +73,7 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
   }
 
   private async *listPagingAll(
-    options?: DomainServiceOperationsListOptionalParams
+    options?: DomainServiceOperationsListOptionalParams,
   ): AsyncIterableIterator<OperationEntity> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -85,7 +85,7 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
    * @param options The options parameters.
    */
   private _list(
-    options?: DomainServiceOperationsListOptionalParams
+    options?: DomainServiceOperationsListOptionalParams,
   ): Promise<DomainServiceOperationsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -97,11 +97,11 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
    */
   private _listNext(
     nextLink: string,
-    options?: DomainServiceOperationsListNextOptionalParams
+    options?: DomainServiceOperationsListNextOptionalParams,
   ): Promise<DomainServiceOperationsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -113,29 +113,29 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationEntityListResult
+      bodyMapper: Mappers.OperationEntityListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationEntityListResult
+      bodyMapper: Mappers.OperationEntityListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

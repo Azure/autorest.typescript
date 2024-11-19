@@ -36,7 +36,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -59,7 +59,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         cd $(Pipeline.Workspace)/packages
@@ -90,7 +90,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -113,7 +113,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         cd $(Pipeline.Workspace)/packages
@@ -145,7 +145,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -168,7 +168,7 @@ stages:
                   steps:
                     - task: NodeTool@0
                       inputs:
-                        versionSpec: "16.x"
+                        versionSpec: "18.x"
                       displayName: "Install Node.js"
                     - script: |
                         cd $(Pipeline.Workspace)/packages
@@ -196,7 +196,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -221,7 +221,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -246,7 +246,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
@@ -270,7 +270,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     cd $(Pipeline.Workspace)/packages
@@ -293,7 +293,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     cd $(Pipeline.Workspace)/packages
@@ -316,7 +316,7 @@ stages:
               steps:
                 - task: NodeTool@0
                   inputs:
-                    versionSpec: "16.x"
+                    versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
                     cd $(Pipeline.Workspace)/packages

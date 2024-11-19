@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BackendAddressPool,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,28 +34,27 @@ async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtua
         name: "address1",
         ipAddress: "10.0.0.4",
         virtualNetwork: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb"
-        }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb",
+        },
       },
       {
         name: "address2",
         ipAddress: "10.0.0.5",
         virtualNetwork: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb"
-        }
-      }
-    ]
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb",
+        },
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.loadBalancerBackendAddressPools.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    loadBalancerName,
-    backendAddressPoolName,
-    parameters
-  );
+  const result =
+    await client.loadBalancerBackendAddressPools.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      loadBalancerName,
+      backendAddressPoolName,
+      parameters,
+    );
   console.log(result);
 }
 

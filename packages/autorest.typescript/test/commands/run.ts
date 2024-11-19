@@ -34,7 +34,8 @@ export async function runAutorest(
     coreHttpCompatMode,
     azureArm,
     generateSample,
-    lenientModelDeduplication
+    lenientModelDeduplication,
+    flavor,
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -140,6 +141,12 @@ export async function runAutorest(
 
   if (generateSample) {
     commandArguments.push(`--generate-sample=${generateSample}`);
+  }
+
+  if(flavor === undefined) {
+    commandArguments.push(`--flavor=azure`);
+  } else {
+    commandArguments.push(`--flavor=${flavor}`);
   }
 
   commandArguments.push(

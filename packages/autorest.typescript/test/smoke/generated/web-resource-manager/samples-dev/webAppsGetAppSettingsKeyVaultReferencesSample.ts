@@ -30,7 +30,7 @@ async function getAzureKeyVaultReferencesForAppSettings() {
   const resArray = new Array();
   for await (let item of client.webApps.listAppSettingsKeyVaultReferences(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation DeleteTestFile
  */
 async function loadTestAdministrationDeleteTestFileSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
   const fileName = "{Your fileName}";
   const result = await client

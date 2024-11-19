@@ -31,7 +31,7 @@ async function listGalleryImageVersionsInAGalleryImageDefinition() {
   for await (let item of client.galleryImageVersions.listByGalleryImage(
     resourceGroupName,
     galleryName,
-    galleryImageName
+    galleryImageName,
   )) {
     resArray.push(item);
   }

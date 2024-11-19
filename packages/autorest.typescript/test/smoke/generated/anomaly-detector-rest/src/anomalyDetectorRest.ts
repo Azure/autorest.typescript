@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorRestClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface AnomalyDetectorRestClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `AnomalyDetectorRestClient`
@@ -17,11 +20,12 @@ export default function createClient(
   endpoint: string,
   apiVersion: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: AnomalyDetectorRestClientOptions = {},
 ): AnomalyDetectorRestClient {
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
-
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpoint}/anomalydetector/${apiVersion}`;
   const userAgentInfo = `azsdk-js-anomaly-detector-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -30,22 +34,28 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
-    }
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as AnomalyDetectorRestClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support to set api-version in options, please change it at positional argument",
+    );
+  }
 
   return client;
 }

@@ -10,14 +10,14 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as Parameters from "./models/parameters";
 import {
   Enum0,
   LicenseHeaderClientOptionalParams,
   ApiV1ValueGetOptionalParams,
-  ApiV1ValueGetResponse
+  ApiV1ValueGetResponse,
 } from "./models";
 
 export class LicenseHeaderClient extends coreClient.ServiceClient {
@@ -33,7 +33,7 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
   constructor(
     $host: string,
     apiVersion: Enum0,
-    options?: LicenseHeaderClientOptionalParams
+    options?: LicenseHeaderClientOptionalParams,
   ) {
     if ($host === undefined) {
       throw new Error("'$host' cannot be null");
@@ -47,7 +47,7 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: LicenseHeaderClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-license-header/1.0.0-preview1`;
@@ -60,9 +60,9 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -80,7 +80,7 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -94,14 +94,14 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ApiV1ValueGetOptionalParams
+    options?: ApiV1ValueGetOptionalParams,
   ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
@@ -114,10 +114,10 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
-  serializer
+  serializer,
 };

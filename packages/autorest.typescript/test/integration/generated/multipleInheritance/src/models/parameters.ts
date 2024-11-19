@@ -12,7 +12,7 @@ import {
   Pet as PetMapper,
   Feline as FelineMapper,
   Cat as CatMapper,
-  Kitten as KittenMapper
+  Kitten as KittenMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -22,9 +22,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -33,10 +33,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -46,32 +46,32 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const horse: OperationParameter = {
   parameterPath: "horse",
-  mapper: HorseMapper
+  mapper: HorseMapper,
 };
 
 export const pet: OperationParameter = {
   parameterPath: "pet",
-  mapper: PetMapper
+  mapper: PetMapper,
 };
 
 export const feline: OperationParameter = {
   parameterPath: "feline",
-  mapper: FelineMapper
+  mapper: FelineMapper,
 };
 
 export const cat: OperationParameter = {
   parameterPath: "cat",
-  mapper: CatMapper
+  mapper: CatMapper,
 };
 
 export const kitten: OperationParameter = {
   parameterPath: "kitten",
-  mapper: KittenMapper
+  mapper: KittenMapper,
 };

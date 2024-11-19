@@ -10,7 +10,7 @@ import * as coreHttpCompat from "@azure/core-http-compat";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import { DocumentsImpl } from "./operations";
 import { Documents } from "./operationsInterfaces";
@@ -30,7 +30,7 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
   constructor(
     endpoint: string,
     indexName: string,
-    options?: DataSearchClientOptionalParams
+    options?: DataSearchClientOptionalParams,
   ) {
     if (endpoint === undefined) {
       throw new Error("'endpoint' cannot be null");
@@ -44,7 +44,7 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
       options = {};
     }
     const defaults: DataSearchClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-data-search/1.0.0-preview1`;
@@ -57,12 +57,12 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
         options.endpoint ??
         options.baseUri ??
-        "{endpoint}/indexes('{indexName}')"
+        "{endpoint}/indexes('{indexName}')",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -84,7 +84,7 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -98,7 +98,7 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

@@ -28,7 +28,7 @@ async function storageAccountGetProperties() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.getProperties(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function storageAccountGetPropertiesCmkEnabled() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.getProperties(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

@@ -9,15 +9,22 @@ export function buildLogger(model: RLCModel) {
   if (!model.options) {
     return undefined;
   }
-  // Disable logger for non-branded packages
-  if (model.options.branded === false) {
+  // Disable logger for non-Azure packages
+  if (model.options.flavor !== "azure") {
     return undefined;
   }
   const project = new Project();
-  const { srcPath } = model;
+  const { srcPath, rlcSourceDir } = model;
   const { packageDetails } = model.options;
   const filePath = path.join(
-    srcPath.substring(0, srcPath.lastIndexOf("src") + 4),
+    model.options.sourceFrom == "Swagger"
+      ? srcPath.substring(
+          0,
+          srcPath.includes("generated") && !srcPath.includes("src")
+            ? srcPath.lastIndexOf("generated") + 10
+            : srcPath.lastIndexOf("src") + 4
+        )
+      : rlcSourceDir!,
     `logger.ts`
   );
   const loggerFile = project.createSourceFile("logger.ts", undefined, {

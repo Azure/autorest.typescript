@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { MultipleUrlParameterRestClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface MultipleUrlParameterRestClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `MultipleUrlParameterRestClient`
@@ -17,12 +20,12 @@ export default function createClient(
   endpoint: string,
   serviceVersion: "v2" | "v1",
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: MultipleUrlParameterRestClientOptions = {},
 ): MultipleUrlParameterRestClient {
-  const baseUrl =
+  const endpointUrl =
+    options.endpoint ??
     options.baseUrl ??
     `${endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
-
   const userAgentInfo = `azsdk-js-multiple-url-parameter-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -31,21 +34,27 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      scopes: options.credentials?.scopes ?? ["user_impersonation"]
-    }
+      scopes: options.credentials?.scopes ?? ["user_impersonation"],
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as MultipleUrlParameterRestClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return {
     ...client,
@@ -76,7 +85,7 @@ export default function createClient(
       },
       exportGuid: (guid, options) => {
         return client.path("/entity/guid/{guid}:export", guid).put(options);
-      }
-    }
+      },
+    },
   };
 }

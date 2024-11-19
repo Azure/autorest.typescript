@@ -31,7 +31,7 @@ async function getAnElasticPool() {
   const result = await client.elasticPools.get(
     resourceGroupName,
     serverName,
-    elasticPoolName
+    elasticPoolName,
   );
   console.log(result);
 }

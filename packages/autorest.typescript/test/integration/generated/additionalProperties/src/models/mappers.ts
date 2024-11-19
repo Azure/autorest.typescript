@@ -18,24 +18,24 @@ export const PetAPTrue: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -46,17 +46,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetAPObject: coreClient.CompositeMapper = {
@@ -69,24 +69,24 @@ export const PetAPObject: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const PetAPString: coreClient.CompositeMapper = {
@@ -99,24 +99,24 @@ export const PetAPString: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const PetAPInProperties: coreClient.CompositeMapper = {
@@ -128,31 +128,31 @@ export const PetAPInProperties: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       additionalProperties: {
         serializedName: "additionalProperties",
         type: {
           name: "Dictionary",
-          value: { type: { name: "Number" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "Number" } },
+        },
+      },
+    },
+  },
 };
 
 export const PetAPInPropertiesWithAPString: coreClient.CompositeMapper = {
@@ -165,38 +165,38 @@ export const PetAPInPropertiesWithAPString: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
         readOnly: true,
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       odataLocation: {
         serializedName: "@odata\\.location",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       additionalProperties: {
         serializedName: "additionalProperties",
         type: {
           name: "Dictionary",
-          value: { type: { name: "Number" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "Number" } },
+        },
+      },
+    },
+  },
 };
 
 export const CatAPTrue: coreClient.CompositeMapper = {
@@ -209,9 +209,9 @@ export const CatAPTrue: coreClient.CompositeMapper = {
       friendly: {
         serializedName: "friendly",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };

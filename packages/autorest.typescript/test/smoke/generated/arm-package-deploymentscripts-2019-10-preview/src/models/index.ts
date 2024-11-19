@@ -371,7 +371,7 @@ export interface AzureCliScript extends DeploymentScript {
 /** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
 export enum KnownManagedServiceIdentityType {
   /** UserAssigned */
-  UserAssigned = "UserAssigned"
+  UserAssigned = "UserAssigned",
 }
 
 /**
@@ -388,7 +388,7 @@ export enum KnownScriptType {
   /** AzurePowerShell */
   AzurePowerShell = "AzurePowerShell",
   /** AzureCLI */
-  AzureCLI = "AzureCLI"
+  AzureCLI = "AzureCLI",
 }
 
 /**
@@ -410,7 +410,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -432,7 +432,7 @@ export enum KnownCleanupOptions {
   /** OnSuccess */
   OnSuccess = "OnSuccess",
   /** OnExpiration */
-  OnExpiration = "OnExpiration"
+  OnExpiration = "OnExpiration",
 }
 
 /**
@@ -459,7 +459,7 @@ export enum KnownScriptProvisioningState {
   /** Failed */
   Failed = "Failed",
   /** Canceled */
-  Canceled = "Canceled"
+  Canceled = "Canceled",
 }
 
 /**
@@ -514,7 +514,8 @@ export interface DeploymentScriptsListBySubscriptionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult;
+export type DeploymentScriptsListBySubscriptionResponse =
+  DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsGetLogsOptionalParams
@@ -538,21 +539,24 @@ export interface DeploymentScriptsListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult;
+export type DeploymentScriptsListByResourceGroupResponse =
+  DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult;
+export type DeploymentScriptsListBySubscriptionNextResponse =
+  DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult;
+export type DeploymentScriptsListByResourceGroupNextResponse =
+  DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsClientOptionalParams

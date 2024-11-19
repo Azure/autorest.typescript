@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation ListMetrics
  */
 async function loadTestRunListMetricsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
   const initialResponse = await client
     .path("/test-runs/{testRunId}/metrics", testRunId)
@@ -25,7 +25,7 @@ async function loadTestRunListMetricsSample() {
       body: { filters: [{ name: "{Your name}", values: ["{Your values}"] }] },
       queryParameters: {
         aggregation: "{Your aggregation}",
-        interval: "{Your interval}",
+        interval: "PT5S",
         metricName: "{Your metricName}",
         metricNamespace: "{Your metricNamespace}",
         timespan: "{Your timespan}",

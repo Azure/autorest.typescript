@@ -30,7 +30,7 @@ async function routeTableDelete() {
   const result = await client.routingIntentOperations.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
-    routingIntentName
+    routingIntentName,
   );
   console.log(result);
 }

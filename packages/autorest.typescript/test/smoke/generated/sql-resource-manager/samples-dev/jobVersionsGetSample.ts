@@ -35,7 +35,7 @@ async function getAVersionOfAJob() {
     serverName,
     jobAgentName,
     jobName,
-    jobVersion
+    jobVersion,
   );
   console.log(result);
 }

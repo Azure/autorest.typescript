@@ -32,7 +32,7 @@ async function getsADatabase() {
   const result = await client.databases.get(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

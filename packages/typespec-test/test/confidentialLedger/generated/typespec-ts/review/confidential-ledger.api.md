@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -26,7 +25,12 @@ export type ConfidentialLedgerClient = Client & {
 };
 
 // @public
-function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerClient;
+export interface ConfidentialLedgerClientOptions extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+function createClient(ledgerUri: string, credentials: TokenCredential, { apiVersion, ...options }?: ConfidentialLedgerClientOptions): ConfidentialLedgerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -310,7 +314,7 @@ export interface GetLedgerEntryDefaultResponse extends HttpResponse {
 export type GetLedgerEntryParameters = RequestParameters;
 
 // @public
-export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+export type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
@@ -455,18 +459,27 @@ export interface LedgerEntryOutput {
 }
 
 // @public
+export type LedgerQueryStateOutput = "Loading" | "Ready";
+
+// @public
 export interface LedgerUser {
-    assignedRole: "Administrator" | "Contributor" | "Reader";
+    assignedRole: LedgerUserRole;
 }
 
 // @public
 export interface LedgerUserOutput {
-    assignedRole: "Administrator" | "Contributor" | "Reader";
+    assignedRole: LedgerUserRoleOutput;
     readonly userId: string;
 }
 
 // @public
 export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
+
+// @public
+export type LedgerUserRole = "Administrator" | "Contributor" | "Reader";
+
+// @public
+export type LedgerUserRoleOutput = "Administrator" | "Contributor" | "Reader";
 
 // @public (undocumented)
 export interface ListCollections {
@@ -531,10 +544,22 @@ export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
 export type ListLedgerEntriesParameters = RequestParameters;
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
 export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
-    state: "Loading" | "Ready";
+    state: LedgerQueryStateOutput;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -578,13 +603,16 @@ export interface Routes {
 // @public
 export interface TransactionReceiptOutput {
     receipt: ReceiptContentsOutput;
-    state: "Loading" | "Ready";
+    state: LedgerQueryStateOutput;
     transactionId: string;
 }
 
 // @public
+export type TransactionStateOutput = "Committed" | "Pending";
+
+// @public
 export interface TransactionStatusOutput {
-    state: "Committed" | "Pending";
+    state: TransactionStateOutput;
     transactionId: string;
 }
 

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CapacityReservationGroupsListByResourceGroupOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function listCapacityReservationGroupsInResourceGroup() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const expand = "virtualMachines/$ref";
   const options: CapacityReservationGroupsListByResourceGroupOptionalParams = {
-    expand
+    expand,
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.capacityReservationGroups.listByResourceGroup(
     resourceGroupName,
-    options
+    options,
   )) {
     resArray.push(item);
   }

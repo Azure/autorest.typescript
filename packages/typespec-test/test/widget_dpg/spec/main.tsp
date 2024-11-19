@@ -1,11 +1,28 @@
 import "@typespec/http";
+import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
+using Azure.Core;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using global.Azure.Core.Traits;
+@versioned(WidgetService.Versions)
 @service({
-    title: "Widget Service",
-    version: "1.0.0",
+    title: "Widget Service"
 })
+@useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
 namespace WidgetService;
+
+/** The Contoso Widget Manager service version. */
+enum Versions {
+    /** Version 2022-08-31 */
+    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+    `1.0.0`,
+  }
+
+alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
+  NoRepeatableRequests &
+  NoClientRequestId>;
 
 model Widget {
     @doc("The UUID of this widget. This is generated automatically by the service.")
@@ -21,6 +38,13 @@ model CreateWidget {
     weight: int32;
     @doc("The color of the widget.")
     color: "red" | "blue";
+}
+
+model NonReferencedModel {
+    @doc("The weight of the widget. This is an int32, but must be greater than zero.")
+    prop1: int32;
+    @doc("The color of the widget.")
+    prop2: string;
 }
 
 model UpdateWidget {
@@ -48,6 +72,31 @@ model WidgetError {
     message: string;
 }
 
+@pagedResult
+model ListWidgetsPagesResults {
+    @doc("The current page of results.")
+    @items
+    results: Widget[];
+    @doc("The URL to get the next set of results.")
+    @Azure.Core.nextLink
+    `odata.nextLink`?: string;
+}
+
+@resource("users")
+@doc("Details about a user.")
+model User {
+  @key
+  @visibility("read")
+  @doc("The name of user.")
+  name: string;
+
+  @doc("The role of user")
+  role: string;
+
+  @doc("The UUID of this widget. This is generated automatically by the service.")
+  id: string;
+}
+
 @route("/widgets")
 @tag("Widgets")
 interface Widgets {
@@ -72,6 +121,20 @@ It does not accept any options or parameters.
         @header nullableDateHeader?: utcDateTime | null,
     ): Widget[] | WidgetError;
 
+    @get
+    @route("/widgets/pages") 
+    listWidgetsPages(
+        @query page: int32,
+        @query pageSize: int32,
+    ): ListWidgetsPagesResults | WidgetError;
+
+    @post
+    @route("/widgets/pages") 
+    queryWidgetsPages(
+        @query page: int32,
+        @query pageSize: int32,
+    ): ListWidgetsPagesResults | WidgetError;
+
     @doc("Get a widget by ID.")
     @get getWidget(@path id: string): Widget | WidgetError;
 
@@ -86,6 +149,9 @@ result in an error.
         @statusCode code: 201;
         @body widget: Widget;
     } | WidgetError;
+
+    @route("/widgets/createOrReplace")
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
     @doc("""
 Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
@@ -103,4 +169,12 @@ are optional and will be updated within the widget if provided.
     @route("{id}/analyze") @post analyzeWidget(
         @path id: string
     ): AnalyzeResult | WidgetError;
+}
+
+@route("/budgets")
+@tag("Widgets")
+interface Budgets { 
+    // the same name as Widgets.createOrReplace
+    @route("/widgets/createOrReplace")
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 }

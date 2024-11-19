@@ -31,7 +31,7 @@ async function getNetworkManagerScopeConnection() {
   const result = await client.scopeConnections.get(
     resourceGroupName,
     networkManagerName,
-    scopeConnectionName
+    scopeConnectionName,
   );
   console.log(result);
 }

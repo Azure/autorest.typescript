@@ -30,7 +30,7 @@ async function versionLevelWormContainerMigration() {
   const result = await client.blobContainers.beginObjectLevelWormAndWait(
     resourceGroupName,
     accountName,
-    containerName
+    containerName,
   );
   console.log(result);
 }

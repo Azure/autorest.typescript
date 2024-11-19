@@ -1,18 +1,22 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { DPGCustomizationClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface DPGCustomizationClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `DPGCustomizationClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: DPGCustomizationClientOptions = {},
 ): DPGCustomizationClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-dpg-customization-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -21,14 +25,20 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
+  const client = getClient(endpointUrl, options) as DPGCustomizationClient;
 
-  const client = getClient(baseUrl, options) as DPGCustomizationClient;
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return {
     ...client,
@@ -44,7 +54,7 @@ export default function createClient(
       },
       lro: (mode, options) => {
         return client.path("/customization/lro/{mode}", mode).put(options);
-      }
-    }
+      },
+    },
   };
 }

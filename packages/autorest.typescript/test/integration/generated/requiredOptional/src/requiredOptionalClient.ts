@@ -26,7 +26,7 @@ export class RequiredOptionalClient extends coreClient.ServiceClient {
   constructor(
     requiredGlobalPath: string,
     requiredGlobalQuery: string,
-    options?: RequiredOptionalClientOptionalParams
+    options?: RequiredOptionalClientOptionalParams,
   ) {
     if (requiredGlobalPath === undefined) {
       throw new Error("'requiredGlobalPath' cannot be null");
@@ -40,7 +40,7 @@ export class RequiredOptionalClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: RequiredOptionalClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-required-optional/1.0.0-preview1`;
@@ -53,9 +53,9 @@ export class RequiredOptionalClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
     // Parameter assignments

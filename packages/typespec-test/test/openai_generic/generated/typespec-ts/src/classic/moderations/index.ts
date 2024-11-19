@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
+import { create } from "../../api/moderations/index.js";
 import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
-import { create } from "../../api/moderations/index.js";
-import { ModerationsCreateOptions } from "../../models/options.js";
+import { ModerationsCreateOptionalParams } from "../../api/options.js";
 
+/** Interface representing a Moderations operations. */
 export interface ModerationsOperations {
   create: (
     content: CreateModerationRequest,
-    options?: ModerationsCreateOptions
+    options?: ModerationsCreateOptionalParams,
   ) => Promise<CreateModerationResponse>;
 }
 
@@ -20,13 +21,13 @@ export function getModerations(context: OpenAIContext) {
   return {
     create: (
       content: CreateModerationRequest,
-      options?: ModerationsCreateOptions
+      options?: ModerationsCreateOptionalParams,
     ) => create(context, content, options),
   };
 }
 
 export function getModerationsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): ModerationsOperations {
   return {
     ...getModerations(context),

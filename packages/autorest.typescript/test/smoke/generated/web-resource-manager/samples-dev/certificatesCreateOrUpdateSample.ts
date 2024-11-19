@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   Certificate,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,14 +31,14 @@ async function createOrUpdateCertificate() {
   const certificateEnvelope: Certificate = {
     hostNames: ["ServerCert"],
     location: "East US",
-    password: "<password>"
+    password: "<password>",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.certificates.createOrUpdate(
     resourceGroupName,
     name,
-    certificateEnvelope
+    certificateEnvelope,
   );
   console.log(result);
 }

@@ -15,9 +15,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -26,10 +26,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const serverName: OperationURLParameter = {
@@ -38,12 +38,12 @@ export const serverName: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("^[a-z][a-z0-9]*$"),
       MaxLength: 63,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "serverName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualClusterUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function updateVirtualClusterWithTags() {
   const virtualClusterName = "vc-subnet1-f769ed71-b3ad-491a-a9d5-26eeceaa6be2";
   const parameters: VirtualClusterUpdate = {
     maintenanceConfigurationId:
-      "/subscriptions/ab0e51c0-83c0-4380-8ae9-025516df392f/resourceGroups/Federation/providers/Microsoft.Maintenance/maintenanceConfigurations/MiPolicy1"
+      "/subscriptions/ab0e51c0-83c0-4380-8ae9-025516df392f/resourceGroups/Federation/providers/Microsoft.Maintenance/maintenanceConfigurations/MiPolicy1",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.virtualClusters.beginUpdateAndWait(
     resourceGroupName,
     virtualClusterName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

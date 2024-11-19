@@ -27,7 +27,7 @@ async function getSubscriptionNetworkManagerConnection() {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.subscriptionNetworkManagerConnections.get(
-    networkManagerConnectionName
+    networkManagerConnectionName,
   );
   console.log(result);
 }

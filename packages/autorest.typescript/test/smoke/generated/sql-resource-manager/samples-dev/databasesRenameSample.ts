@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ResourceMoveDefinition,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,8 +31,7 @@ async function renamesADatabase() {
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: ResourceMoveDefinition = {
-    id:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/testsvr/databases/newtestdb"
+    id: "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/testsvr/databases/newtestdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +39,7 @@ async function renamesADatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -31,7 +31,7 @@ async function deleteTheManagedInstanceKey() {
   const result = await client.managedInstanceKeys.beginDeleteAndWait(
     resourceGroupName,
     managedInstanceName,
-    keyName
+    keyName,
   );
   console.log(result);
 }

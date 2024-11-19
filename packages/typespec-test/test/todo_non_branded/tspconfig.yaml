@@ -1,0 +1,15 @@
+emit:
+  - "@azure-tools/typespec-ts"
+  - "@typespec/openapi3"
+options:
+  "@azure-tools/typespec-ts":
+    isModularLibrary: false
+    generateMetadata: true
+    azureSdkForJs: false
+    generateSample: true
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@notabrand/todo-non-branded"
+  "@typespec/openapi3":
+    "emitter-output-dir": "{project-root}/generated/openapi"
+    "file-type": "json"

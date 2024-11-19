@@ -15,7 +15,7 @@ import {
   LROsCustomHeaderPost202Retry200OptionalParams,
   LROsCustomHeaderPost202Retry200Response,
   LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
-  LROsCustomHeaderPostAsyncRetrySucceededResponse
+  LROsCustomHeaderPostAsyncRetrySucceededResponse,
 } from "../models";
 
 /** Interface representing a LROsCustomHeader. */
@@ -28,7 +28,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPutAsyncRetrySucceeded(
-    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
@@ -43,7 +43,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPutAsyncRetrySucceededAndWait(
-    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
@@ -53,7 +53,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200(
-    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
@@ -68,7 +68,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200AndWait(
-    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams,
   ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
@@ -77,7 +77,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPost202Retry200(
-    options?: LROsCustomHeaderPost202Retry200OptionalParams
+    options?: LROsCustomHeaderPost202Retry200OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LROsCustomHeaderPost202Retry200Response>,
@@ -91,7 +91,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPost202Retry200AndWait(
-    options?: LROsCustomHeaderPost202Retry200OptionalParams
+    options?: LROsCustomHeaderPost202Retry200OptionalParams,
   ): Promise<LROsCustomHeaderPost202Retry200Response>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
@@ -101,7 +101,7 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPostAsyncRetrySucceeded(
-    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
@@ -116,6 +116,6 @@ export interface LROsCustomHeader {
    * @param options The options parameters.
    */
   beginPostAsyncRetrySucceededAndWait(
-    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
   ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse>;
 }

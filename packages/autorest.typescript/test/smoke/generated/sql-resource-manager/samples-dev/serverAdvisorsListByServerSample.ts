@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerAdvisorsListByServerOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function listOfServerAdvisors() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAdvisors.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   );
   console.log(result);
 }
@@ -57,7 +57,7 @@ async function listOfServerRecommendedActionsForAllAdvisors() {
   const result = await client.serverAdvisors.listByServer(
     resourceGroupName,
     serverName,
-    options
+    options,
   );
   console.log(result);
 }

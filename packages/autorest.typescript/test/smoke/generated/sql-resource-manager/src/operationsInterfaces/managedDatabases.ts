@@ -21,7 +21,7 @@ import {
   ManagedDatabasesUpdateOptionalParams,
   ManagedDatabasesUpdateResponse,
   CompleteDatabaseRestoreDefinition,
-  ManagedDatabasesCompleteRestoreOptionalParams
+  ManagedDatabasesCompleteRestoreOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -37,7 +37,7 @@ export interface ManagedDatabases {
   listByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
+    options?: ManagedDatabasesListByInstanceOptionalParams,
   ): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a list of inaccessible managed databases in a managed instance
@@ -49,7 +49,7 @@ export interface ManagedDatabases {
   listInaccessibleByInstance(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams,
   ): PagedAsyncIterableIterator<ManagedDatabase>;
   /**
    * Gets a managed database.
@@ -63,7 +63,7 @@ export interface ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: ManagedDatabasesGetOptionalParams
+    options?: ManagedDatabasesGetOptionalParams,
   ): Promise<ManagedDatabasesGetResponse>;
   /**
    * Creates a new database or updates an existing database.
@@ -79,7 +79,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ManagedDatabasesCreateOrUpdateResponse>,
@@ -100,7 +100,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabase,
-    options?: ManagedDatabasesCreateOrUpdateOptionalParams
+    options?: ManagedDatabasesCreateOrUpdateOptionalParams,
   ): Promise<ManagedDatabasesCreateOrUpdateResponse>;
   /**
    * Deletes a managed database.
@@ -114,7 +114,7 @@ export interface ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
+    options?: ManagedDatabasesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a managed database.
@@ -128,7 +128,7 @@ export interface ManagedDatabases {
     resourceGroupName: string,
     managedInstanceName: string,
     databaseName: string,
-    options?: ManagedDatabasesDeleteOptionalParams
+    options?: ManagedDatabasesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Updates an existing database.
@@ -144,7 +144,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
+    options?: ManagedDatabasesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ManagedDatabasesUpdateResponse>,
@@ -165,7 +165,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: ManagedDatabaseUpdate,
-    options?: ManagedDatabasesUpdateOptionalParams
+    options?: ManagedDatabasesUpdateOptionalParams,
   ): Promise<ManagedDatabasesUpdateResponse>;
   /**
    * Completes the restore operation on a managed database.
@@ -181,7 +181,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
+    options?: ManagedDatabasesCompleteRestoreOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Completes the restore operation on a managed database.
@@ -197,6 +197,6 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
-    options?: ManagedDatabasesCompleteRestoreOptionalParams
+    options?: ManagedDatabasesCompleteRestoreOptionalParams,
   ): Promise<void>;
 }

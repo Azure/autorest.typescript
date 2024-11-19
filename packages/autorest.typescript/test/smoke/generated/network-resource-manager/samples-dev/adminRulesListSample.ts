@@ -34,7 +34,7 @@ async function listSecurityAdminRules() {
     resourceGroupName,
     networkManagerName,
     configurationName,
-    ruleCollectionName
+    ruleCollectionName,
   )) {
     resArray.push(item);
   }

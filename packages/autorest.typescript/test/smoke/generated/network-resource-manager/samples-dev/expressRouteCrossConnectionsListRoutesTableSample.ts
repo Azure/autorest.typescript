@@ -29,12 +29,13 @@ async function getExpressRouteCrossConnectionsRouteTable() {
   const devicePath = "primary";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCrossConnections.beginListRoutesTableAndWait(
-    resourceGroupName,
-    crossConnectionName,
-    peeringName,
-    devicePath
-  );
+  const result =
+    await client.expressRouteCrossConnections.beginListRoutesTableAndWait(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      devicePath,
+    );
   console.log(result);
 }
 

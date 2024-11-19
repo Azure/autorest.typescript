@@ -1,18 +1,22 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { UrlRestClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface UrlRestClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `UrlRestClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: UrlRestClientOptions = {},
 ): UrlRestClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-url-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -21,14 +25,20 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
+  const client = getClient(endpointUrl, options) as UrlRestClient;
 
-  const client = getClient(baseUrl, options) as UrlRestClient;
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return {
     ...client,
@@ -92,7 +102,7 @@ export default function createClient(
         return client
           .path(
             "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
-            stringPath
+            stringPath,
           )
           .get(options);
       },
@@ -150,7 +160,7 @@ export default function createClient(
         return client
           .path(
             "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
-            dateTimePath
+            dateTimePath,
           )
           .get(options);
       },
@@ -168,7 +178,7 @@ export default function createClient(
         return client
           .path(
             "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
-            arrayPath
+            arrayPath,
           )
           .get(options);
       },
@@ -176,7 +186,7 @@ export default function createClient(
         return client
           .path("/paths/int/1460505600/{unixTimeUrlPath}", unixTimeUrlPath)
           .get(options);
-      }
+      },
     },
     queries: {
       getBooleanTrue: (options) => {
@@ -230,7 +240,7 @@ export default function createClient(
       stringUrlEncoded: (options) => {
         return client
           .path(
-            "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
+            "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
           )
           .get(options);
       },
@@ -289,21 +299,21 @@ export default function createClient(
       },
       arrayStringPipesValid: (options) => {
         return client.path("/queries/array/pipes/string/valid").get(options);
-      }
+      },
     },
     pathItems: {
       getAllWithValues: (
         globalStringPath,
         pathItemStringPath,
         localStringPath,
-        options
+        options,
       ) => {
         return client
           .path(
             "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
             globalStringPath,
             pathItemStringPath,
-            localStringPath
+            localStringPath,
           )
           .get(options);
       },
@@ -311,14 +321,14 @@ export default function createClient(
         globalStringPath,
         pathItemStringPath,
         localStringPath,
-        options
+        options,
       ) => {
         return client
           .path(
             "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
             globalStringPath,
             pathItemStringPath,
-            localStringPath
+            localStringPath,
           )
           .get(options);
       },
@@ -326,14 +336,14 @@ export default function createClient(
         globalStringPath,
         pathItemStringPath,
         localStringPath,
-        options
+        options,
       ) => {
         return client
           .path(
             "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
             globalStringPath,
             pathItemStringPath,
-            localStringPath
+            localStringPath,
           )
           .get(options);
       },
@@ -341,17 +351,17 @@ export default function createClient(
         globalStringPath,
         pathItemStringPath,
         localStringPath,
-        options
+        options,
       ) => {
         return client
           .path(
             "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
             globalStringPath,
             pathItemStringPath,
-            localStringPath
+            localStringPath,
           )
           .get(options);
-      }
-    }
+      },
+    },
   };
 }

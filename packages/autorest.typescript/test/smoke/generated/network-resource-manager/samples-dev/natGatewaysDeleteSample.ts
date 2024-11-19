@@ -28,7 +28,7 @@ async function deleteNatGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.natGateways.beginDeleteAndWait(
     resourceGroupName,
-    natGatewayName
+    natGatewayName,
   );
   console.log(result);
 }

@@ -27,11 +27,12 @@ async function getVirtualNetworkGatewayAdvertisedRoutes() {
   const peer = "test";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginGetAdvertisedRoutesAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    peer
-  );
+  const result =
+    await client.virtualNetworkGateways.beginGetAdvertisedRoutesAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      peer,
+    );
   console.log(result);
 }
 

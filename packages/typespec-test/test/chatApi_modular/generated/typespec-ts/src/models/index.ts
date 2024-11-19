@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
-  StreamingChatCompletionOptions,
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  ChatCompletionChunk,
-  ChoiceDelta,
+  ChatCompletionChunkRecord,
+  ChoiceDeltaRecord,
   ChatMessageDelta,
   FinishReason,
-  ChatCompletionOptions,
-  ChatCompletion,
-  ChatChoice,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+  ChatChoiceRecord,
+  KnownAPIVersion,
 } from "./models.js";
-export { CreateStreamingOptions, CreateOptions } from "./options.js";

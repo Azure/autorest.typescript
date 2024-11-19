@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualNetworkGateway,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -43,14 +43,12 @@ async function updateVirtualNetworkGateway() {
         name: "gwipconfig1",
         privateIPAllocationMethod: "Dynamic",
         publicIPAddress: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/gwpip"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/gwpip",
         },
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/GatewaySubnet"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/GatewaySubnet",
+        },
+      },
     ],
     location: "centralus",
     natRules: [
@@ -58,22 +56,20 @@ async function updateVirtualNetworkGateway() {
         name: "natRule1",
         typePropertiesType: "Static",
         externalMappings: [{ addressSpace: "50.0.0.0/24" }],
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule1",
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule1",
         internalMappings: [{ addressSpace: "10.10.0.0/24" }],
         ipConfigurationId: "",
-        mode: "EgressSnat"
+        mode: "EgressSnat",
       },
       {
         name: "natRule2",
         typePropertiesType: "Static",
         externalMappings: [{ addressSpace: "30.0.0.0/24" }],
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule2",
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/natRules/natRule2",
         internalMappings: [{ addressSpace: "20.10.0.0/24" }],
         ipConfigurationId: "",
-        mode: "IngressSnat"
-      }
+        mode: "IngressSnat",
+      },
     ],
     sku: { name: "VpnGw1", tier: "VpnGw1" },
     vpnClientConfiguration: {
@@ -81,21 +77,21 @@ async function updateVirtualNetworkGateway() {
         {
           radiusServerAddress: "10.2.0.0",
           radiusServerScore: 20,
-          radiusServerSecret: "radiusServerSecret"
-        }
+          radiusServerSecret: "radiusServerSecret",
+        },
       ],
       vpnClientProtocols: ["OpenVPN"],
       vpnClientRevokedCertificates: [],
-      vpnClientRootCertificates: []
+      vpnClientRootCertificates: [],
     },
-    vpnType: "RouteBased"
+    vpnType: "RouteBased",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

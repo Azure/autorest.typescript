@@ -7,9 +7,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -19,10 +19,10 @@ export const $host: OperationURLParameter = {
     required: true,
     xmlName: "$host",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const requestId: OperationParameter = {
@@ -31,9 +31,9 @@ export const requestId: OperationParameter = {
     serializedName: "x-ms-client-request-id",
     xmlName: "x-ms-client-request-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const metadata: OperationParameter = {
@@ -44,7 +44,7 @@ export const metadata: OperationParameter = {
     headerCollectionPrefix: "x-ms-meta-",
     type: {
       name: "Dictionary",
-      value: { type: { name: "String" } }
-    }
-  }
+      value: { type: { name: "String" } },
+    },
+  },
 };

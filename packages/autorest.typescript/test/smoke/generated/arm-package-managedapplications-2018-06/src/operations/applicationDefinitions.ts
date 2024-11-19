@@ -16,7 +16,7 @@ import { ApplicationClient } from "../applicationClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -34,7 +34,7 @@ import {
   ApplicationDefinitionsDeleteByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdResponse,
-  ApplicationDefinitionsListByResourceGroupNextResponse
+  ApplicationDefinitionsListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -57,7 +57,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<ApplicationDefinition> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -74,16 +74,16 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: ApplicationDefinitionsListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ApplicationDefinition[]> {
     let result: ApplicationDefinitionsListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -98,7 +98,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -109,11 +109,11 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<ApplicationDefinition> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -128,11 +128,11 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   get(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsGetOptionalParams
+    options?: ApplicationDefinitionsGetOptionalParams,
   ): Promise<ApplicationDefinitionsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, applicationDefinitionName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -145,25 +145,24 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async beginDelete(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsDeleteOptionalParams
+    options?: ApplicationDefinitionsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -172,8 +171,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -181,19 +180,19 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, applicationDefinitionName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -208,12 +207,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async beginDeleteAndWait(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsDeleteOptionalParams
+    options?: ApplicationDefinitionsDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       applicationDefinitionName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -229,7 +228,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
@@ -238,21 +237,20 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<ApplicationDefinitionsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -261,8 +259,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -270,8 +268,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -281,16 +279,16 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         resourceGroupName,
         applicationDefinitionName,
         parameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       ApplicationDefinitionsCreateOrUpdateResponse,
       OperationState<ApplicationDefinitionsCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -307,13 +305,13 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<ApplicationDefinitionsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       applicationDefinitionName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -325,11 +323,11 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams,
   ): Promise<ApplicationDefinitionsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -343,11 +341,11 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   getById(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsGetByIdOptionalParams
+    options?: ApplicationDefinitionsGetByIdOptionalParams,
   ): Promise<ApplicationDefinitionsGetByIdResponse> {
     return this.client.sendOperationRequest(
       { applicationDefinitionId, options },
-      getByIdOperationSpec
+      getByIdOperationSpec,
     );
   }
 
@@ -361,25 +359,24 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   async beginDeleteById(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -388,8 +385,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -397,19 +394,19 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { applicationDefinitionId, options },
-      spec: deleteByIdOperationSpec
+      spec: deleteByIdOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -425,7 +422,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
    */
   async beginDeleteByIdAndWait(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteById(applicationDefinitionId, options);
     return poller.pollUntilDone();
@@ -443,7 +440,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async beginCreateOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
@@ -452,21 +449,20 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -475,8 +471,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -484,22 +480,22 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { applicationDefinitionId, parameters, options },
-      spec: createOrUpdateByIdOperationSpec
+      spec: createOrUpdateByIdOperationSpec,
     });
     const poller = await createHttpPoller<
       ApplicationDefinitionsCreateOrUpdateByIdResponse,
       OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -517,12 +513,12 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async beginCreateOrUpdateByIdAndWait(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse> {
     const poller = await this.beginCreateOrUpdateById(
       applicationDefinitionId,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -536,11 +532,11 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams
+    options?: ApplicationDefinitionsListByResourceGroupNextOptionalParams,
   ): Promise<ApplicationDefinitionsListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -548,31 +544,29 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     404: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
+    Parameters.applicationDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -580,39 +574,38 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
+    Parameters.applicationDefinitionName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     201: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     202: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     204: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
@@ -620,49 +613,48 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.applicationDefinitionName
+    Parameters.applicationDefinitionName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
+      bodyMapper: Mappers.ApplicationDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationDefinitionId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     404: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationDefinitionId}",
@@ -673,58 +665,58 @@ const deleteByIdOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationDefinitionId}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     201: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     202: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     204: {
-      bodyMapper: Mappers.ApplicationDefinition
+      bodyMapper: Mappers.ApplicationDefinition,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.applicationDefinitionId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ApplicationDefinitionListResult
+      bodyMapper: Mappers.ApplicationDefinitionListResult,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

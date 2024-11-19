@@ -25,7 +25,7 @@ import {
   DocumentsAutocompleteGetResponse,
   AutocompleteRequest,
   DocumentsAutocompletePostOptionalParams,
-  DocumentsAutocompletePostResponse
+  DocumentsAutocompletePostResponse,
 } from "../models";
 
 /** Class containing Documents operations. */
@@ -45,7 +45,7 @@ export class DocumentsImpl implements Documents {
    * @param options The options parameters.
    */
   count(
-    options?: DocumentsCountOptionalParams
+    options?: DocumentsCountOptionalParams,
   ): Promise<DocumentsCountResponse> {
     return this.client.sendOperationRequest({ options }, countOperationSpec);
   }
@@ -55,11 +55,11 @@ export class DocumentsImpl implements Documents {
    * @param options The options parameters.
    */
   searchGet(
-    options?: DocumentsSearchGetOptionalParams
+    options?: DocumentsSearchGetOptionalParams,
   ): Promise<DocumentsSearchGetResponse> {
     return this.client.sendOperationRequest(
       { options },
-      searchGetOperationSpec
+      searchGetOperationSpec,
     );
   }
 
@@ -70,11 +70,11 @@ export class DocumentsImpl implements Documents {
    */
   searchPost(
     searchRequest: SearchRequest,
-    options?: DocumentsSearchPostOptionalParams
+    options?: DocumentsSearchPostOptionalParams,
   ): Promise<DocumentsSearchPostResponse> {
     return this.client.sendOperationRequest(
       { searchRequest, options },
-      searchPostOperationSpec
+      searchPostOperationSpec,
     );
   }
 
@@ -85,7 +85,7 @@ export class DocumentsImpl implements Documents {
    */
   get(
     key: string,
-    options?: DocumentsGetOptionalParams
+    options?: DocumentsGetOptionalParams,
   ): Promise<DocumentsGetResponse> {
     return this.client.sendOperationRequest({ key, options }, getOperationSpec);
   }
@@ -101,11 +101,11 @@ export class DocumentsImpl implements Documents {
   suggestGet(
     search$DONotNormalize$Text: string,
     suggesterName: string,
-    options?: DocumentsSuggestGetOptionalParams
+    options?: DocumentsSuggestGetOptionalParams,
   ): Promise<DocumentsSuggestGetResponse> {
     return this.client.sendOperationRequest(
       { search$DONotNormalize$Text, suggesterName, options },
-      suggestGetOperationSpec
+      suggestGetOperationSpec,
     );
   }
 
@@ -116,11 +116,11 @@ export class DocumentsImpl implements Documents {
    */
   suggestPost(
     suggestRequest: SuggestRequest,
-    options?: DocumentsSuggestPostOptionalParams
+    options?: DocumentsSuggestPostOptionalParams,
   ): Promise<DocumentsSuggestPostResponse> {
     return this.client.sendOperationRequest(
       { suggestRequest, options },
-      suggestPostOperationSpec
+      suggestPostOperationSpec,
     );
   }
 
@@ -131,11 +131,11 @@ export class DocumentsImpl implements Documents {
    */
   index(
     batch: IndexBatch,
-    options?: DocumentsIndexOptionalParams
+    options?: DocumentsIndexOptionalParams,
   ): Promise<DocumentsIndexResponse> {
     return this.client.sendOperationRequest(
       { batch, options },
-      indexOperationSpec
+      indexOperationSpec,
     );
   }
 
@@ -149,11 +149,11 @@ export class DocumentsImpl implements Documents {
   autocompleteGet(
     search$DONotNormalize$Text: string,
     suggesterName: string,
-    options?: DocumentsAutocompleteGetOptionalParams
+    options?: DocumentsAutocompleteGetOptionalParams,
   ): Promise<DocumentsAutocompleteGetResponse> {
     return this.client.sendOperationRequest(
       { search$DONotNormalize$Text, suggesterName, options },
-      autocompleteGetOperationSpec
+      autocompleteGetOperationSpec,
     );
   }
 
@@ -164,11 +164,11 @@ export class DocumentsImpl implements Documents {
    */
   autocompletePost(
     autocompleteRequest: AutocompleteRequest,
-    options?: DocumentsAutocompletePostOptionalParams
+    options?: DocumentsAutocompletePostOptionalParams,
   ): Promise<DocumentsAutocompletePostResponse> {
     return this.client.sendOperationRequest(
       { autocompleteRequest, options },
-      autocompletePostOperationSpec
+      autocompletePostOperationSpec,
     );
   }
 }
@@ -180,27 +180,27 @@ const countOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const searchGetOperationSpec: coreClient.OperationSpec = {
   path: "/docs",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SearchDocumentsResult
+      bodyMapper: Mappers.SearchDocumentsResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
@@ -222,29 +222,29 @@ const searchGetOperationSpec: coreClient.OperationSpec = {
     Parameters.sessionId,
     Parameters.select,
     Parameters.skip,
-    Parameters.top
+    Parameters.top,
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const searchPostOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.post.search",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.SearchDocumentsResult
+      bodyMapper: Mappers.SearchDocumentsResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   requestBody: Parameters.searchRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/docs('{key}')",
@@ -252,28 +252,28 @@ const getOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "any" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.selectedFields],
   urlParameters: [Parameters.endpoint, Parameters.indexName, Parameters.key],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const suggestGetOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.suggest",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SuggestDocumentsResult
+      bodyMapper: Mappers.SuggestDocumentsResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
@@ -287,61 +287,61 @@ const suggestGetOperationSpec: coreClient.OperationSpec = {
     Parameters.orderBy1,
     Parameters.searchFields1,
     Parameters.select1,
-    Parameters.top1
+    Parameters.top1,
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const suggestPostOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.post.suggest",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.SuggestDocumentsResult
+      bodyMapper: Mappers.SuggestDocumentsResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   requestBody: Parameters.suggestRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const indexOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.index",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.IndexDocumentsResult
+      bodyMapper: Mappers.IndexDocumentsResult,
     },
     207: {
-      bodyMapper: Mappers.IndexDocumentsResult
+      bodyMapper: Mappers.IndexDocumentsResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   requestBody: Parameters.batch,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const autocompleteGetOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.autocomplete",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.AutocompleteResult
+      bodyMapper: Mappers.AutocompleteResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
@@ -354,27 +354,27 @@ const autocompleteGetOperationSpec: coreClient.OperationSpec = {
     Parameters.highlightPreTag2,
     Parameters.minimumCoverage2,
     Parameters.searchFields2,
-    Parameters.top2
+    Parameters.top2,
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const autocompletePostOperationSpec: coreClient.OperationSpec = {
   path: "/docs/search.post.autocomplete",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.AutocompleteResult
+      bodyMapper: Mappers.AutocompleteResult,
     },
     default: {
-      bodyMapper: Mappers.SearchError
-    }
+      bodyMapper: Mappers.SearchError,
+    },
   },
   requestBody: Parameters.autocompleteRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

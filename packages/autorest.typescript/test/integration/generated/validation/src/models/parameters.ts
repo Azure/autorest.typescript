@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import { Product as ProductMapper } from "../models/mappers";
 
@@ -20,9 +20,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -31,10 +31,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -43,9 +43,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -54,14 +54,14 @@ export const resourceGroupName: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("[a-zA-Z0-9']+"),
       MaxLength: 10,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const id: OperationURLParameter = {
@@ -70,14 +70,14 @@ export const id: OperationURLParameter = {
     constraints: {
       InclusiveMaximum: 1000,
       InclusiveMinimum: 100,
-      MultipleOf: 10
+      MultipleOf: 10,
     },
     serializedName: "id",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -87,9 +87,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "apiVersion",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -99,14 +99,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: ProductMapper
+  mapper: ProductMapper,
 };
 
 export const resourceGroupName1: OperationURLParameter = {
@@ -115,14 +115,14 @@ export const resourceGroupName1: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("[a-zA-Z0-9]+"),
       MaxLength: 10,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const constantParam: OperationURLParameter = {
@@ -132,7 +132,7 @@ export const constantParam: OperationURLParameter = {
     isConstant: true,
     serializedName: "constantParam",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

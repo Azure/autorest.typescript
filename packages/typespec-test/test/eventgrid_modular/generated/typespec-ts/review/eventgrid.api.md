@@ -9,8 +9,8 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
-export interface AcknowledgeCloudEventsOptions extends OperationOptions {
+// @public
+export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
@@ -33,7 +33,7 @@ export interface BrokerProperties {
 
 // @public
 export interface CloudEvent {
-    data?: unknown;
+    data?: any;
     dataBase64?: Uint8Array;
     datacontenttype?: string;
     dataschema?: string;
@@ -47,18 +47,21 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
-    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
+    constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptionalParams);
+    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
-    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
-    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
-    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptions): Promise<RejectResult>;
-    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
+    publishCloudEvent(topicName: string, event: {
+        event: CloudEvent;
+    }, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
+    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
+    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
+    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
+    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 }
 
-// @public (undocumented)
-export interface EventGridClientOptions extends ClientOptions {
+// @public
+export interface EventGridClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -68,18 +71,28 @@ export interface FailedLockToken {
     lockToken: string;
 }
 
-// @public (undocumented)
-export interface PublishCloudEventOptions extends OperationOptions {
+// @public
+export enum KnownServiceApiVersions {
+    // (undocumented)
+    v2023_06_01_preview = "2023-06-01-preview"
+}
+
+// @public
+export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface PublishCloudEventsOptions extends OperationOptions {
+// @public
+export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface ReceiveCloudEventsOptions extends OperationOptions {
+// @public
+export interface PublishResult {
+}
+
+// @public
+export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
     maxEvents?: number;
     maxWaitTime?: number;
 }
@@ -95,8 +108,8 @@ export interface ReceiveResult {
     value: ReceiveDetails[];
 }
 
-// @public (undocumented)
-export interface RejectCloudEventsOptions extends OperationOptions {
+// @public
+export interface RejectCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
@@ -111,8 +124,8 @@ export interface RejectResult {
     succeededLockTokens: string[];
 }
 
-// @public (undocumented)
-export interface ReleaseCloudEventsOptions extends OperationOptions {
+// @public
+export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 

@@ -8,7 +8,7 @@
 
 import {
   BarApiPostSendOnDefaultOptionalParams,
-  BarApiPostSendOnDefaultResponse
+  BarApiPostSendOnDefaultResponse,
 } from "../models";
 
 /** Interface representing a BarApi. */
@@ -20,6 +20,6 @@ export interface BarApi {
    */
   postSendOnDefault(
     data: string,
-    options?: BarApiPostSendOnDefaultOptionalParams
+    options?: BarApiPostSendOnDefaultOptionalParams,
   ): Promise<BarApiPostSendOnDefaultResponse>;
 }

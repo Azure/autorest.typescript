@@ -32,7 +32,7 @@ async function getVpnLinkConnectionIkeSa() {
     resourceGroupName,
     gatewayName,
     connectionName,
-    linkConnectionName
+    linkConnectionName,
   );
   console.log(result);
 }

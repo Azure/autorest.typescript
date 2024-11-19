@@ -30,7 +30,7 @@ async function queryPacketCaptureStatus() {
   const result = await client.packetCaptures.beginGetStatusAndWait(
     resourceGroupName,
     networkWatcherName,
-    packetCaptureName
+    packetCaptureName,
   );
   console.log(result);
 }

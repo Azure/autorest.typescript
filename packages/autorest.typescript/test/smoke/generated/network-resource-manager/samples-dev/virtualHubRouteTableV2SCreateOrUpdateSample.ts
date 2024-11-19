@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualHubRouteTableV2,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,24 +35,25 @@ async function virtualHubRouteTableV2Put() {
         destinationType: "CIDR",
         destinations: ["20.10.0.0/16", "20.20.0.0/16"],
         nextHopType: "IPAddress",
-        nextHops: ["10.0.0.68"]
+        nextHops: ["10.0.0.68"],
       },
       {
         destinationType: "CIDR",
         destinations: ["0.0.0.0/0"],
         nextHopType: "IPAddress",
-        nextHops: ["10.0.0.68"]
-      }
-    ]
+        nextHops: ["10.0.0.68"],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualHubRouteTableV2S.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    virtualHubName,
-    routeTableName,
-    virtualHubRouteTableV2Parameters
-  );
+  const result =
+    await client.virtualHubRouteTableV2S.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualHubName,
+      routeTableName,
+      virtualHubRouteTableV2Parameters,
+    );
   console.log(result);
 }
 

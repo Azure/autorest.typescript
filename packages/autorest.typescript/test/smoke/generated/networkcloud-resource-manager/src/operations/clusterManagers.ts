@@ -16,7 +16,7 @@ import { NetworkCloud } from "../networkCloud";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -35,7 +35,7 @@ import {
   ClusterManagersUpdateOptionalParams,
   ClusterManagersUpdateResponse,
   ClusterManagersListBySubscriptionNextResponse,
-  ClusterManagersListByResourceGroupNextResponse
+  ClusterManagersListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -56,7 +56,7 @@ export class ClusterManagersImpl implements ClusterManagers {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: ClusterManagersListBySubscriptionOptionalParams
+    options?: ClusterManagersListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<ClusterManager> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -71,13 +71,13 @@ export class ClusterManagersImpl implements ClusterManagers {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listBySubscriptionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listBySubscriptionPagingPage(
     options?: ClusterManagersListBySubscriptionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ClusterManager[]> {
     let result: ClusterManagersListBySubscriptionResponse;
     let continuationToken = settings?.continuationToken;
@@ -98,7 +98,7 @@ export class ClusterManagersImpl implements ClusterManagers {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: ClusterManagersListBySubscriptionOptionalParams
+    options?: ClusterManagersListBySubscriptionOptionalParams,
   ): AsyncIterableIterator<ClusterManager> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -112,7 +112,7 @@ export class ClusterManagersImpl implements ClusterManagers {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: ClusterManagersListByResourceGroupOptionalParams
+    options?: ClusterManagersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<ClusterManager> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -129,16 +129,16 @@ export class ClusterManagersImpl implements ClusterManagers {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: ClusterManagersListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ClusterManager[]> {
     let result: ClusterManagersListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -153,7 +153,7 @@ export class ClusterManagersImpl implements ClusterManagers {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -164,11 +164,11 @@ export class ClusterManagersImpl implements ClusterManagers {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: ClusterManagersListByResourceGroupOptionalParams
+    options?: ClusterManagersListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<ClusterManager> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -179,11 +179,11 @@ export class ClusterManagersImpl implements ClusterManagers {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: ClusterManagersListBySubscriptionOptionalParams
+    options?: ClusterManagersListBySubscriptionOptionalParams,
   ): Promise<ClusterManagersListBySubscriptionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listBySubscriptionOperationSpec
+      listBySubscriptionOperationSpec,
     );
   }
 
@@ -194,11 +194,11 @@ export class ClusterManagersImpl implements ClusterManagers {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: ClusterManagersListByResourceGroupOptionalParams
+    options?: ClusterManagersListByResourceGroupOptionalParams,
   ): Promise<ClusterManagersListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -211,11 +211,11 @@ export class ClusterManagersImpl implements ClusterManagers {
   get(
     resourceGroupName: string,
     clusterManagerName: string,
-    options?: ClusterManagersGetOptionalParams
+    options?: ClusterManagersGetOptionalParams,
   ): Promise<ClusterManagersGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, clusterManagerName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -230,7 +230,7 @@ export class ClusterManagersImpl implements ClusterManagers {
     resourceGroupName: string,
     clusterManagerName: string,
     clusterManagerParameters: ClusterManager,
-    options?: ClusterManagersCreateOrUpdateOptionalParams
+    options?: ClusterManagersCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ClusterManagersCreateOrUpdateResponse>,
@@ -239,21 +239,20 @@ export class ClusterManagersImpl implements ClusterManagers {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<ClusterManagersCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -262,8 +261,8 @@ export class ClusterManagersImpl implements ClusterManagers {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -271,8 +270,8 @@ export class ClusterManagersImpl implements ClusterManagers {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -282,9 +281,9 @@ export class ClusterManagersImpl implements ClusterManagers {
         resourceGroupName,
         clusterManagerName,
         clusterManagerParameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       ClusterManagersCreateOrUpdateResponse,
@@ -292,7 +291,7 @@ export class ClusterManagersImpl implements ClusterManagers {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -309,13 +308,13 @@ export class ClusterManagersImpl implements ClusterManagers {
     resourceGroupName: string,
     clusterManagerName: string,
     clusterManagerParameters: ClusterManager,
-    options?: ClusterManagersCreateOrUpdateOptionalParams
+    options?: ClusterManagersCreateOrUpdateOptionalParams,
   ): Promise<ClusterManagersCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       clusterManagerName,
       clusterManagerParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -329,25 +328,24 @@ export class ClusterManagersImpl implements ClusterManagers {
   async beginDelete(
     resourceGroupName: string,
     clusterManagerName: string,
-    options?: ClusterManagersDeleteOptionalParams
+    options?: ClusterManagersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -356,8 +354,8 @@ export class ClusterManagersImpl implements ClusterManagers {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -365,20 +363,20 @@ export class ClusterManagersImpl implements ClusterManagers {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, clusterManagerName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -393,12 +391,12 @@ export class ClusterManagersImpl implements ClusterManagers {
   async beginDeleteAndWait(
     resourceGroupName: string,
     clusterManagerName: string,
-    options?: ClusterManagersDeleteOptionalParams
+    options?: ClusterManagersDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       clusterManagerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -413,11 +411,11 @@ export class ClusterManagersImpl implements ClusterManagers {
   update(
     resourceGroupName: string,
     clusterManagerName: string,
-    options?: ClusterManagersUpdateOptionalParams
+    options?: ClusterManagersUpdateOptionalParams,
   ): Promise<ClusterManagersUpdateResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, clusterManagerName, options },
-      updateOperationSpec
+      updateOperationSpec,
     );
   }
 
@@ -428,11 +426,11 @@ export class ClusterManagersImpl implements ClusterManagers {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: ClusterManagersListBySubscriptionNextOptionalParams
+    options?: ClusterManagersListBySubscriptionNextOptionalParams,
   ): Promise<ClusterManagersListBySubscriptionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listBySubscriptionNextOperationSpec
+      listBySubscriptionNextOperationSpec,
     );
   }
 
@@ -445,11 +443,11 @@ export class ClusterManagersImpl implements ClusterManagers {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: ClusterManagersListByResourceGroupNextOptionalParams
+    options?: ClusterManagersListByResourceGroupNextOptionalParams,
   ): Promise<ClusterManagersListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -457,85 +455,81 @@ export class ClusterManagersImpl implements ClusterManagers {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManagerList
+      bodyMapper: Mappers.ClusterManagerList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManagerList
+      bodyMapper: Mappers.ClusterManagerList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ErrorResponse,
     },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.clusterManagerName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ClusterManager,
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.clusterManagerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ClusterManager,
     },
     201: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ClusterManager,
     },
     202: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ClusterManager,
     },
     204: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ClusterManager,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.clusterManagerParameters,
   queryParameters: [Parameters.apiVersion],
@@ -543,15 +537,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.clusterManagerName
+    Parameters.clusterManagerName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -559,30 +552,29 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.clusterManagerName
+    Parameters.clusterManagerName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManager
+      bodyMapper: Mappers.ClusterManager,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.clusterManagerUpdateParameters,
   queryParameters: [Parameters.apiVersion],
@@ -590,48 +582,48 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.clusterManagerName
+    Parameters.clusterManagerName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManagerList
+      bodyMapper: Mappers.ClusterManagerList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ClusterManagerList
+      bodyMapper: Mappers.ClusterManagerList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

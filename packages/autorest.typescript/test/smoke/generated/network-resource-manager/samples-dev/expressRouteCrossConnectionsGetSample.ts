@@ -29,7 +29,7 @@ async function getExpressRouteCrossConnection() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.get(
     resourceGroupName,
-    crossConnectionName
+    crossConnectionName,
   );
   console.log(result);
 }

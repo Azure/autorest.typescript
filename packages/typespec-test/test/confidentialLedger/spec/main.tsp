@@ -16,10 +16,8 @@ using OpenAPI;
 
 @service({
   title: "Confidential Ledger Service",
-  version: "2022-05-13",
 })
 @useAuth(OAuth2Auth<[MyFlow]>)
-@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
   "{ledgerUri}",
   "Confidential Ledger Service",
@@ -27,7 +25,14 @@ using OpenAPI;
     ledgerUri: url,
   }
 )
+@versioned(Azure.Security.ConfidentialLedger.Versions)
 namespace Azure.Security.ConfidentialLedger;
+
+enum Versions {
+  /** Version 2022-08-31 */
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+  `2022-05-13`,
+}
 
 @doc("Define the auth flow")
 model MyFlow {
@@ -158,7 +163,7 @@ model PagedLedgerEntries {
   state: LedgerQueryState;
 
   @doc("Path from which to retrieve the next page of results.")
-  @nextLink
+  @Azure.Core.nextLink
   nextLink?: ResourceLocation<LedgerEntry>;
 }
 

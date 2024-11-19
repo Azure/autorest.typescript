@@ -33,7 +33,7 @@ async function getAppDetectorResponses() {
   for await (let item of client.diagnostics.listSiteDetectorResponsesSlot(
     resourceGroupName,
     siteName,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }
@@ -59,7 +59,7 @@ async function getAppSlotDetectorResponses() {
   for await (let item of client.diagnostics.listSiteDetectorResponsesSlot(
     resourceGroupName,
     siteName,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

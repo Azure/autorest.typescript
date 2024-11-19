@@ -31,7 +31,7 @@ async function keyVaultGetPrivateEndpointConnection() {
   const result = await client.privateEndpointConnections.get(
     resourceGroupName,
     vaultName,
-    privateEndpointConnectionName
+    privateEndpointConnectionName,
   );
   console.log(result);
 }

@@ -30,7 +30,7 @@ async function getServiceEndpointDefinitionInServiceEndpointPolicy() {
   const result = await client.serviceEndpointPolicyDefinitions.get(
     resourceGroupName,
     serviceEndpointPolicyName,
-    serviceEndpointPolicyDefinitionName
+    serviceEndpointPolicyDefinitionName,
   );
   console.log(result);
 }

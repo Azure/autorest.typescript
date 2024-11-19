@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ObjectReplicationPolicy,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,19 +34,20 @@ async function storageAccountCreateObjectReplicationPolicyOnDestination() {
       {
         destinationContainer: "dcont139",
         filters: { prefixMatch: ["blobA", "blobB"] },
-        sourceContainer: "scont139"
-      }
+        sourceContainer: "scont139",
+      },
     ],
-    sourceAccount: "src1122"
+    sourceAccount: "src1122",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
-    resourceGroupName,
-    accountName,
-    objectReplicationPolicyId,
-    properties
-  );
+  const result =
+    await client.objectReplicationPoliciesOperations.createOrUpdate(
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      properties,
+    );
   console.log(result);
 }
 
@@ -68,22 +69,23 @@ async function storageAccountCreateObjectReplicationPolicyOnSource() {
         destinationContainer: "dcont139",
         filters: {
           minCreationTime: "2020-02-19T16:05:00Z",
-          prefixMatch: ["blobA", "blobB"]
+          prefixMatch: ["blobA", "blobB"],
         },
         ruleId: "d5d18a48-8801-4554-aeaa-74faf65f5ef9",
-        sourceContainer: "scont139"
-      }
+        sourceContainer: "scont139",
+      },
     ],
-    sourceAccount: "src1122"
+    sourceAccount: "src1122",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
-    resourceGroupName,
-    accountName,
-    objectReplicationPolicyId,
-    properties
-  );
+  const result =
+    await client.objectReplicationPoliciesOperations.createOrUpdate(
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      properties,
+    );
   console.log(result);
 }
 
@@ -105,20 +107,21 @@ async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
         destinationContainer: "dcont139",
         filters: { prefixMatch: ["blobA", "blobB"] },
         ruleId: "d5d18a48-8801-4554-aeaa-74faf65f5ef9",
-        sourceContainer: "scont139"
+        sourceContainer: "scont139",
       },
-      { destinationContainer: "dcont179", sourceContainer: "scont179" }
+      { destinationContainer: "dcont179", sourceContainer: "scont179" },
     ],
-    sourceAccount: "src1122"
+    sourceAccount: "src1122",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
-    resourceGroupName,
-    accountName,
-    objectReplicationPolicyId,
-    properties
-  );
+  const result =
+    await client.objectReplicationPoliciesOperations.createOrUpdate(
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      properties,
+    );
   console.log(result);
 }
 
@@ -140,24 +143,25 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource() {
         destinationContainer: "dcont139",
         filters: { prefixMatch: ["blobA", "blobB"] },
         ruleId: "d5d18a48-8801-4554-aeaa-74faf65f5ef9",
-        sourceContainer: "scont139"
+        sourceContainer: "scont139",
       },
       {
         destinationContainer: "dcont179",
         ruleId: "cfbb4bc2-8b60-429f-b05a-d1e0942b33b2",
-        sourceContainer: "scont179"
-      }
+        sourceContainer: "scont179",
+      },
     ],
-    sourceAccount: "src1122"
+    sourceAccount: "src1122",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.objectReplicationPoliciesOperations.createOrUpdate(
-    resourceGroupName,
-    accountName,
-    objectReplicationPolicyId,
-    properties
-  );
+  const result =
+    await client.objectReplicationPoliciesOperations.createOrUpdate(
+      resourceGroupName,
+      accountName,
+      objectReplicationPolicyId,
+      properties,
+    );
   console.log(result);
 }
 

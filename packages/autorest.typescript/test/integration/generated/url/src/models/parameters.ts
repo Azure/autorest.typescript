@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const accept: OperationParameter = {
@@ -19,9 +19,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -30,10 +30,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const boolPath: OperationURLParameter = {
@@ -43,9 +43,9 @@ export const boolPath: OperationURLParameter = {
     isConstant: true,
     serializedName: "boolPath",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const boolPath1: OperationURLParameter = {
@@ -55,9 +55,9 @@ export const boolPath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "boolPath",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const intPath: OperationURLParameter = {
@@ -67,9 +67,9 @@ export const intPath: OperationURLParameter = {
     isConstant: true,
     serializedName: "intPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const intPath1: OperationURLParameter = {
@@ -79,9 +79,9 @@ export const intPath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "intPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const longPath: OperationURLParameter = {
@@ -91,9 +91,9 @@ export const longPath: OperationURLParameter = {
     isConstant: true,
     serializedName: "longPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const longPath1: OperationURLParameter = {
@@ -103,9 +103,9 @@ export const longPath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "longPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const floatPath: OperationURLParameter = {
@@ -115,9 +115,9 @@ export const floatPath: OperationURLParameter = {
     isConstant: true,
     serializedName: "floatPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const floatPath1: OperationURLParameter = {
@@ -127,9 +127,9 @@ export const floatPath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "floatPath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const doublePath: OperationURLParameter = {
@@ -139,9 +139,9 @@ export const doublePath: OperationURLParameter = {
     isConstant: true,
     serializedName: "doublePath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const doublePath1: OperationURLParameter = {
@@ -151,9 +151,9 @@ export const doublePath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "doublePath",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const stringPath: OperationURLParameter = {
@@ -163,9 +163,9 @@ export const stringPath: OperationURLParameter = {
     isConstant: true,
     serializedName: "stringPath",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringPath1: OperationURLParameter = {
@@ -175,9 +175,9 @@ export const stringPath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "stringPath",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringPath2: OperationURLParameter = {
@@ -187,10 +187,10 @@ export const stringPath2: OperationURLParameter = {
     isConstant: true,
     serializedName: "stringPath",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const stringPath3: OperationURLParameter = {
@@ -200,9 +200,9 @@ export const stringPath3: OperationURLParameter = {
     isConstant: true,
     serializedName: "stringPath",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringPath4: OperationURLParameter = {
@@ -211,9 +211,9 @@ export const stringPath4: OperationURLParameter = {
     serializedName: "stringPath",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const enumPath: OperationURLParameter = {
@@ -223,9 +223,9 @@ export const enumPath: OperationURLParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["red color", "green color", "blue color"]
-    }
-  }
+      allowedValues: ["red color", "green color", "blue color"],
+    },
+  },
 };
 
 export const bytePath: OperationURLParameter = {
@@ -234,9 +234,9 @@ export const bytePath: OperationURLParameter = {
     serializedName: "bytePath",
     required: true,
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const bytePath1: OperationURLParameter = {
@@ -246,9 +246,9 @@ export const bytePath1: OperationURLParameter = {
     isConstant: true,
     serializedName: "bytePath",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const datePath: OperationURLParameter = {
@@ -258,9 +258,9 @@ export const datePath: OperationURLParameter = {
     isConstant: true,
     serializedName: "datePath",
     type: {
-      name: "Date"
-    }
-  }
+      name: "Date",
+    },
+  },
 };
 
 export const datePath1: OperationURLParameter = {
@@ -269,9 +269,9 @@ export const datePath1: OperationURLParameter = {
     serializedName: "datePath",
     required: true,
     type: {
-      name: "Date"
-    }
-  }
+      name: "Date",
+    },
+  },
 };
 
 export const dateTimePath: OperationURLParameter = {
@@ -281,9 +281,9 @@ export const dateTimePath: OperationURLParameter = {
     isConstant: true,
     serializedName: "dateTimePath",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const dateTimePath1: OperationURLParameter = {
@@ -292,9 +292,9 @@ export const dateTimePath1: OperationURLParameter = {
     serializedName: "dateTimePath",
     required: true,
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const base64UrlPath: OperationURLParameter = {
@@ -303,9 +303,9 @@ export const base64UrlPath: OperationURLParameter = {
     serializedName: "base64UrlPath",
     required: true,
     type: {
-      name: "Base64Url"
-    }
-  }
+      name: "Base64Url",
+    },
+  },
 };
 
 export const arrayPath: OperationURLParameter = {
@@ -317,11 +317,11 @@ export const arrayPath: OperationURLParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const unixTimeUrlPath: OperationURLParameter = {
@@ -330,9 +330,9 @@ export const unixTimeUrlPath: OperationURLParameter = {
     serializedName: "unixTimeUrlPath",
     required: true,
     type: {
-      name: "UnixTime"
-    }
-  }
+      name: "UnixTime",
+    },
+  },
 };
 
 export const boolQuery: OperationQueryParameter = {
@@ -342,9 +342,9 @@ export const boolQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "boolQuery",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const boolQuery1: OperationQueryParameter = {
@@ -354,9 +354,9 @@ export const boolQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "boolQuery",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const boolQuery2: OperationQueryParameter = {
@@ -364,9 +364,9 @@ export const boolQuery2: OperationQueryParameter = {
   mapper: {
     serializedName: "boolQuery",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const intQuery: OperationQueryParameter = {
@@ -376,9 +376,9 @@ export const intQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "intQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const intQuery1: OperationQueryParameter = {
@@ -388,9 +388,9 @@ export const intQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "intQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const intQuery2: OperationQueryParameter = {
@@ -398,9 +398,9 @@ export const intQuery2: OperationQueryParameter = {
   mapper: {
     serializedName: "intQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const longQuery: OperationQueryParameter = {
@@ -410,9 +410,9 @@ export const longQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "longQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const longQuery1: OperationQueryParameter = {
@@ -422,9 +422,9 @@ export const longQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "longQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const longQuery2: OperationQueryParameter = {
@@ -432,9 +432,9 @@ export const longQuery2: OperationQueryParameter = {
   mapper: {
     serializedName: "longQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const floatQuery: OperationQueryParameter = {
@@ -444,9 +444,9 @@ export const floatQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "floatQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const floatQuery1: OperationQueryParameter = {
@@ -456,9 +456,9 @@ export const floatQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "floatQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const floatQuery2: OperationQueryParameter = {
@@ -466,9 +466,9 @@ export const floatQuery2: OperationQueryParameter = {
   mapper: {
     serializedName: "floatQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const doubleQuery: OperationQueryParameter = {
@@ -478,9 +478,9 @@ export const doubleQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "doubleQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const doubleQuery1: OperationQueryParameter = {
@@ -490,9 +490,9 @@ export const doubleQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "doubleQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const doubleQuery2: OperationQueryParameter = {
@@ -500,9 +500,9 @@ export const doubleQuery2: OperationQueryParameter = {
   mapper: {
     serializedName: "doubleQuery",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const stringQuery: OperationQueryParameter = {
@@ -512,9 +512,9 @@ export const stringQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "stringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringQuery1: OperationQueryParameter = {
@@ -524,9 +524,9 @@ export const stringQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "stringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringQuery2: OperationQueryParameter = {
@@ -536,9 +536,9 @@ export const stringQuery2: OperationQueryParameter = {
     isConstant: true,
     serializedName: "stringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stringQuery3: OperationQueryParameter = {
@@ -546,9 +546,9 @@ export const stringQuery3: OperationQueryParameter = {
   mapper: {
     serializedName: "stringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const enumQuery: OperationQueryParameter = {
@@ -557,9 +557,9 @@ export const enumQuery: OperationQueryParameter = {
     serializedName: "enumQuery",
     type: {
       name: "Enum",
-      allowedValues: ["red color", "green color", "blue color"]
-    }
-  }
+      allowedValues: ["red color", "green color", "blue color"],
+    },
+  },
 };
 
 export const byteQuery: OperationQueryParameter = {
@@ -567,9 +567,9 @@ export const byteQuery: OperationQueryParameter = {
   mapper: {
     serializedName: "byteQuery",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const byteQuery1: OperationQueryParameter = {
@@ -579,9 +579,9 @@ export const byteQuery1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "byteQuery",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const dateQuery: OperationQueryParameter = {
@@ -591,9 +591,9 @@ export const dateQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "dateQuery",
     type: {
-      name: "Date"
-    }
-  }
+      name: "Date",
+    },
+  },
 };
 
 export const dateQuery1: OperationQueryParameter = {
@@ -601,9 +601,9 @@ export const dateQuery1: OperationQueryParameter = {
   mapper: {
     serializedName: "dateQuery",
     type: {
-      name: "Date"
-    }
-  }
+      name: "Date",
+    },
+  },
 };
 
 export const dateTimeQuery: OperationQueryParameter = {
@@ -613,9 +613,9 @@ export const dateTimeQuery: OperationQueryParameter = {
     isConstant: true,
     serializedName: "dateTimeQuery",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const dateTimeQuery1: OperationQueryParameter = {
@@ -623,9 +623,9 @@ export const dateTimeQuery1: OperationQueryParameter = {
   mapper: {
     serializedName: "dateTimeQuery",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const arrayQuery: OperationQueryParameter = {
@@ -636,12 +636,12 @@ export const arrayQuery: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "CSV"
+  collectionFormat: "CSV",
 };
 
 export const arrayQuery1: OperationQueryParameter = {
@@ -652,12 +652,12 @@ export const arrayQuery1: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "SSV"
+  collectionFormat: "SSV",
 };
 
 export const arrayQuery2: OperationQueryParameter = {
@@ -668,12 +668,12 @@ export const arrayQuery2: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "TSV"
+  collectionFormat: "TSV",
 };
 
 export const arrayQuery3: OperationQueryParameter = {
@@ -684,12 +684,12 @@ export const arrayQuery3: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "Pipes"
+  collectionFormat: "Pipes",
 };
 
 export const pathItemStringPath: OperationURLParameter = {
@@ -698,9 +698,9 @@ export const pathItemStringPath: OperationURLParameter = {
     serializedName: "pathItemStringPath",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const pathItemStringQuery: OperationQueryParameter = {
@@ -708,9 +708,9 @@ export const pathItemStringQuery: OperationQueryParameter = {
   mapper: {
     serializedName: "pathItemStringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const globalStringPath: OperationURLParameter = {
@@ -719,9 +719,9 @@ export const globalStringPath: OperationURLParameter = {
     serializedName: "globalStringPath",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const globalStringQuery: OperationQueryParameter = {
@@ -729,9 +729,9 @@ export const globalStringQuery: OperationQueryParameter = {
   mapper: {
     serializedName: "globalStringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const localStringPath: OperationURLParameter = {
@@ -740,9 +740,9 @@ export const localStringPath: OperationURLParameter = {
     serializedName: "localStringPath",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const localStringQuery: OperationQueryParameter = {
@@ -750,7 +750,7 @@ export const localStringQuery: OperationQueryParameter = {
   mapper: {
     serializedName: "localStringQuery",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

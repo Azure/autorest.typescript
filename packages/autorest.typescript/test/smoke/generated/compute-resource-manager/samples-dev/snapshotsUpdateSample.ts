@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SnapshotUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function updateASnapshot() {
   const snapshotName = "mySnapshot";
   const snapshot: SnapshotUpdate = {
     diskSizeGB: 20,
-    tags: { department: "Development", project: "UpdateSnapshots" }
+    tags: { department: "Development", project: "UpdateSnapshots" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginUpdateAndWait(
     resourceGroupName,
     snapshotName,
-    snapshot
+    snapshot,
   );
   console.log(result);
 }

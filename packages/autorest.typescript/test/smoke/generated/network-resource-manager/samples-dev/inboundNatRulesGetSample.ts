@@ -30,7 +30,7 @@ async function inboundNatRuleGet() {
   const result = await client.inboundNatRules.get(
     resourceGroupName,
     loadBalancerName,
-    inboundNatRuleName
+    inboundNatRuleName,
   );
   console.log(result);
 }

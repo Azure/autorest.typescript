@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   QueueServiceProperties,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,43 +34,43 @@ async function queueServicesPut() {
           allowedHeaders: [
             "x-ms-meta-abc",
             "x-ms-meta-data*",
-            "x-ms-meta-target*"
+            "x-ms-meta-target*",
           ],
           allowedMethods: ["GET", "HEAD", "POST", "OPTIONS", "MERGE", "PUT"],
           allowedOrigins: ["http://www.contoso.com", "http://www.fabrikam.com"],
           exposedHeaders: ["x-ms-meta-*"],
-          maxAgeInSeconds: 100
+          maxAgeInSeconds: 100,
         },
         {
           allowedHeaders: ["*"],
           allowedMethods: ["GET"],
           allowedOrigins: ["*"],
           exposedHeaders: ["*"],
-          maxAgeInSeconds: 2
+          maxAgeInSeconds: 2,
         },
         {
           allowedHeaders: ["x-ms-meta-12345675754564*"],
           allowedMethods: ["GET", "PUT"],
           allowedOrigins: [
             "http://www.abc23.com",
-            "https://www.fabrikam.com/*"
+            "https://www.fabrikam.com/*",
           ],
           exposedHeaders: [
             "x-ms-meta-abc",
             "x-ms-meta-data*",
-            "x-ms-meta-target*"
+            "x-ms-meta-target*",
           ],
-          maxAgeInSeconds: 2000
-        }
-      ]
-    }
+          maxAgeInSeconds: 2000,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.queueServices.setServiceProperties(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

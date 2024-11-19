@@ -21,13 +21,13 @@ export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextDocumentInput"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TextDocumentInput",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const TextDocumentInput: coreClient.CompositeMapper = {
@@ -39,24 +39,24 @@ export const TextDocumentInput: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       language: {
         serializedName: "language",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const JobDescriptor: coreClient.CompositeMapper = {
@@ -67,11 +67,11 @@ export const JobDescriptor: coreClient.CompositeMapper = {
       displayName: {
         serializedName: "displayName",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const JobManifest: coreClient.CompositeMapper = {
@@ -83,11 +83,11 @@ export const JobManifest: coreClient.CompositeMapper = {
         serializedName: "tasks",
         type: {
           name: "Composite",
-          className: "JobManifestTasks"
-        }
-      }
-    }
-  }
+          className: "JobManifestTasks",
+        },
+      },
+    },
+  },
 };
 
 export const JobManifestTasks: coreClient.CompositeMapper = {
@@ -102,10 +102,10 @@ export const JobManifestTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "EntitiesTask"
-            }
-          }
-        }
+              className: "EntitiesTask",
+            },
+          },
+        },
       },
       entityRecognitionPiiTasks: {
         serializedName: "entityRecognitionPiiTasks",
@@ -114,10 +114,10 @@ export const JobManifestTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "PiiTask"
-            }
-          }
-        }
+              className: "PiiTask",
+            },
+          },
+        },
       },
       keyPhraseExtractionTasks: {
         serializedName: "keyPhraseExtractionTasks",
@@ -126,10 +126,10 @@ export const JobManifestTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "KeyPhrasesTask"
-            }
-          }
-        }
+              className: "KeyPhrasesTask",
+            },
+          },
+        },
       },
       entityLinkingTasks: {
         serializedName: "entityLinkingTasks",
@@ -138,13 +138,13 @@ export const JobManifestTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "EntityLinkingTask"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "EntityLinkingTask",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const EntitiesTask: coreClient.CompositeMapper = {
@@ -156,11 +156,11 @@ export const EntitiesTask: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Composite",
-          className: "EntitiesTaskParameters"
-        }
-      }
-    }
-  }
+          className: "EntitiesTaskParameters",
+        },
+      },
+    },
+  },
 };
 
 export const EntitiesTaskParameters: coreClient.CompositeMapper = {
@@ -172,17 +172,17 @@ export const EntitiesTaskParameters: coreClient.CompositeMapper = {
         defaultValue: "latest",
         serializedName: "model-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       stringIndexType: {
         serializedName: "stringIndexType",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PiiTask: coreClient.CompositeMapper = {
@@ -194,11 +194,11 @@ export const PiiTask: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Composite",
-          className: "PiiTaskParameters"
-        }
-      }
-    }
-  }
+          className: "PiiTaskParameters",
+        },
+      },
+    },
+  },
 };
 
 export const PiiTaskParameters: coreClient.CompositeMapper = {
@@ -210,38 +210,38 @@ export const PiiTaskParameters: coreClient.CompositeMapper = {
         defaultValue: "none",
         serializedName: "domain",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       modelVersion: {
         defaultValue: "latest",
         serializedName: "model-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       piiCategories: {
         constraints: {
-          UniqueItems: true
+          UniqueItems: true,
         },
         serializedName: "pii-categories",
         type: {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       stringIndexType: {
         serializedName: "stringIndexType",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const KeyPhrasesTask: coreClient.CompositeMapper = {
@@ -253,11 +253,11 @@ export const KeyPhrasesTask: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Composite",
-          className: "KeyPhrasesTaskParameters"
-        }
-      }
-    }
-  }
+          className: "KeyPhrasesTaskParameters",
+        },
+      },
+    },
+  },
 };
 
 export const KeyPhrasesTaskParameters: coreClient.CompositeMapper = {
@@ -269,11 +269,11 @@ export const KeyPhrasesTaskParameters: coreClient.CompositeMapper = {
         defaultValue: "latest",
         serializedName: "model-version",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const EntityLinkingTask: coreClient.CompositeMapper = {
@@ -285,11 +285,11 @@ export const EntityLinkingTask: coreClient.CompositeMapper = {
         serializedName: "parameters",
         type: {
           name: "Composite",
-          className: "EntityLinkingTaskParameters"
-        }
-      }
-    }
-  }
+          className: "EntityLinkingTaskParameters",
+        },
+      },
+    },
+  },
 };
 
 export const EntityLinkingTaskParameters: coreClient.CompositeMapper = {
@@ -301,17 +301,17 @@ export const EntityLinkingTaskParameters: coreClient.CompositeMapper = {
         defaultValue: "latest",
         serializedName: "model-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       stringIndexType: {
         serializedName: "stringIndexType",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorResponse: coreClient.CompositeMapper = {
@@ -323,11 +323,11 @@ export const ErrorResponse: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "TextAnalyticsError"
-        }
-      }
-    }
-  }
+          className: "TextAnalyticsError",
+        },
+      },
+    },
+  },
 };
 
 export const TextAnalyticsError: coreClient.CompositeMapper = {
@@ -345,29 +345,29 @@ export const TextAnalyticsError: coreClient.CompositeMapper = {
             "InvalidArgument",
             "InternalServerError",
             "ServiceUnavailable",
-            "NotFound"
-          ]
-        }
+            "NotFound",
+          ],
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       target: {
         serializedName: "target",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       innererror: {
         serializedName: "innererror",
         type: {
           name: "Composite",
-          className: "InnerError"
-        }
+          className: "InnerError",
+        },
       },
       details: {
         serializedName: "details",
@@ -376,13 +376,13 @@ export const TextAnalyticsError: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsError"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TextAnalyticsError",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const InnerError: coreClient.CompositeMapper = {
@@ -394,38 +394,38 @@ export const InnerError: coreClient.CompositeMapper = {
         serializedName: "code",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       details: {
         serializedName: "details",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       target: {
         serializedName: "target",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       innererror: {
         serializedName: "innererror",
         type: {
           name: "Composite",
-          className: "InnerError"
-        }
-      }
-    }
-  }
+          className: "InnerError",
+        },
+      },
+    },
+  },
 };
 
 export const TextDocumentBatchStatistics: coreClient.CompositeMapper = {
@@ -437,32 +437,32 @@ export const TextDocumentBatchStatistics: coreClient.CompositeMapper = {
         serializedName: "documentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       validDocumentCount: {
         serializedName: "validDocumentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       erroneousDocumentCount: {
         serializedName: "erroneousDocumentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       transactionCount: {
         serializedName: "transactionsCount",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const JobMetadata: coreClient.CompositeMapper = {
@@ -474,28 +474,28 @@ export const JobMetadata: coreClient.CompositeMapper = {
         serializedName: "createdDateTime",
         required: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       expirationDateTime: {
         serializedName: "expirationDateTime",
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       jobId: {
         serializedName: "jobId",
         required: true,
         type: {
-          name: "Uuid"
-        }
+          name: "Uuid",
+        },
       },
       lastUpdateDateTime: {
         serializedName: "lastUpdateDateTime",
         required: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       status: {
         serializedName: "status",
@@ -510,12 +510,12 @@ export const JobMetadata: coreClient.CompositeMapper = {
             "rejected",
             "cancelled",
             "cancelling",
-            "partiallyCompleted"
-          ]
-        }
-      }
-    }
-  }
+            "partiallyCompleted",
+          ],
+        },
+      },
+    },
+  },
 };
 
 export const TasksState: coreClient.CompositeMapper = {
@@ -527,11 +527,11 @@ export const TasksState: coreClient.CompositeMapper = {
         serializedName: "tasks",
         type: {
           name: "Composite",
-          className: "TasksStateTasks"
-        }
-      }
-    }
-  }
+          className: "TasksStateTasks",
+        },
+      },
+    },
+  },
 };
 
 export const TasksStateTasks: coreClient.CompositeMapper = {
@@ -543,36 +543,36 @@ export const TasksStateTasks: coreClient.CompositeMapper = {
         serializedName: "details",
         type: {
           name: "Composite",
-          className: "TasksStateTasksDetails"
-        }
+          className: "TasksStateTasksDetails",
+        },
       },
       completed: {
         serializedName: "completed",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       failed: {
         serializedName: "failed",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       inProgress: {
         serializedName: "inProgress",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       total: {
         serializedName: "total",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       entityRecognitionTasks: {
         serializedName: "entityRecognitionTasks",
@@ -581,10 +581,10 @@ export const TasksStateTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TasksStateTasksEntityRecognitionTasksItem"
-            }
-          }
-        }
+              className: "TasksStateTasksEntityRecognitionTasksItem",
+            },
+          },
+        },
       },
       entityRecognitionPiiTasks: {
         serializedName: "entityRecognitionPiiTasks",
@@ -593,10 +593,10 @@ export const TasksStateTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TasksStateTasksEntityRecognitionPiiTasksItem"
-            }
-          }
-        }
+              className: "TasksStateTasksEntityRecognitionPiiTasksItem",
+            },
+          },
+        },
       },
       keyPhraseExtractionTasks: {
         serializedName: "keyPhraseExtractionTasks",
@@ -605,10 +605,10 @@ export const TasksStateTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TasksStateTasksKeyPhraseExtractionTasksItem"
-            }
-          }
-        }
+              className: "TasksStateTasksKeyPhraseExtractionTasksItem",
+            },
+          },
+        },
       },
       entityLinkingTasks: {
         serializedName: "entityLinkingTasks",
@@ -617,13 +617,13 @@ export const TasksStateTasks: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TasksStateTasksEntityLinkingTasksItem"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TasksStateTasksEntityLinkingTasksItem",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const TaskState: coreClient.CompositeMapper = {
@@ -635,14 +635,14 @@ export const TaskState: coreClient.CompositeMapper = {
         serializedName: "lastUpdateDateTime",
         required: true,
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       status: {
         serializedName: "status",
@@ -657,30 +657,31 @@ export const TaskState: coreClient.CompositeMapper = {
             "rejected",
             "cancelled",
             "cancelling",
-            "partiallyCompleted"
-          ]
-        }
-      }
-    }
-  }
+            "partiallyCompleted",
+          ],
+        },
+      },
+    },
+  },
 };
 
-export const Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1",
-    modelProperties: {
-      results: {
-        serializedName: "results",
-        type: {
-          name: "Composite",
-          className: "EntitiesResult"
-        }
-      }
-    }
-  }
-};
+export const Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1",
+      modelProperties: {
+        results: {
+          serializedName: "results",
+          type: {
+            name: "Composite",
+            className: "EntitiesResult",
+          },
+        },
+      },
+    },
+  };
 
 export const EntitiesResult: coreClient.CompositeMapper = {
   type: {
@@ -695,10 +696,10 @@ export const EntitiesResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentEntities"
-            }
-          }
-        }
+              className: "DocumentEntities",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -708,27 +709,27 @@ export const EntitiesResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentEntities: coreClient.CompositeMapper = {
@@ -740,8 +741,8 @@ export const DocumentEntities: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       entities: {
         serializedName: "entities",
@@ -751,10 +752,10 @@ export const DocumentEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Entity"
-            }
-          }
-        }
+              className: "Entity",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -764,20 +765,20 @@ export const DocumentEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const Entity: coreClient.CompositeMapper = {
@@ -789,45 +790,45 @@ export const Entity: coreClient.CompositeMapper = {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       category: {
         serializedName: "category",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       subCategory: {
         serializedName: "subcategory",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       offset: {
         serializedName: "offset",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       confidenceScore: {
         serializedName: "confidenceScore",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const TextAnalyticsWarning: coreClient.CompositeMapper = {
@@ -839,18 +840,18 @@ export const TextAnalyticsWarning: coreClient.CompositeMapper = {
         serializedName: "code",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const TextDocumentStatistics: coreClient.CompositeMapper = {
@@ -862,18 +863,18 @@ export const TextDocumentStatistics: coreClient.CompositeMapper = {
         serializedName: "charactersCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       transactionCount: {
         serializedName: "transactionsCount",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentError: coreClient.CompositeMapper = {
@@ -885,36 +886,37 @@ export const DocumentError: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       error: {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "TextAnalyticsError"
-        }
-      }
-    }
-  }
+          className: "TextAnalyticsError",
+        },
+      },
+    },
+  },
 };
 
-export const Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1",
-    modelProperties: {
-      results: {
-        serializedName: "results",
-        type: {
-          name: "Composite",
-          className: "PiiResult"
-        }
-      }
-    }
-  }
-};
+export const Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1",
+      modelProperties: {
+        results: {
+          serializedName: "results",
+          type: {
+            name: "Composite",
+            className: "PiiResult",
+          },
+        },
+      },
+    },
+  };
 
 export const PiiResult: coreClient.CompositeMapper = {
   type: {
@@ -929,10 +931,10 @@ export const PiiResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "PiiDocumentEntities"
-            }
-          }
-        }
+              className: "PiiDocumentEntities",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -942,27 +944,27 @@ export const PiiResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PiiDocumentEntities: coreClient.CompositeMapper = {
@@ -974,15 +976,15 @@ export const PiiDocumentEntities: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       redactedText: {
         serializedName: "redactedText",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       entities: {
         serializedName: "entities",
@@ -992,10 +994,10 @@ export const PiiDocumentEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Entity"
-            }
-          }
-        }
+              className: "Entity",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1005,38 +1007,39 @@ export const PiiDocumentEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
-export const Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1",
-    modelProperties: {
-      results: {
-        serializedName: "results",
-        type: {
-          name: "Composite",
-          className: "KeyPhraseResult"
-        }
-      }
-    }
-  }
-};
+export const Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1",
+      modelProperties: {
+        results: {
+          serializedName: "results",
+          type: {
+            name: "Composite",
+            className: "KeyPhraseResult",
+          },
+        },
+      },
+    },
+  };
 
 export const KeyPhraseResult: coreClient.CompositeMapper = {
   type: {
@@ -1051,10 +1054,10 @@ export const KeyPhraseResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentKeyPhrases"
-            }
-          }
-        }
+              className: "DocumentKeyPhrases",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -1064,27 +1067,27 @@ export const KeyPhraseResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentKeyPhrases: coreClient.CompositeMapper = {
@@ -1096,8 +1099,8 @@ export const DocumentKeyPhrases: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       keyPhrases: {
         serializedName: "keyPhrases",
@@ -1106,10 +1109,10 @@ export const DocumentKeyPhrases: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1119,38 +1122,39 @@ export const DocumentKeyPhrases: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
-export const ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1",
-    modelProperties: {
-      results: {
-        serializedName: "results",
-        type: {
-          name: "Composite",
-          className: "EntityLinkingResult"
-        }
-      }
-    }
-  }
-};
+export const ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1",
+      modelProperties: {
+        results: {
+          serializedName: "results",
+          type: {
+            name: "Composite",
+            className: "EntityLinkingResult",
+          },
+        },
+      },
+    },
+  };
 
 export const EntityLinkingResult: coreClient.CompositeMapper = {
   type: {
@@ -1165,10 +1169,10 @@ export const EntityLinkingResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentLinkedEntities"
-            }
-          }
-        }
+              className: "DocumentLinkedEntities",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -1178,27 +1182,27 @@ export const EntityLinkingResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentLinkedEntities: coreClient.CompositeMapper = {
@@ -1210,8 +1214,8 @@ export const DocumentLinkedEntities: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       entities: {
         serializedName: "entities",
@@ -1221,10 +1225,10 @@ export const DocumentLinkedEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "LinkedEntity"
-            }
-          }
-        }
+              className: "LinkedEntity",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1234,20 +1238,20 @@ export const DocumentLinkedEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const LinkedEntity: coreClient.CompositeMapper = {
@@ -1259,8 +1263,8 @@ export const LinkedEntity: coreClient.CompositeMapper = {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       matches: {
         serializedName: "matches",
@@ -1270,46 +1274,46 @@ export const LinkedEntity: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Match"
-            }
-          }
-        }
+              className: "Match",
+            },
+          },
+        },
       },
       language: {
         serializedName: "language",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       dataSourceEntityId: {
         serializedName: "id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       url: {
         serializedName: "url",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       dataSource: {
         serializedName: "dataSource",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       bingEntitySearchApiId: {
         serializedName: "bingId",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Match: coreClient.CompositeMapper = {
@@ -1321,32 +1325,32 @@ export const Match: coreClient.CompositeMapper = {
         serializedName: "confidenceScore",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       offset: {
         serializedName: "offset",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const Pagination: coreClient.CompositeMapper = {
@@ -1357,11 +1361,11 @@ export const Pagination: coreClient.CompositeMapper = {
       nextLink: {
         serializedName: "@nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareResult: coreClient.CompositeMapper = {
@@ -1377,10 +1381,10 @@ export const HealthcareResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentHealthcareEntities"
-            }
-          }
-        }
+              className: "DocumentHealthcareEntities",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -1390,27 +1394,27 @@ export const HealthcareResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
@@ -1422,8 +1426,8 @@ export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       entities: {
         serializedName: "entities",
@@ -1433,10 +1437,10 @@ export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "HealthcareEntity"
-            }
-          }
-        }
+              className: "HealthcareEntity",
+            },
+          },
+        },
       },
       relations: {
         serializedName: "relations",
@@ -1446,10 +1450,10 @@ export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "HealthcareRelation"
-            }
-          }
-        }
+              className: "HealthcareRelation",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1459,20 +1463,20 @@ export const DocumentHealthcareEntities: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareAssertion: coreClient.CompositeMapper = {
@@ -1484,8 +1488,8 @@ export const HealthcareAssertion: coreClient.CompositeMapper = {
         serializedName: "conditionality",
         type: {
           name: "Enum",
-          allowedValues: ["Hypothetical", "Conditional"]
-        }
+          allowedValues: ["Hypothetical", "Conditional"],
+        },
       },
       certainty: {
         serializedName: "certainty",
@@ -1496,19 +1500,19 @@ export const HealthcareAssertion: coreClient.CompositeMapper = {
             "Positive Possible",
             "Neutral Possible",
             "Negative Possible",
-            "Negative"
-          ]
-        }
+            "Negative",
+          ],
+        },
       },
       association: {
         serializedName: "association",
         type: {
           name: "Enum",
-          allowedValues: ["subject", "other"]
-        }
-      }
-    }
-  }
+          allowedValues: ["subject", "other"],
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareEntityLink: coreClient.CompositeMapper = {
@@ -1520,18 +1524,18 @@ export const HealthcareEntityLink: coreClient.CompositeMapper = {
         serializedName: "dataSource",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       id: {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareRelation: coreClient.CompositeMapper = {
@@ -1543,8 +1547,8 @@ export const HealthcareRelation: coreClient.CompositeMapper = {
         serializedName: "relationType",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       entities: {
         serializedName: "entities",
@@ -1554,13 +1558,13 @@ export const HealthcareRelation: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "HealthcareRelationEntity"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "HealthcareRelationEntity",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareRelationEntity: coreClient.CompositeMapper = {
@@ -1572,18 +1576,18 @@ export const HealthcareRelationEntity: coreClient.CompositeMapper = {
         serializedName: "ref",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       role: {
         serializedName: "role",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const LanguageBatchInput: coreClient.CompositeMapper = {
@@ -1599,13 +1603,13 @@ export const LanguageBatchInput: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DetectLanguageInput"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "DetectLanguageInput",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const DetectLanguageInput: coreClient.CompositeMapper = {
@@ -1617,24 +1621,24 @@ export const DetectLanguageInput: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       countryHint: {
         serializedName: "countryHint",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const LanguageResult: coreClient.CompositeMapper = {
@@ -1650,10 +1654,10 @@ export const LanguageResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentLanguage"
-            }
-          }
-        }
+              className: "DocumentLanguage",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -1663,27 +1667,27 @@ export const LanguageResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentLanguage: coreClient.CompositeMapper = {
@@ -1695,15 +1699,15 @@ export const DocumentLanguage: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       detectedLanguage: {
         serializedName: "detectedLanguage",
         type: {
           name: "Composite",
-          className: "DetectedLanguage"
-        }
+          className: "DetectedLanguage",
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1713,20 +1717,20 @@ export const DocumentLanguage: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const DetectedLanguage: coreClient.CompositeMapper = {
@@ -1738,25 +1742,25 @@ export const DetectedLanguage: coreClient.CompositeMapper = {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       iso6391Name: {
         serializedName: "iso6391Name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       confidenceScore: {
         serializedName: "confidenceScore",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const SentimentResponse: coreClient.CompositeMapper = {
@@ -1772,10 +1776,10 @@ export const SentimentResponse: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentSentiment"
-            }
-          }
-        }
+              className: "DocumentSentiment",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -1785,27 +1789,27 @@ export const SentimentResponse: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
+          className: "TextDocumentBatchStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentSentiment: coreClient.CompositeMapper = {
@@ -1817,30 +1821,30 @@ export const DocumentSentiment: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       sentiment: {
         serializedName: "sentiment",
         required: true,
         type: {
           name: "Enum",
-          allowedValues: ["positive", "neutral", "negative", "mixed"]
-        }
+          allowedValues: ["positive", "neutral", "negative", "mixed"],
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentStatistics"
-        }
+          className: "TextDocumentStatistics",
+        },
       },
       confidenceScores: {
         serializedName: "confidenceScores",
         type: {
           name: "Composite",
-          className: "SentimentConfidenceScores"
-        }
+          className: "SentimentConfidenceScores",
+        },
       },
       sentenceSentiments: {
         serializedName: "sentences",
@@ -1850,10 +1854,10 @@ export const DocumentSentiment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "SentenceSentiment"
-            }
-          }
-        }
+              className: "SentenceSentiment",
+            },
+          },
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -1863,13 +1867,13 @@ export const DocumentSentiment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const SentimentConfidenceScores: coreClient.CompositeMapper = {
@@ -1881,25 +1885,25 @@ export const SentimentConfidenceScores: coreClient.CompositeMapper = {
         serializedName: "positive",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       neutral: {
         serializedName: "neutral",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       negative: {
         serializedName: "negative",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const SentenceSentiment: coreClient.CompositeMapper = {
@@ -1911,37 +1915,37 @@ export const SentenceSentiment: coreClient.CompositeMapper = {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       sentiment: {
         serializedName: "sentiment",
         required: true,
         type: {
           name: "Enum",
-          allowedValues: ["positive", "neutral", "negative"]
-        }
+          allowedValues: ["positive", "neutral", "negative"],
+        },
       },
       confidenceScores: {
         serializedName: "confidenceScores",
         type: {
           name: "Composite",
-          className: "SentimentConfidenceScores"
-        }
+          className: "SentimentConfidenceScores",
+        },
       },
       offset: {
         serializedName: "offset",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       targets: {
         serializedName: "targets",
@@ -1950,10 +1954,10 @@ export const SentenceSentiment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "SentenceTarget"
-            }
-          }
-        }
+              className: "SentenceTarget",
+            },
+          },
+        },
       },
       assessments: {
         serializedName: "assessments",
@@ -1962,13 +1966,13 @@ export const SentenceSentiment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "SentenceAssessment"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "SentenceAssessment",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const SentenceTarget: coreClient.CompositeMapper = {
@@ -1981,36 +1985,36 @@ export const SentenceTarget: coreClient.CompositeMapper = {
         required: true,
         type: {
           name: "Enum",
-          allowedValues: ["positive", "mixed", "negative"]
-        }
+          allowedValues: ["positive", "mixed", "negative"],
+        },
       },
       confidenceScores: {
         serializedName: "confidenceScores",
         type: {
           name: "Composite",
-          className: "TargetConfidenceScoreLabel"
-        }
+          className: "TargetConfidenceScoreLabel",
+        },
       },
       offset: {
         serializedName: "offset",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       relations: {
         serializedName: "relations",
@@ -2020,13 +2024,13 @@ export const SentenceTarget: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TargetRelation"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TargetRelation",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const TargetConfidenceScoreLabel: coreClient.CompositeMapper = {
@@ -2038,18 +2042,18 @@ export const TargetConfidenceScoreLabel: coreClient.CompositeMapper = {
         serializedName: "positive",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       negative: {
         serializedName: "negative",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const TargetRelation: coreClient.CompositeMapper = {
@@ -2062,18 +2066,18 @@ export const TargetRelation: coreClient.CompositeMapper = {
         required: true,
         type: {
           name: "Enum",
-          allowedValues: ["assessment", "target"]
-        }
+          allowedValues: ["assessment", "target"],
+        },
       },
       ref: {
         serializedName: "ref",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SentenceAssessment: coreClient.CompositeMapper = {
@@ -2086,46 +2090,46 @@ export const SentenceAssessment: coreClient.CompositeMapper = {
         required: true,
         type: {
           name: "Enum",
-          allowedValues: ["positive", "mixed", "negative"]
-        }
+          allowedValues: ["positive", "mixed", "negative"],
+        },
       },
       confidenceScores: {
         serializedName: "confidenceScores",
         type: {
           name: "Composite",
-          className: "TargetConfidenceScoreLabel"
-        }
+          className: "TargetConfidenceScoreLabel",
+        },
       },
       offset: {
         serializedName: "offset",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       isNegated: {
         serializedName: "isNegated",
         required: true,
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const AnalyzeBatchInput: coreClient.CompositeMapper = {
@@ -2139,11 +2143,11 @@ export const AnalyzeBatchInput: coreClient.CompositeMapper = {
         serializedName: "analysisInput",
         type: {
           name: "Composite",
-          className: "MultiLanguageBatchInput"
-        }
-      }
-    }
-  }
+          className: "MultiLanguageBatchInput",
+        },
+      },
+    },
+  },
 };
 
 export const AnalyzeJobMetadata: coreClient.CompositeMapper = {
@@ -2155,11 +2159,11 @@ export const AnalyzeJobMetadata: coreClient.CompositeMapper = {
       displayName: {
         serializedName: "displayName",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HealthcareJobState: coreClient.CompositeMapper = {
@@ -2173,8 +2177,8 @@ export const HealthcareJobState: coreClient.CompositeMapper = {
         serializedName: "results",
         type: {
           name: "Composite",
-          className: "HealthcareResult"
-        }
+          className: "HealthcareResult",
+        },
       },
       errors: {
         serializedName: "errors",
@@ -2183,13 +2187,13 @@ export const HealthcareJobState: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsError"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TextAnalyticsError",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const AnalyzeJobState: coreClient.CompositeMapper = {
@@ -2207,20 +2211,20 @@ export const AnalyzeJobState: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsError"
-            }
-          }
-        }
+              className: "TextAnalyticsError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "TextDocumentBatchStatistics"
-        }
-      }
-    }
-  }
+          className: "TextDocumentBatchStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const TasksStateTasksDetails: coreClient.CompositeMapper = {
@@ -2228,58 +2232,62 @@ export const TasksStateTasksDetails: coreClient.CompositeMapper = {
     name: "Composite",
     className: "TasksStateTasksDetails",
     modelProperties: {
-      ...TaskState.type.modelProperties
-    }
-  }
+      ...TaskState.type.modelProperties,
+    },
+  },
 };
 
-export const TasksStateTasksEntityRecognitionTasksItem: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TasksStateTasksEntityRecognitionTasksItem",
-    modelProperties: {
-      ...TaskState.type.modelProperties,
-      ...Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1
-        .type.modelProperties
-    }
-  }
-};
+export const TasksStateTasksEntityRecognitionTasksItem: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "TasksStateTasksEntityRecognitionTasksItem",
+      modelProperties: {
+        ...TaskState.type.modelProperties,
+        ...Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1
+          .type.modelProperties,
+      },
+    },
+  };
 
-export const TasksStateTasksEntityRecognitionPiiTasksItem: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TasksStateTasksEntityRecognitionPiiTasksItem",
-    modelProperties: {
-      ...TaskState.type.modelProperties,
-      ...Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1
-        .type.modelProperties
-    }
-  }
-};
+export const TasksStateTasksEntityRecognitionPiiTasksItem: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "TasksStateTasksEntityRecognitionPiiTasksItem",
+      modelProperties: {
+        ...TaskState.type.modelProperties,
+        ...Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1
+          .type.modelProperties,
+      },
+    },
+  };
 
-export const TasksStateTasksKeyPhraseExtractionTasksItem: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TasksStateTasksKeyPhraseExtractionTasksItem",
-    modelProperties: {
-      ...TaskState.type.modelProperties,
-      ...Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1
-        .type.modelProperties
-    }
-  }
-};
+export const TasksStateTasksKeyPhraseExtractionTasksItem: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "TasksStateTasksKeyPhraseExtractionTasksItem",
+      modelProperties: {
+        ...TaskState.type.modelProperties,
+        ...Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1
+          .type.modelProperties,
+      },
+    },
+  };
 
-export const TasksStateTasksEntityLinkingTasksItem: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TasksStateTasksEntityLinkingTasksItem",
-    modelProperties: {
-      ...TaskState.type.modelProperties,
-      ...ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1
-        .type.modelProperties
-    }
-  }
-};
+export const TasksStateTasksEntityLinkingTasksItem: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "TasksStateTasksEntityLinkingTasksItem",
+      modelProperties: {
+        ...TaskState.type.modelProperties,
+        ...ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1
+          .type.modelProperties,
+      },
+    },
+  };
 
 export const HealthcareEntity: coreClient.CompositeMapper = {
   type: {
@@ -2291,14 +2299,14 @@ export const HealthcareEntity: coreClient.CompositeMapper = {
         serializedName: "assertion",
         type: {
           name: "Composite",
-          className: "HealthcareAssertion"
-        }
+          className: "HealthcareAssertion",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       links: {
         serializedName: "links",
@@ -2307,13 +2315,13 @@ export const HealthcareEntity: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "HealthcareEntityLink"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "HealthcareEntityLink",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const GeneratedClientAnalyzeHeaders: coreClient.CompositeMapper = {
@@ -2324,27 +2332,28 @@ export const GeneratedClientAnalyzeHeaders: coreClient.CompositeMapper = {
       operationLocation: {
         serializedName: "operation-location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
-export const GeneratedClientCancelHealthJobHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GeneratedClientCancelHealthJobHeaders",
-    modelProperties: {
-      operationLocation: {
-        serializedName: "operation-location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const GeneratedClientCancelHealthJobHeaders: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "GeneratedClientCancelHealthJobHeaders",
+      modelProperties: {
+        operationLocation: {
+          serializedName: "operation-location",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };
 
 export const GeneratedClientHealthHeaders: coreClient.CompositeMapper = {
   type: {
@@ -2354,9 +2363,9 @@ export const GeneratedClientHealthHeaders: coreClient.CompositeMapper = {
       operationLocation: {
         serializedName: "operation-location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

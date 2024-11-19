@@ -16,7 +16,7 @@ import {
   BoolGetNullOptionalParams,
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
-  BoolGetInvalidResponse
+  BoolGetInvalidResponse,
 } from "../models";
 
 /** Interface representing a Bool. */
@@ -51,6 +51,6 @@ export interface Bool {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: BoolGetInvalidOptionalParams
+    options?: BoolGetInvalidOptionalParams,
   ): Promise<BoolGetInvalidResponse>;
 }

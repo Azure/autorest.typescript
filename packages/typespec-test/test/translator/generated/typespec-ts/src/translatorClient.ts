@@ -1,22 +1,27 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { TranslatorClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { TranslatorClient } from "./clientDefinitions.js";
+
+/** The optional parameters for the client */
+export interface TranslatorClientOptions extends ClientOptions {
+  /** The api version option of the client */
+  apiVersion?: string;
+}
 
 /**
  * Initialize a new instance of `TranslatorClient`
- * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
-  options: ClientOptions = {}
+  endpointParam: string,
+  { apiVersion = "3.0", ...options }: TranslatorClientOptions = {},
 ): TranslatorClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "3.0";
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -31,8 +36,24 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
+  const client = getClient(endpointUrl, options) as TranslatorClient;
 
-  const client = getClient(baseUrl, options) as TranslatorClient;
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

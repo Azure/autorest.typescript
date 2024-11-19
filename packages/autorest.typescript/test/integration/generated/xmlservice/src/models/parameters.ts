@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   RootWithRefAndNoMeta as RootWithRefAndNoMetaMapper,
@@ -20,7 +20,7 @@ import {
   StorageServiceProperties as StorageServicePropertiesMapper,
   JsonInput as JsonInputMapper,
   ModelWithByteProperty as ModelWithBytePropertyMapper,
-  ModelWithUrlProperty as ModelWithUrlPropertyMapper
+  ModelWithUrlProperty as ModelWithUrlPropertyMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -30,9 +30,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -42,10 +42,10 @@ export const $host: OperationURLParameter = {
     required: true,
     xmlName: "$host",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -55,24 +55,24 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const model: OperationParameter = {
   parameterPath: "model",
-  mapper: RootWithRefAndNoMetaMapper
+  mapper: RootWithRefAndNoMetaMapper,
 };
 
 export const model1: OperationParameter = {
   parameterPath: "model",
-  mapper: RootWithRefAndMetaMapper
+  mapper: RootWithRefAndMetaMapper,
 };
 
 export const slideshow: OperationParameter = {
   parameterPath: "slideshow",
-  mapper: SlideshowMapper
+  mapper: SlideshowMapper,
 };
 
 export const accept1: OperationParameter = {
@@ -82,19 +82,19 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const wrappedLists: OperationParameter = {
   parameterPath: "wrappedLists",
-  mapper: AppleBarrelMapper
+  mapper: AppleBarrelMapper,
 };
 
 export const appleBarrel: OperationParameter = {
   parameterPath: "appleBarrel",
-  mapper: AppleBarrelMapper
+  mapper: AppleBarrelMapper,
 };
 
 export const bananas: OperationParameter = {
@@ -110,16 +110,16 @@ export const bananas: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "Banana"
-        }
-      }
-    }
-  }
+          className: "Banana",
+        },
+      },
+    },
+  },
 };
 
 export const banana: OperationParameter = {
   parameterPath: "banana",
-  mapper: BananaMapper
+  mapper: BananaMapper,
 };
 
 export const comp: OperationQueryParameter = {
@@ -129,9 +129,9 @@ export const comp: OperationQueryParameter = {
     isConstant: true,
     serializedName: "comp",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const comp1: OperationQueryParameter = {
@@ -141,9 +141,9 @@ export const comp1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "comp",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const restype: OperationQueryParameter = {
@@ -153,14 +153,14 @@ export const restype: OperationQueryParameter = {
     isConstant: true,
     serializedName: "restype",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties: OperationParameter = {
   parameterPath: "properties",
-  mapper: StorageServicePropertiesMapper
+  mapper: StorageServicePropertiesMapper,
 };
 
 export const comp2: OperationQueryParameter = {
@@ -170,9 +170,9 @@ export const comp2: OperationQueryParameter = {
     isConstant: true,
     serializedName: "comp",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const restype1: OperationQueryParameter = {
@@ -182,9 +182,9 @@ export const restype1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "restype",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties1: OperationParameter = {
@@ -200,11 +200,11 @@ export const properties1: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "SignedIdentifier"
-        }
-      }
-    }
-  }
+          className: "SignedIdentifier",
+        },
+      },
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -214,14 +214,14 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties2: OperationParameter = {
   parameterPath: "properties",
-  mapper: JsonInputMapper
+  mapper: JsonInputMapper,
 };
 
 export const accept2: OperationParameter = {
@@ -231,17 +231,17 @@ export const accept2: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const slideshow1: OperationParameter = {
   parameterPath: "slideshow",
-  mapper: ModelWithBytePropertyMapper
+  mapper: ModelWithBytePropertyMapper,
 };
 
 export const model2: OperationParameter = {
   parameterPath: "model",
-  mapper: ModelWithUrlPropertyMapper
+  mapper: ModelWithUrlPropertyMapper,
 };

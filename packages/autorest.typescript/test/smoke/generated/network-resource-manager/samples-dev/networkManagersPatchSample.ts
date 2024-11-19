@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PatchObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function networkManagesPatch() {
   const result = await client.networkManagers.patch(
     resourceGroupName,
     networkManagerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

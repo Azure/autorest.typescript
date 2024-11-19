@@ -35,7 +35,7 @@ async function listAppDetectors() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }
@@ -63,7 +63,7 @@ async function listAppSlotDetectors() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

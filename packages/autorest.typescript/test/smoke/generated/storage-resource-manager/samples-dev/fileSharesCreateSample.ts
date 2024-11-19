@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FileShare,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function createNfsShares() {
     resourceGroupName,
     accountName,
     shareName,
-    fileShare
+    fileShare,
   );
   console.log(result);
 }
@@ -58,7 +58,7 @@ async function putShares() {
     resourceGroupName,
     accountName,
     shareName,
-    fileShare
+    fileShare,
   );
   console.log(result);
 }
@@ -81,7 +81,7 @@ async function putSharesWithAccessTier() {
     resourceGroupName,
     accountName,
     shareName,
-    fileShare
+    fileShare,
   );
   console.log(result);
 }

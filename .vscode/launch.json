@@ -123,12 +123,7 @@
       "name": "[TypeSpec] Debug generate integration code",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
-      "runtimeArgs": [
-        "ts-node",
-        "./test/commands/gen-cadl-ranch.ts",
-        "--tag=rlc",
-        "--debug"
-      ],
+      "runtimeArgs": ["tsx", "./test/commands/gen-cadl-ranch.js", "--tag=rlc"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

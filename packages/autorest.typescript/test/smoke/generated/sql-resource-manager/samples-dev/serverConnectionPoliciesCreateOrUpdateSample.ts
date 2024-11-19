@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerConnectionPolicy,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,12 +32,13 @@ async function updatesAServerConnectionPolicy() {
   const parameters: ServerConnectionPolicy = { connectionType: "Redirect" };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.serverConnectionPolicies.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    serverName,
-    connectionPolicyName,
-    parameters
-  );
+  const result =
+    await client.serverConnectionPolicies.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      serverName,
+      connectionPolicyName,
+      parameters,
+    );
   console.log(result);
 }
 

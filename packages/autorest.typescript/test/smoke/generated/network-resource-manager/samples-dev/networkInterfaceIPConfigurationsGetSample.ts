@@ -30,7 +30,7 @@ async function networkInterfaceIPConfigurationGet() {
   const result = await client.networkInterfaceIPConfigurations.get(
     resourceGroupName,
     networkInterfaceName,
-    ipConfigurationName
+    ipConfigurationName,
   );
   console.log(result);
 }

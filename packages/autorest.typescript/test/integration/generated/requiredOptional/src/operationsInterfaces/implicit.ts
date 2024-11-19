@@ -14,7 +14,7 @@ import {
   ImplicitPutOptionalBinaryBodyOptionalParams,
   ImplicitGetRequiredGlobalPathOptionalParams,
   ImplicitGetRequiredGlobalQueryOptionalParams,
-  ImplicitGetOptionalGlobalQueryOptionalParams
+  ImplicitGetOptionalGlobalQueryOptionalParams,
 } from "../models";
 
 /** Interface representing a Implicit. */
@@ -26,55 +26,55 @@ export interface Implicit {
    */
   getRequiredPath(
     pathParameter: string,
-    options?: ImplicitGetRequiredPathOptionalParams
+    options?: ImplicitGetRequiredPathOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly optional query parameter
    * @param options The options parameters.
    */
   putOptionalQuery(
-    options?: ImplicitPutOptionalQueryOptionalParams
+    options?: ImplicitPutOptionalQueryOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly optional header parameter
    * @param options The options parameters.
    */
   putOptionalHeader(
-    options?: ImplicitPutOptionalHeaderOptionalParams
+    options?: ImplicitPutOptionalHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly optional body parameter
    * @param options The options parameters.
    */
   putOptionalBody(
-    options?: ImplicitPutOptionalBodyOptionalParams
+    options?: ImplicitPutOptionalBodyOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly optional body parameter
    * @param options The options parameters.
    */
   putOptionalBinaryBody(
-    options?: ImplicitPutOptionalBinaryBodyOptionalParams
+    options?: ImplicitPutOptionalBinaryBodyOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly required path parameter
    * @param options The options parameters.
    */
   getRequiredGlobalPath(
-    options?: ImplicitGetRequiredGlobalPathOptionalParams
+    options?: ImplicitGetRequiredGlobalPathOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly required query parameter
    * @param options The options parameters.
    */
   getRequiredGlobalQuery(
-    options?: ImplicitGetRequiredGlobalQueryOptionalParams
+    options?: ImplicitGetRequiredGlobalQueryOptionalParams,
   ): Promise<void>;
   /**
    * Test implicitly optional query parameter
    * @param options The options parameters.
    */
   getOptionalGlobalQuery(
-    options?: ImplicitGetOptionalGlobalQueryOptionalParams
+    options?: ImplicitGetOptionalGlobalQueryOptionalParams,
   ): Promise<void>;
 }

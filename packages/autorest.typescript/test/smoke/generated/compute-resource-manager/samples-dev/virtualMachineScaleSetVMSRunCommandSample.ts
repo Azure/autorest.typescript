@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RunCommandInput,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function virtualMachineScaleSetVMSRunCommand() {
   const instanceId = "0";
   const parameters: RunCommandInput = {
     commandId: "RunPowerShellScript",
-    script: ["Write-Host Hello World!"]
+    script: ["Write-Host Hello World!"],
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function virtualMachineScaleSetVMSRunCommand() {
     resourceGroupName,
     vmScaleSetName,
     instanceId,
-    parameters
+    parameters,
   );
   console.log(result);
 }

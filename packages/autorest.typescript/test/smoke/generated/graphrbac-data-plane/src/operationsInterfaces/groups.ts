@@ -31,7 +31,7 @@ import {
   GroupsDeleteOptionalParams,
   AddOwnerParameters,
   GroupsAddOwnerOptionalParams,
-  GroupsRemoveOwnerOptionalParams
+  GroupsRemoveOwnerOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -49,7 +49,7 @@ export interface Groups {
    */
   listGroupMembers(
     objectId: string,
-    options?: GroupsGetGroupMembersOptionalParams
+    options?: GroupsGetGroupMembersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
@@ -60,7 +60,7 @@ export interface Groups {
   listMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: GroupsGetMemberGroupsOptionalParams
+    options?: GroupsGetMemberGroupsOptionalParams,
   ): PagedAsyncIterableIterator<string>;
   /**
    * The owners are a set of non-admin users who are allowed to modify this object.
@@ -69,7 +69,7 @@ export interface Groups {
    */
   listOwners(
     objectId: string,
-    options?: GroupsListOwnersOptionalParams
+    options?: GroupsListOwnersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets a list of groups for the current tenant.
@@ -78,7 +78,7 @@ export interface Groups {
    */
   listNext(
     nextLink: string,
-    options?: GroupsListNextOptionalParams
+    options?: GroupsListNextOptionalParams,
   ): PagedAsyncIterableIterator<ADGroup>;
   /**
    * Gets the members of a group.
@@ -87,7 +87,7 @@ export interface Groups {
    */
   listGroupMembersNext(
     nextLink: string,
-    options?: GroupsGetGroupMembersNextOptionalParams
+    options?: GroupsGetGroupMembersNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Checks whether the specified user, group, contact, or service principal is a direct or transitive
@@ -97,7 +97,7 @@ export interface Groups {
    */
   isMemberOf(
     parameters: CheckGroupMembershipParameters,
-    options?: GroupsIsMemberOfOptionalParams
+    options?: GroupsIsMemberOfOptionalParams,
   ): Promise<GroupsIsMemberOfResponse>;
   /**
    * Remove a member from a group.
@@ -108,7 +108,7 @@ export interface Groups {
   removeMember(
     groupObjectId: string,
     memberObjectId: string,
-    options?: GroupsRemoveMemberOptionalParams
+    options?: GroupsRemoveMemberOptionalParams,
   ): Promise<void>;
   /**
    * Add a member to a group.
@@ -120,7 +120,7 @@ export interface Groups {
   addMember(
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
-    options?: GroupsAddMemberOptionalParams
+    options?: GroupsAddMemberOptionalParams,
   ): Promise<void>;
   /**
    * Create a group in the directory.
@@ -129,7 +129,7 @@ export interface Groups {
    */
   create(
     parameters: GroupCreateParameters,
-    options?: GroupsCreateOptionalParams
+    options?: GroupsCreateOptionalParams,
   ): Promise<GroupsCreateResponse>;
   /**
    * Gets group information from the directory.
@@ -138,7 +138,7 @@ export interface Groups {
    */
   get(
     objectId: string,
-    options?: GroupsGetOptionalParams
+    options?: GroupsGetOptionalParams,
   ): Promise<GroupsGetResponse>;
   /**
    * Delete a group from the directory.
@@ -156,7 +156,7 @@ export interface Groups {
   addOwner(
     objectId: string,
     parameters: AddOwnerParameters,
-    options?: GroupsAddOwnerOptionalParams
+    options?: GroupsAddOwnerOptionalParams,
   ): Promise<void>;
   /**
    * Remove a member from owners.
@@ -167,6 +167,6 @@ export interface Groups {
   removeOwner(
     objectId: string,
     ownerObjectId: string,
-    options?: GroupsRemoveOwnerOptionalParams
+    options?: GroupsRemoveOwnerOptionalParams,
   ): Promise<void>;
 }

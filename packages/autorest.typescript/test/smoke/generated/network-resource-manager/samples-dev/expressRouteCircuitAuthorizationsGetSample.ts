@@ -30,7 +30,7 @@ async function getExpressRouteCircuitAuthorization() {
   const result = await client.expressRouteCircuitAuthorizations.get(
     resourceGroupName,
     circuitName,
-    authorizationName
+    authorizationName,
   );
   console.log(result);
 }

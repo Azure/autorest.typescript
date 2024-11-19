@@ -29,7 +29,7 @@ async function listExpressRoutePortAuthorization() {
   const resArray = new Array();
   for await (let item of client.expressRoutePortAuthorizations.list(
     resourceGroupName,
-    expressRoutePortName
+    expressRoutePortName,
   )) {
     resArray.push(item);
   }

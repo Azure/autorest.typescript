@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   FilesGetFileParameters,
   FilesGetFileLargeParameters,
-  FilesGetEmptyFileParameters
+  FilesGetEmptyFileParameters,
 } from "./parameters";
 import {
   FilesGetFile200Response,
@@ -12,21 +12,21 @@ import {
   FilesGetFileLarge200Response,
   FilesGetFileLargeDefaultResponse,
   FilesGetEmptyFile200Response,
-  FilesGetEmptyFileDefaultResponse
+  FilesGetEmptyFileDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetFile {
   /** Get file */
   get(
-    options?: FilesGetFileParameters
+    options?: FilesGetFileParameters,
   ): StreamableMethod<FilesGetFile200Response | FilesGetFileDefaultResponse>;
 }
 
 export interface GetFileLarge {
   /** Get a large file */
   get(
-    options?: FilesGetFileLargeParameters
+    options?: FilesGetFileLargeParameters,
   ): StreamableMethod<
     FilesGetFileLarge200Response | FilesGetFileLargeDefaultResponse
   >;
@@ -35,7 +35,7 @@ export interface GetFileLarge {
 export interface GetEmptyFile {
   /** Get empty file */
   get(
-    options?: FilesGetEmptyFileParameters
+    options?: FilesGetEmptyFileParameters,
   ): StreamableMethod<
     FilesGetEmptyFile200Response | FilesGetEmptyFileDefaultResponse
   >;

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function patchBastionHost() {
   const result = await client.bastionHosts.beginUpdateTagsAndWait(
     resourceGroupName,
     bastionHostName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

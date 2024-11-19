@@ -29,7 +29,7 @@ async function loadBalancerFrontendIPConfigurationList() {
   const resArray = new Array();
   for await (let item of client.loadBalancerFrontendIPConfigurations.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

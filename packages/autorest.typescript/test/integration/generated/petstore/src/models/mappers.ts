@@ -11,24 +11,24 @@ export const Pet: coreClient.CompositeMapper = {
         serializedName: "id",
         xmlName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       category: {
         serializedName: "category",
         xmlName: "Category",
         type: {
           name: "Composite",
-          className: "Category"
-        }
+          className: "Category",
+        },
       },
       name: {
         serializedName: "name",
         required: true,
         xmlName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       photoUrls: {
         serializedName: "photoUrls",
@@ -40,10 +40,10 @@ export const Pet: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       tags: {
         serializedName: "tags",
@@ -55,27 +55,27 @@ export const Pet: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Tag"
-            }
-          }
-        }
+              className: "Tag",
+            },
+          },
+        },
       },
       status: {
         serializedName: "status",
         xmlName: "status",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       petRestrictionLevel: {
         serializedName: "petRestrictionLevel",
         xmlName: "petRestrictionLevel",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Category: coreClient.CompositeMapper = {
@@ -89,18 +89,18 @@ export const Category: coreClient.CompositeMapper = {
         serializedName: "id",
         xmlName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         xmlName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Tag: coreClient.CompositeMapper = {
@@ -114,18 +114,18 @@ export const Tag: coreClient.CompositeMapper = {
         serializedName: "id",
         xmlName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         xmlName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Order: coreClient.CompositeMapper = {
@@ -140,46 +140,46 @@ export const Order: coreClient.CompositeMapper = {
         readOnly: true,
         xmlName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       petId: {
         serializedName: "petId",
         xmlName: "petId",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       quantity: {
         serializedName: "quantity",
         xmlName: "quantity",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       shipDate: {
         serializedName: "shipDate",
         xmlName: "shipDate",
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       status: {
         serializedName: "status",
         xmlName: "status",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       complete: {
         serializedName: "complete",
         xmlName: "complete",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const User: coreClient.CompositeMapper = {
@@ -193,110 +193,112 @@ export const User: coreClient.CompositeMapper = {
         serializedName: "id",
         xmlName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       username: {
         serializedName: "username",
         xmlName: "username",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       firstName: {
         serializedName: "firstName",
         xmlName: "firstName",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastName: {
         serializedName: "lastName",
         xmlName: "lastName",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       email: {
         serializedName: "email",
         xmlName: "email",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       password: {
         serializedName: "password",
         xmlName: "password",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       phone: {
         serializedName: "phone",
         xmlName: "phone",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       userStatus: {
         serializedName: "userStatus",
         xmlName: "userStatus",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
-export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
-  serializedName:
-    "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-  type: {
-    name: "Composite",
-    className:
+export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper =
+  {
+    serializedName:
       "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    modelProperties: {
-      name: {
-        serializedName: "name",
-        xmlName: "name",
-        type: {
-          name: "String"
-        }
+    type: {
+      name: "Composite",
+      className:
+        "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
+      modelProperties: {
+        name: {
+          serializedName: "name",
+          xmlName: "name",
+          type: {
+            name: "String",
+          },
+        },
+        status: {
+          serializedName: "status",
+          xmlName: "status",
+          type: {
+            name: "String",
+          },
+        },
       },
-      status: {
-        serializedName: "status",
-        xmlName: "status",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+    },
+  };
 
-export const PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
-  serializedName:
-    "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
-  type: {
-    name: "Composite",
-    className:
+export const PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper =
+  {
+    serializedName:
       "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
-    modelProperties: {
-      additionalMetadata: {
-        serializedName: "additionalMetadata",
-        xmlName: "additionalMetadata",
-        type: {
-          name: "String"
-        }
+    type: {
+      name: "Composite",
+      className:
+        "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
+      modelProperties: {
+        additionalMetadata: {
+          serializedName: "additionalMetadata",
+          xmlName: "additionalMetadata",
+          type: {
+            name: "String",
+          },
+        },
+        file: {
+          serializedName: "file",
+          xmlName: "file",
+          type: {
+            name: "Stream",
+          },
+        },
       },
-      file: {
-        serializedName: "file",
-        xmlName: "file",
-        type: {
-          name: "Stream"
-        }
-      }
-    }
-  }
-};
+    },
+  };

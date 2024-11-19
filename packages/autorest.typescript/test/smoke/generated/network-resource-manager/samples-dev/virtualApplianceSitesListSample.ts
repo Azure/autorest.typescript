@@ -29,7 +29,7 @@ async function listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualApplian
   const resArray = new Array();
   for await (let item of client.virtualApplianceSites.list(
     resourceGroupName,
-    networkVirtualApplianceName
+    networkVirtualApplianceName,
   )) {
     resArray.push(item);
   }

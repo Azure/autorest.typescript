@@ -23,7 +23,7 @@ import {
   PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse,
   PolicySetDefinitionsDeleteAtManagementGroupOptionalParams,
   PolicySetDefinitionsGetAtManagementGroupOptionalParams,
-  PolicySetDefinitionsGetAtManagementGroupResponse
+  PolicySetDefinitionsGetAtManagementGroupResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,14 +34,14 @@ export interface PolicySetDefinitions {
    * @param options The options parameters.
    */
   list(
-    options?: PolicySetDefinitionsListOptionalParams
+    options?: PolicySetDefinitionsListOptionalParams,
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation retrieves a list of all the built-in policy set definitions.
    * @param options The options parameters.
    */
   listBuiltIn(
-    options?: PolicySetDefinitionsListBuiltInOptionalParams
+    options?: PolicySetDefinitionsListBuiltInOptionalParams,
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation retrieves a list of all the a policy set definition in the given management group.
@@ -50,7 +50,7 @@ export interface PolicySetDefinitions {
    */
   listByManagementGroup(
     managementGroupId: string,
-    options?: PolicySetDefinitionsListByManagementGroupOptionalParams
+    options?: PolicySetDefinitionsListByManagementGroupOptionalParams,
   ): PagedAsyncIterableIterator<PolicySetDefinition>;
   /**
    * This operation creates or updates a policy set definition in the given subscription with the given
@@ -62,7 +62,7 @@ export interface PolicySetDefinitions {
   createOrUpdate(
     policySetDefinitionName: string,
     parameters: PolicySetDefinition,
-    options?: PolicySetDefinitionsCreateOrUpdateOptionalParams
+    options?: PolicySetDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
   /**
    * This operation deletes the policy set definition in the given subscription with the given name.
@@ -71,7 +71,7 @@ export interface PolicySetDefinitions {
    */
   delete(
     policySetDefinitionName: string,
-    options?: PolicySetDefinitionsDeleteOptionalParams
+    options?: PolicySetDefinitionsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * This operation retrieves the policy set definition in the given subscription with the given name.
@@ -80,7 +80,7 @@ export interface PolicySetDefinitions {
    */
   get(
     policySetDefinitionName: string,
-    options?: PolicySetDefinitionsGetOptionalParams
+    options?: PolicySetDefinitionsGetOptionalParams,
   ): Promise<PolicySetDefinitionsGetResponse>;
   /**
    * This operation retrieves the built-in policy set definition with the given name.
@@ -89,7 +89,7 @@ export interface PolicySetDefinitions {
    */
   getBuiltIn(
     policySetDefinitionName: string,
-    options?: PolicySetDefinitionsGetBuiltInOptionalParams
+    options?: PolicySetDefinitionsGetBuiltInOptionalParams,
   ): Promise<PolicySetDefinitionsGetBuiltInResponse>;
   /**
    * This operation creates or updates a policy set definition in the given management group with the
@@ -103,7 +103,7 @@ export interface PolicySetDefinitions {
     policySetDefinitionName: string,
     managementGroupId: string,
     parameters: PolicySetDefinition,
-    options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
+    options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams,
   ): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
   /**
    * This operation deletes the policy set definition in the given management group with the given name.
@@ -114,7 +114,7 @@ export interface PolicySetDefinitions {
   deleteAtManagementGroup(
     policySetDefinitionName: string,
     managementGroupId: string,
-    options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
+    options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams,
   ): Promise<void>;
   /**
    * This operation retrieves the policy set definition in the given management group with the given
@@ -126,6 +126,6 @@ export interface PolicySetDefinitions {
   getAtManagementGroup(
     policySetDefinitionName: string,
     managementGroupId: string,
-    options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams
+    options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams,
   ): Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
 }

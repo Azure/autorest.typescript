@@ -4,7 +4,7 @@
  */
  {
     "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
-  
+
     /**
      * Custom "commands" introduce new verbs for the command-line.  To see the help for these
      * example commands, try "rush --help", "rush my-bulk-command --help", or
@@ -12,12 +12,6 @@
      */
     "commands": [
       // Required Scripts
-      {
-        "commandKind": "bulk",
-        "name": "audit",
-        "summary": "Audit projects",
-        "enableParallelism": true
-      },
       {
         "commandKind": "bulk",
         "name": "build",
@@ -159,12 +153,19 @@
       // Optional Scripts
       {
         "commandKind": "bulk",
+        "name": "regen-test-baselines",
+        "summary": "Run code generation and tests to update baselines",
+        "enableParallelism": true,
+        "ignoreMissingScript": true
+      },
+      {
+        "commandKind": "bulk",
         "name": "extract-api",
         "summary": "Run API Extractor on projects",
         "enableParallelism": true,
         "ignoreMissingScript": true
       },
-  
+
       {
         "commandKind": "bulk",
         "name": "generate-doc",
@@ -172,14 +173,8 @@
         "enableParallelism": true,
         "ignoreMissingScript": true
       },
-  
+
       // Global Commands
-      {
-        "commandKind": "global",
-        "name": "list-files",
-        "summary": "List files within Rush project directories",
-        "shellCommand": "node common/scripts/list-files.js"
-      },
       {
         "commandKind": "global",
         "name": "reset-workspace",
@@ -189,40 +184,17 @@
       },
       {
         "commandKind": "global",
-        "name": "sync-versions",
-        "summary": "Sync versions among projects",
-        "shellCommand": "node common/scripts/sync-versions.js"
-      },
-      {
-        "commandKind": "global",
         "name": "uninstall",
         "summary": "Unlink dependencies and purge downloaded node_modules",
         "safeForSimultaneousRushProcesses": true,
         "shellCommand": "rush unlink && rush purge"
-      },
-      {
-        "name": "prettier",
-        "commandKind": "global",
-        "summary": "Used by the pre-commit Git hook. This command invokes Prettier to reformat staged changes.",
-  
-        "autoinstallerName": "rush-prettier",
-  
-        // This will invoke common/autoinstallers/rush-prettier/node_modules/.bin/pretty-quick
-        "shellCommand": "pretty-quick --staged --no-restage"
       }
     ],
-  
+
     /**
      * Custom "parameters" introduce new parameters for specified Rush command-line commands.
      * For example, you might define a "--production" parameter for the "rush build" command.
      */
     "parameters": [
-      {
-        "parameterKind": "flag",
-        "longName": "--sync-peers",
-        "description": "Also sync peer dependency versions with those in the working directory.",
-        "associatedCommands": ["sync-versions"]
-      }
     ]
   }
-  

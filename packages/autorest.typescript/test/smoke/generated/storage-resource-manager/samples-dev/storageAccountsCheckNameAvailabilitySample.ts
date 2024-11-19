@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageAccountCheckNameAvailabilityParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -27,13 +27,12 @@ async function storageAccountCheckNameAvailability() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const accountName: StorageAccountCheckNameAvailabilityParameters = {
     name: "sto3363",
-    type: "Microsoft.Storage/storageAccounts"
+    type: "Microsoft.Storage/storageAccounts",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.storageAccounts.checkNameAvailability(
-    accountName
-  );
+  const result =
+    await client.storageAccounts.checkNameAvailability(accountName);
   console.log(result);
 }
 

@@ -29,7 +29,7 @@ async function listServiceEndpointDefinitionsInServiceEndPointPolicy() {
   const resArray = new Array();
   for await (let item of client.serviceEndpointPolicyDefinitions.listByResourceGroup(
     resourceGroupName,
-    serviceEndpointPolicyName
+    serviceEndpointPolicyName,
   )) {
     resArray.push(item);
   }

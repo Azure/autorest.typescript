@@ -175,6 +175,7 @@ const getParameter = ({
   nameRef: nameRef || `MockParameter${sufix}`,
   description: description || `mock parameter description${sufix}`,
   name: name || `mockParameter${sufix}`,
+  propertyName: `mockParameter${sufix}`,
   serializedName: `mock_parameter${sufix}`,
   location: location || ParameterLocation.Body,
   parameterPath: parameterPath || `MockParameter${sufix}`,

@@ -26,10 +26,11 @@ async function resetVirtualNetworkGatewayConnection() {
   const virtualNetworkGatewayConnectionName = "conn1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginResetConnectionAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginResetConnectionAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+    );
   console.log(result);
 }
 

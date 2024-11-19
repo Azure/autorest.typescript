@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -18,7 +18,7 @@ async function applicationDataDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const applicationDataId = "APPLICATION123";
@@ -26,7 +26,7 @@ async function applicationDataDelete() {
     .path(
       "/farmers/{farmerId}/application-data/{applicationDataId}",
       farmerId,
-      applicationDataId
+      applicationDataId,
     )
     .delete();
   console.log(result);

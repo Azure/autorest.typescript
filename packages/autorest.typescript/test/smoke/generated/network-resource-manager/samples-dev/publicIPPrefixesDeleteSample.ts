@@ -28,7 +28,7 @@ async function deletePublicIPPrefix() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPPrefixes.beginDeleteAndWait(
     resourceGroupName,
-    publicIpPrefixName
+    publicIpPrefixName,
   );
   console.log(result);
 }

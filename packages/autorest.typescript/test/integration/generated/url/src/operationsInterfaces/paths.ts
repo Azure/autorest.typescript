@@ -34,7 +34,7 @@ import {
   PathsDateTimeNullOptionalParams,
   PathsBase64UrlOptionalParams,
   PathsArrayCsvInPathOptionalParams,
-  PathsUnixTimeUrlOptionalParams
+  PathsUnixTimeUrlOptionalParams,
 } from "../models";
 
 /** Interface representing a Paths. */
@@ -54,14 +54,14 @@ export interface Paths {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: PathsGetIntOneMillionOptionalParams
+    options?: PathsGetIntOneMillionOptionalParams,
   ): Promise<void>;
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: PathsGetIntNegativeOneMillionOptionalParams
+    options?: PathsGetIntNegativeOneMillionOptionalParams,
   ): Promise<void>;
   /**
    * Get '10000000000' 64 bit integer value
@@ -73,35 +73,35 @@ export interface Paths {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: PathsGetNegativeTenBillionOptionalParams
+    options?: PathsGetNegativeTenBillionOptionalParams,
   ): Promise<void>;
   /**
    * Get '1.034E+20' numeric value
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: PathsFloatScientificPositiveOptionalParams
+    options?: PathsFloatScientificPositiveOptionalParams,
   ): Promise<void>;
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: PathsFloatScientificNegativeOptionalParams
+    options?: PathsFloatScientificNegativeOptionalParams,
   ): Promise<void>;
   /**
    * Get '9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: PathsDoubleDecimalPositiveOptionalParams
+    options?: PathsDoubleDecimalPositiveOptionalParams,
   ): Promise<void>;
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: PathsDoubleDecimalNegativeOptionalParams
+    options?: PathsDoubleDecimalNegativeOptionalParams,
   ): Promise<void>;
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value
@@ -113,14 +113,14 @@ export interface Paths {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: PathsStringUrlEncodedOptionalParams
+    options?: PathsStringUrlEncodedOptionalParams,
   ): Promise<void>;
   /**
    * https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded
    * @param options The options parameters.
    */
   stringUrlNonEncoded(
-    options?: PathsStringUrlNonEncodedOptionalParams
+    options?: PathsStringUrlNonEncodedOptionalParams,
   ): Promise<void>;
   /**
    * Get ''
@@ -134,7 +134,7 @@ export interface Paths {
    */
   stringNull(
     stringPath: string,
-    options?: PathsStringNullOptionalParams
+    options?: PathsStringNullOptionalParams,
   ): Promise<void>;
   /**
    * Get using uri with 'green color' in path parameter
@@ -143,7 +143,7 @@ export interface Paths {
    */
   enumValid(
     enumPath: UriColor,
-    options?: PathsEnumValidOptionalParams
+    options?: PathsEnumValidOptionalParams,
   ): Promise<void>;
   /**
    * Get null (should throw on the client before the request is sent on wire)
@@ -152,7 +152,7 @@ export interface Paths {
    */
   enumNull(
     enumPath: UriColor,
-    options?: PathsEnumNullOptionalParams
+    options?: PathsEnumNullOptionalParams,
   ): Promise<void>;
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
@@ -161,7 +161,7 @@ export interface Paths {
    */
   byteMultiByte(
     bytePath: Uint8Array,
-    options?: PathsByteMultiByteOptionalParams
+    options?: PathsByteMultiByteOptionalParams,
   ): Promise<void>;
   /**
    * Get '' as byte array
@@ -175,7 +175,7 @@ export interface Paths {
    */
   byteNull(
     bytePath: Uint8Array,
-    options?: PathsByteNullOptionalParams
+    options?: PathsByteNullOptionalParams,
   ): Promise<void>;
   /**
    * Get '2012-01-01' as date
@@ -190,7 +190,7 @@ export interface Paths {
    */
   dateNull(
     datePath: Date,
-    options?: PathsDateNullOptionalParams
+    options?: PathsDateNullOptionalParams,
   ): Promise<void>;
   /**
    * Get '2012-01-01T01:01:01Z' as date-time
@@ -204,7 +204,7 @@ export interface Paths {
    */
   dateTimeNull(
     dateTimePath: Date,
-    options?: PathsDateTimeNullOptionalParams
+    options?: PathsDateTimeNullOptionalParams,
   ): Promise<void>;
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
@@ -213,7 +213,7 @@ export interface Paths {
    */
   base64Url(
     base64UrlPath: Uint8Array,
-    options?: PathsBase64UrlOptionalParams
+    options?: PathsBase64UrlOptionalParams,
   ): Promise<void>;
   /**
    * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array
@@ -224,7 +224,7 @@ export interface Paths {
    */
   arrayCsvInPath(
     arrayPath: string[],
-    options?: PathsArrayCsvInPathOptionalParams
+    options?: PathsArrayCsvInPathOptionalParams,
   ): Promise<void>;
   /**
    * Get the date 2016-04-13 encoded value as '1460505600' (Unix time)
@@ -233,6 +233,6 @@ export interface Paths {
    */
   unixTimeUrl(
     unixTimeUrlPath: Date,
-    options?: PathsUnixTimeUrlOptionalParams
+    options?: PathsUnixTimeUrlOptionalParams,
   ): Promise<void>;
 }

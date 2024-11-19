@@ -29,7 +29,7 @@ async function listAllVirtualRouterPeeringsForAGivenVirtualRouter() {
   const resArray = new Array();
   for await (let item of client.virtualRouterPeerings.list(
     resourceGroupName,
-    virtualRouterName
+    virtualRouterName,
   )) {
     resArray.push(item);
   }

@@ -29,7 +29,7 @@ async function loadBalancerLoadBalancingRuleList() {
   const resArray = new Array();
   for await (let item of client.loadBalancerLoadBalancingRules.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

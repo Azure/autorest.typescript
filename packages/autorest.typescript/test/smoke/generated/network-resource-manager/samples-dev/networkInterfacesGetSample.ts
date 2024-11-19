@@ -28,7 +28,7 @@ async function getNetworkInterface() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaces.get(
     resourceGroupName,
-    networkInterfaceName
+    networkInterfaceName,
   );
   console.log(result);
 }

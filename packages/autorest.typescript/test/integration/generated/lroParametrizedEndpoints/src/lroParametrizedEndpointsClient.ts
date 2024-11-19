@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "./lroImpl";
 import * as Parameters from "./models/parameters";
@@ -20,7 +20,7 @@ import {
   PollWithParameterizedEndpointsOptionalParams,
   PollWithParameterizedEndpointsResponse,
   PollWithConstantParameterizedEndpointsOptionalParams,
-  PollWithConstantParameterizedEndpointsResponse
+  PollWithConstantParameterizedEndpointsResponse,
 } from "./models";
 
 export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
@@ -36,7 +36,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: LroParametrizedEndpointsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-lro-parameterized-endpoints/1.0.0-preview1`;
@@ -49,10 +49,10 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "http://{accountName}{host}"
+        options.endpoint ?? options.baseUri ?? "http://{accountName}{host}",
     };
     super(optionsWithDefaults);
 
@@ -67,7 +67,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
    */
   async beginPollWithParameterizedEndpoints(
     accountName: string,
-    options?: PollWithParameterizedEndpointsOptionalParams
+    options?: PollWithParameterizedEndpointsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<PollWithParameterizedEndpointsResponse>,
@@ -76,21 +76,20 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<PollWithParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -99,8 +98,8 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -108,15 +107,15 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { accountName, options },
-      spec: pollWithParameterizedEndpointsOperationSpec
+      spec: pollWithParameterizedEndpointsOperationSpec,
     });
     const poller = await createHttpPoller<
       PollWithParameterizedEndpointsResponse,
@@ -124,7 +123,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -137,11 +136,11 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
    */
   async beginPollWithParameterizedEndpointsAndWait(
     accountName: string,
-    options?: PollWithParameterizedEndpointsOptionalParams
+    options?: PollWithParameterizedEndpointsOptionalParams,
   ): Promise<PollWithParameterizedEndpointsResponse> {
     const poller = await this.beginPollWithParameterizedEndpoints(
       accountName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -153,7 +152,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
    */
   async beginPollWithConstantParameterizedEndpoints(
     accountName: string,
-    options?: PollWithConstantParameterizedEndpointsOptionalParams
+    options?: PollWithConstantParameterizedEndpointsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<PollWithConstantParameterizedEndpointsResponse>,
@@ -162,21 +161,20 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<PollWithConstantParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -185,8 +183,8 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -194,22 +192,22 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { accountName, options },
-      spec: pollWithConstantParameterizedEndpointsOperationSpec
+      spec: pollWithConstantParameterizedEndpointsOperationSpec,
     });
     const poller = await createHttpPoller<
       PollWithConstantParameterizedEndpointsResponse,
       OperationState<PollWithConstantParameterizedEndpointsResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -222,11 +220,11 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
    */
   async beginPollWithConstantParameterizedEndpointsAndWait(
     accountName: string,
-    options?: PollWithConstantParameterizedEndpointsOptionalParams
+    options?: PollWithConstantParameterizedEndpointsOptionalParams,
   ): Promise<PollWithConstantParameterizedEndpointsResponse> {
     const poller = await this.beginPollWithConstantParameterizedEndpoints(
       accountName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -239,50 +237,51 @@ const pollWithParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     201: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     202: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     204: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.accountName, Parameters.host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const pollWithConstantParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
-  path: "/lroConstantParameterizedEndpoints/{constantParameter}",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: { type: { name: "String" } }
+const pollWithConstantParameterizedEndpointsOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/lroConstantParameterizedEndpoints/{constantParameter}",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: { type: { name: "String" } },
+      },
+      201: {
+        bodyMapper: { type: { name: "String" } },
+      },
+      202: {
+        bodyMapper: { type: { name: "String" } },
+      },
+      204: {
+        bodyMapper: { type: { name: "String" } },
+      },
+      default: {
+        bodyMapper: Mappers.ErrorModel,
+      },
     },
-    201: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    202: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    204: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [
-    Parameters.accountName,
-    Parameters.host,
-    Parameters.constantParameter
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    urlParameters: [
+      Parameters.accountName,
+      Parameters.host,
+      Parameters.constantParameter,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };

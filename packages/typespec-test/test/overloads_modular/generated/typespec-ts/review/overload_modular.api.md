@@ -10,35 +10,39 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export interface FooOperationsGetAvatarAsJpegOptions extends OperationOptions {
+// @public
+export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
-export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
+// @public
+export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FooOperationsOperations {
-    // (undocumented)
-    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptions) => Promise<void>;
-    // (undocumented)
-    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptions) => Promise<void>;
+    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
+    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
+}
+
+// @public
+export enum KnownVersions {
+    "2022-08-30" = "2022-08-30"
 }
 
 // @public (undocumented)
 export class WidgetManagerClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams);
     readonly fooOperations: FooOperationsOperations;
     readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
-export interface WidgetManagerClientOptions extends ClientOptions {
+// @public
+export interface WidgetManagerClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // (No @packageDocumentation comment for this package)

@@ -5,7 +5,7 @@ export enum KnownEnum0 {
   /** One */
   One = "one",
   /** Two */
-  Two = "two"
+  Two = "two",
 }
 
 /**

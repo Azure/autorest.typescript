@@ -2134,11 +2134,17 @@
           "type": "array",
           "description": "Supported OAuth2 flows",
           "items": {}
+        },
+        "defaultScopes": {
+          "type": "array",
+          "description": "Oauth2 scopes of every flow. Overridden by scope definitions in specific flows",
+          "items": {}
         }
       },
       "required": [
         "type",
-        "flows"
+        "flows",
+        "defaultScopes"
       ]
     },
     "OptionalLoadTestConfig": {

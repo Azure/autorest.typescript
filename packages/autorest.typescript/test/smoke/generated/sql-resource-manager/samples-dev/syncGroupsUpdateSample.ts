@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SyncGroup,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function updateASyncGroup() {
     interval: -1,
     syncDatabaseId:
       "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/syncgroupcrud-3521/providers/Microsoft.Sql/servers/syncgroupcrud-8475/databases/syncgroupcrud-4328",
-    usePrivateLinkConnection: true
+    usePrivateLinkConnection: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -47,7 +47,7 @@ async function updateASyncGroup() {
     serverName,
     databaseName,
     syncGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

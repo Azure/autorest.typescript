@@ -34,7 +34,7 @@ async function executeSiteDetector() {
     resourceGroupName,
     siteName,
     detectorName,
-    diagnosticCategory
+    diagnosticCategory,
   );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function executeSiteSlotDetector() {
     resourceGroupName,
     siteName,
     detectorName,
-    diagnosticCategory
+    diagnosticCategory,
   );
   console.log(result);
 }

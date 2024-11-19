@@ -33,7 +33,7 @@ async function deleteAJob() {
     resourceGroupName,
     serverName,
     jobAgentName,
-    jobName
+    jobName,
   );
   console.log(result);
 }

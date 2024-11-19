@@ -29,7 +29,7 @@ async function defaultSecurityRuleList() {
   const resArray = new Array();
   for await (let item of client.defaultSecurityRules.list(
     resourceGroupName,
-    networkSecurityGroupName
+    networkSecurityGroupName,
   )) {
     resArray.push(item);
   }

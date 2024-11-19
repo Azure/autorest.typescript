@@ -13,7 +13,7 @@ import {
   FormdataUploadFileViaBodyOptionalParams,
   FormdataUploadFileViaBodyResponse,
   FormdataUploadFilesOptionalParams,
-  FormdataUploadFilesResponse
+  FormdataUploadFilesResponse,
 } from "../models";
 
 /** Interface representing a Formdata. */
@@ -27,7 +27,7 @@ export interface Formdata {
   uploadFile(
     fileContent: coreRestPipeline.RequestBodyType,
     fileName: string,
-    options?: FormdataUploadFileOptionalParams
+    options?: FormdataUploadFileOptionalParams,
   ): Promise<FormdataUploadFileResponse>;
   /**
    * Upload file
@@ -36,7 +36,7 @@ export interface Formdata {
    */
   uploadFileViaBody(
     fileContent: coreRestPipeline.RequestBodyType,
-    options?: FormdataUploadFileViaBodyOptionalParams
+    options?: FormdataUploadFileViaBodyOptionalParams,
   ): Promise<FormdataUploadFileViaBodyResponse>;
   /**
    * Upload multiple files
@@ -45,6 +45,6 @@ export interface Formdata {
    */
   uploadFiles(
     fileContent: coreRestPipeline.RequestBodyType[],
-    options?: FormdataUploadFilesOptionalParams
+    options?: FormdataUploadFilesOptionalParams,
   ): Promise<FormdataUploadFilesResponse>;
 }

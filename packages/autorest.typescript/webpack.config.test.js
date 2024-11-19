@@ -2,35 +2,26 @@ const { readdirSync, statSync } = require("fs");
 const { join: joinPath, sep, extname } = require("path");
 const webpack = require("webpack");
 
-function getIntegrationTestFiles() {
-  let hlcDirPath = joinPath(__dirname, "test-browser", "integration");
-  let hlcFiles = readdirSync(hlcDirPath);
-  let rlcDirPath = joinPath(__dirname, "test-browser", "rlcIntegration");
-  let rlcFiles = readdirSync(rlcDirPath);
-  hlcFiles = hlcFiles
+function getIntegrationTestFiles(env) {
+  const mode = env.mode ?? "hlc";
+  const dirPath = joinPath(
+    __dirname,
+    "test-browser",
+    mode === "hlc" ? "integration" : "rlcIntegration"
+  );
+  let files = readdirSync(dirPath);
+  files = files
     .filter(
-      name =>
-        extname(name) === ".js" &&
-        statSync(`${hlcDirPath}${sep}${name}`).isFile()
+      (name) =>
+        extname(name) === ".js" && statSync(`${dirPath}${sep}${name}`).isFile()
     )
-    .map(filename => `${hlcDirPath}${sep}${filename}`);
+    .map((filename) => `${dirPath}${sep}${filename}`);
 
-  rlcFiles = rlcFiles
-    .filter(
-      name =>
-        extname(name) === ".js" &&
-        statSync(`${rlcDirPath}${sep}${name}`).isFile()
-    )
-    .map(filename => `${rlcDirPath}${sep}${filename}`);
-
-  return [...hlcFiles, ...rlcFiles];
+  return [...files];
 }
-
-const entry = getIntegrationTestFiles();
-
-module.exports = {
+module.exports = (env) => ({
   target: "web",
-  entry,
+  entry: getIntegrationTestFiles(env),
   output: {
     filename: "index.js",
     path: joinPath(__dirname, "test-browser")
@@ -64,4 +55,4 @@ module.exports = {
       Buffer: ["buffer", "Buffer"]
     })
   ]
-};
+});

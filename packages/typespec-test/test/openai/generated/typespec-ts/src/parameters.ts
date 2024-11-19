@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
@@ -7,31 +7,31 @@ import {
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
-} from "./models";
+} from "./models.js";
 
 export interface GetEmbeddingsBodyParam {
-  body?: EmbeddingsOptions;
+  body: EmbeddingsOptions;
 }
 
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
   RequestParameters;
 
 export interface GetCompletionsBodyParam {
-  body?: CompletionsOptions;
+  body: CompletionsOptions;
 }
 
 export type GetCompletionsParameters = GetCompletionsBodyParam &
   RequestParameters;
 
 export interface GetChatCompletionsBodyParam {
-  body?: ChatCompletionsOptions;
+  body: ChatCompletionsOptions;
 }
 
 export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
   RequestParameters;
 
 export interface GetChatCompletionsWithAzureExtensionsBodyParam {
-  body?: ChatCompletionsOptions;
+  body: ChatCompletionsOptions;
 }
 
 export type GetChatCompletionsWithAzureExtensionsParameters =
@@ -40,7 +40,7 @@ export type GetAzureBatchImageGenerationOperationStatusParameters =
   RequestParameters;
 
 export interface BeginAzureBatchImageGenerationBodyParam {
-  body?: ImageGenerationOptions;
+  body: ImageGenerationOptions;
 }
 
 export type BeginAzureBatchImageGenerationParameters =

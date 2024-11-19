@@ -1,21 +1,22 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
+export { ChatProtocolClient } from "./chatProtocolClient.js";
 export {
-  ChatProtocolClient,
-  ChatProtocolClientOptions,
-} from "./ChatProtocolClient.js";
-export {
-  StreamingChatCompletionOptions,
+  StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
-  ChatCompletionChunk,
-  ChoiceDelta,
+  ChatCompletionChunkRecord,
+  ChoiceDeltaRecord,
   ChatMessageDelta,
   FinishReason,
-  ChatCompletionOptions,
-  ChatCompletion,
-  ChatChoice,
-  CreateStreamingOptions,
-  CreateOptions,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+  ChatChoiceRecord,
+  KnownAPIVersion,
 } from "./models/index.js";
+export {
+  ChatProtocolClientOptionalParams,
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./api/index.js";

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PrivateEndpointConnection,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,8 +31,8 @@ async function storageAccountPutPrivateEndpointConnection() {
   const properties: PrivateEndpointConnection = {
     privateLinkServiceConnectionState: {
       description: "Auto-Approved",
-      status: "Approved"
-    }
+      status: "Approved",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function storageAccountPutPrivateEndpointConnection() {
     resourceGroupName,
     accountName,
     privateEndpointConnectionName,
-    properties
+    properties,
   );
   console.log(result);
 }

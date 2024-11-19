@@ -28,7 +28,7 @@ import {
   KeyCredentialsUpdateParameters,
   ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   PasswordCredentialsUpdateParameters,
-  ServicePrincipalsUpdatePasswordCredentialsOptionalParams
+  ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -39,7 +39,7 @@ export interface ServicePrincipals {
    * @param options The options parameters.
    */
   list(
-    options?: ServicePrincipalsListOptionalParams
+    options?: ServicePrincipalsListOptionalParams,
   ): PagedAsyncIterableIterator<ServicePrincipal>;
   /**
    * The owners are a set of non-admin users who are allowed to modify this object.
@@ -48,7 +48,7 @@ export interface ServicePrincipals {
    */
   listOwners(
     objectId: string,
-    options?: ServicePrincipalsListOwnersOptionalParams
+    options?: ServicePrincipalsListOwnersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the keyCredentials associated with the specified service principal.
@@ -57,7 +57,7 @@ export interface ServicePrincipals {
    */
   listKeyCredentials(
     objectId: string,
-    options?: ServicePrincipalsListKeyCredentialsOptionalParams
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<KeyCredential>;
   /**
    * Gets the passwordCredentials associated with a service principal.
@@ -66,7 +66,7 @@ export interface ServicePrincipals {
    */
   listPasswordCredentials(
     objectId: string,
-    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<PasswordCredential>;
   /**
    * Gets a list of service principals from the current tenant.
@@ -75,7 +75,7 @@ export interface ServicePrincipals {
    */
   listNext(
     nextLink: string,
-    options?: ServicePrincipalsListNextOptionalParams
+    options?: ServicePrincipalsListNextOptionalParams,
   ): PagedAsyncIterableIterator<ServicePrincipal>;
   /**
    * Creates a service principal in the directory.
@@ -84,7 +84,7 @@ export interface ServicePrincipals {
    */
   create(
     parameters: ServicePrincipalCreateParameters,
-    options?: ServicePrincipalsCreateOptionalParams
+    options?: ServicePrincipalsCreateOptionalParams,
   ): Promise<ServicePrincipalsCreateResponse>;
   /**
    * Updates a service principal in the directory.
@@ -95,7 +95,7 @@ export interface ServicePrincipals {
   update(
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
-    options?: ServicePrincipalsUpdateOptionalParams
+    options?: ServicePrincipalsUpdateOptionalParams,
   ): Promise<void>;
   /**
    * Deletes a service principal from the directory.
@@ -104,7 +104,7 @@ export interface ServicePrincipals {
    */
   delete(
     objectId: string,
-    options?: ServicePrincipalsDeleteOptionalParams
+    options?: ServicePrincipalsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets service principal information from the directory. Query by objectId or pass a filter to query
@@ -114,7 +114,7 @@ export interface ServicePrincipals {
    */
   get(
     objectId: string,
-    options?: ServicePrincipalsGetOptionalParams
+    options?: ServicePrincipalsGetOptionalParams,
   ): Promise<ServicePrincipalsGetResponse>;
   /**
    * Update the keyCredentials associated with a service principal.
@@ -125,7 +125,7 @@ export interface ServicePrincipals {
   updateKeyCredentials(
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
+    options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   ): Promise<void>;
   /**
    * Updates the passwordCredentials associated with a service principal.
@@ -136,6 +136,6 @@ export interface ServicePrincipals {
   updatePasswordCredentials(
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
+    options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
   ): Promise<void>;
 }

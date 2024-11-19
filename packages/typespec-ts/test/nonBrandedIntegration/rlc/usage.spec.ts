@@ -9,7 +9,10 @@ describe("ModelsUsageClient Rest Client", () => {
   };
 
   beforeEach(() => {
-    client = TypeModelUsageClientFactory({ allowInsecureConnection: true });
+    client = TypeModelUsageClientFactory({
+      allowInsecureConnection: true,
+      endpoint: "http://localhost:3003"
+    });
   });
 
   it("should post input model correctly", async () => {

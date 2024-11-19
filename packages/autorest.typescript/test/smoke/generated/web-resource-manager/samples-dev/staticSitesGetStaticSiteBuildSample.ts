@@ -31,7 +31,7 @@ async function getAStaticSiteBuild() {
   const result = await client.staticSites.getStaticSiteBuild(
     resourceGroupName,
     name,
-    environmentName
+    environmentName,
   );
   console.log(result);
 }

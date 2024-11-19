@@ -15,9 +15,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fileContent: OperationParameter = {
@@ -26,9 +26,9 @@ export const fileContent: OperationParameter = {
     serializedName: "fileContent",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const fileName: OperationParameter = {
@@ -37,9 +37,9 @@ export const fileName: OperationParameter = {
     serializedName: "fileName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -49,9 +49,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -60,10 +60,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType1: OperationParameter = {
@@ -73,9 +73,9 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fileContent1: OperationParameter = {
@@ -84,9 +84,9 @@ export const fileContent1: OperationParameter = {
     serializedName: "fileContent",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -96,9 +96,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fileContent2: OperationParameter = {
@@ -110,9 +110,9 @@ export const fileContent2: OperationParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "Stream"
-        }
-      }
-    }
-  }
+          name: "Stream",
+        },
+      },
+    },
+  },
 };

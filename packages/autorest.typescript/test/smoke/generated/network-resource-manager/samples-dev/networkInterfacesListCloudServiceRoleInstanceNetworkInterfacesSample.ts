@@ -31,7 +31,7 @@ async function listCloudServiceRoleInstanceNetworkInterfaces() {
   for await (let item of client.networkInterfaces.listCloudServiceRoleInstanceNetworkInterfaces(
     resourceGroupName,
     cloudServiceName,
-    roleInstanceName
+    roleInstanceName,
   )) {
     resArray.push(item);
   }

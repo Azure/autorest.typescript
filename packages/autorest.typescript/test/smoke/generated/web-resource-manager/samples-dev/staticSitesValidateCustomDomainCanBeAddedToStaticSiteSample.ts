@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteCustomDomainRequestPropertiesARMResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,15 +29,17 @@ async function validateACustomDomainForAStaticSite() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
-  const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
+  const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource =
+    {};
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
-    resourceGroupName,
-    name,
-    domainName,
-    staticSiteCustomDomainRequestPropertiesEnvelope
-  );
+  const result =
+    await client.staticSites.beginValidateCustomDomainCanBeAddedToStaticSiteAndWait(
+      resourceGroupName,
+      name,
+      domainName,
+      staticSiteCustomDomainRequestPropertiesEnvelope,
+    );
   console.log(result);
 }
 

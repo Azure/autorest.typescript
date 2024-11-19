@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PrivateDnsZoneGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,9 +32,9 @@ async function createPrivateDnsZoneGroup() {
     privateDnsZoneConfigs: [
       {
         privateDnsZoneId:
-          "/subscriptions/subId/resourceGroups/rg1/providers/Microsoft.Network/privateDnsZones/zone1.com"
-      }
-    ]
+          "/subscriptions/subId/resourceGroups/rg1/providers/Microsoft.Network/privateDnsZones/zone1.com",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -42,7 +42,7 @@ async function createPrivateDnsZoneGroup() {
     resourceGroupName,
     privateEndpointName,
     privateDnsZoneGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

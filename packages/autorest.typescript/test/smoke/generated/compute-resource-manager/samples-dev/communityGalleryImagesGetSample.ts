@@ -30,7 +30,7 @@ async function getAGallery() {
   const result = await client.communityGalleryImages.get(
     location,
     publicGalleryName,
-    galleryImageName
+    galleryImageName,
   );
   console.log(result);
 }

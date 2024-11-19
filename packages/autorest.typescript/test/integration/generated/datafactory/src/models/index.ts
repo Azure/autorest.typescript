@@ -10327,7 +10327,7 @@ export enum KnownFactoryIdentityType {
   /** UserAssigned */
   UserAssigned = "UserAssigned",
   /** SystemAssignedUserAssigned */
-  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
+  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
 }
 
 /**
@@ -10354,7 +10354,7 @@ export enum KnownGlobalParameterType {
   /** Bool */
   Bool = "Bool",
   /** Array */
-  Array = "Array"
+  Array = "Array",
 }
 
 /**
@@ -10376,7 +10376,7 @@ export enum KnownPublicNetworkAccess {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -10394,7 +10394,7 @@ export enum KnownIntegrationRuntimeType {
   /** Managed */
   Managed = "Managed",
   /** SelfHosted */
-  SelfHosted = "SelfHosted"
+  SelfHosted = "SelfHosted",
 }
 
 /**
@@ -10412,7 +10412,7 @@ export enum KnownIntegrationRuntimeAutoUpdate {
   /** On */
   On = "On",
   /** Off */
-  Off = "Off"
+  Off = "Off",
 }
 
 /**
@@ -10446,7 +10446,7 @@ export enum KnownIntegrationRuntimeState {
   /** Offline */
   Offline = "Offline",
   /** AccessDenied */
-  AccessDenied = "AccessDenied"
+  AccessDenied = "AccessDenied",
 }
 
 /**
@@ -10472,7 +10472,7 @@ export enum KnownIntegrationRuntimeAuthKeyName {
   /** AuthKey1 */
   AuthKey1 = "authKey1",
   /** AuthKey2 */
-  AuthKey2 = "authKey2"
+  AuthKey2 = "authKey2",
 }
 
 /**
@@ -10494,7 +10494,7 @@ export enum KnownSsisObjectMetadataType {
   /** Package */
   Package = "Package",
   /** Environment */
-  Environment = "Environment"
+  Environment = "Environment",
 }
 
 /**
@@ -10524,7 +10524,7 @@ export enum KnownSelfHostedIntegrationRuntimeNodeStatus {
   /** Initializing */
   Initializing = "Initializing",
   /** InitializeFailed */
-  InitializeFailed = "InitializeFailed"
+  InitializeFailed = "InitializeFailed",
 }
 
 /**
@@ -10549,7 +10549,7 @@ export enum KnownIntegrationRuntimeUpdateResult {
   /** Succeed */
   Succeed = "Succeed",
   /** Fail */
-  Fail = "Fail"
+  Fail = "Fail",
 }
 
 /**
@@ -10578,7 +10578,7 @@ export enum KnownParameterType {
   /** Array */
   Array = "Array",
   /** SecureString */
-  SecureString = "SecureString"
+  SecureString = "SecureString",
 }
 
 /**
@@ -10605,7 +10605,7 @@ export enum KnownDependencyCondition {
   /** Skipped */
   Skipped = "Skipped",
   /** Completed */
-  Completed = "Completed"
+  Completed = "Completed",
 }
 
 /**
@@ -10627,7 +10627,7 @@ export enum KnownVariableType {
   /** Bool */
   Bool = "Bool",
   /** Array */
-  Array = "Array"
+  Array = "Array",
 }
 
 /**
@@ -10666,7 +10666,7 @@ export enum KnownRunQueryFilterOperand {
   /** RunGroupId */
   RunGroupId = "RunGroupId",
   /** LatestOnly */
-  LatestOnly = "LatestOnly"
+  LatestOnly = "LatestOnly",
 }
 
 /**
@@ -10698,7 +10698,7 @@ export enum KnownRunQueryFilterOperator {
   /** In */
   In = "In",
   /** NotIn */
-  NotIn = "NotIn"
+  NotIn = "NotIn",
 }
 
 /**
@@ -10732,7 +10732,7 @@ export enum KnownRunQueryOrderByField {
   /** TriggerName */
   TriggerName = "TriggerName",
   /** TriggerRunTimestamp */
-  TriggerRunTimestamp = "TriggerRunTimestamp"
+  TriggerRunTimestamp = "TriggerRunTimestamp",
 }
 
 /**
@@ -10757,7 +10757,7 @@ export enum KnownRunQueryOrder {
   /** ASC */
   ASC = "ASC",
   /** Desc */
-  Desc = "DESC"
+  Desc = "DESC",
 }
 
 /**
@@ -10777,7 +10777,7 @@ export enum KnownTriggerRuntimeState {
   /** Stopped */
   Stopped = "Stopped",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -10802,7 +10802,7 @@ export enum KnownEventSubscriptionStatus {
   /** Disabled */
   Disabled = "Disabled",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -10825,7 +10825,7 @@ export enum KnownTriggerRunStatus {
   /** Failed */
   Failed = "Failed",
   /** Inprogress */
-  Inprogress = "Inprogress"
+  Inprogress = "Inprogress",
 }
 
 /**
@@ -10846,7 +10846,7 @@ export enum KnownDataFlowDebugCommandType {
   /** ExecuteStatisticsQuery */
   ExecuteStatisticsQuery = "executeStatisticsQuery",
   /** ExecuteExpressionQuery */
-  ExecuteExpressionQuery = "executeExpressionQuery"
+  ExecuteExpressionQuery = "executeExpressionQuery",
 }
 
 /**
@@ -10867,7 +10867,7 @@ export enum KnownDataFlowComputeType {
   /** MemoryOptimized */
   MemoryOptimized = "MemoryOptimized",
   /** ComputeOptimized */
-  ComputeOptimized = "ComputeOptimized"
+  ComputeOptimized = "ComputeOptimized",
 }
 
 /**
@@ -10890,7 +10890,7 @@ export enum KnownIntegrationRuntimeSsisCatalogPricingTier {
   /** Premium */
   Premium = "Premium",
   /** PremiumRS */
-  PremiumRS = "PremiumRS"
+  PremiumRS = "PremiumRS",
 }
 
 /**
@@ -10910,7 +10910,7 @@ export enum KnownIntegrationRuntimeLicenseType {
   /** BasePrice */
   BasePrice = "BasePrice",
   /** LicenseIncluded */
-  LicenseIncluded = "LicenseIncluded"
+  LicenseIncluded = "LicenseIncluded",
 }
 
 /**
@@ -10928,7 +10928,7 @@ export enum KnownIntegrationRuntimeEntityReferenceType {
   /** IntegrationRuntimeReference */
   IntegrationRuntimeReference = "IntegrationRuntimeReference",
   /** LinkedServiceReference */
-  LinkedServiceReference = "LinkedServiceReference"
+  LinkedServiceReference = "LinkedServiceReference",
 }
 
 /**
@@ -10946,7 +10946,7 @@ export enum KnownIntegrationRuntimeEdition {
   /** Standard */
   Standard = "Standard",
   /** Enterprise */
-  Enterprise = "Enterprise"
+  Enterprise = "Enterprise",
 }
 
 /**
@@ -10968,7 +10968,7 @@ export enum KnownManagedIntegrationRuntimeNodeStatus {
   /** Recycling */
   Recycling = "Recycling",
   /** Unavailable */
-  Unavailable = "Unavailable"
+  Unavailable = "Unavailable",
 }
 
 /**
@@ -10990,7 +10990,7 @@ export enum KnownIntegrationRuntimeInternalChannelEncryptionMode {
   /** SslEncrypted */
   SslEncrypted = "SslEncrypted",
   /** NotEncrypted */
-  NotEncrypted = "NotEncrypted"
+  NotEncrypted = "NotEncrypted",
 }
 
 /**
@@ -11011,7 +11011,7 @@ export enum KnownSqlAlwaysEncryptedAkvAuthType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** UserAssignedManagedIdentity */
-  UserAssignedManagedIdentity = "UserAssignedManagedIdentity"
+  UserAssignedManagedIdentity = "UserAssignedManagedIdentity",
 }
 
 /**
@@ -11030,7 +11030,7 @@ export enum KnownCosmosDbServicePrincipalCredentialType {
   /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
   /** ServicePrincipalCert */
-  ServicePrincipalCert = "ServicePrincipalCert"
+  ServicePrincipalCert = "ServicePrincipalCert",
 }
 
 /**
@@ -11048,7 +11048,7 @@ export enum KnownCosmosDbConnectionMode {
   /** Gateway */
   Gateway = "Gateway",
   /** Direct */
-  Direct = "Direct"
+  Direct = "Direct",
 }
 
 /**
@@ -11066,7 +11066,7 @@ export enum KnownSybaseAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** Windows */
-  Windows = "Windows"
+  Windows = "Windows",
 }
 
 /**
@@ -11082,7 +11082,7 @@ export type SybaseAuthenticationType = string;
 /** Known values of {@link Db2AuthenticationType} that the service accepts. */
 export enum KnownDb2AuthenticationType {
   /** Basic */
-  Basic = "Basic"
+  Basic = "Basic",
 }
 
 /**
@@ -11099,7 +11099,7 @@ export enum KnownTeradataAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** Windows */
-  Windows = "Windows"
+  Windows = "Windows",
 }
 
 /**
@@ -11123,7 +11123,7 @@ export enum KnownODataAuthenticationType {
   /** AadServicePrincipal */
   AadServicePrincipal = "AadServicePrincipal",
   /** ManagedServiceIdentity */
-  ManagedServiceIdentity = "ManagedServiceIdentity"
+  ManagedServiceIdentity = "ManagedServiceIdentity",
 }
 
 /**
@@ -11144,7 +11144,7 @@ export enum KnownODataAadServicePrincipalCredentialType {
   /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
   /** ServicePrincipalCert */
-  ServicePrincipalCert = "ServicePrincipalCert"
+  ServicePrincipalCert = "ServicePrincipalCert",
 }
 
 /**
@@ -11164,7 +11164,7 @@ export enum KnownWebAuthenticationType {
   /** Anonymous */
   Anonymous = "Anonymous",
   /** ClientCertificate */
-  ClientCertificate = "ClientCertificate"
+  ClientCertificate = "ClientCertificate",
 }
 
 /**
@@ -11183,7 +11183,7 @@ export enum KnownMongoDbAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** Anonymous */
-  Anonymous = "Anonymous"
+  Anonymous = "Anonymous",
 }
 
 /**
@@ -11205,7 +11205,7 @@ export enum KnownRestServiceAuthenticationType {
   /** AadServicePrincipal */
   AadServicePrincipal = "AadServicePrincipal",
   /** ManagedServiceIdentity */
-  ManagedServiceIdentity = "ManagedServiceIdentity"
+  ManagedServiceIdentity = "ManagedServiceIdentity",
 }
 
 /**
@@ -11231,7 +11231,7 @@ export enum KnownHttpAuthenticationType {
   /** Windows */
   Windows = "Windows",
   /** ClientCertificate */
-  ClientCertificate = "ClientCertificate"
+  ClientCertificate = "ClientCertificate",
 }
 
 /**
@@ -11252,7 +11252,7 @@ export enum KnownFtpAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** Anonymous */
-  Anonymous = "Anonymous"
+  Anonymous = "Anonymous",
 }
 
 /**
@@ -11272,7 +11272,7 @@ export enum KnownSftpAuthenticationType {
   /** SshPublicKey */
   SshPublicKey = "SshPublicKey",
   /** MultiFactor */
-  MultiFactor = "MultiFactor"
+  MultiFactor = "MultiFactor",
 }
 
 /**
@@ -11291,7 +11291,7 @@ export enum KnownSapHanaAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** Windows */
-  Windows = "Windows"
+  Windows = "Windows",
 }
 
 /**
@@ -11309,7 +11309,7 @@ export enum KnownGoogleBigQueryAuthenticationType {
   /** ServiceAuthentication */
   ServiceAuthentication = "ServiceAuthentication",
   /** UserAuthentication */
-  UserAuthentication = "UserAuthentication"
+  UserAuthentication = "UserAuthentication",
 }
 
 /**
@@ -11327,7 +11327,7 @@ export enum KnownHBaseAuthenticationType {
   /** Anonymous */
   Anonymous = "Anonymous",
   /** Basic */
-  Basic = "Basic"
+  Basic = "Basic",
 }
 
 /**
@@ -11347,7 +11347,7 @@ export enum KnownHiveServerType {
   /** HiveServer2 */
   HiveServer2 = "HiveServer2",
   /** HiveThriftServer */
-  HiveThriftServer = "HiveThriftServer"
+  HiveThriftServer = "HiveThriftServer",
 }
 
 /**
@@ -11368,7 +11368,7 @@ export enum KnownHiveThriftTransportProtocol {
   /** Sasl */
   Sasl = "SASL",
   /** Http */
-  Http = "HTTP "
+  Http = "HTTP ",
 }
 
 /**
@@ -11391,7 +11391,7 @@ export enum KnownHiveAuthenticationType {
   /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
   /** WindowsAzureHDInsightService */
-  WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
+  WindowsAzureHDInsightService = "WindowsAzureHDInsightService",
 }
 
 /**
@@ -11413,7 +11413,7 @@ export enum KnownImpalaAuthenticationType {
   /** SaslUsername */
   SaslUsername = "SASLUsername",
   /** UsernameAndPassword */
-  UsernameAndPassword = "UsernameAndPassword"
+  UsernameAndPassword = "UsernameAndPassword",
 }
 
 /**
@@ -11434,7 +11434,7 @@ export enum KnownPhoenixAuthenticationType {
   /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
   /** WindowsAzureHDInsightService */
-  WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
+  WindowsAzureHDInsightService = "WindowsAzureHDInsightService",
 }
 
 /**
@@ -11453,7 +11453,7 @@ export enum KnownPrestoAuthenticationType {
   /** Anonymous */
   Anonymous = "Anonymous",
   /** Ldap */
-  Ldap = "LDAP"
+  Ldap = "LDAP",
 }
 
 /**
@@ -11471,7 +11471,7 @@ export enum KnownServiceNowAuthenticationType {
   /** Basic */
   Basic = "Basic",
   /** OAuth2 */
-  OAuth2 = "OAuth2"
+  OAuth2 = "OAuth2",
 }
 
 /**
@@ -11491,7 +11491,7 @@ export enum KnownSparkServerType {
   /** SharkServer2 */
   SharkServer2 = "SharkServer2",
   /** SparkThriftServer */
-  SparkThriftServer = "SparkThriftServer"
+  SparkThriftServer = "SparkThriftServer",
 }
 
 /**
@@ -11512,7 +11512,7 @@ export enum KnownSparkThriftTransportProtocol {
   /** Sasl */
   Sasl = "SASL",
   /** Http */
-  Http = "HTTP "
+  Http = "HTTP ",
 }
 
 /**
@@ -11535,7 +11535,7 @@ export enum KnownSparkAuthenticationType {
   /** UsernameAndPassword */
   UsernameAndPassword = "UsernameAndPassword",
   /** WindowsAzureHDInsightService */
-  WindowsAzureHDInsightService = "WindowsAzureHDInsightService"
+  WindowsAzureHDInsightService = "WindowsAzureHDInsightService",
 }
 
 /**
@@ -11555,7 +11555,7 @@ export enum KnownGoogleAdWordsAuthenticationType {
   /** ServiceAuthentication */
   ServiceAuthentication = "ServiceAuthentication",
   /** UserAuthentication */
-  UserAuthentication = "UserAuthentication"
+  UserAuthentication = "UserAuthentication",
 }
 
 /**
@@ -11573,7 +11573,7 @@ export enum KnownSalesforceSourceReadBehavior {
   /** Query */
   Query = "Query",
   /** QueryAll */
-  QueryAll = "QueryAll"
+  QueryAll = "QueryAll",
 }
 
 /**
@@ -11601,7 +11601,7 @@ export enum KnownStoredProcedureParameterType {
   /** Boolean */
   Boolean = "Boolean",
   /** Date */
-  Date = "Date"
+  Date = "Date",
 }
 
 /**
@@ -11640,7 +11640,7 @@ export enum KnownCassandraSourceReadConsistencyLevels {
   /** Serial */
   Serial = "SERIAL",
   /** LocalSerial */
-  LocalSerial = "LOCAL_SERIAL"
+  LocalSerial = "LOCAL_SERIAL",
 }
 
 /**
@@ -11666,7 +11666,7 @@ export enum KnownSapCloudForCustomerSinkWriteBehavior {
   /** Insert */
   Insert = "Insert",
   /** Update */
-  Update = "Update"
+  Update = "Update",
 }
 
 /**
@@ -11684,7 +11684,7 @@ export enum KnownPolybaseSettingsRejectType {
   /** Value */
   Value = "value",
   /** Percentage */
-  Percentage = "percentage"
+  Percentage = "percentage",
 }
 
 /**
@@ -11702,7 +11702,7 @@ export enum KnownAzureSearchIndexWriteBehaviorType {
   /** Merge */
   Merge = "Merge",
   /** Upload */
-  Upload = "Upload"
+  Upload = "Upload",
 }
 
 /**
@@ -11718,7 +11718,7 @@ export type AzureSearchIndexWriteBehaviorType = string;
 /** Known values of {@link DynamicsSinkWriteBehavior} that the service accepts. */
 export enum KnownDynamicsSinkWriteBehavior {
   /** Upsert */
-  Upsert = "Upsert"
+  Upsert = "Upsert",
 }
 
 /**
@@ -11735,7 +11735,7 @@ export enum KnownSalesforceSinkWriteBehavior {
   /** Insert */
   Insert = "Insert",
   /** Upsert */
-  Upsert = "Upsert"
+  Upsert = "Upsert",
 }
 
 /**
@@ -11755,7 +11755,7 @@ export enum KnownHDInsightActivityDebugInfoOption {
   /** Always */
   Always = "Always",
   /** Failure */
-  Failure = "Failure"
+  Failure = "Failure",
 }
 
 /**
@@ -11778,7 +11778,7 @@ export enum KnownSsisPackageLocationType {
   /** InlinePackage */
   InlinePackage = "InlinePackage",
   /** PackageStore */
-  PackageStore = "PackageStore"
+  PackageStore = "PackageStore",
 }
 
 /**
@@ -11796,7 +11796,7 @@ export type SsisPackageLocationType = string;
 /** Known values of {@link SsisLogLocationType} that the service accepts. */
 export enum KnownSsisLogLocationType {
   /** File */
-  File = "File"
+  File = "File",
 }
 
 /**
@@ -11817,7 +11817,7 @@ export enum KnownWebActivityMethod {
   /** PUT */
   PUT = "PUT",
   /** Delete */
-  Delete = "DELETE"
+  Delete = "DELETE",
 }
 
 /**
@@ -11847,7 +11847,7 @@ export enum KnownAzureFunctionActivityMethod {
   /** Head */
   Head = "HEAD",
   /** Trace */
-  Trace = "TRACE"
+  Trace = "TRACE",
 }
 
 /**
@@ -11868,7 +11868,7 @@ export type AzureFunctionActivityMethod = string;
 /** Known values of {@link WebHookActivityMethod} that the service accepts. */
 export enum KnownWebHookActivityMethod {
   /** Post */
-  Post = "POST"
+  Post = "POST",
 }
 
 /**
@@ -11895,7 +11895,7 @@ export enum KnownRecurrenceFrequency {
   /** Month */
   Month = "Month",
   /** Year */
-  Year = "Year"
+  Year = "Year",
 }
 
 /**
@@ -11918,7 +11918,7 @@ export enum KnownBlobEventTypes {
   /** MicrosoftStorageBlobCreated */
   MicrosoftStorageBlobCreated = "Microsoft.Storage.BlobCreated",
   /** MicrosoftStorageBlobDeleted */
-  MicrosoftStorageBlobDeleted = "Microsoft.Storage.BlobDeleted"
+  MicrosoftStorageBlobDeleted = "Microsoft.Storage.BlobDeleted",
 }
 
 /**
@@ -11938,7 +11938,7 @@ export enum KnownTumblingWindowFrequency {
   /** Hour */
   Hour = "Hour",
   /** Month */
-  Month = "Month"
+  Month = "Month",
 }
 
 /**
@@ -11957,7 +11957,7 @@ export enum KnownJsonFormatFilePattern {
   /** SetOfObjects */
   SetOfObjects = "setOfObjects",
   /** ArrayOfObjects */
-  ArrayOfObjects = "arrayOfObjects"
+  ArrayOfObjects = "arrayOfObjects",
 }
 
 /**
@@ -11975,7 +11975,7 @@ export enum KnownDatasetCompressionLevel {
   /** Optimal */
   Optimal = "Optimal",
   /** Fastest */
-  Fastest = "Fastest"
+  Fastest = "Fastest",
 }
 
 /**
@@ -11999,7 +11999,7 @@ export enum KnownAvroCompressionCodec {
   /** Xz */
   Xz = "xz",
   /** Bzip2 */
-  Bzip2 = "bzip2"
+  Bzip2 = "bzip2",
 }
 
 /**
@@ -12036,7 +12036,7 @@ export enum KnownCompressionCodec {
   /** Tar */
   Tar = "tar",
   /** TarGZip */
-  TarGZip = "tarGZip"
+  TarGZip = "tarGZip",
 }
 
 /**
@@ -12066,7 +12066,7 @@ export enum KnownOrcCompressionCodec {
   /** Snappy */
   Snappy = "snappy",
   /** Lzo */
-  Lzo = "lzo"
+  Lzo = "lzo",
 }
 
 /**
@@ -12086,7 +12086,7 @@ export enum KnownDynamicsDeploymentType {
   /** Online */
   Online = "Online",
   /** OnPremisesWithIfd */
-  OnPremisesWithIfd = "OnPremisesWithIfd"
+  OnPremisesWithIfd = "OnPremisesWithIfd",
 }
 
 /**
@@ -12106,7 +12106,7 @@ export enum KnownDynamicsAuthenticationType {
   /** Ifd */
   Ifd = "Ifd",
   /** AADServicePrincipal */
-  AADServicePrincipal = "AADServicePrincipal"
+  AADServicePrincipal = "AADServicePrincipal",
 }
 
 /**
@@ -12125,7 +12125,7 @@ export enum KnownServicePrincipalCredentialType {
   /** ServicePrincipalKey */
   ServicePrincipalKey = "ServicePrincipalKey",
   /** ServicePrincipalCert */
-  ServicePrincipalCert = "ServicePrincipalCert"
+  ServicePrincipalCert = "ServicePrincipalCert",
 }
 
 /**
@@ -12145,7 +12145,7 @@ export enum KnownHdiNodeTypes {
   /** Workernode */
   Workernode = "Workernode",
   /** Zookeeper */
-  Zookeeper = "Zookeeper"
+  Zookeeper = "Zookeeper",
 }
 
 /**
@@ -12164,7 +12164,7 @@ export enum KnownJsonWriteFilePattern {
   /** SetOfObjects */
   SetOfObjects = "setOfObjects",
   /** ArrayOfObjects */
-  ArrayOfObjects = "arrayOfObjects"
+  ArrayOfObjects = "arrayOfObjects",
 }
 
 /**
@@ -12184,7 +12184,7 @@ export enum KnownAmazonRdsForOraclePartitionOption {
   /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
   /** DynamicRange */
-  DynamicRange = "DynamicRange"
+  DynamicRange = "DynamicRange",
 }
 
 /**
@@ -12205,7 +12205,7 @@ export enum KnownCopyBehaviorType {
   /** FlattenHierarchy */
   FlattenHierarchy = "FlattenHierarchy",
   /** MergeFiles */
-  MergeFiles = "MergeFiles"
+  MergeFiles = "MergeFiles",
 }
 
 /**
@@ -12226,7 +12226,7 @@ export enum KnownSqlWriteBehaviorEnum {
   /** Upsert */
   Upsert = "Upsert",
   /** StoredProcedure */
-  StoredProcedure = "StoredProcedure"
+  StoredProcedure = "StoredProcedure",
 }
 
 /**
@@ -12245,7 +12245,7 @@ export enum KnownSqlDWWriteBehaviorEnum {
   /** Insert */
   Insert = "Insert",
   /** Upsert */
-  Upsert = "Upsert"
+  Upsert = "Upsert",
 }
 
 /**
@@ -12265,7 +12265,7 @@ export enum KnownSqlPartitionOption {
   /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
   /** DynamicRange */
-  DynamicRange = "DynamicRange"
+  DynamicRange = "DynamicRange",
 }
 
 /**
@@ -12286,7 +12286,7 @@ export enum KnownSapHanaPartitionOption {
   /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
   /** SapHanaDynamicRange */
-  SapHanaDynamicRange = "SapHanaDynamicRange"
+  SapHanaDynamicRange = "SapHanaDynamicRange",
 }
 
 /**
@@ -12313,7 +12313,7 @@ export enum KnownSapTablePartitionOption {
   /** PartitionOnCalendarDate */
   PartitionOnCalendarDate = "PartitionOnCalendarDate",
   /** PartitionOnTime */
-  PartitionOnTime = "PartitionOnTime"
+  PartitionOnTime = "PartitionOnTime",
 }
 
 /**
@@ -12337,7 +12337,7 @@ export enum KnownOraclePartitionOption {
   /** PhysicalPartitionsOfTable */
   PhysicalPartitionsOfTable = "PhysicalPartitionsOfTable",
   /** DynamicRange */
-  DynamicRange = "DynamicRange"
+  DynamicRange = "DynamicRange",
 }
 
 /**
@@ -12358,7 +12358,7 @@ export enum KnownTeradataPartitionOption {
   /** Hash */
   Hash = "Hash",
   /** DynamicRange */
-  DynamicRange = "DynamicRange"
+  DynamicRange = "DynamicRange",
 }
 
 /**
@@ -12379,7 +12379,7 @@ export enum KnownNetezzaPartitionOption {
   /** DataSlice */
   DataSlice = "DataSlice",
   /** DynamicRange */
-  DynamicRange = "DynamicRange"
+  DynamicRange = "DynamicRange",
 }
 
 /**
@@ -12517,21 +12517,24 @@ export interface ExposureControlGetFeatureValueByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFeatureValueByFactory operation. */
-export type ExposureControlGetFeatureValueByFactoryResponse = ExposureControlResponse;
+export type ExposureControlGetFeatureValueByFactoryResponse =
+  ExposureControlResponse;
 
 /** Optional parameters. */
 export interface ExposureControlQueryFeatureValuesByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the queryFeatureValuesByFactory operation. */
-export type ExposureControlQueryFeatureValuesByFactoryResponse = ExposureControlBatchResponse;
+export type ExposureControlQueryFeatureValuesByFactoryResponse =
+  ExposureControlBatchResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesListByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactory operation. */
-export type IntegrationRuntimesListByFactoryResponse = IntegrationRuntimeListResponse;
+export type IntegrationRuntimesListByFactoryResponse =
+  IntegrationRuntimeListResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesCreateOrUpdateOptionalParams
@@ -12541,7 +12544,8 @@ export interface IntegrationRuntimesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type IntegrationRuntimesCreateOrUpdateResponse = IntegrationRuntimeResource;
+export type IntegrationRuntimesCreateOrUpdateResponse =
+  IntegrationRuntimeResource;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesGetOptionalParams
@@ -12569,35 +12573,40 @@ export interface IntegrationRuntimesGetStatusOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStatus operation. */
-export type IntegrationRuntimesGetStatusResponse = IntegrationRuntimeStatusResponse;
+export type IntegrationRuntimesGetStatusResponse =
+  IntegrationRuntimeStatusResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesListOutboundNetworkDependenciesEndpointsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOutboundNetworkDependenciesEndpoints operation. */
-export type IntegrationRuntimesListOutboundNetworkDependenciesEndpointsResponse = IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse;
+export type IntegrationRuntimesListOutboundNetworkDependenciesEndpointsResponse =
+  IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesGetConnectionInfoOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getConnectionInfo operation. */
-export type IntegrationRuntimesGetConnectionInfoResponse = IntegrationRuntimeConnectionInfo;
+export type IntegrationRuntimesGetConnectionInfoResponse =
+  IntegrationRuntimeConnectionInfo;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesRegenerateAuthKeyOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the regenerateAuthKey operation. */
-export type IntegrationRuntimesRegenerateAuthKeyResponse = IntegrationRuntimeAuthKeys;
+export type IntegrationRuntimesRegenerateAuthKeyResponse =
+  IntegrationRuntimeAuthKeys;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesListAuthKeysOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAuthKeys operation. */
-export type IntegrationRuntimesListAuthKeysResponse = IntegrationRuntimeAuthKeys;
+export type IntegrationRuntimesListAuthKeysResponse =
+  IntegrationRuntimeAuthKeys;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesStartOptionalParams
@@ -12629,7 +12638,8 @@ export interface IntegrationRuntimesGetMonitoringDataOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMonitoringData operation. */
-export type IntegrationRuntimesGetMonitoringDataResponse = IntegrationRuntimeMonitoringData;
+export type IntegrationRuntimesGetMonitoringDataResponse =
+  IntegrationRuntimeMonitoringData;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesUpgradeOptionalParams
@@ -12644,14 +12654,16 @@ export interface IntegrationRuntimesCreateLinkedIntegrationRuntimeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createLinkedIntegrationRuntime operation. */
-export type IntegrationRuntimesCreateLinkedIntegrationRuntimeResponse = IntegrationRuntimeStatusResponse;
+export type IntegrationRuntimesCreateLinkedIntegrationRuntimeResponse =
+  IntegrationRuntimeStatusResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimesListByFactoryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactoryNext operation. */
-export type IntegrationRuntimesListByFactoryNextResponse = IntegrationRuntimeListResponse;
+export type IntegrationRuntimesListByFactoryNextResponse =
+  IntegrationRuntimeListResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimeObjectMetadataRefreshOptionalParams
@@ -12663,7 +12675,8 @@ export interface IntegrationRuntimeObjectMetadataRefreshOptionalParams
 }
 
 /** Contains response data for the refresh operation. */
-export type IntegrationRuntimeObjectMetadataRefreshResponse = SsisObjectMetadataStatusResponse;
+export type IntegrationRuntimeObjectMetadataRefreshResponse =
+  SsisObjectMetadataStatusResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimeObjectMetadataGetOptionalParams
@@ -12673,14 +12686,16 @@ export interface IntegrationRuntimeObjectMetadataGetOptionalParams
 }
 
 /** Contains response data for the get operation. */
-export type IntegrationRuntimeObjectMetadataGetResponse = SsisObjectMetadataListResponse;
+export type IntegrationRuntimeObjectMetadataGetResponse =
+  SsisObjectMetadataListResponse;
 
 /** Optional parameters. */
 export interface IntegrationRuntimeNodesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type IntegrationRuntimeNodesGetResponse = SelfHostedIntegrationRuntimeNode;
+export type IntegrationRuntimeNodesGetResponse =
+  SelfHostedIntegrationRuntimeNode;
 
 /** Optional parameters. */
 export interface IntegrationRuntimeNodesDeleteOptionalParams
@@ -12691,14 +12706,16 @@ export interface IntegrationRuntimeNodesUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type IntegrationRuntimeNodesUpdateResponse = SelfHostedIntegrationRuntimeNode;
+export type IntegrationRuntimeNodesUpdateResponse =
+  SelfHostedIntegrationRuntimeNode;
 
 /** Optional parameters. */
 export interface IntegrationRuntimeNodesGetIpAddressOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getIpAddress operation. */
-export type IntegrationRuntimeNodesGetIpAddressResponse = IntegrationRuntimeNodeIpAddress;
+export type IntegrationRuntimeNodesGetIpAddressResponse =
+  IntegrationRuntimeNodeIpAddress;
 
 /** Optional parameters. */
 export interface LinkedServicesListByFactoryOptionalParams
@@ -12906,14 +12923,16 @@ export interface TriggersSubscribeToEventsOptionalParams
 }
 
 /** Contains response data for the subscribeToEvents operation. */
-export type TriggersSubscribeToEventsResponse = TriggerSubscriptionOperationStatus;
+export type TriggersSubscribeToEventsResponse =
+  TriggerSubscriptionOperationStatus;
 
 /** Optional parameters. */
 export interface TriggersGetEventSubscriptionStatusOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getEventSubscriptionStatus operation. */
-export type TriggersGetEventSubscriptionStatusResponse = TriggerSubscriptionOperationStatus;
+export type TriggersGetEventSubscriptionStatusResponse =
+  TriggerSubscriptionOperationStatus;
 
 /** Optional parameters. */
 export interface TriggersUnsubscribeFromEventsOptionalParams
@@ -12925,7 +12944,8 @@ export interface TriggersUnsubscribeFromEventsOptionalParams
 }
 
 /** Contains response data for the unsubscribeFromEvents operation. */
-export type TriggersUnsubscribeFromEventsResponse = TriggerSubscriptionOperationStatus;
+export type TriggersUnsubscribeFromEventsResponse =
+  TriggerSubscriptionOperationStatus;
 
 /** Optional parameters. */
 export interface TriggersStartOptionalParams
@@ -13015,21 +13035,24 @@ export interface DataFlowDebugSessionCreateOptionalParams
 }
 
 /** Contains response data for the create operation. */
-export type DataFlowDebugSessionCreateResponse = CreateDataFlowDebugSessionResponse;
+export type DataFlowDebugSessionCreateResponse =
+  CreateDataFlowDebugSessionResponse;
 
 /** Optional parameters. */
 export interface DataFlowDebugSessionQueryByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the queryByFactory operation. */
-export type DataFlowDebugSessionQueryByFactoryResponse = QueryDataFlowDebugSessionsResponse;
+export type DataFlowDebugSessionQueryByFactoryResponse =
+  QueryDataFlowDebugSessionsResponse;
 
 /** Optional parameters. */
 export interface DataFlowDebugSessionAddDataFlowOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the addDataFlow operation. */
-export type DataFlowDebugSessionAddDataFlowResponse = AddDataFlowToDebugSessionResponse;
+export type DataFlowDebugSessionAddDataFlowResponse =
+  AddDataFlowToDebugSessionResponse;
 
 /** Optional parameters. */
 export interface DataFlowDebugSessionDeleteOptionalParams
@@ -13045,21 +13068,24 @@ export interface DataFlowDebugSessionExecuteCommandOptionalParams
 }
 
 /** Contains response data for the executeCommand operation. */
-export type DataFlowDebugSessionExecuteCommandResponse = DataFlowDebugCommandResponse;
+export type DataFlowDebugSessionExecuteCommandResponse =
+  DataFlowDebugCommandResponse;
 
 /** Optional parameters. */
 export interface DataFlowDebugSessionQueryByFactoryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the queryByFactoryNext operation. */
-export type DataFlowDebugSessionQueryByFactoryNextResponse = QueryDataFlowDebugSessionsResponse;
+export type DataFlowDebugSessionQueryByFactoryNextResponse =
+  QueryDataFlowDebugSessionsResponse;
 
 /** Optional parameters. */
 export interface ManagedVirtualNetworksListByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactory operation. */
-export type ManagedVirtualNetworksListByFactoryResponse = ManagedVirtualNetworkListResponse;
+export type ManagedVirtualNetworksListByFactoryResponse =
+  ManagedVirtualNetworkListResponse;
 
 /** Optional parameters. */
 export interface ManagedVirtualNetworksCreateOrUpdateOptionalParams
@@ -13069,7 +13095,8 @@ export interface ManagedVirtualNetworksCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedVirtualNetworksCreateOrUpdateResponse = ManagedVirtualNetworkResource;
+export type ManagedVirtualNetworksCreateOrUpdateResponse =
+  ManagedVirtualNetworkResource;
 
 /** Optional parameters. */
 export interface ManagedVirtualNetworksGetOptionalParams
@@ -13086,14 +13113,16 @@ export interface ManagedVirtualNetworksListByFactoryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactoryNext operation. */
-export type ManagedVirtualNetworksListByFactoryNextResponse = ManagedVirtualNetworkListResponse;
+export type ManagedVirtualNetworksListByFactoryNextResponse =
+  ManagedVirtualNetworkListResponse;
 
 /** Optional parameters. */
 export interface ManagedPrivateEndpointsListByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactory operation. */
-export type ManagedPrivateEndpointsListByFactoryResponse = ManagedPrivateEndpointListResponse;
+export type ManagedPrivateEndpointsListByFactoryResponse =
+  ManagedPrivateEndpointListResponse;
 
 /** Optional parameters. */
 export interface ManagedPrivateEndpointsCreateOrUpdateOptionalParams
@@ -13103,7 +13132,8 @@ export interface ManagedPrivateEndpointsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedPrivateEndpointsCreateOrUpdateResponse = ManagedPrivateEndpointResource;
+export type ManagedPrivateEndpointsCreateOrUpdateResponse =
+  ManagedPrivateEndpointResource;
 
 /** Optional parameters. */
 export interface ManagedPrivateEndpointsGetOptionalParams
@@ -13124,21 +13154,24 @@ export interface ManagedPrivateEndpointsListByFactoryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactoryNext operation. */
-export type ManagedPrivateEndpointsListByFactoryNextResponse = ManagedPrivateEndpointListResponse;
+export type ManagedPrivateEndpointsListByFactoryNextResponse =
+  ManagedPrivateEndpointListResponse;
 
 /** Optional parameters. */
 export interface PrivateEndPointConnectionsListByFactoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactory operation. */
-export type PrivateEndPointConnectionsListByFactoryResponse = PrivateEndpointConnectionListResponse;
+export type PrivateEndPointConnectionsListByFactoryResponse =
+  PrivateEndpointConnectionListResponse;
 
 /** Optional parameters. */
 export interface PrivateEndPointConnectionsListByFactoryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByFactoryNext operation. */
-export type PrivateEndPointConnectionsListByFactoryNextResponse = PrivateEndpointConnectionListResponse;
+export type PrivateEndPointConnectionsListByFactoryNextResponse =
+  PrivateEndpointConnectionListResponse;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionCreateOrUpdateOptionalParams
@@ -13148,7 +13181,8 @@ export interface PrivateEndpointConnectionCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateEndpointConnectionCreateOrUpdateResponse = PrivateEndpointConnectionResource;
+export type PrivateEndpointConnectionCreateOrUpdateResponse =
+  PrivateEndpointConnectionResource;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionGetOptionalParams
@@ -13158,7 +13192,8 @@ export interface PrivateEndpointConnectionGetOptionalParams
 }
 
 /** Contains response data for the get operation. */
-export type PrivateEndpointConnectionGetResponse = PrivateEndpointConnectionResource;
+export type PrivateEndpointConnectionGetResponse =
+  PrivateEndpointConnectionResource;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionDeleteOptionalParams

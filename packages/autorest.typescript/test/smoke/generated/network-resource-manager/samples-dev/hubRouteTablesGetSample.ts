@@ -30,7 +30,7 @@ async function routeTableGet() {
   const result = await client.hubRouteTables.get(
     resourceGroupName,
     virtualHubName,
-    routeTableName
+    routeTableName,
   );
   console.log(result);
 }

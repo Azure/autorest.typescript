@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleriesGetOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function getAGalleryWithSelectPermissions() {
   const result = await client.galleries.get(
     resourceGroupName,
     galleryName,
-    options
+    options,
   );
   console.log(result);
 }

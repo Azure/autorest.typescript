@@ -28,7 +28,7 @@ async function getsAWafPolicyWithinAResourceGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.webApplicationFirewallPolicies.get(
     resourceGroupName,
-    policyName
+    policyName,
   );
   console.log(result);
 }

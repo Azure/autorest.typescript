@@ -30,7 +30,7 @@ async function deleteARunCommand() {
   const result = await client.virtualMachineRunCommands.beginDeleteAndWait(
     resourceGroupName,
     vmName,
-    runCommandName
+    runCommandName,
   );
   console.log(result);
 }

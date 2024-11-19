@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedDatabaseQueriesListByQueryOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function obtainQueryExecutionStatistics() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    queryId
+    queryId,
   )) {
     resArray.push(item);
   }
@@ -63,7 +63,7 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
   const options: ManagedDatabaseQueriesListByQueryOptionalParams = {
     startTime,
     endTime,
-    interval
+    interval,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -73,7 +73,7 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
     managedInstanceName,
     databaseName,
     queryId,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -103,7 +103,7 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
     managedInstanceName,
     databaseName,
     queryId,
-    options
+    options,
   )) {
     resArray.push(item);
   }

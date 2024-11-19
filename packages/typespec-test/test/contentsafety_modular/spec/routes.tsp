@@ -67,7 +67,7 @@ interface TextBlocklists {
   @doc("Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request.")
   addOrUpdateBlockItems is BlockOps.ResourceAction<
     TextBlocklist,
-    AddOrUpdateBlockItemsOptions,
+    { @body body: AddOrUpdateBlockItemsOptions },
     AddOrUpdateBlockItemsResult
   >;
 
@@ -75,7 +75,7 @@ interface TextBlocklists {
   @doc("Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request.")
   removeBlockItems is BlockOps.ResourceAction<
     TextBlocklist,
-    RemoveBlockItemsOptions,
+    { @body body: RemoveBlockItemsOptions },
     NoContentResponse
   >;
 

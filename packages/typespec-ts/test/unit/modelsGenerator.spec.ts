@@ -5,6 +5,7 @@ import {
   emitResponsesFromTypeSpec
 } from "../util/emitUtil.js";
 import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 describe("Input/output model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
@@ -25,6 +26,7 @@ describe("Input/output model type", () => {
     inputType: string,
     options?: VerifyPropertyConfig,
     needAzureCore: boolean = false,
+    needTCGC: boolean = false,
     additionalImports: string = ""
   ) {
     const defaultOption: VerifyPropertyConfig = {
@@ -54,13 +56,16 @@ describe("Input/output model type", () => {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     @route("/models")
     @get
-    op getModel(@body input: InputOutputModel): InputOutputModel;`,
-      needAzureCore
+    op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;`,
+      {
+        needAzureCore,
+        needTCGC
+      }
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
     assert.strictEqual(inputModelFile?.path, "models.ts");
-    assertEqualContent(
+    await assertEqualContent(
       inputModelFile?.content!,
       `
     ${additionalImports}
@@ -72,7 +77,7 @@ describe("Input/output model type", () => {
     );
 
     assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-    assertEqualContent(
+    await assertEqualContent(
       outputModelFile?.content!,
       `
     ${additionalImports}
@@ -83,6 +88,23 @@ describe("Input/output model type", () => {
     ${additionalOutputContent}`
     );
   }
+
+  describe("void generation", async () => {
+    it("should throw exception for property with void type", async () => {
+      try {
+        const tspType = "void";
+        const typeScriptType = "void";
+        await verifyPropertyType(tspType, typeScriptType);
+        assert.fail("Should throw exception");
+      } catch (err: any) {
+        assert.equal(
+          err[0].message,
+          "Couldn't get schema for type Intrinsic with property prop"
+        );
+        assert.equal(err[0]?.target?.name, "void");
+      }
+    });
+  });
 
   describe("null generation", async () => {
     it("should generate null only", async () => {
@@ -111,6 +133,31 @@ describe("Input/output model type", () => {
       const tspType = "Record<boolean | null>";
       const typeScriptType = "Record<string, boolean | null>";
       await verifyPropertyType(tspType, typeScriptType);
+    });
+
+    it("should generate nullable model", async () => {
+      const tspDefinition = `
+      alias NullableFloat = float32 | null;
+      model SimpleModel {
+        color: Record<NullableFloat>[];
+      }
+      `;
+      const tspType = "SimpleModel";
+      const typeScriptType = "SimpleModel";
+      await verifyPropertyType(tspType, typeScriptType, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: "SimpleModelOutput",
+        additionalInputContent: `
+        export interface SimpleModel {
+          color: Record<string, number | null>[];
+        }
+          `,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          color: Record<string, number | null>[];
+        }
+          `
+      });
     });
 
     it("should generate nullable model", async () => {
@@ -161,150 +208,211 @@ describe("Input/output model type", () => {
       await verifyPropertyType("float64", "number");
     });
   });
-  describe("string generation", () => {
-    it("should handle extensible_enum as property -> string", async () => {
-      // When extensible_enum is comsumed as body property it should be string only
-      const schemaOutput = await emitModelsFromTypeSpec(`
-      @doc("Extensible enum model description")
-      enum TranslationLanguageValues {
-        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-        English,
-        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-        Chinese,
-      }
-      model InputOutputModel {
-        @doc("Property description")
-        prop: TranslationLanguageValues;
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: InputOutputModel): InputOutputModel;
-      `);
-      assert.ok(schemaOutput);
-      const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
-        inputModelFile?.content!,
-        `
-      export interface InputOutputModel {
-        /**
-         * Property description
-         *
-         * Possible values: English, Chinese
-         */
-        prop: string;
-      }`
-      );
-      assertEqualContent(
-        outputModelFile?.content!,
-        `
-      export interface InputOutputModelOutput {
-        /**
-         * Property description
-         *
-         * Possible values: English, Chinese
-         */
-        prop: string;
-      }`
-      );
-    });
-    it("should handle extensible_enum as body -> string", async () => {
-      // When extensible_enum is comsumed as body property it should be string only
-      const schemaOutput = await emitParameterFromTypeSpec(`
-      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-      enum TranslationLanguage {
-        English,
-        Chinese,
-      }
-      model InputOutputModel {
-        prop: TranslationLanguage;
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: TranslationLanguage): InputOutputModel;
-      `);
-      assert.ok(schemaOutput);
-      assertEqualContent(
-        schemaOutput?.content!,
-        `
-      import { RequestParameters } from "@azure-rest/core-client";
-      
-      export interface GetModelBodyParam {
-        /** Possible values: English, Chinese */
-        body: string;
-      }
-      
-      export type GetModelParameters = GetModelBodyParam & RequestParameters;`
-      );
-    });
-
-    describe("fixed enum", () => {
-      it("should handle enum -> string_literals", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }`;
-        const tspType = "TranslationLanguageValues";
-        const typeScriptType = `"English" | "Chinese"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
+  describe("string", () => {
+    describe("enum", () => {
+      describe("without @fixed", () => {
+        it("should handle enum as property -> type alias with union", async () => {
+          const schemaOutput = await emitModelsFromTypeSpec(`
+          @doc("Extensible enum model description")
+          enum TranslationLanguageValues {
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            English,
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            Chinese,
+          }
+          model InputOutputModel {
+            @doc("Property description")
+            prop: TranslationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: InputOutputModel): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          const { inputModelFile, outputModelFile } = schemaOutput!;
+          await assertEqualContent(
+            inputModelFile?.content!,
+            `
+          export interface InputOutputModel {
+            /** Property description */
+            prop: TranslationLanguageValues;
+          }
+          
+          /** Extensible enum model description */
+          export type TranslationLanguageValues = "English" | "Chinese";
+          `
+          );
+          await assertEqualContent(
+            outputModelFile?.content!,
+            `
+            export interface InputOutputModelOutput {
+              /** Property description */
+              prop: TranslationLanguageValuesOutput;
+            }
+            
+            /** Extensible enum model description */
+            export type TranslationLanguageValuesOutput = "English" | "Chinese";`
+          );
+        });
+        it("should handle enum with non-standard name as property -> type alias with union", async () => {
+          const schemaOutput = await emitModelsFromTypeSpec(`
+          @doc("Extensible enum model description")
+          enum translationLanguageValues {
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            English,
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            Chinese,
+          }
+          model InputOutputModel {
+            @doc("Property description")
+            prop: translationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: InputOutputModel): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          const { inputModelFile, outputModelFile } = schemaOutput!;
+          await assertEqualContent(
+            inputModelFile?.content!,
+            `
+          export interface InputOutputModel {
+            /** Property description */
+            prop: TranslationLanguageValues;
+          }
+          
+          /** Extensible enum model description */
+          export type TranslationLanguageValues = "English" | "Chinese";
+          `
+          );
+          await assertEqualContent(
+            outputModelFile?.content!,
+            `
+            export interface InputOutputModelOutput {
+              /** Property description */
+              prop: TranslationLanguageValuesOutput;
+            }
+            
+            /** Extensible enum model description */
+            export type TranslationLanguageValuesOutput = "English" | "Chinese";`
+          );
+        });
+        it("should handle enum as body -> type alias with union", async () => {
+          const schemaOutput = await emitParameterFromTypeSpec(`
+          #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+          enum TranslationLanguage {
+            English,
+            Chinese,
+          }
+          model InputOutputModel {
+            prop: TranslationLanguage;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: TranslationLanguage): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          await assertEqualContent(
+            schemaOutput?.content!,
+            `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { TranslationLanguage } from "./models.js";
+          
+          export interface GetModelBodyParam {
+            body: TranslationLanguage;
+          }
+          
+          export type GetModelParameters = GetModelBodyParam & RequestParameters;`
+          );
+        });
       });
+      describe("with @fixed", () => {
+        it("should handle enum -> string_literals", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }`;
+          const tspType = "TranslationLanguageValues";
+          const typeScriptType = `TranslationLanguageValues`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              outputType: `TranslationLanguageValuesOutput`,
+              additionalTypeSpecDefinition: tspTypeDefinition,
+              additionalInputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValues = "English" | "Chinese";
+              `,
+              additionalOutputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValuesOutput = "English" | "Chinese";
+              `
+            },
+            true
+          );
+        });
 
-      it("with enum value is xx.xx", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          \`English.Class\`,
-          @doc("Chinese descriptions")
-          \`Chinese.Class\`,
-        }`;
-        const tspType = "TranslationLanguageValues";
-        const typeScriptType = `"English.Class" | "Chinese.Class"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
-      });
+        it("with enum value is xx.xx", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            \`English.Class\`,
+            @doc("Chinese descriptions")
+            \`Chinese.Class\`,
+          }`;
+          const tspType = "TranslationLanguageValues";
+          const typeScriptType = `TranslationLanguageValues`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              outputType: `TranslationLanguageValuesOutput`,
+              additionalTypeSpecDefinition: tspTypeDefinition,
+              additionalInputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValues = "English.Class" | "Chinese.Class";
+              `,
+              additionalOutputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValuesOutput = "English.Class" | "Chinese.Class";
+              `
+            },
+            true
+          );
+        });
 
-      it("should handle enum member", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }`;
-        const tspType = "TranslationLanguageValues.English";
-        const typeScriptType = `"English"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
+        it("should handle enum member", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }`;
+          const tspType = "TranslationLanguageValues.English";
+          const typeScriptType = `"English"`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              additionalTypeSpecDefinition: tspTypeDefinition
+            },
+            true
+          );
+        });
       });
     });
 
@@ -345,6 +453,181 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("decimal generation", () => {
+    it("should handle decimal -> number", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+         * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+         * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+         * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+         * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+         *
+        */
+        prop: number;
+      }
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+         * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+         * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+         * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+         * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+         *
+        */
+        prop: number;
+      }
+      `
+      );
+    });
+
+    it("should report decimal-to-number diagnostic warning for decimal -> number", async () => {
+      try {
+        await emitModelsFromTypeSpec(
+          `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+          {
+            needTCGC: true,
+            mustEmptyDiagnostic: false
+          }// throw exception for diagnostics
+        );
+      } catch (err: any) {
+        assert.strictEqual(err.length, 2);
+        assert.strictEqual(
+          err[0].code,
+          "@azure-tools/typespec-ts/decimal-to-number"
+        );
+        assert.strictEqual(
+          err[0].message,
+          "Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - prop."
+        );
+      }
+    });
+
+    it("should handle decimal128 -> number", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal128;
+      }
+      @route("/decimal128/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        {
+          needTCGC: true,
+          mustEmptyDiagnostic: false
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+         * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+         * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+         * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+         * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+         *
+        */
+        prop: number;
+      }
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+         * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+         * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+         * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+         * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+         *
+        */
+        prop: number;
+      }
+      `
+      );
+    });
+    it("should handle int/decimal/decimal128/int8 with encode `string`", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        @encode("string")
+        prop1: decimal;
+        @encode("string")
+        prop2: decimal128;
+        @encode("string")
+        x: int8;
+      }
+      @route("/decimal/prop/encode")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        {
+          needTCGC: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        prop1: string;
+        prop2: string;
+        x: string;
+      }
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        prop1: string;
+        prop2: string;
+        x: string;
+      }
+      `
+      );
+    });
+  });
+
   describe("array basic generation", () => {
     it("should handle string[] -> string[]", async () => {
       const tspType = "string[]";
@@ -378,7 +661,7 @@ describe("Input/output model type", () => {
 
     it("should handle plainDate[] -> input 'Date[] | string[]' output type 'string[]'", async () => {
       const tspType = "plainDate[]";
-      const inputType = "Date[] | string[]";
+      const inputType = "string[]";
       const outputType = "string[]";
       await verifyPropertyType(tspType, inputType, { outputType });
     });
@@ -441,7 +724,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle fixed enum array", async () => {
+    it("should handle enum with @fixed array", async () => {
       const tspDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
@@ -452,20 +735,28 @@ describe("Input/output model type", () => {
       }
       `;
       const tspType = "DiskEncryptionTarget[]";
-      const typeScriptType = `("osdisk" | "temporarydisk")[]`;
+      const typeScriptType = `DiskEncryptionTarget[]`;
       const inputModelName = typeScriptType;
       await verifyPropertyType(
         tspType,
         inputModelName,
         {
           additionalTypeSpecDefinition: tspDefinition,
-          outputType: typeScriptType
+          outputType: `DiskEncryptionTargetOutput[]`,
+          additionalInputContent: `
+          /** Alias for DiskEncryptionTarget */
+          export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+          `,
+          additionalOutputContent: `
+          /** Alias for DiskEncryptionTargetOutput */
+          export type DiskEncryptionTargetOutput = "osdisk" | "temporarydisk";
+          `
         },
         true
       );
     });
 
-    it("should handle extensible enum array", async () => {
+    it("should handle enum without fixed array", async () => {
       const tspDefinition = `
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum DiskEncryptionTarget {
@@ -474,14 +765,22 @@ describe("Input/output model type", () => {
       }
       `;
       const tspType = "DiskEncryptionTarget[]";
-      const typeScriptType = `string[]`;
+      const typeScriptType = `DiskEncryptionTarget[]`;
       const inputModelName = typeScriptType;
       await verifyPropertyType(
         tspType,
         inputModelName,
         {
           additionalTypeSpecDefinition: tspDefinition,
-          outputType: typeScriptType
+          outputType: `DiskEncryptionTargetOutput[]`,
+          additionalInputContent: `
+          /** Alias for DiskEncryptionTarget */
+          export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+          `,
+          additionalOutputContent: `
+          /** Alias for DiskEncryptionTargetOutput */
+          export type DiskEncryptionTargetOutput = "osdisk" | "temporarydisk";
+          `
         },
         true
       );
@@ -540,7 +839,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it.skip("should handle anonymous model -> effective type/interface", async () => {
+    it("should handle anonymous model -> effective type/interface", async () => {
       const tspDefinition = `
       model SimpleModel {
         prop1: string;
@@ -587,13 +886,13 @@ describe("Input/output model type", () => {
         const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(!inputModelFile?.content);
         assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
           export interface PetOutputParent {
             name: string;
             weight?: number;
-            "kind": string;
+            kind: string;
           }
   
           export interface CatOutput extends PetOutputParent {
@@ -606,7 +905,7 @@ describe("Input/output model type", () => {
             bark: string;
           }
   
-          export type PetOutput = CatOutput | DogOutput;`
+          export type PetOutput = PetOutputParent | CatOutput | DogOutput;`
         );
       });
 
@@ -648,7 +947,7 @@ describe("Input/output model type", () => {
         const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(!inputModelFile?.content);
         assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
@@ -682,9 +981,9 @@ describe("Input/output model type", () => {
         }
         
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
-        export type FishOutput = SharkOutput | SalmonOutput;
+        export type FishOutput = FishOutputParent | SharkOutput | SalmonOutput;
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
-        export type SharkOutput = SawSharkOutput | GoblinSharkOutput;
+        export type SharkOutput = SharkOutputParent | SawSharkOutput | GoblinSharkOutput;
         `
         );
       });
@@ -745,7 +1044,7 @@ describe("Input/output model type", () => {
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModel = ${inputModelName};
+          export type BaseModel = BaseModelParent | ${inputModelName};
           `,
           additionalOutputContent: `
           /** This is a model has property names of special words or characters. */
@@ -761,7 +1060,7 @@ describe("Input/output model type", () => {
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModelOutput = ${inputModelName}Output;
+          export type BaseModelOutput = BaseModelOutputParent | ${inputModelName}Output;
           `
         });
       });
@@ -788,7 +1087,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutputParent {
@@ -796,10 +1095,12 @@ describe("Input/output model type", () => {
             }
 
             export interface BOutputParent {
-              a: string;
+              a: AOutput;
             }
 
-            export type BOutput = COutput;`
+            export type BOutput = BOutputParent | COutput;
+            /** Alias for AOutput */
+            export type AOutput = "AA" | "BB";`
             );
           });
 
@@ -809,7 +1110,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutput {
@@ -817,9 +1118,11 @@ describe("Input/output model type", () => {
             }
     
             export interface BOutput {
-              /** Possible values: AA, BB */
-              a: string;
-            }`
+              a: AOutput;
+            }
+            
+            /** Alias for AOutput */
+            export type AOutput = "AA" | "BB";`
             );
           });
         });
@@ -846,7 +1149,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutput {
@@ -854,9 +1157,12 @@ describe("Input/output model type", () => {
             }
     
             export interface BOutput {
-              /** Possible values: 1.1, 2.2 */
-              a: string;
-            }`
+              a: AOutput;
+            }
+            
+            /** Alias for AOutput */
+            export type AOutput = 1.1 | 2.2;
+            `
             );
           });
         });
@@ -879,7 +1185,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -895,7 +1201,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -925,7 +1231,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -941,7 +1247,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -971,7 +1277,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -987,7 +1293,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1017,7 +1323,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1033,7 +1339,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1063,7 +1369,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1079,7 +1385,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1119,7 +1425,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1146,7 +1452,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1197,7 +1503,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1224,7 +1530,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1273,7 +1579,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1298,7 +1604,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1319,6 +1625,73 @@ describe("Input/output model type", () => {
           expiry: string;
           id: string;
         }`
+      );
+    });
+
+    it("should handle model additional properties from spread record of int64 | string", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables extends Record<string, number | string>{
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput extends Record<string, number | string> {
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+    });
+
+    it("should handle model extends with additional properties", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Base {
+        foo: int32;
+      }
+      model A extends Base{
+        ...Record<int32>;
+        prop: int32
+      }
+      op post(@body body: A): { @body body: A };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.isTrue(inputModelFile?.path?.endsWith("models.ts"));
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface A extends Record<string, number>, Base {
+          prop: number;
+        }
+
+        export interface Base {
+          foo: number;
+        }
+        `
       );
     });
   });
@@ -1360,12 +1733,13 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1373,7 +1747,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1394,12 +1768,13 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1407,7 +1782,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1429,12 +1804,13 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
         `,
-          false,
-          true
+          {
+            needTCGC: true
+          }
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1442,7 +1818,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1461,7 +1837,10 @@ describe("Input/output model type", () => {
         op getModel(@query input: duration): NoContentResponse;
         `);
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("string")
+        );
       });
 
       it("should handle duration with encode `seconds`", async () => {
@@ -1474,12 +1853,12 @@ describe("Input/output model type", () => {
           @encode("seconds", float64)
           input: duration): NoContentResponse;
         `,
-          false,
-          false,
-          true
         );
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("number")
+        );
       });
 
       it("should handle duration with encode `iso8601`", async () => {
@@ -1492,25 +1871,25 @@ describe("Input/output model type", () => {
           @encode("iso8601")
           input: duration): NoContentResponse;
         `,
-          false,
-          false,
-          true
         );
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("string")
+        );
       });
     });
   });
   describe("datetime generation", () => {
     it("should handle plainDate -> string in output model &  `Date | string` in input model", async () => {
-      const inputType = "Date | string";
+      const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("plainDate", inputType, {
         outputType
       });
     });
     it("should handle plainTime -> string in output model &  `Date | string` in input model", async () => {
-      const inputType = "Date | string";
+      const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("plainTime", inputType, {
         outputType
@@ -1524,7 +1903,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle offsetDateTime> string in output model &  `Date | string` in input model", async () => {
       const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("offsetDateTime ", inputType, {
@@ -1543,12 +1922,13 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1556,7 +1936,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -1577,12 +1957,13 @@ describe("Input/output model type", () => {
         @get
         op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1590,7 +1971,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -1612,12 +1993,13 @@ describe("Input/output model type", () => {
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
-        false,
-        true
+        {
+          needTCGC: true
+        }
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1625,7 +2007,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -1800,7 +2182,7 @@ describe("Input/output model type", () => {
       });
     });
   });
-  describe("Union basic generation", () => {
+  describe("union expression", () => {
     it("should handle string | integer -> string | number", async () => {
       const tspType = "string | integer";
       const typeScriptType = "string | number";
@@ -1842,10 +2224,70 @@ describe("Input/output model type", () => {
       const typeScriptType = `"job"[] | string[]`;
       await verifyPropertyType(tspType, typeScriptType);
     });
+
+    it("should handle Model1[] | Model2[] -> Array<Model1> | Array<Model2>", async () => {
+      const tspDefinition = `
+      @doc("This is a base model.")
+      model BaseModel {
+        name: string;
+      }
+      
+      @doc("The first one of the unioned model type.")
+      model Model1 extends BaseModel {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 extends BaseModel {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const tspType = "Model1[] | Model2[]";
+      const inputModelName = "Array<Model1> | Array<Model2>";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `Array<Model1Output> | Array<Model2Output>`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 extends BaseModel {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModel {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2 extends BaseModel {
+          prop2: number;
+        }`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output extends BaseModelOutput {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModelOutput {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output extends BaseModelOutput {
+          prop2: number;
+        }`
+      });
+    });
   });
 
-  describe("Union Models generation", () => {
-    it("should handle named unions", async () => {
+  describe("Named union", () => {
+    it("union variants are models", async () => {
       const tspDefinition = `
       @doc("This is a base model.")
       model BaseModel {
@@ -1888,6 +2330,7 @@ describe("Input/output model type", () => {
           prop2: number;
         }
        
+        /** Alias for MyNamedUnion */
         export type MyNamedUnion = Model1 | Model2;`,
         additionalOutputContent: `
         /** The first one of the unioned model type. */
@@ -1905,26 +2348,27 @@ describe("Input/output model type", () => {
           prop2: number;
         }
        
-       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = Model1Output | Model2Output;`
       });
     });
 
-    it("should handle named unions with null variant", async () => {
+    it("union variants are mixed with nullable/primitive/model", async () => {
       const tspDefinition = `
       @doc("The first one of the unioned model type.")
       model Model1 {
         prop1: int32;
       }
-      
-      @doc("The second one of the unioned model type.")
-      model Model2 {
-        prop2: int32;
-      }
+
+      alias A = "X" | "Y";
       
       union MyNamedUnion {
         one: Model1,
-        two: Model2,
-        three: null
+        two: "foo",
+        three: null,
+        four: 1,
+        five: A,
+        six: Model1[],
       }
       `;
       const tspType = "MyNamedUnion";
@@ -1937,43 +2381,25 @@ describe("Input/output model type", () => {
         export interface Model1 {
           prop1: number;
         }
-      
-        /** The second one of the unioned model type. */
-        export interface Model2 {
-          prop2: number;
-        }
-       
-        export type MyNamedUnion = Model1 | Model2 | null;`,
+
+        /** Alias for MyNamedUnion */
+        export type MyNamedUnion = Model1 | "foo" | null | 1 | "X" | "Y" | Array<Model1>;`,
         additionalOutputContent: `
         /** The first one of the unioned model type. */
         export interface Model1Output {
           prop1: number;
         }
-        
-        /** The second one of the unioned model type. */
-        export interface Model2Output {
-          prop2: number;
-        }
-       
-       export type MyNamedUnionOutput = Model1Output | Model2Output | null;`
+
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = Model1Output | "foo" | null | 1 | "X" | "Y" | Array<Model1Output>;`
       });
     });
 
-    it("should handle nullable named unions", async () => {
+    it("union variants are pure primitive types", async () => {
       const tspDefinition = `
-      @doc("The first one of the unioned model type.")
-      model Model1 {
-        prop1: int32;
-      }
-      
-      @doc("The second one of the unioned model type.")
-      model Model2 {
-        prop2: int32;
-      }
-      
       union MyNamedUnion {
-        one: Model1,
-        two: Model2,
+        one: string,
+        two: int32,
       }
       `;
       const tspType = "MyNamedUnion | null";
@@ -1982,30 +2408,129 @@ describe("Input/output model type", () => {
         additionalTypeSpecDefinition: tspDefinition,
         outputType: `MyNamedUnionOutput | null`,
         additionalInputContent: `
-        /** The first one of the unioned model type. */
-        export interface Model1 {
-          prop1: number;
-        }
-      
-        /** The second one of the unioned model type. */
-        export interface Model2 {
-          prop2: number;
-        }
-       
-        export type MyNamedUnion = Model1 | Model2;`,
+        /** Alias for MyNamedUnion */
+        export type MyNamedUnion = string | number;`,
         additionalOutputContent: `
-        /** The first one of the unioned model type. */
-        export interface Model1Output {
-          prop1: number;
-        }
-        
-        /** The second one of the unioned model type. */
-        export interface Model2Output {
-          prop2: number;
-        }
-       
-       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = string | number;`
       });
+    });
+
+    it("union with non-standard name whose variants are pure primitive types", async () => {
+      const tspDefinition = `
+      union myNamedUnion {
+        one: string,
+        two: int32,
+      }
+      `;
+      const tspType = "myNamedUnion | null";
+      const inputModelName = "MyNamedUnion | null";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `MyNamedUnionOutput | null`,
+        additionalInputContent: `
+        /** Alias for MyNamedUnion */
+        export type MyNamedUnion = string | number;`,
+        additionalOutputContent: `
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = string | number;`
+      });
+    });
+
+    it("union variants are pure constants", async () => {
+      const tspDefinition = `
+      union StringExtensibleNamedUnion {
+        OptionB: "b",
+        "c",
+        foo: 1,
+      }
+      `;
+      const tspType = "StringExtensibleNamedUnion";
+      const inputModelName = "StringExtensibleNamedUnion";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `StringExtensibleNamedUnionOutput`,
+        additionalInputContent: `
+        /** Alias for StringExtensibleNamedUnion */
+        export type StringExtensibleNamedUnion = "b" | "c" | 1;`,
+        additionalOutputContent: `
+        /** Alias for StringExtensibleNamedUnionOutput */
+        export type StringExtensibleNamedUnionOutput = "b" | "c" | 1;`
+      });
+    });
+  });
+
+  describe("extensible union", () => {
+    it("extensible union string as enum", async () => {
+      const tspDefinition = `
+      union ExtensibleStringEnum {
+        string;
+        "a";
+        "b";
+      }
+      model SimpleModel {
+        propRequired: ExtensibleStringEnum;
+        propOptional?: ExtensibleStringEnum;
+        propNullableRequired: ExtensibleStringEnum | null;
+        propNullableOptional?: ExtensibleStringEnum | null;
+        propNullableFlattened: string | "a" | "b" | null;
+        propArrayElement: ExtensibleStringEnum[];
+        propArrayElementNullable: (ExtensibleStringEnum | null)[];
+        propRecord: Record<ExtensibleStringEnum>;
+        propRecordNullable: Record<ExtensibleStringEnum | null>;
+      }
+
+      @route("/models")
+      @put
+      op putModel(@body input: SimpleModel): SimpleModel;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+       export interface SimpleModel {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnum;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnum;
+         propNullableRequired: ExtensibleStringEnum | null;
+         propNullableOptional?: ExtensibleStringEnum | null;
+         propNullableFlattened: string | null;
+         propArrayElement: ExtensibleStringEnum[];
+         propArrayElementNullable: (ExtensibleStringEnum | null)[];
+         propRecord: Record<string, ExtensibleStringEnum>;
+         propRecordNullable: Record<string, ExtensibleStringEnum | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnum */
+       export type ExtensibleStringEnum = string;
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+       export interface SimpleModelOutput {
+         /** Possible values: "a", "b" */
+         propRequired: ExtensibleStringEnumOutput;
+         /** Possible values: "a", "b" */
+         propOptional?: ExtensibleStringEnumOutput;
+         propNullableRequired: ExtensibleStringEnumOutput | null;
+         propNullableOptional?: ExtensibleStringEnumOutput | null;
+         propNullableFlattened: string | null;
+         propArrayElement: ExtensibleStringEnumOutput[];
+         propArrayElementNullable: (ExtensibleStringEnumOutput | null)[];
+         propRecord: Record<string, ExtensibleStringEnumOutput>;
+         propRecordNullable: Record<string, ExtensibleStringEnumOutput | null>;
+       }
+       
+       /** Alias for ExtensibleStringEnumOutput */
+       export type ExtensibleStringEnumOutput = string;
+      `
+      );
     });
   });
 
@@ -2052,7 +2577,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile?.content);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface A {
@@ -2061,7 +2586,7 @@ describe("Input/output model type", () => {
     }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface BOutput {
@@ -2081,16 +2606,43 @@ describe("Input/output model type", () => {
         outputType: `${inputModelName}`
       });
     });
+    it("should generate correct name and properties if A `is` B with template arguments", async () => {
+      const tspDefinition = `
+      model B<Parameter> {
+        prop1: string;
+        prop2: Parameter;
+      }
+      model A is B<string> {
+        @query
+        name: string;
+      };
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          prop1:string;
+          prop2:string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          prop1:string;
+          prop2:string;
+        }`
+      });
+    });
   });
 
-  describe("@projectedName", () => {
+  describe("@clientName & @encodedName", () => {
     it("should generate projected json name for property", async () => {
       const tspDefinition = `
       @doc("This is a Foo model.")
       model FooModel {
-        @projectedName("json", "xJson")
-        @projectedName("javascript", "MadeForTS")
-        @projectedName("client", "NotToUseMeAsName") // Should be ignored
+        @encodedName("application/json", "xJson")
+        @clientName("MadeForTS", "javascript")
         x: int32;
 
         y: string;
@@ -2098,22 +2650,28 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           xJson: number;
           y: string;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           xJson: number;
           y: string;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate augmented projected json name for property", async () => {
@@ -2123,32 +2681,38 @@ describe("Input/output model type", () => {
         x: int32;
       }
 
-      @@projectedName(FooModel.x, "client", "NotToUseMeAsName"); // Should be ignored
-      @@projectedName(FooModel.x, "javascript", "MadeForTS");
-      @@projectedName(FooModel.x, "json", "xJson");
+      @@clientName(FooModel.x, "NotToUseMeAsName"); // Should be ignored
+      @@clientName(FooModel.x, "MadeForTS", "javascript");
+      @@encodedName(FooModel.x, "application/json", "xJson");
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           xJson: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           xJson: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate friendly name over projected model name", async () => {
       const tspDefinition = `
-      @projectedName("javascript", "CustomProjectedModelTS")
-      @projectedName("json", "CustomProjectedModel")
+      @clientName("CustomProjectedModelTS", "javascript")
+      @encodedName("application/json", "CustomProjectedModel")
       @friendlyName("CustomFriendlyModel")
       @doc("This is a Foo model.")
       model FooModel {
@@ -2157,25 +2721,31 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "CustomFriendlyModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `CustomFriendlyModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `CustomFriendlyModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface CustomFriendlyModel {
           x: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface CustomFriendlyModelOutput {
           x: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should ignore projected javascript model name", async () => {
       const tspDefinition = `
-      @projectedName("javascript", "CustomProjectedModelTS")
+      @clientName("CustomProjectedModelTS", "javascript")
       @doc("This is a Foo model.")
       model FooModel {
         x: int32;
@@ -2183,31 +2753,37 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           x: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           x: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate projected operation name for parameter", async () => {
       const parameters = await emitParameterFromTypeSpec(
         `
-        @projectedName("json", "testRunOperation")
+        @encodedName("application/json", "testRunOperation")
         op test(): string;
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
           import { RequestParameters } from "@azure-rest/core-client";
@@ -2220,12 +2796,12 @@ describe("Input/output model type", () => {
     it("should generate projected operation name for response", async () => {
       const parameters = await emitResponsesFromTypeSpec(
         `
-        @projectedName("json", "testRunOperation")
+        @encodedName("application/json", "testRunOperation")
         op test(): string;
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -2242,12 +2818,15 @@ describe("Input/output model type", () => {
     it("should not generate projected javascript name in RLC", async () => {
       const parameters = await emitResponsesFromTypeSpec(
         `
-        @projectedName("javascript", "testRunOperation")
+        @clientName("testRunOperation", "javascript")
         op test(): string;
-        `
+        `,
+        {
+          needTCGC: true
+        }
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -2257,7 +2836,7 @@ describe("Input/output model type", () => {
           status: "200";
          body: string;
         }
-          `
+        `
       );
     });
   });
@@ -2295,19 +2874,19 @@ describe("Input/output model type", () => {
       model X is Templated<Base>{};
       `;
       const tspType = "X";
-      const inputModelName = "TemplatedBase";
+      const inputModelName = "X";
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,
-        outputType: `TemplatedBaseOutput`,
+        outputType: `XOutput`,
         additionalInputContent: `
-        export interface TemplatedBase {
+        export interface X {
            prop: BaseModel;
         }
 
         export interface BaseModel {}
         `,
         additionalOutputContent: `
-        export interface TemplatedBaseOutput {
+        export interface XOutput {
           prop: BaseModelOutput;
         }
 
@@ -2350,7 +2929,60 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorResponse } from "@azure-rest/core-client"`
+      );
+    });
+
+    it("ErrorResponse model would not be renamed even enabling the namespace name", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      import "@azure-tools/typespec-client-generator-core";
+      import "@azure-tools/typespec-azure-core";
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+
+      using Azure.ClientGenerator.Core;
+      using Azure.Core;
+      using TypeSpec.Rest; 
+      using TypeSpec.Http;
+      using TypeSpec.Versioning;
+      
+      @service
+      namespace MyNamespace;
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.ErrorResponse[];
+      }
+
+      interface MyInterface {
+        @route("/op2")
+        op1(a: A): void
+      }
+      `,
+        {
+          needAzureCore: false,
+          needTCGC: true,
+          withRawContent: true,
+          mustEmptyDiagnostic: true,
+          enableModelNamespace: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        import { ErrorResponse } from "@azure-rest/core-client";
+        
+        /** testing */
+        export interface A {
+          /** testing */
+          "errors"?: Array<ErrorResponse>;
+        }
+     `
       );
     });
 
@@ -2386,6 +3018,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { InnerError } from "@azure-rest/core-client"`
       );
     });
@@ -2422,6 +3055,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
     });
@@ -2458,6 +3092,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
     });
@@ -2494,8 +3129,1072 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
+    });
+  });
+
+  describe("operation templates", () => {
+    it("should generate models correctly for operation with service traits templates", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+      import "@azure-tools/typespec-azure-core";
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using TypeSpec.Versioning;
+      using Azure.Core;
+      using Azure.Core.Traits;
+      using Azure.Core.Foundations;
+      
+      @service({
+        title: "Defender EASM",
+      })
+      @doc("Contoso Resource Provider management API.")
+      @useDependency(Versions.v1_0_Preview_1)
+      namespace Microsoft.ContosoProviderHub;
+      alias ServiceTraits = NoRepeatableRequests &
+        NoConditionalRequests &
+        NoClientRequestId;
+      
+      alias Operations = Azure.Core.ResourceOperations<ServiceTraits>;
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      model DataConnectionData {
+        @doc("The name of data connection")
+        name?: string;
+      
+        @doc("The day to update the data connection on. (1-7 for weekly, 1-31 for monthly)")
+        frequencyOffset?: int32;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 propery")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      @resource("dataConnections")
+      model DataConnection {
+        @doc("The system generated unique id for the resource.")
+        id?: string;
+      
+        @doc("The caller provided unique name for the resource.")
+        @key("dataConnectionName")
+        @visibility("read")
+        name: string;
+      
+        @doc("The name that can be used for display purposes.")
+        displayName?: string;
+      
+        @doc("The date the data connection was created.")
+        @visibility("read")
+        createdDate?: utcDateTime;
+      
+        @doc("The day to update the data connection on.")
+        frequencyOffset?: int32;
+      
+        @doc("The date the data connection was last updated.")
+        @visibility("read")
+        updatedDate?: utcDateTime;
+      
+        @doc("The date the data connection was last updated by user.")
+        @visibility("read")
+        userUpdatedAt?: utcDateTime;
+      
+        @doc("An indicator of whether the data connection is active.")
+        active?: boolean;
+      
+        @doc("A message that specifies details about data connection if inactive.")
+        @visibility("read")
+        inactiveMessage?: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 property")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model ValidateResult {
+        @doc("This is the top-level error object whose code matches the x-ms-error-code response header.")
+        error?: Error;
+      }
+      
+      interface DataConnections {
+        @doc("Validate a data connection with a given dataConnectionName.")
+        @action("validate")
+        validateDataConnection is Operations.ResourceCollectionAction<
+          DataConnection,
+          { @body body: DataConnectionData },
+          ValidateResult
+        >;
+      }
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          needAzureCore: true,
+          needTCGC: true,
+          withRawContent: true,
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface DataConnectionDataParent {
+          /** The name of data connection */
+          name?: string;
+          /** The day to update the data connection on. (1-7 for weekly, 1-31 for monthly) */ 
+          frequencyOffset?: number;
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 propery */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionData =
+          | DataConnectionDataParent
+          | LogAnalyticsDataConnectionData
+          | AzureDataExplorerDataConnectionData;
+        `,
+        true
+      );
+
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        import { ErrorModel } from "@azure-rest/core-client";
+        export interface ValidateResultOutput {
+          /** This is the top-level error object whose code matches the x-ms-error-code response header. */ 
+          error?: ErrorModel;
+        }
+        `,
+        true
+      );
+    });
+
+    it("should generate models correctly for operation with foundation templates", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+      import "@azure-tools/typespec-azure-core";
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using TypeSpec.Versioning;
+      using Azure.Core;
+      using Azure.Core.Traits;
+      using Azure.Core.Foundations;
+      
+      @service({
+        title: "Defender EASM",
+      })
+      @doc("Contoso Resource Provider management API.")
+      @useDependency(Versions.v1_0_Preview_1)
+      namespace Microsoft.ContosoProviderHub;
+      alias ServiceTraits = NoRepeatableRequests &
+        NoConditionalRequests &
+        NoClientRequestId;
+      
+      alias Operations = Azure.Core.ResourceOperations<ServiceTraits>;
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      model DataConnectionData {
+        @doc("The name of data connection")
+        name?: string;
+      
+        @doc("The day to update the data connection on. (1-7 for weekly, 1-31 for monthly)")
+        frequencyOffset?: int32;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 propery")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      @resource("dataConnections")
+      model DataConnection {
+        @doc("The system generated unique id for the resource.")
+        id?: string;
+      
+        @doc("The caller provided unique name for the resource.")
+        @key("dataConnectionName")
+        @visibility("read")
+        name: string;
+      
+        @doc("The name that can be used for display purposes.")
+        displayName?: string;
+      
+        @doc("The date the data connection was created.")
+        @visibility("read")
+        createdDate?: utcDateTime;
+      
+        @doc("The day to update the data connection on.")
+        frequencyOffset?: int32;
+      
+        @doc("The date the data connection was last updated.")
+        @visibility("read")
+        updatedDate?: utcDateTime;
+      
+        @doc("The date the data connection was last updated by user.")
+        @visibility("read")
+        userUpdatedAt?: utcDateTime;
+      
+        @doc("An indicator of whether the data connection is active.")
+        active?: boolean;
+      
+        @doc("A message that specifies details about data connection if inactive.")
+        @visibility("read")
+        inactiveMessage?: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 property")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model ValidateResult {
+        @doc("This is the top-level error object whose code matches the x-ms-error-code response header.")
+        error?: Error;
+      }
+      
+      interface DataConnections {
+        #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
+        @doc("Create or replace a data connection with a given dataConnectionName.")
+        @createsOrReplacesResource(DataConnection)
+        @put
+        createOrReplaceDataConnection is Foundations.ResourceOperation<
+          DataConnection,
+          { @body body: DataConnectionData },
+          DataConnection
+        >;
+      }
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          needAzureCore: true,
+          needTCGC: true,
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface DataConnectionDataParent {
+          /** The name of data connection */
+          name?: string;
+          /** The day to update the data connection on. (1-7 for weekly, 1-31 for monthly) */ 
+          frequencyOffset?: number;
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 propery */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionData =
+          | DataConnectionDataParent
+          | LogAnalyticsDataConnectionData
+          | AzureDataExplorerDataConnectionData;
+        `,
+        true
+      );
+
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface DataConnectionOutputParent {
+          /** The system generated unique id for the resource. */ 
+          id?: string;
+          /** The caller provided unique name for the resource. */ 
+          readonly name: string;
+          /** The name that can be used for display purposes. */ 
+          displayName?: string;
+          /** The date the data connection was created. */ 
+          readonly createdDate?: string;
+          /** The day to update the data connection on. */ 
+          frequencyOffset?: number;
+          /** The date the data connection was last updated. */ 
+          readonly updatedDate?: string;
+          /** The date the data connection was last updated by user. */ 
+          readonly userUpdatedAt?: string;
+          /** An indicator of whether the data connection is active. */ 
+          active?: boolean;
+          /** A message that specifies details about data connection if inactive. */ 
+          readonly inactiveMessage?: string;       
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionOutput
+          extends DataConnectionOutputParent {
+          /** The kind of DataConnection */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 property */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionOutput
+          extends DataConnectionOutputParent {
+          /** The kind of DataConnection */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionOutput =
+          | DataConnectionOutputParent
+          | LogAnalyticsDataConnectionOutput
+          | AzureDataExplorerDataConnectionOutput;
+        `,
+        true
+      );
+    });
+  });
+
+  describe("should generate models for header parameters", () => {
+    it("union variants with string literals being used in contentType headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("Content-Type") contentType: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.isUndefined(outputModelFile);
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for SchemaContentTypeValues */
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+    });
+
+    it("named union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.ok(outputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for SchemaContentTypeValues */
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        /** Alias for SchemaContentTypeValuesOutput */
+        export type SchemaContentTypeValuesOutput =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { SchemaContentTypeValues } from "./models.js";
+        
+        export interface GetHeaders {
+          "test-header": SchemaContentTypeValues;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { SchemaContentTypeValuesOutput } from "./outputModels.js";
+        
+        export interface Get204Headers {
+          "test-header": SchemaContentTypeValuesOutput;
+        }
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          headers: RawHttpHeaders & Get204Headers;
+        }
+        `
+      );
+    });
+
+    it("named union with string/number/boolean literals being used in properties", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      union EnumNumber {
+        1,
+        3,
+        5,
+        int32,
+      }
+      
+      union EnumBoolean {
+        true,
+        false,
+        boolean,
+      }
+
+      union EnumString {
+        "foo",
+        "bar",
+        string
+      }
+      
+      model EnumBody {
+        propString: EnumString;
+        propNumber: EnumNumber;
+        propBoolean: EnumBoolean;  
+      }
+    
+      op get(
+        @body body: EnumBody,
+      ): { @body body: EnumBody; @statusCode _: 204; };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.ok(outputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+         export interface EnumBody {
+           /** Possible values: "foo", "bar" */
+           propString: EnumString;
+           /** Possible values: 1, 3, 5 */
+           propNumber: EnumNumber;
+           propBoolean: EnumBoolean;
+         }
+         
+         /** Alias for EnumString */
+         export type EnumString = string;
+         /** Alias for EnumNumber */
+         export type EnumNumber = number;
+         /** Alias for EnumBoolean */
+         export type EnumBoolean = true | false | boolean;
+        `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+         export interface EnumBodyOutput {
+           /** Possible values: "foo", "bar" */
+           propString: EnumStringOutput;
+           /** Possible values: 1, 3, 5 */
+           propNumber: EnumNumberOutput;
+           propBoolean: EnumBooleanOutput;
+         }
+
+         /** Alias for EnumStringOutput */
+         export type EnumStringOutput = string;
+         /** Alias for EnumNumberOutput */
+         export type EnumNumberOutput = number;
+         /** Alias for EnumBooleanOutput */
+         export type EnumBooleanOutput = true | false | boolean;
+        `
+      );
+
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { EnumBody } from "./models.js";
+        
+        export interface GetBodyParam {
+          body: EnumBody;
+        }
+        
+        export type GetParameters = GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { EnumBodyOutput } from "./outputModels.js";
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          body: EnumBodyOutput;
+        }
+        `
+      );
+    });
+
+    it("anonymous union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      op get(
+        @header("test-header") testHeader: "A" | "B",
+        @body body: string,
+      ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.isUndefined(inputModelFile);
+      assert.isUndefined(outputModelFile);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header": "A" | "B";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse } from "@azure-rest/core-client";
+        
+        export interface Get204Headers {
+          "test-header": "A" | "B";
+        }
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          headers: RawHttpHeaders & Get204Headers;
+        }
+        `
+      );
+    });
+
+    it("enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      /** Alias for SchemaContentTypeValues */
+      export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+      `
+      );
+      assert.isUndefined(outputModelFile);
+    });
+
+    it("enums with @fixed with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          needAzureCore: true,
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      /** Alias for SchemaContentTypeValues */
+      export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+      `
+      );
+      assert.isUndefined(outputModelFile);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true,
+        }
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { SchemaContentTypeValues } from "./models.js";
+        
+        export interface GetHeaders {
+          "test-header": SchemaContentTypeValues;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it("enums with number literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum EnumTest  {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+      }
+      
+      op get(
+        @header("test-header") testHeader: EnumTest,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        {
+          needAzureCore: true,
+          withRawContent: true
+        }
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for EnumTest */
+        export type EnumTest = 1 | 2 | 3 | 4;
+        `
+      );
+      assert.isUndefined(outputModelFile);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        {
+          withRawContent: true
+        }
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { EnumTest } from "./models.js";
+        
+        export interface GetHeaders {
+          "test-header": EnumTest;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it("unable to serialized type header would report diagnostic", async () => {
+      try {
+        const tspContent = `
+        import "@typespec/http";
+        import "@typespec/rest";
+  
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+        
+        model SchemaContentTypeValues {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+
+        const schemaOutput = await emitModelsFromTypeSpec(
+          tspContent,
+          {
+            withRawContent: true
+          }
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(inputModelFile);
+        assert.isUndefined(outputModelFile);
+        const paramOutput = await emitParameterFromTypeSpec(
+          tspContent,
+          {
+            withRawContent: true
+          }
+        );
+        assert.ok(paramOutput);
+        assert.fail("Should throw diagnostic warnings");
+      } catch (e) {
+        const diagnostics = e as Diagnostic[];
+        assert.equal(diagnostics.length, 1);
+        assert.equal(
+          diagnostics[0]?.code,
+          "@azure-tools/typespec-ts/unable-serialized-type"
+        );
+        assert.equal(diagnostics[0]?.severity, "warning");
+      }
     });
   });
 });

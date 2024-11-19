@@ -18,7 +18,7 @@ import {
   PolicySetModelOptionalParams,
   PolicySetModelResponse,
   PolicyResetOptionalParams,
-  PolicyResetResponse
+  PolicyResetResponse,
 } from "../models";
 
 /** Class containing Policy operations. */
@@ -41,11 +41,11 @@ export class PolicyImpl implements Policy {
    */
   get(
     attestationType: AttestationType,
-    options?: PolicyGetOptionalParams
+    options?: PolicyGetOptionalParams,
   ): Promise<PolicyGetResponse> {
     return this.client.sendOperationRequest(
       { attestationType, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -60,11 +60,11 @@ export class PolicyImpl implements Policy {
   set(
     attestationType: AttestationType,
     newAttestationPolicy: string,
-    options?: PolicySetModelOptionalParams
+    options?: PolicySetModelOptionalParams,
   ): Promise<PolicySetModelResponse> {
     return this.client.sendOperationRequest(
       { attestationType, newAttestationPolicy, options },
-      setOperationSpec
+      setOperationSpec,
     );
   }
 
@@ -78,11 +78,11 @@ export class PolicyImpl implements Policy {
   reset(
     attestationType: AttestationType,
     policyJws: string,
-    options?: PolicyResetOptionalParams
+    options?: PolicyResetOptionalParams,
   ): Promise<PolicyResetResponse> {
     return this.client.sendOperationRequest(
       { attestationType, policyJws, options },
-      resetOperationSpec
+      resetOperationSpec,
     );
   }
 }
@@ -94,50 +94,50 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyResponse
+      bodyMapper: Mappers.PolicyResponse,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.instanceUrl, Parameters.attestationType],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const setOperationSpec: coreClient.OperationSpec = {
   path: "/policies/{attestationType}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyResponse
+      bodyMapper: Mappers.PolicyResponse,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.newAttestationPolicy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.instanceUrl, Parameters.attestationType],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "text",
-  serializer
+  serializer,
 };
 const resetOperationSpec: coreClient.OperationSpec = {
   path: "/policies/{attestationType}:reset",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.PolicyResponse
+      bodyMapper: Mappers.PolicyResponse,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.policyJws,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.instanceUrl, Parameters.attestationType],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "text",
-  serializer
+  serializer,
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkWatcher,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function createNetworkWatcher() {
   const result = await client.networkWatchers.createOrUpdate(
     resourceGroupName,
     networkWatcherName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

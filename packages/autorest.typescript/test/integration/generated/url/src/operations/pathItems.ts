@@ -15,7 +15,7 @@ import {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
   PathItemsGetGlobalAndLocalQueryNullOptionalParams,
-  PathItemsGetLocalPathItemQueryNullOptionalParams
+  PathItemsGetLocalPathItemQueryNullOptionalParams,
 } from "../models";
 
 /** Class containing PathItems operations. */
@@ -41,11 +41,11 @@ export class PathItemsImpl implements PathItems {
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetAllWithValuesOptionalParams
+    options?: PathItemsGetAllWithValuesOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getAllWithValuesOperationSpec
+      getAllWithValuesOperationSpec,
     );
   }
 
@@ -60,11 +60,11 @@ export class PathItemsImpl implements PathItems {
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetGlobalQueryNullOptionalParams
+    options?: PathItemsGetGlobalQueryNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getGlobalQueryNullOperationSpec
+      getGlobalQueryNullOperationSpec,
     );
   }
 
@@ -79,11 +79,11 @@ export class PathItemsImpl implements PathItems {
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
+    options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getGlobalAndLocalQueryNullOperationSpec
+      getGlobalAndLocalQueryNullOperationSpec,
     );
   }
 
@@ -98,11 +98,11 @@ export class PathItemsImpl implements PathItems {
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetLocalPathItemQueryNullOptionalParams
+    options?: PathItemsGetLocalPathItemQueryNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { pathItemStringPath, localStringPath, options },
-      getLocalPathItemQueryNullOperationSpec
+      getLocalPathItemQueryNullOperationSpec,
     );
   }
 }
@@ -110,98 +110,94 @@ export class PathItemsImpl implements PathItems {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getAllWithValuesOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+  path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.localStringQuery
+    Parameters.localStringQuery,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
-    Parameters.localStringPath
+    Parameters.localStringPath,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getGlobalQueryNullOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+  path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.localStringQuery
+    Parameters.localStringQuery,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
-    Parameters.localStringPath
+    Parameters.localStringPath,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getGlobalAndLocalQueryNullOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+  path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.localStringQuery
+    Parameters.localStringQuery,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
-    Parameters.localStringPath
+    Parameters.localStringPath,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLocalPathItemQueryNullOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+  path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [
     Parameters.pathItemStringQuery,
     Parameters.globalStringQuery,
-    Parameters.localStringQuery
+    Parameters.localStringQuery,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
-    Parameters.localStringPath
+    Parameters.localStringPath,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -30,7 +30,7 @@ async function getAGalleryApplication() {
   const result = await client.galleryApplications.get(
     resourceGroupName,
     galleryName,
-    galleryApplicationName
+    galleryApplicationName,
   );
   console.log(result);
 }

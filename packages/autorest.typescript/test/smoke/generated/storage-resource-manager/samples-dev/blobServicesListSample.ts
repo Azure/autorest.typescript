@@ -29,7 +29,7 @@ async function listBlobServices() {
   const resArray = new Array();
   for await (let item of client.blobServices.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }

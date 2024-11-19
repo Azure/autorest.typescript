@@ -454,7 +454,9 @@ export interface Identity {
   type?: ResourceIdentityType;
   /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: {
-    [propertyName: string]: ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties;
+    [
+      propertyName: string
+    ]: ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalproperties;
   };
 }
 
@@ -972,7 +974,8 @@ export interface DeploymentsExportTemplateAtTenantScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtTenantScope operation. */
-export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult;
+export type DeploymentsExportTemplateAtTenantScopeResponse =
+  DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtTenantScopeOptionalParams
@@ -1009,7 +1012,8 @@ export interface DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtManagementGroupScope operation. */
-export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended;
+export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse =
+  DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtManagementGroupScopeOptionalParams
@@ -1027,14 +1031,16 @@ export interface DeploymentsValidateAtManagementGroupScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtManagementGroupScope operation. */
-export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult;
+export type DeploymentsValidateAtManagementGroupScopeResponse =
+  DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtManagementGroupScope operation. */
-export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult;
+export type DeploymentsExportTemplateAtManagementGroupScopeResponse =
+  DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeOptionalParams
@@ -1046,7 +1052,8 @@ export interface DeploymentsListAtManagementGroupScopeOptionalParams
 }
 
 /** Contains response data for the listAtManagementGroupScope operation. */
-export type DeploymentsListAtManagementGroupScopeResponse = DeploymentListResult;
+export type DeploymentsListAtManagementGroupScopeResponse =
+  DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteAtSubscriptionScopeOptionalParams
@@ -1071,7 +1078,8 @@ export interface DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtSubscriptionScope operation. */
-export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended;
+export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse =
+  DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtSubscriptionScopeOptionalParams
@@ -1089,7 +1097,8 @@ export interface DeploymentsValidateAtSubscriptionScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtSubscriptionScope operation. */
-export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult;
+export type DeploymentsValidateAtSubscriptionScopeResponse =
+  DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams
@@ -1101,14 +1110,16 @@ export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the whatIfAtSubscriptionScope operation. */
-export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult;
+export type DeploymentsWhatIfAtSubscriptionScopeResponse =
+  WhatIfOperationResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtSubscriptionScope operation. */
-export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult;
+export type DeploymentsExportTemplateAtSubscriptionScopeResponse =
+  DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeOptionalParams
@@ -1222,14 +1233,16 @@ export interface DeploymentsListAtManagementGroupScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
-export type DeploymentsListAtManagementGroupScopeNextResponse = DeploymentListResult;
+export type DeploymentsListAtManagementGroupScopeNextResponse =
+  DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
-export type DeploymentsListAtSubscriptionScopeNextResponse = DeploymentListResult;
+export type DeploymentsListAtSubscriptionScopeNextResponse =
+  DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListByResourceGroupNextOptionalParams
@@ -1572,7 +1585,8 @@ export interface DeploymentOperationsListAtScopeOptionalParams
 }
 
 /** Contains response data for the listAtScope operation. */
-export type DeploymentOperationsListAtScopeResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtScopeResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtTenantScopeOptionalParams
@@ -1589,14 +1603,16 @@ export interface DeploymentOperationsListAtTenantScopeOptionalParams
 }
 
 /** Contains response data for the listAtTenantScope operation. */
-export type DeploymentOperationsListAtTenantScopeResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtTenantScopeResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtManagementGroupScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroupScope operation. */
-export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation;
+export type DeploymentOperationsGetAtManagementGroupScopeResponse =
+  DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeOptionalParams
@@ -1606,14 +1622,16 @@ export interface DeploymentOperationsListAtManagementGroupScopeOptionalParams
 }
 
 /** Contains response data for the listAtManagementGroupScope operation. */
-export type DeploymentOperationsListAtManagementGroupScopeResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtManagementGroupScopeResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtSubscriptionScopeOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionScope operation. */
-export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation;
+export type DeploymentOperationsGetAtSubscriptionScopeResponse =
+  DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeOptionalParams
@@ -1623,7 +1641,8 @@ export interface DeploymentOperationsListAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the listAtSubscriptionScope operation. */
-export type DeploymentOperationsListAtSubscriptionScopeResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtSubscriptionScopeResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetOptionalParams
@@ -1647,35 +1666,40 @@ export interface DeploymentOperationsListAtScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtScopeNext operation. */
-export type DeploymentOperationsListAtScopeNextResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtScopeNextResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtTenantScopeNext operation. */
-export type DeploymentOperationsListAtTenantScopeNextResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtTenantScopeNextResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
-export type DeploymentOperationsListAtManagementGroupScopeNextResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtManagementGroupScopeNextResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
-export type DeploymentOperationsListAtSubscriptionScopeNextResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListAtSubscriptionScopeNextResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DeploymentOperationsListNextResponse = DeploymentOperationsListResult;
+export type DeploymentOperationsListNextResponse =
+  DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface ResourceManagementClientOptionalParams

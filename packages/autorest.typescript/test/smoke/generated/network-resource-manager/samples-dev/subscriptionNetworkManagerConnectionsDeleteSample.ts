@@ -27,7 +27,7 @@ async function deleteSubscriptionNetworkManagerConnection() {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.subscriptionNetworkManagerConnections.delete(
-    networkManagerConnectionName
+    networkManagerConnectionName,
   );
   console.log(result);
 }

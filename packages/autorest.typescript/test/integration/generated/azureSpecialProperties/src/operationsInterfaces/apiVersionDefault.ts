@@ -10,7 +10,7 @@ import {
   ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ApiVersionDefaultGetPathGlobalValidOptionalParams,
-  ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
+  ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
 } from "../models";
 
 /** Interface representing a ApiVersionDefault. */
@@ -20,27 +20,27 @@ export interface ApiVersionDefault {
    * @param options The options parameters.
    */
   getMethodGlobalValid(
-    options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getMethodGlobalNotProvidedValid(
-    options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams
+    options?: ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getPathGlobalValid(
-    options?: ApiVersionDefaultGetPathGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetPathGlobalValidOptionalParams,
   ): Promise<void>;
   /**
    * GET method with api-version modeled in global settings.
    * @param options The options parameters.
    */
   getSwaggerGlobalValid(
-    options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
+    options?: ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
   ): Promise<void>;
 }

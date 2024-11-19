@@ -29,7 +29,7 @@ async function expressRouteConnectionList() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteConnections.list(
     resourceGroupName,
-    expressRouteGatewayName
+    expressRouteGatewayName,
   );
   console.log(result);
 }

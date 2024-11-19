@@ -1,61 +1,51 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
+  AudioTranslationsCreateOptionalParams,
+  OpenAIContext as Client,
+} from "../../index.js";
+import {
   CreateTranslationRequest,
+  createTranslationRequestSerializer,
   CreateTranslationResponse,
+  createTranslationResponseDeserializer,
 } from "../../../models/models.js";
 import {
-  AudioTranslationsCreate200Response,
-  AudioTranslationsCreateDefaultResponse,
-  isUnexpected,
-  OpenAIContext as Client,
-} from "../../../rest/index.js";
-import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} }
-): StreamableMethod<
-  AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
-> {
+  options: AudioTranslationsCreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/audio/translations")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: audio["file"],
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["responseFormat"],
-        temperature: audio["temperature"],
-      },
+      body: createTranslationRequestSerializer(audio),
     });
 }
 
 export async function _createDeserialize(
-  result:
-    | AudioTranslationsCreate200Response
-    | AudioTranslationsCreateDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<CreateTranslationResponse> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  return createTranslationResponseDeserializer(result.body);
 }
 
 export async function create(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateTranslationResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

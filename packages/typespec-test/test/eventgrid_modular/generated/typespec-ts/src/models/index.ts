@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 export {
   CloudEvent,
+  PublishResult,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
@@ -13,12 +14,5 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
+  KnownServiceApiVersions,
 } from "./models.js";
-export {
-  PublishCloudEventOptions,
-  PublishCloudEventsOptions,
-  ReceiveCloudEventsOptions,
-  AcknowledgeCloudEventsOptions,
-  ReleaseCloudEventsOptions,
-  RejectCloudEventsOptions,
-} from "./options.js";

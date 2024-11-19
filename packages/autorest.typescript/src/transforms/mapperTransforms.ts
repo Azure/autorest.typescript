@@ -58,9 +58,10 @@ const primitiveSchemaTypes = [
  * if any function processed the input, remaining ones will skip
  * @param fns functions in the pipeline
  */
-const pipe = (
-  ...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>
-) => (x: PipelineValue) => fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
+const pipe =
+  (...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>) =>
+    (x: PipelineValue) =>
+      fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
@@ -91,12 +92,12 @@ export async function transformMappers(
     return [];
   }
 
-  const uberParentsNames = uberParents.map(up => up.name);
+  const uberParentsNames = uberParents.map((up) => up.name);
   const hasXmlMetadata = mediaTypes?.has(KnownMediaType.Xml);
   return [
     ...codeModel.schemas.objects,
     ...extractHeaders(codeModel.operationGroups, clientName)
-  ].map(objectSchema =>
+  ].map((objectSchema) =>
     transformMapper({
       schema: objectSchema,
       options: {
@@ -275,13 +276,17 @@ function getXmlMetadata(
 
   const defaultName =
     serializedName || getLanguageMetadata(schema.language).serializedName;
-  const { name, attribute: xmlIsAttribute, wrapped: xmlIsWrapped } =
-    schema.serialization?.xml || {};
+  const {
+    name,
+    attribute: xmlIsAttribute,
+    wrapped: xmlIsWrapped
+  } = schema.serialization?.xml || {};
 
   const xmlName = name || defaultName;
 
-  const headerCollectionPrefix = getLanguageMetadata(schema.language)
-    .headerCollectionPrefix;
+  const headerCollectionPrefix = getLanguageMetadata(
+    schema.language
+  ).headerCollectionPrefix;
 
   return {
     ...(headerCollectionPrefix && { headerCollectionPrefix }),
@@ -301,10 +306,10 @@ function buildAdditionalProperties(
   const additionalProperties = getAdditionalProperties(objectSchema);
   return additionalProperties
     ? {
-        type: {
-          name: MapperType.Object
-        }
+      type: {
+        name: MapperType.Object
       }
+    }
     : undefined;
 }
 
@@ -330,8 +335,8 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
     true /** immediateOnly */
   );
   const parentsRefs = immediateParents
-    .map(p => getMapperClassName(p))
-    .filter(p => p !== className);
+    .map((p) => getMapperClassName(p))
+    .filter((p) => p !== className);
 
   const additionalProperties = buildAdditionalProperties(objectSchema);
 
@@ -350,12 +355,20 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   // If any of the parents is present in uberParents we know it
   // is its uber parent
   let uberParent = getMapperClassName(
-    parents.find(p => uberParents.includes(getMapperClassName(p))) || schema
+    parents.find(
+      (p) =>
+        (p as ObjectSchema).discriminator &&
+        uberParents.includes(getMapperClassName(p))
+    ) ||
+    parents.find((p) => uberParents.includes(getMapperClassName(p))) ||
+    schema
   );
 
   if (objectSchema.parents?.immediate[0]) {
     uberParent = getMapperClassName(
-      objectSchema.parents?.immediate[0] as ObjectSchema
+      objectSchema.parents?.immediate.find(
+        (im) => (im as ObjectSchema).discriminator
+      ) || (objectSchema.parents?.immediate[0] as ObjectSchema)
     );
   }
   const mapper = buildMapper(
@@ -527,7 +540,7 @@ function transformChoiceMapper(pipelineValue: PipelineValue) {
     } else {
       type = {
         name: MapperType.Enum,
-        allowedValues: choiceSchema.choices.map(choice => choice.value)
+        allowedValues: choiceSchema.choices.map((choice) => choice.value)
       };
     }
   }
@@ -703,7 +716,7 @@ function processProperties(
   options: EntityOptions = {}
 ) {
   let modelProperties: ModelProperties = {};
-  properties.forEach(prop => {
+  properties.forEach((prop) => {
     const serializedName = getPropertySerializedName(prop);
     const propName = getLanguageMetadata(prop.language).name;
     const name = normalizeName(
@@ -734,9 +747,9 @@ function getPropertySerializedName({
   }
 
   return flattenedNames
-    .map(name => {
+    .map((name) => {
       // Escaping names
-      ["."].forEach(character => {
+      ["."].forEach((character) => {
         name = name.replace(character, `\\${character}`);
       });
       return name;

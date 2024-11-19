@@ -22,7 +22,7 @@ export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: CustomUrlMoreOptionsClientOptionalParams
+    options?: CustomUrlMoreOptionsClientOptionalParams,
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
@@ -33,7 +33,7 @@ export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: CustomUrlMoreOptionsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-custom-url-MoreOptions/1.0.0-preview1`;
@@ -46,10 +46,10 @@ export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "{vault}{secret}{dnsSuffix}"
+        options.endpoint ?? options.baseUri ?? "{vault}{secret}{dnsSuffix}",
     };
     super(optionsWithDefaults);
     // Parameter assignments

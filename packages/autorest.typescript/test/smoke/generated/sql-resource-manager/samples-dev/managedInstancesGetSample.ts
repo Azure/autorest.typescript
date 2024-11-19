@@ -29,7 +29,7 @@ async function getManagedInstance() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.get(
     resourceGroupName,
-    managedInstanceName
+    managedInstanceName,
   );
   console.log(result);
 }
@@ -49,7 +49,7 @@ async function getManagedInstanceWithExpandAdministratorsOrActivedirectory() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.get(
     resourceGroupName,
-    managedInstanceName
+    managedInstanceName,
   );
   console.log(result);
 }

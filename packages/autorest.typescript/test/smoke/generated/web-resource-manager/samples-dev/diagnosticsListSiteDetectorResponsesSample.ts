@@ -31,7 +31,7 @@ async function getAppDetectorResponses() {
   const resArray = new Array();
   for await (let item of client.diagnostics.listSiteDetectorResponses(
     resourceGroupName,
-    siteName
+    siteName,
   )) {
     resArray.push(item);
   }
@@ -55,7 +55,7 @@ async function getAppSlotDetectorResponses() {
   const resArray = new Array();
   for await (let item of client.diagnostics.listSiteDetectorResponses(
     resourceGroupName,
-    siteName
+    siteName,
   )) {
     resArray.push(item);
   }

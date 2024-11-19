@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 
@@ -49,9 +49,10 @@ export interface FormdataUploadFileViaBodyMediaTypesParam {
   contentType?: "application/octet-stream";
 }
 
-export type FormdataUploadFileViaBodyParameters = FormdataUploadFileViaBodyMediaTypesParam &
-  FormdataUploadFileViaBodyBodyParam &
-  RequestParameters;
+export type FormdataUploadFileViaBodyParameters =
+  FormdataUploadFileViaBodyMediaTypesParam &
+    FormdataUploadFileViaBodyBodyParam &
+    RequestParameters;
 
 export interface FormdataUploadFilesBodyParam {
   body: FormdataUploadFilesFormBody;

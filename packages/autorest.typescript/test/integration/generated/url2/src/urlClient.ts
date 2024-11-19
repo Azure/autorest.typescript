@@ -29,7 +29,7 @@ export class UrlClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: UrlClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-url/1.0.0-preview1`;
@@ -42,9 +42,9 @@ export class UrlClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}",
     };
     super(optionsWithDefaults);
     // Parameter assignments

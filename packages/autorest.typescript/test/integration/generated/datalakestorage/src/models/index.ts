@@ -389,7 +389,7 @@ export enum KnownPathExpiryOptions {
   /** RelativeToNow */
   RelativeToNow = "RelativeToNow",
   /** Absolute */
-  Absolute = "Absolute"
+  Absolute = "Absolute",
 }
 
 /**

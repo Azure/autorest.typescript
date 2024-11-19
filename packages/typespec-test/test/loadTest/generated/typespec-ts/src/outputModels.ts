@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
-import { Paged } from "@azure/core-paging";
+// Licensed under the MIT License.
 
 /** Load test model */
 export interface TestOutput {
@@ -53,21 +51,15 @@ export interface PassFailCriteriaOutput {
 
 /** Pass fail metric */
 export interface PassFailMetricOutput {
-  /**
-   * The client metric on which the criteria should be applied.
-   *
-   * Possible values: response_time_ms, latency, error, requests, requests_per_sec
-   */
-  clientMetric?: string;
+  /** The client metric on which the criteria should be applied. */
+  clientMetric?: PFMetricsOutput;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
-   *
-   * Possible values: count, percentage, avg, p50, p90, p95, p99, min, max
    */
-  aggregate?: string;
+  aggregate?: PFAgFuncOutput;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
   condition?: string;
   /** Request name for which the Pass fail criteria has to be applied */
@@ -77,44 +69,28 @@ export interface PassFailMetricOutput {
    * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
    */
   value?: number;
-  /**
-   * Action taken after the threshold is met. Default is ‘continue’.
-   *
-   * Possible values: continue, stop
-   */
-  action?: string;
+  /** Action taken after the threshold is met. Default is ‘continue’. */
+  action?: PFActionOutput;
   /** The actual value of the client metric for the test run. */
   readonly actualValue?: number;
-  /**
-   * Outcome of the test run.
-   *
-   * Possible values: passed, undetermined, failed
-   */
-  readonly result?: string;
+  /** Outcome of the test run. */
+  readonly result?: PFResultOutput;
 }
 
 /** Secret */
 export interface SecretOutput {
   /** The value of the secret for the respective type */
   value?: string;
-  /**
-   * Type of secret
-   *
-   * Possible values: AKV_SECRET_URI, SECRET_VALUE
-   */
-  type?: string;
+  /** Type of secret */
+  type?: SecretTypeOutput;
 }
 
 /** Certificates metadata */
 export interface CertificateMetadataOutput {
   /** The value of the certificate for respective type */
   value?: string;
-  /**
-   * Type of certificate
-   *
-   * Possible values: AKV_CERT_URI
-   */
-  type?: string;
+  /** Type of certificate */
+  type?: CertificateTypeOutput;
   /** Name of the certificate. */
   name?: string;
 }
@@ -177,22 +153,30 @@ export interface FileInfoOutput {
   url?: string;
   /** Name of the file. */
   fileName?: string;
-  /**
-   * File type
-   *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
-   */
-  fileType?: string;
+  /** File type */
+  fileType?: FileTypeOutput;
   /** Expiry time of the file (ISO 8601 literal format) */
   expireDateTime?: string;
-  /**
-   * Validation status of the file
-   *
-   * Possible values: NOT_VALIDATED, VALIDATION_SUCCESS, VALIDATION_FAILURE, VALIDATION_INITIATED, VALIDATION_NOT_REQUIRED
-   */
-  validationStatus?: string;
+  /** Validation status of the file */
+  validationStatus?: FileStatusOutput;
   /** Validation failure error details */
   validationFailureDetails?: string;
+}
+
+/** Collection of tests */
+export interface TestsListOutput {
+  /** The Test items on this page */
+  value: Array<TestOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Collection of files. */
+export interface FileInfoListOutput {
+  /** The FileInfo items on this page */
+  value: Array<FileInfoOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Test app component */
@@ -309,12 +293,8 @@ export interface TestRunOutput {
   loadTestConfiguration?: LoadTestConfigurationOutput;
   /** Collection of test run artifacts */
   readonly testArtifacts?: TestRunArtifactsOutput;
-  /**
-   * Test result for pass/Fail criteria used during the test run.
-   *
-   * Possible values: PASSED, NOT_APPLICABLE, FAILED
-   */
-  readonly testResult?: string;
+  /** Test result for pass/Fail criteria used during the test run. */
+  readonly testResult?: PFTestResultOutput;
   /** Number of virtual users, for which test has been run. */
   readonly virtualUsers?: number;
   /** Display name of a testRun. */
@@ -323,12 +303,8 @@ export interface TestRunOutput {
   testId?: string;
   /** The test run description. */
   description?: string;
-  /**
-   * The test run status.
-   *
-   * Possible values: ACCEPTED, NOTSTARTED, PROVISIONING, PROVISIONED, CONFIGURING, CONFIGURED, EXECUTING, EXECUTED, DEPROVISIONING, DEPROVISIONED, DONE, CANCELLING, CANCELLED, FAILED, VALIDATION_SUCCESS, VALIDATION_FAILURE
-   */
-  readonly status?: string;
+  /** The test run status. */
+  readonly status?: StatusOutput;
   /** The test run start DateTime(ISO 8601 literal format). */
   readonly startDateTime?: string;
   /** The test run end DateTime(ISO 8601 literal format). */
@@ -419,6 +395,14 @@ export interface TestRunOutputArtifactsOutput {
   logsFileInfo?: FileInfoOutput;
 }
 
+/** Collection of test runs */
+export interface TestRunsListOutput {
+  /** The TestRun items on this page */
+  value: Array<TestRunOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollectionOutput {
   /** The values for the metric namespaces. */
@@ -449,20 +433,12 @@ export interface MetricDefinitionOutput {
   name?: string;
   /** The namespace the metric belongs to. */
   namespace?: string;
-  /**
-   * The primary aggregation type value defining how to use the values for display.
-   *
-   * Possible values: Average, Count, None, Total, Percentile90, Percentile95, Percentile99
-   */
-  primaryAggregationType?: string;
+  /** The primary aggregation type value defining how to use the values for display. */
+  primaryAggregationType?: AggregationTypeOutput;
   /** The collection of what all aggregation types are supported. */
   supportedAggregationTypes?: string[];
-  /**
-   * The unit of the metric.
-   *
-   * Possible values: NotSpecified, Percent, Count, Seconds, Milliseconds, Bytes, BytesPerSecond, CountPerSecond
-   */
-  unit?: string;
+  /** The unit of the metric. */
+  unit?: MetricUnitOutput;
   /**
    * Metric availability specifies the time grain (aggregation interval or
    * frequency).
@@ -483,10 +459,16 @@ export interface MetricAvailabilityOutput {
   /**
    * The time grain specifies the aggregation interval for the metric. Expressed as
    * a duration 'PT1M', 'PT1H', etc.
-   *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
    */
-  timeGrain?: string;
+  timeGrain?: TimeGrainOutput;
+}
+
+/** The response to a metrics query. */
+export interface MetricsOutput {
+  /** The TimeSeriesElement items on this page */
+  value: Array<TimeSeriesElementOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** The time series returned when a data query is performed. */
@@ -511,6 +493,14 @@ export interface DimensionValueOutput {
   name?: string;
   /** The value of the dimension. */
   value?: string;
+}
+
+/** Paged collection of DimensionValueList items */
+export interface PagedDimensionValueListOutput {
+  /** The DimensionValueList items on this page */
+  value: Array<DimensionValueListOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 export interface DimensionValueListOutput {
@@ -557,13 +547,82 @@ export interface TestRunServerMetricConfigOutput {
   readonly lastModifiedBy?: string;
 }
 
-/** Collection of tests */
-export type PagedTestOutput = Paged<TestOutput>;
-/** Collection of files. */
-export type PagedFileInfoOutput = Paged<FileInfoOutput>;
-/** Collection of test runs */
-export type PagedTestRunOutput = Paged<TestRunOutput>;
-/** The response to a metrics query. */
-export type PagedTimeSeriesElementOutput = Paged<TimeSeriesElementOutput>;
-/** Paged collection of DimensionValueList items */
-export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;
+/** Alias for PFMetricsOutput */
+export type PFMetricsOutput =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
+/** Alias for PFAgFuncOutput */
+export type PFAgFuncOutput =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p90"
+  | "p95"
+  | "p99"
+  | "min"
+  | "max";
+/** Alias for PFActionOutput */
+export type PFActionOutput = "continue" | "stop";
+/** Alias for PFResultOutput */
+export type PFResultOutput = "passed" | "undetermined" | "failed";
+/** Alias for SecretTypeOutput */
+export type SecretTypeOutput = "AKV_SECRET_URI" | "SECRET_VALUE";
+/** Alias for CertificateTypeOutput */
+export type CertificateTypeOutput = "AKV_CERT_URI";
+/** Alias for FileTypeOutput */
+export type FileTypeOutput =
+  | "JMX_FILE"
+  | "USER_PROPERTIES"
+  | "ADDITIONAL_ARTIFACTS";
+/** Alias for FileStatusOutput */
+export type FileStatusOutput =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
+/** Alias for PFTestResultOutput */
+export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Alias for StatusOutput */
+export type StatusOutput =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
+/** Alias for AggregationTypeOutput */
+export type AggregationTypeOutput =
+  | "Average"
+  | "Count"
+  | "None"
+  | "Total"
+  | "Percentile90"
+  | "Percentile95"
+  | "Percentile99";
+/** Alias for MetricUnitOutput */
+export type MetricUnitOutput =
+  | "NotSpecified"
+  | "Percent"
+  | "Count"
+  | "Seconds"
+  | "Milliseconds"
+  | "Bytes"
+  | "BytesPerSecond"
+  | "CountPerSecond";
+/** Alias for TimeGrainOutput */
+export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

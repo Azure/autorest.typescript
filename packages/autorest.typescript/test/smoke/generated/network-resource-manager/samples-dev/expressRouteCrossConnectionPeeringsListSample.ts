@@ -30,7 +30,7 @@ async function expressRouteCrossConnectionBgpPeeringList() {
   const resArray = new Array();
   for await (let item of client.expressRouteCrossConnectionPeerings.list(
     resourceGroupName,
-    crossConnectionName
+    crossConnectionName,
   )) {
     resArray.push(item);
   }

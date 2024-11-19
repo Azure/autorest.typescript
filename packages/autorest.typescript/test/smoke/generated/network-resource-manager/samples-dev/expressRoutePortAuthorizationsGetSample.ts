@@ -30,7 +30,7 @@ async function getExpressRoutePortAuthorization() {
   const result = await client.expressRoutePortAuthorizations.get(
     resourceGroupName,
     expressRoutePortName,
-    authorizationName
+    authorizationName,
   );
   console.log(result);
 }

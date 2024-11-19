@@ -13,7 +13,7 @@ import {
   DurationGetPositiveDurationOptionalParams,
   DurationGetPositiveDurationResponse,
   DurationGetInvalidOptionalParams,
-  DurationGetInvalidResponse
+  DurationGetInvalidResponse,
 } from "../models";
 
 /** Interface representing a Duration. */
@@ -23,7 +23,7 @@ export interface Duration {
    * @param options The options parameters.
    */
   getNull(
-    options?: DurationGetNullOptionalParams
+    options?: DurationGetNullOptionalParams,
   ): Promise<DurationGetNullResponse>;
   /**
    * Put a positive duration value
@@ -32,20 +32,20 @@ export interface Duration {
    */
   putPositiveDuration(
     durationBody: string,
-    options?: DurationPutPositiveDurationOptionalParams
+    options?: DurationPutPositiveDurationOptionalParams,
   ): Promise<void>;
   /**
    * Get a positive duration value
    * @param options The options parameters.
    */
   getPositiveDuration(
-    options?: DurationGetPositiveDurationOptionalParams
+    options?: DurationGetPositiveDurationOptionalParams,
   ): Promise<DurationGetPositiveDurationResponse>;
   /**
    * Get an invalid duration value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: DurationGetInvalidOptionalParams
+    options?: DurationGetInvalidOptionalParams,
   ): Promise<DurationGetInvalidResponse>;
 }

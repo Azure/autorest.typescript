@@ -1,35 +1,42 @@
-import { CustomClient } from "./generated/authentication/http-custom/src/index.js";
+import { CustomClient } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
 
 describe("CustomClient Classical Client", () => {
-  let client: CustomClient;
+  let validKeyClient: CustomClient;
+  let invalidKeyClient: CustomClient;
 
   beforeEach(() => {
-    client = new CustomClient(
+    validKeyClient = new CustomClient(
       {
         key: "valid-key"
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
+      }
+    );
+    invalidKeyClient = new CustomClient(
+      {
+        key: "invalid-key"
+      },
+      {
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
   });
 
   it("should not throw exception if apiKey is valid", async () => {
-    try {
-      const result = await client.valid();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await validKeyClient.valid();
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the apiKey is invalid", async () => {
     try {
-      await client.invalid();
+      await invalidKeyClient.invalid();
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
-      assert.strictEqual(err.error, "invalid-api-key");
+      assert.strictEqual(err.message, "Unexpected status code: 403");
     }
   });
 });

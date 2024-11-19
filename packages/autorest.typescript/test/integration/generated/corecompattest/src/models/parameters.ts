@@ -1,12 +1,12 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   Pet as PetMapper,
   Order as OrderMapper,
-  User as UserMapper
+  User as UserMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -16,9 +16,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
@@ -27,9 +27,9 @@ export const body: OperationParameter = {
     serializedName: "body",
     xmlName: "body",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -39,9 +39,9 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body1: OperationParameter = {
@@ -50,9 +50,9 @@ export const body1: OperationParameter = {
     serializedName: "body",
     xmlName: "body",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -62,10 +62,10 @@ export const $host: OperationURLParameter = {
     required: true,
     xmlName: "$host",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType2: OperationParameter = {
@@ -75,14 +75,14 @@ export const contentType2: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body2: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: PetMapper
+  mapper: PetMapper,
 };
 
 export const accept: OperationParameter = {
@@ -92,9 +92,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const status: OperationQueryParameter = {
@@ -108,12 +108,12 @@ export const status: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "CSV"
+  collectionFormat: "CSV",
 };
 
 export const tags: OperationQueryParameter = {
@@ -126,12 +126,12 @@ export const tags: OperationQueryParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "CSV"
+  collectionFormat: "CSV",
 };
 
 export const petId: OperationURLParameter = {
@@ -141,9 +141,9 @@ export const petId: OperationURLParameter = {
     required: true,
     xmlName: "petId",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const contentType3: OperationParameter = {
@@ -153,9 +153,9 @@ export const contentType3: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const name: OperationParameter = {
@@ -164,9 +164,9 @@ export const name: OperationParameter = {
     serializedName: "name",
     xmlName: "name",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const status1: OperationParameter = {
@@ -175,9 +175,9 @@ export const status1: OperationParameter = {
     serializedName: "status",
     xmlName: "status",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const petId1: OperationURLParameter = {
@@ -187,9 +187,9 @@ export const petId1: OperationURLParameter = {
     required: true,
     xmlName: "petId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiKey: OperationParameter = {
@@ -198,9 +198,9 @@ export const apiKey: OperationParameter = {
     serializedName: "api_key",
     xmlName: "api_key",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType4: OperationParameter = {
@@ -210,9 +210,9 @@ export const contentType4: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const additionalMetadata: OperationParameter = {
@@ -221,9 +221,9 @@ export const additionalMetadata: OperationParameter = {
     serializedName: "additionalMetadata",
     xmlName: "additionalMetadata",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const file: OperationParameter = {
@@ -232,14 +232,14 @@ export const file: OperationParameter = {
     serializedName: "file",
     xmlName: "file",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const body3: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: OrderMapper
+  mapper: OrderMapper,
 };
 
 export const orderId: OperationURLParameter = {
@@ -249,14 +249,14 @@ export const orderId: OperationURLParameter = {
     required: true,
     xmlName: "orderId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body4: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: UserMapper
+  mapper: UserMapper,
 };
 
 export const body5: OperationParameter = {
@@ -270,11 +270,11 @@ export const body5: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "User"
-        }
-      }
-    }
-  }
+          className: "User",
+        },
+      },
+    },
+  },
 };
 
 export const username: OperationQueryParameter = {
@@ -283,9 +283,9 @@ export const username: OperationQueryParameter = {
     serializedName: "username",
     xmlName: "username",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const password: OperationQueryParameter = {
@@ -294,9 +294,9 @@ export const password: OperationQueryParameter = {
     serializedName: "password",
     xmlName: "password",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const username1: OperationURLParameter = {
@@ -306,7 +306,7 @@ export const username1: OperationURLParameter = {
     required: true,
     xmlName: "username",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

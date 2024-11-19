@@ -27,11 +27,12 @@ async function deleteApplicationGatewayPrivateEndpointConnection() {
   const connectionName = "connection1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationGatewayPrivateEndpointConnections.beginDeleteAndWait(
-    resourceGroupName,
-    applicationGatewayName,
-    connectionName
-  );
+  const result =
+    await client.applicationGatewayPrivateEndpointConnections.beginDeleteAndWait(
+      resourceGroupName,
+      applicationGatewayName,
+      connectionName,
+    );
   console.log(result);
 }
 

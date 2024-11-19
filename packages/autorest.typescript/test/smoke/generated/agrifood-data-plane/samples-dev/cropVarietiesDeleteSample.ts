@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -18,7 +18,7 @@ async function cropVarietiesDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const cropId = "CORN123";
   const cropVarietyId = "SEED123";
@@ -26,7 +26,7 @@ async function cropVarietiesDelete() {
     .path(
       "/crops/{cropId}/crop-varieties/{cropVarietyId}",
       cropId,
-      cropVarietyId
+      cropVarietyId,
     )
     .delete();
   console.log(result);

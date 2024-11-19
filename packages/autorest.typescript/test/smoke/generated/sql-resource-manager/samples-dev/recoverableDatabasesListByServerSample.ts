@@ -31,7 +31,7 @@ async function getListOfRestorableDroppedDatabases() {
   const resArray = new Array();
   for await (let item of client.recoverableDatabases.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

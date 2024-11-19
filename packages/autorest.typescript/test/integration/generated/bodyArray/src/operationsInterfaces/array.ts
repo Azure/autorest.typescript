@@ -129,7 +129,7 @@ import {
   ArrayGetDictionaryItemEmptyResponse,
   ArrayGetDictionaryValidOptionalParams,
   ArrayGetDictionaryValidResponse,
-  ArrayPutDictionaryValidOptionalParams
+  ArrayPutDictionaryValidOptionalParams,
 } from "../models";
 
 /** Interface representing a Array. */
@@ -144,14 +144,14 @@ export interface Array {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: ArrayGetInvalidOptionalParams
+    options?: ArrayGetInvalidOptionalParams,
   ): Promise<ArrayGetInvalidResponse>;
   /**
    * Get empty array value []
    * @param options The options parameters.
    */
   getEmpty(
-    options?: ArrayGetEmptyOptionalParams
+    options?: ArrayGetEmptyOptionalParams,
   ): Promise<ArrayGetEmptyResponse>;
   /**
    * Set array value empty []
@@ -160,14 +160,14 @@ export interface Array {
    */
   putEmpty(
     arrayBody: string[],
-    options?: ArrayPutEmptyOptionalParams
+    options?: ArrayPutEmptyOptionalParams,
   ): Promise<void>;
   /**
    * Get boolean array value [true, false, false, true]
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: ArrayGetBooleanTfftOptionalParams
+    options?: ArrayGetBooleanTfftOptionalParams,
   ): Promise<ArrayGetBooleanTfftResponse>;
   /**
    * Set array value empty [true, false, false, true]
@@ -176,28 +176,28 @@ export interface Array {
    */
   putBooleanTfft(
     arrayBody: boolean[],
-    options?: ArrayPutBooleanTfftOptionalParams
+    options?: ArrayPutBooleanTfftOptionalParams,
   ): Promise<void>;
   /**
    * Get boolean array value [true, null, false]
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: ArrayGetBooleanInvalidNullOptionalParams
+    options?: ArrayGetBooleanInvalidNullOptionalParams,
   ): Promise<ArrayGetBooleanInvalidNullResponse>;
   /**
    * Get boolean array value [true, 'boolean', false]
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: ArrayGetBooleanInvalidStringOptionalParams
+    options?: ArrayGetBooleanInvalidStringOptionalParams,
   ): Promise<ArrayGetBooleanInvalidStringResponse>;
   /**
    * Get integer array value [1, -1, 3, 300]
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: ArrayGetIntegerValidOptionalParams
+    options?: ArrayGetIntegerValidOptionalParams,
   ): Promise<ArrayGetIntegerValidResponse>;
   /**
    * Set array value empty [1, -1, 3, 300]
@@ -206,28 +206,28 @@ export interface Array {
    */
   putIntegerValid(
     arrayBody: number[],
-    options?: ArrayPutIntegerValidOptionalParams
+    options?: ArrayPutIntegerValidOptionalParams,
   ): Promise<void>;
   /**
    * Get integer array value [1, null, 0]
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: ArrayGetIntInvalidNullOptionalParams
+    options?: ArrayGetIntInvalidNullOptionalParams,
   ): Promise<ArrayGetIntInvalidNullResponse>;
   /**
    * Get integer array value [1, 'integer', 0]
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: ArrayGetIntInvalidStringOptionalParams
+    options?: ArrayGetIntInvalidStringOptionalParams,
   ): Promise<ArrayGetIntInvalidStringResponse>;
   /**
    * Get integer array value [1, -1, 3, 300]
    * @param options The options parameters.
    */
   getLongValid(
-    options?: ArrayGetLongValidOptionalParams
+    options?: ArrayGetLongValidOptionalParams,
   ): Promise<ArrayGetLongValidResponse>;
   /**
    * Set array value empty [1, -1, 3, 300]
@@ -236,28 +236,28 @@ export interface Array {
    */
   putLongValid(
     arrayBody: number[],
-    options?: ArrayPutLongValidOptionalParams
+    options?: ArrayPutLongValidOptionalParams,
   ): Promise<void>;
   /**
    * Get long array value [1, null, 0]
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: ArrayGetLongInvalidNullOptionalParams
+    options?: ArrayGetLongInvalidNullOptionalParams,
   ): Promise<ArrayGetLongInvalidNullResponse>;
   /**
    * Get long array value [1, 'integer', 0]
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: ArrayGetLongInvalidStringOptionalParams
+    options?: ArrayGetLongInvalidStringOptionalParams,
   ): Promise<ArrayGetLongInvalidStringResponse>;
   /**
    * Get float array value [0, -0.01, 1.2e20]
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: ArrayGetFloatValidOptionalParams
+    options?: ArrayGetFloatValidOptionalParams,
   ): Promise<ArrayGetFloatValidResponse>;
   /**
    * Set array value [0, -0.01, 1.2e20]
@@ -266,28 +266,28 @@ export interface Array {
    */
   putFloatValid(
     arrayBody: number[],
-    options?: ArrayPutFloatValidOptionalParams
+    options?: ArrayPutFloatValidOptionalParams,
   ): Promise<void>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: ArrayGetFloatInvalidNullOptionalParams
+    options?: ArrayGetFloatInvalidNullOptionalParams,
   ): Promise<ArrayGetFloatInvalidNullResponse>;
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: ArrayGetFloatInvalidStringOptionalParams
+    options?: ArrayGetFloatInvalidStringOptionalParams,
   ): Promise<ArrayGetFloatInvalidStringResponse>;
   /**
    * Get float array value [0, -0.01, 1.2e20]
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: ArrayGetDoubleValidOptionalParams
+    options?: ArrayGetDoubleValidOptionalParams,
   ): Promise<ArrayGetDoubleValidResponse>;
   /**
    * Set array value [0, -0.01, 1.2e20]
@@ -296,28 +296,28 @@ export interface Array {
    */
   putDoubleValid(
     arrayBody: number[],
-    options?: ArrayPutDoubleValidOptionalParams
+    options?: ArrayPutDoubleValidOptionalParams,
   ): Promise<void>;
   /**
    * Get float array value [0.0, null, -1.2e20]
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: ArrayGetDoubleInvalidNullOptionalParams
+    options?: ArrayGetDoubleInvalidNullOptionalParams,
   ): Promise<ArrayGetDoubleInvalidNullResponse>;
   /**
    * Get boolean array value [1.0, 'number', 0.0]
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: ArrayGetDoubleInvalidStringOptionalParams
+    options?: ArrayGetDoubleInvalidStringOptionalParams,
   ): Promise<ArrayGetDoubleInvalidStringResponse>;
   /**
    * Get string array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getStringValid(
-    options?: ArrayGetStringValidOptionalParams
+    options?: ArrayGetStringValidOptionalParams,
   ): Promise<ArrayGetStringValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -326,14 +326,14 @@ export interface Array {
    */
   putStringValid(
     arrayBody: string[],
-    options?: ArrayPutStringValidOptionalParams
+    options?: ArrayPutStringValidOptionalParams,
   ): Promise<void>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getEnumValid(
-    options?: ArrayGetEnumValidOptionalParams
+    options?: ArrayGetEnumValidOptionalParams,
   ): Promise<ArrayGetEnumValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -342,14 +342,14 @@ export interface Array {
    */
   putEnumValid(
     arrayBody: FooEnum[],
-    options?: ArrayPutEnumValidOptionalParams
+    options?: ArrayPutEnumValidOptionalParams,
   ): Promise<void>;
   /**
    * Get enum array value ['foo1', 'foo2', 'foo3']
    * @param options The options parameters.
    */
   getStringEnumValid(
-    options?: ArrayGetStringEnumValidOptionalParams
+    options?: ArrayGetStringEnumValidOptionalParams,
   ): Promise<ArrayGetStringEnumValidResponse>;
   /**
    * Set array value ['foo1', 'foo2', 'foo3']
@@ -358,21 +358,21 @@ export interface Array {
    */
   putStringEnumValid(
     arrayBody: Enum1[],
-    options?: ArrayPutStringEnumValidOptionalParams
+    options?: ArrayPutStringEnumValidOptionalParams,
   ): Promise<void>;
   /**
    * Get string array value ['foo', null, 'foo2']
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: ArrayGetStringWithNullOptionalParams
+    options?: ArrayGetStringWithNullOptionalParams,
   ): Promise<ArrayGetStringWithNullResponse>;
   /**
    * Get string array value ['foo', 123, 'foo2']
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: ArrayGetStringWithInvalidOptionalParams
+    options?: ArrayGetStringWithInvalidOptionalParams,
   ): Promise<ArrayGetStringWithInvalidResponse>;
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -380,7 +380,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getUuidValid(
-    options?: ArrayGetUuidValidOptionalParams
+    options?: ArrayGetUuidValidOptionalParams,
   ): Promise<ArrayGetUuidValidResponse>;
   /**
    * Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db',
@@ -391,21 +391,21 @@ export interface Array {
    */
   putUuidValid(
     arrayBody: string[],
-    options?: ArrayPutUuidValidOptionalParams
+    options?: ArrayPutUuidValidOptionalParams,
   ): Promise<void>;
   /**
    * Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo']
    * @param options The options parameters.
    */
   getUuidInvalidChars(
-    options?: ArrayGetUuidInvalidCharsOptionalParams
+    options?: ArrayGetUuidInvalidCharsOptionalParams,
   ): Promise<ArrayGetUuidInvalidCharsResponse>;
   /**
    * Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12']
    * @param options The options parameters.
    */
   getDateValid(
-    options?: ArrayGetDateValidOptionalParams
+    options?: ArrayGetDateValidOptionalParams,
   ): Promise<ArrayGetDateValidResponse>;
   /**
    * Set array value  ['2000-12-01', '1980-01-02', '1492-10-12']
@@ -414,21 +414,21 @@ export interface Array {
    */
   putDateValid(
     arrayBody: Date[],
-    options?: ArrayPutDateValidOptionalParams
+    options?: ArrayPutDateValidOptionalParams,
   ): Promise<void>;
   /**
    * Get date array value ['2012-01-01', null, '1776-07-04']
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: ArrayGetDateInvalidNullOptionalParams
+    options?: ArrayGetDateInvalidNullOptionalParams,
   ): Promise<ArrayGetDateInvalidNullResponse>;
   /**
    * Get date array value ['2011-03-22', 'date']
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: ArrayGetDateInvalidCharsOptionalParams
+    options?: ArrayGetDateInvalidCharsOptionalParams,
   ): Promise<ArrayGetDateInvalidCharsResponse>;
   /**
    * Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -436,7 +436,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: ArrayGetDateTimeValidOptionalParams
+    options?: ArrayGetDateTimeValidOptionalParams,
   ): Promise<ArrayGetDateTimeValidResponse>;
   /**
    * Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00']
@@ -446,21 +446,21 @@ export interface Array {
    */
   putDateTimeValid(
     arrayBody: Date[],
-    options?: ArrayPutDateTimeValidOptionalParams
+    options?: ArrayPutDateTimeValidOptionalParams,
   ): Promise<void>;
   /**
    * Get date array value ['2000-12-01t00:00:01z', null]
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: ArrayGetDateTimeInvalidNullOptionalParams
+    options?: ArrayGetDateTimeInvalidNullOptionalParams,
   ): Promise<ArrayGetDateTimeInvalidNullResponse>;
   /**
    * Get date array value ['2000-12-01t00:00:01z', 'date-time']
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: ArrayGetDateTimeInvalidCharsOptionalParams
+    options?: ArrayGetDateTimeInvalidCharsOptionalParams,
   ): Promise<ArrayGetDateTimeInvalidCharsResponse>;
   /**
    * Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed,
@@ -468,7 +468,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: ArrayGetDateTimeRfc1123ValidOptionalParams
+    options?: ArrayGetDateTimeRfc1123ValidOptionalParams,
   ): Promise<ArrayGetDateTimeRfc1123ValidResponse>;
   /**
    * Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
@@ -479,14 +479,14 @@ export interface Array {
    */
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
-    options?: ArrayPutDateTimeRfc1123ValidOptionalParams
+    options?: ArrayPutDateTimeRfc1123ValidOptionalParams,
   ): Promise<void>;
   /**
    * Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: ArrayGetDurationValidOptionalParams
+    options?: ArrayGetDurationValidOptionalParams,
   ): Promise<ArrayGetDurationValidResponse>;
   /**
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
@@ -495,7 +495,7 @@ export interface Array {
    */
   putDurationValid(
     arrayBody: string[],
-    options?: ArrayPutDurationValidOptionalParams
+    options?: ArrayPutDurationValidOptionalParams,
   ): Promise<void>;
   /**
    * Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in
@@ -503,7 +503,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: ArrayGetByteValidOptionalParams
+    options?: ArrayGetByteValidOptionalParams,
   ): Promise<ArrayGetByteValidResponse>;
   /**
    * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in
@@ -514,14 +514,14 @@ export interface Array {
    */
   putByteValid(
     arrayBody: Uint8Array[],
-    options?: ArrayPutByteValidOptionalParams
+    options?: ArrayPutByteValidOptionalParams,
   ): Promise<void>;
   /**
    * Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: ArrayGetByteInvalidNullOptionalParams
+    options?: ArrayGetByteInvalidNullOptionalParams,
   ): Promise<ArrayGetByteInvalidNullResponse>;
   /**
    * Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the
@@ -529,21 +529,21 @@ export interface Array {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: ArrayGetBase64UrlOptionalParams
+    options?: ArrayGetBase64UrlOptionalParams,
   ): Promise<ArrayGetBase64UrlResponse>;
   /**
    * Get array of complex type null value
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: ArrayGetComplexNullOptionalParams
+    options?: ArrayGetComplexNullOptionalParams,
   ): Promise<ArrayGetComplexNullResponse>;
   /**
    * Get empty array of complex type []
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: ArrayGetComplexEmptyOptionalParams
+    options?: ArrayGetComplexEmptyOptionalParams,
   ): Promise<ArrayGetComplexEmptyResponse>;
   /**
    * Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
@@ -551,7 +551,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: ArrayGetComplexItemNullOptionalParams
+    options?: ArrayGetComplexItemNullOptionalParams,
   ): Promise<ArrayGetComplexItemNullResponse>;
   /**
    * Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
@@ -559,7 +559,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: ArrayGetComplexItemEmptyOptionalParams
+    options?: ArrayGetComplexItemEmptyOptionalParams,
   ): Promise<ArrayGetComplexItemEmptyResponse>;
   /**
    * Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
@@ -567,7 +567,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: ArrayGetComplexValidOptionalParams
+    options?: ArrayGetComplexValidOptionalParams,
   ): Promise<ArrayGetComplexValidResponse>;
   /**
    * Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string':
@@ -578,42 +578,42 @@ export interface Array {
    */
   putComplexValid(
     arrayBody: Product[],
-    options?: ArrayPutComplexValidOptionalParams
+    options?: ArrayPutComplexValidOptionalParams,
   ): Promise<void>;
   /**
    * Get a null array
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: ArrayGetArrayNullOptionalParams
+    options?: ArrayGetArrayNullOptionalParams,
   ): Promise<ArrayGetArrayNullResponse>;
   /**
    * Get an empty array []
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: ArrayGetArrayEmptyOptionalParams
+    options?: ArrayGetArrayEmptyOptionalParams,
   ): Promise<ArrayGetArrayEmptyResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: ArrayGetArrayItemNullOptionalParams
+    options?: ArrayGetArrayItemNullOptionalParams,
   ): Promise<ArrayGetArrayItemNullResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: ArrayGetArrayItemEmptyOptionalParams
+    options?: ArrayGetArrayItemEmptyOptionalParams,
   ): Promise<ArrayGetArrayItemEmptyResponse>;
   /**
    * Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: ArrayGetArrayValidOptionalParams
+    options?: ArrayGetArrayValidOptionalParams,
   ): Promise<ArrayGetArrayValidResponse>;
   /**
    * Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
@@ -622,21 +622,21 @@ export interface Array {
    */
   putArrayValid(
     arrayBody: string[][],
-    options?: ArrayPutArrayValidOptionalParams
+    options?: ArrayPutArrayValidOptionalParams,
   ): Promise<void>;
   /**
    * Get an array of Dictionaries with value null
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: ArrayGetDictionaryNullOptionalParams
+    options?: ArrayGetDictionaryNullOptionalParams,
   ): Promise<ArrayGetDictionaryNullResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value []
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: ArrayGetDictionaryEmptyOptionalParams
+    options?: ArrayGetDictionaryEmptyOptionalParams,
   ): Promise<ArrayGetDictionaryEmptyResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -644,7 +644,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: ArrayGetDictionaryItemNullOptionalParams
+    options?: ArrayGetDictionaryItemNullOptionalParams,
   ): Promise<ArrayGetDictionaryItemNullResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -652,7 +652,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: ArrayGetDictionaryItemEmptyOptionalParams
+    options?: ArrayGetDictionaryItemEmptyOptionalParams,
   ): Promise<ArrayGetDictionaryItemEmptyResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -660,7 +660,7 @@ export interface Array {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: ArrayGetDictionaryValidOptionalParams
+    options?: ArrayGetDictionaryValidOptionalParams,
   ): Promise<ArrayGetDictionaryValidResponse>;
   /**
    * Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -672,6 +672,6 @@ export interface Array {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
-    options?: ArrayPutDictionaryValidOptionalParams
+    options?: ArrayPutDictionaryValidOptionalParams,
   ): Promise<void>;
 }

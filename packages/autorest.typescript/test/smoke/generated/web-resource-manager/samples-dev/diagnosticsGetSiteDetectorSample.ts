@@ -34,7 +34,7 @@ async function getAppDetector() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    detectorName
+    detectorName,
   );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function getAppSlotDetector() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    detectorName
+    detectorName,
   );
   console.log(result);
 }

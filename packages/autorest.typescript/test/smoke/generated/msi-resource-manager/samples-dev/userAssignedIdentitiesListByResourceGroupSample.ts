@@ -27,7 +27,7 @@ async function identityListByResourceGroup() {
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.userAssignedIdentities.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

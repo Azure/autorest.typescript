@@ -29,7 +29,7 @@ async function listVirtualMachineScaleSetNetworkInterfaces() {
   const resArray = new Array();
   for await (let item of client.networkInterfaces.listVirtualMachineScaleSetNetworkInterfaces(
     resourceGroupName,
-    virtualMachineScaleSetName
+    virtualMachineScaleSetName,
   )) {
     resArray.push(item);
   }

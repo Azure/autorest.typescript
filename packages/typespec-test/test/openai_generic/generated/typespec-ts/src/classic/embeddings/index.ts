@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
+import { create } from "../../api/embeddings/index.js";
 import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
-import { create } from "../../api/embeddings/index.js";
-import { EmbeddingsCreateOptions } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../../api/options.js";
 
+/** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {
   create: (
     embedding: CreateEmbeddingRequest,
-    options?: EmbeddingsCreateOptions
+    options?: EmbeddingsCreateOptionalParams,
   ) => Promise<CreateEmbeddingResponse>;
 }
 
@@ -20,13 +21,13 @@ export function getEmbeddings(context: OpenAIContext) {
   return {
     create: (
       embedding: CreateEmbeddingRequest,
-      options?: EmbeddingsCreateOptions
+      options?: EmbeddingsCreateOptionalParams,
     ) => create(context, embedding, options),
   };
 }
 
 export function getEmbeddingsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): EmbeddingsOperations {
   return {
     ...getEmbeddings(context),

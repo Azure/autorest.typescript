@@ -32,7 +32,7 @@ import {
   HttpClientFailurePost415OptionalParams,
   HttpClientFailureGet416OptionalParams,
   HttpClientFailureDelete417OptionalParams,
-  HttpClientFailureHead429OptionalParams
+  HttpClientFailureHead429OptionalParams,
 } from "../models";
 
 /** Interface representing a HttpClientFailure. */
@@ -52,7 +52,7 @@ export interface HttpClientFailure {
    * @param options The options parameters.
    */
   options400(
-    options?: HttpClientFailureOptions400OptionalParams
+    options?: HttpClientFailureOptions400OptionalParams,
   ): Promise<void>;
   /**
    * Return 400 status code - should be represented in the client as an error
@@ -89,7 +89,7 @@ export interface HttpClientFailure {
    * @param options The options parameters.
    */
   options403(
-    options?: HttpClientFailureOptions403OptionalParams
+    options?: HttpClientFailureOptions403OptionalParams,
   ): Promise<void>;
   /**
    * Return 403 status code - should be represented in the client as an error
@@ -136,7 +136,7 @@ export interface HttpClientFailure {
    * @param options The options parameters.
    */
   options412(
-    options?: HttpClientFailureOptions412OptionalParams
+    options?: HttpClientFailureOptions412OptionalParams,
   ): Promise<void>;
   /**
    * Return 412 status code - should be represented in the client as an error

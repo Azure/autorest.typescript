@@ -13,7 +13,7 @@ import {
   DataFlowDebugSessionDeleteOptionalParams,
   DataFlowDebugCommandRequest,
   DataFlowDebugSessionExecuteCommandOptionalParams,
-  DataFlowDebugSessionExecuteCommandResponse
+  DataFlowDebugSessionExecuteCommandResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -28,7 +28,7 @@ export interface DataFlowDebugSession {
   listQueryByFactory(
     resourceGroupName: string,
     factoryName: string,
-    options?: DataFlowDebugSessionQueryByFactoryOptionalParams
+    options?: DataFlowDebugSessionQueryByFactoryOptionalParams,
   ): PagedAsyncIterableIterator<DataFlowDebugSessionInfo>;
   /**
    * Creates a data flow debug session.
@@ -41,7 +41,7 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: CreateDataFlowDebugSessionRequest,
-    options?: DataFlowDebugSessionCreateOptionalParams
+    options?: DataFlowDebugSessionCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DataFlowDebugSessionCreateResponse>,
@@ -59,7 +59,7 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: CreateDataFlowDebugSessionRequest,
-    options?: DataFlowDebugSessionCreateOptionalParams
+    options?: DataFlowDebugSessionCreateOptionalParams,
   ): Promise<DataFlowDebugSessionCreateResponse>;
   /**
    * Add a data flow into debug session.
@@ -72,7 +72,7 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: DataFlowDebugPackage,
-    options?: DataFlowDebugSessionAddDataFlowOptionalParams
+    options?: DataFlowDebugSessionAddDataFlowOptionalParams,
   ): Promise<DataFlowDebugSessionAddDataFlowResponse>;
   /**
    * Deletes a data flow debug session.
@@ -85,7 +85,7 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: DeleteDataFlowDebugSessionRequest,
-    options?: DataFlowDebugSessionDeleteOptionalParams
+    options?: DataFlowDebugSessionDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Execute a data flow debug command.
@@ -98,7 +98,7 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: DataFlowDebugCommandRequest,
-    options?: DataFlowDebugSessionExecuteCommandOptionalParams
+    options?: DataFlowDebugSessionExecuteCommandOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DataFlowDebugSessionExecuteCommandResponse>,
@@ -116,6 +116,6 @@ export interface DataFlowDebugSession {
     resourceGroupName: string,
     factoryName: string,
     request: DataFlowDebugCommandRequest,
-    options?: DataFlowDebugSessionExecuteCommandOptionalParams
+    options?: DataFlowDebugSessionExecuteCommandOptionalParams,
   ): Promise<DataFlowDebugSessionExecuteCommandResponse>;
 }

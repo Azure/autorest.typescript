@@ -2,7 +2,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
@@ -37,7 +37,7 @@ import {
   GetSecretVersionsNextOptionalParams,
   GetSecretVersionsNextResponse,
   GetDeletedSecretsNextOptionalParams,
-  GetDeletedSecretsNextResponse
+  GetDeletedSecretsNextResponse,
 } from "./models";
 
 /** @internal */
@@ -51,7 +51,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
    */
   constructor(
     apiVersion: ApiVersion72Preview,
-    options?: KeyVaultClientOptionalParams
+    options?: KeyVaultClientOptionalParams,
   ) {
     if (apiVersion === undefined) {
       throw new Error("'apiVersion' cannot be null");
@@ -62,7 +62,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: KeyVaultClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-keyvault-secrets/1.0.0-preview1`;
@@ -75,9 +75,9 @@ export class KeyVaultClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -94,7 +94,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -108,7 +108,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }
@@ -125,11 +125,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
     vaultBaseUrl: string,
     secretName: string,
     value: string,
-    options?: SetSecretOptionalParams
+    options?: SetSecretOptionalParams,
   ): Promise<SetSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, value, options },
-      setSecretOperationSpec
+      setSecretOperationSpec,
     );
   }
 
@@ -143,11 +143,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   deleteSecret(
     vaultBaseUrl: string,
     secretName: string,
-    options?: DeleteSecretOptionalParams
+    options?: DeleteSecretOptionalParams,
   ): Promise<DeleteSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      deleteSecretOperationSpec
+      deleteSecretOperationSpec,
     );
   }
 
@@ -164,11 +164,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
     vaultBaseUrl: string,
     secretName: string,
     secretVersion: string,
-    options?: UpdateSecretOptionalParams
+    options?: UpdateSecretOptionalParams,
   ): Promise<UpdateSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, secretVersion, options },
-      updateSecretOperationSpec
+      updateSecretOperationSpec,
     );
   }
 
@@ -185,11 +185,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
     vaultBaseUrl: string,
     secretName: string,
     secretVersion: string,
-    options?: GetSecretOptionalParams
+    options?: GetSecretOptionalParams,
   ): Promise<GetSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, secretVersion, options },
-      getSecretOperationSpec
+      getSecretOperationSpec,
     );
   }
 
@@ -202,11 +202,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
    */
   getSecrets(
     vaultBaseUrl: string,
-    options?: GetSecretsOptionalParams
+    options?: GetSecretsOptionalParams,
   ): Promise<GetSecretsResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, options },
-      getSecretsOperationSpec
+      getSecretsOperationSpec,
     );
   }
 
@@ -220,11 +220,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   getSecretVersions(
     vaultBaseUrl: string,
     secretName: string,
-    options?: GetSecretVersionsOptionalParams
+    options?: GetSecretVersionsOptionalParams,
   ): Promise<GetSecretVersionsResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      getSecretVersionsOperationSpec
+      getSecretVersionsOperationSpec,
     );
   }
 
@@ -236,11 +236,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
    */
   getDeletedSecrets(
     vaultBaseUrl: string,
-    options?: GetDeletedSecretsOptionalParams
+    options?: GetDeletedSecretsOptionalParams,
   ): Promise<GetDeletedSecretsResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, options },
-      getDeletedSecretsOperationSpec
+      getDeletedSecretsOperationSpec,
     );
   }
 
@@ -254,11 +254,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   getDeletedSecret(
     vaultBaseUrl: string,
     secretName: string,
-    options?: GetDeletedSecretOptionalParams
+    options?: GetDeletedSecretOptionalParams,
   ): Promise<GetDeletedSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      getDeletedSecretOperationSpec
+      getDeletedSecretOperationSpec,
     );
   }
 
@@ -273,11 +273,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   purgeDeletedSecret(
     vaultBaseUrl: string,
     secretName: string,
-    options?: PurgeDeletedSecretOptionalParams
+    options?: PurgeDeletedSecretOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      purgeDeletedSecretOperationSpec
+      purgeDeletedSecretOperationSpec,
     );
   }
 
@@ -291,11 +291,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   recoverDeletedSecret(
     vaultBaseUrl: string,
     secretName: string,
-    options?: RecoverDeletedSecretOptionalParams
+    options?: RecoverDeletedSecretOptionalParams,
   ): Promise<RecoverDeletedSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      recoverDeletedSecretOperationSpec
+      recoverDeletedSecretOperationSpec,
     );
   }
 
@@ -309,11 +309,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   backupSecret(
     vaultBaseUrl: string,
     secretName: string,
-    options?: BackupSecretOptionalParams
+    options?: BackupSecretOptionalParams,
   ): Promise<BackupSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, options },
-      backupSecretOperationSpec
+      backupSecretOperationSpec,
     );
   }
 
@@ -327,11 +327,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   restoreSecret(
     vaultBaseUrl: string,
     secretBundleBackup: Uint8Array,
-    options?: RestoreSecretOptionalParams
+    options?: RestoreSecretOptionalParams,
   ): Promise<RestoreSecretResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretBundleBackup, options },
-      restoreSecretOperationSpec
+      restoreSecretOperationSpec,
     );
   }
 
@@ -344,11 +344,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   getSecretsNext(
     vaultBaseUrl: string,
     nextLink: string,
-    options?: GetSecretsNextOptionalParams
+    options?: GetSecretsNextOptionalParams,
   ): Promise<GetSecretsNextResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, nextLink, options },
-      getSecretsNextOperationSpec
+      getSecretsNextOperationSpec,
     );
   }
 
@@ -363,11 +363,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
     vaultBaseUrl: string,
     secretName: string,
     nextLink: string,
-    options?: GetSecretVersionsNextOptionalParams
+    options?: GetSecretVersionsNextOptionalParams,
   ): Promise<GetSecretVersionsNextResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, secretName, nextLink, options },
-      getSecretVersionsNextOperationSpec
+      getSecretVersionsNextOperationSpec,
     );
   }
 
@@ -380,11 +380,11 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   getDeletedSecretsNext(
     vaultBaseUrl: string,
     nextLink: string,
-    options?: GetDeletedSecretsNextOptionalParams
+    options?: GetDeletedSecretsNextOptionalParams,
   ): Promise<GetDeletedSecretsNextResponse> {
     return this.sendOperationRequest(
       { vaultBaseUrl, nextLink, options },
-      getDeletedSecretsNextOperationSpec
+      getDeletedSecretsNextOperationSpec,
     );
   }
 }
@@ -396,155 +396,155 @@ const setSecretOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretBundle
+      bodyMapper: Mappers.SecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   requestBody: {
     parameterPath: {
       value: ["value"],
       tags: ["options", "tags"],
       contentType: ["options", "contentType"],
-      secretAttributes: ["options", "secretAttributes"]
+      secretAttributes: ["options", "secretAttributes"],
     },
-    mapper: { ...Mappers.SecretSetParameters, required: true }
+    mapper: { ...Mappers.SecretSetParameters, required: true },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteSecretOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/{secret-name}",
   httpMethod: "DELETE",
   responses: {
     200: {
-      bodyMapper: Mappers.DeletedSecretBundle
+      bodyMapper: Mappers.DeletedSecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateSecretOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/{secret-name}/{secret-version}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretBundle
+      bodyMapper: Mappers.SecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   requestBody: {
     parameterPath: {
       contentType: ["options", "contentType"],
       secretAttributes: ["options", "secretAttributes"],
-      tags: ["options", "tags"]
+      tags: ["options", "tags"],
     },
-    mapper: { ...Mappers.SecretUpdateParameters, required: true }
+    mapper: { ...Mappers.SecretUpdateParameters, required: true },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.vaultBaseUrl,
     Parameters.secretName1,
-    Parameters.secretVersion
+    Parameters.secretVersion,
   ],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getSecretOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/{secret-name}/{secret-version}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretBundle
+      bodyMapper: Mappers.SecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.vaultBaseUrl,
     Parameters.secretName1,
-    Parameters.secretVersion
+    Parameters.secretVersion,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSecretsOperationSpec: coreClient.OperationSpec = {
   path: "/secrets",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretListResult
+      bodyMapper: Mappers.SecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [Parameters.vaultBaseUrl],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSecretVersionsOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/{secret-name}/versions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretListResult
+      bodyMapper: Mappers.SecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDeletedSecretsOperationSpec: coreClient.OperationSpec = {
   path: "/deletedsecrets",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeletedSecretListResult
+      bodyMapper: Mappers.DeletedSecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [Parameters.vaultBaseUrl],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDeletedSecretOperationSpec: coreClient.OperationSpec = {
   path: "/deletedsecrets/{secret-name}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeletedSecretBundle
+      bodyMapper: Mappers.DeletedSecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const purgeDeletedSecretOperationSpec: coreClient.OperationSpec = {
   path: "/deletedsecrets/{secret-name}",
@@ -552,113 +552,113 @@ const purgeDeletedSecretOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const recoverDeletedSecretOperationSpec: coreClient.OperationSpec = {
   path: "/deletedsecrets/{secret-name}/recover",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretBundle
+      bodyMapper: Mappers.SecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const backupSecretOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/{secret-name}/backup",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.BackupSecretResult
+      bodyMapper: Mappers.BackupSecretResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.secretName1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const restoreSecretOperationSpec: coreClient.OperationSpec = {
   path: "/secrets/restore",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretBundle
+      bodyMapper: Mappers.SecretBundle,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   requestBody: {
     parameterPath: { secretBundleBackup: ["secretBundleBackup"] },
-    mapper: { ...Mappers.SecretRestoreParameters, required: true }
+    mapper: { ...Mappers.SecretRestoreParameters, required: true },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.vaultBaseUrl],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getSecretsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretListResult
+      bodyMapper: Mappers.SecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   urlParameters: [Parameters.vaultBaseUrl, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSecretVersionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SecretListResult
+      bodyMapper: Mappers.SecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   urlParameters: [
     Parameters.vaultBaseUrl,
     Parameters.secretName1,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDeletedSecretsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeletedSecretListResult
+      bodyMapper: Mappers.DeletedSecretListResult,
     },
     default: {
-      bodyMapper: Mappers.KeyVaultError
-    }
+      bodyMapper: Mappers.KeyVaultError,
+    },
   },
   urlParameters: [Parameters.vaultBaseUrl, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

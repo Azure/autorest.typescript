@@ -50,7 +50,7 @@ import {
   PrimitiveGetByteOptionalParams,
   PrimitiveGetByteResponse,
   ByteWrapper,
-  PrimitivePutByteOptionalParams
+  PrimitivePutByteOptionalParams,
 } from "../models";
 
 /** Interface representing a Primitive. */
@@ -60,7 +60,7 @@ export interface Primitive {
    * @param options The options parameters.
    */
   getInt(
-    options?: PrimitiveGetIntOptionalParams
+    options?: PrimitiveGetIntOptionalParams,
   ): Promise<PrimitiveGetIntResponse>;
   /**
    * Put complex types with integer properties
@@ -69,14 +69,14 @@ export interface Primitive {
    */
   putInt(
     complexBody: IntWrapper,
-    options?: PrimitivePutIntOptionalParams
+    options?: PrimitivePutIntOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with long properties
    * @param options The options parameters.
    */
   getLong(
-    options?: PrimitiveGetLongOptionalParams
+    options?: PrimitiveGetLongOptionalParams,
   ): Promise<PrimitiveGetLongResponse>;
   /**
    * Put complex types with long properties
@@ -85,14 +85,14 @@ export interface Primitive {
    */
   putLong(
     complexBody: LongWrapper,
-    options?: PrimitivePutLongOptionalParams
+    options?: PrimitivePutLongOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with float properties
    * @param options The options parameters.
    */
   getFloat(
-    options?: PrimitiveGetFloatOptionalParams
+    options?: PrimitiveGetFloatOptionalParams,
   ): Promise<PrimitiveGetFloatResponse>;
   /**
    * Put complex types with float properties
@@ -101,14 +101,14 @@ export interface Primitive {
    */
   putFloat(
     complexBody: FloatWrapper,
-    options?: PrimitivePutFloatOptionalParams
+    options?: PrimitivePutFloatOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with double properties
    * @param options The options parameters.
    */
   getDouble(
-    options?: PrimitiveGetDoubleOptionalParams
+    options?: PrimitiveGetDoubleOptionalParams,
   ): Promise<PrimitiveGetDoubleResponse>;
   /**
    * Put complex types with double properties
@@ -118,14 +118,14 @@ export interface Primitive {
    */
   putDouble(
     complexBody: DoubleWrapper,
-    options?: PrimitivePutDoubleOptionalParams
+    options?: PrimitivePutDoubleOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with bool properties
    * @param options The options parameters.
    */
   getBool(
-    options?: PrimitiveGetBoolOptionalParams
+    options?: PrimitiveGetBoolOptionalParams,
   ): Promise<PrimitiveGetBoolResponse>;
   /**
    * Put complex types with bool properties
@@ -134,14 +134,14 @@ export interface Primitive {
    */
   putBool(
     complexBody: BooleanWrapper,
-    options?: PrimitivePutBoolOptionalParams
+    options?: PrimitivePutBoolOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with string properties
    * @param options The options parameters.
    */
   getString(
-    options?: PrimitiveGetStringOptionalParams
+    options?: PrimitiveGetStringOptionalParams,
   ): Promise<PrimitiveGetStringResponse>;
   /**
    * Put complex types with string properties
@@ -150,14 +150,14 @@ export interface Primitive {
    */
   putString(
     complexBody: StringWrapper,
-    options?: PrimitivePutStringOptionalParams
+    options?: PrimitivePutStringOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with date properties
    * @param options The options parameters.
    */
   getDate(
-    options?: PrimitiveGetDateOptionalParams
+    options?: PrimitiveGetDateOptionalParams,
   ): Promise<PrimitiveGetDateResponse>;
   /**
    * Put complex types with date properties
@@ -166,14 +166,14 @@ export interface Primitive {
    */
   putDate(
     complexBody: DateWrapper,
-    options?: PrimitivePutDateOptionalParams
+    options?: PrimitivePutDateOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with datetime properties
    * @param options The options parameters.
    */
   getDateTime(
-    options?: PrimitiveGetDateTimeOptionalParams
+    options?: PrimitiveGetDateTimeOptionalParams,
   ): Promise<PrimitiveGetDateTimeResponse>;
   /**
    * Put complex types with datetime properties
@@ -182,14 +182,14 @@ export interface Primitive {
    */
   putDateTime(
     complexBody: DatetimeWrapper,
-    options?: PrimitivePutDateTimeOptionalParams
+    options?: PrimitivePutDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with datetimeRfc1123 properties
    * @param options The options parameters.
    */
   getDateTimeRfc1123(
-    options?: PrimitiveGetDateTimeRfc1123OptionalParams
+    options?: PrimitiveGetDateTimeRfc1123OptionalParams,
   ): Promise<PrimitiveGetDateTimeRfc1123Response>;
   /**
    * Put complex types with datetimeRfc1123 properties
@@ -198,14 +198,14 @@ export interface Primitive {
    */
   putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
-    options?: PrimitivePutDateTimeRfc1123OptionalParams
+    options?: PrimitivePutDateTimeRfc1123OptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with duration properties
    * @param options The options parameters.
    */
   getDuration(
-    options?: PrimitiveGetDurationOptionalParams
+    options?: PrimitiveGetDurationOptionalParams,
   ): Promise<PrimitiveGetDurationResponse>;
   /**
    * Put complex types with duration properties
@@ -214,14 +214,14 @@ export interface Primitive {
    */
   putDuration(
     complexBody: DurationWrapper,
-    options?: PrimitivePutDurationOptionalParams
+    options?: PrimitivePutDurationOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with byte properties
    * @param options The options parameters.
    */
   getByte(
-    options?: PrimitiveGetByteOptionalParams
+    options?: PrimitiveGetByteOptionalParams,
   ): Promise<PrimitiveGetByteResponse>;
   /**
    * Put complex types with byte properties
@@ -230,6 +230,6 @@ export interface Primitive {
    */
   putByte(
     complexBody: ByteWrapper,
-    options?: PrimitivePutByteOptionalParams
+    options?: PrimitivePutByteOptionalParams,
   ): Promise<void>;
 }

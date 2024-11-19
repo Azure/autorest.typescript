@@ -10,11 +10,11 @@ export const StorageError: coreClient.CompositeMapper = {
         serializedName: "Message",
         xmlName: "Message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
@@ -27,68 +27,69 @@ export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
         serializedName: "etag",
         xmlName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         xmlName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       xMsContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
-          name: "ByteArray"
-        }
+          name: "ByteArray",
+        },
       },
       requestId: {
         serializedName: "x-ms-request-id",
         xmlName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         xmlName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       date: {
         serializedName: "date",
         xmlName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       isServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
-export const FileUploadRangeFromURLExceptionHeaders: coreClient.CompositeMapper = {
-  serializedName: "File_uploadRangeFromURLExceptionHeaders",
-  type: {
-    name: "Composite",
-    className: "FileUploadRangeFromURLExceptionHeaders",
-    modelProperties: {
-      errorCode: {
-        serializedName: "x-ms-error-code",
-        xmlName: "x-ms-error-code",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const FileUploadRangeFromURLExceptionHeaders: coreClient.CompositeMapper =
+  {
+    serializedName: "File_uploadRangeFromURLExceptionHeaders",
+    type: {
+      name: "Composite",
+      className: "FileUploadRangeFromURLExceptionHeaders",
+      modelProperties: {
+        errorCode: {
+          serializedName: "x-ms-error-code",
+          xmlName: "x-ms-error-code",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };

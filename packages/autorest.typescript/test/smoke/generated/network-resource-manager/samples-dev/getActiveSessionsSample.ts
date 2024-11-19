@@ -29,7 +29,7 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
   const resArray = new Array();
   for await (let item of client.beginListActiveSessionsAndWait(
     resourceGroupName,
-    bastionHostName
+    bastionHostName,
   )) {
     resArray.push(item);
   }

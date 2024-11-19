@@ -31,7 +31,7 @@ async function getsAAzureActiveDirectoryAdministrator() {
   const result = await client.serverAzureADAdministrators.get(
     resourceGroupName,
     serverName,
-    administratorName
+    administratorName,
   );
   console.log(result);
 }

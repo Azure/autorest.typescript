@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LocalNetworkGateway,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,14 +31,14 @@ async function createLocalNetworkGateway() {
     fqdn: "site1.contoso.com",
     gatewayIpAddress: "11.12.13.14",
     localNetworkAddressSpace: { addressPrefixes: ["10.1.0.0/16"] },
-    location: "Central US"
+    location: "Central US",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     localNetworkGatewayName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

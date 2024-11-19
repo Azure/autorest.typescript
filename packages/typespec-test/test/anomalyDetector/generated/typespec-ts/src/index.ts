@@ -1,15 +1,63 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import AnomalyDetectorClient from "./anomalyDetectorClient";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
-export * from "./anomalyDetectorClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./isUnexpected";
-export * from "./models";
-export * from "./outputModels";
-export * from "./paginateHelper";
-
-export default AnomalyDetectorClient;
+export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
+export {
+  MultivariateMultivariateDetectionResult,
+  MultivariateMultivariateBatchDetectionResultSummary,
+  MultivariateMultivariateBatchDetectionStatus,
+  MultivariateErrorResponse,
+  MultivariateVariableState,
+  MultivariateMultivariateBatchDetectionOptions,
+  MultivariateAnomalyState,
+  MultivariateAnomalyValue,
+  MultivariateAnomalyInterpretation,
+  MultivariateCorrelationChanges,
+  MultivariateModelInfo,
+  MultivariateDataSchema,
+  MultivariateAlignPolicy,
+  MultivariateAlignMode,
+  MultivariateFillNAMethod,
+  MultivariateModelStatus,
+  MultivariateDiagnosticsInfo,
+  MultivariateModelState,
+  MultivariateAnomalyDetectionModel,
+  MultivariateMultivariateLastDetectionOptions,
+  MultivariateVariableValues,
+  MultivariateMultivariateLastDetectionResult,
+  UnivariateUnivariateDetectionOptions,
+  UnivariateTimeSeriesPoint,
+  UnivariateTimeGranularity,
+  UnivariateImputeMode,
+  UnivariateUnivariateEntireDetectionResult,
+  UnivariateAnomalyDetectorError,
+  UnivariateAnomalyDetectorErrorCodes,
+  UnivariateUnivariateLastDetectionResult,
+  UnivariateUnivariateChangePointDetectionOptions,
+  UnivariateUnivariateChangePointDetectionResult,
+  KnownVersions,
+} from "./models/index.js";
+export {
+  AnomalyDetectorClientOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+} from "./api/index.js";
+export {
+  MultivariateOperations,
+  UnivariateOperations,
+} from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

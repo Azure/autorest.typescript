@@ -1,17 +1,16 @@
 import { TelemetryInfo } from "@azure-tools/rlc-common";
 import {
-  SdkClient,
-  SdkContext,
+  getHttpOperationWithCache,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  SdkClient,
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
-import { ignoreDiagnostics } from "@typespec/compiler";
 import { getCustomRequestHeaderNameForOperation } from "../utils/operationUtil.js";
-import { getHttpOperation } from "@typespec/http";
 
 export function transformTelemetryInfo(
-  dpgContext: SdkContext,
-  client: SdkClient
+  client: SdkClient,
+  dpgContext: SdkContext
 ): TelemetryInfo | undefined {
   const customRequestIdHeaderName = getCustomRequestHeaderNameForClient(
     dpgContext,
@@ -29,8 +28,16 @@ function getCustomRequestHeaderNameForClient(
   dpgContext: SdkContext,
   client: SdkClient
 ) {
-  const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const headerName = getCustomRequestHeaderNameForOperation(
+      getHttpOperationWithCache(dpgContext, clientOp)
+    );
+    if (headerName !== undefined) {
+      return headerName;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -38,20 +45,11 @@ function getCustomRequestHeaderNameForClient(
     );
     for (const op of operations) {
       const headerName = getCustomRequestHeaderNameForOperation(
-        ignoreDiagnostics(getHttpOperation(program, op))
+        getHttpOperationWithCache(dpgContext, op)
       );
       if (headerName !== undefined) {
         return headerName;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const headerName = getCustomRequestHeaderNameForOperation(
-      ignoreDiagnostics(getHttpOperation(program, clientOp))
-    );
-    if (headerName !== undefined) {
-      return headerName;
     }
   }
   return undefined;

@@ -33,7 +33,7 @@ async function listVirtualMachineScaleSetNetworkInterfaceIPConfigurations() {
     resourceGroupName,
     virtualMachineScaleSetName,
     virtualmachineIndex,
-    networkInterfaceName
+    networkInterfaceName,
   )) {
     resArray.push(item);
   }

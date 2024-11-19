@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   ProductOutput,
   ProductResultOutput,
-  LROProductOutput
+  LROProductOutput,
 } from "./outputModels";
 
 /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */

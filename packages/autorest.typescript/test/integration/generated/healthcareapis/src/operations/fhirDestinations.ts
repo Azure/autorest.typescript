@@ -10,7 +10,7 @@ import {
   FhirDestinationsListByIotConnectorNextOptionalParams,
   FhirDestinationsListByIotConnectorOptionalParams,
   FhirDestinationsListByIotConnectorResponse,
-  FhirDestinationsListByIotConnectorNextResponse
+  FhirDestinationsListByIotConnectorNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -37,13 +37,13 @@ export class FhirDestinationsImpl implements FhirDestinations {
     resourceGroupName: string,
     workspaceName: string,
     iotConnectorName: string,
-    options?: FhirDestinationsListByIotConnectorOptionalParams
+    options?: FhirDestinationsListByIotConnectorOptionalParams,
   ): PagedAsyncIterableIterator<IotFhirDestination> {
     const iter = this.listByIotConnectorPagingAll(
       resourceGroupName,
       workspaceName,
       iotConnectorName,
-      options
+      options,
     );
     return {
       next() {
@@ -61,9 +61,9 @@ export class FhirDestinationsImpl implements FhirDestinations {
           workspaceName,
           iotConnectorName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -72,7 +72,7 @@ export class FhirDestinationsImpl implements FhirDestinations {
     workspaceName: string,
     iotConnectorName: string,
     options?: FhirDestinationsListByIotConnectorOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<IotFhirDestination[]> {
     let result: FhirDestinationsListByIotConnectorResponse;
     let continuationToken = settings?.continuationToken;
@@ -81,7 +81,7 @@ export class FhirDestinationsImpl implements FhirDestinations {
         resourceGroupName,
         workspaceName,
         iotConnectorName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -94,7 +94,7 @@ export class FhirDestinationsImpl implements FhirDestinations {
         workspaceName,
         iotConnectorName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -107,13 +107,13 @@ export class FhirDestinationsImpl implements FhirDestinations {
     resourceGroupName: string,
     workspaceName: string,
     iotConnectorName: string,
-    options?: FhirDestinationsListByIotConnectorOptionalParams
+    options?: FhirDestinationsListByIotConnectorOptionalParams,
   ): AsyncIterableIterator<IotFhirDestination> {
     for await (const page of this.listByIotConnectorPagingPage(
       resourceGroupName,
       workspaceName,
       iotConnectorName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -130,11 +130,11 @@ export class FhirDestinationsImpl implements FhirDestinations {
     resourceGroupName: string,
     workspaceName: string,
     iotConnectorName: string,
-    options?: FhirDestinationsListByIotConnectorOptionalParams
+    options?: FhirDestinationsListByIotConnectorOptionalParams,
   ): Promise<FhirDestinationsListByIotConnectorResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, workspaceName, iotConnectorName, options },
-      listByIotConnectorOperationSpec
+      listByIotConnectorOperationSpec,
     );
   }
 
@@ -151,11 +151,11 @@ export class FhirDestinationsImpl implements FhirDestinations {
     workspaceName: string,
     iotConnectorName: string,
     nextLink: string,
-    options?: FhirDestinationsListByIotConnectorNextOptionalParams
+    options?: FhirDestinationsListByIotConnectorNextOptionalParams,
   ): Promise<FhirDestinationsListByIotConnectorNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, workspaceName, iotConnectorName, nextLink, options },
-      listByIotConnectorNextOperationSpec
+      listByIotConnectorNextOperationSpec,
     );
   }
 }
@@ -163,16 +163,15 @@ export class FhirDestinationsImpl implements FhirDestinations {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listByIotConnectorOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}/fhirdestinations",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis/workspaces/{workspaceName}/iotconnectors/{iotConnectorName}/fhirdestinations",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.IotFhirDestinationCollection
+      bodyMapper: Mappers.IotFhirDestinationCollection,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -180,21 +179,21 @@ const listByIotConnectorOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
-    Parameters.iotConnectorName
+    Parameters.iotConnectorName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByIotConnectorNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.IotFhirDestinationCollection
+      bodyMapper: Mappers.IotFhirDestinationCollection,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   urlParameters: [
     Parameters.$host,
@@ -202,8 +201,8 @@ const listByIotConnectorNextOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.nextLink,
     Parameters.workspaceName,
-    Parameters.iotConnectorName
+    Parameters.iotConnectorName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

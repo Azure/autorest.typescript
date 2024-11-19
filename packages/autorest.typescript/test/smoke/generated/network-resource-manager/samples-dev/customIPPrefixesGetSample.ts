@@ -28,7 +28,7 @@ async function getCustomIPPrefix() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.customIPPrefixes.get(
     resourceGroupName,
-    customIpPrefixName
+    customIpPrefixName,
   );
   console.log(result);
 }

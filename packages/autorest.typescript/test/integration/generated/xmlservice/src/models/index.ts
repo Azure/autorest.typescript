@@ -280,7 +280,7 @@ export enum KnownPublicAccessType {
   /** Container */
   Container = "container",
   /** Blob */
-  Blob = "blob"
+  Blob = "blob",
 }
 
 /**
@@ -314,7 +314,7 @@ export enum KnownAccessTier {
   /** Cool */
   Cool = "Cool",
   /** Archive */
-  Archive = "Archive"
+  Archive = "Archive",
 }
 
 /**
@@ -340,7 +340,7 @@ export enum KnownArchiveStatus {
   /** RehydratePendingToHot */
   RehydratePendingToHot = "rehydrate-pending-to-hot",
   /** RehydratePendingToCool */
-  RehydratePendingToCool = "rehydrate-pending-to-cool"
+  RehydratePendingToCool = "rehydrate-pending-to-cool",
 }
 
 /**

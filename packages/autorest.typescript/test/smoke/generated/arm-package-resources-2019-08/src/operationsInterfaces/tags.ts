@@ -15,7 +15,7 @@ import {
   TagsCreateOrUpdateValueResponse,
   TagsCreateOrUpdateOptionalParams,
   TagsCreateOrUpdateResponse,
-  TagsDeleteOptionalParams
+  TagsDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -26,7 +26,7 @@ export interface Tags {
    * @param options The options parameters.
    */
   list(
-    options?: TagsListOptionalParams
+    options?: TagsListOptionalParams,
   ): PagedAsyncIterableIterator<TagDetails>;
   /**
    * Deletes a tag value.
@@ -37,7 +37,7 @@ export interface Tags {
   deleteValue(
     tagName: string,
     tagValue: string,
-    options?: TagsDeleteValueOptionalParams
+    options?: TagsDeleteValueOptionalParams,
   ): Promise<void>;
   /**
    * Creates a tag value. The name of the tag must already exist.
@@ -48,7 +48,7 @@ export interface Tags {
   createOrUpdateValue(
     tagName: string,
     tagValue: string,
-    options?: TagsCreateOrUpdateValueOptionalParams
+    options?: TagsCreateOrUpdateValueOptionalParams,
   ): Promise<TagsCreateOrUpdateValueResponse>;
   /**
    * The tag name can have a maximum of 512 characters and is case insensitive. Tag names created by
@@ -59,7 +59,7 @@ export interface Tags {
    */
   createOrUpdate(
     tagName: string,
-    options?: TagsCreateOrUpdateOptionalParams
+    options?: TagsCreateOrUpdateOptionalParams,
   ): Promise<TagsCreateOrUpdateResponse>;
   /**
    * You must remove all values from a resource tag before you can delete it.

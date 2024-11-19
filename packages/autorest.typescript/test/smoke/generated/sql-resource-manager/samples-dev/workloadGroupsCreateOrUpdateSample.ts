@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   WorkloadGroup,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
     maxResourcePercentPerRequest: 3,
     minResourcePercent: 0,
     minResourcePercentPerRequest: 3,
-    queryExecutionTimeout: 0
+    queryExecutionTimeout: 0,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -46,7 +46,7 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
     serverName,
     databaseName,
     workloadGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -68,7 +68,7 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
   const parameters: WorkloadGroup = {
     maxResourcePercent: 100,
     minResourcePercent: 0,
-    minResourcePercentPerRequest: 3
+    minResourcePercentPerRequest: 3,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -77,7 +77,7 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
     serverName,
     databaseName,
     workloadGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

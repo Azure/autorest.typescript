@@ -28,11 +28,12 @@ async function deleteExpressRouteCrossConnectionBgpPeering() {
   const peeringName = "AzurePrivatePeering";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCrossConnectionPeerings.beginDeleteAndWait(
-    resourceGroupName,
-    crossConnectionName,
-    peeringName
-  );
+  const result =
+    await client.expressRouteCrossConnectionPeerings.beginDeleteAndWait(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+    );
   console.log(result);
 }
 

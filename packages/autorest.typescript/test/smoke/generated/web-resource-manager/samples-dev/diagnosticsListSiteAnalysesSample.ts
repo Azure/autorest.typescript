@@ -33,7 +33,7 @@ async function listAppAnalyses() {
   for await (let item of client.diagnostics.listSiteAnalyses(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   )) {
     resArray.push(item);
   }
@@ -59,7 +59,7 @@ async function listAppSlotAnalyses() {
   for await (let item of client.diagnostics.listSiteAnalyses(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   )) {
     resArray.push(item);
   }

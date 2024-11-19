@@ -29,7 +29,7 @@ async function configurationPolicyGroupListByVpnServerConfiguration() {
   const resArray = new Array();
   for await (let item of client.configurationPolicyGroups.listByVpnServerConfiguration(
     resourceGroupName,
-    vpnServerConfigurationName
+    vpnServerConfigurationName,
   )) {
     resArray.push(item);
   }

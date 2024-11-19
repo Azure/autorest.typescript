@@ -21,7 +21,7 @@ import {
   AzureFirewallsUpdateTagsOptionalParams,
   AzureFirewallsUpdateTagsResponse,
   AzureFirewallsListLearnedPrefixesOptionalParams,
-  AzureFirewallsListLearnedPrefixesResponse
+  AzureFirewallsListLearnedPrefixesResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,14 +34,14 @@ export interface AzureFirewalls {
    */
   list(
     resourceGroupName: string,
-    options?: AzureFirewallsListOptionalParams
+    options?: AzureFirewallsListOptionalParams,
   ): PagedAsyncIterableIterator<AzureFirewall>;
   /**
    * Gets all the Azure Firewalls in a subscription.
    * @param options The options parameters.
    */
   listAll(
-    options?: AzureFirewallsListAllOptionalParams
+    options?: AzureFirewallsListAllOptionalParams,
   ): PagedAsyncIterableIterator<AzureFirewall>;
   /**
    * Deletes the specified Azure Firewall.
@@ -52,7 +52,7 @@ export interface AzureFirewalls {
   beginDelete(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: AzureFirewallsDeleteOptionalParams
+    options?: AzureFirewallsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the specified Azure Firewall.
@@ -63,7 +63,7 @@ export interface AzureFirewalls {
   beginDeleteAndWait(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: AzureFirewallsDeleteOptionalParams
+    options?: AzureFirewallsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets the specified Azure Firewall.
@@ -74,7 +74,7 @@ export interface AzureFirewalls {
   get(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: AzureFirewallsGetOptionalParams
+    options?: AzureFirewallsGetOptionalParams,
   ): Promise<AzureFirewallsGetResponse>;
   /**
    * Creates or updates the specified Azure Firewall.
@@ -87,7 +87,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
-    options?: AzureFirewallsCreateOrUpdateOptionalParams
+    options?: AzureFirewallsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AzureFirewallsCreateOrUpdateResponse>,
@@ -105,7 +105,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: AzureFirewall,
-    options?: AzureFirewallsCreateOrUpdateOptionalParams
+    options?: AzureFirewallsCreateOrUpdateOptionalParams,
   ): Promise<AzureFirewallsCreateOrUpdateResponse>;
   /**
    * Updates tags of an Azure Firewall resource.
@@ -118,7 +118,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
-    options?: AzureFirewallsUpdateTagsOptionalParams
+    options?: AzureFirewallsUpdateTagsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AzureFirewallsUpdateTagsResponse>,
@@ -136,7 +136,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     parameters: TagsObject,
-    options?: AzureFirewallsUpdateTagsOptionalParams
+    options?: AzureFirewallsUpdateTagsOptionalParams,
   ): Promise<AzureFirewallsUpdateTagsResponse>;
   /**
    * Retrieves a list of all IP prefixes that azure firewall has learned to not SNAT.
@@ -147,7 +147,7 @@ export interface AzureFirewalls {
   beginListLearnedPrefixes(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: AzureFirewallsListLearnedPrefixesOptionalParams
+    options?: AzureFirewallsListLearnedPrefixesOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AzureFirewallsListLearnedPrefixesResponse>,
@@ -163,6 +163,6 @@ export interface AzureFirewalls {
   beginListLearnedPrefixesAndWait(
     resourceGroupName: string,
     azureFirewallName: string,
-    options?: AzureFirewallsListLearnedPrefixesOptionalParams
+    options?: AzureFirewallsListLearnedPrefixesOptionalParams,
   ): Promise<AzureFirewallsListLearnedPrefixesResponse>;
 }

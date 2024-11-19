@@ -28,7 +28,7 @@ async function deleteDDoSProtectionPlan() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.beginDeleteAndWait(
     resourceGroupName,
-    ddosProtectionPlanName
+    ddosProtectionPlanName,
   );
   console.log(result);
 }

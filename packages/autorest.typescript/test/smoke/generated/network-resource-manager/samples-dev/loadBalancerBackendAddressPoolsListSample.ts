@@ -29,7 +29,7 @@ async function loadBalancerWithBackendAddressPoolContainingBackendAddresses() {
   const resArray = new Array();
   for await (let item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }
@@ -51,7 +51,7 @@ async function loadBalancerBackendAddressPoolList() {
   const resArray = new Array();
   for await (let item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

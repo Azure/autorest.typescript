@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GrantAccessData,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function getASasOnAManagedDisk() {
   const diskName = "myDisk";
   const grantAccessData: GrantAccessData = {
     access: "Read",
-    durationInSeconds: 300
+    durationInSeconds: 300,
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginGrantAccessAndWait(
     resourceGroupName,
     diskName,
-    grantAccessData
+    grantAccessData,
   );
   console.log(result);
 }

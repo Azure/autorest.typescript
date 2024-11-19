@@ -29,7 +29,7 @@ async function routeFilterRuleListByRouteFilter() {
   const resArray = new Array();
   for await (let item of client.routeFilterRules.listByRouteFilter(
     resourceGroupName,
-    routeFilterName
+    routeFilterName,
   )) {
     resArray.push(item);
   }

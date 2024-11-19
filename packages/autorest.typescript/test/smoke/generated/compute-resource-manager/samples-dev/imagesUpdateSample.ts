@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ImageUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,17 +30,16 @@ async function updatesTagsOfAnImage() {
   const parameters: ImageUpdate = {
     hyperVGeneration: "V1",
     sourceVirtualMachine: {
-      id:
-        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM"
+      id: "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
     },
-    tags: { department: "HR" }
+    tags: { department: "HR" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.images.beginUpdateAndWait(
     resourceGroupName,
     imageName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

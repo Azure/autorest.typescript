@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
   GetDeployment200Response,
@@ -7,7 +7,7 @@ import {
   DeployProject200Response,
   DeployProject201Response,
   DeployProjectDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /authoring/analyze-text/deployments/{deploymentName}": ["200"],
@@ -15,13 +15,13 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetDeployment200Response | GetDeploymentDefaultResponse
+  response: GetDeployment200Response | GetDeploymentDefaultResponse,
 ): response is GetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
     | DeployProject200Response
     | DeployProject201Response
-    | DeployProjectDefaultResponse
+    | DeployProjectDefaultResponse,
 ): response is DeployProjectDefaultResponse;
 export function isUnexpected(
   response:
@@ -29,7 +29,7 @@ export function isUnexpected(
     | GetDeploymentDefaultResponse
     | DeployProject200Response
     | DeployProject201Response
-    | DeployProjectDefaultResponse
+    | DeployProjectDefaultResponse,
 ): response is GetDeploymentDefaultResponse | DeployProjectDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -79,7 +79,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

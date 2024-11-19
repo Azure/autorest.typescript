@@ -10,7 +10,7 @@ import {
   OuContainerCreateResponse,
   OuContainerDeleteOptionalParams,
   OuContainerUpdateOptionalParams,
-  OuContainerUpdateResponse
+  OuContainerUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -26,7 +26,7 @@ export interface OuContainerOperationGrp {
   list(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: OuContainerListOptionalParams
+    options?: OuContainerListOptionalParams,
   ): PagedAsyncIterableIterator<OuContainer>;
   /**
    * Get OuContainer in DomainService instance.
@@ -40,7 +40,7 @@ export interface OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerGetOptionalParams
+    options?: OuContainerGetOptionalParams,
   ): Promise<OuContainerGetResponse>;
   /**
    * The Create OuContainer operation creates a new OuContainer under the specified Domain Service
@@ -57,7 +57,7 @@ export interface OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerCreateOptionalParams
+    options?: OuContainerCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<OuContainerCreateResponse>,
@@ -79,7 +79,7 @@ export interface OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerCreateOptionalParams
+    options?: OuContainerCreateOptionalParams,
   ): Promise<OuContainerCreateResponse>;
   /**
    * The Delete OuContainer operation deletes specified OuContainer.
@@ -93,7 +93,7 @@ export interface OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerDeleteOptionalParams
+    options?: OuContainerDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * The Delete OuContainer operation deletes specified OuContainer.
@@ -107,7 +107,7 @@ export interface OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerDeleteOptionalParams
+    options?: OuContainerDeleteOptionalParams,
   ): Promise<void>;
   /**
    * The Update OuContainer operation can be used to update the existing OuContainers.
@@ -123,7 +123,7 @@ export interface OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerUpdateOptionalParams
+    options?: OuContainerUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<OuContainerUpdateResponse>,
@@ -144,6 +144,6 @@ export interface OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerUpdateOptionalParams
+    options?: OuContainerUpdateOptionalParams,
   ): Promise<OuContainerUpdateResponse>;
 }

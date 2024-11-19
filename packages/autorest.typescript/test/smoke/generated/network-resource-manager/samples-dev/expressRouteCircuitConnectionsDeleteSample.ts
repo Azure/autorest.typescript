@@ -32,7 +32,7 @@ async function deleteExpressRouteCircuit() {
     resourceGroupName,
     circuitName,
     peeringName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

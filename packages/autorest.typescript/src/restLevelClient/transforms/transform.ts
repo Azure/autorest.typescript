@@ -37,7 +37,7 @@ import { transformSchemas } from "./transformSchemas";
 import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, flavor } = getAutorestOptions();
   const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
@@ -56,10 +56,13 @@ export function transform(model: CodeModel): RLCModel {
     apiVersionInfo: transformApiVersion(model, urlInfo),
     importInfo: {
       internalImports: importDetails,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports(flavor)
     }
   };
   rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
+  rlcModel.options!.generateSample =
+    rlcModel.options!.generateSample &&
+    (rlcModel.sampleGroups ?? []).length > 0;
   return rlcModel;
 }
 
@@ -70,7 +73,12 @@ function transformApiVersion(
   const queryVersionDetail = getOperationQueryApiVersion(model);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
-    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
+    queryVersionDetail || pathVersionDetail
+      ? Boolean(
+          pathVersionDetail?.isCrossedVersion ||
+            queryVersionDetail?.isCrossedVersion
+        )
+      : undefined;
   let defaultValue =
     pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
 
@@ -85,7 +93,8 @@ function transformApiVersion(
       pathVersionDetail
     ),
     isCrossedVersion,
-    defaultValue
+    defaultValue,
+    required: pathVersionDetail?.required ?? queryVersionDetail?.required
   };
 }
 
@@ -98,20 +107,21 @@ function getOperationQueryApiVersion(
 
   const apiVersionParam = model.globalParameters
     .filter(
-      gp =>
+      (gp) =>
         gp.implementation === ImplementationLocation.Client &&
         gp.protocol.http?.in === ParameterLocation.Query
     )
     .find(
-      param =>
+      (param) =>
         getLanguageMetadata(param.language).serializedName === "api-version"
     );
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      definedPosition: "path",
+      definedPosition: "query",
       isCrossedVersion: false,
-      defaultValue: apiVersionParam.schema.value.value.toString()
+      defaultValue: apiVersionParam.schema.value.value.toString(),
+      required: apiVersionParam.required
     };
   }
 
@@ -139,7 +149,7 @@ export function transformHelperDetails(
         nextLinkName && nextLinks.add(`${nextLinkName}`);
         itemName && itemNames.add(`${itemName}`);
       }
-      operation.signatureParameters?.forEach(parameter => {
+      operation.signatureParameters?.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(parameter);
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection

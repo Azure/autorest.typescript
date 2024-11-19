@@ -15,25 +15,25 @@ export const LexicalAnalyzer: coreClient.CompositeMapper = {
     uberParent: "LexicalAnalyzer",
     polymorphicDiscriminator: {
       serializedName: "@odata\\.type",
-      clientName: "odataType"
+      clientName: "odataType",
     },
     modelProperties: {
       odataType: {
         serializedName: "@odata\\.type",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       name: {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathHierarchyTokenizerV2: coreClient.CompositeMapper = {
@@ -45,18 +45,18 @@ export const PathHierarchyTokenizerV2: coreClient.CompositeMapper = {
         defaultValue: "/",
         serializedName: "delimiter",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       replacement: {
         defaultValue: "/",
         serializedName: "replacement",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PatternAnalyzer: coreClient.CompositeMapper = {
@@ -72,15 +72,15 @@ export const PatternAnalyzer: coreClient.CompositeMapper = {
         defaultValue: true,
         serializedName: "lowercase",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       pattern: {
         defaultValue: "W+",
         serializedName: "pattern",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       stopwords: {
         serializedName: "stopwords",
@@ -88,13 +88,13 @@ export const PatternAnalyzer: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const LuceneStandardAnalyzer: coreClient.CompositeMapper = {
@@ -109,12 +109,12 @@ export const LuceneStandardAnalyzer: coreClient.CompositeMapper = {
       maxTokenLength: {
         defaultValue: 255,
         constraints: {
-          InclusiveMaximum: 300
+          InclusiveMaximum: 300,
         },
         serializedName: "maxTokenLength",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       stopwords: {
         serializedName: "stopwords",
@@ -122,13 +122,13 @@ export const LuceneStandardAnalyzer: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const StopAnalyzer: coreClient.CompositeMapper = {
@@ -146,18 +146,19 @@ export const StopAnalyzer: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export let discriminators = {
   LexicalAnalyzer: LexicalAnalyzer,
   "LexicalAnalyzer.#Microsoft.Azure.Search.PatternAnalyzer": PatternAnalyzer,
-  "LexicalAnalyzer.#Microsoft.Azure.Search.StandardAnalyzer": LuceneStandardAnalyzer,
-  "LexicalAnalyzer.#Microsoft.Azure.Search.StopAnalyzer": StopAnalyzer
+  "LexicalAnalyzer.#Microsoft.Azure.Search.StandardAnalyzer":
+    LuceneStandardAnalyzer,
+  "LexicalAnalyzer.#Microsoft.Azure.Search.StopAnalyzer": StopAnalyzer,
 };

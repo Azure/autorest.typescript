@@ -30,11 +30,11 @@ export class GetImpl implements Get {
    */
   url(
     testUrl: string,
-    options?: GetUrlOptionalParams
+    options?: GetUrlOptionalParams,
   ): Promise<GetUrlResponse> {
     return this.client.sendOperationRequest(
       { testUrl, options },
-      urlOperationSpec
+      urlOperationSpec,
     );
   }
 }
@@ -46,10 +46,10 @@ const urlOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.testUrl],
-  serializer
+  serializer,
 };

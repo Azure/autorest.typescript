@@ -1,7 +1,7 @@
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import {
   PageBlobUploadPagesOptionalParams,
-  PageBlobUploadPagesResponse
+  PageBlobUploadPagesResponse,
 } from "../models";
 
 /** Interface representing a PageBlob. */
@@ -15,6 +15,6 @@ export interface PageBlob {
   uploadPages(
     contentLength: number,
     body: coreRestPipeline.RequestBodyType,
-    options?: PageBlobUploadPagesOptionalParams
+    options?: PageBlobUploadPagesOptionalParams,
   ): Promise<PageBlobUploadPagesResponse>;
 }

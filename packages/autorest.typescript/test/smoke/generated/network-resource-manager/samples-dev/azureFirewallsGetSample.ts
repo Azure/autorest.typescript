@@ -28,7 +28,7 @@ async function getAzureFirewall() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.get(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getAzureFirewallWithAdditionalProperties() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.get(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }
@@ -66,7 +66,7 @@ async function getAzureFirewallWithIPGroups() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.get(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }
@@ -85,7 +85,7 @@ async function getAzureFirewallWithZones() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.get(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }
@@ -104,7 +104,7 @@ async function getAzureFirewallWithManagementSubnet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.get(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }

@@ -16,17 +16,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Product: coreClient.CompositeMapper = {
@@ -37,15 +37,15 @@ export const Product: coreClient.CompositeMapper = {
       integer: {
         serializedName: "integer",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       string: {
         serializedName: "string",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

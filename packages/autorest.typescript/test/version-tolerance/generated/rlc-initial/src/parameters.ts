@@ -1,57 +1,60 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import { PostInput } from "./models";
 
-export type HeadNoParamsParameters = RequestParameters;
+export type ParamsHeadNoParamsParameters = RequestParameters;
 
-export interface GetRequiredQueryParamProperties {
+export interface ParamsGetRequiredQueryParamProperties {
   /** I am a required parameter */
   parameter: string;
 }
 
-export interface GetRequiredQueryParam {
-  queryParameters: GetRequiredQueryParamProperties;
+export interface ParamsGetRequiredQueryParam {
+  queryParameters: ParamsGetRequiredQueryParamProperties;
 }
 
-export type GetRequiredParameters = GetRequiredQueryParam & RequestParameters;
+export type ParamsGetRequiredParameters = ParamsGetRequiredQueryParam &
+  RequestParameters;
 
-export interface PutRequiredOptionalQueryParamProperties {
+export interface ParamsPutRequiredOptionalQueryParamProperties {
   /** I am a required parameter */
   requiredParam: string;
   /** I am an optional parameter */
   optionalParam?: string;
 }
 
-export interface PutRequiredOptionalQueryParam {
-  queryParameters: PutRequiredOptionalQueryParamProperties;
+export interface ParamsPutRequiredOptionalQueryParam {
+  queryParameters: ParamsPutRequiredOptionalQueryParamProperties;
 }
 
-export type PutRequiredOptionalParameters = PutRequiredOptionalQueryParam &
-  RequestParameters;
+export type ParamsPutRequiredOptionalParameters =
+  ParamsPutRequiredOptionalQueryParam & RequestParameters;
 
-export interface PostParametersBodyParam {
+export interface ParamsPostParametersBodyParam {
   /** I am a body parameter. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" } */
   body: PostInput;
 }
 
-export interface PostParametersMediaTypesParam {
+export interface ParamsPostParametersMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PostParametersParameters = PostParametersMediaTypesParam &
-  PostParametersBodyParam &
-  RequestParameters;
+export type ParamsPostParametersParameters =
+  ParamsPostParametersMediaTypesParam &
+    ParamsPostParametersBodyParam &
+    RequestParameters;
 
-export interface GetOptionalQueryParamProperties {
+export interface ParamsGetOptionalQueryParamProperties {
   /** I am an optional parameter */
   optionalParam?: string;
 }
 
-export interface GetOptionalQueryParam {
-  queryParameters?: GetOptionalQueryParamProperties;
+export interface ParamsGetOptionalQueryParam {
+  queryParameters?: ParamsGetOptionalQueryParamProperties;
 }
 
-export type GetOptionalParameters = GetOptionalQueryParam & RequestParameters;
+export type ParamsGetOptionalParameters = ParamsGetOptionalQueryParam &
+  RequestParameters;

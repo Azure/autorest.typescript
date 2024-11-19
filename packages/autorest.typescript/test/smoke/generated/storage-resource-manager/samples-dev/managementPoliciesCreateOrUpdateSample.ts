@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagementPolicy,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -39,16 +39,16 @@ async function storageAccountSetManagementPolicies() {
               baseBlob: {
                 delete: { daysAfterModificationGreaterThan: 1000 },
                 tierToArchive: { daysAfterModificationGreaterThan: 90 },
-                tierToCool: { daysAfterModificationGreaterThan: 30 }
+                tierToCool: { daysAfterModificationGreaterThan: 30 },
               },
-              snapshot: { delete: { daysAfterCreationGreaterThan: 30 } }
+              snapshot: { delete: { daysAfterCreationGreaterThan: 30 } },
             },
             filters: {
               blobTypes: ["blockBlob"],
-              prefixMatch: ["olcmtestcontainer1"]
-            }
+              prefixMatch: ["olcmtestcontainer1"],
+            },
           },
-          enabled: true
+          enabled: true,
         },
         {
           name: "olcmtest2",
@@ -58,22 +58,22 @@ async function storageAccountSetManagementPolicies() {
               baseBlob: {
                 delete: { daysAfterModificationGreaterThan: 1000 },
                 tierToArchive: { daysAfterModificationGreaterThan: 90 },
-                tierToCool: { daysAfterModificationGreaterThan: 30 }
-              }
+                tierToCool: { daysAfterModificationGreaterThan: 30 },
+              },
             },
             filters: {
               blobIndexMatch: [
                 { name: "tag1", op: "==", value: "val1" },
-                { name: "tag2", op: "==", value: "val2" }
+                { name: "tag2", op: "==", value: "val2" },
               ],
               blobTypes: ["blockBlob"],
-              prefixMatch: ["olcmtestcontainer2"]
-            }
+              prefixMatch: ["olcmtestcontainer2"],
+            },
           },
-          enabled: true
-        }
-      ]
-    }
+          enabled: true,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -81,7 +81,7 @@ async function storageAccountSetManagementPolicies() {
     resourceGroupName,
     accountName,
     managementPolicyName,
-    properties
+    properties,
   );
   console.log(result);
 }
@@ -107,17 +107,17 @@ async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
             actions: {
               baseBlob: { delete: { daysAfterModificationGreaterThan: 90 } },
               snapshot: { delete: { daysAfterCreationGreaterThan: 90 } },
-              version: { delete: { daysAfterCreationGreaterThan: 90 } }
+              version: { delete: { daysAfterCreationGreaterThan: 90 } },
             },
             filters: {
               blobTypes: ["blockBlob", "appendBlob"],
-              prefixMatch: ["olcmtestcontainer1"]
-            }
+              prefixMatch: ["olcmtestcontainer1"],
+            },
           },
-          enabled: true
-        }
-      ]
-    }
+          enabled: true,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -125,7 +125,7 @@ async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
     resourceGroupName,
     accountName,
     managementPolicyName,
-    properties
+    properties,
   );
   console.log(result);
 }
@@ -152,28 +152,28 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
               baseBlob: {
                 delete: { daysAfterModificationGreaterThan: 1000 },
                 tierToArchive: { daysAfterModificationGreaterThan: 90 },
-                tierToCool: { daysAfterModificationGreaterThan: 30 }
+                tierToCool: { daysAfterModificationGreaterThan: 30 },
               },
               snapshot: {
                 delete: { daysAfterCreationGreaterThan: 1000 },
                 tierToArchive: { daysAfterCreationGreaterThan: 90 },
-                tierToCool: { daysAfterCreationGreaterThan: 30 }
+                tierToCool: { daysAfterCreationGreaterThan: 30 },
               },
               version: {
                 delete: { daysAfterCreationGreaterThan: 1000 },
                 tierToArchive: { daysAfterCreationGreaterThan: 90 },
-                tierToCool: { daysAfterCreationGreaterThan: 30 }
-              }
+                tierToCool: { daysAfterCreationGreaterThan: 30 },
+              },
             },
             filters: {
               blobTypes: ["blockBlob"],
-              prefixMatch: ["olcmtestcontainer1"]
-            }
+              prefixMatch: ["olcmtestcontainer1"],
+            },
           },
-          enabled: true
-        }
-      ]
-    }
+          enabled: true,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -181,7 +181,7 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
     resourceGroupName,
     accountName,
     managementPolicyName,
-    properties
+    properties,
   );
   console.log(result);
 }
@@ -209,19 +209,19 @@ async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions()
                 delete: { daysAfterLastAccessTimeGreaterThan: 1000 },
                 enableAutoTierToHotFromCool: true,
                 tierToArchive: { daysAfterLastAccessTimeGreaterThan: 90 },
-                tierToCool: { daysAfterLastAccessTimeGreaterThan: 30 }
+                tierToCool: { daysAfterLastAccessTimeGreaterThan: 30 },
               },
-              snapshot: { delete: { daysAfterCreationGreaterThan: 30 } }
+              snapshot: { delete: { daysAfterCreationGreaterThan: 30 } },
             },
             filters: {
               blobTypes: ["blockBlob"],
-              prefixMatch: ["olcmtestcontainer"]
-            }
+              prefixMatch: ["olcmtestcontainer"],
+            },
           },
-          enabled: true
-        }
-      ]
-    }
+          enabled: true,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -229,7 +229,7 @@ async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions()
     resourceGroupName,
     accountName,
     managementPolicyName,
-    properties
+    properties,
   );
   console.log(result);
 }

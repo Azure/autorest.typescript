@@ -1,9 +1,5 @@
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
-import {
-  Namespace,
-  getNamespaceFullName,
-  listServices
-} from "@typespec/compiler";
+import { getNamespaceFullName, listServices } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
@@ -16,18 +12,12 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       name: clientName,
       service: service.type,
       type: service.type,
-      arm: isArm(service.type),
+      arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service.type
       )}.${clientName}`
     };
   });
-}
-
-function isArm(service: Namespace): boolean {
-  return service.decorators.some(
-    (decorator) => decorator.decorator.name === "$armProviderNamespace"
-  );
 }
 
 export function isRLCMultiEndpoint(dpgContext: SdkContext): boolean {

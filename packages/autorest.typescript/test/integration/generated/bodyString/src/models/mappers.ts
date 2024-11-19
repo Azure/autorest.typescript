@@ -16,17 +16,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const RefColorConstant: coreClient.CompositeMapper = {
@@ -39,15 +39,15 @@ export const RefColorConstant: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "ColorConstant",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       field1: {
         serializedName: "field1",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

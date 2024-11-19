@@ -145,6 +145,30 @@ addCredentials: true
 credentialKeyHeaderName: Your-Subscription-Key
 ```
 
+### clearOutputFolder
+
+If we enable this option `clearOutputFolder` we would empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
+
+```yaml
+clearOutputFolder: true
+```
+
+### compatibilityMode
+
+By default, this option will be disabled. If this option is enabled, it will affect the generation of the additional property feature for the Modular client.
+
+```yaml
+compatibilityMode: true
+```
+
+### compatibilityQueryMultiFormat
+
+By default, this option will be disabled. If this option is enabled, we should generate the backward-compatible code for query parameter serialization for array types in RLC.
+
+```yaml
+compatibilityQueryMultiFormat: true
+```
+
 # Contributing
 
 If you want to contribute on this project read the [contrubuting document](./CONTRIBUTING.md) for more details.

@@ -10,7 +10,7 @@ import {
   TimeGetOptionalParams,
   TimeGetResponse,
   TimePutOptionalParams,
-  TimePutResponse
+  TimePutResponse,
 } from "../models";
 
 /** Interface representing a Time. */
@@ -29,6 +29,6 @@ export interface Time {
    */
   put(
     timeBody: string,
-    options?: TimePutOptionalParams
+    options?: TimePutOptionalParams,
   ): Promise<TimePutResponse>;
 }

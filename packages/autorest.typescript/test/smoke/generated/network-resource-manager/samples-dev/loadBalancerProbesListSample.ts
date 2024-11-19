@@ -29,7 +29,7 @@ async function loadBalancerProbeList() {
   const resArray = new Array();
   for await (let item of client.loadBalancerProbes.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

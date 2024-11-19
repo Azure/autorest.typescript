@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BlobContainersListOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function listContainers() {
   const resArray = new Array();
   for await (let item of client.blobContainers.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }
@@ -57,7 +57,7 @@ async function listDeletedContainers() {
   for await (let item of client.blobContainers.list(
     resourceGroupName,
     accountName,
-    options
+    options,
   )) {
     resArray.push(item);
   }

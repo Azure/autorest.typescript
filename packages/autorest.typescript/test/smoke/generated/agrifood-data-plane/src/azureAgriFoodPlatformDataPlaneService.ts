@@ -1,10 +1,17 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
+
+/** The optional parameters for the client */
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions
+  extends ClientOptions {
+  /** The api version option of the client */
+  apiVersion?: string;
+}
 
 /**
  * Initialize a new instance of `AzureAgriFoodPlatformDataPlaneServiceClient`
@@ -15,10 +22,12 @@ import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  {
+    apiVersion = "2021-03-31-preview",
+    ...options
+  }: AzureAgriFoodPlatformDataPlaneServiceClientOptions = {},
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
   const userAgentInfo = `azsdk-js-agrifood-data-plane-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -27,21 +36,38 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Authorization"
-    }
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Authorization",
+    },
   };
-
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
-    options
+    options,
   ) as AzureAgriFoodPlatformDataPlaneServiceClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

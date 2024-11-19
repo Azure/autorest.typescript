@@ -23,7 +23,7 @@ import {
   PolymorphismPutComplicatedOptionalParams,
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
-  PolymorphismPutValidMissingRequiredOptionalParams
+  PolymorphismPutValidMissingRequiredOptionalParams,
 } from "../models";
 
 /** Interface representing a Polymorphism. */
@@ -33,7 +33,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getValid(
-    options?: PolymorphismGetValidOptionalParams
+    options?: PolymorphismGetValidOptionalParams,
   ): Promise<PolymorphismGetValidResponse>;
   /**
    * Put complex types that are polymorphic
@@ -74,14 +74,14 @@ export interface Polymorphism {
    */
   putValid(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidOptionalParams
+    options?: PolymorphismPutValidOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
    */
   getDotSyntax(
-    options?: PolymorphismGetDotSyntaxOptionalParams
+    options?: PolymorphismGetDotSyntaxOptionalParams,
   ): Promise<PolymorphismGetDotSyntaxResponse>;
   /**
    * Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -90,7 +90,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithDiscriminator(
-    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
   /**
    * Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -99,7 +99,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithoutDiscriminator(
-    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
   /**
    * Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional
@@ -107,7 +107,7 @@ export interface Polymorphism {
    * @param options The options parameters.
    */
   getComplicated(
-    options?: PolymorphismGetComplicatedOptionalParams
+    options?: PolymorphismGetComplicatedOptionalParams,
   ): Promise<PolymorphismGetComplicatedResponse>;
   /**
    * Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional
@@ -117,7 +117,7 @@ export interface Polymorphism {
    */
   putComplicated(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutComplicatedOptionalParams
+    options?: PolymorphismPutComplicatedOptionalParams,
   ): Promise<void>;
   /**
    * Put complex types that are polymorphic, omitting the discriminator
@@ -126,7 +126,7 @@ export interface Polymorphism {
    */
   putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutMissingDiscriminatorOptionalParams
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams,
   ): Promise<PolymorphismPutMissingDiscriminatorResponse>;
   /**
    * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request
@@ -162,6 +162,6 @@ export interface Polymorphism {
    */
   putValidMissingRequired(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidMissingRequiredOptionalParams
+    options?: PolymorphismPutValidMissingRequiredOptionalParams,
   ): Promise<void>;
 }

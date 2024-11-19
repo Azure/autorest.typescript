@@ -1,45 +1,46 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
+import { create, createEdit, createVariation } from "../../api/images/index.js";
 import {
   CreateImageRequest,
   ImagesResponse,
   CreateImageEditRequest,
   CreateImageVariationRequest,
 } from "../../models/models.js";
-import { create, createEdit, createVariation } from "../../api/images/index.js";
 import {
-  ImagesCreateOptions,
-  ImagesCreateEditOptions,
-  ImagesCreateVariationOptions,
-} from "../../models/options.js";
+  ImagesCreateOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateVariationOptionalParams,
+} from "../../api/options.js";
 
+/** Interface representing a Images operations. */
 export interface ImagesOperations {
   create: (
     image: CreateImageRequest,
-    options?: ImagesCreateOptions
+    options?: ImagesCreateOptionalParams,
   ) => Promise<ImagesResponse>;
   createEdit: (
     image: CreateImageEditRequest,
-    options?: ImagesCreateEditOptions
+    options?: ImagesCreateEditOptionalParams,
   ) => Promise<ImagesResponse>;
   createVariation: (
     image: CreateImageVariationRequest,
-    options?: ImagesCreateVariationOptions
+    options?: ImagesCreateVariationOptionalParams,
   ) => Promise<ImagesResponse>;
 }
 
 export function getImages(context: OpenAIContext) {
   return {
-    create: (image: CreateImageRequest, options?: ImagesCreateOptions) =>
+    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) =>
       create(context, image, options),
     createEdit: (
       image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptions
+      options?: ImagesCreateEditOptionalParams,
     ) => createEdit(context, image, options),
     createVariation: (
       image: CreateImageVariationRequest,
-      options?: ImagesCreateVariationOptions
+      options?: ImagesCreateVariationOptionalParams,
     ) => createVariation(context, image, options),
   };
 }

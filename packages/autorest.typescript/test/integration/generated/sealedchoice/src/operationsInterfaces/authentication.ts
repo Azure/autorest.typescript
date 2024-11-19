@@ -8,7 +8,7 @@
 
 import {
   TokenGrantType,
-  AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
+  AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams,
 } from "../models";
 
 /** Interface representing a Authentication. */
@@ -20,6 +20,6 @@ export interface Authentication {
    */
   exchangeAcrRefreshTokenForAcrAccessToken(
     grantType: TokenGrantType,
-    options?: AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
+    options?: AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams,
   ): Promise<void>;
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BlobContainer,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function updateContainers() {
   const containerName = "container6185";
   const blobContainer: BlobContainer = {
     metadata: { metadata: "true" },
-    publicAccess: "Container"
+    publicAccess: "Container",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function updateContainers() {
     resourceGroupName,
     accountName,
     containerName,
-    blobContainer
+    blobContainer,
   );
   console.log(result);
 }

@@ -4,90 +4,41 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface CollectionOutput {
+export interface Collection {
     // (undocumented)
     readonly collectionId: string;
 }
 
 // @public
-function createClient(credentials: TokenCredential, options?: ParametrizedHostClientOptions): ParametrizedHostClient;
-export default createClient;
-
-// @public (undocumented)
-export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
-
-// @public (undocumented)
-export interface ListCollections {
-    get(options?: ListCollectionsParameters): StreamableMethod<ListCollections200Response | ListCollectionsDefaultResponse>;
+export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ListCollections200Response extends HttpResponse {
-    // (undocumented)
-    body: Array<CollectionOutput>;
-    // (undocumented)
-    status: "200";
+export interface ConfidentialLedgerOperations {
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
 // @public (undocumented)
-export interface ListCollectionsDefaultHeaders {
-    "x-ms-error-code"?: string;
+export class ParametrizedHostClient {
+    constructor(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams);
+    readonly confidentialLedger: ConfidentialLedgerOperations;
+    readonly pipeline: Pipeline;
 }
 
-// @public (undocumented)
-export interface ListCollectionsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ListCollectionsDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ListCollectionsParameters = ListCollectionsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListCollectionsQueryParam {
-    // (undocumented)
-    queryParameters: ListCollectionsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListCollectionsQueryParamProperties {
-    "api-version": string;
-}
-
-// @public (undocumented)
-export type ParametrizedHostClient = Client & {
-    path: Routes;
-};
-
-// @public (undocumented)
-export interface ParametrizedHostClientOptions extends ClientOptions {
-    // (undocumented)
-    apiVersion?: string;
+// @public
+export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     // (undocumented)
     host?: string;
     // (undocumented)
     subdomain?: string;
     // (undocumented)
     sufix?: string;
-}
-
-// @public (undocumented)
-export interface Routes {
-    (path: "/app/collections"): ListCollections;
 }
 
 // (No @packageDocumentation comment for this package)

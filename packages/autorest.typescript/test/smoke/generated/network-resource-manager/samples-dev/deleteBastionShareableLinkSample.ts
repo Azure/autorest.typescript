@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BastionShareableLinkListRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,24 +31,22 @@ async function deleteBastionShareableLinksForTheRequestVMS() {
     vms: [
       {
         vm: {
-          id:
-            "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm1"
-        }
+          id: "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm1",
+        },
       },
       {
         vm: {
-          id:
-            "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm2"
-        }
-      }
-    ]
+          id: "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm2",
+        },
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.beginDeleteBastionShareableLinkAndWait(
     resourceGroupName,
     bastionHostName,
-    bslRequest
+    bslRequest,
   );
   console.log(result);
 }

@@ -28,7 +28,7 @@ async function virtualHubDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginDeleteAndWait(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   );
   console.log(result);
 }

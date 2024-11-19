@@ -26,10 +26,11 @@ async function listNetworkInterfaceEffectiveNetworkSecurityGroups() {
   const networkInterfaceName = "nic1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkInterfaces.beginListEffectiveNetworkSecurityGroupsAndWait(
-    resourceGroupName,
-    networkInterfaceName
-  );
+  const result =
+    await client.networkInterfaces.beginListEffectiveNetworkSecurityGroupsAndWait(
+      resourceGroupName,
+      networkInterfaceName,
+    );
   console.log(result);
 }
 

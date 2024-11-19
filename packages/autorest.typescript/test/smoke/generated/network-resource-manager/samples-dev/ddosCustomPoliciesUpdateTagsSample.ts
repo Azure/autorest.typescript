@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function dDoSCustomPolicyUpdateTags() {
   const result = await client.ddosCustomPolicies.updateTags(
     resourceGroupName,
     ddosCustomPolicyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

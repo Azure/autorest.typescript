@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PacketCapture,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,12 +36,12 @@ async function createPacketCapture() {
       storageId:
         "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Storage/storageAccounts/pcstore",
       storagePath:
-        "https://mytestaccountname.blob.core.windows.net/capture/pc1.cap"
+        "https://mytestaccountname.blob.core.windows.net/capture/pc1.cap",
     },
     target:
       "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
     timeLimitInSeconds: 100,
-    totalBytesPerSession: 100000
+    totalBytesPerSession: 100000,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -49,7 +49,7 @@ async function createPacketCapture() {
     resourceGroupName,
     networkWatcherName,
     packetCaptureName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

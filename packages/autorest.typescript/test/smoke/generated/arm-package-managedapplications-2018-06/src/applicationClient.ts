@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import { ApplicationsImpl, ApplicationDefinitionsImpl } from "./operations";
@@ -31,16 +31,16 @@ export class ApplicationClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: ApplicationClientOptionalParams
+    options?: ApplicationClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: ApplicationClientOptionalParams
+    options?: ApplicationClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?: ApplicationClientOptionalParams | string,
-    options?: ApplicationClientOptionalParams
+    options?: ApplicationClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -60,7 +60,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
     }
     const defaults: ApplicationClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-arm-package-managedapplications-2018-06/1.0.0-beta.1`;
@@ -73,10 +73,10 @@ export class ApplicationClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -99,7 +99,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -113,7 +113,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

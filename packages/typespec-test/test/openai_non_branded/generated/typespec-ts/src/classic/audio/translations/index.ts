@@ -1,17 +1,18 @@
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
-import { OpenAIContext } from "../../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../../api/openAIContext.js";
+import { create } from "../../../api/audio/translations/index.js";
 import {
   CreateTranslationRequest,
   CreateTranslationResponse,
 } from "../../../models/models.js";
-import { create } from "../../../api/audio/translations/index.js";
-import { AudioTranslationsCreateOptions } from "../../../models/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../../api/options.js";
 
+/** Interface representing a AudioTranslations operations. */
 export interface AudioTranslationsOperations {
   create: (
     audio: CreateTranslationRequest,
-    options?: AudioTranslationsCreateOptions
+    options?: AudioTranslationsCreateOptionalParams,
   ) => Promise<CreateTranslationResponse>;
 }
 
@@ -19,13 +20,13 @@ export function getAudioTranslations(context: OpenAIContext) {
   return {
     create: (
       audio: CreateTranslationRequest,
-      options?: AudioTranslationsCreateOptions
+      options?: AudioTranslationsCreateOptionalParams,
     ) => create(context, audio, options),
   };
 }
 
 export function getAudioTranslationsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): AudioTranslationsOperations {
   return {
     ...getAudioTranslations(context),

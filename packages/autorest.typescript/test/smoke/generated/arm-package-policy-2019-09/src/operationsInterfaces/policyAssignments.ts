@@ -24,7 +24,7 @@ import {
   PolicyAssignmentsCreateByIdOptionalParams,
   PolicyAssignmentsCreateByIdResponse,
   PolicyAssignmentsGetByIdOptionalParams,
-  PolicyAssignmentsGetByIdResponse
+  PolicyAssignmentsGetByIdResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -46,7 +46,7 @@ export interface PolicyAssignments {
    */
   listForResourceGroup(
     resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
+    options?: PolicyAssignmentsListForResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation retrieves the list of all policy assignments associated with the specified resource
@@ -84,7 +84,7 @@ export interface PolicyAssignments {
     parentResourcePath: string,
     resourceType: string,
     resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
+    options?: PolicyAssignmentsListForResourceOptionalParams,
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation retrieves the list of all policy assignments applicable to the management group that
@@ -102,7 +102,7 @@ export interface PolicyAssignments {
   listForManagementGroup(
     managementGroupId: string,
     filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams,
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation retrieves the list of all policy assignments associated with the given subscription
@@ -118,7 +118,7 @@ export interface PolicyAssignments {
    * @param options The options parameters.
    */
   list(
-    options?: PolicyAssignmentsListOptionalParams
+    options?: PolicyAssignmentsListOptionalParams,
   ): PagedAsyncIterableIterator<PolicyAssignment>;
   /**
    * This operation deletes a policy assignment, given its name and the scope it was created in. The
@@ -135,7 +135,7 @@ export interface PolicyAssignments {
   delete(
     scope: string,
     policyAssignmentName: string,
-    options?: PolicyAssignmentsDeleteOptionalParams
+    options?: PolicyAssignmentsDeleteOptionalParams,
   ): Promise<PolicyAssignmentsDeleteResponse>;
   /**
    *  This operation creates or updates a policy assignment with the given scope and name. Policy
@@ -154,7 +154,7 @@ export interface PolicyAssignments {
     scope: string,
     policyAssignmentName: string,
     parameters: PolicyAssignment,
-    options?: PolicyAssignmentsCreateOptionalParams
+    options?: PolicyAssignmentsCreateOptionalParams,
   ): Promise<PolicyAssignmentsCreateResponse>;
   /**
    * This operation retrieves a single policy assignment, given its name and the scope it was created at.
@@ -169,7 +169,7 @@ export interface PolicyAssignments {
   get(
     scope: string,
     policyAssignmentName: string,
-    options?: PolicyAssignmentsGetOptionalParams
+    options?: PolicyAssignmentsGetOptionalParams,
   ): Promise<PolicyAssignmentsGetResponse>;
   /**
    * This operation deletes the policy with the given ID. Policy assignment IDs have this format:
@@ -185,7 +185,7 @@ export interface PolicyAssignments {
    */
   deleteById(
     policyAssignmentId: string,
-    options?: PolicyAssignmentsDeleteByIdOptionalParams
+    options?: PolicyAssignmentsDeleteByIdOptionalParams,
   ): Promise<PolicyAssignmentsDeleteByIdResponse>;
   /**
    * This operation creates or updates the policy assignment with the given ID. Policy assignments made
@@ -205,7 +205,7 @@ export interface PolicyAssignments {
   createById(
     policyAssignmentId: string,
     parameters: PolicyAssignment,
-    options?: PolicyAssignmentsCreateByIdOptionalParams
+    options?: PolicyAssignmentsCreateByIdOptionalParams,
   ): Promise<PolicyAssignmentsCreateByIdResponse>;
   /**
    * The operation retrieves the policy assignment with the given ID. Policy assignment IDs have this
@@ -221,6 +221,6 @@ export interface PolicyAssignments {
    */
   getById(
     policyAssignmentId: string,
-    options?: PolicyAssignmentsGetByIdOptionalParams
+    options?: PolicyAssignmentsGetByIdOptionalParams,
   ): Promise<PolicyAssignmentsGetByIdResponse>;
 }

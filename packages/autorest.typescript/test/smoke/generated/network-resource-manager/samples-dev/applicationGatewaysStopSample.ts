@@ -28,7 +28,7 @@ async function stopApplicationGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginStopAndWait(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   );
   console.log(result);
 }

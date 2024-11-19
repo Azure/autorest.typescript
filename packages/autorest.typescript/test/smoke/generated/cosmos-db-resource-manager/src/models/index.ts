@@ -29,7 +29,9 @@ export interface ManagedServiceIdentity {
   type?: ResourceIdentityType;
   /** The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
   userAssignedIdentities?: {
-    [propertyName: string]: Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties;
+    [
+      propertyName: string
+    ]: Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties;
   };
 }
 
@@ -2499,7 +2501,7 @@ export enum KnownDatabaseAccountKind {
   /** MongoDB */
   MongoDB = "MongoDB",
   /** Parse */
-  Parse = "Parse"
+  Parse = "Parse",
 }
 
 /**
@@ -2516,7 +2518,7 @@ export type DatabaseAccountKind = string;
 /** Known values of {@link ConnectorOffer} that the service accepts. */
 export enum KnownConnectorOffer {
   /** Small */
-  Small = "Small"
+  Small = "Small",
 }
 
 /**
@@ -2533,7 +2535,7 @@ export enum KnownPublicNetworkAccess {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -2553,7 +2555,7 @@ export enum KnownServerVersion {
   /** Three6 */
   Three6 = "3.6",
   /** Four0 */
-  Four0 = "4.0"
+  Four0 = "4.0",
 }
 
 /**
@@ -2572,7 +2574,7 @@ export enum KnownAnalyticalStorageSchemaType {
   /** WellDefined */
   WellDefined = "WellDefined",
   /** FullFidelity */
-  FullFidelity = "FullFidelity"
+  FullFidelity = "FullFidelity",
 }
 
 /**
@@ -2590,7 +2592,7 @@ export enum KnownCreateMode {
   /** Default */
   Default = "Default",
   /** Restore */
-  Restore = "Restore"
+  Restore = "Restore",
 }
 
 /**
@@ -2606,7 +2608,7 @@ export type CreateMode = string;
 /** Known values of {@link RestoreMode} that the service accepts. */
 export enum KnownRestoreMode {
   /** PointInTime */
-  PointInTime = "PointInTime"
+  PointInTime = "PointInTime",
 }
 
 /**
@@ -2623,7 +2625,7 @@ export enum KnownBackupPolicyType {
   /** Periodic */
   Periodic = "Periodic",
   /** Continuous */
-  Continuous = "Continuous"
+  Continuous = "Continuous",
 }
 
 /**
@@ -2645,7 +2647,7 @@ export enum KnownBackupPolicyMigrationStatus {
   /** Completed */
   Completed = "Completed",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -2669,7 +2671,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -2693,7 +2695,7 @@ export enum KnownKeyKind {
   /** PrimaryReadonly */
   PrimaryReadonly = "primaryReadonly",
   /** SecondaryReadonly */
-  SecondaryReadonly = "secondaryReadonly"
+  SecondaryReadonly = "secondaryReadonly",
 }
 
 /**
@@ -2723,7 +2725,7 @@ export enum KnownUnitType {
   /** BytesPerSecond */
   BytesPerSecond = "BytesPerSecond",
   /** Milliseconds */
-  Milliseconds = "Milliseconds"
+  Milliseconds = "Milliseconds",
 }
 
 /**
@@ -2754,7 +2756,7 @@ export enum KnownPrimaryAggregationType {
   /** Maximum */
   Maximum = "Maximum",
   /** Last */
-  Last = "Last"
+  Last = "Last",
 }
 
 /**
@@ -2778,7 +2780,7 @@ export enum KnownIndexingMode {
   /** Lazy */
   Lazy = "lazy",
   /** None */
-  None = "none"
+  None = "none",
 }
 
 /**
@@ -2805,7 +2807,7 @@ export enum KnownDataType {
   /** LineString */
   LineString = "LineString",
   /** MultiPolygon */
-  MultiPolygon = "MultiPolygon"
+  MultiPolygon = "MultiPolygon",
 }
 
 /**
@@ -2829,7 +2831,7 @@ export enum KnownIndexKind {
   /** Range */
   Range = "Range",
   /** Spatial */
-  Spatial = "Spatial"
+  Spatial = "Spatial",
 }
 
 /**
@@ -2848,7 +2850,7 @@ export enum KnownCompositePathSortOrder {
   /** Ascending */
   Ascending = "ascending",
   /** Descending */
-  Descending = "descending"
+  Descending = "descending",
 }
 
 /**
@@ -2870,7 +2872,7 @@ export enum KnownSpatialType {
   /** Polygon */
   Polygon = "Polygon",
   /** MultiPolygon */
-  MultiPolygon = "MultiPolygon"
+  MultiPolygon = "MultiPolygon",
 }
 
 /**
@@ -2892,7 +2894,7 @@ export enum KnownPartitionKind {
   /** Range */
   Range = "Range",
   /** MultiHash */
-  MultiHash = "MultiHash"
+  MultiHash = "MultiHash",
 }
 
 /**
@@ -2911,7 +2913,7 @@ export enum KnownConflictResolutionMode {
   /** LastWriterWins */
   LastWriterWins = "LastWriterWins",
   /** Custom */
-  Custom = "Custom"
+  Custom = "Custom",
 }
 
 /**
@@ -2929,7 +2931,7 @@ export enum KnownTriggerType {
   /** Pre */
   Pre = "Pre",
   /** Post */
-  Post = "Post"
+  Post = "Post",
 }
 
 /**
@@ -2953,7 +2955,7 @@ export enum KnownTriggerOperation {
   /** Delete */
   Delete = "Delete",
   /** Replace */
-  Replace = "Replace"
+  Replace = "Replace",
 }
 
 /**
@@ -2976,7 +2978,7 @@ export enum KnownBackupStorageRedundancy {
   /** Local */
   Local = "Local",
   /** Zone */
-  Zone = "Zone"
+  Zone = "Zone",
 }
 
 /**
@@ -2993,7 +2995,7 @@ export type BackupStorageRedundancy = string;
 /** Known values of {@link NotebookWorkspaceName} that the service accepts. */
 export enum KnownNotebookWorkspaceName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -3018,7 +3020,7 @@ export enum KnownApiType {
   /** Sql */
   Sql = "Sql",
   /** GremlinV2 */
-  GremlinV2 = "GremlinV2"
+  GremlinV2 = "GremlinV2",
 }
 
 /**
@@ -3044,7 +3046,7 @@ export enum KnownOperationType {
   /** Delete */
   Delete = "Delete",
   /** SystemOperation */
-  SystemOperation = "SystemOperation"
+  SystemOperation = "SystemOperation",
 }
 
 /**
@@ -3072,7 +3074,7 @@ export enum KnownManagedCassandraProvisioningState {
   /** Failed */
   Failed = "Failed",
   /** Canceled */
-  Canceled = "Canceled"
+  Canceled = "Canceled",
 }
 
 /**
@@ -3094,7 +3096,7 @@ export enum KnownAuthenticationMethod {
   /** None */
   None = "None",
   /** Cassandra */
-  Cassandra = "Cassandra"
+  Cassandra = "Cassandra",
 }
 
 /**
@@ -3112,7 +3114,7 @@ export enum KnownManagedCassandraResourceIdentityType {
   /** SystemAssigned */
   SystemAssigned = "SystemAssigned",
   /** None */
-  None = "None"
+  None = "None",
 }
 
 /**
@@ -3138,7 +3140,7 @@ export enum KnownConnectionState {
   /** InternalOperatorToDataCenterCertificateError */
   InternalOperatorToDataCenterCertificateError = "InternalOperatorToDataCenterCertificateError",
   /** InternalError */
-  InternalError = "InternalError"
+  InternalError = "InternalError",
 }
 
 /**
@@ -3166,7 +3168,7 @@ export enum KnownNodeState {
   /** Moving */
   Moving = "Moving",
   /** Stopped */
-  Stopped = "Stopped"
+  Stopped = "Stopped",
 }
 
 /**
@@ -3187,7 +3189,7 @@ export enum KnownNodeStatus {
   /** Up */
   Up = "Up",
   /** Down */
-  Down = "Down"
+  Down = "Down",
 }
 
 /**
@@ -3278,7 +3280,8 @@ export interface DatabaseAccountsListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DatabaseAccountsListByResourceGroupResponse = DatabaseAccountsListResult;
+export type DatabaseAccountsListByResourceGroupResponse =
+  DatabaseAccountsListResult;
 
 /** Optional parameters. */
 export interface DatabaseAccountsListKeysOptionalParams
@@ -3292,7 +3295,8 @@ export interface DatabaseAccountsListConnectionStringsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnectionStrings operation. */
-export type DatabaseAccountsListConnectionStringsResponse = DatabaseAccountListConnectionStringsResult;
+export type DatabaseAccountsListConnectionStringsResponse =
+  DatabaseAccountListConnectionStringsResult;
 
 /** Optional parameters. */
 export interface DatabaseAccountsOfflineRegionOptionalParams
@@ -3317,14 +3321,16 @@ export interface DatabaseAccountsGetReadOnlyKeysOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getReadOnlyKeys operation. */
-export type DatabaseAccountsGetReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult;
+export type DatabaseAccountsGetReadOnlyKeysResponse =
+  DatabaseAccountListReadOnlyKeysResult;
 
 /** Optional parameters. */
 export interface DatabaseAccountsListReadOnlyKeysOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listReadOnlyKeys operation. */
-export type DatabaseAccountsListReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult;
+export type DatabaseAccountsListReadOnlyKeysResponse =
+  DatabaseAccountListReadOnlyKeysResult;
 
 /** Optional parameters. */
 export interface DatabaseAccountsRegenerateKeyOptionalParams
@@ -3361,7 +3367,8 @@ export interface DatabaseAccountsListMetricDefinitionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetricDefinitions operation. */
-export type DatabaseAccountsListMetricDefinitionsResponse = MetricDefinitionsListResult;
+export type DatabaseAccountsListMetricDefinitionsResponse =
+  MetricDefinitionsListResult;
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
@@ -3423,7 +3430,8 @@ export interface CollectionListMetricDefinitionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetricDefinitions operation. */
-export type CollectionListMetricDefinitionsResponse = MetricDefinitionsListResult;
+export type CollectionListMetricDefinitionsResponse =
+  MetricDefinitionsListResult;
 
 /** Optional parameters. */
 export interface CollectionRegionListMetricsOptionalParams
@@ -3444,7 +3452,8 @@ export interface PercentileSourceTargetListMetricsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetrics operation. */
-export type PercentileSourceTargetListMetricsResponse = PercentileMetricListResult;
+export type PercentileSourceTargetListMetricsResponse =
+  PercentileMetricListResult;
 
 /** Optional parameters. */
 export interface PercentileTargetListMetricsOptionalParams
@@ -3465,7 +3474,8 @@ export interface CollectionPartitionRegionListMetricsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetrics operation. */
-export type CollectionPartitionRegionListMetricsResponse = PartitionMetricListResult;
+export type CollectionPartitionRegionListMetricsResponse =
+  PartitionMetricListResult;
 
 /** Optional parameters. */
 export interface CollectionPartitionListMetricsOptionalParams
@@ -3496,7 +3506,8 @@ export interface PartitionKeyRangeIdRegionListMetricsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetrics operation. */
-export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListResult;
+export type PartitionKeyRangeIdRegionListMetricsResponse =
+  PartitionMetricListResult;
 
 /** Optional parameters. */
 export interface SqlResourcesListSqlDatabasesOptionalParams
@@ -3538,7 +3549,8 @@ export interface SqlResourcesGetSqlDatabaseThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlDatabaseThroughput operation. */
-export type SqlResourcesGetSqlDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesGetSqlDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
@@ -3550,7 +3562,8 @@ export interface SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
 }
 
 /** Contains response data for the updateSqlDatabaseThroughput operation. */
-export type SqlResourcesUpdateSqlDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesUpdateSqlDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
@@ -3562,7 +3575,8 @@ export interface SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateSqlDatabaseToAutoscale operation. */
-export type SqlResourcesMigrateSqlDatabaseToAutoscaleResponse = ThroughputSettingsGetResults;
+export type SqlResourcesMigrateSqlDatabaseToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
@@ -3574,7 +3588,8 @@ export interface SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
 }
 
 /** Contains response data for the migrateSqlDatabaseToManualThroughput operation. */
-export type SqlResourcesMigrateSqlDatabaseToManualThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesMigrateSqlDatabaseToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesListSqlContainersOptionalParams
@@ -3600,7 +3615,8 @@ export interface SqlResourcesCreateUpdateSqlContainerOptionalParams
 }
 
 /** Contains response data for the createUpdateSqlContainer operation. */
-export type SqlResourcesCreateUpdateSqlContainerResponse = SqlContainerGetResults;
+export type SqlResourcesCreateUpdateSqlContainerResponse =
+  SqlContainerGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesDeleteSqlContainerOptionalParams
@@ -3616,7 +3632,8 @@ export interface SqlResourcesGetSqlContainerThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlContainerThroughput operation. */
-export type SqlResourcesGetSqlContainerThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesGetSqlContainerThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesUpdateSqlContainerThroughputOptionalParams
@@ -3628,7 +3645,8 @@ export interface SqlResourcesUpdateSqlContainerThroughputOptionalParams
 }
 
 /** Contains response data for the updateSqlContainerThroughput operation. */
-export type SqlResourcesUpdateSqlContainerThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesUpdateSqlContainerThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
@@ -3640,7 +3658,8 @@ export interface SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateSqlContainerToAutoscale operation. */
-export type SqlResourcesMigrateSqlContainerToAutoscaleResponse = ThroughputSettingsGetResults;
+export type SqlResourcesMigrateSqlContainerToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
@@ -3652,21 +3671,24 @@ export interface SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
 }
 
 /** Contains response data for the migrateSqlContainerToManualThroughput operation. */
-export type SqlResourcesMigrateSqlContainerToManualThroughputResponse = ThroughputSettingsGetResults;
+export type SqlResourcesMigrateSqlContainerToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesListSqlStoredProceduresOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSqlStoredProcedures operation. */
-export type SqlResourcesListSqlStoredProceduresResponse = SqlStoredProcedureListResult;
+export type SqlResourcesListSqlStoredProceduresResponse =
+  SqlStoredProcedureListResult;
 
 /** Optional parameters. */
 export interface SqlResourcesGetSqlStoredProcedureOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlStoredProcedure operation. */
-export type SqlResourcesGetSqlStoredProcedureResponse = SqlStoredProcedureGetResults;
+export type SqlResourcesGetSqlStoredProcedureResponse =
+  SqlStoredProcedureGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
@@ -3678,7 +3700,8 @@ export interface SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
 }
 
 /** Contains response data for the createUpdateSqlStoredProcedure operation. */
-export type SqlResourcesCreateUpdateSqlStoredProcedureResponse = SqlStoredProcedureGetResults;
+export type SqlResourcesCreateUpdateSqlStoredProcedureResponse =
+  SqlStoredProcedureGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesDeleteSqlStoredProcedureOptionalParams
@@ -3694,14 +3717,16 @@ export interface SqlResourcesListSqlUserDefinedFunctionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSqlUserDefinedFunctions operation. */
-export type SqlResourcesListSqlUserDefinedFunctionsResponse = SqlUserDefinedFunctionListResult;
+export type SqlResourcesListSqlUserDefinedFunctionsResponse =
+  SqlUserDefinedFunctionListResult;
 
 /** Optional parameters. */
 export interface SqlResourcesGetSqlUserDefinedFunctionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlUserDefinedFunction operation. */
-export type SqlResourcesGetSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults;
+export type SqlResourcesGetSqlUserDefinedFunctionResponse =
+  SqlUserDefinedFunctionGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
@@ -3713,7 +3738,8 @@ export interface SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
 }
 
 /** Contains response data for the createUpdateSqlUserDefinedFunction operation. */
-export type SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults;
+export type SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse =
+  SqlUserDefinedFunctionGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
@@ -3764,7 +3790,8 @@ export interface SqlResourcesGetSqlRoleDefinitionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlRoleDefinition operation. */
-export type SqlResourcesGetSqlRoleDefinitionResponse = SqlRoleDefinitionGetResults;
+export type SqlResourcesGetSqlRoleDefinitionResponse =
+  SqlRoleDefinitionGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
@@ -3776,7 +3803,8 @@ export interface SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
 }
 
 /** Contains response data for the createUpdateSqlRoleDefinition operation. */
-export type SqlResourcesCreateUpdateSqlRoleDefinitionResponse = SqlRoleDefinitionGetResults;
+export type SqlResourcesCreateUpdateSqlRoleDefinitionResponse =
+  SqlRoleDefinitionGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesDeleteSqlRoleDefinitionOptionalParams
@@ -3792,14 +3820,16 @@ export interface SqlResourcesListSqlRoleDefinitionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSqlRoleDefinitions operation. */
-export type SqlResourcesListSqlRoleDefinitionsResponse = SqlRoleDefinitionListResult;
+export type SqlResourcesListSqlRoleDefinitionsResponse =
+  SqlRoleDefinitionListResult;
 
 /** Optional parameters. */
 export interface SqlResourcesGetSqlRoleAssignmentOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSqlRoleAssignment operation. */
-export type SqlResourcesGetSqlRoleAssignmentResponse = SqlRoleAssignmentGetResults;
+export type SqlResourcesGetSqlRoleAssignmentResponse =
+  SqlRoleAssignmentGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
@@ -3811,7 +3841,8 @@ export interface SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
 }
 
 /** Contains response data for the createUpdateSqlRoleAssignment operation. */
-export type SqlResourcesCreateUpdateSqlRoleAssignmentResponse = SqlRoleAssignmentGetResults;
+export type SqlResourcesCreateUpdateSqlRoleAssignmentResponse =
+  SqlRoleAssignmentGetResults;
 
 /** Optional parameters. */
 export interface SqlResourcesDeleteSqlRoleAssignmentOptionalParams
@@ -3827,7 +3858,8 @@ export interface SqlResourcesListSqlRoleAssignmentsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSqlRoleAssignments operation. */
-export type SqlResourcesListSqlRoleAssignmentsResponse = SqlRoleAssignmentListResult;
+export type SqlResourcesListSqlRoleAssignmentsResponse =
+  SqlRoleAssignmentListResult;
 
 /** Optional parameters. */
 export interface SqlResourcesRetrieveContinuousBackupInformationOptionalParams
@@ -3839,21 +3871,24 @@ export interface SqlResourcesRetrieveContinuousBackupInformationOptionalParams
 }
 
 /** Contains response data for the retrieveContinuousBackupInformation operation. */
-export type SqlResourcesRetrieveContinuousBackupInformationResponse = BackupInformation;
+export type SqlResourcesRetrieveContinuousBackupInformationResponse =
+  BackupInformation;
 
 /** Optional parameters. */
 export interface MongoDBResourcesListMongoDBDatabasesOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMongoDBDatabases operation. */
-export type MongoDBResourcesListMongoDBDatabasesResponse = MongoDBDatabaseListResult;
+export type MongoDBResourcesListMongoDBDatabasesResponse =
+  MongoDBDatabaseListResult;
 
 /** Optional parameters. */
 export interface MongoDBResourcesGetMongoDBDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMongoDBDatabase operation. */
-export type MongoDBResourcesGetMongoDBDatabaseResponse = MongoDBDatabaseGetResults;
+export type MongoDBResourcesGetMongoDBDatabaseResponse =
+  MongoDBDatabaseGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
@@ -3865,7 +3900,8 @@ export interface MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams
 }
 
 /** Contains response data for the createUpdateMongoDBDatabase operation. */
-export type MongoDBResourcesCreateUpdateMongoDBDatabaseResponse = MongoDBDatabaseGetResults;
+export type MongoDBResourcesCreateUpdateMongoDBDatabaseResponse =
+  MongoDBDatabaseGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
@@ -3881,7 +3917,8 @@ export interface MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMongoDBDatabaseThroughput operation. */
-export type MongoDBResourcesGetMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesGetMongoDBDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
@@ -3893,7 +3930,8 @@ export interface MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams
 }
 
 /** Contains response data for the updateMongoDBDatabaseThroughput operation. */
-export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
@@ -3905,7 +3943,8 @@ export interface MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateMongoDBDatabaseToAutoscale operation. */
-export type MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptionalParams
@@ -3917,21 +3956,24 @@ export interface MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputOptiona
 }
 
 /** Contains response data for the migrateMongoDBDatabaseToManualThroughput operation. */
-export type MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesListMongoDBCollectionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMongoDBCollections operation. */
-export type MongoDBResourcesListMongoDBCollectionsResponse = MongoDBCollectionListResult;
+export type MongoDBResourcesListMongoDBCollectionsResponse =
+  MongoDBCollectionListResult;
 
 /** Optional parameters. */
 export interface MongoDBResourcesGetMongoDBCollectionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMongoDBCollection operation. */
-export type MongoDBResourcesGetMongoDBCollectionResponse = MongoDBCollectionGetResults;
+export type MongoDBResourcesGetMongoDBCollectionResponse =
+  MongoDBCollectionGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
@@ -3943,7 +3985,8 @@ export interface MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams
 }
 
 /** Contains response data for the createUpdateMongoDBCollection operation. */
-export type MongoDBResourcesCreateUpdateMongoDBCollectionResponse = MongoDBCollectionGetResults;
+export type MongoDBResourcesCreateUpdateMongoDBCollectionResponse =
+  MongoDBCollectionGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesDeleteMongoDBCollectionOptionalParams
@@ -3959,7 +4002,8 @@ export interface MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMongoDBCollectionThroughput operation. */
-export type MongoDBResourcesGetMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesGetMongoDBCollectionThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
@@ -3971,7 +4015,8 @@ export interface MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams
 }
 
 /** Contains response data for the updateMongoDBCollectionThroughput operation. */
-export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalParams
@@ -3983,7 +4028,8 @@ export interface MongoDBResourcesMigrateMongoDBCollectionToAutoscaleOptionalPara
 }
 
 /** Contains response data for the migrateMongoDBCollectionToAutoscale operation. */
-export type MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptionalParams
@@ -3995,7 +4041,8 @@ export interface MongoDBResourcesMigrateMongoDBCollectionToManualThroughputOptio
 }
 
 /** Contains response data for the migrateMongoDBCollectionToManualThroughput operation. */
-export type MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse = ThroughputSettingsGetResults;
+export type MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface MongoDBResourcesRetrieveContinuousBackupInformationOptionalParams
@@ -4007,7 +4054,8 @@ export interface MongoDBResourcesRetrieveContinuousBackupInformationOptionalPara
 }
 
 /** Contains response data for the retrieveContinuousBackupInformation operation. */
-export type MongoDBResourcesRetrieveContinuousBackupInformationResponse = BackupInformation;
+export type MongoDBResourcesRetrieveContinuousBackupInformationResponse =
+  BackupInformation;
 
 /** Optional parameters. */
 export interface TableResourcesListTablesOptionalParams
@@ -4049,7 +4097,8 @@ export interface TableResourcesGetTableThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTableThroughput operation. */
-export type TableResourcesGetTableThroughputResponse = ThroughputSettingsGetResults;
+export type TableResourcesGetTableThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface TableResourcesUpdateTableThroughputOptionalParams
@@ -4061,7 +4110,8 @@ export interface TableResourcesUpdateTableThroughputOptionalParams
 }
 
 /** Contains response data for the updateTableThroughput operation. */
-export type TableResourcesUpdateTableThroughputResponse = ThroughputSettingsGetResults;
+export type TableResourcesUpdateTableThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface TableResourcesMigrateTableToAutoscaleOptionalParams
@@ -4073,7 +4123,8 @@ export interface TableResourcesMigrateTableToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateTableToAutoscale operation. */
-export type TableResourcesMigrateTableToAutoscaleResponse = ThroughputSettingsGetResults;
+export type TableResourcesMigrateTableToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface TableResourcesMigrateTableToManualThroughputOptionalParams
@@ -4085,21 +4136,24 @@ export interface TableResourcesMigrateTableToManualThroughputOptionalParams
 }
 
 /** Contains response data for the migrateTableToManualThroughput operation. */
-export type TableResourcesMigrateTableToManualThroughputResponse = ThroughputSettingsGetResults;
+export type TableResourcesMigrateTableToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesListCassandraKeyspacesOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCassandraKeyspaces operation. */
-export type CassandraResourcesListCassandraKeyspacesResponse = CassandraKeyspaceListResult;
+export type CassandraResourcesListCassandraKeyspacesResponse =
+  CassandraKeyspaceListResult;
 
 /** Optional parameters. */
 export interface CassandraResourcesGetCassandraKeyspaceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCassandraKeyspace operation. */
-export type CassandraResourcesGetCassandraKeyspaceResponse = CassandraKeyspaceGetResults;
+export type CassandraResourcesGetCassandraKeyspaceResponse =
+  CassandraKeyspaceGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams
@@ -4111,7 +4165,8 @@ export interface CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams
 }
 
 /** Contains response data for the createUpdateCassandraKeyspace operation. */
-export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse = CassandraKeyspaceGetResults;
+export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse =
+  CassandraKeyspaceGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesDeleteCassandraKeyspaceOptionalParams
@@ -4127,7 +4182,8 @@ export interface CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCassandraKeyspaceThroughput operation. */
-export type CassandraResourcesGetCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesGetCassandraKeyspaceThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams
@@ -4139,7 +4195,8 @@ export interface CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalPara
 }
 
 /** Contains response data for the updateCassandraKeyspaceThroughput operation. */
-export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesMigrateCassandraKeyspaceToAutoscaleOptionalParams
@@ -4151,7 +4208,8 @@ export interface CassandraResourcesMigrateCassandraKeyspaceToAutoscaleOptionalPa
 }
 
 /** Contains response data for the migrateCassandraKeyspaceToAutoscale operation. */
-export type CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesMigrateCassandraKeyspaceToManualThroughputOptionalParams
@@ -4163,21 +4221,24 @@ export interface CassandraResourcesMigrateCassandraKeyspaceToManualThroughputOpt
 }
 
 /** Contains response data for the migrateCassandraKeyspaceToManualThroughput operation. */
-export type CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesListCassandraTablesOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCassandraTables operation. */
-export type CassandraResourcesListCassandraTablesResponse = CassandraTableListResult;
+export type CassandraResourcesListCassandraTablesResponse =
+  CassandraTableListResult;
 
 /** Optional parameters. */
 export interface CassandraResourcesGetCassandraTableOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCassandraTable operation. */
-export type CassandraResourcesGetCassandraTableResponse = CassandraTableGetResults;
+export type CassandraResourcesGetCassandraTableResponse =
+  CassandraTableGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesCreateUpdateCassandraTableOptionalParams
@@ -4189,7 +4250,8 @@ export interface CassandraResourcesCreateUpdateCassandraTableOptionalParams
 }
 
 /** Contains response data for the createUpdateCassandraTable operation. */
-export type CassandraResourcesCreateUpdateCassandraTableResponse = CassandraTableGetResults;
+export type CassandraResourcesCreateUpdateCassandraTableResponse =
+  CassandraTableGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesDeleteCassandraTableOptionalParams
@@ -4205,7 +4267,8 @@ export interface CassandraResourcesGetCassandraTableThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCassandraTableThroughput operation. */
-export type CassandraResourcesGetCassandraTableThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesGetCassandraTableThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesUpdateCassandraTableThroughputOptionalParams
@@ -4217,7 +4280,8 @@ export interface CassandraResourcesUpdateCassandraTableThroughputOptionalParams
 }
 
 /** Contains response data for the updateCassandraTableThroughput operation. */
-export type CassandraResourcesUpdateCassandraTableThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesUpdateCassandraTableThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesMigrateCassandraTableToAutoscaleOptionalParams
@@ -4229,7 +4293,8 @@ export interface CassandraResourcesMigrateCassandraTableToAutoscaleOptionalParam
 }
 
 /** Contains response data for the migrateCassandraTableToAutoscale operation. */
-export type CassandraResourcesMigrateCassandraTableToAutoscaleResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesMigrateCassandraTableToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface CassandraResourcesMigrateCassandraTableToManualThroughputOptionalParams
@@ -4241,21 +4306,24 @@ export interface CassandraResourcesMigrateCassandraTableToManualThroughputOption
 }
 
 /** Contains response data for the migrateCassandraTableToManualThroughput operation. */
-export type CassandraResourcesMigrateCassandraTableToManualThroughputResponse = ThroughputSettingsGetResults;
+export type CassandraResourcesMigrateCassandraTableToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesListGremlinDatabasesOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listGremlinDatabases operation. */
-export type GremlinResourcesListGremlinDatabasesResponse = GremlinDatabaseListResult;
+export type GremlinResourcesListGremlinDatabasesResponse =
+  GremlinDatabaseListResult;
 
 /** Optional parameters. */
 export interface GremlinResourcesGetGremlinDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getGremlinDatabase operation. */
-export type GremlinResourcesGetGremlinDatabaseResponse = GremlinDatabaseGetResults;
+export type GremlinResourcesGetGremlinDatabaseResponse =
+  GremlinDatabaseGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
@@ -4267,7 +4335,8 @@ export interface GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
 }
 
 /** Contains response data for the createUpdateGremlinDatabase operation. */
-export type GremlinResourcesCreateUpdateGremlinDatabaseResponse = GremlinDatabaseGetResults;
+export type GremlinResourcesCreateUpdateGremlinDatabaseResponse =
+  GremlinDatabaseGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesDeleteGremlinDatabaseOptionalParams
@@ -4283,7 +4352,8 @@ export interface GremlinResourcesGetGremlinDatabaseThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getGremlinDatabaseThroughput operation. */
-export type GremlinResourcesGetGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesGetGremlinDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
@@ -4295,7 +4365,8 @@ export interface GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
 }
 
 /** Contains response data for the updateGremlinDatabaseThroughput operation. */
-export type GremlinResourcesUpdateGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesUpdateGremlinDatabaseThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
@@ -4307,7 +4378,8 @@ export interface GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateGremlinDatabaseToAutoscale operation. */
-export type GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
@@ -4319,7 +4391,8 @@ export interface GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptiona
 }
 
 /** Contains response data for the migrateGremlinDatabaseToManualThroughput operation. */
-export type GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesListGremlinGraphsOptionalParams
@@ -4345,7 +4418,8 @@ export interface GremlinResourcesCreateUpdateGremlinGraphOptionalParams
 }
 
 /** Contains response data for the createUpdateGremlinGraph operation. */
-export type GremlinResourcesCreateUpdateGremlinGraphResponse = GremlinGraphGetResults;
+export type GremlinResourcesCreateUpdateGremlinGraphResponse =
+  GremlinGraphGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesDeleteGremlinGraphOptionalParams
@@ -4361,7 +4435,8 @@ export interface GremlinResourcesGetGremlinGraphThroughputOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getGremlinGraphThroughput operation. */
-export type GremlinResourcesGetGremlinGraphThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesGetGremlinGraphThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
@@ -4373,7 +4448,8 @@ export interface GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
 }
 
 /** Contains response data for the updateGremlinGraphThroughput operation. */
-export type GremlinResourcesUpdateGremlinGraphThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesUpdateGremlinGraphThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
@@ -4385,7 +4461,8 @@ export interface GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
 }
 
 /** Contains response data for the migrateGremlinGraphToAutoscale operation. */
-export type GremlinResourcesMigrateGremlinGraphToAutoscaleResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesMigrateGremlinGraphToAutoscaleResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
@@ -4397,7 +4474,8 @@ export interface GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalPa
 }
 
 /** Contains response data for the migrateGremlinGraphToManualThroughput operation. */
-export type GremlinResourcesMigrateGremlinGraphToManualThroughputResponse = ThroughputSettingsGetResults;
+export type GremlinResourcesMigrateGremlinGraphToManualThroughputResponse =
+  ThroughputSettingsGetResults;
 
 /** Optional parameters. */
 export interface LocationsListOptionalParams
@@ -4418,7 +4496,8 @@ export interface NotebookWorkspacesListByDatabaseAccountOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseAccount operation. */
-export type NotebookWorkspacesListByDatabaseAccountResponse = NotebookWorkspaceListResult;
+export type NotebookWorkspacesListByDatabaseAccountResponse =
+  NotebookWorkspaceListResult;
 
 /** Optional parameters. */
 export interface NotebookWorkspacesGetOptionalParams
@@ -4453,7 +4532,8 @@ export interface NotebookWorkspacesListConnectionInfoOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnectionInfo operation. */
-export type NotebookWorkspacesListConnectionInfoResponse = NotebookWorkspaceConnectionInfoResult;
+export type NotebookWorkspacesListConnectionInfoResponse =
+  NotebookWorkspaceConnectionInfoResult;
 
 /** Optional parameters. */
 export interface NotebookWorkspacesRegenerateAuthTokenOptionalParams
@@ -4478,7 +4558,8 @@ export interface PrivateEndpointConnectionsListByDatabaseAccountOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseAccount operation. */
-export type PrivateEndpointConnectionsListByDatabaseAccountResponse = PrivateEndpointConnectionListResult;
+export type PrivateEndpointConnectionsListByDatabaseAccountResponse =
+  PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsGetOptionalParams
@@ -4497,7 +4578,8 @@ export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnection;
+export type PrivateEndpointConnectionsCreateOrUpdateResponse =
+  PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsDeleteOptionalParams
@@ -4513,7 +4595,8 @@ export interface PrivateLinkResourcesListByDatabaseAccountOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseAccount operation. */
-export type PrivateLinkResourcesListByDatabaseAccountResponse = PrivateLinkResourceListResult;
+export type PrivateLinkResourcesListByDatabaseAccountResponse =
+  PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesGetOptionalParams
@@ -4527,28 +4610,32 @@ export interface RestorableDatabaseAccountsListByLocationOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type RestorableDatabaseAccountsListByLocationResponse = RestorableDatabaseAccountsListResult;
+export type RestorableDatabaseAccountsListByLocationResponse =
+  RestorableDatabaseAccountsListResult;
 
 /** Optional parameters. */
 export interface RestorableDatabaseAccountsListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RestorableDatabaseAccountsListResponse = RestorableDatabaseAccountsListResult;
+export type RestorableDatabaseAccountsListResponse =
+  RestorableDatabaseAccountsListResult;
 
 /** Optional parameters. */
 export interface RestorableDatabaseAccountsGetByLocationOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByLocation operation. */
-export type RestorableDatabaseAccountsGetByLocationResponse = RestorableDatabaseAccountGetResult;
+export type RestorableDatabaseAccountsGetByLocationResponse =
+  RestorableDatabaseAccountGetResult;
 
 /** Optional parameters. */
 export interface RestorableSqlDatabasesListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RestorableSqlDatabasesListResponse = RestorableSqlDatabasesListResult;
+export type RestorableSqlDatabasesListResponse =
+  RestorableSqlDatabasesListResult;
 
 /** Optional parameters. */
 export interface RestorableSqlContainersListOptionalParams
@@ -4562,7 +4649,8 @@ export interface RestorableSqlContainersListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type RestorableSqlContainersListResponse = RestorableSqlContainersListResult;
+export type RestorableSqlContainersListResponse =
+  RestorableSqlContainersListResult;
 
 /** Optional parameters. */
 export interface RestorableSqlResourcesListOptionalParams
@@ -4574,14 +4662,16 @@ export interface RestorableSqlResourcesListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type RestorableSqlResourcesListResponse = RestorableSqlResourcesListResult;
+export type RestorableSqlResourcesListResponse =
+  RestorableSqlResourcesListResult;
 
 /** Optional parameters. */
 export interface RestorableMongodbDatabasesListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RestorableMongodbDatabasesListResponse = RestorableMongodbDatabasesListResult;
+export type RestorableMongodbDatabasesListResponse =
+  RestorableMongodbDatabasesListResult;
 
 /** Optional parameters. */
 export interface RestorableMongodbCollectionsListOptionalParams
@@ -4591,7 +4681,8 @@ export interface RestorableMongodbCollectionsListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type RestorableMongodbCollectionsListResponse = RestorableMongodbCollectionsListResult;
+export type RestorableMongodbCollectionsListResponse =
+  RestorableMongodbCollectionsListResult;
 
 /** Optional parameters. */
 export interface RestorableMongodbResourcesListOptionalParams
@@ -4603,7 +4694,8 @@ export interface RestorableMongodbResourcesListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type RestorableMongodbResourcesListResponse = RestorableMongodbResourcesListResult;
+export type RestorableMongodbResourcesListResponse =
+  RestorableMongodbResourcesListResult;
 
 /** Optional parameters. */
 export interface CassandraClustersListBySubscriptionOptionalParams

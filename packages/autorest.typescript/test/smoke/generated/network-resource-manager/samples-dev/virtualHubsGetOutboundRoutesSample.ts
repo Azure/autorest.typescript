@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GetOutboundRoutesParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function outboundRoutesForTheVirtualHubOnAParticularConnection() {
   const getOutboundRoutesParameters: GetOutboundRoutesParameters = {
     connectionType: "ExpressRouteConnection",
     resourceUri:
-      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRouteGateways/exrGw1/expressRouteConnections/exrConn1"
+      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRouteGateways/exrGw1/expressRouteConnections/exrConn1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginGetOutboundRoutesAndWait(
     resourceGroupName,
     virtualHubName,
-    getOutboundRoutesParameters
+    getOutboundRoutesParameters,
   );
   console.log(result);
 }

@@ -9,7 +9,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   Operation,
-  AuthorizationOperationsListOptionalParams
+  AuthorizationOperationsListOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -20,6 +20,6 @@ export interface AuthorizationOperations {
    * @param options The options parameters.
    */
   list(
-    options?: AuthorizationOperationsListOptionalParams
+    options?: AuthorizationOperationsListOptionalParams,
   ): PagedAsyncIterableIterator<Operation>;
 }

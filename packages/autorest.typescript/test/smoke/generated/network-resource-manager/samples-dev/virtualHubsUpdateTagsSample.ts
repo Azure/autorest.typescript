@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function virtualHubUpdate() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub2";
   const virtualHubParameters: TagsObject = {
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.updateTags(
     resourceGroupName,
     virtualHubName,
-    virtualHubParameters
+    virtualHubParameters,
   );
   console.log(result);
 }

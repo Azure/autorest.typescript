@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteGateway,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,16 +33,15 @@ async function expressRouteGatewayCreate() {
     autoScaleConfiguration: { bounds: { min: 3 } },
     location: "westus",
     virtualHub: {
-      id:
-        "/subscriptions/subid/resourceGroups/resourceGroupId/providers/Microsoft.Network/virtualHubs/virtualHubName"
-    }
+      id: "/subscriptions/subid/resourceGroups/resourceGroupId/providers/Microsoft.Network/virtualHubs/virtualHubName",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRouteGatewayName,
-    putExpressRouteGatewayParameters
+    putExpressRouteGatewayParameters,
   );
   console.log(result);
 }

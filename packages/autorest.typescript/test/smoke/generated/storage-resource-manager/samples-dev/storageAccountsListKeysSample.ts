@@ -28,7 +28,7 @@ async function storageAccountListKeys() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.listKeys(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

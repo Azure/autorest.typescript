@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LegalHold,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function clearLegalHoldContainers() {
     resourceGroupName,
     accountName,
     containerName,
-    legalHold
+    legalHold,
   );
   console.log(result);
 }

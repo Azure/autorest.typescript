@@ -28,7 +28,7 @@ async function queueServicesList() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.queueServices.list(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

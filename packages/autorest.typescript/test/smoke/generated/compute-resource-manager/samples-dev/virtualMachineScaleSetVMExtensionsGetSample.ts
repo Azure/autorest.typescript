@@ -32,7 +32,7 @@ async function getVirtualMachineScaleSetVMExtension() {
     resourceGroupName,
     vmScaleSetName,
     instanceId,
-    vmExtensionName
+    vmExtensionName,
   );
   console.log(result);
 }

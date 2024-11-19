@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
 import * as dotenv from "dotenv";
@@ -17,7 +17,7 @@ async function putFelineSample() {
     .path("/multipleInheritance/feline")
     .put({
       body: { meows: true, hisses: true },
-      contentType: "application/json"
+      contentType: "application/json",
     });
   console.log(result);
 }

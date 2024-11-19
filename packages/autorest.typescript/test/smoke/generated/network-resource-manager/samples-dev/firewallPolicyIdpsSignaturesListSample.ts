@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   IdpsQueryObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,14 +33,14 @@ async function querySignatureOverrides() {
     orderBy: { field: "severity", order: "Ascending" },
     resultsPerPage: 20,
     search: "",
-    skip: 0
+    skip: 0,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignatures.list(
     resourceGroupName,
     firewallPolicyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

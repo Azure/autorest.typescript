@@ -29,7 +29,7 @@ async function getAvailableServiceAliasesInTheResourceGroup() {
   const resArray = new Array();
   for await (let item of client.availableServiceAliases.listByResourceGroup(
     resourceGroupName,
-    location
+    location,
   )) {
     resArray.push(item);
   }

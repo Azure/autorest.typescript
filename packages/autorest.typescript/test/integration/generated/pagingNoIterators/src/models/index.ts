@@ -111,7 +111,7 @@ export enum KnownOperationResultStatus {
   /** Deleted */
   Deleted = "Deleted",
   /** OK */
-  OK = "OK"
+  OK = "OK",
 }
 
 /**
@@ -288,7 +288,8 @@ export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParam
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFragmentWithGroupingNextLink operation. */
-export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult;
+export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse =
+  OdataProductResult;
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesLROOptionalParams
@@ -338,7 +339,8 @@ export interface PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientName operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName;
+export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse =
+  ProductResultValueWithXMSClientName;
 
 /** Optional parameters. */
 export interface PagingGetNoItemNamePagesNextOptionalParams
@@ -489,7 +491,8 @@ export interface PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalPa
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientNameNext operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName;
+export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse =
+  ProductResultValueWithXMSClientName;
 
 /** Optional parameters. */
 export interface PagingNoIteratorsClientOptionalParams

@@ -20,10 +20,10 @@ export const contentType: OperationParameter = {
         "application/pdf",
         "image/jpeg",
         "image/png",
-        "image/tiff"
-      ]
-    }
-  }
+        "image/tiff",
+      ],
+    },
+  },
 };
 
 export const input: OperationParameter = {
@@ -31,9 +31,9 @@ export const input: OperationParameter = {
   mapper: {
     serializedName: "input",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -43,9 +43,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -55,14 +55,14 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const input1: OperationParameter = {
   parameterPath: ["options", "input"],
-  mapper: SourcePathMapper
+  mapper: SourcePathMapper,
 };
 
 export const accept1: OperationParameter = {
@@ -72,9 +72,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -83,10 +83,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType2: OperationParameter = {
@@ -96,9 +96,9 @@ export const contentType2: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const input2: OperationParameter = {
@@ -106,9 +106,9 @@ export const input2: OperationParameter = {
   mapper: {
     serializedName: "input",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept2: OperationParameter = {
@@ -118,9 +118,9 @@ export const accept2: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType3: OperationParameter = {
@@ -129,9 +129,9 @@ export const contentType3: OperationParameter = {
     serializedName: "Content-Type",
     type: {
       name: "Enum",
-      allowedValues: ["application/json", "application/octet-stream"]
-    }
-  }
+      allowedValues: ["application/json", "application/octet-stream"],
+    },
+  },
 };
 
 export const message: OperationParameter = {
@@ -140,9 +140,9 @@ export const message: OperationParameter = {
     serializedName: "message",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept3: OperationParameter = {
@@ -152,9 +152,9 @@ export const accept3: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType4: OperationParameter = {
@@ -164,9 +164,9 @@ export const contentType4: OperationParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["application/json", "application/octet-stream"]
-    }
-  }
+      allowedValues: ["application/json", "application/octet-stream"],
+    },
+  },
 };
 
 export const contentType5: OperationParameter = {
@@ -176,9 +176,9 @@ export const contentType5: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const message1: OperationParameter = {
@@ -187,9 +187,9 @@ export const message1: OperationParameter = {
     serializedName: "message",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept4: OperationParameter = {
@@ -199,9 +199,9 @@ export const accept4: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType6: OperationParameter = {
@@ -211,9 +211,9 @@ export const contentType6: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const message2: OperationParameter = {
@@ -222,9 +222,9 @@ export const message2: OperationParameter = {
     serializedName: "message",
     required: true,
     type: {
-      name: "any"
-    }
-  }
+      name: "any",
+    },
+  },
 };
 
 export const accept5: OperationParameter = {
@@ -234,9 +234,9 @@ export const accept5: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const message3: OperationParameter = {
@@ -245,7 +245,7 @@ export const message3: OperationParameter = {
     serializedName: "message",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

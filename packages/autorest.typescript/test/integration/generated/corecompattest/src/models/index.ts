@@ -70,7 +70,7 @@ export enum KnownPetStatus {
   /** Pending */
   Pending = "pending",
   /** Sold */
-  Sold = "sold"
+  Sold = "sold",
 }
 
 /**
@@ -89,7 +89,7 @@ export enum KnownRestrictionLevel {
   /** All RBAC permissions are allowed on the managed node resource group */
   Unrestricted = "Unrestricted",
   /** Only *\/read RBAC permissions allowed on the managed node resource group */
-  ReadOnly = "ReadOnly"
+  ReadOnly = "ReadOnly",
 }
 
 /**
@@ -109,7 +109,7 @@ export enum KnownOrderStatus {
   /** Approved */
   Approved = "approved",
   /** Delivered */
-  Delivered = "delivered"
+  Delivered = "delivered",
 }
 
 /**

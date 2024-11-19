@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
@@ -12,7 +12,7 @@ import {
   ErrorResponseOutput,
   ModelOutput,
   ModelListOutput,
-  LastDetectionResultOutput
+  LastDetectionResultOutput,
 } from "./outputModels";
 
 /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */

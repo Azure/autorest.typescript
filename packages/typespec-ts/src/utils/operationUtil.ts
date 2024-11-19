@@ -2,47 +2,42 @@
 // Licensed under the MIT License.
 
 import {
-  NameType,
-  Paths,
-  ResponseMetadata,
-  ResponseTypes,
   getLroLogicalResponseName,
   getResponseTypeName,
-  normalizeName
+  NameType,
+  normalizeName,
+  OperationLroDetail,
+  OPERATION_LRO_HIGH_PRIORITY,
+  OPERATION_LRO_LOW_PRIORITY,
+  Paths,
+  ResponseMetadata,
+  ResponseTypes
 } from "@azure-tools/rlc-common";
-import {
-  getProjectedName,
-  ignoreDiagnostics,
-  Model,
-  Operation,
-  Program,
-  Type
-} from "@typespec/compiler";
-import {
-  HttpOperation,
-  HttpOperationParameter,
-  HttpOperationResponse,
-  HttpStatusCodesEntry,
-  getHttpOperation
-} from "@typespec/http";
 import {
   getLroMetadata,
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/typespec-azure-core";
 import {
-  SdkClient,
+  getHttpOperationWithCache,
+  getWireName,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  SdkClient
 } from "@azure-tools/typespec-client-generator-core";
+import { Model, Operation, Program, Type } from "@typespec/compiler";
 import {
-  OperationLroDetail,
-  OPERATION_LRO_LOW_PRIORITY,
-  OPERATION_LRO_HIGH_PRIORITY
-} from "@azure-tools/rlc-common";
-import { isByteOrByteUnion } from "./modelUtils.js";
+  HttpOperation,
+  HttpOperationParameter,
+  HttpOperationResponse,
+  HttpStatusCodesEntry
+} from "@typespec/http";
 import { SdkContext } from "./interfaces.js";
+import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
+import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
+import { resolveReference } from "../framework/reference.js";
+import { SerializationHelpers } from "../modular/static-helpers-metadata.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -78,7 +73,7 @@ export function getOperationResponseTypes(
       const statusCode = getOperationStatuscode(r);
       const responseName = getResponseTypeName(
         getOperationGroupName(dpgContext, operation),
-        getOperationName(dpgContext.program, operation.operation),
+        getOperationName(dpgContext, operation.operation),
         statusCode
       );
       return responseName;
@@ -158,8 +153,8 @@ export function getOperationGroupName(
     .join("");
 }
 
-export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = getProjectedName(program, operation, "json");
+export function getOperationName(dpgContext: SdkContext, operation: Operation) {
+  const projectedOperationName = getWireName(dpgContext, operation);
 
   return normalizeName(
     projectedOperationName ?? operation.name,
@@ -179,17 +174,15 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string
+  contentType: string | string[]
 ) {
-  contentType = `"${contentType}"`;
-  if (
-    contentType !== `"application/json"` &&
-    contentType !== `"text/plain"` &&
-    contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"` &&
-    isByteOrByteUnion(dpgContext, body)
-  ) {
-    return true;
+  const knownMediaTypes: KnownMediaType[] = (
+    Array.isArray(contentType) ? contentType : [contentType]
+  ).map((ct) => knownMediaType(ct));
+  for (const type of knownMediaTypes) {
+    if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
+      return true;
+    }
   }
   return false;
 }
@@ -211,13 +204,15 @@ export function getClientLroOverload(pathDictionary: Paths) {
     allowCounts = 0;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
-      if (lroDetail?.isLongRunning) {
-        lroCounts++;
-        if (!lroDetail.operationLroOverload) {
-          return false;
+      for (const detail of methodDetails) {
+        const lroDetail = detail.operationHelperDetail?.lroDetails;
+        if (lroDetail?.isLongRunning) {
+          lroCounts++;
+          if (!lroDetail.operationLroOverload) {
+            return false;
+          }
+          allowCounts++;
         }
-        allowCounts++;
       }
     }
   }
@@ -261,7 +256,7 @@ export function getOperationLroOverload(
  * @returns
  */
 export function extractOperationLroDetail(
-  program: Program,
+  dpgContext: SdkContext,
   operation: HttpOperation,
   responsesTypes: ResponseTypes,
   operationGroupName: string
@@ -270,7 +265,7 @@ export function extractOperationLroDetail(
 
   let precedence = OPERATION_LRO_LOW_PRIORITY;
   const operationLroOverload = getOperationLroOverload(
-    program,
+    dpgContext.program,
     operation,
     responsesTypes
   );
@@ -280,22 +275,24 @@ export function extractOperationLroDetail(
       success: [
         getLroLogicalResponseName(
           operationGroupName,
-          getOperationName(program, operation.operation)
+          getOperationName(dpgContext, operation.operation)
         )
       ]
     };
-    const metadata = getLroMetadata(program, operation.operation);
+    const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata?.finalStep.target &&
       metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
       metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
 
   return {
-    isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
+    isLongRunning: Boolean(
+      getLroMetadata(dpgContext.program, operation.operation)
+    ),
     logicalResponseTypes,
     operationLroOverload,
     precedence
@@ -303,18 +300,29 @@ export function extractOperationLroDetail(
 }
 
 export function hasPollingOperations(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const program = dpgContext.program;
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isLongRunningOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -324,18 +332,6 @@ export function hasPollingOperations(
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isLongRunningOperation(program, route)) {
-      return true;
-    }
-  }
-
   return false;
 }
 
@@ -349,19 +345,27 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isPagingOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -369,17 +373,6 @@ export function hasPagingOperations(
       if (isPagingOperation(program, route)) {
         return true;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isPagingOperation(program, route)) {
-      return true;
     }
   }
   return false;
@@ -416,33 +409,22 @@ export function extractPagedMetadataNested(
 }
 
 export function getSpecialSerializeInfo(
+  dpgContext: SdkContext,
   paramType: string,
   paramFormat: string
 ) {
-  const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
-  const hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
-  const hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
-  const hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
+  const hasMultiCollection = getHasMultiCollection(
+    paramType,
+    paramFormat,
+    // Include query multi support in compatibility mode
+    dpgContext.rlcOptions?.compatibilityQueryMultiFormat ?? false
+  );
   const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];
   const collectionInfo = [];
   if (hasMultiCollection) {
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
-  }
-  if (hasSsvCollection) {
-    descriptions.push("buildSsvCollection");
-    collectionInfo.push("ssv");
-  }
-
-  if (hasTsvCollection) {
-    descriptions.push("buildTsvCollection");
-    collectionInfo.push("tsv");
-  }
-
-  if (hasPipeCollection) {
-    descriptions.push("buildPipeCollection");
-    collectionInfo.push("pipe");
   }
 
   if (hasCsvCollection) {
@@ -451,18 +433,20 @@ export function getSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasSsvCollection,
-    hasTsvCollection,
     hasCsvCollection,
     descriptions,
     collectionInfo
   };
 }
 
-function getHasMultiCollection(paramType: string, paramFormat: string) {
+function getHasMultiCollection(
+  paramType: string,
+  paramFormat: string,
+  includeQuery = true
+) {
   return (
-    (paramType === "query" || paramType === "header") && paramFormat === "multi"
+    ((includeQuery && paramType === "query") || paramType === "header") &&
+    paramFormat === "multi"
   );
 }
 function getHasSsvCollection(paramType: string, paramFormat: string) {
@@ -498,8 +482,29 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  const detail = getSpecialSerializeInfo(paramType, paramFormat);
-  return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+  // const detail = getSpecialSerializeInfo(paramType, paramFormat);
+  // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+  if (getHasMultiCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildMultiCollection);
+  }
+
+  if (getHasPipeCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildPipeCollection);
+  }
+
+  if (getHasSsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildSsvCollection);
+  }
+
+  if (getHasTsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildTsvCollection);
+  }
+
+  if (getHasCsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildCsvCollection);
+  }
+
+  return undefined;
 }
 
 export function getCustomRequestHeaderNameForOperation(
@@ -529,4 +534,15 @@ export function isIgnoredHeaderParam(param: HttpOperationParameter) {
         param.name.toLowerCase()
       ))
   );
+}
+
+export function parseNextLinkName(
+  paged: PagedResultMetadata
+): string | undefined {
+  return paged.nextLinkProperty?.name;
+}
+
+export function parseItemName(paged: PagedResultMetadata): string | undefined {
+  // TODO: support the nested item names
+  return (paged.itemsSegments ?? [])[0];
 }

@@ -29,7 +29,7 @@ import {
   PostFlattenedSimpleProductResponse,
   FlattenParameterGroup,
   PutSimpleProductWithGroupingOptionalParams,
-  PutSimpleProductWithGroupingResponse
+  PutSimpleProductWithGroupingResponse,
 } from "./models";
 
 export class ModelFlatteningClient extends coreClient.ServiceClient {
@@ -45,7 +45,7 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: ModelFlatteningClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-model-flattening/1.0.0-preview1`;
@@ -58,9 +58,9 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -99,7 +99,7 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   getWrappedArray(
-    options?: GetWrappedArrayOptionalParams
+    options?: GetWrappedArrayOptionalParams,
   ): Promise<GetWrappedArrayResponse> {
     return this.sendOperationRequest({ options }, getWrappedArrayOperationSpec);
   }
@@ -117,7 +117,7 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   getDictionary(
-    options?: GetDictionaryOptionalParams
+    options?: GetDictionaryOptionalParams,
   ): Promise<GetDictionaryResponse> {
     return this.sendOperationRequest({ options }, getDictionaryOperationSpec);
   }
@@ -127,11 +127,11 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   putResourceCollection(
-    options?: PutResourceCollectionOptionalParams
+    options?: PutResourceCollectionOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
-      putResourceCollectionOperationSpec
+      putResourceCollectionOperationSpec,
     );
   }
 
@@ -140,11 +140,11 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   getResourceCollection(
-    options?: GetResourceCollectionOptionalParams
+    options?: GetResourceCollectionOptionalParams,
   ): Promise<GetResourceCollectionResponse> {
     return this.sendOperationRequest(
       { options },
-      getResourceCollectionOperationSpec
+      getResourceCollectionOperationSpec,
     );
   }
 
@@ -153,11 +153,11 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   putSimpleProduct(
-    options?: PutSimpleProductOptionalParams
+    options?: PutSimpleProductOptionalParams,
   ): Promise<PutSimpleProductResponse> {
     return this.sendOperationRequest(
       { options },
-      putSimpleProductOperationSpec
+      putSimpleProductOperationSpec,
     );
   }
 
@@ -169,11 +169,11 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    */
   postFlattenedSimpleProduct(
     productId: string,
-    options?: PostFlattenedSimpleProductOptionalParams
+    options?: PostFlattenedSimpleProductOptionalParams,
   ): Promise<PostFlattenedSimpleProductResponse> {
     return this.sendOperationRequest(
       { productId, options },
-      postFlattenedSimpleProductOperationSpec
+      postFlattenedSimpleProductOperationSpec,
     );
   }
 
@@ -184,11 +184,11 @@ export class ModelFlatteningClient extends coreClient.ServiceClient {
    */
   putSimpleProductWithGrouping(
     flattenParameterGroup: FlattenParameterGroup,
-    options?: PutSimpleProductWithGroupingOptionalParams
+    options?: PutSimpleProductWithGroupingOptionalParams,
   ): Promise<PutSimpleProductWithGroupingResponse> {
     return this.sendOperationRequest(
       { flattenParameterGroup, options },
-      putSimpleProductWithGroupingOperationSpec
+      putSimpleProductWithGroupingOperationSpec,
     );
   }
 }
@@ -201,14 +201,14 @@ const putArrayOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.resourceArray,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getArrayOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/array",
@@ -219,18 +219,18 @@ const getArrayOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Composite", className: "FlattenedProduct" }
-          }
-        }
-      }
+            type: { name: "Composite", className: "FlattenedProduct" },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putWrappedArrayOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/wrappedarray",
@@ -238,14 +238,14 @@ const putWrappedArrayOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.resourceArray1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getWrappedArrayOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/wrappedarray",
@@ -255,17 +255,17 @@ const getWrappedArrayOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "ProductWrapper" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "ProductWrapper" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDictionaryOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/dictionary",
@@ -273,14 +273,14 @@ const putDictionaryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.resourceDictionary,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDictionaryOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/dictionary",
@@ -290,17 +290,17 @@ const getDictionaryOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "FlattenedProduct" } }
-        }
-      }
+          value: { type: { name: "Composite", className: "FlattenedProduct" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putResourceCollectionOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/resourcecollection",
@@ -308,57 +308,57 @@ const putResourceCollectionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.resourceComplexObject,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getResourceCollectionOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/resourcecollection",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceCollection
+      bodyMapper: Mappers.ResourceCollection,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putSimpleProductOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/customFlattening",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SimpleProduct
+      bodyMapper: Mappers.SimpleProduct,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.simpleBodyProduct,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postFlattenedSimpleProductOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/customFlattening",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.SimpleProduct
+      bodyMapper: Mappers.SimpleProduct,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: {
     parameterPath: {
@@ -367,25 +367,25 @@ const postFlattenedSimpleProductOperationSpec: coreClient.OperationSpec = {
       maxProductDisplayName: ["options", "maxProductDisplayName"],
       capacity: ["options", "capacity"],
       genericValue: ["options", "genericValue"],
-      odataValue: ["options", "odataValue"]
+      odataValue: ["options", "odataValue"],
     },
-    mapper: { ...Mappers.SimpleProduct, required: true }
+    mapper: { ...Mappers.SimpleProduct, required: true },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putSimpleProductWithGroupingOperationSpec: coreClient.OperationSpec = {
   path: "/model-flatten/customFlattening/parametergrouping/{name}/",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.SimpleProduct
+      bodyMapper: Mappers.SimpleProduct,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: {
     parameterPath: {
@@ -394,12 +394,12 @@ const putSimpleProductWithGroupingOperationSpec: coreClient.OperationSpec = {
       maxProductDisplayName: ["flattenParameterGroup", "maxProductDisplayName"],
       capacity: ["flattenParameterGroup", "capacity"],
       genericValue: ["flattenParameterGroup", "genericValue"],
-      odataValue: ["flattenParameterGroup", "odataValue"]
+      odataValue: ["flattenParameterGroup", "odataValue"],
     },
-    mapper: { ...Mappers.SimpleProduct, required: true }
+    mapper: { ...Mappers.SimpleProduct, required: true },
   },
   urlParameters: [Parameters.$host, Parameters.name],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };

@@ -26,9 +26,8 @@ async function expressRouteGatewayListByResourceGroup() {
     process.env["RESOURCE_GROUP"] || "resourceGroupName";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteGateways.listByResourceGroup(
-    resourceGroupName
-  );
+  const result =
+    await client.expressRouteGateways.listByResourceGroup(resourceGroupName);
   console.log(result);
 }
 

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   HubRouteTable,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,9 +37,9 @@ async function routeTablePut() {
         destinations: ["10.0.0.0/8", "20.0.0.0/8", "30.0.0.0/8"],
         nextHop:
           "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azureFirewall1",
-        nextHopType: "ResourceId"
-      }
-    ]
+        nextHopType: "ResourceId",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -47,7 +47,7 @@ async function routeTablePut() {
     resourceGroupName,
     virtualHubName,
     routeTableName,
-    routeTableParameters
+    routeTableParameters,
   );
   console.log(result);
 }

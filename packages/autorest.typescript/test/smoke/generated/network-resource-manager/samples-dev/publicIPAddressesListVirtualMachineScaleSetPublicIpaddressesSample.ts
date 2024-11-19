@@ -29,7 +29,7 @@ async function listVmssPublicIP() {
   const resArray = new Array();
   for await (let item of client.publicIPAddresses.listVirtualMachineScaleSetPublicIPAddresses(
     resourceGroupName,
-    virtualMachineScaleSetName
+    virtualMachineScaleSetName,
   )) {
     resArray.push(item);
   }

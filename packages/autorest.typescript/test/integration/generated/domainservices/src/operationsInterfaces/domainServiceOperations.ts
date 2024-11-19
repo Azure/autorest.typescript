@@ -1,7 +1,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   OperationEntity,
-  DomainServiceOperationsListOptionalParams
+  DomainServiceOperationsListOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -12,6 +12,6 @@ export interface DomainServiceOperations {
    * @param options The options parameters.
    */
   list(
-    options?: DomainServiceOperationsListOptionalParams
+    options?: DomainServiceOperationsListOptionalParams,
   ): PagedAsyncIterableIterator<OperationEntity>;
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticMember,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function staticMemberPut() {
   const staticMemberName = "testStaticMember";
   const parameters: StaticMember = {
     resourceId:
-      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup/rg1/providers/Microsoft.Network/virtualnetworks/vnet1"
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroup/rg1/providers/Microsoft.Network/virtualnetworks/vnet1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -41,7 +41,7 @@ async function staticMemberPut() {
     networkManagerName,
     networkGroupName,
     staticMemberName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

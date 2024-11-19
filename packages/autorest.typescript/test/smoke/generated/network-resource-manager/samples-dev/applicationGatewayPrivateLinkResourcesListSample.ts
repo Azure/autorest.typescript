@@ -29,7 +29,7 @@ async function listsAllPrivateLinkResourcesOnApplicationGateway() {
   const resArray = new Array();
   for await (let item of client.applicationGatewayPrivateLinkResources.list(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   )) {
     resArray.push(item);
   }

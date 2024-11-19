@@ -32,7 +32,7 @@ async function deleteAGalleryApplicationVersion() {
     resourceGroupName,
     galleryName,
     galleryApplicationName,
-    galleryApplicationVersionName
+    galleryApplicationVersionName,
   );
   console.log(result);
 }

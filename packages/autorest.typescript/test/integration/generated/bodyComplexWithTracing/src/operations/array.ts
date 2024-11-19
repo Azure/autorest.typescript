@@ -21,7 +21,7 @@ import {
   ArrayGetEmptyResponse,
   ArrayPutEmptyOptionalParams,
   ArrayGetNotProvidedOptionalParams,
-  ArrayGetNotProvidedResponse
+  ArrayGetNotProvidedResponse,
 } from "../models";
 
 /** Class containing Array operations. */
@@ -41,7 +41,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getValid(
-    options?: ArrayGetValidOptionalParams
+    options?: ArrayGetValidOptionalParams,
   ): Promise<ArrayGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -49,9 +49,9 @@ export class ArrayImpl implements Array {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<ArrayGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -63,7 +63,7 @@ export class ArrayImpl implements Array {
    */
   async putValid(
     complexBody: ArrayWrapper,
-    options?: ArrayPutValidOptionalParams
+    options?: ArrayPutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -71,9 +71,9 @@ export class ArrayImpl implements Array {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -82,7 +82,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getEmpty(
-    options?: ArrayGetEmptyOptionalParams
+    options?: ArrayGetEmptyOptionalParams,
   ): Promise<ArrayGetEmptyResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getEmpty",
@@ -90,9 +90,9 @@ export class ArrayImpl implements Array {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getEmptyOperationSpec
+          getEmptyOperationSpec,
         ) as Promise<ArrayGetEmptyResponse>;
-      }
+      },
     );
   }
 
@@ -103,7 +103,7 @@ export class ArrayImpl implements Array {
    */
   async putEmpty(
     complexBody: ArrayWrapper,
-    options?: ArrayPutEmptyOptionalParams
+    options?: ArrayPutEmptyOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putEmpty",
@@ -111,9 +111,9 @@ export class ArrayImpl implements Array {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putEmptyOperationSpec
+          putEmptyOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -122,7 +122,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   async getNotProvided(
-    options?: ArrayGetNotProvidedOptionalParams
+    options?: ArrayGetNotProvidedOptionalParams,
   ): Promise<ArrayGetNotProvidedResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getNotProvided",
@@ -130,9 +130,9 @@ export class ArrayImpl implements Array {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getNotProvidedOperationSpec
+          getNotProvidedOperationSpec,
         ) as Promise<ArrayGetNotProvidedResponse>;
-      }
+      },
     );
   }
 }
@@ -144,15 +144,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ArrayWrapper
+      bodyMapper: Mappers.ArrayWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/array/valid",
@@ -160,29 +160,29 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody12,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/array/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ArrayWrapper
+      bodyMapper: Mappers.ArrayWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/array/empty",
@@ -190,27 +190,27 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody12,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getNotProvidedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/array/notprovided",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ArrayWrapper
+      bodyMapper: Mappers.ArrayWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

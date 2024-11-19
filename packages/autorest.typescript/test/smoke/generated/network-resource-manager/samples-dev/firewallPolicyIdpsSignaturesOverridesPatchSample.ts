@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SignaturesOverrides,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,16 +31,15 @@ async function patchSignatureOverrides() {
   const parameters: SignaturesOverrides = {
     name: "default",
     type: "Microsoft.Network/firewallPolicies/signatureOverrides",
-    id:
-      "/subscriptions/e747cc13-97d4-4a79-b463-42d7f4e558f2/resourceGroups/rg1/providers/Microsoft.Network/firewallPolicies/firewallPolicy/signatureOverrides/default",
-    properties: { signatures: { "2000105": "Off", "2000106": "Deny" } }
+    id: "/subscriptions/e747cc13-97d4-4a79-b463-42d7f4e558f2/resourceGroups/rg1/providers/Microsoft.Network/firewallPolicies/firewallPolicy/signatureOverrides/default",
+    properties: { signatures: { "2000105": "Off", "2000106": "Deny" } },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignaturesOverrides.patch(
     resourceGroupName,
     firewallPolicyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

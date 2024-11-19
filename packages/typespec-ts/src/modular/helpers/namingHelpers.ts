@@ -1,13 +1,33 @@
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { Client, Operation, OperationGroup } from "../modularCodeModel.js";
 import {
-  ReservedModelNames,
   NameType,
-  normalizeName
+  normalizeName,
+  ReservedModelNames
 } from "@azure-tools/rlc-common";
+import {
+  SdkClient,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import * as path from "path";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import { SdkContext } from "../../utils/interfaces.js";
+import {
+  Client,
+  ModularCodeModel,
+  Operation,
+  OperationGroup
+} from "../modularCodeModel.js";
 
-export function getClientName(client: Client) {
+export function getClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
   return client.name.replace(/Client$/, "");
+}
+
+export function getClassicalClientName(
+  client: SdkClientType<SdkServiceOperation>
+): string {
+  return client.name;
 }
 
 export interface GuardedName {
@@ -22,16 +42,17 @@ export function getOperationName(
   const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
-      name: normalizeName(operation.name, NameType.Operation, true),
+      name: `$${operation.name}`,
       fixme: [
-        `${operation.name} is a reserved word that cannot be used as an operation name. Please add @projectedName(
-      "javascript", "<JS-Specific-Name>") to the operation to override the generated name.`
+        `${operation.name} is a reserved word that cannot be used as an operation name. 
+        Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript") 
+        to the operation to override the generated name.`
       ]
     };
   }
 
   return {
-    name: casingFn(operation.name)
+    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
   };
 }
 
@@ -65,4 +86,54 @@ export function getClassicalLayerPrefix(
     );
   }
   return prefix.join(separator);
+}
+
+export function isDefined<T>(thing: T | undefined | null): thing is T {
+  return typeof thing !== "undefined" && thing !== null;
+}
+
+export function getRLCIndexFilePath(
+  dpgContext: SdkContext,
+  client: Client | SdkClient,
+  ext: "js" | "ts" = "ts"
+): string {
+  return path.join(
+    ...[
+      dpgContext.generationPathDetail?.rlcSourcesDir,
+      getSubfolder(client, dpgContext),
+      `index.${ext}`
+    ].filter(isDefined)
+  );
+}
+
+export function getModularModelFilePath(
+  codeModel: ModularCodeModel,
+  client: Client | SdkClient,
+  ext: "js" | "ts" = "ts"
+): string {
+  return path.join(
+    ...[
+      codeModel.modularOptions.sourceRoot,
+      getSubfolder(client),
+      "models",
+      `models.${ext}`
+    ].filter(isDefined)
+  );
+}
+
+function getSubfolder(client: Client): string | undefined;
+function getSubfolder(
+  client: Client | SdkClient,
+  dpgContext?: SdkContext
+): string | undefined;
+function getSubfolder(
+  client: Client | SdkClient,
+  dpgContext?: SdkContext
+): string | undefined {
+  return (
+    (client as Client).subfolder ??
+    (dpgContext?.rlcOptions!.batch && dpgContext?.rlcOptions!.batch?.length > 1
+      ? normalizeName(client.name.replace("Client", ""), NameType.File)
+      : undefined)
+  );
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   IpAllocation,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,17 +31,17 @@ async function createIPAllocation() {
     typePropertiesType: "Hypernet",
     allocationTags: {
       vNetID:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/HypernetVnet1"
+        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/HypernetVnet1",
     },
     location: "centraluseuap",
-    prefix: "3.2.5.0/24"
+    prefix: "3.2.5.0/24",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipAllocations.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ipAllocationName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

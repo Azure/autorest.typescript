@@ -28,7 +28,7 @@ async function getExpressRouteCircuitTrafficStats() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.getStats(
     resourceGroupName,
-    circuitName
+    circuitName,
   );
   console.log(result);
 }

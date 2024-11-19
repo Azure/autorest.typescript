@@ -1,114 +1,191 @@
-import { SourceFile } from "ts-morph";
-import {
-  getClientParameters,
-  importCredential
-} from "./helpers/clientHelpers.js";
-import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { importModels } from "./buildOperations.js";
+import {
+  NameType,
+  isAzurePackage,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import {
+  buildGetClientCredentialParam,
+  buildGetClientEndpointParam,
+  buildGetClientOptionsParam,
+  getClientParameterName,
+  getClientParameters,
+  getClientParametersDeclaration
+} from "./helpers/clientHelpers.js";
+
 import { SdkContext } from "../utils/interfaces.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { SourceFile } from "ts-morph";
+import { getClientName } from "./helpers/namingHelpers.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getTypeExpression } from "./type-expressions/get-type-expression.js";
+import { resolveReference } from "../framework/reference.js";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
+import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
+import {
+  SdkHttpParameter,
+  SdkParameter
+} from "@azure-tools/typespec-client-generator-core";
+
+/**
+ * This function gets the path of the file containing the modular client context
+ */
+export function getClientContextPath(
+  _client: Client,
+  codeModel: ModularCodeModel
+): string {
+  const { subfolder, tcgcClient: client } = _client;
+  const name = getClientName(client);
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const contentPath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  return contentPath;
+}
 
 /**
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
+  _client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  client: Client
+  codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, subfolder } = client;
+  const { description, tcgcClient: client } = _client;
+  const dependencies = useDependencies();
   const name = getClientName(client);
-  const params = getClientParameters(client);
-  const srcPath = codeModel.modularOptions.sourceRoot;
+  const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
+    onClientOnly: false,
+    requiredOnly: true
+  });
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }/api/${name}Context.ts`
+    getClientContextPath(_client, codeModel)
   );
 
-  let factoryFunction;
-  importCredential(codeModel.runtimeImports, clientContextFile);
-  importModels(srcPath, clientContextFile, codeModel.project, subfolder);
-  clientContextFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
-    namedImports: ["ClientOptions"]
+  clientContextFile.addInterface({
+    isExported: true,
+    name: `${_client.rlcClientName}`,
+    extends: [resolveReference(dependencies.Client)],
+    docs: getDocsFromDescription(description)
   });
 
   clientContextFile.addInterface({
-    name: `${name}ClientOptions`,
+    name: `${name}ClientOptionalParams`,
     isExported: true,
-    extends: ["ClientOptions"]
+    extends: [resolveReference(dependencies.ClientOptions)],
+    properties: getClientParameters(_client, dpgContext, {
+      optionalOnly: true
+    })
+      .filter((p) => p.name !== "endpoint")
+      .map((p) => {
+        return {
+          name: normalizeName(p.name, NameType.Parameter),
+          type:
+            p.name.toLowerCase() === "apiversion"
+              ? "string"
+              : getTypeExpression(dpgContext, p.type),
+          hasQuestionToken: true,
+          docs: getDocsWithKnownVersion(dpgContext, p)
+        };
+      }),
+    docs: ["Optional parameters for the client."]
   });
 
-  if (isRLCMultiEndpoint(dpgContext)) {
+  // TODO use binder here
+  // (for now) now logger for unbranded pkgs
+  if (isAzurePackage(codeModel)) {
     clientContextFile.addImportDeclaration({
-      moduleSpecifier: `../../rest/${subfolder}/index.js`,
-      namedImports: [`Client`]
-    });
-
-    clientContextFile.addExportDeclaration({
-      moduleSpecifier: `../../rest/${subfolder}/index.js`,
-      namedExports: [`Client`]
-    });
-    factoryFunction = clientContextFile.addFunction({
-      docs: getDocsFromDescription(description),
-      name: `create${name}`,
-      returnType: `Client.${client.name}`,
-      parameters: params,
-      isExported: true
-    });
-  } else {
-    const rlcClientName = client.rlcClientName;
-    clientContextFile.addImportDeclaration({
-      moduleSpecifier: `${
-        subfolder && subfolder !== "" ? "../" : ""
-      }../rest/index.js`,
-      namedImports: [`${rlcClientName}`]
-    });
-
-    clientContextFile.addExportDeclaration({
-      moduleSpecifier: `${
-        subfolder && subfolder !== "" ? "../" : ""
-      }../rest/index.js`,
-      namedExports: [`${rlcClientName}`]
-    });
-
-    factoryFunction = clientContextFile.addFunction({
-      docs: getDocsFromDescription(description),
-      name: `create${name}`,
-      returnType: `${rlcClientName}`,
-      parameters: params,
-      isExported: true
+      moduleSpecifier:
+        codeModel.clients.length > 1 ? "../../logger.js" : "../logger.js",
+      namedImports: ["logger"]
     });
   }
 
-  const paramNames = params.map((p) => p.name);
-  const getClientStatement = `const clientContext = getClient(${paramNames.join(
-    ","
-  )})`;
+  const factoryFunction = clientContextFile.addFunction({
+    docs: getDocsFromDescription(description),
+    name: `create${name}`,
+    returnType: `${_client.rlcClientName}`,
+    parameters: requiredParams,
+    isExported: true
+  });
 
-  factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
+  const endpointParam = buildGetClientEndpointParam(
+    factoryFunction,
+    dpgContext,
+    _client
+  );
+  const credentialParam = buildGetClientCredentialParam(_client, codeModel);
+  const optionsParam = buildGetClientOptionsParam(
+    factoryFunction,
+    codeModel,
+    endpointParam
+  );
 
-  if (isRLCMultiEndpoint(dpgContext)) {
-    clientContextFile.addImportDeclarations([
-      {
-        moduleSpecifier: `../../rest/${subfolder}/index.js`,
-        namedImports: ["createClient as getClient"]
+  factoryFunction.addStatements(
+    `const clientContext = ${resolveReference(
+      dependencies.getClient
+    )}(${endpointParam}, ${credentialParam}, ${optionsParam});`
+  );
+
+  const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
+    codeModel.options;
+
+  if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
+    factoryFunction.addStatements(`
+      if(${resolveReference(dependencies.isKeyCredential)}(credential)) {
+        clientContext.pipeline.addPolicy({ 
+          name: "customKeyCredentialPolicy",
+          sendRequest(request, next) {
+            request.headers.set("${customHttpAuthHeaderName}", "${customHttpAuthSharedKeyPrefix} " + credential.key);
+            return next(request);
+          }
+        });
       }
-    ]);
-  } else {
-    clientContextFile.addImportDeclarations([
-      {
-        moduleSpecifier: `${
-          subfolder && subfolder !== "" ? "../" : ""
-        }../rest/index.js`,
-        defaultImport: "getClient"
-      }
-    ]);
+      `);
   }
+
+  let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+
+  if (dpgContext.hasApiVersionInClient) {
+    const apiVersionParam = getClientParameters(_client, dpgContext).find(
+      (x) => x.isApiVersionParam && x.kind === "method"
+    );
+
+    if (apiVersionParam) {
+      if (apiVersionParam.clientDefaultValue) {
+        apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
+      }
+
+      apiVersionPolicyStatement += `
+      clientContext.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVersion defined in request url directly
+          // Append one if there is no apiVersion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version")) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
+          }
+    
+          return next(req);
+        },
+      });`;
+    }
+  } else if (isAzurePackage(codeModel)) {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support client api-version, please change it at the operation level");
+      }`;
+  } else {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        console.warn("This client does not support client api-version, please change it at the operation level");
+      }`;
+  }
+  factoryFunction.addStatements(apiVersionPolicyStatement);
+
+  factoryFunction.addStatements("return clientContext;");
 
   clientContextFile.fixMissingImports(
     {},
@@ -117,4 +194,22 @@ export function buildClientContext(
 
   clientContextFile.fixUnusedIdentifiers();
   return clientContextFile;
+}
+
+function getDocsWithKnownVersion(
+  dpgContext: SdkContext,
+  param: SdkParameter | SdkHttpParameter
+) {
+  const docs = getDocsFromDescription(param.doc);
+  if (param.name.toLowerCase() !== "apiversion") {
+    return docs;
+  }
+  const apiVersionEnum = getApiVersionEnum(dpgContext);
+  if (apiVersionEnum) {
+    const [_, knownValuesEnum] = buildEnumTypes(dpgContext, apiVersionEnum);
+    docs.push(
+      `Known values of {@link ${knownValuesEnum.name}} that the service accepts.`
+    );
+  }
+  return docs;
 }

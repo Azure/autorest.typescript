@@ -30,7 +30,7 @@ async function configurationPolicyGroupGet() {
   const result = await client.configurationPolicyGroups.get(
     resourceGroupName,
     vpnServerConfigurationName,
-    configurationPolicyGroupName
+    configurationPolicyGroupName,
   );
   console.log(result);
 }

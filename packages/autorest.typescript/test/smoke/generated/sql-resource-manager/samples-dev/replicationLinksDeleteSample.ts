@@ -33,7 +33,7 @@ async function deleteAReplicationLink() {
     resourceGroupName,
     serverName,
     databaseName,
-    linkId
+    linkId,
   );
   console.log(result);
 }

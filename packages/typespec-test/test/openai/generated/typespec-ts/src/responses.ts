@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
@@ -8,7 +8,7 @@ import {
   CompletionsOutput,
   ChatCompletionsOutput,
   BatchImageGenerationOperationResponseOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetEmbeddings200Response extends HttpResponse {

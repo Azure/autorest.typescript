@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
@@ -15,20 +15,20 @@ dotenv.config();
  * @summary call operation ListMetricDimensionValues
  */
 async function loadTestRunListMetricDimensionValuesSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
   const name = "{Your name}";
   const initialResponse = await client
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
       testRunId,
-      name
+      name,
     )
     .get({
       queryParameters: {
-        interval: "{Your interval}",
+        interval: "PT5S",
         metricName: "{Your metricName}",
         metricNamespace: "{Your metricNamespace}",
         timespan: "{Your timespan}",

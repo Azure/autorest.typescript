@@ -29,7 +29,7 @@ async function expressRouteGatewayDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.beginDeleteAndWait(
     resourceGroupName,
-    expressRouteGatewayName
+    expressRouteGatewayName,
   );
   console.log(result);
 }

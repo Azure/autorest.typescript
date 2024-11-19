@@ -30,7 +30,7 @@ async function getPrivateEndPointConnection() {
   const result = await client.privateLinkServices.getPrivateEndpointConnection(
     resourceGroupName,
     serviceName,
-    peConnectionName
+    peConnectionName,
   );
   console.log(result);
 }

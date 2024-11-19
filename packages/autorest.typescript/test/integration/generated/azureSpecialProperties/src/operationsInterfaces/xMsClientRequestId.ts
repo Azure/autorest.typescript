@@ -8,7 +8,7 @@
 
 import {
   XMsClientRequestIdGetOptionalParams,
-  XMsClientRequestIdParamGetOptionalParams
+  XMsClientRequestIdParamGetOptionalParams,
 } from "../models";
 
 /** Interface representing a XMsClientRequestId. */
@@ -28,6 +28,6 @@ export interface XMsClientRequestId {
    */
   paramGet(
     xMsClientRequestId: string,
-    options?: XMsClientRequestIdParamGetOptionalParams
+    options?: XMsClientRequestIdParamGetOptionalParams,
   ): Promise<void>;
 }

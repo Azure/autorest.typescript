@@ -271,7 +271,7 @@ export enum KnownEnforcementMode {
   /** The policy effect is enforced during resource creation or update. */
   Default = "Default",
   /** The policy effect is not enforced during resource creation or update. */
-  DoNotEnforce = "DoNotEnforce"
+  DoNotEnforce = "DoNotEnforce",
 }
 
 /**
@@ -293,7 +293,7 @@ export enum KnownPolicyType {
   /** Custom */
   Custom = "Custom",
   /** Static */
-  Static = "Static"
+  Static = "Static",
 }
 
 /**
@@ -323,7 +323,7 @@ export enum KnownParameterType {
   /** Float */
   Float = "Float",
   /** DateTime */
-  DateTime = "DateTime"
+  DateTime = "DateTime",
 }
 
 /**
@@ -372,7 +372,8 @@ export interface PolicyAssignmentsListForResourceGroupOptionalParams
 }
 
 /** Contains response data for the listForResourceGroup operation. */
-export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForResourceGroupResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceOptionalParams
@@ -382,14 +383,16 @@ export interface PolicyAssignmentsListForResourceOptionalParams
 }
 
 /** Contains response data for the listForResource operation. */
-export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForResourceResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForManagementGroup operation. */
-export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForManagementGroupResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListOptionalParams
@@ -427,21 +430,24 @@ export interface PolicyAssignmentsListForResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForResourceGroupNext operation. */
-export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForResourceGroupNextResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForResourceNext operation. */
-export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForResourceNextResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForManagementGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForManagementGroupNext operation. */
-export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult;
+export type PolicyAssignmentsListForManagementGroupNextResponse =
+  PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListNextOptionalParams
@@ -480,7 +486,8 @@ export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
-export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition;
+export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse =
+  PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams
@@ -512,7 +519,8 @@ export interface PolicyDefinitionsListByManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroup operation. */
-export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult;
+export type PolicyDefinitionsListByManagementGroupResponse =
+  PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListNextOptionalParams
@@ -526,14 +534,16 @@ export interface PolicyDefinitionsListBuiltInNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltInNext operation. */
-export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult;
+export type PolicyDefinitionsListBuiltInNextResponse =
+  PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListByManagementGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroupNext operation. */
-export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult;
+export type PolicyDefinitionsListByManagementGroupNextResponse =
+  PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsCreateOrUpdateOptionalParams
@@ -572,14 +582,16 @@ export interface PolicySetDefinitionsListBuiltInOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltIn operation. */
-export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult;
+export type PolicySetDefinitionsListBuiltInResponse =
+  PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
-export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition;
+export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse =
+  PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
@@ -590,35 +602,40 @@ export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroup operation. */
-export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition;
+export type PolicySetDefinitionsGetAtManagementGroupResponse =
+  PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListByManagementGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroup operation. */
-export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult;
+export type PolicySetDefinitionsListByManagementGroupResponse =
+  PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult;
+export type PolicySetDefinitionsListNextResponse =
+  PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListBuiltInNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltInNext operation. */
-export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult;
+export type PolicySetDefinitionsListBuiltInNextResponse =
+  PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroupNext operation. */
-export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult;
+export type PolicySetDefinitionsListByManagementGroupNextResponse =
+  PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyClientOptionalParams

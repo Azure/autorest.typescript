@@ -30,7 +30,7 @@ async function getResourceHealthMetadata() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.resourceHealthMetadataOperations.getBySite(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

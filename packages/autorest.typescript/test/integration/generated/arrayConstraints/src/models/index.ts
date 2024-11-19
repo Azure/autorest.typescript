@@ -22,7 +22,7 @@ export enum KnownEnum0 {
   /** One */
   One = "one",
   /** Two */
-  Two = "two"
+  Two = "two",
 }
 
 /**
@@ -40,7 +40,7 @@ export enum KnownOS {
   /** Windows */
   Windows = "Windows",
   /** Linux */
-  Linux = "Linux"
+  Linux = "Linux",
 }
 
 /**
@@ -58,7 +58,7 @@ export enum KnownSku {
   /** Free */
   Free = "Free",
   /** Standard */
-  Standard = "Standard"
+  Standard = "Standard",
 }
 
 /**

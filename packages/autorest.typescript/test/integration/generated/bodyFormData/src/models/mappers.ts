@@ -16,61 +16,63 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema",
-    modelProperties: {
-      fileContent: {
-        serializedName: "fileContent",
-        required: true,
-        type: {
-          name: "Stream"
-        }
+          name: "String",
+        },
       },
-      fileName: {
-        serializedName: "fileName",
-        required: true,
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
+    },
+  },
 };
 
-export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema",
-    modelProperties: {
-      fileContent: {
-        serializedName: "fileContent",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Stream"
-            }
-          }
-        }
-      }
-    }
-  }
-};
+export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema",
+      modelProperties: {
+        fileContent: {
+          serializedName: "fileContent",
+          required: true,
+          type: {
+            name: "Stream",
+          },
+        },
+        fileName: {
+          serializedName: "fileName",
+          required: true,
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };
+
+export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema",
+      modelProperties: {
+        fileContent: {
+          serializedName: "fileContent",
+          required: true,
+          type: {
+            name: "Sequence",
+            element: {
+              type: {
+                name: "Stream",
+              },
+            },
+          },
+        },
+      },
+    },
+  };

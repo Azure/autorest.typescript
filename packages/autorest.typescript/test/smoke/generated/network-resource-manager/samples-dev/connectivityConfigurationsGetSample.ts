@@ -31,7 +31,7 @@ async function connectivityConfigurationsGet() {
   const result = await client.connectivityConfigurations.get(
     resourceGroupName,
     networkManagerName,
-    configurationName
+    configurationName,
   );
   console.log(result);
 }

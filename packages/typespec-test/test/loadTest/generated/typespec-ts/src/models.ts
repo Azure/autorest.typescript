@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 /** Load test model */
 export interface Test {
@@ -39,21 +39,15 @@ export interface PassFailCriteria {
 
 /** Pass fail metric */
 export interface PassFailMetric {
-  /**
-   * The client metric on which the criteria should be applied.
-   *
-   * Possible values: response_time_ms, latency, error, requests, requests_per_sec
-   */
-  clientMetric?: string;
+  /** The client metric on which the criteria should be applied. */
+  clientMetric?: PFMetrics;
   /**
    * The aggregation function to be applied on the client metric. Allowed functions
    * - ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
-   *
-   * Possible values: count, percentage, avg, p50, p90, p95, p99, min, max
    */
-  aggregate?: string;
+  aggregate?: PFAgFunc;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
   condition?: string;
   /** Request name for which the Pass fail criteria has to be applied */
@@ -63,36 +57,24 @@ export interface PassFailMetric {
    * 100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms.
    */
   value?: number;
-  /**
-   * Action taken after the threshold is met. Default is ‘continue’.
-   *
-   * Possible values: continue, stop
-   */
-  action?: string;
+  /** Action taken after the threshold is met. Default is ‘continue’. */
+  action?: PFAction;
 }
 
 /** Secret */
 export interface Secret {
   /** The value of the secret for the respective type */
   value?: string;
-  /**
-   * Type of secret
-   *
-   * Possible values: AKV_SECRET_URI, SECRET_VALUE
-   */
-  type?: string;
+  /** Type of secret */
+  type?: SecretType;
 }
 
 /** Certificates metadata */
 export interface CertificateMetadata {
   /** The value of the certificate for respective type */
   value?: string;
-  /**
-   * Type of certificate
-   *
-   * Possible values: AKV_CERT_URI
-   */
-  type?: string;
+  /** Type of certificate */
+  type?: CertificateType;
   /** Name of the certificate. */
   name?: string;
 }
@@ -153,20 +135,12 @@ export interface FileInfo {
   url?: string;
   /** Name of the file. */
   fileName?: string;
-  /**
-   * File type
-   *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
-   */
-  fileType?: string;
+  /** File type */
+  fileType?: FileType;
   /** Expiry time of the file (ISO 8601 literal format) */
   expireDateTime?: string;
-  /**
-   * Validation status of the file
-   *
-   * Possible values: NOT_VALIDATED, VALIDATION_SUCCESS, VALIDATION_FAILURE, VALIDATION_INITIATED, VALIDATION_NOT_REQUIRED
-   */
-  validationStatus?: string;
+  /** Validation status of the file */
+  validationStatus?: FileStatus;
   /** Validation failure error details */
   validationFailureDetails?: string;
 }
@@ -324,3 +298,61 @@ export interface TestRunServerMetricConfig {
    */
   metrics?: Record<string, ResourceMetric>;
 }
+
+/** Alias for PFMetrics */
+export type PFMetrics =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
+/** Alias for PFAgFunc */
+export type PFAgFunc =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p90"
+  | "p95"
+  | "p99"
+  | "min"
+  | "max";
+/** Alias for PFAction */
+export type PFAction = "continue" | "stop";
+/** Alias for PFResult */
+export type PFResult = "passed" | "undetermined" | "failed";
+/** Alias for SecretType */
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+/** Alias for CertificateType */
+export type CertificateType = "AKV_CERT_URI";
+/** Alias for FileType */
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+/** Alias for FileStatus */
+export type FileStatus =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
+/** Alias for PFTestResult */
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** Alias for Status */
+export type Status =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
+/** Alias for Interval */
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";

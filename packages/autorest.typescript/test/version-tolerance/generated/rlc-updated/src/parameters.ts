@@ -1,34 +1,36 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { RequestParameters } from "@azure-rest/core-client";
 import { PostInput } from "./models";
 
-export interface HeadNoParamsQueryParamProperties {
+export interface ParamsHeadNoParamsQueryParamProperties {
   /** I'm a new input optional parameter */
   new_parameter?: string;
 }
 
-export interface HeadNoParamsQueryParam {
-  queryParameters?: HeadNoParamsQueryParamProperties;
+export interface ParamsHeadNoParamsQueryParam {
+  queryParameters?: ParamsHeadNoParamsQueryParamProperties;
 }
 
-export type HeadNoParamsParameters = HeadNoParamsQueryParam & RequestParameters;
+export type ParamsHeadNoParamsParameters = ParamsHeadNoParamsQueryParam &
+  RequestParameters;
 
-export interface GetRequiredQueryParamProperties {
+export interface ParamsGetRequiredQueryParamProperties {
   /** I am a required parameter */
   parameter: string;
   /** I'm a new input optional parameter */
   new_parameter?: string;
 }
 
-export interface GetRequiredQueryParam {
-  queryParameters: GetRequiredQueryParamProperties;
+export interface ParamsGetRequiredQueryParam {
+  queryParameters: ParamsGetRequiredQueryParamProperties;
 }
 
-export type GetRequiredParameters = GetRequiredQueryParam & RequestParameters;
+export type ParamsGetRequiredParameters = ParamsGetRequiredQueryParam &
+  RequestParameters;
 
-export interface PutRequiredOptionalQueryParamProperties {
+export interface ParamsPutRequiredOptionalQueryParamProperties {
   /** I am a required parameter */
   requiredParam: string;
   /** I am an optional parameter */
@@ -37,59 +39,66 @@ export interface PutRequiredOptionalQueryParamProperties {
   new_parameter?: string;
 }
 
-export interface PutRequiredOptionalQueryParam {
-  queryParameters: PutRequiredOptionalQueryParamProperties;
+export interface ParamsPutRequiredOptionalQueryParam {
+  queryParameters: ParamsPutRequiredOptionalQueryParamProperties;
 }
 
-export type PutRequiredOptionalParameters = PutRequiredOptionalQueryParam &
-  RequestParameters;
+export type ParamsPutRequiredOptionalParameters =
+  ParamsPutRequiredOptionalQueryParam & RequestParameters;
 
-export interface PostParametersBodyParam {
+export interface ParamsPostParametersBodyParam {
   /**
    * I am a body parameter with a new content type. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" }
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array;
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
-export interface PostParametersMediaTypesParam {
+export interface ParamsPostParametersMediaTypesParam {
   /** Request content type */
   contentType?: "image/jpeg";
 }
 
-export type PostParametersRequestParameters = PostParametersMediaTypesParam &
-  PostParametersBodyParam &
-  RequestParameters;
+export type ParamsPostParametersRequestParameters =
+  ParamsPostParametersMediaTypesParam &
+    ParamsPostParametersBodyParam &
+    RequestParameters;
 
-export interface PostParametersBodyParam1 {
+export interface ParamsPostParametersBodyParam1 {
   /** I am a body parameter with a new content type. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" } */
   body: PostInput;
 }
 
-export interface PostParametersMediaTypesParam1 {
+export interface ParamsPostParametersMediaTypesParam1 {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PostParametersRequestParameters1 = PostParametersMediaTypesParam1 &
-  PostParametersBodyParam1 &
-  RequestParameters;
-export type PostParametersParameters =
-  | PostParametersRequestParameters
-  | PostParametersRequestParameters1;
-export type DeleteParametersParameters = RequestParameters;
+export type ParamsPostParametersRequestParameters1 =
+  ParamsPostParametersMediaTypesParam1 &
+    ParamsPostParametersBodyParam1 &
+    RequestParameters;
+export type ParamsPostParametersParameters =
+  | ParamsPostParametersRequestParameters
+  | ParamsPostParametersRequestParameters1;
+export type ParamsDeleteParametersParameters = RequestParameters;
 
-export interface GetOptionalQueryParamProperties {
+export interface ParamsGetOptionalQueryParamProperties {
   /** I am an optional parameter */
   optionalParam?: string;
   /** I'm a new input optional parameter */
   new_parameter?: string;
 }
 
-export interface GetOptionalQueryParam {
-  queryParameters?: GetOptionalQueryParamProperties;
+export interface ParamsGetOptionalQueryParam {
+  queryParameters?: ParamsGetOptionalQueryParamProperties;
 }
 
-export type GetOptionalParameters = GetOptionalQueryParam & RequestParameters;
-export type GetNewOperationParameters = RequestParameters;
+export type ParamsGetOptionalParameters = ParamsGetOptionalQueryParam &
+  RequestParameters;
+export type ParamsGetNewOperationParameters = RequestParameters;

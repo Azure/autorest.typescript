@@ -29,7 +29,7 @@ async function listRoutes() {
   const resArray = new Array();
   for await (let item of client.routes.list(
     resourceGroupName,
-    routeTableName
+    routeTableName,
   )) {
     resArray.push(item);
   }

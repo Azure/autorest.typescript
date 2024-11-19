@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SharingUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,19 +33,19 @@ async function addSharingIdToTheSharingProfileOfAGallery() {
         type: "Subscriptions",
         ids: [
           "34a4ab42-0d72-47d9-bd1a-aed207386dac",
-          "380fd389-260b-41aa-bad9-0a83108c370b"
-        ]
+          "380fd389-260b-41aa-bad9-0a83108c370b",
+        ],
       },
-      { type: "AADTenants", ids: ["c24c76aa-8897-4027-9b03-8f7928b54ff6"] }
+      { type: "AADTenants", ids: ["c24c76aa-8897-4027-9b03-8f7928b54ff6"] },
     ],
-    operationType: "Add"
+    operationType: "Add",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.gallerySharingProfile.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
-    sharingUpdate
+    sharingUpdate,
   );
   console.log(result);
 }
@@ -66,7 +66,7 @@ async function resetSharingProfileOfAGallery() {
   const result = await client.gallerySharingProfile.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
-    sharingUpdate
+    sharingUpdate,
   );
   console.log(result);
 }

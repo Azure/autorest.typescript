@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SensitivityLabel,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersI
     informationTypeId: "d22fa6e9-5ee4-3bde-4c2b-a409604c4646",
     labelId: "bf91e08c-f4f0-478a-b016-25164b2a65ff",
     labelName: "PII",
-    rank: "High"
+    rank: "High",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -48,7 +48,7 @@ async function updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersI
     schemaName,
     tableName,
     columnName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

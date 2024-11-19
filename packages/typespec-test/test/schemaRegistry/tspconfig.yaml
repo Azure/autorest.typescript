@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generateMetadata: true
+    generateTest: false
+    azureSdkForJs: false
+    isModularLibrary: true
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/schema-registry"
+      description: "Schema Registry test"
+      version: "1.0.0-beta.1"

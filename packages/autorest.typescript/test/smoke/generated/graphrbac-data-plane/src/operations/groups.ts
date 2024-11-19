@@ -45,7 +45,7 @@ import {
   AddOwnerParameters,
   GroupsAddOwnerOptionalParams,
   GroupsRemoveOwnerOptionalParams,
-  GroupsListOwnersNextResponse
+  GroupsListOwnersNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -66,7 +66,7 @@ export class GroupsImpl implements Groups {
    * @param options The options parameters.
    */
   public list(
-    options?: GroupsListOptionalParams
+    options?: GroupsListOptionalParams,
   ): PagedAsyncIterableIterator<ADGroup> {
     const iter = this.listPagingAll(options);
     return {
@@ -81,13 +81,13 @@ export class GroupsImpl implements Groups {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: GroupsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ADGroup[]> {
     let result: GroupsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -108,7 +108,7 @@ export class GroupsImpl implements Groups {
   }
 
   private async *listPagingAll(
-    options?: GroupsListOptionalParams
+    options?: GroupsListOptionalParams,
   ): AsyncIterableIterator<ADGroup> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -122,7 +122,7 @@ export class GroupsImpl implements Groups {
    */
   public listGroupMembers(
     objectId: string,
-    options?: GroupsGetGroupMembersOptionalParams
+    options?: GroupsGetGroupMembersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersPagingAll(objectId, options);
     return {
@@ -137,14 +137,14 @@ export class GroupsImpl implements Groups {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getGroupMembersPagingPage(objectId, options, settings);
-      }
+      },
     };
   }
 
   private async *getGroupMembersPagingPage(
     objectId: string,
     options?: GroupsGetGroupMembersOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: GroupsGetGroupMembersResponse;
     let continuationToken = settings?.continuationToken;
@@ -166,11 +166,11 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersPagingAll(
     objectId: string,
-    options?: GroupsGetGroupMembersOptionalParams
+    options?: GroupsGetGroupMembersOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getGroupMembersPagingPage(
       objectId,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -185,7 +185,7 @@ export class GroupsImpl implements Groups {
   public listMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: GroupsGetMemberGroupsOptionalParams
+    options?: GroupsGetMemberGroupsOptionalParams,
   ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
@@ -203,9 +203,9 @@ export class GroupsImpl implements Groups {
           objectId,
           parameters,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -213,7 +213,7 @@ export class GroupsImpl implements Groups {
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<string[]> {
     let result: GroupsGetMemberGroupsResponse;
     result = await this._getMemberGroups(objectId, parameters, options);
@@ -223,12 +223,12 @@ export class GroupsImpl implements Groups {
   private async *getMemberGroupsPagingAll(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: GroupsGetMemberGroupsOptionalParams
+    options?: GroupsGetMemberGroupsOptionalParams,
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
       parameters,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -241,7 +241,7 @@ export class GroupsImpl implements Groups {
    */
   public listOwners(
     objectId: string,
-    options?: GroupsListOwnersOptionalParams
+    options?: GroupsListOwnersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.listOwnersPagingAll(objectId, options);
     return {
@@ -256,14 +256,14 @@ export class GroupsImpl implements Groups {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listOwnersPagingPage(objectId, options, settings);
-      }
+      },
     };
   }
 
   private async *listOwnersPagingPage(
     objectId: string,
     options?: GroupsListOwnersOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: GroupsListOwnersResponse;
     let continuationToken = settings?.continuationToken;
@@ -285,7 +285,7 @@ export class GroupsImpl implements Groups {
 
   private async *listOwnersPagingAll(
     objectId: string,
-    options?: GroupsListOwnersOptionalParams
+    options?: GroupsListOwnersOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.listOwnersPagingPage(objectId, options)) {
       yield* page;
@@ -299,7 +299,7 @@ export class GroupsImpl implements Groups {
    */
   public listNext(
     nextLink: string,
-    options?: GroupsListNextOptionalParams
+    options?: GroupsListNextOptionalParams,
   ): PagedAsyncIterableIterator<ADGroup> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -314,14 +314,14 @@ export class GroupsImpl implements Groups {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
     options?: GroupsListNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ADGroup[]> {
     let result: GroupsListNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -343,7 +343,7 @@ export class GroupsImpl implements Groups {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: GroupsListNextOptionalParams
+    options?: GroupsListNextOptionalParams,
   ): AsyncIterableIterator<ADGroup> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -357,7 +357,7 @@ export class GroupsImpl implements Groups {
    */
   public listGroupMembersNext(
     nextLink: string,
-    options?: GroupsGetGroupMembersNextOptionalParams
+    options?: GroupsGetGroupMembersNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion> {
     const iter = this.getGroupMembersNextPagingAll(nextLink, options);
     return {
@@ -372,14 +372,14 @@ export class GroupsImpl implements Groups {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getGroupMembersNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *getGroupMembersNextPagingPage(
     nextLink: string,
     options?: GroupsGetGroupMembersNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
     let result: GroupsGetGroupMembersNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -401,11 +401,11 @@ export class GroupsImpl implements Groups {
 
   private async *getGroupMembersNextPagingAll(
     nextLink: string,
-    options?: GroupsGetGroupMembersNextOptionalParams
+    options?: GroupsGetGroupMembersNextOptionalParams,
   ): AsyncIterableIterator<DirectoryObjectUnion> {
     for await (const page of this.getGroupMembersNextPagingPage(
       nextLink,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -419,11 +419,11 @@ export class GroupsImpl implements Groups {
    */
   isMemberOf(
     parameters: CheckGroupMembershipParameters,
-    options?: GroupsIsMemberOfOptionalParams
+    options?: GroupsIsMemberOfOptionalParams,
   ): Promise<GroupsIsMemberOfResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      isMemberOfOperationSpec
+      isMemberOfOperationSpec,
     );
   }
 
@@ -436,11 +436,11 @@ export class GroupsImpl implements Groups {
   removeMember(
     groupObjectId: string,
     memberObjectId: string,
-    options?: GroupsRemoveMemberOptionalParams
+    options?: GroupsRemoveMemberOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { groupObjectId, memberObjectId, options },
-      removeMemberOperationSpec
+      removeMemberOperationSpec,
     );
   }
 
@@ -454,11 +454,11 @@ export class GroupsImpl implements Groups {
   addMember(
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
-    options?: GroupsAddMemberOptionalParams
+    options?: GroupsAddMemberOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { groupObjectId, parameters, options },
-      addMemberOperationSpec
+      addMemberOperationSpec,
     );
   }
 
@@ -469,11 +469,11 @@ export class GroupsImpl implements Groups {
    */
   create(
     parameters: GroupCreateParameters,
-    options?: GroupsCreateOptionalParams
+    options?: GroupsCreateOptionalParams,
   ): Promise<GroupsCreateResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      createOperationSpec
+      createOperationSpec,
     );
   }
 
@@ -482,7 +482,7 @@ export class GroupsImpl implements Groups {
    * @param options The options parameters.
    */
   private _list(
-    options?: GroupsListOptionalParams
+    options?: GroupsListOptionalParams,
   ): Promise<GroupsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -494,11 +494,11 @@ export class GroupsImpl implements Groups {
    */
   private _getGroupMembers(
     objectId: string,
-    options?: GroupsGetGroupMembersOptionalParams
+    options?: GroupsGetGroupMembersOptionalParams,
   ): Promise<GroupsGetGroupMembersResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      getGroupMembersOperationSpec
+      getGroupMembersOperationSpec,
     );
   }
 
@@ -509,11 +509,11 @@ export class GroupsImpl implements Groups {
    */
   get(
     objectId: string,
-    options?: GroupsGetOptionalParams
+    options?: GroupsGetOptionalParams,
   ): Promise<GroupsGetResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -524,11 +524,11 @@ export class GroupsImpl implements Groups {
    */
   delete(
     objectId: string,
-    options?: GroupsDeleteOptionalParams
+    options?: GroupsDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -541,11 +541,11 @@ export class GroupsImpl implements Groups {
   private _getMemberGroups(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: GroupsGetMemberGroupsOptionalParams
+    options?: GroupsGetMemberGroupsOptionalParams,
   ): Promise<GroupsGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      getMemberGroupsOperationSpec
+      getMemberGroupsOperationSpec,
     );
   }
 
@@ -556,11 +556,11 @@ export class GroupsImpl implements Groups {
    */
   private _listOwners(
     objectId: string,
-    options?: GroupsListOwnersOptionalParams
+    options?: GroupsListOwnersOptionalParams,
   ): Promise<GroupsListOwnersResponse> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      listOwnersOperationSpec
+      listOwnersOperationSpec,
     );
   }
 
@@ -574,11 +574,11 @@ export class GroupsImpl implements Groups {
   addOwner(
     objectId: string,
     parameters: AddOwnerParameters,
-    options?: GroupsAddOwnerOptionalParams
+    options?: GroupsAddOwnerOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      addOwnerOperationSpec
+      addOwnerOperationSpec,
     );
   }
 
@@ -591,11 +591,11 @@ export class GroupsImpl implements Groups {
   removeOwner(
     objectId: string,
     ownerObjectId: string,
-    options?: GroupsRemoveOwnerOptionalParams
+    options?: GroupsRemoveOwnerOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, ownerObjectId, options },
-      removeOwnerOperationSpec
+      removeOwnerOperationSpec,
     );
   }
 
@@ -606,11 +606,11 @@ export class GroupsImpl implements Groups {
    */
   private _listNext(
     nextLink: string,
-    options?: GroupsListNextOptionalParams
+    options?: GroupsListNextOptionalParams,
   ): Promise<GroupsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 
@@ -621,11 +621,11 @@ export class GroupsImpl implements Groups {
    */
   private _getGroupMembersNext(
     nextLink: string,
-    options?: GroupsGetGroupMembersNextOptionalParams
+    options?: GroupsGetGroupMembersNextOptionalParams,
   ): Promise<GroupsGetGroupMembersNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getGroupMembersNextOperationSpec
+      getGroupMembersNextOperationSpec,
     );
   }
 
@@ -638,11 +638,11 @@ export class GroupsImpl implements Groups {
   private _listOwnersNext(
     objectId: string,
     nextLink: string,
-    options?: GroupsListOwnersNextOptionalParams
+    options?: GroupsListOwnersNextOptionalParams,
   ): Promise<GroupsListOwnersNextResponse> {
     return this.client.sendOperationRequest(
       { objectId, nextLink, options },
-      listOwnersNextOperationSpec
+      listOwnersNextOperationSpec,
     );
   }
 }
@@ -654,18 +654,18 @@ const isMemberOfOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.CheckGroupMembershipResult
+      bodyMapper: Mappers.CheckGroupMembershipResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters5,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const removeMemberOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{groupObjectId}/$links/members/{memberObjectId}",
@@ -673,18 +673,18 @@ const removeMemberOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
     Parameters.groupObjectId,
-    Parameters.memberObjectId
+    Parameters.memberObjectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const addMemberOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{groupObjectId}/$links/members",
@@ -692,85 +692,85 @@ const addMemberOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters6,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.groupObjectId
+    Parameters.groupObjectId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups",
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.ADGroup
+      bodyMapper: Mappers.ADGroup,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.GroupListResult
+      bodyMapper: Mappers.GroupListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getGroupMembersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/members",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ADGroup
+      bodyMapper: Mappers.ADGroup,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}",
@@ -778,47 +778,47 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/getMemberGroups",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.GroupGetMemberGroupsResult
+      bodyMapper: Mappers.GroupGetMemberGroupsResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters8,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listOwnersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/owners",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const addOwnerOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/$links/owners",
@@ -826,15 +826,15 @@ const addOwnerOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const removeOwnerOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/$links/owners/{ownerObjectId}",
@@ -842,68 +842,68 @@ const removeOwnerOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
     Parameters.ownerObjectId,
-    Parameters.objectId
+    Parameters.objectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.GroupListResult
+      bodyMapper: Mappers.GroupListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getGroupMembersNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOwnersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DirectoryObjectListResult
+      bodyMapper: Mappers.DirectoryObjectListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
     Parameters.nextLink,
-    Parameters.objectId
+    Parameters.objectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

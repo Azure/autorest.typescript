@@ -35,7 +35,7 @@ async function listAppAnalyses() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }
@@ -63,7 +63,7 @@ async function listAppSlotAnalyses() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

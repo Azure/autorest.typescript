@@ -29,7 +29,7 @@ async function getPrivateLinkResourcesOfASite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.getPrivateLinkResources(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

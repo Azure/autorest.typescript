@@ -86,7 +86,7 @@ import {
   AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams,
   AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse,
   AppServiceEnvironmentsUpdateWorkerPoolOptionalParams,
-  AppServiceEnvironmentsUpdateWorkerPoolResponse
+  AppServiceEnvironmentsUpdateWorkerPoolResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -97,7 +97,7 @@ export interface AppServiceEnvironments {
    * @param options The options parameters.
    */
   list(
-    options?: AppServiceEnvironmentsListOptionalParams
+    options?: AppServiceEnvironmentsListOptionalParams,
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
   /**
    * Description for Get all App Service Environments in a resource group.
@@ -106,7 +106,7 @@ export interface AppServiceEnvironments {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
+    options?: AppServiceEnvironmentsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<AppServiceEnvironmentResource>;
   /**
    * Description for Get the used, available, and total worker capacity an App Service Environment.
@@ -117,7 +117,7 @@ export interface AppServiceEnvironments {
   listCapacities(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListCapacitiesOptionalParams
+    options?: AppServiceEnvironmentsListCapacitiesOptionalParams,
   ): PagedAsyncIterableIterator<StampCapacity>;
   /**
    * Description for Move an App Service Environment to a different VNET.
@@ -130,7 +130,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     vnetInfo: VirtualNetworkProfile,
-    options?: AppServiceEnvironmentsChangeVnetOptionalParams
+    options?: AppServiceEnvironmentsChangeVnetOptionalParams,
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get the network endpoints of all inbound dependencies of an App Service Environment.
@@ -141,7 +141,7 @@ export interface AppServiceEnvironments {
   listInboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
+    options?: AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams,
   ): PagedAsyncIterableIterator<InboundEnvironmentEndpoint>;
   /**
    * Description for Get all multi-role pools.
@@ -152,7 +152,7 @@ export interface AppServiceEnvironments {
   listMultiRolePools(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
+    options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams,
   ): PagedAsyncIterableIterator<WorkerPoolResource>;
   /**
    * Description for Get metric definitions for a specific instance of a multi-role pool of an App
@@ -166,7 +166,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     instance: string,
-    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
+    options?: AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get metric definitions for a multi-role pool of an App Service Environment.
@@ -177,7 +177,7 @@ export interface AppServiceEnvironments {
   listMultiRoleMetricDefinitions(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
+    options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get available SKUs for scaling a multi-role pool.
@@ -188,7 +188,7 @@ export interface AppServiceEnvironments {
   listMultiRolePoolSkus(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
+    options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams,
   ): PagedAsyncIterableIterator<SkuInfo>;
   /**
    * Description for Get usage metrics for a multi-role pool of an App Service Environment.
@@ -199,7 +199,7 @@ export interface AppServiceEnvironments {
   listMultiRoleUsages(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
+    options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams,
   ): PagedAsyncIterableIterator<Usage>;
   /**
    * Description for Get the network endpoints of all outbound dependencies of an App Service
@@ -211,7 +211,7 @@ export interface AppServiceEnvironments {
   listOutboundNetworkDependenciesEndpoints(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
+    options?: AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams,
   ): PagedAsyncIterableIterator<OutboundEnvironmentEndpoint>;
   /**
    * Description for Gets the list of private endpoints associated with a hosting environment
@@ -222,7 +222,7 @@ export interface AppServiceEnvironments {
   listPrivateEndpointConnectionList(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionListOptionalParams,
   ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
   /**
    * Description for Resume an App Service Environment.
@@ -233,7 +233,7 @@ export interface AppServiceEnvironments {
   beginListResumeAndWait(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsResumeOptionalParams
+    options?: AppServiceEnvironmentsResumeOptionalParams,
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get all App Service plans in an App Service Environment.
@@ -244,7 +244,7 @@ export interface AppServiceEnvironments {
   listAppServicePlans(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
+    options?: AppServiceEnvironmentsListAppServicePlansOptionalParams,
   ): PagedAsyncIterableIterator<AppServicePlan>;
   /**
    * Description for Get all apps in an App Service Environment.
@@ -255,7 +255,7 @@ export interface AppServiceEnvironments {
   listWebApps(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListWebAppsOptionalParams
+    options?: AppServiceEnvironmentsListWebAppsOptionalParams,
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Suspend an App Service Environment.
@@ -266,7 +266,7 @@ export interface AppServiceEnvironments {
   beginListSuspendAndWait(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsSuspendOptionalParams
+    options?: AppServiceEnvironmentsSuspendOptionalParams,
   ): PagedAsyncIterableIterator<Site>;
   /**
    * Description for Get global usage metrics of an App Service Environment.
@@ -277,7 +277,7 @@ export interface AppServiceEnvironments {
   listUsages(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListUsagesOptionalParams
+    options?: AppServiceEnvironmentsListUsagesOptionalParams,
   ): PagedAsyncIterableIterator<CsmUsageQuota>;
   /**
    * Description for Get all worker pools of an App Service Environment.
@@ -288,7 +288,7 @@ export interface AppServiceEnvironments {
   listWorkerPools(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
+    options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams,
   ): PagedAsyncIterableIterator<WorkerPoolResource>;
   /**
    * Description for Get metric definitions for a specific instance of a worker pool of an App Service
@@ -304,7 +304,7 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     instance: string,
-    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
+    options?: AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get metric definitions for a worker pool of an App Service Environment.
@@ -317,7 +317,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
+    options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<ResourceMetricDefinition>;
   /**
    * Description for Get available SKUs for scaling a worker pool.
@@ -330,7 +330,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
+    options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams,
   ): PagedAsyncIterableIterator<SkuInfo>;
   /**
    * Description for Get usage metrics for a worker pool of an App Service Environment.
@@ -343,7 +343,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
+    options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams,
   ): PagedAsyncIterableIterator<Usage>;
   /**
    * Description for Get the properties of an App Service Environment.
@@ -354,7 +354,7 @@ export interface AppServiceEnvironments {
   get(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetOptionalParams
+    options?: AppServiceEnvironmentsGetOptionalParams,
   ): Promise<AppServiceEnvironmentsGetResponse>;
   /**
    * Description for Create or update an App Service Environment.
@@ -367,7 +367,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
@@ -385,7 +385,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams,
   ): Promise<AppServiceEnvironmentsCreateOrUpdateResponse>;
   /**
    * Description for Delete an App Service Environment.
@@ -396,7 +396,7 @@ export interface AppServiceEnvironments {
   beginDelete(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsDeleteOptionalParams
+    options?: AppServiceEnvironmentsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Delete an App Service Environment.
@@ -407,7 +407,7 @@ export interface AppServiceEnvironments {
   beginDeleteAndWait(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsDeleteOptionalParams
+    options?: AppServiceEnvironmentsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Description for Create or update an App Service Environment.
@@ -420,7 +420,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource,
-    options?: AppServiceEnvironmentsUpdateOptionalParams
+    options?: AppServiceEnvironmentsUpdateOptionalParams,
   ): Promise<AppServiceEnvironmentsUpdateResponse>;
   /**
    * Description for Get IP addresses assigned to an App Service Environment.
@@ -431,7 +431,7 @@ export interface AppServiceEnvironments {
   getVipInfo(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetVipInfoOptionalParams
+    options?: AppServiceEnvironmentsGetVipInfoOptionalParams,
   ): Promise<AppServiceEnvironmentsGetVipInfoResponse>;
   /**
    * Description for Get networking configuration of an App Service Environment
@@ -442,7 +442,7 @@ export interface AppServiceEnvironments {
   getAseV3NetworkingConfiguration(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams
+    options?: AppServiceEnvironmentsGetAseV3NetworkingConfigurationOptionalParams,
   ): Promise<AppServiceEnvironmentsGetAseV3NetworkingConfigurationResponse>;
   /**
    * Description for Update networking configuration of an App Service Environment
@@ -455,7 +455,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     aseNetworkingConfiguration: AseV3NetworkingConfiguration,
-    options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams
+    options?: AppServiceEnvironmentsUpdateAseNetworkingConfigurationOptionalParams,
   ): Promise<AppServiceEnvironmentsUpdateAseNetworkingConfigurationResponse>;
   /**
    * Description for Get diagnostic information for an App Service Environment.
@@ -466,7 +466,7 @@ export interface AppServiceEnvironments {
   listDiagnostics(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListDiagnosticsOptionalParams
+    options?: AppServiceEnvironmentsListDiagnosticsOptionalParams,
   ): Promise<AppServiceEnvironmentsListDiagnosticsResponse>;
   /**
    * Description for Get a diagnostics item for an App Service Environment.
@@ -479,7 +479,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     diagnosticsName: string,
-    options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
+    options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams,
   ): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
   /**
    * Description for Get properties of a multi-role pool.
@@ -490,7 +490,7 @@ export interface AppServiceEnvironments {
   getMultiRolePool(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams
+    options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams,
   ): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
   /**
    * Description for Create or update a multi-role pool.
@@ -503,7 +503,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>,
@@ -521,7 +521,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams,
   ): Promise<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>;
   /**
    * Description for Create or update a multi-role pool.
@@ -534,7 +534,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     multiRolePoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
+    options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams,
   ): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse>;
   /**
    * Description for List all currently running operations on the App Service Environment.
@@ -545,7 +545,7 @@ export interface AppServiceEnvironments {
   listOperations(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsListOperationsOptionalParams
+    options?: AppServiceEnvironmentsListOperationsOptionalParams,
   ): Promise<AppServiceEnvironmentsListOperationsResponse>;
   /**
    * Description for Gets a private endpoint connection
@@ -558,7 +558,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams
+    options?: AppServiceEnvironmentsGetPrivateEndpointConnectionOptionalParams,
   ): Promise<AppServiceEnvironmentsGetPrivateEndpointConnectionResponse>;
   /**
    * Description for Approves or rejects a private endpoint connection
@@ -573,12 +573,10 @@ export interface AppServiceEnvironments {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
-      >,
+      OperationState<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>,
       AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
     >
   >;
@@ -595,10 +593,8 @@ export interface AppServiceEnvironments {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
-  ): Promise<
-    AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
-  >;
+    options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams,
+  ): Promise<AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse>;
   /**
    * Description for Deletes a private endpoint connection
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -610,12 +606,10 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
-      >,
+      OperationState<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>,
       AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
     >
   >;
@@ -630,7 +624,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
+    options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams,
   ): Promise<AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse>;
   /**
    * Description for Gets the private link resources
@@ -641,7 +635,7 @@ export interface AppServiceEnvironments {
   getPrivateLinkResources(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams
+    options?: AppServiceEnvironmentsGetPrivateLinkResourcesOptionalParams,
   ): Promise<AppServiceEnvironmentsGetPrivateLinkResourcesResponse>;
   /**
    * Description for Reboot all machines in an App Service Environment.
@@ -652,7 +646,7 @@ export interface AppServiceEnvironments {
   reboot(
     resourceGroupName: string,
     name: string,
-    options?: AppServiceEnvironmentsRebootOptionalParams
+    options?: AppServiceEnvironmentsRebootOptionalParams,
   ): Promise<void>;
   /**
    * Description for Get properties of a worker pool.
@@ -665,7 +659,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     workerPoolName: string,
-    options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams
+    options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams,
   ): Promise<AppServiceEnvironmentsGetWorkerPoolResponse>;
   /**
    * Description for Create or update a worker pool.
@@ -680,7 +674,7 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>,
@@ -700,7 +694,7 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
+    options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams,
   ): Promise<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>;
   /**
    * Description for Create or update a worker pool.
@@ -715,6 +709,6 @@ export interface AppServiceEnvironments {
     name: string,
     workerPoolName: string,
     workerPoolEnvelope: WorkerPoolResource,
-    options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
+    options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams,
   ): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
 }

@@ -32,7 +32,7 @@ async function getAppDetectorResponse() {
   const result = await client.diagnostics.getSiteDetectorResponse(
     resourceGroupName,
     siteName,
-    detectorName
+    detectorName,
   );
   console.log(result);
 }
@@ -55,7 +55,7 @@ async function getAppSlotDetectorResponse() {
   const result = await client.diagnostics.getSiteDetectorResponse(
     resourceGroupName,
     siteName,
-    detectorName
+    detectorName,
   );
   console.log(result);
 }

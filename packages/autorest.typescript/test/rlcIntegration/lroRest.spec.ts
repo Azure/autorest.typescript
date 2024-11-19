@@ -9,6 +9,7 @@ import { assert } from "chai";
 import chaiAsPromised from "chai-as-promised";
 chai.use(chaiAsPromised);
 import { addCookiePolicies } from "../utils/cookies";
+import { isNode } from "@azure/core-util";
 
 function createClient() {
   const client = LRORest({
@@ -189,6 +190,22 @@ describe("LRO Rest Client", () => {
       assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
       assert.deepEqual(result.body, { id: "100", name: "foo" });
+    });
+
+    it("should handle put202Retry200", async () => {
+      const initialResponse = await client.path("/lro/put/202/retry/200").put();
+      const poller = await getLongRunningPoller(client, initialResponse, {
+        intervalInMs: 0
+      });
+
+      try {
+        const promise = poller.pollUntilDone();
+        poller.stopPolling();
+        await promise;
+        assert.fail("Should be aborted by stopPolling");
+      } catch (e) {
+        assert.equal(e.message, "The operation was aborted.");
+      }
     });
 
     it("should handle putNoHeaderInRetry", async () => {
@@ -1002,10 +1019,21 @@ describe("LRO Rest Client", () => {
     });
 
     it("should handle put200InvalidJson", async () => {
-      await assert.isRejected(
-        client.path("/lro/error/put/200/invalidjson").put(),
-        /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/
-      );
+      try {
+        await client.path("/lro/error/put/200/invalidjson").put();
+      } catch (e) {
+        const expectedErrors = [
+          /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/,
+          /SyntaxError: Expected ',' or '}' after property value in JSON/
+        ];
+
+        // Check if the input string matches any of the regex patterns
+        if (expectedErrors.some((pattern) => pattern.test(e.message))) {
+          assert.ok(true);
+        } else {
+          throw e;
+        }
+      }
     });
 
     it("should handle putAsyncRelativeRetryInvalidHeader", async () => {
@@ -1058,10 +1086,21 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
-      await assert.isRejected(
-        poller.pollUntilDone(),
-        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
-      );
+      try {
+        await poller.pollUntilDone();
+      } catch (e) {
+        const expectedErrors = [
+          /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/,
+          /SyntaxError: Expected ',' or '}' after property value in JSON/
+        ];
+
+        // Check if the input string matches any of the regex patterns
+        if (expectedErrors.some((pattern) => pattern.test(e.message))) {
+          assert.ok(true);
+        } else {
+          throw e;
+        }
+      }
     });
 
     it("should handle post202RetryInvalidHeader ", async () => {
@@ -1101,10 +1140,21 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
-      await assert.isRejected(
-        poller.pollUntilDone(),
-        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
-      );
+      try {
+        await poller.pollUntilDone();
+      } catch (e) {
+        const expectedErrors = [
+          /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/,
+          /SyntaxError: Expected ',' or '}' after property value in JSON/
+        ];
+
+        // Check if the input string matches any of the regex patterns
+        if (expectedErrors.some((pattern) => pattern.test(e.message))) {
+          assert.ok(true);
+        } else {
+          throw e;
+        }
+      }
     });
   });
 

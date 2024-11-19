@@ -31,7 +31,7 @@ async function listAppDiagnosticCategories() {
   const resArray = new Array();
   for await (let item of client.diagnostics.listSiteDiagnosticCategories(
     resourceGroupName,
-    siteName
+    siteName,
   )) {
     resArray.push(item);
   }
@@ -55,7 +55,7 @@ async function listAppSlotDiagnosticCategories() {
   const resArray = new Array();
   for await (let item of client.diagnostics.listSiteDiagnosticCategories(
     resourceGroupName,
-    siteName
+    siteName,
   )) {
     resArray.push(item);
   }

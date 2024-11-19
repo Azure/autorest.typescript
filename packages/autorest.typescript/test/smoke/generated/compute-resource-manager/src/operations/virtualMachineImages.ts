@@ -21,7 +21,7 @@ import {
   VirtualMachineImagesListPublishersOptionalParams,
   VirtualMachineImagesListPublishersResponse,
   VirtualMachineImagesListSkusOptionalParams,
-  VirtualMachineImagesListSkusResponse
+  VirtualMachineImagesListSkusResponse,
 } from "../models";
 
 /** Class containing VirtualMachineImages operations. */
@@ -51,11 +51,11 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     offer: string,
     skus: string,
     version: string,
-    options?: VirtualMachineImagesGetOptionalParams
+    options?: VirtualMachineImagesGetOptionalParams,
   ): Promise<VirtualMachineImagesGetResponse> {
     return this.client.sendOperationRequest(
       { location, publisherName, offer, skus, version, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -73,11 +73,11 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     publisherName: string,
     offer: string,
     skus: string,
-    options?: VirtualMachineImagesListOptionalParams
+    options?: VirtualMachineImagesListOptionalParams,
   ): Promise<VirtualMachineImagesListResponse> {
     return this.client.sendOperationRequest(
       { location, publisherName, offer, skus, options },
-      listOperationSpec
+      listOperationSpec,
     );
   }
 
@@ -90,11 +90,11 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
   listOffers(
     location: string,
     publisherName: string,
-    options?: VirtualMachineImagesListOffersOptionalParams
+    options?: VirtualMachineImagesListOffersOptionalParams,
   ): Promise<VirtualMachineImagesListOffersResponse> {
     return this.client.sendOperationRequest(
       { location, publisherName, options },
-      listOffersOperationSpec
+      listOffersOperationSpec,
     );
   }
 
@@ -105,11 +105,11 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
    */
   listPublishers(
     location: string,
-    options?: VirtualMachineImagesListPublishersOptionalParams
+    options?: VirtualMachineImagesListPublishersOptionalParams,
   ): Promise<VirtualMachineImagesListPublishersResponse> {
     return this.client.sendOperationRequest(
       { location, options },
-      listPublishersOperationSpec
+      listPublishersOperationSpec,
     );
   }
 
@@ -124,11 +124,11 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     location: string,
     publisherName: string,
     offer: string,
-    options?: VirtualMachineImagesListSkusOptionalParams
+    options?: VirtualMachineImagesListSkusOptionalParams,
   ): Promise<VirtualMachineImagesListSkusResponse> {
     return this.client.sendOperationRequest(
       { location, publisherName, offer, options },
-      listSkusOperationSpec
+      listSkusOperationSpec,
     );
   }
 }
@@ -136,13 +136,12 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions/{version}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions/{version}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualMachineImage
-    }
+      bodyMapper: Mappers.VirtualMachineImage,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -152,14 +151,13 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.publisherName,
     Parameters.version,
     Parameters.offer,
-    Parameters.skus
+    Parameters.skus,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions",
   httpMethod: "GET",
   responses: {
     200: {
@@ -169,18 +167,18 @@ const listOperationSpec: coreClient.OperationSpec = {
           element: {
             type: {
               name: "Composite",
-              className: "VirtualMachineImageResource"
-            }
-          }
-        }
-      }
-    }
+              className: "VirtualMachineImageResource",
+            },
+          },
+        },
+      },
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.expand,
     Parameters.top,
-    Parameters.orderby
+    Parameters.orderby,
   ],
   urlParameters: [
     Parameters.$host,
@@ -188,14 +186,13 @@ const listOperationSpec: coreClient.OperationSpec = {
     Parameters.location,
     Parameters.publisherName,
     Parameters.offer,
-    Parameters.skus
+    Parameters.skus,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOffersOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers",
   httpMethod: "GET",
   responses: {
     200: {
@@ -205,69 +202,12 @@ const listOffersOperationSpec: coreClient.OperationSpec = {
           element: {
             type: {
               name: "Composite",
-              className: "VirtualMachineImageResource"
-            }
-          }
-        }
-      }
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.location,
-    Parameters.publisherName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listPublishersOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "VirtualMachineImageResource"
-            }
-          }
-        }
-      }
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.location
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listSkusOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "VirtualMachineImageResource"
-            }
-          }
-        }
-      }
-    }
+              className: "VirtualMachineImageResource",
+            },
+          },
+        },
+      },
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -275,8 +215,63 @@ const listSkusOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location,
     Parameters.publisherName,
-    Parameters.offer
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const listPublishersOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "VirtualMachineImageResource",
+            },
+          },
+        },
+      },
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.location,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const listSkusOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: {
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "VirtualMachineImageResource",
+            },
+          },
+        },
+      },
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.location,
+    Parameters.publisherName,
+    Parameters.offer,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };

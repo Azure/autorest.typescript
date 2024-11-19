@@ -1,35 +1,43 @@
-import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
+import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
 import {
-  SdkClient,
+  getHttpOperationWithCache,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { HelperFunctionDetails } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { getHttpOperation, HttpOperation } from "@typespec/http";
-import {
-  hasPagingOperations,
-  extractPagedMetadataNested,
-  hasPollingOperations,
-  getSpecialSerializeInfo
-} from "../utils/operationUtil.js";
+import { Model, Program, Type } from "@typespec/compiler";
+import { HttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
+import {
+  extractPagedMetadataNested,
+  getSpecialSerializeInfo,
+  hasPagingOperations,
+  hasPollingOperations,
+  parseItemName,
+  parseNextLinkName
+} from "../utils/operationUtil.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  flavor?: PackageFlavor
 ): HelperFunctionDetails {
   const program = dpgContext.program;
+  const serializeInfo = extractSpecialSerializeInfo(client, dpgContext);
+  // Disable paging and long running for non-Azure clients.
+  if (flavor !== "azure") {
+    return {
+      hasLongRunning: false,
+      hasPaging: false,
+      ...serializeInfo
+    };
+  }
+
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program, client, dpgContext)
+    hasLongRunning: hasPollingOperations(client, dpgContext)
   };
-  const details = extractPageDetailFromCore(program, client, dpgContext);
-  const serializeInfo = extractSpecialSerializeInfo(
-    program,
-    client,
-    dpgContext
-  );
+  const details = extractPageDetailFromCore(client, dpgContext);
   if (details) {
     return {
       ...details,
@@ -39,14 +47,28 @@ export function transformHelperFunctionDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (getPageable(program, route.operation)) {
+      const nextLinkName = getPageable(program, route.operation) || "nextLink";
+      if (nextLinkName) {
+        nextLinks.add(nextLinkName);
+      }
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -57,20 +79,6 @@ export function transformHelperFunctionDetails(
         if (nextLinkName) {
           nextLinks.add(nextLinkName);
         }
-      }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (getPageable(program, route.operation)) {
-      const nextLinkName = getPageable(program, route.operation) || "nextLink";
-      if (nextLinkName) {
-        nextLinks.add(nextLinkName);
       }
     }
   }
@@ -99,12 +107,9 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetailFromCore(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
-  if (!hasPagingOperations(program, client, dpgContext)) {
+function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
+  if (!hasPagingOperations(client, dpgContext)) {
     return;
   }
   const nextLinks = new Set<string>();
@@ -112,29 +117,29 @@ function extractPageDetailFromCore(
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    extractPageDetailFromCoreForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = getHttpOperationWithCache(dpgContext, op);
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
       extractPageDetailFromCoreForRoute(route);
     }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    extractPageDetailFromCoreForRoute(route);
   }
 
   function extractPageDetailFromCoreForRoute(route: HttpOperation) {
@@ -167,90 +172,51 @@ function extractPageDetailFromCore(
   };
 }
 
-function parseNextLinkName(paged: PagedResultMetadata): string | undefined {
-  return paged.nextLinkProperty?.name;
-}
-
-function parseItemName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.itemsPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
-}
-
 function extractSpecialSerializeInfo(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ) {
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasTsvCollection = false;
-  let hasSsvCollection = false;
   let hasCsvCollection = false;
-  const operationGroups = listOperationGroups(dpgContext, client);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
-      route.parameters.parameters.forEach((parameter) => {
-        const serializeInfo = getSpecialSerializeInfo(
-          parameter.type,
-          (parameter as any).format
-        );
-        hasMultiCollection = hasMultiCollection
-          ? hasMultiCollection
-          : serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection
-          ? hasPipeCollection
-          : serializeInfo.hasPipeCollection;
-        hasTsvCollection = hasTsvCollection
-          ? hasTsvCollection
-          : serializeInfo.hasTsvCollection;
-        hasSsvCollection = hasSsvCollection
-          ? hasSsvCollection
-          : serializeInfo.hasSsvCollection;
-        hasCsvCollection = hasCsvCollection
-          ? hasCsvCollection
-          : serializeInfo.hasCsvCollection;
-      });
-    }
-  }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
+        dpgContext,
         parameter.type,
         (parameter as any).format
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasPipeCollection = hasPipeCollection
-        ? hasPipeCollection
-        : serializeInfo.hasPipeCollection;
-      hasTsvCollection = hasTsvCollection
-        ? hasTsvCollection
-        : serializeInfo.hasTsvCollection;
-      hasSsvCollection = hasSsvCollection
-        ? hasSsvCollection
-        : serializeInfo.hasSsvCollection;
-      hasCsvCollection = hasCsvCollection
-        ? hasCsvCollection
-        : serializeInfo.hasCsvCollection;
     });
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+    for (const op of operations) {
+      const route = getHttpOperationWithCache(dpgContext, op);
+      route.parameters.parameters.forEach((parameter) => {
+        const serializeInfo = getSpecialSerializeInfo(
+          dpgContext,
+          parameter.type,
+          (parameter as any).format
+        );
+        hasMultiCollection = hasMultiCollection
+          ? hasMultiCollection
+          : serializeInfo.hasMultiCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
+      });
+    }
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasTsvCollection,
-    hasSsvCollection,
     hasCsvCollection
   };
 }

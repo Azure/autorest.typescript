@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VaultsListByResourceGroupOptionalParams,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function listVaultsInTheSpecifiedResourceGroup() {
   const resArray = new Array();
   for await (let item of client.vaults.listByResourceGroup(
     resourceGroupName,
-    options
+    options,
   )) {
     resArray.push(item);
   }

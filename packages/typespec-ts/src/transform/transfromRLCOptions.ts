@@ -1,30 +1,29 @@
 import {
+  pascalCase,
   NameType,
   normalizeName,
   PackageDetails,
+  PackageFlavor,
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
 import {
-  getDoc,
-  ignoreDiagnostics,
-  NoTarget,
-  Program
-} from "@typespec/compiler";
-import { getAuthentication, getHttpOperation } from "@typespec/http";
-import { reportDiagnostic } from "../lib.js";
-import { getDefaultService } from "../utils/modelUtils.js";
-import { getRLCClients } from "../utils/clientUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
-import {
+  getHttpOperationWithCache,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { getOperationName } from "../utils/operationUtil.js";
+import { getDoc, NoTarget, Program } from "@typespec/compiler";
+import { getAuthentication } from "@typespec/http";
+import { EmitterOptions, reportDiagnostic } from "../lib.js";
+import { getRLCClients } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
+import { getOperationName } from "../utils/operationUtil.js";
+import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 
 export function transformRLCOptions(
-  emitterOptions: RLCOptions,
+  emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
@@ -40,17 +39,23 @@ export function transformRLCOptions(
 
 function extractRLCOptions(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions,
+  emitterOptions: EmitterOptions,
   generationRootDir: string
 ): RLCOptions {
   const program = dpgContext.program;
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
+  const flavor = getFlavor(emitterOptions, packageDetails);
+  const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata: undefined | boolean =
     getGenerateMetadata(emitterOptions);
-  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(
+    emitterOptions,
+    flavor
+  );
+  const generateSample: undefined | boolean = getGenerateSample(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
@@ -62,21 +67,26 @@ function extractRLCOptions(
     emitterOptions
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
+  const clearOutputFolder = getClearOutputFolder(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
-    branded: getBranded(emitterOptions),
+    flavor,
+    moduleKind,
     includeShortcuts,
     packageDetails,
     generateMetadata,
     generateTest,
+    generateSample,
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
     sourceFrom: "TypeSpec",
     enableOperationGroup,
     enableModelNamespace,
-    hierarchyClient
+    hierarchyClient,
+    azureArm: dpgContext.arm,
+    clearOutputFolder
   };
 }
 
@@ -90,46 +100,58 @@ function processAuth(program: Program) {
     return undefined;
   }
   const securityInfo: RLCOptions = {};
-  for (const option of authorization.options) {
-    for (const auth of option.schemes) {
-      switch (auth.type) {
-        case "http":
-          securityInfo.addCredentials = true;
-          securityInfo.customHttpAuthHeaderName = "Authorization";
-          securityInfo.customHttpAuthSharedKeyPrefix = auth.scheme;
-          break;
-        case "apiKey":
-          if (auth.in === "cookie") {
-            return undefined;
-          }
-          securityInfo.addCredentials = true;
-          securityInfo.credentialKeyHeaderName = auth.name;
-          break;
-        case "oauth2": {
-          const flow = auth.flows[0];
-          if (flow === undefined || !flow.scopes) {
-            return undefined;
-          }
-          securityInfo.addCredentials = true;
-          if (!securityInfo.credentialScopes) {
-            securityInfo.credentialScopes = [];
-          }
-          if (flow.scopes.length === 0) {
-            reportDiagnostic(program, {
-              code: "no-credential-scopes",
-              target: NoTarget
-            });
-          }
-          securityInfo.credentialScopes.push(
-            ...flow.scopes.map((item) => {
-              return item.value;
-            })
-          );
-          break;
+  for (const auth of getSupportedHttpAuth(program, authorization)) {
+    switch (auth.type) {
+      case "http":
+        securityInfo.addCredentials = true;
+        securityInfo.customHttpAuthHeaderName = "Authorization";
+        // If it is basic or bearer auth we should generate it as Basic or Bearer
+        securityInfo.customHttpAuthSharedKeyPrefix = [
+          "basic",
+          "bearer"
+        ].includes(auth.scheme.toLowerCase())
+          ? pascalCase(auth.scheme)
+          : auth.scheme;
+        break;
+      case "apiKey":
+        if (auth.in === "cookie") {
+          return undefined;
         }
-        default:
-          break;
+        securityInfo.addCredentials = true;
+        securityInfo.credentialKeyHeaderName = auth.name;
+        break;
+      case "oauth2": {
+        const flow = auth.flows[0];
+        if (flow === undefined || !flow.scopes) {
+          return undefined;
+        }
+        securityInfo.addCredentials = true;
+        if (!securityInfo.credentialScopes) {
+          securityInfo.credentialScopes = [];
+        }
+        if (flow.scopes.length === 0) {
+          reportDiagnostic(program, {
+            code: "no-credential-scopes",
+            target: NoTarget
+          });
+        }
+        // ignore the user_impersonation scope
+        if (
+          flow.scopes.length === 1 &&
+          flow.scopes[0] &&
+          flow.scopes[0].value.toLowerCase() === "user_impersonation"
+        ) {
+          return securityInfo;
+        }
+        securityInfo.credentialScopes.push(
+          ...flow.scopes.map((item) => {
+            return item.value;
+          })
+        );
+        break;
       }
+      default:
+        break;
     }
   }
   return securityInfo;
@@ -137,7 +159,7 @@ function processAuth(program: Program) {
 
 function getEnableOperationGroup(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   if (
     emitterOptions.enableOperationGroup === true ||
@@ -151,7 +173,7 @@ function getEnableOperationGroup(
 
 function getEnableModelNamespace(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   if (
     emitterOptions.enableModelNamespace === true ||
@@ -163,7 +185,7 @@ function getEnableModelNamespace(
   return detectModelConflicts(dpgContext);
 }
 
-function getHierarchyClient(emitterOptions: RLCOptions) {
+function getHierarchyClient(emitterOptions: EmitterOptions) {
   if (
     emitterOptions.hierarchyClient === true ||
     emitterOptions.hierarchyClient === false
@@ -174,36 +196,42 @@ function getHierarchyClient(emitterOptions: RLCOptions) {
   return true;
 }
 
+function getClearOutputFolder(emitterOptions: EmitterOptions) {
+  if (emitterOptions.clearOutputFolder === true) {
+    return true;
+  }
+  return false;
+}
+
 function detectIfNameConflicts(dpgContext: SdkContext) {
   const clients = getRLCClients(dpgContext);
-  const program = dpgContext.program;
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
-    const operationGroups = listOperationGroups(dpgContext, client);
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
+      const route = getHttpOperationWithCache(dpgContext, clientOp);
+      const name = getOperationName(dpgContext, route.operation);
+      if (nameSet.has(name)) {
+        return true;
+      } else {
+        nameSet.add(name);
+      }
+    }
+    const operationGroups = listOperationGroups(dpgContext, client, true);
     for (const operationGroup of operationGroups) {
       const operations = listOperationsInOperationGroup(
         dpgContext,
         operationGroup
       );
       for (const op of operations) {
-        const route = ignoreDiagnostics(getHttpOperation(program, op));
-        const name = getOperationName(program, route.operation);
+        const route = getHttpOperationWithCache(dpgContext, op);
+        const name = getOperationName(dpgContext, route.operation);
         if (nameSet.has(name)) {
           return true;
         } else {
           nameSet.add(name);
         }
-      }
-    }
-    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-    for (const clientOp of clientOperations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-      const name = getOperationName(program, route.operation);
-      if (nameSet.has(name)) {
-        return true;
-      } else {
-        nameSet.add(name);
       }
     }
   }
@@ -212,17 +240,47 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   return false;
 }
 
-function getIncludeShortcuts(emitterOptions: RLCOptions) {
+function getIncludeShortcuts(emitterOptions: EmitterOptions) {
   return Boolean(emitterOptions.includeShortcuts);
 }
 
-function getBranded(emitterOptions: RLCOptions) {
-  return emitterOptions.branded !== undefined ? emitterOptions.branded : true;
+function getModuleKind(emitterOptions: EmitterOptions) {
+  return emitterOptions.moduleKind ?? "esm";
+}
+
+function getFlavor(
+  emitterOptions: EmitterOptions,
+  packageDetails?: PackageDetails
+): PackageFlavor {
+  const flavor = emitterOptions.flavor;
+
+  if (flavor !== undefined) {
+    if (flavor.toLowerCase() === "azure") {
+      return "azure";
+    } else {
+      return undefined;
+    }
+  }
+
+  const branded = emitterOptions.branded;
+  if (branded !== undefined) {
+    return branded ? "azure" : undefined;
+  }
+
+  const scopeName = packageDetails?.scopeName;
+  if (
+    scopeName !== undefined &&
+    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+  ) {
+    return "azure";
+  } else {
+    return undefined;
+  }
 }
 
 function getPackageDetails(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ): PackageDetails {
   const packageDetails: PackageDetails = {
     ...emitterOptions.packageDetails,
@@ -241,7 +299,13 @@ function getPackageDetails(
       packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
   }
-  return packageDetails;
+  return (
+    packageDetails ?? {
+      name: "@msinternal/unamedpackage",
+      nameWithoutScope: "unamedpackage",
+      version: "1.0.0-beta.1"
+    }
+  );
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -252,14 +316,14 @@ function getServiceInfo(program: Program): ServiceInfo {
   };
 }
 
-function getAzureSdkForJs(emitterOptions: RLCOptions) {
+function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.azureSdkForJs === undefined ||
     emitterOptions.azureSdkForJs === null
     ? true
     : Boolean(emitterOptions.azureSdkForJs);
 }
 
-function getGenerateMetadata(emitterOptions: RLCOptions) {
+function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
     emitterOptions.generateMetadata === undefined ||
     emitterOptions.generateMetadata === null
@@ -269,27 +333,54 @@ function getGenerateMetadata(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.generateMetadata);
 }
 
-function getGenerateTest(emitterOptions: RLCOptions) {
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
   if (
-    emitterOptions.generateTest === undefined ||
-    emitterOptions.generateTest === null
+    flavor !== "azure" &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
   ) {
     return undefined;
+  } else if (
+    flavor === "azure" &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
+  ) {
+    return true;
   }
   return Boolean(emitterOptions.generateTest);
 }
 
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateSample(emitterOptions: EmitterOptions) {
+  if (
+    emitterOptions.generateSample === undefined ||
+    emitterOptions.generateSample === null
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateSample);
+}
+
 export function getCredentialInfo(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
     emitterOptions.addCredentials === false
       ? false
       : securityInfo
-      ? securityInfo.addCredentials
-      : emitterOptions.addCredentials;
+        ? securityInfo.addCredentials
+        : emitterOptions.addCredentials;
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes

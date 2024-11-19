@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstanceAdministrator,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,16 +34,17 @@ async function createAdministratorOfManagedInstance() {
     administratorType: "ActiveDirectory",
     login: "bob@contoso.com",
     sid: "44444444-3333-2222-1111-000000000000",
-    tenantId: "55555555-4444-3333-2222-111111111111"
+    tenantId: "55555555-4444-3333-2222-111111111111",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstanceAdministrators.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    administratorName,
-    parameters
-  );
+  const result =
+    await client.managedInstanceAdministrators.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      administratorName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -64,16 +65,17 @@ async function updateAdministratorOfManagedInstance() {
     administratorType: "ActiveDirectory",
     login: "bob@contoso.com",
     sid: "44444444-3333-2222-1111-000000000000",
-    tenantId: "55555555-4444-3333-2222-111111111111"
+    tenantId: "55555555-4444-3333-2222-111111111111",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstanceAdministrators.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    administratorName,
-    parameters
-  );
+  const result =
+    await client.managedInstanceAdministrators.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      administratorName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -28,7 +28,7 @@ async function getNetworkWatcher() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.get(
     resourceGroupName,
-    networkWatcherName
+    networkWatcherName,
   );
   console.log(result);
 }

@@ -8,3 +8,10 @@ export interface ClientDetails {
   baseUrl?: string;
   credentialsParam?: Parameter;
 }
+
+export interface OperationPathAndDeserDetails {
+  path: string;
+  expectedStatusesExpression: string;
+  deserName: string;
+  renamedDeserName?: string;
+}

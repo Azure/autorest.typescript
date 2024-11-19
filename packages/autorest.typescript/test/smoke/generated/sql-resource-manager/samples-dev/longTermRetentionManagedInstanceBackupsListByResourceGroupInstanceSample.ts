@@ -33,7 +33,7 @@ async function getAllLongTermRetentionBackupsUnderTheManagedInstance() {
   for await (let item of client.longTermRetentionManagedInstanceBackups.listByResourceGroupInstance(
     resourceGroupName,
     locationName,
-    managedInstanceName
+    managedInstanceName,
   )) {
     resArray.push(item);
   }

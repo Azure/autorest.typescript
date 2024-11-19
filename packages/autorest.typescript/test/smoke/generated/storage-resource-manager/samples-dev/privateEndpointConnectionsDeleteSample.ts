@@ -30,7 +30,7 @@ async function storageAccountDeletePrivateEndpointConnection() {
   const result = await client.privateEndpointConnections.delete(
     resourceGroupName,
     accountName,
-    privateEndpointConnectionName
+    privateEndpointConnectionName,
   );
   console.log(result);
 }

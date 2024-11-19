@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   UpdateLongTermRetentionBackupParameters,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function updateTheLongTermRetentionBackup() {
   const longTermRetentionDatabaseName = "testDatabase";
   const backupName = "55555555-6666-7777-8888-999999999999;131637960820000000";
   const parameters: UpdateLongTermRetentionBackupParameters = {
-    requestedBackupStorageRedundancy: "Geo"
+    requestedBackupStorageRedundancy: "Geo",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function updateTheLongTermRetentionBackup() {
     longTermRetentionServerName,
     longTermRetentionDatabaseName,
     backupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -28,7 +28,7 @@ async function getRouteTable() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeTables.get(
     resourceGroupName,
-    routeTableName
+    routeTableName,
   );
   console.log(result);
 }

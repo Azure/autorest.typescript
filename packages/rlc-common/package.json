@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/rlc-common",
-  "version": "0.19.0",
+  "version": "0.34.0",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
-    "prettier": "prettier --config ./.prettierrc src/**/*.ts",
+    "prettier": "prettier --config ./.prettierrc \"src/**/*.ts\"",
     "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
@@ -29,15 +29,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ts-morph": "^15.1.0",
+    "ts-morph": "^23.0.0",
     "lodash": "^4.17.21",
     "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
     "eslint": "^8.9.0",
-    "prettier": "~2.7.1",
-    "typescript": "~5.2.0",
+    "prettier": "^3.1.0",
+    "typescript": "~5.6.2",
     "rimraf": "^5.0.0",
     "@types/lodash": "^4.14.182",
     "fs-extra": "^10.0.0",

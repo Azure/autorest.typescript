@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   ProductResultValueOutput,
   ProductResultOutput,
   OdataProductResultOutput,
-  ProductResultValueWithXMSClientNameOutput
+  ProductResultValueWithXMSClientNameOutput,
 } from "./outputModels";
 
 /** A paging operation that must return result of the default 'value' node. */

@@ -30,7 +30,7 @@ async function routeMapDelete() {
   const result = await client.routeMaps.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
-    routeMapName
+    routeMapName,
   );
   console.log(result);
 }

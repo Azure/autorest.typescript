@@ -14,6 +14,7 @@ export interface RLCModel {
   urlInfo?: UrlInfo;
   telemetryOptions?: TelemetryInfo;
   sampleGroups?: RLCSampleGroup[];
+  rlcSourceDir?: string;
 }
 
 export interface ImportInfo {
@@ -27,6 +28,10 @@ export type ImportType =
   /**inner models' imports for parameter and response */
   | "parameter"
   | "response"
+  | "rlcIndex"
+  | "modularModel"
+  | "rlcClientFactory"
+  | "rlcClientDefinition"
   /**common third party imports */
   | "restClient"
   | "coreAuth"
@@ -42,7 +47,9 @@ export type ImportType =
   | "azureDevTool"
   | "azureAbortController"
   | "azureCoreLro"
-  | "azureCorePaging";
+  | "azureCorePaging"
+  /**Internal helper imports */
+  | "serializerHelpers";
 
 export interface ImportMetadata {
   type: ImportType;
@@ -98,15 +105,22 @@ export interface PathTemplateApiVersion {
 export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
+  apiVersionInfo?: ApiVersionInfo;
 }
 
 export interface ApiVersionInfo {
   definedPosition?: ApiVersionPosition;
   defaultValue?: string;
   isCrossedVersion?: boolean;
+  required?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "both" | "none";
+export type ApiVersionPosition =
+  | "path"
+  | "query"
+  | "baseurl"
+  | "duplicate"
+  | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
@@ -126,7 +140,8 @@ export interface PagingDetails {
 }
 
 export type Methods = {
-  [key: string]: [OperationMethod];
+  // could be more than one method if overloading
+  [key: string]: OperationMethod[];
 };
 
 export interface ResponseTypes {
@@ -157,14 +172,16 @@ export type Paths = Record<string, PathMetadata>;
 export type PathParameter = {
   oriName?: string;
   name: string;
+  documentName?: string;
   type: string;
   description?: string;
   value?: string | number | boolean;
+  wrapperType?: Schema;
 };
 
 export interface OperationHelperDetail {
   lroDetails?: OperationLroDetail;
-  isPageable?: boolean;
+  isPaging?: boolean;
 }
 
 export const OPERATION_LRO_HIGH_PRIORITY = 0,
@@ -178,6 +195,11 @@ export interface OperationLroDetail {
    */
   precedence?: number;
 }
+
+/**
+ * Flavor of the package to generate. If "azure", an Azure-branded package should be generated. If left undefined, a package without Azure branding will be generated.
+ */
+export type PackageFlavor = "azure" | undefined;
 
 export interface RLCOptions {
   includeShortcuts?: boolean;
@@ -219,10 +241,16 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
+  moduleKind?: "esm" | "cjs";
   enableOperationGroup?: boolean;
-  branded?: boolean;
+  flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
+  clearOutputFolder?: boolean;
+  ignorePropertyNameNormalize?: boolean;
+  compatibilityQueryMultiFormat?: boolean;
 }
 
 export interface ServiceInfo {
@@ -271,6 +299,7 @@ export interface ObjectSchema extends Schema {
   discriminatorValue?: string;
   discriminator?: Schema;
   isPolyParent?: boolean;
+  isMultipartBody?: boolean;
   children?: {
     all?: ObjectSchema[];
     immediate?: ObjectSchema[];
@@ -319,7 +348,11 @@ export interface ParameterMetadatas {
 }
 
 export interface ParameterBodyMetadata {
-  // In case of formData we'd get multiple properties in body marked as partialBody
+  /**
+   * In case of formData we'd get multiple properties in body marked as partialBody
+   * If yes, rlc-common would prepare the whole part shape;
+   * usually false in typespec source because rlc-common doesn't have to prepare the whole part shape
+   */
   isPartialBody?: boolean;
   body?: ParameterBodySchema[];
 }
@@ -330,7 +363,12 @@ export interface ParameterBodySchema extends Schema {
 export interface ParameterMetadata {
   type: "query" | "path" | "header";
   name: string;
-  param: Schema;
+  param: ParameterSchema;
+}
+
+export interface ParameterSchema extends Schema {
+  // the detailed wrapper type for the parameter and codegen needs to build this type directly
+  wrapperType?: Schema;
 }
 
 export interface OperationResponse {
@@ -338,6 +376,8 @@ export interface OperationResponse {
   operationName: string;
   path: string;
   responses: ResponseMetadata[];
+  // Check if the default response is one of superset of non-default responses
+  isDefaultSupersetOfOthers?: boolean;
 }
 export interface ResponseMetadata {
   statusCode: string;

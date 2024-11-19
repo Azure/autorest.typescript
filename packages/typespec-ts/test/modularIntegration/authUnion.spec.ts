@@ -23,7 +23,8 @@ describe("UnionContext in API Layer", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 
@@ -49,28 +50,20 @@ describe("UnionContext in API Layer", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
     );
   }
 
   it("should not throw exception if apiKey is valid", async () => {
-    try {
-      prepareKey();
-      const result = await validKey(context);
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    prepareKey();
+    const result = await validKey(context);
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the token is valid", async () => {
-    try {
-      prepareToken();
-      const result = await validToken(context);
-      assert.strictEqual(result, undefined);
-    } catch (err: any) {
-      assert.fail(err as string);
-    }
+    prepareToken();
+    const result = await validToken(context);
+    assert.strictEqual(result, undefined);
   });
 });
 
@@ -85,7 +78,8 @@ describe("UnionClient in classical client", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 
@@ -111,27 +105,19 @@ describe("UnionClient in classical client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
     );
   }
 
   it("should not throw exception if apiKey is valid", async () => {
-    try {
-      prepareKey();
-      const result = await client.validKey();
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    prepareKey();
+    const result = await client.validKey();
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the token is valid", async () => {
-    try {
-      prepareToken();
-      const result = await client.validToken();
-      assert.strictEqual(result, undefined);
-    } catch (err: any) {
-      assert.fail(err as string);
-    }
+    prepareToken();
+    const result = await client.validToken();
+    assert.strictEqual(result, undefined);
   });
 });

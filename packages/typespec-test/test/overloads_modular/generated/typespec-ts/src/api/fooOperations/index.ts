@@ -1,44 +1,38 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import {
-  GetAvatarAsJpeg204Response,
-  GetAvatarAsJpegDefaultResponse,
-  GetAvatarAsPng204Response,
-  GetAvatarAsPngDefaultResponse,
-  isUnexpected,
   WidgetManagerContext as Client,
-} from "../../rest/index.js";
+  FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
+} from "../index.js";
 import {
   StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FooOperationsGetAvatarAsPngOptions,
-  FooOperationsGetAvatarAsJpegOptions,
-} from "../../models/options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} }
-): StreamableMethod<GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse> {
+  options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/avatar")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
       body: image,
-    }) as StreamableMethod<
-    GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
-  >;
+    });
 }
 
 export async function _getAvatarAsPngDeserialize(
-  result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
   return;
@@ -48,7 +42,7 @@ export async function _getAvatarAsPngDeserialize(
 export async function getAvatarAsPng(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsPngSend(context, image, options);
   return _getAvatarAsPngDeserialize(result);
@@ -57,26 +51,23 @@ export async function getAvatarAsPng(
 export function _getAvatarAsJpegSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} }
-): StreamableMethod<
-  GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
-> {
+  options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
+): StreamableMethod {
   return context
     .path("/avatar")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/jpeg",
       body: image,
-    }) as StreamableMethod<
-    GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
-  >;
+    });
 }
 
 export async function _getAvatarAsJpegDeserialize(
-  result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
 
   return;
@@ -86,7 +77,7 @@ export async function _getAvatarAsJpegDeserialize(
 export async function getAvatarAsJpeg(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsJpegSend(context, image, options);
   return _getAvatarAsJpegDeserialize(result);

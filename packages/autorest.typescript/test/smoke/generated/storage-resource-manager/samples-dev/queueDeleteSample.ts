@@ -30,7 +30,7 @@ async function queueOperationDelete() {
   const result = await client.queue.delete(
     resourceGroupName,
     accountName,
-    queueName
+    queueName,
   );
   console.log(result);
 }

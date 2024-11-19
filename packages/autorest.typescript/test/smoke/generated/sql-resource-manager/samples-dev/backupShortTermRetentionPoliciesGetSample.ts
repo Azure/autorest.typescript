@@ -34,7 +34,7 @@ async function getTheShortTermRetentionPolicyForTheDatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    policyName
+    policyName,
   );
   console.log(result);
 }

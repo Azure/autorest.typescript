@@ -15,7 +15,7 @@ import {
   ByteGetNonAsciiResponse,
   BytePutNonAsciiOptionalParams,
   ByteGetInvalidOptionalParams,
-  ByteGetInvalidResponse
+  ByteGetInvalidResponse,
 } from "../models";
 
 /** Interface representing a Byte. */
@@ -35,7 +35,7 @@ export interface Byte {
    * @param options The options parameters.
    */
   getNonAscii(
-    options?: ByteGetNonAsciiOptionalParams
+    options?: ByteGetNonAsciiOptionalParams,
   ): Promise<ByteGetNonAsciiResponse>;
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
@@ -44,13 +44,13 @@ export interface Byte {
    */
   putNonAscii(
     byteBody: Uint8Array,
-    options?: BytePutNonAsciiOptionalParams
+    options?: BytePutNonAsciiOptionalParams,
   ): Promise<void>;
   /**
    * Get invalid byte value ':::SWAGGER::::'
    * @param options The options parameters.
    */
   getInvalid(
-    options?: ByteGetInvalidOptionalParams
+    options?: ByteGetInvalidOptionalParams,
   ): Promise<ByteGetInvalidResponse>;
 }

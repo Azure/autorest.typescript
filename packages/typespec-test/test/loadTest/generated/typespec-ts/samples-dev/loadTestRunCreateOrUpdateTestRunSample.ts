@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
+// Licensed under the MIT License.
 
 import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation CreateOrUpdateTestRun
  */
 async function loadTestRunCreateOrUpdateTestRunSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
   const initialResponse = await client
     .path("/test-runs/{testRunId}", testRunId)

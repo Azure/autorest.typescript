@@ -30,7 +30,7 @@ async function deleteExpressRouteCircuitPeerings() {
   const result = await client.expressRouteCircuitPeerings.beginDeleteAndWait(
     resourceGroupName,
     circuitName,
-    peeringName
+    peeringName,
   );
   console.log(result);
 }

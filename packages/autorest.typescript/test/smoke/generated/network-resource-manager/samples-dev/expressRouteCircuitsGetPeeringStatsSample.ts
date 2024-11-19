@@ -30,7 +30,7 @@ async function getExpressRouteCircuitPeeringTrafficStats() {
   const result = await client.expressRouteCircuits.getPeeringStats(
     resourceGroupName,
     circuitName,
-    peeringName
+    peeringName,
   );
   console.log(result);
 }
