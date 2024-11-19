@@ -343,9 +343,10 @@ function emitEnumMember(
   const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
     ? escapeNumericLiteralStart(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, {
-        numberPrefixOverride:
-          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : "num"
-      });
+      shouldGuard: true,
+      numberPrefixOverride:
+        member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : "num"
+    });
   if (
     normalizedMemberName.toLowerCase().startsWith("num") &&
     !member.name.toLowerCase().startsWith("num")
@@ -491,7 +492,7 @@ export function normalizeModelName(
   if (type.isGeneratedName) {
     internalModelPrefix = "_";
   }
-  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType)}`;
+  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {

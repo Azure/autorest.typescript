@@ -93,7 +93,7 @@ export interface Foo {
 export function fooSerializer(item: Foo): any {
   return {
     extensibleString: item["extensibleString"],
-    extensibleNumber: item["extensibleNumber"]
+    extensibleNumber: item["extensibleNumber"],
   };
 }
 
@@ -113,12 +113,12 @@ export enum KnownExtensibleString {
   YesOrNo2 = "YES OR NO",
   ValidationSuccess = "VALIDATION_SUCCESS",
   PascalCase6666 = "___pascal____case6666",
-  Number10Pascal = "_10Pascal",
-  Number090 = "090",
-  Number10 = "10",
-  Number20 = "20",
-  Number10 = "1.0",
-  "Item-1.0" = "-2.0"
+  _10Pascal = "_10Pascal",
+  Num090 = "090",
+  Num10 = "10",
+  Num20 = "20",
+  "Num1.0" = "1.0",
+  "Item-1.0" = "-2.0",
 }
 
 /** Type of ExtensibleString */
@@ -127,9 +127,9 @@ export type ExtensibleString = string;
 /** Known values of {@link ExtensibleNumber} that the service accepts. */
 export enum KnownExtensibleNumber {
   One = 1,
-  Number2 = 2,
-  "Number-2.1" = -2.1,
-  Number3 = 3
+  Num2 = 2,
+  "Num-2.1" = -2.1,
+  Num3 = 3,
 }
 
 /** Type of ExtensibleNumber */
@@ -139,6 +139,6 @@ export type ExtensibleNumber = number;
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   StableVersion = "2024-07-01",
-  Number20240801Preview = "2024-08-01-preview"
+  "V2024-08-01Preview" = "2024-08-01-preview",
 }
 ```

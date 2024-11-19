@@ -285,7 +285,7 @@ const libDef = {
     "prefix-adding-in-enum-member": {
       severity: "warning",
       messages: {
-        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "Number" prefix.`
+        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "Num" prefix.`
       }
     }
   },

@@ -5,7 +5,7 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare interface BooleanGetOptionalParams extends OperationOptions {
 }
 
-export declare interface BooleanModelOperations {
+export declare interface BooleanOperations {
     get: (options?: BooleanGetOptionalParams) => Promise<boolean>;
     put: (body: boolean, options?: BooleanPutOptionalParams) => Promise<void>;
 }
@@ -69,8 +69,8 @@ export declare class ScalarClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ScalarClientOptionalParams);
-    readonly string: StringModelOperations;
-    readonly boolean: BooleanModelOperations;
+    readonly string: StringOperations;
+    readonly boolean: BooleanOperations;
     readonly unknown: UnknownOperations;
     readonly decimalType: DecimalTypeOperations;
     readonly decimal128Type: Decimal128TypeOperations;
@@ -84,7 +84,7 @@ export declare interface ScalarClientOptionalParams extends ClientOptions {
 export declare interface StringGetOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelOperations {
+export declare interface StringOperations {
     get: (options?: StringGetOptionalParams) => Promise<string>;
     put: (body: string, options?: StringPutOptionalParams) => Promise<void>;
 }

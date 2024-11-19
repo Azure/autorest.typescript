@@ -8,29 +8,29 @@ export declare class ExtensibleClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ExtensibleClientOptionalParams);
-    readonly string: StringModelOperations;
+    readonly string: StringOperations;
 }
 
 export declare interface ExtensibleClientOptionalParams extends ClientOptions {
 }
 
-export declare interface StringModelGetKnownValueOptionalParams extends OperationOptions {
+export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelGetUnknownValueOptionalParams extends OperationOptions {
+export declare interface StringGetUnknownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelOperations {
-    getKnownValue: (options?: StringModelGetKnownValueOptionalParams) => Promise<DaysOfWeekExtensibleEnum>;
-    getUnknownValue: (options?: StringModelGetUnknownValueOptionalParams) => Promise<DaysOfWeekExtensibleEnum>;
-    putKnownValue: (body: DaysOfWeekExtensibleEnum, options?: StringModelPutKnownValueOptionalParams) => Promise<void>;
-    putUnknownValue: (body: DaysOfWeekExtensibleEnum, options?: StringModelPutUnknownValueOptionalParams) => Promise<void>;
+export declare interface StringOperations {
+    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekExtensibleEnum>;
+    getUnknownValue: (options?: StringGetUnknownValueOptionalParams) => Promise<DaysOfWeekExtensibleEnum>;
+    putKnownValue: (body: DaysOfWeekExtensibleEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
+    putUnknownValue: (body: DaysOfWeekExtensibleEnum, options?: StringPutUnknownValueOptionalParams) => Promise<void>;
 }
 
-export declare interface StringModelPutKnownValueOptionalParams extends OperationOptions {
+export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringModelPutUnknownValueOptionalParams extends OperationOptions {
+export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
 }
 
 export { }
