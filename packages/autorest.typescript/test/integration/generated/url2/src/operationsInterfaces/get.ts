@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { GetUrlOptionalParams, GetUrlResponse } from "../models";
+import { GETUrlOptionalParams, GETUrlResponse } from "../models";
 
-/** Interface representing a Get. */
-export interface Get {
+/** Interface representing a GET. */
+export interface GET {
   /**
    * @param testUrl
    * @param options The options parameters.
    */
-  url(testUrl: string, options?: GetUrlOptionalParams): Promise<GetUrlResponse>;
+  url(testUrl: string, options?: GETUrlOptionalParams): Promise<GETUrlResponse>;
 }

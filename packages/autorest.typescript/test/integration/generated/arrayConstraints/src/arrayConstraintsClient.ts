@@ -109,7 +109,7 @@ export class ArrayConstraintsClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   postValue(
-    arrayBody: Product[],
+    arrayBody: Product,
     options?: PostValueOptionalParams,
   ): Promise<PostValueResponse> {
     return this.sendOperationRequest(

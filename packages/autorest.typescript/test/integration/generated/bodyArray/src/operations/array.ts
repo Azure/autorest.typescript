@@ -512,7 +512,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   putEnumValid(
-    arrayBody: FooEnum[],
+    arrayBody: FooEnum,
     options?: ArrayPutEnumValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -540,7 +540,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   putStringEnumValid(
-    arrayBody: Enum1[],
+    arrayBody: Enum1,
     options?: ArrayPutStringEnumValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -922,7 +922,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   putComplexValid(
-    arrayBody: Product[],
+    arrayBody: Product,
     options?: ArrayPutComplexValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(

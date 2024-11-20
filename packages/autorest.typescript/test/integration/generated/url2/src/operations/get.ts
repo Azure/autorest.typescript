@@ -6,18 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Get } from "../operationsInterfaces";
+import { GET } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import { UrlClient } from "../urlClient";
-import { GetUrlOptionalParams, GetUrlResponse } from "../models";
+import { GETUrlOptionalParams, GETUrlResponse } from "../models";
 
-/** Class containing Get operations. */
-export class GetImpl implements Get {
+/** Class containing GET operations. */
+export class GETImpl implements GET {
   private readonly client: UrlClient;
 
   /**
-   * Initialize a new instance of the class Get class.
+   * Initialize a new instance of the class GET class.
    * @param client Reference to the service client
    */
   constructor(client: UrlClient) {
@@ -30,8 +30,8 @@ export class GetImpl implements Get {
    */
   url(
     testUrl: string,
-    options?: GetUrlOptionalParams,
-  ): Promise<GetUrlResponse> {
+    options?: GETUrlOptionalParams,
+  ): Promise<GETUrlResponse> {
     return this.client.sendOperationRequest(
       { testUrl, options },
       urlOperationSpec,

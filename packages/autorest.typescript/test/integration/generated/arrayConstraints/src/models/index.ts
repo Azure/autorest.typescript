@@ -53,8 +53,8 @@ export enum KnownOS {
  */
 export type OS = string;
 
-/** Known values of {@link Sku} that the service accepts. */
-export enum KnownSku {
+/** Known values of {@link SKU} that the service accepts. */
+export enum KnownSKU {
   /** Free */
   Free = "Free",
   /** Standard */
@@ -62,8 +62,8 @@ export enum KnownSku {
 }
 
 /**
- * Defines values for Sku. \
- * {@link KnownSku} can be used interchangeably with Sku,
+ * Defines values for SKU. \
+ * {@link KnownSKU} can be used interchangeably with SKU,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Free** \

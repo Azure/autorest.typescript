@@ -7,8 +7,8 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { GetImpl } from "./operations";
-import { Get } from "./operationsInterfaces";
+import { GETImpl } from "./operations";
+import { GET } from "./operationsInterfaces";
 import { UuidClientOptionalParams } from "./models";
 
 export class UuidClient extends coreClient.ServiceClient {
@@ -49,8 +49,8 @@ export class UuidClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
     // Parameter assignments
     this.$host = $host;
-    this.get = new GetImpl(this);
+    this.get = new GETImpl(this);
   }
 
-  get: Get;
+  get: GET;
 }

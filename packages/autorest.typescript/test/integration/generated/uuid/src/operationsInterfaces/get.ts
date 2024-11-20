@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { GetUuidOptionalParams, GetUuidResponse } from "../models";
+import { GETUuidOptionalParams, GETUuidResponse } from "../models";
 
-/** Interface representing a Get. */
-export interface Get {
+/** Interface representing a GET. */
+export interface GET {
   /**
    * @param testUuid
    * @param options The options parameters.
    */
   uuid(
     testUuid: string,
-    options?: GetUuidOptionalParams,
-  ): Promise<GetUuidResponse>;
+    options?: GETUuidOptionalParams,
+  ): Promise<GETUuidResponse>;
 }

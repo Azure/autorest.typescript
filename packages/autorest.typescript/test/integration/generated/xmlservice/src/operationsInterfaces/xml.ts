@@ -190,7 +190,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putRootList(
-    bananas: Banana[],
+    bananas: Banana,
     options?: XmlPutRootListOptionalParams,
   ): Promise<void>;
   /**
@@ -206,7 +206,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putRootListSingleItem(
-    bananas: Banana[],
+    bananas: Banana,
     options?: XmlPutRootListSingleItemOptionalParams,
   ): Promise<void>;
   /**
@@ -222,7 +222,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putEmptyRootList(
-    bananas: Banana[],
+    bananas: Banana,
     options?: XmlPutEmptyRootListOptionalParams,
   ): Promise<void>;
   /**
@@ -275,7 +275,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putAcls(
-    properties: SignedIdentifier[],
+    properties: SignedIdentifier,
     options?: XmlPutAclsOptionalParams,
   ): Promise<void>;
   /**

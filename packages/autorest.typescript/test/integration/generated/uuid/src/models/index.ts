@@ -9,10 +9,10 @@
 import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface GetUuidOptionalParams extends coreClient.OperationOptions {}
+export interface GETUuidOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the uuid operation. */
-export type GetUuidResponse = {
+export type GETUuidResponse = {
   /** The parsed response body. */
   body: string;
 };

@@ -6,18 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Get } from "../operationsInterfaces";
+import { GET } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import { UuidClient } from "../uuidClient";
-import { GetUuidOptionalParams, GetUuidResponse } from "../models";
+import { GETUuidOptionalParams, GETUuidResponse } from "../models";
 
-/** Class containing Get operations. */
-export class GetImpl implements Get {
+/** Class containing GET operations. */
+export class GETImpl implements GET {
   private readonly client: UuidClient;
 
   /**
-   * Initialize a new instance of the class Get class.
+   * Initialize a new instance of the class GET class.
    * @param client Reference to the service client
    */
   constructor(client: UuidClient) {
@@ -30,8 +30,8 @@ export class GetImpl implements Get {
    */
   uuid(
     testUuid: string,
-    options?: GetUuidOptionalParams,
-  ): Promise<GetUuidResponse> {
+    options?: GETUuidOptionalParams,
+  ): Promise<GETUuidResponse> {
     return this.client.sendOperationRequest(
       { testUuid, options },
       uuidOperationSpec,
