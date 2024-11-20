@@ -199,7 +199,7 @@ export function escapeNumericLiteralStart(
   prefix: string = "Num"
 ): string {
   const casingConvention = getCasingConvention(nameType);
-  if (!name || !name.match(/^[\-\.]?\d/)) {
+  if (!name || !name.match(/^[-.]?\d/)) {
     return name;
   }
   return `${toCasing(prefix, casingConvention)}${name}`;
@@ -236,7 +236,7 @@ function deconstruct(identifier: string): Array<string> {
     .replace(/\b([_-]*)([A-Z]+)([A-Z])([a-z]+)/g, "$1$2 $3$4") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
     .replace(/«/g, "s")
     .trim()
-    .split(/[^A-Za-z0-9\_\-.]+/);
+    .split(/[^A-Za-z0-9_\-.]+/);
   // Split by non-alphanumeric characters and try to keep _-. between numbers
   const refinedParts: string[] = [];
   for (let i = 0; i < parts.length; i++) {

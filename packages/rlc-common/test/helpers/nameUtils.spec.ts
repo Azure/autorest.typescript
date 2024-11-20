@@ -110,10 +110,10 @@ describe("#normalizeName", () => {
   });
   describe("for parameter", () => {
     it("should return the name with the suffix 'Param' if the name is a reserved name", () => {
-      expect(normalizeName("static", NameType.Parameter)).to.equal(
+      expect(normalizeName("static", NameType.Parameter, true)).to.equal(
         "staticParam"
       );
-      expect(normalizeName("any", NameType.Parameter)).to.equal(
+      expect(normalizeName("any", NameType.Parameter, true)).to.equal(
         "anyParam"
       );
       expect(normalizeName("SAS", NameType.Parameter)).to.equal("sas");
