@@ -152,7 +152,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   }
 };
 
-describe.only("Scenarios", function () {
+describe("Scenarios", function () {
   describeScenarios(SCENARIOS_LOCATION);
 });
 
