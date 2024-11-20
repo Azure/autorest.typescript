@@ -1575,6 +1575,93 @@ export async function read(
 }
 ```
 
+# should handle circular in model properties with combination
+
+## TypeSpec
+
+```tsp
+model Foo {
+  name: string;
+  weight?: float32;
+  bar: Bar;
+}
+model Bar {
+  foo: Foo;
+}
+op read(): { @body body: Foo };
+```
+
+## Models
+
+```ts models
+/** model interface Foo */
+export interface Foo {
+  name: string;
+  weight?: number;
+  bar: Bar;
+}
+
+export function fooDeserializer(item: any): Foo {
+  return {
+    name: item["name"],
+    weight: item["weight"],
+    bar: barDeserializer(item["bar"])
+  };
+}
+
+/** model interface Bar */
+export interface Bar {
+  foo: Foo;
+}
+
+export function barDeserializer(item: any): Bar {
+  return {
+    foo: fooDeserializer(item["foo"])
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Foo, fooDeserializer } from "../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters
+} from "@azure-rest/core-client";
+
+export function _readSend(
+  context: Client,
+  options: ReadOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<Foo> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return fooDeserializer(result.body);
+}
+
+export async function read(
+  context: Client,
+  options: ReadOptionalParams = { requestOptions: {} }
+): Promise<Foo> {
+  const result = await _readSend(context, options);
+  return _readDeserialize(result);
+}
+```
+
 # union variants with string literals being used in contentType headers
 
 ## TypeSpec
