@@ -527,7 +527,7 @@ export interface CredentialsApiKeyAuth {
 
 // @public
 export interface CredentialsSASAuth {
-    sAS: string;
+    sas: string;
 }
 
 // @public
@@ -723,7 +723,7 @@ export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
 
 // @public
 export enum KnownVersions {
-    Number20240701Preview = "2024-07-01-preview"
+    "V2024-07-01Preview" = "2024-07-01-preview"
 }
 
 // @public
