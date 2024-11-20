@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BCOp1OptionalParams, FooContext as Client } from "../../index.js";
-import { BA, bASerializer } from "../../../models/models.js";
+import { BA, baSerializer } from "../../../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -19,7 +19,7 @@ export function _op1Send(
     .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: bASerializer(body),
+      body: baSerializer(body),
     });
 }
 
