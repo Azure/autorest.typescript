@@ -1968,13 +1968,13 @@ export const virtualWANName1: OperationURLParameter = {
   },
 };
 
-export const wANParameters: OperationParameter = {
-  parameterPath: "wANParameters",
+export const wanParameters: OperationParameter = {
+  parameterPath: "wanParameters",
   mapper: VirtualWANMapper,
 };
 
-export const wANParameters1: OperationParameter = {
-  parameterPath: "wANParameters",
+export const wanParameters1: OperationParameter = {
+  parameterPath: "wanParameters",
   mapper: TagsObjectMapper,
 };
 

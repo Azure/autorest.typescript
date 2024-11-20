@@ -2057,7 +2057,7 @@ export interface BastionShareableLink {
     readonly bsl?: string;
     readonly createdAt?: string;
     readonly message?: string;
-    vm: Vm;
+    vm: VM;
 }
 
 // @public
@@ -14370,14 +14370,14 @@ export interface VirtualWAN extends Resource {
 
 // @public
 export interface VirtualWans {
-    beginCreateOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<SimplePollerLike<OperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<VirtualWansCreateOrUpdateResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, virtualWANName: string, wanParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<SimplePollerLike<OperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, virtualWANName: string, wanParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<VirtualWansCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, virtualWANName: string, options?: VirtualWansDeleteOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, virtualWANName: string, options?: VirtualWansDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, virtualWANName: string, options?: VirtualWansGetOptionalParams): Promise<VirtualWansGetResponse>;
     list(options?: VirtualWansListOptionalParams): PagedAsyncIterableIterator<VirtualWAN>;
     listByResourceGroup(resourceGroupName: string, options?: VirtualWansListByResourceGroupOptionalParams): PagedAsyncIterableIterator<VirtualWAN>;
-    updateTags(resourceGroupName: string, virtualWANName: string, wANParameters: TagsObject, options?: VirtualWansUpdateTagsOptionalParams): Promise<VirtualWansUpdateTagsResponse>;
+    updateTags(resourceGroupName: string, virtualWANName: string, wanParameters: TagsObject, options?: VirtualWansUpdateTagsOptionalParams): Promise<VirtualWansUpdateTagsResponse>;
 }
 
 // @public
@@ -14459,7 +14459,7 @@ export interface VirtualWanVpnProfileParameters {
 }
 
 // @public
-export interface Vm extends Resource {
+export interface VM extends Resource {
 }
 
 // @public

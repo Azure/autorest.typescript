@@ -107,7 +107,7 @@ async function createApplicationGateway() {
     identity: {
       type: "UserAssigned",
       userAssignedIdentities: {
-        "/subscriptions/subid/resourceGroups/rg1/providers/MicrosoftManagedIdentity/userAssignedIdentities/identity1":
+        subscriptionsSubidResourceGroupsRg1ProvidersMicrosoftManagedIdentityUserAssignedIdentitiesIdentity1:
           {},
       },
     },

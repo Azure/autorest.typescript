@@ -1324,7 +1324,7 @@ export interface JobStatistics {
 
 // @public
 export enum KnownVersions {
-    Number20230501170 = "2023-05-01.17.0"
+    "V2023-05-01.17.0" = "2023-05-01.17.0"
 }
 
 // @public

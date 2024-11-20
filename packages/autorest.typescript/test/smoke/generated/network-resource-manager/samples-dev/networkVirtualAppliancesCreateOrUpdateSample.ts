@@ -37,7 +37,7 @@ async function createNetworkVirtualAppliance() {
     identity: {
       type: "UserAssigned",
       userAssignedIdentities: {
-        "/subscriptions/subid/resourcegroups/rg1/providers/MicrosoftManagedIdentity/userAssignedIdentities/identity1":
+        subscriptionsSubidResourcegroupsRg1ProvidersMicrosoftManagedIdentityUserAssignedIdentitiesIdentity1:
           {},
       },
     },

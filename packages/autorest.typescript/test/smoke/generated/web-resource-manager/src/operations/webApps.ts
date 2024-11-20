@@ -8103,13 +8103,13 @@ export class WebAppsImpl implements WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperation(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams,
   ): Promise<
     SimplePollerLike<
@@ -8157,7 +8157,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = createLroSpec({
       sendOperationFn,
-      args: { resourceGroupName, name, mSDeploy, options },
+      args: { resourceGroupName, name, msDeploy, options },
       spec: createMSDeployOperationOperationSpec,
     });
     const poller = await createHttpPoller<
@@ -8175,19 +8175,19 @@ export class WebAppsImpl implements WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationAndWait(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams,
   ): Promise<WebAppsCreateMSDeployOperationResponse> {
     const poller = await this.beginCreateMSDeployOperation(
       resourceGroupName,
       name,
-      mSDeploy,
+      msDeploy,
       options,
     );
     return poller.pollUntilDone();
@@ -8918,14 +8918,14 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperation(
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams,
   ): Promise<
     SimplePollerLike<
@@ -8973,7 +8973,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = createLroSpec({
       sendOperationFn,
-      args: { resourceGroupName, name, instanceId, mSDeploy, options },
+      args: { resourceGroupName, name, instanceId, msDeploy, options },
       spec: createInstanceMSDeployOperationOperationSpec,
     });
     const poller = await createHttpPoller<
@@ -8992,21 +8992,21 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationAndWait(
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams,
   ): Promise<WebAppsCreateInstanceMSDeployOperationResponse> {
     const poller = await this.beginCreateInstanceMSDeployOperation(
       resourceGroupName,
       name,
       instanceId,
-      mSDeploy,
+      msDeploy,
       options,
     );
     return poller.pollUntilDone();
@@ -12582,14 +12582,14 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams,
   ): Promise<
     SimplePollerLike<
@@ -12637,7 +12637,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = createLroSpec({
       sendOperationFn,
-      args: { resourceGroupName, name, slot, mSDeploy, options },
+      args: { resourceGroupName, name, slot, msDeploy, options },
       spec: createMSDeployOperationSlotOperationSpec,
     });
     const poller = await createHttpPoller<
@@ -12656,21 +12656,21 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationSlotAndWait(
     resourceGroupName: string,
     name: string,
     slot: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams,
   ): Promise<WebAppsCreateMSDeployOperationSlotResponse> {
     const poller = await this.beginCreateMSDeployOperationSlot(
       resourceGroupName,
       name,
       slot,
-      mSDeploy,
+      msDeploy,
       options,
     );
     return poller.pollUntilDone();
@@ -13497,7 +13497,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationSlot(
@@ -13505,7 +13505,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams,
   ): Promise<
     SimplePollerLike<
@@ -13553,7 +13553,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = createLroSpec({
       sendOperationFn,
-      args: { resourceGroupName, name, slot, instanceId, mSDeploy, options },
+      args: { resourceGroupName, name, slot, instanceId, msDeploy, options },
       spec: createInstanceMSDeployOperationSlotOperationSpec,
     });
     const poller = await createHttpPoller<
@@ -13573,7 +13573,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param msDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationSlotAndWait(
@@ -13581,7 +13581,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    msDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams,
   ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse> {
     const poller = await this.beginCreateInstanceMSDeployOperationSlot(
@@ -13589,7 +13589,7 @@ export class WebAppsImpl implements WebApps {
       name,
       slot,
       instanceId,
-      mSDeploy,
+      msDeploy,
       options,
     );
     return poller.pollUntilDone();
@@ -20174,7 +20174,7 @@ const createMSDeployOperationOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse,
     },
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.msDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -20952,7 +20952,7 @@ const createInstanceMSDeployOperationOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse,
     },
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.msDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -24160,7 +24160,7 @@ const createMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse,
     },
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.msDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -24977,7 +24977,7 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreClient.OperationSpec
         bodyMapper: Mappers.DefaultErrorResponse,
       },
     },
-    requestBody: Parameters.mSDeploy,
+    requestBody: Parameters.msDeploy,
     queryParameters: [Parameters.apiVersion],
     urlParameters: [
       Parameters.$host,

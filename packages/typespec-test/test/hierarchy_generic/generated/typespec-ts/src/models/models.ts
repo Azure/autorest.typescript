@@ -15,7 +15,7 @@ export interface BA {
   prop2: string;
 }
 
-export function bASerializer(item: BA): any {
+export function baSerializer(item: BA): any {
   return { prop2: item["prop2"] };
 }
 
@@ -24,6 +24,6 @@ export interface BEA {
   prop3: string;
 }
 
-export function bEASerializer(item: BEA): any {
+export function beaSerializer(item: BEA): any {
   return { prop3: item["prop3"] };
 }

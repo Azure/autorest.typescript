@@ -27,7 +27,7 @@ async function virtualWanCreate() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "wan1";
-  const wANParameters: VirtualWAN = {
+  const wanParameters: VirtualWAN = {
     typePropertiesType: "Basic",
     disableVpnEncryption: false,
     location: "West US",
@@ -38,7 +38,7 @@ async function virtualWanCreate() {
   const result = await client.virtualWans.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualWANName,
-    wANParameters,
+    wanParameters,
   );
   console.log(result);
 }

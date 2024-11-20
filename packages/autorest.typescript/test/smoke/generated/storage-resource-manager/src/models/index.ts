@@ -400,7 +400,7 @@ export interface VirtualNetworkRule {
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRule {
   /** Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed. */
-  iPAddressOrRange: string;
+  ipAddressOrRange: string;
   /** The action of IP ACL rule. */
   action?: "Allow";
 }
@@ -838,7 +838,7 @@ export interface AccountSasParameters {
   /** The signed permissions for the account SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
   permissions: Permissions;
   /** An IP address or a range of IP addresses from which to accept requests. */
-  iPAddressOrRange?: string;
+  ipAddressOrRange?: string;
   /** The protocol permitted for a request made with the account SAS. */
   protocols?: HttpProtocol;
   /** The time at which the SAS becomes valid. */
@@ -867,7 +867,7 @@ export interface ServiceSasParameters {
   /** The signed permissions for the service SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
   permissions?: Permissions;
   /** An IP address or a range of IP addresses from which to accept requests. */
-  iPAddressOrRange?: string;
+  ipAddressOrRange?: string;
   /** The protocol permitted for a request made with the account SAS. */
   protocols?: HttpProtocol;
   /** The time at which the SAS becomes valid. */

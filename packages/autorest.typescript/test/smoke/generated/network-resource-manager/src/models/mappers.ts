@@ -2796,7 +2796,7 @@ export const BastionShareableLink: coreClient.CompositeMapper = {
         serializedName: "vm",
         type: {
           name: "Composite",
-          className: "Vm",
+          className: "VM",
         },
       },
       bsl: {
@@ -25234,10 +25234,10 @@ export const BastionHost: coreClient.CompositeMapper = {
   },
 };
 
-export const Vm: coreClient.CompositeMapper = {
+export const VM: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "Vm",
+    className: "VM",
     modelProperties: {
       ...Resource.type.modelProperties,
     },

@@ -32,7 +32,7 @@ export type AccountImmutabilityPolicyState = string;
 
 // @public
 export interface AccountSasParameters {
-    iPAddressOrRange?: string;
+    ipAddressOrRange?: string;
     keyToSign?: string;
     permissions: Permissions_2;
     protocols?: HttpProtocol;
@@ -923,7 +923,7 @@ export type InventoryRuleType = string;
 // @public
 export interface IPRule {
     action?: "Allow";
-    iPAddressOrRange: string;
+    ipAddressOrRange: string;
 }
 
 // @public
@@ -1962,7 +1962,7 @@ export interface ServiceSasParameters {
     contentLanguage?: string;
     contentType?: string;
     identifier?: string;
-    iPAddressOrRange?: string;
+    ipAddressOrRange?: string;
     keyToSign?: string;
     partitionKeyEnd?: string;
     partitionKeyStart?: string;

@@ -196,13 +196,13 @@ export class VirtualWansImpl implements VirtualWans {
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being created or updated.
-   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param wanParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: VirtualWAN,
+    wanParameters: VirtualWAN,
     options?: VirtualWansCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
@@ -250,7 +250,7 @@ export class VirtualWansImpl implements VirtualWans {
 
     const lro = createLroSpec({
       sendOperationFn,
-      args: { resourceGroupName, virtualWANName, wANParameters, options },
+      args: { resourceGroupName, virtualWANName, wanParameters, options },
       spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
@@ -269,19 +269,19 @@ export class VirtualWansImpl implements VirtualWans {
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being created or updated.
-   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param wanParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: VirtualWAN,
+    wanParameters: VirtualWAN,
     options?: VirtualWansCreateOrUpdateOptionalParams,
   ): Promise<VirtualWansCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       virtualWANName,
-      wANParameters,
+      wanParameters,
       options,
     );
     return poller.pollUntilDone();
@@ -291,17 +291,17 @@ export class VirtualWansImpl implements VirtualWans {
    * Updates a VirtualWAN tags.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being updated.
-   * @param wANParameters Parameters supplied to Update VirtualWAN tags.
+   * @param wanParameters Parameters supplied to Update VirtualWAN tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: TagsObject,
+    wanParameters: TagsObject,
     options?: VirtualWansUpdateTagsOptionalParams,
   ): Promise<VirtualWansUpdateTagsResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualWANName, wANParameters, options },
+      { resourceGroupName, virtualWANName, wanParameters, options },
       updateTagsOperationSpec,
     );
   }
@@ -489,7 +489,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError,
     },
   },
-  requestBody: Parameters.wANParameters,
+  requestBody: Parameters.wanParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -512,7 +512,7 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError,
     },
   },
-  requestBody: Parameters.wANParameters1,
+  requestBody: Parameters.wanParameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

@@ -140,11 +140,11 @@ export type SchemaContentTypeValues =
 /** Represents the Schema Registry API version to use for requests. */
 export enum KnownServiceApiVersions {
   /** Azure Schema Registry 2021-10 Version */
-  V202110 = "2021-10",
+  V2021_10 = "2021-10",
   /** Azure Schema Registry 2022-10 Version */
-  V202210 = "2022-10",
+  V2022_10 = "2022-10",
   /** Azure Schema Registry 2023-07-01 Version. This is the default version. */
-  V20230701 = "2023-07-01",
+  V2023_07_01 = "2023-07-01",
 }
 
 /** The content type for the schema. */

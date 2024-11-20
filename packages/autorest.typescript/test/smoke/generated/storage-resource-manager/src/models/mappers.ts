@@ -1043,7 +1043,7 @@ export const IPRule: coreClient.CompositeMapper = {
     name: "Composite",
     className: "IPRule",
     modelProperties: {
-      iPAddressOrRange: {
+      ipAddressOrRange: {
         serializedName: "value",
         required: true,
         type: {
@@ -2023,7 +2023,7 @@ export const AccountSasParameters: coreClient.CompositeMapper = {
           name: "String",
         },
       },
-      iPAddressOrRange: {
+      ipAddressOrRange: {
         serializedName: "signedIp",
         type: {
           name: "String",
@@ -2099,7 +2099,7 @@ export const ServiceSasParameters: coreClient.CompositeMapper = {
           name: "String",
         },
       },
-      iPAddressOrRange: {
+      ipAddressOrRange: {
         serializedName: "signedIp",
         type: {
           name: "String",

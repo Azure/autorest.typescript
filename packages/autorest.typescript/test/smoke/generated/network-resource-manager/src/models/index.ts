@@ -977,7 +977,7 @@ export interface BastionShareableLinkListRequest {
 /** Bastion Shareable Link. */
 export interface BastionShareableLink {
   /** Reference of the virtual machine resource. */
-  vm: Vm;
+  vm: VM;
   /**
    * The unique Bastion Shareable Link to the virtual machine.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -9383,7 +9383,7 @@ export interface BastionHost extends Resource {
 }
 
 /** Describes a Virtual Machine. */
-export interface Vm extends Resource {}
+export interface VM extends Resource {}
 
 /** Custom IP prefix resource. */
 export interface CustomIpPrefix extends Resource {

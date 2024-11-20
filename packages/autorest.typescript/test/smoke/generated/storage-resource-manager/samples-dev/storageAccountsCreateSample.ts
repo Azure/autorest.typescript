@@ -227,7 +227,7 @@ async function storageAccountCreateUserAssignedEncryptionIdentityWithCmk() {
     identity: {
       type: "UserAssigned",
       userAssignedIdentities: {
-        "/subscriptions/{subscriptionId}/resourceGroups/res9101/providers/MicrosoftManagedIdentity/userAssignedIdentities/{managedIdentityName}":
+        subscriptionsSubscriptionIdResourceGroupsRes9101ProvidersMicrosoftManagedIdentityUserAssignedIdentitiesManagedIdentityName:
           {},
       },
     },

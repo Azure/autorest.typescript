@@ -30,7 +30,7 @@ export interface FooOperationsOperations {
 
 // @public
 export enum KnownVersions {
-    Number20220830 = "2022-08-30"
+    "V2022-08-30" = "2022-08-30"
 }
 
 // @public (undocumented)
