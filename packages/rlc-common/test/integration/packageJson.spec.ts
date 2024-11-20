@@ -352,7 +352,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("dotenv");
       expect(packageFile.devDependencies).to.have.property("mocha");
       expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.have.property("cross-env");
+      expect(packageFile.devDependencies).to.not.have.property("cross-env");
       expect(packageFile.devDependencies).to.have.property("@types/chai");
       expect(packageFile.devDependencies).to.have.property("chai");
       expect(packageFile.devDependencies).to.have.property(
@@ -398,7 +398,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
