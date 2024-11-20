@@ -707,6 +707,7 @@ needNamespaces: true
 needAzureCore: false
 withRawContent: false
 withVersionedApiVersion: true
+ignoreWeirdLine: false
 ```
 
 ## Operations

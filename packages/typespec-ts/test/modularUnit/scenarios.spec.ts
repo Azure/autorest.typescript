@@ -252,7 +252,7 @@ function describeScenarioFile(scenarioFile: string): void {
               writeFileSync(scenarioFile, writeScenarios(scenarios));
             }
 
-            await assertEqualContent(result, testCase.block.content, true);
+            await assertEqualContent(result, testCase.block.content, configs["ignoreWeirdLine"] as any === false ? false : true);
           });
         }
       });
