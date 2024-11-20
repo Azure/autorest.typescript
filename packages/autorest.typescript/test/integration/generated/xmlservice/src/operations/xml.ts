@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Xml } from "../operationsInterfaces";
+import { Xml } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { XmlServiceClient } from "../xmlServiceClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { XmlServiceClient } from "../xmlServiceClient.js";
 import {
   XmlGetComplexTypeRefNoMetaOptionalParams,
   XmlGetComplexTypeRefNoMetaResponse,
@@ -75,7 +75,7 @@ import {
   XmlGetUriResponse,
   ModelWithUrlProperty,
   XmlPutUriOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Xml operations. */
 export class XmlImpl implements Xml {

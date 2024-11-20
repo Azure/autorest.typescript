@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Get } from "../operationsInterfaces";
+import { Get } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "../models/parameters";
-import { UuidClient } from "../uuidClient";
-import { GetUuidOptionalParams, GetUuidResponse } from "../models";
+import * as Parameters from "../models/parameters.js";
+import { UuidClient } from "../uuidClient.js";
+import { GetUuidOptionalParams, GetUuidResponse } from "../models/index.js";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {

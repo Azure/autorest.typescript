@@ -22,7 +22,7 @@ import {
   LRORetrysPost202Retry200Response,
   LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysPostAsyncRelativeRetrySucceededResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LRORetrys. */
 export interface LRORetrys {

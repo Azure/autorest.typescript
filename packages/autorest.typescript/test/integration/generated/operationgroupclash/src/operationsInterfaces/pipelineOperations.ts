@@ -1,7 +1,7 @@
 import {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a PipelineOperations. */
 export interface PipelineOperations {

@@ -12,8 +12,8 @@ import {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
 import {
   Enum0,
   ArrayConstraintsClientOptionalParams,
@@ -22,7 +22,7 @@ import {
   PostValueResponse,
   ApiV1ValueGetOptionalParams,
   ApiV1ValueGetResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class ArrayConstraintsClient extends coreClient.ServiceClient {
   $host: string;

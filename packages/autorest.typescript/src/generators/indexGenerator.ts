@@ -35,7 +35,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
       moduleSpecifier: "./models/index.js"
     },
     {
-      moduleSpecifier: `./${clientDetails.sourceFileName}`,
+      moduleSpecifier: `./${clientDetails.sourceFileName}.js`,
       namedExports: [clientDetails.className]
     }
   ]);

@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { AdditionalPropertiesClient } from "./additionalPropertiesClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { AdditionalPropertiesClient } from "./additionalPropertiesClient.js";
+export * from "./operationsInterfaces/index.js";

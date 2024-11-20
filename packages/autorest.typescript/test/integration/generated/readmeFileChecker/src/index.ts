@@ -1,2 +1,2 @@
-export * from "./models";
-export { KeyVaultClient } from "./keyVaultClient";
+export * from "./models/index.js";
+export { KeyVaultClient } from "./keyVaultClient.js";

@@ -7,14 +7,14 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
 import {
   GeneratedClientOptionalParams,
   LanguageBatchInput,
   LanguagesOptionalParams,
   LanguagesResponse,
-} from "./models";
+} from "./models/index.js";
 
 /** @internal */
 export class GeneratedClient extends coreClient.ServiceClient {

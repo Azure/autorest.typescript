@@ -9,7 +9,7 @@
 import {
   XMsClientRequestIdGetOptionalParams,
   XMsClientRequestIdParamGetOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a XMsClientRequestId. */
 export interface XMsClientRequestId {

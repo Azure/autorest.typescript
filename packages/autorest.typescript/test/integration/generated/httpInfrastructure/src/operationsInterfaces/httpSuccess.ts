@@ -28,7 +28,7 @@ import {
   HttpSuccessPost204OptionalParams,
   HttpSuccessDelete204OptionalParams,
   HttpSuccessHead404OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpSuccess. */
 export interface HttpSuccess {

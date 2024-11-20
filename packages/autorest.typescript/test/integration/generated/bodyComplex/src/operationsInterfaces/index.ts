@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./basic";
-export * from "./primitive";
-export * from "./array";
-export * from "./dictionary";
-export * from "./inheritance";
-export * from "./polymorphism";
-export * from "./polymorphicrecursive";
-export * from "./readonlyproperty";
-export * from "./flattencomplex";
+export * from "./basic.js";
+export * from "./primitive.js";
+export * from "./array.js";
+export * from "./dictionary.js";
+export * from "./inheritance.js";
+export * from "./polymorphism.js";
+export * from "./polymorphicrecursive.js";
+export * from "./readonlyproperty.js";
+export * from "./flattencomplex.js";

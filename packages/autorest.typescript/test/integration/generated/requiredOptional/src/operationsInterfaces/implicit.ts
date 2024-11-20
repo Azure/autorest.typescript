@@ -15,7 +15,7 @@ import {
   ImplicitGetRequiredGlobalPathOptionalParams,
   ImplicitGetRequiredGlobalQueryOptionalParams,
   ImplicitGetOptionalGlobalQueryOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Implicit. */
 export interface Implicit {

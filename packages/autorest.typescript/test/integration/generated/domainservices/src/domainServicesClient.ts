@@ -9,14 +9,14 @@ import {
   DomainServicesImpl,
   OuContainerOperationsImpl,
   OuContainerOperationGrpImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   DomainServiceOperations,
   DomainServices,
   OuContainerOperations,
   OuContainerOperationGrp,
-} from "./operationsInterfaces";
-import { DomainServicesClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { DomainServicesClientOptionalParams } from "./models/index.js";
 
 export class DomainServicesClient extends coreClient.ServiceClient {
   $host: string;

@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PathOperationsImpl } from "./operations";
-import { PathOperations } from "./operationsInterfaces";
-import { DataLakeStorageClientOptionalParams } from "./models";
+import { PathOperationsImpl } from "./operations/index.js";
+import { PathOperations } from "./operationsInterfaces/index.js";
+import { DataLakeStorageClientOptionalParams } from "./models/index.js";
 
 export class DataLakeStorageClient extends coreClient.ServiceClient {
   url: string;

@@ -12,14 +12,14 @@ import {
   LRORetrysImpl,
   LrosaDsImpl,
   LROsCustomHeaderImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   LROs,
   LRORetrys,
   LrosaDs,
   LROsCustomHeader,
-} from "./operationsInterfaces";
-import { LROClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { LROClientOptionalParams } from "./models/index.js";
 
 export class LROClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,7 +6,7 @@ import {
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
   BlockBlobPutBlobFromUrlResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a BlockBlob. */
 export interface BlockBlob {

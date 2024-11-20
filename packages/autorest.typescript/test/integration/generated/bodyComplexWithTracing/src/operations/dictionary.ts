@@ -7,11 +7,11 @@
  */
 
 import { tracingClient } from "../tracing";
-import { Dictionary } from "../operationsInterfaces";
+import { Dictionary } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
 import {
   DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
@@ -24,7 +24,7 @@ import {
   DictionaryGetNullResponse,
   DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Dictionary operations. */
 export class DictionaryImpl implements Dictionary {

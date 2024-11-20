@@ -9,7 +9,7 @@
 import {
   GroupGetSampleResourceGroupOptionalParams,
   GroupGetSampleResourceGroupResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Group. */
 export interface Group {

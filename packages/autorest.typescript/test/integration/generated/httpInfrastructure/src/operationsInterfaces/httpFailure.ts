@@ -13,7 +13,7 @@ import {
   HttpFailureGetNoModelErrorResponse,
   HttpFailureGetNoModelEmptyOptionalParams,
   HttpFailureGetNoModelEmptyResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpFailure. */
 export interface HttpFailure {

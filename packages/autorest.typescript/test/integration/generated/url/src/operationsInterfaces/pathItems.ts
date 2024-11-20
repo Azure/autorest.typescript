@@ -11,7 +11,7 @@ import {
   PathItemsGetGlobalQueryNullOptionalParams,
   PathItemsGetGlobalAndLocalQueryNullOptionalParams,
   PathItemsGetLocalPathItemQueryNullOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a PathItems. */
 export interface PathItems {

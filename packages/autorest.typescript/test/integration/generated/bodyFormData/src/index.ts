@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { BodyFormDataClient } from "./bodyFormDataClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { BodyFormDataClient } from "./bodyFormDataClient.js";
+export * from "./operationsInterfaces/index.js";

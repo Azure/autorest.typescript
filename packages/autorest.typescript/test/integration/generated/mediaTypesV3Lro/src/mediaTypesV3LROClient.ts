@@ -13,8 +13,8 @@ import {
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-import { createLroSpec } from "./lroImpl";
-import * as Parameters from "./models/parameters";
+import { createLroSpec } from "./lroImpl.js";
+import * as Parameters from "./models/parameters.js";
 import {
   MediaTypesV3LROClientOptionalParams,
   SendOnDefault$binaryOptionalParams,
@@ -22,7 +22,7 @@ import {
   Send$binaryOptionalParams,
   Send$textOptionalParams,
   SendResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class MediaTypesV3LROClient extends coreClient.ServiceClient {
   $host: string;

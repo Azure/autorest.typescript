@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { DateOperations } from "../operationsInterfaces";
+import { DateOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyDateClient } from "../bodyDateClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyDateClient } from "../bodyDateClient.js";
 import {
   DateGetNullOptionalParams,
   DateGetNullResponse,
@@ -26,7 +26,7 @@ import {
   DatePutMinDateOptionalParams,
   DateGetMinDateOptionalParams,
   DateGetMinDateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing DateOperations operations. */
 export class DateOperationsImpl implements DateOperations {

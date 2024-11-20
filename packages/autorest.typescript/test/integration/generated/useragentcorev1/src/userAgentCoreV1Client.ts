@@ -7,9 +7,9 @@
  */
 
 import * as coreHttp from "@azure/core-http";
-import { GroupImpl } from "./operations";
-import { Group } from "./operationsInterfaces";
-import { UserAgentCoreV1ClientOptionalParams } from "./models";
+import { GroupImpl } from "./operations/index.js";
+import { Group } from "./operationsInterfaces/index.js";
+import { UserAgentCoreV1ClientOptionalParams } from "./models/index.js";
 
 const packageName = "@msinternal/useragent-corev1";
 const packageVersion = "1.0.0-preview1";

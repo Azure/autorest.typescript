@@ -11,7 +11,7 @@ import {
   InheritanceGetValidResponse,
   Siamese,
   InheritancePutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Inheritance. */
 export interface Inheritance {

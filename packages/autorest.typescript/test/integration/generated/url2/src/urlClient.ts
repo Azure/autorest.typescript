@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { GetImpl } from "./operations";
-import { Get } from "./operationsInterfaces";
-import { UrlClientOptionalParams } from "./models";
+import { GetImpl } from "./operations/index.js";
+import { Get } from "./operationsInterfaces/index.js";
+import { UrlClientOptionalParams } from "./models/index.js";
 
 export class UrlClient extends coreClient.ServiceClient {
   $host: string;

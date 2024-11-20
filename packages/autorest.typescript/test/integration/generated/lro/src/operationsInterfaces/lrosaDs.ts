@@ -59,7 +59,7 @@ import {
   LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LrosaDs. */
 export interface LrosaDs {

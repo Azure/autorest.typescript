@@ -7,7 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-client";
-import { RefColorConstant as RefColorConstantMapper } from "../models/mappers";
+import { RefColorConstant as RefColorConstantMapper } from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

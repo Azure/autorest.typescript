@@ -11,7 +11,7 @@ import {
   FloatPutResponse,
   FloatGetOptionalParams,
   FloatGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Float. */
 export interface Float {

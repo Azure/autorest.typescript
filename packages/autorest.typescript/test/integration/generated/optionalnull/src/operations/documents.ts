@@ -1,9 +1,9 @@
-import { Documents } from "../operationsInterfaces";
+import { Documents } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { OptionalNullClient } from "../optionalNullClient";
-import { DocumentsSearchGetOptionalParams } from "../models";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { OptionalNullClient } from "../optionalNullClient.js";
+import { DocumentsSearchGetOptionalParams } from "../models/index.js";
 
 /** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {

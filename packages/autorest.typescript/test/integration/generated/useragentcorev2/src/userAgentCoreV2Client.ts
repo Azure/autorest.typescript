@@ -12,9 +12,9 @@ import {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { GroupImpl } from "./operations";
-import { Group } from "./operationsInterfaces";
-import { UserAgentCoreV2ClientOptionalParams } from "./models";
+import { GroupImpl } from "./operations/index.js";
+import { Group } from "./operationsInterfaces/index.js";
+import { UserAgentCoreV2ClientOptionalParams } from "./models/index.js";
 
 export class UserAgentCoreV2Client extends coreClient.ServiceClient {
   $host: string;

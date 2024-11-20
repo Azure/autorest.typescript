@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Pets } from "../operationsInterfaces";
+import { Pets } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { AdditionalPropertiesClient } from "../additionalPropertiesClient.js";
 import {
   PetAPTrue,
   PetsCreateAPTrueOptionalParams,
@@ -30,7 +30,7 @@ import {
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringOptionalParams,
   PetsCreateAPInPropertiesWithAPStringResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Pets operations. */
 export class PetsImpl implements Pets {

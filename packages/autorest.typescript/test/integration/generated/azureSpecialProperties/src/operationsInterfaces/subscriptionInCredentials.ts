@@ -12,7 +12,7 @@ import {
   SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
   SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a SubscriptionInCredentials. */
 export interface SubscriptionInCredentials {

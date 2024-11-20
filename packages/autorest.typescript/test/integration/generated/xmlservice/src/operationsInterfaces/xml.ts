@@ -70,7 +70,7 @@ import {
   XmlGetUriResponse,
   ModelWithUrlProperty,
   XmlPutUriOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Xml. */
 export interface Xml {

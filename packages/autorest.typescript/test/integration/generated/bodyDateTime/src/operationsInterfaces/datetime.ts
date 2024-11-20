@@ -44,7 +44,7 @@ import {
   DatetimeGetLocalNegativeOffsetMinDateTimeResponse,
   DatetimeGetLocalNoOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalNoOffsetMinDateTimeResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Datetime. */
 export interface Datetime {

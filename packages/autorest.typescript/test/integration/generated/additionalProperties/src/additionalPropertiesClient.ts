@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PetsImpl } from "./operations";
-import { Pets } from "./operationsInterfaces";
-import { AdditionalPropertiesClientOptionalParams } from "./models";
+import { PetsImpl } from "./operations/index.js";
+import { Pets } from "./operationsInterfaces/index.js";
+import { AdditionalPropertiesClientOptionalParams } from "./models/index.js";
 
 export class AdditionalPropertiesClient extends coreClient.ServiceClient {
   $host: string;

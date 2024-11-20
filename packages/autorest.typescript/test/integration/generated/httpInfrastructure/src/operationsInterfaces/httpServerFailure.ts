@@ -11,7 +11,7 @@ import {
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,
   HttpServerFailureDelete505OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpServerFailure. */
 export interface HttpServerFailure {

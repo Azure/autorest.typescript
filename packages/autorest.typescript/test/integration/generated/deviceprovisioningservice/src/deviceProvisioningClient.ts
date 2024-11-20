@@ -8,13 +8,13 @@ import {
   OperationsImpl,
   DpsCertificateImpl,
   IotDpsResourceImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   Operations,
   DpsCertificate,
   IotDpsResource,
-} from "./operationsInterfaces";
-import { DeviceProvisioningClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { DeviceProvisioningClientOptionalParams } from "./models/index.js";
 
 export class DeviceProvisioningClient extends coreClient.ServiceClient {
   $host: string;

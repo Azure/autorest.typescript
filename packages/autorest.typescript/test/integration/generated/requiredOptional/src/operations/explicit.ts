@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Explicit } from "../operationsInterfaces";
+import { Explicit } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { RequiredOptionalClient } from "../requiredOptionalClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { RequiredOptionalClient } from "../requiredOptionalClient.js";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
@@ -42,7 +42,7 @@ import {
   ExplicitPostOptionalArrayPropertyOptionalParams,
   ExplicitPostRequiredArrayHeaderOptionalParams,
   ExplicitPostOptionalArrayHeaderOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Explicit operations. */
 export class ExplicitImpl implements Explicit {

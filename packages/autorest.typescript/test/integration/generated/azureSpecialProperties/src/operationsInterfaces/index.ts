@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./xMsClientRequestId";
-export * from "./subscriptionInCredentials";
-export * from "./subscriptionInMethod";
-export * from "./apiVersionDefault";
-export * from "./apiVersionLocal";
-export * from "./skipUrlEncoding";
-export * from "./odata";
-export * from "./header";
+export * from "./xMsClientRequestId.js";
+export * from "./subscriptionInCredentials.js";
+export * from "./subscriptionInMethod.js";
+export * from "./apiVersionDefault.js";
+export * from "./apiVersionLocal.js";
+export * from "./skipUrlEncoding.js";
+export * from "./odata.js";
+export * from "./header.js";
