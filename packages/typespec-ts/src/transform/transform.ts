@@ -150,7 +150,7 @@ export function transformUrlInfo(
           importedModels.add,
           importedModels
         );
-        const normName = normalizeName(key, NameType.Parameter);
+        const normName = normalizeName(key, NameType.Parameter, true);
         if (normName !== key && endpoint) {
           endpoint = endpoint.replace(`{${key}}`, `{${normName}}`);
         }
