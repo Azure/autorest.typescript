@@ -65,7 +65,7 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: __PLACEHOLDER_o15__;
+  client?: __PLACEHOLDER_o346__;
 }
 
 export function createService(
@@ -164,7 +164,7 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: __PLACEHOLDER_o36__;
+  client?: __PLACEHOLDER_o347__;
 }
 
 export function createService(
