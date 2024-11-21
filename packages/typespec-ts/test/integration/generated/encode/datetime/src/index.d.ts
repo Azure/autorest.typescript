@@ -45,12 +45,14 @@ export declare interface HeaderDefaultHeaders {
 export declare type HeaderDefaultParameters = HeaderDefaultHeaderParam & RequestParameters;
 
 export declare interface HeaderRfc3339 {
-    get(options: HeaderRfc3339Parameters): StreamableMethod<HeaderRfc3339204Response>;
+    get(options: HeaderRfc3339_Parameters): StreamableMethod<HeaderRfc3339204Response>;
 }
 
 export declare interface HeaderRfc3339204Response extends HttpResponse {
     status: "204";
 }
+
+export declare type HeaderRfc3339_Parameters = HeaderRfc3339HeaderParam & RequestParameters;
 
 export declare interface HeaderRfc3339HeaderParam {
     headers: RawHttpHeadersInput & HeaderRfc3339Headers;
@@ -60,15 +62,15 @@ export declare interface HeaderRfc3339Headers {
     value: string;
 }
 
-export declare type HeaderRfc3339Parameters = HeaderRfc3339HeaderParam & RequestParameters;
-
 export declare interface HeaderRfc7231 {
-    get(options: HeaderRfc7231Parameters): StreamableMethod<HeaderRfc7231204Response>;
+    get(options: HeaderRfc7231_Parameters): StreamableMethod<HeaderRfc7231204Response>;
 }
 
 export declare interface HeaderRfc7231204Response extends HttpResponse {
     status: "204";
 }
+
+export declare type HeaderRfc7231_Parameters = HeaderRfc7231HeaderParam & RequestParameters;
 
 export declare interface HeaderRfc7231HeaderParam {
     headers: RawHttpHeadersInput & HeaderRfc7231Headers;
@@ -77,8 +79,6 @@ export declare interface HeaderRfc7231HeaderParam {
 export declare interface HeaderRfc7231Headers {
     value: string;
 }
-
-export declare type HeaderRfc7231Parameters = HeaderRfc7231HeaderParam & RequestParameters;
 
 export declare interface HeaderUnixTimestamp {
     get(options: HeaderUnixTimestampParameters): StreamableMethod<HeaderUnixTimestamp204Response>;
@@ -132,7 +132,7 @@ export declare interface PropertyDefaultBodyParam {
 export declare type PropertyDefaultParameters = PropertyDefaultBodyParam & RequestParameters;
 
 export declare interface PropertyRfc3339 {
-    post(options: PropertyRfc3339Parameters): StreamableMethod<PropertyRfc3339200Response>;
+    post(options: PropertyRfc3339_Parameters): StreamableMethod<PropertyRfc3339200Response>;
 }
 
 export declare interface PropertyRfc3339200Response extends HttpResponse {
@@ -140,14 +140,14 @@ export declare interface PropertyRfc3339200Response extends HttpResponse {
     body: Rfc3339DatetimePropertyOutput;
 }
 
+export declare type PropertyRfc3339_Parameters = PropertyRfc3339BodyParam & RequestParameters;
+
 export declare interface PropertyRfc3339BodyParam {
     body: Rfc3339DatetimeProperty;
 }
 
-export declare type PropertyRfc3339Parameters = PropertyRfc3339BodyParam & RequestParameters;
-
 export declare interface PropertyRfc7231 {
-    post(options: PropertyRfc7231Parameters): StreamableMethod<PropertyRfc7231200Response>;
+    post(options: PropertyRfc7231_Parameters): StreamableMethod<PropertyRfc7231200Response>;
 }
 
 export declare interface PropertyRfc7231200Response extends HttpResponse {
@@ -155,11 +155,11 @@ export declare interface PropertyRfc7231200Response extends HttpResponse {
     body: Rfc7231DatetimePropertyOutput;
 }
 
+export declare type PropertyRfc7231_Parameters = PropertyRfc7231BodyParam & RequestParameters;
+
 export declare interface PropertyRfc7231BodyParam {
     body: Rfc7231DatetimeProperty;
 }
-
-export declare type PropertyRfc7231Parameters = PropertyRfc7231BodyParam & RequestParameters;
 
 export declare interface PropertyUnixTimestamp {
     post(options: PropertyUnixTimestampParameters): StreamableMethod<PropertyUnixTimestamp200Response>;
@@ -210,14 +210,14 @@ export declare interface QueryDefaultQueryParamProperties {
 }
 
 export declare interface QueryRfc3339 {
-    get(options: QueryRfc3339Parameters): StreamableMethod<QueryRfc3339204Response>;
+    get(options: QueryRfc3339_Parameters): StreamableMethod<QueryRfc3339204Response>;
 }
 
 export declare interface QueryRfc3339204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type QueryRfc3339Parameters = QueryRfc3339QueryParam & RequestParameters;
+export declare type QueryRfc3339_Parameters = QueryRfc3339QueryParam & RequestParameters;
 
 export declare interface QueryRfc3339QueryParam {
     queryParameters: QueryRfc3339QueryParamProperties;
@@ -228,14 +228,14 @@ export declare interface QueryRfc3339QueryParamProperties {
 }
 
 export declare interface QueryRfc7231 {
-    get(options: QueryRfc7231Parameters): StreamableMethod<QueryRfc7231204Response>;
+    get(options: QueryRfc7231_Parameters): StreamableMethod<QueryRfc7231204Response>;
 }
 
 export declare interface QueryRfc7231204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type QueryRfc7231Parameters = QueryRfc7231QueryParam & RequestParameters;
+export declare type QueryRfc7231_Parameters = QueryRfc7231QueryParam & RequestParameters;
 
 export declare interface QueryRfc7231QueryParam {
     queryParameters: QueryRfc7231QueryParamProperties;
@@ -303,7 +303,7 @@ export declare interface ResponseHeaderDefault204Response extends HttpResponse {
 export declare type ResponseHeaderDefaultParameters = RequestParameters;
 
 export declare interface ResponseHeaderRfc3339 {
-    get(options?: ResponseHeaderRfc3339Parameters): StreamableMethod<ResponseHeaderRfc3339204Response>;
+    get(options?: ResponseHeaderRfc3339_Parameters): StreamableMethod<ResponseHeaderRfc3339204Response>;
 }
 
 export declare interface ResponseHeaderRfc3339204Headers {
@@ -315,10 +315,10 @@ export declare interface ResponseHeaderRfc3339204Response extends HttpResponse {
     headers: RawHttpHeaders & ResponseHeaderRfc3339204Headers;
 }
 
-export declare type ResponseHeaderRfc3339Parameters = RequestParameters;
+export declare type ResponseHeaderRfc3339_Parameters = RequestParameters;
 
 export declare interface ResponseHeaderRfc7231 {
-    get(options?: ResponseHeaderRfc7231Parameters): StreamableMethod<ResponseHeaderRfc7231204Response>;
+    get(options?: ResponseHeaderRfc7231_Parameters): StreamableMethod<ResponseHeaderRfc7231204Response>;
 }
 
 export declare interface ResponseHeaderRfc7231204Headers {
@@ -330,7 +330,7 @@ export declare interface ResponseHeaderRfc7231204Response extends HttpResponse {
     headers: RawHttpHeaders & ResponseHeaderRfc7231204Headers;
 }
 
-export declare type ResponseHeaderRfc7231Parameters = RequestParameters;
+export declare type ResponseHeaderRfc7231_Parameters = RequestParameters;
 
 export declare interface ResponseHeaderUnixTimestamp {
     get(options?: ResponseHeaderUnixTimestampParameters): StreamableMethod<ResponseHeaderUnixTimestamp204Response>;

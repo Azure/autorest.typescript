@@ -3,7 +3,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare enum KnownVersions {
-    V2022_12_01Preview = "2022-12-01-preview"
+    V2022_12_01_Preview = "2022-12-01-preview"
 }
 
 export declare type RepeatabilityResult = "accepted" | "rejected";

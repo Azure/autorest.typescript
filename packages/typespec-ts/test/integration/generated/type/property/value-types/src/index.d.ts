@@ -217,17 +217,27 @@ export declare interface DatetimePutBodyParam {
 
 export declare type DatetimePutParameters = DatetimePutBodyParam & RequestParameters;
 
-export declare interface Decimal128Get {
-    get(options?: Decimal128GetParameters): StreamableMethod<Decimal128Get200Response>;
-    put(options: Decimal128PutParameters): StreamableMethod<Decimal128Put204Response>;
-}
-
-export declare interface Decimal128Get200Response extends HttpResponse {
+export declare interface Decimal128_Get200Response extends HttpResponse {
     status: "200";
     body: Decimal128PropertyOutput;
 }
 
-export declare type Decimal128GetParameters = RequestParameters;
+export declare type Decimal128_GetParameters = RequestParameters;
+
+export declare interface Decimal128_Put204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface Decimal128_PutBodyParam {
+    body: Decimal128Property;
+}
+
+export declare type Decimal128_PutParameters = Decimal128_PutBodyParam & RequestParameters;
+
+export declare interface Decimal128Get {
+    get(options?: Decimal128_GetParameters): StreamableMethod<Decimal128_Get200Response>;
+    put(options: Decimal128_PutParameters): StreamableMethod<Decimal128_Put204Response>;
+}
 
 export declare interface Decimal128Property {
     property: number;
@@ -236,16 +246,6 @@ export declare interface Decimal128Property {
 export declare interface Decimal128PropertyOutput {
     property: number;
 }
-
-export declare interface Decimal128Put204Response extends HttpResponse {
-    status: "204";
-}
-
-export declare interface Decimal128PutBodyParam {
-    body: Decimal128Property;
-}
-
-export declare type Decimal128PutParameters = Decimal128PutBodyParam & RequestParameters;
 
 export declare interface DecimalGet {
     get(options?: DecimalGetParameters): StreamableMethod<DecimalGet200Response>;

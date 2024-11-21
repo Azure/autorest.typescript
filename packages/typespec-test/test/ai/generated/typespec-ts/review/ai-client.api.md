@@ -723,7 +723,7 @@ export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
 
 // @public
 export enum KnownVersions {
-    "V2024-07-01Preview" = "2024-07-01-preview"
+    "V2024-07-01-Preview" = "2024-07-01-preview"
 }
 
 // @public

@@ -4773,5 +4773,5 @@ export type VectorStoreFileStatusFilter =
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  "V2024-07-01Preview" = "2024-07-01-preview",
+  "V2024-07-01-Preview" = "2024-07-01-preview",
 }

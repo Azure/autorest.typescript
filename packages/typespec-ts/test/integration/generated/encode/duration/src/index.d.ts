@@ -122,12 +122,14 @@ export declare interface HeaderInt32SecondsHeaders {
 export declare type HeaderInt32SecondsParameters = HeaderInt32SecondsHeaderParam & RequestParameters;
 
 export declare interface HeaderIso8601 {
-    get(options: HeaderIso8601Parameters): StreamableMethod<HeaderIso8601204Response>;
+    get(options: HeaderIso8601_Parameters): StreamableMethod<HeaderIso8601204Response>;
 }
 
 export declare interface HeaderIso8601204Response extends HttpResponse {
     status: "204";
 }
+
+export declare type HeaderIso8601_Parameters = HeaderIso8601HeaderParam & RequestParameters;
 
 export declare interface HeaderIso8601Array {
     get(options: HeaderIso8601ArrayParameters): StreamableMethod<HeaderIso8601Array204Response>;
@@ -154,8 +156,6 @@ export declare interface HeaderIso8601HeaderParam {
 export declare interface HeaderIso8601Headers {
     duration: string;
 }
-
-export declare type HeaderIso8601Parameters = HeaderIso8601HeaderParam & RequestParameters;
 
 export declare interface Int32SecondsDurationProperty {
     value: number;
@@ -249,7 +249,7 @@ export declare interface PropertyInt32SecondsBodyParam {
 export declare type PropertyInt32SecondsParameters = PropertyInt32SecondsBodyParam & RequestParameters;
 
 export declare interface PropertyIso8601 {
-    post(options: PropertyIso8601Parameters): StreamableMethod<PropertyIso8601200Response>;
+    post(options: PropertyIso8601_Parameters): StreamableMethod<PropertyIso8601200Response>;
 }
 
 export declare interface PropertyIso8601200Response extends HttpResponse {
@@ -257,11 +257,11 @@ export declare interface PropertyIso8601200Response extends HttpResponse {
     body: ISO8601DurationPropertyOutput;
 }
 
+export declare type PropertyIso8601_Parameters = PropertyIso8601BodyParam & RequestParameters;
+
 export declare interface PropertyIso8601BodyParam {
     body: ISO8601DurationProperty;
 }
-
-export declare type PropertyIso8601Parameters = PropertyIso8601BodyParam & RequestParameters;
 
 export declare interface QueryDefault {
     get(options: QueryDefaultParameters): StreamableMethod<QueryDefault204Response>;
@@ -360,14 +360,14 @@ export declare interface QueryInt32SecondsQueryParamProperties {
 }
 
 export declare interface QueryIso8601 {
-    get(options: QueryIso8601Parameters): StreamableMethod<QueryIso8601204Response>;
+    get(options: QueryIso8601_Parameters): StreamableMethod<QueryIso8601204Response>;
 }
 
 export declare interface QueryIso8601204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type QueryIso8601Parameters = QueryIso8601QueryParam & RequestParameters;
+export declare type QueryIso8601_Parameters = QueryIso8601QueryParam & RequestParameters;
 
 export declare interface QueryIso8601QueryParam {
     queryParameters: QueryIso8601QueryParamProperties;
