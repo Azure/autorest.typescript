@@ -113,7 +113,7 @@ export function buildClientContext(
     dpgContext,
     _client
   );
-  const credentialParam = buildGetClientCredentialParam(_client, codeModel);
+  const credentialParam = buildGetClientCredentialParam(client, codeModel);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     codeModel,

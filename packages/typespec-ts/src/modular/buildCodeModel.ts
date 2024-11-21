@@ -1833,7 +1833,7 @@ function emitClients(
   rlcModelsMap: Map<string, RLCModel>
 ): HrlcClient[] {
   const program = context.program;
-  const clients = listClients(context);
+  const clients = context.sdkPackage.clients
   const retval: HrlcClient[] = [];
   methodApiVersionParam = undefined;
   for (const client of clients) {
@@ -1846,7 +1846,7 @@ function emitClients(
     }
 
     const clientName = client.name.replace("Client", "");
-    const server = getServerHelper(program, client.service);
+    const server = getServerHelper(program, context.sdkPackage.rootNamespace);
     const rlcModels = rlcModelsMap.get(client.service.name);
     if (!rlcModels) {
       continue;
@@ -1903,8 +1903,8 @@ function getNamespace(context: SdkContext, clientName: string): string {
 
 function getNamespaces(context: SdkContext): Set<string> {
   const namespaces = new Set<string>();
-  for (const client of listClients(context)) {
-    namespaces.add(getNamespace(context, client.name));
+  for (const ns of context.sdkPackage.namespaces) {
+    namespaces.add(getNamespace(context, ns.name));
   }
   return namespaces;
 }

@@ -1,5 +1,6 @@
 import {
   SdkBodyParameter,
+  SdkCredentialType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { Type } from "../modularCodeModel.js";
@@ -299,12 +300,8 @@ export function isDateTimeTypeKind(kind: string): boolean {
   return DateTimeTypeKinds.includes(kind);
 }
 
-export function isCredentialType(type: Type): boolean {
-  const credentialTypes = ["OAuth2", "Key"];
-  return (
-    credentialTypes.includes(type.type) ||
-    (type.type === "combined" && (type.types?.every(isCredentialType) ?? false))
-  );
+export function isCredentialType(type: SdkType): boolean {
+  return type.kind === "credential";
 }
 
 /**

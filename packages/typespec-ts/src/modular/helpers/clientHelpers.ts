@@ -5,6 +5,8 @@ import {
   StatementedNode
 } from "ts-morph";
 import {
+  SdkClientType,
+  SdkHttpOperation,
   SdkHttpParameter,
   SdkParameter
 } from "@azure-tools/typespec-client-generator-core";
@@ -235,7 +237,7 @@ export function buildGetClientOptionsParam(
 }
 
 export function buildGetClientCredentialParam(
-  client: Client,
+  client: SdkClientType<SdkHttpOperation>,
   codeModel: ModularCodeModel
 ): string {
   if (
@@ -244,7 +246,7 @@ export function buildGetClientCredentialParam(
       codeModel.options.credentialKeyHeaderName)
   ) {
     return (
-      client.parameters.find((x) => isCredentialType(x.type))?.clientName ??
+      client.initialization.properties.find((x) => isCredentialType(x.type))?.name ?? 
       "undefined"
     );
   } else {
