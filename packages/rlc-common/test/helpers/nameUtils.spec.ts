@@ -72,6 +72,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("SAS_AUTHENTICATION_IP", NameType.Property)).to.equal("sasAuthenticationIP");
     });
     it("should normalize number properly", () => {
+      expect(normalizeName("2024-07-01-preview", NameType.Property)).to.equal("num2024-07-01Preview");
       expect(normalizeName("-10Min", NameType.Property)).to.equal("num-10Min");
       expect(normalizeName("090", NameType.Property)).to.equal("num090");
       expect(normalizeName("10", NameType.Property)).to.equal("num10");
@@ -84,7 +85,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("1.1", NameType.Property)).to.equal("num1.1");
       expect(normalizeName("-1.1", NameType.Property)).to.equal("num-1.1");
       expect(normalizeName("v2023_11_15", NameType.Property)).to.equal("v2023_11_15");
-      expect(normalizeName("2024-07-01-preview", NameType.Property)).to.equal("num2024-07-01-Preview");
+
       expect(normalizeName("v1_1", NameType.Property, {
         numberPrefixOverride: "V"
       })).to.equal("v1_1");
