@@ -249,7 +249,7 @@ export interface HeaderParamDatetimeRfc1123HeaderParam {
   headers: RawHttpHeadersInput & HeaderParamDatetimeRfc1123Headers;
 }
 
-export type HeaderParamDatetimeRfc1123Parameters =
+export type HeaderParamDatetimeRfc1123_Parameters =
   HeaderParamDatetimeRfc1123HeaderParam & RequestParameters;
 
 export interface HeaderResponseDatetimeRfc1123Headers {
@@ -261,7 +261,7 @@ export interface HeaderResponseDatetimeRfc1123HeaderParam {
   headers: RawHttpHeadersInput & HeaderResponseDatetimeRfc1123Headers;
 }
 
-export type HeaderResponseDatetimeRfc1123Parameters =
+export type HeaderResponseDatetimeRfc1123_Parameters =
   HeaderResponseDatetimeRfc1123HeaderParam & RequestParameters;
 
 export interface HeaderParamDurationHeaders {

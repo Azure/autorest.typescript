@@ -163,7 +163,7 @@ export type PrimitivePutDateTimeParameters =
   PrimitivePutDateTimeMediaTypesParam &
     PrimitivePutDateTimeBodyParam &
     RequestParameters;
-export type PrimitiveGetDateTimeRfc1123Parameters = RequestParameters;
+export type PrimitiveGetDateTimeRfc1123_Parameters = RequestParameters;
 
 export interface PrimitivePutDateTimeRfc1123BodyParam {
   /** Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT' */
@@ -175,7 +175,7 @@ export interface PrimitivePutDateTimeRfc1123MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PrimitivePutDateTimeRfc1123Parameters =
+export type PrimitivePutDateTimeRfc1123_Parameters =
   PrimitivePutDateTimeRfc1123MediaTypesParam &
     PrimitivePutDateTimeRfc1123BodyParam &
     RequestParameters;
