@@ -108,7 +108,6 @@ function regularAutorestPackage(
       "@microsoft/api-extractor": "^7.31.1",
       mkdirp: "^3.0.1",
       typescript: "~5.6.2",
-      "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
@@ -223,6 +222,7 @@ function regularAutorestPackage(
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
       packageInfo.devDependencies["cross-env"] = "^7.0.2";
+      packageInfo.devDependencies["uglify-js"] = "^3.4.9";
       packageInfo.scripts["unit-test:node"] =
         "cross-env TEST_MODE=playback npm run integration-test:node";
       packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
