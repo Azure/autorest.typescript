@@ -55,13 +55,15 @@ export declare type UnionV2 = string | number;
 export declare type UnionV2Output = string | number;
 
 export declare interface V1 {
-    post(options: V1Parameters): StreamableMethod<V1200Response>;
+    post(options: V1_Parameters): StreamableMethod<V1200Response>;
 }
 
 export declare interface V1200Response extends HttpResponse {
     status: "200";
     body: ModelV1Output;
 }
+
+export declare type V1_Parameters = V1HeaderParam & V1BodyParam & RequestParameters;
 
 export declare interface V1BodyParam {
     body: ModelV1;
@@ -75,16 +77,16 @@ export declare interface V1Headers {
     "header-v2": string;
 }
 
-export declare type V1Parameters = V1HeaderParam & V1BodyParam & RequestParameters;
-
 export declare interface V2 {
-    post(options: V2Parameters): StreamableMethod<V2200Response>;
+    post(options: V2_Parameters): StreamableMethod<V2200Response>;
 }
 
 export declare interface V2200Response extends HttpResponse {
     status: "200";
     body: ModelV2Output;
 }
+
+export declare type V2_Parameters = V2BodyParam & RequestParameters;
 
 export declare interface V2BodyParam {
     body: ModelV2;
@@ -104,8 +106,6 @@ export declare interface V2InInterfaceBodyParam {
 }
 
 export declare type V2InInterfaceParameters = V2InInterfaceBodyParam & RequestParameters;
-
-export declare type V2Parameters = V2BodyParam & RequestParameters;
 
 export declare type VersioningAddedClient = Client & {
     path: Routes;

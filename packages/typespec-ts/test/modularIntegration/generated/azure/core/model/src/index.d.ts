@@ -10,7 +10,7 @@ export declare interface GetOptionalParams extends OperationOptions {
 }
 
 export declare enum KnownVersions {
-    V2022_12_01Preview = "2022-12-01-preview"
+    V2022_12_01_Preview = "2022-12-01-preview"
 }
 
 export declare class ModelClient {

@@ -7,7 +7,7 @@ describe("#normalizeName", () => {
     it("should normalize any chars including digits properly", () => {
       expect(normalizeName("-10Min", NameType.EnumMemberName)).to.equal("Num-10Min");
       expect(normalizeName("LROsPut202Retry200_202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_202Response");
-      expect(normalizeName("LROsPut202Retry200_Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200Response");
+      expect(normalizeName("LROsPut202Retry200_Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_Response");
       expect(normalizeName("LROsPut202Retry200 202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200202Response");
       expect(normalizeName("090", NameType.EnumMemberName)).to.equal("Num090");
       expect(normalizeName("10", NameType.EnumMemberName)).to.equal("Num10");
@@ -20,7 +20,10 @@ describe("#normalizeName", () => {
       expect(normalizeName("1.1", NameType.EnumMemberName)).to.equal("Num1.1");
       expect(normalizeName("-1.1", NameType.EnumMemberName)).to.equal("Num-1.1");
       expect(normalizeName("v2023_11_15", NameType.EnumMemberName)).to.equal("V2023_11_15");
-      expect(normalizeName("2024-07-01-preview", NameType.EnumMemberName)).to.equal("Num2024-07-01Preview");
+      expect(normalizeName("2024-07-01-preview", NameType.EnumMemberName)).to.equal("Num2024-07-01-Preview");
+      expect(normalizeName("Version-2024-07-01-preview", NameType.EnumMemberName)).to.equal("Version-2024-07-01-Preview");
+      expect(normalizeName("Version-101-preview", NameType.EnumMemberName)).to.equal("Version-101-Preview");
+      expect(normalizeName("100_Inc_200", NameType.EnumMemberName)).to.equal("Num100_Inc_200");
       expect(normalizeName("v1_1", NameType.EnumMemberName, {
         numberPrefixOverride: "V"
       })).to.equal("V1_1");
@@ -79,7 +82,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("1.1", NameType.Property)).to.equal("num1.1");
       expect(normalizeName("-1.1", NameType.Property)).to.equal("num-1.1");
       expect(normalizeName("v2023_11_15", NameType.Property)).to.equal("v2023_11_15");
-      expect(normalizeName("2024-07-01-preview", NameType.Property)).to.equal("num2024-07-01Preview");
+      expect(normalizeName("2024-07-01-preview", NameType.Property)).to.equal("num2024-07-01-Preview");
       expect(normalizeName("v1_1", NameType.Property, {
         numberPrefixOverride: "V"
       })).to.equal("v1_1");

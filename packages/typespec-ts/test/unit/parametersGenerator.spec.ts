@@ -176,7 +176,7 @@ describe("Parameters.ts", () => {
             }
             
             export type TestParameters = TestQueryParam & RequestParameters;
-            export type Test1Parameters = RequestParameters;
+            export type Test1_Parameters = RequestParameters;
             `
         );
       });

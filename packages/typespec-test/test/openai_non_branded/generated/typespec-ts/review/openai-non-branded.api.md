@@ -619,7 +619,7 @@ export interface FineTuningOperations {
 
 // @public
 export interface Image {
-    b64Json?: Uint8Array;
+    b64_Json?: Uint8Array;
     url?: string;
 }
 

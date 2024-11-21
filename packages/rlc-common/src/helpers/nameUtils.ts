@@ -240,24 +240,58 @@ function deconstruct(identifier: string): Array<string> {
   // Split by non-alphanumeric characters and try to keep _-. between numbers
   const refinedParts: string[] = [];
   for (let i = 0; i < parts.length; i++) {
-    const part = parts[i];
-    const isPrevNumber = isNumber(parts[i - 1]);
-    const isNextNumber = isNumber(parts[i + 1]);
-    if ((isPrevNumber || isNextNumber) && ["_", "-", "."].includes(part)) {
-      refinedParts.push(part);
-    } else {
+    const [firstMatch, midPart, lastMatch] = extractReservedCharAndSubString(
+      parts[i],
+      isNumber(parts[i - 1]),
+      isNumber(parts[i + 1])
+    );
+    if (firstMatch) {
+      refinedParts.push(firstMatch);
+    }
+    if (midPart) {
       refinedParts.push(
-        ...parts[i]
+        ...midPart
           .split(/[\W|_]+/)
           .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()))
       );
+    }
+    if (lastMatch) {
+      refinedParts.push(lastMatch);
     }
   }
   return refinedParts.filter((part) => part.trim().length > 0);
 }
 
+function isReservedChar(part: string) {
+  return ["_", "-", "."].includes(part);
+}
+
+function extractReservedCharAndSubString(
+  part: string,
+  isPrevNumber: boolean = false,
+  isNextNumber: boolean = false
+) {
+  if ((isPrevNumber || isNextNumber) && isReservedChar(part)) {
+    return [part];
+  }
+  const firstMatch = isPrevNumber && isReservedChar(part[0]);
+  const lastMatch = isNextNumber && isReservedChar(part[part.length - 1]);
+  if (firstMatch && lastMatch) {
+    return [part[0], part.substring(1, part.length - 1), part[part.length - 1]];
+  } else if (firstMatch && !lastMatch) {
+    return [part[0], part.substring(1)];
+  } else if (!firstMatch && lastMatch) {
+    return [
+      undefined,
+      part.substring(0, part.length - 1),
+      part[part.length - 1]
+    ];
+  }
+  return [undefined, part];
+}
+
 function isNumber(value?: string) {
-  return value && value.match(/^\d+$/);
+  return Boolean(value && value.match(/^\d+$/));
 }
 
 export function getModelsName(title: string): string {

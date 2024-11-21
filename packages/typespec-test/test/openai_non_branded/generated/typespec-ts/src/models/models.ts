@@ -324,13 +324,13 @@ export interface Image {
   /** The URL of the generated image, if `response_format` is `url` (default). */
   url?: string;
   /** The base64-encoded JSON of the generated image, if `response_format` is `b64_json`. */
-  b64Json?: Uint8Array;
+  b64_Json?: Uint8Array;
 }
 
 export function imageDeserializer(item: any): Image {
   return {
     url: item["url"],
-    b64Json: !item["b64_json"]
+    b64_Json: !item["b64_json"]
       ? item["b64_json"]
       : typeof item["b64_json"] === "string"
         ? stringToUint8Array(item["b64_json"], "base64")

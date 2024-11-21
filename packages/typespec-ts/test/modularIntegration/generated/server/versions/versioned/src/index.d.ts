@@ -3,8 +3,8 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare enum KnownVersions {
-    V2021_01_01Preview = "2021-01-01-preview",
-    V2022_12_01Preview = "2022-12-01-preview"
+    V2021_01_01_Preview = "2021-01-01-preview",
+    V2022_12_01_Preview = "2022-12-01-preview"
 }
 
 export declare class VersionedClient {
