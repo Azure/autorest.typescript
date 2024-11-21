@@ -45,12 +45,8 @@ describe("OAuth2Context in API Layer", () => {
   });
 
   it("should not throw exception if token is valid", async () => {
-    try {
-      const result = await valid(context);
-      assert.strictEqual(result, undefined);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await valid(context);
+    assert.strictEqual(result, undefined);
   });
 
   it("should throw exception if the token is invalid", async () => {
