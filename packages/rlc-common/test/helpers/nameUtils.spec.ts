@@ -9,6 +9,8 @@ describe("#normalizeName", () => {
       expect(normalizeName("LROsPut202Retry200_202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_202Response");
       expect(normalizeName("LROsPut202Retry200_Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_Response");
       expect(normalizeName("LROsPut202Retry200 202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200202Response");
+      expect(normalizeName("LROsPut202Retry200-Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200-Response");
+      expect(normalizeName("LROsPut202Retry200.Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200.Response");
       expect(normalizeName("090", NameType.EnumMemberName)).to.equal("Num090");
       expect(normalizeName("10", NameType.EnumMemberName)).to.equal("Num10");
       // pls note `1` is a numeric literal number but `1.0` is not
@@ -181,6 +183,9 @@ describe("#normalizeName", () => {
       expect(
         normalizeName("_LRORetrysPostAsyncRelativeRetrySucceeded", NameType.OperationGroup,)
       ).to.equal("LRORetrysPostAsyncRelativeRetrySucceeded");
+      expect(normalizeName("LROsPut202Retry200_Response", NameType.OperationGroup)).to.equal("LROsPut202Retry200Response");
+      expect(normalizeName("LROsPut202Retry200-Response", NameType.OperationGroup)).to.equal("LROsPut202Retry200Response");
+      expect(normalizeName("LROsPut202Retry200.Response", NameType.OperationGroup)).to.equal("LROsPut202Retry200Response");
     });
   });
 });

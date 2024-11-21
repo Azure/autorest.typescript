@@ -176,7 +176,7 @@ export function normalizeName(
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
-  const parts = deconstruct(name);
+  const parts = deconstruct(name, nameType);
   if (parts.length === 0) {
     return name;
   }
@@ -228,7 +228,7 @@ function isFullyUpperCase(
   return false;
 }
 
-function deconstruct(identifier: string): Array<string> {
+function deconstruct(identifier: string, nameType: NameType): Array<string> {
   const parts = `${identifier}`
     .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
     .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123 => foo123 bar)
@@ -242,6 +242,7 @@ function deconstruct(identifier: string): Array<string> {
   for (let i = 0; i < parts.length; i++) {
     const [firstMatch, midPart, lastMatch] = extractReservedCharAndSubString(
       parts[i],
+      nameType,
       isNumber(parts[i - 1]),
       isNumber(parts[i + 1])
     );
@@ -268,11 +269,20 @@ function isReservedChar(part: string) {
 
 function extractReservedCharAndSubString(
   part: string,
+  nameType: NameType,
   isPrevNumber: boolean = false,
   isNextNumber: boolean = false
 ) {
+  const optimized = ![
+    NameType.OperationGroup,
+    NameType.Interface,
+    NameType.Class
+  ].includes(nameType);
   if ((isPrevNumber || isNextNumber) && isReservedChar(part)) {
     return [part];
+  }
+  if (!optimized) {
+    return [undefined, part];
   }
   const firstMatch = isPrevNumber && isReservedChar(part[0]);
   const lastMatch = isNextNumber && isReservedChar(part[part.length - 1]);
