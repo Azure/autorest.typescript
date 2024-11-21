@@ -276,7 +276,9 @@ function extractReservedCharAndSubString(
   const optimized = ![
     NameType.OperationGroup,
     NameType.Interface,
-    NameType.Class
+    NameType.Class,
+    NameType.Property,
+    NameType.Parameter
   ].includes(nameType);
   if ((isPrevNumber || isNextNumber) && isReservedChar(part)) {
     return [part];
