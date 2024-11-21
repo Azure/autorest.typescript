@@ -273,7 +273,7 @@ function extractReservedCharAndSubString(
   isPrevNumber: boolean = false,
   isNextNumber: boolean = false
 ) {
-  const optimized = ![
+  const notOptimized = [
     NameType.OperationGroup,
     NameType.Interface,
     NameType.Class,
@@ -283,7 +283,7 @@ function extractReservedCharAndSubString(
   if ((isPrevNumber || isNextNumber) && isReservedChar(part)) {
     return [part];
   }
-  if (!optimized) {
+  if (notOptimized) {
     return [undefined, part];
   }
   const firstMatch = isPrevNumber && isReservedChar(part[0]);
