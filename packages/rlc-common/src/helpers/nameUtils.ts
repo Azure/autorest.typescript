@@ -243,8 +243,8 @@ function deconstruct(identifier: string, nameType: NameType): Array<string> {
     const [firstMatch, midPart, lastMatch] = extractReservedCharAndSubString(
       parts[i],
       nameType,
-      isNumber(parts[i - 1]),
-      isNumber(parts[i + 1])
+      parts[i - 1] === undefined ? true : isNumber(parts[i - 1]),
+      parts[i + 1] === undefined ? true : isNumber(parts[i + 1])
     );
     if (firstMatch) {
       refinedParts.push(firstMatch);
@@ -273,15 +273,17 @@ function extractReservedCharAndSubString(
   isPrevNumber: boolean = false,
   isNextNumber: boolean = false
 ) {
-  const optimized = ![
+  const notOptimized = [
     NameType.OperationGroup,
     NameType.Interface,
-    NameType.Class
+    NameType.Class,
+    NameType.Property,
+    NameType.Parameter
   ].includes(nameType);
-  if ((isPrevNumber || isNextNumber) && isReservedChar(part)) {
+  if (isPrevNumber && isNextNumber && isReservedChar(part)) {
     return [part];
   }
-  if (!optimized) {
+  if (notOptimized) {
     return [undefined, part];
   }
   const firstMatch = isPrevNumber && isReservedChar(part[0]);
