@@ -10,6 +10,10 @@ export declare interface FirstItem {
     readonly id: number;
 }
 
+export declare enum KnownVersions {
+    v2022_12_01_preview = "2022-12-01-preview"
+}
+
 export declare interface ListFirstItemOptionalParams extends OperationOptions {
 }
 

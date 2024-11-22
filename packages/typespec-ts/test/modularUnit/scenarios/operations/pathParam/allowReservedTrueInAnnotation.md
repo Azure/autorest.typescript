@@ -21,13 +21,13 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _annotationSend(
   context: Client,
   param: string,
-  options: AnnotationOptionalParams = { requestOptions: {} }
+  options: AnnotationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = __PLACEHOLDER_o15__("/annotation/{+param}").expand({
     param: param
@@ -38,7 +38,7 @@ export function _annotationSend(
 }
 
 export async function _annotationDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -51,7 +51,7 @@ export async function _annotationDeserialize(
 export async function annotation(
   context: Client,
   param: string,
-  options: AnnotationOptionalParams = { requestOptions: {} }
+  options: AnnotationOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _annotationSend(context, param, options);
   return _annotationDeserialize(result);

@@ -15,37 +15,25 @@ describe("NotDiscriminatedClient Rest Client", () => {
 
   const validBody: Siamese = { name: "abc", age: 32, smart: true };
   it("should get valid", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/not-discriminated/valid")
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validBody);
   });
 
   it("should put valid", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .put({ body: validBody });
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validBody);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/not-discriminated/valid")
+      .put({ body: validBody });
+    assert.strictEqual(result.status, "200");
+    assert.deepEqual(result.body, validBody);
   });
 
   it("should post valid", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .post({ body: validBody });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/not-discriminated/valid")
+      .post({ body: validBody });
+    assert.strictEqual(result.status, "204");
   });
 });

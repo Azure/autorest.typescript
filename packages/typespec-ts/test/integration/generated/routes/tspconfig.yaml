@@ -7,7 +7,6 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
-    generateSample: true
     title: RoutesClient
     packageDetails:
       name: "@msinternal/routes"

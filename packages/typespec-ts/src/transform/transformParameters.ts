@@ -29,14 +29,14 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { Type, isVoidType } from "@typespec/compiler";
+import { NoTarget, Type, isVoidType } from "@typespec/compiler";
 import {
   getBodyType,
   getFormattedPropertyDoc,
   getImportedModelName,
   getSchemaForType,
-  getSerializeTypeName,
   getTypeName,
+  isArrayType,
   isBodyRequired
 } from "../utils/modelUtils.js";
 import {
@@ -44,8 +44,16 @@ import {
   getOperationName,
   getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
-
 import { SdkContext } from "../utils/interfaces.js";
+import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
+import { reportDiagnostic } from "../lib.js";
+
+interface ParameterTransformationOptions {
+  apiVersionInfo?: ApiVersionInfo;
+  operationGroupName?: string;
+  operationName?: string;
+  importModels?: Set<string>;
+}
 
 export function transformToParameterTypes(
   client: SdkClient,
@@ -90,20 +98,27 @@ export function transformToParameterTypes(
       operationName: getOperationName(dpgContext, route.operation),
       parameters: []
     };
+    const options = {
+      apiVersionInfo,
+      operationGroupName: rlcParameter.operationGroup,
+      operationName: rlcParameter.operationName,
+      importModels: outputImportedSet
+    };
     // transform query param
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
-      { apiVersionInfo },
-      outputImportedSet
+      options
     );
     // transform path param
-    const pathParams = transformPathParameters();
+    const pathParams = transformPathParameters(dpgContext, parameters, options);
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+    transformCookieParameters(dpgContext, parameters);
     // transform header param including content-type
     const headerParams = transformHeaderParameters(
       dpgContext,
       parameters,
-      outputImportedSet
+      options
     );
     // transform body
     const bodyType = getBodyType(route);
@@ -130,59 +145,62 @@ function getParameterMetadata(
   dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter,
-  importedModels: Set<string>
+  options: ParameterTransformationOptions
 ): ParameterMetadata {
   const program = dpgContext.program;
+  const importedModels = options.importModels ?? new Set<string>();
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
   const schema = getSchemaForType(dpgContext, parameter.param.type, {
     usage: schemaContext,
     needRef: false,
     relevantProperty: parameter.param
   }) as Schema;
-  let type = getTypeName(schema, schemaContext);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (isArrayType(schema)) {
     const serializeInfo = getSpecialSerializeInfo(
+      dpgContext,
       parameter.type,
       (parameter as any).format
     );
     if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
-      type = "string";
-      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+      description += `${description ? "\n" : ""}This parameter could be formatted as ${serializeInfo.collectionInfo.join(
         ", "
-      )} collection, we provide ${serializeInfo.descriptions.join(
+      )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
       )} from serializeHelper.ts to help${
         serializeInfo.hasMultiCollection
           ? ", you will probably need to set skipUrlEncoding as true when sending the request"
           : ""
-      }`;
+      }.`;
+    }
+    if ((parameter as any).format === "tsv") {
+      description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
     }
   }
-  type =
-    paramType !== "query" && type !== "string"
-      ? getSerializeTypeName(dpgContext.program, schema, schemaContext)
-      : type;
+
   getImportedModelName(schema, schemaContext)?.forEach(
     importedModels.add,
     importedModels
+  );
+  const serializationType = getParameterSerializationInfo(
+    dpgContext,
+    parameter,
+    schema,
+    options.operationGroupName,
+    options.operationName
   );
   return {
     type: paramType,
     name,
     param: {
       name,
-      type,
-      typeName: type,
+      type: serializationType.typeName,
+      typeName: serializationType.typeName,
       required: !parameter.param.optional,
-      description
+      description,
+      wrapperType: serializationType.wrapperType
     }
   };
 }
@@ -194,11 +212,29 @@ function getParameterName(name: string) {
   return `"${name}"`;
 }
 
+function transformCookieParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters
+) {
+  // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+  parameters.parameters
+    .filter((p) => p.type === "cookie")
+    .forEach((p) => {
+      reportDiagnostic(dpgContext.program, {
+        code: "parameter-type-not-supported",
+        format: {
+          paramName: p.name,
+          paramType: p.type
+        },
+        target: NoTarget
+      });
+    });
+}
+
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
-  options: { apiVersionInfo: ApiVersionInfo | undefined },
-  importModels: Set<string> = new Set<string>()
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
@@ -212,7 +248,7 @@ function transformQueryParameters(
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "query", qp, importModels)
+    getParameterMetadata(dpgContext, "query", qp, options)
   );
 }
 
@@ -220,16 +256,27 @@ function transformQueryParameters(
  * Only support to take the global path parameter as path parameter
  * @returns
  */
-function transformPathParameters() {
-  // TODO
-  // issue tracked https://github.com/Azure/autorest.typescript/issues/1521
-  return [];
+function transformPathParameters(
+  dpgContext: SdkContext,
+  parameters: HttpOperationParameters,
+  options: ParameterTransformationOptions
+) {
+  // build wrapper path parameters
+  const pathParameters = parameters.parameters.filter((p) => p.type === "path");
+  if (!pathParameters.length) {
+    return [];
+  }
+  // only need to build path parameters for wrapper type
+  const params = pathParameters
+    .map((qp) => getParameterMetadata(dpgContext, "path", qp, options))
+    .filter((p) => p.param.wrapperType);
+  return params;
 }
 
 export function transformHeaderParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
-  importedModels: Set<string>
+  options: ParameterTransformationOptions
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
     (p) => p.type === "header"
@@ -238,7 +285,7 @@ export function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "header", qp, importedModels)
+    getParameterMetadata(dpgContext, "header", qp, options)
   );
 }
 

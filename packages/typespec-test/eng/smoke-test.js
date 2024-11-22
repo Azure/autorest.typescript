@@ -73,8 +73,9 @@ async function generate(path, logger) {
     }
 
     // Clean up the folder before generation
-    if (await exists(join(path, "generated", "typespec-ts"))) {
-      const outputRoot = join(path, "generated", "typespec-ts");
+    const armMgmtoutputRoot = join(path, "generated", "typespec-ts", "sdk","test","arm-test");
+    const outputRoot =await exists(armMgmtoutputRoot) ? armMgmtoutputRoot : join(path, "generated", "typespec-ts");
+    if (await exists(outputRoot)) {
       await readdir(outputRoot)
         .then((files) =>
           Promise.all(files
@@ -84,7 +85,7 @@ async function generate(path, logger) {
             )
         )
         );
-    }
+      }
   } catch (e) {
     // do nothing
     logger.log("Preparation error:", e);
@@ -100,7 +101,8 @@ async function generate(path, logger) {
 const failed = [];
 
 async function build(path, logger) {
-  const workingDir = join(path, "generated/typespec-ts");
+  const armMgmtWorkingDir = join(path, "generated", "typespec-ts", "sdk","test","arm-test");
+  const workingDir = await exists(armMgmtWorkingDir) ? armMgmtWorkingDir : join(path, "generated", "typespec-ts");;
   try {
     await runCommand("npm", ["install"], workingDir, logger);
     await runCommand("npm", ["run", "build"], workingDir, logger);

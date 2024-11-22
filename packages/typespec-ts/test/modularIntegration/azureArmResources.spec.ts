@@ -78,7 +78,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should update singleton tracked resources", async () => {
     const result = await client.singleton.update("test-rg", {
-      location: "eastus2",
+      location: "eastus",
       properties: {
         description: "valid2"
       }
@@ -87,7 +87,7 @@ describe("Azure Arm Resources Rest Client", () => {
     assert.strictEqual(result.id, validSingletonResource.id);
     assert.strictEqual(result.name, validSingletonResource.name);
     assert.strictEqual(result.type, validSingletonResource.type);
-    assert.strictEqual(result.location, "eastus2");
+    assert.strictEqual(result.location, "eastus");
     assert.strictEqual(result.properties?.description, "valid2");
   });
 

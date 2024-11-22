@@ -11,13 +11,13 @@ import {
   SchemaOperationsRegisterSchemaOptionalParams,
 } from "../index.js";
 import {
-  SchemaGroup,
-  SchemaVersion,
-  SchemaContentTypeValues,
   _PagedSchemaGroup,
   _pagedSchemaGroupDeserializer,
+  SchemaGroup,
   _PagedVersion,
   _pagedVersionDeserializer,
+  SchemaVersion,
+  SchemaContentTypeValues,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,

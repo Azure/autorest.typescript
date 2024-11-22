@@ -16,7 +16,11 @@ export function buildFlavorlessPackage(config: PackageCommonInfoConfig) {
   const packageInfo = {
     ...getFlavorlessPackageInfo(config),
     scripts: getFlavorlessScripts(config),
-    devDependencies: getCommonPackageDevDependencies(config),
+    devDependencies: {
+      ...getCommonPackageDevDependencies(config),
+      rimraf: "^5.0.5",
+      mkdirp: "^3.0.1"
+    },
     dependencies: {
       ...commonPackageDependencies,
       "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2"

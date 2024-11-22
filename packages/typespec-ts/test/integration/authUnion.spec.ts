@@ -48,23 +48,15 @@ describe("AuthUnionClient Rest Client", () => {
 
   it("should return 204 when the token is valid", async () => {
     prepareToken();
-    try {
-      const result = await client
-        .path("/authentication/union/validtoken")
-        .get();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/authentication/union/validtoken")
+      .get();
+    assert.strictEqual(result.status, "204");
   });
 
   it("should return 204 when the key is valid", async () => {
     prepareKey();
-    try {
-      const result = await client.path("/authentication/union/validkey").get();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/authentication/union/validkey").get();
+    assert.strictEqual(result.status, "204");
   });
 });

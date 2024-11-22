@@ -283,7 +283,7 @@ function getPolymorphicTypeAlias(
  * Builds the interface for the current object schema. If it is a polymorphic
  * root node it will suffix it with Base.
  */
-function getObjectInterfaceDeclaration(
+export function getObjectInterfaceDeclaration(
   model: RLCModel,
   baseName: string,
   objectSchema: ObjectSchema,

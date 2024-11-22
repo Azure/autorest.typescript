@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 
@@ -10,6 +11,7 @@ export interface WidgetServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface WidgetServiceClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
@@ -19,9 +21,10 @@ export function createWidgetService(
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-widget_dpg/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

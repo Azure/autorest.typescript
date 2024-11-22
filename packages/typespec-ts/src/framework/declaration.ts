@@ -71,7 +71,6 @@ export function addDeclaration(
   }
 
   const stringRefkey = typeof refkey === "string" ? refkey : getRefKey(refkey);
-
   const trackedDeclarationName = binder.trackDeclaration(
     stringRefkey,
     declaration.name,

@@ -1,5 +1,5 @@
 import RoutesClientFactory, {
-  RoutesClient
+  RoutesClient,
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -32,10 +32,104 @@ describe("RoutesClient Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it.skip("should have PathParameters SimpleExpansion Standard primitive", async () => {
+  it("should have allowReserved: true", async () => {
     const result = await client
-      .path("/routes/path/simple/standard/primitive{param}", "a")
+      .path("/routes/path/reserved-expansion/template/{param}", {
+        value: "foo/bar baz",
+        allowReserved: true
+      })
       .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have allowReserved: true with helper", async () => {
+    const result = await client
+      .path(
+        "/routes/path/reserved-expansion/template/{param}",
+        {
+          value: "foo/bar baz",
+          allowReserved: true
+        }
+      )
+      .get();
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/array")
+      .get({
+        queryParameters: {
+          param: {
+            value: ["a", "b"],
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/record")
+      .get({
+        queryParameters: {
+          param: {
+            value: { a: 1, b: 2 },
+            explode: true,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: true primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/explode/primitive")
+      .get({
+        queryParameters: {
+          param: "a"
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false array", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/array")
+      .get({
+        queryParameters: {
+          param: ["a", "b"]
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false record", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/record")
+      .get({
+        queryParameters: {
+          param: {
+            value: { a: 1, b: 2 },
+            explode: false,
+            style: "form"
+          }
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
+  it("should have explode: false primitive", async () => {
+    const result = await client
+      .path("/routes/query/query-expansion/standard/primitive")
+      .get({
+        queryParameters: {
+          param: "a"
+        }
+      });
     assert.strictEqual(result.status, "204");
   });
 
@@ -59,4 +153,86 @@ describe("RoutesClient Rest Client", () => {
       .get({ queryParameters: { param: "a" } });
     assert.strictEqual(result.status, "204");
   });
+
+  describe("Query continuation", () => {
+    it("should pass query-continuation with standard array correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/array?fixed=true")
+        .get({
+          queryParameters: {
+            param: ["a", "b"]
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+
+    it("should pass query-continuation with standard primitive correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/primitive?fixed=true")
+        .get({
+          queryParameters: {
+            param: "a"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with standard record correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/standard/record?fixed=true")
+        .get({
+          queryParameters: {
+            param: {
+              value: { a: 1, b: 2 },
+              explode: false,
+              style: "form"
+            }
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded record correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/record?fixed=true")
+        .get({
+          queryParameters: {
+            param: {
+              value: { a: 1, b: 2 },
+              explode: true,
+              style: "form"
+            }
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded primitive correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/primitive?fixed=true")
+        .get({
+          queryParameters: {
+            param: "a"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should pass query-continuation with exploded array correctly", async () => {
+      const result = await client
+        .path("/routes/query/query-continuation/explode/array?fixed=true")
+        .get({
+          queryParameters: {
+            param: {
+              value: ["a", "b"],
+              explode: true,
+              style: "form"
+            }
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+  });
+
 });

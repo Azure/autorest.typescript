@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownApiVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
@@ -10,6 +11,7 @@ export interface RadiologyInsightsContext extends Client {}
 /** Optional parameters for the client. */
 export interface RadiologyInsightsClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownApiVersion} that the service accepts. */
   apiVersion?: string;
 }
 
@@ -20,11 +22,11 @@ export function createRadiologyInsights(
 ): RadiologyInsightsContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/health-insights`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-health-insights-radiologyinsights/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

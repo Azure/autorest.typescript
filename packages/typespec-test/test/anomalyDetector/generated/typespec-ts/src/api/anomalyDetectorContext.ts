@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
@@ -28,6 +29,7 @@ export interface AnomalyDetectorContext extends Client {}
 /** Optional parameters for the client. */
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
   /** Api Version */
+  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
@@ -59,11 +61,11 @@ export function createAnomalyDetector(
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/anomalydetector/${apiVersion}`;
-
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = `azsdk-js-ai-anomaly-detector/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : "azsdk-js-api";
+    ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
+    : `azsdk-js-api ${userAgentInfo}`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },

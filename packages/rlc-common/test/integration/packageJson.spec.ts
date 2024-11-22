@@ -299,7 +299,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -319,11 +319,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "rimraf review && mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -352,7 +352,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("dotenv");
       expect(packageFile.devDependencies).to.have.property("mocha");
       expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.have.property("cross-env");
+      expect(packageFile.devDependencies).to.not.have.property("cross-env");
       expect(packageFile.devDependencies).to.have.property("@types/chai");
       expect(packageFile.devDependencies).to.have.property("chai");
       expect(packageFile.devDependencies).to.have.property(
@@ -394,11 +394,11 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
@@ -426,11 +426,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "rimraf review && mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -445,6 +445,32 @@ describe("Package file generation", () => {
         "format",
         'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
+    });
+
+    it("[esm] should read clientContextPaths from config for modular", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+        isModularLibrary: true
+      });
+
+      const packageFileContent = buildPackageFile(model, {
+        clientContextPaths: ["src/api/chatCompletionsContext.ts"]
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/api/chatCompletionsContext.ts", "modular");
+    });
+
+    it("[esm] should read clientPath from config for rlc", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile).to.have.property("//metadata");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/msinternal/test.ts", "rlc");
     });
   });
 

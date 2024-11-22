@@ -288,8 +288,8 @@ function processModelProperties(
     if (newValue.name) {
       newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name}`;
-      newValue.name = `${newValue.name}Union`;
+      newValue.alias = `${newValue.name.replace(/Union$/g, "")}`;
+      newValue.name = `${newValue.name}`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
       newValue.isPolymorphicBaseModel = true;
@@ -348,7 +348,10 @@ export function getType(
   }
 
   if (isTypespecType(type)) {
-    newValue.tcgcType = getClientType(context, type);
+    newValue.tcgcType = getClientType(context, effectiveModel as any);
+    newValue.name = !newValue.tcgcType.isGeneratedName
+      ? normalizeModelName(context, newValue.tcgcType)
+      : newValue.name;
     newValue.__raw = type;
     modularMetatree.set(type, newValue);
   }
@@ -387,8 +390,7 @@ export function getType(
   }
   if (
     type.kind === "Model" &&
-    newValue.type === "dict" &&
-    newValue.name !== "Record" &&
+    newValue.tcgcType.additionalProperties &&
     !context.rlcOptions?.compatibilityMode
   ) {
     reportDiagnostic(context.program, {
@@ -491,9 +493,6 @@ function emitBodyParameter(
       usage: UsageFlags.Input
     });
 
-    type.name = !type.tcgcType.isGeneratedName
-      ? normalizeModelName(context, type.tcgcType)
-      : "";
     return {
       contentTypes,
       type,
@@ -510,7 +509,19 @@ function emitParameter(
   context: SdkContext,
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
-): Parameter {
+): Parameter | undefined {
+  if (parameter.type === "cookie") {
+    // TODO: support cookie parameters, https://github.com/Azure/autorest.typescript/issues/2898
+    reportDiagnostic(context.program, {
+      code: "parameter-type-not-supported",
+      format: {
+        paramType: parameter.type,
+        paramName: parameter.name
+      },
+      target: NoTarget
+    });
+    return undefined;
+  }
   const base = emitParamBase(context, parameter.param);
   let type = getType(context, parameter.param.type, {
     usage: UsageFlags.Input
@@ -523,7 +534,13 @@ function emitParameter(
     /// We don't want constant types for content types, so we make sure if it's
     /// a constant, we make it not constant
     clientDefaultValue = type["value"];
-    type = type["valueType"];
+    type = {
+      ...type["valueType"],
+      tcgcType:
+        base.tcgcType.kind === "constant"
+          ? base.tcgcType.valueType
+          : base.tcgcType
+    };
   }
   const paramMap = {
     restApiName: parameter.name,
@@ -533,7 +550,8 @@ function emitParameter(
     skipUrlEncoding:
       parameter.type === "endpointPath" ||
       (parameter.type === "path" && parameter.allowReserved),
-    format: (parameter as any).format ?? base.format
+    format: (parameter as any).format ?? base.format,
+    tcgcType: base.tcgcType
   };
 
   if (paramMap.type.type === "constant") {
@@ -851,6 +869,9 @@ function emitBasicOperation(
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
+    if (emittedParam === undefined) {
+      continue;
+    }
     if (isApiVersion(context, param)) {
       emittedParam.isApiVersion = true;
       methodApiVersionParam = emittedParam;
@@ -1714,6 +1735,9 @@ function emitServerParams(
         serverParameter,
         "Client"
       );
+      if (emittedParameter === undefined) {
+        continue;
+      }
       endpointPathParameters.push(emittedParameter);
       if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;

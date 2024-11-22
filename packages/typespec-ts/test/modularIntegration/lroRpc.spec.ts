@@ -12,13 +12,9 @@ describe("RpcClient Classical Client", () => {
   });
 
   it("should await poller result directly", async () => {
-    try {
-      const result = await client.longRunningRpc({
-        prompt: "text"
-      });
-      assert.strictEqual(result.data, "text data");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.longRunningRpc({
+      prompt: "text"
+    });
+    assert.strictEqual(result.data, "text data");
   });
 });

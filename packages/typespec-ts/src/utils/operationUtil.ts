@@ -409,10 +409,16 @@ export function extractPagedMetadataNested(
 }
 
 export function getSpecialSerializeInfo(
+  dpgContext: SdkContext,
   paramType: string,
   paramFormat: string
 ) {
-  const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
+  const hasMultiCollection = getHasMultiCollection(
+    paramType,
+    paramFormat,
+    // Include query multi support in compatibility mode
+    dpgContext.rlcOptions?.compatibilityQueryMultiFormat ?? false
+  );
   const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];
   const collectionInfo = [];
@@ -433,8 +439,22 @@ export function getSpecialSerializeInfo(
   };
 }
 
-function getHasMultiCollection(paramType: string, paramFormat: string) {
-  return paramType === "header" && paramFormat === "multi";
+function getHasMultiCollection(
+  paramType: string,
+  paramFormat: string,
+  includeQuery = true
+) {
+  return (
+    ((includeQuery && paramType === "query") || paramType === "header") &&
+    paramFormat === "multi"
+  );
+}
+function getHasSsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "ssv";
+}
+
+function getHasTsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "tsv";
 }
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";

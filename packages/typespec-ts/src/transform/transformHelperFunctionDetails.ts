@@ -183,15 +183,13 @@ function extractSpecialSerializeInfo(
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
+        dpgContext,
         parameter.type,
         (parameter as any).format
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasCsvCollection = hasCsvCollection
-        ? hasCsvCollection
-        : serializeInfo.hasCsvCollection;
     });
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -204,6 +202,7 @@ function extractSpecialSerializeInfo(
       const route = getHttpOperationWithCache(dpgContext, op);
       route.parameters.parameters.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(
+          dpgContext,
           parameter.type,
           (parameter as any).format
         );

@@ -15,6 +15,7 @@ import {
 export interface AzureMonorepoInfoConfig extends AzurePackageInfoConfig {
   monorepoPackageDirectory?: string;
   clientFilePaths: string[];
+  clientContextPaths?: string[];
 }
 
 /**
@@ -57,18 +58,6 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 export function getAzureMonorepoPackageInfo(
   config: AzureMonorepoInfoConfig
 ): Record<string, any> {
-  const metadata: Record<string, any> = {
-    constantPaths: []
-  };
-
-  addSwaggerMetadata(metadata, config.specSource);
-  for (const clientFilePath of config.clientFilePaths) {
-    metadata.constantPaths.push({
-      path: clientFilePath,
-      prefix: "userAgentInfo"
-    });
-  }
-
   const commonPackageInfo = getPackageCommonInfo(config);
 
   return {
@@ -83,7 +72,7 @@ export function getAzureMonorepoPackageInfo(
       homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${config.monorepoPackageDirectory}/README.md`
     }),
     prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
-    "//metadata": metadata
+    "//metadata": getMetadataInfo(config)
   };
 }
 
@@ -143,7 +132,6 @@ function getCjsDevDependencies({
       dotenv: "^16.0.0",
       mocha: "^10.0.0",
       "@types/mocha": "^10.0.0",
-      "cross-env": "^7.0.2",
       "@types/chai": "^4.2.8",
       chai: "^4.2.0",
       "karma-chrome-launcher": "^3.0.0",
@@ -185,19 +173,19 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const cjsScripts = getCjsScripts(config);
   return {
     ...getCommonPackageScripts(config),
-    audit:
-      "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": config.withSamples
       ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
       : "echo skipped",
     "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
+    clean:
+      "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
-      "rimraf review && mkdirp ./review && dev-tool run extract-api",
+      "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
     format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
@@ -210,9 +198,10 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
     lint: "eslint package.json api-extractor.json src test",
     minify:
-      "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
+      "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
-    ...cjsScripts
+    ...cjsScripts,
+    "update-snippets": "echo skipped"
   };
 }
 
@@ -225,7 +214,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
     "build:test":
       "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && dev-tool run build-package && mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
     "test:node":
       "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
@@ -242,8 +231,9 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build:
-      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api",
-    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
+      "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+    "build:node":
+      "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
     "build:debug":
       "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
@@ -254,4 +244,22 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
       "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
     "unit-test:browser": "dev-tool run test:browser"
   };
+}
+
+function getMetadataInfo(config: AzureMonorepoInfoConfig) {
+  const metadata: Record<string, any> = {
+    constantPaths: []
+  };
+  const paths = config.isModularLibrary
+    ? config.clientContextPaths
+    : config.clientFilePaths;
+  addSwaggerMetadata(metadata, config.specSource);
+  for (const path of paths ?? []) {
+    metadata.constantPaths.push({
+      path: path,
+      prefix: "userAgentInfo"
+    });
+  }
+
+  return metadata;
 }

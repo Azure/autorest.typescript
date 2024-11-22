@@ -23,12 +23,15 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export type APIVersion = "v1.1";
-
-// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export enum KnownVersions {
+    // (undocumented)
+    v1_1 = "v1.1"
+}
 
 // @public
 export type MultivariateAlignMode = "Inner" | "Outer";

@@ -68,9 +68,6 @@ After setup, you can choose which type of [credential](https://github.com/Azure/
 As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
 can be used to authenticate the client.
 
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
-
 ## Troubleshooting
 
 ### Logging
@@ -92,17 +89,19 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 {{ description }}
 
+Key links:
+
 {{#if packageSourceURL}}
-[Source code]({{ packageSourceURL }}) |
+- [Source code]({{ packageSourceURL }})
 {{/if}}
 {{#if packageNPMURL}}
-[Package (NPM)]({{ packageNPMURL }}) |
+- [Package (NPM)]({{ packageNPMURL }})
 {{/if}}
 {{#if apiRefURL}}
-[API reference documentation]({{ apiRefURL }}) |
+- [API reference documentation]({{ apiRefURL }})
 {{/if}}
 {{#if samplesURL}}
-[Samples]({{samplesURL}})
+- [Samples]({{samplesURL}})
 {{/if}}
 
 ## Getting started
@@ -146,7 +145,6 @@ npm install @azure/identity
 \`\`\`
 
 You will also need to **register a new AAD application and grant access to {{ serviceName}}** by assigning the suitable role to your service principal (note: roles such as \`"Owner"\` will not grant the necessary permissions).
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: \`AZURE_CLIENT_ID\`, \`AZURE_TENANT_ID\`, \`AZURE_CLIENT_SECRET\`.
 
 For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 

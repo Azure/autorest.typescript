@@ -20,6 +20,27 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
+import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
+import {
+  SdkHttpParameter,
+  SdkParameter
+} from "@azure-tools/typespec-client-generator-core";
+
+/**
+ * This function gets the path of the file containing the modular client context
+ */
+export function getClientContextPath(
+  _client: Client,
+  codeModel: ModularCodeModel
+): string {
+  const { subfolder, tcgcClient: client } = _client;
+  const name = getClientName(client);
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const contentPath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  return contentPath;
+}
 
 /**
  * This function creates the file containing the modular client context
@@ -29,18 +50,15 @@ export function buildClientContext(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, subfolder, tcgcClient: client } = _client;
+  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
   const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true
   });
-  const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }/api/${normalizeName(name, NameType.File)}Context.ts`
+    getClientContextPath(_client, codeModel)
   );
 
   clientContextFile.addInterface({
@@ -66,7 +84,7 @@ export function buildClientContext(
               ? "string"
               : getTypeExpression(dpgContext, p.type),
           hasQuestionToken: true,
-          docs: getDocsFromDescription(p.doc)
+          docs: getDocsWithKnownVersion(dpgContext, p)
         };
       }),
     docs: ["Optional parameters for the client."]
@@ -176,4 +194,22 @@ export function buildClientContext(
 
   clientContextFile.fixUnusedIdentifiers();
   return clientContextFile;
+}
+
+function getDocsWithKnownVersion(
+  dpgContext: SdkContext,
+  param: SdkParameter | SdkHttpParameter
+) {
+  const docs = getDocsFromDescription(param.doc);
+  if (param.name.toLowerCase() !== "apiversion") {
+    return docs;
+  }
+  const apiVersionEnum = getApiVersionEnum(dpgContext);
+  if (apiVersionEnum) {
+    const [_, knownValuesEnum] = buildEnumTypes(dpgContext, apiVersionEnum);
+    docs.push(
+      `Known values of {@link ${knownValuesEnum.name}} that the service accepts.`
+    );
+  }
+  return docs;
 }

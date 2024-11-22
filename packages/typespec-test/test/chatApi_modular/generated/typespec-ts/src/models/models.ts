@@ -32,6 +32,20 @@ export function streamingChatCompletionOptionsRecordSerializer(
   };
 }
 
+export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
+  return result.map((item) => {
+    return chatMessageSerializer(item);
+  });
+}
+
+export function chatMessageArrayDeserializer(
+  result: Array<ChatMessage>,
+): any[] {
+  return result.map((item) => {
+    return chatMessageDeserializer(item);
+  });
+}
+
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {
   /** The text associated with the message. */
@@ -66,20 +80,6 @@ export function chatMessageDeserializer(item: any): ChatMessage {
 /** A representation of the intended purpose of a message. */
 export type ChatRole = "user" | "system" | "assistant";
 
-export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
-  return result.map((item) => {
-    return chatMessageSerializer(item);
-  });
-}
-
-export function chatMessageArrayDeserializer(
-  result: Array<ChatMessage>,
-): any[] {
-  return result.map((item) => {
-    return chatMessageDeserializer(item);
-  });
-}
-
 /** A single response to a streaming completion request. */
 export interface ChatCompletionChunkRecord {
   /** The collection of choice deltas received in this chunk. */
@@ -92,6 +92,14 @@ export function chatCompletionChunkRecordDeserializer(
   return {
     choices: choiceDeltaRecordArrayDeserializer(item["choices"]),
   };
+}
+
+export function choiceDeltaRecordArrayDeserializer(
+  result: Array<ChoiceDeltaRecord>,
+): any[] {
+  return result.map((item) => {
+    return choiceDeltaRecordDeserializer(item);
+  });
 }
 
 /** The representation of an incremental choice received in a streaming completion. */
@@ -152,14 +160,6 @@ export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
 /** Representation of the reason why a chat session has finished processing. */
 export type FinishReason = "stop" | "length";
 
-export function choiceDeltaRecordArrayDeserializer(
-  result: Array<ChoiceDeltaRecord>,
-): any[] {
-  return result.map((item) => {
-    return choiceDeltaRecordDeserializer(item);
-  });
-}
-
 /** The configuration for a chat completion request. */
 export interface ChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -205,6 +205,14 @@ export function chatCompletionRecordDeserializer(
   };
 }
 
+export function chatChoiceRecordArrayDeserializer(
+  result: Array<ChatChoiceRecord>,
+): any[] {
+  return result.map((item) => {
+    return chatChoiceRecordDeserializer(item);
+  });
+}
+
 /** The representation of a single generated completion. */
 export interface ChatChoiceRecord {
   /** The index of the of the chat choice, relative to the other choices in the same completion. */
@@ -237,10 +245,7 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   };
 }
 
-export function chatChoiceRecordArrayDeserializer(
-  result: Array<ChatChoiceRecord>,
-): any[] {
-  return result.map((item) => {
-    return chatChoiceRecordDeserializer(item);
-  });
+/** Known values of {@link APIVersion} that the service accepts. */
+export enum KnownAPIVersion {
+  v20231001Preview = "2023-10-01-preview",
 }

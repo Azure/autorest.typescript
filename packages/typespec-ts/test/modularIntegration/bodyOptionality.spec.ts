@@ -14,38 +14,22 @@ describe("Body Optionality Client", () => {
   });
 
   it("should support required-explicit body", async () => {
-    try {
-      const result = await client.requiredExplicit({ name: "foo" });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.requiredExplicit({ name: "foo" });
+    assert.isUndefined(result);
   });
 
   it("should support optional-explicit body", async () => {
-    try {
-      const result = await client.optionalExplicit.set({ body: { name: "foo" } });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.optionalExplicit.set({ body: { name: "foo" } });
+    assert.isUndefined(result);
   });
 
   it("should support optional-explicit omitted body", async () => {
-    try {
-      const result = await client.optionalExplicit.omit();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.optionalExplicit.omit();
+    assert.isUndefined(result);
   });
 
   it("should support required-implicit body", async () => {
-    try {
-      const result = await client.requiredImplicit("foo");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.requiredImplicit("foo");
+    assert.isUndefined(result);
   });
 });
