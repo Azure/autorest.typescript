@@ -487,7 +487,7 @@ export interface Completions {
 export function completionsDeserializer(item: any): Completions {
   return {
     id: item["id"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     promptFilterResults: !item["prompt_filter_results"]
       ? item["prompt_filter_results"]
       : contentFilterResultsForPromptArrayDeserializer(
@@ -2912,7 +2912,7 @@ export interface ChatCompletions {
 export function chatCompletionsDeserializer(item: any): ChatCompletions {
   return {
     id: item["id"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     choices: chatChoiceArrayDeserializer(item["choices"]),
     model: item["model"],
     promptFilterResults: !item["prompt_filter_results"]
@@ -3546,7 +3546,7 @@ export interface ImageGenerations {
 
 export function imageGenerationsDeserializer(item: any): ImageGenerations {
   return {
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     data: imageGenerationDataArrayDeserializer(item["data"]),
   };
 }

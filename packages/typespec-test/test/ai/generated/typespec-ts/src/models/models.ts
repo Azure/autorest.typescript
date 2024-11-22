@@ -1389,7 +1389,7 @@ export function agentDeserializer(item: any): Agent {
   return {
     id: item["id"],
     object: item["object"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     name: item["name"],
     description: item["description"],
     model: item["model"],
@@ -1613,7 +1613,7 @@ export function agentThreadDeserializer(item: any): AgentThread {
   return {
     id: item["id"],
     object: item["object"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     toolResources: item["tool_resources"],
     metadata: item["metadata"],
   };
@@ -1675,16 +1675,16 @@ export function threadMessageSerializer(item: ThreadMessage): any {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: item["createdAt"].getTime(),
+    created_at: (item["createdAt"].getTime() / 1000) | 0,
     thread_id: item["threadId"],
     status: item["status"],
     incomplete_details: item["incompleteDetails"],
     completed_at: !item["completedAt"]
       ? item["completedAt"]
-      : item["completedAt"].getTime(),
+      : (item["completedAt"].getTime() / 1000) | 0,
     incomplete_at: !item["incompleteAt"]
       ? item["incompleteAt"]
-      : item["incompleteAt"].getTime(),
+      : (item["incompleteAt"].getTime() / 1000) | 0,
     role: item["role"],
     content: messageContentUnionArraySerializer(item["content"]),
     assistant_id: item["assistantId"],
@@ -1702,7 +1702,7 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
   return {
     id: item["id"],
     object: item["object"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     threadId: item["thread_id"],
     status: item["status"],
     incompleteDetails: item["incomplete_details"],
@@ -1710,12 +1710,12 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
       ? item["completed_at"]
       : !item["completed_at"]
         ? item["completed_at"]
-        : new Date(item["completed_at"]),
+        : new Date(item["completed_at"] * 1000),
     incompleteAt: !item["incomplete_at"]
       ? item["incomplete_at"]
       : !item["incomplete_at"]
         ? item["incomplete_at"]
-        : new Date(item["incomplete_at"]),
+        : new Date(item["incomplete_at"] * 1000),
     role: item["role"],
     content: messageContentUnionArrayDeserializer(item["content"]),
     assistantId: item["assistant_id"],
@@ -2350,32 +2350,32 @@ export function threadRunDeserializer(item: any): ThreadRun {
     model: item["model"],
     instructions: item["instructions"],
     tools: toolDefinitionUnionArrayDeserializer(item["tools"]),
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     expiresAt: !item["expires_at"]
       ? item["expires_at"]
       : !item["expires_at"]
         ? item["expires_at"]
-        : new Date(item["expires_at"]),
+        : new Date(item["expires_at"] * 1000),
     startedAt: !item["started_at"]
       ? item["started_at"]
       : !item["started_at"]
         ? item["started_at"]
-        : new Date(item["started_at"]),
+        : new Date(item["started_at"] * 1000),
     completedAt: !item["completed_at"]
       ? item["completed_at"]
       : !item["completed_at"]
         ? item["completed_at"]
-        : new Date(item["completed_at"]),
+        : new Date(item["completed_at"] * 1000),
     cancelledAt: !item["cancelled_at"]
       ? item["cancelled_at"]
       : !item["cancelled_at"]
         ? item["cancelled_at"]
-        : new Date(item["cancelled_at"]),
+        : new Date(item["cancelled_at"] * 1000),
     failedAt: !item["failed_at"]
       ? item["failed_at"]
       : !item["failed_at"]
         ? item["failed_at"]
-        : new Date(item["failed_at"]),
+        : new Date(item["failed_at"] * 1000),
     incompleteDetails: item["incomplete_details"],
     usage: item["usage"],
     temperature: item["temperature"],
@@ -2843,27 +2843,27 @@ export function runStepDeserializer(item: any): RunStep {
     status: item["status"],
     stepDetails: runStepDetailsUnionDeserializer(item["step_details"]),
     lastError: item["last_error"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     expiredAt: !item["expired_at"]
       ? item["expired_at"]
       : !item["expired_at"]
         ? item["expired_at"]
-        : new Date(item["expired_at"]),
+        : new Date(item["expired_at"] * 1000),
     completedAt: !item["completed_at"]
       ? item["completed_at"]
       : !item["completed_at"]
         ? item["completed_at"]
-        : new Date(item["completed_at"]),
+        : new Date(item["completed_at"] * 1000),
     cancelledAt: !item["cancelled_at"]
       ? item["cancelled_at"]
       : !item["cancelled_at"]
         ? item["cancelled_at"]
-        : new Date(item["cancelled_at"]),
+        : new Date(item["cancelled_at"] * 1000),
     failedAt: !item["failed_at"]
       ? item["failed_at"]
       : !item["failed_at"]
         ? item["failed_at"]
-        : new Date(item["failed_at"]),
+        : new Date(item["failed_at"] * 1000),
     usage: item["usage"],
     metadata: item["metadata"],
   };
@@ -3447,7 +3447,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     id: item["id"],
     bytes: item["bytes"],
     filename: item["filename"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     purpose: item["purpose"],
     status: item["status"],
     statusDetails: item["status_details"],
@@ -3572,7 +3572,7 @@ export function vectorStoreDeserializer(item: any): VectorStore {
   return {
     id: item["id"],
     object: item["object"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     name: item["name"],
     usageBytes: item["usage_bytes"],
     fileCounts: vectorStoreFileCountDeserializer(item["file_counts"]),
@@ -3584,12 +3584,12 @@ export function vectorStoreDeserializer(item: any): VectorStore {
       ? item["expires_at"]
       : !item["expires_at"]
         ? item["expires_at"]
-        : new Date(item["expires_at"]),
+        : new Date(item["expires_at"] * 1000),
     lastActiveAt: !item["last_active_at"]
       ? item["last_active_at"]
       : !item["last_active_at"]
         ? item["last_active_at"]
-        : new Date(item["last_active_at"]),
+        : new Date(item["last_active_at"] * 1000),
     metadata: item["metadata"],
   };
 }
@@ -3832,7 +3832,7 @@ export function vectorStoreFileDeserializer(item: any): VectorStoreFile {
     id: item["id"],
     object: item["object"],
     usageBytes: item["usage_bytes"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     vectorStoreId: item["vector_store_id"],
     status: item["status"],
     lastError: item["last_error"],
@@ -3993,7 +3993,7 @@ export function vectorStoreFileBatchDeserializer(
   return {
     id: item["id"],
     object: item["object"],
-    createdAt: new Date(item["created_at"]),
+    createdAt: new Date(item["created_at"] * 1000),
     vectorStoreId: item["vector_store_id"],
     status: item["status"],
     fileCounts: vectorStoreFileCountDeserializer(item["file_counts"]),
