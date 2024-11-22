@@ -11,20 +11,12 @@ describe("BasicClient Client", () => {
   });
 
   it("basic parameters explicit-body simple", async () => {
-    try {
-      const result = await client.explicitBody.simple({ name: "foo" });
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.explicitBody.simple({ name: "foo" });
+    assert.isUndefined(result);
   });
 
   it("basic parameters implicit-body simple", async () => {
-    try {
-      const result = await client.implicitBody.simple("foo");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.implicitBody.simple("foo");
+    assert.isUndefined(result);
   });
 });

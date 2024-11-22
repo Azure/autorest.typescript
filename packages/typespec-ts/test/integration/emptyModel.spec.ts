@@ -15,35 +15,23 @@ describe("TypeModelEmptyClient Rest Client", () => {
   });
 
   it(`should put empty model`, async () => {
-    try {
-      const result = await client.path("/type/model/empty/alone").put({
-        body: {}
-      });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/type/model/empty/alone").put({
+      body: {}
+    });
+    assert.strictEqual(result.status, "204");
   });
 
   it(`should get empty model`, async () => {
-    try {
-      const result = await client.path("/type/model/empty/alone").get();
-      assert.strictEqual(result.status, "200");
-      assert.isEmpty(result.body);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/type/model/empty/alone").get();
+    assert.strictEqual(result.status, "200");
+    assert.isEmpty(result.body);
   });
 
   it(`should post round-trip empty model`, async () => {
-    try {
-      const result = await client.path("/type/model/empty/round-trip").post({
-        body: {}
-      });
-      assert.strictEqual(result.status, "200");
-      assert.isEmpty(result.body);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.path("/type/model/empty/round-trip").post({
+      body: {}
+    });
+    assert.strictEqual(result.status, "200");
+    assert.isEmpty(result.body);
   });
 });

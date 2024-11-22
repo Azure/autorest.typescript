@@ -30,9 +30,9 @@ export function transformApiVersionInfo(
   const isCrossedVersion =
     queryVersionDetail || pathVersionDetail
       ? Boolean(
-          pathVersionDetail?.isCrossedVersion ||
-            queryVersionDetail?.isCrossedVersion
-        )
+        pathVersionDetail?.isCrossedVersion ||
+        queryVersionDetail?.isCrossedVersion
+      )
       : undefined;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
@@ -86,7 +86,7 @@ export function getOperationApiVersion(
         relevantProperty: p.param
       });
       required.add(!p.param.optional);
-      if (p.type !== "header" && p.type !== "cookie") {
+      if (p.type === "query" || p.type === "path") {
         locations.add(p.type);
       }
       const typeString = JSON.stringify(trimUsage(type));
@@ -127,7 +127,7 @@ export function getOperationApiVersion(
           relevantProperty: p.param
         });
         required.add(!p.param.optional);
-        if (p.type !== "header" && p.type !== "cookie") {
+        if (p.type === "query" || p.type === "path") {
           locations.add(p.type);
         }
         const typeString = JSON.stringify(trimUsage(type));

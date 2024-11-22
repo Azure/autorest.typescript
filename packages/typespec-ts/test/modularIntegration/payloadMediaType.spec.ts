@@ -12,41 +12,25 @@ describe("MediaType Client", () => {
   });
 
   it("should getAsText", async () => {
-    try {
-      const result = await client.stringBody.getAsText({
-        requestOptions: { headers: { accept: "text/plain" } }
-      });
-      assert.strictEqual(result, "{cat}");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.stringBody.getAsText({
+      requestOptions: { headers: { accept: "text/plain" } }
+    });
+    assert.strictEqual(result, "{cat}");
   });
 
   it("should sendAsText", async () => {
-    try {
-      const result = await client.stringBody.sendAsText("{cat}");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.stringBody.sendAsText("{cat}");
+    assert.isUndefined(result);
   });
 
   it("should getAsJson", async () => {
-    try {
-      const result = await client.stringBody.getAsJson();
-      console.log(result);
-      assert.strictEqual(result, "foo");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.stringBody.getAsJson();
+    console.log(result);
+    assert.strictEqual(result, "foo");
   });
 
   it("should sendAsJson", async () => {
-    try {
-      const result = await client.stringBody.sendAsJson("foo");
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.stringBody.sendAsJson("foo");
+    assert.isUndefined(result);
   });
 });

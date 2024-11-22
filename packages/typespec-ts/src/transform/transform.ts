@@ -46,6 +46,7 @@ export async function transformRLCModel(
 ): Promise<RLCModel> {
   const program = dpgContext.program;
   const options: RLCOptions = dpgContext.rlcOptions!;
+  const rlcSourceDir = dpgContext.generationPathDetail?.rlcSourcesDir;
   const srcPath = path.join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
@@ -100,7 +101,8 @@ export async function transformRLCModel(
     importInfo: {
       internalImports: importSet,
       runtimeImports: buildRuntimeImports(options.flavor)
-    }
+    },
+    rlcSourceDir
   };
   model.sampleGroups = transformSampleGroups(
     model,
