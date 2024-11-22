@@ -103,7 +103,7 @@ export interface LROsPut202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut202Retry200_Parameters = LROsPut202Retry200MediaTypesParam &
+export type LROsPut202Retry200Parameters = LROsPut202Retry200MediaTypesParam &
   LROsPut202Retry200BodyParam &
   RequestParameters;
 
@@ -117,7 +117,7 @@ export interface LROsPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut201CreatingSucceeded200_Parameters =
+export type LROsPut201CreatingSucceeded200Parameters =
   LROsPut201CreatingSucceeded200MediaTypesParam &
     LROsPut201CreatingSucceeded200BodyParam &
     RequestParameters;
@@ -132,7 +132,7 @@ export interface LROsPut200UpdatingSucceeded204MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut200UpdatingSucceeded204_Parameters =
+export type LROsPut200UpdatingSucceeded204Parameters =
   LROsPut200UpdatingSucceeded204MediaTypesParam &
     LROsPut200UpdatingSucceeded204BodyParam &
     RequestParameters;
@@ -147,7 +147,7 @@ export interface LROsPut201CreatingFailed200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut201CreatingFailed200_Parameters =
+export type LROsPut201CreatingFailed200Parameters =
   LROsPut201CreatingFailed200MediaTypesParam &
     LROsPut201CreatingFailed200BodyParam &
     RequestParameters;
@@ -162,7 +162,7 @@ export interface LROsPut200Acceptedcanceled200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut200Acceptedcanceled200_Parameters =
+export type LROsPut200Acceptedcanceled200Parameters =
   LROsPut200Acceptedcanceled200MediaTypesParam &
     LROsPut200Acceptedcanceled200BodyParam &
     RequestParameters;
@@ -316,13 +316,13 @@ export type LROsPutAsyncSubResourceParameters =
     RequestParameters;
 export type LROsDeleteProvisioning202Accepted200SucceededParameters =
   RequestParameters;
-export type LROsDeleteProvisioning202DeletingFailed200_Parameters =
+export type LROsDeleteProvisioning202DeletingFailed200Parameters =
   RequestParameters;
-export type LROsDeleteProvisioning202Deletingcanceled200_Parameters =
+export type LROsDeleteProvisioning202Deletingcanceled200Parameters =
   RequestParameters;
 export type LROsDelete204SucceededParameters = RequestParameters;
-export type LROsDelete202Retry200_Parameters = RequestParameters;
-export type LROsDelete202NoRetry204_Parameters = RequestParameters;
+export type LROsDelete202Retry200Parameters = RequestParameters;
+export type LROsDelete202NoRetry204Parameters = RequestParameters;
 export type LROsDeleteNoHeaderInRetryParameters = RequestParameters;
 export type LROsDeleteAsyncNoHeaderInRetryParameters = RequestParameters;
 export type LROsDeleteAsyncRetrySucceededParameters = RequestParameters;
@@ -341,10 +341,9 @@ export interface LROsPost202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPost202Retry200_Parameters =
-  LROsPost202Retry200MediaTypesParam &
-    LROsPost202Retry200BodyParam &
-    RequestParameters;
+export type LROsPost202Retry200Parameters = LROsPost202Retry200MediaTypesParam &
+  LROsPost202Retry200BodyParam &
+  RequestParameters;
 
 export interface LROsPost202NoRetry204BodyParam {
   /** Product to put */
@@ -356,7 +355,7 @@ export interface LROsPost202NoRetry204MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPost202NoRetry204_Parameters =
+export type LROsPost202NoRetry204Parameters =
   LROsPost202NoRetry204MediaTypesParam &
     LROsPost202NoRetry204BodyParam &
     RequestParameters;
@@ -436,7 +435,7 @@ export interface LRORetrysPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPut201CreatingSucceeded200_Parameters =
+export type LRORetrysPut201CreatingSucceeded200Parameters =
   LRORetrysPut201CreatingSucceeded200MediaTypesParam &
     LRORetrysPut201CreatingSucceeded200BodyParam &
     RequestParameters;
@@ -457,7 +456,7 @@ export type LRORetrysPutAsyncRelativeRetrySucceededParameters =
     RequestParameters;
 export type LRORetrysDeleteProvisioning202Accepted200SucceededParameters =
   RequestParameters;
-export type LRORetrysDelete202Retry200_Parameters = RequestParameters;
+export type LRORetrysDelete202Retry200Parameters = RequestParameters;
 export type LRORetrysDeleteAsyncRelativeRetrySucceededParameters =
   RequestParameters;
 
@@ -471,7 +470,7 @@ export interface LRORetrysPost202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPost202Retry200_Parameters =
+export type LRORetrysPost202Retry200Parameters =
   LRORetrysPost202Retry200MediaTypesParam &
     LRORetrysPost202Retry200BodyParam &
     RequestParameters;
@@ -501,7 +500,7 @@ export interface LrosaDsPutNonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutNonRetry400_Parameters =
+export type LrosaDsPutNonRetry400Parameters =
   LrosaDsPutNonRetry400MediaTypesParam &
     LrosaDsPutNonRetry400BodyParam &
     RequestParameters;
@@ -516,7 +515,7 @@ export interface LrosaDsPutNonRetry201Creating400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutNonRetry201Creating400_Parameters =
+export type LrosaDsPutNonRetry201Creating400Parameters =
   LrosaDsPutNonRetry201Creating400MediaTypesParam &
     LrosaDsPutNonRetry201Creating400BodyParam &
     RequestParameters;
@@ -546,13 +545,13 @@ export interface LrosaDsPutAsyncRelativeRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetry400_Parameters =
+export type LrosaDsPutAsyncRelativeRetry400Parameters =
   LrosaDsPutAsyncRelativeRetry400MediaTypesParam &
     LrosaDsPutAsyncRelativeRetry400BodyParam &
     RequestParameters;
-export type LrosaDsDeleteNonRetry400_Parameters = RequestParameters;
-export type LrosaDsDelete202NonRetry400_Parameters = RequestParameters;
-export type LrosaDsDeleteAsyncRelativeRetry400_Parameters = RequestParameters;
+export type LrosaDsDeleteNonRetry400Parameters = RequestParameters;
+export type LrosaDsDelete202NonRetry400Parameters = RequestParameters;
+export type LrosaDsDeleteAsyncRelativeRetry400Parameters = RequestParameters;
 
 export interface LrosaDsPostNonRetry400BodyParam {
   /** Product to put */
@@ -564,7 +563,7 @@ export interface LrosaDsPostNonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostNonRetry400_Parameters =
+export type LrosaDsPostNonRetry400Parameters =
   LrosaDsPostNonRetry400MediaTypesParam &
     LrosaDsPostNonRetry400BodyParam &
     RequestParameters;
@@ -579,7 +578,7 @@ export interface LrosaDsPost202NonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPost202NonRetry400_Parameters =
+export type LrosaDsPost202NonRetry400Parameters =
   LrosaDsPost202NonRetry400MediaTypesParam &
     LrosaDsPost202NonRetry400BodyParam &
     RequestParameters;
@@ -594,7 +593,7 @@ export interface LrosaDsPostAsyncRelativeRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostAsyncRelativeRetry400_Parameters =
+export type LrosaDsPostAsyncRelativeRetry400Parameters =
   LrosaDsPostAsyncRelativeRetry400MediaTypesParam &
     LrosaDsPostAsyncRelativeRetry400BodyParam &
     RequestParameters;
@@ -797,7 +796,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPut201CreatingSucceeded200_Parameters =
+export type LROsCustomHeaderPut201CreatingSucceeded200Parameters =
   LROsCustomHeaderPut201CreatingSucceeded200MediaTypesParam &
     LROsCustomHeaderPut201CreatingSucceeded200BodyParam &
     RequestParameters;
@@ -812,7 +811,7 @@ export interface LROsCustomHeaderPost202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPost202Retry200_Parameters =
+export type LROsCustomHeaderPost202Retry200Parameters =
   LROsCustomHeaderPost202Retry200MediaTypesParam &
     LROsCustomHeaderPost202Retry200BodyParam &
     RequestParameters;
