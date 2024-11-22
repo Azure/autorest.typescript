@@ -91,10 +91,9 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
-  const rlcOptions: RLCOptions = transformRLCOptions(
-    emitterOptions,
-    dpgContext
-  );
+  // Enrich the dpg context with path detail and common options
+  await enrichDpgContext();
+  const rlcOptions = dpgContext.rlcOptions ?? {};
 
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -109,7 +108,6 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
-  const { modularSourcesDir } = await calculateGenerationDir(rlcOptions);
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
@@ -117,7 +115,7 @@ export async function $onEmit(context: EmitContext) {
       ...PagingHelpers,
       ...PollingHelpers
     },
-    { sourcesDir: modularSourcesDir }
+    { sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir }
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
@@ -136,11 +134,10 @@ export async function $onEmit(context: EmitContext) {
 
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
-  // 1. Enrich the dpg context with path detail and common options
-  await enrichDpgContext();
-  // 2. Clear sources folder
+
+  // 1. Clear sources folder
   await clearSrcFolder();
-  // 3. Generate RLC code model
+  // 2. Generate RLC code model
   // TODO: skip this step in modular once modular generator is sufficiently decoupled
   await buildRLCCodeModels();
 
@@ -155,28 +152,26 @@ export async function $onEmit(context: EmitContext) {
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {
-    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     const generationPathDetail: GenerationDirDetail =
-      await calculateGenerationDir(options);
+      await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    rlcOptions.generateTest =
-      rlcOptions.generateTest === true ||
-      (rlcOptions.generateTest === undefined &&
-        !hasTestFolder &&
-        isAzurePackage({ options: rlcOptions }));
-    dpgContext.rlcOptions = rlcOptions;
-  }
-
-  async function calculateGenerationDir(
-    options: RLCOptions
-  ): Promise<GenerationDirDetail> {
+    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);
     }
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    options.generateTest =
+      options.generateTest === true ||
+      (options.generateTest === undefined &&
+        !hasTestFolder &&
+        isAzurePackage({ options: options }));
+    dpgContext.rlcOptions = options;
+  }
+
+  async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
     // if customization folder exists, use it as sources root
@@ -304,6 +299,9 @@ export async function $onEmit(context: EmitContext) {
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
+    if (program.compilerOptions.noEmit || program.hasError()) {
+      return;
+    }
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports(

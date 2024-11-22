@@ -997,7 +997,7 @@ export function serializeRequestValue(
         case "headerDefault":
           return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
         case "unixTimestamp":
-          return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
+          return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${
@@ -1086,7 +1086,7 @@ export function deserializeResponseValue(
       : "";
   switch (type.type) {
     case "datetime":
-      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
+      return `${nullOrUndefinedPrefix} new Date(${type.format === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "list": {
       const prefix = nullOrUndefinedPrefix + restValue;
       let elementNullOrUndefinedPrefix = "";
