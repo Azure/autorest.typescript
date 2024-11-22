@@ -14,6 +14,237 @@ model Test {
 // (file was not generated)
 ```
 
+# should handle type_literals:boolean -> boolean_literals
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+
+#suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+@service({
+  title: "Azure TypeScript Testing"
+})
+namespace Azure.TypeScript.Testing;
+
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+model InputOutputModel {
+  prop: true;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+@route("/models")
+@get
+op getModel(@body input: InputOutputModel): InputOutputModel;
+```
+
+```yaml
+needOptions: false
+withRawContent: true
+```
+
+## Models
+
+```ts models
+/** model interface InputOutputModel */
+export interface InputOutputModel {
+  prop: true;
+}
+
+export function inputOutputModelSerializer(item: InputOutputModel): any {
+  return { prop: item["prop"] };
+}
+
+export function inputOutputModelDeserializer(item: any): InputOutputModel {
+  return {
+    prop: item["prop"]
+  };
+}
+```
+
+# should handle type_literals:number -> number_literals
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+
+#suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+
+@service({
+  title: "Azure TypeScript Testing"
+})
+namespace Azure.TypeScript.Testing;
+
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+model InputOutputModel {
+  prop: 1;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+@route("/models")
+@get
+op getModel(@body input: InputOutputModel): InputOutputModel;
+```
+
+```yaml
+needOptions: false
+withRawContent: true
+```
+
+## Models
+
+```ts models
+/** model interface InputOutputModel */
+export interface InputOutputModel {
+  prop: 1;
+}
+
+export function inputOutputModelSerializer(item: InputOutputModel): any {
+  return { prop: item["prop"] };
+}
+
+export function inputOutputModelDeserializer(item: any): InputOutputModel {
+  return {
+    prop: item["prop"]
+  };
+}
+```
+
+# should handle type_literals:string -> string_literals
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+
+#suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+@service({
+  title: "Azure TypeScript Testing"
+})
+namespace Azure.TypeScript.Testing;
+
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+model InputOutputModel {
+  prop: "foo";
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+@route("/models")
+@get
+op getModel(@body input: InputOutputModel): InputOutputModel;
+```
+
+```yaml
+needOptions: false
+withRawContent: true
+```
+
+## Models
+
+```ts models
+/** model interface InputOutputModel */
+export interface InputOutputModel {
+  prop: "foo";
+}
+
+export function inputOutputModelSerializer(item: InputOutputModel): any {
+  return { prop: item["prop"] };
+}
+
+export function inputOutputModelDeserializer(item: any): InputOutputModel {
+  return {
+    prop: item["prop"]
+  };
+}
+```
+
+# should handle enum member
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+
+using TypeSpec.Rest;
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+
+#suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+@service({
+  title: "Azure TypeScript Testing"
+})
+namespace Azure.TypeScript.Testing;
+
+  @doc("Translation Language Values")
+  enum TranslationLanguageValues {
+    @doc("English descriptions")
+    English: "English",
+    @doc("Chinese descriptions")
+    Chinese: "Chinese",
+  }
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+model InputOutputModel {
+  prop: TranslationLanguageValues.English;
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+@route("/models")
+@get
+op getModel(@body input: InputOutputModel): InputOutputModel;
+```
+
+```yaml
+needOptions: false
+withRawContent: true
+```
+
+## Models
+
+```ts models
+/** model interface InputOutputModel */
+export interface InputOutputModel {
+  prop: "English";
+}
+
+export function inputOutputModelSerializer(item: InputOutputModel): any {
+  return { prop: item["prop"] };
+}
+
+export function inputOutputModelDeserializer(item: any): InputOutputModel {
+  return {
+    prop: item["prop"]
+  };
+}
+
+/** Translation Language Values */
+export type TranslationLanguageValues = "English" | "Chinese";
+```
+
 # should handle boolean literal type
 
 ## TypeSpec
