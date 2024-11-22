@@ -16,6 +16,14 @@ export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   };
 }
 
+export function schemaGroupArrayDeserializer(
+  result: Array<SchemaGroup>,
+): any[] {
+  return result.map((item) => {
+    return schemaGroupDeserializer(item);
+  });
+}
+
 /** Schema Group resource. */
 export interface SchemaGroup {
   /** Name of schema group. */
@@ -26,14 +34,6 @@ export function schemaGroupDeserializer(item: any): SchemaGroup {
   return {
     groupName: item["groupName"],
   };
-}
-
-export function schemaGroupArrayDeserializer(
-  result: Array<SchemaGroup>,
-): any[] {
-  return result.map((item) => {
-    return schemaGroupDeserializer(item);
-  });
 }
 
 /** Paged collection of Version items */
@@ -51,6 +51,14 @@ export function _pagedVersionDeserializer(item: any): _PagedVersion {
   };
 }
 
+export function schemaVersionArrayDeserializer(
+  result: Array<SchemaVersion>,
+): any[] {
+  return result.map((item) => {
+    return schemaVersionDeserializer(item);
+  });
+}
+
 /** Schema versions resource. */
 export interface SchemaVersion {
   /** Version number of specific schema. */
@@ -61,14 +69,6 @@ export function schemaVersionDeserializer(item: any): SchemaVersion {
   return {
     schemaVersion: item["schemaVersion"],
   };
-}
-
-export function schemaVersionArrayDeserializer(
-  result: Array<SchemaVersion>,
-): any[] {
-  return result.map((item) => {
-    return schemaVersionDeserializer(item);
-  });
 }
 
 /** Meta properties of a schema. */
