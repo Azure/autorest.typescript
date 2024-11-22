@@ -1,10 +1,8 @@
-import {
-  SdkContext,
-  SdkUnionType
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkUnionType } from "@azure-tools/typespec-client-generator-core";
 import { resolveReference } from "../../framework/reference.js";
 import { getTypeExpression, EmitTypeOptions } from "./get-type-expression.js";
 import { shouldEmitInline } from "./utils.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getUnionExpression(
   context: SdkContext,

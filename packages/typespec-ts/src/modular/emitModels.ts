@@ -17,10 +17,11 @@ import {
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
-  SdkHttpPackage,
   SdkMethod,
   SdkModelPropertyType,
   SdkModelType,
+  SdkNullableType,
+  SdkServiceMethod,
   SdkType,
   SdkUnionType,
   UsageFlags,
@@ -53,6 +54,7 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { emitQueue } from "../framework/hooks/sdkTypes.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -66,24 +68,24 @@ function isGenerableType(
   | SdkEnumType
   | SdkUnionType
   | SdkDictionaryType
-  | SdkArrayType {
+  | SdkArrayType
+  | SdkNullableType {
   return (
     type.kind === "model" ||
     type.kind === "enum" ||
     type.kind === "union" ||
     type.kind === "dict" ||
-    type.kind === "array"
+    type.kind === "array" ||
+    type.kind === "nullable"
   );
 }
 export function emitTypes(
   context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
 ) {
-  const sdkPackage = context.sdkPackage;
-  const emitQueue: Set<SdkType> = new Set();
+  const { sdkPackage } = context;
   const outputProject = useContext("outputProject");
 
-  visitPackageTypes(sdkPackage, emitQueue);
   const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
   if (
@@ -105,79 +107,7 @@ export function emitTypes(
     if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
-    if (type.kind === "model") {
-      if (isAzureCoreErrorType(context.program, type.__raw)) {
-        continue;
-      }
-      if (
-        !type.usage ||
-        (type.usage !== undefined &&
-          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
-      ) {
-        continue;
-      }
-      if (!type.name && type.isGeneratedName) {
-        // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
-        // throw new Error(`Generation of anonymous types`);
-        continue;
-      }
-      const modelInterface = buildModelInterface(context, type);
-      if (type.discriminatorProperty) {
-        modelInterface.properties
-          ?.filter((p) => {
-            return (
-              p.name ===
-              normalizeModelPropertyName(context, type.discriminatorProperty!)
-            );
-          })
-          .map((p) => {
-            p.docs?.push(
-              `The discriminator possible values: ${Object.keys(type.discriminatedSubtypes ?? {}).join(", ")}`
-            );
-            return p;
-          });
-      }
-      addDeclaration(sourceFile, modelInterface, type);
-      const modelPolymorphicType = buildModelPolymorphicType(context, type);
-      if (modelPolymorphicType) {
-        addSerializationFunctions(context, type, sourceFile, true);
-        addDeclaration(
-          sourceFile,
-          modelPolymorphicType,
-          refkey(type, "polymorphicType")
-        );
-      }
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "enum") {
-      if (
-        !type.usage ||
-        (type.usage !== undefined &&
-          (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-          (type.usage & UsageFlags.Input) !== UsageFlags.Input)
-      ) {
-        continue;
-      }
-      const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
-      if (isExtensibleEnum(context, type) && !enumType.name.startsWith("_")) {
-        addDeclaration(
-          sourceFile,
-          knownValuesEnum,
-          refkey(type, "knownValues")
-        );
-      }
-      if (!enumType.name.startsWith("_")) {
-        addDeclaration(sourceFile, enumType, type);
-      }
-    } else if (type.kind === "union") {
-      const unionType = buildUnionType(context, type);
-      addDeclaration(sourceFile, unionType, type);
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "dict") {
-      addSerializationFunctions(context, type, sourceFile);
-    } else if (type.kind === "array") {
-      addSerializationFunctions(context, type, sourceFile);
-    }
+    emitType(context, type, sourceFile);
   }
 
   if (
@@ -190,6 +120,100 @@ export function emitTypes(
   }
   addImportBySymbol("serializeRecord", sourceFile);
   return sourceFile;
+}
+
+function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
+  if (type.kind === "model") {
+    if (isAzureCoreErrorType(context.program, type.__raw)) {
+      return;
+    }
+    if (
+      !type.usage ||
+      (type.usage !== undefined &&
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+    ) {
+      return;
+    }
+    if (!type.name && type.isGeneratedName) {
+      // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
+      // throw new Error(`Generation of anonymous types`);
+      return;
+    }
+    const modelInterface = buildModelInterface(context, type);
+    if (type.discriminatorProperty) {
+      modelInterface.properties
+        ?.filter((p) => {
+          return (
+            p.name ===
+            normalizeModelPropertyName(context, type.discriminatorProperty!)
+          );
+        })
+        .map((p) => {
+          p.docs?.push(
+            `The discriminator possible values: ${Object.keys(type.discriminatedSubtypes ?? {}).join(", ")}`
+          );
+          return p;
+        });
+    }
+    addDeclaration(sourceFile, modelInterface, type);
+    const modelPolymorphicType = buildModelPolymorphicType(context, type);
+    if (modelPolymorphicType) {
+      addSerializationFunctions(context, type, sourceFile, true);
+      addDeclaration(
+        sourceFile,
+        modelPolymorphicType,
+        refkey(type, "polymorphicType")
+      );
+    }
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "enum") {
+    if (!type.usage) {
+      return;
+    }
+    const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
+    const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
+    const outputUsage = (type.usage & UsageFlags.Output) === UsageFlags.Output;
+    if (!(inputUsage || outputUsage || apiVersionEnumOnly)) {
+      return;
+    }
+    const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+    if (enumType.name.startsWith("_")) {
+      // skip enum generation for internal enums
+      return;
+    }
+    if (apiVersionEnumOnly) {
+      // generate known values enum only for api version enums
+      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+    } else {
+      if (isExtensibleEnum(context, type)) {
+        addDeclaration(
+          sourceFile,
+          knownValuesEnum,
+          refkey(type, "knownValues")
+        );
+      }
+      addDeclaration(sourceFile, enumType, type);
+    }
+  } else if (type.kind === "union") {
+    const unionType = buildUnionType(context, type);
+    addDeclaration(sourceFile, unionType, type);
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "dict") {
+    addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "array") {
+    addSerializationFunctions(context, type, sourceFile);
+  }
+}
+
+export function getApiVersionEnum(context: SdkContext) {
+  const apiVersionEnum = context.sdkPackage.enums.find(
+    (e) => e.usage === UsageFlags.ApiVersionEnum
+  );
+  if (!apiVersionEnum) {
+    return;
+  }
+  return apiVersionEnum;
 }
 
 export function getModelsPath(sourceRoot: string): string {
@@ -256,7 +280,7 @@ function buildUnionType(
   return unionDeclaration;
 }
 
-function buildEnumTypes(
+export function buildEnumTypes(
   context: SdkContext,
   type: SdkEnumType
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
@@ -507,15 +531,17 @@ function buildModelProperty(
   return propertyStructure;
 }
 
-export function visitPackageTypes(
-  sdkPackage: SdkHttpPackage,
-  emitQueue: Set<SdkType>
-) {
+export function visitPackageTypes(context: SdkContext) {
+  const { sdkPackage } = context;
+  emitQueue.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
-    visitType(model, emitQueue);
+    visitType(context, model);
   }
 
+  for (const union of sdkPackage.unions) {
+    visitType(context, union);
+  }
   // Add all enums to the queue
   for (const enumType of sdkPackage.enums) {
     if (!emitQueue.has(enumType)) {
@@ -525,128 +551,123 @@ export function visitPackageTypes(
 
   // Visit the clients to discover all models
   for (const client of sdkPackage.clients) {
-    visitClient(client, emitQueue);
+    visitClient(context, client);
   }
 }
 
 function visitClient(
-  client: SdkClientType<SdkHttpOperation>,
-  emitQueue: Set<SdkType>
+  context: SdkContext,
+  client: SdkClientType<SdkHttpOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
   // visitType(client.initialization, emitQueue);
-  client.methods.forEach((method) => visitClientMethod(method, emitQueue));
+  client.methods.forEach((method) => visitClientMethod(context, method));
 }
 
 function visitClientMethod(
-  method: SdkMethod<SdkHttpOperation>,
-  emitQueue: Set<SdkType>
+  context: SdkContext,
+  method: SdkMethod<SdkHttpOperation>
 ) {
   switch (method.kind) {
     case "lro":
     case "paging":
     case "lropaging":
     case "basic":
-      visitOperation(method.operation, emitQueue);
+      visitMethod(context, method);
+      visitOperation(context, method.operation);
       break;
     case "clientaccessor":
       method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(responseMethod, emitQueue)
+        visitClientMethod(context, responseMethod)
       );
-      method.parameters.forEach((parameter) =>
-        visitType(parameter.type, emitQueue)
-      );
+      method.parameters.forEach((parameter) => {
+        visitType(context, parameter.type);
+      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
   }
 }
 
-function visitOperation(operation: SdkHttpOperation, emitQueue: Set<SdkType>) {
+function visitOperation(context: SdkContext, operation: SdkHttpOperation) {
   // Visit the request
-  visitType(operation.bodyParam?.type, emitQueue);
+  visitType(context, operation.bodyParam?.type);
   // Visit the response
   operation.exceptions.forEach((exception) =>
-    visitType(exception.type, emitQueue)
+    visitType(context, exception.type)
   );
 
-  operation.parameters.forEach((parameter) =>
-    visitType(parameter.type, emitQueue)
-  );
+  operation.parameters.forEach((parameter) => {
+    visitType(context, parameter.type);
+  });
 
-  operation.responses.forEach((response) =>
-    visitType(response.type, emitQueue)
-  );
+  operation.responses.forEach((response) => visitType(context, response.type));
 }
 
-function visitType(type: SdkType | undefined, emitQueue: Set<SdkType>) {
+function visitMethod(
+  context: SdkContext,
+  method: SdkServiceMethod<SdkHttpOperation>
+) {
+  // Visit the request
+  method.parameters.forEach((parameter) => {
+    visitType(context, parameter.type);
+  });
+  visitType(context, method.response.type);
+}
+
+function visitType(context: SdkContext, type: SdkType | undefined) {
   if (!type) {
     return;
   }
 
-  if (emitQueue.has(type as any)) {
+  if (emitQueue.has(type)) {
     return;
   }
-
+  emitQueue.add(type);
   if (type.kind === "model") {
     const externalModel = getExternalModel(type);
     if (externalModel) {
       return;
     }
-    emitQueue.add(type);
+
     if (type.additionalProperties) {
-      visitType(type.additionalProperties, emitQueue);
+      visitType(context, type.additionalProperties);
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type as any)) {
-        visitType(property.type, emitQueue);
+        visitType(context, property.type);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
         if (!emitQueue.has(subType as any)) {
-          visitType(subType, emitQueue);
+          visitType(context, subType);
         }
       }
     }
   }
   if (type.kind === "array") {
     if (!emitQueue.has(type.valueType as any)) {
-      visitType(type.valueType, emitQueue);
-    }
-    if (!emitQueue.has(type)) {
-      emitQueue.add(type);
+      visitType(context, type.valueType);
     }
   }
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType as any)) {
-      visitType(type.valueType, emitQueue);
-    }
-    if (!emitQueue.has(type)) {
-      emitQueue.add(type);
-    }
-  }
-  if (type.kind === "enum") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-    }
-  }
-  if (type.kind === "nullable") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-    }
-    if (!emitQueue.has(type.type as any)) {
-      visitType(type.type, emitQueue);
+      visitType(context, type.valueType);
     }
   }
   if (type.kind === "union") {
-    if (!emitQueue.has(type as any)) {
-      emitQueue.add(type);
-    }
+    emitQueue.add(type);
     for (const value of type.variantTypes) {
       if (!emitQueue.has(value as any)) {
-        visitType(value, emitQueue);
+        visitType(context, value);
       }
+    }
+  }
+  if (type.kind === "nullable") {
+    emitQueue.add(type);
+    if (!emitQueue.has(type.type)) {
+      visitType(context, type.type);
     }
   }
 }

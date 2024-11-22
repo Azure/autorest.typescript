@@ -32,6 +32,10 @@ export declare interface BasicActionOptionalParams extends OperationOptions {
 
 export declare type Enum = "EnumValue1";
 
+export declare enum KnownVersions {
+    v2022_12_01_preview = "2022-12-01-preview"
+}
+
 export declare interface Model {
     int32Property?: number;
     float32Property?: number;

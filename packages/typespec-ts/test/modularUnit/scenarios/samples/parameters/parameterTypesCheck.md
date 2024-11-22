@@ -30,6 +30,7 @@ model Widget {
   utcDateTimeProp: utcDateTime;
   offsetDateTimeProp: offsetDateTime;
   durationProp: duration;
+  withEscapeChars: string;
 }
 
 @doc("show example demo")
@@ -64,7 +65,8 @@ op read(@bodyRoot body: Widget): { @body body: {}};
       "plainTimeProp": "13:06:12",
       "utcDateTimeProp": "2022-08-26T18:38:00Z",
       "offsetDateTimeProp": "2022-08-26T18:38:00Z",
-      "durationProp": "P123DT22H14M12.011S"
+      "durationProp": "P123DT22H14M12.011S",
+      "withEscapeChars": "\"Tag 10\".Value"
     }
   },
   "responses": {
@@ -107,6 +109,7 @@ async function read() {
     utcDateTimeProp: new Date("2022-08-26T18:38:00Z"),
     offsetDateTimeProp: "2022-08-26T18:38:00Z",
     durationProp: "P123DT22H14M12.011S",
+    withEscapeChars: '"Tag 10".Value',
     additionalProp: "additional prop",
   });
   console.log(result);

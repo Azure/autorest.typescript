@@ -15,27 +15,19 @@ describe("ClientEncodedNameClient Rest Client", () => {
   });
 
   it("should post json property", async () => {
-    try {
-      const result = await client
-        .path("/serialization/encoded-name/json/property")
-        .post({
-          body: { wireName: true }
-        });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/serialization/encoded-name/json/property")
+      .post({
+        body: { wireName: true }
+      });
+    assert.strictEqual(result.status, "204");
   });
 
   it("should get json property", async () => {
-    try {
-      const result = await client
-        .path("/serialization/encoded-name/json/property")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.wireName, true);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/serialization/encoded-name/json/property")
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.wireName, true);
   });
 });

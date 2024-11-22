@@ -825,6 +825,18 @@ export type ImageGenerationStyle = "natural" | "vivid";
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
 
 // @public
+export enum KnownServiceApiVersions {
+    // (undocumented)
+    v2022_12_01 = "2022-12-01",
+    // (undocumented)
+    v2023_05_15 = "2023-05-15",
+    // (undocumented)
+    v2024_02_01 = "2024-02-01",
+    // (undocumented)
+    v2024_06_01 = "2024-06-01"
+}
+
+// @public
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
     type: "max_tokens";
 }

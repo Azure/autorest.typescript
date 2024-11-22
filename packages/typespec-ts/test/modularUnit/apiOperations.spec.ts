@@ -166,6 +166,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _uploadFileRequestSerializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -247,6 +248,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _uploadFilesRequestSerializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -439,6 +441,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _downloadFileResponseDeserializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -520,6 +523,7 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "./index.js";
+         import { _downloadFileResponseDeserializer } from "../models/models.js";
          import {
            StreamableMethod,
            PathUncheckedResponse,
@@ -683,7 +687,7 @@ describe("api operations in Modular", () => {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
-              : "azsdk-js-client";
+              : \`azsdk-js-client\`;
             this._client = createTesting(endpointParam, apiVersion, {
               ...options,
               userAgentOptions: { userAgentPrefix },
@@ -787,7 +791,7 @@ describe("api operations in Modular", () => {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
           const userAgentPrefix = prefixFromOptions
             ? \`\${prefixFromOptions} azsdk-js-api\`
-            : "azsdk-js-api";
+            : \`azsdk-js-api\`;
           const { apiVersion: _, ...updatedOptions } = {
             ...options,
             userAgentOptions: { userAgentPrefix },
@@ -846,7 +850,7 @@ describe("api operations in Modular", () => {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
-              : "azsdk-js-client";
+              : \`azsdk-js-client\`;
             this._client = createTesting(endpointParam, {
               ...options,
               userAgentOptions: { userAgentPrefix },
@@ -971,7 +975,7 @@ describe("api operations in Modular", () => {
 
         export function createTesting(endpointParam: string, options: TestingClientOptionalParams = {}): TestingContext {
           const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-          const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api\` : "azsdk-js-api";
+          const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api\` : \`azsdk-js-api\`;
           const { apiVersion: _, ...updatedOptions } = { ...options,userAgentOptions: { userAgentPrefix },loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },}
           const clientContext = getClient(options.endpoint ?? options.baseUrl ?? String(endpointParam), undefined, updatedOptions);
           clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -1003,7 +1007,7 @@ describe("api operations in Modular", () => {
             const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
             const userAgentPrefix = prefixFromOptions
               ? \`\${prefixFromOptions} azsdk-js-client\`
-              : "azsdk-js-client";
+              : \`azsdk-js-client\`;
             this._client = createTesting(endpointParam, {
               ...options,
               userAgentOptions: { userAgentPrefix },

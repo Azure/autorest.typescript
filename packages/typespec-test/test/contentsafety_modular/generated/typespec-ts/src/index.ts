@@ -27,6 +27,7 @@ export {
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  KnownVersions,
 } from "./models/index.js";
 export {
   ContentSafetyClientOptionalParams,

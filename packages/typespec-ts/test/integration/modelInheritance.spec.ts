@@ -22,31 +22,23 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     sharktype: "goblin"
   };
   it("should get valid", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/nested-discriminator/model")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.age, 1);
-      if (result.body.kind === "shark") {
-        assert.strictEqual((result.body as SharkOutput).sharktype, "goblin");
-      }
-    } catch (err) {
-      assert.fail(err as string);
+    const result = await client
+      .path("/type/model/inheritance/nested-discriminator/model")
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.age, 1);
+    if (result.body.kind === "shark") {
+      assert.strictEqual((result.body as SharkOutput).sharktype, "goblin");
     }
   });
 
   it("should put valid", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/nested-discriminator/model")
-        .put({
-          body: validBody
-        });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/nested-discriminator/model")
+      .put({
+        body: validBody
+      });
+    assert.strictEqual(result.status, "204");
   });
 
   const validRecursiveBody: Salmon = {
@@ -107,64 +99,48 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     }
   };
   it("should get recursive body", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/nested-discriminator/recursivemodel")
-        .get();
-      assert.strictEqual(result.status, "200");
+    const result = await client
+      .path("/type/model/inheritance/nested-discriminator/recursivemodel")
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(
+      JSON.stringify(result.body),
+      JSON.stringify(validRecursiveBody)
+    );
+    if (result.body.kind === "salmon") {
       assert.strictEqual(
-        JSON.stringify(result.body),
-        JSON.stringify(validRecursiveBody)
+        (result.body as SalmonOutput).partner?.kind,
+        validRecursiveBody.partner?.kind
       );
-      if (result.body.kind === "salmon") {
-        assert.strictEqual(
-          (result.body as SalmonOutput).partner?.kind,
-          validRecursiveBody.partner?.kind
-        );
-      }
-    } catch (err) {
-      assert.fail(err as string);
     }
   });
 
   it("should put recursive body", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/nested-discriminator/recursivemodel")
-        .put({
-          body: validRecursiveBody
-        });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/nested-discriminator/recursivemodel")
+      .put({
+        body: validRecursiveBody
+      });
+    assert.strictEqual(result.status, "204");
   });
 
   it("should get missing discriminator body", async () => {
-    try {
-      const result = await client
-        .path(
-          "/type/model/inheritance/nested-discriminator/missingdiscriminator"
-        )
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.age, 1);
-      assert.isUndefined(result.body.kind);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path(
+        "/type/model/inheritance/nested-discriminator/missingdiscriminator"
+      )
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.age, 1);
+    assert.isUndefined(result.body.kind);
   });
 
   it("should get wrong discriminator body", async () => {
-    try {
-      const result = await client
-        .path("/type/model/inheritance/nested-discriminator/wrongdiscriminator")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.age, 1);
-      assert.strictEqual(result.body.kind, "wrongKind");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client
+      .path("/type/model/inheritance/nested-discriminator/wrongdiscriminator")
+      .get();
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.age, 1);
+    assert.strictEqual(result.body.kind, "wrongKind");
   });
 });

@@ -121,8 +121,12 @@ describe("operations", () => {
           ...Bar): OkResponse;
           `;
 
-      const operationFiles =
-        await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        {
+          mustEmptyDiagnostic: false
+        }
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -286,6 +290,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { barArraySerializer } from "../models/models.js";
         import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod {
@@ -475,6 +480,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Foo, fooSerializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -538,6 +544,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Foo, fooDeserializer } from "../models/models.js";
         import {
           StreamableMethod,
           PathUncheckedResponse,
@@ -605,6 +612,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { _Bar, _barDeserializer } from "../models/models.js";
         import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,
@@ -680,6 +688,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { Bar, barDeserializer } from "../models/models.js";
         import { StreamableMethod, PathUncheckedResponse, createRestError, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod {
@@ -714,7 +723,7 @@ describe("operations", () => {
         model Bar {
           @items
           lists: string[];
-          @nextLink
+          @Azure.Core.nextLink
           nextLink: string;
         }
 
@@ -738,6 +747,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "./index.js";
+        import { _Child, _childDeserializer } from "../models/models.js";
         import {
          PagedAsyncIterableIterator,
          buildPagedAsyncIterator,

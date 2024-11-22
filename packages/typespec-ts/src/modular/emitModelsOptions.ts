@@ -11,6 +11,7 @@ import { buildOperationOptions } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { getType } from "./helpers/typeHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 // ====== UTILITIES ======
 
@@ -113,7 +114,11 @@ export function buildModelTypeAlias(model: ModularType) {
   };
 }
 
-export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
+export function buildApiOptions(
+  context: SdkContext,
+  client: Client,
+  codeModel: ModularCodeModel
+) {
   const modelOptionsFile = codeModel.project.createSourceFile(
     path.join(
       codeModel.modularOptions.sourceRoot,
@@ -127,7 +132,7 @@ export function buildApiOptions(client: Client, codeModel: ModularCodeModel) {
   );
   for (const operationGroup of client.operationGroups) {
     operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, modelOptionsFile);
+      buildOperationOptions(context, o, modelOptionsFile);
     });
   }
   modelOptionsFile.addImportDeclarations([
