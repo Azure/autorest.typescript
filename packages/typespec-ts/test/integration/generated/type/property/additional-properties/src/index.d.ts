@@ -939,49 +939,49 @@ export declare interface SpreadRecordForUnionOutput extends Record<string, any> 
     flag: boolean;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion2_Get200Response extends HttpResponse {
+export declare interface SpreadRecordNonDiscriminatedUnion2Get {
+    get(options?: SpreadRecordNonDiscriminatedUnion2GetParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion2Get200Response>;
+    put(options: SpreadRecordNonDiscriminatedUnion2PutParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion2Put204Response>;
+}
+
+export declare interface SpreadRecordNonDiscriminatedUnion2Get200Response extends HttpResponse {
     status: "200";
     body: SpreadRecordForNonDiscriminatedUnion2Output;
 }
 
-export declare type SpreadRecordNonDiscriminatedUnion2_GetParameters = RequestParameters;
+export declare type SpreadRecordNonDiscriminatedUnion2GetParameters = RequestParameters;
 
-export declare interface SpreadRecordNonDiscriminatedUnion2_Put204Response extends HttpResponse {
+export declare interface SpreadRecordNonDiscriminatedUnion2Put204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion2_PutBodyParam {
+export declare interface SpreadRecordNonDiscriminatedUnion2PutBodyParam {
     body: SpreadRecordForNonDiscriminatedUnion2;
 }
 
-export declare type SpreadRecordNonDiscriminatedUnion2_PutParameters = SpreadRecordNonDiscriminatedUnion2_PutBodyParam & RequestParameters;
+export declare type SpreadRecordNonDiscriminatedUnion2PutParameters = SpreadRecordNonDiscriminatedUnion2PutBodyParam & RequestParameters;
 
-export declare interface SpreadRecordNonDiscriminatedUnion2Get {
-    get(options?: SpreadRecordNonDiscriminatedUnion2_GetParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion2_Get200Response>;
-    put(options: SpreadRecordNonDiscriminatedUnion2_PutParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion2_Put204Response>;
+export declare interface SpreadRecordNonDiscriminatedUnion3Get {
+    get(options?: SpreadRecordNonDiscriminatedUnion3GetParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion3Get200Response>;
+    put(options: SpreadRecordNonDiscriminatedUnion3PutParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion3Put204Response>;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion3_Get200Response extends HttpResponse {
+export declare interface SpreadRecordNonDiscriminatedUnion3Get200Response extends HttpResponse {
     status: "200";
     body: SpreadRecordForNonDiscriminatedUnion3Output;
 }
 
-export declare type SpreadRecordNonDiscriminatedUnion3_GetParameters = RequestParameters;
+export declare type SpreadRecordNonDiscriminatedUnion3GetParameters = RequestParameters;
 
-export declare interface SpreadRecordNonDiscriminatedUnion3_Put204Response extends HttpResponse {
+export declare interface SpreadRecordNonDiscriminatedUnion3Put204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion3_PutBodyParam {
+export declare interface SpreadRecordNonDiscriminatedUnion3PutBodyParam {
     body: SpreadRecordForNonDiscriminatedUnion3;
 }
 
-export declare type SpreadRecordNonDiscriminatedUnion3_PutParameters = SpreadRecordNonDiscriminatedUnion3_PutBodyParam & RequestParameters;
-
-export declare interface SpreadRecordNonDiscriminatedUnion3Get {
-    get(options?: SpreadRecordNonDiscriminatedUnion3_GetParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion3_Get200Response>;
-    put(options: SpreadRecordNonDiscriminatedUnion3_PutParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnion3_Put204Response>;
-}
+export declare type SpreadRecordNonDiscriminatedUnion3PutParameters = SpreadRecordNonDiscriminatedUnion3PutBodyParam & RequestParameters;
 
 export declare interface SpreadRecordNonDiscriminatedUnionGet {
     get(options?: SpreadRecordNonDiscriminatedUnionGetParameters): StreamableMethod<SpreadRecordNonDiscriminatedUnionGet200Response>;

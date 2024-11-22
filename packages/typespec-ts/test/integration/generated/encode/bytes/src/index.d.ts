@@ -51,14 +51,12 @@ export declare interface DefaultBytesPropertyOutput {
 }
 
 export declare interface HeaderBase64 {
-    get(options: HeaderBase64_Parameters): StreamableMethod<HeaderBase64204Response>;
+    get(options: HeaderBase64Parameters): StreamableMethod<HeaderBase64204Response>;
 }
 
 export declare interface HeaderBase64204Response extends HttpResponse {
     status: "204";
 }
-
-export declare type HeaderBase64_Parameters = HeaderBase64HeaderParam & RequestParameters;
 
 export declare interface HeaderBase64HeaderParam {
     headers: RawHttpHeadersInput & HeaderBase64Headers;
@@ -67,6 +65,8 @@ export declare interface HeaderBase64HeaderParam {
 export declare interface HeaderBase64Headers {
     value: string;
 }
+
+export declare type HeaderBase64Parameters = HeaderBase64HeaderParam & RequestParameters;
 
 export declare interface HeaderBase64Url {
     get(options: HeaderBase64UrlParameters): StreamableMethod<HeaderBase64Url204Response>;
@@ -123,7 +123,7 @@ export declare interface HeaderDefaultHeaders {
 export declare type HeaderDefaultParameters = HeaderDefaultHeaderParam & RequestParameters;
 
 export declare interface PropertyBase64 {
-    post(options: PropertyBase64_Parameters): StreamableMethod<PropertyBase64200Response>;
+    post(options: PropertyBase64Parameters): StreamableMethod<PropertyBase64200Response>;
 }
 
 export declare interface PropertyBase64200Response extends HttpResponse {
@@ -131,11 +131,11 @@ export declare interface PropertyBase64200Response extends HttpResponse {
     body: Base64BytesPropertyOutput;
 }
 
-export declare type PropertyBase64_Parameters = PropertyBase64BodyParam & RequestParameters;
-
 export declare interface PropertyBase64BodyParam {
     body: Base64BytesProperty;
 }
+
+export declare type PropertyBase64Parameters = PropertyBase64BodyParam & RequestParameters;
 
 export declare interface PropertyBase64Url {
     post(options: PropertyBase64UrlParameters): StreamableMethod<PropertyBase64Url200Response>;
@@ -183,14 +183,14 @@ export declare interface PropertyDefaultBodyParam {
 export declare type PropertyDefaultParameters = PropertyDefaultBodyParam & RequestParameters;
 
 export declare interface QueryBase64 {
-    get(options: QueryBase64_Parameters): StreamableMethod<QueryBase64204Response>;
+    get(options: QueryBase64Parameters): StreamableMethod<QueryBase64204Response>;
 }
 
 export declare interface QueryBase64204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type QueryBase64_Parameters = QueryBase64QueryParam & RequestParameters;
+export declare type QueryBase64Parameters = QueryBase64QueryParam & RequestParameters;
 
 export declare interface QueryBase64QueryParam {
     queryParameters: QueryBase64QueryParamProperties;
@@ -261,18 +261,18 @@ export declare interface QueryDefaultQueryParamProperties {
 }
 
 export declare interface RequestBodyBase64 {
-    post(options: RequestBodyBase64_Parameters): StreamableMethod<RequestBodyBase64204Response>;
+    post(options: RequestBodyBase64Parameters): StreamableMethod<RequestBodyBase64204Response>;
 }
 
 export declare interface RequestBodyBase64204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type RequestBodyBase64_Parameters = RequestBodyBase64BodyParam & RequestParameters;
-
 export declare interface RequestBodyBase64BodyParam {
     body: string;
 }
+
+export declare type RequestBodyBase64Parameters = RequestBodyBase64BodyParam & RequestParameters;
 
 export declare interface RequestBodyBase64Url {
     post(options: RequestBodyBase64UrlParameters): StreamableMethod<RequestBodyBase64Url204Response>;
@@ -339,7 +339,7 @@ export declare interface RequestBodyOctetStreamMediaTypesParam {
 export declare type RequestBodyOctetStreamParameters = RequestBodyOctetStreamMediaTypesParam & RequestBodyOctetStreamBodyParam & RequestParameters;
 
 export declare interface ResponseBodyBase64 {
-    get(options?: ResponseBodyBase64_Parameters): StreamableMethod<ResponseBodyBase64200Response>;
+    get(options?: ResponseBodyBase64Parameters): StreamableMethod<ResponseBodyBase64200Response>;
 }
 
 export declare interface ResponseBodyBase64200Response extends HttpResponse {
@@ -347,7 +347,7 @@ export declare interface ResponseBodyBase64200Response extends HttpResponse {
     body: string;
 }
 
-export declare type ResponseBodyBase64_Parameters = RequestParameters;
+export declare type ResponseBodyBase64Parameters = RequestParameters;
 
 export declare interface ResponseBodyBase64Url {
     get(options?: ResponseBodyBase64UrlParameters): StreamableMethod<ResponseBodyBase64Url200Response>;
