@@ -2,7 +2,6 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    azureSdkForJs: false
     isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     ignorePropertyNameNormalize: true
