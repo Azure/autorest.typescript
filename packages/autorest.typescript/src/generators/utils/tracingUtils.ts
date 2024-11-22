@@ -10,7 +10,7 @@ export function addTracingOperationImports(
   sourceFile: SourceFile,
   traverseToRoot = ".."
 ) {
-  const { tracingInfo } = getAutorestOptions();
+  const { tracingInfo, moduleKind } = getAutorestOptions();
   if (tracingInfo) {
     sourceFile.addImportDeclarations([
       {
