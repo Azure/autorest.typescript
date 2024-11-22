@@ -604,12 +604,14 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
+      emitTypes(dpgContext, { sourceRoot: "" });
       const res = buildClientContext(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel
       );
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      removeUnusedImports(res);
+      binder.resolveAllReferences("/");
       return res;
     }
   }

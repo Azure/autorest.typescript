@@ -58,6 +58,7 @@ ignoreWeirdLine: false
 
 ```ts clientContext
 import { logger } from "../logger.js";
+import { ClientType, KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface ServiceContext extends Client {}
@@ -65,7 +66,7 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: __PLACEHOLDER_o346__;
+  client?: ClientType;
 }
 
 export function createService(
@@ -157,6 +158,7 @@ ignoreWeirdLine: false
 
 ```ts clientContext
 import { logger } from "../logger.js";
+import { ClientType, KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface ServiceContext extends Client {}
@@ -164,7 +166,7 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: __PLACEHOLDER_o347__;
+  client?: ClientType;
 }
 
 export function createService(
