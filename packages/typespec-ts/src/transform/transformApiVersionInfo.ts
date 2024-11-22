@@ -30,9 +30,9 @@ export function transformApiVersionInfo(
   const isCrossedVersion =
     queryVersionDetail || pathVersionDetail
       ? Boolean(
-        pathVersionDetail?.isCrossedVersion ||
-        queryVersionDetail?.isCrossedVersion
-      )
+          pathVersionDetail?.isCrossedVersion ||
+            queryVersionDetail?.isCrossedVersion
+        )
       : undefined;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
