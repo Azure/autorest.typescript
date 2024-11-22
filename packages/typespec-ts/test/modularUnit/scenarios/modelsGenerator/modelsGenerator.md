@@ -601,7 +601,7 @@ export async function read(
 }
 ```
 
-# should handle property type utcDateTime with unixTimestamp encoding
+# only: should handle property type utcDateTime with unixTimestamp encoding
 
 ## TypeSpec
 
@@ -626,7 +626,7 @@ export interface Foo {
 
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
-  return { prop1: item["prop1"].getTime() };
+  return { prop1: (item["prop1"].getTime() / 1000) | 0 };
 }
 ```
 
