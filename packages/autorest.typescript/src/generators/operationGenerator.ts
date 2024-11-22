@@ -51,6 +51,7 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroImports, createLroType } from "../utils/lroHelpers";
+import { getImportModuleName } from "@azure-tools/rlc-common";
 
 /**
  * Function that writes the code for all the operations.
@@ -328,8 +329,8 @@ function buildRequestBody({
       required = rb.required
         ? rb.required
         : rb.parameter.groupedBy && rb.parameter.groupedBy.required
-        ? rb.parameter.groupedBy.required
-        : required;
+          ? rb.parameter.groupedBy.required
+          : required;
 
       if (required) break;
     }
@@ -465,6 +466,7 @@ function addClass(
   clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
+  const { moduleKind } = getAutorestOptions();
 
   let allModelsNames = getAllModelsNames(clientDetails);
 
@@ -526,7 +528,7 @@ function addClass(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: "../models"
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
     });
   }
 }
@@ -750,14 +752,13 @@ function compileOperationOptionsToRequestOptionsBase(
   // In Lro we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
   return isLro
-    ? `this.getOperationOptions(${options}${
-        lroResourceLocationConfig === undefined
-          ? ""
-          : `, "${lroResourceLocationConfig}"`
-      })`
+    ? `this.getOperationOptions(${options}${lroResourceLocationConfig === undefined
+      ? ""
+      : `, "${lroResourceLocationConfig}"`
+    })`
     : !useCoreV2
-    ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
-    : `options || {}`;
+      ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
+      : `options || {}`;
 }
 
 function writeNoOverloadsOperationBody(
@@ -910,11 +911,11 @@ function writeLroOperationBody(
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
       ${getTracingClientWithSpanStatement(
-        sendRequestStatement,
-        responseName,
-        isTracingEnabled,
-        spanName
-      )}
+      sendRequestStatement,
+      responseName,
+      isTracingEnabled,
+      spanName
+    )}
       };
       const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
         const response = await directSendOperation(args, spec);
@@ -956,21 +957,18 @@ function writeLroOperationBody(
       }};
   }`;
 
-  const commonOptions = `intervalInMs: options?.updateIntervalInMs${
-    lroResourceLocationConfig
-      ? `, ${
-          useLegacyLro ? "lroResourceLocationConfig" : "resourceLocationConfig"
-        }: "${lroResourceLocationConfig.toLowerCase()}"`
-      : ""
-  }`;
+  const commonOptions = `intervalInMs: options?.updateIntervalInMs${lroResourceLocationConfig
+    ? `, ${useLegacyLro ? "lroResourceLocationConfig" : "resourceLocationConfig"
+    }: "${lroResourceLocationConfig.toLowerCase()}"`
+    : ""
+    }`;
   methodDeclaration.addStatements([
     sendOperationStatement,
     `const lro = createLroSpec({sendOperationFn, args: ${operationParamsName},
       spec: ${operationSpecName}})`,
-    `const poller = ${
-      useLegacyLro
-        ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
-        : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
+    `const poller = ${useLegacyLro
+      ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
+      : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
     };`,
     "await poller.poll();",
     "return poller;"
@@ -1239,7 +1237,7 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, useLegacyLro } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro, moduleKind } = getAutorestOptions();
 
   const { className, mappers } = clientDetails;
   addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
@@ -1254,7 +1252,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${operationGroupInterfaceName}`],
-    moduleSpecifier: "../operationsInterfaces"
+    moduleSpecifier: getImportModuleName({ cjsName: "../operationsInterfaces", esModulesName: "../operationsInterfaces/index.js" }, moduleKind)
   });
 
   if (!useCoreV2) {
