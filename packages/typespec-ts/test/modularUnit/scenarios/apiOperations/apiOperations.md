@@ -754,7 +754,6 @@ export async function test(
 
 ```ts clientContext
 import { logger } from "../logger.js";
-import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface TestingContext extends Client {}

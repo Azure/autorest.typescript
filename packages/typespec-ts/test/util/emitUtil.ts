@@ -610,8 +610,9 @@ export async function emitModularClientContextFromTypeSpec(
         dpgContext,
         modularCodeModel
       );
-      removeUnusedImports(res);
       binder.resolveAllReferences("/");
+      removeUnusedImports(res);
+      res.fixUnusedIdentifiers();
       return res;
     }
   }

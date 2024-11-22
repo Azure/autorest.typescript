@@ -775,7 +775,6 @@ describe("api operations in Modular", () => {
         clientContext?.getFullText()!,
         `
         import { logger } from "../logger.js";
-        import { KnownVersions } from "../models/models.js";
         import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
         export interface TestingContext extends Client {}
