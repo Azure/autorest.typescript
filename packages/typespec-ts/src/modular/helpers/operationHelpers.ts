@@ -14,8 +14,7 @@ import {
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
+import { getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
@@ -41,13 +40,19 @@ import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
+import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  const parameters = getOperationSignatureParameters(operation, clientType);
+  const parameters = getOperationSignatureParameters(
+    dpgContext,
+    operation,
+    clientType
+  );
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
 
@@ -106,13 +111,12 @@ export function getDeserializePrivateFunction(
   const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
-    returnType = buildLroReturnType(operation);
+    returnType = buildLroReturnType(context, operation);
   } else if (response?.type?.type) {
-    returnType = buildType(
-      response.type.name,
-      response.type,
-      response.type.format
-    );
+    returnType = {
+      name: response.type.name,
+      type: getTypeExpression(context, response.type.tcgcType!)
+    };
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -199,6 +203,7 @@ export function getDeserializePrivateFunction(
 }
 
 function getOperationSignatureParameters(
+  context: SdkContext,
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
@@ -216,7 +221,12 @@ function getOperationSignatureParameters(
         p.clientDefaultValue === undefined &&
         !p.optional
     )
-    .map((p) => buildType(p.clientName, p.type, p.format))
+    .map((p) => {
+      return {
+        name: p.clientName,
+        type: getTypeExpression(context, p.tcgcType ?? p.type.tcgcType!)
+      };
+    })
     .forEach((p) => {
       parameters.set(p.name, p);
     });
@@ -224,11 +234,10 @@ function getOperationSignatureParameters(
   if (operation.bodyParameter && operation.bodyParameter.optional === false) {
     parameters.set(operation.bodyParameter?.clientName, {
       hasQuestionToken: operation.bodyParameter.optional,
-      ...buildType(
-        operation.bodyParameter.clientName,
-        operation.bodyParameter.type,
-        operation.bodyParameter.type.format
-      )
+      ...{
+        name: operation.bodyParameter.clientName,
+        type: getTypeExpression(context, operation.bodyParameter.type.tcgcType!)
+      }
     });
   }
   // Add context as the first parameter
@@ -250,30 +259,37 @@ function getOperationSignatureParameters(
  * This operation builds and returns the function declaration for an operation.
  */
 export function getOperationFunction(
+  context: SdkContext,
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
   if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
-    return getPagingOnlyOperationFunction(operation, clientType);
+    return getPagingOnlyOperationFunction(context, operation, clientType);
   } else if (isLroOnlyOperation(operation)) {
     // Case 2: lro-only operation
-    return getLroOnlyOperationFunction(operation, clientType);
+    return getLroOnlyOperationFunction(context, operation, clientType);
   } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
   }
 
+  if (operation.name === "floatSeconds") {
+    operation;
+  }
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(operation, clientType);
+    getOperationSignatureParameters(context, operation, clientType);
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   let returnType = { name: "", type: "void" };
   if (response.type?.type) {
     const type =
       extractPagingType(response.type, operation.itemName) ?? response.type;
-    returnType = buildType(type.name, type, type.format);
+    returnType = {
+      name: type.name ?? "",
+      type: getTypeExpression(context, type.tcgcType!)
+    };
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
@@ -303,11 +319,15 @@ export function getOperationFunction(
   };
 }
 
-function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
+function getLroOnlyOperationFunction(
+  context: SdkContext,
+  operation: Operation,
+  clientType: string
+) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(operation, clientType);
-  const returnType = buildLroReturnType(operation);
+    getOperationSignatureParameters(context, operation, clientType);
+  const returnType = buildLroReturnType(context, operation);
   const { name, fixme = [] } = getOperationName(operation);
   const pollerLikeReference = resolveReference(
     AzurePollingDependencies.PollerLike
@@ -357,22 +377,26 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
   };
 }
 
-function buildLroReturnType(operation: Operation) {
+function buildLroReturnType(context: SdkContext, operation: Operation) {
   const metadata = operation.lroMetadata;
   if (metadata !== undefined && metadata.finalResult !== undefined) {
     const type = metadata.finalResult;
-    return buildType(type.name, type, type.format);
+    return {
+      name: type.name,
+      type: getTypeExpression(context, type.tcgcType!)
+    };
   }
   return { name: "", type: "void" };
 }
 
 function getPagingOnlyOperationFunction(
+  context: SdkContext,
   operation: Operation,
   clientType: string
 ) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(operation, clientType);
+    getOperationSignatureParameters(context, operation, clientType);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
@@ -380,7 +404,10 @@ function getPagingOnlyOperationFunction(
   if (response.type?.type) {
     const type =
       extractPagingType(response.type, operation.itemName) ?? response.type;
-    returnType = buildType(type.name, type, type.format);
+    returnType = {
+      name: type.name ?? "",
+      type: getTypeExpression(context, type.tcgcType!)
+    };
   }
   const { name, fixme = [] } = getOperationName(operation);
   const pagedAsyncIterableIteratorReference = resolveReference(
@@ -742,7 +769,7 @@ function getOptional(context: SdkContext, param: OptionalType) {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
       param.type,
-      "options?." + param.clientName + "?"
+      "options?." + param.clientName + "?."
     );
     const serializeContent =
       directAssignment === true
@@ -970,7 +997,7 @@ export function serializeRequestValue(
         case "headerDefault":
           return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
         case "unixTimestamp":
-          return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
+          return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${
@@ -1059,7 +1086,7 @@ export function deserializeResponseValue(
       : "";
   switch (type.type) {
     case "datetime":
-      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
+      return `${nullOrUndefinedPrefix} new Date(${type.format === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "list": {
       const prefix = nullOrUndefinedPrefix + restValue;
       let elementNullOrUndefinedPrefix = "";

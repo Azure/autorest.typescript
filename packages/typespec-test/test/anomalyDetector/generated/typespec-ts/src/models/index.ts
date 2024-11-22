@@ -34,5 +34,5 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  APIVersion,
+  KnownVersions,
 } from "./models.js";

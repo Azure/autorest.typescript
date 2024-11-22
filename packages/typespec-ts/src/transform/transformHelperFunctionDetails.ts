@@ -177,33 +177,19 @@ function extractSpecialSerializeInfo(
   dpgContext: SdkContext
 ) {
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasTsvCollection = false;
-  let hasSsvCollection = false;
   let hasCsvCollection = false;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
+        dpgContext,
         parameter.type,
         (parameter as any).format
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
-      hasPipeCollection = hasPipeCollection
-        ? hasPipeCollection
-        : serializeInfo.hasPipeCollection;
-      hasTsvCollection = hasTsvCollection
-        ? hasTsvCollection
-        : serializeInfo.hasTsvCollection;
-      hasSsvCollection = hasSsvCollection
-        ? hasSsvCollection
-        : serializeInfo.hasSsvCollection;
-      hasCsvCollection = hasCsvCollection
-        ? hasCsvCollection
-        : serializeInfo.hasCsvCollection;
     });
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -216,21 +202,13 @@ function extractSpecialSerializeInfo(
       const route = getHttpOperationWithCache(dpgContext, op);
       route.parameters.parameters.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(
+          dpgContext,
           parameter.type,
           (parameter as any).format
         );
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection
           : serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection
-          ? hasPipeCollection
-          : serializeInfo.hasPipeCollection;
-        hasTsvCollection = hasTsvCollection
-          ? hasTsvCollection
-          : serializeInfo.hasTsvCollection;
-        hasSsvCollection = hasSsvCollection
-          ? hasSsvCollection
-          : serializeInfo.hasSsvCollection;
         hasCsvCollection = hasCsvCollection
           ? hasCsvCollection
           : serializeInfo.hasCsvCollection;
@@ -239,9 +217,6 @@ function extractSpecialSerializeInfo(
   }
   return {
     hasMultiCollection,
-    hasPipeCollection,
-    hasTsvCollection,
-    hasSsvCollection,
     hasCsvCollection
   };
 }

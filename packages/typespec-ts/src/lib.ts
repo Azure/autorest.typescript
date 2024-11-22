@@ -92,7 +92,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     compatibilityMode: { type: "boolean", nullable: true },
     experimentalExtensibleEnums: { type: "boolean", nullable: true },
     clearOutputFolder: { type: "boolean", nullable: true },
-    ignorePropertyNameNormalize: { type: "boolean", nullable: true }
+    ignorePropertyNameNormalize: { type: "boolean", nullable: true },
+    compatibilityQueryMultiFormat: { type: "boolean", nullable: true }
   },
   required: []
 };
@@ -266,6 +267,18 @@ const libDef = {
       severity: "error",
       messages: {
         default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
+      }
+    },
+    "un-supported-format-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter ${"paramName"} with explode: ${"explode"} and format: ${"format"} is not supported.`
+      }
+    },
+    "parameter-type-not-supported": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
       }
     }
   },

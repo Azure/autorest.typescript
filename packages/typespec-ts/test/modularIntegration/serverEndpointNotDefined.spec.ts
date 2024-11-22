@@ -11,11 +11,7 @@ describe("NotDefined Server Endpoint Client", () => {
   });
 
   it("should work with not defined endpoint", async () => {
-    try {
-      const result = await client.valid();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client.valid();
+    assert.isUndefined(result);
   });
 });

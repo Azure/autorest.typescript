@@ -3,8 +3,8 @@
 
 import { FooContext } from "../../api/fooContext.js";
 import { bOp1 } from "../../api/b/index.js";
-import { BOp1OptionalParams } from "../../api/options.js";
 import { Ba } from "../../models/models.js";
+import { BOp1OptionalParams } from "../../api/options.js";
 
 /** Interface representing a B operations. */
 export interface BOperations {

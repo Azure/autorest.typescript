@@ -60,8 +60,8 @@ const primitiveSchemaTypes = [
  */
 const pipe =
   (...fns: Array<(pipelineValue: PipelineValue) => PipelineValue>) =>
-  (x: PipelineValue) =>
-    fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
+    (x: PipelineValue) =>
+      fns.reduce((v, f) => (!v.isHandled ? f(v) : v), x);
 
 export type ModelProperties = { [propertyName: string]: Mapper | string[] };
 
@@ -306,10 +306,10 @@ function buildAdditionalProperties(
   const additionalProperties = getAdditionalProperties(objectSchema);
   return additionalProperties
     ? {
-        type: {
-          name: MapperType.Object
-        }
+      type: {
+        name: MapperType.Object
       }
+    }
     : undefined;
 }
 
@@ -360,8 +360,8 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
         (p as ObjectSchema).discriminator &&
         uberParents.includes(getMapperClassName(p))
     ) ||
-      parents.find((p) => uberParents.includes(getMapperClassName(p))) ||
-      schema
+    parents.find((p) => uberParents.includes(getMapperClassName(p))) ||
+    schema
   );
 
   if (objectSchema.parents?.immediate[0]) {

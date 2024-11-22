@@ -86,7 +86,7 @@ export function getOperationApiVersion(
         relevantProperty: p.param
       });
       required.add(!p.param.optional);
-      if (p.type !== "header") {
+      if (p.type === "query" || p.type === "path") {
         locations.add(p.type);
       }
       const typeString = JSON.stringify(trimUsage(type));
@@ -127,7 +127,7 @@ export function getOperationApiVersion(
           relevantProperty: p.param
         });
         required.add(!p.param.optional);
-        if (p.type !== "header") {
+        if (p.type === "query" || p.type === "path") {
           locations.add(p.type);
         }
         const typeString = JSON.stringify(trimUsage(type));

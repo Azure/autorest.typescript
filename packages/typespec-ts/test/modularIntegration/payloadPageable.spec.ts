@@ -36,14 +36,10 @@ describe("PageableClient Classical Client", () => {
       maxpagesize: 3
     });
     const items = [];
-    try {
-      for await (const user of iter) {
-        items.push(user);
-      }
-      assert.strictEqual(items.length, 4);
-    } catch (err: any) {
-      assert.fail(err as string);
+    for await (const user of iter) {
+      items.push(user);
     }
+    assert.strictEqual(items.length, 4);
   });
 
   it("should list all users byPage", async () => {
@@ -51,14 +47,10 @@ describe("PageableClient Classical Client", () => {
       maxpagesize: 3
     });
     const items: User[] = [];
-    try {
-      for await (const user of iter.byPage()) {
-        items.push(...user);
-      }
-      assert.strictEqual(items.length, 4);
-    } catch (err: any) {
-      assert.fail(err as string);
+    for await (const user of iter.byPage()) {
+      items.push(...user);
     }
+    assert.strictEqual(items.length, 4);
   });
 
   it("should list left users byPage if continuationToken is set", async () => {

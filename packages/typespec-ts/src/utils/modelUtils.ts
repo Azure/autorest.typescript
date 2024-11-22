@@ -1132,6 +1132,18 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
+export function isObjectOrDictType(schema: Schema) {
+  return (
+    (schema.type === "object" &&
+      (schema as ObjectSchema).properties !== undefined) ||
+    schema.type === "dictionary"
+  );
+}
+
+export function isArrayType(schema: Schema) {
+  return schema.type === "array";
+}
+
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
@@ -1331,38 +1343,6 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
-export function getSerializeTypeName(
-  program: Program,
-  schema: Schema,
-  usage?: SchemaContext[]
-): string {
-  const typeName = getTypeName(schema, usage);
-  const formattedName = (schema.alias ?? typeName).replace(
-    "Date | string",
-    "string"
-  );
-  const canSerialize = isSerializable(schema);
-  if (canSerialize) {
-    return schema.alias ? typeName : formattedName;
-  }
-  reportDiagnostic(program, {
-    code: "unable-serialized-type",
-    format: { type: typeName },
-    target: NoTarget
-  });
-  return "string";
-  function isSerializable(type: any) {
-    if (type.enum) {
-      return type.enum.every((i: any) => {
-        return isSerializable(i) || i.type === "null";
-      });
-    }
-    return (
-      ["string", "number", "boolean"].includes(type.type) || type.isConstant
-    );
-  }
-}
-
 export function getImportedModelName(
   schema: Schema,
   usage?: SchemaContext[]
@@ -1448,7 +1428,7 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
-function getBinaryDescripton(type: any) {
+function getBinaryDescription(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
     return `Value may contain any sequence of octets`;
   }
@@ -1480,7 +1460,7 @@ export function getFormattedPropertyDoc(
   const enhancedDocFromType =
     getEnumStringDescription(schemaType) ??
     getDecimalDescription(schemaType) ??
-    getBinaryDescripton(schemaType);
+    getBinaryDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }

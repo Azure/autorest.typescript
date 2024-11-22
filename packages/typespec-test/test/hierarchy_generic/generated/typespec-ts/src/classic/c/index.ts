@@ -3,8 +3,8 @@
 
 import { FooContext } from "../../api/fooContext.js";
 import { cOp1 } from "../../api/c/index.js";
+import { Ba, Bea } from "../../models/models.js";
 import { COp1OptionalParams } from "../../api/options.js";
-import { Bea, Ba } from "../../models/models.js";
 
 /** Interface representing a C operations. */
 export interface COperations {

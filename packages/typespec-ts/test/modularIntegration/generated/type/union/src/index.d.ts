@@ -11,8 +11,8 @@ export declare interface Dog {
 }
 
 export declare interface EnumsOnlyCases {
-    lr: Lr | Ud;
-    ud: Ud;
+    lr: "left" | "right" | "up" | "down";
+    ud: "up" | "down";
 }
 
 export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
@@ -58,8 +58,6 @@ export declare enum KnownStringExtensibleNamedUnion {
     OptionB = "b",
     c = "c"
 }
-
-export declare type Lr = "left" | "right";
 
 export declare interface MixedLiteralsCases {
     stringLiteral: "a" | 2 | 3.3 | true;
@@ -153,9 +151,9 @@ export declare type StringExtensibleNamedUnion = string;
 
 export declare interface StringExtensibleOperations {
     get: (options?: StringExtensibleGetOptionalParams) => Promise<{
-        prop: string | "b" | "c";
+        prop: string;
     }>;
-    send: (prop: string | "b" | "c", options?: StringExtensibleSendOptionalParams) => Promise<void>;
+    send: (prop: string, options?: StringExtensibleSendOptionalParams) => Promise<void>;
 }
 
 export declare interface StringExtensibleSendOptionalParams extends OperationOptions {
@@ -173,8 +171,6 @@ export declare interface StringsOnlyOperations {
 
 export declare interface StringsOnlySendOptionalParams extends OperationOptions {
 }
-
-export declare type Ud = "up" | "down";
 
 export declare class UnionClient {
     private _client;

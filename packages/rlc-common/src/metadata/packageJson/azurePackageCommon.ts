@@ -98,7 +98,6 @@ function getAzurePackageCjsDevDependencies({
     nyc: "^15.1.0",
     mocha: "^10.0.0",
     "@types/mocha": "^10.0.0",
-    "cross-env": "^7.0.2",
     "@types/chai": "^4.2.8",
     chai: "^4.2.0",
     "karma-chrome-launcher": "^3.0.0",
@@ -115,8 +114,7 @@ function getAzurePackageCjsDevDependencies({
 
   return {
     ...(withTests && testDevDependencies),
-    "source-map-support": "^0.5.9",
-    "uglify-js": "^3.4.9"
+    "source-map-support": "^0.5.9"
   };
 }
 

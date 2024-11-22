@@ -51,69 +51,53 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
 
   matrix([testedTypes], async (params: TypeDetail) => {
     it(`should get a null value for nullable ${params.type}`, async () => {
-      try {
-        const result = await client
-          .path(`/type/property/nullable/${params.type}/null` as any)
-          .get();
-        assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.nullableProperty, null);
-        assert.deepEqual(result.body.requiredProperty, "foo");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/property/nullable/${params.type}/null` as any)
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.nullableProperty, null);
+      assert.deepEqual(result.body.requiredProperty, "foo");
     });
 
     it(`should get a non-null value for nullable ${params.type}`, async () => {
-      try {
-        const result = await client
-          .path(`/type/property/nullable/${params.type}/non-null` as any)
-          .get();
-        assert.strictEqual(result.status, "200");
-        assert.deepEqual(result.body.nullableProperty, params.defaultValue);
-        assert.deepEqual(result.body.requiredProperty, "foo");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/property/nullable/${params.type}/non-null` as any)
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body.nullableProperty, params.defaultValue);
+      assert.deepEqual(result.body.requiredProperty, "foo");
     });
 
     it(`should patch a null value for nullable ${params.type}`, async () => {
-      try {
-        const result = await client
-          .path(`/type/property/nullable/${params.type}/null` as any)
-          .patch({
-            contentType: "application/merge-patch+json",
-            body: {
-              requiredProperty: "foo",
-              nullableProperty: null
-            }
-          });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client
+        .path(`/type/property/nullable/${params.type}/null` as any)
+        .patch({
+          contentType: "application/merge-patch+json",
+          body: {
+            requiredProperty: "foo",
+            nullableProperty: null
+          }
+        });
+      assert.strictEqual(result.status, "204");
     });
 
     it(`should patch a non-null value for nullable ${params.type}`, async () => {
-      try {
-        let property;
-        if (params.convertedToFn) {
-          property = params.convertedToFn(params.defaultValue);
-        } else {
-          property = params.defaultValue;
-        }
-        const result = await client
-          .path(`/type/property/nullable/${params.type}/non-null` as any)
-          .patch({
-            contentType: "application/merge-patch+json",
-            body: {
-              requiredProperty: "foo",
-              nullableProperty: property || null
-            }
-          });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
+      let property;
+      if (params.convertedToFn) {
+        property = params.convertedToFn(params.defaultValue);
+      } else {
+        property = params.defaultValue;
       }
+      const result = await client
+        .path(`/type/property/nullable/${params.type}/non-null` as any)
+        .patch({
+          contentType: "application/merge-patch+json",
+          body: {
+            requiredProperty: "foo",
+            nullableProperty: property || null
+          }
+        });
+      assert.strictEqual(result.status, "204");
     });
   });
 });

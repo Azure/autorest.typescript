@@ -31,12 +31,12 @@ import {
 import {
   getImportedModelName,
   getSchemaForType,
-  getTypeName,
   isBodyRequired
 } from "../utils/modelUtils.js";
 
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
+import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -133,15 +133,33 @@ function transformOperation(
         .filter((p) => p.type === "path")
         .map((p) => {
           const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
+          const options = {
+            usage: schemaUsage,
+            needRef: false,
+            relevantProperty: p.param
+          };
           const schema = p.param.sourceProperty
-            ? getSchemaForType(dpgContext, p.param.sourceProperty?.type)
-            : getSchemaForType(dpgContext, p.param.type);
+            ? getSchemaForType(
+                dpgContext,
+                p.param.sourceProperty?.type,
+
+                options
+              )
+            : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
+          const serializationType = getParameterSerializationInfo(
+            dpgContext,
+            p,
+            schema,
+            operationGroupName,
+            method.operationName
+          );
           return {
             name: p.name,
-            type: getTypeName(schema, schemaUsage),
-            description: getDoc(program, p.param)
+            type: serializationType.typeName,
+            description: getDoc(program, p.param) ?? "",
+            wrapperType: serializationType.wrapperType
           };
         }),
       operationGroupName: getOperationGroupName(dpgContext, route),
