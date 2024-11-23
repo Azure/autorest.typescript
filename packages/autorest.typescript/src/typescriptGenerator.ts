@@ -5,8 +5,8 @@ import * as prettier from "prettier";
 import * as fsextra from "fs-extra";
 import * as path from "path";
 import { CodeModel } from "@autorest/codemodel";
-import { Project, IndentationText } from "ts-morph";
-import { AutorestExtensionHost } from "@autorest/extension-base";
+import { Project, IndentationText, ImportDeclaration } from "ts-morph";
+import { AutorestExtensionHost, Channel } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
 import { transformSamples } from "./transforms/samplesTransforms";
 import { generateClient } from "./generators/clientFileGenerator";
@@ -135,12 +135,45 @@ export async function generateTypeScriptLibrary(
     const filePath = file.getFilePath();
     const isJson = /\.json$/gi.test(filePath);
     const isSourceCode = /\.(ts|js)$/gi.test(filePath);
-    let fileContents = fs.readFileSync(filePath);
 
+
+    if (isSourceCode /* && getAutorestOptions().moduleKind === "esm"*/) {
+      file.getImportDeclarations().forEach(declaration => {
+        let moduleSpecifierValue = declaration.getModuleSpecifierValue();
+        if (moduleSpecifierValue.startsWith(".")) {
+          const sourceFile = declaration.getModuleSpecifierSourceFile();
+          if (sourceFile) {
+            const resolvedFilePath = sourceFile.getFilePath();
+            const resolvedFileName = path.basename(resolvedFilePath);
+
+            if (resolvedFileName === "index.ts" || resolvedFileName === "index.js") {
+              if (!moduleSpecifierValue.endsWith("/")) {
+                moduleSpecifierValue = `${moduleSpecifierValue}/`;
+              }
+              moduleSpecifierValue = `${moduleSpecifierValue}index.js`;
+            } else {
+              if (!path.extname(moduleSpecifierValue)) {
+                moduleSpecifierValue = `${moduleSpecifierValue}.js`;
+              }
+            }
+          } else {
+            if (!path.extname(moduleSpecifierValue)) {
+              moduleSpecifierValue = `${moduleSpecifierValue}.js`;
+            }
+          }
+          declaration.setModuleSpecifier(moduleSpecifierValue);
+        }
+      })
+    }
     // Add the license header to source code files
     if (shouldGenerateLicense && isSourceCode) {
-      fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
+      file.insertText(0, licenseHeader.trimStart());
     }
+
+    file.saveSync();
+
+    let fileContents = file.getFullText();
+
 
     // Format the contents if necessary
     if (isJson || isSourceCode) {
@@ -149,7 +182,6 @@ export async function generateTypeScriptLibrary(
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );
     }
-
     // Write the file to the AutoRest host
     host.writeFile({
       filename: filePath.substr(1), // Get rid of the leading slash '/'
