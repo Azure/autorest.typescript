@@ -8,14 +8,15 @@ This is tsp definition.
 model Foo {
   name: string;
 }
-
+model ErrorDetail {
+  /** A human readable message */
+  message: string;
+}
 @error
 model ApiError {
   /** A machine readable error code */
   code: string;
-
-  /** A human readable message */
-  message: string;
+  detail?: ErrorDetail;
 }
 @get op bar(): Foo | ApiError;
 ```
@@ -40,13 +41,26 @@ export function fooDeserializer(item: any): Foo {
 export interface ApiError {
   /** A machine readable error code */
   code: string;
-  /** A human readable message */
-  message: string;
+  detail?: ErrorDetail;
 }
 
 export function apiErrorDeserializer(item: any): ApiError {
   return {
     code: item["code"],
+    detail: !item["detail"]
+      ? item["detail"]
+      : errorDetailDeserializer(item["detail"]),
+  };
+}
+
+/** model interface ErrorDetail */
+export interface ErrorDetail {
+  /** A human readable message */
+  message: string;
+}
+
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
     message: item["message"],
   };
 }
