@@ -1,12 +1,37 @@
 // Licensed under the MIT License.
 
-import TodoClient from "./todoClient.js";
-
-export * from "./todoClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./models.js";
-export * from "./outputModels.js";
-
-export default TodoClient;
+export { TodoClient } from "./todoClient.js";
+export {
+  TodoPage,
+  TodoItem,
+  TodoLabels,
+  TodoLabelRecord,
+  Standard4XXResponse,
+  ApiError,
+  Standard5XXResponse,
+  TodoFileAttachment,
+  TodoUrlAttachment,
+  TodoAttachment,
+  InvalidTodoItem,
+  TodoItemPatch,
+  PageTodoAttachment,
+  User,
+  UserExistsResponse,
+  InvalidUserResponse,
+} from "./models/index.js";
+export {
+  UsersCreateOptionalParams,
+  TodoItemsListOptionalParams,
+  TodoItemsCreateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsDeleteOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoClientOptionalParams,
+} from "./api/index.js";
+export {
+  TodoItemsOperations,
+  UsersOperations,
+  TodoItemsAttachmentsOperations,
+} from "./classic/index.js";
