@@ -4,114 +4,81 @@
 
 ```ts
 
-import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
-import { HttpResponse } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
-import { RequestParameters } from '@typespec/ts-http-runtime';
-import { StreamableMethod } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
-// @public (undocumented)
-export interface ApiErrorOutput {
+// @public
+export interface ApiError {
     code: string;
     message: string;
 }
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: TodoClientOptions): TodoClient;
-export default createClient;
-
-// @public (undocumented)
-export interface InvalidTodoItemOutput extends ApiErrorOutput {
+export interface InvalidTodoItem extends ApiError {
 }
 
 // @public
-export interface InvalidUserResponseOutput extends ApiErrorOutput {
+export interface InvalidUserResponse extends ApiError {
     // (undocumented)
     code: "invalid-user";
 }
 
-// @public (undocumented)
-export interface PageOutput {
+// @public
+export interface PageTodoAttachment {
     // (undocumented)
-    items: TodoAttachmentOutput[];
-}
-
-// @public (undocumented)
-export interface Routes {
-    (path: "/users"): UsersCreate;
-    (path: "/items"): TodoItemsList;
-    (path: "/items/{id}", id: number): TodoItemsGet;
-    (path: "/items/{itemId}/attachments", itemId: number): TodoItemsAttachmentsList;
+    items: TodoAttachment[];
 }
 
 // @public
-export interface Standard4XXResponseOutput extends ApiErrorOutput {
+export interface Standard4XXResponse extends ApiError {
 }
 
 // @public
-export interface Standard5XXResponseOutput extends ApiErrorOutput {
+export interface Standard5XXResponse extends ApiError {
 }
 
 // @public
 export type TodoAttachment = TodoFileAttachment | TodoUrlAttachment;
 
-// @public
-export type TodoAttachmentOutput = TodoFileAttachmentOutput | TodoUrlAttachmentOutput;
-
 // @public (undocumented)
-export type TodoClient = Client & {
-    path: Routes;
-};
-
-// @public
-export interface TodoClientOptions extends ClientOptions {
+export class TodoClient {
+    constructor(endpointParam: string, credential: KeyCredential, options?: TodoClientOptionalParams);
+    readonly pipeline: Pipeline;
+    readonly todoItems: TodoItemsOperations;
+    readonly users: UsersOperations;
 }
 
-// @public (undocumented)
+// @public
+export interface TodoClientOptionalParams extends ClientOptions {
+}
+
+// @public
 export interface TodoFileAttachment {
-    contents: string;
+    contents: Uint8Array;
     filename: string;
     mediaType: string;
 }
 
-// @public (undocumented)
-export interface TodoFileAttachmentOutput {
-    contents: string;
-    filename: string;
-    mediaType: string;
-}
-
-// @public (undocumented)
+// @public
 export interface TodoItem {
     assignedTo?: number;
+    readonly completedAt?: Date;
+    readonly createdAt: Date;
+    readonly createdBy: number;
     description?: string;
     // (undocumented)
-    _dummy?: string;
+    dummy?: string;
+    readonly id: number;
     // (undocumented)
     labels?: TodoLabels;
     status: "NotStarted" | "InProgress" | "Completed";
     title: string;
+    readonly updatedAt: Date;
 }
 
-// @public (undocumented)
-export interface TodoItemOutput {
-    assignedTo?: number;
-    readonly completedAt?: string;
-    readonly createdAt: string;
-    readonly createdBy: number;
-    description?: string;
-    // (undocumented)
-    _dummy?: string;
-    readonly id: number;
-    // (undocumented)
-    labels?: TodoLabelsOutput;
-    status: "NotStarted" | "InProgress" | "Completed";
-    title: string;
-    readonly updatedAt: string;
-}
-
-// @public (undocumented)
+// @public
 export interface TodoItemPatch {
     assignedTo?: number | null;
     description?: string | null;
@@ -119,299 +86,99 @@ export interface TodoItemPatch {
     title?: string;
 }
 
-// @public (undocumented)
-export type TodoItemPatchResourceMergeAndPatch = Partial<TodoItemPatch>;
-
 // @public
-export interface TodoItemsAttachmentsCreateAttachment204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
+export interface TodoItemsAttachmentsCreateAttachmentOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateAttachment400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
+export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateAttachment404Response extends HttpResponse {
+export interface TodoItemsAttachmentsOperations {
     // (undocumented)
-    status: "404";
+    createAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateAttachmentOptionalParams) => Promise<void>;
+    // (undocumented)
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => Promise<PageTodoAttachment>;
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateAttachment500Response extends HttpResponse {
+export interface TodoItemsCreateOptionalParams extends OperationOptions {
     // (undocumented)
-    body: Standard5XXResponseOutput;
+    attachments?: TodoAttachment[];
     // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export interface TodoItemsAttachmentsCreateAttachmentBodyParam {
-    // (undocumented)
-    body: TodoAttachment;
-}
-
-// @public (undocumented)
-export type TodoItemsAttachmentsCreateAttachmentParameters = TodoItemsAttachmentsCreateAttachmentBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface TodoItemsAttachmentsList {
-    // (undocumented)
-    get(options?: TodoItemsAttachmentsListParameters): StreamableMethod<TodoItemsAttachmentsList200Response | TodoItemsAttachmentsList400Response | TodoItemsAttachmentsList404Response | TodoItemsAttachmentsList500Response>;
-    // (undocumented)
-    post(options: TodoItemsAttachmentsCreateAttachmentParameters): StreamableMethod<TodoItemsAttachmentsCreateAttachment204Response | TodoItemsAttachmentsCreateAttachment400Response | TodoItemsAttachmentsCreateAttachment404Response | TodoItemsAttachmentsCreateAttachment500Response>;
+    contentType?: string;
 }
 
 // @public
-export interface TodoItemsAttachmentsList200Response extends HttpResponse {
-    // (undocumented)
-    body: PageOutput;
-    // (undocumented)
-    status: "200";
+export interface TodoItemsDeleteOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface TodoItemsAttachmentsList400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
+export interface TodoItemsGetOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface TodoItemsAttachmentsList404Response extends HttpResponse {
-    // (undocumented)
-    status: "404";
-}
-
-// @public
-export interface TodoItemsAttachmentsList500Response extends HttpResponse {
-    // (undocumented)
-    body: Standard5XXResponseOutput;
-    // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export type TodoItemsAttachmentsListParameters = RequestParameters;
-
-// @public
-export interface TodoItemsCreate200Response extends HttpResponse {
-    // (undocumented)
-    body: {
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: string;
-        updatedAt: string;
-        completedAt?: string;
-        labels?: TodoLabelsOutput;
-    };
-    // (undocumented)
-    status: "200";
-}
-
-// @public
-export interface TodoItemsCreate400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
-}
-
-// @public
-export interface TodoItemsCreate422Response extends HttpResponse {
-    // (undocumented)
-    body: InvalidTodoItemOutput;
-    // (undocumented)
-    status: "422";
-}
-
-// @public
-export interface TodoItemsCreate500Response extends HttpResponse {
-    // (undocumented)
-    body: Standard5XXResponseOutput;
-    // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export interface TodoItemsCreateBodyParam {
-    // (undocumented)
-    body: {
-        item: TodoItem;
-        attachments?: TodoAttachment[];
-    };
-}
-
-// @public (undocumented)
-export interface TodoItemsCreateMediaTypesParam {
-    // (undocumented)
-    contentType: "application/json";
-}
-
-// @public (undocumented)
-export type TodoItemsCreateParameters = TodoItemsCreateMediaTypesParam & TodoItemsCreateBodyParam & RequestParameters;
-
-// @public
-export interface TodoItemsDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public
-export interface TodoItemsDelete400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
-}
-
-// @public
-export interface TodoItemsDelete404Response extends HttpResponse {
-    // (undocumented)
-    status: "404";
-}
-
-// @public
-export interface TodoItemsDelete500Response extends HttpResponse {
-    // (undocumented)
-    body: Standard5XXResponseOutput;
-    // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export type TodoItemsDeleteParameters = RequestParameters;
-
-// @public (undocumented)
-export interface TodoItemsGet {
-    // (undocumented)
-    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete204Response | TodoItemsDelete400Response | TodoItemsDelete404Response | TodoItemsDelete500Response>;
-    // (undocumented)
-    get(options?: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
-    // (undocumented)
-    patch(options: TodoItemsUpdateParameters): StreamableMethod<TodoItemsUpdate200Response>;
-}
-
-// @public
-export interface TodoItemsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: {
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: string;
-        updatedAt: string;
-        completedAt?: string;
-        labels?: TodoLabelsOutput;
-    };
-    // (undocumented)
-    status: "200";
-}
-
-// @public
-export interface TodoItemsGet404Response extends HttpResponse {
-    // (undocumented)
-    status: "404";
-}
-
-// @public (undocumented)
-export type TodoItemsGetParameters = RequestParameters;
-
-// @public (undocumented)
-export interface TodoItemsList {
-    // (undocumented)
-    get(options?: TodoItemsListParameters): StreamableMethod<TodoItemsList200Response | TodoItemsList400Response | TodoItemsList500Response>;
-    // (undocumented)
-    post(options: TodoItemsCreateParameters): StreamableMethod<TodoItemsCreate200Response | TodoItemsCreate400Response | TodoItemsCreate422Response | TodoItemsCreate500Response>;
-}
-
-// @public
-export interface TodoItemsList200Response extends HttpResponse {
-    // (undocumented)
-    body: TodoPageOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public
-export interface TodoItemsList400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
-}
-
-// @public
-export interface TodoItemsList500Response extends HttpResponse {
-    // (undocumented)
-    body: Standard5XXResponseOutput;
-    // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export type TodoItemsListParameters = TodoItemsListQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface TodoItemsListQueryParam {
-    // (undocumented)
-    queryParameters?: TodoItemsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TodoItemsListQueryParamProperties {
+export interface TodoItemsListOptionalParams extends OperationOptions {
     limit?: number;
     offset?: number;
 }
 
 // @public
-export interface TodoItemsUpdate200Response extends HttpResponse {
+export interface TodoItemsOperations {
     // (undocumented)
-    body: {
+    attachments: TodoItemsAttachmentsOperations;
+    // (undocumented)
+    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) => Promise<{
         id: number;
         title: string;
         createdBy: number;
         assignedTo?: number;
         description?: string;
         status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: string;
-        updatedAt: string;
-        completedAt?: string;
-        labels?: TodoLabelsOutput;
-    };
+        createdAt: Date;
+        updatedAt: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
+    delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
     // (undocumented)
-    status: "200";
+    get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<{
+        id: number;
+        title: string;
+        createdBy: number;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        createdAt: Date;
+        updatedAt: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
+    // (undocumented)
+    list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
+    // (undocumented)
+    update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
+        id: number;
+        title: string;
+        createdBy: number;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        createdAt: Date;
+        updatedAt: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
 }
 
-// @public (undocumented)
-export interface TodoItemsUpdateBodyParam {
+// @public
+export interface TodoItemsUpdateOptionalParams extends OperationOptions {
     // (undocumented)
-    body: TodoItemPatchResourceMergeAndPatch;
+    contentType?: string;
 }
 
-// @public (undocumented)
-export interface TodoItemsUpdateMediaTypesParam {
-    // (undocumented)
-    contentType: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type TodoItemsUpdateParameters = TodoItemsUpdateMediaTypesParam & TodoItemsUpdateBodyParam & RequestParameters;
-
-// @public (undocumented)
+// @public
 export interface TodoLabelRecord {
     // (undocumented)
     color?: string;
@@ -419,117 +186,58 @@ export interface TodoLabelRecord {
     name: string;
 }
 
-// @public (undocumented)
-export interface TodoLabelRecordOutput {
-    // (undocumented)
-    color?: string;
-    // (undocumented)
-    name: string;
-}
+// @public
+export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];
 
 // @public
-export type TodoLabels = string | string[] | TodoLabelRecord | Array<TodoLabelRecord>;
-
-// @public
-export type TodoLabelsOutput = string | string[] | TodoLabelRecordOutput | Array<TodoLabelRecordOutput>;
-
-// @public (undocumented)
-export interface TodoPageOutput {
-    items: Array<TodoItemOutput>;
+export interface TodoPage {
+    items: TodoItem[];
     // (undocumented)
     pagination: {
         pageSize: number;
         totalSize: number;
+        limit?: number;
+        offset?: number;
         prevLink?: string;
         nextLink?: string;
     };
 }
 
-// @public (undocumented)
+// @public
 export interface TodoUrlAttachment {
     description: string;
     url: string;
 }
 
-// @public (undocumented)
-export interface TodoUrlAttachmentOutput {
-    description: string;
-    url: string;
-}
-
-// @public (undocumented)
+// @public
 export interface User {
     email: string;
+    readonly id: number;
     password: string;
     username: string;
     validated: boolean;
 }
 
 // @public
-export interface UserExistsResponseOutput extends ApiErrorOutput {
+export interface UserExistsResponse extends ApiError {
     // (undocumented)
     code: "user-exists";
 }
 
-// @public (undocumented)
-export interface UsersCreate {
-    // (undocumented)
-    post(options: UsersCreateParameters): StreamableMethod<UsersCreate200Response | UsersCreate400Response | UsersCreate409Response | UsersCreate422Response | UsersCreate500Response>;
+// @public
+export interface UsersCreateOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface UsersCreate200Response extends HttpResponse {
+export interface UsersOperations {
     // (undocumented)
-    body: {
+    create: (user: User, options?: UsersCreateOptionalParams) => Promise<{
         id: number;
         username: string;
         email: string;
         token: string;
-    };
-    // (undocumented)
-    status: "200";
+    }>;
 }
-
-// @public
-export interface UsersCreate400Response extends HttpResponse {
-    // (undocumented)
-    body: Standard4XXResponseOutput;
-    // (undocumented)
-    status: "400";
-}
-
-// @public
-export interface UsersCreate409Response extends HttpResponse {
-    // (undocumented)
-    body: UserExistsResponseOutput;
-    // (undocumented)
-    status: "409";
-}
-
-// @public
-export interface UsersCreate422Response extends HttpResponse {
-    // (undocumented)
-    body: InvalidUserResponseOutput;
-    // (undocumented)
-    status: "422";
-}
-
-// @public
-export interface UsersCreate500Response extends HttpResponse {
-    // (undocumented)
-    body: Standard5XXResponseOutput;
-    // (undocumented)
-    status: "500";
-}
-
-// @public (undocumented)
-export interface UsersCreateBodyParam {
-    // (undocumented)
-    body: User;
-}
-
-// @public (undocumented)
-export type UsersCreateParameters = UsersCreateBodyParam & RequestParameters;
 
 // (No @packageDocumentation comment for this package)
 
