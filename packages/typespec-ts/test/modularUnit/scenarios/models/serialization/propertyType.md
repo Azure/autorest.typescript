@@ -1,4 +1,5 @@
 # Should generate serializer for property types
+
 Will prompt all operations into top-level.
 
 ## TypeSpec
@@ -45,6 +46,12 @@ model SimpleModel {
   propArrayOfRecordOfUnionOptional?: Record<string | boolean | int32>[];
   @encodedName("application/json", "prop_encoded")
   propEncoded: string;
+  propTitle?: TodoItem.title;
+}
+model TodoItem {
+  /** The item's title */
+  @maxLength(255)
+  title: string;
 }
 
 @route("/serialize")
@@ -103,6 +110,7 @@ export interface SimpleModel {
     string | boolean | number
   >[];
   propEncoded: string;
+  propTitle?: string;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
@@ -197,6 +205,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
           item["propArrayOfRecordOfUnionOptional"],
         ),
     prop_encoded: item["propEncoded"],
+    propTitle: item["propTitle"],
   };
 }
 
