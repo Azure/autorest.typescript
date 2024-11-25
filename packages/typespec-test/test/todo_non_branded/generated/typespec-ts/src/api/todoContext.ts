@@ -28,7 +28,7 @@ export function createTodo(
     userAgentOptions: { userAgentPrefix },
   };
   const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
+    options.endpoint ?? String(endpointParam),
     undefined,
     updatedOptions,
   );
