@@ -1,4 +1,4 @@
-import { Client, ModularCodeModel } from "../modularCodeModel.js";
+import { ModularCodeModel } from "../modularCodeModel.js";
 import {
   OptionalKind,
   ParameterDeclarationStructure,
@@ -28,7 +28,7 @@ interface ClientParameterOptions {
 }
 
 export function getClientParameters(
-  _client: Client,
+  client: SdkClientType<SdkHttpOperation>,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     requiredOnly: false,
@@ -36,7 +36,6 @@ export function getClientParameters(
     optionalOnly: false
   }
 ) {
-  const client = _client.tcgcClient;
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
   for (const property of client.initialization.properties) {
     if (
@@ -59,10 +58,7 @@ export function getClientParameters(
   const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
     p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "method" ||
-    (p.kind === "method" &&
-      p.isApiVersionParam &&
-      _client.parameters.find((p) => p.isApiVersion));
+    p.kind !== "method" || (p.kind === "method" && p.isApiVersionParam);
   const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
     !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
@@ -82,7 +78,7 @@ export function getClientParameters(
 }
 
 export function getClientParametersDeclaration(
-  _client: Client,
+  client: SdkClientType<SdkHttpOperation>,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     optionalOnly: false,
@@ -90,7 +86,6 @@ export function getClientParametersDeclaration(
     onClientOnly: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const client = _client.tcgcClient;
   const name = getClientName(client);
   const optionsParam = {
     name: "options",
@@ -99,7 +94,7 @@ export function getClientParametersDeclaration(
   };
 
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
-    ...getClientParameters(_client, dpgContext, options).map<
+    ...getClientParameters(client, dpgContext, options).map<
       OptionalKind<ParameterDeclarationStructure>
     >((p) => {
       const typeExpression = getClientParameterTypeExpression(dpgContext, p);
@@ -153,18 +148,22 @@ export function getClientParameterName(
 export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
-  client: Client
+  client: SdkClientType<SdkHttpOperation>
 ): string {
   // Special case: endpoint URL not defined
-  if (client.url === "") {
-    const endpointParam = getClientParameters(client, dpgContext, {
-      onClientOnly: true
-    }).find((x) => x.kind === "endpoint" || x.kind === "path");
-    if (endpointParam) {
-      return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+  const endpointParam = getClientParameters(client, dpgContext, {
+    onClientOnly: true
+  }).find((x) => x.kind === "endpoint" || x.kind === "path");
+  if (endpointParam) {
+    if (endpointParam.type.kind === "endpoint") {
+      let parameterizedEndpointUrl = endpointParam.type.serverUrl;
+      parameterizedEndpointUrl = parameterizedEndpointUrl.replace(`{`, `\${`);
+      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+      context.addStatements(endpointUrl);
+      return "endpointUrl";
     }
+    return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
   }
-
   const urlParams = getClientParameters(client, dpgContext).filter(
     (x) => x.kind === "endpoint" || x.kind === "path"
   );
@@ -184,15 +183,6 @@ export function buildGetClientEndpointParam(
     }
   }
 
-  let parameterizedEndpointUrl = client.url;
-  for (const param of urlParams) {
-    parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
-      `{${param.serializedName}}`,
-      `\${${getClientParameterName(param)}}`
-    );
-  }
-  const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
-  context.addStatements(endpointUrl);
   return "endpointUrl";
 }
 
@@ -246,8 +236,8 @@ export function buildGetClientCredentialParam(
       codeModel.options.credentialKeyHeaderName)
   ) {
     return (
-      client.initialization.properties.find((x) => isCredentialType(x.type))?.name ?? 
-      "undefined"
+      client.initialization.properties.find((x) => isCredentialType(x.type))
+        ?.name ?? "undefined"
     );
   } else {
     return "undefined";

@@ -129,9 +129,7 @@ export interface Type {
 export interface Client {
   name: string;
   description: string;
-  parameters: Parameter[];
   operationGroups: OperationGroup[];
-  url: string;
   apiVersions: any[];
   rlcClientName: string;
   subfolder?: string;

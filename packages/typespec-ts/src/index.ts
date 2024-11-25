@@ -278,7 +278,7 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.rlcOptions!.generateSample = true;
       }
     }
-    for (const subClient of dpgContext.sdkPackage.clients) {
+    for (const subClient of modularCodeModel.clients) {
       buildApiOptions(dpgContext, subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);

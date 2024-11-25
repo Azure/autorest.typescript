@@ -1,6 +1,6 @@
 import {
   SdkBodyParameter,
-  SdkCredentialType,
+  // SdkCredentialType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { Type } from "../modularCodeModel.js";

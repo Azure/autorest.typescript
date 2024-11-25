@@ -53,7 +53,7 @@ export function buildClientContext(
   const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
+  const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true
   });
@@ -72,7 +72,7 @@ export function buildClientContext(
     name: `${name}ClientOptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(_client, dpgContext, {
+    properties: getClientParameters(client, dpgContext, {
       optionalOnly: true
     })
       .filter((p) => p.name !== "endpoint")
@@ -111,7 +111,7 @@ export function buildClientContext(
   const endpointParam = buildGetClientEndpointParam(
     factoryFunction,
     dpgContext,
-    _client
+    client
   );
   const credentialParam = buildGetClientCredentialParam(client, codeModel);
   const optionsParam = buildGetClientOptionsParam(
@@ -146,7 +146,7 @@ export function buildClientContext(
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
 
   if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = getClientParameters(_client, dpgContext).find(
+    const apiVersionParam = getClientParameters(client, dpgContext).find(
       (x) => x.isApiVersionParam && x.kind === "method"
     );
 

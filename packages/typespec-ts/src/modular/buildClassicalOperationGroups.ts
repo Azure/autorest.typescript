@@ -14,7 +14,7 @@ export function buildClassicOperationFiles(
   codeModel: ModularCodeModel,
   client: Client
 ) {
-  const sdkPackage = dpgContext.sdkPackage;
+  // const sdkPackage = dpgContext.sdkPackage;
   const classicOperationFiles: Map<string, SourceFile> = new Map<
     string,
     SourceFile

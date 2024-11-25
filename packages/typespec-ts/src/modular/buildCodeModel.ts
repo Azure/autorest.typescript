@@ -53,9 +53,6 @@ import {
   HttpOperationParameter,
   HttpOperationResponse,
   HttpOperationResponseContent,
-  HttpServer,
-  getAuthentication,
-  getServers,
   isSharedRoute
 } from "@typespec/http";
 import {
@@ -78,7 +75,6 @@ import {
   getSdkUnion,
   getWireName,
   isApiVersion,
-  listClients,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -112,7 +108,6 @@ import { Project } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";
 import { getAddedOnVersions } from "@typespec/versioning";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
-import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import { reportDiagnostic } from "../lib.js";
 import { useContext } from "../contextManager.js";
@@ -161,8 +156,6 @@ function applyCasing(
 const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
-let methodApiVersionParam: Parameter | undefined = undefined;
-let serverApiVersionParam: Parameter | undefined = undefined;
 
 function isSimpleType(
   program: Program,
@@ -871,10 +864,6 @@ function emitBasicOperation(
     const emittedParam = emitParameter(context, param, "Method");
     if (emittedParam === undefined) {
       continue;
-    }
-    if (isApiVersion(context, param)) {
-      emittedParam.isApiVersion = true;
-      methodApiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
   }
@@ -1596,7 +1585,7 @@ function emitType(
   }
 }
 
-function emitOperationGroups(
+export function emitOperationGroups(
   context: SdkContext,
   client: SdkClient,
   rlcModels: RLCModel
@@ -1690,152 +1679,151 @@ function appendOperationGroupPrefix(operationGroups: OperationGroup[]) {
   );
 }
 
-function getServerHelper(
-  program: Program,
-  namespace: Namespace
-): HttpServer | undefined {
-  const servers = getServers(program, namespace);
-  if (servers === undefined) {
-    return undefined;
-  }
-  return servers[0];
-}
+// function getServerHelper(
+//   program: Program,
+//   namespace: Namespace
+// ): HttpServer | undefined {
+//   const servers = getServers(program, namespace);
+//   if (servers === undefined) {
+//     return undefined;
+//   }
+//   return servers[0];
+// }
 
-function emitServerParams(
-  context: SdkContext,
-  namespace: Namespace
-): Parameter[] {
-  const server = getServerHelper(context.program, namespace);
-  if (server === undefined || server.parameters.size === 0) {
-    return [
-      {
-        optional: false,
-        description: "Service host",
-        clientName: "endpointParam",
-        clientDefaultValue: null,
-        restApiName: "endpoint",
-        location: "endpointPath",
-        type: { type: "string" },
-        implementation: "Client",
-        inOverload: false
-      }
-    ];
-  }
-  if (server.parameters) {
-    const params: Parameter[] = [];
-    for (const param of server.parameters.values()) {
-      const serverParameter: HttpServerParameter = {
-        type: "endpointPath",
-        name: param.name,
-        param: param
-      };
-      const emittedParameter = emitParameter(
-        context,
-        serverParameter,
-        "Client"
-      );
-      if (emittedParameter === undefined) {
-        continue;
-      }
-      endpointPathParameters.push(emittedParameter);
-      if (isApiVersion(context, serverParameter as any)) {
-        emittedParameter.isApiVersion = true;
-        serverApiVersionParam = emittedParameter;
-        emittedParameter.isApiVersion = true;
-      }
-      params.push(emittedParameter);
-    }
-    return params;
-  } else {
-    return [
-      {
-        optional: false,
-        description: "Service host",
-        clientName: "endpointParam",
-        clientDefaultValue: server.url,
-        restApiName: "endpoint",
-        location: "path",
-        type: { type: "string" },
-        implementation: "Client",
-        inOverload: false
-      }
-    ];
-  }
-}
+// function emitServerParams(
+//   context: SdkContext,
+//   namespace: Namespace
+// ): Parameter[] {
+//   const server = getServerHelper(context.program, namespace);
+//   if (server === undefined || server.parameters.size === 0) {
+//     return [
+//       {
+//         optional: false,
+//         description: "Service host",
+//         clientName: "endpointParam",
+//         clientDefaultValue: null,
+//         restApiName: "endpoint",
+//         location: "endpointPath",
+//         type: { type: "string" },
+//         implementation: "Client",
+//         inOverload: false
+//       }
+//     ];
+//   }
+//   if (server.parameters) {
+//     const params: Parameter[] = [];
+//     for (const param of server.parameters.values()) {
+//       const serverParameter: HttpServerParameter = {
+//         type: "endpointPath",
+//         name: param.name,
+//         param: param
+//       };
+//       const emittedParameter = emitParameter(
+//         context,
+//         serverParameter,
+//         "Client"
+//       );
+//       if (emittedParameter === undefined) {
+//         continue;
+//       }
+//       endpointPathParameters.push(emittedParameter);
+//       if (isApiVersion(context, serverParameter as any)) {
+//         emittedParameter.isApiVersion = true;
+//         serverApiVersionParam = emittedParameter;
+//         emittedParameter.isApiVersion = true;
+//       }
+//       params.push(emittedParameter);
+//     }
+//     return params;
+//   } else {
+//     return [
+//       {
+//         optional: false,
+//         description: "Service host",
+//         clientName: "endpointParam",
+//         clientDefaultValue: server.url,
+//         restApiName: "endpoint",
+//         location: "path",
+//         type: { type: "string" },
+//         implementation: "Client",
+//         inOverload: false
+//       }
+//     ];
+//   }
+// }
 
-function emitCredentialParam(
-  context: SdkContext,
-  namespace: Namespace
-): Parameter | undefined {
-  const auth = getAuthentication(context.program, namespace);
-  if (auth) {
-    const credential_types: CredentialType[] = [];
-    for (const scheme of getSupportedHttpAuth(context.program, auth)) {
-      const type: CredentialType = {
-        kind: "Credential",
-        scheme: scheme
-      };
-      credential_types.push(type);
-    }
+// function emitCredentialParam(
+//   context: SdkContext,
+//   namespace: Namespace
+// ): Parameter | undefined {
+//   const auth = getAuthentication(context.program, namespace);
+//   if (auth) {
+//     const credential_types: CredentialType[] = [];
+//     for (const scheme of getSupportedHttpAuth(context.program, auth)) {
+//       const type: CredentialType = {
+//         kind: "Credential",
+//         scheme: scheme
+//       };
+//       credential_types.push(type);
+//     }
 
-    if (
-      credential_types.length > 0 &&
-      context.rlcOptions?.addCredentials !== false
-    ) {
-      let type: EmitterType;
-      if (credential_types.length === 1 && credential_types[0]) {
-        type = credential_types[0];
-      } else {
-        type = {
-          kind: "CredentialTypeUnion",
-          types: credential_types
-        };
-      }
-      return {
-        type: getType(context, type, { usage: UsageFlags.Input }),
-        optional: false,
-        description: "Credential needed for the client to connect to Azure.",
-        clientName: "credential",
-        location: "other",
-        restApiName: "credential",
-        implementation: "Client",
-        skipUrlEncoding: true,
-        inOverload: false
-      };
-    }
-  }
-  return undefined;
-}
+//     if (
+//       credential_types.length > 0 &&
+//       context.rlcOptions?.addCredentials !== false
+//     ) {
+//       let type: EmitterType;
+//       if (credential_types.length === 1 && credential_types[0]) {
+//         type = credential_types[0];
+//       } else {
+//         type = {
+//           kind: "CredentialTypeUnion",
+//           types: credential_types
+//         };
+//       }
+//       return {
+//         type: getType(context, type, { usage: UsageFlags.Input }),
+//         optional: false,
+//         description: "Credential needed for the client to connect to Azure.",
+//         clientName: "credential",
+//         location: "other",
+//         restApiName: "credential",
+//         implementation: "Client",
+//         skipUrlEncoding: true,
+//         inOverload: false
+//       };
+//     }
+//   }
+//   return undefined;
+// }
 
-function emitGlobalParameters(
-  context: SdkContext,
-  namespace: Namespace
-): Parameter[] {
-  const clientParameters = emitServerParams(context, namespace);
-  const credentialParam = emitCredentialParam(context, namespace);
-  if (credentialParam) {
-    clientParameters.push(credentialParam);
-  }
-  return clientParameters;
-}
+// function emitGlobalParameters(
+//   context: SdkContext,
+//   namespace: Namespace
+// ): Parameter[] {
+//   const clientParameters = emitServerParams(context, namespace);
+//   const credentialParam = emitCredentialParam(context, namespace);
+//   if (credentialParam) {
+//     clientParameters.push(credentialParam);
+//   }
+//   return clientParameters;
+// }
 
-function getMethodApiVersionParameter(): Parameter | void {
-  if (methodApiVersionParam) {
-    return {
-      ...methodApiVersionParam,
-      isApiVersion: true
-    };
-  }
-}
+// function getMethodApiVersionParameter(): Parameter | void {
+//   if (methodApiVersionParam) {
+//     return {
+//       ...methodApiVersionParam,
+//       isApiVersion: true
+//     };
+//   }
+// }
 
 function emitClients(
   context: SdkContext,
   rlcModelsMap: Map<string, RLCModel>
 ): HrlcClient[] {
-  const program = context.program;
-  const clients = context.sdkPackage.clients
+  // const program = context.program;
+  const clients = context.sdkPackage.clients;
   const retval: HrlcClient[] = [];
-  methodApiVersionParam = undefined;
   for (const client of clients) {
     const sdkPackageClient = context.sdkPackage.clients.find((p) => {
       return p.name === client.name;
@@ -1846,43 +1834,41 @@ function emitClients(
     }
 
     const clientName = client.name.replace("Client", "");
-    const server = getServerHelper(program, context.sdkPackage.rootNamespace);
-    const rlcModels = rlcModelsMap.get(client.service.name);
+    const rlcModels = rlcModelsMap.get(clientName);
     if (!rlcModels) {
       continue;
     }
     const emittedClient: HrlcClient = {
       name: clientName.split(".").at(-1) ?? "",
-      description: getDocStr(program, client.type),
-      parameters: emitGlobalParameters(context, client.service),
-      operationGroups: emitOperationGroups(context, client, rlcModels),
+      description: client.doc ?? "",
+      operationGroups: [],
+      // operationGroups: emitOperationGroups(context, client, rlcModels),
       tcgcClient: sdkPackageClient,
-      url: server ? server.url : "",
       apiVersions: [],
       rlcClientName: `${client.name.replace("Client", "")}Context`,
       subfolder: "",
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
-    const methodApiVersionParam = getMethodApiVersionParameter();
-    if (
-      methodApiVersionParam &&
-      !serverApiVersionParam &&
-      context.hasApiVersionInClient
-    ) {
-      // prompt method-level api version to client level only when there is no client one defined
-      emittedClient.parameters.push(methodApiVersionParam);
-      // if we have client level api version, we need to remove it from all operations
-      emittedClient.operationGroups.map((opGroup) => {
-        opGroup.operations.map((op) => {
-          op.parameters = op.parameters.filter((param) => {
-            return !param.isApiVersion;
-          });
-          return op;
-        });
-        return opGroup;
-      });
-    }
+    // const methodApiVersionParam = getMethodApiVersionParameter();
+    // if (
+    //   methodApiVersionParam &&
+    //   !serverApiVersionParam &&
+    //   context.hasApiVersionInClient
+    // ) {
+    //   // prompt method-level api version to client level only when there is no client one defined
+    //   emittedClient.parameters.push(methodApiVersionParam);
+    //   // if we have client level api version, we need to remove it from all operations
+    //   emittedClient.operationGroups.map((opGroup) => {
+    //     opGroup.operations.map((op) => {
+    //       op.parameters = op.parameters.filter((param) => {
+    //         return !param.isApiVersion;
+    //       });
+    //       return op;
+    //     });
+    //     return opGroup;
+    //   });
+    // }
     retval.push(emittedClient);
   }
   return retval;
