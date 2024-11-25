@@ -132,7 +132,6 @@ function getCjsDevDependencies({
       dotenv: "^16.0.0",
       mocha: "^10.0.0",
       "@types/mocha": "^10.0.0",
-      "cross-env": "^7.0.2",
       "@types/chai": "^4.2.8",
       chai: "^4.2.0",
       "karma-chrome-launcher": "^3.0.0",
@@ -233,7 +232,8 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   return {
     build:
       "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
-    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
+    "build:node":
+      "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
     "build:debug":
       "tsc -p . && dev-tool run bundle && dev-tool run extract-api",

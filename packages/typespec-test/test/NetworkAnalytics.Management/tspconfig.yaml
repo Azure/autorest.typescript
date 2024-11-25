@@ -8,6 +8,6 @@ options:
     isModularLibrary: true
     azureSdkForJs: false
     experimentalExtensibleEnums: true
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/test/arm-test"
     packageDetails:
       name: "@azure/arm-networkanalytics"

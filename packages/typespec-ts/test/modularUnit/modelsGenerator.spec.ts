@@ -516,7 +516,7 @@ describe("modular encode test for property type datetime", () => {
       `
       export function fooSerializer(item: Foo): any {
         return {
-          prop1: item["prop1"].getTime(),
+          prop1: (item["prop1"].getTime() / 1000) | 0,
         };
       }`,
       true
