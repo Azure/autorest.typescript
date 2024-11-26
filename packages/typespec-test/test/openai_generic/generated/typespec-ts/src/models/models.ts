@@ -306,7 +306,7 @@ export interface ImagesResponse {
 
 export function imagesResponseDeserializer(item: any): ImagesResponse {
   return {
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     data: imageArrayDeserializer(item["data"]),
   };
 }
@@ -439,7 +439,7 @@ export function modelDeserializer(item: any): Model {
   return {
     id: item["id"],
     object: item["object"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     owned_by: item["owned_by"],
   };
 }
@@ -643,8 +643,8 @@ export function fineTuneDeserializer(item: any): FineTune {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"]),
-    updated_at: new Date(item["updated_at"]),
+    created_at: new Date(item["created_at"] * 1000),
+    updated_at: new Date(item["updated_at"] * 1000),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
@@ -740,7 +740,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     id: item["id"],
     object: item["object"],
     bytes: item["bytes"],
-    createdAt: new Date(item["createdAt"]),
+    createdAt: new Date(item["createdAt"] * 1000),
     filename: item["filename"],
     purpose: item["purpose"],
     status: item["status"],
@@ -767,7 +767,7 @@ export interface FineTuneEvent {
 export function fineTuneEventDeserializer(item: any): FineTuneEvent {
   return {
     object: item["object"],
-    created_at: new Date(item["created_at"]),
+    created_at: new Date(item["created_at"] * 1000),
     level: item["level"],
     message: item["message"],
   };
@@ -1029,7 +1029,7 @@ export interface CreateEditResponse {
 export function createEditResponseDeserializer(item: any): CreateEditResponse {
   return {
     object: item["object"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     choices: createEditResponseChoiceArrayDeserializer(item["choices"]),
     usage: completionUsageDeserializer(item["usage"]),
   };
@@ -1274,7 +1274,7 @@ export function createCompletionResponseDeserializer(
   return {
     id: item["id"],
     object: item["object"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     model: item["model"],
     choices: createCompletionResponseChoiceArrayDeserializer(item["choices"]),
     usage: !item["usage"]
@@ -1514,12 +1514,12 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"]),
+    created_at: new Date(item["created_at"] * 1000),
     finished_at: !item["finished_at"]
       ? item["finished_at"]
       : !item["finished_at"]
         ? item["finished_at"]
-        : new Date(item["finished_at"]),
+        : new Date(item["finished_at"] * 1000),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
@@ -1652,7 +1652,7 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"]),
+    created_at: new Date(item["created_at"] * 1000),
     level: item["level"],
     message: item["message"],
   };
@@ -1948,7 +1948,7 @@ export function createChatCompletionResponseDeserializer(
   return {
     id: item["id"],
     object: item["object"],
-    created: new Date(item["created"]),
+    created: new Date(item["created"] * 1000),
     model: item["model"],
     choices: createChatCompletionResponseChoiceArrayDeserializer(
       item["choices"],
