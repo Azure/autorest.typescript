@@ -1,3 +1,18 @@
+## 0.35.0 (2024-11-26)
+
+- [Feature] Upgrade eslint version to ^9.9.0. Please refer to [#2928](https://github.com/Azure/autorest.typescript/pull/2928)
+- [Feature] Normalize enum member name in Modular. Please refer to [#2839](https://github.com/Azure/autorest.typescript/pull/2839)
+- [Feature] Upgrade compiler to v0.62.x and tcgc in Nov. Please refer to [#2892](https://github.com/Azure/autorest.typescript/pull/2892)
+- [Feature] Update azureSdkForJs default value when flavor !== azure. Please refer to [#2921](https://github.com/Azure/autorest.typescript/pull/2921)
+- [Feature] Remove uglify-js dep generation for autorest.typescript. Please refer to [#2920](https://github.com/Azure/autorest.typescript/pull/2920)
+- [Feature] Check no-emit flag. Please refer to [#2908](https://github.com/Azure/autorest.typescript/pull/2908)
+- [Feature] URI template support in RLC. Please refer to [#2814](https://github.com/Azure/autorest.typescript/pull/2814)
+- [Feature] Uprade cadl ranch version to v0.16.1. Please refer to [#2907](https://github.com/Azure/autorest.typescript/pull/2907)
+- [Feature] Move to use dev-tool vendored version of cross-env and uglify-js for JS repository. Please refer to [#2895](https://github.com/Azure/autorest.typescript/pull/2895)
+- [Bugfix] Fix tsp rlc logger.ts generation. Please refer to [#2904](https://github.com/Azure/autorest.typescript/pull/2904)
+- [Bugfix] Fix unix timestamps. Please refer to [#2135](https://github.com/Azure/autorest.typescript/pull/2135)
+- [Bugfix] Fix readme issues and duplicated licence lines issue. Please refer to [#2922](https://github.com/Azure/autorest.typescript/pull/2922)
+
 ## 0.34.0 (2024-11-11)
 
 - [Feature] Generate knownable api version and fix flattening enum issue. Please refer to [#2889](https://github.com/Azure/autorest.typescript/pull/2889)
