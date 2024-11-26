@@ -44,7 +44,7 @@ export function getCommonPackageDevDependencies(
   return {
     "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
-    eslint: "^8.55.0",
+    eslint: "^9.9.0",
     typescript: "~5.6.2",
     ...getEsmDevDependencies(config)
   };
