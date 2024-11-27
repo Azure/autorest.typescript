@@ -1,6 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions } from "../autorestSession";
+import { getImportModuleName } from "@azure-tools/rlc-common";
 export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
@@ -21,18 +22,18 @@ export function generateIndexFile(
 }
 
 function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
-  const { disablePagingAsyncIterators } = getAutorestOptions();
+  const { disablePagingAsyncIterators, moduleKind } = getAutorestOptions();
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
     file.addExportDeclaration({
-      moduleSpecifier: "./pagingHelper",
+      moduleSpecifier: getImportModuleName("./pagingHelper", moduleKind),
       namedExports: ["getContinuationToken"]
     });
   }
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: "./models"
+      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind),
     },
     {
       moduleSpecifier: `./${clientDetails.sourceFileName}`,
@@ -47,7 +48,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (operationGroups.length) {
     file.addExportDeclarations([
       {
-        moduleSpecifier: "./operationsInterfaces"
+        moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, moduleKind),
       }
     ]);
   }
