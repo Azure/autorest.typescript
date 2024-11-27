@@ -66,7 +66,7 @@ export function generateOperations(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, moduleKind } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -89,7 +89,7 @@ export function generateOperations(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: `./${fileName}`
+          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
         } as ExportDeclarationStructure;
       })
     );
@@ -1282,14 +1282,14 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: "../models/mappers"
+      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
     });
   }
 
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: "../models/parameters"
+      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
     });
   }
 
@@ -1299,7 +1299,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${clientClassName}`],
-    moduleSpecifier: `../${clientFileName}`
+    moduleSpecifier: getImportModuleName(`../${clientFileName}`, moduleKind)
   });
 
   if (hasLroOperation(operationGroupDetails)) {
@@ -1309,7 +1309,7 @@ function addImports(
     });
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: `../lroImpl`
+      moduleSpecifier: getImportModuleName(`../lroImpl`, moduleKind)
     });
   }
 }

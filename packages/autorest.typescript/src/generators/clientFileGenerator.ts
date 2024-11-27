@@ -186,7 +186,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasInlineOperations && hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: getImportModuleName("./models/mappers", moduleKind
+      moduleSpecifier: getImportModuleName("./models/mappers", moduleKind)
     });
   }
 
