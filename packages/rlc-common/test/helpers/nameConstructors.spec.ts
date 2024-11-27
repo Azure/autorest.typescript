@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { expect } from "chai";
 import { getImportModuleName, ModuleName } from "../../src/helpers/nameConstructors";
 import { RLCModel } from "../../src/interfaces";
