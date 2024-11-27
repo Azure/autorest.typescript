@@ -1289,7 +1289,7 @@ function addImports(
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: getImportModuleName("../models/parameters", moduleKind)
     });
   }
 
