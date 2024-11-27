@@ -1,5 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
+import { getImportModuleName } from "@azure-tools/rlc-common";
 
 /**
  * Adds the required imports to have operations tracing
@@ -15,7 +16,7 @@ export function addTracingOperationImports(
     sourceFile.addImportDeclarations([
       {
         namedImports: ["tracingClient"],
-        moduleSpecifier: `${traverseToRoot}/tracing`
+        moduleSpecifier: getImportModuleName(`${traverseToRoot}/tracing`, moduleKind)
       }
     ]);
   }
