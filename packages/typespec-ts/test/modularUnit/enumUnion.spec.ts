@@ -980,13 +980,15 @@ describe("model type", () => {
   });
 
   describe("number | numeric literal | nullable", () => {
-    it("number enum", async () => {
+    it("number enum and ignore warnings", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
           color: 1 | 2;
         }
         op read(@body body: Test): void;
-        `);
+        `, {
+        mustEmptyDiagnostic: false
+      });
       assert.ok(modelFile);
       await assertEqualContent(
         modelFile!.getInterface("Test")?.getFullText()!,
@@ -1006,6 +1008,21 @@ describe("model type", () => {
         };`,
         true
       );
+    });
+
+    it("number enum and not ignore warnings", async () => {
+      try {
+        await emitModularModelsFromTypeSpec(`
+          model Test {
+            color: 1 | 2;
+          }
+          op read(@body body: Test): void;
+          `, {
+          mustEmptyDiagnostic: true
+        });
+      } catch (e: any) {
+        assert.strictEqual(e[0].message, 'Enum member name 1 is normalized to Num1 with "Num" prefix.');
+      }
     });
 
     it("number enum member", async () => {
@@ -1169,27 +1186,27 @@ describe("model type", () => {
           * Very small image size of 256x256 pixels.
           * Only supported with dall-e-2 models.
           */
-          size256x256 = "256x256",
+          Size256X256 = "256x256",
          /**
           * A smaller image size of 512x512 pixels.
           * Only supported with dall-e-2 models.
           */
-          size512x512 = "512x512",
+          Size512X512 = "512x512",
          /**
           * A standard, square image size of 1024x1024 pixels.
           * Supported by both dall-e-2 and dall-e-3 models.
           */
-          size1024x1024 = "1024x1024",
+          Size1024X1024 = "1024x1024",
          /**
           * A wider image size of 1024x1792 pixels.
           * Only supported with dall-e-3 models.
           */
-          size1792x1024 = "1792x1024",
+          Size1792X1024 = "1792x1024",
          /**
           * A taller image size of 1792x1024 pixels.
           * Only supported with dall-e-3 models.
           */
-          size1024x1792 = "1024x1792",
+          Size1024X1792 = "1024x1792",
         }
         `
       );
@@ -1217,22 +1234,22 @@ describe("model type", () => {
         `
         /** model interface Test */
         export interface Test {
-          color: Lr | Ud;
+          color: LR | UD;
         }
         `
       );
       await assertEqualContent(
-        modelFile!.getTypeAlias("Lr")?.getFullText()!,
+        modelFile!.getTypeAlias("LR")?.getFullText()!,
         `
-        /** Type of Lr */
-        export type Lr = "left" | "right";
+        /** Type of LR */
+        export type LR = "left" | "right";
         `
       );
       await assertEqualContent(
-        modelFile!.getTypeAlias("Ud")?.getFullText()!,
+        modelFile!.getTypeAlias("UD")?.getFullText()!,
         `
-        /** Type of Ud */
-        export type Ud = "up" | "down";
+        /** Type of UD */
+        export type UD = "up" | "down";
         `
       );
     });

@@ -39,7 +39,7 @@ export declare interface CompatibleWithEncodedNameOptionalParams extends Operati
 export declare type ExtensibleEnum = "value1" | "value2";
 
 export declare interface LanguageClientNameModel {
-    tSName: boolean;
+    tsName: boolean;
 }
 
 export declare interface LanguageOptionalParams extends OperationOptions {
