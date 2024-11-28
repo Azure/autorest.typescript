@@ -45,6 +45,7 @@ function getAzureStandaloneDependencies(
     },
     devDependencies: {
       ...getStandaloneDevDependencies(config),
+      "@microsoft/api-extractor": "^7.40.3",
       rimraf: "^5.0.5",
       mkdirp: "^3.0.1"
     }
