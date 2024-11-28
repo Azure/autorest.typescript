@@ -45,6 +45,7 @@ function getAzureStandaloneDependencies(
     },
     devDependencies: {
       ...getStandaloneDevDependencies(config),
+      "@microsoft/api-extractor": "^7.40.3",
       rimraf: "^5.0.5",
       mkdirp: "^3.0.1"
     }
@@ -68,6 +69,8 @@ function getStandaloneCjsDevDependencies(config: AzurePackageInfoConfig) {
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-multi-entry": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
+    ...(config.moduleKind === "cjs" &&
+      config.withTests && { "cross-env": "^7.0.2" }),
     rollup: "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9"

@@ -38,12 +38,14 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
   const esmDevDependencies = getEsmDevDependencies(config);
   const cjsDevDependencies = getCjsDevDependencies(config);
+  const azurePackageDevDependencies = getAzurePackageDevDependencies(config);
+  delete azurePackageDevDependencies["tshy"];
   return {
     dependencies: {
       ...getAzurePackageDependencies(config)
     },
     devDependencies: {
-      ...getAzurePackageDevDependencies(config),
+      ...azurePackageDevDependencies,
       "@azure/dev-tool": "^1.0.0",
       "@azure/eslint-plugin-azure-sdk": "^3.0.0",
       ...esmDevDependencies,
@@ -132,13 +134,12 @@ function getCjsDevDependencies({
       dotenv: "^16.0.0",
       mocha: "^10.0.0",
       "@types/mocha": "^10.0.0",
-      "cross-env": "^7.0.2",
       "@types/chai": "^4.2.8",
       chai: "^4.2.0",
       "karma-chrome-launcher": "^3.0.0",
       "karma-coverage": "^2.0.0",
       "karma-env-preprocessor": "^0.1.1",
-      "karma-firefox-launcher": "^1.1.0",
+      "karma-firefox-launcher": "^2.1.3",
       "karma-junit-reporter": "^2.0.1",
       "karma-mocha-reporter": "^2.2.5",
       "karma-mocha": "^2.0.1",
@@ -233,7 +234,8 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   return {
     build:
       "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
-    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
+    "build:node":
+      "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
     "build:debug":
       "tsc -p . && dev-tool run bundle && dev-tool run extract-api",

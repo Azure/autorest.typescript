@@ -54,6 +54,9 @@ async function emitFile(
   isAzureFlavor: boolean,
   emitterOutputDir?: string
 ) {
+  if (program.compilerOptions.noEmit || program.hasError()) {
+    return;
+  }
   const host: CompilerHost = program.host;
   const filePath = join(emitterOutputDir ?? "", file.path);
   const isJson = /\.json$/gi.test(filePath);

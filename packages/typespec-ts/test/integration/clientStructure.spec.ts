@@ -60,94 +60,58 @@ describe("ClientStructureClient Rest Client", () => {
 
   it("should call operation one correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/one").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/one").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation two correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/two").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/two").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation three correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/three").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/three").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation four correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/four").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/four").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation five correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/five").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/five").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation six correctly", async () => {
     for (const client of clientArray) {
-      try {
-        const result = await client.path("/six").post();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
+      const result = await client.path("/six").post();
+      assert.strictEqual(result.status, "204");
     }
   });
 
   it("should call operation seven correctly", async () => {
-    try {
-      const result = await client0.path("/seven").post();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client0.path("/seven").post();
+    assert.strictEqual(result.status, "204");
   });
 
   it("should call operation eight correctly", async () => {
-    try {
-      const result = await client0.path("/eight").post();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client0.path("/eight").post();
+    assert.strictEqual(result.status, "204");
   });
 
   it("should call operation nine correctly", async () => {
-    try {
-      const result = await client0.path("/nine").post();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+    const result = await client0.path("/nine").post();
+    assert.strictEqual(result.status, "204");
   });
 });

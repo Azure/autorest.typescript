@@ -105,10 +105,9 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "^7.31.1",
+      "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
       typescript: "~5.6.2",
-      "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
@@ -180,6 +179,7 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
@@ -187,6 +187,7 @@ function regularAutorestPackage(
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "echo skipped";
+    packageInfo.scripts["minify"] = `dev-tool run vendored uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -194,6 +195,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+    packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
 
   if (generateTest) {
@@ -206,22 +208,24 @@ function regularAutorestPackage(
     packageInfo.devDependencies["tsx"] = "^4.7.1";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
-    packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/node"] = "^18.0.0";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
 
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] =
-      "cross-env TEST_MODE=playback npm run integration-test:node";
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
+      packageInfo.scripts["unit-test:node"] =
+        "dev-tool run vendored cross-env TEST_MODE=playback npm run integration-test:node";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
+      packageInfo.devDependencies["cross-env"] = "^7.0.2";
+      packageInfo.scripts["unit-test:node"] =
+        "cross-env TEST_MODE=playback npm run integration-test:node";
       packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
     }
   }
