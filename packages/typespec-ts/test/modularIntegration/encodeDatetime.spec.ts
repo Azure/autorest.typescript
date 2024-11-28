@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { DatetimeClient } from "./generated/encode/datetime/src/index.js";
-describe.only("EncodeDatetimeClient Rest Client", () => {
+describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 
   beforeEach(() => {
