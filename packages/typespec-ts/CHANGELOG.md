@@ -1,7 +1,6 @@
-## 0.35.0 (2024-11-26)
+## 0.35.0 (2024-11-29)
 
 - [Feature] Upgrade eslint version to ^9.9.0. Please refer to [#2928](https://github.com/Azure/autorest.typescript/pull/2928)
-- [Feature] Normalize enum member name in Modular. Please refer to [#2839](https://github.com/Azure/autorest.typescript/pull/2839)
 - [Feature] Upgrade compiler to v0.62.x and tcgc in Nov. Please refer to [#2892](https://github.com/Azure/autorest.typescript/pull/2892)
 - [Feature] Update azureSdkForJs default value when flavor !== azure. Please refer to [#2921](https://github.com/Azure/autorest.typescript/pull/2921)
 - [Feature] Remove uglify-js dep generation for autorest.typescript. Please refer to [#2920](https://github.com/Azure/autorest.typescript/pull/2920)
