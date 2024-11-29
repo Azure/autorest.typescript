@@ -317,10 +317,12 @@ function getServiceInfo(program: Program): ServiceInfo {
 }
 
 function getAzureSdkForJs(emitterOptions: EmitterOptions) {
-  return emitterOptions.azureSdkForJs === undefined ||
-    emitterOptions.azureSdkForJs === null
-    ? true
-    : Boolean(emitterOptions.azureSdkForJs);
+  return emitterOptions.flavor !== "azure"
+    ? false
+    : emitterOptions.azureSdkForJs === undefined ||
+        emitterOptions.azureSdkForJs === null
+      ? true
+      : Boolean(emitterOptions.azureSdkForJs);
 }
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
