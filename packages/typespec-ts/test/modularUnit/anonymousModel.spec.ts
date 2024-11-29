@@ -76,11 +76,14 @@ describe("anonymous model", () => {
           prop5: Bar,
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/{pathParam}{?queryParam}").expand({
+          pathParam: pathParam,
+          queryParam: queryParam,
+        });
           return context
-            .path("/{pathParam}", pathParam)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam },
               body: {
                 prop1: prop1,
                 prop2: prop2,
@@ -203,11 +206,14 @@ describe("anonymous model", () => {
           prop4: string,
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/{pathParam}{?queryParam}").expand({
+          pathParam: pathParam,
+          queryParam: queryParam,
+        });
           return context
-            .path("/{pathParam}", pathParam)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam },
               body: {
                 prop1: prop1,
                 prop2: prop2,
@@ -335,11 +341,18 @@ describe("anonymous model", () => {
           prop2: number,
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__(
+          "/{pathParam}/{prop1}{?prop4,queryParam}",
+        ).expand({
+          pathParam: pathParam,
+          prop1: prop1,
+          prop4: prop4,
+          queryParam: queryParam,
+        });
           return context
-            .path("/{pathParam}/{prop1}", pathParam, prop1)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { prop4: prop4, queryParam: queryParam },
               body: {
                 prop2: prop2,
                 prop3: options?.prop3?.toISOString(),
@@ -471,11 +484,14 @@ describe("anonymous model", () => {
           body: Foo,
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/{pathParam}{?queryParam}").expand({
+            pathParam: pathParam,
+            queryParam: queryParam,
+          });
           return context
-            .path("/{pathParam}", pathParam)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam },
               body: fooSerializer(body),
             });
         }
@@ -543,11 +559,14 @@ describe("anonymous model", () => {
           body: Record<string, any>,
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/{pathParam}{?queryParam}").expand({
+            pathParam: pathParam,
+            queryParam: queryParam,
+          });
           return context
-            .path("/{pathParam}", pathParam)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam },
               body: _readRequestSerializer(body),
             });
         }
@@ -628,11 +647,14 @@ describe("anonymous model", () => {
           test: { prop1: string; prop2: Bar },
           options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod {
+          const path = __PLACEHOLDER_o15__("/{pathParam}{?queryParam}").expand({
+            pathParam: pathParam,
+            queryParam: queryParam,
+          });
           return context
-            .path("/{pathParam}", pathParam)
+            .path(path)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam },
               body: _readRequestSerializer(test),
             });
         }

@@ -20,8 +20,7 @@ describe("BasicClient Classical Client", () => {
           orderby: ["id"],
           filter: "id lt 10",
           select: ["id", "orders", "etag"],
-          expand: ["orders"],
-          requestOptions: { skipUrlEncoding: true }
+          expand: ["orders"]
         });
         const items = [];
         for await (const user of iter) {
@@ -44,8 +43,7 @@ describe("BasicClient Classical Client", () => {
           orderby: ["id"],
           filter: "id lt 10",
           select: ["id", "orders", "etag"],
-          expand: ["orders"],
-          requestOptions: { skipUrlEncoding: true }
+          expand: ["orders"]
         });
         const pagedItems = iter.byPage();
         const items: User[] = [];
@@ -67,8 +65,7 @@ describe("BasicClient Classical Client", () => {
           orderby: ["id"],
           filter: "id lt 10",
           select: ["id", "orders", "etag"],
-          expand: ["orders"],
-          requestOptions: { skipUrlEncoding: true }
+          expand: ["orders"]
         });
 
         const pagedIter = iter.byPage({ maxPageSize: 10 } as any);

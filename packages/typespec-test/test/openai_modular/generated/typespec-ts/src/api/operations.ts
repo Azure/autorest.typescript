@@ -41,6 +41,7 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
+import { parseTemplate } from "../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -56,8 +57,13 @@ export function _getAudioTranscriptionAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -105,8 +111,13 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -154,8 +165,13 @@ export function _getAudioTranslationAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/audio/translations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -200,8 +216,13 @@ export function _getAudioTranslationAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/audio/translations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
@@ -244,8 +265,13 @@ export function _getCompletionsSend(
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/completions{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/completions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: completionsOptionsSerializer(body),
@@ -289,8 +315,13 @@ export function _getChatCompletionsSend(
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/chat/completions{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/chat/completions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: chatCompletionsOptionsSerializer(body),
@@ -334,8 +365,13 @@ export function _getImageGenerationsSend(
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/images/generations{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/images/generations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: imageGenerationOptionsSerializer(body),
@@ -375,8 +411,13 @@ export function _generateSpeechFromTextSend(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/audio/speech{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: speechGenerationOptionsSerializer(body),
@@ -416,8 +457,13 @@ export function _getEmbeddingsSend(
   body: EmbeddingsOptions,
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate(
+    "/deployments/{deploymentId}/embeddings{?api-version}",
+  ).expand({
+    deploymentId: deploymentId,
+  });
   return context
-    .path("/deployments/{deploymentId}/embeddings", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: embeddingsOptionsSerializer(body),
