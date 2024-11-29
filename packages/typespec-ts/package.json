@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.34.0",
+  "version": "0.35.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -118,7 +118,7 @@
     "@typespec/versioning": ">=0.62.0 <1.0.0"
   },
   "dependencies": {
-    "@azure-tools/rlc-common": "workspace:^0.34.0",
+    "@azure-tools/rlc-common": "workspace:^0.35.0",
     "fs-extra": "^11.1.0",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
