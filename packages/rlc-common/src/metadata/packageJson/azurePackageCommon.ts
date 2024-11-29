@@ -103,7 +103,7 @@ function getAzurePackageCjsDevDependencies({
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.0",
     "karma-env-preprocessor": "^0.1.1",
-    "karma-firefox-launcher": "^2.1.2",
+    "karma-firefox-launcher": "^2.1.3",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "karma-mocha": "^2.0.1",
