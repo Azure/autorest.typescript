@@ -1,4 +1,4 @@
-import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
