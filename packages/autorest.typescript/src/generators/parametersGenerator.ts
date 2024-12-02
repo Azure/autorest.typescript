@@ -15,7 +15,7 @@ import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
 import { getAutorestOptions } from "../autorestSession";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 export function generateParameters(
   clientDetails: ClientDetails,

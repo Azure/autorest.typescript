@@ -30,7 +30,7 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroType } from "../utils/lroHelpers";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
