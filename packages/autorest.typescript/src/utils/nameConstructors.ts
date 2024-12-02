@@ -31,5 +31,5 @@ export function getImportModuleName(
 		return esModulesName;
 	}
 	// CJS is considered the default in autorest.typescript
-	return esModulesName;
+	return cjsName;
 }
