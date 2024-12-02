@@ -33,7 +33,7 @@ import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 import { createLroImports } from "../utils/lroHelpers";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 

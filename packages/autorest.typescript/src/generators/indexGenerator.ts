@@ -1,7 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions } from "../autorestSession";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../utils/nameConstructors";
 export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
