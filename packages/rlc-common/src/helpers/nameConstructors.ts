@@ -110,9 +110,9 @@ export function getParameterTypeName(
 export type ModuleName =
   | string
   | {
-    esModulesName: string;
-    cjsName: string;
-  };
+      esModulesName: string;
+      cjsName: string;
+    };
 
 /**
  * This is a helper function that gets the right import module depending on the type of
