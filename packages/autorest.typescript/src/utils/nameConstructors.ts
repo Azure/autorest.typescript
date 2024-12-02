@@ -1,9 +1,9 @@
 export type ModuleName =
-	| string
-	| {
-		esModulesName: string;
-		cjsName: string;
-	};
+  | string
+  | {
+      esModulesName: string;
+      cjsName: string;
+    };
 
 /**
  * This is a helper function that gets the right import module depending on the type of
@@ -21,15 +21,15 @@ export type ModuleName =
  * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, "esm") // returns "myModule/index.js"
  */
 export function getImportModuleName(
-	name: ModuleName,
-	moduleKind?: "cjs" | "esm"
+  name: ModuleName,
+  moduleKind?: "cjs" | "esm"
 ): string {
-	const cjsName = typeof name === "string" ? name : name.cjsName;
-	const esModulesName =
-		typeof name === "string" ? `${name}.js` : name.esModulesName;
-	if (moduleKind === "esm") {
-		return esModulesName;
-	}
-	// CJS is considered the default in autorest.typescript
-	return cjsName;
+  const cjsName = typeof name === "string" ? name : name.cjsName;
+  const esModulesName =
+    typeof name === "string" ? `${name}.js` : name.esModulesName;
+  if (moduleKind === "esm") {
+    return esModulesName;
+  }
+  // CJS is considered the default in autorest.typescript
+  return cjsName;
 }

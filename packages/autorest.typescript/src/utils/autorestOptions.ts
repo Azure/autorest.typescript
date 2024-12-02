@@ -4,7 +4,7 @@ import { DependencyInfo, TracingInfo } from "../models/clientDetails";
 import { NameType, normalizeName } from "./nameUtils";
 
 import { PackageDetails } from "../models/packageDetails";
-import { getImportModuleName, PackageFlavor } from "@azure-tools/rlc-common";
+import { PackageFlavor } from "@azure-tools/rlc-common";
 
 /**
  * Extracts common autorest options
