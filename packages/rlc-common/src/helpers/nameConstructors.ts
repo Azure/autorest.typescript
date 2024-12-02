@@ -131,7 +131,7 @@ export type ModuleName =
  */
 export function getImportModuleName(
   name: ModuleName,
-  moduleKind: "cjs" | "esm"
+  moduleKind?: "cjs" | "esm"
 ): string;
 /**
  * This is a helper function that gets the right import module depending on the type of
@@ -154,7 +154,7 @@ export function getImportModuleName(
 ): string;
 export function getImportModuleName(
   name: ModuleName,
-  codeModelOrModuleKind: "cjs" | "esm" | RLCModel
+  codeModelOrModuleKind?: "cjs" | "esm" | RLCModel
 ): string {
   const moduleKind =
     typeof codeModelOrModuleKind === "string"
