@@ -20,7 +20,7 @@ import {
   getPagingResponseBodyType
 } from "./responseTypeUtils";
 import { getAutorestOptions } from "../../autorestSession";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../../utils/nameConstructors";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
