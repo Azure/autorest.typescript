@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
-import { getImportModuleName } from "@azure-tools/rlc-common";
+import { getImportModuleName } from "../../utils/nameConstructors";
 
 /**
  * Adds the required imports to have operations tracing
