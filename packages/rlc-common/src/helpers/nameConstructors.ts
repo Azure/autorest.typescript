@@ -110,9 +110,9 @@ export function getParameterTypeName(
 export type ModuleName =
   | string
   | {
-      esModulesName: string;
-      cjsName: string;
-    };
+    esModulesName: string;
+    cjsName: string;
+  };
 
 /**
  * This is a helper function that gets the right import module depending on the type of
@@ -131,7 +131,7 @@ export type ModuleName =
  */
 export function getImportModuleName(
   name: ModuleName,
-  moduleKind?: "cjs" | "esm"
+  moduleKind: "cjs" | "esm"
 ): string;
 /**
  * This is a helper function that gets the right import module depending on the type of
@@ -154,18 +154,19 @@ export function getImportModuleName(
 ): string;
 export function getImportModuleName(
   name: ModuleName,
-  codeModelOrModuleKind?: "cjs" | "esm" | RLCModel
+  codeModelOrModuleKind: "cjs" | "esm" | RLCModel
 ): string {
   const moduleKind =
     typeof codeModelOrModuleKind === "string"
       ? codeModelOrModuleKind
-      : codeModelOrModuleKind?.options?.moduleKind ?? "cjs";
+      : codeModelOrModuleKind?.options?.moduleKind;
   const cjsName = typeof name === "string" ? name : name.cjsName;
   const esModulesName =
     typeof name === "string" ? `${name}.js` : name.esModulesName;
   if (moduleKind === "cjs") {
     return cjsName;
   }
+  // ESM is considered the default
   return esModulesName;
 }
 
