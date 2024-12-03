@@ -231,7 +231,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': latest
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.2
       '@azure-tools/rlc-common': workspace:^0.35.0
       '@azure-tools/typespec-autorest': '>=0.48.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.48.0 <1.0.0'
@@ -254,11 +254,11 @@ importers:
       '@typescript-eslint/parser': ^6.8.0
       '@typespec/compiler': '>=0.62.0 <1.0.0'
       '@typespec/http': '>=0.62.0 <1.0.0'
-      '@typespec/http-specs': latest
+      '@typespec/http-specs': 0.1.0-alpha.2
       '@typespec/openapi': '>=0.62.0, <1.0.0'
       '@typespec/rest': '>=0.62.0 <1.0.0'
-      '@typespec/spec-api': latest
-      '@typespec/spector': latest
+      '@typespec/spec-api': 0.1.0-alpha.0
+      '@typespec/spector': 0.1.0-alpha.3
       '@typespec/ts-http-runtime': 1.0.0-alpha.20240314.2
       '@typespec/versioning': '>=0.62.0 <1.0.0'
       '@vitest/coverage-istanbul': ~1.6.0
