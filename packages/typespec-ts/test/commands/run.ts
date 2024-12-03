@@ -216,7 +216,7 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
   async function entryPath(): Promise<string> {
     const specPath = joinPath(
       emitterRoot(),
-      "./temp/http",
+      "./temp/specs",
       env.sourceTypespec()
     );
     const possibleEntryPaths = ["client.tsp", "main.tsp"].map((filename) =>
@@ -242,7 +242,18 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
     return env.mode().includes("non-branded") ? "non-branded" : "branded";
   }
   function clientType() {
-    return env.mode().includes("modular") ? "modular" : "rlc";
+    switch (env.mode()) {
+      case "modular":
+        return "modular";
+      case "rlc":
+        return "rlc";
+      case "azure_rlc":
+        return "azure_rlc";
+      case "azure_modular":
+        return "azure_modular";
+      default:
+        return "rlc";
+    }
   }
 
   function outputPath() {
@@ -251,12 +262,12 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
         modular: "nonBrandedIntegration/modular",
         rlc: "nonBrandedIntegration/rlc"
       },
-      branded: { modular: "modularIntegration", rlc: "integration" }
+      branded: { modular: "modularIntegration", rlc: "integration", azure_rlc: "azureIntegration", azure_modular: "azureModularIntegration" }
     }[flavor()][clientType()];
 
     const outputPath = joinPath(
       testRoot(),
-      subPath,
+      subPath!,
       "generated",
       env.targetFolder()
     );

@@ -12,10 +12,6 @@ export const rlcTsps = [
     inputPath: "union-body"
   },
   {
-    outputPath: "azure/special-headers/client-request-id",
-    inputPath: "azure/special-headers/client-request-id"
-  },
-  {
     outputPath: "special-headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
@@ -80,14 +76,6 @@ export const rlcTsps = [
     inputPath: "type/enum/fixed"
   },
   {
-    outputPath: "azure/core/lro/standard",
-    inputPath: "azure/core/lro/standard"
-  },
-  {
-    outputPath: "azure/core/lro/rpc",
-    inputPath: "azure/core/lro/rpc"
-  },
-  {
     outputPath: "type/model/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
   },
@@ -136,14 +124,6 @@ export const rlcTsps = [
     inputPath: "type/model/empty"
   },
   {
-    outputPath: "resiliency/srv-driven-old",
-    inputPath: "resiliency/srv-driven/old.tsp"
-  },
-  {
-    outputPath: "resiliency/srv-driven-main",
-    inputPath: "resiliency/srv-driven/main.tsp"
-  },
-  {
     outputPath: "special-words",
     inputPath: "special-words"
   },
@@ -168,60 +148,16 @@ export const rlcTsps = [
     inputPath: "server/path/multiple"
   },
   {
-    outputPath: "azure/core/basic",
-    inputPath: "azure/core/basic"
-  },
-  {
-    outputPath: "azure/core/traits",
-    inputPath: "azure/core/traits"
-  },
-  {
-    outputPath: "client/structure/default",
-    inputPath: "client/structure/default"
-  },
-  {
-    outputPath: "client/structure/multi-client",
-    inputPath: "client/structure/multi-client"
-  },
-  {
-    outputPath: "client/structure/renamed-operation",
-    inputPath: "client/structure/renamed-operation"
-  },
-  {
-    outputPath: "client/structure/two-operation-group",
-    inputPath: "client/structure/two-operation-group"
-  },
-  {
     outputPath: "type/scalar",
     inputPath: "type/scalar"
-  },
-  {
-    outputPath: "azure/client-generator-core/access",
-    inputPath: "azure/client-generator-core/access"
-  },
-  {
-    outputPath: "azure/client-generator-core/usage",
-    inputPath: "azure/client-generator-core/usage"
-  },
-  {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
   },
   {
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
   {
-    outputPath: "client/naming",
-    inputPath: "client/naming"
-  },
-  {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
-  },
-  {
-    outputPath: "azure/core/scalar",
-    inputPath: "azure/core/scalar"
   },
   {
     outputPath: "server/endpoint/not-defined",
@@ -269,6 +205,45 @@ export const rlcTsps = [
     inputPath: "versioning/typeChangedFrom"
   },
   {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
+  }
+];
+
+export const rlcAzureTsps = [
+  {
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
+  },
+  {
+    outputPath: "azure/core/lro/standard",
+    inputPath: "azure/core/lro/standard"
+  },
+  {
+    outputPath: "azure/core/lro/rpc",
+    inputPath: "azure/core/lro/rpc"
+  },
+  {
+    outputPath: "azure/core/basic",
+    inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "azure/core/traits",
+    inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "azure/client-generator-core/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/client-generator-core/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "azure/core/scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
     outputPath: "azure/resource-manager/resources",
     inputPath: "azure/resource-manager/resources"
   },
@@ -276,6 +251,7 @@ export const rlcTsps = [
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
   },
+  
   {
     outputPath: "azure/resource-manager/common-properties",
     inputPath: "azure/resource-manager/common-properties"
@@ -287,57 +263,6 @@ export const rlcTsps = [
   {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
-  },
-  {
-    outputPath: "client/structure/client-operation-group",
-    inputPath: "client/structure/client-operation-group"
-  },
-  {
-    outputPath: "encode/numeric",
-    inputPath: "encode/numeric"
-  }
-];
-
-export const nonBrandedRlcTsps = [
-  {
-    outputPath: "models/usage",
-    inputPath: "type/model/usage"
-  }
-];
-
-export const modularTsps = [
-  {
-    outputPath: "azure/client-generator-core/flatten-property",
-    inputPath: "azure/client-generator-core/flatten-property"
-  },
-  {
-    outputPath: "azure/core/model",
-    inputPath: "azure/core/model"
-  },
-  {
-    outputPath: "azure/resource-manager/resources",
-    inputPath: "azure/resource-manager/resources"
-  },
-  { outputPath: "azure/core/lro/rpc", inputPath: "azure/core/lro/rpc" },
-  {
-    outputPath: "azure/core/lro/standard",
-    inputPath: "azure/core/lro/standard"
-  },
-  {
-    outputPath: "azure/client-generator-core/access",
-    inputPath: "azure/client-generator-core/access"
-  },
-  {
-    outputPath: "azure/client-generator-core/usage",
-    inputPath: "azure/client-generator-core/usage"
-  },
-  {
-    outputPath: "parameters/body-optionality",
-    inputPath: "parameters/body-optionality"
-  },
-  {
-    outputPath: "type/model/usage",
-    inputPath: "type/model/usage"
   },
   {
     outputPath: "client/structure/default",
@@ -356,16 +281,46 @@ export const modularTsps = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "azure/special-headers/client-request-id",
-    inputPath: "azure/special-headers/client-request-id"
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
+  },
+    {
+    outputPath: "resiliency/srv-driven-old",
+    inputPath: "resiliency/srv-driven/old.tsp"
+  },
+  {
+    outputPath: "resiliency/srv-driven-main",
+    inputPath: "resiliency/srv-driven/main.tsp"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  }
+];
+
+export const nonBrandedRlcTsps = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  }
+];
+
+export const modularTsps = [
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "type/model/usage",
+    inputPath: "type/model/usage"
   },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
-  },
-  {
-    outputPath: "azure/core/basic",
-    inputPath: "azure/core/basic"
   },
   {
     outputPath: "type/dictionary",
@@ -394,10 +349,6 @@ export const modularTsps = [
   {
     outputPath: "type/model/inheritance/single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
-  },
-  {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
   },
   {
     outputPath: "encode/bytes",
@@ -444,10 +395,6 @@ export const modularTsps = [
     inputPath: "special-headers/repeatability"
   },
   {
-    outputPath: "azure/core/traits",
-    inputPath: "azure/core/traits"
-  },
-  {
     outputPath: "type/model/empty",
     inputPath: "type/model/empty"
   },
@@ -481,16 +428,8 @@ export const modularTsps = [
     inputPath: "type/scalar"
   },
   {
-    outputPath: "client/naming",
-    inputPath: "client/naming"
-  },
-  {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
-  },
-  {
-    outputPath: "azure/core/scalar",
-    inputPath: "azure/core/scalar"
   },
   {
     outputPath: "server/endpoint/not-defined",
@@ -545,6 +484,90 @@ export const modularTsps = [
     inputPath: "versioning/typeChangedFrom"
   },
   {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
+  }
+];
+
+export const modularAzureTsps = [
+  {
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
+  },
+  {
+    outputPath: "azure/core/lro/standard",
+    inputPath: "azure/core/lro/standard"
+  },
+  {
+    outputPath: "azure/core/lro/rpc",
+    inputPath: "azure/core/lro/rpc"
+  },
+  {
+    outputPath: "azure/core/basic",
+    inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "azure/core/traits",
+    inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "azure/client-generator-core/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/client-generator-core/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "azure/core/scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "azure/resource-manager/resources",
+    inputPath: "azure/resource-manager/resources"
+  },
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
+  },
+  
+  {
+    outputPath: "azure/resource-manager/common-properties",
+    inputPath: "azure/resource-manager/common-properties"
+  },
+  {
+    outputPath: "azure/core/page",
+    inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "azure/client-generator-core/flatten-property",
+    inputPath: "azure/client-generator-core/flatten-property"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
+  },
+    {
     outputPath: "resiliency/srv-driven-old",
     inputPath: "resiliency/srv-driven/old.tsp"
   },
@@ -553,24 +576,8 @@ export const modularTsps = [
     inputPath: "resiliency/srv-driven/main.tsp"
   },
   {
-    outputPath: "azure/resource-manager/common-properties",
-    inputPath: "azure/resource-manager/common-properties"
-  },
-  {
-    outputPath: "azure/example/basic",
-    inputPath: "azure/example/basic"
-  },
-  {
-    outputPath: "azure/core/page",
-    inputPath: "azure/core/page"
-  },
-  {
-    outputPath: "client/structure/client-operation-group",
-    inputPath: "client/structure/client-operation-group"
-  },
-  {
-    outputPath: "encode/numeric",
-    inputPath: "encode/numeric"
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 
