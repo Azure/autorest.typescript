@@ -507,6 +507,10 @@ export const modularAzureTsps = [
     inputPath: "azure/core/basic"
   },
   {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
+  },
+  {
     outputPath: "azure/core/traits",
     inputPath: "azure/core/traits"
   },
