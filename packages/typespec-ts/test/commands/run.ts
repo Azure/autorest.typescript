@@ -251,6 +251,8 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
         return "azure_rlc";
       case "azure_modular":
         return "azure_modular";
+      case "non-branded-modular":
+        return "modular";
       default:
         return "rlc";
     }
