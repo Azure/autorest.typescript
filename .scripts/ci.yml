@@ -245,7 +245,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
 
-      - job: Cadl_Ranch_Test
+      - job: Cadl_Ranch_RLC_Test
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -279,13 +279,13 @@ stages:
           - script: npm run check-format
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Format check for TypeSpec emitter"
-          - script: npm run test
+          - script: npm run test:rlc
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Generate RLC Test Clients from Cadl-ranch"
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Check git Tree"
-          - script: npx cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
+          - script: npx tsp-spector check-coverage ./node_modules/@typespec/http-specs/specs --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             continueOnError: true
@@ -314,10 +314,69 @@ stages:
                   scriptLocation: "inlineScript"
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
                   inlineScript: |
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --generatorName typescript/modular --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT) --generatorName typescript/modular --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --generatorName typescript/rlc --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --generatorName typescript/modular --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --generatorName typescript/rlc --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT) --generatorName typescript/modular --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
+
+      - job: Cadl_Ranch_MODULAR_Test
+        dependsOn: Build
+        variables:
+          - template: globals.yml
+        strategy:
+          matrix:
+            macOS_Node20:
+              Pool:
+              OSVmImage: "macOS-latest"
+              NodeTestVersion: "20.x"
+            Linux_Node20:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-20.04"
+              NodeTestVersion: "20.x"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
+          - script: npm run test:modular
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "Generate Modular Test Clients from Cadl-ranch"
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "Check git Tree"
+          - script: npx tsp-spector check-coverage ./node_modules/@typespec/http-specs/specs --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
+            displayName: "Check Coverage"
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            continueOnError: true
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)
+            artifact: RLCAzureCoverageReport
+            displayName: "Publish rlc azure coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT)
+            artifact: ModularAzureCoverageReport
+            displayName: "Publish modular azure coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT)
+            artifact: RLCStandardCoverageReport
+            displayName: "Publish rlc standard coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
+            artifact: ModularStandardCoverageReport
+            displayName: "Publish modular standard coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
+          - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
+              - task: AzureCLI@2
+                displayName: "Upload to Cadl Ranch Coverage Report"
+                inputs:
+                  azureSubscription: "Cadl Ranch Storage"
+                  scriptType: "bash"
+                  scriptLocation: "inlineScript"
+                  workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+                  inlineScript: |
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --generatorName typescript/rlc --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --generatorName typescript/modular --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --generatorName typescript/rlc --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
+                    npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT) --generatorName typescript/modular --storageAccountName typespec --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
       - template: release.yml
