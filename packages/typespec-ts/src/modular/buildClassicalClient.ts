@@ -24,6 +24,12 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { resolveReference } from "../framework/reference.js";
 import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
+import {
+  SdkClientType,
+  SdkHttpOperation,
+  SdkServiceMethod,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 
 export function buildClassicalClient(
   _client: Client,
@@ -140,6 +146,29 @@ function importAllApis(
   });
 }
 
+function generateMethod(
+  context: SdkContext,
+  clientType: string,
+  method: SdkServiceMethod<SdkServiceOperation>
+) {
+  const declarations = getOperationFunction(context, method, clientType);
+  const result: MethodDeclarationStructure = {
+    docs: declarations.docs,
+    name: declarations.propertyName ?? declarations.name ?? "FIXME",
+    kind: StructureKind.Method,
+    returnType: declarations.returnType,
+    parameters: declarations.parameters?.filter((p) => p.name !== "context"),
+    statements: `return ${declarations.name}(${[
+      "this._client",
+      ...[
+        declarations.parameters
+          ?.map((p) => p.name)
+          .filter((p) => p !== "context")
+      ]
+    ].join(",")})`
+  };
+  return result;
+}
 function buildClientOperationGroups(
   clientFile: SourceFile,
   client: Client,
@@ -151,85 +180,49 @@ function buildClientOperationGroups(
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }
-  for (const operationGroup of client.operationGroups) {
-    const groupName = normalizeName(
-      operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
-      NameType.Property
-    );
-    // TODO: remove this logic once client-level parameter design is finalized
-    // https://github.com/Azure/autorest.typescript/issues/2618
-    const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
-      dpgContext,
-      operationGroup
-    );
-    if (groupName === "") {
-      operationGroup.operations.forEach((op) => {
-        const declarations = getOperationFunction(dpgContext, op, clientType);
-        const method: MethodDeclarationStructure = {
-          docs: declarations.docs,
-          name: declarations.propertyName ?? declarations.name ?? "FIXME",
-          kind: StructureKind.Method,
-          returnType: declarations.returnType,
-          parameters: declarations.parameters?.filter(
-            (p) => p.name !== "context"
-          ),
-          statements: `return ${declarations.name}(${[
-            "this._client",
-            ...[
-              declarations.parameters
-                ?.map((p) => p.name)
-                .filter((p) => p !== "context")
-            ]
-          ].join(",")})`
-        };
-        clientClass.addMethod(method);
-      });
+  const tcgcClient = client.tcgcClient;
+  for (const operationOrGroup of tcgcClient.methods) {
+    if (operationOrGroup.kind !== "clientaccessor") {
+      const method = generateMethod(dpgContext, clientType, operationOrGroup);
+      clientClass.addMethod(method);
       continue;
-    }
-    const operationName = `get${getClassicalLayerPrefix(
-      operationGroup,
-      NameType.Interface,
-      "",
-      0
-    )}Operations`;
-    const propertyType = `${getClassicalLayerPrefix(
-      operationGroup,
-      NameType.Interface,
-      "",
-      0
-    )}Operations`;
-    const existProperty = clientClass.getProperties().filter((p) => {
-      return p.getName() === groupName;
-    });
-    if (!existProperty || existProperty.length === 0) {
-      clientFile.addImportDeclaration({
-        namedImports: [operationName, propertyType],
-        moduleSpecifier: `./classic/${getClassicalLayerPrefix(
-          operationGroup,
-          NameType.File,
-          "/",
-          0
-        )}/index.js`
+    } else {
+      const groupName = operationOrGroup.name;
+      const operationName = `get${normalizeName(
+        groupName,
+        NameType.OperationGroup
+      )}Operations`;
+      const propertyType = `${normalizeName(
+        groupName,
+        NameType.OperationGroup
+      )}Operations`;
+      const existProperty = clientClass.getProperties().filter((p) => {
+        return p.getName() === groupName;
       });
-      clientClass.addProperty({
-        name: groupName,
-        type: propertyType,
-        scope: Scope.Public,
-        isReadonly: true,
-        docs: ["The operation groups for " + operationGroup.propertyName]
-      });
-      clientClass
-        .getConstructors()[0]
-        ?.addStatements(
-          `this.${groupName} = get${getClassicalLayerPrefix(
-            operationGroup,
-            NameType.Interface,
-            "",
-            0
-          )}Operations(this._client${
-            hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-          })`
-        );
+      if (!existProperty || existProperty.length === 0) {
+        clientFile.addImportDeclaration({
+          namedImports: [operationName, propertyType],
+          moduleSpecifier: `./classic/${normalizeName(
+            groupName,
+            NameType.File
+          )}/index.js`
+        });
+        clientClass.addProperty({
+          name: groupName,
+          type: propertyType,
+          scope: Scope.Public,
+          isReadonly: true,
+          docs: ["The operation groups for " + groupName]
+        });
+        clientClass
+          .getConstructors()[0]
+          ?.addStatements(
+            `this.${groupName} = get${normalizeName(
+              groupName,
+              NameType.OperationGroup
+            )}Operations(this._client)`
+          );
+      }
     }
   }
 }

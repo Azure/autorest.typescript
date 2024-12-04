@@ -1,9 +1,11 @@
 import {
   SdkBodyParameter,
+  SdkEnumType,
   // SdkCredentialType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { Type } from "../modularCodeModel.js";
+import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 
 /**
  * Represents metadata for a given Type to generate the TypeScript equivalent.
@@ -127,7 +129,7 @@ function handleConstantType(type: Type): TypeMetadata {
 /**
  * Handles the conversion of enum types to TypeScript representation metadata.
  */
-function handleEnumType(type: Type): TypeMetadata {
+function handleEnumType(type: SdkEnumType): TypeMetadata {
   if (!type.name) {
     const valueType = !type.isFixed
       ? ((type.values?.[0] as Type).valueType?.type ?? "string") + " | "
@@ -135,7 +137,7 @@ function handleEnumType(type: Type): TypeMetadata {
     return {
       name: `${valueType}${type.values
         ?.map((e) => {
-          return getType(e as Type).name;
+          return getTypeExpression(e).name;
         })
         .join(" | ")}`,
       nullable: isTypeNullable(type)
@@ -152,8 +154,8 @@ function handleEnumType(type: Type): TypeMetadata {
   };
 }
 
-export function isTypeNullable(type: Type) {
-  return Boolean(type.tcgcType?.kind === "nullable");
+export function isTypeNullable(type: SdkType) {
+  return Boolean(type.kind === "nullable");
 }
 
 /**

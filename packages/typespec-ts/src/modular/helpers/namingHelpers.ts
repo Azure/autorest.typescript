@@ -6,6 +6,8 @@ import {
 import {
   SdkClient,
   SdkClientType,
+  SdkHttpOperation,
+  SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
@@ -36,7 +38,7 @@ export interface GuardedName {
 }
 
 export function getOperationName(
-  operation: Operation,
+  operation: SdkServiceMethod<SdkHttpOperation>,
   options: { casing: "camel" | "pascal" } = { casing: "camel" }
 ): GuardedName {
   const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
