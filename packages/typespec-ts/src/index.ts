@@ -45,7 +45,9 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile
+  buildSampleEnvFile,
+  normalizeName,
+  NameType
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -264,16 +266,22 @@ export async function $onEmit(context: EmitContext) {
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularCodeModel, "models");
-    // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
-      const samples = emitSamples(dpgContext);
-      // Refine the rlc sample generation logic
-      // TODO: remember to remove this out when RLC is splitted from Modular
-      if (samples.length > 0) {
-        dpgContext.rlcOptions!.generateSample = true;
-      }
-    }
+
     for (const subClient of modularCodeModel.clients) {
+      if (
+        modularCodeModel.options.typespecTitleMap &&
+        modularCodeModel.options.typespecTitleMap[subClient.tcgcClient.name]
+      ) {
+        subClient.tcgcClient.name =
+          modularCodeModel.options.typespecTitleMap[subClient.tcgcClient.name]!;
+        subClient.subfolder =
+          modularCodeModel.clients.length > 1
+            ? normalizeName(
+                subClient.tcgcClient.name.replace("Client", ""),
+                NameType.File
+              )
+            : "";
+      }
       buildApiOptions(dpgContext, subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
@@ -296,6 +304,16 @@ export async function $onEmit(context: EmitContext) {
         buildSubClientIndexFile(subClient, modularCodeModel);
       }
       buildRootIndex(subClient, modularCodeModel, rootIndexFile);
+    }
+
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions?.generateSample === true) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
