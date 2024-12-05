@@ -7,7 +7,6 @@ import { SdkContext } from "../utils/interfaces.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import {
   SdkClientType,
-  SdkHttpOperation,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
