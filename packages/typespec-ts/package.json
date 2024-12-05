@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.34.0",
+  "version": "0.35.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -70,7 +70,7 @@
     "@azure-tools/typespec-autorest": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.48.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.48.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.48.3 <1.0.0",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-lro": "^3.1.0",
@@ -111,14 +111,14 @@
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.48.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.48.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.48.3 <1.0.0",
     "@typespec/compiler": ">=0.62.0 <1.0.0",
     "@typespec/http": ">=0.62.0 <1.0.0",
     "@typespec/rest": ">=0.62.0 <1.0.0",
     "@typespec/versioning": ">=0.62.0 <1.0.0"
   },
   "dependencies": {
-    "@azure-tools/rlc-common": "workspace:^0.34.0",
+    "@azure-tools/rlc-common": "workspace:^0.35.0",
     "fs-extra": "^11.1.0",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",

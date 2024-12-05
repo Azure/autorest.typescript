@@ -18,7 +18,7 @@
   "module": "./dist-esm/index.js",
   "types": "./types/graphrbac-data-plane.d.ts",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.31.1",
+    "@microsoft/api-extractor": "^7.40.3",
     "mkdirp": "^3.0.1",
     "typescript": "~5.6.2",
     "rimraf": "^5.0.0",
