@@ -17,8 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "paths": { "@notabrand/todo-non-branded": ["./src/index"] }
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }
