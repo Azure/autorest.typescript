@@ -10,33 +10,9 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
-export interface ApiError {
-    code: string;
-    message: string;
-}
-
-// @public
-export interface InvalidTodoItem extends ApiError {
-}
-
-// @public
-export interface InvalidUserResponse extends ApiError {
-    // (undocumented)
-    code: "invalid-user";
-}
-
-// @public
 export interface PageTodoAttachment {
     // (undocumented)
     items: TodoAttachment[];
-}
-
-// @public
-export interface Standard4XXResponse extends ApiError {
-}
-
-// @public
-export interface Standard5XXResponse extends ApiError {
 }
 
 // @public
@@ -215,13 +191,6 @@ export interface User {
     readonly id: number;
     password: string;
     username: string;
-    validated: boolean;
-}
-
-// @public
-export interface UserExistsResponse extends ApiError {
-    // (undocumented)
-    code: "user-exists";
 }
 
 // @public

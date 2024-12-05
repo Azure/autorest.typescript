@@ -166,45 +166,6 @@ export function _todoPagePaginationDeserializer(
   };
 }
 
-/** Something is wrong with you. */
-export interface Standard4XXResponse extends ApiError {}
-
-export function standard4XXResponseDeserializer(
-  item: any,
-): Standard4XXResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** model interface ApiError */
-export interface ApiError {
-  /** A machine readable error code */
-  code: string;
-  /** A human readable message */
-  message: string;
-}
-
-export function apiErrorDeserializer(item: any): ApiError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** Something is wrong with me. */
-export interface Standard5XXResponse extends ApiError {}
-
-export function standard5XXResponseDeserializer(
-  item: any,
-): Standard5XXResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
 /** model interface TodoFileAttachment */
 export interface TodoFileAttachment {
   /** The file name of the attachment */
@@ -319,16 +280,6 @@ export function _createResponseDeserializer(item: any): _CreateResponse {
     labels: !item["labels"]
       ? item["labels"]
       : todoLabelsDeserializer(item["labels"]),
-  };
-}
-
-/** model interface InvalidTodoItem */
-export interface InvalidTodoItem extends ApiError {}
-
-export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
-  return {
-    code: item["code"],
-    message: item["message"],
   };
 }
 
@@ -461,8 +412,6 @@ export interface User {
    * but is otherwise not visible (and hashed by the backend)
    */
   password: string;
-  /** Whether the user is validated. Never visible to the API. */
-  validated: boolean;
 }
 
 export function userSerializer(item: User): any {
@@ -470,7 +419,7 @@ export function userSerializer(item: User): any {
     username: item["username"],
     email: item["email"],
     password: item["password"],
-    validated: item["validated"],
+    // validated: item["validated"],
   };
 }
 
@@ -492,31 +441,5 @@ export function _createResponse1Deserializer(item: any): _CreateResponse1 {
     username: item["username"],
     email: item["email"],
     token: item["token"],
-  };
-}
-
-/** The user already exists */
-export interface UserExistsResponse extends ApiError {
-  code: "user-exists";
-}
-
-export function userExistsResponseDeserializer(item: any): UserExistsResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** The user is invalid (e.g. forgot to enter email address) */
-export interface InvalidUserResponse extends ApiError {
-  code: "invalid-user";
-}
-
-export function invalidUserResponseDeserializer(
-  item: any,
-): InvalidUserResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
   };
 }
