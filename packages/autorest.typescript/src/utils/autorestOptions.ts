@@ -46,6 +46,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
 
+  const moduleKind = await getModuleKind(host);
+
   return {
     azureArm,
     addCredentials,
@@ -398,4 +400,8 @@ async function getDependencyInfo(
   throw new Error(
     "Invalid dependency-info. Make sure that link and description are defined"
   );
+}
+
+async function getModuleKind(host: AutorestExtensionHost): Promise<AutorestOptions["moduleKind"]> {
+  return (await host.getValue("module-kind")) || "cjs";
 }
