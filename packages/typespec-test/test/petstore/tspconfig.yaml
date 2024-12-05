@@ -7,6 +7,7 @@ options:
     generateMetadata: true
     azureSdkForJs: false
     generateSample: false
+    generateTest: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@unbranded/petstore"
