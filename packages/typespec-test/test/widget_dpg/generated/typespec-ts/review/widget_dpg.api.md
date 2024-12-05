@@ -83,12 +83,6 @@ export interface Widget {
 }
 
 // @public
-export interface WidgetError {
-    code: number;
-    message: string;
-}
-
-// @public
 export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 }
 
