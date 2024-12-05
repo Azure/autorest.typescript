@@ -18,8 +18,7 @@ import {
   PollingHelpers,
   UriTemplateHelpers
 } from "../static-helpers-metadata.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { buildType, getType, isTypeNullable } from "./typeHelpers.js";
+import { getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,

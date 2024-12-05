@@ -449,13 +449,7 @@ function getHasMultiCollection(
     paramFormat === "multi"
   );
 }
-function getHasSsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "ssv";
-}
 
-function getHasTsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "tsv";
-}
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";
 }
