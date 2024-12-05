@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import {
@@ -24,7 +23,7 @@ import {
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
+} from "@typespec/ts-http-runtime";
 
 export function _getSend(
   context: Client,

@@ -1,7 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OperationOptions } from "@azure-rest/core-client";
+import { OperationOptions } from "@typespec/ts-http-runtime";
 
 /** Optional parameters. */
 export interface PetsGetOptionalParams extends OperationOptions {}

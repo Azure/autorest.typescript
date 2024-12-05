@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 export { CheckupsOperations } from "./checkups/index.js";

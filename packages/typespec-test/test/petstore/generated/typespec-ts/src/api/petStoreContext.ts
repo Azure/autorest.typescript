@@ -1,8 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { logger } from "../logger.js";
-import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+import { Client, ClientOptions, getClient } from "@typespec/ts-http-runtime";
 
 export interface PetStoreContext extends Client {}
 
@@ -21,7 +19,6 @@ export function createPetStore(
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(
     options.endpoint ?? options.baseUrl ?? String(endpointParam),
@@ -30,7 +27,7 @@ export function createPetStore(
   );
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
-    logger.warning(
+    console.warn(
       "This client does not support client api-version, please change it at the operation level",
     );
   }

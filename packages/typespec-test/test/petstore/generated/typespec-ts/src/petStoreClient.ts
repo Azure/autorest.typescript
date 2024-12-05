@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { getPetsOperations, PetsOperations } from "./classic/pets/index.js";
@@ -36,7 +35,7 @@ import {
   PetStoreContext,
   PetStoreClientOptionalParams,
 } from "./api/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import { Pipeline } from "@typespec/ts-http-runtime";
 
 export { PetStoreClientOptionalParams } from "./api/petStoreContext.js";
 

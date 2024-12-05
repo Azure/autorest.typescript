@@ -6,10 +6,10 @@ options:
     isModularLibrary: true
     generateMetadata: true
     azureSdkForJs: false
-    generateSample: true
+    generateSample: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
-      name: "@azure/petstore"
+      name: "@unbranded/petstore"
   "@typespec/openapi3":
     "emitter-output-dir": "{project-root}/generated/openapi"
     "file-type": "json"
