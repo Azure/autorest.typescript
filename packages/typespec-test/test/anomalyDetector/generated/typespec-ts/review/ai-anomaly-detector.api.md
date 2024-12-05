@@ -229,15 +229,6 @@ export interface PageSettings {
 }
 
 // @public
-export interface UnivariateAnomalyDetectorError {
-    code?: UnivariateAnomalyDetectorErrorCodes;
-    message?: string;
-}
-
-// @public
-export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
-
-// @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
 }
 

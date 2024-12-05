@@ -601,7 +601,7 @@ export async function read(
 }
 ```
 
-# only: should handle property type utcDateTime with unixTimestamp encoding
+# should handle property type utcDateTime with unixTimestamp encoding
 
 ## TypeSpec
 

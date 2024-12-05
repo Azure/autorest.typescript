@@ -893,37 +893,6 @@ export function univariateUnivariateEntireDetectionResultDeserializer(
   };
 }
 
-/** Error information returned by the API. */
-export interface UnivariateAnomalyDetectorError {
-  /** The error code. */
-  code?: UnivariateAnomalyDetectorErrorCodes;
-  /** A message explaining the error reported by the service. */
-  message?: string;
-}
-
-export function univariateAnomalyDetectorErrorDeserializer(
-  item: any,
-): UnivariateAnomalyDetectorError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** Type of UnivariateAnomalyDetectorErrorCodes */
-export type UnivariateAnomalyDetectorErrorCodes =
-  | "InvalidCustomInterval"
-  | "BadArgument"
-  | "InvalidGranularity"
-  | "InvalidPeriod"
-  | "InvalidModelArgument"
-  | "InvalidSeries"
-  | "InvalidJsonFormat"
-  | "RequiredGranularity"
-  | "RequiredSeries"
-  | "InvalidImputeMode"
-  | "InvalidImputeFixedValue";
-
 /** The response of last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
   /**
