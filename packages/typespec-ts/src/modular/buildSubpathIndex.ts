@@ -1,4 +1,8 @@
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { ModularCodeModel } from "./modularCodeModel.js";
 
 import { join } from "path";
 
@@ -10,7 +14,7 @@ export interface buildSubpathIndexFileOptions {
 export function buildSubpathIndexFile(
   codeModel: ModularCodeModel,
   subpath: string,
-  client?: Client,
+  client?: SdkClientType<SdkServiceOperation>,
   options: buildSubpathIndexFileOptions = {}
 ) {
   const subfolder = client?.subfolder ?? "";

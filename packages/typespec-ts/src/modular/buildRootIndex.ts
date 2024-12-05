@@ -4,19 +4,23 @@ import {
   getClassicalClientName,
   getClientName
 } from "./helpers/namingHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { ModularCodeModel } from "./modularCodeModel.js";
 import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers } from "./static-helpers-metadata.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 
 export function buildRootIndex(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   codeModel: ModularCodeModel,
   rootIndexFile: SourceFile
 ) {
   const { project } = codeModel;
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
-  const clientName = `${getClassicalClientName(client.tcgcClient)}`;
+  const clientName = `${getClassicalClientName(client)}`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       clientName,
@@ -164,12 +168,12 @@ function exportRestoreHelpers(
 }
 
 function exportClassicalClient(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   indexFile: SourceFile,
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client.tcgcClient)}Client`;
+  const clientName = `${getClientName(client)}Client`;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
     moduleSpecifier: `./${
@@ -248,7 +252,7 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   codeModel: ModularCodeModel
 ) {
   const subfolder = client.subfolder ?? "";
@@ -258,7 +262,7 @@ export function buildSubClientIndexFile(
     undefined,
     { overwrite: true }
   );
-  const clientName = `${getClientName(client.tcgcClient)}Client`;
+  const clientName = `${getClientName(client)}Client`;
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;

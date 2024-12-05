@@ -22,6 +22,7 @@ import {
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
+  SdkServiceOperation,
   SdkType,
   SdkUnionType,
   UsageFlags,
@@ -557,7 +558,7 @@ export function visitPackageTypes(context: SdkContext) {
 
 function visitClient(
   context: SdkContext,
-  client: SdkClientType<SdkHttpOperation>
+  client: SdkClientType<SdkServiceOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
   // visitType(client.initialization, emitQueue);

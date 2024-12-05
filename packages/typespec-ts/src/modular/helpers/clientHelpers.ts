@@ -8,7 +8,8 @@ import {
   SdkClientType,
   SdkHttpOperation,
   SdkHttpParameter,
-  SdkParameter
+  SdkParameter,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
 import {
@@ -28,7 +29,7 @@ interface ClientParameterOptions {
 }
 
 export function getClientParameters(
-  client: SdkClientType<SdkHttpOperation>,
+  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     requiredOnly: false,
@@ -78,7 +79,7 @@ export function getClientParameters(
 }
 
 export function getClientParametersDeclaration(
-  client: SdkClientType<SdkHttpOperation>,
+  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   options: ClientParameterOptions = {
     optionalOnly: false,
@@ -148,7 +149,7 @@ export function getClientParameterName(
 export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
-  client: SdkClientType<SdkHttpOperation>
+  client: SdkClientType<SdkServiceOperation>
 ): string {
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
@@ -227,7 +228,7 @@ export function buildGetClientOptionsParam(
 }
 
 export function buildGetClientCredentialParam(
-  client: SdkClientType<SdkHttpOperation>,
+  client: SdkClientType<SdkServiceOperation>,
   codeModel: ModularCodeModel
 ): string {
   if (

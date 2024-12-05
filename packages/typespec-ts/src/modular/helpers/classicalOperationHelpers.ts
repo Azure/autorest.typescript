@@ -6,34 +6,42 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Client, OperationGroup } from "../modularCodeModel.js";
+import { OperationGroup } from "../modularCodeModel.js";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
+import {
+  SdkClientType,
+  SdkHttpOperation,
+  SdkServiceMethod,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 
 export function shouldPromoteSubscriptionId(
   dpgContext: SdkContext,
-  operationGroup: OperationGroup
+  operations: SdkServiceMethod<SdkHttpOperation>[]
 ) {
-  const hasSubscriptionIdParameter = operationGroup.operations.some((op) =>
-    op.parameters.some((p) => p.clientName === "subscriptionId")
+  const hasSubscriptionIdParameter = operations.some((op) =>
+    op.operation.parameters.some((p) => p.name === "subscriptionId")
   );
   return dpgContext?.rlcOptions?.azureArm && hasSubscriptionIdParameter;
 }
 export function getClassicalOperation(
   dpgContext: SdkContext,
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   classicFile: SourceFile,
-  operationGroup: OperationGroup,
-  layer: number = operationGroup.namespaceHierarchies.length - 1
+  operationGroup: [string[], SdkServiceMethod<SdkHttpOperation>[]],
+  layer: number = operationGroup[0].length - 1
 ) {
+  const prefixes = operationGroup[0];
+  const operations = operationGroup[1];
   // TODO: remove this logic once client-level parameter design is finalized
   // https://github.com/Azure/autorest.typescript/issues/2618
   const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
     dpgContext,
-    operationGroup
+    operations
   );
-  const modularClientName = `${getClientName(client.tcgcClient)}Context`;
+  const modularClientName = `${getClientName(client)}Context`;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {
@@ -60,7 +68,7 @@ export function getClassicalOperation(
     string | undefined
   >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-    operationGroup.operations.map((operation) => {
+    operations.map((operation) => {
       const declarations = getOperationFunction(
         dpgContext,
         operation,
@@ -71,7 +79,7 @@ export function getClassicalOperation(
     });
 
   const interfaceNamePrefix = getClassicalLayerPrefix(
-    operationGroup,
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -81,18 +89,17 @@ export function getClassicalOperation(
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
   const properties: OptionalKind<PropertySignatureStructure>[] = [];
-  if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+  if (layer !== prefixes.length - 1) {
     properties.push({
       kind: StructureKind.PropertySignature,
-      name:
-        normalizeName(
-          (layer === operationGroup.namespaceHierarchies.length - 1
-            ? operationGroup.namespaceHierarchies[layer]
-            : operationGroup.namespaceHierarchies[layer + 1]) ?? "",
-          NameType.Property
-        ) ?? operationGroup.propertyName,
+      name: normalizeName(
+        (layer === prefixes.length - 1
+          ? prefixes[layer]
+          : prefixes[layer + 1]) ?? "",
+        NameType.Property
+      ),
       type: `${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer + 1
@@ -134,10 +141,10 @@ export function getClassicalOperation(
     });
   }
 
-  if (layer === operationGroup.namespaceHierarchies.length - 1) {
+  if (layer === prefixes.length - 1) {
     classicFile.addFunction({
       name: `get${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer
@@ -184,7 +191,7 @@ export function getClassicalOperation(
   }
 
   const operationFunctionName = `get${getClassicalLayerPrefix(
-    operationGroup,
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -197,20 +204,20 @@ export function getClassicalOperation(
     if (returnStatement) {
       let statement = `,
       ...get${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer + 1
       )}Operations(context${
         hasSubscriptionIdPromoted ? ", subscriptionId" : ""
       })}`;
-      if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+      if (layer !== prefixes.length - 1) {
         statement = `,
         ${normalizeName(
-          operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+          prefixes[layer + 1] ?? "FIXME",
           NameType.Property
         )}: get${getClassicalLayerPrefix(
-          operationGroup,
+          prefixes,
           NameType.Interface,
           "",
           layer + 1
@@ -235,19 +242,19 @@ export function getClassicalOperation(
           : [])
       ],
       returnType: `${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer
       )}Operations`,
       statements:
-        layer !== operationGroup.namespaceHierarchies.length - 1
+        layer !== prefixes.length - 1
           ? `return {
             ${normalizeName(
-              operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+              prefixes[layer + 1] ?? "FIXME",
               NameType.Property
             )}: get${getClassicalLayerPrefix(
-              operationGroup,
+              prefixes,
               NameType.Interface,
               "",
               layer + 1
@@ -255,7 +262,7 @@ export function getClassicalOperation(
       }`
           : `return {
         ...get${getClassicalLayerPrefix(
-          operationGroup,
+          prefixes,
           NameType.Interface,
           "",
           layer

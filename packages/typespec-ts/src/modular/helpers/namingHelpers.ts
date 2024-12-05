@@ -67,25 +67,20 @@ export function isReservedName(name: string, nameType: NameType): boolean {
 }
 
 export function getClassicalLayerPrefix(
-  operationGroup: OperationGroup | Operation,
+  prefixes: string[],
   nameType: NameType,
   separator: string = "",
-  layer: number = operationGroup.namespaceHierarchies.length - 1
+  layer: number = prefixes.length - 1
 ): string {
   const prefix: string[] = [];
   if (layer < 0) {
     return prefix.join(separator);
   }
   if (layer === 0) {
-    return normalizeName(
-      operationGroup.namespaceHierarchies[0] ?? "",
-      nameType
-    );
+    return normalizeName(prefixes[0] ?? "", nameType);
   }
   for (let i = 0; i <= layer; i++) {
-    prefix.push(
-      normalizeName(operationGroup.namespaceHierarchies[i] ?? "", nameType)
-    );
+    prefix.push(normalizeName(prefixes[i] ?? "", nameType));
   }
   return prefix.join(separator);
 }

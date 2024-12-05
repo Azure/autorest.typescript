@@ -12,6 +12,11 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { getType } from "./helpers/typeHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 // import { SdkClient, SdkClientType, SdkHttpOperation } from "@azure-tools/typespec-client-generator-core";
 
 // ====== UTILITIES ======
@@ -117,7 +122,7 @@ export function buildModelTypeAlias(model: ModularType) {
 
 export function buildApiOptions(
   context: SdkContext,
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   codeModel: ModularCodeModel
 ) {
   const modelOptionsFile = codeModel.project.createSourceFile(
@@ -131,8 +136,9 @@ export function buildApiOptions(
       overwrite: true
     }
   );
-  for (const operationGroup of client.operationGroups) {
-    operationGroup.operations.forEach((o) => {
+  const methodMap = getMethodHierarchiesMap(client);
+  for (const [prefixKey, operations] of methodMap) {
+    operations.forEach((o) => {
       buildOperationOptions(context, o, modelOptionsFile);
     });
   }

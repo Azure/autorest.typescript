@@ -482,12 +482,14 @@ function extractPagingType(type: Type, itemName?: string): Type | undefined {
     : undefined;
 }
 export function getOperationOptionsName(
-  operation: SdkServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkServiceMethod<SdkHttpOperation>],
   includeGroupName = false
 ) {
+  const prefixes = method[0];
+  const operation = method[1];
   const prefix =
     includeGroupName && operation.name.indexOf("_") === -1
-      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
   return optionName;

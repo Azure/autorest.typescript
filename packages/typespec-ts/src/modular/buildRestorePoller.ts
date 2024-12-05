@@ -11,16 +11,22 @@ import {
   AzurePollingDependencies
 } from "./external-dependencies.js";
 import { PollingHelpers } from "./static-helpers-metadata.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 
 export function buildRestorePoller(
   codeModel: ModularCodeModel,
-  client: Client
+  client: SdkClientType<SdkServiceOperation>
 ) {
-  const lros = client.operationGroups
-    .flatMap((op) => op.operations)
-    .filter(isLroOnlyOperation);
-  if (lros.length === 0) {
-    return;
+  const methodMap = getMethodHierarchiesMap(client);
+  for (const [_, operations] of methodMap) {
+    const lros = operations.filter(isLroOnlyOperation);
+    if (lros.length === 0) {
+      return;
+    }
   }
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
@@ -203,7 +209,10 @@ export function buildRestorePoller(
   restorePollerFile.addStatements(restorePollerHelperContent);
 }
 
-function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
+function importDeserializeHelpers(
+  client: SdkClientType<SdkServiceOperation>,
+  sourceFile: SourceFile
+) {
   const deserializeDetails = buildLroDeserDetailMap(client);
   const deserializeMap: string[] = [];
   for (const [key, value] of deserializeDetails.entries()) {
@@ -227,10 +236,10 @@ function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
 }
 
 function importClassicalClient(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   sourceFile: SourceFile
 ): string[] {
-  const classicalClientName = `${getClientName(client.tcgcClient)}Client`;
+  const classicalClientName = `${getClientName(client)}Client`;
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientName}`],
     moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`

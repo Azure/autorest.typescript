@@ -1,4 +1,4 @@
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { ModularCodeModel } from "./modularCodeModel.js";
 import {
   NameType,
   isAzurePackage,
@@ -22,18 +22,20 @@ import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
+  SdkClientType,
   SdkHttpParameter,
-  SdkParameter
+  SdkParameter,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * This function gets the path of the file containing the modular client context
  */
 export function getClientContextPath(
-  _client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   codeModel: ModularCodeModel
 ): string {
-  const { subfolder, tcgcClient: client } = _client;
+  const subfolder = client.subfolder ?? "";
   const name = getClientName(client);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const contentPath = `${srcPath}/${
@@ -46,11 +48,10 @@ export function getClientContextPath(
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
-  _client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ): SourceFile {
-  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
@@ -58,14 +59,14 @@ export function buildClientContext(
     requiredOnly: true
   });
   const clientContextFile = codeModel.project.createSourceFile(
-    getClientContextPath(_client, codeModel)
+    getClientContextPath(client, codeModel)
   );
 
   clientContextFile.addInterface({
     isExported: true,
-    name: `${_client.rlcClientName}`,
+    name: `${client.rlcClientName}`,
     extends: [resolveReference(dependencies.Client)],
-    docs: getDocsFromDescription(description)
+    docs: getDocsFromDescription(client.doc)
   });
 
   clientContextFile.addInterface({
@@ -101,9 +102,9 @@ export function buildClientContext(
   }
 
   const factoryFunction = clientContextFile.addFunction({
-    docs: getDocsFromDescription(description),
+    docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
-    returnType: `${_client.rlcClientName}`,
+    returnType: `${client.rlcClientName}`,
     parameters: requiredParams,
     isExported: true
   });

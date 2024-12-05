@@ -152,7 +152,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
-  await generateMetadataAndTest();
+  await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
@@ -278,7 +278,7 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.rlcOptions!.generateSample = true;
       }
     }
-    for (const subClient of modularCodeModel.clients) {
+    for (const subClient of dpgContext.sdkPackage.clients) {
       buildApiOptions(dpgContext, subClient, modularCodeModel);
       buildOperationFiles(subClient, dpgContext, modularCodeModel);
       buildClientContext(subClient, dpgContext, modularCodeModel);
@@ -325,7 +325,7 @@ export async function $onEmit(context: EmitContext) {
     }
   }
 
-  async function generateMetadataAndTest() {
+  async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
       return;
@@ -369,7 +369,10 @@ export async function $onEmit(context: EmitContext) {
             dependencies: {
               "@azure/core-util": "^1.9.2"
             },
-            clientContextPaths: getRelativeContextPaths(modularCodeModel)
+            clientContextPaths: getRelativeContextPaths(
+              context,
+              modularCodeModel
+            )
           };
         }
       }
@@ -415,8 +418,11 @@ export async function $onEmit(context: EmitContext) {
     }
   }
 
-  function getRelativeContextPaths(codeModel: ModularCodeModel) {
-    return codeModel.clients
+  function getRelativeContextPaths(
+    context: SdkContext,
+    codeModel: ModularCodeModel
+  ) {
+    return context.sdkPackage.clients
       .map((subClient) => getClientContextPath(subClient, codeModel))
       .map((path) => path.substring(path.indexOf("src")));
   }

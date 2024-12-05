@@ -5,7 +5,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { ModularCodeModel } from "./modularCodeModel.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   buildUserAgentOptions,
@@ -13,7 +13,6 @@ import {
 } from "./helpers/clientHelpers.js";
 import {
   getClassicalClientName,
-  getClassicalLayerPrefix,
   getClientName
 } from "./helpers/namingHelpers.js";
 
@@ -22,21 +21,18 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { resolveReference } from "../framework/reference.js";
-import { shouldPromoteSubscriptionId } from "./helpers/classicalOperationHelpers.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import {
   SdkClientType,
-  SdkHttpOperation,
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
 export function buildClassicalClient(
-  _client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel
 ) {
-  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
@@ -48,7 +44,7 @@ export function buildClassicalClient(
     requiredOnly: true
   });
   const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = _client.subfolder ?? "";
+  const subfolder = client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -74,13 +70,13 @@ export function buildClassicalClient(
   if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
-      type: `Client.${_client.rlcClientName}`,
+      type: `Client.${client.rlcClientName}`,
       scope: Scope.Private
     });
   } else {
     clientClass.addProperty({
       name: "_client",
-      type: `${_client.rlcClientName}`,
+      type: `${client.rlcClientName}`,
       scope: Scope.Private
     });
   }
@@ -95,7 +91,7 @@ export function buildClassicalClient(
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
-    docs: getDocsFromDescription(description),
+    docs: getDocsFromDescription(client.doc),
     parameters: classicalParams
   });
 
@@ -118,7 +114,7 @@ export function buildClassicalClient(
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
 
-  buildClientOperationGroups(clientFile, _client, dpgContext, clientClass);
+  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixUnusedIdentifiers();
   return clientFile;
@@ -171,7 +167,7 @@ function generateMethod(
 }
 function buildClientOperationGroups(
   clientFile: SourceFile,
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   clientClass: ClassDeclaration
 ) {
@@ -180,8 +176,7 @@ function buildClientOperationGroups(
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }
-  const tcgcClient = client.tcgcClient;
-  for (const operationOrGroup of tcgcClient.methods) {
+  for (const operationOrGroup of client.methods) {
     if (operationOrGroup.kind !== "clientaccessor") {
       const method = generateMethod(dpgContext, clientType, operationOrGroup);
       clientClass.addMethod(method);
