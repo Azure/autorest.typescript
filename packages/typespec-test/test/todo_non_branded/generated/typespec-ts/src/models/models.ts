@@ -419,7 +419,6 @@ export function userSerializer(item: User): any {
     username: item["username"],
     email: item["email"],
     password: item["password"],
-    // validated: item["validated"],
   };
 }
 
