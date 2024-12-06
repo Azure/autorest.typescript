@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Inheritance } from "../operationsInterfaces";
+import { Inheritance } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexClient } from "../bodyComplexClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyComplexClient } from "../bodyComplexClient.js";
 import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
   Siamese,
   InheritancePutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Inheritance operations. */
 export class InheritanceImpl implements Inheritance {

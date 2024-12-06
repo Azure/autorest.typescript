@@ -7,11 +7,11 @@
  */
 
 import { tracingClient } from "../tracing";
-import { Array } from "../operationsInterfaces";
+import { Array } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
 import {
   ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
@@ -22,7 +22,7 @@ import {
   ArrayPutEmptyOptionalParams,
   ArrayGetNotProvidedOptionalParams,
   ArrayGetNotProvidedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Array operations. */
 export class ArrayImpl implements Array {

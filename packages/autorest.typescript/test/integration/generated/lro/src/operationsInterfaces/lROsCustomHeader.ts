@@ -16,7 +16,7 @@ import {
   LROsCustomHeaderPost202Retry200Response,
   LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPostAsyncRetrySucceededResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LROsCustomHeader. */
 export interface LROsCustomHeader {

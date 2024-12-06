@@ -67,7 +67,7 @@ export function generateOperationsInterfaces(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: `./${fileName}`
+          moduleSpecifier: `./${fileName}.js`
         } as ExportDeclarationStructure;
       })
     );
@@ -164,7 +164,7 @@ function addInterface(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: "../models"
+      moduleSpecifier: "../models/index.js"
     });
   }
 }

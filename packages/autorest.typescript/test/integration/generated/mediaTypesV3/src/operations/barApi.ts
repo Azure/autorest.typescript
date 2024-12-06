@@ -6,14 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BarApi } from "../operationsInterfaces";
+import { BarApi } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "../models/parameters";
-import { MediaTypesV3Client } from "../mediaTypesV3Client";
+import * as Parameters from "../models/parameters.js";
+import { MediaTypesV3Client } from "../mediaTypesV3Client.js";
 import {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing BarApi operations. */
 export class BarApiImpl implements BarApi {

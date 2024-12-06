@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { FooApi } from "../operationsInterfaces";
+import { FooApi } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Parameters from "../models/parameters";
-import { MediaTypesV3Client } from "../mediaTypesV3Client";
+import * as Parameters from "../models/parameters.js";
+import { MediaTypesV3Client } from "../mediaTypesV3Client.js";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
@@ -18,7 +18,7 @@ import {
   FooApiPostSend$binaryOptionalParams,
   FooApiPostSend$textOptionalParams,
   FooApiPostSendResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing FooApi operations. */
 export class FooApiImpl implements FooApi {

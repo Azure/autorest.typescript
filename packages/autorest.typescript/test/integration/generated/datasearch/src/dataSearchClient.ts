@@ -12,9 +12,9 @@ import {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { DocumentsImpl } from "./operations";
-import { Documents } from "./operationsInterfaces";
-import { DataSearchClientOptionalParams } from "./models";
+import { DocumentsImpl } from "./operations/index.js";
+import { Documents } from "./operationsInterfaces/index.js";
+import { DataSearchClientOptionalParams } from "./models/index.js";
 
 export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
   endpoint: string;

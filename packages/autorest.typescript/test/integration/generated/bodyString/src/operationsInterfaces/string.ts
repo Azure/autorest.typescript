@@ -28,7 +28,7 @@ import {
   StringPutBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a StringOperations. */
 export interface StringOperations {

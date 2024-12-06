@@ -1,3 +1,3 @@
-export * from "./operations";
-export * from "./dpsCertificate";
-export * from "./iotDpsResource";
+export * from "./operations.js";
+export * from "./dpsCertificate.js";
+export * from "./iotDpsResource.js";

@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./paths";
-export * from "./queries";
-export * from "./pathItems";
+export * from "./paths.js";
+export * from "./queries.js";
+export * from "./pathItems.js";

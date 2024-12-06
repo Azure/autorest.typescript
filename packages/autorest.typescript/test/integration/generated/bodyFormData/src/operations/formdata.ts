@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Formdata } from "../operationsInterfaces";
+import { Formdata } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyFormDataClient } from "../bodyFormDataClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyFormDataClient } from "../bodyFormDataClient.js";
 import {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
@@ -19,7 +19,7 @@ import {
   FormdataUploadFileViaBodyResponse,
   FormdataUploadFilesOptionalParams,
   FormdataUploadFilesResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Formdata operations. */
 export class FormdataImpl implements Formdata {

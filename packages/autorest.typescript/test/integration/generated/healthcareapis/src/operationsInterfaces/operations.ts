@@ -1,5 +1,8 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { OperationDetail, OperationsListOptionalParams } from "../models";
+import {
+  OperationDetail,
+  OperationsListOptionalParams,
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Operations. */

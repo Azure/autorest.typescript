@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ApiVersionLocal } from "../operationsInterfaces";
+import { ApiVersionLocal } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient.js";
 import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
   ApiVersionLocalGetPathLocalValidOptionalParams,
   ApiVersionLocalGetSwaggerLocalValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing ApiVersionLocal operations. */
 export class ApiVersionLocalImpl implements ApiVersionLocal {

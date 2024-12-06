@@ -14,7 +14,7 @@ import {
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
   ParameterGroupingGroupWithConstantOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ParameterGrouping. */
 export interface ParameterGrouping {

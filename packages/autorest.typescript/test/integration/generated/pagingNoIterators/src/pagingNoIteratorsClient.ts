@@ -12,9 +12,9 @@ import {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { PagingImpl } from "./operations";
-import { Paging } from "./operationsInterfaces";
-import { PagingNoIteratorsClientOptionalParams } from "./models";
+import { PagingImpl } from "./operations/index.js";
+import { Paging } from "./operationsInterfaces/index.js";
+import { PagingNoIteratorsClientOptionalParams } from "./models/index.js";
 
 export class PagingNoIteratorsClient extends coreClient.ServiceClient {
   $host: string;

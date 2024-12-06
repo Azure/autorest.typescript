@@ -11,7 +11,7 @@ import {
   IntPutResponse,
   IntGetOptionalParams,
   IntGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Int. */
 export interface Int {

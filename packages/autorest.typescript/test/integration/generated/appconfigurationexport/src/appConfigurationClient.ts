@@ -13,9 +13,9 @@ import {
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "./pagingHelper";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
+import { setContinuationToken } from "./pagingHelper.js";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
 import {
   AppConfigurationClientOptionalParams,
   Key,
@@ -57,7 +57,7 @@ import {
   GetKeyValuesNextResponse,
   GetLabelsNextResponse,
   GetRevisionsNextResponse,
-} from "./models";
+} from "./models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** @internal */
