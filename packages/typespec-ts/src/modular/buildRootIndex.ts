@@ -4,25 +4,29 @@ import {
   getClassicalClientName,
   getClientName
 } from "./helpers/namingHelpers.js";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers } from "./static-helpers-metadata.js";
 import {
   SdkClientType,
+  SdkContext,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../utils/clientUtils.js";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 
 export function buildRootIndex(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
-  codeModel: ModularCodeModel,
+  emitterOptions: ModularEmitterOptions,
   rootIndexFile: SourceFile
 ) {
-  const { project } = codeModel;
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const { project } = emitterOptions;
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const { subfolder } = getModularClientOptions(context, client);
   const clientName = `${getClassicalClientName(client)}`;
   const clientFile = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       clientName,
       NameType.File
     )}.ts`
@@ -37,7 +41,7 @@ export function buildRootIndex(
     );
   }
 
-  exportClassicalClient(client, rootIndexFile, subfolder);
+  exportClassicalClient(client, rootIndexFile, subfolder ?? "");
   exportRestoreHelpers(
     rootIndexFile,
     project,
@@ -66,17 +70,14 @@ export function buildRootIndex(
     isTopLevel: true
   });
 
-  exportPagingTypes(codeModel, rootIndexFile);
+  exportPagingTypes(context, rootIndexFile);
 }
 
 /**
  * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
  */
-function exportPagingTypes(
-  codeModel: ModularCodeModel,
-  rootIndexFile: SourceFile
-) {
-  if (!hasPaging(codeModel)) {
+function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (!hasPaging(context)) {
     return;
   }
 
@@ -94,15 +95,16 @@ function exportPagingTypes(
   }
 }
 
-function hasPaging(codeModel: ModularCodeModel): boolean {
-  return codeModel.clients.some((c) =>
-    c.operationGroups.some((og) =>
-      og.operations.some(
-        (op) =>
-          op.discriminator === "paging" || op.discriminator === "lropaging"
-      )
-    )
-  );
+function hasPaging(context: SdkContext): boolean {
+  return context.sdkPackage.clients.some((client) => {
+    const methodMap = getMethodHierarchiesMap(client);
+    for (const [_, operations] of methodMap) {
+      return operations.some(
+        (op) => op.kind === "paging" || op.kind === "lropaging"
+      );
+    }
+    return false;
+  });
 }
 
 function getExistingExports(rootIndexFile: SourceFile): Set<string> {
@@ -252,13 +254,14 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
-  codeModel: ModularCodeModel
+  emitterOptions: ModularEmitterOptions
 ) {
-  const subfolder = client.subfolder ?? "";
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subClientIndexFile = codeModel.project.createSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
+  const { subfolder } = getModularClientOptions(context, client);
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const subClientIndexFile = emitterOptions.project.createSourceFile(
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}index.ts`,
     undefined,
     { overwrite: true }
   );
@@ -266,23 +269,23 @@ export function buildSubClientIndexFile(
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;
-  const clientFile = codeModel.project.getSourceFile(clientFilePath);
+  const clientFile = emitterOptions.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
     throw new Error(`Couldn't find client file: ${clientFilePath}`);
   }
 
-  exportClassicalClient(client, subClientIndexFile, subfolder, true);
+  exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
   exportRestoreHelpers(
     subClientIndexFile,
-    codeModel.project,
+    emitterOptions.project,
     srcPath,
     clientName,
     subfolder
   );
   exportModules(
     subClientIndexFile,
-    codeModel.project,
+    emitterOptions.project,
     srcPath,
     clientName,
     "api",
@@ -293,7 +296,7 @@ export function buildSubClientIndexFile(
   );
   exportModules(
     subClientIndexFile,
-    codeModel.project,
+    emitterOptions.project,
     srcPath,
     clientName,
     "classic",

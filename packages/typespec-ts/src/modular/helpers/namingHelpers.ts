@@ -4,21 +4,12 @@ import {
   ReservedModelNames
 } from "@azure-tools/rlc-common";
 import {
-  SdkClient,
   SdkClientType,
   SdkHttpOperation,
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import * as path from "path";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { SdkContext } from "../../utils/interfaces.js";
-import {
-  Client,
-  ModularCodeModel,
-  Operation,
-  OperationGroup
-} from "../modularCodeModel.js";
 
 export function getClientName(
   client: SdkClientType<SdkServiceOperation>
@@ -87,50 +78,4 @@ export function getClassicalLayerPrefix(
 
 export function isDefined<T>(thing: T | undefined | null): thing is T {
   return typeof thing !== "undefined" && thing !== null;
-}
-
-export function getRLCIndexFilePath(
-  dpgContext: SdkContext,
-  client: Client | SdkClient,
-  ext: "js" | "ts" = "ts"
-): string {
-  return path.join(
-    ...[
-      dpgContext.generationPathDetail?.rlcSourcesDir,
-      getSubfolder(client, dpgContext),
-      `index.${ext}`
-    ].filter(isDefined)
-  );
-}
-
-export function getModularModelFilePath(
-  codeModel: ModularCodeModel,
-  client: Client | SdkClient,
-  ext: "js" | "ts" = "ts"
-): string {
-  return path.join(
-    ...[
-      codeModel.modularOptions.sourceRoot,
-      getSubfolder(client),
-      "models",
-      `models.${ext}`
-    ].filter(isDefined)
-  );
-}
-
-function getSubfolder(client: Client): string | undefined;
-function getSubfolder(
-  client: Client | SdkClient,
-  dpgContext?: SdkContext
-): string | undefined;
-function getSubfolder(
-  client: Client | SdkClient,
-  dpgContext?: SdkContext
-): string | undefined {
-  return (
-    (client as Client).subfolder ??
-    (dpgContext?.rlcOptions!.batch && dpgContext?.rlcOptions!.batch?.length > 1
-      ? normalizeName(client.name.replace("Client", ""), NameType.File)
-      : undefined)
-  );
 }

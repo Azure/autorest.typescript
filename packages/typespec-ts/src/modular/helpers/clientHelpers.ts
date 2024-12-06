@@ -1,4 +1,4 @@
-import { ModularCodeModel } from "../modularCodeModel.js";
+import { ModularEmitterOptions } from "../modularCodeModel.js";
 import {
   OptionalKind,
   ParameterDeclarationStructure,
@@ -6,7 +6,6 @@ import {
 } from "ts-morph";
 import {
   SdkClientType,
-  SdkHttpOperation,
   SdkHttpParameter,
   SdkParameter,
   SdkServiceOperation
@@ -196,16 +195,16 @@ export function buildGetClientEndpointParam(
  */
 export function buildGetClientOptionsParam(
   context: StatementedNode,
-  codeModel: ModularCodeModel,
+  emitterOptions: ModularEmitterOptions,
   endpointParam: string
 ): string {
   const userAgentOptions = buildUserAgentOptions(
     context,
-    codeModel,
+    emitterOptions,
     "azsdk-js-api"
   );
-  const loggingOptions = buildLoggingOptions(codeModel.options.flavor);
-  const credentials = buildCredentials(codeModel, endpointParam);
+  const loggingOptions = buildLoggingOptions(emitterOptions.options.flavor);
+  const credentials = buildCredentials(emitterOptions, endpointParam);
 
   let expr = "const { apiVersion: _, ...updatedOptions } = {";
 
@@ -229,12 +228,12 @@ export function buildGetClientOptionsParam(
 
 export function buildGetClientCredentialParam(
   client: SdkClientType<SdkServiceOperation>,
-  codeModel: ModularCodeModel
+  emitterOptions: ModularEmitterOptions
 ): string {
   if (
-    codeModel.options.addCredentials &&
-    (codeModel.options.credentialScopes ||
-      codeModel.options.credentialKeyHeaderName)
+    emitterOptions.options.addCredentials &&
+    (emitterOptions.options.credentialScopes ||
+      emitterOptions.options.credentialKeyHeaderName)
   ) {
     return (
       client.initialization.properties.find((x) => isCredentialType(x.type))
@@ -246,14 +245,14 @@ export function buildGetClientCredentialParam(
 }
 
 function buildCredentials(
-  codeModel: ModularCodeModel,
+  emitterOptions: ModularEmitterOptions,
   endpointParam: string
 ): string | undefined {
-  if (!codeModel.options.addCredentials) {
+  if (!emitterOptions.options.addCredentials) {
     return undefined;
   }
 
-  const { credentialScopes, credentialKeyHeaderName } = codeModel.options;
+  const { credentialScopes, credentialKeyHeaderName } = emitterOptions.options;
 
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
@@ -284,7 +283,7 @@ function buildLoggingOptions(flavor?: PackageFlavor): string | undefined {
 
 export function buildUserAgentOptions(
   context: StatementedNode,
-  codeModel: ModularCodeModel,
+  emitterOptions: ModularEmitterOptions,
   sdkUserAgentPrefix: string
 ): string {
   const userAgentStatements = [];
@@ -293,10 +292,10 @@ export function buildUserAgentOptions(
   userAgentStatements.push(prefixFromOptions);
 
   const clientPackageName =
-    codeModel.options.packageDetails?.nameWithoutScope ??
-    codeModel.options.packageDetails?.name ??
+    emitterOptions.options.packageDetails?.nameWithoutScope ??
+    emitterOptions.options.packageDetails?.name ??
     "";
-  const packageVersion = codeModel.options.packageDetails?.version ?? "";
+  const packageVersion = emitterOptions.options.packageDetails?.version ?? "";
 
   const userAgentInfoStatement =
     packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")

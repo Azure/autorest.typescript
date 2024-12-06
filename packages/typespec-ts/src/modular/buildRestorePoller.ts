@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Client } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
@@ -16,11 +16,15 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { getModularClientOptions } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRestorePoller(
-  codeModel: ModularCodeModel,
-  client: SdkClientType<SdkServiceOperation>
+  context: SdkContext,
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ) {
+  const { subfolder } = getModularClientOptions(context, client);
   const methodMap = getMethodHierarchiesMap(client);
   for (const [_, operations] of methodMap) {
     const lros = operations.filter(isLroOnlyOperation);
@@ -28,14 +32,13 @@ export function buildRestorePoller(
       return;
     }
   }
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
   const filePath = path.join(
     `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
-  const restorePollerFile = codeModel.project.createSourceFile(
+  const restorePollerFile = emitterOptions.project.createSourceFile(
     filePath,
     undefined,
     {

@@ -6,8 +6,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { OperationGroup } from "../modularCodeModel.js";
-import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
+import { getClassicalLayerPrefix } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
@@ -16,6 +15,7 @@ import {
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../../utils/clientUtils.js";
 
 export function shouldPromoteSubscriptionId(
   dpgContext: SdkContext,
@@ -41,23 +41,23 @@ export function getClassicalOperation(
     dpgContext,
     operations
   );
-  const modularClientName = `${getClientName(client)}Context`;
+  const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
         `${"../".repeat(layer + 2)}api/${normalizeName(
-          modularClientName,
+          rlcClientName,
           NameType.File
         )}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
-      namedImports: [client.rlcClientName],
+      namedImports: [rlcClientName],
       moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(
-        modularClientName,
+        rlcClientName,
         NameType.File
       )}.js`
     });
@@ -71,8 +71,8 @@ export function getClassicalOperation(
     operations.map((operation) => {
       const declarations = getOperationFunction(
         dpgContext,
-        operation,
-        modularClientName
+        [prefixes, operation],
+        rlcClientName
       );
       operationMap.set(declarations, operation.oriName);
       return declarations;
@@ -153,7 +153,7 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
+          type: rlcClientName
         },
         ...(hasSubscriptionIdPromoted
           ? [{ name: "subscriptionId", type: "string" }]
@@ -235,7 +235,7 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
+          type: rlcClientName
         },
         ...(hasSubscriptionIdPromoted
           ? [{ name: "subscriptionId", type: "string" }]

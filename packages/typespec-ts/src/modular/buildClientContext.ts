@@ -1,4 +1,4 @@
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import {
   NameType,
   isAzurePackage,
@@ -27,17 +27,19 @@ import {
   SdkParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../utils/clientUtils.js";
 
 /**
  * This function gets the path of the file containing the modular client context
  */
 export function getClientContextPath(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
-  codeModel: ModularCodeModel
+  emitterOptions: ModularEmitterOptions
 ): string {
-  const subfolder = client.subfolder ?? "";
+  const { subfolder } = getModularClientOptions(context, client);
   const name = getClientName(client);
-  const srcPath = codeModel.modularOptions.sourceRoot;
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
   const contentPath = `${srcPath}/${
     subfolder && subfolder !== "" ? subfolder + "/" : ""
   }api/${normalizeName(name, NameType.File)}Context.ts`;
@@ -48,23 +50,24 @@ export function getClientContextPath(
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
-  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ): SourceFile {
   const dependencies = useDependencies();
   const name = getClientName(client);
+  const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true
   });
-  const clientContextFile = codeModel.project.createSourceFile(
-    getClientContextPath(client, codeModel)
+  const clientContextFile = emitterOptions.project.createSourceFile(
+    getClientContextPath(dpgContext, client, emitterOptions)
   );
 
   clientContextFile.addInterface({
     isExported: true,
-    name: `${client.rlcClientName}`,
+    name: `${rlcClientName}`,
     extends: [resolveReference(dependencies.Client)],
     docs: getDocsFromDescription(client.doc)
   });
@@ -93,10 +96,12 @@ export function buildClientContext(
 
   // TODO use binder here
   // (for now) now logger for unbranded pkgs
-  if (isAzurePackage(codeModel)) {
+  if (isAzurePackage(emitterOptions)) {
     clientContextFile.addImportDeclaration({
       moduleSpecifier:
-        codeModel.clients.length > 1 ? "../../logger.js" : "../logger.js",
+        dpgContext.sdkPackage.clients.length > 1
+          ? "../../logger.js"
+          : "../logger.js",
       namedImports: ["logger"]
     });
   }
@@ -104,7 +109,7 @@ export function buildClientContext(
   const factoryFunction = clientContextFile.addFunction({
     docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
-    returnType: `${client.rlcClientName}`,
+    returnType: `${rlcClientName}`,
     parameters: requiredParams,
     isExported: true
   });
@@ -114,10 +119,10 @@ export function buildClientContext(
     dpgContext,
     client
   );
-  const credentialParam = buildGetClientCredentialParam(client, codeModel);
+  const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
-    codeModel,
+    emitterOptions,
     endpointParam
   );
 
@@ -128,7 +133,7 @@ export function buildClientContext(
   );
 
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
-    codeModel.options;
+    emitterOptions.options;
 
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
     factoryFunction.addStatements(`
@@ -173,7 +178,7 @@ export function buildClientContext(
         },
       });`;
     }
-  } else if (isAzurePackage(codeModel)) {
+  } else if (isAzurePackage(emitterOptions)) {
     apiVersionPolicyStatement += `
       if (options.apiVersion) {
         logger.warning("This client does not support client api-version, please change it at the operation level");

@@ -7,7 +7,6 @@ import {
 import {
   SdkBodyParameter,
   SdkClientType,
-  SdkHttpOperation,
   SdkServiceOperation,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -19,17 +18,16 @@ export interface ModularOptions {
   compatibilityMode: boolean;
   experimentalExtensibleEnums: boolean;
 }
-export interface ModularCodeModel {
+export interface ModularEmitterOptions {
   options: RLCOptions;
   modularOptions: ModularOptions;
-  namespace?: string;
-  subnamespaceToClients?: any;
-  clients: Client[];
-  types: Type[];
   project: Project;
-  runtimeImports: Imports;
 }
 
+export interface ModularClientOptions {
+  subfolder?: string;
+  rlcClientName: string;
+}
 export interface Header {
   type: Type;
   restApiName: string;

@@ -347,7 +347,7 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   return memberStructure;
 }
 
-export function buildModelInterface(
+function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {

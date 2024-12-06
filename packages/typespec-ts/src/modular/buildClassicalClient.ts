@@ -5,7 +5,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   buildUserAgentOptions,
@@ -19,7 +19,10 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import {
+  getModularClientOptions,
+  isRLCMultiEndpoint
+} from "../utils/clientUtils.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import {
@@ -27,11 +30,12 @@ import {
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 
 export function buildClassicalClient(
-  client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ) {
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
@@ -43,10 +47,13 @@ export function buildClassicalClient(
     onClientOnly: true,
     requiredOnly: true
   });
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const { subfolder, rlcClientName } = getModularClientOptions(
+    dpgContext,
+    client
+  );
 
-  const clientFile = codeModel.project.createSourceFile(
+  const clientFile = emitterOptions.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       classicalClientName,
       NameType.File
@@ -70,13 +77,13 @@ export function buildClassicalClient(
   if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
-      type: `Client.${client.rlcClientName}`,
+      type: `Client.${rlcClientName}`,
       scope: Scope.Private
     });
   } else {
     clientClass.addProperty({
       name: "_client",
-      type: `${client.rlcClientName}`,
+      type: `${rlcClientName}`,
       scope: Scope.Private
     });
   }
@@ -101,7 +108,7 @@ export function buildClassicalClient(
       if (x === "options") {
         return `{...options, userAgentOptions: ${buildUserAgentOptions(
           constructor,
-          codeModel,
+          emitterOptions,
           "azsdk-js-client"
         )}}`;
       } else {
@@ -115,7 +122,7 @@ export function buildClassicalClient(
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
 
   buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
-  importAllApis(clientFile, srcPath, subfolder);
+  importAllApis(clientFile, srcPath, subfolder ?? "");
   clientFile.fixUnusedIdentifiers();
   return clientFile;
 }
@@ -145,7 +152,7 @@ function importAllApis(
 function generateMethod(
   context: SdkContext,
   clientType: string,
-  method: SdkServiceMethod<SdkServiceOperation>
+  method: [string[], SdkServiceMethod<SdkServiceOperation>]
 ) {
   const declarations = getOperationFunction(context, method, clientType);
   const result: MethodDeclarationStructure = {
@@ -172,17 +179,20 @@ function buildClientOperationGroups(
   clientClass: ClassDeclaration
 ) {
   let clientType = "Client";
-  const subfolder = client.subfolder ?? "";
+  const { subfolder } = getModularClientOptions(dpgContext, client);
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }
-  for (const operationOrGroup of client.methods) {
-    if (operationOrGroup.kind !== "clientaccessor") {
-      const method = generateMethod(dpgContext, clientType, operationOrGroup);
-      clientClass.addMethod(method);
-      continue;
+  const methodMap = getMethodHierarchiesMap(client);
+  for (const [prefixKey, operations] of methodMap) {
+    const prefixes = prefixKey.split("/");
+    if (prefixes.length === 0) {
+      operations.forEach((op) => {
+        const method = generateMethod(dpgContext, clientType, [prefixes, op]);
+        clientClass.addMethod(method);
+      });
     } else {
-      const groupName = operationOrGroup.name;
+      const groupName = prefixes[0] ?? "";
       const operationName = `get${normalizeName(
         groupName,
         NameType.OperationGroup

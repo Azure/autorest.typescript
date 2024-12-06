@@ -51,12 +51,13 @@ import {
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkServiceMethod<SdkHttpOperation>],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
+  const operation = method[1];
   const parameters = getOperationSignatureParameters(
     dpgContext,
-    operation,
+    method,
     clientType
   );
   const { name } = getOperationName(operation);
@@ -210,11 +211,11 @@ export function getDeserializePrivateFunction(
 
 function getOperationSignatureParameters(
   context: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkServiceMethod<SdkHttpOperation>],
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  operation.operation;
-  const optionsType = getOperationOptionsName(operation, true);
+  const operation = method[1];
+  const optionsType = getOperationOptionsName(method, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -268,15 +269,24 @@ function getOperationSignatureParameters(
  */
 export function getOperationFunction(
   context: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkServiceMethod<SdkHttpOperation>],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+  const operation = method[1];
   if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
-    return getPagingOnlyOperationFunction(context, operation, clientType);
+    return getPagingOnlyOperationFunction(
+      context,
+      [method[0], operation],
+      clientType
+    );
   } else if (isLroOnlyOperation(operation)) {
     // Case 2: lro-only operation
-    return getLroOnlyOperationFunction(context, operation, clientType);
+    return getLroOnlyOperationFunction(
+      context,
+      [method[0], operation],
+      clientType
+    );
   } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
@@ -284,7 +294,7 @@ export function getOperationFunction(
 
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
+    getOperationSignatureParameters(context, method, clientType);
   // TODO: Support operation overloads
   const response = operation.response;
   let returnType = { name: "", type: "void" };
@@ -325,12 +335,13 @@ export function getOperationFunction(
 
 function getLroOnlyOperationFunction(
   context: SdkContext,
-  operation: SdkLroServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string
 ) {
+  const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
+    getOperationSignatureParameters(context, method, clientType);
   const returnType = buildLroReturnType(context, operation);
   const { name, fixme = [] } = getOperationName(operation);
   const pollerLikeReference = resolveReference(
@@ -402,12 +413,13 @@ function buildLroReturnType(
 
 function getPagingOnlyOperationFunction(
   context: SdkContext,
-  operation: SdkPagingServiceMethod<SdkHttpOperation>,
+  method: [string[], SdkPagingServiceMethod<SdkHttpOperation>],
   clientType: string
 ) {
+  const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
+    getOperationSignatureParameters(context, method, clientType);
 
   // TODO: Support operation overloads
   const response = operation.response;
@@ -849,7 +861,7 @@ interface RequestModelMappingResult {
 }
 export function getRequestModelMapping(
   context: SdkContext,
-  modelPropertyType: SdkModelType & { optional: boolean },
+  modelPropertyType: SdkModelType,
   propertyPath: string = "body"
 ): RequestModelMappingResult {
   const props: string[] = [];

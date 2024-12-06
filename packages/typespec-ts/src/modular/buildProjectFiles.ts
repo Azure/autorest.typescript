@@ -1,20 +1,21 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType } from "@azure-tools/rlc-common";
 
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../utils/clientUtils.js";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 
 function buildExportsForMultiClient(
-  codeModel: ModularCodeModel,
+  context: SdkContext,
+  emitterOptions: ModularEmitterOptions,
   packageInfo: any
 ) {
-  if (codeModel.clients.length > 1) {
+  if (context.sdkPackage.clients.length > 1) {
     delete packageInfo.exports["./api"];
     delete packageInfo.exports["./models"];
-    for (const client of codeModel.clients) {
-      const subfolder = normalizeName(
-        client.name.replace("Client", ""),
-        NameType.File
-      );
+    for (const client of context.sdkPackage.clients) {
+      const { subfolder } = getModularClientOptions(context, client);
       packageInfo.exports[`./${subfolder}`] = `./src/${subfolder}/index.ts`;
 
       packageInfo.exports[`./${subfolder}/api`] =
@@ -23,18 +24,17 @@ function buildExportsForMultiClient(
         `./src/${subfolder}/models/index.ts`;
     }
   }
-  if (codeModel.options.hierarchyClient) {
-    for (const client of codeModel.clients) {
-      for (const operationGroup of client.operationGroups) {
-        if (operationGroup.namespaceHierarchies.length === 0) {
+  if (emitterOptions.options.hierarchyClient) {
+    for (const client of context.sdkPackage.clients) {
+      const { subfolder } = getModularClientOptions(context, client);
+      const methodMap = getMethodHierarchiesMap(client);
+      for (const [prefixKey, _] of methodMap) {
+        const prefixes = prefixKey.split("/");
+        if (prefixes.length === 0) {
           continue;
         }
-        const subfolder =
-          codeModel.clients.length > 1
-            ? normalizeName(client.name.replace("Client", ""), NameType.File)
-            : undefined;
         const subApiPath = `api/${getClassicalLayerPrefix(
-          operationGroup,
+          prefixes,
           NameType.File,
           "/"
         )}`;
@@ -48,16 +48,19 @@ function buildExportsForMultiClient(
   return packageInfo.exports;
 }
 
-export function getModuleExports(codeModel: ModularCodeModel) {
+export function getModuleExports(
+  context: SdkContext,
+  emitterOptions: ModularEmitterOptions
+) {
   const exports: Record<string, any> = {
     exports: {
       ".": "./src/index.ts",
       "./models": "./src/models/index.ts"
     }
   };
-  if (!codeModel.options.azureArm) {
+  if (!emitterOptions.options.azureArm) {
     exports["exports"]["./api"] = "./src/api/index.ts";
   }
 
-  return buildExportsForMultiClient(codeModel, exports);
+  return buildExportsForMultiClient(context, emitterOptions, exports);
 }
