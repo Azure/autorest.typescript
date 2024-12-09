@@ -9,6 +9,7 @@ describe("Page helper", () => {
       op listWidgets is Azure.Core.Foundations.Operation<{}, CustomPageModel<Widget>>;`
     );
     assert.ok(pageInfo);
+    console.log(pageInfo?.content);
     assert.isTrue((pageInfo?.content as string).includes(`customizedItems`));
     assert.isTrue((pageInfo?.content as string).includes(`@odata.nextLink`));
   });
@@ -23,7 +24,7 @@ async function generatePagingHelper(code: string) {
     @doc("List of items.")
     customizedItems: T[];
   
-    @TypeSpec.nextLink
+    @Azure.Core.nextLink
     @doc("Link to fetch more items.")
     #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
     \`@odata.nextLink\`?: string;
