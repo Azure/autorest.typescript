@@ -160,7 +160,7 @@ export function listWidgetsPages(
     () => _listWidgetsPagesSend(context, page, pageSize, options),
     _listWidgetsPagesDeserialize,
     ["200"],
-    { itemName: "results", nextLinkName: "odata.nextLink" },
+    { itemName: "results" },
   );
 }
 
@@ -200,7 +200,7 @@ export function queryWidgetsPages(
     () => _queryWidgetsPagesSend(context, page, pageSize, options),
     _queryWidgetsPagesDeserialize,
     ["200"],
-    { itemName: "results", nextLinkName: "odata.nextLink" },
+    { itemName: "results" },
   );
 }
 

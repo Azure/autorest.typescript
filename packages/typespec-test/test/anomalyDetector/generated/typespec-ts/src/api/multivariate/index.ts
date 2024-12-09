@@ -163,7 +163,7 @@ export function listMultivariateModels(
     () => _listMultivariateModelsSend(context, options),
     _listMultivariateModelsDeserialize,
     ["200"],
-    { itemName: "models", nextLinkName: "nextLink" },
+    { itemName: "models" },
   );
 }
 
