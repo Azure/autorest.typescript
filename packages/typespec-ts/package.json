@@ -64,7 +64,7 @@
   "devDependencies": {
     "@azure-rest/core-client": "^2.3.1",
     "@azure-tools/cadl-ranch-expect": "^0.15.6",
-    "@azure-tools/cadl-ranch-specs": "^0.39.2",
+    "@azure-tools/cadl-ranch-specs": "^0.39.5",
     "@azure-tools/cadl-ranch": "^0.16.1",
     "@azure-tools/cadl-ranch-api": "^0.5.0",
     "@azure-tools/typespec-autorest": ">=0.48.0 <1.0.0",

@@ -234,7 +234,7 @@ importers:
       '@azure-tools/cadl-ranch': ^0.16.1
       '@azure-tools/cadl-ranch-api': ^0.5.0
       '@azure-tools/cadl-ranch-expect': ^0.15.6
-      '@azure-tools/cadl-ranch-specs': ^0.39.2
+      '@azure-tools/cadl-ranch-specs': ^0.39.5
       '@azure-tools/rlc-common': workspace:^0.35.0
       '@azure-tools/typespec-autorest': '>=0.48.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.48.0 <1.0.0'
@@ -293,7 +293,7 @@ importers:
       '@azure-tools/cadl-ranch': 0.16.1_maorf56vredk4k7ivyf3kw4p7i
       '@azure-tools/cadl-ranch-api': 0.5.0
       '@azure-tools/cadl-ranch-expect': 0.15.6_f5giq3reeireto67b6daw62k5y
-      '@azure-tools/cadl-ranch-specs': 0.39.2_fm5bpb4bfczzprftnu3bq22rpm
+      '@azure-tools/cadl-ranch-specs': 0.39.5_fm5bpb4bfczzprftnu3bq22rpm
       '@azure-tools/typespec-autorest': 0.48.0_oxyscq5ldpbiqyqn7seen263ii
       '@azure-tools/typespec-azure-core': 0.48.0_aaegv3jydxpwng7gbukr25tg2m
       '@azure-tools/typespec-azure-resource-manager': 0.48.0_xptzwysxh7uiycxgwx225suwku
@@ -457,8 +457,8 @@ packages:
       '@typespec/versioning': 0.62.0_@typespec+compiler@0.62.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.39.2_fm5bpb4bfczzprftnu3bq22rpm:
-    resolution: {integrity: sha512-1Y0zMxND6El7QOH2CPCzs9tmq2XOngnZQ/4nsqKvMEa5HMz8ua7zNQGiNdCa+2eo/F1KbfWMXMeCWTSvJoTqSg==}
+  /@azure-tools/cadl-ranch-specs/0.39.5_fm5bpb4bfczzprftnu3bq22rpm:
+    resolution: {integrity: sha512-OZr9wNxl6gMCpIwrpdaSbxEDamNtiACTLOCjQBZwDLTfW+15wOF0eavjTW+WV/M5qoCHqsldURYKPyT6tnRe4g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.15.6
