@@ -105,7 +105,7 @@ export function _listByResourceGroupSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
     )
     .get({
@@ -154,7 +154,7 @@ export function _listRolesAssignmentsSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -209,7 +209,7 @@ export function _removeUserRoleSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -262,7 +262,7 @@ export function _addUserRoleSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -315,7 +315,7 @@ export function _rotateKeySend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -370,7 +370,7 @@ export function _generateStorageAccountSasTokenSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -424,7 +424,7 @@ export function _$deleteSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -481,7 +481,7 @@ export function _updateSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -538,7 +538,7 @@ export function _getSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )
@@ -585,7 +585,7 @@ export function _createSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
     )

@@ -573,7 +573,10 @@ export function getMethodHierarchiesMap(
 
     if (operationOrGroup.kind === "clientaccessor") {
       operationOrGroup.response.methods.forEach((m) =>
-        methodQueue.push([[...prefixes, m.name], m])
+        methodQueue.push([
+          [...prefixes, operationOrGroup.name.replace("get", "")],
+          m
+        ])
       );
     } else {
       const prefixKey = prefixes.join("/");

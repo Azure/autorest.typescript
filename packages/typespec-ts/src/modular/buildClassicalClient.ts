@@ -192,7 +192,7 @@ function buildClientOperationGroups(
         clientClass.addMethod(method);
       });
     } else {
-      const groupName = prefixes[0] ?? "";
+      const groupName = normalizeName(prefixes[0] ?? "", NameType.Property);
       const operationName = `get${normalizeName(
         groupName,
         NameType.OperationGroup

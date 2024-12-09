@@ -33,7 +33,7 @@ export function _listBySubscriptionSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
+      context.subscriptionId,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -78,7 +78,7 @@ export function _listByResourceGroupSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
     )
     .get({
@@ -123,7 +123,7 @@ export function _getSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
     )
     .get({

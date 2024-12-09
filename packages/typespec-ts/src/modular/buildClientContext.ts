@@ -69,7 +69,22 @@ export function buildClientContext(
     isExported: true,
     name: `${rlcClientName}`,
     extends: [resolveReference(dependencies.Client)],
-    docs: getDocsFromDescription(client.doc)
+    docs: getDocsFromDescription(client.doc),
+    properties: getClientParameters(client, dpgContext, {
+      onClientOnly: false,
+      requiredOnly: true
+    })
+      .filter((p) => {
+        return p.name !== "endpoint" && p.name !== "credential";
+      })
+      .map((p) => {
+        return {
+          name: normalizeName(p.name, NameType.Parameter),
+          type: getTypeExpression(dpgContext, p.type),
+          hasQuestionToken: false,
+          docs: getDocsWithKnownVersion(dpgContext, p)
+        };
+      })
   });
 
   clientContextFile.addInterface({
