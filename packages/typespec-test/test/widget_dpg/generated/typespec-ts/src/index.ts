@@ -9,7 +9,13 @@ import {
 
 export { WidgetServiceClient } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export { User, Widget, AnalyzeResult, KnownVersions } from "./models/index.js";
+export {
+  User,
+  Widget,
+  AnalyzeResult,
+  NonReferencedModel,
+  KnownVersions,
+} from "./models/index.js";
 export {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
