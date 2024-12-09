@@ -3,10 +3,13 @@
 
 import {
   NetworkAnalyticsContext as Client,
-  ListByResourceGroupListByResourceGroupOptionalParams,
+  DataProductsCatalogsGetOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsListBySubscriptionOptionalParams,
 } from "../index.js";
 import {
-  dataProductArrayDeserializer,
+  DataProductsCatalog,
+  dataProductsCatalogDeserializer,
   dataProductsCatalogArrayDeserializer,
 } from "../../models/models.js";
 import {
@@ -21,26 +24,24 @@ import {
 } from "@azure-rest/core-client";
 import { json } from "stream/consumers";
 
-export function _listByResourceGroupSend(
+export function _listBySubscriptionSend(
   context: Client,
-  resourceGroupName: string,
-  options: ListByResourceGroupListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
+      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
       subscriptionId,
-      resourceGroupName,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByResourceGroupContentType: application / json },
+      headers: { listBySubscriptionContentType: application / json },
     });
 }
 
-export async function _listByResourceGroupDeserialize(
+export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
@@ -48,21 +49,20 @@ export async function _listByResourceGroupDeserialize(
     throw createRestError(result);
   }
 
-  return dataProductArrayDeserializer(result.body);
+  return dataProductsCatalogArrayDeserializer(result.body);
 }
 
-/** List data products by resource group. */
-export function listByResourceGroup(
+/** List data catalog by subscription. */
+export function listBySubscription(
   context: Client,
-  resourceGroupName: string,
-  options: ListByResourceGroupListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<void> {
   return buildPagedAsyncIterator(
     context,
-    () => _listByResourceGroupSend(context, resourceGroupName, options),
-    _listByResourceGroupDeserialize,
+    () => _listBySubscriptionSend(context, options),
+    _listBySubscriptionDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
@@ -71,7 +71,7 @@ export function listByResourceGroup(
 export function _listByResourceGroupSend(
   context: Client,
   resourceGroupName: string,
-  options: ListByResourceGroupListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -102,7 +102,7 @@ export async function _listByResourceGroupDeserialize(
 export function listByResourceGroup(
   context: Client,
   resourceGroupName: string,
-  options: ListByResourceGroupListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<void> {
@@ -113,4 +113,42 @@ export function listByResourceGroup(
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
+}
+
+export function _getSend(
+  context: Client,
+  resourceGroupName: string,
+  options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
+      subscriptionId,
+      resourceGroupName,
+    )
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { getContentType: application / json },
+    });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProductsCatalog> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return dataProductsCatalogDeserializer(result.body);
+}
+
+/** Retrieve data type resource. */
+export async function get(
+  context: Client,
+  resourceGroupName: string,
+  options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
+): Promise<DataProductsCatalog> {
+  const result = await _getSend(context, resourceGroupName, options);
+  return _getDeserialize(result);
 }

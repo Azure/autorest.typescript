@@ -6,7 +6,9 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface NetworkAnalyticsContext extends Client {}
+export interface NetworkAnalyticsContext extends Client {
+  subscriptionId: string;
+}
 
 /** Optional parameters for the client. */
 export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
@@ -16,6 +18,7 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 }
 
 export function createNetworkAnalytics(
+  subscriptionId: string,
   credential: TokenCredential,
   options: NetworkAnalyticsClientOptionalParams = {},
 ): NetworkAnalyticsContext {
@@ -56,5 +59,5 @@ export function createNetworkAnalytics(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, subscriptionId };
 }

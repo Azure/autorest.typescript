@@ -3,7 +3,7 @@
 
 import {
   NetworkAnalyticsContext as Client,
-  ListListOptionalParams,
+  OperationsListOptionalParams,
 } from "../index.js";
 import { operationArrayDeserializer } from "../../models/models.js";
 import {
@@ -20,7 +20,7 @@ import { json } from "stream/consumers";
 
 export function _listSend(
   context: Client,
-  options: ListListOptionalParams = { requestOptions: {} },
+  options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/providers/Microsoft.NetworkAnalytics/operations")
@@ -44,7 +44,7 @@ export async function _listDeserialize(
 /** List the operations for the provider */
 export function list(
   context: Client,
-  options: ListListOptionalParams = { requestOptions: {} },
+  options: OperationsListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<void> {
   return buildPagedAsyncIterator(
     context,
