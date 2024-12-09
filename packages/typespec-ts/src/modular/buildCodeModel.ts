@@ -1,16 +1,11 @@
 import {
   IntrinsicScalarName,
-  Model,
   ModelProperty,
   NoTarget,
   Program,
   Scalar,
-  Type,
-  UsageFlags,
-  getDiscriminator,
   getDoc,
   getEncode,
-  getFriendlyName,
   getMaxItems,
   getMaxLength,
   getMaxValue,
@@ -19,36 +14,14 @@ import {
   getMinValue,
   getPattern,
   getPropertyType,
-  getVisibility,
-  isNeverType,
   isNumericType,
-  isStringType,
-  isType
+  isStringType
 } from "@typespec/compiler";
-import { Type as HrlcType, ModularEmitterOptions } from "./modularCodeModel.js";
-import { HttpAuth } from "@typespec/http";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import {
-  getClientType,
-  getLibraryName,
-  getWireName
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  buildCoreTypeInfo,
-  getEffectiveSchemaType,
-  isSchemaProperty
-} from "../utils/modelUtils.js";
-import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { extractPagedMetadataNested } from "../utils/operationUtil.js";
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 
 import { Project } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";
-import { getAddedOnVersions } from "@typespec/versioning";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { useContext } from "../contextManager.js";
-import { normalizeModelName } from "./emitModels.js";
 
 // interface HttpServerParameter {
 //   type: "endpointPath";
@@ -56,17 +29,17 @@ import { normalizeModelName } from "./emitModels.js";
 //   param: ModelProperty;
 // }
 
-interface CredentialType {
-  kind: "Credential";
-  scheme: HttpAuth;
-}
+// interface CredentialType {
+//   kind: "Credential";
+//   scheme: HttpAuth;
+// }
 
-interface CredentialTypeUnion {
-  kind: "CredentialTypeUnion";
-  types: CredentialType[];
-}
+// interface CredentialTypeUnion {
+//   kind: "CredentialTypeUnion";
+//   types: CredentialType[];
+// }
 
-type EmitterType = Type | CredentialType | CredentialTypeUnion;
+// type EmitterType = Type | CredentialType | CredentialTypeUnion;
 
 let CASING: "camel" | "snake" = "snake";
 
@@ -79,271 +52,271 @@ export interface EmitterOptions {
   debug?: boolean;
 }
 
-function applyCasing(
-  name: string,
-  options: { casing: "snake" | "camel" } = { casing: "snake" }
-): string {
-  if (options.casing === "camel") {
-    return toCamelCase(name);
-  }
+// function applyCasing(
+//   name: string,
+//   options: { casing: "snake" | "camel" } = { casing: "snake" }
+// ): string {
+//   if (options.casing === "camel") {
+//     return toCamelCase(name);
+//   }
 
-  return camelToSnakeCase(name);
-}
+//   return camelToSnakeCase(name);
+// }
 
-const typesMap = new Map<EmitterType, HrlcType>();
-const simpleTypesMap = new Map<string, HrlcType>();
-// const endpointPathParameters: Record<string, any>[] = [];
+// const typesMap = new Map<EmitterType, HrlcType>();
+// const simpleTypesMap = new Map<string, HrlcType>();
+// // const endpointPathParameters: Record<string, any>[] = [];
 
-function isSimpleType(
-  program: Program,
-  type: EmitterType | undefined
-): boolean {
-  // these decorators can only work for simple type(int/string/float, etc)
-  if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
-    const funcs = [
-      getMinValue,
-      getMaxValue,
-      getMinLength,
-      getMaxLength,
-      getPattern,
-      getEncode
-    ];
-    for (const func of funcs) {
-      if (func(program, type)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
+// function isSimpleType(
+//   program: Program,
+//   type: EmitterType | undefined
+// ): boolean {
+//   // these decorators can only work for simple type(int/string/float, etc)
+//   if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
+//     const funcs = [
+//       getMinValue,
+//       getMaxValue,
+//       getMinLength,
+//       getMaxLength,
+//       getPattern,
+//       getEncode
+//     ];
+//     for (const func of funcs) {
+//       if (func(program, type)) {
+//         return true;
+//       }
+//     }
+//   }
+//   return false;
+// }
 
-function getDocStr(program: Program, target: Type): string {
-  return getDoc(program, target) ?? "";
-}
+// function getDocStr(program: Program, target: Type): string {
+//   return getDoc(program, target) ?? "";
+// }
 
-function isDiscriminator(
-  context: SdkContext,
-  type: Model,
-  propertyName: string
-): boolean {
-  const discriminator = getDiscriminator(context.program, type);
-  if (discriminator && discriminator.propertyName === propertyName) {
-    return true;
-  }
-  return false;
-}
+// function isDiscriminator(
+//   context: SdkContext,
+//   type: Model,
+//   propertyName: string
+// ): boolean {
+//   const discriminator = getDiscriminator(context.program, type);
+//   if (discriminator && discriminator.propertyName === propertyName) {
+//     return true;
+//   }
+//   return false;
+// }
 
-function handleDiscriminator(
-  context: SdkContext,
-  type: Model,
-  usage: UsageFlags
-) {
-  const discriminator = getDiscriminator(context.program, type);
-  if (discriminator) {
-    const discriminatorValues: string[] = [];
-    const aliases: string[] = [];
-    const discriminatedSubtypes: Type[] = [];
-    let discriminatorTcgcType = undefined;
-    for (const childModel of type.derivedModels) {
-      const modelType = getType(context, childModel, { usage });
-      aliases.push(modelType.name);
-      for (const property of modelType.properties) {
-        if (property.restApiName === discriminator.propertyName) {
-          modelType.discriminatorValue = property.type.value;
-          discriminatorValues.push(modelType.discriminatorValue);
-          discriminatorTcgcType = getClientType(context, property.type);
-        }
-      }
-      discriminatedSubtypes.push(modelType);
-    }
-    const discriminatorInfo = {
-      description:
-        discriminatorValues.length > 0
-          ? `the discriminator possible values: ${discriminatorValues.join(
-              ", "
-            )}`
-          : "discriminator property",
-      type: { type: "string", tcgcType: discriminatorTcgcType },
-      restApiName: discriminator.propertyName,
-      clientName: discriminator.propertyName,
-      name: discriminator.propertyName,
-      isPolymorphic: true,
-      isDiscriminator: true,
-      aliases,
-      discriminatedSubtypes
-    };
-    return discriminatorInfo;
-  }
-  return undefined;
-}
+// function handleDiscriminator(
+//   context: SdkContext,
+//   type: Model,
+//   usage: UsageFlags
+// ) {
+//   const discriminator = getDiscriminator(context.program, type);
+//   if (discriminator) {
+//     const discriminatorValues: string[] = [];
+//     const aliases: string[] = [];
+//     const discriminatedSubtypes: Type[] = [];
+//     let discriminatorTcgcType = undefined;
+//     for (const childModel of type.derivedModels) {
+//       const modelType = getType(context, childModel, { usage });
+//       aliases.push(modelType.name);
+//       for (const property of modelType.properties) {
+//         if (property.restApiName === discriminator.propertyName) {
+//           modelType.discriminatorValue = property.type.value;
+//           discriminatorValues.push(modelType.discriminatorValue);
+//           discriminatorTcgcType = getClientType(context, property.type);
+//         }
+//       }
+//       discriminatedSubtypes.push(modelType);
+//     }
+//     const discriminatorInfo = {
+//       description:
+//         discriminatorValues.length > 0
+//           ? `the discriminator possible values: ${discriminatorValues.join(
+//               ", "
+//             )}`
+//           : "discriminator property",
+//       type: { type: "string", tcgcType: discriminatorTcgcType },
+//       restApiName: discriminator.propertyName,
+//       clientName: discriminator.propertyName,
+//       name: discriminator.propertyName,
+//       isPolymorphic: true,
+//       isDiscriminator: true,
+//       aliases,
+//       discriminatedSubtypes
+//     };
+//     return discriminatorInfo;
+//   }
+//   return undefined;
+// }
 
-function processModelProperties(
-  context: SdkContext,
-  newValue: any,
-  model: Model,
-  usage: UsageFlags
-) {
-  // need to do properties after insertion to avoid infinite recursion
-  const discriminatorInfo = handleDiscriminator(context, model, usage);
-  let hasDiscriminator = false;
-  for (const property of model.properties.values()) {
-    if (!isSchemaProperty(context.program, property)) {
-      continue;
-    }
-    if (isNeverType(property.type)) {
-      continue;
-    }
-    if (newValue.properties === undefined || newValue.properties === null) {
-      newValue.properties = [];
-    }
-    let newProperty = emitProperty(context, property, usage);
-    if (isDiscriminator(context, model, property.name)) {
-      hasDiscriminator = true;
-      newProperty = {
-        ...newProperty,
-        ...discriminatorInfo,
-        type: newProperty["type"],
-        tcgcType: getClientType(context, property)
-      };
-    }
-    newValue.properties.push(newProperty);
-  }
-  if (discriminatorInfo) {
-    if (!hasDiscriminator) {
-      newValue.properties.push({ ...discriminatorInfo });
-    }
-    // we don't need to add the discriminator info if it's an anonymous model
-    // because it's impossible to have a anonymous model as the polymorphic base in typespec
-    // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
-    if (newValue.name) {
-      newValue.name = normalizeName(newValue.name, NameType.Interface);
-      discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name.replace(/Union$/g, "")}`;
-      newValue.name = `${newValue.name}`;
-      newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
-      newValue.types = discriminatorInfo?.discriminatedSubtypes;
-      newValue.isPolymorphicBaseModel = true;
-      newValue.discriminator = discriminatorInfo.restApiName;
-    }
-  }
-}
+// function processModelProperties(
+//   context: SdkContext,
+//   newValue: any,
+//   model: Model,
+//   usage: UsageFlags
+// ) {
+//   // need to do properties after insertion to avoid infinite recursion
+//   const discriminatorInfo = handleDiscriminator(context, model, usage);
+//   let hasDiscriminator = false;
+//   for (const property of model.properties.values()) {
+//     if (!isSchemaProperty(context.program, property)) {
+//       continue;
+//     }
+//     if (isNeverType(property.type)) {
+//       continue;
+//     }
+//     if (newValue.properties === undefined || newValue.properties === null) {
+//       newValue.properties = [];
+//     }
+//     let newProperty = emitProperty(context, property, usage);
+//     if (isDiscriminator(context, model, property.name)) {
+//       hasDiscriminator = true;
+//       newProperty = {
+//         ...newProperty,
+//         ...discriminatorInfo,
+//         type: newProperty["type"],
+//         tcgcType: getClientType(context, property)
+//       };
+//     }
+//     newValue.properties.push(newProperty);
+//   }
+//   if (discriminatorInfo) {
+//     if (!hasDiscriminator) {
+//       newValue.properties.push({ ...discriminatorInfo });
+//     }
+//     // we don't need to add the discriminator info if it's an anonymous model
+//     // because it's impossible to have a anonymous model as the polymorphic base in typespec
+//     // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
+//     if (newValue.name) {
+//       newValue.name = normalizeName(newValue.name, NameType.Interface);
+//       discriminatorInfo?.aliases.push(`${newValue.name}`);
+//       newValue.alias = `${newValue.name.replace(/Union$/g, "")}`;
+//       newValue.name = `${newValue.name}`;
+//       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+//       newValue.types = discriminatorInfo?.discriminatedSubtypes;
+//       newValue.isPolymorphicBaseModel = true;
+//       newValue.discriminator = discriminatorInfo.restApiName;
+//     }
+//   }
+// }
 
-function isEmptyAnonymousModel(type: EmitterType): boolean {
-  // object, {}, all will be treated as empty model
-  return (
-    type.kind === "Model" &&
-    type.name === "" &&
-    type.properties.size === 0 &&
-    !type.baseModel &&
-    type.derivedModels.length === 0 &&
-    !type.indexer
-  );
-}
+// function isEmptyAnonymousModel(type: EmitterType): boolean {
+//   // object, {}, all will be treated as empty model
+//   return (
+//     type.kind === "Model" &&
+//     type.name === "" &&
+//     type.properties.size === 0 &&
+//     !type.baseModel &&
+//     type.derivedModels.length === 0 &&
+//     !type.indexer
+//   );
+// }
 
-interface EmitTypeOptions {
-  disableEffectiveModel?: boolean;
-  usage?: UsageFlags;
-}
+// interface EmitTypeOptions {
+//   disableEffectiveModel?: boolean;
+//   usage?: UsageFlags;
+// }
 
-export function getType(
-  context: SdkContext,
-  type: EmitterType,
-  options: EmitTypeOptions = {}
-): any {
-  const modularMetatree = useContext("modularMetaTree");
+// export function getType(
+//   context: SdkContext,
+//   type: EmitterType,
+//   options: EmitTypeOptions = {}
+// ): any {
+//   const modularMetatree = useContext("modularMetaTree");
 
-  // don't cache simple type(string, int, etc) since decorators may change the result
-  const enableCache = !isSimpleType(context.program, type);
-  const effectiveModel =
-    !options.disableEffectiveModel &&
-    (type.kind === "Model" || type.kind === "Union")
-      ? getEffectiveSchemaType(context.program, type)
-      : type;
-  if (enableCache) {
-    const cached = typesMap.get(effectiveModel);
-    if (cached) {
-      return cached;
-    }
-  }
-  let newValue: any = { __raw: type };
+//   // don't cache simple type(string, int, etc) since decorators may change the result
+//   const enableCache = !isSimpleType(context.program, type);
+//   const effectiveModel =
+//     !options.disableEffectiveModel &&
+//     (type.kind === "Model" || type.kind === "Union")
+//       ? getEffectiveSchemaType(context.program, type)
+//       : type;
+//   if (enableCache) {
+//     const cached = typesMap.get(effectiveModel);
+//     if (cached) {
+//       return cached;
+//     }
+//   }
+//   let newValue: any = { __raw: type };
 
-  if (isEmptyAnonymousModel(type)) {
-    // do not generate model for empty model, treat it as any
-    newValue = { type: "any" };
-  } else {
-    newValue = emitType(context, type, options);
-  }
-  if (type.kind === "ModelProperty" || type.kind === "Scalar") {
-    newValue = applyEncoding(context.program, type, newValue);
-  }
+//   if (isEmptyAnonymousModel(type)) {
+//     // do not generate model for empty model, treat it as any
+//     newValue = { type: "any" };
+//   } else {
+//     newValue = emitType(context, type, options);
+//   }
+//   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
+//     newValue = applyEncoding(context.program, type, newValue);
+//   }
 
-  if (isTypespecType(type)) {
-    newValue.tcgcType = getClientType(context, effectiveModel as any);
-    newValue.name = !newValue.tcgcType.isGeneratedName
-      ? normalizeModelName(context, newValue.tcgcType)
-      : newValue.name;
-    newValue.__raw = type;
-    modularMetatree.set(type, newValue);
-  }
+//   if (isTypespecType(type)) {
+//     newValue.tcgcType = getClientType(context, effectiveModel as any);
+//     newValue.name = !newValue.tcgcType.isGeneratedName
+//       ? normalizeModelName(context, newValue.tcgcType)
+//       : newValue.name;
+//     newValue.__raw = type;
+//     modularMetatree.set(type, newValue);
+//   }
 
-  if (enableCache) {
-    if (!options.disableEffectiveModel) {
-      if (newValue.__raw === undefined) {
-        newValue.__raw = type;
-      }
-      typesMap.set(effectiveModel, newValue);
-    }
-    if (type.kind === "Union") {
-      for (const t of type.variants.values()) {
-        if (t.type.kind === "Model") {
-          processModelProperties(context, newValue, t.type, options.usage!);
-        }
-      }
-    }
-    if (type.kind === "Model") {
-      // need to do properties after insertion to avoid infinite recursion
-      processModelProperties(context, newValue, type, options.usage!);
-      if (newValue.type === "dict") {
-        newValue = { ...emitModel(context, type, options), ...newValue };
-        typesMap.set(effectiveModel, newValue);
-      }
-    }
-  } else {
-    const { __raw, tcgcType, ...keyableValue } = newValue;
-    const key = JSON.stringify(keyableValue);
-    const value = simpleTypesMap.get(key);
-    if (value) {
-      newValue = value;
-    } else {
-      simpleTypesMap.set(key, newValue);
-    }
-  }
-  if (
-    type.kind === "Model" &&
-    newValue.tcgcType.additionalProperties &&
-    !context.rlcOptions?.compatibilityMode
-  ) {
-    reportDiagnostic(context.program, {
-      code: "compatible-additional-properties",
-      format: {
-        modelName: type?.name ?? ""
-      },
-      target: type
-    });
-  }
+//   if (enableCache) {
+//     if (!options.disableEffectiveModel) {
+//       if (newValue.__raw === undefined) {
+//         newValue.__raw = type;
+//       }
+//       typesMap.set(effectiveModel, newValue);
+//     }
+//     if (type.kind === "Union") {
+//       for (const t of type.variants.values()) {
+//         if (t.type.kind === "Model") {
+//           processModelProperties(context, newValue, t.type, options.usage!);
+//         }
+//       }
+//     }
+//     if (type.kind === "Model") {
+//       // need to do properties after insertion to avoid infinite recursion
+//       processModelProperties(context, newValue, type, options.usage!);
+//       if (newValue.type === "dict") {
+//         newValue = { ...emitModel(context, type, options), ...newValue };
+//         typesMap.set(effectiveModel, newValue);
+//       }
+//     }
+//   } else {
+//     const { __raw, tcgcType, ...keyableValue } = newValue;
+//     const key = JSON.stringify(keyableValue);
+//     const value = simpleTypesMap.get(key);
+//     if (value) {
+//       newValue = value;
+//     } else {
+//       simpleTypesMap.set(key, newValue);
+//     }
+//   }
+//   if (
+//     type.kind === "Model" &&
+//     newValue.tcgcType.additionalProperties &&
+//     !context.rlcOptions?.compatibilityMode
+//   ) {
+//     reportDiagnostic(context.program, {
+//       code: "compatible-additional-properties",
+//       format: {
+//         modelName: type?.name ?? ""
+//       },
+//       target: type
+//     });
+//   }
 
-  typesMap.set(effectiveModel, newValue);
-  return newValue;
-}
+//   typesMap.set(effectiveModel, newValue);
+//   return newValue;
+// }
 
-function isTypespecType(type: EmitterType): type is Type {
-  return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
-}
+// function isTypespecType(type: EmitterType): type is Type {
+//   return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
+// }
 
 // To pass the yaml dump
-function getAddedOnVersion(p: Program, t: Type): string | undefined {
-  return getAddedOnVersions(p, t)?.[0]?.value;
-}
+// function getAddedOnVersion(p: Program, t: Type): string | undefined {
+//   return getAddedOnVersions(p, t)?.[0]?.value;
+// }
 
 // type ParamBase = {
 //   optional: boolean;
@@ -913,158 +886,158 @@ function getAddedOnVersion(p: Program, t: Type): string | undefined {
 //   };
 // }
 
-function isReadOnly(program: Program, type: ModelProperty): boolean {
-  // https://microsoft.github.io/typespec/standard-library/http/operations#automatic-visibility
-  // Only "read" should be readOnly
-  const visibility = getVisibility(program, type);
-  if (visibility) {
-    return visibility.includes("read") && visibility.length === 1;
-  } else {
-    return false;
-  }
-}
+// function isReadOnly(program: Program, type: ModelProperty): boolean {
+//   // https://microsoft.github.io/typespec/standard-library/http/operations#automatic-visibility
+//   // Only "read" should be readOnly
+//   const visibility = getVisibility(program, type);
+//   if (visibility) {
+//     return visibility.includes("read") && visibility.length === 1;
+//   } else {
+//     return false;
+//   }
+// }
 
-function emitProperty(
-  context: SdkContext,
-  property: ModelProperty,
-  usage: UsageFlags
-): Record<string, any> {
-  const newProperty = applyEncoding(context.program, property, property);
-  let clientDefaultValue = undefined;
-  const propertyDefaultKind = property.default?.kind;
-  if (
-    property.default &&
-    (propertyDefaultKind === "Number" ||
-      propertyDefaultKind === "String" ||
-      propertyDefaultKind === "Boolean")
-  ) {
-    clientDefaultValue = property.default.value;
-  }
+// function emitProperty(
+//   context: SdkContext,
+//   property: ModelProperty,
+//   usage: UsageFlags
+// ): Record<string, any> {
+//   const newProperty = applyEncoding(context.program, property, property);
+//   let clientDefaultValue = undefined;
+//   const propertyDefaultKind = property.default?.kind;
+//   if (
+//     property.default &&
+//     (propertyDefaultKind === "Number" ||
+//       propertyDefaultKind === "String" ||
+//       propertyDefaultKind === "Boolean")
+//   ) {
+//     clientDefaultValue = property.default.value;
+//   }
 
-  if (propertyDefaultKind === "EnumMember") {
-    clientDefaultValue = property.default.value ?? property.default.name;
-  }
+//   if (propertyDefaultKind === "EnumMember") {
+//     clientDefaultValue = property.default.value ?? property.default.name;
+//   }
 
-  // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = getLibraryName(context, property);
-  const jsonName = getWireName(context, property);
+//   // const [clientName, jsonName] = getPropertyNames(context, property);
+//   const clientName = getLibraryName(context, property);
+//   const jsonName = getWireName(context, property);
 
-  if (property.model) {
-    getType(context, property.model, { usage });
-  }
-  const type = getType(context, property.type, { usage });
-  return {
-    clientName: context.rlcOptions?.ignorePropertyNameNormalize
-      ? clientName
-      : normalizeName(clientName, NameType.Property),
-    restApiName: jsonName,
-    type: newProperty.format ? { ...type, format: newProperty.format } : type,
-    optional: property.optional,
-    description: getDocStr(context.program, property),
-    addedOn: getAddedOnVersion(context.program, property),
-    readonly: isReadOnly(context.program, property),
-    clientDefaultValue: clientDefaultValue,
-    format: newProperty.format
-  };
-}
+//   if (property.model) {
+//     getType(context, property.model, { usage });
+//   }
+//   const type = getType(context, property.type, { usage });
+//   return {
+//     clientName: context.rlcOptions?.ignorePropertyNameNormalize
+//       ? clientName
+//       : normalizeName(clientName, NameType.Property),
+//     restApiName: jsonName,
+//     type: newProperty.format ? { ...type, format: newProperty.format } : type,
+//     optional: property.optional,
+//     description: getDocStr(context.program, property),
+//     addedOn: getAddedOnVersion(context.program, property),
+//     readonly: isReadOnly(context.program, property),
+//     clientDefaultValue: clientDefaultValue,
+//     format: newProperty.format
+//   };
+// }
 
-function getName(program: Program, type: Model): string {
-  const friendlyName = getFriendlyName(program, type);
-  if (friendlyName) {
-    return friendlyName;
-  } else {
-    if (
-      type.templateMapper &&
-      type.templateMapper.args &&
-      type.name !== "" &&
-      type.templateMapper.args.length > 0
-    ) {
-      return (
-        type.name +
-        (type.templateMapper.args.filter((it) => isType(it)) as Type[])
-          .map((it) => (it.kind === "Model" ? it.name : ""))
-          .join("")
-      );
-    } else {
-      return type.name;
-    }
-  }
-}
+// function getName(program: Program, type: Model): string {
+//   const friendlyName = getFriendlyName(program, type);
+//   if (friendlyName) {
+//     return friendlyName;
+//   } else {
+//     if (
+//       type.templateMapper &&
+//       type.templateMapper.args &&
+//       type.name !== "" &&
+//       type.templateMapper.args.length > 0
+//     ) {
+//       return (
+//         type.name +
+//         (type.templateMapper.args.filter((it) => isType(it)) as Type[])
+//           .map((it) => (it.kind === "Model" ? it.name : ""))
+//           .join("")
+//       );
+//     } else {
+//       return type.name;
+//     }
+//   }
+// }
 
-export function emitModel(
-  context: SdkContext,
-  type: Model,
-  options: EmitTypeOptions = {}
-): Record<string, any> {
-  // Now we know it's a defined model
-  const properties: Record<string, any>[] = [];
-  let baseModel = undefined;
-  if (type.baseModel) {
-    baseModel = getType(context, type.baseModel, options);
-  }
-  const effectiveName = !options.disableEffectiveModel
-    ? getEffectiveSchemaType(context.program, type).name
-    : undefined;
-  const overridedModelName = normalizeName(
-    getLibraryName(context, type) ?? getFriendlyName(context.program, type),
-    NameType.Interface,
-    true
-  );
-  const fullNamespaceName =
-    getModelNamespaceName(context, type.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") +
-    (effectiveName ? effectiveName : getName(context.program, type));
-  let modelName =
-    overridedModelName !== type.name
-      ? overridedModelName
-      : context.rlcOptions?.enableModelNamespace
-        ? fullNamespaceName
-        : effectiveName
-          ? effectiveName
-          : getName(context.program, type);
-  if (
-    !overridedModelName &&
-    type.templateMapper &&
-    type.templateMapper.args &&
-    type.templateMapper.args.length > 0 &&
-    getPagedResult(context.program, type)
-  ) {
-    modelName =
-      (type.templateMapper.args.filter((it) => isType(it)) as Type[])
-        .map((it) => {
-          switch (it.kind) {
-            case "Model":
-              return it.name;
-            case "String":
-              return it.value;
-            default:
-              return "";
-          }
-        })
-        .join("") + "List";
-  }
+// export function emitModel(
+//   context: SdkContext,
+//   type: Model,
+//   options: EmitTypeOptions = {}
+// ): Record<string, any> {
+//   // Now we know it's a defined model
+//   const properties: Record<string, any>[] = [];
+//   let baseModel = undefined;
+//   if (type.baseModel) {
+//     baseModel = getType(context, type.baseModel, options);
+//   }
+//   const effectiveName = !options.disableEffectiveModel
+//     ? getEffectiveSchemaType(context.program, type).name
+//     : undefined;
+//   const overridedModelName = normalizeName(
+//     getLibraryName(context, type) ?? getFriendlyName(context.program, type),
+//     NameType.Interface,
+//     true
+//   );
+//   const fullNamespaceName =
+//     getModelNamespaceName(context, type.namespace!)
+//       .map((nsName) => {
+//         return normalizeName(nsName, NameType.Interface);
+//       })
+//       .join("") +
+//     (effectiveName ? effectiveName : getName(context.program, type));
+//   let modelName =
+//     overridedModelName !== type.name
+//       ? overridedModelName
+//       : context.rlcOptions?.enableModelNamespace
+//         ? fullNamespaceName
+//         : effectiveName
+//           ? effectiveName
+//           : getName(context.program, type);
+//   if (
+//     !overridedModelName &&
+//     type.templateMapper &&
+//     type.templateMapper.args &&
+//     type.templateMapper.args.length > 0 &&
+//     getPagedResult(context.program, type)
+//   ) {
+//     modelName =
+//       (type.templateMapper.args.filter((it) => isType(it)) as Type[])
+//         .map((it) => {
+//           switch (it.kind) {
+//             case "Model":
+//               return it.name;
+//             case "String":
+//               return it.value;
+//             default:
+//               return "";
+//           }
+//         })
+//         .join("") + "List";
+//   }
 
-  const page = extractPagedMetadataNested(context.program, type);
-  const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
-  return {
-    type: "model",
-    name: `${isPaging ? "_" : ""}${modelName}`,
-    description: getDocStr(context.program, type),
-    parents: baseModel ? [baseModel] : [],
-    discriminatedSubtypes: [],
-    properties: properties,
-    addedOn: getAddedOnVersion(context.program, type),
-    snakeCaseName: modelName
-      ? applyCasing(modelName, { casing: CASING })
-      : modelName,
-    base: modelName === "" ? "json" : "dpg",
-    coreTypeInfo: buildCoreTypeInfo(context.program, type),
-    usage: options.usage
-  };
-}
+//   const page = extractPagedMetadataNested(context.program, type);
+//   const isPaging = page && page.itemsSegments && page.itemsSegments.length > 0;
+//   return {
+//     type: "model",
+//     name: `${isPaging ? "_" : ""}${modelName}`,
+//     description: getDocStr(context.program, type),
+//     parents: baseModel ? [baseModel] : [],
+//     discriminatedSubtypes: [],
+//     properties: properties,
+//     addedOn: getAddedOnVersion(context.program, type),
+//     snakeCaseName: modelName
+//       ? applyCasing(modelName, { casing: CASING })
+//       : modelName,
+//     base: modelName === "" ? "json" : "dpg",
+//     coreTypeInfo: buildCoreTypeInfo(context.program, type),
+//     usage: options.usage
+//   };
+// }
 
 // function intOrFloat(value: number): string {
 //   return value.toString().indexOf(".") === -1 ? "integer" : "float";

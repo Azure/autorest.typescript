@@ -63,10 +63,10 @@ export function getClassicalOperation(
     });
   }
 
-  const operationMap = new Map<
-    OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
-  >();
+  // const operationMap = new Map<
+  //   OptionalKind<FunctionDeclarationStructure>,
+  //   string | undefined
+  // >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operations.map((operation) => {
       const declarations = getOperationFunction(
@@ -74,7 +74,7 @@ export function getClassicalOperation(
         [prefixes, operation],
         rlcClientName
       );
-      operationMap.set(declarations, operation.oriName);
+      // operationMap.set(declarations, operation.oriName);
       return declarations;
     });
 
@@ -277,10 +277,8 @@ export function getClassicalOperation(
     }
   ) {
     return (
-      operationMap.get(declaration) ??
-      declaration.propertyName ??
-      declaration.name ??
-      "FIXME"
+      // operationMap.get(declaration) ??
+      declaration.propertyName ?? declaration.name ?? "FIXME"
     );
   }
 }

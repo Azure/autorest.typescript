@@ -27,7 +27,7 @@ export function isSupportedSerializeType(type: SdkType): boolean {
  */
 const specialVariantMap = new Map<SdkType, boolean>();
 export function isSpecialUnionVariant(
-  t: SdkType,
+  t: SdkType & { isNonExhaustive?: boolean },
   variantStack: SdkType[] = []
 ): boolean {
   if (variantStack.length <= 0) {
@@ -108,7 +108,9 @@ export function isDiscriminatedUnion(
   );
 }
 
-export function isSpecialHandledUnion(t: SdkType): boolean {
+export function isSpecialHandledUnion(
+  t: SdkType & { isNonExhaustive?: boolean }
+): boolean {
   return isDiscriminatedUnion(t!) || isPolymorphicUnion(t);
 }
 

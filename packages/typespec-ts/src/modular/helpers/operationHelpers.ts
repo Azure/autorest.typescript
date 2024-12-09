@@ -1,4 +1,3 @@
-import { Parameter, Property, Type } from "../modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
@@ -10,7 +9,8 @@ import { isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
-  hasCollectionFormatInfo
+  hasCollectionFormatInfo,
+  isBinaryPayload
 } from "../../utils/operationUtil.js";
 import {
   isNormalUnion,
@@ -35,9 +35,11 @@ import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
+  isReadOnly,
   SdkBodyParameter,
   SdkConstantType,
   SdkHttpOperation,
+  SdkHttpParameter,
   SdkLroPagingServiceMethod,
   SdkLroServiceMethod,
   SdkMethod,
@@ -168,6 +170,7 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType) {
+    const contentTypes = operation.operation.responses[0]?.contentTypes;
     const deserializeFunctionName = buildModelDeserializer(
       context,
       deserializedType,
@@ -184,7 +187,9 @@ export function getDeserializePrivateFunction(
           context,
           deserializedType,
           deserializedRoot,
-          response.isBinaryPayload ? "binary" : deserializedType.format
+          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
+            ? "binary"
+            : getEncodeForType(deserializedType)
         )}`
       );
     }
@@ -475,24 +480,24 @@ function getPagingOnlyOperationFunction(
   };
 }
 
-function extractPagingType(type: Type, itemName?: string): Type | undefined {
-  if (!itemName) {
-    return undefined;
-  }
-  const allProperties = [
-    ...(type.properties ?? []),
-    ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
-  ];
-  const prop = allProperties
-    .filter((prop) => prop.restApiName === itemName)
-    .map((prop) => prop.type);
-  if (prop.length === 0) {
-    return undefined;
-  }
-  return prop[0]?.type === "list" && prop[0].elementType
-    ? prop[0].elementType
-    : undefined;
-}
+// function extractPagingType(type: Type, itemName?: string): Type | undefined {
+//   if (!itemName) {
+//     return undefined;
+//   }
+//   const allProperties = [
+//     ...(type.properties ?? []),
+//     ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
+//   ];
+//   const prop = allProperties
+//     .filter((prop) => prop.restApiName === itemName)
+//     .map((prop) => prop.type);
+//   if (prop.length === 0) {
+//     return undefined;
+//   }
+//   return prop[0]?.type === "list" && prop[0].elementType
+//     ? prop[0].elementType
+//     : undefined;
+// }
 export function getOperationOptionsName(
   method: [string[], SdkServiceMethod<SdkHttpOperation>],
   includeGroupName = false
@@ -630,7 +635,9 @@ function buildBodyParameter(
     bodyParameter.type,
     bodyNameExpression,
     !bodyParameter.optional,
-    bodyParameter.isBinaryPayload ? "binary" : bodyParameter.type.encoding
+    isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
+      ? "binary"
+      : getEncodeForType(bodyParameter.type)
   );
   return `\nbody: ${serializedBody === bodyNameExpression ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
@@ -676,12 +683,12 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
   const serializedName = getPropertySerializedName(param);
   const collectionInfo = getCollectionFormatHelper(
     param.kind,
-    param.type.encoding ?? ""
+    getEncodeForType(param) ?? ""
   );
   if (!collectionInfo) {
     throw "Has collection format info but without helper function detected";
   }
-  const isMulti = (param.encode ?? "").toLowerCase() === "multi";
+  const isMulti = (getEncodeForType(param) ?? "").toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${serializedName}"` : "";
   if (!param.optional) {
     return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
@@ -689,7 +696,7 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
       param.type,
       param.name,
       true,
-      param.encoding
+      getEncodeForType(param)
     )}${additionalParam})`;
   }
   return `"${serializedName}": options?.${
@@ -699,7 +706,7 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
     param.type,
     "options?." + param.name,
     false,
-    param.encoding
+    getEncodeForType(param)
   )}${additionalParam}): undefined`;
 }
 
@@ -718,10 +725,6 @@ function getContentTypeValue(param: SdkServiceParameter) {
     }`;
   }
 }
-
-type RequiredType = (Parameter | Property) & {
-  type: { optional: false | undefined; value: string };
-};
 
 function isRequired(param: SdkModelPropertyType) {
   return !param.optional;
@@ -742,7 +745,7 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
     param.type,
     param.name,
     true,
-    param.type.encoding
+    getEncodeForType(param)
   )}`;
 }
 
@@ -758,7 +761,7 @@ function isOptional(param: SdkModelPropertyType) {
   return Boolean(param.optional);
 }
 
-function getOptional(context: SdkContext, param: SdkModelPropertyType) {
+function getOptional(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
   if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
@@ -784,8 +787,26 @@ function getOptional(context: SdkContext, param: SdkModelPropertyType) {
     param.type,
     `options?.${param.name}`,
     false,
-    param.encode
+    getEncodeForType(param)
   )}`;
+}
+
+/**
+ * Get the encode for SDK type
+ */
+function getEncodeForType(
+  type: SdkType | SdkHttpParameter | SdkModelPropertyType
+) {
+  return (type as any).encode;
+}
+
+/**
+ * Get the optionality for SDK type
+ */
+function getOptionalForType(
+  type: SdkType | SdkHttpParameter | SdkModelPropertyType
+) {
+  return (type as any).optional;
 }
 
 /**
@@ -861,7 +882,7 @@ interface RequestModelMappingResult {
 }
 export function getRequestModelMapping(
   context: SdkContext,
-  modelPropertyType: SdkModelType,
+  modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body"
 ): RequestModelMappingResult {
   const props: string[] = [];
@@ -872,7 +893,7 @@ export function getRequestModelMapping(
     return { propertiesStr: [] };
   }
   for (const property of properties) {
-    if (property.readonly) {
+    if (property.kind === "property" && isReadOnly(property)) {
       continue;
     }
     const dot = propertyPath.endsWith("?") ? "." : "";
@@ -904,7 +925,7 @@ export function getRequestModelMapping(
         property.type,
         propertyFullName,
         !property.optional,
-        property.endcoding
+        getEncodeForType(property)
       );
       props.push(`"${serializedName}": ${serializedValue}`);
     }
@@ -960,7 +981,7 @@ export function getResponseMapping(
         context,
         property.type,
         `${propertyPath}${dot}["${serializedName}"]`,
-        property.encoding
+        getEncodeForType(property)
       );
       props.push(
         `"${property.name}": ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
@@ -985,7 +1006,7 @@ export function serializeRequestValue(
   const getSdkType = useSdkTypes();
   const dependencies = useDependencies();
   const nullOrUndefinedPrefix =
-    isTypeNullable(type) || type.optional || !required
+    isTypeNullable(type) || getOptionalForType(type) || !required
       ? `!${clientValue}? ${clientValue}: `
       : "";
   switch (type.kind) {
@@ -1005,7 +1026,7 @@ export function serializeRequestValue(
       const prefix = nullOrUndefinedPrefix + clientValue;
       if (type.valueType) {
         const elementNullOrUndefinedPrefix =
-          isTypeNullable(type.valueType) || type.valueType.optional
+          isTypeNullable(type.valueType) || getOptionalForType(type.valueType)
             ? "!p ? p : "
             : "";
         const serializeFunctionName = buildModelSerializer(
@@ -1021,7 +1042,7 @@ export function serializeRequestValue(
         ) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
         } else {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.elementType, "p", true, type.elementType?.format)}})`;
+          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
         }
       }
       return clientValue;
@@ -1046,7 +1067,13 @@ export function serializeRequestValue(
     case "union":
       if (isNormalUnion(type)) {
         return `${clientValue}`;
-      } else if (isSpecialHandledUnion(type)) {
+      } else if (
+        isSpecialHandledUnion({
+          ...type,
+          isNonExhaustive:
+            context.rlcOptions?.experimentalExtensibleEnums ?? false
+        })
+      ) {
         const sdkType = getSdkType(type.__raw!);
         const serializerRefkey = refkey(sdkType, "serializer");
         const serializeFunctionName = resolveReference(serializerRefkey);
@@ -1078,7 +1105,7 @@ export function deserializeResponseValue(
     dependencies.stringToUint8Array
   );
   const nullOrUndefinedPrefix =
-    isTypeNullable(type) || type.optional
+    isTypeNullable(type) || getOptionalForType(type)
       ? `!${restValue}? ${restValue}: `
       : "";
   switch (type.kind) {
@@ -1089,7 +1116,7 @@ export function deserializeResponseValue(
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
-        (isTypeNullable(type.valueType) || type.valueType.optional)
+        (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
         elementNullOrUndefinedPrefix = "!p ? p :";
       }
@@ -1104,7 +1131,7 @@ export function deserializeResponseValue(
       ) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.valueType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.elementType, "p", type.format)}})`;
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type))}})`;
       } else {
         return restValue;
       }
@@ -1155,8 +1182,8 @@ export function isPagingOnlyOperation(
 }
 
 export function getAllProperties(
-  type: SdkModelType,
-  parents?: SdkModelType[]
+  type: SdkType,
+  parents?: SdkType[]
 ): SdkModelPropertyType[] {
   const propertiesMap: Map<string, SdkModelPropertyType> = new Map();
   if (!type) {
@@ -1167,15 +1194,16 @@ export function getAllProperties(
       propertiesMap.set(prop.name, prop);
     });
   });
-  type.properties?.forEach((p) => {
-    propertiesMap.set(p.name, p);
-  });
+  type.kind === "model" &&
+    type.properties?.forEach((p) => {
+      propertiesMap.set(p.name, p);
+    });
   return [...propertiesMap.values()];
 }
 
-export function getAllAncestors(type: SdkModelType): SdkModelType[] {
-  const ancestors: SdkModelType[] = [];
-  if (type.baseModel) {
+export function getAllAncestors(type: SdkType): SdkType[] {
+  const ancestors: SdkType[] = [];
+  if (type.kind === "model" && type.baseModel) {
     ancestors.push(type.baseModel);
     ancestors.push(...getAllAncestors(type.baseModel));
   }
