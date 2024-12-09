@@ -6,7 +6,6 @@
 
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -184,16 +183,6 @@ export interface GenericProcedureRecommendation extends ProcedureRecommendation 
 }
 
 // @public
-export interface HealthInsightsOperationStatusError {
-    readonly createdDateTime?: Date;
-    error?: ErrorModel;
-    readonly expirationDateTime?: Date;
-    readonly id: string;
-    readonly lastUpdateDateTime?: Date;
-    readonly status: JobStatus;
-}
-
-// @public
 export interface Identifier extends Element {
     assigner?: Reference;
     period?: Period;
@@ -226,9 +215,6 @@ export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     updateIntervalInMs?: number;
 }
-
-// @public
-export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
 
 // @public
 export enum KnownApiVersion {
@@ -455,17 +441,6 @@ export interface RadiologyInsightsModelConfiguration {
 export interface RadiologyInsightsPatientResult {
     inferences: RadiologyInsightsInferenceUnion[];
     patientId: string;
-}
-
-// @public
-export interface RadiologyInsightsResult {
-    readonly createdDateTime?: Date;
-    error?: ErrorModel;
-    readonly expirationDateTime?: Date;
-    readonly id: string;
-    readonly lastUpdateDateTime?: Date;
-    result?: RadiologyInsightsInferenceResult;
-    readonly status: JobStatus;
 }
 
 // @public

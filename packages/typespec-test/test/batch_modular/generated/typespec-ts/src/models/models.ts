@@ -1109,7 +1109,7 @@ export interface _BatchNodeListResult {
   /** The list of Compute Nodes. */
   value?: BatchNode[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchNodeListResultDeserializer(
@@ -1119,7 +1119,7 @@ export function _batchNodeListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchNodeArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -1273,7 +1273,7 @@ export interface _NodeVMExtensionList {
   /** The list of Compute Node extensions. */
   value?: NodeVMExtension[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _nodeVMExtensionListDeserializer(
@@ -1283,7 +1283,7 @@ export function _nodeVMExtensionListDeserializer(
     value: !item["value"]
       ? item["value"]
       : nodeVMExtensionArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -1303,7 +1303,7 @@ export interface _NodeFileListResult {
   /** The list of files. */
   value?: NodeFile[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _nodeFileListResultDeserializer(
@@ -1313,7 +1313,7 @@ export function _nodeFileListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : nodeFileArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -2036,7 +2036,7 @@ export interface _BatchTaskListResult {
   /** The list of Tasks. */
   value?: BatchTask[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchTaskListResultDeserializer(
@@ -2046,7 +2046,7 @@ export function _batchTaskListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchTaskArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -4469,7 +4469,7 @@ export interface _BatchJobScheduleListResult {
   /** The list of Job Schedules. */
   value?: BatchJobSchedule[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchJobScheduleListResultDeserializer(
@@ -4479,7 +4479,7 @@ export function _batchJobScheduleListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchJobScheduleArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -4603,7 +4603,7 @@ export interface _CertificateListResult {
   /** The list of Certificates. */
   value?: BatchCertificate[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _certificateListResultDeserializer(
@@ -4613,7 +4613,7 @@ export function _certificateListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchCertificateArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5017,7 +5017,7 @@ export interface _BatchJobListResult {
   /** The list of Jobs. */
   value?: BatchJob[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchJobListResultDeserializer(
@@ -5027,7 +5027,7 @@ export function _batchJobListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchJobArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5051,7 +5051,7 @@ export interface _BatchJobListPreparationAndReleaseTaskStatusResult {
   /** A list of Job Preparation and Job Release Task execution information. */
   value?: JobPreparationAndReleaseTaskExecutionInformation[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
@@ -5063,7 +5063,7 @@ export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
       : jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
           item["value"],
         ),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5281,7 +5281,7 @@ export interface _AccountListSupportedImagesResult {
   /** The list of supported Virtual Machine Images. */
   value?: ImageInformation[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _accountListSupportedImagesResultDeserializer(
@@ -5291,7 +5291,7 @@ export function _accountListSupportedImagesResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : imageInformationArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5349,7 +5349,7 @@ export interface _PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
   value?: PoolNodeCounts[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _poolNodeCountsListResultDeserializer(
@@ -5359,7 +5359,7 @@ export function _poolNodeCountsListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : poolNodeCountsArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5449,7 +5449,7 @@ export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
   value?: PoolUsageMetrics[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _poolListUsageMetricsResultDeserializer(
@@ -5459,7 +5459,7 @@ export function _poolListUsageMetricsResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : poolUsageMetricsArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -5613,7 +5613,7 @@ export interface _BatchPoolListResult {
   /** The list of Pools. */
   value?: BatchPool[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _batchPoolListResultDeserializer(
@@ -5623,7 +5623,7 @@ export function _batchPoolListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchPoolArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
@@ -6188,7 +6188,7 @@ export interface _ApplicationListResult {
   /** The list of applications available in the Account. */
   value?: BatchApplication[];
   /** The URL to get the next set of results. */
-  odataNextLink?: string;
+  odataTypeSpecNextLink?: string;
 }
 
 export function _applicationListResultDeserializer(
@@ -6198,7 +6198,7 @@ export function _applicationListResultDeserializer(
     value: !item["value"]
       ? item["value"]
       : batchApplicationArrayDeserializer(item["value"]),
-    odataNextLink: item["odata.nextLink"],
+    odataTypeSpecNextLink: item["odata.TypeSpec.nextLink"],
   };
 }
 
