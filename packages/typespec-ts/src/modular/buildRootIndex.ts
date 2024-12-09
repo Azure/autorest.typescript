@@ -145,7 +145,7 @@ function exportRestoreHelpers(
 ) {
   const helperFile = project.getSourceFile(
     `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
   if (!helperFile) {
@@ -161,7 +161,7 @@ function exportRestoreHelpers(
     }
   );
   const moduleSpecifier = `./${
-    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
   }restorePollerHelpers.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
@@ -179,7 +179,7 @@ function exportClassicalClient(
   indexFile.addExportDeclaration({
     namedExports: [clientName],
     moduleSpecifier: `./${
-      subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+      subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
     }${normalizeName(clientName, NameType.File)}.js`
   });
 }
@@ -267,7 +267,7 @@ export function buildSubClientIndexFile(
   );
   const clientName = `${getClientName(client)}Client`;
   const clientFilePath = `${srcPath}/${
-    subfolder !== "" ? subfolder + "/" : ""
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;
   const clientFile = emitterOptions.project.getSourceFile(clientFilePath);
 

@@ -54,7 +54,7 @@ export function buildClassicalClient(
   );
 
   const clientFile = emitterOptions.project.createSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       classicalClientName,
       NameType.File
     )}.ts`
@@ -134,7 +134,7 @@ function importAllApis(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
   );
 
   if (!apiModels) {

@@ -1,102 +1,100 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OperationOptions } from "@azure-rest/core-client";
+/** Optional parameters. */
+export interface ListBySubscriptionListBySubscriptionOptionalParams
+  extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface OperationsListOptionalParams extends OperationOptions {}
+export interface ListBySubscriptionListBySubscriptionOptionalParams
+  extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataProductsCatalogsGetOptionalParams
-  extends OperationOptions {}
+export interface ListByResourceGroupListByResourceGroupOptionalParams
+  extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataProductsCatalogsListByResourceGroupOptionalParams
-  extends OperationOptions {}
+export interface ListByResourceGroupListByResourceGroupOptionalParams
+  extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataProductsCatalogsListBySubscriptionOptionalParams
-  extends OperationOptions {}
+export interface ListRolesAssignmentsListRolesAssignmentsOptionalParams
+  extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataTypesCreateOptionalParams extends OperationOptions {
+export interface RemoveUserRoleRemoveUserRoleOptionalParams
+  extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface AddUserRoleAddUserRoleOptionalParams
+  extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface RotateKeyRotateKeyOptionalParams extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface GenerateStorageAccountSasTokenGenerateStorageAccountSasTokenOptionalParams
+  extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface DeleteDeleteOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataTypesGetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataTypesUpdateOptionalParams extends OperationOptions {
+export interface DeleteDeleteOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataTypesDeleteOptionalParams extends OperationOptions {
+export interface UpdateUpdateOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
+export interface UpdateUpdateOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
-  extends OperationOptions {}
+export interface GetGetOptionalParams extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataTypesListByDataProductOptionalParams
-  extends OperationOptions {}
+export interface GetGetOptionalParams extends __PLACEHOLDER_o83__ {}
 
 /** Optional parameters. */
-export interface DataProductsCreateOptionalParams extends OperationOptions {
+export interface GetGetOptionalParams extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface CreateCreateOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataProductsGetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsUpdateOptionalParams extends OperationOptions {
+export interface CreateCreateOptionalParams extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataProductsDeleteOptionalParams extends OperationOptions {
+export interface ListByDataProductListByDataProductOptionalParams
+  extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface GenerateStorageContainerSasTokenGenerateStorageContainerSasTokenOptionalParams
+  extends __PLACEHOLDER_o83__ {}
+
+/** Optional parameters. */
+export interface DeleteDataDeleteDataOptionalParams
+  extends __PLACEHOLDER_o83__ {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface DataProductsGenerateStorageAccountSasTokenOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsRotateKeyOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsAddUserRoleOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsRemoveUserRoleOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsListRolesAssignmentsOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsListByResourceGroupOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsListBySubscriptionOptionalParams
-  extends OperationOptions {}
+export interface ListListOptionalParams extends __PLACEHOLDER_o83__ {}

@@ -159,7 +159,7 @@ export function getDeserializePrivateFunction(
 
   const deserializePrefix = "result.body";
 
-  const deserializedRoot = `${deserializePrefix}.${lroSubPath ?? ""}`;
+  const deserializedRoot = `${deserializePrefix}${lroSubPath ? "." + lroSubPath : ""}`;
   if (isLroOnly && lroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
