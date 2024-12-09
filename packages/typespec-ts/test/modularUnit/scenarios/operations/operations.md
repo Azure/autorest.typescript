@@ -792,7 +792,7 @@ model Error {
 model Bar {
     @items
     lists: string[];
-    @nextLink
+    @TypeSpec.nextLink
     nextLink: string;
 }
 

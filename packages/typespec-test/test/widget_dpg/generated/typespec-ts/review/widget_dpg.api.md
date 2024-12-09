@@ -41,12 +41,6 @@ export enum KnownVersions {
 }
 
 // @public
-export interface NonReferencedModel {
-    prop1: number;
-    prop2: string;
-}
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;

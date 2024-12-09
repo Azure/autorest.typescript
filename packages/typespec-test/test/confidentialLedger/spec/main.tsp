@@ -163,7 +163,7 @@ model PagedLedgerEntries {
   state: LedgerQueryState;
 
   @doc("Path from which to retrieve the next page of results.")
-  @nextLink
+  @TypeSpec.nextLink
   nextLink?: ResourceLocation<LedgerEntry>;
 }
 
