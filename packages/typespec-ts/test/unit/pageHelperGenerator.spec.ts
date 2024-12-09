@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitPageHelperFromTypeSpec } from "../util/emitUtil.js";
 
 describe("Page helper", () => {
-  it.only("could handle customized nextLinkName and itemName", async () => {
+  it("could handle customized nextLinkName and itemName", async () => {
     const pageInfo = await generatePagingHelper(
       `
       #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
