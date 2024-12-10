@@ -8,6 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   DataProduct,
   DataProductProperties,

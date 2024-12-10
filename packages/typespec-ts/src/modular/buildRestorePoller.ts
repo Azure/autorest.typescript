@@ -26,11 +26,11 @@ export function buildRestorePoller(
 ) {
   const { subfolder } = getModularClientOptions(context, client);
   const methodMap = getMethodHierarchiesMap(client);
-  for (const [_, operations] of methodMap) {
-    const lros = operations.filter(isLroOnlyOperation);
-    if (lros.length === 0) {
-      return;
-    }
+  const hasLro = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroOnlyOperation);
+  });
+  if (!hasLro) {
+    return;
   }
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   const filePath = path.join(
