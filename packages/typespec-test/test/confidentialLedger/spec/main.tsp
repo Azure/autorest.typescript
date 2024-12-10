@@ -163,7 +163,7 @@ model PagedLedgerEntries {
   state: LedgerQueryState;
 
   @doc("Path from which to retrieve the next page of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   nextLink?: ResourceLocation<LedgerEntry>;
 }
 
