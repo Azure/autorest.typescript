@@ -52,7 +52,7 @@ export function _listByDataProductSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByDataProductContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -109,10 +109,7 @@ export function _generateStorageContainerSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        generateStorageContainerSasTokenContentType: "application/json",
-        generateStorageContainerSasTokenContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: containerSaSSerializer(body),
     });
 }
@@ -168,10 +165,7 @@ export function _deleteDataSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        deleteDataContentType: "application/json",
-        deleteDataContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: _deleteDataRequestSerializer(body),
     });
 }
@@ -234,7 +228,7 @@ export function _$deleteSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { deleteContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -300,10 +294,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        updateContentType: "application/json",
-        updateContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: dataTypeUpdateSerializer(properties),
     });
 }
@@ -361,7 +352,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -412,10 +403,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        createContentType: "application/json",
-        createContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: dataTypeSerializer(resource),
     });
 }

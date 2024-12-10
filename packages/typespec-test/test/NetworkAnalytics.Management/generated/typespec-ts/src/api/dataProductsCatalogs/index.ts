@@ -36,7 +36,7 @@ export function _listBySubscriptionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listBySubscriptionContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -82,7 +82,7 @@ export function _listByResourceGroupSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByResourceGroupContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -127,7 +127,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 

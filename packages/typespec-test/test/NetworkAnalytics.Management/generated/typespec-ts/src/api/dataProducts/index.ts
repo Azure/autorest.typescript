@@ -63,7 +63,7 @@ export function _listBySubscriptionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listBySubscriptionContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -109,7 +109,7 @@ export function _listByResourceGroupSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByResourceGroupContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -159,10 +159,7 @@ export function _listRolesAssignmentsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        listRolesAssignmentsContentType: "application/json",
-        listRolesAssignmentsContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: _listRolesAssignmentsRequestSerializer(body),
     });
 }
@@ -214,10 +211,7 @@ export function _removeUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        removeUserRoleContentType: "application/json",
-        removeUserRoleContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: roleAssignmentDetailSerializer(body),
     });
 }
@@ -267,10 +261,7 @@ export function _addUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        addUserRoleContentType: "application/json",
-        addUserRoleContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: roleAssignmentCommonPropertiesSerializer(body),
     });
 }
@@ -320,10 +311,7 @@ export function _rotateKeySend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        rotateKeyContentType: "application/json",
-        rotateKeyContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: keyVaultInfoSerializer(body),
     });
 }
@@ -375,10 +363,7 @@ export function _generateStorageAccountSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        generateStorageAccountSasTokenContentType: "application/json",
-        generateStorageAccountSasTokenContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: accountSasSerializer(body),
     });
 }
@@ -429,7 +414,7 @@ export function _$deleteSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { deleteContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -486,10 +471,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        updateContentType: "application/json",
-        updateContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: dataProductUpdateSerializer(properties),
     });
 }
@@ -543,7 +525,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -590,10 +572,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        createContentType: "application/json",
-        createContentType: "application/json",
-      },
+      headers: { contentType: "application/json", accept: "application/json" },
       body: dataProductSerializer(resource),
     });
 }

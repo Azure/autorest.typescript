@@ -25,7 +25,7 @@ export function _listSend(
     .path("/providers/Microsoft.NetworkAnalytics/operations")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listContentType: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 

@@ -29,7 +29,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { resolveReference } from "../framework/reference.js";
-import { DefaultCoreDependencies } from "./external-dependencies.js";
+import { AzureCoreDependencies } from "./external-dependencies.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -183,7 +183,7 @@ export function buildOperationOptions(
   //   options.push(operation.operation.bodyParam);
   // }
   const operationOptionsReference = resolveReference(
-    DefaultCoreDependencies.OperationOptions
+    AzureCoreDependencies.OperationOptions
   );
   sourceFile.addInterface({
     name,

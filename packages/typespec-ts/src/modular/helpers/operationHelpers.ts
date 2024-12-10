@@ -660,7 +660,7 @@ export function getParameterMap(
   param: SdkServiceParameter
 ): string {
   if (isConstant(param.type)) {
-    return getConstantValue(param.type);
+    return `"${param.name}": ${getConstantValue(param.type)}`;
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
@@ -751,9 +751,9 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
 
 function getConstantValue(param: SdkConstantType) {
   if (typeof param.value === "string") {
-    return `"${param.name}": "${param.value}"`;
+    return `"${param.value}"`;
   }
-  return `"${param.name}": ${param.value}`;
+  return `${param.value}`;
 }
 
 function isConstant(param: SdkType): param is SdkConstantType {
