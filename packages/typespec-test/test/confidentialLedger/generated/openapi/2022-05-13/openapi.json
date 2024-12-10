@@ -204,6 +204,10 @@
               }
             }
           }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink",
+          "itemName": "entries"
         }
       }
     },

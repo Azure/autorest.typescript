@@ -9,9 +9,8 @@ describe("Page helper", () => {
       op listWidgets is Azure.Core.Foundations.Operation<{}, CustomPageModel<Widget>>;`
     );
     assert.ok(pageInfo);
-    console.log(pageInfo?.content);
     assert.isTrue((pageInfo?.content as string).includes(`customizedItems`));
-    // assert.isTrue((pageInfo?.content as string).includes(`@odata.nextLink`));
+    assert.isTrue((pageInfo?.content as string).includes(`@odata.nextLink`));
   });
 });
 
