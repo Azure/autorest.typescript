@@ -134,8 +134,8 @@ export interface DataProductsCatalogsListBySubscriptionOptionalParams extends Op
 // @public
 export interface DataProductsCatalogsOperations {
     get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
-    listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<void>;
-    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<void>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
+    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
 // @public
@@ -175,8 +175,8 @@ export interface DataProductsOperations {
     delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
     get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
-    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<void>;
-    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<void>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
@@ -270,7 +270,7 @@ export interface DataTypesOperations {
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
     get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
-    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<void>;
+    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
     update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
@@ -445,7 +445,7 @@ export interface OperationsListOptionalParams extends OperationOptions {
 
 // @public
 export interface OperationsOperations {
-    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<void>;
+    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
 // @public

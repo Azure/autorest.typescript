@@ -20,12 +20,12 @@ export interface DataProductsCatalogsOperations {
   /** List data catalog by subscription. */
   listBySubscription: (
     options?: DataProductsCatalogsListBySubscriptionOptionalParams,
-  ) => PagedAsyncIterableIterator<void>;
+  ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   /** List data catalog by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
     options?: DataProductsCatalogsListByResourceGroupOptionalParams,
-  ) => PagedAsyncIterableIterator<void>;
+  ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,

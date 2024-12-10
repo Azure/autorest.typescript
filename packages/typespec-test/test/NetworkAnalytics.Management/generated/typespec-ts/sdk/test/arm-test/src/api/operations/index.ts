@@ -44,7 +44,7 @@ export async function _listDeserialize(
 export function list(
   context: Client,
   options: OperationsListOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<void> {
+): PagedAsyncIterableIterator<Operation> {
   return buildPagedAsyncIterator(
     context,
     () => _listSend(context, options),

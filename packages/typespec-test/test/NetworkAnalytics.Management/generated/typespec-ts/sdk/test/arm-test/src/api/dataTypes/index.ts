@@ -73,7 +73,7 @@ export function listByDataProduct(
   resourceGroupName: string,
   dataProductName: string,
   options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<void> {
+): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
     () =>

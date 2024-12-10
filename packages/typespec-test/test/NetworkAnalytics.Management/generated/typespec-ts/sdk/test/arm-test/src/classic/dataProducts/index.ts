@@ -46,12 +46,12 @@ export interface DataProductsOperations {
   /** List data products by subscription. */
   listBySubscription: (
     options?: DataProductsListBySubscriptionOptionalParams,
-  ) => PagedAsyncIterableIterator<void>;
+  ) => PagedAsyncIterableIterator<DataProduct>;
   /** List data products by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
     options?: DataProductsListByResourceGroupOptionalParams,
-  ) => PagedAsyncIterableIterator<void>;
+  ) => PagedAsyncIterableIterator<DataProduct>;
   /** List user roles associated with the data product. */
   listRolesAssignments: (
     resourceGroupName: string,

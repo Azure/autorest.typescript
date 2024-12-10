@@ -36,7 +36,7 @@ export interface DataTypesOperations {
     resourceGroupName: string,
     dataProductName: string,
     options?: DataTypesListByDataProductOptionalParams,
-  ) => PagedAsyncIterableIterator<void>;
+  ) => PagedAsyncIterableIterator<DataType>;
   /** Generate sas token for storage container. */
   generateStorageContainerSasToken: (
     resourceGroupName: string,

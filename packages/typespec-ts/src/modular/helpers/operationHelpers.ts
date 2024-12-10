@@ -429,11 +429,11 @@ function getPagingOnlyOperationFunction(
   // TODO: Support operation overloads
   const response = operation.response;
   let returnType = { name: "", type: "void" };
-  if (response.type && response.type.kind === "model") {
+  if (response.type && response.type.kind === "array") {
     const type = response.type;
     returnType = {
-      name: type.name ?? "",
-      type: getTypeExpression(context, type!)
+      name: (type.valueType as any).name ?? "",
+      type: getTypeExpression(context, type.valueType)
     };
   }
   const { name, fixme = [] } = getOperationName(operation);

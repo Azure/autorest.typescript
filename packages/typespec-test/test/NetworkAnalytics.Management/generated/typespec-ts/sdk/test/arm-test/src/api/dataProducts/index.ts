@@ -84,7 +84,7 @@ export function listBySubscription(
   options: DataProductsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<void> {
+): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
     () => _listBySubscriptionSend(context, options),
@@ -131,7 +131,7 @@ export function listByResourceGroup(
   options: DataProductsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<void> {
+): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
     () => _listByResourceGroupSend(context, resourceGroupName, options),
