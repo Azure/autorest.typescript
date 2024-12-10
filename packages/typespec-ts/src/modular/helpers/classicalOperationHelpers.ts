@@ -17,15 +17,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../../utils/clientUtils.js";
 
-export function shouldPromoteSubscriptionId(
-  dpgContext: SdkContext,
-  operations: SdkServiceMethod<SdkHttpOperation>[]
-) {
-  const hasSubscriptionIdParameter = operations.some((op) =>
-    op.operation.parameters.some((p) => p.name === "subscriptionId")
-  );
-  return dpgContext?.rlcOptions?.azureArm && hasSubscriptionIdParameter;
-}
 export function getClassicalOperation(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
@@ -35,12 +26,6 @@ export function getClassicalOperation(
 ) {
   const prefixes = operationGroup[0];
   const operations = operationGroup[1];
-  // TODO: remove this logic once client-level parameter design is finalized
-  // https://github.com/Azure/autorest.typescript/issues/2618
-  const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
-    dpgContext,
-    operations
-  );
   const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const hasClientContextImport = classicFile
     .getImportDeclarations()
@@ -112,9 +97,6 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
-          ?.filter(
-            (p) => !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-          )
           .map(
             (p) =>
               p.name +
@@ -154,20 +136,13 @@ export function getClassicalOperation(
         {
           name: "context",
           type: rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+        }
       ],
       statements: `return {
         ${operationDeclarations
           .map((d) => {
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
-              ?.filter(
-                (p) =>
-                  !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-              )
               .map(
                 (p) =>
                   p.name +
@@ -208,9 +183,7 @@ export function getClassicalOperation(
         NameType.Interface,
         "",
         layer + 1
-      )}Operations(context${
-        hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-      })}`;
+      )}Operations(context)}`;
       if (layer !== prefixes.length - 1) {
         statement = `,
         ${normalizeName(
@@ -221,9 +194,7 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context${
-          hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-        })}`;
+        )}Operations(context)}`;
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
@@ -236,10 +207,7 @@ export function getClassicalOperation(
         {
           name: "context",
           type: rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+        }
       ],
       returnType: `${getClassicalLayerPrefix(
         prefixes,
@@ -266,7 +234,7 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer
-        )}(context${hasSubscriptionIdPromoted ? ", subscriptionId" : ""})
+        )}(context)
       }`
     });
   }

@@ -90,10 +90,7 @@ export interface DataTypesOperations {
   ) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-export function getDataTypes(
-  context: NetworkAnalyticsContext,
-  subscriptionId: string,
-) {
+export function getDataTypes(context: NetworkAnalyticsContext) {
   return {
     listByDataProduct: (
       resourceGroupName: string,
@@ -186,9 +183,8 @@ export function getDataTypes(
 
 export function getDataTypesOperations(
   context: NetworkAnalyticsContext,
-  subscriptionId: string,
 ): DataTypesOperations {
   return {
-    ...getDataTypes(context, subscriptionId),
+    ...getDataTypes(context),
   };
 }

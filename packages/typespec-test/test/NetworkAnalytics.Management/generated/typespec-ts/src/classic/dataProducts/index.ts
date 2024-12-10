@@ -120,10 +120,7 @@ export interface DataProductsOperations {
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
-export function getDataProducts(
-  context: NetworkAnalyticsContext,
-  subscriptionId: string,
-) {
+export function getDataProducts(context: NetworkAnalyticsContext) {
   return {
     listBySubscription: (
       options?: DataProductsListBySubscriptionOptionalParams,
@@ -212,9 +209,8 @@ export function getDataProducts(
 
 export function getDataProductsOperations(
   context: NetworkAnalyticsContext,
-  subscriptionId: string,
 ): DataProductsOperations {
   return {
-    ...getDataProducts(context, subscriptionId),
+    ...getDataProducts(context),
   };
 }

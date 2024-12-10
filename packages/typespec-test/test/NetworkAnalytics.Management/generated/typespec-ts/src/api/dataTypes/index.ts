@@ -36,7 +36,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { json } from "stream/consumers";
 
 export function _listByDataProductSend(
   context: Client,
@@ -53,13 +52,13 @@ export function _listByDataProductSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByDataProductContentType: application / json },
+      headers: { listByDataProductContentType: "application/json" },
     });
 }
 
 export async function _listByDataProductDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DataType[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -111,8 +110,8 @@ export function _generateStorageContainerSasTokenSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        generateStorageContainerSasTokenContentType: application / json,
-        generateStorageContainerSasTokenContentType: application / json,
+        generateStorageContainerSasTokenContentType: "application/json",
+        generateStorageContainerSasTokenContentType: "application/json",
       },
       body: containerSaSSerializer(body),
     });
@@ -170,8 +169,8 @@ export function _deleteDataSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        deleteDataContentType: application / json,
-        deleteDataContentType: application / json,
+        deleteDataContentType: "application/json",
+        deleteDataContentType: "application/json",
       },
       body: _deleteDataRequestSerializer(body),
     });
@@ -235,7 +234,7 @@ export function _$deleteSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { deleteContentType: application / json },
+      headers: { deleteContentType: "application/json" },
     });
 }
 
@@ -302,8 +301,8 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        updateContentType: application / json,
-        updateContentType: application / json,
+        updateContentType: "application/json",
+        updateContentType: "application/json",
       },
       body: dataTypeUpdateSerializer(properties),
     });
@@ -362,7 +361,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: application / json },
+      headers: { getContentType: "application/json" },
     });
 }
 
@@ -414,8 +413,8 @@ export function _createSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        createContentType: application / json,
-        createContentType: application / json,
+        createContentType: "application/json",
+        createContentType: "application/json",
       },
       body: dataTypeSerializer(resource),
     });

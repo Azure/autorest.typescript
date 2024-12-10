@@ -121,9 +121,9 @@ export function getDeserializePrivateFunction(
   let returnType;
   if (isLroOnly && operation.operation.verb.toLowerCase() !== "patch") {
     returnType = buildLroReturnType(context, operation);
-  } else if (response?.type && response.type.kind === "model") {
+  } else if (response?.type) {
     returnType = {
-      name: response.type.name ?? "",
+      name: (response.type as any).name ?? "",
       type: getTypeExpression(context, response.type!)
     };
   } else {
@@ -750,6 +750,9 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
 }
 
 function getConstantValue(param: SdkConstantType) {
+  if (typeof param.value === "string") {
+    return `"${param.name}": "${param.value}"`;
+  }
   return `"${param.name}": ${param.value}`;
 }
 

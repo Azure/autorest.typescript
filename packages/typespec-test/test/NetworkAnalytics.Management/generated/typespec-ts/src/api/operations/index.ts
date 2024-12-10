@@ -5,7 +5,7 @@ import {
   NetworkAnalyticsContext as Client,
   OperationsListOptionalParams,
 } from "../index.js";
-import { operationArrayDeserializer } from "../../models/models.js";
+import { operationArrayDeserializer, Operation } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -16,7 +16,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { json } from "stream/consumers";
 
 export function _listSend(
   context: Client,
@@ -26,13 +25,13 @@ export function _listSend(
     .path("/providers/Microsoft.NetworkAnalytics/operations")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listContentType: application / json },
+      headers: { listContentType: "application/json" },
     });
 }
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<Operation[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

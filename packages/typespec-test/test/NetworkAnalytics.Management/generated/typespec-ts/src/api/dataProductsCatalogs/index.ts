@@ -22,7 +22,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { json } from "stream/consumers";
 
 export function _listBySubscriptionSend(
   context: Client,
@@ -37,13 +36,13 @@ export function _listBySubscriptionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listBySubscriptionContentType: application / json },
+      headers: { listBySubscriptionContentType: "application/json" },
     });
 }
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DataProductsCatalog[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -83,13 +82,13 @@ export function _listByResourceGroupSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByResourceGroupContentType: application / json },
+      headers: { listByResourceGroupContentType: "application/json" },
     });
 }
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DataProductsCatalog[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -128,7 +127,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: application / json },
+      headers: { getContentType: "application/json" },
     });
 }
 

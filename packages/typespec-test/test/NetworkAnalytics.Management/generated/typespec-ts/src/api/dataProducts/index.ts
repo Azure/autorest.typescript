@@ -49,7 +49,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { json } from "stream/consumers";
 
 export function _listBySubscriptionSend(
   context: Client,
@@ -64,13 +63,13 @@ export function _listBySubscriptionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listBySubscriptionContentType: application / json },
+      headers: { listBySubscriptionContentType: "application/json" },
     });
 }
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DataProduct[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -110,13 +109,13 @@ export function _listByResourceGroupSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { listByResourceGroupContentType: application / json },
+      headers: { listByResourceGroupContentType: "application/json" },
     });
 }
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DataProduct[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -161,8 +160,8 @@ export function _listRolesAssignmentsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        listRolesAssignmentsContentType: application / json,
-        listRolesAssignmentsContentType: application / json,
+        listRolesAssignmentsContentType: "application/json",
+        listRolesAssignmentsContentType: "application/json",
       },
       body: _listRolesAssignmentsRequestSerializer(body),
     });
@@ -216,8 +215,8 @@ export function _removeUserRoleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        removeUserRoleContentType: application / json,
-        removeUserRoleContentType: application / json,
+        removeUserRoleContentType: "application/json",
+        removeUserRoleContentType: "application/json",
       },
       body: roleAssignmentDetailSerializer(body),
     });
@@ -269,8 +268,8 @@ export function _addUserRoleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        addUserRoleContentType: application / json,
-        addUserRoleContentType: application / json,
+        addUserRoleContentType: "application/json",
+        addUserRoleContentType: "application/json",
       },
       body: roleAssignmentCommonPropertiesSerializer(body),
     });
@@ -322,8 +321,8 @@ export function _rotateKeySend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        rotateKeyContentType: application / json,
-        rotateKeyContentType: application / json,
+        rotateKeyContentType: "application/json",
+        rotateKeyContentType: "application/json",
       },
       body: keyVaultInfoSerializer(body),
     });
@@ -377,8 +376,8 @@ export function _generateStorageAccountSasTokenSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        generateStorageAccountSasTokenContentType: application / json,
-        generateStorageAccountSasTokenContentType: application / json,
+        generateStorageAccountSasTokenContentType: "application/json",
+        generateStorageAccountSasTokenContentType: "application/json",
       },
       body: accountSasSerializer(body),
     });
@@ -430,7 +429,7 @@ export function _$deleteSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { deleteContentType: application / json },
+      headers: { deleteContentType: "application/json" },
     });
 }
 
@@ -488,8 +487,8 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        updateContentType: application / json,
-        updateContentType: application / json,
+        updateContentType: "application/json",
+        updateContentType: "application/json",
       },
       body: dataProductUpdateSerializer(properties),
     });
@@ -544,7 +543,7 @@ export function _getSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { getContentType: application / json },
+      headers: { getContentType: "application/json" },
     });
 }
 
@@ -592,8 +591,8 @@ export function _createSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        createContentType: application / json,
-        createContentType: application / json,
+        createContentType: "application/json",
+        createContentType: "application/json",
       },
       body: dataProductSerializer(resource),
     });
