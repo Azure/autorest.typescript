@@ -20,8 +20,11 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 
 export function createNetworkAnalytics(
   credential: TokenCredential,
+  subscriptionId: string,
   options: NetworkAnalyticsClientOptionalParams = {},
 ): NetworkAnalyticsContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-arm-networkanalytics/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -32,16 +35,10 @@ export function createNetworkAnalytics(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        `${options.endpoint ?? options.baseUrl ?? String(endpointParam)}/.default`,
-      ],
+      scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`],
     },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    credential,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2023-11-15";
   clientContext.pipeline.addPolicy({
@@ -59,5 +56,5 @@ export function createNetworkAnalytics(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, subscriptionId };
 }

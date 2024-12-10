@@ -44,7 +44,7 @@ export function buildClassicalClient(
     requiredOnly: true
   });
   const contextParams = getClientParametersDeclaration(client, dpgContext, {
-    onClientOnly: true,
+    onClientOnly: false,
     requiredOnly: true
   });
   const srcPath = emitterOptions.modularOptions.sourceRoot;

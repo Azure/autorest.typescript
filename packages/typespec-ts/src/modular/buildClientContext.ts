@@ -206,7 +206,20 @@ export function buildClientContext(
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
-  factoryFunction.addStatements("return clientContext;");
+  const contextRequiredParam = requiredParams.filter(
+    (p) => p.name !== "credential" && p.name !== "options"
+  );
+  if (contextRequiredParam.length) {
+    factoryFunction.addStatements(
+      `return { ...clientContext, ${contextRequiredParam
+        .map((p) => {
+          return p.name;
+        })
+        .join(", ")}};`
+    );
+  } else {
+    factoryFunction.addStatements(`return clientContext;`);
+  }
 
   clientContextFile.fixMissingImports(
     {},

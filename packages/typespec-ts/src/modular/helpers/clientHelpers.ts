@@ -25,6 +25,7 @@ interface ClientParameterOptions {
   onClientOnly?: boolean;
   requiredOnly?: boolean;
   optionalOnly?: boolean;
+  skipArmSpecific?: boolean;
 }
 
 export function getClientParameters(
@@ -33,7 +34,8 @@ export function getClientParameters(
   options: ClientParameterOptions = {
     requiredOnly: false,
     onClientOnly: false,
-    optionalOnly: false
+    optionalOnly: false,
+    skipArmSpecific: false
   }
 ) {
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
@@ -44,7 +46,7 @@ export function getClientParameters(
     ) {
       clientParams.push(...property.type.variantTypes[0].templateArguments);
     } else if (property.type.kind === "endpoint") {
-      clientParams.push(...property.type.templateArguments);
+      clientParams.push(property);
     } else if (!clientParams.find((p) => p.name === property.name)) {
       clientParams.push(property);
     }
@@ -68,7 +70,7 @@ export function getClientParameters(
       : undefined,
     options.optionalOnly ? isOptional : undefined,
     options.onClientOnly ? skipMethodParam : undefined,
-    armSpecific
+    options.skipArmSpecific ? undefined : armSpecific
   ];
   const params = clientParams.filter((p) =>
     filters.every((filter) => !filter || filter(p))
@@ -83,7 +85,8 @@ export function getClientParametersDeclaration(
   options: ClientParameterOptions = {
     optionalOnly: false,
     requiredOnly: false,
-    onClientOnly: false
+    onClientOnly: false,
+    skipArmSpecific: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const name = getClientName(client);
@@ -164,22 +167,39 @@ export function buildGetClientEndpointParam(
     }
     return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
   }
-  const urlParams = getClientParameters(client, dpgContext).filter(
-    (x) => x.kind === "endpoint" || x.kind === "path"
-  );
+  const urlParams = getClientParameters(client, dpgContext, {
+    skipArmSpecific: true
+  }).filter((x) => x.kind === "endpoint" || x.kind === "path");
 
   for (const param of urlParams) {
-    const paramName = getClientParameterName(param);
-    if (param.clientDefaultValue) {
-      const defaultValue =
-        typeof param.clientDefaultValue === "string"
-          ? `"${param.clientDefaultValue}"`
-          : param.clientDefaultValue;
-      context.addStatements(
-        `const ${paramName} = options.${paramName} ?? ${defaultValue};`
-      );
-    } else if (param.optional) {
-      context.addStatements(`const ${paramName} = options.${paramName};`);
+    if (
+      param.kind === "endpoint" &&
+      param.type.kind === "endpoint" &&
+      param.type.templateArguments.length > 1
+    ) {
+      for (const templateParam of param.type.templateArguments) {
+        const paramName = getClientParameterName(templateParam);
+        if (templateParam.clientDefaultValue) {
+          const defaultValue =
+            typeof templateParam.clientDefaultValue === "string"
+              ? `"${templateParam.clientDefaultValue}"`
+              : templateParam.clientDefaultValue;
+          context.addStatements(
+            `const ${paramName} = options.${paramName} ?? ${defaultValue};`
+          );
+        } else if (templateParam.optional) {
+          context.addStatements(`const ${paramName} = options.${paramName};`);
+        }
+      }
+      return "endpointParam";
+    } else if (
+      param.kind === "endpoint" &&
+      param.type.kind === "endpoint" &&
+      param.type.templateArguments.length === 1
+    ) {
+      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\``;
+      context.addStatements(endpointUrl);
+      return "endpointUrl";
     }
   }
 

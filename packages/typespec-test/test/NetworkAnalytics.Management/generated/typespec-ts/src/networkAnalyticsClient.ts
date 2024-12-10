@@ -34,13 +34,14 @@ export class NetworkAnalyticsClient {
 
   constructor(
     credential: TokenCredential,
+    subscriptionId: string,
     options: NetworkAnalyticsClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createNetworkAnalytics(credential, {
+    this._client = createNetworkAnalytics(credential, subscriptionId, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
