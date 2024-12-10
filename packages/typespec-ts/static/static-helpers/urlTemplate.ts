@@ -167,3 +167,44 @@ export function parseTemplate(template: any) {
         },
     };
 }
+
+export function expandUriTemplate(template: string, values: Record<string, any>): string {
+    return template.replace(/\{([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?\}/g, (_, operator, variable, modifier) => {
+        let value = values[variable];
+
+        if (value === undefined) {
+            return '';
+        }
+
+        if (modifier) {
+            if (modifier === '*') {
+                if (Array.isArray(value)) {
+                    value = value.join(operator === '/' ? '/' : ',');
+                } else if (typeof value === 'object') {
+                    value = Object.keys(value).map(k => `${k}=${value[k]}`).join('&');
+                }
+            } else {
+                value = value.toString().substring(0, parseInt(modifier, 10));
+            }
+        }
+
+        switch (operator) {
+            case '+':
+                return encodeReserved(value);
+            case '#':
+                return `#${encodeReserved(value)}`;
+            case '.':
+                return `.${encodeURIComponent(value)}`;
+            case '/':
+                return `/${encodeReserved(value)}`;
+            case ';':
+                return `;${variable}=${encodeURIComponent(value)}`;
+            case '?':
+                return `?${variable}=${encodeURIComponent(value)}`;
+            case '&':
+                return `&${variable}=${encodeURIComponent(value)}`;
+            default:
+                return encodeURIComponent(value);
+        }
+    });
+}
