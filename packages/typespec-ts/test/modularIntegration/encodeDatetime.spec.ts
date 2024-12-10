@@ -36,14 +36,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
     });
 
     it(`should get unix timestamp`, async () => {
-      const result = await client.query.unixTimestamp(new Date(1686566864));
+      const result = await client.query.unixTimestamp(new Date("2023-06-12T10:47:44.000Z"));
       assert.isUndefined(result);
     });
 
     it(`should get unix timestamp-array`, async () => {
       const result = await client.query.unixTimestampArray([
-        new Date(1686566864),
-        new Date(1686734256)
+        new Date("2023-06-12T10:47:44.000Z"),
+        new Date("2023-06-14T09:17:36.000Z"),
       ]);
       assert.isUndefined(result);
     });
@@ -76,18 +76,18 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get unix timestamp`, async () => {
       const result = await client.property.unixTimestamp({
-        value: new Date(1686566864)
+        value: new Date("2023-06-12T10:47:44.000Z")
       });
-      assert.deepEqual(result.value, new Date(1686566864));
+      assert.deepEqual(result.value, new Date("2023-06-12T10:47:44.000Z"));
     });
 
     it(`should get unix timestamp-array`, async () => {
       const result = await client.property.unixTimestampArray({
-        value: [new Date(1686566864), new Date(1686734256)]
+        value: [new Date("2023-06-12T10:47:44.000Z"), new Date("2023-06-14T09:17:36.000Z")]
       });
       assert.deepEqual(result.value, [
-        new Date(1686566864),
-        new Date(1686734256)
+        new Date("2023-06-12T10:47:44.000Z"),
+        new Date("2023-06-14T09:17:36.000Z")
       ]);
     });
   });
@@ -115,14 +115,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
     });
 
     it(`should get unix timestamp`, async () => {
-      const result = await client.header.unixTimestamp(new Date(1686566864));
+      const result = await client.header.unixTimestamp(new Date("2023-06-12T10:47:44.000Z"));
       assert.isUndefined(result);
     });
 
     it(`should get unix timestamp-array`, async () => {
       const result = await client.header.unixTimestampArray([
-        new Date(1686566864),
-        new Date(1686734256)
+        new Date("2023-06-12T10:47:44.000Z"),
+        new Date("2023-06-14T09:17:36.000Z")
       ]);
       assert.isUndefined(result);
     });

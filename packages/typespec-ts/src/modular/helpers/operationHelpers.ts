@@ -458,7 +458,7 @@ function getPagingOnlyOperationFunction(
 
   const statements: string[] = [];
   const options = [];
-  if (operation.__raw_paged_metadata.itemsProperty) {
+  if (operation.__raw_paged_metadata?.itemsProperty) {
     options.push(`itemName: "${operation.__raw_paged_metadata.itemsPath}"`);
   }
   if (operation.nextLinkPath) {
@@ -1020,7 +1020,7 @@ export function serializeRequestValue(
         case "rfc7231":
           return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
         case "unixTimestamp":
-          return `${nullOrUndefinedPrefix}${clientValue}.getTime()`;
+          return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
           return `${getNullableCheck(clientValue, type)} ${clientValue}${
@@ -1115,7 +1115,7 @@ export function deserializeResponseValue(
       : "";
   switch (type.kind) {
     case "utcDateTime":
-      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
+      return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
       let elementNullOrUndefinedPrefix = "";

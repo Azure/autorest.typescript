@@ -105,10 +105,9 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "^7.31.1",
+      "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
       typescript: "~5.6.2",
-      "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
@@ -180,6 +179,7 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
@@ -195,6 +195,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+    packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
 
   if (generateTest) {

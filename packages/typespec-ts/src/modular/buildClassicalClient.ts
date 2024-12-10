@@ -117,9 +117,9 @@ export function buildClassicalClient(
     });
 
   constructor.addStatements([
-    `this._client = create${modularClientName}(${paramNames.join(",")})`
+    `this._client = create${modularClientName}(${paramNames.join(",")});`
   ]);
-  constructor.addStatements(`this.pipeline = this._client.pipeline`);
+  constructor.addStatements(`this.pipeline = this._client.pipeline;`);
 
   buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder ?? "");

@@ -240,7 +240,7 @@ export function buildGetClientOptionsParam(
     expr += `credentials: ${credentials},`;
   }
 
-  expr += `}`;
+  expr += `};`;
 
   context.addStatements(expr);
   return "updatedOptions";
