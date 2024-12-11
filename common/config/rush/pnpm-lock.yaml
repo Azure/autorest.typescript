@@ -259,7 +259,7 @@ importers:
       '@typespec/http': '>=0.62.0 <1.0.0'
       '@typespec/openapi': '>=0.62.0, <1.0.0'
       '@typespec/rest': '>=0.62.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20240314.2
+      '@typespec/ts-http-runtime': ^0.1.0
       '@typespec/versioning': '>=0.62.0 <1.0.0'
       '@vitest/coverage-istanbul': ~1.6.0
       '@vitest/coverage-v8': ~1.6.0
@@ -317,7 +317,7 @@ importers:
       '@typespec/http': 0.62.0_@typespec+compiler@0.62.0
       '@typespec/openapi': 0.62.0_ehpjn7t5lr2snllrxt4bmumehe
       '@typespec/rest': 0.62.0_ehpjn7t5lr2snllrxt4bmumehe
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20240314.2
+      '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': 0.62.0_@typespec+compiler@0.62.0
       '@vitest/coverage-istanbul': 1.6.0_vitest@1.6.0
       '@vitest/coverage-v8': 1.6.0_vitest@1.6.0
@@ -2478,12 +2478,12 @@ packages:
       '@typespec/compiler': 0.62.0
       '@typespec/http': 0.62.0_@typespec+compiler@0.62.0
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20240314.2:
-    resolution: {integrity: sha512-Rc/bFkKLbrEo9KKXiSdRYNSmosZ1W6ycQKEKScpXvK4jaXFNyCvmS0tLv7rEN4EzEEds2fPzEHNtX4e8gMu/lA==}
+  /@typespec/ts-http-runtime/0.1.0:
+    resolution: {integrity: sha512-0NspintCRrSIIZBUtVfWjJ5TpOjpP0mNsJXZOqzuxdY/q2yCr0amyUCEw+WLhRykP39XMNMG0f1F9LbC2+c+Rw==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.4
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
@@ -5073,16 +5073,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /http-proxy-agent/7.0.0:
-    resolution: {integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==}
-    engines: {node: '>= 14'}
-    dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /http-proxy-agent/7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
@@ -5121,16 +5111,6 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-
-  /https-proxy-agent/7.0.2:
-    resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
-    engines: {node: '>= 14'}
-    dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /https-proxy-agent/7.0.4:
     resolution: {integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==}
