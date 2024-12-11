@@ -5,7 +5,11 @@ import {
   NetworkAnalyticsContext as Client,
   OperationsListOptionalParams,
 } from "../index.js";
-import { operationArrayDeserializer, Operation } from "../../models/models.js";
+import {
+  _OperationListResult,
+  _operationListResultDeserializer,
+  Operation,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -31,13 +35,13 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<Operation[]> {
+): Promise<_OperationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return operationArrayDeserializer(result.body);
+  return _operationListResultDeserializer(result.body);
 }
 
 /** List the operations for the provider */

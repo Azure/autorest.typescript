@@ -10,7 +10,8 @@ import {
 import {
   DataProductsCatalog,
   dataProductsCatalogDeserializer,
-  dataProductsCatalogArrayDeserializer,
+  _DataProductsCatalogListResult,
+  _dataProductsCatalogListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -42,13 +43,13 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProductsCatalog[]> {
+): Promise<_DataProductsCatalogListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return dataProductsCatalogArrayDeserializer(result.body);
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by subscription. */
@@ -88,13 +89,13 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProductsCatalog[]> {
+): Promise<_DataProductsCatalogListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return dataProductsCatalogArrayDeserializer(result.body);
+  return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
 /** List data catalog by resource group. */

@@ -118,13 +118,14 @@ export function getDeserializePrivateFunction(
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
+  const restResponse = operation.operation.responses[0];
   let returnType;
   if (isLroOnly && operation.operation.verb.toLowerCase() !== "patch") {
     returnType = buildLroReturnType(context, operation);
-  } else if (response?.type) {
+  } else if (response.type && restResponse) {
     returnType = {
-      name: (response.type as any).name ?? "",
-      type: getTypeExpression(context, response.type!)
+      name: (restResponse as any).name ?? "",
+      type: getTypeExpression(context, restResponse.type!)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -152,7 +153,9 @@ export function getDeserializePrivateFunction(
   );
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
-    : response.type;
+    : restResponse
+      ? restResponse.type
+      : response.type;
   const lroSubPath = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultPath
     : undefined;
