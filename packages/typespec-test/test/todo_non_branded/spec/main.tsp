@@ -202,21 +202,21 @@ namespace TodoItems {
     /** The items in the page */
     @pageItems items: TodoItem[];
 
-    pagination: {
-      /** The number of items returned in this page */
-      pageSize: int32;
+    /** The number of items returned in this page */
+    pageSize: int32;
 
-      /** The total number of items */
-      totalSize: int32;
+    /** The total number of items */
+    totalSize: int32;
 
-      ...PaginationControls;
+    ...PaginationControls;
 
-      /** A link to the previous page, if it exists */
-      prevLink?: url;
+    /** A link to the previous page, if it exists */
+    @prevLink
+    prevLink?: url;
 
-      /** A link to the next page, if it exists */
-      nextLink?: url;
-    };
+    /** A link to the next page, if it exists */
+    @nextLink
+    nextLink?: url;
   }
 
   // deeply annoying that I have to copy/paste this...
@@ -238,6 +238,12 @@ namespace TodoItems {
     @statusCode statusCode: 422;
   }
 
+  @error
+  model NotFoundErrorResponse {
+     @statusCode statusCode: 404;
+     code: "not-found";
+  }
+
   model Page<T> {
     @pageItems items: T[];
   }
@@ -251,7 +257,7 @@ namespace TodoItems {
     attachments?: TodoAttachment[],
   ): WithStandardErrors<TodoItem | InvalidTodoItem>;
 
-  @get op get(@path id: TodoItem.id): TodoItem | NotFoundResponse;
+  @get op get(@path id: TodoItem.id): TodoItem | NotFoundErrorResponse;
   @patch op update(
     @header contentType: "application/merge-patch+json",
     @path id: TodoItem.id,
@@ -259,19 +265,19 @@ namespace TodoItems {
   ): TodoItem;
   @delete op delete(
     @path id: TodoItem.id,
-  ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
+  ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
 
   @route("{itemId}/attachments")
   namespace Attachments {
     @list op list(
       @path itemId: TodoItem.id,
-    ): WithStandardErrors<Page<TodoAttachment> | NotFoundResponse>;
+    ): WithStandardErrors<Page<TodoAttachment> | NotFoundErrorResponse>;
 
     @sharedRoute
     @post
     op createAttachment(
       @path itemId: TodoItem.id,
       @body contents: TodoAttachment,
-    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
+    ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
   }
 }

@@ -151,7 +151,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
-  const expectedStatuses = ["200", "404"];
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -251,7 +251,7 @@ export function _$deleteSend(
 export async function _$deleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
-  const expectedStatuses = ["204", "404"];
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }

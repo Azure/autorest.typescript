@@ -9,20 +9,23 @@ import {
 export interface TodoPage {
   /** The items in the page */
   items: TodoItem[];
-  pagination: {
-    pageSize: number;
-    totalSize: number;
-    limit?: number;
-    offset?: number;
-    prevLink?: string;
-    nextLink?: string;
-  };
+  /** The number of items returned in this page */
+  pageSize: number;
+  /** The total number of items */
+  totalSize: number;
+  /** A link to the previous page, if it exists */
+  prevLink?: string;
+  /** A link to the next page, if it exists */
+  nextLink?: string;
 }
 
 export function todoPageDeserializer(item: any): TodoPage {
   return {
     items: todoItemArrayDeserializer(item["items"]),
-    pagination: _todoPagePaginationDeserializer(item["pagination"]),
+    pageSize: item["pageSize"],
+    totalSize: item["totalSize"],
+    prevLink: item["prevLink"],
+    nextLink: item["nextLink"],
   };
 }
 
@@ -141,29 +144,6 @@ export function todoLabelRecordArrayDeserializer(
   return result.map((item) => {
     return todoLabelRecordDeserializer(item);
   });
-}
-
-/** model interface _TodoPagePagination */
-export interface _TodoPagePagination {
-  /** The number of items returned in this page */
-  pageSize: number;
-  /** The total number of items */
-  totalSize: number;
-  /** A link to the previous page, if it exists */
-  prevLink?: string;
-  /** A link to the next page, if it exists */
-  nextLink?: string;
-}
-
-export function _todoPagePaginationDeserializer(
-  item: any,
-): _TodoPagePagination {
-  return {
-    pageSize: item["pageSize"],
-    totalSize: item["totalSize"],
-    prevLink: item["prevLink"],
-    nextLink: item["nextLink"],
-  };
 }
 
 /** model interface TodoFileAttachment */

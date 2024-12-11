@@ -31,7 +31,7 @@ export function _listSend(
 export async function _listDeserialize(
   result: PathUncheckedResponse,
 ): Promise<PageTodoAttachment> {
-  const expectedStatuses = ["200", "404"];
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -67,7 +67,7 @@ export function _createAttachmentSend(
 export async function _createAttachmentDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
-  const expectedStatuses = ["204", "404"];
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }

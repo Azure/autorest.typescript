@@ -168,15 +168,10 @@ export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[]
 // @public
 export interface TodoPage {
     items: TodoItem[];
-    // (undocumented)
-    pagination: {
-        pageSize: number;
-        totalSize: number;
-        limit?: number;
-        offset?: number;
-        prevLink?: string;
-        nextLink?: string;
-    };
+    nextLink?: string;
+    pageSize: number;
+    prevLink?: string;
+    totalSize: number;
 }
 
 // @public

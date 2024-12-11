@@ -148,7 +148,14 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -208,7 +215,14 @@
             "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           },
           "4XX": {
             "description": "Something is wrong with you.",
@@ -271,7 +285,14 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           },
           "4XX": {
             "description": "Something is wrong with you.",
@@ -314,7 +335,14 @@
             "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           },
           "4XX": {
             "description": "Something is wrong with you.",
@@ -644,6 +672,20 @@
           }
         ]
       },
+      "TodoItems.NotFoundErrorResponse": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "not-found"
+            ]
+          }
+        }
+      },
       "TodoItems.TodoItemPatch": {
         "type": "object",
         "properties": {
@@ -679,7 +721,8 @@
         "type": "object",
         "required": [
           "items",
-          "pagination"
+          "pageSize",
+          "totalSize"
         ],
         "properties": {
           "items": {
@@ -689,46 +732,37 @@
             },
             "description": "The items in the page"
           },
-          "pagination": {
-            "type": "object",
-            "properties": {
-              "pageSize": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The number of items returned in this page"
-              },
-              "totalSize": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The total number of items"
-              },
-              "limit": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The limit to the number of items",
-                "default": 50
-              },
-              "offset": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The offset to start paginating at",
-                "default": 0
-              },
-              "prevLink": {
-                "type": "string",
-                "format": "uri",
-                "description": "A link to the previous page, if it exists"
-              },
-              "nextLink": {
-                "type": "string",
-                "format": "uri",
-                "description": "A link to the next page, if it exists"
-              }
-            },
-            "required": [
-              "pageSize",
-              "totalSize"
-            ]
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of items returned in this page"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The total number of items"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The limit to the number of items",
+            "default": 50
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The offset to start paginating at",
+            "default": 0
+          },
+          "prevLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to the previous page, if it exists"
+          },
+          "nextLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to the next page, if it exists"
           }
         }
       },
