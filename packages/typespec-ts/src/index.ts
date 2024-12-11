@@ -90,6 +90,9 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const outputProject = new Project();
   const program: Program = context.program;
+  if (program.compilerOptions.noEmit) {
+    return;
+  }
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
   // Enrich the dpg context with path detail and common options
@@ -121,10 +124,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -196,8 +199,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 

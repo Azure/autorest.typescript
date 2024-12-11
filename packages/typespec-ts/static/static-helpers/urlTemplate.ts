@@ -168,43 +168,83 @@ export function parseTemplate(template: any) {
     };
 }
 
-export function expandUriTemplate(template: string, values: Record<string, any>): string {
-    return template.replace(/\{([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?\}/g, (_, operator, variable, modifier) => {
-        let value = values[variable];
-
-        if (value === undefined) {
+export function expandUriTemplate(template: string, context: Record<string, any>): string {
+    return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expression, literal) => {
+        if (!expression) {
+            return encodeReserved(literal);
+        }
+        const opMatch = /([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?/.exec(expression);
+        if (!opMatch) {
             return '';
         }
-
-        if (modifier) {
-            if (modifier === '*') {
-                if (Array.isArray(value)) {
-                    value = value.join(operator === '/' ? '/' : ',');
-                } else if (typeof value === 'object') {
-                    value = Object.keys(value).map(k => `${k}=${value[k]}`).join('&');
+        const operator = opMatch[1], nonOperators = opMatch[2], values: string[] = [];
+        if (!nonOperators) {
+            return '';
+        }
+        const variables = nonOperators.split(/,/g);
+        for (const entry of variables) {
+            const varMatch = /([^:\*]*)(?::(\d+)|(\*))?/.exec(entry);
+            if (!varMatch) {
+                continue;
+            }
+            const variable = varMatch[1], modifier = varMatch[2] || varMatch[3];
+            let value = context[variable!];
+            if (!isDefined(value)) {
+                continue;
+            }
+            if (modifier) {
+                if (modifier === '*') {
+                    if (Array.isArray(value)) {
+                        value = value.join(operator === '/' ? '/' : ',');
+                    } else if (typeof value === 'object') {
+                        value = Object.keys(value).map(k => `${k}=${value[k]}`).join('&');
+                    }
+                } else {
+                    value = value.toString().substring(0, parseInt(modifier, 10));
                 }
-            } else {
-                value = value.toString().substring(0, parseInt(modifier, 10));
+            }
+
+            switch (operator) {
+                case '+':
+                    values.push(encodeReserved(value));
+                    break;
+                case '#': {
+                    const prefix = values.length === 0 ? '#' : '';
+                    values.push(`${prefix}${encodeReserved(value)}`);
+                    break;
+                }
+                case '.':
+                    values.push(`.${encodeURIComponent(value)}`);
+                    break;
+                case '/':
+                    values.push(`/${encodeReserved(value)}`);
+                    break;
+                case ';': {
+                    const ret = encodeURIComponent(value);
+                    const suffix = !ret ? '' : `=${ret}`;
+                    values.push(`;${variable}${suffix}`);
+                    break;
+                }
+                case '?': {
+                    const prefix = values.length === 0 ? '?' : '';
+                    values.push(`${prefix}${variable}=${encodeURIComponent(value)}`);
+                    break;
+                }
+                case '&':
+                    values.push(`&${variable}=${encodeURIComponent(value)}`);
+                    break;
+                default:
+                    values.push(encodeURIComponent(value));
             }
         }
-
-        switch (operator) {
-            case '+':
-                return encodeReserved(value);
-            case '#':
-                return `#${encodeReserved(value)}`;
-            case '.':
-                return `.${encodeURIComponent(value)}`;
-            case '/':
-                return `/${encodeReserved(value)}`;
-            case ';':
-                return `;${variable}=${encodeURIComponent(value)}`;
-            case '?':
-                return `?${variable}=${encodeURIComponent(value)}`;
-            case '&':
-                return `&${variable}=${encodeURIComponent(value)}`;
-            default:
-                return encodeURIComponent(value);
+        let separator = ',';
+        if (operator === "?") {
+            separator = "&";
+        } else if (operator === "#" || operator === "+") {
+            separator = ",";
+        } else if (operator) {
+            separator = "";
         }
+        return values.join(separator);
     });
 }
