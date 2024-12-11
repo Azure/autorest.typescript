@@ -78,7 +78,7 @@ model ListWidgetsPagesResults {
     @items
     results: Widget[];
     @doc("The URL to get the next set of results.")
-    @Azure.Core.nextLink
+    @TypeSpec.nextLink
     `odata.nextLink`?: string;
 }
 
