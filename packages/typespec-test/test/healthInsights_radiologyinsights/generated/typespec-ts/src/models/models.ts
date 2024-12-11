@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorModel } from "@azure-rest/core-client";
-
 /** A patient record, including their clinical information and data. */
 export interface PatientRecord {
   /** A given identifier for the patient. Has to be unique across all patients in a single request. */
@@ -1068,49 +1066,6 @@ export function patientRecordArraySerializer(
     return patientRecordSerializer(item);
   });
 }
-
-/** Provides status details for long running operations. */
-export interface HealthInsightsOperationStatusError {
-  /** The unique ID of the operation. */
-  readonly id: string;
-  /** The status of the operation */
-  readonly status: JobStatus;
-  /** The date and time when the processing job was created. */
-  readonly createdDateTime?: Date;
-  /** The date and time when the processing job is set to expire. */
-  readonly expirationDateTime?: Date;
-  /** The date and time when the processing job was last updated. */
-  readonly lastUpdateDateTime?: Date;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModel;
-}
-
-export function healthInsightsOperationStatusErrorDeserializer(
-  item: any,
-): HealthInsightsOperationStatusError {
-  return {
-    id: item["id"],
-    status: item["status"],
-    createdDateTime: !item["createdDateTime"]
-      ? item["createdDateTime"]
-      : new Date(item["createdDateTime"]),
-    expirationDateTime: !item["expirationDateTime"]
-      ? item["expirationDateTime"]
-      : new Date(item["expirationDateTime"]),
-    lastUpdateDateTime: !item["lastUpdateDateTime"]
-      ? item["lastUpdateDateTime"]
-      : new Date(item["lastUpdateDateTime"]),
-    error: !item["error"] ? item["error"] : item["error"],
-  };
-}
-
-/** The status of the processing job. */
-export type JobStatus =
-  | "notStarted"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "canceled";
 
 /** The inference results for the Radiology Insights request. */
 export interface RadiologyInsightsInferenceResult {
@@ -2243,46 +2198,6 @@ export function narrativeDeserializer(item: any): Narrative {
       : extensionArrayDeserializer(item["extension"]),
     status: item["status"],
     div: item["div"],
-  };
-}
-
-/** The response for the Radiology Insights request. */
-export interface RadiologyInsightsResult {
-  /** The unique ID of the operation. */
-  readonly id: string;
-  /** The status of the operation */
-  readonly status: JobStatus;
-  /** The date and time when the processing job was created. */
-  readonly createdDateTime?: Date;
-  /** The date and time when the processing job is set to expire. */
-  readonly expirationDateTime?: Date;
-  /** The date and time when the processing job was last updated. */
-  readonly lastUpdateDateTime?: Date;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModel;
-  /** The result of the operation. */
-  result?: RadiologyInsightsInferenceResult;
-}
-
-export function radiologyInsightsResultDeserializer(
-  item: any,
-): RadiologyInsightsResult {
-  return {
-    id: item["id"],
-    status: item["status"],
-    createdDateTime: !item["createdDateTime"]
-      ? item["createdDateTime"]
-      : new Date(item["createdDateTime"]),
-    expirationDateTime: !item["expirationDateTime"]
-      ? item["expirationDateTime"]
-      : new Date(item["expirationDateTime"]),
-    lastUpdateDateTime: !item["lastUpdateDateTime"]
-      ? item["lastUpdateDateTime"]
-      : new Date(item["lastUpdateDateTime"]),
-    error: !item["error"] ? item["error"] : item["error"],
-    result: !item["result"]
-      ? item["result"]
-      : radiologyInsightsInferenceResultDeserializer(item["result"]),
   };
 }
 
