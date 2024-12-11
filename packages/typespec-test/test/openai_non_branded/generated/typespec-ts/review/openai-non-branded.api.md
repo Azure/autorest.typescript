@@ -412,24 +412,6 @@ export interface EmbeddingsOperations {
 }
 
 // @public
-export interface ErrorModel {
-    // (undocumented)
-    code: string | null;
-    // (undocumented)
-    message: string;
-    // (undocumented)
-    param: string | null;
-    // (undocumented)
-    type: string;
-}
-
-// @public
-export interface ErrorResponse {
-    // (undocumented)
-    error: ErrorModel;
-}
-
-// @public
 export interface FilesCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;

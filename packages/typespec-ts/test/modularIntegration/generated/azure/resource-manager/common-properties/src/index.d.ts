@@ -20,23 +20,6 @@ export declare type CreatedByType = string;
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
 }
 
-export declare interface ErrorAdditionalInfo {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface ErrorDetail {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: ErrorDetail[];
-    readonly additionalInfo?: ErrorAdditionalInfo[];
-}
-
-export declare interface ErrorResponse {
-    error?: ErrorDetail;
-}
-
 export declare interface GetOptionalParams extends OperationOptions {
 }
 

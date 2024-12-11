@@ -3,8 +3,6 @@
 export {
   CreateModerationRequest,
   CreateModerationResponse,
-  ErrorResponse,
-  ErrorModel,
   CreateImageRequest,
   ImagesResponse,
   Image,

@@ -249,34 +249,6 @@ export function _createModerationResponseResultCategoryScoresDeserializer(
   };
 }
 
-/** model interface ErrorResponse */
-export interface ErrorResponse {
-  error: ErrorModel;
-}
-
-export function errorResponseDeserializer(item: any): ErrorResponse {
-  return {
-    error: errorDeserializer(item["error"]),
-  };
-}
-
-/** model interface ErrorModel */
-export interface ErrorModel {
-  type: string;
-  message: string;
-  param: string | null;
-  code: string | null;
-}
-
-export function errorDeserializer(item: any): ErrorModel {
-  return {
-    type: item["type"],
-    message: item["message"],
-    param: item["param"],
-    code: item["code"],
-  };
-}
-
 /** model interface CreateImageRequest */
 export interface CreateImageRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */

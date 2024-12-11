@@ -12,23 +12,6 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 export declare type CreatedByType = string;
 
-export declare interface ErrorAdditionalInfo {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface ErrorDetail {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: ErrorDetail[];
-    readonly additionalInfo?: ErrorAdditionalInfo[];
-}
-
-export declare interface ErrorResponse {
-    error?: ErrorDetail;
-}
-
 export declare enum KnownCreatedByType {
     User = "User",
     Application = "Application",
