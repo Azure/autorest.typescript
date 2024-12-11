@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "tslib": "^2.6.2",
-    "@typespec/ts-http-runtime": "^0.1.0"
+    "@typespec/ts-http-runtime": "0.1.0"
   },
   "exports": {
     "./package.json": "./package.json",

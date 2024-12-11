@@ -259,7 +259,7 @@ importers:
       '@typespec/http': '>=0.62.0 <1.0.0'
       '@typespec/openapi': '>=0.62.0, <1.0.0'
       '@typespec/rest': '>=0.62.0 <1.0.0'
-      '@typespec/ts-http-runtime': ^0.1.0
+      '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': '>=0.62.0 <1.0.0'
       '@vitest/coverage-istanbul': ~1.6.0
       '@vitest/coverage-v8': ~1.6.0
