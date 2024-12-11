@@ -1,6 +1,5 @@
 import {
   OperationParameter,
-  RLCModel,
   Schema,
   buildClient,
   buildClientDefinitions,
@@ -19,14 +18,13 @@ import {
 } from "../../src/modular/emitModelsOptions.js";
 import { compileTypeSpecFor, createDpgContextTestHelper, ExampleJson, rlcEmitterFor } from "./testUtil.js";
 import {
-  transformRLCModel,
   transformUrlInfo
 } from "../../src/transform/transform.js";
 
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
-import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
+import { transformModularEmitterOptions } from "../../src/modular/buildCodeModel.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
@@ -415,50 +413,39 @@ export async function emitModularModelsFromTypeSpec(
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program, false, options);
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
   const project = useContext("outputProject");
   const binder = useBinder();
-  const clients = getRLCClients(dpgContext);
   let modelFile = undefined;
-  if (clients && clients[0]) {
-    dpgContext.rlcOptions!.isModularLibrary = true;
-    dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
-    dpgContext.rlcOptions!.experimentalExtensibleEnums =
-      experimentalExtensibleEnums;
-    const rlcModels = await transformRLCModel(clients[0], dpgContext);
-    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
-    const modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      "",
-      project,
-      {
-        casing: "camel"
-      }
-    );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      if (needOptions) {
-        emitTypes(dpgContext, { sourceRoot: "" });
-        modelFile = buildApiOptions(
-          dpgContext,
-          modularCodeModel.clients[0],
-          modularCodeModel
-        );
-        binder.resolveAllReferences("/");
-        removeUnusedImports(modelFile);
-        modelFile.fixUnusedIdentifiers();
-      } else {
-        modelFile = emitTypes(dpgContext, { sourceRoot: "" });
-        binder.resolveAllReferences("/");
-      }
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
+  dpgContext.rlcOptions!.experimentalExtensibleEnums =
+    experimentalExtensibleEnums;
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
+    }
+  );
+  if (
+    dpgContext.sdkPackage.clients &&
+    dpgContext.sdkPackage.clients.length > 0 &&
+    dpgContext.sdkPackage.clients[0]
+  ) {
+    if (needOptions) {
+      emitTypes(dpgContext, { sourceRoot: "" });
+      modelFile = buildApiOptions(
+        dpgContext,
+        dpgContext.sdkPackage.clients[0],
+        modularEmitterOptions
+      );
+      binder.resolveAllReferences("/modularPackageFolder/src");
+      removeUnusedImports(modelFile);
+      modelFile.fixUnusedIdentifiers();
+    } else {
+      modelFile = emitTypes(dpgContext, { sourceRoot: "" });
+      binder.resolveAllReferences("/modularPackageFolder/src");
     }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
@@ -510,49 +497,38 @@ export async function emitModularOperationsFromTypeSpec(
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
   const project = useContext("outputProject");
   const binder = useBinder();
-  const clients = getRLCClients(dpgContext);
-  if (clients && clients[0]) {
-    dpgContext.rlcOptions!.isModularLibrary = true;
-    dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
-    const rlcModels = await transformRLCModel(clients[0], dpgContext);
-    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
-    const modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      "",
-      project,
-      {
-        casing: "camel"
-      }
-    );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      emitTypes(dpgContext, { sourceRoot: "" });
-      const res = buildOperationFiles(
-        modularCodeModel.clients[0],
-        dpgContext,
-        modularCodeModel
-      );
-      if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
-        throw dpgContext.program.diagnostics;
-      }
-      binder.resolveAllReferences("/");
-      for (const file of res) {
-        removeUnusedImports(file);
-        file.fixUnusedIdentifiers();
-      }
-      return res;
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
     }
+  );
+  if (
+    dpgContext.sdkPackage.clients &&
+    dpgContext.sdkPackage.clients.length > 0 &&
+    dpgContext.sdkPackage.clients[0]
+  ) {
+    emitTypes(dpgContext, { sourceRoot: "" });
+    const res = buildOperationFiles(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
+    if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+      throw dpgContext.program.diagnostics;
+    }
+    binder.resolveAllReferences("/");
+    for (const file of res) {
+      removeUnusedImports(file);
+      file.fixUnusedIdentifiers();
+    }
+    return res;
   }
   return undefined;
 }
@@ -578,43 +554,32 @@ export async function emitModularClientContextFromTypeSpec(
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
   const project = useContext("outputProject");
   const binder = useBinder();
-  const clients = getRLCClients(dpgContext);
-  if (clients && clients[0]) {
-    dpgContext.rlcOptions!.isModularLibrary = true;
-    const rlcModels = await transformRLCModel(clients[0], dpgContext);
-    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
-    const modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      "",
-      project,
-      {
-        casing: "camel"
-      }
-    );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      emitTypes(dpgContext, { sourceRoot: "" });
-      const res = buildClientContext(
-        modularCodeModel.clients[0],
-        dpgContext,
-        modularCodeModel
-      );
-      binder.resolveAllReferences("/");
-      removeUnusedImports(res);
-      res.fixUnusedIdentifiers();
-      return res;
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
     }
+  );
+  if (
+    dpgContext.sdkPackage.clients &&
+    dpgContext.sdkPackage.clients.length > 0 &&
+    dpgContext.sdkPackage.clients[0]
+  ) {
+    emitTypes(dpgContext, { sourceRoot: "" });
+    const res = buildClientContext(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
+    binder.resolveAllReferences("modularPackageFolder/src");
+    removeUnusedImports(res);
+    res.fixUnusedIdentifiers();
+    return res;
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
@@ -641,40 +606,29 @@ export async function emitModularClientFromTypeSpec(
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
-    string,
-    RLCModel
-  >();
   const project = useContext("outputProject");
   const binder = useBinder();
-  const clients = getRLCClients(dpgContext);
-  if (clients && clients[0]) {
-    dpgContext.rlcOptions!.isModularLibrary = true;
-    const rlcModels = await transformRLCModel(clients[0], dpgContext);
-    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
-    const modularCodeModel = emitCodeModel(
-      dpgContext,
-      serviceNameToRlcModelsMap,
-      "",
-      project,
-      {
-        casing: "camel"
-      }
-    );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      const res = buildClassicalClient(
-        modularCodeModel.clients[0],
-        dpgContext,
-        modularCodeModel
-      );
-      binder.resolveAllReferences("/modularPackageFolder/src");
-      return res;
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
     }
+  );
+  if (
+    dpgContext.sdkPackage.clients &&
+    dpgContext.sdkPackage.clients.length > 0 &&
+    dpgContext.sdkPackage.clients[0]
+  ) {
+    const res = buildClassicalClient(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
+    binder.resolveAllReferences("/modularPackageFolder/src");
+    return res;
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;

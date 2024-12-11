@@ -20,10 +20,7 @@ Generated operation options.
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReadOptionalParams extends OperationOptions {
-  strDefault?: "foobar";
-  numberDefault?: 1;
-}
+export interface ReadOptionalParams extends OperationOptions {}
 ```
 
 ## Provide generated operations to call rest-level methods
@@ -33,7 +30,7 @@ export interface ReadOptionalParams extends OperationOptions {
 Should generate operations correctly:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -46,11 +43,7 @@ export function _readSend(
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path(
-      "/{strDefault}/{numberDefault}",
-      options[strDefault] ?? "foobar",
-      options[numberDefault] ?? 1,
-    )
+    .path("/{strDefault}/{numberDefault}", strDefault, numberDefault)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

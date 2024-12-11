@@ -57,13 +57,15 @@ Raw json files.
 Generated operation options.
 
 ```ts models:withOptions
-import { OperationOptions } from "@azure-rest/core-client";
 import { BodyParameter } from "../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface ReadOptionalParams extends OperationOptions {
   optionalQuery?: string;
   widget?: BodyParameter;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 ```
 
@@ -74,7 +76,7 @@ export interface ReadOptionalParams extends OperationOptions {
 Should generate operations correctly:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   bodyParameterSerializer,
   _readResponseDeserializer,
@@ -96,6 +98,12 @@ export function _readSend(
     .path("/{name}", name)
     .post({
       ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.contentType !== undefined
+          ? { contentType: "application/json" }
+          : {}),
+        accept: "application/json",
+      },
       queryParameters: {
         requiredQuery: requiredQuery,
         optionalQuery: options?.optionalQuery,

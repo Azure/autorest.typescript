@@ -30,7 +30,7 @@ function buildExportsForMultiClient(
       const methodMap = getMethodHierarchiesMap(client);
       for (const [prefixKey, _] of methodMap) {
         const prefixes = prefixKey.split("/");
-        if (prefixes.length === 0) {
+        if (prefixKey === "") {
           continue;
         }
         const subApiPath = `api/${getClassicalLayerPrefix(

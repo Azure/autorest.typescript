@@ -23,7 +23,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 
 import { AzurePollingDependencies } from "../external-dependencies.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "../serialization/buildSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
@@ -239,7 +239,7 @@ function getOperationSignatureParameters(
     )
     .map((p) => {
       return {
-        name: p.name,
+        name: normalizeName(p.name, NameType.Parameter),
         type: getTypeExpression(context, p.type)
       };
     })
@@ -306,10 +306,10 @@ export function getOperationFunction(
   // TODO: Support operation overloads
   const response = operation.response;
   let returnType = { name: "", type: "void" };
-  if (response.type && response.type.kind === "model") {
+  if (response.type) {
     const type = response.type;
     returnType = {
-      name: type.name ?? "",
+      name: (type as any).name ?? "",
       type: getTypeExpression(context, type!)
     };
   }

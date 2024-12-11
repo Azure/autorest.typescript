@@ -11,7 +11,7 @@ op read(@body param: void): void;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,7 +59,7 @@ op read(): { @body _: void;};
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -132,8 +132,7 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
-import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -151,6 +150,7 @@ export function _readSend(
   utcDateHeader: Date,
   prop1: string,
   prop2: number,
+  bar: __PLACEHOLDER_o389__,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context.path("/").post({
@@ -166,11 +166,9 @@ export function _readSend(
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
       value: uint8ArrayToString(value, "base64"),
-      "csv-array-header": buildCsvCollection(
-        csvArrayHeader.map((p: any) => {
-          return uint8ArrayToString(p, "base64url");
-        }),
-      ),
+      "csv-array-header": csvArrayHeader.map((p: any) => {
+        return uint8ArrayToString(p, "base64url");
+      }),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
@@ -181,14 +179,11 @@ export function _readSend(
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
       options?.nullableDateHeader !== null
-        ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
-          }
+        ? { "nullable-date-header": options?.nullableDateHeader }
         : {}),
+      contentType: "application/json",
     },
-    body: { prop1: prop1, prop2: prop2 },
+    body: bar,
   });
 }
 
@@ -212,6 +207,7 @@ export async function read(
   utcDateHeader: Date,
   prop1: string,
   prop2: number,
+  bar: __PLACEHOLDER_o389__,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -223,6 +219,7 @@ export async function read(
     utcDateHeader,
     prop1,
     prop2,
+    bar,
     options,
   );
   return _readDeserialize(result);
@@ -246,7 +243,7 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -303,7 +300,7 @@ op read(@body bars?: Bar[]): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { barArraySerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -320,6 +317,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.contentType !== undefined
+          ? { contentType: "application/json" }
+          : {}),
+      },
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -361,7 +363,7 @@ op read(@body bars: Bar[]): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Bar, barArraySerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -379,6 +381,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      headers: { contentType: "application/json" },
       body: barArraySerializer(bars),
     });
 }
@@ -419,7 +422,7 @@ op read(): { a: Bar}[] | null;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Bar, readResponseArrayDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -434,7 +437,10 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _readDeserialize(result: PathUncheckedResponse): Promise<
@@ -478,7 +484,7 @@ op read(@body bars?: Bar[]): Bar[] | null;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   Bar,
   barArraySerializer,
@@ -499,6 +505,12 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.contentType !== undefined
+          ? { contentType: "application/json" }
+          : {}),
+        accept: "application/json",
+      },
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -546,7 +558,7 @@ op read(@body body: Foo): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Foo, fooSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -564,6 +576,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      headers: { contentType: "application/json" },
       body: fooSerializer(body),
     });
 }
@@ -610,7 +623,7 @@ op read(): Foo;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -625,7 +638,10 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _readDeserialize(
@@ -675,7 +691,7 @@ needAzureCore: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { _Bar, _barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -694,7 +710,10 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _testDeserialize(
@@ -749,8 +768,12 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Bar, barDeserializer } from "../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -764,7 +787,10 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _testDeserialize(
@@ -778,12 +804,16 @@ export async function _testDeserialize(
   return barDeserializer(result.body);
 }
 
-export async function test(
+export function test(
   context: Client,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<Bar> {
-  const result = await _testSend(context, options);
-  return _testDeserialize(result);
+): PagedAsyncIterableIterator<void> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _testSend(context, options),
+    _testDeserialize,
+    ["200"],
+  );
 }
 ```
 
@@ -821,7 +851,7 @@ needAzureCore: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { _Child, _childDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -840,7 +870,10 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _testDeserialize(
@@ -863,7 +896,7 @@ export function test(
     () => _testSend(context, options),
     _testDeserialize,
     ["200"],
-    { itemName: "lists", nextLinkName: "nextLink" },
+    { itemName: "lists" },
   );
 }
 ```

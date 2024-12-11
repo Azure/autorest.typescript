@@ -52,7 +52,7 @@ export function buildOperationFiles(
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     const operationFileName =
-      prefixes.length > 0
+      prefixes.length > 0 && prefixKey !== ""
         ? `${prefixes
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
@@ -121,7 +121,7 @@ export function buildOperationFiles(
 
     operationFiles.add(operationGroupFile);
   }
-  return operationFiles;
+  return Array.from(operationFiles);
 }
 
 export function importDeserializeUtils(
@@ -222,7 +222,7 @@ export function buildLroDeserDetailMap(
     }
 
     const operationFileName =
-      prefixes.length > 0
+      prefixes.length > 0 && prefixKey !== ""
         ? `${prefixes
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);

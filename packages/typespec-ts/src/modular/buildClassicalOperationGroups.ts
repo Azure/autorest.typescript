@@ -25,7 +25,7 @@ export function buildClassicOperationFiles(
   const methodMap = getMethodHierarchiesMap(client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
-    if (prefixes.length > 0) {
+    if (prefixes.length > 0 && prefixKey !== "") {
       const classicOperationFileName =
         prefixes.length > 0
           ? `${getClassicalLayerPrefix(
@@ -58,7 +58,7 @@ export function buildClassicOperationFiles(
   }
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
-    if (prefixes.length > 0) {
+    if (prefixes.length > 0 && prefixKey !== "") {
       for (let layer = 0; layer < prefixes.length - 1; layer++) {
         const classicOperationFileName =
           prefixes.length > 0
@@ -111,7 +111,7 @@ function importApis(
 ) {
   const { subfolder } = getModularClientOptions(context, client);
   const classicOperationFileName =
-    prefixes.length > 0
+    prefixes.length > 0 && prefixes[0] !== ""
       ? `${getClassicalLayerPrefix(prefixes, NameType.File, "/", layer)}/index`
       : // When the program has no operation groups defined all operations are put
         // into a nameless operation group. We'll call this operations.

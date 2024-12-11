@@ -207,7 +207,10 @@ export function buildClientContext(
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
   const contextRequiredParam = requiredParams.filter(
-    (p) => p.name !== "credential" && p.name !== "options"
+    (p) =>
+      p.name !== "endpointParam" &&
+      p.name !== "credential" &&
+      p.name !== "options"
   );
   if (contextRequiredParam.length) {
     factoryFunction.addStatements(

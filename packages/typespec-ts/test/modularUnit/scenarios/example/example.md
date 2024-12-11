@@ -79,7 +79,7 @@ export interface ReadOptionalParams extends OperationOptions {}
 You can extract the entire operations file using `ts operations`:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -95,7 +95,10 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/{id}", id)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _readDeserialize(

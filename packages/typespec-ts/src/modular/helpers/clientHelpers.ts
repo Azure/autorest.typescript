@@ -160,8 +160,13 @@ export function buildGetClientEndpointParam(
   if (endpointParam) {
     if (endpointParam.type.kind === "endpoint") {
       let parameterizedEndpointUrl = endpointParam.type.serverUrl;
-      parameterizedEndpointUrl = parameterizedEndpointUrl.replace(`{`, `\${`);
-      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+      for (const templateParam of endpointParam.type.templateArguments) {
+        parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
+          `{${templateParam.name}}`,
+          `\${${getClientParameterName(templateParam)}}`
+        );
+      }
+      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
@@ -197,7 +202,7 @@ export function buildGetClientEndpointParam(
       param.type.kind === "endpoint" &&
       param.type.templateArguments.length === 1
     ) {
-      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\``;
+      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\`;`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
