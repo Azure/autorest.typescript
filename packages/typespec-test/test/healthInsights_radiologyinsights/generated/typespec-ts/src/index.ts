@@ -38,8 +38,6 @@ export {
   RadiologyInsightsInferenceOptions,
   FollowupRecommendationOptions,
   FindingOptions,
-  HealthInsightsOperationStatusError,
-  JobStatus,
   RadiologyInsightsInferenceResult,
   RadiologyInsightsPatientResult,
   RadiologyInsightsInference,
@@ -73,7 +71,6 @@ export {
   DomainResource,
   DomainResourceUnion,
   Narrative,
-  RadiologyInsightsResult,
   RepeatabilityResult,
   KnownApiVersion,
 } from "./models/index.js";
