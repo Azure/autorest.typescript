@@ -623,7 +623,7 @@ export function _testSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": api - version },
+      queryParameters: { "api-version": apiVersion },
     });
 }
 
@@ -921,7 +921,7 @@ export function _testSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": api - version },
+      queryParameters: { "api-version": apiVersion },
     });
 }
 

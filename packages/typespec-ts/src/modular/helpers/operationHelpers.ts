@@ -736,7 +736,7 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    param.name,
+    normalizeName(param.name, NameType.Parameter),
     true,
     getEncodeForType(param)
   )}`;
