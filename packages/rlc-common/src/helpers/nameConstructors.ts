@@ -57,9 +57,9 @@ export function getResponseBaseName(
   return normalizeName(
     `${operationGroup}_${normalizeName(
       operationName,
-      NameType.Operation,
+      NameType.Interface,
       true
-    )}_${statusCode}`,
+    )} ${statusCode}`, // since status code is a number, we use space to separate it from operationName
     NameType.Interface
   );
 }
