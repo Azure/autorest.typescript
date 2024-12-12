@@ -1,4 +1,4 @@
-# only: Should ignore cookie parameters for now
+# Should ignore cookie parameters for now
 
 // TODO: https://github.com/Azure/autorest.typescript/issues/2898
 
