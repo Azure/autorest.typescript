@@ -281,7 +281,7 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: { contentType: "application/json" },
-      body: streamingChatCompletionOptions,
+      body: { stream: stream },
     });
 }
 

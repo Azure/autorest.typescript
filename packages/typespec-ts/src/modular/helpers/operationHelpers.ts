@@ -1079,6 +1079,8 @@ export function serializeRequestValue(
       } else {
         return `${clientValue} as any`;
       }
+    case "model": // this is to build serialization logic for spread model types
+      return `{${getRequestModelMapping(context, type, "").propertiesStr.join(",")}}`;
     default:
       if (clientValue === "constructorParam") {
         return `${clientValue} as any`;
@@ -1156,6 +1158,8 @@ export function deserializeResponseValue(
       } else {
         return `${restValue} as any`;
       }
+    case "model": // generate deserialize logic for spread model types
+      return `{${getResponseMapping(context, type, "").join(",")}}`;
     default:
       return restValue;
   }

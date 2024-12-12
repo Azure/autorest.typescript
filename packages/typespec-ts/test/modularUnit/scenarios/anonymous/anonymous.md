@@ -41,7 +41,7 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
-import { Bar } from "../models/models.js";
+import { Bar, barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -66,7 +66,13 @@ export function _readSend(
       ...operationOptionsToRequestParameters(options),
       headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
-      body: readRequest,
+      body: {
+        prop1: prop1,
+        prop2: prop2,
+        prop3: prop3.toISOString(),
+        prop4: prop4,
+        prop5: barSerializer(prop5),
+      },
     });
 }
 
@@ -161,6 +167,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
+import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -183,7 +190,13 @@ export function _readSend(
       ...operationOptionsToRequestParameters(options),
       headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
-      body: readRequest,
+      body: {
+        prop1: prop1,
+        prop2: prop2,
+        prop3: prop3?.toISOString(),
+        prop4: prop4,
+        prop5: !prop5 ? prop5 : barSerializer(prop5),
+      },
     });
 }
 
@@ -276,6 +289,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
+import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -298,7 +312,11 @@ export function _readSend(
       ...operationOptionsToRequestParameters(options),
       headers: { contentType: "application/json" },
       queryParameters: { prop4: prop4, queryParam: queryParam },
-      body: readRequest,
+      body: {
+        prop2: prop2,
+        prop3: prop3?.toISOString(),
+        prop5: !prop5 ? prop5 : barSerializer(prop5),
+      },
     });
 }
 

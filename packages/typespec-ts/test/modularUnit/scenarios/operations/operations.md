@@ -182,7 +182,7 @@ export function _readSend(
         : {}),
       contentType: "application/json",
     },
-    body: bar,
+    body: { prop1: prop1, prop2: prop2 },
   });
 }
 
