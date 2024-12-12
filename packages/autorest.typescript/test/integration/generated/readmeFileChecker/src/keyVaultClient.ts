@@ -4,8 +4,8 @@ import {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
 import {
   ApiVersion72Preview,
   KeyVaultClientOptionalParams,
@@ -38,7 +38,7 @@ import {
   GetSecretVersionsNextResponse,
   GetDeletedSecretsNextOptionalParams,
   GetDeletedSecretsNextResponse,
-} from "./models";
+} from "./models/index.js";
 
 /** @internal */
 export class KeyVaultClient extends coreClient.ServiceClient {

@@ -22,7 +22,7 @@ import {
   PolymorphicrecursiveImpl,
   ReadonlypropertyImpl,
   FlattencomplexImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   Basic,
   Primitive,
@@ -33,8 +33,8 @@ import {
   Polymorphicrecursive,
   Readonlyproperty,
   Flattencomplex,
-} from "./operationsInterfaces";
-import { BodyComplexClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { BodyComplexClientOptionalParams } from "./models/index.js";
 
 export class BodyComplexClient extends coreClient.ServiceClient {
   $host: string;

@@ -1,2 +1,2 @@
-export * from "./models";
-export { PetStore } from "./petStore";
+export * from "./models/index.js";
+export { PetStore } from "./petStore.js";

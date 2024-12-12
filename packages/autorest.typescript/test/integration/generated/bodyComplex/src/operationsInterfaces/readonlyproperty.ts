@@ -11,7 +11,7 @@ import {
   ReadonlypropertyGetValidResponse,
   ReadonlyObj,
   ReadonlypropertyPutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Readonlyproperty. */
 export interface Readonlyproperty {

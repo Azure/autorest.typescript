@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { HttpRedirects } from "../operationsInterfaces";
+import { HttpRedirects } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { HttpInfrastructureClient } from "../httpInfrastructureClient.js";
 import {
   HttpRedirectsHead300OptionalParams,
   HttpRedirectsHead300Response,
@@ -44,7 +44,7 @@ import {
   HttpRedirectsPost307Response,
   HttpRedirectsDelete307OptionalParams,
   HttpRedirectsDelete307Response,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing HttpRedirects operations. */
 export class HttpRedirectsImpl implements HttpRedirects {

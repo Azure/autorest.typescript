@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { ValidationClient } from "./validationClient";
+export * from "./models/index.js";
+export { ValidationClient } from "./validationClient.js";

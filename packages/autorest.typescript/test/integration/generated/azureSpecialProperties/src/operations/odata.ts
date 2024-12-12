@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Odata } from "../operationsInterfaces";
+import { Odata } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
-import { OdataGetWithFilterOptionalParams } from "../models";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient.js";
+import { OdataGetWithFilterOptionalParams } from "../models/index.js";
 
 /** Class containing Odata operations. */
 export class OdataImpl implements Odata {

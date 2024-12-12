@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PetImpl } from "./operations";
-import { Pet } from "./operationsInterfaces";
-import { XmsErrorResponsesClientOptionalParams } from "./models";
+import { PetImpl } from "./operations/index.js";
+import { Pet } from "./operationsInterfaces/index.js";
+import { XmsErrorResponsesClientOptionalParams } from "./models/index.js";
 
 export class XmsErrorResponsesClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Int } from "../operationsInterfaces";
+import { Int } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "../models/parameters";
-import { NonStringEnumClient } from "../nonStringEnumClient";
+import * as Parameters from "../models/parameters.js";
+import { NonStringEnumClient } from "../nonStringEnumClient.js";
 import {
   IntPutOptionalParams,
   IntPutResponse,
   IntGetOptionalParams,
   IntGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Int operations. */
 export class IntImpl implements Int {

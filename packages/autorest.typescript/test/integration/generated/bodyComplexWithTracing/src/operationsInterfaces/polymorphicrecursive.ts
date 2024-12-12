@@ -11,7 +11,7 @@ import {
   PolymorphicrecursiveGetValidResponse,
   FishUnion,
   PolymorphicrecursivePutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Polymorphicrecursive. */
 export interface Polymorphicrecursive {

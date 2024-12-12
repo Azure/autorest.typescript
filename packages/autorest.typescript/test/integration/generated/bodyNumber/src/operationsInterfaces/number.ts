@@ -45,7 +45,7 @@ import {
   NumberPutSmallDecimalOptionalParams,
   NumberGetSmallDecimalOptionalParams,
   NumberGetSmallDecimalResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a NumberOperations. */
 export interface NumberOperations {

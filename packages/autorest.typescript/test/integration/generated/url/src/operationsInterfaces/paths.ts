@@ -35,7 +35,7 @@ import {
   PathsBase64UrlOptionalParams,
   PathsArrayCsvInPathOptionalParams,
   PathsUnixTimeUrlOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Paths. */
 export interface Paths {

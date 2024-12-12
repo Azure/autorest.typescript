@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Byte } from "../operationsInterfaces";
+import { Byte } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyByteClient } from "../bodyByteClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyByteClient } from "../bodyByteClient.js";
 import {
   ByteGetNullOptionalParams,
   ByteGetNullResponse,
@@ -21,7 +21,7 @@ import {
   BytePutNonAsciiOptionalParams,
   ByteGetInvalidOptionalParams,
   ByteGetInvalidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Byte operations. */
 export class ByteImpl implements Byte {

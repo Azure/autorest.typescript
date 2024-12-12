@@ -12,7 +12,7 @@ import {
   VerificationCodeRequest,
   DpsCertificateVerifyCertificateOptionalParams,
   DpsCertificateVerifyCertificateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a DpsCertificate. */
 export interface DpsCertificate {

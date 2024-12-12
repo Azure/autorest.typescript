@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Header } from "../operationsInterfaces";
+import { Header } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HeaderClient } from "../headerClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { HeaderClient } from "../headerClient.js";
 import {
   HeaderParamExistingKeyOptionalParams,
   HeaderResponseExistingKeyOptionalParams,
@@ -55,7 +55,7 @@ import {
   HeaderResponseEnumOptionalParams,
   HeaderResponseEnumResponse,
   HeaderCustomRequestIdOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Header operations. */
 export class HeaderImpl implements Header {

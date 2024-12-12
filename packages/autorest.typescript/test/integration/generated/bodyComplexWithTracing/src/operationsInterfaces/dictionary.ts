@@ -18,7 +18,7 @@ import {
   DictionaryGetNullResponse,
   DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Dictionary. */
 export interface Dictionary {
