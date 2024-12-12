@@ -7,14 +7,7 @@ export {
   FooClientOptionalParams,
   Op1OptionalParams,
   BOp1OptionalParams,
-  BECOp1OptionalParams,
-  BCOp1OptionalParams,
+  COp1OptionalParams,
   DOp1OptionalParams,
 } from "./api/index.js";
-export {
-  BOperations,
-  DOperations,
-  BCOperations,
-  BEOperations,
-  BECOperations,
-} from "./classic/index.js";
+export { BOperations, COperations, DOperations } from "./classic/index.js";
