@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getBOperations, BOperations } from "./classic/b/index.js";
-import { getDOperations, DOperations } from "./classic/d/index.js";
 import {
   createFoo,
   FooContext,
@@ -10,7 +8,7 @@ import {
   op1,
   Op1OptionalParams,
 } from "./api/index.js";
-import { A } from "./models/models.js";
+import { A, Ba, Bea } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
@@ -30,8 +28,6 @@ export class FooClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.b = getBOperations(this._client);
-    this.d = getDOperations(this._client);
   }
 
   op1(
@@ -41,8 +37,31 @@ export class FooClient {
     return op1(this._client, body, options);
   }
 
-  /** The operation groups for B */
-  public readonly b: BOperations;
-  /** The operation groups for D */
-  public readonly d: DOperations;
+  op1(
+    body: Ba,
+    options: Op1OptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return op1(this._client, body, options);
+  }
+
+  op1(
+    body: Bea,
+    options: Op1OptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return op1(this._client, body, options);
+  }
+
+  op1(
+    body: Ba,
+    options: Op1OptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return op1(this._client, body, options);
+  }
+
+  op1(
+    body: A,
+    options: Op1OptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return op1(this._client, body, options);
+  }
 }
