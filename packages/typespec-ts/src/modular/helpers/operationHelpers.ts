@@ -456,11 +456,15 @@ function getPagingOnlyOperationFunction(
 
   const statements: string[] = [];
   const options = [];
-  if (operation.__raw_paged_metadata?.itemsProperty) {
-    options.push(`itemName: "${operation.__raw_paged_metadata.itemsPath}"`);
+  if (operation.__raw_paged_metadata?.itemsSegments) {
+    options.push(
+      `itemName: "${operation.__raw_paged_metadata.itemsSegments[0]}"`
+    );
   }
-  if (operation.nextLinkPath) {
-    options.push(`nextLinkName: "${operation.nextLinkPath}"`);
+  if (operation.__raw_paged_metadata?.nextLinkSegments) {
+    options.push(
+      `nextLinkName: "${operation.__raw_paged_metadata.nextLinkSegments[0]}"`
+    );
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(

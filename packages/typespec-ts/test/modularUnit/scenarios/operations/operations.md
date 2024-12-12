@@ -896,7 +896,7 @@ export function test(
     () => _testSend(context, options),
     _testDeserialize,
     ["200"],
-    { itemName: "lists" },
+    { itemName: "lists", nextLinkName: "nextLink" },
   );
 }
 ```
