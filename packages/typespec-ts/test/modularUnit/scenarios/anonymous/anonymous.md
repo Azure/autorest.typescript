@@ -58,13 +58,6 @@ export function _readSend(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  readRequest: {
-    prop1: string;
-    prop2: number;
-    prop3: Date;
-    prop4: string;
-    prop5: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -97,13 +90,6 @@ export async function read(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  readRequest: {
-    prop1: string;
-    prop2: number;
-    prop3: Date;
-    prop4: string;
-    prop5: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -115,7 +101,6 @@ export async function read(
     prop3,
     prop4,
     prop5,
-    readRequest,
     options,
   );
   return _readDeserialize(result);
@@ -176,7 +161,6 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
-import { Bar } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -191,13 +175,6 @@ export function _readSend(
   prop1: string,
   prop2: number,
   prop4: string,
-  readRequest: {
-    prop1: string;
-    prop2: number;
-    prop3?: Date;
-    prop4: string;
-    prop5?: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -228,13 +205,6 @@ export async function read(
   prop1: string,
   prop2: number,
   prop4: string,
-  readRequest: {
-    prop1: string;
-    prop2: number;
-    prop3?: Date;
-    prop4: string;
-    prop5?: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -244,7 +214,6 @@ export async function read(
     prop1,
     prop2,
     prop4,
-    readRequest,
     options,
   );
   return _readDeserialize(result);
@@ -307,7 +276,6 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
-import { Bar } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -322,11 +290,6 @@ export function _readSend(
   prop2: number,
   prop4: string,
   queryParam: string,
-  readRequest: {
-    prop2: number;
-    prop3?: Date;
-    prop5?: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -357,11 +320,6 @@ export async function read(
   prop2: number,
   prop4: string,
   queryParam: string,
-  readRequest: {
-    prop2: number;
-    prop3?: Date;
-    prop5?: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -371,7 +329,6 @@ export async function read(
     prop2,
     prop4,
     queryParam,
-    readRequest,
     options,
   );
   return _readDeserialize(result);

@@ -150,7 +150,6 @@ export function _readSend(
   utcDateHeader: Date,
   prop1: string,
   prop2: number,
-  bar: __PLACEHOLDER_o389__,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context.path("/").post({
@@ -207,7 +206,6 @@ export async function read(
   utcDateHeader: Date,
   prop1: string,
   prop2: number,
-  bar: __PLACEHOLDER_o389__,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -219,7 +217,6 @@ export async function read(
     utcDateHeader,
     prop1,
     prop2,
-    bar,
     options,
   );
   return _readDeserialize(result);

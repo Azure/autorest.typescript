@@ -274,7 +274,6 @@ import {
 
 export function _createStreamingSend(
   context: Client,
-  streamingChatCompletionOptions: __PLACEHOLDER_o289__,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -299,14 +298,9 @@ export async function _createStreamingDeserialize(
 
 export async function createStreaming(
   context: Client,
-  streamingChatCompletionOptions: __PLACEHOLDER_o289__,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createStreamingSend(
-    context,
-    streamingChatCompletionOptions,
-    options,
-  );
+  const result = await _createStreamingSend(context, options);
   return _createStreamingDeserialize(result);
 }
 ```

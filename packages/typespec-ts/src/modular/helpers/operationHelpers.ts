@@ -247,16 +247,6 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
-  const bodyParameter = operation.operation.bodyParam;
-  if (bodyParameter && bodyParameter.optional === false) {
-    parameters.set(bodyParameter?.name, {
-      hasQuestionToken: bodyParameter.optional,
-      ...{
-        name: bodyParameter.name,
-        type: getTypeExpression(context, bodyParameter.type)
-      }
-    });
-  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
