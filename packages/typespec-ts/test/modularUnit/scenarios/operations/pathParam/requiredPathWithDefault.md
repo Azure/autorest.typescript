@@ -1,4 +1,4 @@
-# Should generate required constant path parameter in option parameter
+# Should not generate required constant path parameter
 
 Should generate required constant path parameter in option parameter.
 
@@ -43,7 +43,7 @@ export function _readSend(
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/{strDefault}/{numberDefault}", strDefault, numberDefault)
+    .path("/{strDefault}/{numberDefault}", "foobar", 1)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

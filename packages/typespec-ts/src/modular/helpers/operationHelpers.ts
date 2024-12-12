@@ -854,6 +854,9 @@ function getPathParameters(
 }
 
 function getPathParamExpr(param: SdkServiceParameter, defaultValue?: string) {
+  if (isConstant(param.type)) {
+    return getConstantValue(param.type);
+  }
   const value = defaultValue
     ? typeof defaultValue === "string"
       ? `options[${param.name}] ?? "${defaultValue}"`
