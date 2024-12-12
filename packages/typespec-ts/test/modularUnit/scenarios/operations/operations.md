@@ -133,6 +133,7 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "../index.js";
+import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -165,9 +166,11 @@ export function _readSend(
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
       value: uint8ArrayToString(value, "base64"),
-      "csv-array-header": csvArrayHeader.map((p: any) => {
-        return uint8ArrayToString(p, "base64url");
-      }),
+      "csv-array-header": buildCsvCollection(
+        csvArrayHeader.map((p: any) => {
+          return uint8ArrayToString(p, "base64url");
+        }),
+      ),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {

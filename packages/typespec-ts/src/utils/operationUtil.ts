@@ -470,19 +470,6 @@ function getHasPipeCollection(paramType: string, paramFormat: string) {
   return paramType === "query" && paramFormat === "pipes";
 }
 
-export function hasCollectionFormatInfo(
-  paramType: string,
-  paramFormat: string
-) {
-  return (
-    getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
-  );
-}
-
 export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string

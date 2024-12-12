@@ -9,7 +9,6 @@ import { isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
-  hasCollectionFormatInfo,
   isBinaryPayload
 } from "../../utils/operationUtil.js";
 import {
@@ -662,7 +661,7 @@ export function getParameterMap(
     return `"${param.name}": ${getConstantValue(param.type)}`;
   }
 
-  if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
+  if ((param as any).collectionFormat) {
     return getCollectionFormat(context, param);
   }
 
@@ -680,15 +679,12 @@ export function getParameterMap(
 
 function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
   const serializedName = getPropertySerializedName(param);
-  const collectionInfo = getCollectionFormatHelper(
-    param.kind,
-    getEncodeForType(param.type) ?? ""
-  );
+  const format = (param as any).collectionFormat;
+  const collectionInfo = getCollectionFormatHelper(param.kind, format ?? "");
   if (!collectionInfo) {
     throw "Has collection format info but without helper function detected";
   }
-  const isMulti =
-    (getEncodeForType(param.type) ?? "").toLowerCase() === "multi";
+  const isMulti = format.toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${serializedName}"` : "";
   if (!param.optional) {
     return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
