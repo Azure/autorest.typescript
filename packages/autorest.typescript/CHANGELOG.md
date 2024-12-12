@@ -1,3 +1,11 @@
+## 6.0.30 (2024-12-12)
+
+- [Feature] Support tcgc type for ModelProperty, remove baseUrl in unbranded client and remove property if visibility with none. Please refer to [#2927](https://github.com/Azure/autorest.typescript/pull/2927)
+- [Feature] Upgrade typespec compiler to v0.63 and cadl ranch spec to the latest. Please refer to [#2942](https://github.com/Azure/autorest.typescript/pull/2942)
+- [Bugfix] Disable generation if enabling noEmit flag. Please refer to [#2948](https://github.com/Azure/autorest.typescript/pull/2948)
+- [Bugfix] Upgrade tcgc to ignore error model generation in MPG if it is not referenced. Please refer to [#2934](https://github.com/Azure/autorest.typescript/pull/2934)
+- [Feature] Refactor existing modular unit tests as scenario tests. Please refer to [#2915](https://github.com/Azure/autorest.typescript/pull/2915)
+
 ## 6.0.29 (2024-11-29)
 
 - [Feature] Upgrade eslint version to ^9.9.0. Please refer to [#2928](https://github.com/Azure/autorest.typescript/pull/2928)
