@@ -1099,7 +1099,7 @@ export interface Foo {
 
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
-  return { prop1: uint8ArrayToString(item["prop1"], "base64") };
+  return { prop1: uint8ArrayToString(item["prop1"], "base64url") };
 }
 ```
 
@@ -1110,7 +1110,7 @@ export function fooDeserializer(item: any): Foo {
   return {
     prop1:
       typeof item["prop1"] === "string"
-        ? stringToUint8Array(item["prop1"], "base64")
+        ? stringToUint8Array(item["prop1"], "base64url")
         : item["prop1"],
   };
 }

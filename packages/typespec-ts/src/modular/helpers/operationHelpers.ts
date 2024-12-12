@@ -682,12 +682,13 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
   const serializedName = getPropertySerializedName(param);
   const collectionInfo = getCollectionFormatHelper(
     param.kind,
-    getEncodeForType(param) ?? ""
+    getEncodeForType(param.type) ?? ""
   );
   if (!collectionInfo) {
     throw "Has collection format info but without helper function detected";
   }
-  const isMulti = (getEncodeForType(param) ?? "").toLowerCase() === "multi";
+  const isMulti =
+    (getEncodeForType(param.type) ?? "").toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${serializedName}"` : "";
   if (!param.optional) {
     return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
@@ -695,7 +696,7 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
       param.type,
       param.name,
       true,
-      getEncodeForType(param)
+      getEncodeForType(param.type)
     )}${additionalParam})`;
   }
   return `"${serializedName}": options?.${
@@ -705,7 +706,7 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
     param.type,
     "options?." + param.name,
     false,
-    getEncodeForType(param)
+    getEncodeForType(param.type)
   )}${additionalParam}): undefined`;
 }
 
@@ -744,7 +745,7 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
     param.type,
     normalizeName(param.name, NameType.Parameter),
     true,
-    getEncodeForType(param)
+    getEncodeForType(param.type)
   )}`;
 }
 
@@ -789,7 +790,7 @@ function getOptional(context: SdkContext, param: SdkHttpParameter) {
     param.type,
     `options?.${param.name}`,
     false,
-    getEncodeForType(param)
+    getEncodeForType(param.type)
   )}`;
 }
 
@@ -929,7 +930,7 @@ export function getRequestModelMapping(
         property.type,
         propertyFullName,
         !property.optional,
-        getEncodeForType(property)
+        getEncodeForType(property.type)
       );
       props.push(`"${serializedName}": ${serializedValue}`);
     }
@@ -985,7 +986,7 @@ export function getResponseMapping(
         context,
         property.type,
         `${propertyPath}${dot}["${serializedName}"]`,
-        getEncodeForType(property)
+        getEncodeForType(property.type)
       );
       props.push(
         `"${property.name}": ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
@@ -1137,7 +1138,7 @@ export function deserializeResponseValue(
       ) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.valueType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type))}})`;
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
       } else {
         return restValue;
       }
