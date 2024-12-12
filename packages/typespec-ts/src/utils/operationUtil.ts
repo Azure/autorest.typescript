@@ -23,7 +23,12 @@ import {
   getWireName,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkClient
+  SdkClient,
+  SdkClientType,
+  SdkHttpOperation,
+  SdkMethod,
+  SdkServiceMethod,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { Model, Operation, Program, Type } from "@typespec/compiler";
 import {
@@ -465,19 +470,6 @@ function getHasPipeCollection(paramType: string, paramFormat: string) {
   return paramType === "query" && paramFormat === "pipes";
 }
 
-export function hasCollectionFormatInfo(
-  paramType: string,
-  paramFormat: string
-) {
-  return (
-    getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
-  );
-}
-
 export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
@@ -545,4 +537,42 @@ export function parseNextLinkName(
 export function parseItemName(paged: PagedResultMetadata): string | undefined {
   // TODO: support the nested item names
   return (paged.itemsSegments ?? [])[0];
+}
+
+export function getMethodHierarchiesMap(
+  client: SdkClientType<SdkServiceOperation>
+) {
+  const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
+    client.methods.map((m) => {
+      return [[], m];
+    });
+  const operationHierarchiesMap: Map<
+    string,
+    SdkServiceMethod<SdkHttpOperation>[]
+  > = new Map<string, SdkServiceMethod<SdkHttpOperation>[]>();
+  while (methodQueue.length > 0) {
+    const method = methodQueue.pop();
+    if (!method) {
+      continue;
+    }
+    const prefixes = method[0];
+    const operationOrGroup = method[1];
+
+    if (operationOrGroup.kind === "clientaccessor") {
+      operationOrGroup.response.methods.forEach((m) =>
+        methodQueue.push([
+          [...prefixes, operationOrGroup.name.replace("get", "")],
+          m
+        ])
+      );
+    } else {
+      const prefixKey = prefixes.join("/");
+      const operations = operationHierarchiesMap.get(prefixKey);
+      operationHierarchiesMap.set(prefixKey, [
+        ...(operations ?? []),
+        operationOrGroup
+      ]);
+    }
+  }
+  return operationHierarchiesMap;
 }

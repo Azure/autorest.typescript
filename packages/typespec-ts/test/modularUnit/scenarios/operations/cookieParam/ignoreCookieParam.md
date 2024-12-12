@@ -23,25 +23,28 @@ mustEmptyDiagnostic: false
 Should normal path parameter:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { TestingContext as Client } from "../index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _testSend(
   context: Client,
-  options: TestOptionalParams = { requestOptions: {} }
+  options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _testDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -53,7 +56,7 @@ export async function _testDeserialize(
 
 export async function test(
   context: Client,
-  options: TestOptionalParams = { requestOptions: {} }
+  options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _testSend(context, options);
   return _testDeserialize(result);

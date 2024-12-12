@@ -2,21 +2,21 @@
 // Licensed under the MIT License.
 
 import {
-  getOperationsOperations,
-  OperationsOperations,
-} from "./classic/operations/index.js";
-import {
-  getDataProductsCatalogsOperations,
-  DataProductsCatalogsOperations,
-} from "./classic/dataProductsCatalogs/index.js";
+  getDataProductsOperations,
+  DataProductsOperations,
+} from "./classic/dataProducts/index.js";
 import {
   getDataTypesOperations,
   DataTypesOperations,
 } from "./classic/dataTypes/index.js";
 import {
-  getDataProductsOperations,
-  DataProductsOperations,
-} from "./classic/dataProducts/index.js";
+  getDataProductsCatalogsOperations,
+  DataProductsCatalogsOperations,
+} from "./classic/dataProductsCatalogs/index.js";
+import {
+  getOperationsOperations,
+  OperationsOperations,
+} from "./classic/operations/index.js";
 import {
   createNetworkAnalytics,
   NetworkAnalyticsContext,
@@ -41,26 +41,23 @@ export class NetworkAnalyticsClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createNetworkAnalytics(credential, {
+    this._client = createNetworkAnalytics(credential, subscriptionId, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+    this.dataProducts = getDataProductsOperations(this._client);
+    this.dataTypes = getDataTypesOperations(this._client);
+    this.dataProductsCatalogs = getDataProductsCatalogsOperations(this._client);
     this.operations = getOperationsOperations(this._client);
-    this.dataProductsCatalogs = getDataProductsCatalogsOperations(
-      this._client,
-      subscriptionId,
-    );
-    this.dataTypes = getDataTypesOperations(this._client, subscriptionId);
-    this.dataProducts = getDataProductsOperations(this._client, subscriptionId);
   }
 
-  /** The operation groups for Operations */
-  public readonly operations: OperationsOperations;
-  /** The operation groups for DataProductsCatalogs */
-  public readonly dataProductsCatalogs: DataProductsCatalogsOperations;
-  /** The operation groups for DataTypes */
-  public readonly dataTypes: DataTypesOperations;
-  /** The operation groups for DataProducts */
+  /** The operation groups for dataProducts */
   public readonly dataProducts: DataProductsOperations;
+  /** The operation groups for dataTypes */
+  public readonly dataTypes: DataTypesOperations;
+  /** The operation groups for dataProductsCatalogs */
+  public readonly dataProductsCatalogs: DataProductsCatalogsOperations;
+  /** The operation groups for operations */
+  public readonly operations: OperationsOperations;
 }

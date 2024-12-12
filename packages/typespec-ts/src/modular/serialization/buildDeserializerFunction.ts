@@ -11,7 +11,6 @@ import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { SdkContext } from "../../utils/interfaces.js";
 import { getResponseMapping } from "../helpers/operationHelpers.js";
-import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -344,11 +343,7 @@ function buildModelTypeDeserializer(
     ? "...item,"
     : "";
 
-  const propertiesStr = getResponseMapping(
-    context,
-    getType(context, type.__raw!),
-    "item"
-  );
+  const propertiesStr = getResponseMapping(context, type, "item");
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 
   const output = [];

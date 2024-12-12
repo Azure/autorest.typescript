@@ -1,13 +1,12 @@
 import {
   HelperFunctionDetails,
-  Imports,
   OperationResponse,
   RLCOptions
 } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
   SdkClientType,
-  SdkHttpOperation,
+  SdkServiceOperation,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { UsageFlags, Type as TypespecType } from "@typespec/compiler";
@@ -18,17 +17,16 @@ export interface ModularOptions {
   compatibilityMode: boolean;
   experimentalExtensibleEnums: boolean;
 }
-export interface ModularCodeModel {
+export interface ModularEmitterOptions {
   options: RLCOptions;
   modularOptions: ModularOptions;
-  namespace?: string;
-  subnamespaceToClients?: any;
-  clients: Client[];
-  types: Type[];
   project: Project;
-  runtimeImports: Imports;
 }
 
+export interface ModularClientOptions {
+  subfolder?: string;
+  rlcClientName: string;
+}
 export interface Header {
   type: Type;
   restApiName: string;
@@ -129,14 +127,12 @@ export interface Type {
 export interface Client {
   name: string;
   description: string;
-  parameters: Parameter[];
   operationGroups: OperationGroup[];
-  url: string;
   apiVersions: any[];
   rlcClientName: string;
   subfolder?: string;
   rlcHelperDetails: HelperFunctionDetails;
-  tcgcClient: SdkClientType<SdkHttpOperation>;
+  tcgcClient: SdkClientType<SdkServiceOperation>;
 }
 
 export type ParameterLocation =

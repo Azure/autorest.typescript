@@ -6,72 +6,65 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Client, OperationGroup } from "../modularCodeModel.js";
-import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
+import { getClassicalLayerPrefix } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
+import {
+  SdkClientType,
+  SdkHttpOperation,
+  SdkServiceMethod,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../../utils/clientUtils.js";
 
-export function shouldPromoteSubscriptionId(
-  dpgContext: SdkContext,
-  operationGroup: OperationGroup
-) {
-  const hasSubscriptionIdParameter = operationGroup.operations.some((op) =>
-    op.parameters.some((p) => p.clientName === "subscriptionId")
-  );
-  return dpgContext?.rlcOptions?.azureArm && hasSubscriptionIdParameter;
-}
 export function getClassicalOperation(
   dpgContext: SdkContext,
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   classicFile: SourceFile,
-  operationGroup: OperationGroup,
-  layer: number = operationGroup.namespaceHierarchies.length - 1
+  operationGroup: [string[], SdkServiceMethod<SdkHttpOperation>[]],
+  layer: number = operationGroup[0].length - 1
 ) {
-  // TODO: remove this logic once client-level parameter design is finalized
-  // https://github.com/Azure/autorest.typescript/issues/2618
-  const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
-    dpgContext,
-    operationGroup
-  );
-  const modularClientName = `${getClientName(client.tcgcClient)}Context`;
+  const prefixes = operationGroup[0];
+  const operations = operationGroup[1];
+  const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
         `${"../".repeat(layer + 2)}api/${normalizeName(
-          modularClientName,
+          rlcClientName,
           NameType.File
         )}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
-      namedImports: [client.rlcClientName],
+      namedImports: [rlcClientName],
       moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(
-        modularClientName,
+        rlcClientName,
         NameType.File
       )}.js`
     });
   }
 
-  const operationMap = new Map<
-    OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
-  >();
+  // const operationMap = new Map<
+  //   OptionalKind<FunctionDeclarationStructure>,
+  //   string | undefined
+  // >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-    operationGroup.operations.map((operation) => {
+    operations.map((operation) => {
       const declarations = getOperationFunction(
         dpgContext,
-        operation,
-        modularClientName
+        [prefixes, operation],
+        rlcClientName
       );
-      operationMap.set(declarations, operation.oriName);
+      // operationMap.set(declarations, operation.oriName);
       return declarations;
     });
 
   const interfaceNamePrefix = getClassicalLayerPrefix(
-    operationGroup,
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -81,18 +74,17 @@ export function getClassicalOperation(
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
   const properties: OptionalKind<PropertySignatureStructure>[] = [];
-  if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+  if (layer !== prefixes.length - 1) {
     properties.push({
       kind: StructureKind.PropertySignature,
-      name:
-        normalizeName(
-          (layer === operationGroup.namespaceHierarchies.length - 1
-            ? operationGroup.namespaceHierarchies[layer]
-            : operationGroup.namespaceHierarchies[layer + 1]) ?? "",
-          NameType.Property
-        ) ?? operationGroup.propertyName,
+      name: normalizeName(
+        (layer === prefixes.length - 1
+          ? prefixes[layer]
+          : prefixes[layer + 1]) ?? "",
+        NameType.Property
+      ),
       type: `${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer + 1
@@ -105,9 +97,6 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
-          ?.filter(
-            (p) => !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-          )
           .map(
             (p) =>
               p.name +
@@ -134,10 +123,10 @@ export function getClassicalOperation(
     });
   }
 
-  if (layer === operationGroup.namespaceHierarchies.length - 1) {
+  if (layer === prefixes.length - 1) {
     classicFile.addFunction({
       name: `get${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer
@@ -146,21 +135,14 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+          type: rlcClientName
+        }
       ],
       statements: `return {
         ${operationDeclarations
           .map((d) => {
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
-              ?.filter(
-                (p) =>
-                  !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-              )
               .map(
                 (p) =>
                   p.name +
@@ -184,7 +166,7 @@ export function getClassicalOperation(
   }
 
   const operationFunctionName = `get${getClassicalLayerPrefix(
-    operationGroup,
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -197,26 +179,22 @@ export function getClassicalOperation(
     if (returnStatement) {
       let statement = `,
       ...get${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer + 1
-      )}Operations(context${
-        hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-      })}`;
-      if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+      )}Operations(context)}`;
+      if (layer !== prefixes.length - 1) {
         statement = `,
         ${normalizeName(
-          operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+          prefixes[layer + 1] ?? "FIXME",
           NameType.Property
         )}: get${getClassicalLayerPrefix(
-          operationGroup,
+          prefixes,
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context${
-          hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-        })}`;
+        )}Operations(context)}`;
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
@@ -228,26 +206,23 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+          type: rlcClientName
+        }
       ],
       returnType: `${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer
       )}Operations`,
       statements:
-        layer !== operationGroup.namespaceHierarchies.length - 1
+        layer !== prefixes.length - 1
           ? `return {
             ${normalizeName(
-              operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+              prefixes[layer + 1] ?? "FIXME",
               NameType.Property
             )}: get${getClassicalLayerPrefix(
-              operationGroup,
+              prefixes,
               NameType.Interface,
               "",
               layer + 1
@@ -255,11 +230,11 @@ export function getClassicalOperation(
       }`
           : `return {
         ...get${getClassicalLayerPrefix(
-          operationGroup,
+          prefixes,
           NameType.Interface,
           "",
           layer
-        )}(context${hasSubscriptionIdPromoted ? ", subscriptionId" : ""})
+        )}(context)
       }`
     });
   }
@@ -270,10 +245,8 @@ export function getClassicalOperation(
     }
   ) {
     return (
-      operationMap.get(declaration) ??
-      declaration.propertyName ??
-      declaration.name ??
-      "FIXME"
+      // operationMap.get(declaration) ??
+      declaration.propertyName ?? declaration.name ?? "FIXME"
     );
   }
 }

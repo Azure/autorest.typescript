@@ -1,15 +1,5 @@
-import {
-  BodyParameter,
-  Client,
-  ModularCodeModel,
-  Operation,
-  Parameter
-} from "./modularCodeModel.js";
-import {
-  NameType,
-  clearImportSets,
-  normalizeName
-} from "@azure-tools/rlc-common";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import {
   getDeserializePrivateFunction,
@@ -25,9 +15,21 @@ import { SdkContext } from "../utils/interfaces.js";
 import { addImportBySymbol } from "../utils/importHelper.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import {
+  getModularClientOptions,
+  isRLCMultiEndpoint
+} from "../utils/clientUtils.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
-import { buildType } from "./helpers/typeHelpers.js";
+import {
+  SdkClientType,
+  SdkHttpOperation,
+  SdkMethodParameter,
+  SdkServiceMethod,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { resolveReference } from "../framework/reference.js";
+import { AzureCoreDependencies } from "./external-dependencies.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -35,20 +37,23 @@ import { buildType } from "./helpers/typeHelpers.js";
  * file called operations.ts where all operations are generated.
  */
 export function buildOperationFiles(
-  client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ) {
-  const operationFiles = [];
+  const operationFiles: Set<SourceFile> = new Set();
+  const { subfolder, rlcClientName } = getModularClientOptions(
+    dpgContext,
+    client
+  );
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
-  const clientType = isMultiEndpoint
-    ? `Client.${client.rlcClientName}`
-    : "Client";
-  for (const operationGroup of client.operationGroups) {
-    clearImportSets(codeModel.runtimeImports);
+  const clientType = isMultiEndpoint ? `Client.${rlcClientName}` : "Client";
+  const methodMap = getMethodHierarchiesMap(client);
+  for (const [prefixKey, operations] of methodMap) {
+    const prefixes = prefixKey.split("/");
     const operationFileName =
-      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
-        ? `${operationGroup.namespaceHierarchies
+      prefixes.length > 0 && prefixKey !== ""
+        ? `${prefixes
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
@@ -57,55 +62,47 @@ export function buildOperationFiles(
           // into a nameless operation group. We'll call this operations.
           "operations";
 
-    const subfolder = client.subfolder;
-    const srcPath = codeModel.modularOptions.sourceRoot;
-    const operationGroupFile = codeModel.project.createSourceFile(
-      `${srcPath}/${
-        subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }api/${operationFileName}.ts`
-    );
+    const srcPath = emitterOptions.modularOptions.sourceRoot;
+    const filepath = `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }api/${operationFileName}.ts`;
 
+    const operationGroupFile =
+      emitterOptions.project.createSourceFile(filepath);
     // Import the deserializeUtils
     importDeserializeUtils(
       srcPath,
       operationGroupFile,
-      codeModel.project,
+      emitterOptions.project,
       "deserialize",
       subfolder,
-      operationGroup.namespaceHierarchies.length
+      prefixes.length
     );
 
     // Import the serializeUtils
     importDeserializeUtils(
       srcPath,
       operationGroupFile,
-      codeModel.project,
+      emitterOptions.project,
       "serialize",
       subfolder,
-      operationGroup.namespaceHierarchies.length
+      prefixes.length
     );
 
-    const indexPathPrefix =
-      "../".repeat(operationGroup.namespaceHierarchies.length) || "./";
-    operationGroupFile.addImportDeclaration({
-      namedImports: [`${client.rlcClientName} as Client`],
-      moduleSpecifier: `${indexPathPrefix}index.js`
-    });
-
-    operationGroup.operations.forEach((o) => {
+    operations.forEach((op) => {
       const operationDeclaration = getOperationFunction(
         dpgContext,
-        o,
+        [prefixes, op],
         clientType
       );
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
-        o,
+        [prefixes, op],
         clientType
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         dpgContext,
-        o
+        op
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -114,13 +111,17 @@ export function buildOperationFiles(
       ]);
     });
 
-    // addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
-    operationGroupFile.fixUnusedIdentifiers();
+    const indexPathPrefix = "../".repeat(prefixes.length) || "./";
+    operationGroupFile.addImportDeclaration({
+      namedImports: [`${rlcClientName} as Client`],
+      moduleSpecifier: `${indexPathPrefix}index.js`
+    });
     addImportBySymbol("serializeRecord", operationGroupFile);
+    operationGroupFile.fixUnusedIdentifiers();
 
-    operationFiles.push(operationGroupFile);
+    operationFiles.add(operationGroupFile);
   }
-  return operationFiles;
+  return Array.from(operationFiles);
 }
 
 export function importDeserializeUtils(
@@ -160,15 +161,16 @@ export function importDeserializeUtils(
  */
 export function buildOperationOptions(
   context: SdkContext,
-  operation: Operation,
+  method: [string[], SdkServiceMethod<SdkHttpOperation>],
   sourceFile: SourceFile
 ) {
+  const operation = method[1];
   const optionalParameters = operation.parameters
-    .filter((p) => p.implementation === "Method")
+    .filter((p) => p.onClient === false)
     .filter((p) => p.optional || p.clientDefaultValue);
-  const options: (BodyParameter | Parameter)[] = [...optionalParameters];
+  const options: SdkMethodParameter[] = [...optionalParameters];
 
-  const name = getOperationOptionsName(operation, true);
+  const name = getOperationOptionsName(method, true);
   const lroOptions = {
     name: "updateIntervalInMs",
     type: "number",
@@ -177,27 +179,24 @@ export function buildOperationOptions(
   };
 
   // handle optional body parameter
-  if (operation.bodyParameter?.optional === true) {
-    options.push(operation.bodyParameter);
-  }
-
+  // if (operation.operation.bodyParam?.optional === true) {
+  //   options.push(operation.operation.bodyParam);
+  // }
+  const operationOptionsReference = resolveReference(
+    AzureCoreDependencies.OperationOptions
+  );
   sourceFile.addInterface({
     name,
     isExported: true,
-    extends: ["OperationOptions"],
+    extends: [operationOptionsReference],
     properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
       options.map((p) => {
         return {
-          docs: getDocsFromDescription(p.description),
+          docs: getDocsFromDescription(p.doc),
           hasQuestionToken: true,
-          ...(p.type.tcgcType
-            ? {
-                type: getTypeExpression(context, p.type.tcgcType),
-                name: p.clientName
-              }
-            : {
-                ...buildType(p.clientName, p.type, p.format)
-              })
+
+          type: getTypeExpression(context, p.type),
+          name: p.name
         };
       })
     ),
@@ -208,21 +207,23 @@ export function buildOperationOptions(
 /**
  * This function creates a map of operation file path to operation names.
  */
-export function buildLroDeserDetailMap(client: Client) {
+export function buildLroDeserDetailMap(
+  client: SdkClientType<SdkServiceOperation>
+) {
   const map = new Map<string, OperationPathAndDeserDetails[]>();
   const existingNames = new Set<string>();
-  for (const operationGroup of client.operationGroups) {
-    const operations = operationGroup.operations.filter((o) =>
-      isLroOnlyOperation(o)
-    );
+  const methodMap = getMethodHierarchiesMap(client);
+  for (const [prefixKey, operations] of methodMap) {
+    const prefixes = prefixKey.split("/");
+    const lroOperations = operations.filter((o) => isLroOnlyOperation(o));
     // skip this operation group if it has no LRO operations
-    if (operations.length === 0) {
+    if (lroOperations.length === 0) {
       continue;
     }
 
     const operationFileName =
-      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
-        ? `${operationGroup.namespaceHierarchies
+      prefixes.length > 0 && prefixKey !== ""
+        ? `${prefixes
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
@@ -245,7 +246,7 @@ export function buildLroDeserDetailMap(client: Client) {
         }
         existingNames.add(deserName);
         return {
-          path: `${o.method.toUpperCase()} ${o.url}`,
+          path: `${o.operation.verb.toUpperCase()} ${o.operation.path}`,
           expectedStatusesExpression: getExpectedStatuses(o),
           deserName,
           renamedDeserName

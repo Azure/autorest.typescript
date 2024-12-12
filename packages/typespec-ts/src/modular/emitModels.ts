@@ -22,6 +22,7 @@ import {
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
+  SdkServiceOperation,
   SdkType,
   SdkUnionType,
   UsageFlags,
@@ -346,7 +347,7 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   return memberStructure;
 }
 
-export function buildModelInterface(
+function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
@@ -408,6 +409,13 @@ function addExtendedDictInfo(
     }
     modelInterface.extends.push(`Record<string, any>`);
   } else {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: modelInterface?.name ?? ""
+      },
+      target: NoTarget
+    });
     modelInterface.properties?.push({
       name: "additionalProperties",
       docs: ["Additional properties"],
@@ -557,7 +565,7 @@ export function visitPackageTypes(context: SdkContext) {
 
 function visitClient(
   context: SdkContext,
-  client: SdkClientType<SdkHttpOperation>
+  client: SdkClientType<SdkServiceOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
   // visitType(client.initialization, emitQueue);

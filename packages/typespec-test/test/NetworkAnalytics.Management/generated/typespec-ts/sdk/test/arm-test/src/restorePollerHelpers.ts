@@ -3,16 +3,27 @@
 
 import { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
 import {
-  _createDeserialize,
-  _updateDeserialize,
+  _listBySubscriptionDeserialize,
+  _listByResourceGroupDeserialize,
+  _listRolesAssignmentsDeserialize,
+  _removeUserRoleDeserialize,
+  _addUserRoleDeserialize,
+  _rotateKeyDeserialize,
+  _generateStorageAccountSasTokenDeserialize,
   _$deleteDeserialize,
-  _deleteDataDeserialize,
-} from "./api/dataTypes/index.js";
-import {
-  _createDeserialize as _createDeserializeDataProducts,
-  _updateDeserialize as _updateDeserializeDataProducts,
-  _$deleteDeserialize as _$deleteDeserializeDataProducts,
+  _updateDeserialize,
+  _getDeserialize,
+  _createDeserialize,
 } from "./api/dataProducts/index.js";
+import {
+  _listByDataProductDeserialize,
+  _generateStorageContainerSasTokenDeserialize,
+  _deleteDataDeserialize,
+  _$deleteDeserialize as _$deleteDeserializeDataTypes,
+  _updateDeserialize as _updateDeserializeDataTypes,
+  _getDeserialize as _getDeserializeDataTypes,
+  _createDeserialize as _createDeserializeDataTypes,
+} from "./api/dataTypes/index.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -91,34 +102,68 @@ interface DeserializationHelper {
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
-    { deserializer: _createDeserialize, expectedStatuses: ["200", "201"] },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
-    { deserializer: _updateDeserialize, expectedStatuses: ["200", "202"] },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
+  "GET /subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts":
+    { deserializer: _listBySubscriptionDeserialize, expectedStatuses: ["200"] },
+  "GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts":
+    {
+      deserializer: _listByResourceGroupDeserialize,
+      expectedStatuses: ["200"],
+    },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments":
+    {
+      deserializer: _listRolesAssignmentsDeserialize,
+      expectedStatuses: ["200"],
+    },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole":
+    { deserializer: _removeUserRoleDeserialize, expectedStatuses: ["204"] },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole":
+    { deserializer: _addUserRoleDeserialize, expectedStatuses: ["200"] },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey":
+    { deserializer: _rotateKeyDeserialize, expectedStatuses: ["204"] },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken":
+    {
+      deserializer: _generateStorageAccountSasTokenDeserialize,
+      expectedStatuses: ["200"],
+    },
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
     {
       deserializer: _$deleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
+    },
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+    { deserializer: _updateDeserialize, expectedStatuses: ["200", "202"] },
+  "GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+    { deserializer: _getDeserialize, expectedStatuses: ["200"] },
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+    { deserializer: _createDeserialize, expectedStatuses: ["200", "201"] },
+  "GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes":
+    { deserializer: _listByDataProductDeserialize, expectedStatuses: ["200"] },
+  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken":
+    {
+      deserializer: _generateStorageContainerSasTokenDeserialize,
+      expectedStatuses: ["200"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData":
     {
       deserializer: _deleteDataDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _createDeserializeDataProducts,
-      expectedStatuses: ["200", "201"],
+      deserializer: _$deleteDeserializeDataTypes,
+      expectedStatuses: ["202", "204", "200"],
     },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _updateDeserializeDataProducts,
+      deserializer: _updateDeserializeDataTypes,
       expectedStatuses: ["200", "202"],
     },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
+  "GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
+    { deserializer: _getDeserializeDataTypes, expectedStatuses: ["200"] },
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _$deleteDeserializeDataProducts,
-      expectedStatuses: ["202", "204", "200"],
+      deserializer: _createDeserializeDataTypes,
+      expectedStatuses: ["200", "201"],
     },
 };
 

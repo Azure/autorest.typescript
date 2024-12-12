@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Client } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./modularCodeModel.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
@@ -11,25 +11,34 @@ import {
   AzurePollingDependencies
 } from "./external-dependencies.js";
 import { PollingHelpers } from "./static-helpers-metadata.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { getModularClientOptions } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRestorePoller(
-  codeModel: ModularCodeModel,
-  client: Client
+  context: SdkContext,
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ) {
-  const lros = client.operationGroups
-    .flatMap((op) => op.operations)
-    .filter(isLroOnlyOperation);
-  if (lros.length === 0) {
+  const { subfolder } = getModularClientOptions(context, client);
+  const methodMap = getMethodHierarchiesMap(client);
+  const hasLro = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroOnlyOperation);
+  });
+  if (!hasLro) {
     return;
   }
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
   const filePath = path.join(
     `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
-  const restorePollerFile = codeModel.project.createSourceFile(
+  const restorePollerFile = emitterOptions.project.createSourceFile(
     filePath,
     undefined,
     {
@@ -203,7 +212,10 @@ export function buildRestorePoller(
   restorePollerFile.addStatements(restorePollerHelperContent);
 }
 
-function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
+function importDeserializeHelpers(
+  client: SdkClientType<SdkServiceOperation>,
+  sourceFile: SourceFile
+) {
   const deserializeDetails = buildLroDeserDetailMap(client);
   const deserializeMap: string[] = [];
   for (const [key, value] of deserializeDetails.entries()) {
@@ -227,10 +239,10 @@ function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
 }
 
 function importClassicalClient(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   sourceFile: SourceFile
 ): string[] {
-  const classicalClientName = `${getClientName(client.tcgcClient)}Client`;
+  const classicalClientName = `${getClientName(client)}Client`;
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientName}`],
     moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`
