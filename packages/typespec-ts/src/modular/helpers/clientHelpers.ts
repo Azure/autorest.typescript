@@ -153,6 +153,13 @@ export function buildGetClientEndpointParam(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ): string {
+  let coreEndpointParam = "";
+  if (dpgContext.rlcOptions?.flavor === "azure") {
+    coreEndpointParam = `options.endpoint ?? options.baseUrl`;
+  } else {
+    // unbranded does not have the deprecated baseUrl parameter
+    coreEndpointParam = `options.endpoint`;
+  }
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
     onClientOnly: true
@@ -166,11 +173,11 @@ export function buildGetClientEndpointParam(
           `\${${getClientParameterName(templateParam)}}`
         );
       }
-      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\`;`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
-    return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+    return `${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
   }
   const urlParams = getClientParameters(client, dpgContext, {
     skipArmSpecific: true
@@ -202,7 +209,7 @@ export function buildGetClientEndpointParam(
       param.type.kind === "endpoint" &&
       param.type.templateArguments.length === 1
     ) {
-      const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\`;`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\`;`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }

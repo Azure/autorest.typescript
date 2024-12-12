@@ -234,6 +234,12 @@ function getOperationSignatureParameters(
       (p) =>
         p.onClient === false &&
         p.type.kind !== "constant" &&
+        (operation.operation.parameters.filter((param) => {
+          return (
+            param.correspondingMethodParams.length === 1 &&
+            param.correspondingMethodParams[0] === p
+          );
+        })[0]?.kind as any) !== "cookie" &&
         p.clientDefaultValue === undefined &&
         !p.optional
     )

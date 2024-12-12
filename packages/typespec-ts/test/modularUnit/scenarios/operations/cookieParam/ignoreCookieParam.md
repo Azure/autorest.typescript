@@ -1,4 +1,4 @@
-# Should ignore cookie parameters for now
+# only: Should ignore cookie parameters for now
 
 // TODO: https://github.com/Azure/autorest.typescript/issues/2898
 
@@ -33,14 +33,13 @@ import {
 
 export function _testSend(
   context: Client,
-  token: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { token: token, accept: "application/json" },
+      headers: { accept: "application/json" },
     });
 }
 
@@ -57,10 +56,9 @@ export async function _testDeserialize(
 
 export async function test(
   context: Client,
-  token: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
-  const result = await _testSend(context, token, options);
+  const result = await _testSend(context, options);
   return _testDeserialize(result);
 }
 ```

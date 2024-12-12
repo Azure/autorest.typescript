@@ -829,7 +829,7 @@ model Error {
 model Bar {
     @items
     lists: string[];
-    @Azure.Core.nextLink
+    @TypeSpec.nextLink
     nextLink: string;
 }
 
