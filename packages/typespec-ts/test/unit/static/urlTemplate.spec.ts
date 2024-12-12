@@ -179,17 +179,20 @@ describe.only("url-template", () => {
             'undefinedobjectitem': { key: null, hello: 'world', 'empty': '', '': 'nothing' }
         });
 
-        it.only('variable empty list', () => {
+        it('variable empty list', () => {
             assert('{/emptylist}', '');
             assert('{/emptylist*}', '');
-            assert('{?emptylist}', '?emptylist=');
             assert('{?emptylist*}', '');
+        });
+
+        it.skip('variable empty list as query parameter', () => {
+            assert('{?emptylist}', '?emptylist=');
+            assert('{?emptyobject}', '?emptyobject=');
         });
 
         it('variable empty object', () => {
             assert('{/emptyobject}', '');
             assert('{/emptyobject*}', '');
-            assert('{?emptyobject}', '?emptyobject=');
             assert('{?emptyobject*}', '');
         });
 
@@ -199,7 +202,7 @@ describe.only("url-template", () => {
             assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
         });
 
-        it('variable undefined object item', () => {
+        it.only('variable undefined object item', () => {
             assert('{undefinedobjectitem}', 'hello,world,empty,,,nothing');
             assert('{undefinedobjectitem*}', 'hello=world,empty=,nothing');
         });

@@ -169,74 +169,71 @@ export function parseTemplate(template: any) {
 }
 
 export function expandUriTemplate(template: string, context: Record<string, any>): string {
-    return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expression, literal) => {
-        if (!expression) {
+    return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, layer1, literal) => {
+        if (!layer1) {
             return encodeReserved(literal);
         }
-        const opMatch = /([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?/.exec(expression);
+        const opMatch = /([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?/.exec(layer1);
         if (!opMatch) {
             return '';
         }
-        const operator = opMatch[1], nonOperators = opMatch[2], values: string[] = [];
+        const operator = opMatch[1], nonOperators = opMatch[2], layer2Values: string[] = [];
         if (!nonOperators) {
             return '';
         }
         const variables = nonOperators.split(/,/g);
-        for (const entry of variables) {
-            const varMatch = /([^:\*]*)(?::(\d+)|(\*))?/.exec(entry);
+        for (const layer2 of variables) {
+            const varMatch = /([^:\*]*)(?::(\d+)|(\*))?/.exec(layer2);
             if (!varMatch) {
                 continue;
             }
-            const variable = varMatch[1], modifier = varMatch[2] || varMatch[3];
-            let value = context[variable!];
-            if (!isDefined(value)) {
+            const variable = varMatch[1];
+            const modifier = varMatch[2] || varMatch[3];
+            const value = context[variable!];
+            if (!isDefined(value) || !variable) {
                 continue;
             }
-            if (modifier) {
-                if (modifier === '*') {
-                    if (Array.isArray(value)) {
-                        value = value.join(operator === '/' ? '/' : ',');
-                    } else if (typeof value === 'object') {
-                        value = Object.keys(value).map(k => `${k}=${value[k]}`).join('&');
+            const layer3Values: string[] = [];
+            if (
+                typeof value === "string" ||
+                typeof value === "number" ||
+                typeof value === "boolean"
+            ) {
+                getValueEntry(operator, value, variable, layer2Values, layer3Values);
+            } else if (Array.isArray(value)) {
+                const array = value.filter(isDefined);
+                if (modifier === "*") {
+                    for (const val of array) {
+                        getValueEntry(operator, val, variable, layer2Values, layer3Values);
                     }
                 } else {
-                    value = value.toString().substring(0, parseInt(modifier, 10));
+                    layer3Values.push(array.map(val => encodeValue(operator, val)).join(","));
                 }
-            }
 
-            switch (operator) {
-                case '+':
-                    values.push(encodeReserved(value));
-                    break;
-                case '#': {
-                    const prefix = values.length === 0 ? '#' : '';
-                    values.push(`${prefix}${encodeReserved(value)}`);
-                    break;
+            } else if (typeof value === 'object') {
+                for (const key of Object.keys(value)) {
+                    getValueEntry(operator, value[key], key, layer2Values, layer3Values);
                 }
-                case '.':
-                    values.push(`.${encodeURIComponent(value)}`);
-                    break;
-                case '/':
-                    values.push(`/${encodeReserved(value)}`);
-                    break;
-                case ';': {
-                    const ret = encodeURIComponent(value);
-                    const suffix = !ret ? '' : `=${ret}`;
-                    values.push(`;${variable}${suffix}`);
-                    break;
+                if (modifier === "*") {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            getValueEntry(operator, value[k], k, layer2Values, layer3Values);
+                        }
+                    });
+                } else {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            layer3Values.push(encodeUnreserved(k));
+                            layer3Values.push(encodeValue(operator, value[k].toString()));
+                        }
+                    });
                 }
-                case '?': {
-                    const prefix = values.length === 0 ? '?' : '';
-                    values.push(`${prefix}${variable}=${encodeURIComponent(value)}`);
-                    break;
-                }
-                case '&':
-                    values.push(`&${variable}=${encodeURIComponent(value)}`);
-                    break;
-                default:
-                    values.push(encodeURIComponent(value));
             }
+            // concatenate values in layer 3
+            const separator = operator === "?" ? '&' : ",";
+            layer2Values.push(layer3Values.join(separator));
         }
+        // concatenate values in layer 2
         let separator = ',';
         if (operator === "?") {
             separator = "&";
@@ -245,6 +242,42 @@ export function expandUriTemplate(template: string, context: Record<string, any>
         } else if (operator) {
             separator = "";
         }
-        return values.join(separator);
+        return layer2Values.join(separator);
     });
+}
+
+function getValueEntry(operator: string | undefined, value: string | number | boolean, variable: string, layer2Values: string[], layer3Values: string[]) {
+    switch (operator) {
+        case '+':
+            layer3Values.push(encodeReserved(value));
+            break;
+        case '#': {
+            const prefix = layer2Values.length === 0 && layer3Values.length === 0 ? '#' : '';
+            layer3Values.push(`${prefix}${encodeReserved(value)}`);
+            break;
+        }
+        case '.':
+            layer3Values.push(`.${encodeURIComponent(value)}`);
+            break;
+        case '/': {
+            layer3Values.push(`/${encodeReserved(value)}`);
+            break;
+        }
+        case ';': {
+            const ret = encodeURIComponent(value);
+            const suffix = !ret ? '' : `=${ret}`;
+            layer3Values.push(`;${variable}${suffix}`);
+            break;
+        }
+        case '?': {
+            const prefix = layer2Values.length === 0 && layer3Values.length === 0 ? '?' : '';
+            layer3Values.push(`${prefix}${variable}=${encodeURIComponent(value)}`);
+            break;
+        }
+        case '&':
+            layer3Values.push(`&${variable}=${encodeURIComponent(value)}`);
+            break;
+        default:
+            layer3Values.push(encodeURIComponent(value));
+    }
 }
