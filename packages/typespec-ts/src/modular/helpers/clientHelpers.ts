@@ -159,7 +159,12 @@ export function buildGetClientEndpointParam(
       onClientOnly: true
     }).find((x) => x.kind === "endpoint" || x.kind === "path");
     if (endpointParam) {
-      return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+      if (dpgContext.rlcOptions?.flavor === "azure") {
+        return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+      } else {
+        // unbranded does not have the deprecated baseUrl parameter
+        return `options.endpoint ?? String(${getClientParameterName(endpointParam)})`;
+      }
     }
   }
 
