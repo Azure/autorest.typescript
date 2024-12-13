@@ -642,32 +642,32 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       visitType(context, type.additionalProperties);
     }
     for (const property of type.properties) {
-      if (!emitQueue.has(property.type as any)) {
+      if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
-        if (!emitQueue.has(subType as any)) {
+        if (!emitQueue.has(subType)) {
           visitType(context, subType);
         }
       }
     }
   }
   if (type.kind === "array") {
-    if (!emitQueue.has(type.valueType as any)) {
+    if (!emitQueue.has(type.valueType)) {
       visitType(context, type.valueType);
     }
   }
   if (type.kind === "dict") {
-    if (!emitQueue.has(type.valueType as any)) {
+    if (!emitQueue.has(type.valueType)) {
       visitType(context, type.valueType);
     }
   }
   if (type.kind === "union") {
     emitQueue.add(type);
     for (const value of type.variantTypes) {
-      if (!emitQueue.has(value as any)) {
+      if (!emitQueue.has(value)) {
         visitType(context, value);
       }
     }

@@ -238,7 +238,7 @@ function getOperationSignatureParameters(
             param.correspondingMethodParams.length === 1 &&
             param.correspondingMethodParams[0] === p
           );
-        })[0]?.kind as any) !== "cookie" &&
+        })[0]?.kind) !== "cookie" &&
         p.clientDefaultValue === undefined &&
         !p.optional
     )

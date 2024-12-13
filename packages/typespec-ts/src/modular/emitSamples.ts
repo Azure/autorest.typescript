@@ -244,7 +244,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
   example.parameters.forEach(
     (param) =>
       (parameterMap[
-        (param.parameter as any).serializedName ?? param.parameter.name
+        param.parameter.serializedName ?? param.parameter.name
       ] = param)
   );
   return parameterMap;
