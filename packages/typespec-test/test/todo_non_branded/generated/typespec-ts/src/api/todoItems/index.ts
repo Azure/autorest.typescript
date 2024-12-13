@@ -2,7 +2,8 @@
 
 import {
   TodoContext as Client,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsListOptionalParams,
@@ -15,7 +16,10 @@ import {
   TodoLabels,
   todoLabelsSerializer,
   todoAttachmentSerializer,
-  _createResponseDeserializer,
+  _createJsonResponseDeserializer,
+  ToDoItemMultipartRequest,
+  toDoItemMultipartRequestSerializer,
+  _createFormResponseDeserializer,
   _getResponseDeserializer,
   TodoItemPatch,
   todoItemPatchSerializer,
@@ -59,10 +63,10 @@ export async function list(
   return _listDeserialize(result);
 }
 
-export function _createSend(
+export function _createJsonSend(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context.path("/items").post({
     ...operationOptionsToRequestParameters(options),
@@ -87,7 +91,7 @@ export function _createSend(
   });
 }
 
-export async function _createDeserialize(
+export async function _createJsonDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
   id: number;
@@ -106,13 +110,13 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return _createResponseDeserializer(result.body);
+  return _createJsonResponseDeserializer(result.body);
 }
 
-export async function create(
+export async function createJson(
   context: Client,
   item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
 ): Promise<{
   id: number;
   title: string;
@@ -125,8 +129,64 @@ export async function create(
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
-  const result = await _createSend(context, item, options);
-  return _createDeserialize(result);
+  const result = await _createJsonSend(context, item, options);
+  return _createJsonDeserialize(result);
+}
+
+export function _createFormSend(
+  context: Client,
+  body: ToDoItemMultipartRequest,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/items")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
+      body: toDoItemMultipartRequestSerializer(body),
+    });
+}
+
+export async function _createFormDeserialize(
+  result: PathUncheckedResponse,
+): Promise<{
+  id: number;
+  title: string;
+  createdBy: number;
+  assignedTo?: number;
+  description?: string;
+  status: "NotStarted" | "InProgress" | "Completed";
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date;
+  labels?: TodoLabels;
+}> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _createFormResponseDeserializer(result.body);
+}
+
+export async function createForm(
+  context: Client,
+  body: ToDoItemMultipartRequest,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
+): Promise<{
+  id: number;
+  title: string;
+  createdBy: number;
+  assignedTo?: number;
+  description?: string;
+  status: "NotStarted" | "InProgress" | "Completed";
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date;
+  labels?: TodoLabels;
+}> {
+  const result = await _createFormSend(context, body, options);
+  return _createFormDeserialize(result);
 }
 
 export function _getSend(

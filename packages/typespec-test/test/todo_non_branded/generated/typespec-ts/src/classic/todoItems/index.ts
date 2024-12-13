@@ -2,7 +2,8 @@
 
 import {
   TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsCreateFormOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
@@ -10,7 +11,8 @@ import {
 import { TodoContext } from "../../api/todoContext.js";
 import {
   list,
-  create,
+  createJson,
+  createForm,
   get,
   update,
   $delete,
@@ -19,6 +21,7 @@ import {
   TodoPage,
   TodoItem,
   TodoLabels,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
 } from "../../models/models.js";
 import {
@@ -29,9 +32,24 @@ import {
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
   list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
-  create: (
+  createJson: (
     item: TodoItem,
-    options?: TodoItemsCreateOptionalParams,
+    options?: TodoItemsCreateJsonOptionalParams,
+  ) => Promise<{
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: Date;
+    updatedAt: Date;
+    completedAt?: Date;
+    labels?: TodoLabels;
+  }>;
+  createForm: (
+    body: ToDoItemMultipartRequest,
+    options?: TodoItemsCreateFormOptionalParams,
   ) => Promise<{
     id: number;
     title: string;
@@ -90,8 +108,12 @@ export interface TodoItemsOperations {
 export function getTodoItems(context: TodoContext) {
   return {
     list: (options?: TodoItemsListOptionalParams) => list(context, options),
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) =>
-      create(context, item, options),
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
+      createJson(context, item, options),
+    createForm: (
+      body: ToDoItemMultipartRequest,
+      options?: TodoItemsCreateFormOptionalParams,
+    ) => createForm(context, body, options),
     get: (id: number, options?: TodoItemsGetOptionalParams) =>
       get(context, id, options),
     update: (

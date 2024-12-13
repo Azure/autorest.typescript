@@ -9,6 +9,7 @@ export {
   TodoFileAttachment,
   TodoUrlAttachment,
   TodoAttachment,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
   PageTodoAttachment,
   User,
@@ -16,12 +17,14 @@ export {
 export {
   UsersCreateOptionalParams,
   TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsCreateFormOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoClientOptionalParams,
 } from "./api/index.js";
 export {

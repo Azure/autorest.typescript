@@ -3,12 +3,14 @@
 export {
   UsersCreateOptionalParams,
   TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsCreateFormOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
 } from "./options.js";
 export {
   createTodo,

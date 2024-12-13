@@ -8,6 +8,7 @@ export {
   TodoFileAttachment,
   TodoUrlAttachment,
   TodoAttachment,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
   PageTodoAttachment,
   User,

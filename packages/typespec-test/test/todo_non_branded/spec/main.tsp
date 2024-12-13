@@ -79,6 +79,11 @@ model TodoItem {
   @visibility("create") _dummy?: string;
 }
 
+model ToDoItemMultipartRequest {
+  item: HttpPart<TodoItem>;
+  attachments?: HttpPart<TodoAttachment[]>;
+}
+
 @jsonSchema
 union TodoLabels {
   string,
@@ -110,17 +115,7 @@ model TodoUrlAttachment {
 }
 
 @jsonSchema
-model TodoFileAttachment {
-  /** The file name of the attachment */
-  @maxLength(255)
-  filename: string;
-
-  /** The media type of the attachment */
-  mediaType: string;
-
-  /** The contents of the file */
-  contents: bytes;
-}
+model TodoFileAttachment is File;
 
 @jsonSchema
 @error
@@ -250,11 +245,19 @@ namespace TodoItems {
 
   @list op list(...PaginationControls): WithStandardErrors<TodoPage>;
 
+  @sharedRoute
   @post
-  op create(
+  op createJson(
     @header contentType: "application/json",
     item: TodoItem,
     attachments?: TodoAttachment[],
+  ): WithStandardErrors<TodoItem | InvalidTodoItem>;
+
+  @sharedRoute
+  @post
+  op createForm(
+    @header contentType: "multipart/form-data",
+    @body body: ToDoItemMultipartRequest,
   ): WithStandardErrors<TodoItem | InvalidTodoItem>;
 
   @get op get(@path id: TodoItem.id): TodoItem | NotFoundErrorResponse;
@@ -275,9 +278,18 @@ namespace TodoItems {
 
     @sharedRoute
     @post
-    op createAttachment(
+    op createUrlAttachment(
+      @header contentType: "application/json",
       @path itemId: TodoItem.id,
-      @body contents: TodoAttachment,
-    ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
+      @body contents: TodoUrlAttachment,
+    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
+
+   @sharedRoute
+    @post
+    op createFileAttachment(
+      @header contentType: "multipart/form-data",
+      @path itemId: TodoItem.id,
+      @body contents: TodoFileAttachment,
+    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
   }
 }

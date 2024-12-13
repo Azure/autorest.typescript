@@ -51,7 +51,7 @@
         }
       },
       "post": {
-        "operationId": "TodoItems_create",
+        "operationId": "TodoItems_createJson_TodoItems_createForm",
         "parameters": [],
         "responses": {
           "200": {
@@ -115,6 +115,11 @@
                 "required": [
                   "item"
                 ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ToDoItemMultipartRequestMultiPart"
               }
             }
           }
@@ -317,7 +322,7 @@
         }
       },
       "post": {
-        "operationId": "Attachments_createAttachment",
+        "operationId": "Attachments_createUrlAttachment_Attachments_createFileAttachment",
         "parameters": [
           {
             "name": "itemId",
@@ -335,14 +340,7 @@
             "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
-                }
-              }
-            }
+            "description": "The server cannot find the requested resource."
           },
           "4XX": {
             "description": "Something is wrong with you.",
@@ -370,7 +368,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TodoAttachment"
+                "$ref": "#/components/schemas/TodoUrlAttachment"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoFileAttachmentMultiPart"
               }
             }
           }
@@ -521,6 +524,20 @@
         ],
         "description": "Something is wrong with me."
       },
+      "ToDoItemMultipartRequestMultiPart": {
+        "type": "object",
+        "required": [
+          "item"
+        ],
+        "properties": {
+          "item": {
+            "type": "object"
+          },
+          "attachments": {
+            "type": "object"
+          }
+        }
+      },
       "TodoAttachment": {
         "anyOf": [
           {
@@ -534,24 +551,36 @@
       "TodoFileAttachment": {
         "type": "object",
         "required": [
-          "filename",
-          "mediaType",
           "contents"
         ],
         "properties": {
-          "filename": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "The file name of the attachment"
+          "contentType": {
+            "type": "string"
           },
-          "mediaType": {
-            "type": "string",
-            "description": "The media type of the attachment"
+          "filename": {
+            "type": "string"
           },
           "contents": {
             "type": "string",
-            "format": "byte",
-            "description": "The contents of the file"
+            "format": "byte"
+          }
+        }
+      },
+      "TodoFileAttachmentMultiPart": {
+        "type": "object",
+        "required": [
+          "contents"
+        ],
+        "properties": {
+          "contentType": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "contents": {
+            "type": "string",
+            "format": "binary"
           }
         }
       },
