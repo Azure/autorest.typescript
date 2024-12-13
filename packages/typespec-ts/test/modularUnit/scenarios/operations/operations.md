@@ -181,7 +181,11 @@ export function _readSend(
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
       options?.nullableDateHeader !== null
-        ? { "nullable-date-header": options?.nullableDateHeader }
+        ? {
+            "nullable-date-header": !options?.nullableDateHeader
+              ? options?.nullableDateHeader
+              : options?.nullableDateHeader.toUTCString(),
+          }
         : {}),
       contentType: "application/json",
     },

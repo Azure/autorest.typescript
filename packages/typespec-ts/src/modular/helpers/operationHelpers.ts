@@ -233,12 +233,12 @@ function getOperationSignatureParameters(
       (p) =>
         p.onClient === false &&
         p.type.kind !== "constant" &&
-        (operation.operation.parameters.filter((param) => {
+        operation.operation.parameters.filter((param) => {
           return (
             param.correspondingMethodParams.length === 1 &&
             param.correspondingMethodParams[0] === p
           );
-        })[0]?.kind) !== "cookie" &&
+        })[0]?.kind !== "cookie" &&
         p.clientDefaultValue === undefined &&
         !p.optional
     )
@@ -661,6 +661,9 @@ export function getParameterMap(
   context: SdkContext,
   param: SdkServiceParameter
 ): string {
+  if (param.name === "nullableDateHeader") {
+    param;
+  }
   if (isConstant(param.type)) {
     return `"${param.name}": ${getConstantValue(param.type)}`;
   }
@@ -1091,6 +1094,14 @@ export function serializeRequestValue(
       }
     case "model": // this is to build serialization logic for spread model types
       return `{${getRequestModelMapping(context, type, "").propertiesStr.join(",")}}`;
+    case "nullable":
+      return serializeRequestValue(
+        context,
+        type.type,
+        clientValue,
+        false,
+        getEncodeForType(type.type)
+      );
     default:
       if (clientValue === "constructorParam") {
         return `${clientValue} as any`;
@@ -1170,6 +1181,13 @@ export function deserializeResponseValue(
       }
     case "model": // generate deserialize logic for spread model types
       return `{${getResponseMapping(context, type, "").join(",")}}`;
+    case "nullable":
+      return deserializeResponseValue(
+        context,
+        type.type,
+        restValue,
+        getEncodeForType(type.type)
+      );
     default:
       return restValue;
   }
