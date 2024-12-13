@@ -66,7 +66,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "Content-Type": contentType },
+      contentType: contentType,
       body: body,
     });
 }
@@ -515,7 +515,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "test-header": testHeader, contentType: "application/json" },
+      headers: { "test-header": testHeader },
       body: body,
     });
 }
@@ -599,7 +599,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "test-header": testHeader, contentType: "application/json" },
+      headers: { "test-header": testHeader },
       body: body,
     });
 }

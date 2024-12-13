@@ -553,7 +553,7 @@ function getRequestParameters(
 
   let paramStr = "";
 
-  if (contentTypeParameter) {
+  if (contentTypeParameter && !isConstant(contentTypeParameter.type)) {
     paramStr = `${getContentTypeValue(contentTypeParameter)},`;
   }
 
@@ -714,7 +714,10 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
-  return param.kind === "header" && param.name.toLowerCase() === "content-type";
+  return (
+    param.kind === "header" &&
+    param.serializedName.toLowerCase() === "content-type"
+  );
 }
 
 function getContentTypeValue(param: SdkServiceParameter) {
@@ -1257,7 +1260,9 @@ export function getPropertyFullName(
   propertyPath?: string
 ) {
   let fullName = `${modularType.name}`;
-  if (propertyPath) {
+  if (propertyPath === "" && modularType.optional) {
+    fullName = `options.${modularType.name}`;
+  } else if (propertyPath) {
     fullName = `${propertyPath}["${modularType.name}"]`;
   }
   return fullName;

@@ -187,7 +187,6 @@ export function _readSend(
               : options?.nullableDateHeader.toUTCString(),
           }
         : {}),
-      contentType: "application/json",
     },
     body: { prop1: prop1, prop2: prop2 },
   });
@@ -321,11 +320,6 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        ...(options?.contentType !== undefined
-          ? { contentType: "application/json" }
-          : {}),
-      },
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -385,7 +379,6 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       body: barArraySerializer(bars),
     });
 }
@@ -509,12 +502,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        ...(options?.contentType !== undefined
-          ? { contentType: "application/json" }
-          : {}),
-        accept: "application/json",
-      },
+      headers: { accept: "application/json" },
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -580,7 +568,6 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       body: fooSerializer(body),
     });
 }

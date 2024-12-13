@@ -64,7 +64,6 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
@@ -188,14 +187,13 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
         prop2: prop2,
-        prop3: prop3?.toISOString(),
+        prop3: options.prop3?.toISOString(),
         prop4: prop4,
-        prop5: !prop5 ? prop5 : barSerializer(prop5),
+        prop5: !options.prop5 ? options.prop5 : barSerializer(options.prop5),
       },
     });
 }
@@ -310,12 +308,11 @@ export function _readSend(
     .path("/{pathParam}/{prop1}", pathParam, prop1)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
-        prop3: prop3?.toISOString(),
-        prop5: !prop5 ? prop5 : barSerializer(prop5),
+        prop3: options.prop3?.toISOString(),
+        prop5: !options.prop5 ? options.prop5 : barSerializer(options.prop5),
       },
     });
 }
@@ -440,7 +437,6 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
       body: fooSerializer(body),
     });
@@ -511,7 +507,6 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(body),
     });
@@ -599,7 +594,6 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(test),
     });
@@ -680,7 +674,6 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       body: testSerializer(body),
     });
 }
@@ -759,7 +752,6 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json" },
       body: testSerializer(body),
     });
 }
