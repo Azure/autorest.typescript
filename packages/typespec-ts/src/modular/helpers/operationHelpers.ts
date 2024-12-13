@@ -1261,7 +1261,7 @@ export function getPropertyFullName(
 ) {
   let fullName = `${modularType.name}`;
   if (propertyPath === "" && modularType.optional) {
-    fullName = `options.${modularType.name}`;
+    fullName = `options?.${modularType.name}`;
   } else if (propertyPath) {
     fullName = `${propertyPath}["${modularType.name}"]`;
   }
