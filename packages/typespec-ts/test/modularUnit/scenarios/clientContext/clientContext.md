@@ -66,13 +66,18 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: ClientType;
+  clientParam?: ClientType;
 }
 
 export function createService(
   endpointParam: string,
   options: ServiceClientOptionalParams = {},
 ): ServiceContext {
+  const clientParam = options.clientParam ?? "default";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -82,11 +87,7 @@ export function createService(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -165,12 +166,18 @@ export interface ServiceContext extends Client {}
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
-  client?: ClientType;
+  clientParam?: ClientType;
 }
 
 export function createService(
   options: ServiceClientOptionalParams = {},
 ): ServiceContext {
+  const endpointParam = options.endpointParam ?? "http://localhost:3000";
+  const clientParam = options.clientParam ?? "default";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -180,11 +187,7 @@ export function createService(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(

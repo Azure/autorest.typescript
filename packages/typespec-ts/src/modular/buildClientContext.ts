@@ -97,7 +97,7 @@ export function buildClientContext(
       .filter((p) => p.name !== "endpoint")
       .map((p) => {
         return {
-          name: normalizeName(p.name, NameType.Parameter),
+          name: getClientParameterName(p),
           type:
             p.name.toLowerCase() === "apiversion"
               ? "string"

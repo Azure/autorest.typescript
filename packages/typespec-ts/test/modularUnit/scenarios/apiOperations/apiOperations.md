@@ -663,7 +663,6 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -673,7 +672,11 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  const clientContext = getClient(
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
+    undefined,
+    updatedOptions,
+  );
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -800,7 +803,6 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -810,7 +812,11 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  const clientContext = getClient(
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
+    undefined,
+    updatedOptions,
+  );
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -961,7 +967,6 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -971,7 +976,11 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  const clientContext = getClient(
+    options.endpoint ?? options.baseUrl ?? String(endpointParam),
+    undefined,
+    updatedOptions,
+  );
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(

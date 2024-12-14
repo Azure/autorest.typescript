@@ -26,6 +26,7 @@ interface ClientParameterOptions {
   requiredOnly?: boolean;
   optionalOnly?: boolean;
   skipArmSpecific?: boolean;
+  skipEndpointTemplate?: boolean;
 }
 
 export function getClientParameters(
@@ -35,7 +36,8 @@ export function getClientParameters(
     requiredOnly: false,
     onClientOnly: false,
     optionalOnly: false,
-    skipArmSpecific: false
+    skipArmSpecific: false,
+    skipEndpointTemplate: false
   }
 ) {
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
@@ -44,7 +46,11 @@ export function getClientParameters(
       property.type.kind === "union" &&
       property.type.variantTypes[0]?.kind === "endpoint"
     ) {
-      clientParams.push(...property.type.variantTypes[0].templateArguments);
+      if (options.skipEndpointTemplate) {
+        clientParams.push(property);
+      } else {
+        clientParams.push(...property.type.variantTypes[0].templateArguments);
+      }
     } else if (property.type.kind === "endpoint") {
       clientParams.push(property);
     } else if (!clientParams.find((p) => p.name === property.name)) {
@@ -162,34 +168,18 @@ export function buildGetClientEndpointParam(
   }
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
-    onClientOnly: true
+    onClientOnly: true,
+    skipEndpointTemplate: true
   }).find((x) => x.kind === "endpoint" || x.kind === "path");
   if (endpointParam) {
-    if (endpointParam.type.kind === "endpoint") {
-      let parameterizedEndpointUrl = endpointParam.type.serverUrl;
-      for (const templateParam of endpointParam.type.templateArguments) {
-        parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
-          `{${templateParam.name}}`,
-          `\${${getClientParameterName(templateParam)}}`
-        );
-      }
-      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
-      context.addStatements(endpointUrl);
-      return "endpointUrl";
-    }
-    return `${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
-  }
-  const urlParams = getClientParameters(client, dpgContext, {
-    skipArmSpecific: true
-  }).filter((x) => x.kind === "endpoint" || x.kind === "path");
-
-  for (const param of urlParams) {
     if (
-      param.kind === "endpoint" &&
-      param.type.kind === "endpoint" &&
-      param.type.templateArguments.length > 1
+      endpointParam.type.kind === "union" &&
+      endpointParam.type.variantTypes[0]?.kind === "endpoint"
     ) {
-      for (const templateParam of param.type.templateArguments) {
+      const params = endpointParam.type.variantTypes[0].templateArguments;
+      let parameterizedEndpointUrl =
+        endpointParam.type.variantTypes[0].serverUrl;
+      for (const templateParam of params) {
         const paramName = getClientParameterName(templateParam);
         if (templateParam.clientDefaultValue) {
           const defaultValue =
@@ -202,17 +192,16 @@ export function buildGetClientEndpointParam(
         } else if (templateParam.optional) {
           context.addStatements(`const ${paramName} = options.${paramName};`);
         }
+        parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
+          `{${templateParam.name}}`,
+          `\${${getClientParameterName(templateParam)}}`
+        );
       }
-      return "endpointParam";
-    } else if (
-      param.kind === "endpoint" &&
-      param.type.kind === "endpoint" &&
-      param.type.templateArguments.length === 1
-    ) {
-      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${param.type.templateArguments[0]?.clientDefaultValue}\`;`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
+    return `${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
   }
 
   return "endpointUrl";
