@@ -280,6 +280,7 @@ export function _createStreamingSend(
     .path("/createStreaming")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       body: { stream: stream },
     });
 }
@@ -377,6 +378,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -509,6 +511,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -588,6 +591,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -664,6 +668,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -731,6 +736,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -799,6 +805,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -870,6 +877,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -958,6 +966,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -1047,6 +1056,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -1136,6 +1146,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -2144,6 +2155,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { "test-header": testHeader },
       body: body,
     });

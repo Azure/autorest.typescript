@@ -553,7 +553,7 @@ function getRequestParameters(
 
   let paramStr = "";
 
-  if (contentTypeParameter && !isConstant(contentTypeParameter.type)) {
+  if (contentTypeParameter) {
     paramStr = `${getContentTypeValue(contentTypeParameter)},`;
   }
 
@@ -722,7 +722,9 @@ function isContentType(param: SdkServiceParameter): boolean {
 
 function getContentTypeValue(param: SdkServiceParameter) {
   const defaultValue = param.clientDefaultValue;
-
+  if (isConstant(param.type)) {
+    return `contentType: options.${param.name} as any ?? ${getConstantValue(param.type)}`;
+  }
   if (defaultValue) {
     return `contentType: options.${param.name} as any ?? "${defaultValue}"`;
   } else {

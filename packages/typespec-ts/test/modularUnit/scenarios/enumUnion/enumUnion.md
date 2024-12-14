@@ -515,6 +515,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { "test-header": testHeader },
       body: body,
     });
@@ -599,6 +600,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { "test-header": testHeader },
       body: body,
     });

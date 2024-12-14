@@ -30,7 +30,11 @@ export function _uploadFileViaBodySend(
 ): StreamableMethod {
   return context
     .path("/uploadFileViaBody")
-    .post({ ...operationOptionsToRequestParameters(options), body: body });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/octet-stream",
+      body: body,
+    });
 }
 
 export async function _uploadFileViaBodyDeserialize(
@@ -87,7 +91,11 @@ export function _uploadFileViaBodySend(
 ): StreamableMethod {
   return context
     .path("/uploadFileViaBody")
-    .post({ ...operationOptionsToRequestParameters(options), body: body });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "application/octet-stream",
+      body: body,
+    });
 }
 
 export async function _uploadFileViaBodyDeserialize(
@@ -171,6 +179,7 @@ export function _uploadFileSend(
     .path("/uploadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
       body: _uploadFileRequestSerializer(body),
     });
 }
@@ -257,6 +266,7 @@ export function _uploadFilesSend(
     .path("/uploadFiles")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
       body: _uploadFilesRequestSerializer(body),
     });
 }
