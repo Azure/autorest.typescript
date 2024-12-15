@@ -18,12 +18,12 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
 export function createSchemaRegistry(
-  fullyQualifiedNamespace: string,
+  endpointParam: string,
   credential: TokenCredential,
   options: SchemaRegistryClientOptionalParams = {},
 ): SchemaRegistryContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-schema-registry/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

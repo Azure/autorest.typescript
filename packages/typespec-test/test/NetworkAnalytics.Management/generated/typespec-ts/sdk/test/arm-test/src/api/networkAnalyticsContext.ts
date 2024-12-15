@@ -24,7 +24,7 @@ export function createNetworkAnalytics(
   options: NetworkAnalyticsClientOptionalParams = {},
 ): NetworkAnalyticsContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
+    options.endpoint ?? options.baseUrl ?? "https://management.azure.com";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-arm-networkanalytics/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

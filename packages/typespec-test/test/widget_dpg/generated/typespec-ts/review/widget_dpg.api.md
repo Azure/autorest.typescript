@@ -21,7 +21,6 @@ export interface AnalyzeResult {
 
 // @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
@@ -29,11 +28,6 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 export interface BudgetsOperations {
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
 }
-
-// @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
 
 // @public
 export enum KnownVersions {
@@ -44,18 +38,6 @@ export enum KnownVersions {
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
-}
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
 }
 
 // @public
@@ -88,7 +70,6 @@ export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 
 // @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
@@ -143,6 +124,8 @@ export interface WidgetsOperations {
     listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
     // (undocumented)
     listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     updateWidget: (id: string, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;

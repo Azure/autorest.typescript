@@ -1,12 +1,11 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import {
   Client,
   createRestError,
   PathUncheckedResponse,
-} from "@azure-rest/core-client";
-import { RestError } from "@azure/core-rest-pipeline";
+} from "@typespec/ts-http-runtime";
+import { RestError } from "@typespec/ts-http-runtime";
 
 /**
  * Options for the byPage method

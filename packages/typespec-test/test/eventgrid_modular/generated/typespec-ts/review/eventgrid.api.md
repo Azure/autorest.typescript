@@ -11,7 +11,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -48,15 +47,15 @@ export interface CloudEvent {
 // @public (undocumented)
 export class EventGridClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptionalParams);
-    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
+    AcknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: {
+    PublishCloudEvent(topicName: string, event: {
         event: CloudEvent;
     }, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
-    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
-    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
-    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
-    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
+    PublishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
+    ReceiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
+    RejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
+    ReleaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 }
 
 // @public
@@ -79,12 +78,10 @@ export enum KnownServiceApiVersions {
 
 // @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -110,7 +107,6 @@ export interface ReceiveResult {
 
 // @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -126,7 +122,6 @@ export interface RejectResult {
 
 // @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

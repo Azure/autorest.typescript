@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 export {
-  FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
 } from "./options.js";
 export {
   createWidgetManager,

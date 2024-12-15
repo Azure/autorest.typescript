@@ -396,7 +396,7 @@ export interface RadiologyCodeWithTypes {
 // @public (undocumented)
 export class RadiologyInsightsClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: RadiologyInsightsClientOptionalParams);
-    inferRadiologyInsights(patients: PatientRecord[], options?: InferRadiologyInsightsOptionalParams): PollerLike<OperationState<RadiologyInsightsInferenceResult>, RadiologyInsightsInferenceResult>;
+    InferRadiologyInsights(patients: PatientRecord[], options?: InferRadiologyInsightsOptionalParams): PollerLike<OperationState<RadiologyInsightsInferenceResult>, RadiologyInsightsInferenceResult>;
     readonly pipeline: Pipeline;
 }
 

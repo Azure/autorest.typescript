@@ -17,6 +17,8 @@ export function createChatProtocol(
   credential: KeyCredential | TokenCredential,
   options: ChatProtocolClientOptionalParams = {},
 ): ChatProtocolContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-chat-protocol/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -27,17 +29,11 @@ export function createChatProtocol(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        `${options.endpoint ?? options.baseUrl ?? String(endpointParam)}/.default`,
-      ],
+      scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`],
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    credential,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(

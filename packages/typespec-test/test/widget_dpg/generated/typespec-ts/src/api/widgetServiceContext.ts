@@ -20,6 +20,8 @@ export function createWidgetService(
   credential: KeyCredential,
   options: WidgetServiceClientOptionalParams = {},
 ): WidgetServiceContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-widget_dpg/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -30,11 +32,7 @@ export function createWidgetService(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
 
   if (isKeyCredential(credential)) {
     clientContext.pipeline.addPolicy({

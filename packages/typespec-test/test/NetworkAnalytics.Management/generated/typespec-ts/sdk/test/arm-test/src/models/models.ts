@@ -13,7 +13,6 @@ export function dataProductSerializer(item: DataProduct): any {
   return {
     tags: item["tags"],
     location: item["location"],
-    name: item["name"],
     properties: !item["properties"]
       ? item["properties"]
       : dataProductPropertiesSerializer(item["properties"]),
@@ -926,7 +925,6 @@ export interface DataType extends ProxyResource {
 
 export function dataTypeSerializer(item: DataType): any {
   return {
-    name: item["name"],
     properties: !item["properties"]
       ? item["properties"]
       : dataTypePropertiesSerializer(item["properties"]),

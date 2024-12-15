@@ -27,6 +27,8 @@ export function _createSend(
     .path("/embeddings")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: createEmbeddingRequestSerializer(embedding),
     });
 }

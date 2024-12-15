@@ -160,7 +160,8 @@ export function _listRolesAssignmentsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: _listRolesAssignmentsRequestSerializer(body),
     });
 }
@@ -212,7 +213,8 @@ export function _removeUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: roleAssignmentDetailSerializer(body),
     });
 }
@@ -262,7 +264,8 @@ export function _addUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: roleAssignmentCommonPropertiesSerializer(body),
     });
 }
@@ -312,7 +315,8 @@ export function _rotateKeySend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: keyVaultInfoSerializer(body),
     });
 }
@@ -364,7 +368,8 @@ export function _generateStorageAccountSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: accountSasSerializer(body),
     });
 }
@@ -472,7 +477,8 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: dataProductUpdateSerializer(properties),
     });
 }
@@ -573,7 +579,8 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: dataProductSerializer(resource),
     });
 }

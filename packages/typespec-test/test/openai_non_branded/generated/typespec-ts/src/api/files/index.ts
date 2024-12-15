@@ -25,96 +25,37 @@ import {
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 
-export function _listSend(
+export function _downloadSend(
   context: Client,
-  options: FilesListOptionalParams = { requestOptions: {} },
+  fileId: string,
+  options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/files")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ListFilesResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return listFilesResponseDeserializer(result.body);
-}
-
-export async function list(
-  context: Client,
-  options: FilesListOptionalParams = { requestOptions: {} },
-): Promise<ListFilesResponse> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
-}
-
-export function _createSend(
-  context: Client,
-  file: CreateFileRequest,
-  options: FilesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/files")
-    .post({
+    .path("/files/files/{file_id}/content", fileId)
+    .get({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: createFileRequestSerializer(file),
+      headers: { accept: "application/json" },
     });
 }
 
-export async function _createDeserialize(
+export async function _downloadDeserialize(
   result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return openAIFileDeserializer(result.body);
+  return result.body;
 }
 
-export async function create(
-  context: Client,
-  file: CreateFileRequest,
-  options: FilesCreateOptionalParams = { requestOptions: {} },
-): Promise<OpenAIFile> {
-  const result = await _createSend(context, file, options);
-  return _createDeserialize(result);
-}
-
-export function _retrieveSend(
+export async function download(
   context: Client,
   fileId: string,
-  options: FilesRetrieveOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/files/files/{file_id}", fileId)
-    .post({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _retrieveDeserialize(
-  result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return openAIFileDeserializer(result.body);
-}
-
-export async function retrieve(
-  context: Client,
-  fileId: string,
-  options: FilesRetrieveOptionalParams = { requestOptions: {} },
-): Promise<OpenAIFile> {
-  const result = await _retrieveSend(context, fileId, options);
-  return _retrieveDeserialize(result);
+  options: FilesDownloadOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _downloadSend(context, fileId, options);
+  return _downloadDeserialize(result);
 }
 
 export function _$deleteSend(
@@ -124,7 +65,10 @@ export function _$deleteSend(
 ): StreamableMethod {
   return context
     .path("/files/files/{file_id}", fileId)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _$deleteDeserialize(
@@ -152,32 +96,101 @@ export async function $delete(
   return _$deleteDeserialize(result);
 }
 
-export function _downloadSend(
+export function _retrieveSend(
   context: Client,
   fileId: string,
-  options: FilesDownloadOptionalParams = { requestOptions: {} },
+  options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/files/files/{file_id}/content", fileId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path("/files/files/{file_id}", fileId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
-export async function _downloadDeserialize(
+export async function _retrieveDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return openAIFileDeserializer(result.body);
 }
 
-export async function download(
+export async function retrieve(
   context: Client,
   fileId: string,
-  options: FilesDownloadOptionalParams = { requestOptions: {} },
-): Promise<string> {
-  const result = await _downloadSend(context, fileId, options);
-  return _downloadDeserialize(result);
+  options: FilesRetrieveOptionalParams = { requestOptions: {} },
+): Promise<OpenAIFile> {
+  const result = await _retrieveSend(context, fileId, options);
+  return _retrieveDeserialize(result);
+}
+
+export function _createSend(
+  context: Client,
+  file: CreateFileRequest,
+  options: FilesCreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/files")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "multipart/form-data",
+      headers: { accept: "application/json" },
+      body: createFileRequestSerializer(file),
+    });
+}
+
+export async function _createDeserialize(
+  result: PathUncheckedResponse,
+): Promise<OpenAIFile> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return openAIFileDeserializer(result.body);
+}
+
+export async function create(
+  context: Client,
+  file: CreateFileRequest,
+  options: FilesCreateOptionalParams = { requestOptions: {} },
+): Promise<OpenAIFile> {
+  const result = await _createSend(context, file, options);
+  return _createDeserialize(result);
+}
+
+export function _listSend(
+  context: Client,
+  options: FilesListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/files")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ListFilesResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return listFilesResponseDeserializer(result.body);
+}
+
+export async function list(
+  context: Client,
+  options: FilesListOptionalParams = { requestOptions: {} },
+): Promise<ListFilesResponse> {
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
 }

@@ -25,7 +25,8 @@ export function _createOrReplaceSend(
     .path("/budgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: userSerializer(resource),
     });
 }
@@ -33,7 +34,7 @@ export function _createOrReplaceSend(
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
 ): Promise<User> {
-  const expectedStatuses = ["200", "201"];
+  const expectedStatuses = ["201", "200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -51,7 +52,7 @@ export function createOrReplace(
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
-    ["200", "201"],
+    ["201", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,

@@ -19,10 +19,10 @@ export {
 } from "./models/index.js";
 export {
   EventGridClientOptionalParams,
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
   RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
 } from "./api/index.js";

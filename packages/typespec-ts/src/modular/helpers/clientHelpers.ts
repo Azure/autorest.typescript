@@ -52,7 +52,9 @@ export function getClientParameters(
         clientParams.push(...property.type.variantTypes[0].templateArguments);
       }
     } else if (property.type.kind === "endpoint") {
-      clientParams.push(property);
+      if (!property.isGeneratedName || options.skipEndpointTemplate) {
+        clientParams.push(property);
+      }
     } else if (!clientParams.find((p) => p.name === property.name)) {
       clientParams.push(property);
     }
@@ -214,7 +216,9 @@ export function buildGetClientEndpointParam(
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
-    return `${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
+    const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
+    context.addStatements(endpointUrl);
+    return "endpointUrl";
   }
 
   return "endpointUrl";

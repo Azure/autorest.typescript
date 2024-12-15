@@ -27,7 +27,8 @@ export function _createSend(
     .path("/audio/transcriptions")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
+      headers: { accept: "application/json" },
       body: createTranscriptionRequestSerializer(audio),
     });
 }

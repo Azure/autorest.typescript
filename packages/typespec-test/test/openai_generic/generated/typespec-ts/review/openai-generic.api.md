@@ -19,8 +19,6 @@ export interface AudioOperations {
 
 // @public
 export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -31,8 +29,6 @@ export interface AudioTranscriptionsOperations {
 
 // @public
 export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -413,8 +409,6 @@ export interface EmbeddingsOperations {
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -607,8 +601,6 @@ export interface Image {
 
 // @public
 export interface ImagesCreateEditOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -617,8 +609,6 @@ export interface ImagesCreateOptionalParams extends OperationOptions {
 
 // @public
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public

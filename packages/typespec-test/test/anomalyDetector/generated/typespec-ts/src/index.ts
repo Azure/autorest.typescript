@@ -43,16 +43,16 @@ export {
 } from "./models/index.js";
 export {
   AnomalyDetectorClientOptionalParams,
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
 } from "./api/index.js";
 export {
   MultivariateOperations,

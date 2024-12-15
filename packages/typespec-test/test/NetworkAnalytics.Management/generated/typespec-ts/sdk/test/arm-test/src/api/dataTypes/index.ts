@@ -110,7 +110,8 @@ export function _generateStorageContainerSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: containerSaSSerializer(body),
     });
 }
@@ -166,7 +167,8 @@ export function _deleteDataSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: _deleteDataRequestSerializer(body),
     });
 }
@@ -295,7 +297,8 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: dataTypeUpdateSerializer(properties),
     });
 }
@@ -404,7 +407,8 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      headers: { contentType: "application/json", accept: "application/json" },
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: dataTypeSerializer(resource),
     });
 }
