@@ -216,11 +216,11 @@ export function buildGetClientEndpointParam(
           : clientDefaultValue
             ? clientDefaultValue
             : `String(${getClientParameterName(endpointParam)})`;
-      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr}`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
-    const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)})`;
+    const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
     context.addStatements(endpointUrl);
     return "endpointUrl";
   }

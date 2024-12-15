@@ -23,7 +23,7 @@ mustEmptyDiagnostic: false
 Should normal path parameter:
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

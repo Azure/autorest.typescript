@@ -16,7 +16,7 @@ op template(param: string): void;
 Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

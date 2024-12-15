@@ -40,7 +40,7 @@ export function barSerializer(item: Bar): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -64,7 +64,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
@@ -166,7 +166,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -188,7 +188,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
@@ -288,7 +288,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -310,7 +310,7 @@ export function _readSend(
     .path("/{pathParam}/{prop1}", pathParam, prop1)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
@@ -420,7 +420,7 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -440,7 +440,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { queryParam: queryParam },
       body: fooSerializer(body),
     });
@@ -491,7 +491,7 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -511,7 +511,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(body),
     });
@@ -576,7 +576,7 @@ export function barSerializer(item: Bar): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer, Bar } from "../models/models.js";
 import {
   StreamableMethod,
@@ -599,7 +599,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(test),
     });
@@ -662,7 +662,7 @@ export function testSerializer(item: Test): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Test, testSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -680,7 +680,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: testSerializer(body),
     });
 }
@@ -741,7 +741,7 @@ export function testSerializer(item: Test): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Test, testSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -759,7 +759,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: testSerializer(body),
     });
 }
@@ -807,7 +807,7 @@ export function _readResponseDeserializer(item: any): _ReadResponse {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _readResponseDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -872,7 +872,7 @@ export function publishResultDeserializer(item: any): PublishResult {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { PublishResult, publishResultDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -954,7 +954,7 @@ export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _readResponseDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1121,7 +1121,7 @@ export function emptyModelRecordDeserializer(
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { ReturnBody, returnBodyDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1338,7 +1338,7 @@ export function _fozBazNonemptyAnomyousDictDeserializer(
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foz, fozDeserializer } from "../models/models.js";
 import {
   StreamableMethod,

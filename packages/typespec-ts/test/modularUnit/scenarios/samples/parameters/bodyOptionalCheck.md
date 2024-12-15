@@ -76,7 +76,7 @@ export interface ReadOptionalParams extends OperationOptions {
 Should generate operations correctly:
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   bodyParameterSerializer,
   _readResponseDeserializer,
@@ -98,7 +98,7 @@ export function _readSend(
     .path("/{name}", name)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       queryParameters: {
         requiredQuery: requiredQuery,

@@ -30,7 +30,7 @@ export interface ReadOptionalParams extends OperationOptions {}
 Should generate operations correctly:
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

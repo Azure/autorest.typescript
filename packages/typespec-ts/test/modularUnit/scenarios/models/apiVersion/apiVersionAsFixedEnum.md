@@ -48,7 +48,7 @@ export type Versions = "2021-10-01-preview";
 Should normal operation with enum parameter:
 
 ```ts operations
-import { ContosoContext as Client } from "../index.js";
+import { ContosoContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

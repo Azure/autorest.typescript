@@ -16,7 +16,7 @@ op annotationWithFalse(@path(#{ allowReserved: false }) param: string): void;
 Should normal path parameter:
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

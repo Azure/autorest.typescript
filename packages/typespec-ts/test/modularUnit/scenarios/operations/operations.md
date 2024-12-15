@@ -11,7 +11,7 @@ op read(@body param: void): void;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,7 +59,7 @@ op read(): { @body _: void;};
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -132,7 +132,7 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
@@ -155,7 +155,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/json",
+    contentType: "application/json",
     headers: {
       "required-header": requiredHeader,
       ...(options?.optionalHeader !== undefined
@@ -247,7 +247,7 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -304,7 +304,7 @@ op read(@body bars?: Bar[]): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { barArraySerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -321,7 +321,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -363,7 +363,7 @@ op read(@body bars: Bar[]): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Bar, barArraySerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -381,7 +381,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: barArraySerializer(bars),
     });
 }
@@ -422,7 +422,7 @@ op read(): { a: Bar}[] | null;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Bar, readResponseArrayDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -484,7 +484,7 @@ op read(@body bars?: Bar[]): Bar[] | null;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   Bar,
   barArraySerializer,
@@ -505,7 +505,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: !options["bars"]
         ? options["bars"]
@@ -554,7 +554,7 @@ op read(@body body: Foo): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -572,7 +572,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: fooSerializer(body),
     });
 }
@@ -619,7 +619,7 @@ op read(): Foo;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -687,7 +687,7 @@ needAzureCore: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _Bar, _barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -764,7 +764,7 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Bar, barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -847,7 +847,7 @@ needAzureCore: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _Child, _childDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,

@@ -264,7 +264,7 @@ model StreamingChatCompletionOptions {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -280,7 +280,7 @@ export function _createStreamingSend(
     .path("/createStreaming")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: { stream: stream },
     });
 }
@@ -360,7 +360,7 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -378,7 +378,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -416,7 +416,7 @@ op read(@header prop: utcDateTime): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -493,7 +493,7 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -511,7 +511,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -573,7 +573,7 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -591,7 +591,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -650,7 +650,7 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -668,7 +668,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -718,7 +718,7 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -736,7 +736,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -787,7 +787,7 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -805,7 +805,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -859,7 +859,7 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -877,7 +877,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -948,7 +948,7 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -966,7 +966,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -1038,7 +1038,7 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1056,7 +1056,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -1128,7 +1128,7 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1146,7 +1146,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { accept: "application/json" },
       body: fooSerializer(body),
     });
@@ -1302,7 +1302,7 @@ export function petDeserializer(item: any): Pet {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1406,7 +1406,7 @@ export function animalDeserializer(item: any): Animal {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1519,7 +1519,7 @@ export function petUnionDeserializer(item: any): PetUnion {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1650,7 +1650,7 @@ export function dogDeserializer(item: any): Dog {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1825,7 +1825,7 @@ export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import {
   StreamableMethod,
@@ -1915,7 +1915,7 @@ export function barDeserializer(item: any): Bar {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -2007,7 +2007,7 @@ export type SchemaContentTypeValues =
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "../index.js";
+import { DemoServiceContext as Client } from "./index.js";
 import { SchemaContentTypeValues } from "../models/models.js";
 import {
   StreamableMethod,
@@ -2137,7 +2137,7 @@ needAzureCore: false
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "../index.js";
+import { DemoServiceContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2155,7 +2155,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: { "test-header": testHeader },
       body: body,
     });
@@ -2213,7 +2213,7 @@ export interface A {
 
 ```ts models function aSerializer
 export function aSerializer(item: A): any {
-  return { prop1: item["prop1"], prop2: item["prop2"], name: item["name"] };
+  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 
@@ -2262,7 +2262,7 @@ export interface A extends B {}
 
 ```ts models function aSerializer
 export function aSerializer(item: A): any {
-  return { prop1: item["prop1"], prop2: item["prop2"], name: item["name"] };
+  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 

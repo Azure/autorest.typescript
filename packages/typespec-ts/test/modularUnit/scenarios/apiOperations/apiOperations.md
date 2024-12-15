@@ -15,7 +15,7 @@ Api operations should handle contentTypes has binary data
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -32,7 +32,7 @@ export function _uploadFileViaBodySend(
     .path("/uploadFileViaBody")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/octet-stream",
+      contentType: "application/octet-stream",
       body: body,
     });
 }
@@ -76,7 +76,7 @@ scalar BinaryBytes extends bytes;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -93,7 +93,7 @@ export function _uploadFileViaBodySend(
     .path("/uploadFileViaBody")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/octet-stream",
+      contentType: "application/octet-stream",
       body: body,
     });
 }
@@ -158,7 +158,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _uploadFileRequestSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -179,7 +179,7 @@ export function _uploadFileSend(
     .path("/uploadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
       body: _uploadFileRequestSerializer(body),
     });
 }
@@ -246,7 +246,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _uploadFilesRequestSerializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -266,7 +266,7 @@ export function _uploadFilesSend(
     .path("/uploadFiles")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
       body: _uploadFilesRequestSerializer(body),
     });
 }
@@ -310,7 +310,7 @@ op downloadFile(): {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -369,7 +369,7 @@ op downloadFile(): {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -452,7 +452,7 @@ export function _downloadFileResponseDeserializer(
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -543,7 +543,7 @@ export function _downloadFileResponseDeserializer(
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
@@ -605,7 +605,7 @@ op test(...ApiVersionParameter): string;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -663,6 +663,8 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -672,11 +674,7 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -746,7 +744,7 @@ withVersionedApiVersion: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -803,6 +801,8 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -812,11 +812,7 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -878,7 +874,7 @@ op test1(): string;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "../index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -967,6 +963,8 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -976,11 +974,7 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
