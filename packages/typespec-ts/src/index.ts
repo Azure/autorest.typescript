@@ -118,7 +118,10 @@ export async function $onEmit(context: EmitContext) {
       ...PagingHelpers,
       ...PollingHelpers
     },
-    { sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir }
+    {
+      sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
+      options: rlcOptions
+    }
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {

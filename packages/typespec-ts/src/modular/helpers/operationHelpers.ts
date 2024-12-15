@@ -5,7 +5,7 @@ import {
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { isTypeNullable } from "./typeHelpers.js";
+import { getNullableValidType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
@@ -31,7 +31,10 @@ import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
   isReadOnly,
@@ -373,9 +376,17 @@ function getLroOnlyOperationFunction(
     operation.kind === "lro" || operation.kind === "lropaging"
       ? operation.lroMetadata
       : undefined;
-  const resourceLocationConfig = lroMetadata?.finalStateVia
-    ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
-    : "";
+  const allowedFinalLocation = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    lroMetadata?.finalStateVia &&
+    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
+      : "";
   const statements: string[] = [];
   statements.push(`
 
@@ -615,15 +626,17 @@ function buildBodyParameter(
   }
   const serializerFunctionName = buildModelSerializer(
     context,
-    bodyParameter.type!,
+    getNullableValidType(bodyParameter.type),
     false,
     true
   );
 
+  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
   const bodyNameExpression = bodyParameter.optional
-    ? `options["${bodyParameter.name}"]`
-    : bodyParameter.name;
+    ? `options["${bodyParamName}"]`
+    : bodyParamName;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    context,
     bodyParameter,
     bodyParameter.optional ? "options" : undefined
   );
@@ -865,13 +878,14 @@ function getPathParamExpr(param: SdkServiceParameter, defaultValue?: string) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
+  const paramName = normalizeName(param.name, NameType.Parameter);
   const value = defaultValue
     ? typeof defaultValue === "string"
-      ? `options[${param.name}] ?? "${defaultValue}"`
-      : `options[${param.name}] ?? ${defaultValue}`
+      ? `options[${paramName}] ?? "${defaultValue}"`
+      : `options[${paramName}] ?? ${defaultValue}`
     : param.onClient
-      ? `context.${param.name}`
-      : param.name;
+      ? `context.${paramName}`
+      : paramName;
   // TODO allowReserved is not supported in Query and Header parameter yet.
   if (param.kind === "path" && param.allowReserved === true) {
     return `{value: ${value}, allowReserved: true}`;
@@ -916,14 +930,19 @@ export function getRequestModelMapping(
     const serializedName = getPropertySerializedName(property);
     const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
     const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+      context,
       property,
       propertyPath
     );
 
-    const propertyFullName = getPropertyFullName(property, propertyPathWithDot);
+    const propertyFullName = getPropertyFullName(
+      context,
+      property,
+      propertyPathWithDot
+    );
     const serializeFunctionName = buildModelSerializer(
       context,
-      property.type!,
+      getNullableValidType(property.type),
       false,
       true
     );
@@ -982,16 +1001,17 @@ export function getResponseMapping(
         : "";
     const deserializeFunctionName = buildModelDeserializer(
       context,
-      property.type!,
+      getNullableValidType(property.type),
       false,
       true
     );
+    const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
       props.push(
-        `"${property.name}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
       );
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-      props.push(`"${property.name}": ${nullOrUndefinedPrefix}${restValue}`);
+      props.push(`${propertyName}: ${nullOrUndefinedPrefix}${restValue}`);
     } else {
       const deserializeValue = deserializeResponseValue(
         context,
@@ -1000,7 +1020,7 @@ export function getResponseMapping(
         getEncodeForType(property.type)
       );
       props.push(
-        `"${property.name}": ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
+        `${propertyName}: ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
       );
     }
   }
@@ -1047,7 +1067,7 @@ export function serializeRequestValue(
             : "";
         const serializeFunctionName = buildModelSerializer(
           context,
-          type.valueType,
+          getNullableValidType(type.valueType),
           false,
           true
         );
@@ -1147,7 +1167,12 @@ export function deserializeResponseValue(
         elementNullOrUndefinedPrefix = "!p ? p :";
       }
       const deserializeFunctionName = type.valueType
-        ? buildModelDeserializer(context, type.valueType!, false, true)
+        ? buildModelDeserializer(
+            context,
+            getNullableValidType(type.valueType),
+            false,
+            true
+          )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1174,7 +1199,12 @@ export function deserializeResponseValue(
         return `${restValue}`;
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
-          ? buildModelDeserializer(context, type!, false, true)
+          ? buildModelDeserializer(
+              context,
+              getNullableValidType(type),
+              false,
+              true
+            )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;
@@ -1230,9 +1260,13 @@ export function getAllProperties(
     });
   });
   type.kind === "model" &&
-    type.properties?.forEach((p) => {
-      propertiesMap.set(p.name, p);
-    });
+    type.properties
+      ?.filter((p) => {
+        return p.kind === "property";
+      })
+      .forEach((p) => {
+        propertiesMap.set(p.name, p);
+      });
   return [...propertiesMap.values()];
 }
 
@@ -1246,11 +1280,12 @@ export function getAllAncestors(type: SdkType): SdkType[] {
 }
 
 export function getPropertySerializationPrefix(
-  modularType: SdkServiceParameter | SdkModelPropertyType,
+  context: SdkContext,
+  property: SdkServiceParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const propertyFullName = getPropertyFullName(modularType, propertyPath);
-  if (modularType.optional || isTypeNullable(modularType.type)) {
+  const propertyFullName = getPropertyFullName(context, property, propertyPath);
+  if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName} ? ${propertyFullName} :`;
   }
 
@@ -1258,14 +1293,18 @@ export function getPropertySerializationPrefix(
 }
 
 export function getPropertyFullName(
-  modularType: SdkServiceParameter | SdkModelPropertyType,
+  context: SdkContext,
+  property: SdkServiceParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  let fullName = `${modularType.name}`;
-  if (propertyPath === "" && modularType.optional) {
-    fullName = `options?.${modularType.name}`;
+  const normalizedPropertyName = normalizeModelPropertyName(context, property)
+    .replace(/^"/g, "")
+    .replace(/"$/g, "");
+  let fullName = normalizedPropertyName;
+  if (propertyPath === "" && property.optional) {
+    fullName = `options?.${normalizedPropertyName}`;
   } else if (propertyPath) {
-    fullName = `${propertyPath}["${modularType.name}"]`;
+    fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
   return fullName;
 }

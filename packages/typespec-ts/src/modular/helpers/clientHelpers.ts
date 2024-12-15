@@ -169,7 +169,8 @@ export function buildGetClientEndpointParam(
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
     onClientOnly: true,
-    skipEndpointTemplate: true
+    skipEndpointTemplate: true,
+    skipArmSpecific: true
   }).find((x) => x.kind === "endpoint" || x.kind === "path");
   if (endpointParam) {
     if (
@@ -198,6 +199,18 @@ export function buildGetClientEndpointParam(
         );
       }
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
+      context.addStatements(endpointUrl);
+      return "endpointUrl";
+    } else if (endpointParam.type.kind === "endpoint") {
+      const clientDefaultValue =
+        endpointParam.type.templateArguments[0]?.clientDefaultValue;
+      const defaultValueStr =
+        clientDefaultValue && typeof clientDefaultValue === "string"
+          ? `"${clientDefaultValue}"`
+          : clientDefaultValue
+            ? clientDefaultValue
+            : `String(${getClientParameterName(endpointParam)})`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr}`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }

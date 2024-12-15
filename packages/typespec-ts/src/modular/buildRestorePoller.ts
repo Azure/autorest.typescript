@@ -6,10 +6,7 @@ import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { resolveReference } from "../framework/reference.js";
-import {
-  AzureCoreDependencies,
-  AzurePollingDependencies
-} from "./external-dependencies.js";
+import { AzurePollingDependencies } from "./external-dependencies.js";
 import { PollingHelpers } from "./static-helpers-metadata.js";
 import {
   SdkClientType,
@@ -18,12 +15,14 @@ import {
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 export function buildRestorePoller(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const dependencies = useDependencies();
   const { subfolder } = getModularClientOptions(context, client);
   const methodMap = getMethodHierarchiesMap(context, client);
   const hasLro = Array.from(methodMap.values()).some((operations) => {
@@ -53,7 +52,7 @@ export function buildRestorePoller(
     restorePollerFile
   );
   const pathUncheckedReference = resolveReference(
-    AzureCoreDependencies.PathUncheckedResponse
+    dependencies.PathUncheckedResponse
   );
   const pollerLikeReference = resolveReference(
     AzurePollingDependencies.PollerLike
@@ -62,7 +61,7 @@ export function buildRestorePoller(
     AzurePollingDependencies.OperationState
   );
   const operationOptionsReference = resolveReference(
-    AzureCoreDependencies.OperationOptions
+    dependencies.OperationOptions
   );
   const deserializeStateReference = resolveReference(
     AzurePollingDependencies.DeserializeState
@@ -77,7 +76,7 @@ export function buildRestorePoller(
       /**
        * The signal which can be used to abort requests.
       */
-      abortSignal?: ${resolveReference(AzureCoreDependencies.AbortSignalLike)};
+      abortSignal?: ${resolveReference(dependencies.AbortSignalLike)};
       /** Deserialization function for raw response body */
       processResponseBody?: (result: TResponse) => Promise<TResult>;
     }

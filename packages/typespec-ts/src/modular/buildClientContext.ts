@@ -75,11 +75,15 @@ export function buildClientContext(
       requiredOnly: true
     })
       .filter((p) => {
-        return p.name !== "endpoint" && p.name !== "credential";
+        const clientParamName = getClientParameterName(p);
+        return (
+          clientParamName !== "endpointParam" &&
+          clientParamName !== "credential"
+        );
       })
       .map((p) => {
         return {
-          name: normalizeName(p.name, NameType.Parameter),
+          name: getClientParameterName(p),
           type: getTypeExpression(dpgContext, p.type),
           hasQuestionToken: false,
           docs: getDocsWithKnownVersion(dpgContext, p)

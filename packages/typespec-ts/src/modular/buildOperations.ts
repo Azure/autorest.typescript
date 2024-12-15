@@ -29,7 +29,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { resolveReference } from "../framework/reference.js";
-import { AzureCoreDependencies } from "./external-dependencies.js";
+import { useDependencies } from "../framework/hooks/useDependencies.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -111,7 +111,8 @@ export function buildOperationFiles(
       ]);
     });
 
-    const indexPathPrefix = "../".repeat(prefixes.length - 1) || "./";
+    const indexPathPrefix =
+      "../".repeat(prefixKey === "" ? 0 : prefixes.length) || "./";
     operationGroupFile.addImportDeclaration({
       namedImports: [`${rlcClientName} as Client`],
       moduleSpecifier: `${indexPathPrefix}index.js`
@@ -164,6 +165,7 @@ export function buildOperationOptions(
   method: [string[], SdkServiceMethod<SdkHttpOperation>],
   sourceFile: SourceFile
 ) {
+  const dependencies = useDependencies();
   const operation = method[1];
   const optionalParameters = operation.parameters
     .filter((p) => p.onClient === false)
@@ -183,7 +185,7 @@ export function buildOperationOptions(
   //   options.push(operation.operation.bodyParam);
   // }
   const operationOptionsReference = resolveReference(
-    AzureCoreDependencies.OperationOptions
+    dependencies.OperationOptions
   );
   sourceFile.addInterface({
     name,

@@ -19,6 +19,13 @@ export function isTypeNullable(type: SdkType) {
   return Boolean(type.kind === "nullable");
 }
 
+export function getNullableValidType(type: SdkType): SdkType {
+  if (type.kind === "nullable") {
+    return type.type;
+  }
+  return type;
+}
+
 const NumericTypeKinds = [
   "numeric",
   "integer",
