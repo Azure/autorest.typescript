@@ -23,40 +23,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _createStreamingSend(
-  context: Client,
-  body: StreamingChatCompletionOptionsRecord,
-  options: CreateStreamingOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/chat")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: streamingChatCompletionOptionsRecordSerializer(body),
-    });
-}
-
-export async function _createStreamingDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ChatCompletionChunkRecord> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return chatCompletionChunkRecordDeserializer(result.body);
-}
-
-/** Creates a new streaming chat completion. */
-export async function createStreaming(
-  context: Client,
-  body: StreamingChatCompletionOptionsRecord,
-  options: CreateStreamingOptionalParams = { requestOptions: {} },
-): Promise<ChatCompletionChunkRecord> {
-  const result = await _createStreamingSend(context, body, options);
-  return _createStreamingDeserialize(result);
-}
-
 export function _createSend(
   context: Client,
   body: ChatCompletionOptionsRecord,
@@ -66,6 +32,8 @@ export function _createSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json" },
       body: chatCompletionOptionsRecordSerializer(body),
     });
 }
@@ -89,4 +57,40 @@ export async function create(
 ): Promise<ChatCompletionRecord> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);
+}
+
+export function _createStreamingSend(
+  context: Client,
+  body: StreamingChatCompletionOptionsRecord,
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/chat")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json" },
+      body: streamingChatCompletionOptionsRecordSerializer(body),
+    });
+}
+
+export async function _createStreamingDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ChatCompletionChunkRecord> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return chatCompletionChunkRecordDeserializer(result.body);
+}
+
+/** Creates a new streaming chat completion. */
+export async function createStreaming(
+  context: Client,
+  body: StreamingChatCompletionOptionsRecord,
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
+): Promise<ChatCompletionChunkRecord> {
+  const result = await _createStreamingSend(context, body, options);
+  return _createStreamingDeserialize(result);
 }

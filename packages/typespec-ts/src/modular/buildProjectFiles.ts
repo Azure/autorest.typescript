@@ -27,7 +27,7 @@ function buildExportsForMultiClient(
   if (emitterOptions.options.hierarchyClient) {
     for (const client of context.sdkPackage.clients) {
       const { subfolder } = getModularClientOptions(context, client);
-      const methodMap = getMethodHierarchiesMap(client);
+      const methodMap = getMethodHierarchiesMap(context, client);
       for (const [prefixKey, _] of methodMap) {
         const prefixes = prefixKey.split("/");
         if (prefixKey === "") {

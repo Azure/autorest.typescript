@@ -723,7 +723,7 @@ function isContentType(param: SdkServiceParameter): boolean {
 function getContentTypeValue(param: SdkServiceParameter) {
   const defaultValue = param.clientDefaultValue;
   if (isConstant(param.type)) {
-    return `contentType: options.${param.name} as any ?? ${getConstantValue(param.type)}`;
+    return `contentType: ${getConstantValue(param.type)}`;
   }
   if (defaultValue) {
     return `contentType: options.${param.name} as any ?? "${defaultValue}"`;

@@ -26,111 +26,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _createOrUpdateTestProfileSend(
-  context: Client,
-  testProfileId: string,
-  body: TestProfile,
-  options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: testProfileSerializer(body),
-    });
-}
-
-export async function _createOrUpdateTestProfileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestProfile> {
-  const expectedStatuses = ["201", "200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testProfileDeserializer(result.body);
-}
-
-/** Create a new test profile or update an existing test profile by providing the test profile Id. */
-export async function createOrUpdateTestProfile(
-  context: Client,
-  testProfileId: string,
-  body: TestProfile,
-  options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
-): Promise<TestProfile> {
-  const result = await _createOrUpdateTestProfileSend(
-    context,
-    testProfileId,
-    body,
-    options,
-  );
-  return _createOrUpdateTestProfileDeserialize(result);
-}
-
-export function _deleteTestProfileSend(
-  context: Client,
-  testProfileId: string,
-  options: DeleteTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
-    .delete({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _deleteTestProfileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-/** Delete a test profile by its test profile Id. */
-export async function deleteTestProfile(
-  context: Client,
-  testProfileId: string,
-  options: DeleteTestProfileOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _deleteTestProfileSend(context, testProfileId, options);
-  return _deleteTestProfileDeserialize(result);
-}
-
-export function _getTestProfileSend(
-  context: Client,
-  testProfileId: string,
-  options: GetTestProfileOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getTestProfileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestProfile> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testProfileDeserializer(result.body);
-}
-
-/** Get load test profile details by test profile Id. */
-export async function getTestProfile(
-  context: Client,
-  testProfileId: string,
-  options: GetTestProfileOptionalParams = { requestOptions: {} },
-): Promise<TestProfile> {
-  const result = await _getTestProfileSend(context, testProfileId, options);
-  return _getTestProfileDeserialize(result);
-}
-
 export function _listTestProfilesSend(
   context: Client,
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
@@ -139,6 +34,7 @@ export function _listTestProfilesSend(
     .path("/test-profiles")
     .get({
       ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
       queryParameters: {
         maxpagesize: options?.maxpagesize,
         lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
@@ -172,4 +68,115 @@ export function listTestProfiles(
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
+}
+
+export function _getTestProfileSend(
+  context: Client,
+  testProfileId: string,
+  options: GetTestProfileOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/test-profiles/{testProfileId}", testProfileId)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _getTestProfileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestProfile> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testProfileDeserializer(result.body);
+}
+
+/** Get load test profile details by test profile Id. */
+export async function getTestProfile(
+  context: Client,
+  testProfileId: string,
+  options: GetTestProfileOptionalParams = { requestOptions: {} },
+): Promise<TestProfile> {
+  const result = await _getTestProfileSend(context, testProfileId, options);
+  return _getTestProfileDeserialize(result);
+}
+
+export function _deleteTestProfileSend(
+  context: Client,
+  testProfileId: string,
+  options: DeleteTestProfileOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/test-profiles/{testProfileId}", testProfileId)
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _deleteTestProfileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+/** Delete a test profile by its test profile Id. */
+export async function deleteTestProfile(
+  context: Client,
+  testProfileId: string,
+  options: DeleteTestProfileOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _deleteTestProfileSend(context, testProfileId, options);
+  return _deleteTestProfileDeserialize(result);
+}
+
+export function _createOrUpdateTestProfileSend(
+  context: Client,
+  testProfileId: string,
+  body: TestProfile,
+  options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/test-profiles/{testProfileId}", testProfileId)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/merge-patch+json",
+      headers: { accept: "application/json" },
+      body: testProfileSerializer(body),
+    });
+}
+
+export async function _createOrUpdateTestProfileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestProfile> {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testProfileDeserializer(result.body);
+}
+
+/** Create a new test profile or update an existing test profile by providing the test profile Id. */
+export async function createOrUpdateTestProfile(
+  context: Client,
+  testProfileId: string,
+  body: TestProfile,
+  options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
+): Promise<TestProfile> {
+  const result = await _createOrUpdateTestProfileSend(
+    context,
+    testProfileId,
+    body,
+    options,
+  );
+  return _createOrUpdateTestProfileDeserialize(result);
 }

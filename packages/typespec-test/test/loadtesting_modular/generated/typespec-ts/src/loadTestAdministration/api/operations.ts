@@ -44,340 +44,74 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _createOrUpdateTestSend(
+export function _deleteTestSend(
   context: Client,
   testId: string,
-  body: Test,
-  options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
+  options: DeleteTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/tests/{testId}", testId)
-    .patch({
+    .delete({
       ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: testSerializer(body),
+      headers: { accept: "application/json" },
     });
 }
 
-export async function _createOrUpdateTestDeserialize(
+export async function _deleteTestDeserialize(
   result: PathUncheckedResponse,
-): Promise<Test> {
-  const expectedStatuses = ["201", "200"];
+): Promise<void> {
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return testDeserializer(result.body);
+  return;
 }
 
-/** Create a new test or update an existing test by providing the test Id. */
-export async function createOrUpdateTest(
+/** Delete a test by its test Id. */
+export async function deleteTest(
   context: Client,
   testId: string,
-  body: Test,
-  options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
-): Promise<Test> {
-  const result = await _createOrUpdateTestSend(context, testId, body, options);
-  return _createOrUpdateTestDeserialize(result);
+  options: DeleteTestOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _deleteTestSend(context, testId, options);
+  return _deleteTestDeserialize(result);
 }
 
-export function _createOrUpdateAppComponentsSend(
-  context: Client,
-  testId: string,
-  body: TestAppComponents,
-  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}/app-components", testId)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: testAppComponentsSerializer(body),
-    });
-}
-
-export async function _createOrUpdateAppComponentsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestAppComponents> {
-  const expectedStatuses = ["201", "200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testAppComponentsDeserializer(result.body);
-}
-
-/** Add an app component to a test by providing the resource Id, name and type. */
-export async function createOrUpdateAppComponents(
-  context: Client,
-  testId: string,
-  body: TestAppComponents,
-  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
-): Promise<TestAppComponents> {
-  const result = await _createOrUpdateAppComponentsSend(
-    context,
-    testId,
-    body,
-    options,
-  );
-  return _createOrUpdateAppComponentsDeserialize(result);
-}
-
-export function _createOrUpdateServerMetricsConfigSend(
-  context: Client,
-  testId: string,
-  body: TestServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-    requestOptions: {},
-  },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}/server-metrics-config", testId)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: testServerMetricConfigSerializer(body),
-    });
-}
-
-export async function _createOrUpdateServerMetricsConfigDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestServerMetricConfig> {
-  const expectedStatuses = ["201", "200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testServerMetricConfigDeserializer(result.body);
-}
-
-/** Configure server metrics for a test */
-export async function createOrUpdateServerMetricsConfig(
-  context: Client,
-  testId: string,
-  body: TestServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-    requestOptions: {},
-  },
-): Promise<TestServerMetricConfig> {
-  const result = await _createOrUpdateServerMetricsConfigSend(
-    context,
-    testId,
-    body,
-    options,
-  );
-  return _createOrUpdateServerMetricsConfigDeserialize(result);
-}
-
-export function _getAppComponentsSend(
-  context: Client,
-  testId: string,
-  options: GetAppComponentsOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}/app-components", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getAppComponentsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestAppComponents> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testAppComponentsDeserializer(result.body);
-}
-
-/** Get associated app component (collection of azure resources) for the given test. */
-export async function getAppComponents(
-  context: Client,
-  testId: string,
-  options: GetAppComponentsOptionalParams = { requestOptions: {} },
-): Promise<TestAppComponents> {
-  const result = await _getAppComponentsSend(context, testId, options);
-  return _getAppComponentsDeserialize(result);
-}
-
-export function _getServerMetricsConfigSend(
-  context: Client,
-  testId: string,
-  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}/server-metrics-config", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getServerMetricsConfigDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestServerMetricConfig> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testServerMetricConfigDeserializer(result.body);
-}
-
-/** List server metrics configuration for the given test. */
-export async function getServerMetricsConfig(
-  context: Client,
-  testId: string,
-  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
-): Promise<TestServerMetricConfig> {
-  const result = await _getServerMetricsConfigSend(context, testId, options);
-  return _getServerMetricsConfigDeserialize(result);
-}
-
-export function _getTestSend(
-  context: Client,
-  testId: string,
-  options: GetTestOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getTestDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Test> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testDeserializer(result.body);
-}
-
-/** Get load test details by test Id */
-export async function getTest(
-  context: Client,
-  testId: string,
-  options: GetTestOptionalParams = { requestOptions: {} },
-): Promise<Test> {
-  const result = await _getTestSend(context, testId, options);
-  return _getTestDeserialize(result);
-}
-
-export function _getTestFileSend(
+export function _deleteTestFileSend(
   context: Client,
   testId: string,
   fileName: string,
-  options: GetTestFileOptionalParams = { requestOptions: {} },
+  options: DeleteTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getTestFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestFileInfo> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return testFileInfoDeserializer(result.body);
-}
-
-/** Get all the files that are associated with a test. */
-export async function getTestFile(
-  context: Client,
-  testId: string,
-  fileName: string,
-  options: GetTestFileOptionalParams = { requestOptions: {} },
-): Promise<TestFileInfo> {
-  const result = await _getTestFileSend(context, testId, fileName, options);
-  return _getTestFileDeserialize(result);
-}
-
-export function _listTestFilesSend(
-  context: Client,
-  testId: string,
-  options: ListTestFilesOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests/{testId}/files", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listTestFilesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_PagedTestFileInfo> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _pagedTestFileInfoDeserializer(result.body);
-}
-
-/** Get all test files. */
-export function listTestFiles(
-  context: Client,
-  testId: string,
-  options: ListTestFilesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<TestFileInfo> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listTestFilesSend(context, testId, options),
-    _listTestFilesDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
-}
-
-export function _listTestsSend(
-  context: Client,
-  options: ListTestsOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/tests")
-    .get({
+    .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        orderby: options?.orderby,
-        search: options?.search,
-        lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
-        lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
-        maxpagesize: options?.maxpagesize,
-      },
+      headers: { accept: "application/json" },
     });
 }
 
-export async function _listTestsDeserialize(
+export async function _deleteTestFileDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedTest> {
-  const expectedStatuses = ["200"];
+): Promise<void> {
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedTestDeserializer(result.body);
+  return;
 }
 
-/**
- * Get all load tests by the fully qualified resource Id e.g
- * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
- */
-export function listTests(
+/** Delete file by the file name for a test */
+export async function deleteTestFile(
   context: Client,
-  options: ListTestsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<Test> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listTestsSend(context, options),
-    _listTestsDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
+  testId: string,
+  fileName: string,
+  options: DeleteTestFileOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _deleteTestFileSend(context, testId, fileName, options);
+  return _deleteTestFileDeserialize(result);
 }
 
 export function _uploadTestFileSend(
@@ -391,7 +125,8 @@ export function _uploadTestFileSend(
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/octet-stream",
+      contentType: "application/octet-stream",
+      headers: { accept: "application/json" },
       queryParameters: { fileType: options?.fileType },
       body: body,
     });
@@ -430,66 +165,354 @@ export async function uploadTestFile(
   return _uploadTestFileDeserialize(result);
 }
 
-export function _deleteTestFileSend(
+export function _listTestsSend(
+  context: Client,
+  options: ListTestsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+      queryParameters: {
+        orderby: options?.orderby,
+        search: options?.search,
+        lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
+        lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
+        maxpagesize: options?.maxpagesize,
+      },
+    });
+}
+
+export async function _listTestsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_PagedTest> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _pagedTestDeserializer(result.body);
+}
+
+/**
+ * Get all load tests by the fully qualified resource Id e.g
+ * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
+ */
+export function listTests(
+  context: Client,
+  options: ListTestsOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestsSend(context, options),
+    _listTestsDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
+
+export function _listTestFilesSend(
+  context: Client,
+  testId: string,
+  options: ListTestFilesOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}/files", testId)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _listTestFilesDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_PagedTestFileInfo> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _pagedTestFileInfoDeserializer(result.body);
+}
+
+/** Get all test files. */
+export function listTestFiles(
+  context: Client,
+  testId: string,
+  options: ListTestFilesOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<TestFileInfo> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestFilesSend(context, testId, options),
+    _listTestFilesDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
+
+export function _getTestFileSend(
   context: Client,
   testId: string,
   fileName: string,
-  options: DeleteTestFileOptionalParams = { requestOptions: {} },
+  options: GetTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
-export async function _deleteTestFileDeserialize(
+export async function _getTestFileDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
+): Promise<TestFileInfo> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return testFileInfoDeserializer(result.body);
 }
 
-/** Delete file by the file name for a test */
-export async function deleteTestFile(
+/** Get all the files that are associated with a test. */
+export async function getTestFile(
   context: Client,
   testId: string,
   fileName: string,
-  options: DeleteTestFileOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _deleteTestFileSend(context, testId, fileName, options);
-  return _deleteTestFileDeserialize(result);
+  options: GetTestFileOptionalParams = { requestOptions: {} },
+): Promise<TestFileInfo> {
+  const result = await _getTestFileSend(context, testId, fileName, options);
+  return _getTestFileDeserialize(result);
 }
 
-export function _deleteTestSend(
+export function _getTestSend(
   context: Client,
   testId: string,
-  options: DeleteTestOptionalParams = { requestOptions: {} },
+  options: GetTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/tests/{testId}", testId)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
-export async function _deleteTestDeserialize(
+export async function _getTestDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
+): Promise<Test> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return testDeserializer(result.body);
 }
 
-/** Delete a test by its test Id. */
-export async function deleteTest(
+/** Get load test details by test Id */
+export async function getTest(
   context: Client,
   testId: string,
-  options: DeleteTestOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _deleteTestSend(context, testId, options);
-  return _deleteTestDeserialize(result);
+  options: GetTestOptionalParams = { requestOptions: {} },
+): Promise<Test> {
+  const result = await _getTestSend(context, testId, options);
+  return _getTestDeserialize(result);
+}
+
+export function _getServerMetricsConfigSend(
+  context: Client,
+  testId: string,
+  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}/server-metrics-config", testId)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _getServerMetricsConfigDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestServerMetricConfig> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testServerMetricConfigDeserializer(result.body);
+}
+
+/** List server metrics configuration for the given test. */
+export async function getServerMetricsConfig(
+  context: Client,
+  testId: string,
+  options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
+): Promise<TestServerMetricConfig> {
+  const result = await _getServerMetricsConfigSend(context, testId, options);
+  return _getServerMetricsConfigDeserialize(result);
+}
+
+export function _getAppComponentsSend(
+  context: Client,
+  testId: string,
+  options: GetAppComponentsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}/app-components", testId)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
+}
+
+export async function _getAppComponentsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestAppComponents> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testAppComponentsDeserializer(result.body);
+}
+
+/** Get associated app component (collection of azure resources) for the given test. */
+export async function getAppComponents(
+  context: Client,
+  testId: string,
+  options: GetAppComponentsOptionalParams = { requestOptions: {} },
+): Promise<TestAppComponents> {
+  const result = await _getAppComponentsSend(context, testId, options);
+  return _getAppComponentsDeserialize(result);
+}
+
+export function _createOrUpdateServerMetricsConfigSend(
+  context: Client,
+  testId: string,
+  body: TestServerMetricConfig,
+  options: CreateOrUpdateServerMetricsConfigOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}/server-metrics-config", testId)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/merge-patch+json",
+      headers: { accept: "application/json" },
+      body: testServerMetricConfigSerializer(body),
+    });
+}
+
+export async function _createOrUpdateServerMetricsConfigDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestServerMetricConfig> {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testServerMetricConfigDeserializer(result.body);
+}
+
+/** Configure server metrics for a test */
+export async function createOrUpdateServerMetricsConfig(
+  context: Client,
+  testId: string,
+  body: TestServerMetricConfig,
+  options: CreateOrUpdateServerMetricsConfigOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<TestServerMetricConfig> {
+  const result = await _createOrUpdateServerMetricsConfigSend(
+    context,
+    testId,
+    body,
+    options,
+  );
+  return _createOrUpdateServerMetricsConfigDeserialize(result);
+}
+
+export function _createOrUpdateAppComponentsSend(
+  context: Client,
+  testId: string,
+  body: TestAppComponents,
+  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}/app-components", testId)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/merge-patch+json",
+      headers: { accept: "application/json" },
+      body: testAppComponentsSerializer(body),
+    });
+}
+
+export async function _createOrUpdateAppComponentsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestAppComponents> {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testAppComponentsDeserializer(result.body);
+}
+
+/** Add an app component to a test by providing the resource Id, name and type. */
+export async function createOrUpdateAppComponents(
+  context: Client,
+  testId: string,
+  body: TestAppComponents,
+  options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
+): Promise<TestAppComponents> {
+  const result = await _createOrUpdateAppComponentsSend(
+    context,
+    testId,
+    body,
+    options,
+  );
+  return _createOrUpdateAppComponentsDeserialize(result);
+}
+
+export function _createOrUpdateTestSend(
+  context: Client,
+  testId: string,
+  body: Test,
+  options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/tests/{testId}", testId)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/merge-patch+json",
+      headers: { accept: "application/json" },
+      body: testSerializer(body),
+    });
+}
+
+export async function _createOrUpdateTestDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Test> {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testDeserializer(result.body);
+}
+
+/** Create a new test or update an existing test by providing the test Id. */
+export async function createOrUpdateTest(
+  context: Client,
+  testId: string,
+  body: Test,
+  options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
+): Promise<Test> {
+  const result = await _createOrUpdateTestSend(context, testId, body, options);
+  return _createOrUpdateTestDeserialize(result);
 }

@@ -97,7 +97,7 @@ function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
 
 function hasPaging(context: SdkContext): boolean {
   return context.sdkPackage.clients.some((client) => {
-    const methodMap = getMethodHierarchiesMap(client);
+    const methodMap = getMethodHierarchiesMap(context, client);
     for (const [_, operations] of methodMap) {
       return operations.some(
         (op) => op.kind === "paging" || op.kind === "lropaging"

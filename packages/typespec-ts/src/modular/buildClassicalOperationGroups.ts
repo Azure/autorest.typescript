@@ -22,7 +22,7 @@ export function buildClassicOperationFiles(
     string,
     SourceFile
   >();
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     if (prefixes.length > 0 && prefixKey !== "") {

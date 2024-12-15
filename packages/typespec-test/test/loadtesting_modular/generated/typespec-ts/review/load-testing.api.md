@@ -53,32 +53,26 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface CreateOrUpdateTestProfileOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface CreateOrUpdateTestProfileRunOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {
-    contentType?: string;
     oldTestRunId?: string;
 }
 
@@ -372,6 +366,7 @@ export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
     body?: MetricRequestPayload;
+    contentType?: "application/json";
     interval?: TimeGrain;
 }
 
@@ -476,12 +471,10 @@ export class LoadTestRunClient {
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -932,7 +925,6 @@ export interface TimeSeriesElement {
 
 // @public
 export interface UploadTestFileOptionalParams extends OperationOptions {
-    contentType?: string;
     fileType?: FileType;
 }
 

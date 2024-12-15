@@ -257,8 +257,8 @@ export function buildGetClientCredentialParam(
       emitterOptions.options.credentialKeyHeaderName)
   ) {
     return (
-      client.initialization.properties.find((x) => isCredentialType(x.type))
-        ?.name ?? "undefined"
+      client.initialization.properties.find((x) => isCredentialType(x))?.name ??
+      "undefined"
     );
   } else {
     return "undefined";

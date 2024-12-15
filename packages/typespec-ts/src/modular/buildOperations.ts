@@ -48,7 +48,7 @@ export function buildOperationFiles(
   );
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
   const clientType = isMultiEndpoint ? `Client.${rlcClientName}` : "Client";
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     const operationFileName =
@@ -111,7 +111,7 @@ export function buildOperationFiles(
       ]);
     });
 
-    const indexPathPrefix = "../".repeat(prefixes.length) || "./";
+    const indexPathPrefix = "../".repeat(prefixes.length - 1) || "./";
     operationGroupFile.addImportDeclaration({
       namedImports: [`${rlcClientName} as Client`],
       moduleSpecifier: `${indexPathPrefix}index.js`
@@ -208,11 +208,12 @@ export function buildOperationOptions(
  * This function creates a map of operation file path to operation names.
  */
 export function buildLroDeserDetailMap(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
   const map = new Map<string, OperationPathAndDeserDetails[]>();
   const existingNames = new Set<string>();
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(context, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     const lroOperations = operations.filter((o) => isLroOnlyOperation(o));

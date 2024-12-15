@@ -47,7 +47,7 @@ export function buildApiOptions(
       overwrite: true
     }
   );
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(context, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     operations.forEach((o) => {

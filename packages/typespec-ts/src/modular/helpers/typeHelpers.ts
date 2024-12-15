@@ -1,5 +1,6 @@
 import {
   SdkBodyParameter,
+  SdkModelPropertyType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -48,7 +49,9 @@ export function isDateTimeTypeKind(kind: string): boolean {
   return DateTimeTypeKinds.includes(kind);
 }
 
-export function isCredentialType(type: SdkType): boolean {
+export function isCredentialType(
+  type: SdkType | SdkModelPropertyType
+): boolean {
   return type.kind === "credential";
 }
 

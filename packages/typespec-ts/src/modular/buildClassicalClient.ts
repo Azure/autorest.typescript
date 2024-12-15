@@ -183,7 +183,7 @@ function buildClientOperationGroups(
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
     if (prefixKey === "") {

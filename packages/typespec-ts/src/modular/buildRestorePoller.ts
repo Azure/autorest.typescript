@@ -25,7 +25,7 @@ export function buildRestorePoller(
   emitterOptions: ModularEmitterOptions
 ) {
   const { subfolder } = getModularClientOptions(context, client);
-  const methodMap = getMethodHierarchiesMap(client);
+  const methodMap = getMethodHierarchiesMap(context, client);
   const hasLro = Array.from(methodMap.values()).some((operations) => {
     return operations.some(isLroOnlyOperation);
   });
@@ -47,7 +47,11 @@ export function buildRestorePoller(
   );
 
   const clientNames = importClassicalClient(client, restorePollerFile);
-  const deserializeMap = importDeserializeHelpers(client, restorePollerFile);
+  const deserializeMap = importDeserializeHelpers(
+    context,
+    client,
+    restorePollerFile
+  );
   const pathUncheckedReference = resolveReference(
     AzureCoreDependencies.PathUncheckedResponse
   );
@@ -213,10 +217,11 @@ export function buildRestorePoller(
 }
 
 function importDeserializeHelpers(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   sourceFile: SourceFile
 ) {
-  const deserializeDetails = buildLroDeserDetailMap(client);
+  const deserializeDetails = buildLroDeserDetailMap(context, client);
   const deserializeMap: string[] = [];
   for (const [key, value] of deserializeDetails.entries()) {
     sourceFile.addImportDeclaration({

@@ -540,6 +540,7 @@ export function parseItemName(paged: PagedResultMetadata): string | undefined {
 }
 
 export function getMethodHierarchiesMap(
+  context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
   const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
@@ -566,7 +567,11 @@ export function getMethodHierarchiesMap(
         ])
       );
     } else {
-      const prefixKey = prefixes.join("/");
+      const prefixKey =
+        context.rlcOptions?.hierarchyClient ||
+        context.rlcOptions?.enableOperationGroup
+          ? prefixes.join("/")
+          : "";
       const operations = operationHierarchiesMap.get(prefixKey);
       operationHierarchiesMap.set(prefixKey, [
         ...(operations ?? []),
