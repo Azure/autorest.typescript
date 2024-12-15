@@ -198,7 +198,7 @@ export function buildOperationOptions(
           hasQuestionToken: true,
 
           type: getTypeExpression(context, p.type),
-          name: p.name
+          name: normalizeName(p.name, NameType.Parameter)
         };
       })
     ),

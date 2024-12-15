@@ -9,6 +9,7 @@ import { getNullableValidType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
+  getSpecialSerializeInfo,
   isBinaryPayload
 } from "../../utils/operationUtil.js";
 import {
@@ -598,6 +599,7 @@ function buildHeaderParameter(
   paramMap: string,
   param: SdkServiceParameter
 ): string {
+  const paramName = normalizeName(param.name, NameType.Parameter);
   if (!param.optional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
@@ -607,10 +609,10 @@ function buildHeaderParameter(
   }
   const conditions = [];
   if (param.optional) {
-    conditions.push(`options?.${param.name} !== undefined`);
+    conditions.push(`options?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`options?.${param.name} !== null`);
+    conditions.push(`options?.${paramName} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -674,14 +676,16 @@ export function getParameterMap(
   context: SdkContext,
   param: SdkServiceParameter
 ): string {
-  if (param.name === "nullableDateHeader") {
-    param;
-  }
   if (isConstant(param.type)) {
     return `"${param.name}": ${getConstantValue(param.type)}`;
   }
 
-  if ((param as any).collectionFormat) {
+  const serializeInfo = getSpecialSerializeInfo(
+    context,
+    param.kind,
+    (param as any).collectionFormat
+  );
+  if (serializeInfo.hasCsvCollection || serializeInfo.hasMultiCollection) {
     return getCollectionFormat(context, param);
   }
 
@@ -787,11 +791,12 @@ function isOptional(param: SdkModelPropertyType) {
 
 function getOptional(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
+  const paramName = normalizeName(param.name, NameType.Parameter);
   if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      "options?." + param.name + "?."
+      "options?." + paramName + "?."
     );
     const serializeContent =
       directAssignment === true
@@ -799,17 +804,17 @@ function getOptional(context: SdkContext, param: SdkHttpParameter) {
         : `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  if (serializedName === "api-version" && (param as any).location === "query") {
+  if (serializedName === "api-version" && param.kind === "query") {
     return `"${serializedName}": ${
       param.clientDefaultValue
-        ? `options?.${param.name} ?? "${param.clientDefaultValue}"`
-        : `options?.${param.name}`
+        ? `options?.${paramName} ?? "${param.clientDefaultValue}"`
+        : `options?.${paramName}`
     }`;
   }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    `options?.${param.name}`,
+    `options?.${paramName}`,
     false,
     getEncodeForType(param.type)
   )}`;
@@ -821,7 +826,7 @@ function getOptional(context: SdkContext, param: SdkHttpParameter) {
 function getEncodeForType(
   type: SdkType | SdkHttpParameter | SdkModelPropertyType
 ) {
-  return (type as any).encode;
+  return (type as any).encode === "bytes" ? "base64" : (type as any).encode;
 }
 
 /**

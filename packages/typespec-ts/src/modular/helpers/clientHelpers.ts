@@ -52,9 +52,7 @@ export function getClientParameters(
         clientParams.push(...property.type.variantTypes[0].templateArguments);
       }
     } else if (property.type.kind === "endpoint") {
-      if (!property.isGeneratedName || options.skipEndpointTemplate) {
-        clientParams.push(property);
-      }
+      clientParams.push(property);
     } else if (!clientParams.find((p) => p.name === property.name)) {
       clientParams.push(property);
     }
@@ -62,7 +60,13 @@ export function getClientParameters(
   const hasDefaultValue = (p: SdkParameter | SdkHttpParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
   const isRequired = (p: SdkParameter | SdkHttpParameter) =>
-    !p.optional && !hasDefaultValue(p);
+    !p.optional &&
+    !hasDefaultValue(p) &&
+    !(
+      p.type.kind === "endpoint" &&
+      p.type.templateArguments[0] &&
+      hasDefaultValue(p.type.templateArguments[0])
+    );
   const isOptional = (p: SdkParameter | SdkHttpParameter) =>
     p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>

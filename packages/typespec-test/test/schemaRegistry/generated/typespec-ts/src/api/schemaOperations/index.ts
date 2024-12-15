@@ -169,7 +169,7 @@ export async function _getSchemaByVersionDeserialize(
   }
 
   return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "bytes")
+    ? stringToUint8Array(result.body, "base64")
     : result.body;
 }
 
@@ -263,7 +263,7 @@ export async function _getSchemaByIdDeserialize(
   }
 
   return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "bytes")
+    ? stringToUint8Array(result.body, "base64")
     : result.body;
 }
 
