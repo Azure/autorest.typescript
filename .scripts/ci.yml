@@ -17,10 +17,10 @@ parameters:
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
-  TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-rlc-azure.json"
-  TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-rlc-standard.json"
-  TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-modular-azure.json"
-  TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-modular-standard.json"
+  TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-azure.json"
+  TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-standard.json"
+  TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-azure.json"
+  TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-standard.json"
 
 pool:
   vmImage: ubuntu-20.04
@@ -281,10 +281,16 @@ stages:
             displayName: "Format check for TypeSpec emitter"
           - script: npm run test:rlc
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-            displayName: "Generate RLC Test Clients from Cadl-ranch"
+            displayName: "Generate RLC Test Clients from Spector"
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Check git Tree"
+          - script: echo $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT)
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "check file path"
+          - script: ls coverage
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "check file"
           - script: npx tsp-spector check-coverage "node_modules/@typespec/http-specs/specs" --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT)
             displayName: "Check Coverage RLC Standard"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
@@ -336,7 +342,7 @@ stages:
           - template: build.yml
           - script: npm run test:modular
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-            displayName: "Generate Modular Test Clients from Cadl-ranch"
+            displayName: "Generate Modular Test Clients from Spector"
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Check git Tree"
