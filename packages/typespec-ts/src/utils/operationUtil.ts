@@ -581,6 +581,7 @@ export function getMethodHierarchiesMap(
       if (
         context.rlcOptions?.hierarchyClient === false &&
         context.rlcOptions?.enableOperationGroup &&
+        groupName !== "" &&
         !operationOrGroup.name.startsWith(groupName + "_")
       ) {
         (operationOrGroup as ServiceOperation).oriName = operationOrGroup.name;
