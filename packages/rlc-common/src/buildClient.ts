@@ -345,7 +345,11 @@ export function getClientFactoryBody(
       endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
     }
   } else {
-    endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
+    if (model.options.flavor !== "azure") {
+      endpointUrl = `options.endpoint ??"${endpoint}"`;
+    } else {
+      endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
+    }
   }
 
   if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {
