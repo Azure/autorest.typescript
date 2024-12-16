@@ -200,7 +200,7 @@ export function getClassicalOperation(
       existFunction.setBodyText(newReturnStatement);
     }
   } else {
-    classicFile.addFunction({
+    const functions = {
       name: operationFunctionName,
       isExported: true,
       parameters: [
@@ -226,7 +226,7 @@ export function getClassicalOperation(
               NameType.Interface,
               "",
               layer + 1
-            )}Operations(context)   
+            )}Operations(context),   
       }`
           : `return {
         ...get${getClassicalLayerPrefix(
@@ -234,9 +234,13 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer
-        )}(context)
+        )}(context),
       }`
-    });
+    };
+    if (functions.name === "getOperationsOperations") {
+      return;
+    }
+    classicFile.addFunction(functions);
   }
 
   function getClassicalMethodName(

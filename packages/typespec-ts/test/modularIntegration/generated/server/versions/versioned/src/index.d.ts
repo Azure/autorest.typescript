@@ -11,10 +11,10 @@ export declare class VersionedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, options?: VersionedClientOptionalParams);
-    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
-    withQueryApiVersion(options?: WithQueryApiVersionOptionalParams): Promise<void>;
-    withPathApiVersion(apiVersion: string, options?: WithPathApiVersionOptionalParams): Promise<void>;
     withQueryOldApiVersion(options?: WithQueryOldApiVersionOptionalParams): Promise<void>;
+    withPathApiVersion(options?: WithPathApiVersionOptionalParams): Promise<void>;
+    withQueryApiVersion(options?: WithQueryApiVersionOptionalParams): Promise<void>;
+    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
 }
 
 export declare interface VersionedClientOptionalParams extends ClientOptions {
@@ -28,11 +28,9 @@ export declare interface WithPathApiVersionOptionalParams extends OperationOptio
 }
 
 export declare interface WithQueryApiVersionOptionalParams extends OperationOptions {
-    apiVersion?: string;
 }
 
 export declare interface WithQueryOldApiVersionOptionalParams extends OperationOptions {
-    apiVersion?: string;
 }
 
 export { }

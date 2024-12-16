@@ -248,7 +248,7 @@ function getOperationSignatureParameters(
     )
     .map((p) => {
       return {
-        name: normalizeName(p.name, NameType.Parameter),
+        name: normalizeName(p.name, NameType.Parameter, true),
         type: getTypeExpression(context, p.type)
       };
     })
@@ -519,7 +519,7 @@ export function getOperationOptionsName(
   const prefixes = method[0];
   const operation = method[1];
   const prefix =
-    includeGroupName && operation.name.indexOf("_") === -1
+    includeGroupName && prefixes.length > 0 && prefixes[0] !== ""
       ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;

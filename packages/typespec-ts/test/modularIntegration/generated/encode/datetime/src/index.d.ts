@@ -6,10 +6,10 @@ export declare class DatetimeClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: DatetimeClientOptionalParams);
-    readonly query: QueryOperations;
-    readonly property: PropertyOperations;
-    readonly header: HeaderOperations;
     readonly responseHeader: ResponseHeaderOperations;
+    readonly header: HeaderOperations;
+    readonly property: PropertyOperations;
+    readonly query: QueryOperations;
 }
 
 export declare interface DatetimeClientOptionalParams extends ClientOptions {
@@ -23,11 +23,11 @@ export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
-    default: (value: Date, options?: HeaderDefaultOptionalParams) => Promise<void>;
-    rfc3339: (value: Date, options?: HeaderRfc3339OptionalParams) => Promise<void>;
-    rfc7231: (value: Date, options?: HeaderRfc7231OptionalParams) => Promise<void>;
-    unixTimestamp: (value: Date, options?: HeaderUnixTimestampOptionalParams) => Promise<void>;
     unixTimestampArray: (value: Date[], options?: HeaderUnixTimestampArrayOptionalParams) => Promise<void>;
+    unixTimestamp: (value: Date, options?: HeaderUnixTimestampOptionalParams) => Promise<void>;
+    rfc7231: (value: Date, options?: HeaderRfc7231OptionalParams) => Promise<void>;
+    rfc3339: (value: Date, options?: HeaderRfc3339OptionalParams) => Promise<void>;
+    default: (value: Date, options?: HeaderDefaultOptionalParams) => Promise<void>;
 }
 
 export declare interface HeaderRfc3339OptionalParams extends OperationOptions {
@@ -46,11 +46,11 @@ export declare interface PropertyDefaultOptionalParams extends OperationOptions 
 }
 
 export declare interface PropertyOperations {
-    default: (body: DefaultDatetimeProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultDatetimeProperty>;
-    rfc3339: (body: Rfc3339DatetimeProperty, options?: PropertyRfc3339OptionalParams) => Promise<Rfc3339DatetimeProperty>;
-    rfc7231: (body: Rfc7231DatetimeProperty, options?: PropertyRfc7231OptionalParams) => Promise<Rfc7231DatetimeProperty>;
-    unixTimestamp: (body: UnixTimestampDatetimeProperty, options?: PropertyUnixTimestampOptionalParams) => Promise<UnixTimestampDatetimeProperty>;
     unixTimestampArray: (body: UnixTimestampArrayDatetimeProperty, options?: PropertyUnixTimestampArrayOptionalParams) => Promise<UnixTimestampArrayDatetimeProperty>;
+    unixTimestamp: (body: UnixTimestampDatetimeProperty, options?: PropertyUnixTimestampOptionalParams) => Promise<UnixTimestampDatetimeProperty>;
+    rfc7231: (body: Rfc7231DatetimeProperty, options?: PropertyRfc7231OptionalParams) => Promise<Rfc7231DatetimeProperty>;
+    rfc3339: (body: Rfc3339DatetimeProperty, options?: PropertyRfc3339OptionalParams) => Promise<Rfc3339DatetimeProperty>;
+    default: (body: DefaultDatetimeProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultDatetimeProperty>;
 }
 
 export declare interface PropertyRfc3339OptionalParams extends OperationOptions {
@@ -69,11 +69,11 @@ export declare interface QueryDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
-    default: (value: Date, options?: QueryDefaultOptionalParams) => Promise<void>;
-    rfc3339: (value: Date, options?: QueryRfc3339OptionalParams) => Promise<void>;
-    rfc7231: (value: Date, options?: QueryRfc7231OptionalParams) => Promise<void>;
-    unixTimestamp: (value: Date, options?: QueryUnixTimestampOptionalParams) => Promise<void>;
     unixTimestampArray: (value: Date[], options?: QueryUnixTimestampArrayOptionalParams) => Promise<void>;
+    unixTimestamp: (value: Date, options?: QueryUnixTimestampOptionalParams) => Promise<void>;
+    rfc7231: (value: Date, options?: QueryRfc7231OptionalParams) => Promise<void>;
+    rfc3339: (value: Date, options?: QueryRfc3339OptionalParams) => Promise<void>;
+    default: (value: Date, options?: QueryDefaultOptionalParams) => Promise<void>;
 }
 
 export declare interface QueryRfc3339OptionalParams extends OperationOptions {
@@ -92,10 +92,10 @@ export declare interface ResponseHeaderDefaultOptionalParams extends OperationOp
 }
 
 export declare interface ResponseHeaderOperations {
-    default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
-    rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<void>;
-    rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) => Promise<void>;
     unixTimestamp: (options?: ResponseHeaderUnixTimestampOptionalParams) => Promise<void>;
+    rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) => Promise<void>;
+    rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<void>;
+    default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
 }
 
 export declare interface ResponseHeaderRfc3339OptionalParams extends OperationOptions {

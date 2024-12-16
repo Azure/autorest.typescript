@@ -6,13 +6,13 @@ export declare class BasicClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BasicClientOptionalParams);
-    createOrUpdate(id: number, resource: User, options?: CreateOrUpdateOptionalParams): Promise<User>;
-    createOrReplace(id: number, resource: User, options?: CreateOrReplaceOptionalParams): Promise<User>;
-    get(id: number, options?: GetOptionalParams): Promise<User>;
-    list(options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
-    delete(id: number, options?: DeleteOptionalParams): Promise<void>;
-    export(id: number, format: string, options?: ExportOptionalParams): Promise<User>;
     exportAllUsers(format: string, options?: ExportAllUsersOptionalParams): Promise<UserList>;
+    export(id: number, format: string, options?: ExportOptionalParams): Promise<User>;
+    delete(id: number, options?: DeleteOptionalParams): Promise<void>;
+    list(options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
+    get(id: number, options?: GetOptionalParams): Promise<User>;
+    createOrReplace(id: number, resource: User, options?: CreateOrReplaceOptionalParams): Promise<User>;
+    createOrUpdate(id: number, resource: User, options?: CreateOrUpdateOptionalParams): Promise<User>;
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {
@@ -27,7 +27,6 @@ export declare interface CreateOrReplaceOptionalParams extends OperationOptions 
 }
 
 export declare interface CreateOrUpdateOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 export declare interface DeleteOptionalParams extends OperationOptions {
