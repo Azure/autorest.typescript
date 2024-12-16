@@ -3,17 +3,7 @@
 
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { _createOrReplaceDeserialize } from "./api/budgets/index.js";
-import {
-  _analyzeWidgetDeserialize,
-  _deleteWidgetDeserialize,
-  _updateWidgetDeserialize,
-  _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets,
-  _createWidgetDeserialize,
-  _getWidgetDeserialize,
-  _queryWidgetsPagesDeserialize,
-  _listWidgetsPagesDeserialize,
-  _listWidgetsDeserialize,
-} from "./api/widgets/index.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/index.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -96,41 +86,9 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     deserializer: _createOrReplaceDeserialize,
     expectedStatuses: ["201", "200"],
   },
-  "POST /widgets/{id}/analyze": {
-    deserializer: _analyzeWidgetDeserialize,
-    expectedStatuses: ["200"],
-  },
-  "DELETE /widgets/{id}": {
-    deserializer: _deleteWidgetDeserialize,
-    expectedStatuses: ["204"],
-  },
-  "PATCH /widgets/{id}": {
-    deserializer: _updateWidgetDeserialize,
-    expectedStatuses: ["200"],
-  },
   "PUT /widgets/widgets/createOrReplace/users/{name}": {
     deserializer: _createOrReplaceDeserializeWidgets,
     expectedStatuses: ["201", "200"],
-  },
-  "POST /widgets": {
-    deserializer: _createWidgetDeserialize,
-    expectedStatuses: ["201"],
-  },
-  "GET /widgets/{id}": {
-    deserializer: _getWidgetDeserialize,
-    expectedStatuses: ["200"],
-  },
-  "POST /widgets/widgets/pages": {
-    deserializer: _queryWidgetsPagesDeserialize,
-    expectedStatuses: ["200"],
-  },
-  "GET /widgets/widgets/pages": {
-    deserializer: _listWidgetsPagesDeserialize,
-    expectedStatuses: ["200"],
-  },
-  "GET /widgets": {
-    deserializer: _listWidgetsDeserialize,
-    expectedStatuses: ["200"],
   },
 };
 

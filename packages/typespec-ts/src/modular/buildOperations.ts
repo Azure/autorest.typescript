@@ -236,7 +236,7 @@ export function buildLroDeserDetailMap(
           "operations";
     map.set(
       `./api/${operationFileName}.js`,
-      operations.map((o) => {
+      lroOperations.map((o) => {
         const { name } = getOperationName(o);
         const deserName = `_${name}Deserialize`;
         let renamedDeserName = undefined;

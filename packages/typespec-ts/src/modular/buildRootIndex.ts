@@ -99,9 +99,9 @@ function hasPaging(context: SdkContext): boolean {
   return context.sdkPackage.clients.some((client) => {
     const methodMap = getMethodHierarchiesMap(context, client);
     for (const [_, operations] of methodMap) {
-      if (operations.some(
-        (op) => op.kind === "paging" || op.kind === "lropaging"
-      )) {
+      if (
+        operations.some((op) => op.kind === "paging" || op.kind === "lropaging")
+      ) {
         return true;
       }
     }
