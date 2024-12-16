@@ -11,17 +11,16 @@ import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
   SdkClientType,
-  SdkHttpOperation,
-  SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../../utils/clientUtils.js";
+import { ServiceOperation } from "../../utils/operationUtil.js";
 
 export function getClassicalOperation(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   classicFile: SourceFile,
-  operationGroup: [string[], SdkServiceMethod<SdkHttpOperation>[]],
+  operationGroup: [string[], ServiceOperation[]],
   layer: number = operationGroup[0].length - 1
 ) {
   const prefixes = operationGroup[0];
@@ -48,10 +47,10 @@ export function getClassicalOperation(
     });
   }
 
-  // const operationMap = new Map<
-  //   OptionalKind<FunctionDeclarationStructure>,
-  //   string | undefined
-  // >();
+  const operationMap = new Map<
+    OptionalKind<FunctionDeclarationStructure>,
+    string | undefined
+  >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operations.map((operation) => {
       const declarations = getOperationFunction(
@@ -59,7 +58,7 @@ export function getClassicalOperation(
         [prefixes, operation],
         rlcClientName
       );
-      // operationMap.set(declarations, operation.oriName);
+      operationMap.set(declarations, operation.oriName);
       return declarations;
     });
 
@@ -226,7 +225,7 @@ export function getClassicalOperation(
               NameType.Interface,
               "",
               layer + 1
-            )}Operations(context),   
+            )}Operations(context)   
       }`
           : `return {
         ...get${getClassicalLayerPrefix(
@@ -234,12 +233,9 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer
-        )}(context),
+        )}(context)
       }`
     };
-    if (functions.name === "getOperationsOperations") {
-      return;
-    }
     classicFile.addFunction(functions);
   }
 
@@ -249,8 +245,10 @@ export function getClassicalOperation(
     }
   ) {
     return (
-      // operationMap.get(declaration) ??
-      declaration.propertyName ?? declaration.name ?? "FIXME"
+      operationMap.get(declaration) ??
+      declaration.propertyName ??
+      declaration.name ??
+      "FIXME"
     );
   }
 }

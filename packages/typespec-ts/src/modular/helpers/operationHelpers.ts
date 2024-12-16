@@ -10,7 +10,8 @@ import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   getSpecialSerializeInfo,
-  isBinaryPayload
+  isBinaryPayload,
+  ServiceOperation
 } from "../../utils/operationUtil.js";
 import {
   isNormalUnion,
@@ -49,14 +50,13 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
-  SdkServiceMethod,
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
-  method: [string[], SdkServiceMethod<SdkHttpOperation>],
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
   const operation = method[1];
@@ -101,7 +101,7 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   context: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>
+  operation: ServiceOperation
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
@@ -222,7 +222,7 @@ export function getDeserializePrivateFunction(
 
 function getOperationSignatureParameters(
   context: SdkContext,
-  method: [string[], SdkServiceMethod<SdkHttpOperation>],
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
@@ -248,7 +248,7 @@ function getOperationSignatureParameters(
     )
     .map((p) => {
       return {
-        name: normalizeName(p.name, NameType.Parameter, true),
+        name: p.name,
         type: getTypeExpression(context, p.type)
       };
     })
@@ -276,7 +276,7 @@ function getOperationSignatureParameters(
  */
 export function getOperationFunction(
   context: SdkContext,
-  method: [string[], SdkServiceMethod<SdkHttpOperation>],
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
   const operation = method[1];
@@ -513,13 +513,13 @@ function getPagingOnlyOperationFunction(
 //     : undefined;
 // }
 export function getOperationOptionsName(
-  method: [string[], SdkServiceMethod<SdkHttpOperation>],
+  method: [string[], ServiceOperation],
   includeGroupName = false
 ) {
   const prefixes = method[0];
   const operation = method[1];
   const prefix =
-    includeGroupName && prefixes.length > 0 && prefixes[0] !== ""
+    includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
@@ -533,7 +533,7 @@ export function getOperationOptionsName(
  */
 function getRequestParameters(
   dpgContext: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>
+  operation: ServiceOperation
 ): string {
   if (!operation.operation.parameters) {
     return "";
@@ -599,7 +599,7 @@ function buildHeaderParameter(
   paramMap: string,
   param: SdkServiceParameter
 ): string {
-  const paramName = normalizeName(param.name, NameType.Parameter);
+  const paramName = param.name;
   if (!param.optional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
@@ -768,7 +768,7 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    normalizeName(param.name, NameType.Parameter),
+    param.name,
     true,
     getEncodeForType(param.type)
   )}`;
@@ -791,7 +791,7 @@ function isOptional(param: SdkModelPropertyType) {
 
 function getOptional(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
-  const paramName = normalizeName(param.name, NameType.Parameter);
+  const paramName = param.name;
   if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
@@ -850,7 +850,7 @@ function getDefaultValue(param: SdkServiceParameter) {
  */
 function getPathParameters(
   dpgContext: SdkContext,
-  operation: SdkServiceMethod<SdkHttpOperation>
+  operation: ServiceOperation
 ) {
   if (!operation.operation.parameters) {
     return "";
@@ -883,7 +883,7 @@ function getPathParamExpr(param: SdkServiceParameter, defaultValue?: string) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
-  const paramName = normalizeName(param.name, NameType.Parameter);
+  const paramName = param.name;
   const value = defaultValue
     ? typeof defaultValue === "string"
       ? `options[${paramName}] ?? "${defaultValue}"`
@@ -1318,9 +1318,7 @@ export function getPropertyFullName(
  * Get an expression representing an array of expected status codes for the operation
  * @param operation The operation
  */
-export function getExpectedStatuses(
-  operation: SdkServiceMethod<SdkHttpOperation>
-): string {
+export function getExpectedStatuses(operation: ServiceOperation): string {
   const statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (

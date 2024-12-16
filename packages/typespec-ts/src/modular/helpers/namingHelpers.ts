@@ -5,10 +5,10 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   SdkClientType,
-  SdkHttpOperation,
-  SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { ServiceOperation } from "../../utils/operationUtil.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 export function getClientName(
   client: SdkClientType<SdkServiceOperation>
@@ -28,16 +28,13 @@ export interface GuardedName {
 }
 
 export function getOperationName(
-  operation: SdkServiceMethod<SdkHttpOperation>
+  operation: ServiceOperation,
+  options: { casing: "camel" | "pascal" } = { casing: "camel" }
 ): GuardedName {
-  const normalizedName = normalizeName(
-    operation.name,
-    NameType.Operation,
-    true
-  );
+  const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
-      name: normalizedName,
+      name: `$${operation.name}`,
       fixme: [
         `${operation.name} is a reserved word that cannot be used as an operation name. 
         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript") 
@@ -47,7 +44,7 @@ export function getOperationName(
   }
 
   return {
-    name: normalizedName
+    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
   };
 }
 

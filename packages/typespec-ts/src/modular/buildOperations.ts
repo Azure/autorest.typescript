@@ -22,12 +22,13 @@ import {
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import {
   SdkClientType,
-  SdkHttpOperation,
   SdkMethodParameter,
-  SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import {
+  getMethodHierarchiesMap,
+  ServiceOperation
+} from "../utils/operationUtil.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 
@@ -162,7 +163,7 @@ export function importDeserializeUtils(
  */
 export function buildOperationOptions(
   context: SdkContext,
-  method: [string[], SdkServiceMethod<SdkHttpOperation>],
+  method: [string[], ServiceOperation],
   sourceFile: SourceFile
 ) {
   const dependencies = useDependencies();

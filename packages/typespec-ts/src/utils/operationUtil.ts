@@ -539,6 +539,9 @@ export function parseItemName(paged: PagedResultMetadata): string | undefined {
   return (paged.itemsSegments ?? [])[0];
 }
 
+export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
+  oriName?: string;
+};
 export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
@@ -547,10 +550,10 @@ export function getMethodHierarchiesMap(
     client.methods.map((m) => {
       return [[], m];
     });
-  const operationHierarchiesMap: Map<
+  const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
     string,
-    SdkServiceMethod<SdkHttpOperation>[]
-  > = new Map<string, SdkServiceMethod<SdkHttpOperation>[]>();
+    ServiceOperation[]
+  >();
   while (methodQueue.length > 0) {
     const method = methodQueue.pop();
     if (!method) {
@@ -572,6 +575,26 @@ export function getMethodHierarchiesMap(
         context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
+      const groupName = prefixes
+        .map((p) => normalizeName(p, NameType.OperationGroup))
+        .join("");
+      if (
+        context.rlcOptions?.hierarchyClient === false &&
+        context.rlcOptions?.enableOperationGroup &&
+        !operationOrGroup.name.startsWith(groupName + "_")
+      ) {
+        (operationOrGroup as ServiceOperation).oriName = operationOrGroup.name;
+        operationOrGroup.name = `${groupName}_${operationOrGroup.name}`;
+      }
+
+      operationOrGroup.parameters.map((p) => {
+        p.name = normalizeName(p.name, NameType.Parameter, true);
+        return p;
+      });
+      operationOrGroup.operation.parameters.map((p) => {
+        p.name = normalizeName(p.name, NameType.Parameter, true);
+        return p;
+      });
       const operations = operationHierarchiesMap.get(prefixKey);
       operationHierarchiesMap.set(prefixKey, [
         ...(operations ?? []),
