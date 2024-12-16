@@ -305,9 +305,9 @@ stages:
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
               - task: AzureCLI@2
-                displayName: "Upload to Cadl Ranch Coverage RLC Report"
+                displayName: "Upload to TypeSpec Coverage RLC Report"
                 inputs:
-                  azureSubscription: "Cadl Ranch Storage"
+                  azureSubscription: "TypeSpec Storage"
                   scriptType: "bash"
                   scriptLocation: "inlineScript"
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
@@ -360,9 +360,9 @@ stages:
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
               - task: AzureCLI@2
-                displayName: "Upload to Cadl Ranch Coverage Report"
+                displayName: "Upload to TypeSpec Coverage Report"
                 inputs:
-                  azureSubscription: "Cadl Ranch Storage"
+                  azureSubscription: "TypeSpec Storage"
                   scriptType: "bash"
                   scriptLocation: "inlineScript"
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
