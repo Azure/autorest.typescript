@@ -291,7 +291,7 @@ stages:
           - script: ls coverage
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "check file"
-          - script: npx tsp-spector check-coverage "node_modules/@typespec/http-specs/specs" --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT)
+          - script: npx tsp-spector check-coverage "node_modules/@typespec/http-specs/specs" node_modules/@azure-tools/azure-http-specs/specs --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)
             displayName: "Check Coverage RLC Standard"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')
