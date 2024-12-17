@@ -321,7 +321,7 @@ export function getOperationFunction(
     isAsync: true,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
@@ -365,7 +365,7 @@ function getLroOnlyOperationFunction(
     isAsync: false,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
@@ -461,7 +461,7 @@ function getPagingOnlyOperationFunction(
     isAsync: false,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
   };

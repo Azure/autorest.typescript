@@ -38,7 +38,7 @@ export interface MultivariateOperations {
    * JSON format. The request will complete synchronously and return the detection
    * immediately in the response body.
    */
-  DetectMultivariateLastAnomaly: (
+  detectMultivariateLastAnomaly: (
     modelId: string,
     options: MultivariateMultivariateLastDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
@@ -51,7 +51,7 @@ export interface MultivariateOperations {
    * externally accessible Azure storage Uri, either pointed to an Azure blob
    * storage folder, or pointed to a CSV file in Azure blob storage.
    */
-  DetectMultivariateBatchAnomaly: (
+  detectMultivariateBatchAnomaly: (
     modelId: string,
     options: MultivariateMultivariateBatchDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
@@ -60,17 +60,17 @@ export interface MultivariateOperations {
    * Get detailed information of multivariate model, including the training status
    * and variables used in the model.
    */
-  GetMultivariateModel: (
+  getMultivariateModel: (
     modelId: string,
     options?: MultivariateGetMultivariateModelOptionalParams,
   ) => Promise<MultivariateAnomalyDetectionModel>;
   /** Delete an existing multivariate model according to the modelId */
-  DeleteMultivariateModel: (
+  deleteMultivariateModel: (
     modelId: string,
     options?: MultivariateDeleteMultivariateModelOptionalParams,
   ) => Promise<void>;
   /** List models of a resource. */
-  ListMultivariateModels: (
+  listMultivariateModels: (
     options?: MultivariateListMultivariateModelsOptionalParams,
   ) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
   /**
@@ -82,7 +82,7 @@ export interface MultivariateOperations {
    * a CSV file in Azure blob storage, which contains all the variables and a
    * timestamp column.
    */
-  TrainMultivariateModel: (
+  trainMultivariateModel: (
     modelInfo: MultivariateModelInfo,
     options?: MultivariateTrainMultivariateModelOptionalParams,
   ) => Promise<MultivariateAnomalyDetectionModel>;
@@ -90,7 +90,7 @@ export interface MultivariateOperations {
    * For asynchronous inference, get multivariate anomaly detection result based on
    * resultId returned by the BatchDetectAnomaly api.
    */
-  GetMultivariateBatchDetectionResult: (
+  getMultivariateBatchDetectionResult: (
     resultId: string,
     options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams,
   ) => Promise<MultivariateMultivariateDetectionResult>;
@@ -98,34 +98,34 @@ export interface MultivariateOperations {
 
 export function getMultivariate(context: AnomalyDetectorContext) {
   return {
-    DetectMultivariateLastAnomaly: (
+    detectMultivariateLastAnomaly: (
       modelId: string,
       options: MultivariateMultivariateLastDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
     ) =>
       detectMultivariateLastAnomaly(context, modelId, options, optionalParams),
-    DetectMultivariateBatchAnomaly: (
+    detectMultivariateBatchAnomaly: (
       modelId: string,
       options: MultivariateMultivariateBatchDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
     ) =>
       detectMultivariateBatchAnomaly(context, modelId, options, optionalParams),
-    GetMultivariateModel: (
+    getMultivariateModel: (
       modelId: string,
       options?: MultivariateGetMultivariateModelOptionalParams,
     ) => getMultivariateModel(context, modelId, options),
-    DeleteMultivariateModel: (
+    deleteMultivariateModel: (
       modelId: string,
       options?: MultivariateDeleteMultivariateModelOptionalParams,
     ) => deleteMultivariateModel(context, modelId, options),
-    ListMultivariateModels: (
+    listMultivariateModels: (
       options?: MultivariateListMultivariateModelsOptionalParams,
     ) => listMultivariateModels(context, options),
-    TrainMultivariateModel: (
+    trainMultivariateModel: (
       modelInfo: MultivariateModelInfo,
       options?: MultivariateTrainMultivariateModelOptionalParams,
     ) => trainMultivariateModel(context, modelInfo, options),
-    GetMultivariateBatchDetectionResult: (
+    getMultivariateBatchDetectionResult: (
       resultId: string,
       options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams,
     ) => getMultivariateBatchDetectionResult(context, resultId, options),

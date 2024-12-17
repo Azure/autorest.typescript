@@ -23,7 +23,7 @@ import {
 /** Interface representing a Univariate operations. */
 export interface UnivariateOperations {
   /** Evaluate change point score of every series point */
-  DetectUnivariateChangePoint: (
+  detectUnivariateChangePoint: (
     options: UnivariateUnivariateChangePointDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
   ) => Promise<UnivariateUnivariateChangePointDetectionResult>;
@@ -31,7 +31,7 @@ export interface UnivariateOperations {
    * This operation generates a model using the points that you sent into the API,
    * and based on all data to determine whether the last point is anomalous.
    */
-  DetectUnivariateLastPoint: (
+  detectUnivariateLastPoint: (
     options: UnivariateUnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
   ) => Promise<UnivariateUnivariateLastDetectionResult>;
@@ -41,7 +41,7 @@ export interface UnivariateOperations {
    * are used to determine whether it is an anomaly. The entire detection can give
    * user an overall status of the time series.
    */
-  DetectUnivariateEntireSeries: (
+  detectUnivariateEntireSeries: (
     options: UnivariateUnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
   ) => Promise<UnivariateUnivariateEntireDetectionResult>;
@@ -49,15 +49,15 @@ export interface UnivariateOperations {
 
 export function getUnivariate(context: AnomalyDetectorContext) {
   return {
-    DetectUnivariateChangePoint: (
+    detectUnivariateChangePoint: (
       options: UnivariateUnivariateChangePointDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
     ) => detectUnivariateChangePoint(context, options, optionalParams),
-    DetectUnivariateLastPoint: (
+    detectUnivariateLastPoint: (
       options: UnivariateUnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
     ) => detectUnivariateLastPoint(context, options, optionalParams),
-    DetectUnivariateEntireSeries: (
+    detectUnivariateEntireSeries: (
       options: UnivariateUnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
     ) => detectUnivariateEntireSeries(context, options, optionalParams),

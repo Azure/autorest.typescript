@@ -57,7 +57,7 @@ export class EventGridClient {
   }
 
   /** Reject batch of Cloud Events. */
-  RejectCloudEvents(
+  rejectCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: RejectOptions,
@@ -73,7 +73,7 @@ export class EventGridClient {
   }
 
   /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
-  ReleaseCloudEvents(
+  releaseCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: ReleaseOptions,
@@ -89,7 +89,7 @@ export class EventGridClient {
   }
 
   /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
-  AcknowledgeCloudEvents(
+  acknowledgeCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: AcknowledgeOptions,
@@ -105,7 +105,7 @@ export class EventGridClient {
   }
 
   /** Receive Batch of Cloud Events from the Event Subscription. */
-  ReceiveCloudEvents(
+  receiveCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
     options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
@@ -119,7 +119,7 @@ export class EventGridClient {
   }
 
   /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  PublishCloudEvents(
+  publishCloudEvents(
     topicName: string,
     events: CloudEvent[],
     options: PublishCloudEventsOptionalParams = { requestOptions: {} },
@@ -128,7 +128,7 @@ export class EventGridClient {
   }
 
   /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  PublishCloudEvent(
+  publishCloudEvent(
     topicName: string,
     event: {
       event: CloudEvent;

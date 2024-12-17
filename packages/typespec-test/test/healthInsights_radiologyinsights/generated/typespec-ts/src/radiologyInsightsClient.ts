@@ -40,7 +40,7 @@ export class RadiologyInsightsClient {
   }
 
   /** Creates a Radiology Insights job with the given request body. */
-  InferRadiologyInsights(
+  inferRadiologyInsights(
     patients: PatientRecord[],
     options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
   ): PollerLike<
