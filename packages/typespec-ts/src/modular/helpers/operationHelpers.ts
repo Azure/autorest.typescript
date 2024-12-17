@@ -539,7 +539,7 @@ function getRequestParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => !p.onClient && !isContentType(p)
+    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
   );
 
   const contentTypeParameter =
@@ -757,18 +757,19 @@ function isRequired(param: SdkModelPropertyType) {
 
 function getRequired(context: SdkContext, param: SdkModelPropertyType) {
   const serializedName = getPropertySerializedName(param);
+  const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
     const { propertiesStr } = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      param.name
+      clientValue
     );
     return `"${serializedName}": { ${propertiesStr.join(",")} }`;
   }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    param.name,
+    clientValue,
     true,
     getEncodeForType(param.type)
   )}`;
@@ -791,12 +792,12 @@ function isOptional(param: SdkModelPropertyType) {
 
 function getOptional(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
-  const paramName = param.name;
+  const paramName = `${param.onClient ? "context." : "options?."}${param.name}`;
   if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      "options?." + paramName + "?."
+      paramName + "?."
     );
     const serializeContent =
       directAssignment === true
@@ -804,17 +805,10 @@ function getOptional(context: SdkContext, param: SdkHttpParameter) {
         : `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  if (serializedName === "api-version" && param.kind === "query") {
-    return `"${serializedName}": ${
-      param.clientDefaultValue
-        ? `options?.${paramName} ?? "${param.clientDefaultValue}"`
-        : `options?.${paramName}`
-    }`;
-  }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    `options?.${paramName}`,
+    paramName,
     false,
     getEncodeForType(param.type)
   )}`;

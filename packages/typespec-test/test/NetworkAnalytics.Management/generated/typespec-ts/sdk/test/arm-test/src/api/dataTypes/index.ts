@@ -54,6 +54,7 @@ export function _listByDataProductSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -112,6 +113,7 @@ export function _generateStorageContainerSasTokenSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: containerSaSSerializer(body),
     });
 }
@@ -169,6 +171,7 @@ export function _deleteDataSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: _deleteDataRequestSerializer(body),
     });
 }
@@ -232,6 +235,7 @@ export function _$deleteSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -299,6 +303,7 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: dataTypeUpdateSerializer(properties),
     });
 }
@@ -357,6 +362,7 @@ export function _getSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -409,6 +415,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: dataTypeSerializer(resource),
     });
 }

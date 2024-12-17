@@ -7,7 +7,11 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 /** Azure Batch provides Cloud-scale job scheduling and compute management. */
-export interface BatchContext extends Client {}
+export interface BatchContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface BatchClientOptionalParams extends ClientOptions {
@@ -41,10 +45,6 @@ export function createBatch(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
-  return clientContext;
+  const apiVersion = options.apiVersion ?? "2023-05-01.17.0";
+  return { ...clientContext, apiVersion };
 }

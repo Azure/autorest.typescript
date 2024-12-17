@@ -761,6 +761,7 @@ export function _testSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -790,7 +791,9 @@ export async function test(
 import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface TestingContext extends Client {}
+export interface TestingContext extends Client {
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface TestingClientOptionalParams extends ClientOptions {
@@ -814,12 +817,8 @@ export function createTesting(
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
-  return clientContext;
+  const apiVersion = options.apiVersion ?? "2022-05-15-preview";
+  return { ...clientContext, apiVersion };
 }
 ```
 

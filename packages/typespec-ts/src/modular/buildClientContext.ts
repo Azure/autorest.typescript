@@ -59,7 +59,8 @@ export function buildClientContext(
   const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true
+    requiredOnly: true,
+    apiVersionAsRequired: true
   });
   const clientContextFile = emitterOptions.project.createSourceFile(
     getClientContextPath(dpgContext, client, emitterOptions)
@@ -72,7 +73,8 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     properties: getClientParameters(client, dpgContext, {
       onClientOnly: false,
-      requiredOnly: true
+      requiredOnly: true,
+      apiVersionAsRequired: true
     })
       .filter((p) => {
         const clientParamName = getClientParameterName(p);
@@ -129,7 +131,10 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
     returnType: `${rlcClientName}`,
-    parameters: requiredParams,
+    parameters: getClientParametersDeclaration(client, dpgContext, {
+      onClientOnly: false,
+      requiredOnly: true
+    }),
     isExported: true
   });
 
@@ -169,33 +174,27 @@ export function buildClientContext(
   }
 
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
-
-  if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = getClientParameters(client, dpgContext).find(
-      (x) => x.isApiVersionParam && x.kind === "method"
-    );
-
-    if (apiVersionParam) {
-      if (apiVersionParam.clientDefaultValue) {
+  const apiVersionParam = getClientParameters(client, dpgContext).find(
+    (x) => x.isApiVersionParam
+  );
+  const endpointParameter = getClientParameters(client, dpgContext, {
+    onClientOnly: false,
+    requiredOnly: true,
+    skipEndpointTemplate: true
+  }).find((x) => x.kind === "endpoint");
+  if (apiVersionParam) {
+    if (apiVersionParam.clientDefaultValue) {
+      const templateArguments =
+        endpointParameter && endpointParameter.type.kind === "endpoint"
+          ? endpointParameter.type.templateArguments
+          : endpointParameter && endpointParameter.type.kind === "union"
+            ? endpointParameter.type.variantTypes[0]?.templateArguments
+            : [];
+      const apiVersionInEndpoint =
+        templateArguments && templateArguments.find((p) => p.isApiVersionParam);
+      if (!apiVersionInEndpoint) {
         apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
       }
-
-      apiVersionPolicyStatement += `
-      clientContext.pipeline.addPolicy({
-        name: 'ClientApiVersionPolicy',
-        sendRequest: (req, next) => {
-          // Use the apiVersion defined in request url directly
-          // Append one if there is no apiVersion and we have one at client options
-          const url = new URL(req.url);
-          if (!url.searchParams.get("api-version")) {
-            req.url = \`\${req.url}\${
-              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
-          }
-    
-          return next(req);
-        },
-      });`;
     }
   } else if (isAzurePackage(emitterOptions)) {
     apiVersionPolicyStatement += `
@@ -210,15 +209,15 @@ export function buildClientContext(
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
-  const contextRequiredParam = requiredParams.filter(
+  const contextParam = requiredParams.filter(
     (p) =>
       p.name !== "endpointParam" &&
       p.name !== "credential" &&
       p.name !== "options"
   );
-  if (contextRequiredParam.length) {
+  if (contextParam.length) {
     factoryFunction.addStatements(
-      `return { ...clientContext, ${contextRequiredParam
+      `return { ...clientContext, ${contextParam
         .map((p) => {
           return p.name;
         })

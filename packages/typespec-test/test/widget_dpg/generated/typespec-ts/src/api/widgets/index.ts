@@ -159,6 +159,7 @@ export function _createOrReplaceSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
     });
 }

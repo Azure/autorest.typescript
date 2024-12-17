@@ -6,7 +6,11 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 
-export interface WidgetServiceContext extends Client {}
+export interface WidgetServiceContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface WidgetServiceClientOptionalParams extends ClientOptions {
@@ -44,10 +48,6 @@ export function createWidgetService(
     });
   }
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
-  return clientContext;
+  const apiVersion = options.apiVersion ?? "1.0.0";
+  return { ...clientContext, apiVersion };
 }
