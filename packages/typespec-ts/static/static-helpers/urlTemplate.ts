@@ -1,5 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+//---------------------
+// interfaces
+//---------------------
+interface GetVarValueOptions {
+    isFirst: boolean;
+    operator?: string;
+    varValue?: any;
+    varName?: string;
+    modifier?: string;
+}
+
+// ---------------------
+// helpers
+// ---------------------
 function encodeReserved(str: any) {
     return str
         .split(/(%[0-9A-Fa-f]{2})/g)
@@ -18,155 +32,10 @@ function encodeUnreserved(str: any) {
     });
 }
 
-function encodeValue(operator: any, value: any, key?: any | null) {
-    value =
-        operator === "+" || operator === "#"
-            ? encodeReserved(value)
-            : encodeUnreserved(value);
-
-    if (key) {
-        return encodeUnreserved(key) + "=" + value;
-    } else {
-        return value;
-    }
-}
-
 function isDefined(value: any) {
     return value !== undefined && value !== null;
 }
 
-function isKeyOperator(operator: string): boolean {
-    return operator === ";" || operator === "&" || operator === "?";
-}
-
-function getValues(
-    context: any,
-    operator: any,
-    key: any | null,
-    modifier: any | null,
-) {
-    var value = context[key],
-        result: any[] = [];
-
-    if (isDefined(value) && value !== "") {
-        if (
-            typeof value === "string" ||
-            typeof value === "number" ||
-            typeof value === "boolean"
-        ) {
-            value = value.toString();
-
-            if (modifier && modifier !== "*") {
-                value = value.substring(0, parseInt(modifier, 10));
-            }
-            result.push(
-                encodeValue(operator, value, isKeyOperator(operator) ? key : null),
-            );
-        } else {
-            if (modifier === "*") {
-                if (Array.isArray(value)) {
-                    value.filter(isDefined).forEach(function (value) {
-                        result.push(
-                            encodeValue(
-                                operator,
-                                value,
-                                isKeyOperator(operator) ? key : null,
-                            ),
-                        );
-                    });
-                } else {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            result.push(encodeValue(operator, value[k], k));
-                        }
-                    });
-                }
-            } else {
-                var tmp: any[] = [];
-
-                if (Array.isArray(value)) {
-                    value.filter(isDefined).forEach(function (value) {
-                        tmp.push(encodeValue(operator, value));
-                    });
-                } else {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            tmp.push(encodeUnreserved(k));
-                            tmp.push(encodeValue(operator, value[k].toString()));
-                        }
-                    });
-                }
-
-                if (isKeyOperator(operator)) {
-                    result.push(encodeUnreserved(key) + "=" + tmp.join(","));
-                } else if (tmp.length !== 0) {
-                    result.push(tmp.join(","));
-                }
-            }
-        }
-    } else {
-        if (operator === ";") {
-            if (isDefined(value)) {
-                result.push(encodeUnreserved(key));
-            }
-        } else if (value === "" && (operator === "&" || operator === "?")) {
-            result.push(encodeUnreserved(key) + "=");
-        } else if (value === "") {
-            result.push("");
-        }
-    }
-    return result;
-}
-
-export function parseTemplate(template: any) {
-    var operators = ["+", "#", ".", "/", ";", "?", "&"];
-
-    return {
-        expand: function (context: any) {
-            return template.replace(
-                /\{([^\{\}]+)\}|([^\{\}]+)/g,
-                function (_: any, expression: any, literal: any) {
-                    if (expression) {
-                        var operator: any = null,
-                            values: any[] = [];
-
-                        if (operators.indexOf(expression.charAt(0)) !== -1) {
-                            operator = expression.charAt(0);
-                            expression = expression.substr(1);
-                        }
-
-                        expression.split(/,/g).forEach(function (variable: any) {
-                            var tmp = /([^:\*]*)(?::(\d+)|(\*))?/.exec(variable);
-                            if (!!tmp) {
-                                values.push.apply(
-                                    values,
-                                    getValues(context, operator, tmp[1], tmp[2] || tmp[3]),
-                                );
-                            }
-                        });
-
-                        if (operator && operator !== "+") {
-                            var separator = ",";
-
-                            if (operator === "?") {
-                                separator = "&";
-                            } else if (operator !== "#") {
-                                separator = operator;
-                            }
-                            return (
-                                (values.length !== 0 ? operator : "") + values.join(separator)
-                            );
-                        } else {
-                            return values.join(",");
-                        }
-                    } else {
-                        return encodeReserved(literal);
-                    }
-                },
-            );
-        },
-    };
-}
 
 export function expandUriTemplate(template: string, context: Record<string, any>): string {
     return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, layer1, literal) => {
@@ -227,15 +96,8 @@ function getFirstOrSep(operator: string | undefined, isFirst = false) {
     }
 }
 
-interface GetVarValueOptions {
-    isFirst: boolean;
-    operator?: string;
-    varValue?: any;
-    varName?: string;
-    modifier?: string;
-}
 
-export function getEncodedValue(operator: string | undefined, value: any) {
+function getEncodedValue(operator: string | undefined, value: any) {
     return operator === "+" || operator === "#" ? encodeReserved(value) : encodeUnreserved(value);
 }
 
