@@ -14,10 +14,10 @@ interface GetVarValueOptions {
 // ---------------------
 // helpers
 // ---------------------
-function encodeReserved(str: any) {
+function encodeReserved(str: string) {
     return str
         .split(/(%[0-9A-Fa-f]{2})/g)
-        .map(function (part: any) {
+        .map(function (part: string) {
             if (!/%[0-9A-Fa-f]/.test(part)) {
                 part = encodeURI(part).replace(/%5B/g, "[").replace(/%5D/g, "]");
             }
@@ -36,58 +36,23 @@ function isDefined(value: any) {
     return value !== undefined && value !== null;
 }
 
-
-export function expandUriTemplate(template: string, context: Record<string, any>): string {
-    return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, layer1, literal) => {
-        if (!layer1) {
-            return encodeReserved(literal);
-        }
-        const opMatch = /([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?/.exec(layer1);
-        if (!opMatch) {
-            return '';
-        }
-        const operator = opMatch[1], nonOperators = opMatch[2], layer2Values: string[] = [];
-        if (!nonOperators) {
-            return '';
-        }
-        const variables = nonOperators.split(/,/g);
-        for (const layer2 of variables) {
-            const varMatch = /([^:\*]*)(?::(\d+)|(\*))?/.exec(layer2);
-            if (!varMatch) {
-                continue;
-            }
-            const variable = varMatch[1];
-            const modifier = varMatch[2] || varMatch[3];
-            const value = context[variable!];
-            const encodedValue = getVarValue({
-                isFirst: layer2Values.length === 0,
-                operator,
-                varValue: value,
-                varName: variable,
-                modifier,
-            });
-            if (encodedValue) {
-                layer2Values.push(encodedValue);
-            }
-        }
-        return layer2Values.join("");
-    });
+function isEmptyString(value: any) {
+    return value === "";
 }
 
-
-function getNamed(operator: string | undefined) {
+function getIsNamed(operator: string | undefined) {
     return operator && [';', '?', '&'].includes(operator);
 }
 
-function getIfEmp(operator: string | undefined) {
+function getIfEmpty(operator: string | undefined) {
     return operator && ['?', '&'].includes(operator) ? '=' : '';
 }
 
-function getFirstOrSep(operator: string | undefined, isFirst = false) {
+function getFirstOrSeparator(operator: string | undefined, isFirst = false) {
     if (isFirst) {
-        return (operator === undefined || operator === "" || operator === "+") ? "" : operator;
+        return (!operator || operator === "+") ? "" : operator;
     }
-    if (operator === undefined || operator === "" || operator === "+" || operator === "#") {
+    if (!operator || operator === "+" || operator === "#") {
         return ",";
     } else if (operator === "?") {
         return "&";
@@ -96,51 +61,41 @@ function getFirstOrSep(operator: string | undefined, isFirst = false) {
     }
 }
 
-
-function getEncodedValue(operator: string | undefined, value: any) {
+function encodeValueWithOperator(operator: string | undefined, value: any) {
     return operator === "+" || operator === "#" ? encodeReserved(value) : encodeUnreserved(value);
 }
 
 function getVarValue(option: GetVarValueOptions): string | undefined {
     let isFirst = option.isFirst, value = option.varValue;
     const { operator, varName, modifier } = option;
-    const named = getNamed(operator), ifEmpty = getIfEmp(operator);
+    const named = getIsNamed(operator), ifEmpty = getIfEmpty(operator), vals: string[] = [];
     if (!isDefined(value)) {
         return undefined;
     } else if (typeof value === "string" ||
         typeof value === "number" ||
         typeof value === "boolean") {
         value = value.toString();
-        const vals = [];
+        vals.push(getFirstOrSeparator(operator, isFirst));
         if (named) {
             vals.push(encodeUnreserved(varName));
-            if (value === "") {
-                vals.push(ifEmpty);
-            } else {
-                vals.push("=");
-            }
+            isEmptyString(value) ? vals.push(ifEmpty) : vals.push("=");
         }
         if (modifier && modifier !== "*") {
             value = value.substring(0, parseInt(modifier, 10));
         }
-        vals.push(getEncodedValue(operator, value));
-        return `${getFirstOrSep(operator, isFirst)}${vals.join("")}`;
-
+        vals.push(encodeValueWithOperator(operator, value));
+        return vals.join("");
     } else {
         if (modifier === "*") {
             if (named) {
-                const vals = [];
                 if (Array.isArray(value) && varName) {
-                    for (const val of value) {
-                        if (!isDefined(val)) {
-                            continue;
-                        }
-                        vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(varName)}`);
-                        if (val === "") {
+                    for (const val of value.filter(isDefined)) {
+                        vals.push(`${getFirstOrSeparator(operator, isFirst)}${encodeURIComponent(varName)}`);
+                        if (isEmptyString(val)) {
                             vals.push(ifEmpty);
                         } else {
                             vals.push("=");
-                            vals.push(getEncodedValue(operator, val));
+                            vals.push(encodeValueWithOperator(operator, val));
                         }
                         isFirst = false;
                     }
@@ -149,71 +104,100 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
                         if (!isDefined(value[key])) {
                             continue;
                         }
-                        vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(key)}`);
-                        if (value[key] === "") {
+                        vals.push(`${getFirstOrSeparator(operator, isFirst)}${encodeURIComponent(key)}`);
+                        if (isEmptyString(value[key])) {
                             vals.push(ifEmpty);
                         } else {
                             vals.push("=");
-                            vals.push(getEncodedValue(operator, value[key]));
+                            vals.push(encodeValueWithOperator(operator, value[key]));
                         }
                         isFirst = false;
                     }
                 }
                 return vals.join("");
             } else {
-                const vals = [];
                 if (Array.isArray(value) && varName) {
-                    for (const val of value) {
-                        if (isDefined(val) && val !== "") {
-                            vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(val)}`);
-                            isFirst = false;
-                        }
-
+                    for (const val of value.filter(val => isDefined(val) && !isEmptyString(val))) {
+                        vals.push(`${getFirstOrSeparator(operator, isFirst)}${encodeURIComponent(val)}`);
+                        isFirst = false;
                     }
                 } else if (typeof value === 'object') {
                     for (const key of Object.keys(value)) {
                         if (!isDefined(value[key])) {
                             continue;
                         }
-                        vals.push(`${getFirstOrSep(operator, isFirst)}`);
+                        vals.push(`${getFirstOrSeparator(operator, isFirst)}`);
                         if (key) {
                             vals.push(`${encodeURIComponent(key)}=`);
                         }
-
-                        vals.push(getEncodedValue(operator, value[key]));
+                        vals.push(encodeValueWithOperator(operator, value[key]));
                         isFirst = false;
                     }
                 }
                 return vals.join("");
             }
         } else {
-            const vals = [];
-            const sep = getFirstOrSep(operator, isFirst);
+            const first = getFirstOrSeparator(operator, isFirst);
             if (named) {
-                vals.push(getEncodedValue(operator, varName));
-                if (value === "") {
+                vals.push(encodeValueWithOperator(operator, varName));
+                if (isEmptyString(value)) {
                     if (!ifEmpty) {
                         vals.push(ifEmpty);
                     }
-                    return !vals.join("") ? undefined : `${sep}${vals.join("")}`;
+                    return !vals.join("") ? undefined : `${first}${vals.join("")}`;
                 }
                 vals.push("=");
             }
 
-            const tmp = []
+            const items = [];
             if (Array.isArray(value)) {
-                value.filter(isDefined).forEach(val => tmp.push(getEncodedValue(operator, val)));
+                value.filter(isDefined).forEach(val => items.push(encodeValueWithOperator(operator, val)));
             } else if (typeof value === 'object') {
                 for (const key of Object.keys(value)) {
                     if (!isDefined(value[key])) {
                         continue;
                     }
-                    tmp.push(encodeUnreserved(key));
-                    tmp.push(getEncodedValue(operator, value[key]));
+                    items.push(encodeUnreserved(key));
+                    items.push(encodeValueWithOperator(operator, value[key]));
                 }
             }
-            vals.push(tmp.join(","));
-            return !vals.join(",") ? undefined : `${sep}${vals.join("")}`;
+            vals.push(items.join(","));
+            return !vals.join(",") ? undefined : `${first}${vals.join("")}`;
         }
     }
+}
+
+export function expandUriTemplate(template: string, context: Record<string, any>): string {
+    return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expression, literal) => {
+        if (!expression) {
+            return encodeReserved(literal);
+        }
+        const opMatch = /([+#./;?&]?)((?:\w|%[0-9A-Fa-f]{2}|[.\-~!*'();:@&=+$,/?#\[\]])+)(?::(\d+|\*))?/.exec(expression);
+        if (!opMatch) {
+            return '';
+        }
+        const operator = opMatch[1], rest = opMatch[2], result: string[] = [];
+        if (!rest) {
+            return '';
+        }
+        const varList = rest.split(/,/g);
+        for (const varSpec of varList) {
+            const varMatch = /([^:\*]*)(?::(\d+)|(\*))?/.exec(varSpec);
+            if (!varMatch) {
+                continue;
+            }
+            const variable = varMatch[1];
+            const varValue = getVarValue({
+                isFirst: result.length === 0,
+                operator,
+                varValue: context[variable!],
+                varName: variable,
+                modifier: varMatch[2] || varMatch[3],
+            });
+            if (varValue) {
+                result.push(varValue);
+            }
+        }
+        return result.join("");
+    });
 }
