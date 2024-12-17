@@ -3,7 +3,9 @@ import { expandUriTemplate } from "../../../static/static-helpers/urlTemplate.js
 
 function createitContext(context: any) {
     return (template: string, result: string) => {
-        assert.equal(expandUriTemplate(template, context), result);
+        const r = expandUriTemplate(template, context);
+        console.log("template", template, "actual", r, "expected", result);
+        assert.equal(r, result);
     };
 }
 describe.only("url-template", () => {
@@ -79,9 +81,8 @@ describe.only("url-template", () => {
         it('expand multiple values', () => {
             assert('{var}/{foo}', 'value/bar');
         });
-        it.skip('escape invalid characters correctly', () => {
-            assert('{hello}', 'Hello%20World!');
-            // assert('{hello}', 'Hello%20World%21');
+        it('escape invalid characters correctly', () => {
+            assert('{hello}', 'Hello%20World%21');
         });
     });
 
@@ -117,7 +118,7 @@ describe.only("url-template", () => {
             assert('map?{x,y}', 'map?1024,768');
         });
 
-        it.skip('should encode !', () => {
+        it('should encode !', () => {
             assert('{x,hello,y}', '1024,Hello%20World%21,768');
             assert('{#x,hello,y}', '#1024,Hello%20World!,768');
         });
@@ -157,7 +158,7 @@ describe.only("url-template", () => {
         });
     });
 
-    describe.only('Level 4', () => {
+    describe('Level 4', () => {
         const assert = createitContext({
             'var': 'value',
             'hello': 'Hello World!',
@@ -183,17 +184,14 @@ describe.only("url-template", () => {
             assert('{/emptylist}', '');
             assert('{/emptylist*}', '');
             assert('{?emptylist*}', '');
-        });
-
-        it.skip('variable empty list as query parameter', () => {
             assert('{?emptylist}', '?emptylist=');
-            assert('{?emptyobject}', '?emptyobject=');
         });
 
         it('variable empty object', () => {
             assert('{/emptyobject}', '');
             assert('{/emptyobject*}', '');
             assert('{?emptyobject*}', '');
+            assert('{?emptyobject}', '?emptyobject=');
         });
 
         it('variable undefined list item', () => {
@@ -202,7 +200,7 @@ describe.only("url-template", () => {
             assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
         });
 
-        it.only('variable undefined object item', () => {
+        it('variable undefined object item', () => {
             assert('{undefinedobjectitem}', 'hello,world,empty,,,nothing');
             assert('{undefinedobjectitem*}', 'hello=world,empty=,nothing');
         });
@@ -232,6 +230,7 @@ describe.only("url-template", () => {
 
         it('variable modifier prefix converted to string', () => {
             assert('{number:3}', '213');
+            assert('{/list*,path:4}', '/red/green/blue/%2Ffoo');
         });
 
         it('variable list expansion', () => {
@@ -266,8 +265,6 @@ describe.only("url-template", () => {
             assert('{.list*}', '.red.green.blue');
             assert('{?list*}', '?list=red&list=green&list=blue');
             assert('{&list*}', '&list=red&list=green&list=blue');
-
-            assert('{/list*,path:4}', '/red/green/blue/%2Ffoo');
         });
 
         it('variable associative array explode', () => {

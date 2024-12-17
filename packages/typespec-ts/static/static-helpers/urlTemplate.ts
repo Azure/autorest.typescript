@@ -190,94 +190,168 @@ export function expandUriTemplate(template: string, context: Record<string, any>
             const variable = varMatch[1];
             const modifier = varMatch[2] || varMatch[3];
             const value = context[variable!];
-            if (!isDefined(value) || !variable) {
-                continue;
+            const encodedValue = getVarValue({
+                isFirst: layer2Values.length === 0,
+                operator,
+                varValue: value,
+                varName: variable,
+                modifier,
+            });
+            if (encodedValue) {
+                layer2Values.push(encodedValue);
             }
-            const layer3Values: string[] = [];
-            if (
-                typeof value === "string" ||
-                typeof value === "number" ||
-                typeof value === "boolean"
-            ) {
-                getValueEntry(operator, value, variable, layer2Values, layer3Values);
-            } else if (Array.isArray(value)) {
-                const array = value.filter(isDefined);
-                if (modifier === "*") {
-                    for (const val of array) {
-                        getValueEntry(operator, val, variable, layer2Values, layer3Values);
-                    }
-                } else {
-                    layer3Values.push(array.map(val => encodeValue(operator, val)).join(","));
-                }
-
-            } else if (typeof value === 'object') {
-                for (const key of Object.keys(value)) {
-                    getValueEntry(operator, value[key], key, layer2Values, layer3Values);
-                }
-                if (modifier === "*") {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            getValueEntry(operator, value[k], k, layer2Values, layer3Values);
-                        }
-                    });
-                } else {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            layer3Values.push(encodeUnreserved(k));
-                            layer3Values.push(encodeValue(operator, value[k].toString()));
-                        }
-                    });
-                }
-            }
-            // concatenate values in layer 3
-            const separator = operator === "?" ? '&' : ",";
-            layer2Values.push(layer3Values.join(separator));
         }
-        // concatenate values in layer 2
-        let separator = ',';
-        if (operator === "?") {
-            separator = "&";
-        } else if (operator === "#" || operator === "+") {
-            separator = ",";
-        } else if (operator) {
-            separator = "";
-        }
-        return layer2Values.join(separator);
+        return layer2Values.join("");
     });
 }
 
-function getValueEntry(operator: string | undefined, value: string | number | boolean, variable: string, layer2Values: string[], layer3Values: string[]) {
-    switch (operator) {
-        case '+':
-            layer3Values.push(encodeReserved(value));
-            break;
-        case '#': {
-            const prefix = layer2Values.length === 0 && layer3Values.length === 0 ? '#' : '';
-            layer3Values.push(`${prefix}${encodeReserved(value)}`);
-            break;
+
+function getNamed(operator: string | undefined) {
+    return operator && [';', '?', '&'].includes(operator);
+}
+
+function getIfEmp(operator: string | undefined) {
+    return operator && ['?', '&'].includes(operator) ? '=' : '';
+}
+
+function getFirstOrSep(operator: string | undefined, isFirst = false) {
+    if (isFirst) {
+        return (operator === undefined || operator === "" || operator === "+") ? "" : operator;
+    }
+    if (operator === undefined || operator === "" || operator === "+" || operator === "#") {
+        return ",";
+    } else if (operator === "?") {
+        return "&";
+    } else {
+        return operator;
+    }
+}
+
+interface GetVarValueOptions {
+    isFirst: boolean;
+    operator?: string;
+    varValue?: any;
+    varName?: string;
+    modifier?: string;
+}
+
+export function getEncodedValue(operator: string | undefined, value: any) {
+    return operator === "+" || operator === "#" ? encodeReserved(value) : encodeUnreserved(value);
+}
+
+function getVarValue(option: GetVarValueOptions): string | undefined {
+    let isFirst = option.isFirst, value = option.varValue;
+    const { operator, varName, modifier } = option;
+    const named = getNamed(operator), ifEmpty = getIfEmp(operator);
+    if (!isDefined(value)) {
+        return undefined;
+    } else if (typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean") {
+        value = value.toString();
+        const vals = [];
+        if (named) {
+            vals.push(encodeUnreserved(varName));
+            if (value === "") {
+                vals.push(ifEmpty);
+            } else {
+                vals.push("=");
+            }
         }
-        case '.':
-            layer3Values.push(`.${encodeURIComponent(value)}`);
-            break;
-        case '/': {
-            layer3Values.push(`/${encodeReserved(value)}`);
-            break;
+        if (modifier && modifier !== "*") {
+            value = value.substring(0, parseInt(modifier, 10));
         }
-        case ';': {
-            const ret = encodeURIComponent(value);
-            const suffix = !ret ? '' : `=${ret}`;
-            layer3Values.push(`;${variable}${suffix}`);
-            break;
+        vals.push(getEncodedValue(operator, value));
+        return `${getFirstOrSep(operator, isFirst)}${vals.join("")}`;
+
+    } else {
+        if (modifier === "*") {
+            if (named) {
+                const vals = [];
+                if (Array.isArray(value) && varName) {
+                    for (const val of value) {
+                        if (!isDefined(val)) {
+                            continue;
+                        }
+                        vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(varName)}`);
+                        if (val === "") {
+                            vals.push(ifEmpty);
+                        } else {
+                            vals.push("=");
+                            vals.push(getEncodedValue(operator, val));
+                        }
+                        isFirst = false;
+                    }
+                } else if (typeof value === 'object') {
+                    for (const key of Object.keys(value)) {
+                        if (!isDefined(value[key])) {
+                            continue;
+                        }
+                        vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(key)}`);
+                        if (value[key] === "") {
+                            vals.push(ifEmpty);
+                        } else {
+                            vals.push("=");
+                            vals.push(getEncodedValue(operator, value[key]));
+                        }
+                        isFirst = false;
+                    }
+                }
+                return vals.join("");
+            } else {
+                const vals = [];
+                if (Array.isArray(value) && varName) {
+                    for (const val of value) {
+                        if (isDefined(val) && val !== "") {
+                            vals.push(`${getFirstOrSep(operator, isFirst)}${encodeURIComponent(val)}`);
+                            isFirst = false;
+                        }
+
+                    }
+                } else if (typeof value === 'object') {
+                    for (const key of Object.keys(value)) {
+                        if (!isDefined(value[key])) {
+                            continue;
+                        }
+                        vals.push(`${getFirstOrSep(operator, isFirst)}`);
+                        if (key) {
+                            vals.push(`${encodeURIComponent(key)}=`);
+                        }
+
+                        vals.push(getEncodedValue(operator, value[key]));
+                        isFirst = false;
+                    }
+                }
+                return vals.join("");
+            }
+        } else {
+            const vals = [];
+            const sep = getFirstOrSep(operator, isFirst);
+            if (named) {
+                vals.push(getEncodedValue(operator, varName));
+                if (value === "") {
+                    if (!ifEmpty) {
+                        vals.push(ifEmpty);
+                    }
+                    return !vals.join("") ? undefined : `${sep}${vals.join("")}`;
+                }
+                vals.push("=");
+            }
+
+            const tmp = []
+            if (Array.isArray(value)) {
+                value.filter(isDefined).forEach(val => tmp.push(getEncodedValue(operator, val)));
+            } else if (typeof value === 'object') {
+                for (const key of Object.keys(value)) {
+                    if (!isDefined(value[key])) {
+                        continue;
+                    }
+                    tmp.push(encodeUnreserved(key));
+                    tmp.push(getEncodedValue(operator, value[key]));
+                }
+            }
+            vals.push(tmp.join(","));
+            return !vals.join(",") ? undefined : `${sep}${vals.join("")}`;
         }
-        case '?': {
-            const prefix = layer2Values.length === 0 && layer3Values.length === 0 ? '?' : '';
-            layer3Values.push(`${prefix}${variable}=${encodeURIComponent(value)}`);
-            break;
-        }
-        case '&':
-            layer3Values.push(`&${variable}=${encodeURIComponent(value)}`);
-            break;
-        default:
-            layer3Values.push(encodeURIComponent(value));
     }
 }
