@@ -8,6 +8,17 @@ export declare interface ClientModel {
     defaultName: boolean;
 }
 
+export declare interface ClientModelClientOptionalParams extends OperationOptions {
+}
+
+export declare interface ClientModelLanguageOptionalParams extends OperationOptions {
+}
+
+export declare interface ClientModelOperations {
+    language: (body: TSModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
+    client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
+}
+
 export declare interface ClientNameAndJsonEncodedNameModel {
     clientName: boolean;
 }
@@ -34,23 +45,12 @@ export declare interface LanguageClientNameModel {
 export declare interface LanguageOptionalParams extends OperationOptions {
 }
 
-export declare interface ModelClientOptionalParams extends OperationOptions {
-}
-
-export declare interface ModelLanguageOptionalParams extends OperationOptions {
-}
-
-export declare interface ModelOperations {
-    language: (body: TSModel, options?: ModelLanguageOptionalParams) => Promise<void>;
-    client: (body: ClientModel, options?: ModelClientOptionalParams) => Promise<void>;
-}
-
 export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
     readonly unionEnum: UnionEnumOperations;
-    readonly model: ModelOperations;
+    readonly clientModel: ClientModelOperations;
     response(options?: ResponseOptionalParams): Promise<void>;
     request(clientName: string, options?: RequestOptionalParams): Promise<void>;
     compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
