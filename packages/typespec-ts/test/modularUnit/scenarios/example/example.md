@@ -53,6 +53,7 @@ export function exampleDeserializer(item: any): Example {
 You can also extract a specific model interface using `ts models interface <model name>`:
 
 ```ts models interface Example
+/** model interface Example */
 export interface Example {
   id: string;
 }

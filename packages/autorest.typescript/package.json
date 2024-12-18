@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.0.28",
+  "version": "6.0.30",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser:rlc": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --browser && webpack --config webpack.config.test.js --env mode=rlc",
@@ -77,7 +77,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^23.0.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.34.0"
+    "@azure-tools/rlc-common": "workspace:^0.36.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",

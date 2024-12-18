@@ -1592,6 +1592,8 @@ function emitType(
       return emitEnum(context, type);
     case "EnumMember":
       return emitEnumMember(context, type);
+    case "ModelProperty":
+      return emitType(context, type.type, options);
     default:
       throw Error(`Not supported ${type.kind}`);
   }

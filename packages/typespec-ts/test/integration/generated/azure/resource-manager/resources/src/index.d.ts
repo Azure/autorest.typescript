@@ -520,7 +520,6 @@ export declare type ResourceIdentityTypeOutput = "SystemAssigned";
 export declare interface ResourceModelWithAllowedPropertySet extends TrackedResource {
     managedBy?: string;
     kind?: string;
-    eTag?: string;
     identity?: Identity;
     sku?: Sku;
     plan?: Plan;
@@ -529,7 +528,7 @@ export declare interface ResourceModelWithAllowedPropertySet extends TrackedReso
 export declare interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
     managedBy?: string;
     kind?: string;
-    eTag?: string;
+    readonly eTag?: string;
     identity?: IdentityOutput;
     sku?: SkuOutput;
     plan?: PlanOutput;

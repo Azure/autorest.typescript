@@ -87,6 +87,9 @@ import { emitSamples } from "./modular/emitSamples.js";
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
+  if (context.program.compilerOptions.noEmit || context.program.hasError()) {
+    return;
+  }
   /** Shared status */
   const outputProject = new Project();
   const program: Program = context.program;
@@ -304,9 +307,6 @@ export async function $onEmit(context: EmitContext) {
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
-    if (program.compilerOptions.noEmit || program.hasError()) {
-      return;
-    }
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports(

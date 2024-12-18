@@ -159,7 +159,12 @@ export function buildGetClientEndpointParam(
       onClientOnly: true
     }).find((x) => x.kind === "endpoint" || x.kind === "path");
     if (endpointParam) {
-      return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+      if (dpgContext.rlcOptions?.flavor === "azure") {
+        return `options.endpoint ?? options.baseUrl ?? String(${getClientParameterName(endpointParam)})`;
+      } else {
+        // unbranded does not have the deprecated baseUrl parameter
+        return `options.endpoint ?? String(${getClientParameterName(endpointParam)})`;
+      }
     }
   }
 
@@ -189,7 +194,13 @@ export function buildGetClientEndpointParam(
       `\${${getClientParameterName(param)}}`
     );
   }
-  const endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+  let endpointUrl = "";
+  if (dpgContext.rlcOptions?.flavor === "azure") {
+    endpointUrl = `const endpointUrl = options.endpoint ?? options.baseUrl ?? \`${parameterizedEndpointUrl}\``;
+  } else {
+    // unbranded does not have the deprecated baseUrl parameter
+    endpointUrl = `const endpointUrl = options.endpoint ?? \`${parameterizedEndpointUrl}\``;
+  }
   context.addStatements(endpointUrl);
   return "endpointUrl";
 }
@@ -228,7 +239,7 @@ export function buildGetClientOptionsParam(
     expr += `credentials: ${credentials},`;
   }
 
-  expr += `}`;
+  expr += `};`;
 
   context.addStatements(expr);
   return "updatedOptions";
