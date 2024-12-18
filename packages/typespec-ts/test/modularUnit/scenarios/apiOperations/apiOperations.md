@@ -818,7 +818,7 @@ export function createTesting(
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as TestingContext;
 }
 ```
 

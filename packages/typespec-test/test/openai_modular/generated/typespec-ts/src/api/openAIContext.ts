@@ -45,5 +45,5 @@ export function createOpenAI(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2024-06-01";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as OpenAIContext;
 }

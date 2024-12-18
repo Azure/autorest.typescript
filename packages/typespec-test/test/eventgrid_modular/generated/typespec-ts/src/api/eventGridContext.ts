@@ -45,5 +45,5 @@ export function createEventGrid(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2023-06-01-preview";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as EventGridContext;
 }

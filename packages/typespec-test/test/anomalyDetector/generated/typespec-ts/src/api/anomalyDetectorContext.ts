@@ -81,5 +81,5 @@ export function createAnomalyDetector(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as AnomalyDetectorContext;
 }

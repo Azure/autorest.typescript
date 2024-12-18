@@ -45,5 +45,5 @@ export function createWidgetManager(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2022-08-30";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as WidgetManagerContext;
 }

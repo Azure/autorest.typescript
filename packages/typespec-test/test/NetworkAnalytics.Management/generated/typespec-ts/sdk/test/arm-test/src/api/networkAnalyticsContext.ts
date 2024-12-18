@@ -44,5 +44,9 @@ export function createNetworkAnalytics(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2023-11-15";
-  return { ...clientContext, apiVersion, subscriptionId };
+  return {
+    ...clientContext,
+    apiVersion,
+    subscriptionId,
+  } as NetworkAnalyticsContext;
 }

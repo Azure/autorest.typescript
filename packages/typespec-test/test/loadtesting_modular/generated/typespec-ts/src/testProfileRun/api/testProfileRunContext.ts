@@ -44,5 +44,5 @@ export function createTestProfileRun(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2024-05-01-preview";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as TestProfileRunContext;
 }

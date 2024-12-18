@@ -221,7 +221,7 @@ export function buildClientContext(
         .map((p) => {
           return p.name;
         })
-        .join(", ")}};`
+        .join(", ")}} as ${rlcClientName};`
     );
   } else {
     factoryFunction.addStatements(`return clientContext;`);

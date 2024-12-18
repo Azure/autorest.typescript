@@ -61,5 +61,5 @@ export function createAzureAI(
     resourceGroupName,
     projectName,
     apiVersion,
-  };
+  } as AzureAIContext;
 }

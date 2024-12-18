@@ -46,5 +46,5 @@ export function createSchemaRegistry(
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "2023-07-01";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as SchemaRegistryContext;
 }

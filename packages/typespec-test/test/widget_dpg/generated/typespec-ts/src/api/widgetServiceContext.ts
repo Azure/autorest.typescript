@@ -49,5 +49,5 @@ export function createWidgetService(
   }
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   const apiVersion = options.apiVersion ?? "1.0.0";
-  return { ...clientContext, apiVersion };
+  return { ...clientContext, apiVersion } as WidgetServiceContext;
 }
