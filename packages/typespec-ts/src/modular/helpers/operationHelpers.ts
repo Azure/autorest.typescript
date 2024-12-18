@@ -886,14 +886,16 @@ function getPathParamExpr(param: SdkServiceParameter, defaultValue?: string) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
-  const paramName = param.name;
+  const paramName = param.onClient
+    ? `context.${param.name}`
+    : param.optional
+      ? `options["${param.name}"]`
+      : param.name;
   const value = defaultValue
     ? typeof defaultValue === "string"
-      ? `options[${paramName}] ?? "${defaultValue}"`
-      : `options[${paramName}] ?? ${defaultValue}`
-    : param.onClient
-      ? `context.${paramName}`
-      : paramName;
+      ? `${paramName} ?? "${defaultValue}"`
+      : `${paramName} ?? ${defaultValue}`
+    : paramName;
   // TODO allowReserved is not supported in Query and Header parameter yet.
   if (param.kind === "path" && param.allowReserved === true) {
     return `{value: ${value}, allowReserved: true}`;
