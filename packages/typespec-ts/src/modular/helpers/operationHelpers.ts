@@ -643,7 +643,7 @@ function buildBodyParameter(
     bodyParameter.optional ? "options" : undefined
   );
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
-  if (serializerFunctionName && isSpreadBody(bodyParameter)) {
+  if (serializerFunctionName && !isSpreadBody(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
@@ -657,7 +657,7 @@ function buildBodyParameter(
       ? "binary"
       : getEncodeForType(bodyParameter.type)
   );
-  return `\nbody: ${serializedBody === bodyNameExpression ? "" : nullOrUndefinedPrefix}${serializedBody},`;
+  return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -673,7 +673,8 @@ function getEncodingFormat(type: { format?: string }) {
 function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
   return (
     bodyParam?.type.kind === "model" &&
-    bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type
+    (bodyParam?.correspondingMethodParams.length > 1 ||
+      bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type)
   );
 }
 
@@ -1293,7 +1294,7 @@ export function getPropertySerializationPrefix(
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
   if (property.optional || isTypeNullable(property.type)) {
-    return `!${propertyFullName} ? ${propertyFullName} :`;
+    return `!${propertyFullName}? ${propertyFullName}:`;
   }
 
   return "";
