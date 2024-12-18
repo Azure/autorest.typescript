@@ -643,11 +643,7 @@ function buildBodyParameter(
     bodyParameter.optional ? "options" : undefined
   );
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
-  if (
-    serializerFunctionName &&
-    bodyParameter.correspondingMethodParams.length === 1 &&
-    bodyParameter.correspondingMethodParams[0]?.type === bodyParameter.type
-  ) {
+  if (serializerFunctionName && isSpreadBody(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
@@ -672,6 +668,13 @@ function getEncodingFormat(type: { format?: string }) {
   }
 
   return type.format;
+}
+
+function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
+  return (
+    bodyParam?.type.kind === "model" &&
+    bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type
+  );
 }
 
 /**
