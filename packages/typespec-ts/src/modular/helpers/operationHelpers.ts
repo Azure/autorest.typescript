@@ -642,7 +642,12 @@ function buildBodyParameter(
     bodyParameter,
     bodyParameter.optional ? "options" : undefined
   );
-  if (serializerFunctionName) {
+  // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
+  if (
+    serializerFunctionName &&
+    bodyParameter.correspondingMethodParams.length === 1 &&
+    bodyParameter.correspondingMethodParams[0]?.type === bodyParameter.type
+  ) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
