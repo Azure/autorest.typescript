@@ -9,6 +9,11 @@ interface GetVarValueOptions {
     varValue?: any;
     varName?: string;
     modifier?: string;
+    allowReserved: boolean;
+}
+
+export interface ExpandUrlTemplateOptions {
+    allowReserved?: boolean;
 }
 
 // ---------------------
@@ -61,8 +66,8 @@ function getFirstOrSeparator(operator: string | undefined, isFirst = false) {
     }
 }
 
-function encodeValueWithOperator(operator: string | undefined, value: any) {
-    return operator === "+" || operator === "#" ? encodeReserved(value) : encodeUnreserved(value);
+function encodeValueWithOperator(operator: string | undefined, value: any, allowReserved: boolean) {
+    return allowReserved === true || operator === "+" || operator === "#" ? encodeReserved(value) : encodeUnreserved(value);
 }
 
 function getVarValue(option: GetVarValueOptions): string | undefined {
@@ -83,7 +88,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
         if (modifier && modifier !== "*") {
             value = value.substring(0, parseInt(modifier, 10));
         }
-        vals.push(encodeValueWithOperator(operator, value));
+        vals.push(encodeValueWithOperator(operator, value, option.allowReserved));
         return vals.join("");
     } else {
         if (modifier === "*") {
@@ -95,7 +100,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
                             vals.push(ifEmpty);
                         } else {
                             vals.push("=");
-                            vals.push(encodeValueWithOperator(operator, val));
+                            vals.push(encodeValueWithOperator(operator, val, option.allowReserved));
                         }
                         isFirst = false;
                     }
@@ -109,7 +114,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
                             vals.push(ifEmpty);
                         } else {
                             vals.push("=");
-                            vals.push(encodeValueWithOperator(operator, value[key]));
+                            vals.push(encodeValueWithOperator(operator, value[key], option.allowReserved));
                         }
                         isFirst = false;
                     }
@@ -130,7 +135,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
                         if (key) {
                             vals.push(`${encodeURIComponent(key)}=`);
                         }
-                        vals.push(encodeValueWithOperator(operator, value[key]));
+                        vals.push(encodeValueWithOperator(operator, value[key], option.allowReserved));
                         isFirst = false;
                     }
                 }
@@ -139,7 +144,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
         } else {
             const first = getFirstOrSeparator(operator, isFirst);
             if (named) {
-                vals.push(encodeValueWithOperator(operator, varName));
+                vals.push(encodeValueWithOperator(operator, varName, option.allowReserved));
                 if (isEmptyString(value)) {
                     if (!ifEmpty) {
                         vals.push(ifEmpty);
@@ -151,14 +156,14 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
 
             const items = [];
             if (Array.isArray(value)) {
-                value.filter(isDefined).forEach(val => items.push(encodeValueWithOperator(operator, val)));
+                value.filter(isDefined).forEach(val => items.push(encodeValueWithOperator(operator, val, option.allowReserved)));
             } else if (typeof value === 'object') {
                 for (const key of Object.keys(value)) {
                     if (!isDefined(value[key])) {
                         continue;
                     }
                     items.push(encodeUnreserved(key));
-                    items.push(encodeValueWithOperator(operator, value[key]));
+                    items.push(encodeValueWithOperator(operator, value[key], option.allowReserved));
                 }
             }
             vals.push(items.join(","));
@@ -167,7 +172,8 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
     }
 }
 
-export function expandUrlTemplate(template: string, context: Record<string, any>): string {
+export function expandUrlTemplate(template: string, context: Record<string, any>, option?: ExpandUrlTemplateOptions): string {
+    const allowReserved = option?.allowReserved ?? false;
     return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expression, literal) => {
         if (!expression) {
             return encodeReserved(literal);
@@ -193,6 +199,7 @@ export function expandUrlTemplate(template: string, context: Record<string, any>
                 varValue: context[variable!],
                 varName: variable,
                 modifier: varMatch[2] || varMatch[3],
+                allowReserved,
             });
             if (varValue) {
                 result.push(varValue);

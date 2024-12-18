@@ -1,9 +1,9 @@
 import { assert } from "chai";
-import { expandUriTemplate } from "../../../static/static-helpers/urlTemplate.js";
+import { expandUrlTemplate } from "../../../static/static-helpers/urlTemplate.js";
 
 function createitContext(context: any) {
     return (template: string, result: string) => {
-        const r = expandUriTemplate(template, context);
+        const r = expandUrlTemplate(template, context);
         console.log("template", template, "actual", r, "expected", result);
         assert.equal(r, result);
     };
