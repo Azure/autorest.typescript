@@ -78,7 +78,7 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (uriTemplateParams.length > 0) {
-    statements.push(`const path = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}").expand({
+    statements.push(`const path = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}", {
         ${uriTemplateParams.join(",\n")}
         });`);
     pathStr = "path";

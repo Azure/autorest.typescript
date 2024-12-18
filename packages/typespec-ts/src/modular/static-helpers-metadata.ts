@@ -75,7 +75,7 @@ export const PollingHelpers = {
 export const UriTemplateHelpers = {
   parseTemplate: {
     kind: "function",
-    name: "parseTemplate",
-    location: "uriTemplate.ts"
+    name: "expandUrlTemplate",
+    location: "urlTemplate.ts"
   }
 } as const;

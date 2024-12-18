@@ -167,7 +167,7 @@ function getVarValue(option: GetVarValueOptions): string | undefined {
     }
 }
 
-export function expandUriTemplate(template: string, context: Record<string, any>): string {
+export function expandUrlTemplate(template: string, context: Record<string, any>): string {
     return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expression, literal) => {
         if (!expression) {
             return encodeReserved(literal);
