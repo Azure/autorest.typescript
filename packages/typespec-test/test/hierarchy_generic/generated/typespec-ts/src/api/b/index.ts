@@ -10,7 +10,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _op1Send(
+export function _bOp1Send(
   context: Client,
   body: Ba,
   options: BOp1OptionalParams = { requestOptions: {} },
@@ -23,7 +23,7 @@ export function _op1Send(
     });
 }
 
-export async function _op1Deserialize(
+export async function _bOp1Deserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -34,11 +34,11 @@ export async function _op1Deserialize(
   return;
 }
 
-export async function op1(
+export async function bOp1(
   context: Client,
   body: Ba,
   options: BOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _op1Send(context, body, options);
-  return _op1Deserialize(result);
+  const result = await _bOp1Send(context, body, options);
+  return _bOp1Deserialize(result);
 }
