@@ -19,6 +19,7 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
+import { parseTemplate } from "../../static-helpers/uriTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -93,8 +94,11 @@ export function _retrieveSend(
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate("/files/files/{file_id}").expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -123,8 +127,11 @@ export function _$deleteSend(
   fileId: string,
   options: FilesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate("/files/files/{file_id}").expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -158,8 +165,11 @@ export function _downloadSend(
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = parseTemplate("/files/files/{file_id}/content").expand({
+    fileId: fileId,
+  });
   return context
-    .path("/files/files/{file_id}/content", fileId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

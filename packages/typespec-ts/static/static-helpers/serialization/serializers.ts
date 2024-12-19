@@ -4,7 +4,7 @@ export const serializeRecord = withNullChecks(
     item: Record<string, any>,
     serializer?: (item: any) => any
   ): Record<string, any> => {
-    return Object.keys(item).reduce((acc, key) => {
+    return Object.keys(item).reduce((acc: any, key) => {
       if (isPassthroughElement(item[key])) {
         acc[key] = item[key] as any;
       } else if (serializer) {

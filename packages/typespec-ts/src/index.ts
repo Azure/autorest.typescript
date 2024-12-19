@@ -13,7 +13,8 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UriTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -92,6 +93,9 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const outputProject = new Project();
   const program: Program = context.program;
+  if (program.compilerOptions.noEmit) {
+    return;
+  }
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
   // Enrich the dpg context with path detail and common options
@@ -116,7 +120,8 @@ export async function $onEmit(context: EmitContext) {
     {
       ...SerializationHelpers,
       ...PagingHelpers,
-      ...PollingHelpers
+      ...PollingHelpers,
+      ...UriTemplateHelpers
     },
     { sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir }
   );
