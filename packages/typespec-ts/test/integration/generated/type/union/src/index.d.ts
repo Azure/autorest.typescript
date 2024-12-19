@@ -28,6 +28,14 @@ export declare interface EnumsOnlyCases {
     ud: Ud | Ud;
 }
 
+export declare interface EnumsOnlyCases {
+    prop: EnumsOnlyCases;
+}
+
+export declare interface EnumsOnlyCasesOutput {
+    prop: EnumsOnlyCasesOutput;
+}
+
 export declare interface EnumsOnlyCasesOutput {
     lr: LrOutput | UdOutput;
     ud: UdOutput | UdOutput;
@@ -40,9 +48,7 @@ export declare interface EnumsOnlyGet {
 
 export declare interface EnumsOnlyGet200Response extends HttpResponse {
     status: "200";
-    body: {
-        prop: EnumsOnlyCasesOutput;
-    };
+    body: EnumsOnlyCasesOutput;
 }
 
 export declare type EnumsOnlyGetParameters = RequestParameters;
@@ -52,9 +58,7 @@ export declare interface EnumsOnlySend204Response extends HttpResponse {
 }
 
 export declare interface EnumsOnlySendBodyParam {
-    body: {
-        prop: EnumsOnlyCases;
-    };
+    body: EnumsOnlyCases;
 }
 
 export declare type EnumsOnlySendParameters = EnumsOnlySendBodyParam & RequestParameters;
@@ -122,6 +126,14 @@ export declare interface MixedLiteralsCases {
     booleanLiteral: "a" | 2 | 3.3 | true;
 }
 
+export declare interface MixedLiteralsCases {
+    prop: MixedLiteralsCases;
+}
+
+export declare interface MixedLiteralsCasesOutput {
+    prop: MixedLiteralsCasesOutput;
+}
+
 export declare interface MixedLiteralsCasesOutput {
     stringLiteral: "a" | 2 | 3.3 | true;
     intLiteral: "a" | 2 | 3.3 | true;
@@ -136,9 +148,7 @@ export declare interface MixedLiteralsGet {
 
 export declare interface MixedLiteralsGet200Response extends HttpResponse {
     status: "200";
-    body: {
-        prop: MixedLiteralsCasesOutput;
-    };
+    body: MixedLiteralsCasesOutput;
 }
 
 export declare type MixedLiteralsGetParameters = RequestParameters;
@@ -148,9 +158,7 @@ export declare interface MixedLiteralsSend204Response extends HttpResponse {
 }
 
 export declare interface MixedLiteralsSendBodyParam {
-    body: {
-        prop: MixedLiteralsCases;
-    };
+    body: MixedLiteralsCases;
 }
 
 export declare type MixedLiteralsSendParameters = MixedLiteralsSendBodyParam & RequestParameters;
@@ -161,6 +169,14 @@ export declare interface MixedTypesCases {
     int: Cat | "a" | number | boolean;
     boolean: Cat | "a" | number | boolean;
     array: (Cat | "a" | number | boolean)[];
+}
+
+export declare interface MixedTypesCases {
+    prop: MixedTypesCases;
+}
+
+export declare interface MixedTypesCasesOutput {
+    prop: MixedTypesCasesOutput;
 }
 
 export declare interface MixedTypesCasesOutput {
@@ -178,9 +194,7 @@ export declare interface MixedTypesGet {
 
 export declare interface MixedTypesGet200Response extends HttpResponse {
     status: "200";
-    body: {
-        prop: MixedTypesCasesOutput;
-    };
+    body: MixedTypesCasesOutput;
 }
 
 export declare type MixedTypesGetParameters = RequestParameters;
@@ -190,9 +204,7 @@ export declare interface MixedTypesSend204Response extends HttpResponse {
 }
 
 export declare interface MixedTypesSendBodyParam {
-    body: {
-        prop: MixedTypesCases;
-    };
+    body: MixedTypesCases;
 }
 
 export declare type MixedTypesSendParameters = MixedTypesSendBodyParam & RequestParameters;
@@ -241,6 +253,14 @@ export declare interface StringAndArrayCases {
     array: string | string[];
 }
 
+export declare interface StringAndArrayCases {
+    prop: StringAndArrayCases;
+}
+
+export declare interface StringAndArrayCasesOutput {
+    prop: StringAndArrayCasesOutput;
+}
+
 export declare interface StringAndArrayCasesOutput {
     string: string | string[];
     array: string | string[];
@@ -253,9 +273,7 @@ export declare interface StringAndArrayGet {
 
 export declare interface StringAndArrayGet200Response extends HttpResponse {
     status: "200";
-    body: {
-        prop: StringAndArrayCasesOutput;
-    };
+    body: StringAndArrayCasesOutput;
 }
 
 export declare type StringAndArrayGetParameters = RequestParameters;
@@ -265,9 +283,7 @@ export declare interface StringAndArraySend204Response extends HttpResponse {
 }
 
 export declare interface StringAndArraySendBodyParam {
-    body: {
-        prop: StringAndArrayCases;
-    };
+    body: StringAndArrayCases;
 }
 
 export declare type StringAndArraySendParameters = StringAndArraySendBodyParam & RequestParameters;

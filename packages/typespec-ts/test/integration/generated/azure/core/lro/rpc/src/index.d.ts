@@ -36,7 +36,7 @@ export declare interface LongRunningRpc202Headers {
 
 export declare interface LongRunningRpc202Response extends HttpResponse {
     status: "202";
-    body: ResourceOperationStatusOutput;
+    body: ResourceOperationStatusGenerationResponseGenerationResultErrorOutput;
     headers: RawHttpHeaders & LongRunningRpc202Headers;
 }
 
@@ -56,14 +56,14 @@ export declare interface LongRunningRpcDefaultResponse extends HttpResponse {
 
 export declare interface LongRunningRpcLogicalResponse extends HttpResponse {
     status: "200";
-    body: ResourceOperationStatusOutput;
+    body: ResourceOperationStatusGenerationResponseGenerationResultErrorOutput;
 }
 
 export declare type LongRunningRpcParameters = LongRunningRpcBodyParam & RequestParameters;
 
 export declare type OperationStateOutput = string;
 
-export declare interface ResourceOperationStatusOutput {
+export declare interface ResourceOperationStatusGenerationResponseGenerationResultErrorOutput {
     readonly id: string;
     status: OperationStateOutput;
     error?: ErrorModel;
