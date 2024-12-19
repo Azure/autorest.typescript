@@ -30,7 +30,7 @@ import {
   Fish as FishMapper,
   Salmon as SalmonMapper,
   ReadonlyObj as ReadonlyObjMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

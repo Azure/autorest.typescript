@@ -14,7 +14,7 @@ import {
   FooApiPostSend$binaryOptionalParams,
   FooApiPostSend$textOptionalParams,
   FooApiPostSendResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a FooApi. */
 export interface FooApi {

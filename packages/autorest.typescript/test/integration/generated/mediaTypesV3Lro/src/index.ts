@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { MediaTypesV3LROClient } from "./mediaTypesV3LROClient";
+export * from "./models/index.js";
+export { MediaTypesV3LROClient } from "./mediaTypesV3LROClient.js";

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./lROs";
-export * from "./lRORetrys";
-export * from "./lrosaDs";
-export * from "./lROsCustomHeader";
+export * from "./lROs.js";
+export * from "./lRORetrys.js";
+export * from "./lrosaDs.js";
+export * from "./lROsCustomHeader.js";

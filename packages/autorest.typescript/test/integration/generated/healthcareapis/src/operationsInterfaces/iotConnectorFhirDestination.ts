@@ -6,7 +6,7 @@ import {
   IotConnectorFhirDestinationCreateOrUpdateOptionalParams,
   IotConnectorFhirDestinationCreateOrUpdateResponse,
   IotConnectorFhirDestinationDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a IotConnectorFhirDestination. */
 export interface IotConnectorFhirDestination {

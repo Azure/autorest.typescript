@@ -7,17 +7,17 @@
  */
 
 import { tracingClient } from "../tracing";
-import { LROsCustomHeader } from "../operationsInterfaces";
+import { LROsCustomHeader } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { LROClient } from "../lROClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { LROClient } from "../lROClient.js";
 import {
   SimplePollerLike,
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
+import { createLroSpec } from "../lroImpl.js";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -27,7 +27,7 @@ import {
   LROsCustomHeaderPost202Retry200Response,
   LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPostAsyncRetrySucceededResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing LROsCustomHeader operations. */
 export class LROsCustomHeaderImpl implements LROsCustomHeader {

@@ -21,7 +21,7 @@ import {
   DatePutMinDateOptionalParams,
   DateGetMinDateOptionalParams,
   DateGetMinDateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a DateOperations. */
 export interface DateOperations {

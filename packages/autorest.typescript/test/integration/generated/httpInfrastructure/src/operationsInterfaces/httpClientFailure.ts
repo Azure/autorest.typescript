@@ -33,7 +33,7 @@ import {
   HttpClientFailureGet416OptionalParams,
   HttpClientFailureDelete417OptionalParams,
   HttpClientFailureHead429OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpClientFailure. */
 export interface HttpClientFailure {
