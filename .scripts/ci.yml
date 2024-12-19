@@ -290,7 +290,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')
             continueOnError: true
-          - script: npx tsp-spector check-coverage ./node_modules/@azure-tools/azure-http-specs/specs --coverageFiles [$(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)]
+          - script: npx tsp-spector check-coverage ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --coverageFiles [$(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)]
             displayName: "Check Coverage RLC Azure"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')
@@ -345,7 +345,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')
             continueOnError: true
-          - script: npx tsp-spector check-coverage ./node_modules/@azure-tools/azure-http-specs/specs --coverageFiles [$(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT)]
+          - script: npx tsp-spector check-coverage ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --coverageFiles [$(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT)]
             displayName: "Check Coverage Modular Azure"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')

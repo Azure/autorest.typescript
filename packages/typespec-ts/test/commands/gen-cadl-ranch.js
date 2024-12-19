@@ -1,7 +1,5 @@
 import {
   modularTsps,
-  nonBrandedModularTsps,
-  nonBrandedRlcTsps,
   rlcTsps,
   rlcAzureTsps,
   modularAzureTsps
@@ -17,12 +15,6 @@ async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
       break;
     case "modular":
       list = modularTsps;
-      break;
-    case "non-branded-rlc":
-      list = nonBrandedRlcTsps;
-      break;
-    case "non-branded-modular":
-      list = nonBrandedModularTsps;
       break;
     case "azure_rlc":
       list = rlcAzureTsps;
