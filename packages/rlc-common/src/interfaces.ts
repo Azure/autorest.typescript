@@ -251,6 +251,7 @@ export interface RLCOptions {
   clearOutputFolder?: boolean;
   ignorePropertyNameNormalize?: boolean;
   compatibilityQueryMultiFormat?: boolean;
+  typespecTitleMap?: Record<string, string>;
 }
 
 export interface ServiceInfo {

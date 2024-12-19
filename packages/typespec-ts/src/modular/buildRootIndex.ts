@@ -169,7 +169,7 @@ function exportClassicalClient(
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client.tcgcClient)}Client`;
+  const clientName = client.tcgcClient.name;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
     moduleSpecifier: `./${
