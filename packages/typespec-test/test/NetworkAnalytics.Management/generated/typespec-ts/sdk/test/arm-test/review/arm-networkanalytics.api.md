@@ -365,9 +365,9 @@ export enum KnownManagedServiceIdentityType {
 
 // @public
 export enum KnownOrigin {
-    "user,system" = "user,system",
-    system = "system",
-    user = "user"
+    System = "system",
+    User = "user",
+    UserSystem = "user,system"
 }
 
 // @public
@@ -383,7 +383,7 @@ export enum KnownProvisioningState {
 
 // @public
 export enum KnownVersions {
-    v2023_11_15 = "2023-11-15"
+    V2023_11_15 = "2023-11-15"
 }
 
 // @public

@@ -237,11 +237,11 @@ export function buildLroDeserDetailMap(client: Client) {
         const deserName = `_${name}Deserialize`;
         let renamedDeserName = undefined;
         if (existingNames.has(deserName)) {
-          const newName = `${name}Deserialize_${operationFileName
-            .split("/")
-            .slice(0, -1)
-            .join("_")}`;
-          renamedDeserName = `_${normalizeName(newName, NameType.Method)}`;
+          const suffix = normalizeName(
+            `${operationFileName.split("/").slice(0, -1).join("_")}`,
+            NameType.Method
+          );
+          renamedDeserName = `${deserName}${suffix.charAt(0).toUpperCase()}${suffix.slice(1)}`;
         }
         existingNames.add(deserName);
         return {

@@ -946,32 +946,32 @@ export interface GetApplicationOptionalParams extends OperationOptions {
 
 // @public
 export interface GetCertificateOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -983,8 +983,8 @@ export interface GetJobTaskCountsOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1007,8 +1007,8 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1026,13 +1026,13 @@ export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptio
 
 // @public
 export interface GetPoolOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1055,13 +1055,13 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetTaskOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1324,7 +1324,7 @@ export interface JobStatistics {
 
 // @public
 export enum KnownVersions {
-    "2023-05-01.17.0" = "2023-05-01.17.0"
+    "V2023-05-01.17.0" = "2023-05-01.17.0"
 }
 
 // @public
@@ -1343,62 +1343,62 @@ export interface ListApplicationsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
-    $select?: string[];
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1406,36 +1406,36 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListNodesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
     endtime?: Date;
+    filter?: string;
     maxresults?: number;
     starttime?: Date;
     timeOutInSeconds?: number;
@@ -1443,22 +1443,22 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
-    $select?: string[];
     apiVersion?: string;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
-    $filter?: string;
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     apiVersion?: string;
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1466,11 +1466,11 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTasksOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     apiVersion?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
