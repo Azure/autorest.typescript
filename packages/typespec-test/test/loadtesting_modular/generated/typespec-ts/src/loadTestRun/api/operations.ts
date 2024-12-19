@@ -148,7 +148,7 @@ export function _listMetricsSend(
     .path("/test-runs/{testRunId}/metrics", testRunId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: {
         "api-version": context.apiVersion,

@@ -135,7 +135,7 @@ export function _createOrReplaceScheduleSend(
     .path("/evaluations/schedules/{id}", id)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: {
         ...(options?.clientRequestId !== undefined
           ? { "x-ms-client-request-id": options?.clientRequestId }
@@ -317,7 +317,7 @@ export function _createSend(
     .path("/evaluations/runs:run")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { apiVersion: context.apiVersion },
       body: evaluationSerializer(evaluation),

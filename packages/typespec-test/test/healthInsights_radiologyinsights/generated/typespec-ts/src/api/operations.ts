@@ -30,7 +30,7 @@ export function _inferRadiologyInsightsSend(
     .path("/radiology-insights/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: {
         ...(options?.repeatabilityRequestId !== undefined
           ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }

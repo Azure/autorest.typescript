@@ -5,11 +5,17 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface MultivariateGetMultivariateModelOptionalParams
@@ -30,7 +36,10 @@ export interface MultivariateListMultivariateModelsOptionalParams
 
 /** Optional parameters. */
 export interface MultivariateTrainMultivariateModelOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
@@ -38,12 +47,21 @@ export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
 
 /** Optional parameters. */
 export interface UnivariateDetectUnivariateChangePointOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface UnivariateDetectUnivariateLastPointOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}

@@ -22,7 +22,7 @@ export function _createSend(
     .path("/users")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: userSerializer(user),
     });

@@ -64,7 +64,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
@@ -160,6 +160,8 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface ReadOptionalParams extends OperationOptions {
   prop3?: Date;
   prop5?: Bar;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 ```
 
@@ -188,7 +190,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
@@ -282,6 +284,8 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface ReadOptionalParams extends OperationOptions {
   prop3?: Date;
   prop5?: Bar;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 ```
 
@@ -310,7 +314,7 @@ export function _readSend(
     .path("/{pathParam}/{prop1}", pathParam, prop1)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
@@ -440,7 +444,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { queryParam: queryParam },
       body: fooSerializer(body),
     });
@@ -511,7 +515,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(body),
     });
@@ -599,7 +603,7 @@ export function _readSend(
     .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(test),
     });
@@ -680,7 +684,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: testSerializer(body),
     });
 }
@@ -759,7 +763,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: testSerializer(body),
     });
 }

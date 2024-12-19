@@ -30,7 +30,7 @@ export function _test4Send(
     .path("/test4")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: _test4RequestSerializer(body),
     });
 }
@@ -68,7 +68,7 @@ export function _test3Send(
     .path("/test3")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: _test3RequestSerializer(body),
     });
 }
@@ -104,7 +104,7 @@ export function _test2Send(
     .path("/test2")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: { prop: prop },
     });
 }
@@ -140,7 +140,7 @@ export function _test1Send(
     .path("/test1")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: { a: a, b: b, c: c },
     });
 }

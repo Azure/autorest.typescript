@@ -166,7 +166,7 @@ export function _createSend(
     .path("/fine_tuning/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: createFineTuningJobRequestSerializer(job),
     });

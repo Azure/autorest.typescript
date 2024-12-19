@@ -52,15 +52,19 @@ export declare interface HeaderOperations {
 }
 
 export declare interface PropertyBase64OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyBase64urlArrayOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyBase64urlOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyOperations {
@@ -90,15 +94,18 @@ export declare interface QueryOperations {
 }
 
 export declare interface RequestBodyBase64OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RequestBodyBase64urlOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RequestBodyCustomContentTypeOptionalParams extends OperationOptions {
 }
 
 export declare interface RequestBodyDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RequestBodyOctetStreamOptionalParams extends OperationOptions {

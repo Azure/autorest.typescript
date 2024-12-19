@@ -11,6 +11,7 @@ export declare type RepeatabilityResult = "accepted" | "rejected";
 export declare interface RepeatableActionOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     repeatabilityFirstSent?: Date;
+    contentType?: "application/json";
 }
 
 export declare interface SmokeTestOptionalParams extends OperationOptions {

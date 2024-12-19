@@ -111,7 +111,7 @@ export function _generateStorageContainerSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: containerSaSSerializer(body),
@@ -169,7 +169,7 @@ export function _deleteDataSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: _deleteDataRequestSerializer(body),
@@ -301,7 +301,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: dataTypeUpdateSerializer(properties),
@@ -413,7 +413,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: dataTypeSerializer(resource),

@@ -11,9 +11,11 @@ export declare interface NewModel {
 }
 
 export declare interface NewOpInNewInterfaceOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface NewOpOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type NewUnion = string | number;

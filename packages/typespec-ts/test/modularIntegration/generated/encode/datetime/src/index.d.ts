@@ -43,6 +43,7 @@ export declare interface HeaderUnixTimestampOptionalParams extends OperationOpti
 }
 
 export declare interface PropertyDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyOperations {
@@ -54,15 +55,19 @@ export declare interface PropertyOperations {
 }
 
 export declare interface PropertyRfc3339OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyRfc7231OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyUnixTimestampArrayOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyUnixTimestampOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface QueryDefaultOptionalParams extends OperationOptions {

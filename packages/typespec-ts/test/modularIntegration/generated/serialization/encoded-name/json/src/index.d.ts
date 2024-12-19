@@ -21,6 +21,7 @@ export declare interface JsonEncodedNameModel {
 }
 
 export declare interface SendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

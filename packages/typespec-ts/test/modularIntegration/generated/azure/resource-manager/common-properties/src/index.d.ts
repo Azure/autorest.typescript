@@ -18,6 +18,7 @@ export declare interface CommonPropertiesClientOptionalParams extends ClientOpti
 export declare type CreatedByType = string;
 
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface GetOptionalParams extends OperationOptions {
@@ -81,6 +82,7 @@ export declare interface TrackedResource extends Resource {
 }
 
 export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UserAssignedIdentity {

@@ -26,7 +26,7 @@ export function _createSend(
     .path("/chat/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: createChatCompletionRequestSerializer(body),
     });

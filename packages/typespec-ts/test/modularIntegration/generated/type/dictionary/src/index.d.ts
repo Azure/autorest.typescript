@@ -11,6 +11,7 @@ export declare interface BooleanValueOperations {
 }
 
 export declare interface BooleanValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
@@ -22,6 +23,7 @@ export declare interface DatetimeValueOperations {
 }
 
 export declare interface DatetimeValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare class DictionaryClient {
@@ -53,6 +55,7 @@ export declare interface DurationValueOperations {
 }
 
 export declare interface DurationValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface Float32ValueGetOptionalParams extends OperationOptions {
@@ -64,6 +67,7 @@ export declare interface Float32ValueOperations {
 }
 
 export declare interface Float32ValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface InnerModel {
@@ -80,6 +84,7 @@ export declare interface Int32ValueOperations {
 }
 
 export declare interface Int32ValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface Int64ValueGetOptionalParams extends OperationOptions {
@@ -91,6 +96,7 @@ export declare interface Int64ValueOperations {
 }
 
 export declare interface Int64ValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ModelValueGetOptionalParams extends OperationOptions {
@@ -102,6 +108,7 @@ export declare interface ModelValueOperations {
 }
 
 export declare interface ModelValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
@@ -113,6 +120,7 @@ export declare interface NullableFloatValueOperations {
 }
 
 export declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RecursiveModelValueGetOptionalParams extends OperationOptions {
@@ -124,6 +132,7 @@ export declare interface RecursiveModelValueOperations {
 }
 
 export declare interface RecursiveModelValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringValueGetOptionalParams extends OperationOptions {
@@ -135,6 +144,7 @@ export declare interface StringValueOperations {
 }
 
 export declare interface StringValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnknownValueGetOptionalParams extends OperationOptions {
@@ -146,6 +156,7 @@ export declare interface UnknownValueOperations {
 }
 
 export declare interface UnknownValuePutOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

@@ -27,9 +27,11 @@ export declare interface GetEmptyOptionalParams extends OperationOptions {
 }
 
 export declare interface PostRoundTripEmptyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PutEmptyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

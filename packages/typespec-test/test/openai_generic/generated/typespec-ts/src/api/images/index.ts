@@ -103,7 +103,7 @@ export function _createSend(
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: createImageRequestSerializer(image),
     });

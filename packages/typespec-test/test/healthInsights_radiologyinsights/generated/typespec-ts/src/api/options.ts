@@ -14,4 +14,6 @@ export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
   repeatabilityRequestId?: string;
   /** Specifies the date and time at which the request was first created. */
   repeatabilityFirstSent?: Date;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }

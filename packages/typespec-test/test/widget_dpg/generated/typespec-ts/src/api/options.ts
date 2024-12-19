@@ -7,6 +7,8 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -21,16 +23,23 @@ export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
   weight?: number;
   /** The color of the widget. */
   color?: "red" | "blue";
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {}
+export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface WidgetsGetWidgetOptionalParams extends OperationOptions {}

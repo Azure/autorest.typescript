@@ -81,6 +81,7 @@ export interface TodoItemPatch {
 
 // @public
 export interface TodoItemsAttachmentsCreateAttachmentOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -203,6 +204,7 @@ export interface User {
 
 // @public
 export interface UsersCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public

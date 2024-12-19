@@ -66,21 +66,27 @@ export declare interface ISO8601DurationProperty {
 }
 
 export declare interface PropertyDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyFloat64SecondsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyFloatSecondsArrayOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyFloatSecondsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyInt32SecondsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyIso8601OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PropertyOperations {

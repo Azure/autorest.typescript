@@ -58,7 +58,7 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: embeddingsOptionsSerializer(body),
@@ -97,7 +97,7 @@ export function _generateSpeechFromTextSend(
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/octet-stream" },
       queryParameters: { "api-version": context.apiVersion },
       body: speechGenerationOptionsSerializer(body),
@@ -141,7 +141,7 @@ export function _getImageGenerationsSend(
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: imageGenerationOptionsSerializer(body),
@@ -185,7 +185,7 @@ export function _getChatCompletionsSend(
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: chatCompletionsOptionsSerializer(body),
@@ -233,7 +233,7 @@ export function _getCompletionsSend(
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: completionsOptionsSerializer(body),

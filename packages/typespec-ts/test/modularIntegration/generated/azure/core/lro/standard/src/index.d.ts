@@ -8,6 +8,7 @@ import { PollerLike } from '@azure/core-lro';
 
 export declare interface CreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface DeleteOptionalParams extends OperationOptions {

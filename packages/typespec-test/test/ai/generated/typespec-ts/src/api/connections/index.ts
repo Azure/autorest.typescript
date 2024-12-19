@@ -30,7 +30,7 @@ export function _listSecretsSend(
     .path("/connections/{connectionName}/listsecrets", connectionName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: { ignored: ignored },

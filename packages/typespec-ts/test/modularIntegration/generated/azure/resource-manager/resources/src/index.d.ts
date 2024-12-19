@@ -35,6 +35,7 @@ export declare enum KnownVersions {
 
 export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface NestedDeleteOptionalParams extends OperationOptions {
@@ -66,6 +67,7 @@ export declare interface NestedProxyResourceProperties {
 
 export declare interface NestedUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface NotificationDetails {
@@ -118,6 +120,7 @@ export declare interface RestorePollerOptions<TResult, TResponse extends PathUnc
 
 export declare interface SingletonCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface SingletonGetByResourceGroupOptionalParams extends OperationOptions {
@@ -143,6 +146,7 @@ export declare interface SingletonTrackedResourceProperties {
 }
 
 export declare interface SingletonUpdateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface SystemData {
@@ -155,10 +159,12 @@ export declare interface SystemData {
 }
 
 export declare interface TopLevelActionSyncOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface TopLevelCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface TopLevelDeleteOptionalParams extends OperationOptions {
@@ -195,6 +201,7 @@ export declare interface TopLevelTrackedResourceProperties {
 
 export declare interface TopLevelUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface TrackedResource extends Resource {

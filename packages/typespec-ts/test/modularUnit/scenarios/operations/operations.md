@@ -155,7 +155,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
+    contentType: (options.contentType as any) ?? "application/json",
     headers: {
       "required-header": requiredHeader,
       ...(options?.optionalHeader !== undefined
@@ -321,7 +321,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: !options["bars"]
         ? options["bars"]
         : barArraySerializer(options["bars"]),
@@ -381,7 +381,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: barArraySerializer(bars),
     });
 }
@@ -505,7 +505,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: !options["bars"]
         ? options["bars"]
@@ -572,7 +572,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       body: fooSerializer(body),
     });
 }

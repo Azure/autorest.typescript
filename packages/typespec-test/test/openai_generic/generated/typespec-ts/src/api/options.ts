@@ -4,7 +4,10 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ModerationsCreateOptionalParams extends OperationOptions {}
+export interface ModerationsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {}
@@ -13,7 +16,10 @@ export interface ImagesCreateVariationOptionalParams extends OperationOptions {}
 export interface ImagesCreateEditOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ImagesCreateOptionalParams extends OperationOptions {}
+export interface ImagesCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface ModelsDeleteOptionalParams extends OperationOptions {}
@@ -48,7 +54,10 @@ export interface FineTunesRetrieveOptionalParams extends OperationOptions {}
 export interface FineTunesListOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTunesCreateOptionalParams extends OperationOptions {}
+export interface FineTunesCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface FilesDownloadOptionalParams extends OperationOptions {}
@@ -66,13 +75,22 @@ export interface FilesCreateOptionalParams extends OperationOptions {}
 export interface FilesListOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EmbeddingsCreateOptionalParams extends OperationOptions {}
+export interface EmbeddingsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface EditsCreateOptionalParams extends OperationOptions {}
+export interface EditsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface CompletionsCreateOptionalParams extends OperationOptions {}
+export interface CompletionsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface FineTuningJobsCancelOptionalParams extends OperationOptions {}
@@ -99,10 +117,16 @@ export interface FineTuningJobsListOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface FineTuningJobsCreateOptionalParams extends OperationOptions {}
+export interface FineTuningJobsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface ChatCompletionsCreateOptionalParams extends OperationOptions {}
+export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface AudioTranslationsCreateOptionalParams

@@ -13,22 +13,37 @@ export interface DataProductsListByResourceGroupOptionalParams
 
 /** Optional parameters. */
 export interface DataProductsListRolesAssignmentsOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface DataProductsRemoveUserRoleOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface DataProductsAddUserRoleOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface DataProductsRotateKeyOptionalParams extends OperationOptions {}
+export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface DataProductsGenerateStorageAccountSasTokenOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface DataProductsDeleteOptionalParams extends OperationOptions {
@@ -40,6 +55,8 @@ export interface DataProductsDeleteOptionalParams extends OperationOptions {
 export interface DataProductsUpdateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -49,6 +66,8 @@ export interface DataProductsGetOptionalParams extends OperationOptions {}
 export interface DataProductsCreateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -57,12 +76,17 @@ export interface DataTypesListByDataProductOptionalParams
 
 /** Optional parameters. */
 export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -75,6 +99,8 @@ export interface DataTypesDeleteOptionalParams extends OperationOptions {
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -84,6 +110,8 @@ export interface DataTypesGetOptionalParams extends OperationOptions {}
 export interface DataTypesCreateOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */

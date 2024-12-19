@@ -117,7 +117,7 @@ export function _updateWidgetSend(
     .path("/widgets/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: { weight: options?.weight, color: options?.color },
     });
@@ -157,7 +157,7 @@ export function _createOrReplaceSend(
     .path("/widgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
@@ -206,7 +206,7 @@ export function _createWidgetSend(
     .path("/widgets")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: { weight: weight, color: color },
     });

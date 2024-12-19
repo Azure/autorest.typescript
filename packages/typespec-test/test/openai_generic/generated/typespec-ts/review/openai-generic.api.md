@@ -76,6 +76,7 @@ export interface ChatCompletionResponseMessage {
 
 // @public
 export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -92,6 +93,7 @@ export interface ChatOperations {
 
 // @public
 export interface CompletionsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -382,6 +384,7 @@ export interface DeleteModelResponse {
 
 // @public
 export interface EditsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -399,6 +402,7 @@ export interface Embedding {
 
 // @public
 export interface EmbeddingsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -483,6 +487,7 @@ export interface FineTunesCancelOptionalParams extends OperationOptions {
 
 // @public
 export interface FineTunesCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -556,6 +561,7 @@ export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
 
 // @public
 export interface FineTuningJobsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -605,6 +611,7 @@ export interface ImagesCreateEditOptionalParams extends OperationOptions {
 
 // @public
 export interface ImagesCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -710,6 +717,7 @@ export interface ModelsRetrieveOptionalParams extends OperationOptions {
 
 // @public
 export interface ModerationsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public

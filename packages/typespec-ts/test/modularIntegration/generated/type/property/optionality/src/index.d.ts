@@ -20,9 +20,11 @@ export declare interface BooleanLiteralProperty {
 }
 
 export declare interface BooleanLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface BooleanLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface BytesGetAllOptionalParams extends OperationOptions {
@@ -43,9 +45,11 @@ export declare interface BytesProperty {
 }
 
 export declare interface BytesPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface BytesPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CollectionsByteGetAllOptionalParams extends OperationOptions {
@@ -66,9 +70,11 @@ export declare interface CollectionsByteProperty {
 }
 
 export declare interface CollectionsBytePutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CollectionsBytePutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CollectionsModelGetAllOptionalParams extends OperationOptions {
@@ -89,9 +95,11 @@ export declare interface CollectionsModelProperty {
 }
 
 export declare interface CollectionsModelPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CollectionsModelPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface DatetimeGetAllOptionalParams extends OperationOptions {
@@ -112,9 +120,11 @@ export declare interface DatetimeProperty {
 }
 
 export declare interface DatetimePutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface DatetimePutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface DurationGetAllOptionalParams extends OperationOptions {
@@ -135,9 +145,11 @@ export declare interface DurationProperty {
 }
 
 export declare interface DurationPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface DurationPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface FloatLiteralGetAllOptionalParams extends OperationOptions {
@@ -158,9 +170,11 @@ export declare interface FloatLiteralProperty {
 }
 
 export declare interface FloatLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface FloatLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface IntLiteralGetAllOptionalParams extends OperationOptions {
@@ -181,9 +195,11 @@ export declare interface IntLiteralProperty {
 }
 
 export declare interface IntLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface IntLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare class OptionalClient {
@@ -229,9 +245,11 @@ export declare interface PlainDateProperty {
 }
 
 export declare interface PlainDatePutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PlainDatePutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PlainTimeGetAllOptionalParams extends OperationOptions {
@@ -252,9 +270,11 @@ export declare interface PlainTimeProperty {
 }
 
 export declare interface PlainTimePutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PlainTimePutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RequiredAndOptionalGetAllOptionalParams extends OperationOptions {
@@ -276,9 +296,11 @@ export declare interface RequiredAndOptionalProperty {
 }
 
 export declare interface RequiredAndOptionalPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface RequiredAndOptionalPutRequiredOnlyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringGetAllOptionalParams extends OperationOptions {
@@ -305,9 +327,11 @@ export declare interface StringLiteralProperty {
 }
 
 export declare interface StringLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringOperations {
@@ -322,9 +346,11 @@ export declare interface StringProperty {
 }
 
 export declare interface StringPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionFloatLiteralGetAllOptionalParams extends OperationOptions {
@@ -345,9 +371,11 @@ export declare interface UnionFloatLiteralProperty {
 }
 
 export declare interface UnionFloatLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionFloatLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionIntLiteralGetAllOptionalParams extends OperationOptions {
@@ -368,9 +396,11 @@ export declare interface UnionIntLiteralProperty {
 }
 
 export declare interface UnionIntLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionIntLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionStringLiteralGetAllOptionalParams extends OperationOptions {
@@ -391,9 +421,11 @@ export declare interface UnionStringLiteralProperty {
 }
 
 export declare interface UnionStringLiteralPutAllOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionStringLiteralPutDefaultOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

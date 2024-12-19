@@ -60,6 +60,7 @@ export interface AgentsCancelVectorStoreFileBatchOptionalParams extends Operatio
 
 // @public
 export interface AgentsCreateAgentOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     description?: string | null;
     instructions?: string | null;
     metadata?: Record<string, string> | null;
@@ -74,6 +75,7 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
 // @public
 export interface AgentsCreateMessageOptionalParams extends OperationOptions {
     attachments?: MessageAttachment[] | null;
+    contentType?: "application/json";
     metadata?: Record<string, string> | null;
 }
 
@@ -81,6 +83,7 @@ export interface AgentsCreateMessageOptionalParams extends OperationOptions {
 export interface AgentsCreateRunOptionalParams extends OperationOptions {
     additionalInstructions?: string | null;
     additionalMessages?: ThreadMessage[] | null;
+    contentType?: "application/json";
     instructions?: string | null;
     maxCompletionTokens?: number | null;
     maxPromptTokens?: number | null;
@@ -97,6 +100,7 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     instructions?: string | null;
     maxCompletionTokens?: number | null;
     maxPromptTokens?: number | null;
@@ -115,6 +119,7 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
 
 // @public
 export interface AgentsCreateThreadOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     messages?: ThreadMessageOptions[];
     metadata?: Record<string, string> | null;
     toolResources?: ToolResources | null;
@@ -123,16 +128,19 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
 // @public
 export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    contentType?: "application/json";
 }
 
 // @public
 export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    contentType?: "application/json";
 }
 
 // @public
 export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    contentType?: "application/json";
     expiresAfter?: VectorStoreExpirationPolicy;
     fileIds?: string[];
     metadata?: Record<string, string> | null;
@@ -265,6 +273,7 @@ export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     expiresAfter?: VectorStoreExpirationPolicy | null;
     metadata?: Record<string, string> | null;
     name?: string | null;
@@ -325,6 +334,7 @@ export interface AgentsOperations {
 
 // @public
 export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     stream?: boolean | null;
 }
 
@@ -333,6 +343,7 @@ export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent | Ru
 
 // @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     description?: string | null;
     instructions?: string | null;
     metadata?: Record<string, string> | null;
@@ -347,16 +358,19 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     metadata?: Record<string, string> | null;
 }
 
 // @public
 export interface AgentsUpdateRunOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     metadata?: Record<string, string> | null;
 }
 
 // @public
 export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     metadata?: Record<string, string> | null;
     toolResources?: ToolResources | null;
 }
@@ -495,6 +509,7 @@ export interface ConnectionsListResponse {
 
 // @public
 export interface ConnectionsListSecretsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -579,11 +594,13 @@ export interface EvaluationSchedule {
 
 // @public
 export interface EvaluationsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends OperationOptions {
     clientRequestId?: string;
+    contentType?: "application/json";
 }
 
 // @public

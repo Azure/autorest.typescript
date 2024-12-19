@@ -9,9 +9,11 @@ export declare interface ClientModel {
 }
 
 export declare interface ClientModelClientOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ClientModelLanguageOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ClientModelOperations {
@@ -31,9 +33,11 @@ export declare interface ClientNameOptionalParams extends OperationOptions {
 }
 
 export declare interface ClientOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CompatibleWithEncodedNameOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type ExtensibleEnum = "value1" | "value2";
@@ -43,6 +47,7 @@ export declare interface LanguageClientNameModel {
 }
 
 export declare interface LanguageOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare class NamingClient {
@@ -82,9 +87,11 @@ export declare interface UnionEnumOperations {
 }
 
 export declare interface UnionEnumUnionEnumMemberNameOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface UnionEnumUnionEnumNameOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

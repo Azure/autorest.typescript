@@ -37,7 +37,7 @@ export function _detectUnivariateChangePointSend(
     .path("/timeseries/changepoint/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: "application/json",
+      contentType: (optionalParams.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
     });
@@ -83,7 +83,7 @@ export function _detectUnivariateLastPointSend(
     .path("/timeseries/last/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: "application/json",
+      contentType: (optionalParams.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: univariateUnivariateDetectionOptionsSerializer(options),
     });
@@ -130,7 +130,7 @@ export function _detectUnivariateEntireSeriesSend(
     .path("/timeseries/entire/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: "application/json",
+      contentType: (optionalParams.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: univariateUnivariateDetectionOptionsSerializer(options),
     });

@@ -78,18 +78,18 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
-  const optionalParamName = parameters.filter((p) =>
-    p.type?.toString().endsWith("OptionalParams")
-  )[0]?.name;
+  const optionalParamName = getOptionalParamsName(parameters);
 
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       dpgContext,
-      operation
+      operation,
+      optionalParamName
     )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
       dpgContext,
-      operation
+      operation,
+      optionalParamName
     )}});`
   );
 
@@ -220,6 +220,15 @@ export function getDeserializePrivateFunction(
   };
 }
 
+function getOptionalParamsName(
+  parameters: OptionalKind<ParameterDeclarationStructure>[]
+) {
+  return (
+    parameters.filter((p) => p.type?.toString().endsWith("OptionalParams"))[0]
+      ?.name ?? "options"
+  );
+}
+
 function getOperationSignatureParameters(
   context: SdkContext,
   method: [string[], ServiceOperation],
@@ -280,6 +289,10 @@ export function getOperationFunction(
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
   const operation = method[1];
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(context, method, clientType);
+  const optionalParamName = getOptionalParamsName(parameters);
   if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
     return getPagingOnlyOperationFunction(
@@ -292,16 +305,14 @@ export function getOperationFunction(
     return getLroOnlyOperationFunction(
       context,
       [method[0], operation],
-      clientType
+      clientType,
+      optionalParamName
     );
   } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
   }
 
-  // Extract required parameters
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, method, clientType);
   // TODO: Support operation overloads
   const response = operation.response;
   let returnType = { name: "", type: "void" };
@@ -343,7 +354,8 @@ export function getOperationFunction(
 function getLroOnlyOperationFunction(
   context: SdkContext,
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
-  clientType: string
+  clientType: string,
+  optionalParamName: string = "options"
 ) {
   const operation = method[1];
   // Extract required parameters
@@ -394,8 +406,8 @@ function getLroOnlyOperationFunction(
   return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
     operation
   )}, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
+    updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
+    abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")}),
@@ -533,7 +545,8 @@ export function getOperationOptionsName(
  */
 function getRequestParameters(
   dpgContext: SdkContext,
-  operation: ServiceOperation
+  operation: ServiceOperation,
+  optionalParamName: string = "options"
 ): string {
   if (!operation.operation.parameters) {
     return "";
@@ -557,7 +570,7 @@ function getRequestParameters(
   for (const param of operationParameters) {
     if (param.kind === "header" || param.kind === "query") {
       parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param),
+        paramMap: getParameterMap(dpgContext, param, optionalParamName),
         param
       });
     }
@@ -566,12 +579,19 @@ function getRequestParameters(
   let paramStr = "";
 
   if (contentTypeParameter) {
-    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
+    paramStr = `${getContentTypeValue(contentTypeParameter, optionalParamName)},`;
   }
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
+      .map((i) =>
+        buildHeaderParameter(
+          dpgContext.program,
+          i.paramMap,
+          i.param,
+          optionalParamName
+        )
+      )
       .join(",\n")}},`;
   }
 
@@ -597,7 +617,8 @@ function getRequestParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: SdkServiceParameter
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
 ): string {
   const paramName = param.name;
   if (!param.optional && isTypeNullable(param.type) === true) {
@@ -609,10 +630,10 @@ function buildHeaderParameter(
   }
   const conditions = [];
   if (param.optional) {
-    conditions.push(`options?.${paramName} !== undefined`);
+    conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`options?.${paramName} !== null`);
+    conditions.push(`${optionalParamName}?.${paramName} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -621,7 +642,8 @@ function buildHeaderParameter(
 
 function buildBodyParameter(
   context: SdkContext,
-  bodyParameter: SdkBodyParameter | undefined
+  bodyParameter: SdkBodyParameter | undefined,
+  optionalParamName: string = "options"
 ) {
   if (!bodyParameter || !bodyParameter.type) {
     return "";
@@ -635,12 +657,12 @@ function buildBodyParameter(
 
   const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
   const bodyNameExpression = bodyParameter.optional
-    ? `options["${bodyParamName}"]`
+    ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
     context,
     bodyParameter,
-    bodyParameter.optional ? "options" : undefined
+    bodyParameter.optional ? optionalParamName : undefined
   );
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
   if (serializerFunctionName && !isSpreadBody(bodyParameter)) {
@@ -683,7 +705,8 @@ function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
  */
 export function getParameterMap(
   context: SdkContext,
-  param: SdkServiceParameter
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
 ): string {
   if (isConstant(param.type)) {
     return `"${param.name}": ${getConstantValue(param.type)}`;
@@ -695,12 +718,12 @@ export function getParameterMap(
     (param as any).collectionFormat
   );
   if (serializeInfo.hasCsvCollection || serializeInfo.hasMultiCollection) {
-    return getCollectionFormat(context, param);
+    return getCollectionFormat(context, param, optionalParamName);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param);
+    return getOptional(context, param, optionalParamName);
   }
 
   if (isRequired(param)) {
@@ -710,7 +733,11 @@ export function getParameterMap(
   throw new Error(`Parameter ${param.name} is not supported`);
 }
 
-function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
+function getCollectionFormat(
+  context: SdkContext,
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
+) {
   const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
   const collectionInfo = getCollectionFormatHelper(param.kind, format ?? "");
@@ -728,12 +755,12 @@ function getCollectionFormat(context: SdkContext, param: SdkServiceParameter) {
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": options?.${
+  return `"${serializedName}": ${optionalParamName}?.${
     param.name
   } !== undefined ? ${collectionInfo}(${serializeRequestValue(
     context,
     param.type,
-    "options?." + param.name,
+    `${optionalParamName}?.${param.name}`,
     false,
     getEncodeForType(param.type)
   )}${additionalParam}): undefined`;
@@ -746,16 +773,24 @@ function isContentType(param: SdkServiceParameter): boolean {
   );
 }
 
-function getContentTypeValue(param: SdkServiceParameter) {
+function getContentTypeValue(
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
+) {
   const defaultValue = param.clientDefaultValue;
-  if (isConstant(param.type)) {
+  // allow customers to customize the content type if it's guessed by tcgc.
+  if (isConstant(param.type) && !param.isGeneratedName) {
     return `contentType: ${getConstantValue(param.type)}`;
+  } else if (isConstant(param.type) && param.isGeneratedName) {
+    return `contentType: ${optionalParamName}.${param.name} as any ?? ${getConstantValue(param.type)}`;
   }
   if (defaultValue) {
-    return `contentType: options.${param.name} as any ?? "${defaultValue}"`;
+    return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
     return `contentType: ${
-      !param.optional ? "contentType" : "options." + param.name + " as any"
+      !param.optional
+        ? "contentType"
+        : `${optionalParamName}.` + param.name + " as any"
     }`;
   }
 }
@@ -799,9 +834,13 @@ function isOptional(param: SdkModelPropertyType) {
   return Boolean(param.optional);
 }
 
-function getOptional(context: SdkContext, param: SdkHttpParameter) {
+function getOptional(
+  context: SdkContext,
+  param: SdkHttpParameter,
+  optionalParamName: string
+) {
   const serializedName = getPropertySerializedName(param);
-  const paramName = `${param.onClient ? "context." : "options?."}${param.name}`;
+  const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
@@ -829,7 +868,7 @@ function getOptional(context: SdkContext, param: SdkHttpParameter) {
 function getEncodeForType(
   type: SdkType | SdkHttpParameter | SdkModelPropertyType
 ) {
-  return (type as any).encode === "bytes" ? "base64" : (type as any).encode;
+  return (type as any).encode;
 }
 
 /**
@@ -853,7 +892,8 @@ function getDefaultValue(param: SdkServiceParameter) {
  */
 function getPathParameters(
   dpgContext: SdkContext,
-  operation: ServiceOperation
+  operation: ServiceOperation,
+  optionalParamName: string = "options"
 ) {
   if (!operation.operation.parameters) {
     return "";
@@ -874,7 +914,8 @@ function getPathParameters(
       }
       pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
         param,
-        getDefaultValue(param) as string
+        getDefaultValue(param) as string,
+        optionalParamName
       )}`;
     }
   }
@@ -882,14 +923,18 @@ function getPathParameters(
   return pathParams;
 }
 
-function getPathParamExpr(param: SdkServiceParameter, defaultValue?: string) {
+function getPathParamExpr(
+  param: SdkServiceParameter,
+  defaultValue?: string,
+  optionalParamName: string = "options"
+) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
   const paramName = param.onClient
     ? `context.${param.name}`
     : param.optional
-      ? `options["${param.name}"]`
+      ? `${optionalParamName}["${param.name}"]`
       : param.name;
   const value = defaultValue
     ? typeof defaultValue === "string"
@@ -1094,7 +1139,8 @@ export function serializeRequestValue(
       return clientValue;
     }
     case "bytes":
-      if (format !== "binary") {
+      // TODO https://github.com/Azure/typespec-azure/issues/1999
+      if (format !== "binary" && format !== "bytes") {
         const uint8ArrayToStringReference = resolveReference(
           dependencies.uint8ArrayToString
         );
@@ -1198,7 +1244,7 @@ export function deserializeResponseValue(
       }
     }
     case "bytes":
-      if (format !== "binary") {
+      if (format !== "binary" && format !== "bytes") {
         return `typeof ${restValue} === 'string'
         ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;

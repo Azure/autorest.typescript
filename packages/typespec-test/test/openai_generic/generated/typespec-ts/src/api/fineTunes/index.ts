@@ -166,7 +166,7 @@ export function _createSend(
     .path("/fine-tunes")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: createFineTuneRequestSerializer(fineTune),
     });

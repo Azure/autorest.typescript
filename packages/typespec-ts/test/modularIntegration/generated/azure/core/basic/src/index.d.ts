@@ -24,6 +24,7 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 export declare interface CreateOrReplaceOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface CreateOrUpdateOptionalParams extends OperationOptions {

@@ -46,6 +46,8 @@ export interface EvaluationsCreateOrReplaceScheduleOptionalParams
   extends OperationOptions {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
   clientRequestId?: string;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -73,7 +75,10 @@ export interface EvaluationsListOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface EvaluationsCreateOptionalParams extends OperationOptions {}
+export interface EvaluationsCreateOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface EvaluationsGetOptionalParams extends OperationOptions {
@@ -82,8 +87,10 @@ export interface EvaluationsGetOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface ConnectionsListSecretsOptionalParams
-  extends OperationOptions {}
+export interface ConnectionsListSecretsOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
 export interface ConnectionsGetOptionalParams extends OperationOptions {}
@@ -126,6 +133,8 @@ export interface AgentsCreateVectorStoreFileBatchOptionalParams
   extends OperationOptions {
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -141,6 +150,8 @@ export interface AgentsCreateVectorStoreFileOptionalParams
   extends OperationOptions {
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -171,6 +182,8 @@ export interface AgentsModifyVectorStoreOptionalParams
   expiresAfter?: VectorStoreExpirationPolicy | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -189,6 +202,8 @@ export interface AgentsCreateVectorStoreOptionalParams
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -290,6 +305,8 @@ export interface AgentsCreateThreadAndRunOptionalParams
   responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -300,12 +317,16 @@ export interface AgentsSubmitToolOutputsToRunOptionalParams
   extends OperationOptions {
   /** If true, returns a stream of events that happen during the Run as server-sent events, terminating when the run enters a terminal state. */
   stream?: boolean | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
 export interface AgentsUpdateRunOptionalParams extends OperationOptions {
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -376,12 +397,16 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
   responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
 export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -407,6 +432,8 @@ export interface AgentsCreateMessageOptionalParams extends OperationOptions {
   attachments?: MessageAttachment[] | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -422,6 +449,8 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
   toolResources?: ToolResources | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -439,6 +468,8 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
   toolResources?: ToolResources | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -477,6 +508,8 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
   responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -525,4 +558,6 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
   responseFormat?: AgentsApiResponseFormatOption | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }

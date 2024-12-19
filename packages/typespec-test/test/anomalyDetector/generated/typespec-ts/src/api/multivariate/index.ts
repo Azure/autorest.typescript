@@ -50,7 +50,7 @@ export function _detectMultivariateLastAnomalySend(
     .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: "application/json",
+      contentType: (optionalParams.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: multivariateMultivariateLastDetectionOptionsSerializer(options),
     });
@@ -102,7 +102,7 @@ export function _detectMultivariateBatchAnomalySend(
     .path("/multivariate/models/{modelId}:detect-batch", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: "application/json",
+      contentType: (optionalParams.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: multivariateMultivariateBatchDetectionOptionsSerializer(options),
     });
@@ -276,7 +276,7 @@ export function _trainMultivariateModelSend(
     .path("/multivariate/models")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: multivariateModelInfoSerializer(modelInfo),
     });

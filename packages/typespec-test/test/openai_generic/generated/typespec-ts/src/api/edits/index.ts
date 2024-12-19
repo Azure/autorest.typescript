@@ -27,7 +27,7 @@ export function _createSend(
     .path("/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: createEditRequestSerializer(edit),
     });

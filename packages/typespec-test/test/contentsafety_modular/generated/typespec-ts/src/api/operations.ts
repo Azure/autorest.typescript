@@ -151,7 +151,7 @@ export function _removeBlockItemsSend(
     .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: removeBlockItemsOptionsSerializer(body),
@@ -198,7 +198,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: addOrUpdateBlockItemsOptionsSerializer(body),
@@ -397,7 +397,7 @@ export function _analyzeImageSend(
     .path("/image:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: analyzeImageOptionsSerializer(body),
@@ -434,7 +434,7 @@ export function _analyzeTextSend(
     .path("/text:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: analyzeTextOptionsSerializer(body),

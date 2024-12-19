@@ -26,6 +26,7 @@ export declare interface EnumsOnlyOperations {
 }
 
 export declare interface EnumsOnlySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface FloatsOnlyGetOptionalParams extends OperationOptions {
@@ -39,6 +40,7 @@ export declare interface FloatsOnlyOperations {
 }
 
 export declare interface FloatsOnlySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface IntsOnlyGetOptionalParams extends OperationOptions {
@@ -52,6 +54,7 @@ export declare interface IntsOnlyOperations {
 }
 
 export declare interface IntsOnlySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare enum KnownStringExtensibleNamedUnion {
@@ -77,6 +80,7 @@ export declare interface MixedLiteralsOperations {
 }
 
 export declare interface MixedLiteralsSendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface MixedTypesCases {
@@ -98,6 +102,7 @@ export declare interface MixedTypesOperations {
 }
 
 export declare interface MixedTypesSendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ModelsOnlyGetOptionalParams extends OperationOptions {
@@ -111,6 +116,7 @@ export declare interface ModelsOnlyOperations {
 }
 
 export declare interface ModelsOnlySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringAndArrayCases {
@@ -129,6 +135,7 @@ export declare interface StringAndArrayOperations {
 }
 
 export declare interface StringAndArraySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringExtensibleGetOptionalParams extends OperationOptions {
@@ -145,6 +152,7 @@ export declare interface StringExtensibleNamedOperations {
 }
 
 export declare interface StringExtensibleNamedSendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type StringExtensibleNamedUnion = string;
@@ -157,6 +165,7 @@ export declare interface StringExtensibleOperations {
 }
 
 export declare interface StringExtensibleSendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringsOnlyGetOptionalParams extends OperationOptions {
@@ -170,6 +179,7 @@ export declare interface StringsOnlyOperations {
 }
 
 export declare interface StringsOnlySendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare class UnionClient {

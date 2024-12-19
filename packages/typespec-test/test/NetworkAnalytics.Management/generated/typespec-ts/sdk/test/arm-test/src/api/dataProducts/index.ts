@@ -162,7 +162,7 @@ export function _listRolesAssignmentsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: _listRolesAssignmentsRequestSerializer(body),
@@ -216,7 +216,7 @@ export function _removeUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: roleAssignmentDetailSerializer(body),
@@ -268,7 +268,7 @@ export function _addUserRoleSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: roleAssignmentCommonPropertiesSerializer(body),
@@ -320,7 +320,7 @@ export function _rotateKeySend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: keyVaultInfoSerializer(body),
@@ -374,7 +374,7 @@ export function _generateStorageAccountSasTokenSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: accountSasSerializer(body),
@@ -485,7 +485,7 @@ export function _updateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: dataProductUpdateSerializer(properties),
@@ -589,7 +589,7 @@ export function _createSend(
     )
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: dataProductSerializer(resource),

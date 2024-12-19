@@ -34,7 +34,7 @@ export function _createAttachmentSend(
     .path("/items/{itemId}/attachments", itemId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       body: todoAttachmentSerializer(contents),
     });

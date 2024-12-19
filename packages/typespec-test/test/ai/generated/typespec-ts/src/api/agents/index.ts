@@ -279,7 +279,7 @@ export function _createVectorStoreFileBatchSend(
     .path("/vector_stores/{vectorStoreId}/file_batches", vectorStoreId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -429,7 +429,7 @@ export function _createVectorStoreFileSend(
     .path("/vector_stores/{vectorStoreId}/files", vectorStoreId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -560,7 +560,7 @@ export function _modifyVectorStoreSend(
     .path("/vector_stores/{vectorStoreId}", vectorStoreId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -635,7 +635,7 @@ export function _createVectorStoreSend(
 ): StreamableMethod {
   return context.path("/vector_stores").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
+    contentType: (options.contentType as any) ?? "application/json",
     headers: { accept: "application/json" },
     queryParameters: { "api-version": context.apiVersion },
     body: {
@@ -1003,7 +1003,7 @@ export function _createThreadAndRunSend(
     .path("/threads/runs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1111,7 +1111,7 @@ export function _submitToolOutputsToRunSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1160,7 +1160,7 @@ export function _updateRunSend(
     .path("/threads/{threadId}/runs/{runId}", threadId, runId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: { metadata: options?.metadata },
@@ -1277,7 +1277,7 @@ export function _createRunSend(
     .path("/threads/{threadId}/runs", threadId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1342,7 +1342,7 @@ export function _updateMessageSend(
     .path("/threads/{threadId}/messages/{messageId}", threadId, messageId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: { metadata: options?.metadata },
@@ -1466,7 +1466,7 @@ export function _createMessageSend(
     .path("/threads/{threadId}/messages", threadId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1553,7 +1553,7 @@ export function _updateThreadSend(
     .path("/threads/{threadId}", threadId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1629,7 +1629,7 @@ export function _createThreadSend(
     .path("/threads")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1708,7 +1708,7 @@ export function _updateAgentSend(
     .path("/assistants/{assistantId}", assistantId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
@@ -1836,7 +1836,7 @@ export function _createAgentSend(
     .path("/assistants")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: { "api-version": context.apiVersion },
       body: {
