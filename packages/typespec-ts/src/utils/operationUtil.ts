@@ -586,13 +586,37 @@ export function getMethodHierarchiesMap(
       }
 
       operationOrGroup.parameters.map((p) => {
-        p.name = normalizeName(p.name, NameType.Parameter, true);
+        const paramName = normalizeName(p.name, NameType.Parameter, true);
+        if (paramName === operationOrGroup.name) {
+          p.name = `${paramName}Parameter`;
+        } else {
+          p.name = paramName;
+        }
         return p;
       });
       operationOrGroup.operation.parameters.map((p) => {
-        p.name = normalizeName(p.name, NameType.Parameter, true);
+        const paramName = normalizeName(p.name, NameType.Parameter, true);
+        if (paramName === operationOrGroup.name) {
+          p.name = `${paramName}Parameter`;
+        } else {
+          p.name = paramName;
+        }
         return p;
       });
+      if (
+        operationOrGroup.operation.bodyParam?.name === operationOrGroup.name
+      ) {
+        const paramName = normalizeName(
+          operationOrGroup.operation.bodyParam.name,
+          NameType.Parameter,
+          true
+        );
+        if (paramName === operationOrGroup.name) {
+          operationOrGroup.operation.bodyParam.name = `${paramName}Parameter`;
+        } else {
+          operationOrGroup.operation.bodyParam.name = paramName;
+        }
+      }
       const operations = operationHierarchiesMap.get(prefixKey);
       operationHierarchiesMap.set(prefixKey, [
         ...(operations ?? []),

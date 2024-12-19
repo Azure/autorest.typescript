@@ -29,7 +29,7 @@ export declare class UsageClient {
     constructor(options?: UsageClientOptionalParams);
     inputAndOutput(body: InputOutputRecord, options?: InputAndOutputOptionalParams): Promise<InputOutputRecord>;
     output(options?: OutputOptionalParams): Promise<OutputRecord>;
-    input(input: InputRecord, options?: InputOptionalParams): Promise<void>;
+    input(inputParameter: InputRecord, options?: InputOptionalParams): Promise<void>;
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {
