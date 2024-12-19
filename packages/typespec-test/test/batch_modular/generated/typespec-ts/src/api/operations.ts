@@ -238,7 +238,7 @@ export function listApplications(
     () => _listApplicationsSend(context, options),
     _listApplicationsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -332,7 +332,7 @@ export function listPoolUsageMetrics(
     () => _listPoolUsageMetricsSend(context, options),
     _listPoolUsageMetricsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -427,7 +427,7 @@ export function listPools(
     () => _listPoolsSend(context, options),
     _listPoolsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -1157,7 +1157,7 @@ export function listSupportedImages(
     () => _listSupportedImagesSend(context, options),
     _listSupportedImagesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -1203,7 +1203,7 @@ export function listPoolNodeCounts(
     () => _listPoolNodeCountsSend(context, options),
     _listPoolNodeCountsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -1789,7 +1789,7 @@ export function listJobs(
     () => _listJobsSend(context, options),
     _listJobsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -1841,7 +1841,7 @@ export function listJobsFromSchedule(
     () => _listJobsFromScheduleSend(context, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -1902,7 +1902,7 @@ export function listJobPreparationAndReleaseTaskStatus(
     () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
     _listJobPreparationAndReleaseTaskStatusDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -2030,7 +2030,7 @@ export function listCertificates(
     () => _listCertificatesSend(context, options),
     _listCertificatesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -2812,7 +2812,7 @@ export function listJobSchedules(
     () => _listJobSchedulesSend(context, options),
     _listJobSchedulesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -2915,7 +2915,7 @@ export function listTasks(
     () => _listTasksSend(context, jobId, options),
     _listTasksDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -3602,7 +3602,7 @@ export function listTaskFiles(
     () => _listTaskFilesSend(context, jobId, taskId, options),
     _listTaskFilesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -4219,7 +4219,7 @@ export function listNodes(
     () => _listNodesSend(context, poolId, options),
     _listNodesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -4325,7 +4325,7 @@ export function listNodeExtensions(
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
     _listNodeExtensionsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -4566,6 +4566,6 @@ export function listNodeFiles(
     () => _listNodeFilesSend(context, poolId, nodeId, options),
     _listNodeFilesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.TypeSpec.nextLink" },
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
