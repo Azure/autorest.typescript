@@ -7,9 +7,6 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 export interface NetworkAnalyticsContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownVersions} that the service accepts. */
-  apiVersion: string;
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
@@ -43,10 +40,5 @@ export function createNetworkAnalytics(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-11-15";
-  return {
-    ...clientContext,
-    apiVersion,
-    subscriptionId,
-  } as NetworkAnalyticsContext;
+  return { ...clientContext, subscriptionId } as NetworkAnalyticsContext;
 }

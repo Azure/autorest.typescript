@@ -7,11 +7,7 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
 /** Azure Messaging EventGrid Client */
-export interface EventGridContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
-  apiVersion: string;
-}
+export interface EventGridContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface EventGridClientOptionalParams extends ClientOptions {
@@ -44,6 +40,5 @@ export function createEventGrid(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-06-01-preview";
-  return { ...clientContext, apiVersion } as EventGridContext;
+  return clientContext;
 }

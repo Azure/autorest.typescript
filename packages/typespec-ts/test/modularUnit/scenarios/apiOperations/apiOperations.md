@@ -738,7 +738,6 @@ mustEmptyDiagnostic: false
 needNamespaces: true
 needAzureCore: false
 withRawContent: false
-withVersionedApiVersion: true
 ```
 
 ## Operations
@@ -754,6 +753,7 @@ import {
 
 export function _testSend(
   context: Client,
+  apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -761,7 +761,7 @@ export function _testSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
+      queryParameters: { "api-version": apiVersion },
     });
 }
 
@@ -778,9 +778,10 @@ export async function _testDeserialize(
 
 export async function test(
   context: Client,
+  apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
-  const result = await _testSend(context, options);
+  const result = await _testSend(context, apiVersion, options);
   return _testDeserialize(result);
 }
 ```
@@ -791,14 +792,10 @@ export async function test(
 import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface TestingContext extends Client {
-  apiVersion: string;
-}
+export interface TestingContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface TestingClientOptionalParams extends ClientOptions {
-  apiVersion?: string;
-}
+export interface TestingClientOptionalParams extends ClientOptions {}
 
 export function createTesting(
   endpointParam: string,
@@ -817,8 +814,12 @@ export function createTesting(
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-  return { ...clientContext, apiVersion } as TestingContext;
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+  return clientContext;
 }
 ```
 
@@ -849,8 +850,11 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test(options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
-    return test(this._client, options);
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<string> {
+    return test(this._client, apiVersion, options);
   }
 }
 ```

@@ -6,11 +6,7 @@ import { KnownApiVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
-export interface RadiologyInsightsContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownApiVersion} that the service accepts. */
-  apiVersion: string;
-}
+export interface RadiologyInsightsContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface RadiologyInsightsClientOptionalParams extends ClientOptions {
@@ -42,6 +38,5 @@ export function createRadiologyInsights(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-09-01-preview";
-  return { ...clientContext, apiVersion } as RadiologyInsightsContext;
+  return clientContext;
 }

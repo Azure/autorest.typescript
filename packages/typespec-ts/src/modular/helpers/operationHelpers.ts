@@ -552,7 +552,7 @@ function getRequestParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !p.onClient && !isContentType(p)
   );
 
   const contentTypeParameter =

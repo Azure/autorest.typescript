@@ -7,11 +7,7 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
-export interface SchemaRegistryContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
-  apiVersion: string;
-}
+export interface SchemaRegistryContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface SchemaRegistryClientOptionalParams extends ClientOptions {
@@ -45,6 +41,5 @@ export function createSchemaRegistry(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-07-01";
-  return { ...clientContext, apiVersion } as SchemaRegistryContext;
+  return clientContext;
 }

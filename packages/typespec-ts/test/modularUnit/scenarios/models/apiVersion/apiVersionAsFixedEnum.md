@@ -62,10 +62,7 @@ export function _fooSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { "api-version": context.apiVersion },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _fooDeserialize(

@@ -25,11 +25,11 @@ import {
   _DataTypeListResult,
   _dataTypeListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -54,7 +54,6 @@ export function _listByDataProductSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -113,7 +112,6 @@ export function _generateStorageContainerSasTokenSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: containerSaSSerializer(body),
     });
 }
@@ -171,7 +169,6 @@ export function _deleteDataSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: _deleteDataRequestSerializer(body),
     });
 }
@@ -235,7 +232,6 @@ export function _$deleteSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -303,7 +299,6 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: dataTypeUpdateSerializer(properties),
     });
 }
@@ -362,7 +357,6 @@ export function _getSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -415,7 +409,6 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: dataTypeSerializer(resource),
     });
 }

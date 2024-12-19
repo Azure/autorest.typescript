@@ -24,7 +24,6 @@ export function _getAvatarAsJpegSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "image/jpeg",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: image,
     });
 }
@@ -61,7 +60,6 @@ export function _getAvatarAsPngSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "image/png",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: image,
     });
 }

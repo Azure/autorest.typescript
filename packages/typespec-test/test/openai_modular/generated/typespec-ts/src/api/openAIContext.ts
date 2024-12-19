@@ -6,11 +6,7 @@ import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
-export interface OpenAIContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
-  apiVersion: string;
-}
+export interface OpenAIContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface OpenAIClientOptionalParams extends ClientOptions {
@@ -44,6 +40,5 @@ export function createOpenAI(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2024-06-01";
-  return { ...clientContext, apiVersion } as OpenAIContext;
+  return clientContext;
 }

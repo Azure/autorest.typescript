@@ -59,8 +59,7 @@ export function buildClientContext(
   const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true,
-    apiVersionAsRequired: true
+    requiredOnly: true
   });
   const clientContextFile = emitterOptions.project.createSourceFile(
     getClientContextPath(dpgContext, client, emitterOptions)
@@ -73,8 +72,7 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     properties: getClientParameters(client, dpgContext, {
       onClientOnly: false,
-      requiredOnly: true,
-      apiVersionAsRequired: true
+      requiredOnly: true
     })
       .filter((p) => {
         const clientParamName = getClientParameterName(p);
@@ -131,10 +129,7 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
     returnType: `${rlcClientName}`,
-    parameters: getClientParametersDeclaration(client, dpgContext, {
-      onClientOnly: false,
-      requiredOnly: true
-    }),
+    parameters: requiredParams,
     isExported: true
   });
 
@@ -175,7 +170,7 @@ export function buildClientContext(
 
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
   const apiVersionParam = getClientParameters(client, dpgContext).find(
-    (x) => x.isApiVersionParam
+    (x) => x.isApiVersionParam && x.kind === "method"
   );
   const endpointParameter = getClientParameters(client, dpgContext, {
     onClientOnly: false,
@@ -183,41 +178,64 @@ export function buildClientContext(
     skipEndpointTemplate: true
   }).find((x) => x.kind === "endpoint");
   if (apiVersionParam) {
-    if (apiVersionParam.clientDefaultValue) {
-      const templateArguments =
-        endpointParameter && endpointParameter.type.kind === "endpoint"
-          ? endpointParameter.type.templateArguments
-          : endpointParameter && endpointParameter.type.kind === "union"
-            ? endpointParameter.type.variantTypes[0]?.templateArguments
-            : [];
-      const apiVersionInEndpoint =
-        templateArguments && templateArguments.find((p) => p.isApiVersionParam);
-      if (!apiVersionInEndpoint) {
-        apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
-      }
+    const templateArguments =
+      endpointParameter && endpointParameter.type.kind === "endpoint"
+        ? endpointParameter.type.templateArguments
+        : endpointParameter && endpointParameter.type.kind === "union"
+          ? endpointParameter.type.variantTypes[0]?.templateArguments
+          : [];
+    const apiVersionInEndpoint =
+      templateArguments && templateArguments.find((p) => p.isApiVersionParam);
+    if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
+      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
-  } else if (isAzurePackage(emitterOptions)) {
-    apiVersionPolicyStatement += `
-      if (options.apiVersion) {
-        logger.warning("This client does not support client api-version, please change it at the operation level");
-      }`;
-  } else {
-    apiVersionPolicyStatement += `
-      if (options.apiVersion) {
-        console.warn("This client does not support client api-version, please change it at the operation level");
-      }`;
+
+    if (apiVersionParam.kind === "query") {
+      apiVersionPolicyStatement += `
+      clientContext.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVersion defined in request url directly
+          // Append one if there is no apiVersion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version")) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
+          }
+    
+          return next(req);
+        },
+      });`;
+    }
+  } else if (
+    !requiredParams.find(
+      (p) => normalizeName(p.name, NameType.Parameter) === "apiVersion"
+    )
+  ) {
+    if (isAzurePackage(emitterOptions)) {
+      apiVersionPolicyStatement += `
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }`;
+    } else {
+      apiVersionPolicyStatement += `
+        if (options.apiVersion) {
+          console.warn("This client does not support client api-version, please change it at the operation level");
+        }`;
+    }
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
-  const contextParam = requiredParams.filter(
+  const contextRequiredParam = requiredParams.filter(
     (p) =>
       p.name !== "endpointParam" &&
       p.name !== "credential" &&
       p.name !== "options"
   );
-  if (contextParam.length) {
+  if (contextRequiredParam.length) {
     factoryFunction.addStatements(
-      `return { ...clientContext, ${contextParam
+      `return { ...clientContext, ${contextRequiredParam
         .map((p) => {
           return p.name;
         })

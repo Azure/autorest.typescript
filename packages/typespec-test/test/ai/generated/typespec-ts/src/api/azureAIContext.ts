@@ -13,9 +13,6 @@ export interface AzureAIContext extends Client {
   resourceGroupName: string;
   /** The Azure AI Studio project name. */
   projectName: string;
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownVersions} that the service accepts. */
-  apiVersion: string;
 }
 
 /** Optional parameters for the client. */
@@ -54,12 +51,10 @@ export function createAzureAI(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2024-07-01-preview";
   return {
     ...clientContext,
     subscriptionId,
     resourceGroupName,
     projectName,
-    apiVersion,
   } as AzureAIContext;
 }

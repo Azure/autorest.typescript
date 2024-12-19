@@ -46,7 +46,6 @@ export function _registerSchemaSend(
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: content,
     });
 }
@@ -100,7 +99,6 @@ export function _getSchemaIdByContentSend(
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: schemaContent,
     });
 }
@@ -158,7 +156,6 @@ export function _getSchemaByVersionSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { Accept: accept },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -208,7 +205,6 @@ export function _listSchemaVersionsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -252,7 +248,6 @@ export function _getSchemaByIdSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { Accept: accept },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -289,7 +284,6 @@ export function _listSchemaGroupsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

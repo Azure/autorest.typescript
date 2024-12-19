@@ -55,7 +55,6 @@ export function _rejectCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: rejectOptionsSerializer(lockTokens),
     });
 }
@@ -106,7 +105,6 @@ export function _releaseCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: releaseOptionsSerializer(lockTokens),
     });
 }
@@ -157,7 +155,6 @@ export function _acknowledgeCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: acknowledgeOptionsSerializer(lockTokens),
     });
 }
@@ -207,7 +204,6 @@ export function _receiveCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         maxEvents: options?.maxEvents,
         maxWaitTime: options?.maxWaitTime,
       },
@@ -253,7 +249,6 @@ export function _publishCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents-batch+json; charset=utf-8",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: cloudEventArraySerializer(events),
     });
 }
@@ -299,7 +294,6 @@ export function _publishCloudEventSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents+json; charset=utf-8",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: _publishCloudEventRequestSerializer(event),
     });
 }

@@ -64,7 +64,6 @@ export function _stopTestRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -99,7 +98,6 @@ export function _listTestRunsSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         orderby: options?.orderby,
         search: options?.search,
         testId: options?.testId,
@@ -151,7 +149,6 @@ export function _listMetricsSend(
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         aggregation: options?.aggregation,
         metricname: metricname,
         interval: options?.interval,
@@ -211,7 +208,6 @@ export function _listMetricNamespacesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -247,10 +243,7 @@ export function _listMetricDefinitionsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        metricNamespace: metricNamespace,
-      },
+      queryParameters: { metricNamespace: metricNamespace },
     });
 }
 
@@ -300,7 +293,6 @@ export function _listMetricDimensionValuesSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         metricname: metricname,
         interval: options?.interval,
         metricNamespace: metricNamespace,
@@ -353,7 +345,6 @@ export function _getTestRunFileSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -394,7 +385,6 @@ export function _getTestRunSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -429,7 +419,6 @@ export function _getServerMetricsConfigSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -464,7 +453,6 @@ export function _getAppComponentsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -502,7 +490,6 @@ export function _deleteTestRunSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -541,7 +528,6 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: testRunServerMetricConfigSerializer(body),
     });
 }
@@ -587,7 +573,6 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: testRunAppComponentsSerializer(body),
     });
 }
@@ -631,10 +616,7 @@ export function _createOrUpdateTestRunSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        oldTestRunId: options?.oldTestRunId,
-      },
+      queryParameters: { oldTestRunId: options?.oldTestRunId },
       body: testRunSerializer(body),
     });
 }

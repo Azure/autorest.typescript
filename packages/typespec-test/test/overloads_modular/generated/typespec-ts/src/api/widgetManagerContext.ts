@@ -6,11 +6,7 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
-export interface WidgetManagerContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownVersions} that the service accepts. */
-  apiVersion: string;
-}
+export interface WidgetManagerContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface WidgetManagerClientOptionalParams extends ClientOptions {
@@ -44,6 +40,5 @@ export function createWidgetManager(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2022-08-30";
-  return { ...clientContext, apiVersion } as WidgetManagerContext;
+  return clientContext;
 }

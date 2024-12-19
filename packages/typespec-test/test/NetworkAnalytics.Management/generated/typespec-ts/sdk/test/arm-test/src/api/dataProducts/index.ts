@@ -38,11 +38,11 @@ import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -65,7 +65,6 @@ export function _listBySubscriptionSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -112,7 +111,6 @@ export function _listByResourceGroupSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -164,7 +162,6 @@ export function _listRolesAssignmentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: _listRolesAssignmentsRequestSerializer(body),
     });
 }
@@ -218,7 +215,6 @@ export function _removeUserRoleSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: roleAssignmentDetailSerializer(body),
     });
 }
@@ -270,7 +266,6 @@ export function _addUserRoleSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: roleAssignmentCommonPropertiesSerializer(body),
     });
 }
@@ -322,7 +317,6 @@ export function _rotateKeySend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: keyVaultInfoSerializer(body),
     });
 }
@@ -376,7 +370,6 @@ export function _generateStorageAccountSasTokenSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: accountSasSerializer(body),
     });
 }
@@ -428,7 +421,6 @@ export function _$deleteSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -487,7 +479,6 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: dataProductUpdateSerializer(properties),
     });
 }
@@ -542,7 +533,6 @@ export function _getSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -591,7 +581,6 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: dataProductSerializer(resource),
     });
 }

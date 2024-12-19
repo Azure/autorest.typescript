@@ -61,7 +61,6 @@ export function _listTextBlocklistItemsSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         top: options?.top,
         skip: options?.skip,
         maxpagesize: options?.maxpagesize,
@@ -110,7 +109,6 @@ export function _getTextBlocklistItemSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -153,7 +151,6 @@ export function _removeBlockItemsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: removeBlockItemsOptionsSerializer(body),
     });
 }
@@ -200,7 +197,6 @@ export function _addOrUpdateBlockItemsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: addOrUpdateBlockItemsOptionsSerializer(body),
     });
 }
@@ -241,7 +237,6 @@ export function _listTextBlocklistsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -280,7 +275,6 @@ export function _deleteTextBlocklistSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -321,7 +315,6 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: textBlocklistSerializer(resource),
     });
 }
@@ -363,7 +356,6 @@ export function _getTextBlocklistSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -399,7 +391,6 @@ export function _analyzeImageSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: analyzeImageOptionsSerializer(body),
     });
 }
@@ -436,7 +427,6 @@ export function _analyzeTextSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: analyzeTextOptionsSerializer(body),
     });
 }

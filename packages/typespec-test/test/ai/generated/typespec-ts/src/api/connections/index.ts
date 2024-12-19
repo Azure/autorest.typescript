@@ -32,7 +32,6 @@ export function _listSecretsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
       body: { ignored: ignored },
     });
 }
@@ -74,7 +73,6 @@ export function _getSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -109,7 +107,6 @@ export function _listSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
-        "api-version": context.apiVersion,
         category: options?.category,
         includeAll: options?.includeAll,
         target: options?.target,

@@ -6,11 +6,7 @@ import { KnownAPIVersions } from "../../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface LoadTestAdministrationContext extends Client {
-  /** The API version to use for this operation. */
-  /** Known values of {@link KnownAPIVersions} that the service accepts. */
-  apiVersion: string;
-}
+export interface LoadTestAdministrationContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface LoadTestAdministrationClientOptionalParams
@@ -44,6 +40,5 @@ export function createLoadTestAdministration(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2024-05-01-preview";
-  return { ...clientContext, apiVersion } as LoadTestAdministrationContext;
+  return clientContext;
 }
