@@ -15,9 +15,14 @@ export interface TodoItemsListOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface TodoItemsCreateOptionalParams extends OperationOptions {
+export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
   contentType?: string;
   attachments?: TodoAttachment[];
+}
+
+/** Optional parameters. */
+export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
+  contentType?: string;
 }
 
 /** Optional parameters. */
@@ -36,5 +41,13 @@ export interface TodoItemsAttachmentsListOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TodoItemsAttachmentsCreateAttachmentOptionalParams
-  extends OperationOptions {}
+export interface TodoItemsAttachmentsCreateUrlAttachmentOptionalParams
+  extends OperationOptions {
+  contentType?: string;
+}
+
+/** Optional parameters. */
+export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams
+  extends OperationOptions {
+  contentType?: string;
+}

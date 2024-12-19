@@ -32,9 +32,12 @@ export interface TodoClientOptionalParams extends ClientOptions {
 
 // @public
 export interface TodoFileAttachment {
+    // (undocumented)
     contents: Uint8Array;
-    filename: string;
-    mediaType: string;
+    // (undocumented)
+    contentType?: string;
+    // (undocumented)
+    filename?: string;
 }
 
 // @public
@@ -55,6 +58,14 @@ export interface TodoItem {
 }
 
 // @public
+export interface ToDoItemMultipartRequest {
+    // (undocumented)
+    attachments?: TodoAttachment[];
+    // (undocumented)
+    item: TodoItem;
+}
+
+// @public
 export interface TodoItemPatch {
     assignedTo?: number | null;
     description?: string | null;
@@ -63,7 +74,15 @@ export interface TodoItemPatch {
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateAttachmentOptionalParams extends OperationOptions {
+export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public
+export interface TodoItemsAttachmentsCreateUrlAttachmentOptionalParams extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
 }
 
 // @public
@@ -73,13 +92,21 @@ export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions
 // @public
 export interface TodoItemsAttachmentsOperations {
     // (undocumented)
-    createAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateAttachmentOptionalParams) => Promise<void>;
+    createFileAttachment: (itemId: number, contents: TodoFileAttachment, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
+    // (undocumented)
+    createUrlAttachment: (itemId: number, contents: TodoUrlAttachment, options?: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
     list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => Promise<PageTodoAttachment>;
 }
 
 // @public
-export interface TodoItemsCreateOptionalParams extends OperationOptions {
+export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public
+export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
     // (undocumented)
     attachments?: TodoAttachment[];
     // (undocumented)
@@ -105,7 +132,20 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) => Promise<{
+    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
+        id: number;
+        title: string;
+        createdBy: number;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        createdAt: Date;
+        updatedAt: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
+    // (undocumented)
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<{
         id: number;
         title: string;
         createdBy: number;
