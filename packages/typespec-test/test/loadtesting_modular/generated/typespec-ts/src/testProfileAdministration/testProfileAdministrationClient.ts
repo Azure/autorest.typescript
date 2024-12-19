@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  createOrUpdateTestProfile,
-  deleteTestProfile,
-  getTestProfile,
   listTestProfiles,
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
+  getTestProfile,
+  deleteTestProfile,
+  createOrUpdateTestProfile,
   ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
   createTestProfileAdministration,
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
@@ -42,6 +42,29 @@ export class TestProfileAdministrationClient {
     this.pipeline = this._client.pipeline;
   }
 
+  /** Get all test profiles for the given filters. */
+  listTestProfiles(
+    options: ListTestProfilesOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TestProfile> {
+    return listTestProfiles(this._client, options);
+  }
+
+  /** Get load test profile details by test profile Id. */
+  getTestProfile(
+    testProfileId: string,
+    options: GetTestProfileOptionalParams = { requestOptions: {} },
+  ): Promise<TestProfile> {
+    return getTestProfile(this._client, testProfileId, options);
+  }
+
+  /** Delete a test profile by its test profile Id. */
+  deleteTestProfile(
+    testProfileId: string,
+    options: DeleteTestProfileOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return deleteTestProfile(this._client, testProfileId, options);
+  }
+
   /** Create a new test profile or update an existing test profile by providing the test profile Id. */
   createOrUpdateTestProfile(
     testProfileId: string,
@@ -54,28 +77,5 @@ export class TestProfileAdministrationClient {
       body,
       options,
     );
-  }
-
-  /** Delete a test profile by its test profile Id. */
-  deleteTestProfile(
-    testProfileId: string,
-    options: DeleteTestProfileOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return deleteTestProfile(this._client, testProfileId, options);
-  }
-
-  /** Get load test profile details by test profile Id. */
-  getTestProfile(
-    testProfileId: string,
-    options: GetTestProfileOptionalParams = { requestOptions: {} },
-  ): Promise<TestProfile> {
-    return getTestProfile(this._client, testProfileId, options);
-  }
-
-  /** Get all test profiles for the given filters. */
-  listTestProfiles(
-    options: ListTestProfilesOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TestProfile> {
-    return listTestProfiles(this._client, options);
   }
 }

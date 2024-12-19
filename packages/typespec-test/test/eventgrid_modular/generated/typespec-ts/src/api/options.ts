@@ -4,16 +4,14 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface PublishCloudEventOptionalParams extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
+export interface RejectCloudEventsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface PublishCloudEventsOptionalParams extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
+export interface ReleaseCloudEventsOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface AcknowledgeCloudEventsOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
@@ -24,19 +22,7 @@ export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
+export interface PublishCloudEventsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface RejectCloudEventsOptionalParams extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
+export interface PublishCloudEventOptionalParams extends OperationOptions {}

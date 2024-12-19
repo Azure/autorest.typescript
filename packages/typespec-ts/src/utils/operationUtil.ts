@@ -23,7 +23,12 @@ import {
   getWireName,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkClient
+  SdkClient,
+  SdkClientType,
+  SdkHttpOperation,
+  SdkMethod,
+  SdkServiceMethod,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { Model, Operation, Program, Type } from "@typespec/compiler";
 import {
@@ -465,19 +470,6 @@ function getHasPipeCollection(paramType: string, paramFormat: string) {
   return paramType === "query" && paramFormat === "pipes";
 }
 
-export function hasCollectionFormatInfo(
-  paramType: string,
-  paramFormat: string
-) {
-  return (
-    getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
-  );
-}
-
 export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
@@ -545,4 +537,92 @@ export function parseNextLinkName(
 export function parseItemName(paged: PagedResultMetadata): string | undefined {
   // TODO: support the nested item names
   return (paged.itemsSegments ?? [])[0];
+}
+
+export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
+  oriName?: string;
+};
+export function getMethodHierarchiesMap(
+  context: SdkContext,
+  client: SdkClientType<SdkServiceOperation>
+) {
+  const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
+    client.methods.map((m) => {
+      return [[], m];
+    });
+  const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
+    string,
+    ServiceOperation[]
+  >();
+  while (methodQueue.length > 0) {
+    const method = methodQueue.pop();
+    if (!method) {
+      continue;
+    }
+    const prefixes = method[0];
+    const operationOrGroup = method[1];
+
+    if (operationOrGroup.kind === "clientaccessor") {
+      operationOrGroup.response.methods.forEach((m) =>
+        methodQueue.push([[...prefixes, operationOrGroup.response.name], m])
+      );
+    } else {
+      const prefixKey =
+        context.rlcOptions?.hierarchyClient ||
+        context.rlcOptions?.enableOperationGroup
+          ? prefixes.join("/")
+          : "";
+      const groupName = prefixes
+        .map((p) => normalizeName(p, NameType.OperationGroup))
+        .join("");
+      if (
+        context.rlcOptions?.hierarchyClient === false &&
+        context.rlcOptions?.enableOperationGroup &&
+        groupName !== "" &&
+        !operationOrGroup.name.startsWith(groupName + "_")
+      ) {
+        (operationOrGroup as ServiceOperation).oriName = operationOrGroup.name;
+        operationOrGroup.name = `${groupName}_${operationOrGroup.name}`;
+      }
+
+      operationOrGroup.parameters.map((p) => {
+        const paramName = normalizeName(p.name, NameType.Parameter, true);
+        if (paramName === operationOrGroup.name) {
+          p.name = `${paramName}Parameter`;
+        } else {
+          p.name = paramName;
+        }
+        return p;
+      });
+      operationOrGroup.operation.parameters.map((p) => {
+        const paramName = normalizeName(p.name, NameType.Parameter, true);
+        if (paramName === operationOrGroup.name) {
+          p.name = `${paramName}Parameter`;
+        } else {
+          p.name = paramName;
+        }
+        return p;
+      });
+      if (
+        operationOrGroup.operation.bodyParam?.name === operationOrGroup.name
+      ) {
+        const paramName = normalizeName(
+          operationOrGroup.operation.bodyParam.name,
+          NameType.Parameter,
+          true
+        );
+        if (paramName === operationOrGroup.name) {
+          operationOrGroup.operation.bodyParam.name = `${paramName}Parameter`;
+        } else {
+          operationOrGroup.operation.bodyParam.name = paramName;
+        }
+      }
+      const operations = operationHierarchiesMap.get(prefixKey);
+      operationHierarchiesMap.set(prefixKey, [
+        ...(operations ?? []),
+        operationOrGroup
+      ]);
+    }
+  }
+  return operationHierarchiesMap;
 }

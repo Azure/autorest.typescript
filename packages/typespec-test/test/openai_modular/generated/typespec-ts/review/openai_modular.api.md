@@ -728,42 +728,43 @@ export interface FunctionName {
 
 // @public
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetChatCompletionsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface GetCompletionsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public

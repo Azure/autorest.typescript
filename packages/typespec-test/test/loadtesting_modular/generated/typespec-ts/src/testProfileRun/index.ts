@@ -3,11 +3,11 @@
 
 export { TestProfileRunClient } from "./testProfileRunClient.js";
 export {
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
   StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./api/index.js";

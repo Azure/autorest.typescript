@@ -27,7 +27,10 @@ export function _listSend(
 ): StreamableMethod {
   return context
     .path("/providers/Microsoft.NetworkAnalytics/operations")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json" },
+    });
 }
 
 export async function _listDeserialize(

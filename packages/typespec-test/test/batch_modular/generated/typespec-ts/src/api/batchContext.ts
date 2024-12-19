@@ -22,7 +22,8 @@ export function createBatch(
   credential: TokenCredential,
   options: BatchClientOptionalParams = {},
 ): BatchContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-batch/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -40,10 +41,5 @@ export function createBatch(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
   return clientContext;
 }

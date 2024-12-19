@@ -5,18 +5,18 @@ import {
   createEventGrid,
   EventGridContext,
   EventGridClientOptionalParams,
-  publishCloudEvent,
-  publishCloudEvents,
-  receiveCloudEvents,
-  acknowledgeCloudEvents,
-  releaseCloudEvents,
   rejectCloudEvents,
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
+  releaseCloudEvents,
+  acknowledgeCloudEvents,
+  receiveCloudEvents,
+  publishCloudEvents,
+  publishCloudEvent,
   RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
 } from "./api/index.js";
 import {
   CloudEvent,
@@ -56,48 +56,14 @@ export class EventGridClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  publishCloudEvent(
-    topicName: string,
-    event: {
-      event: CloudEvent;
-    },
-    options: PublishCloudEventOptionalParams = { requestOptions: {} },
-  ): Promise<PublishResult> {
-    return publishCloudEvent(this._client, topicName, event, options);
-  }
-
-  /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  publishCloudEvents(
-    topicName: string,
-    events: CloudEvent[],
-    options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<PublishResult> {
-    return publishCloudEvents(this._client, topicName, events, options);
-  }
-
-  /** Receive Batch of Cloud Events from the Event Subscription. */
-  receiveCloudEvents(
+  /** Reject batch of Cloud Events. */
+  rejectCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
-    options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<ReceiveResult> {
-    return receiveCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      options,
-    );
-  }
-
-  /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
-  acknowledgeCloudEvents(
-    topicName: string,
-    eventSubscriptionName: string,
-    lockTokens: AcknowledgeOptions,
-    options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<AcknowledgeResult> {
-    return acknowledgeCloudEvents(
+    lockTokens: RejectOptions,
+    options: RejectCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<RejectResult> {
+    return rejectCloudEvents(
       this._client,
       topicName,
       eventSubscriptionName,
@@ -122,19 +88,53 @@ export class EventGridClient {
     );
   }
 
-  /** Reject batch of Cloud Events. */
-  rejectCloudEvents(
+  /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
+  acknowledgeCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
-    lockTokens: RejectOptions,
-    options: RejectCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<RejectResult> {
-    return rejectCloudEvents(
+    lockTokens: AcknowledgeOptions,
+    options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<AcknowledgeResult> {
+    return acknowledgeCloudEvents(
       this._client,
       topicName,
       eventSubscriptionName,
       lockTokens,
       options,
     );
+  }
+
+  /** Receive Batch of Cloud Events from the Event Subscription. */
+  receiveCloudEvents(
+    topicName: string,
+    eventSubscriptionName: string,
+    options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<ReceiveResult> {
+    return receiveCloudEvents(
+      this._client,
+      topicName,
+      eventSubscriptionName,
+      options,
+    );
+  }
+
+  /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
+  publishCloudEvents(
+    topicName: string,
+    events: CloudEvent[],
+    options: PublishCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<PublishResult> {
+    return publishCloudEvents(this._client, topicName, events, options);
+  }
+
+  /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
+  publishCloudEvent(
+    topicName: string,
+    event: {
+      event: CloudEvent;
+    },
+    options: PublishCloudEventOptionalParams = { requestOptions: {} },
+  ): Promise<PublishResult> {
+    return publishCloudEvent(this._client, topicName, event, options);
   }
 }

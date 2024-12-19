@@ -21,16 +21,12 @@ describe("Payload Content Negotiation Client", () => {
   });
 
   it("should get image/png for same body in content negotiation", async () => {
-    const result = await client.sameBody.getAvatarAsPng({
-      accept: "image/png"
-    });
+    const result = await client.sameBody.getAvatarAsPng();
     assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile.toString());
   });
 
   it("should get image/jpeg for same body in content negotiation", async () => {
-    const result = await client.sameBody.getAvatarAsJpeg({
-      accept: "image/jpeg"
-    });
+    const result = await client.sameBody.getAvatarAsJpeg();
     assert.strictEqual(
       uint8ArrayToString(result, "utf-8"),
       jpegImage.toString()
@@ -38,16 +34,12 @@ describe("Payload Content Negotiation Client", () => {
   });
 
   it("should get image/png for different body in content negotiation", async () => {
-    const result = await client.differentBody.getAvatarAsPng({
-      accept: "image/png"
-    });
+    const result = await client.differentBody.getAvatarAsPng();
     assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile.toString());
   });
 
   it("should get application/json for different body in content negotiation", async () => {
-    const result = await client.differentBody.getAvatarAsJson({
-      accept: "application/json"
-    });
+    const result = await client.differentBody.getAvatarAsJson();
     assert.strictEqual(
       uint8ArrayToString(result.content, "utf-8"),
       pngFile.toString()

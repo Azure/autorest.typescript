@@ -13,6 +13,7 @@ export declare interface ReturnTypeChangedFromClientOptionalParams extends Clien
 }
 
 export declare interface TestOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type Versions = "v1" | "v2";

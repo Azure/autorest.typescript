@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceClient } from "./widgetServiceClient.js";
-import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
-import { _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets } from "./api/budgets/index.js";
+import { _createOrReplaceDeserialize } from "./api/budgets/index.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/index.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -82,13 +82,13 @@ interface DeserializationHelper {
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
-  "PUT /widgets/widgets/createOrReplace/users/{name}": {
-    deserializer: _createOrReplaceDeserialize,
-    expectedStatuses: ["200", "201"],
-  },
   "PUT /budgets/widgets/createOrReplace/users/{name}": {
-    deserializer: _createOrReplaceDeserializeBudgets,
-    expectedStatuses: ["200", "201"],
+    deserializer: _createOrReplaceDeserialize,
+    expectedStatuses: ["201", "200"],
+  },
+  "PUT /widgets/widgets/createOrReplace/users/{name}": {
+    deserializer: _createOrReplaceDeserializeWidgets,
+    expectedStatuses: ["201", "200"],
   },
 };
 

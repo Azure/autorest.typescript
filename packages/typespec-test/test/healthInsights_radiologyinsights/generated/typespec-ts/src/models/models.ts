@@ -1477,6 +1477,7 @@ export interface Observation extends DomainResource {
 export function observationDeserializer(item: any): Observation {
   return {
     ...item,
+    resourceType: item["resourceType"],
     text: !item["text"] ? item["text"] : narrativeDeserializer(item["text"]),
     contained: !item["contained"]
       ? item["contained"]
@@ -1487,7 +1488,6 @@ export function observationDeserializer(item: any): Observation {
     modifierExtension: !item["modifierExtension"]
       ? item["modifierExtension"]
       : extensionArrayDeserializer(item["modifierExtension"]),
-    resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),
     implicitRules: item["implicitRules"],

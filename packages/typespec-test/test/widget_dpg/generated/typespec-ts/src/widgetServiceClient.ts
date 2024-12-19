@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import {
-  getWidgetsOperations,
-  WidgetsOperations,
-} from "./classic/widgets/index.js";
-import {
   getBudgetsOperations,
   BudgetsOperations,
 } from "./classic/budgets/index.js";
+import {
+  getWidgetsOperations,
+  WidgetsOperations,
+} from "./classic/widgets/index.js";
 import {
   createWidgetService,
   WidgetServiceContext,
@@ -38,12 +38,12 @@ export class WidgetServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.widgets = getWidgetsOperations(this._client);
     this.budgets = getBudgetsOperations(this._client);
+    this.widgets = getWidgetsOperations(this._client);
   }
 
-  /** The operation groups for Widgets */
-  public readonly widgets: WidgetsOperations;
-  /** The operation groups for Budgets */
+  /** The operation groups for budgets */
   public readonly budgets: BudgetsOperations;
+  /** The operation groups for widgets */
+  public readonly widgets: WidgetsOperations;
 }

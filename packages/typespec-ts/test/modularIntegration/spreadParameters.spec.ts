@@ -83,9 +83,9 @@ describe("SpreadClient Client", () => {
   it("should spread alias with inner-alias-parameter", async () => {
     const result = await client.alias.spreadParameterWithInnerAlias(
       "1",
-      "bar",
       "foo",
-      1
+      1,
+      "bar"
     );
     assert.isUndefined(result);
   });

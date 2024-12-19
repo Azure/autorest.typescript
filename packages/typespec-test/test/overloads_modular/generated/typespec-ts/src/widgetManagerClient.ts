@@ -37,6 +37,6 @@ export class WidgetManagerClient {
     this.fooOperations = getFooOperationsOperations(this._client);
   }
 
-  /** The operation groups for FooOperations */
+  /** The operation groups for fooOperations */
   public readonly fooOperations: FooOperationsOperations;
 }

@@ -9,8 +9,8 @@ export declare class JsonClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: JsonClientOptionalParams);
-    send(body: JsonEncodedNameModel, options?: SendOptionalParams): Promise<void>;
     get(options?: GetOptionalParams): Promise<JsonEncodedNameModel>;
+    send(body: JsonEncodedNameModel, options?: SendOptionalParams): Promise<void>;
 }
 
 export declare interface JsonClientOptionalParams extends ClientOptions {
@@ -21,6 +21,7 @@ export declare interface JsonEncodedNameModel {
 }
 
 export declare interface SendOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

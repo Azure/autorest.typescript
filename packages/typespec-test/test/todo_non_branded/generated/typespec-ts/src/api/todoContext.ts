@@ -18,6 +18,7 @@ export function createTodo(
   credential: KeyCredential,
   options: TodoClientOptionalParams = {},
 ): TodoContext {
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-todo-non-branded/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -27,11 +28,7 @@ export function createTodo(
     ...options,
     userAgentOptions: { userAgentPrefix },
   };
-  const clientContext = getClient(
-    options.endpoint ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
 
   if (isKeyCredential(credential)) {
     clientContext.pipeline.addPolicy({

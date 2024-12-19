@@ -4,68 +4,45 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface OperationsListOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsCatalogsGetOptionalParams
+export interface DataProductsListBySubscriptionOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsCatalogsListByResourceGroupOptionalParams
+export interface DataProductsListByResourceGroupOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsCatalogsListBySubscriptionOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataTypesCreateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
+export interface DataProductsListRolesAssignmentsOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface DataTypesGetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataTypesUpdateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
+export interface DataProductsRemoveUserRoleOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface DataTypesDeleteOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
+export interface DataProductsAddUserRoleOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
+export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataTypesListByDataProductOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsCreateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-}
-
-/** Optional parameters. */
-export interface DataProductsGetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsUpdateOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
+export interface DataProductsGenerateStorageAccountSasTokenOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
@@ -75,28 +52,79 @@ export interface DataProductsDeleteOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface DataProductsGenerateStorageAccountSasTokenOptionalParams
+export interface DataProductsUpdateOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface DataProductsGetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DataProductsCreateOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface DataTypesListByDataProductOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsRotateKeyOptionalParams extends OperationOptions {}
+export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface DataProductsAddUserRoleOptionalParams
+export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface DataTypesDeleteOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}
+
+/** Optional parameters. */
+export interface DataTypesUpdateOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface DataTypesGetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DataTypesCreateOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface DataProductsCatalogsListBySubscriptionOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsRemoveUserRoleOptionalParams
+export interface DataProductsCatalogsListByResourceGroupOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsListRolesAssignmentsOptionalParams
+export interface DataProductsCatalogsGetOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsListByResourceGroupOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface DataProductsListBySubscriptionOptionalParams
-  extends OperationOptions {}
+export interface OperationsListOptionalParams extends OperationOptions {}

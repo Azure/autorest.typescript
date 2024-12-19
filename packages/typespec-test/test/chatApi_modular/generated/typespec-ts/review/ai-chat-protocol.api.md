@@ -77,10 +77,12 @@ export interface ChoiceDeltaRecord {
 
 // @public
 export interface CreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface CreateStreamingOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public

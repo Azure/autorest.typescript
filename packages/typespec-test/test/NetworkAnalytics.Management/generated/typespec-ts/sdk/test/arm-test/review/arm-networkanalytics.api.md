@@ -108,6 +108,7 @@ export interface DataProductProperties {
 
 // @public
 export interface DataProductsAddUserRoleOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -142,6 +143,7 @@ export interface DataProductsCatalogsOperations {
 
 // @public
 export interface DataProductsCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
@@ -152,6 +154,7 @@ export interface DataProductsDeleteOptionalParams extends OperationOptions {
 
 // @public
 export interface DataProductsGenerateStorageAccountSasTokenOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -168,6 +171,7 @@ export interface DataProductsListBySubscriptionOptionalParams extends OperationO
 
 // @public
 export interface DataProductsListRolesAssignmentsOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -187,14 +191,17 @@ export interface DataProductsOperations {
 
 // @public
 export interface DataProductsRemoveUserRoleOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
 export interface DataProductsUpdateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
@@ -240,11 +247,13 @@ export interface DataTypeProperties {
 
 // @public
 export interface DataTypesCreateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
 // @public
 export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
@@ -255,6 +264,7 @@ export interface DataTypesDeleteOptionalParams extends OperationOptions {
 
 // @public
 export interface DataTypesGenerateStorageContainerSasTokenOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -281,6 +291,7 @@ export type DataTypeState = string;
 
 // @public
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
+    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 

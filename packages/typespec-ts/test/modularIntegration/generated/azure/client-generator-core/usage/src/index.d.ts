@@ -7,9 +7,11 @@ export declare interface InputModel {
 }
 
 export declare interface InputToInputOutputOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ModelInReadOnlyPropertyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface OrphanModel {
@@ -35,9 +37,9 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
-    inputToInputOutput(body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;
-    outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
     modelInReadOnlyProperty(body: RoundTripModel, options?: ModelInReadOnlyPropertyOptionalParams): Promise<RoundTripModel>;
+    outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
+    inputToInputOutput(body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {

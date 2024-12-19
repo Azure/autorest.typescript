@@ -17,6 +17,6 @@ export {
 } from "./models/index.js";
 export {
   ChatProtocolClientOptionalParams,
-  CreateStreamingOptionalParams,
   CreateOptionalParams,
+  CreateStreamingOptionalParams,
 } from "./api/index.js";

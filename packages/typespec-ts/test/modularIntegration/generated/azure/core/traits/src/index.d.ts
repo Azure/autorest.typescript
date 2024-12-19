@@ -11,6 +11,7 @@ export declare type RepeatabilityResult = "accepted" | "rejected";
 export declare interface RepeatableActionOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     repeatabilityFirstSent?: Date;
+    contentType?: "application/json";
 }
 
 export declare interface SmokeTestOptionalParams extends OperationOptions {
@@ -25,8 +26,8 @@ export declare class TraitsClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: TraitsClientOptionalParams);
-    smokeTest(id: number, foo: string, options?: SmokeTestOptionalParams): Promise<User>;
     repeatableAction(id: number, body: UserActionParam, options?: RepeatableActionOptionalParams): Promise<UserActionResponse>;
+    smokeTest(id: number, foo: string, options?: SmokeTestOptionalParams): Promise<User>;
 }
 
 export declare interface TraitsClientOptionalParams extends ClientOptions {

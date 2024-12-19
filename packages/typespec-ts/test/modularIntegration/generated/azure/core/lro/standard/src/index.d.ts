@@ -8,6 +8,7 @@ import { PollerLike } from '@azure/core-lro';
 
 export declare interface CreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
+    contentType?: "application/json";
 }
 
 export declare interface DeleteOptionalParams extends OperationOptions {
@@ -39,9 +40,9 @@ export declare class StandardClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: StandardClientOptionalParams);
-    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState<User>, User>;
-    delete(name: string, options?: DeleteOptionalParams): PollerLike<OperationState<void>, void>;
     export(name: string, format: string, options?: ExportOptionalParams): PollerLike<OperationState<ExportedUser>, ExportedUser>;
+    delete(name: string, options?: DeleteOptionalParams): PollerLike<OperationState<void>, void>;
+    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState<User>, User>;
 }
 
 export declare interface StandardClientOptionalParams extends ClientOptions {

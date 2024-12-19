@@ -1,44 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OperationOptions } from "@azure-rest/core-client";
 import { FileType } from "../../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
-  /** This request has a JSON Merge Patch body. */
-  contentType?: string;
+export interface DeleteTestOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DeleteTestFileOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface UploadTestFileOptionalParams extends OperationOptions {
+  /** File type */
+  fileType?: FileType;
 }
-
-/** Optional parameters. */
-export interface CreateOrUpdateAppComponentsOptionalParams
-  extends OperationOptions {
-  /** Content type. */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface CreateOrUpdateServerMetricsConfigOptionalParams
-  extends OperationOptions {
-  /** Content type. */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface GetAppComponentsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetServerMetricsConfigOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetTestOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetTestFileOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface ListTestFilesOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ListTestsOptionalParams extends OperationOptions {
@@ -62,15 +38,28 @@ export interface ListTestsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface UploadTestFileOptionalParams extends OperationOptions {
-  /** Content type. */
-  contentType?: string;
-  /** File type */
-  fileType?: FileType;
-}
+export interface ListTestFilesOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DeleteTestFileOptionalParams extends OperationOptions {}
+export interface GetTestFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DeleteTestOptionalParams extends OperationOptions {}
+export interface GetTestOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface GetServerMetricsConfigOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface GetAppComponentsOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CreateOrUpdateServerMetricsConfigOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CreateOrUpdateAppComponentsOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CreateOrUpdateTestOptionalParams extends OperationOptions {}

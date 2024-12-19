@@ -17,16 +17,16 @@ export {
   KnownVersions,
 } from "./models/index.js";
 export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsListWidgetsOptionalParams,
   WidgetServiceClientOptionalParams,
 } from "./api/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

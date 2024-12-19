@@ -32,6 +32,6 @@ export class DemoServiceClient {
     this.a = getAOperations(this._client);
   }
 
-  /** The operation groups for A */
+  /** The operation groups for a */
   public readonly a: AOperations;
 }

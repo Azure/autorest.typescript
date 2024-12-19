@@ -5,26 +5,26 @@ import {
   createContentSafety,
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
-  analyzeText,
-  analyzeImage,
-  getTextBlocklist,
-  createOrUpdateTextBlocklist,
-  deleteTextBlocklist,
-  listTextBlocklists,
-  addOrUpdateBlockItems,
-  removeBlockItems,
-  getTextBlocklistItem,
   listTextBlocklistItems,
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
+  getTextBlocklistItem,
+  removeBlockItems,
+  addOrUpdateBlockItems,
+  listTextBlocklists,
+  deleteTextBlocklist,
+  createOrUpdateTextBlocklist,
+  getTextBlocklist,
+  analyzeImage,
+  analyzeText,
   ListTextBlocklistItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  GetTextBlocklistOptionalParams,
+  AnalyzeImageOptionalParams,
+  AnalyzeTextOptionalParams,
 } from "./api/index.js";
 import {
   TextBlocklist,
@@ -65,75 +65,12 @@ export class ContentSafetyClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
-  analyzeText(
-    body: AnalyzeTextOptions,
-    options: AnalyzeTextOptionalParams = { requestOptions: {} },
-  ): Promise<AnalyzeTextResult> {
-    return analyzeText(this._client, body, options);
-  }
-
-  /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
-  analyzeImage(
-    body: AnalyzeImageOptions,
-    options: AnalyzeImageOptionalParams = { requestOptions: {} },
-  ): Promise<AnalyzeImageResult> {
-    return analyzeImage(this._client, body, options);
-  }
-
-  /** Returns text blocklist details. */
-  getTextBlocklist(
+  /** Get all blockItems in a text blocklist */
+  listTextBlocklistItems(
     blocklistName: string,
-    options: GetTextBlocklistOptionalParams = { requestOptions: {} },
-  ): Promise<TextBlocklist> {
-    return getTextBlocklist(this._client, blocklistName, options);
-  }
-
-  /** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
-  createOrUpdateTextBlocklist(
-    blocklistName: string,
-    resource: TextBlocklist,
-    options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
-  ): Promise<TextBlocklist> {
-    return createOrUpdateTextBlocklist(
-      this._client,
-      blocklistName,
-      resource,
-      options,
-    );
-  }
-
-  /** Deletes a text blocklist. */
-  deleteTextBlocklist(
-    blocklistName: string,
-    options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return deleteTextBlocklist(this._client, blocklistName, options);
-  }
-
-  /** Get all text blocklists details. */
-  listTextBlocklists(
-    options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TextBlocklist> {
-    return listTextBlocklists(this._client, options);
-  }
-
-  /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
-  addOrUpdateBlockItems(
-    blocklistName: string,
-    body: AddOrUpdateBlockItemsOptions,
-    options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
-  ): Promise<AddOrUpdateBlockItemsResult> {
-    return addOrUpdateBlockItems(this._client, blocklistName, body, options);
-  }
-
-  /** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
-  removeBlockItems(
-    blocklistName: string,
-    body: RemoveBlockItemsOptions,
-    options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return removeBlockItems(this._client, blocklistName, body, options);
+    options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TextBlockItem> {
+    return listTextBlocklistItems(this._client, blocklistName, options);
   }
 
   /** Get blockItem By blockItemId from a text blocklist. */
@@ -150,11 +87,74 @@ export class ContentSafetyClient {
     );
   }
 
-  /** Get all blockItems in a text blocklist */
-  listTextBlocklistItems(
+  /** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
+  removeBlockItems(
     blocklistName: string,
-    options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TextBlockItem> {
-    return listTextBlocklistItems(this._client, blocklistName, options);
+    body: RemoveBlockItemsOptions,
+    options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return removeBlockItems(this._client, blocklistName, body, options);
+  }
+
+  /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
+  addOrUpdateBlockItems(
+    blocklistName: string,
+    body: AddOrUpdateBlockItemsOptions,
+    options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
+  ): Promise<AddOrUpdateBlockItemsResult> {
+    return addOrUpdateBlockItems(this._client, blocklistName, body, options);
+  }
+
+  /** Get all text blocklists details. */
+  listTextBlocklists(
+    options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TextBlocklist> {
+    return listTextBlocklists(this._client, options);
+  }
+
+  /** Deletes a text blocklist. */
+  deleteTextBlocklist(
+    blocklistName: string,
+    options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return deleteTextBlocklist(this._client, blocklistName, options);
+  }
+
+  /** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
+  createOrUpdateTextBlocklist(
+    blocklistName: string,
+    resource: TextBlocklist,
+    options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
+  ): Promise<TextBlocklist> {
+    return createOrUpdateTextBlocklist(
+      this._client,
+      blocklistName,
+      resource,
+      options,
+    );
+  }
+
+  /** Returns text blocklist details. */
+  getTextBlocklist(
+    blocklistName: string,
+    options: GetTextBlocklistOptionalParams = { requestOptions: {} },
+  ): Promise<TextBlocklist> {
+    return getTextBlocklist(this._client, blocklistName, options);
+  }
+
+  /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
+  analyzeImage(
+    body: AnalyzeImageOptions,
+    options: AnalyzeImageOptionalParams = { requestOptions: {} },
+  ): Promise<AnalyzeImageResult> {
+    return analyzeImage(this._client, body, options);
+  }
+
+  /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
+  analyzeText(
+    body: AnalyzeTextOptions,
+    options: AnalyzeTextOptionalParams = { requestOptions: {} },
+  ): Promise<AnalyzeTextResult> {
+    return analyzeText(this._client, body, options);
   }
 }

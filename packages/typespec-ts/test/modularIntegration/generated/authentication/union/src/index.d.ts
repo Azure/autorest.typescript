@@ -8,8 +8,8 @@ export declare class UnionClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(credential: KeyCredential | TokenCredential, options?: UnionClientOptionalParams);
-    validKey(options?: ValidKeyOptionalParams): Promise<void>;
     validToken(options?: ValidTokenOptionalParams): Promise<void>;
+    validKey(options?: ValidKeyOptionalParams): Promise<void>;
 }
 
 export declare interface UnionClientOptionalParams extends ClientOptions {

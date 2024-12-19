@@ -6,9 +6,9 @@ export declare class NotVersionedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, options?: NotVersionedClientOptionalParams);
-    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
-    withQueryApiVersion(apiVersion: string, options?: WithQueryApiVersionOptionalParams): Promise<void>;
     withPathApiVersion(apiVersion: string, options?: WithPathApiVersionOptionalParams): Promise<void>;
+    withQueryApiVersion(apiVersion: string, options?: WithQueryApiVersionOptionalParams): Promise<void>;
+    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
 }
 
 export declare interface NotVersionedClientOptionalParams extends ClientOptions {

@@ -11,11 +11,11 @@ describe("VersioningAdded Rest Client", () => {
   });
 
   it("versioning added v1", async () => {
-    const result = await client.v1("bar", {
+    const result = await client.v1({
       prop: "foo",
       enumProp: "enumMemberV2",
       unionProp: 10
-    });
+    }, "bar");
     assert.strictEqual(result.prop, "foo");
     assert.strictEqual(result.enumProp, "enumMemberV2");
     assert.strictEqual(result.unionProp, 10);

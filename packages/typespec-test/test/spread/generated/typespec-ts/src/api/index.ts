@@ -7,8 +7,8 @@ export {
   DemoServiceClientOptionalParams,
 } from "./demoServiceContext.js";
 export {
-  ATest1OptionalParams,
-  ATest2OptionalParams,
-  ATest3OptionalParams,
   ATest4OptionalParams,
+  ATest3OptionalParams,
+  ATest2OptionalParams,
+  ATest1OptionalParams,
 } from "./options.js";

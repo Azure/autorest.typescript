@@ -18,15 +18,17 @@ export declare interface StringGetKnownValueOptionalParams extends OperationOpti
 }
 
 export declare interface StringOperations {
-    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
-    putKnownValue: (body: DaysOfWeekEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
     putUnknownValue: (body: DaysOfWeekEnum, options?: StringPutUnknownValueOptionalParams) => Promise<void>;
+    putKnownValue: (body: DaysOfWeekEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
+    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
 }
 
 export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

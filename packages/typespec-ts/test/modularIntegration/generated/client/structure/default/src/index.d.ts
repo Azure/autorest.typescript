@@ -6,8 +6,8 @@ export declare interface BarFiveOptionalParams extends OperationOptions {
 }
 
 export declare interface BarOperations {
-    five: (options?: BarFiveOptionalParams) => Promise<void>;
     six: (options?: BarSixOptionalParams) => Promise<void>;
+    five: (options?: BarFiveOptionalParams) => Promise<void>;
 }
 
 export declare interface BarSixOptionalParams extends OperationOptions {
@@ -30,8 +30,8 @@ export declare interface FooFourOptionalParams extends OperationOptions {
 }
 
 export declare interface FooOperations {
-    three: (options?: FooThreeOptionalParams) => Promise<void>;
     four: (options?: FooFourOptionalParams) => Promise<void>;
+    three: (options?: FooThreeOptionalParams) => Promise<void>;
 }
 
 export declare interface FooThreeOptionalParams extends OperationOptions {
@@ -59,12 +59,12 @@ export declare class ServiceClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptionalParams);
-    one(options?: OneOptionalParams): Promise<void>;
-    two(options?: TwoOptionalParams): Promise<void>;
-    readonly baz: BazOperations;
-    readonly qux: QuxOperations;
-    readonly foo: FooOperations;
     readonly bar: BarOperations;
+    readonly foo: FooOperations;
+    readonly qux: QuxOperations;
+    readonly baz: BazOperations;
+    two(options?: TwoOptionalParams): Promise<void>;
+    one(options?: OneOptionalParams): Promise<void>;
 }
 
 export declare interface ServiceClientOptionalParams extends ClientOptions {

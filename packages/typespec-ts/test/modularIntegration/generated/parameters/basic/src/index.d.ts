@@ -6,8 +6,8 @@ export declare class BasicClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BasicClientOptionalParams);
-    readonly explicitBody: ExplicitBodyOperations;
     readonly implicitBody: ImplicitBodyOperations;
+    readonly explicitBody: ExplicitBodyOperations;
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {
@@ -18,6 +18,7 @@ export declare interface ExplicitBodyOperations {
 }
 
 export declare interface ExplicitBodySimpleOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface ImplicitBodyOperations {
@@ -25,6 +26,7 @@ export declare interface ImplicitBodyOperations {
 }
 
 export declare interface ImplicitBodySimpleOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface User {

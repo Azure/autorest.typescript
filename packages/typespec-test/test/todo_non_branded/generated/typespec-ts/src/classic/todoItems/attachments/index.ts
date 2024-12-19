@@ -1,38 +1,39 @@
 // Licensed under the MIT License.
 
 import {
-  TodoItemsAttachmentsListOptionalParams,
   TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
 } from "../../../api/options.js";
 import { TodoContext } from "../../../api/todoContext.js";
 import {
-  list,
   createAttachment,
+  list,
 } from "../../../api/todoItems/attachments/index.js";
-import { TodoAttachment, PageTodoAttachment } from "../../../models/models.js";
+import { TodoAttachment } from "../../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {
-  list: (
-    itemId: number,
-    options?: TodoItemsAttachmentsListOptionalParams,
-  ) => Promise<PageTodoAttachment>;
   createAttachment: (
     itemId: number,
     contents: TodoAttachment,
     options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
   ) => Promise<void>;
+  list: (
+    itemId: number,
+    options?: TodoItemsAttachmentsListOptionalParams,
+  ) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
 export function getTodoItemsAttachments(context: TodoContext) {
   return {
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
-      list(context, itemId, options),
     createAttachment: (
       itemId: number,
       contents: TodoAttachment,
       options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
     ) => createAttachment(context, itemId, contents, options),
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
+      list(context, itemId, options),
   };
 }
 

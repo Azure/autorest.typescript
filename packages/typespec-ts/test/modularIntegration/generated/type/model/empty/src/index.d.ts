@@ -6,9 +6,9 @@ export declare class EmptyClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: EmptyClientOptionalParams);
-    putEmpty(input: EmptyInput, options?: PutEmptyOptionalParams): Promise<void>;
-    getEmpty(options?: GetEmptyOptionalParams): Promise<EmptyOutput>;
     postRoundTripEmpty(body: EmptyInputOutput, options?: PostRoundTripEmptyOptionalParams): Promise<EmptyInputOutput>;
+    getEmpty(options?: GetEmptyOptionalParams): Promise<EmptyOutput>;
+    putEmpty(input: EmptyInput, options?: PutEmptyOptionalParams): Promise<void>;
 }
 
 export declare interface EmptyClientOptionalParams extends ClientOptions {
@@ -27,9 +27,11 @@ export declare interface GetEmptyOptionalParams extends OperationOptions {
 }
 
 export declare interface PostRoundTripEmptyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PutEmptyOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export { }

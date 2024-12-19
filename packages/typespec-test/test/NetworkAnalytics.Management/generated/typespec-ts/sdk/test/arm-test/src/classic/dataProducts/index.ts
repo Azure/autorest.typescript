@@ -3,17 +3,17 @@
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
-  create,
-  get,
-  update,
-  $delete,
-  generateStorageAccountSasToken,
-  rotateKey,
-  addUserRole,
-  removeUserRole,
-  listRolesAssignments,
-  listByResourceGroup,
   listBySubscription,
+  listByResourceGroup,
+  listRolesAssignments,
+  removeUserRole,
+  addUserRole,
+  rotateKey,
+  generateStorageAccountSasToken,
+  $delete,
+  update,
+  get,
+  create,
 } from "../../api/dataProducts/index.js";
 import {
   DataProduct,
@@ -28,41 +28,65 @@ import {
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  DataProductsCreateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsUpdateOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsCreateOptionalParams,
 } from "../../api/options.js";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
-  /** Create data product resource. */
-  create: (
+  /** List data products by subscription. */
+  listBySubscription: (
+    options?: DataProductsListBySubscriptionOptionalParams,
+  ) => PagedAsyncIterableIterator<DataProduct>;
+  /** List data products by resource group. */
+  listByResourceGroup: (
+    resourceGroupName: string,
+    options?: DataProductsListByResourceGroupOptionalParams,
+  ) => PagedAsyncIterableIterator<DataProduct>;
+  /** List user roles associated with the data product. */
+  listRolesAssignments: (
     resourceGroupName: string,
     dataProductName: string,
-    resource: DataProduct,
-    options?: DataProductsCreateOptionalParams,
-  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
-  /** Retrieve data product resource. */
-  get: (
+    body: Record<string, any>,
+    options?: DataProductsListRolesAssignmentsOptionalParams,
+  ) => Promise<ListRoleAssignments>;
+  /** Remove role from the data product. */
+  removeUserRole: (
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataProductsGetOptionalParams,
-  ) => Promise<DataProduct>;
-  /** Update data product resource. */
-  update: (
+    body: RoleAssignmentDetail,
+    options?: DataProductsRemoveUserRoleOptionalParams,
+  ) => Promise<void>;
+  /** Assign role to the data product. */
+  addUserRole: (
     resourceGroupName: string,
     dataProductName: string,
-    properties: DataProductUpdate,
-    options?: DataProductsUpdateOptionalParams,
-  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    body: RoleAssignmentCommonProperties,
+    options?: DataProductsAddUserRoleOptionalParams,
+  ) => Promise<RoleAssignmentDetail>;
+  /** Initiate key rotation on Data Product. */
+  rotateKey: (
+    resourceGroupName: string,
+    dataProductName: string,
+    body: KeyVaultInfo,
+    options?: DataProductsRotateKeyOptionalParams,
+  ) => Promise<void>;
+  /** Generate sas token for storage account. */
+  generateStorageAccountSasToken: (
+    resourceGroupName: string,
+    dataProductName: string,
+    body: AccountSas,
+    options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  ) => Promise<AccountSasToken>;
   /** Delete data product resource. */
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
@@ -74,140 +98,45 @@ export interface DataProductsOperations {
     dataProductName: string,
     options?: DataProductsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
-  /** Generate sas token for storage account. */
-  generateStorageAccountSasToken: (
+  /** Update data product resource. */
+  update: (
     resourceGroupName: string,
     dataProductName: string,
-    body: AccountSas,
-    options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  ) => Promise<AccountSasToken>;
-  /** Initiate key rotation on Data Product. */
-  rotateKey: (
+    properties: DataProductUpdate,
+    options?: DataProductsUpdateOptionalParams,
+  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  /** Retrieve data product resource. */
+  get: (
     resourceGroupName: string,
     dataProductName: string,
-    body: KeyVaultInfo,
-    options?: DataProductsRotateKeyOptionalParams,
-  ) => Promise<void>;
-  /** Assign role to the data product. */
-  addUserRole: (
+    options?: DataProductsGetOptionalParams,
+  ) => Promise<DataProduct>;
+  /** Create data product resource. */
+  create: (
     resourceGroupName: string,
     dataProductName: string,
-    body: RoleAssignmentCommonProperties,
-    options?: DataProductsAddUserRoleOptionalParams,
-  ) => Promise<RoleAssignmentDetail>;
-  /** Remove role from the data product. */
-  removeUserRole: (
-    resourceGroupName: string,
-    dataProductName: string,
-    body: RoleAssignmentDetail,
-    options?: DataProductsRemoveUserRoleOptionalParams,
-  ) => Promise<void>;
-  /** List user roles associated with the data product. */
-  listRolesAssignments: (
-    resourceGroupName: string,
-    dataProductName: string,
-    body: Record<string, any>,
-    options?: DataProductsListRolesAssignmentsOptionalParams,
-  ) => Promise<ListRoleAssignments>;
-  /** List data products by resource group. */
-  listByResourceGroup: (
-    resourceGroupName: string,
-    options?: DataProductsListByResourceGroupOptionalParams,
-  ) => PagedAsyncIterableIterator<DataProduct>;
-  /** List data products by subscription. */
-  listBySubscription: (
-    options?: DataProductsListBySubscriptionOptionalParams,
-  ) => PagedAsyncIterableIterator<DataProduct>;
+    resource: DataProduct,
+    options?: DataProductsCreateOptionalParams,
+  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
-export function getDataProducts(
-  context: NetworkAnalyticsContext,
-  subscriptionId: string,
-) {
+export function getDataProducts(context: NetworkAnalyticsContext) {
   return {
-    create: (
+    listBySubscription: (
+      options?: DataProductsListBySubscriptionOptionalParams,
+    ) => listBySubscription(context, options),
+    listByResourceGroup: (
+      resourceGroupName: string,
+      options?: DataProductsListByResourceGroupOptionalParams,
+    ) => listByResourceGroup(context, resourceGroupName, options),
+    listRolesAssignments: (
       resourceGroupName: string,
       dataProductName: string,
-      resource: DataProduct,
-      options?: DataProductsCreateOptionalParams,
+      body: Record<string, any>,
+      options?: DataProductsListRolesAssignmentsOptionalParams,
     ) =>
-      create(
+      listRolesAssignments(
         context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        resource,
-        options,
-      ),
-    get: (
-      resourceGroupName: string,
-      dataProductName: string,
-      options?: DataProductsGetOptionalParams,
-    ) =>
-      get(context, subscriptionId, resourceGroupName, dataProductName, options),
-    update: (
-      resourceGroupName: string,
-      dataProductName: string,
-      properties: DataProductUpdate,
-      options?: DataProductsUpdateOptionalParams,
-    ) =>
-      update(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        properties,
-        options,
-      ),
-    delete: (
-      resourceGroupName: string,
-      dataProductName: string,
-      options?: DataProductsDeleteOptionalParams,
-    ) =>
-      $delete(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        options,
-      ),
-    generateStorageAccountSasToken: (
-      resourceGroupName: string,
-      dataProductName: string,
-      body: AccountSas,
-      options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
-    ) =>
-      generateStorageAccountSasToken(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        body,
-        options,
-      ),
-    rotateKey: (
-      resourceGroupName: string,
-      dataProductName: string,
-      body: KeyVaultInfo,
-      options?: DataProductsRotateKeyOptionalParams,
-    ) =>
-      rotateKey(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        body,
-        options,
-      ),
-    addUserRole: (
-      resourceGroupName: string,
-      dataProductName: string,
-      body: RoleAssignmentCommonProperties,
-      options?: DataProductsAddUserRoleOptionalParams,
-    ) =>
-      addUserRole(
-        context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         body,
@@ -221,42 +150,67 @@ export function getDataProducts(
     ) =>
       removeUserRole(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         body,
         options,
       ),
-    listRolesAssignments: (
+    addUserRole: (
       resourceGroupName: string,
       dataProductName: string,
-      body: Record<string, any>,
-      options?: DataProductsListRolesAssignmentsOptionalParams,
+      body: RoleAssignmentCommonProperties,
+      options?: DataProductsAddUserRoleOptionalParams,
     ) =>
-      listRolesAssignments(
+      addUserRole(context, resourceGroupName, dataProductName, body, options),
+    rotateKey: (
+      resourceGroupName: string,
+      dataProductName: string,
+      body: KeyVaultInfo,
+      options?: DataProductsRotateKeyOptionalParams,
+    ) => rotateKey(context, resourceGroupName, dataProductName, body, options),
+    generateStorageAccountSasToken: (
+      resourceGroupName: string,
+      dataProductName: string,
+      body: AccountSas,
+      options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
+    ) =>
+      generateStorageAccountSasToken(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         body,
         options,
       ),
-    listByResourceGroup: (
+    delete: (
       resourceGroupName: string,
-      options?: DataProductsListByResourceGroupOptionalParams,
+      dataProductName: string,
+      options?: DataProductsDeleteOptionalParams,
+    ) => $delete(context, resourceGroupName, dataProductName, options),
+    update: (
+      resourceGroupName: string,
+      dataProductName: string,
+      properties: DataProductUpdate,
+      options?: DataProductsUpdateOptionalParams,
     ) =>
-      listByResourceGroup(context, subscriptionId, resourceGroupName, options),
-    listBySubscription: (
-      options?: DataProductsListBySubscriptionOptionalParams,
-    ) => listBySubscription(context, subscriptionId, options),
+      update(context, resourceGroupName, dataProductName, properties, options),
+    get: (
+      resourceGroupName: string,
+      dataProductName: string,
+      options?: DataProductsGetOptionalParams,
+    ) => get(context, resourceGroupName, dataProductName, options),
+    create: (
+      resourceGroupName: string,
+      dataProductName: string,
+      resource: DataProduct,
+      options?: DataProductsCreateOptionalParams,
+    ) => create(context, resourceGroupName, dataProductName, resource, options),
   };
 }
 
 export function getDataProductsOperations(
   context: NetworkAnalyticsContext,
-  subscriptionId: string,
 ): DataProductsOperations {
   return {
-    ...getDataProducts(context, subscriptionId),
+    ...getDataProducts(context),
   };
 }

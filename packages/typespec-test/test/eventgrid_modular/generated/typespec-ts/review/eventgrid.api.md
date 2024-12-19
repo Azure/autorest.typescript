@@ -11,7 +11,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -79,12 +78,10 @@ export enum KnownServiceApiVersions {
 
 // @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -110,7 +107,6 @@ export interface ReceiveResult {
 
 // @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -126,7 +122,6 @@ export interface RejectResult {
 
 // @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

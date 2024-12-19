@@ -95,21 +95,38 @@ describe("Versioned Server Version Client", () => {
   });
 
   it("should work with param with explicit value", async () => {
-    const result = await client.withQueryApiVersion({
+    const client = new VersionedClient("http://localhost:3002", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      },
       apiVersion: "2022-12-01-preview"
     });
+    const result = await client.withQueryApiVersion();
     assert.isUndefined(result);
   });
 
   it("should work with path param", async () => {
-    const result = await client.withPathApiVersion("2022-12-01-preview");
+    const client = new VersionedClient("http://localhost:3002", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      },
+      apiVersion: "2022-12-01-preview"
+    });
+    const result = await client.withPathApiVersion();
     assert.isUndefined(result);
   });
 
   it("should work with param with old value", async () => {
-    const result = await client.withQueryOldApiVersion({
+    const client = new VersionedClient("http://localhost:3002", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      },
       apiVersion: "2021-01-01-preview"
     });
+    const result = await client.withQueryOldApiVersion();
     assert.isUndefined(result);
   });
 });

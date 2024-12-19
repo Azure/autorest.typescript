@@ -6,24 +6,22 @@ export declare class ContentNegotiationClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ContentNegotiationClientOptionalParams);
-    readonly sameBody: SameBodyOperations;
     readonly differentBody: DifferentBodyOperations;
+    readonly sameBody: SameBodyOperations;
 }
 
 export declare interface ContentNegotiationClientOptionalParams extends ClientOptions {
 }
 
 export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
-    accept?: "application/json";
 }
 
 export declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
-    accept?: "image/png";
 }
 
 export declare interface DifferentBodyOperations {
-    getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
     getAvatarAsJson: (options?: DifferentBodyGetAvatarAsJsonOptionalParams) => Promise<PngImageAsJson>;
+    getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
 }
 
 export declare interface PngImageAsJson {
@@ -31,16 +29,14 @@ export declare interface PngImageAsJson {
 }
 
 export declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
-    accept?: "image/jpeg";
 }
 
 export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
-    accept?: "image/png";
 }
 
 export declare interface SameBodyOperations {
-    getAvatarAsPng: (options?: SameBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
     getAvatarAsJpeg: (options?: SameBodyGetAvatarAsJpegOptionalParams) => Promise<Uint8Array>;
+    getAvatarAsPng: (options?: SameBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
 }
 
 export { }

@@ -4,23 +4,25 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
+export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface MultivariateGetMultivariateModelOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateLastPointOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface UnivariateDetectUnivariateChangePointOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface MultivariateTrainMultivariateModelOptionalParams
+export interface MultivariateDeleteMultivariateModelOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
@@ -33,17 +35,33 @@ export interface MultivariateListMultivariateModelsOptionalParams
 }
 
 /** Optional parameters. */
-export interface MultivariateDeleteMultivariateModelOptionalParams
+export interface MultivariateTrainMultivariateModelOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateGetMultivariateModelOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateChangePointOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateLastPointOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
+  extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}

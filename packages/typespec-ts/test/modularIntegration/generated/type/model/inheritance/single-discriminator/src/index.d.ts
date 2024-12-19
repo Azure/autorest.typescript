@@ -43,9 +43,11 @@ export declare interface Goose extends Bird {
 }
 
 export declare interface PutModelOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface PutRecursiveModelOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface SeaGull extends Bird {
@@ -56,13 +58,13 @@ export declare class SingleDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: SingleDiscriminatorClientOptionalParams);
-    getModel(options?: GetModelOptionalParams): Promise<BirdUnion>;
-    putModel(input: BirdUnion, options?: PutModelOptionalParams): Promise<void>;
-    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<BirdUnion>;
-    putRecursiveModel(input: BirdUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
-    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<BirdUnion>;
-    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<BirdUnion>;
     getLegacyModel(options?: GetLegacyModelOptionalParams): Promise<DinosaurUnion>;
+    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<BirdUnion>;
+    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<BirdUnion>;
+    putRecursiveModel(input: BirdUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
+    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<BirdUnion>;
+    putModel(input: BirdUnion, options?: PutModelOptionalParams): Promise<void>;
+    getModel(options?: GetModelOptionalParams): Promise<BirdUnion>;
 }
 
 export declare interface SingleDiscriminatorClientOptionalParams extends ClientOptions {

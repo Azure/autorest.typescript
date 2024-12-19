@@ -147,13 +147,13 @@ export {
 } from "./models/index.js";
 export {
   OpenAIClientOptionalParams,
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
   GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";

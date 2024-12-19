@@ -11,10 +11,10 @@ describe("VersioningTypeChangedFrom Rest Client", () => {
   });
 
   it("versioning typeChangedFrom test", async () => {
-    const result = await client.test("baz", {
+    const result = await client.test({
       prop: "foo",
       changedProp: "bar"
-    });
+    }, "baz");
     assert.strictEqual(result.prop, "foo");
     assert.strictEqual(result.changedProp, "bar");
   });

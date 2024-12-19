@@ -211,6 +211,7 @@ export interface ImagingProcedureRecommendation extends ProcedureRecommendation 
 // @public
 export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
     configuration?: RadiologyInsightsModelConfiguration;
+    contentType?: "application/json";
     repeatabilityFirstSent?: Date;
     repeatabilityRequestId?: string;
     updateIntervalInMs?: number;

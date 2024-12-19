@@ -7,8 +7,8 @@ export declare class ApiKeyClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(credential: KeyCredential, options?: ApiKeyClientOptionalParams);
-    valid(options?: ValidOptionalParams): Promise<void>;
     invalid(options?: InvalidOptionalParams): Promise<void>;
+    valid(options?: ValidOptionalParams): Promise<void>;
 }
 
 export declare interface ApiKeyClientOptionalParams extends ClientOptions {

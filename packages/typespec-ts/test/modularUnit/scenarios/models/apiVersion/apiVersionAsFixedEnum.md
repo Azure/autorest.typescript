@@ -49,7 +49,6 @@ Should normal operation with enum parameter:
 
 ```ts operations
 import { ContosoContext as Client } from "./index.js";
-import { Versions } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,15 +58,11 @@ import {
 
 export function _fooSend(
   context: Client,
-  apiVersion: Versions,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { "api-version": apiVersion },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _fooDeserialize(
@@ -83,10 +78,9 @@ export async function _fooDeserialize(
 
 export async function foo(
   context: Client,
-  apiVersion: Versions,
   options: FooOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _fooSend(context, apiVersion, options);
+  const result = await _fooSend(context, options);
   return _fooDeserialize(result);
 }
 ```

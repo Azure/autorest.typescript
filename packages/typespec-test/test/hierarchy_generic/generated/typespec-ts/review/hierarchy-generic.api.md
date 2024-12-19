@@ -22,6 +22,7 @@ export interface Ba {
 
 // @public
 export interface BCOp1OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -38,6 +39,7 @@ export interface Bea {
 
 // @public
 export interface BECOp1OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -54,6 +56,7 @@ export interface BEOperations {
 
 // @public
 export interface BOp1OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -68,6 +71,7 @@ export interface BOperations {
 
 // @public
 export interface DOp1OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // @public
@@ -92,6 +96,7 @@ export interface FooClientOptionalParams extends ClientOptions {
 
 // @public
 export interface Op1OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 // (No @packageDocumentation comment for this package)

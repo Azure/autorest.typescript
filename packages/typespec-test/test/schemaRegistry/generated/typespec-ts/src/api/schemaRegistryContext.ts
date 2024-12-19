@@ -18,12 +18,12 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
 export function createSchemaRegistry(
-  fullyQualifiedNamespace: string,
+  endpointParam: string,
   credential: TokenCredential,
   options: SchemaRegistryClientOptionalParams = {},
 ): SchemaRegistryContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-schema-registry/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -41,21 +41,5 @@ export function createSchemaRegistry(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-07-01";
-  clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version")) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
-
-      return next(req);
-    },
-  });
   return clientContext;
 }

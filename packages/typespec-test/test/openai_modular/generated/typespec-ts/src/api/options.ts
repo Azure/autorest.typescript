@@ -4,45 +4,47 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface GetAudioTranscriptionAsPlainTextOptionalParams
-  extends OperationOptions {
-  /** The content type for the operation. Always multipart/form-data for this operation. */
-  contentType?: string;
+export interface GetEmbeddingsOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface GetAudioTranscriptionAsResponseObjectOptionalParams
-  extends OperationOptions {
-  /** The content type for the operation. Always multipart/form-data for this operation. */
-  contentType?: string;
+export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
-export interface GetAudioTranslationAsPlainTextOptionalParams
-  extends OperationOptions {
-  /** The content type for the operation. Always multipart/form-data for this operation. */
-  contentType?: string;
+export interface GetImageGenerationsOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface GetChatCompletionsOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
+}
+
+/** Optional parameters. */
+export interface GetCompletionsOptionalParams extends OperationOptions {
+  /** Body parameter's content type. Known values are application/json */
+  contentType?: "application/json";
 }
 
 /** Optional parameters. */
 export interface GetAudioTranslationAsResponseObjectOptionalParams
-  extends OperationOptions {
-  /** The content type for the operation. Always multipart/form-data for this operation. */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface GetCompletionsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetChatCompletionsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetImageGenerationsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GenerateSpeechFromTextOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetEmbeddingsOptionalParams extends OperationOptions {}
+export interface GetAudioTranslationAsPlainTextOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface GetAudioTranscriptionAsResponseObjectOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface GetAudioTranscriptionAsPlainTextOptionalParams
+  extends OperationOptions {}

@@ -1,7 +1,7 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { create, createEdit, createVariation } from "../../api/images/index.js";
+import { createVariation, createEdit, create } from "../../api/images/index.js";
 import {
   CreateImageRequest,
   ImagesResponse,
@@ -9,39 +9,39 @@ import {
   CreateImageVariationRequest,
 } from "../../models/models.js";
 import {
-  ImagesCreateOptionalParams,
-  ImagesCreateEditOptionalParams,
   ImagesCreateVariationOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
 } from "../../api/options.js";
 
 /** Interface representing a Images operations. */
 export interface ImagesOperations {
-  create: (
-    image: CreateImageRequest,
-    options?: ImagesCreateOptionalParams,
+  createVariation: (
+    image: CreateImageVariationRequest,
+    options?: ImagesCreateVariationOptionalParams,
   ) => Promise<ImagesResponse>;
   createEdit: (
     image: CreateImageEditRequest,
     options?: ImagesCreateEditOptionalParams,
   ) => Promise<ImagesResponse>;
-  createVariation: (
-    image: CreateImageVariationRequest,
-    options?: ImagesCreateVariationOptionalParams,
+  create: (
+    image: CreateImageRequest,
+    options?: ImagesCreateOptionalParams,
   ) => Promise<ImagesResponse>;
 }
 
 export function getImages(context: OpenAIContext) {
   return {
-    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) =>
-      create(context, image, options),
-    createEdit: (
-      image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptionalParams,
-    ) => createEdit(context, image, options),
     createVariation: (
       image: CreateImageVariationRequest,
       options?: ImagesCreateVariationOptionalParams,
     ) => createVariation(context, image, options),
+    createEdit: (
+      image: CreateImageEditRequest,
+      options?: ImagesCreateEditOptionalParams,
+    ) => createEdit(context, image, options),
+    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) =>
+      create(context, image, options),
   };
 }
 

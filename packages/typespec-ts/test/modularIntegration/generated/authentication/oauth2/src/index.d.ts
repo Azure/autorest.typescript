@@ -10,8 +10,8 @@ export declare class OAuth2Client {
     private _client;
     readonly pipeline: Pipeline;
     constructor(credential: TokenCredential, options?: OAuth2ClientOptionalParams);
-    valid(options?: ValidOptionalParams): Promise<void>;
     invalid(options?: InvalidOptionalParams): Promise<void>;
+    valid(options?: ValidOptionalParams): Promise<void>;
 }
 
 export declare interface OAuth2ClientOptionalParams extends ClientOptions {

@@ -75,12 +75,12 @@ export interface SchemaOperationsListSchemaVersionsOptionalParams extends Operat
 
 // @public
 export interface SchemaOperationsOperations {
-    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
-    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
+    getSchemaById: (id: string, accept: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
+    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, accept: string, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
-    registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
+    registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
 
 // @public
@@ -98,7 +98,7 @@ export interface SchemaProperties {
 
 // @public (undocumented)
 export class SchemaRegistryClient {
-    constructor(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
+    constructor(endpointParam: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
     readonly pipeline: Pipeline;
     readonly schemaOperations: SchemaOperationsOperations;
 }

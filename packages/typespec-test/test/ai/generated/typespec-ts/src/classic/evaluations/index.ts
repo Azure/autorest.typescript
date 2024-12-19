@@ -3,99 +3,99 @@
 
 import { AzureAIContext } from "../../api/azureAIContext.js";
 import {
-  get,
-  create,
-  list,
-  update,
-  getSchedule,
-  createOrReplaceSchedule,
-  listSchedule,
   deleteSchedule,
+  listSchedule,
+  createOrReplaceSchedule,
+  getSchedule,
+  update,
+  list,
+  create,
+  get,
 } from "../../api/evaluations/index.js";
 import {
-  EvaluationsGetOptionalParams,
-  EvaluationsCreateOptionalParams,
-  EvaluationsListOptionalParams,
-  EvaluationsUpdateOptionalParams,
-  EvaluationsGetScheduleOptionalParams,
-  EvaluationsCreateOrReplaceScheduleOptionalParams,
-  EvaluationsListScheduleOptionalParams,
   EvaluationsDeleteScheduleOptionalParams,
+  EvaluationsListScheduleOptionalParams,
+  EvaluationsCreateOrReplaceScheduleOptionalParams,
+  EvaluationsGetScheduleOptionalParams,
+  EvaluationsUpdateOptionalParams,
+  EvaluationsListOptionalParams,
+  EvaluationsCreateOptionalParams,
+  EvaluationsGetOptionalParams,
 } from "../../api/options.js";
 import { Evaluation, EvaluationSchedule } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {
-  /** Resource read operation template. */
-  get: (
+  /** Resource delete operation template. */
+  deleteSchedule: (
     id: string,
-    options?: EvaluationsGetOptionalParams,
-  ) => Promise<Evaluation>;
-  /** Run the evaluation. */
-  create: (
-    evaluation: Evaluation,
-    options?: EvaluationsCreateOptionalParams,
-  ) => Promise<Evaluation>;
+    options?: EvaluationsDeleteScheduleOptionalParams,
+  ) => Promise<void>;
   /** Resource list operation template. */
-  list: (
-    options?: EvaluationsListOptionalParams,
-  ) => PagedAsyncIterableIterator<Evaluation>;
-  /** Resource update operation template. */
-  update: (
-    id: string,
-    resource: Evaluation,
-    options?: EvaluationsUpdateOptionalParams,
-  ) => Promise<Evaluation>;
-  /** Resource read operation template. */
-  getSchedule: (
-    id: string,
-    options?: EvaluationsGetScheduleOptionalParams,
-  ) => Promise<EvaluationSchedule>;
+  listSchedule: (
+    options?: EvaluationsListScheduleOptionalParams,
+  ) => PagedAsyncIterableIterator<EvaluationSchedule>;
   /** Create or replace operation template. */
   createOrReplaceSchedule: (
     id: string,
     resource: EvaluationSchedule,
     options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
   ) => Promise<EvaluationSchedule>;
-  /** Resource list operation template. */
-  listSchedule: (
-    options?: EvaluationsListScheduleOptionalParams,
-  ) => PagedAsyncIterableIterator<EvaluationSchedule>;
-  /** Resource delete operation template. */
-  deleteSchedule: (
+  /** Resource read operation template. */
+  getSchedule: (
     id: string,
-    options?: EvaluationsDeleteScheduleOptionalParams,
-  ) => Promise<void>;
+    options?: EvaluationsGetScheduleOptionalParams,
+  ) => Promise<EvaluationSchedule>;
+  /** Resource update operation template. */
+  update: (
+    id: string,
+    resource: Evaluation,
+    options?: EvaluationsUpdateOptionalParams,
+  ) => Promise<Evaluation>;
+  /** Resource list operation template. */
+  list: (
+    options?: EvaluationsListOptionalParams,
+  ) => PagedAsyncIterableIterator<Evaluation>;
+  /** Run the evaluation. */
+  create: (
+    evaluation: Evaluation,
+    options?: EvaluationsCreateOptionalParams,
+  ) => Promise<Evaluation>;
+  /** Resource read operation template. */
+  get: (
+    id: string,
+    options?: EvaluationsGetOptionalParams,
+  ) => Promise<Evaluation>;
 }
 
 export function getEvaluations(context: AzureAIContext) {
   return {
-    get: (id: string, options?: EvaluationsGetOptionalParams) =>
-      get(context, id, options),
-    create: (
-      evaluation: Evaluation,
-      options?: EvaluationsCreateOptionalParams,
-    ) => create(context, evaluation, options),
-    list: (options?: EvaluationsListOptionalParams) => list(context, options),
-    update: (
+    deleteSchedule: (
       id: string,
-      resource: Evaluation,
-      options?: EvaluationsUpdateOptionalParams,
-    ) => update(context, id, resource, options),
-    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) =>
-      getSchedule(context, id, options),
+      options?: EvaluationsDeleteScheduleOptionalParams,
+    ) => deleteSchedule(context, id, options),
+    listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
+      listSchedule(context, options),
     createOrReplaceSchedule: (
       id: string,
       resource: EvaluationSchedule,
       options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
     ) => createOrReplaceSchedule(context, id, resource, options),
-    listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
-      listSchedule(context, options),
-    deleteSchedule: (
+    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) =>
+      getSchedule(context, id, options),
+    update: (
       id: string,
-      options?: EvaluationsDeleteScheduleOptionalParams,
-    ) => deleteSchedule(context, id, options),
+      resource: Evaluation,
+      options?: EvaluationsUpdateOptionalParams,
+    ) => update(context, id, resource, options),
+    list: (options?: EvaluationsListOptionalParams) => list(context, options),
+    create: (
+      evaluation: Evaluation,
+      options?: EvaluationsCreateOptionalParams,
+    ) => create(context, evaluation, options),
+    get: (id: string, options?: EvaluationsGetOptionalParams) =>
+      get(context, id, options),
   };
 }
 

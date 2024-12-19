@@ -18,14 +18,15 @@ export declare interface ModelV3 {
 }
 
 export declare interface ModelV3OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare class RemovedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams);
-    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
     modelV3(body: ModelV3, options?: ModelV3OptionalParams): Promise<ModelV3>;
+    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
@@ -34,6 +35,7 @@ export declare interface RemovedClientOptionalParams extends ClientOptions {
 export declare type UnionV2 = string | number;
 
 export declare interface V2OptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type Versions = "v1" | "v2preview" | "v2";

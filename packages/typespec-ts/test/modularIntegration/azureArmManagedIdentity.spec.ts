@@ -4,7 +4,7 @@ describe("Azure Arm Resources Rest Client", () => {
   let client: CommonPropertiesClient;
 
   beforeEach(() => {
-    client = new CommonPropertiesClient({
+    client = new CommonPropertiesClient(SUBSCRIPTION_ID_EXPECTED, {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
@@ -72,7 +72,6 @@ describe("Azure Arm Resources Rest Client", () => {
   // managed identity tracked resource
   it("should get models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client.get(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "identity"
     );
@@ -108,7 +107,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should put models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client.createWithSystemAssigned(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "identity",
       {
@@ -148,7 +146,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should patch models commonTypes managedIdentityTrackedResources", async () => {
     const result = await client.updateWithUserAssignedAndSystemAssigned(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "identity",
       {

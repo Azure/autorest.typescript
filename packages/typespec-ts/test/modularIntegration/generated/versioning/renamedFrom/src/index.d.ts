@@ -11,9 +11,11 @@ export declare interface NewModel {
 }
 
 export declare interface NewOpInNewInterfaceOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare interface NewOpOptionalParams extends OperationOptions {
+    contentType?: "application/json";
 }
 
 export declare type NewUnion = string | number;
@@ -22,8 +24,8 @@ export declare class RenamedFromClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RenamedFromClientOptionalParams);
-    newOp(newQuery: string, body: NewModel, options?: NewOpOptionalParams): Promise<NewModel>;
     newOpInNewInterface(body: NewModel, options?: NewOpInNewInterfaceOptionalParams): Promise<NewModel>;
+    newOp(body: NewModel, newQuery: string, options?: NewOpOptionalParams): Promise<NewModel>;
 }
 
 export declare interface RenamedFromClientOptionalParams extends ClientOptions {

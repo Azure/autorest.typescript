@@ -4,17 +4,7 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CreateOrUpdateTestProfileRunOptionalParams
-  extends OperationOptions {
-  /** This request has a JSON Merge Patch body. */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface DeleteTestProfileRunOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetTestProfileRunOptionalParams extends OperationOptions {}
+export interface StopTestProfileRunOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ListTestProfileRunsOptionalParams extends OperationOptions {
@@ -41,4 +31,11 @@ export interface ListTestProfileRunsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface StopTestProfileRunOptionalParams extends OperationOptions {}
+export interface GetTestProfileRunOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DeleteTestProfileRunOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CreateOrUpdateTestProfileRunOptionalParams
+  extends OperationOptions {}
