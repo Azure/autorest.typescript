@@ -8,20 +8,18 @@ import {
   isKeyCredential,
 } from "@typespec/ts-http-runtime";
 
-/** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-export interface OpenAIContext extends Client {}
+export interface TodoContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface OpenAIClientOptionalParams extends ClientOptions {}
+export interface TodoClientOptionalParams extends ClientOptions {}
 
-/** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-export function createOpenAI(
+export function createTodo(
+  endpointParam: string,
   credential: KeyCredential,
-  options: OpenAIClientOptionalParams = {},
-): OpenAIContext {
-  const endpointUrl = options.endpoint ?? `https://api.openai.com/v1`;
+  options: TodoClientOptionalParams = {},
+): TodoContext {
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentInfo = `azsdk-js-openai-non-branded/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-todo-non-branded/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
     : `azsdk-js-api ${userAgentInfo}`;
@@ -29,7 +27,11 @@ export function createOpenAI(
     ...options,
     userAgentOptions: { userAgentPrefix },
   };
-  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  const clientContext = getClient(
+    options.endpoint ?? String(endpointParam),
+    undefined,
+    updatedOptions,
+  );
 
   if (isKeyCredential(credential)) {
     clientContext.pipeline.addPolicy({
