@@ -1,6 +1,6 @@
 import { NameType } from "@azure-tools/rlc-common";
 
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";

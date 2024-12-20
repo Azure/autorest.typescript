@@ -2,7 +2,7 @@ import { NameType } from "@azure-tools/rlc-common";
 import { SourceFile } from "ts-morph";
 import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import {

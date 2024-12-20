@@ -4,17 +4,6 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
-/**
- * Represents metadata for a given Type to generate the TypeScript equivalent.
- */
-export interface TypeMetadata {
-  name: string;
-  originModule?: string;
-  isRelative?: boolean;
-  nullable?: boolean;
-  modifier?: "Array";
-}
-
 export function isTypeNullable(type: SdkType) {
   return Boolean(type.kind === "nullable");
 }

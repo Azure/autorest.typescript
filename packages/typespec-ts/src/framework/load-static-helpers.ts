@@ -11,7 +11,7 @@ import {
 import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 import { isAzurePackage } from "@azure-tools/rlc-common";
-import { ModularEmitterOptions } from "../modular/modularCodeModel.js";
+import { ModularEmitterOptions } from "../modular/interfaces.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;

@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";

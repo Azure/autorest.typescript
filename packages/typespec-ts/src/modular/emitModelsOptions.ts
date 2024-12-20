@@ -1,9 +1,6 @@
 import * as path from "path";
 
-import {
-  ModularEmitterOptions,
-  Type as ModularType
-} from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 import { buildOperationOptions } from "./buildOperations.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -13,22 +10,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
-// import { SdkClient, SdkClientType, SdkHttpOperation } from "@azure-tools/typespec-client-generator-core";
 
 // ====== UTILITIES ======
-
-export function isModelWithAdditionalProperties(t: ModularType) {
-  return t.type === "dict" && t.name !== "Record";
-}
-
-export function buildModelTypeAlias(model: ModularType) {
-  return {
-    name: model.name!,
-    isExported: true,
-    docs: ["Alias for " + model.name],
-    type: model.aliasType!
-  };
-}
 
 export function buildApiOptions(
   context: SdkContext,

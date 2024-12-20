@@ -1,4 +1,4 @@
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import {
   NameType,
   isAzurePackage,

@@ -5,7 +5,11 @@ import {
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { getNullableValidType, isTypeNullable } from "./typeHelpers.js";
+import {
+  getNullableValidType,
+  isSpreadBodyParameter,
+  isTypeNullable
+} from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
@@ -217,15 +221,6 @@ export function getDeserializePrivateFunction(
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
-    // } else if (deserializedType) {
-    //   statements.push(
-    //     `return ${deserializeResponseValue(
-    //       context,
-    //       deserializedType,
-    //       deserializedRoot,
-    //       response.isBinaryPayload ? "binary" : deserializedType.format
-    //     )}`
-    //   );
   } else {
     statements.push("return;");
   }
@@ -496,6 +491,7 @@ function getPagingOnlyOperationFunction(
 
   const statements: string[] = [];
   const options = [];
+  // TODO pending tcgc issue to fix https://github.com/Azure/typespec-azure/issues/1985
   if (operation.__raw_paged_metadata?.itemsSegments) {
     options.push(
       `itemName: "${operation.__raw_paged_metadata.itemsSegments[0]}"`
@@ -522,24 +518,6 @@ function getPagingOnlyOperationFunction(
   };
 }
 
-// function extractPagingType(type: Type, itemName?: string): Type | undefined {
-//   if (!itemName) {
-//     return undefined;
-//   }
-//   const allProperties = [
-//     ...(type.properties ?? []),
-//     ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
-//   ];
-//   const prop = allProperties
-//     .filter((prop) => prop.restApiName === itemName)
-//     .map((prop) => prop.type);
-//   if (prop.length === 0) {
-//     return undefined;
-//   }
-//   return prop[0]?.type === "list" && prop[0].elementType
-//     ? prop[0].elementType
-//     : undefined;
-// }
 export function getOperationOptionsName(
   method: [string[], ServiceOperation],
   includeGroupName = false
@@ -681,7 +659,7 @@ function buildBodyParameter(
     bodyParameter.optional ? optionalParamName : undefined
   );
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
-  if (serializerFunctionName && !isSpreadBody(bodyParameter)) {
+  if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
@@ -706,14 +684,6 @@ function getEncodingFormat(type: { format?: string }) {
   }
 
   return type.format;
-}
-
-function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
-  return (
-    bodyParam?.type.kind === "model" &&
-    (bodyParam?.correspondingMethodParams.length > 1 ||
-      bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type)
-  );
 }
 
 /**

@@ -1,4 +1,4 @@
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 import { Project } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";

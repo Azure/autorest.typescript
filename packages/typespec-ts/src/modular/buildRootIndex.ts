@@ -4,7 +4,7 @@ import {
   getClassicalClientName,
   getClientName
 } from "./helpers/namingHelpers.js";
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
 import { PagingHelpers } from "./static-helpers-metadata.js";
 import {

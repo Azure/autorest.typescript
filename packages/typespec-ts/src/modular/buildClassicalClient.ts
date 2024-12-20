@@ -5,7 +5,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   buildUserAgentOptions,

@@ -55,7 +55,7 @@ import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { provideContext, useContext } from "./contextManager.js";
 
 import { EmitterOptions } from "./lib.js";
-import { ModularEmitterOptions } from "./modular/modularCodeModel.js";
+import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project, SourceFile } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
@@ -105,7 +105,6 @@ export async function $onEmit(context: EmitContext) {
   >();
   provideContext("rlcMetaTree", new Map());
   provideContext("symbolMap", new Map());
-  provideContext("modularMetaTree", new Map());
   provideContext("outputProject", outputProject);
   provideContext("emitContext", {
     compilerContext: context,

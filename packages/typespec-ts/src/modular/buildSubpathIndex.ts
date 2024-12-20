@@ -2,7 +2,7 @@ import {
   SdkClientType,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import { ModularEmitterOptions } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 import { join } from "path";
 import { SdkContext } from "../utils/interfaces.js";

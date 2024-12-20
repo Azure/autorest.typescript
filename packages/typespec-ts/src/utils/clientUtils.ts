@@ -6,7 +6,7 @@ import {
 import { getNamespaceFullName, listServices } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { ModularClientOptions } from "../modular/modularCodeModel.js";
+import { ModularClientOptions } from "../modular/interfaces.js";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const services = listServices(dpgContext.program);
