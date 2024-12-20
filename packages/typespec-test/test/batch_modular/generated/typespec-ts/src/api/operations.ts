@@ -222,6 +222,7 @@ export function _listNodeFilesSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -303,7 +304,10 @@ export function _getNodeFilePropertiesSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -385,7 +389,10 @@ export function _getNodeFileSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -453,6 +460,7 @@ export function _deleteNodeFileSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -586,6 +594,7 @@ export function _getNodeExtensionSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
         $select: !options?.$select
           ? options?.$select
@@ -649,6 +658,7 @@ export function _listNodesSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -719,7 +729,10 @@ export function _uploadNodeLogsSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: uploadBatchServiceLogsOptionsSerializer(body),
     });
 }
@@ -784,7 +797,10 @@ export function _getNodeRemoteDesktopFileSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -848,7 +864,10 @@ export function _getNodeRemoteLoginSettingsSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -911,7 +930,10 @@ export function _enableNodeSchedulingSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -972,7 +994,10 @@ export function _disableNodeSchedulingSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: !options["body"]
         ? options["body"]
         : nodeDisableSchedulingOptionsSerializer(options["body"]),
@@ -1036,7 +1061,10 @@ export function _reimageNodeSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: !options["body"]
         ? options["body"]
         : nodeReimageOptionsSerializer(options["body"]),
@@ -1096,7 +1124,10 @@ export function _rebootNodeSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: !options["body"]
         ? options["body"]
         : nodeRebootOptionsSerializer(options["body"]),
@@ -1150,6 +1181,7 @@ export function _getNodeSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
         ? options?.$select
@@ -1216,7 +1248,10 @@ export function _replaceNodeUserSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchNodeUserUpdateOptionsSerializer(body),
     });
 }
@@ -1289,7 +1324,10 @@ export function _deleteNodeUserSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1353,7 +1391,10 @@ export function _createNodeUserSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchNodeUserCreateOptionsSerializer(body),
     });
 }
@@ -1417,6 +1458,7 @@ export function _listTaskFilesSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -1498,7 +1540,10 @@ export function _getTaskFilePropertiesSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1580,7 +1625,10 @@ export function _getTaskFileSend(
           : {}),
         accept: "application/octet-stream",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1646,6 +1694,7 @@ export function _deleteTaskFileSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -1727,7 +1776,10 @@ export function _reactivateTaskSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1807,7 +1859,10 @@ export function _terminateTaskSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1864,6 +1919,7 @@ export function _listSubTasksSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
         $select: !options?.$select
           ? options?.$select
@@ -1944,7 +2000,10 @@ export function _replaceTaskSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchTaskSerializer(body),
     });
 }
@@ -2017,6 +2076,7 @@ export function _getTaskSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
         ? options?.$select
@@ -2104,7 +2164,10 @@ export function _deleteTaskSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2163,7 +2226,10 @@ export function _createTaskCollectionSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchTaskCollectionSerializer(collection),
     });
 }
@@ -2234,6 +2300,7 @@ export function _listTasksSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -2308,7 +2375,10 @@ export function _createTaskSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchTaskCreateOptionsSerializer(body),
     });
 }
@@ -2362,6 +2432,7 @@ export function _listJobSchedulesSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -2430,7 +2501,10 @@ export function _createJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobScheduleCreateOptionsSerializer(body),
     });
 }
@@ -2501,7 +2575,10 @@ export function _terminateJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2575,7 +2652,10 @@ export function _enableJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2645,7 +2725,10 @@ export function _disableJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2717,7 +2800,10 @@ export function _replaceJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobScheduleSerializer(body),
     });
 }
@@ -2802,7 +2888,10 @@ export function _updateJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobScheduleUpdateOptionsSerializer(body),
     });
 }
@@ -2884,6 +2973,7 @@ export function _getJobScheduleSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
         ? options?.$select
@@ -2965,7 +3055,10 @@ export function _deleteJobScheduleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3041,7 +3134,10 @@ export function _jobScheduleExistsSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3097,6 +3193,7 @@ export function _getCertificateSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
         $select: !options?.$select
           ? options?.$select
@@ -3164,7 +3261,10 @@ export function _deleteCertificateSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3235,7 +3335,10 @@ export function _cancelCertificateDeletionSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3297,6 +3400,7 @@ export function _listCertificatesSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -3360,7 +3464,10 @@ export function _createCertificateSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchCertificateSerializer(body),
     });
 }
@@ -3411,7 +3518,10 @@ export function _getJobTaskCountsSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3542,6 +3652,7 @@ export function _listJobsFromScheduleSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -3608,6 +3719,7 @@ export function _listJobsSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -3676,7 +3788,10 @@ export function _createJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobCreateOptionsSerializer(body),
     });
 }
@@ -3758,7 +3873,10 @@ export function _terminateJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: !options["body"]
         ? options["body"]
         : batchJobTerminateOptionsSerializer(options["body"]),
@@ -3838,7 +3956,10 @@ export function _enableJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -3917,7 +4038,10 @@ export function _disableJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobDisableOptionsSerializer(body),
     });
 }
@@ -4000,7 +4124,10 @@ export function _replaceJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobSerializer(body),
     });
 }
@@ -4078,7 +4205,10 @@ export function _updateJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchJobUpdateOptionsSerializer(body),
     });
 }
@@ -4153,6 +4283,7 @@ export function _getJobSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
         ? options?.$select
@@ -4234,7 +4365,10 @@ export function _deleteJobSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -4293,6 +4427,7 @@ export function _listPoolNodeCountsSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -4433,7 +4568,10 @@ export function _removeNodesSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: nodeRemoveOptionsSerializer(body),
     });
 }
@@ -4491,7 +4629,10 @@ export function _replacePoolPropertiesSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolReplaceOptionsSerializer(body),
     });
 }
@@ -4572,7 +4713,10 @@ export function _stopPoolResizeSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -4652,7 +4796,10 @@ export function _resizePoolSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolResizeOptionsSerializer(body),
     });
 }
@@ -4714,7 +4861,10 @@ export function _evaluatePoolAutoScaleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolEvaluateAutoScaleOptionsSerializer(body),
     });
 }
@@ -4797,7 +4947,10 @@ export function _enablePoolAutoScaleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolEnableAutoScaleOptionsSerializer(body),
     });
 }
@@ -4856,7 +5009,10 @@ export function _disablePoolAutoScaleSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -4928,7 +5084,10 @@ export function _updatePoolSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolUpdateOptionsSerializer(body),
     });
 }
@@ -5003,6 +5162,7 @@ export function _getPoolSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
         ? options?.$select
@@ -5084,7 +5244,10 @@ export function _poolExistsSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -5154,7 +5317,10 @@ export function _deletePoolSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -5215,6 +5381,7 @@ export function _listPoolsSend(
       accept: "application/json",
     },
     queryParameters: {
+      "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
@@ -5283,7 +5450,10 @@ export function _createPoolSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
       body: batchPoolCreateOptionsSerializer(body),
     });
 }
@@ -5338,6 +5508,7 @@ export function _listPoolUsageMetricsSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         starttime: options?.starttime?.toISOString(),
@@ -5404,7 +5575,10 @@ export function _getApplicationSend(
           : {}),
         accept: "application/json",
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -5460,6 +5634,7 @@ export function _listApplicationsSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
       },

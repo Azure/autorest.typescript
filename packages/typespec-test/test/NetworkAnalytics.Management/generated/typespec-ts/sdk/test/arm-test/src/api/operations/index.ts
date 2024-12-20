@@ -30,6 +30,7 @@ export function _listSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

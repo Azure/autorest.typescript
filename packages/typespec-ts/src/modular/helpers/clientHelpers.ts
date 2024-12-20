@@ -27,6 +27,7 @@ interface ClientParameterOptions {
   optionalOnly?: boolean;
   skipArmSpecific?: boolean;
   skipEndpointTemplate?: boolean;
+  apiVersionAsRequired?: boolean;
 }
 
 export function getClientParameters(
@@ -37,7 +38,8 @@ export function getClientParameters(
     onClientOnly: false,
     optionalOnly: false,
     skipArmSpecific: false,
-    skipEndpointTemplate: false
+    skipEndpointTemplate: false,
+    apiVersionAsRequired: true
   }
 ) {
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
@@ -62,18 +64,19 @@ export function getClientParameters(
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
   const isRequired = (p: SdkParameter | SdkHttpParameter) =>
     !p.optional &&
-    !hasDefaultValue(p) &&
-    !(
-      p.type.kind === "endpoint" &&
-      p.type.templateArguments[0] &&
-      hasDefaultValue(p.type.templateArguments[0])
-    );
+    ((!hasDefaultValue(p) &&
+      !(
+        p.type.kind === "endpoint" &&
+        p.type.templateArguments[0] &&
+        hasDefaultValue(p.type.templateArguments[0])
+      )) ||
+      (options.apiVersionAsRequired && p.isApiVersionParam));
   const isOptional = (p: SdkParameter | SdkHttpParameter) =>
     p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
     p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "method" || (p.kind === "method" && p.isApiVersionParam);
+    p.kind !== "method";
   const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
     !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
@@ -99,7 +102,8 @@ export function getClientParametersDeclaration(
     optionalOnly: false,
     requiredOnly: false,
     onClientOnly: false,
-    skipArmSpecific: false
+    skipArmSpecific: false,
+    apiVersionAsRequired: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const name = getClientName(client);

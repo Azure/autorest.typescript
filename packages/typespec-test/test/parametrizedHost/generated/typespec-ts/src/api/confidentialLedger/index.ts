@@ -27,6 +27,7 @@ export function _listCollectionsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

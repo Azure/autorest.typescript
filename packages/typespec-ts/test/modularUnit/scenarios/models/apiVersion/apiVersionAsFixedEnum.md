@@ -60,9 +60,13 @@ export function _fooSend(
   context: Client,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { "api-version": context.apiVersion },
+    });
 }
 
 export async function _fooDeserialize(

@@ -24,7 +24,11 @@ import { KeyCredential } from "@azure/core-auth";
  * a set of time series. By using anomaly detector service, business customers can
  * discover incidents and establish a logic flow for root cause analysis.
  */
-export interface AnomalyDetectorContext extends Client {}
+export interface AnomalyDetectorContext extends Client {
+  /** Api Version */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
@@ -77,10 +81,5 @@ export function createAnomalyDetector(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
-  return clientContext;
+  return { ...clientContext, apiVersion } as AnomalyDetectorContext;
 }

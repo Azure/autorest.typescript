@@ -79,8 +79,16 @@ export function getSendPrivateFunction(
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
-
+  const apiVersion = operation.operation.parameters.filter(
+    (p) => p.isApiVersionParam && p.onClient
+  );
   const statements: string[] = [];
+  if (apiVersion.length === 1 && apiVersion[0]?.kind !== "query") {
+    statements.push(
+      `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
+    );
+  }
+
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       dpgContext,
@@ -552,7 +560,7 @@ function getRequestParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => !p.onClient && !isContentType(p)
+    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
   );
 
   const contentTypeParameter =

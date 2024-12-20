@@ -37,6 +37,7 @@ export function _stopTestProfileRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -75,6 +76,7 @@ export function _listTestProfileRunsSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
+        "api-version": context.apiVersion,
         maxpagesize: options?.maxpagesize,
         minStartDateTime: options?.minStartDateTime?.toISOString(),
         maxStartDateTime: options?.maxStartDateTime?.toISOString(),
@@ -124,6 +126,7 @@ export function _getTestProfileRunSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -162,6 +165,7 @@ export function _deleteTestProfileRunSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -202,6 +206,7 @@ export function _createOrUpdateTestProfileRunSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: testProfileRunSerializer(body),
     });
 }

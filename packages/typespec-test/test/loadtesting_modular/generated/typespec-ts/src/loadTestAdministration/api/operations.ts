@@ -54,6 +54,7 @@ export function _deleteTestSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -89,6 +90,7 @@ export function _deleteTestFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -127,7 +129,10 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/octet-stream",
       headers: { accept: "application/json" },
-      queryParameters: { fileType: options?.fileType },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        fileType: options?.fileType,
+      },
       body: body,
     });
 }
@@ -175,6 +180,7 @@ export function _listTestsSend(
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
       queryParameters: {
+        "api-version": context.apiVersion,
         orderby: options?.orderby,
         search: options?.search,
         lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
@@ -222,6 +228,7 @@ export function _listTestFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -262,6 +269,7 @@ export function _getTestFileSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -297,6 +305,7 @@ export function _getTestSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -331,6 +340,7 @@ export function _getServerMetricsConfigSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -365,6 +375,7 @@ export function _getAppComponentsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -403,6 +414,7 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: testServerMetricConfigSerializer(body),
     });
 }
@@ -448,6 +460,7 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: testAppComponentsSerializer(body),
     });
 }
@@ -491,6 +504,7 @@ export function _createOrUpdateTestSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: { accept: "application/json" },
+      queryParameters: { "api-version": context.apiVersion },
       body: testSerializer(body),
     });
 }

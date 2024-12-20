@@ -59,7 +59,8 @@ export function buildClientContext(
   const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true
+    requiredOnly: true,
+    apiVersionAsRequired: true
   });
   const clientContextFile = emitterOptions.project.createSourceFile(
     getClientContextPath(dpgContext, client, emitterOptions)
@@ -72,7 +73,8 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     properties: getClientParameters(client, dpgContext, {
       onClientOnly: false,
-      requiredOnly: true
+      requiredOnly: true,
+      apiVersionAsRequired: true
     })
       .filter((p) => {
         const clientParamName = getClientParameterName(p);
@@ -129,7 +131,10 @@ export function buildClientContext(
     docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
     returnType: `${rlcClientName}`,
-    parameters: requiredParams,
+    parameters: getClientParametersDeclaration(client, dpgContext, {
+      onClientOnly: false,
+      requiredOnly: true
+    }),
     isExported: true
   });
 
@@ -170,7 +175,7 @@ export function buildClientContext(
 
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
   const apiVersionParam = getClientParameters(client, dpgContext).find(
-    (x) => x.isApiVersionParam && x.kind === "method"
+    (x) => x.isApiVersionParam
   );
   const endpointParameter = getClientParameters(client, dpgContext, {
     onClientOnly: false,
@@ -190,7 +195,7 @@ export function buildClientContext(
       apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
 
-    if (apiVersionParam.kind === "query") {
+    if (apiVersionParam.kind === "method") {
       apiVersionPolicyStatement += `
       clientContext.pipeline.addPolicy({
         name: 'ClientApiVersionPolicy',
@@ -208,22 +213,16 @@ export function buildClientContext(
         },
       });`;
     }
-  } else if (
-    !requiredParams.find(
-      (p) => normalizeName(p.name, NameType.Parameter) === "apiVersion"
-    )
-  ) {
-    if (isAzurePackage(emitterOptions)) {
-      apiVersionPolicyStatement += `
+  } else if (isAzurePackage(emitterOptions)) {
+    apiVersionPolicyStatement += `
         if (options.apiVersion) {
           logger.warning("This client does not support client api-version, please change it at the operation level");
         }`;
-    } else {
-      apiVersionPolicyStatement += `
+  } else {
+    apiVersionPolicyStatement += `
         if (options.apiVersion) {
           console.warn("This client does not support client api-version, please change it at the operation level");
         }`;
-    }
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 

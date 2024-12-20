@@ -50,6 +50,7 @@ export function _deleteScheduleSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -89,6 +90,7 @@ export function _listScheduleSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         top: options?.top,
         skip: options?.skip,
         maxpagesize: options?.maxpagesize,
@@ -140,6 +142,7 @@ export function _createOrReplaceScheduleSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
       body: evaluationScheduleSerializer(resource),
     });
 }
@@ -188,6 +191,7 @@ export function _getScheduleSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -229,6 +233,7 @@ export function _updateSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
       body: evaluationSerializer(resource),
     });
 }
@@ -270,6 +275,7 @@ export function _listSend(
         accept: "application/json",
       },
       queryParameters: {
+        "api-version": context.apiVersion,
         top: options?.top,
         skip: options?.skip,
         maxpagesize: options?.maxpagesize,
@@ -313,6 +319,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
       headers: { accept: "application/json" },
+      queryParameters: { apiVersion: context.apiVersion },
       body: evaluationSerializer(evaluation),
     });
 }
@@ -353,6 +360,7 @@ export function _getSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

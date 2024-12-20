@@ -44,6 +44,7 @@ export function _inferRadiologyInsightsSend(
           : {}),
         accept: "application/json",
       },
+      queryParameters: { "api-version": context.apiVersion },
       body: {
         patients: patientRecordArraySerializer(patients),
         configuration: !options?.configuration
