@@ -10,13 +10,34 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
+interface File_2 {
+    // (undocumented)
+    contents: Uint8Array;
+    // (undocumented)
+    contentType?: string;
+    // (undocumented)
+    filename?: string;
+}
+export { File_2 as File }
+
+// @public
+export interface FileAttachmentMultipartRequest {
+    // (undocumented)
+    contents: File_2;
+}
+
+// @public
 export interface PageTodoAttachment {
     // (undocumented)
     items: TodoAttachment[];
 }
 
 // @public
-export type TodoAttachment = TodoFileAttachment | TodoUrlAttachment;
+export interface TodoAttachment {
+    contents: Uint8Array;
+    filename: string;
+    mediaType: string;
+}
 
 // @public (undocumented)
 export class TodoClient {
@@ -28,16 +49,6 @@ export class TodoClient {
 
 // @public
 export interface TodoClientOptionalParams extends ClientOptions {
-}
-
-// @public
-export interface TodoFileAttachment {
-    // (undocumented)
-    contents: Uint8Array;
-    // (undocumented)
-    contentType?: string;
-    // (undocumented)
-    filename?: string;
 }
 
 // @public
@@ -60,7 +71,7 @@ export interface TodoItem {
 // @public
 export interface ToDoItemMultipartRequest {
     // (undocumented)
-    attachments?: TodoAttachment[];
+    attachments?: File_2[];
     // (undocumented)
     item: TodoItem;
 }
@@ -80,7 +91,7 @@ export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends 
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateUrlAttachmentOptionalParams extends OperationOptions {
+export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
@@ -92,9 +103,9 @@ export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions
 // @public
 export interface TodoItemsAttachmentsOperations {
     // (undocumented)
-    createFileAttachment: (itemId: number, contents: TodoFileAttachment, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
+    createFileAttachment: (itemId: number, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
-    createUrlAttachment: (itemId: number, contents: TodoUrlAttachment, options?: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams) => Promise<void>;
+    createJsonAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
     list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => Promise<PageTodoAttachment>;
 }
@@ -132,7 +143,7 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
+    createForm: (options?: TodoItemsCreateFormOptionalParams) => Promise<{
         id: number;
         title: string;
         createdBy: number;
@@ -212,12 +223,6 @@ export interface TodoPage {
     pageSize: number;
     prevLink?: string;
     totalSize: number;
-}
-
-// @public
-export interface TodoUrlAttachment {
-    description: string;
-    url: string;
 }
 
 // @public

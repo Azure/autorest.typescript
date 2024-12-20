@@ -119,7 +119,15 @@
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/ToDoItemMultipartRequestMultiPart"
+                "$ref": "#/components/schemas/ToDoItemMultipartRequest"
+              },
+              "encoding": {
+                "item": {
+                  "contentType": "application/json"
+                },
+                "attachments": {
+                  "contentType": "*/*"
+                }
               }
             }
           }
@@ -322,7 +330,7 @@
         }
       },
       "post": {
-        "operationId": "Attachments_createUrlAttachment_Attachments_createFileAttachment",
+        "operationId": "Attachments_createJsonAttachment_Attachments_createFileAttachment",
         "parameters": [
           {
             "name": "itemId",
@@ -340,7 +348,14 @@
             "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           },
           "4XX": {
             "description": "Something is wrong with you.",
@@ -368,12 +383,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TodoUrlAttachment"
+                "$ref": "#/components/schemas/TodoAttachment"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/TodoFileAttachmentMultiPart"
+                "$ref": "#/components/schemas/FileAttachmentMultipartRequest"
+              },
+              "encoding": {
+                "contents": {
+                  "contentType": "*/*"
+                }
               }
             }
           }
@@ -506,6 +526,18 @@
           }
         }
       },
+      "FileAttachmentMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "contents"
+        ]
+      },
       "Standard4XXResponse": {
         "type": "object",
         "allOf": [
@@ -524,63 +556,45 @@
         ],
         "description": "Something is wrong with me."
       },
-      "ToDoItemMultipartRequestMultiPart": {
+      "ToDoItemMultipartRequest": {
         "type": "object",
-        "required": [
-          "item"
-        ],
         "properties": {
           "item": {
-            "type": "object"
+            "$ref": "#/components/schemas/TodoItemCreate"
           },
           "attachments": {
-            "type": "object"
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
           }
-        }
-      },
-      "TodoAttachment": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TodoFileAttachment"
-          },
-          {
-            "$ref": "#/components/schemas/TodoUrlAttachment"
-          }
+        },
+        "required": [
+          "item"
         ]
       },
-      "TodoFileAttachment": {
+      "TodoAttachment": {
         "type": "object",
         "required": [
+          "filename",
+          "mediaType",
           "contents"
         ],
         "properties": {
-          "contentType": {
-            "type": "string"
-          },
           "filename": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 255,
+            "description": "The file name of the attachment"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "The media type of the attachment"
           },
           "contents": {
             "type": "string",
-            "format": "byte"
-          }
-        }
-      },
-      "TodoFileAttachmentMultiPart": {
-        "type": "object",
-        "required": [
-          "contents"
-        ],
-        "properties": {
-          "contentType": {
-            "type": "string"
-          },
-          "filename": {
-            "type": "string"
-          },
-          "contents": {
-            "type": "string",
-            "format": "binary"
+            "format": "byte",
+            "description": "The contents of the file"
           }
         }
       },
@@ -831,24 +845,6 @@
             }
           }
         ]
-      },
-      "TodoUrlAttachment": {
-        "type": "object",
-        "required": [
-          "description",
-          "url"
-        ],
-        "properties": {
-          "description": {
-            "type": "string",
-            "description": "A description of the URL"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "description": "The url"
-          }
-        }
       },
       "User": {
         "type": "object",

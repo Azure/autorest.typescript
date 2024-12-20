@@ -6,12 +6,12 @@ export {
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
-  TodoFileAttachment,
-  TodoUrlAttachment,
   TodoAttachment,
   ToDoItemMultipartRequest,
+  File,
   TodoItemPatch,
   PageTodoAttachment,
+  FileAttachmentMultipartRequest,
   User,
 } from "./models/index.js";
 export {
@@ -23,7 +23,7 @@ export {
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoClientOptionalParams,
 } from "./api/index.js";

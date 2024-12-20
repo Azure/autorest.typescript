@@ -3,14 +3,12 @@
 import {
   TodoContext as Client,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
 } from "../../index.js";
 import {
-  TodoFileAttachment,
-  todoFileAttachmentSerializer,
-  TodoUrlAttachment,
-  todoUrlAttachmentSerializer,
+  TodoAttachment,
+  todoAttachmentSerializer,
   PageTodoAttachment,
   pageTodoAttachmentDeserializer,
 } from "../../../models/models.js";
@@ -51,11 +49,11 @@ export async function list(
   return _listDeserialize(result);
 }
 
-export function _createUrlAttachmentSend(
+export function _createJsonAttachmentSend(
   context: Client,
   itemId: number,
-  contents: TodoUrlAttachment,
-  options: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams = {
+  contents: TodoAttachment,
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -64,14 +62,14 @@ export function _createUrlAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
-      body: todoUrlAttachmentSerializer(contents),
+      body: todoAttachmentSerializer(contents),
     });
 }
 
-export async function _createUrlAttachmentDeserialize(
+export async function _createJsonAttachmentDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
-  const expectedStatuses = ["204", "404"];
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -79,27 +77,26 @@ export async function _createUrlAttachmentDeserialize(
   return;
 }
 
-export async function createUrlAttachment(
+export async function createJsonAttachment(
   context: Client,
   itemId: number,
-  contents: TodoUrlAttachment,
-  options: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams = {
+  contents: TodoAttachment,
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _createUrlAttachmentSend(
+  const result = await _createJsonAttachmentSend(
     context,
     itemId,
     contents,
     options,
   );
-  return _createUrlAttachmentDeserialize(result);
+  return _createJsonAttachmentDeserialize(result);
 }
 
 export function _createFileAttachmentSend(
   context: Client,
   itemId: number,
-  contents: TodoFileAttachment,
   options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
     requestOptions: {},
   },
@@ -109,14 +106,13 @@ export function _createFileAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: todoFileAttachmentSerializer(contents),
     });
 }
 
 export async function _createFileAttachmentDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
-  const expectedStatuses = ["204", "404"];
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -127,16 +123,10 @@ export async function _createFileAttachmentDeserialize(
 export async function createFileAttachment(
   context: Client,
   itemId: number,
-  contents: TodoFileAttachment,
   options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _createFileAttachmentSend(
-    context,
-    itemId,
-    contents,
-    options,
-  );
+  const result = await _createFileAttachmentSend(context, itemId, options);
   return _createFileAttachmentDeserialize(result);
 }

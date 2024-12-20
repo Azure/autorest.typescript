@@ -21,7 +21,6 @@ import {
   TodoPage,
   TodoItem,
   TodoLabels,
-  ToDoItemMultipartRequest,
   TodoItemPatch,
 } from "../../models/models.js";
 import {
@@ -47,10 +46,7 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
-  createForm: (
-    body: ToDoItemMultipartRequest,
-    options?: TodoItemsCreateFormOptionalParams,
-  ) => Promise<{
+  createForm: (options?: TodoItemsCreateFormOptionalParams) => Promise<{
     id: number;
     title: string;
     createdBy: number;
@@ -110,10 +106,8 @@ export function getTodoItems(context: TodoContext) {
     list: (options?: TodoItemsListOptionalParams) => list(context, options),
     createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
       createJson(context, item, options),
-    createForm: (
-      body: ToDoItemMultipartRequest,
-      options?: TodoItemsCreateFormOptionalParams,
-    ) => createForm(context, body, options),
+    createForm: (options?: TodoItemsCreateFormOptionalParams) =>
+      createForm(context, options),
     get: (id: number, options?: TodoItemsGetOptionalParams) =>
       get(context, id, options),
     update: (

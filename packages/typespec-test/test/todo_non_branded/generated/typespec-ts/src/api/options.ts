@@ -41,7 +41,7 @@ export interface TodoItemsAttachmentsListOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TodoItemsAttachmentsCreateUrlAttachmentOptionalParams
+export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams
   extends OperationOptions {
   contentType?: string;
 }

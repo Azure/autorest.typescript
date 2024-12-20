@@ -17,8 +17,6 @@ import {
   todoLabelsSerializer,
   todoAttachmentSerializer,
   _createJsonResponseDeserializer,
-  ToDoItemMultipartRequest,
-  toDoItemMultipartRequestSerializer,
   _createFormResponseDeserializer,
   _getResponseDeserializer,
   TodoItemPatch,
@@ -135,7 +133,6 @@ export async function createJson(
 
 export function _createFormSend(
   context: Client,
-  body: ToDoItemMultipartRequest,
   options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -143,7 +140,6 @@ export function _createFormSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: toDoItemMultipartRequestSerializer(body),
     });
 }
 
@@ -171,7 +167,6 @@ export async function _createFormDeserialize(
 
 export async function createForm(
   context: Client,
-  body: ToDoItemMultipartRequest,
   options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): Promise<{
   id: number;
@@ -185,7 +180,7 @@ export async function createForm(
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
-  const result = await _createFormSend(context, body, options);
+  const result = await _createFormSend(context, options);
   return _createFormDeserialize(result);
 }
 

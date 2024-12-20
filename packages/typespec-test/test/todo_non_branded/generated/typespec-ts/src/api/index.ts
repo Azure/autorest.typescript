@@ -9,7 +9,7 @@ export {
   TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
 } from "./options.js";
 export {
