@@ -183,8 +183,12 @@ export function _listTestsSend(
         "api-version": context.apiVersion,
         orderby: options?.orderby,
         search: options?.search,
-        lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
-        lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
+        lastModifiedStartTime: !options?.lastModifiedStartTime
+          ? options?.lastModifiedStartTime
+          : options?.lastModifiedStartTime.toISOString(),
+        lastModifiedEndTime: !options?.lastModifiedEndTime
+          ? options?.lastModifiedEndTime
+          : options?.lastModifiedEndTime.toISOString(),
         maxpagesize: options?.maxpagesize,
       },
     });

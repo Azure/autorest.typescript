@@ -502,6 +502,7 @@ export function _listNodeExtensionsSend(
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/extensions", poolId, nodeId)
     .get({
@@ -3558,6 +3559,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId)
     .get({
@@ -4468,6 +4470,7 @@ export function _listSupportedImagesSend(
   context: Client,
   options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/supportedimages")
     .get({
@@ -5511,8 +5514,12 @@ export function _listPoolUsageMetricsSend(
         "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        starttime: options?.starttime?.toISOString(),
-        endtime: options?.endtime?.toISOString(),
+        starttime: !options?.starttime
+          ? options?.starttime
+          : options?.starttime.toISOString(),
+        endtime: !options?.endtime
+          ? options?.endtime
+          : options?.endtime.toISOString(),
         $filter: options?.$filter,
       },
     });

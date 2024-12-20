@@ -78,12 +78,24 @@ export function _listTestProfileRunsSend(
       queryParameters: {
         "api-version": context.apiVersion,
         maxpagesize: options?.maxpagesize,
-        minStartDateTime: options?.minStartDateTime?.toISOString(),
-        maxStartDateTime: options?.maxStartDateTime?.toISOString(),
-        minEndDateTime: options?.minEndDateTime?.toISOString(),
-        maxEndDateTime: options?.maxEndDateTime?.toISOString(),
-        createdDateStartTime: options?.createdDateStartTime?.toISOString(),
-        createdDateEndTime: options?.createdDateEndTime?.toISOString(),
+        minStartDateTime: !options?.minStartDateTime
+          ? options?.minStartDateTime
+          : options?.minStartDateTime.toISOString(),
+        maxStartDateTime: !options?.maxStartDateTime
+          ? options?.maxStartDateTime
+          : options?.maxStartDateTime.toISOString(),
+        minEndDateTime: !options?.minEndDateTime
+          ? options?.minEndDateTime
+          : options?.minEndDateTime.toISOString(),
+        maxEndDateTime: !options?.maxEndDateTime
+          ? options?.maxEndDateTime
+          : options?.maxEndDateTime.toISOString(),
+        createdDateStartTime: !options?.createdDateStartTime
+          ? options?.createdDateStartTime
+          : options?.createdDateStartTime.toISOString(),
+        createdDateEndTime: !options?.createdDateEndTime
+          ? options?.createdDateEndTime
+          : options?.createdDateEndTime.toISOString(),
         testProfileRunIds: options?.testProfileRunIds,
         testProfileIds: options?.testProfileIds,
         statuses: options?.statuses,

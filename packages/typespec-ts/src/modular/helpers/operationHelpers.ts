@@ -41,6 +41,7 @@ import { SdkContext } from "../../utils/interfaces.js";
 import {
   isReadOnly,
   SdkBodyParameter,
+  SdkClientType,
   SdkConstantType,
   SdkHttpOperation,
   SdkHttpParameter,
@@ -56,6 +57,7 @@ import {
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
+  client: SdkClientType<SdkHttpOperation>,
   method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
@@ -79,11 +81,17 @@ export function getSendPrivateFunction(
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
-  const apiVersion = operation.operation.parameters.filter(
-    (p) => p.isApiVersionParam && p.onClient
+  if (operation.name === "withoutApiVersion") {
+    operation;
+  }
+  const hasQueryApiVersion = operation.operation.parameters.some(
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
+  );
+  const hasClientApiVersion = client.initialization.properties.some(
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
   );
   const statements: string[] = [];
-  if (apiVersion.length === 1 && apiVersion[0]?.kind !== "query") {
+  if (hasClientApiVersion && !hasQueryApiVersion) {
     statements.push(
       `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
     );
@@ -1112,9 +1120,7 @@ export function serializeRequestValue(
           return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toISOString()`;
+          return `${nullOrUndefinedPrefix}${clientValue}.toISOString()`;
       }
     case "array": {
       const prefix = nullOrUndefinedPrefix + clientValue;

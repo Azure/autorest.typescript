@@ -124,8 +124,12 @@ export function multivariateVariableStateSerializer(
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
     effectiveCount: item["effectiveCount"],
-    firstTimestamp: item["firstTimestamp"]?.toISOString(),
-    lastTimestamp: item["lastTimestamp"]?.toISOString(),
+    firstTimestamp: !item["firstTimestamp"]
+      ? item["firstTimestamp"]
+      : item["firstTimestamp"].toISOString(),
+    lastTimestamp: !item["lastTimestamp"]
+      ? item["lastTimestamp"]
+      : item["lastTimestamp"].toISOString(),
   };
 }
 
@@ -783,7 +787,12 @@ export interface UnivariateTimeSeriesPoint {
 export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
-  return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
+  return {
+    timestamp: !item["timestamp"]
+      ? item["timestamp"]
+      : item["timestamp"].toISOString(),
+    value: item["value"],
+  };
 }
 
 /** Type of UnivariateTimeGranularity */

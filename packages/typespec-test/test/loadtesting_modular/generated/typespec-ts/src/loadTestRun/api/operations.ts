@@ -103,8 +103,12 @@ export function _listTestRunsSend(
         orderby: options?.orderby,
         search: options?.search,
         testId: options?.testId,
-        executionFrom: options?.executionFrom?.toISOString(),
-        executionTo: options?.executionTo?.toISOString(),
+        executionFrom: !options?.executionFrom
+          ? options?.executionFrom
+          : options?.executionFrom.toISOString(),
+        executionTo: !options?.executionTo
+          ? options?.executionTo
+          : options?.executionTo.toISOString(),
         status: options?.status,
         maxpagesize: options?.maxpagesize,
       },

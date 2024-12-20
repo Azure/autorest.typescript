@@ -38,8 +38,12 @@ export function _listTestProfilesSend(
       queryParameters: {
         "api-version": context.apiVersion,
         maxpagesize: options?.maxpagesize,
-        lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
-        lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
+        lastModifiedStartTime: !options?.lastModifiedStartTime
+          ? options?.lastModifiedStartTime
+          : options?.lastModifiedStartTime.toISOString(),
+        lastModifiedEndTime: !options?.lastModifiedEndTime
+          ? options?.lastModifiedEndTime
+          : options?.lastModifiedEndTime.toISOString(),
         testProfileIds: options?.testProfileIds,
         testIds: options?.testIds,
       },

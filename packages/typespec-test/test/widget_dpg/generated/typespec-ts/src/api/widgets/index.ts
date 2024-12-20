@@ -45,6 +45,7 @@ export function _analyzeWidgetSend(
   id: string,
   options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/{id}/analyze", id)
     .post({
@@ -79,6 +80,7 @@ export function _deleteWidgetSend(
   id: string,
   options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/{id}", id)
     .delete({
@@ -113,6 +115,7 @@ export function _updateWidgetSend(
   id: string,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/{id}", id)
     .patch({
@@ -202,6 +205,7 @@ export function _createWidgetSend(
   color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets")
     .post({
@@ -244,6 +248,7 @@ export function _getWidgetSend(
   id: string,
   options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/{id}", id)
     .get({
@@ -279,6 +284,7 @@ export function _queryWidgetsPagesSend(
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/widgets/pages")
     .post({
@@ -320,6 +326,7 @@ export function _listWidgetsPagesSend(
   pageSize: number,
   options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets/widgets/pages")
     .get({
@@ -364,6 +371,7 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
     ...operationOptionsToRequestParameters(options),
     headers: {

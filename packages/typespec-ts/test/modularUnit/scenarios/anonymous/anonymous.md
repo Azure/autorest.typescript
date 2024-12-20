@@ -195,7 +195,7 @@ export function _readSend(
       body: {
         prop1: prop1,
         prop2: prop2,
-        prop3: options?.prop3?.toISOString(),
+        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
         prop4: prop4,
         prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
       },
@@ -318,7 +318,7 @@ export function _readSend(
       queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
-        prop3: options?.prop3?.toISOString(),
+        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
         prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
       },
     });
