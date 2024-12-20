@@ -13,6 +13,7 @@ import {
 import {
   _publishCloudEventRequestSerializer,
   CloudEvent,
+  cloudEventSerializer,
   PublishResult,
   publishResultDeserializer,
   ReceiveResult,
@@ -29,7 +30,6 @@ import {
   rejectOptionsSerializer,
   RejectResult,
   rejectResultDeserializer,
-  cloudEventArraySerializer,
 } from "../models/models.js";
 import {
   StreamableMethod,
@@ -247,15 +247,15 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/cloudevents-batch+json; charset=utf-8",
-      headers: { accept: "application/json" },
-      queryParameters: { "api-version": context.apiVersion },
-      body: cloudEventArraySerializer(events),
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/cloudevents-batch+json; charset=utf-8",
+    headers: { accept: "application/json" },
+    queryParameters: { "api-version": context.apiVersion },
+    body: events.map((p: any) => {
+      return cloudEventSerializer(p);
+    }),
+  });
 }
 
 export async function _publishCloudEventsDeserialize(
