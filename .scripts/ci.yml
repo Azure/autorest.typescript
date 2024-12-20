@@ -245,7 +245,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
 
-      - job: Cadl_Ranch_RLC_Test
+      - job: Spector_RLC_Test
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -315,7 +315,7 @@ stages:
                     npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --generatorName @azure-tools/typespec-ts-rlc --storageAccountName typespec --containerName=coverages --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
                     npx tsp-spector upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --generatorName @azure-tools/typespec-ts-rlc --storageAccountName typespec --containerName=coverages --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
 
-      - job: Cadl_Ranch_Modular_Test
+      - job: Spector_Modular_Test
         dependsOn: Build
         variables:
           - template: globals.yml
