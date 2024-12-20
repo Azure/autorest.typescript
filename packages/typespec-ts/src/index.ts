@@ -14,7 +14,7 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
-  UriTemplateHelpers
+  UrlTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -93,9 +93,6 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const outputProject = new Project();
   const program: Program = context.program;
-  if (program.compilerOptions.noEmit) {
-    return;
-  }
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
   // Enrich the dpg context with path detail and common options
@@ -121,7 +118,7 @@ export async function $onEmit(context: EmitContext) {
       ...SerializationHelpers,
       ...PagingHelpers,
       ...PollingHelpers,
-      ...UriTemplateHelpers
+      ...UrlTemplateHelpers
     },
     { sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir }
   );

@@ -72,7 +72,7 @@ export const PollingHelpers = {
   }
 } as const;
 
-export const UriTemplateHelpers = {
+export const UrlTemplateHelpers = {
   parseTemplate: {
     kind: "function",
     name: "expandUrlTemplate",

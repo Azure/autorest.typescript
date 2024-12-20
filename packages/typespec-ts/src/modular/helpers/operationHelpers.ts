@@ -16,7 +16,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
-  UriTemplateHelpers
+  UrlTemplateHelpers
 } from "../static-helpers-metadata.js";
 import { getType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
@@ -73,13 +73,13 @@ export function getSendPrivateFunction(
   )[0]?.name;
   const statements: string[] = [];
   let pathStr = `"${operation.url}"`;
-  const uriTemplateParams = [
+  const urlTemplateParams = [
     ...getPathParameters(dpgContext, operation),
     ...getQueryParameters(dpgContext, operation)
   ];
-  if (uriTemplateParams.length > 0) {
-    statements.push(`const path = ${resolveReference(UriTemplateHelpers.parseTemplate)}("${operation.uriTemplate}", {
-        ${uriTemplateParams.join(",\n")}
+  if (urlTemplateParams.length > 0) {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.urlTemplate}", {
+        ${urlTemplateParams.join(",\n")}
         });`);
     pathStr = "path";
   }
