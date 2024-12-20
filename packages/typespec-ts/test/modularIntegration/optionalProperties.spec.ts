@@ -1,13 +1,17 @@
 import { assert } from "chai";
 import { OptionalClient } from "./generated/type/property/optionality/src/index.js";
 import { stringToUint8Array } from "@azure/core-util";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("OptionalProperties Modular Client", () => {
   let client: OptionalClient;
 
   beforeEach(() => {
     client = new OptionalClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

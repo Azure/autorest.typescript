@@ -3,7 +3,11 @@ import ArrayItemTypesClientFactory, {
 } from "./generated/type/array/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 interface TypeDetail {
   type: string;
   defaultValue: any;
@@ -73,6 +77,7 @@ describe("Array Item-Types Client", () => {
 
   beforeEach(() => {
     client = ArrayItemTypesClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

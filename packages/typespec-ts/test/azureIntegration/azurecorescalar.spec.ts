@@ -8,7 +8,7 @@ describe("Azure Core Saclar Rest Client", () => {
   beforeEach(() => {
     client = AzureCoreScalarClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 

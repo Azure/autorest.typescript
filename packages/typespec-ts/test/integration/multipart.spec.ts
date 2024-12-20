@@ -6,11 +6,17 @@ import MultiPartClientFactory, {
 import { resolve } from "path";
 import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
   beforeEach(() => {
     client = MultiPartClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

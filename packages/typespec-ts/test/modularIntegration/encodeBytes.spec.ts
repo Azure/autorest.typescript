@@ -3,12 +3,17 @@ import { BytesClient } from "./generated/encode/bytes/src/index.js";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("EncodeBytesClient Modular Client", () => {
   let client: BytesClient;
 
   beforeEach(() => {
     client = new BytesClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

@@ -2,14 +2,18 @@ import { assert } from "chai";
 import PageableClientFactory, {
   PageableClient,
 } from "./generated/payload/pageable/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("Pageable Client", () => {
   let client: PageableClient;
 
   beforeEach(() => {
     client = PageableClientFactory({
-      allowInsecureConnection: true,
-      endpoint: "http://localhost:3000"
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 
@@ -24,7 +28,7 @@ describe("Pageable Client", () => {
     assert.strictEqual(result.body.pets[1]!.name, 'cat');
     assert.strictEqual(
       result.body.links.next,
-      "http://localhost:3000/payload/pageable/server-driven-pagination/link/nextPage"
+      `http://localhost:${port}/payload/pageable/server-driven-pagination/link/nextPage`
     );
   });
 });

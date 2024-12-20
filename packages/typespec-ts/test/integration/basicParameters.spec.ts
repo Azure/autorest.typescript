@@ -2,11 +2,20 @@ import ParametersBasicClientFactory, {
   BasicClient
 } from "./generated/parameters/basic/src/index.js";
 import { assert } from "chai";
+
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("Basic Rest Client", () => {
   let client: BasicClient;
 
   beforeEach(() => {
-    client = ParametersBasicClientFactory({ allowInsecureConnection: true });
+    client = ParametersBasicClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("basic parameters explicit-body simple", async () => {

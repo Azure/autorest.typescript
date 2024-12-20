@@ -2,11 +2,19 @@ import ParametersSpreadClientFactory, {
   SpreadClient
 } from "./generated/parameters/spread/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("HelloClient Rest Client", () => {
   let client: SpreadClient;
 
   beforeEach(() => {
-    client = ParametersSpreadClientFactory({ allowInsecureConnection: true });
+    client = ParametersSpreadClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("should spread named model", async () => {

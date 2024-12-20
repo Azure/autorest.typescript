@@ -5,7 +5,7 @@ describe("Property Flatten Client", () => {
 
   beforeEach(() => {
     client = new FlattenPropertyClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

@@ -1,6 +1,10 @@
 import { assert } from "chai";
 import { ArrayClient } from "./generated/type/array/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 interface TypeDetail {
   type: string;
   defaultValue: any;
@@ -70,7 +74,7 @@ describe("Array Item-Types Client", () => {
 
   beforeEach(() => {
     client = new ArrayClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

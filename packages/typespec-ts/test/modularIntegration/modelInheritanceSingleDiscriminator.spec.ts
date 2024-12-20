@@ -4,13 +4,17 @@ import {
   Sparrow
 } from "./generated/type/model/inheritance/single-discriminator/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("SingleDiscriminatorClient Rest Client", () => {
   let client: SingleDiscriminatorClient;
 
   beforeEach(() => {
     client = new SingleDiscriminatorClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

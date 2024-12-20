@@ -1,11 +1,16 @@
 import { assert } from "chai";
 import { ExtensibleClient } from "./generated/type/enum/extensible/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("ExtensibleEnums Rest Client", () => {
   let client: ExtensibleClient;
 
   beforeEach(() => {
     client = new ExtensibleClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

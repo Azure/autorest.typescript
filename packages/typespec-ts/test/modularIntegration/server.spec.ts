@@ -3,11 +3,16 @@ import { SingleClient } from "./generated/server/path/single/src/index.js";
 import { MultipleClient } from "./generated/server/path/multiple/src/index.js";
 import { NotVersionedClient } from "./generated/server/versions/not-versioned/src/index.js";
 import { VersionedClient } from "./generated/server/versions/versioned/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("Single Server Path Client", () => {
   let client: SingleClient;
 
   beforeEach(() => {
-    client = new SingleClient("http://localhost:3002", {
+    client = new SingleClient(`http://localhost:${port}`, {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -25,7 +30,7 @@ describe("Multiple Server Path Client", () => {
   let client: MultipleClient;
 
   beforeEach(() => {
-    client = new MultipleClient("http://localhost:3002", {
+    client = new MultipleClient(`http://localhost:${port}`, {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -48,7 +53,7 @@ describe("NotVersioned Server Version Client", () => {
   let client: NotVersionedClient;
 
   beforeEach(() => {
-    client = new NotVersionedClient("http://localhost:3002", {
+    client = new NotVersionedClient(`http://localhost:${port}`, {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -76,7 +81,7 @@ describe("Versioned Server Version Client", () => {
   let client: VersionedClient;
 
   beforeEach(() => {
-    client = new VersionedClient("http://localhost:3002", {
+    client = new VersionedClient(`http://localhost:${port}`, {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

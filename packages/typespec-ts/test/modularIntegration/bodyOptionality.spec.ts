@@ -1,11 +1,16 @@
 import { assert } from "chai";
 import { BodyOptionalityClient } from "./generated/parameters/body-optionality/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("Body Optionality Client", () => {
   let client: BodyOptionalityClient;
 
   beforeEach(() => {
     client = new BodyOptionalityClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

@@ -2,11 +2,16 @@ import VersioningAddedClientFactory, {
   VersioningAddedClient
 } from "./generated/versioning/added/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("VersioningAdded Rest Client", () => {
   let client: VersioningAddedClient;
 
   beforeEach(() => {
-    client = VersioningAddedClientFactory("http://localhost:3000", "v2", {
+    client = VersioningAddedClientFactory(`http://localhost:${port}`, "v2", {
       allowInsecureConnection: true
     });
   });

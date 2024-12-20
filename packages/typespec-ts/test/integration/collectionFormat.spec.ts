@@ -4,16 +4,19 @@ import CollectionFormatClientFactory, {
   buildMultiCollection,
   CollectionFormatClient,
 } from "./generated/parameters/collection-format/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("Collection Format Rest Client", () => {
   let client: CollectionFormatClient;
   const colors = ["blue", "red", "green"];
 
   beforeEach(() => {
     client = CollectionFormatClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

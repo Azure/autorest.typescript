@@ -3,7 +3,11 @@ import TypePropertyValueTypesClientFactory, {
 } from "./generated/type/property/value-types/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 interface TypeDetail {
   type: string;
   defaultValue: any;
@@ -134,6 +138,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
 
   beforeEach(() => {
     client = TypePropertyValueTypesClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

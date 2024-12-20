@@ -7,7 +7,11 @@ import {
   PipelinePolicy
 } from "@azure/core-rest-pipeline";
 import { customBearerTokenAuthenticationPolicy } from "../util/customBearerTokenTestingPolicy.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("AuthOauth2Client Rest Client", () => {
   let client: AuthOauth2Client;
   let policy: PipelinePolicy;
@@ -18,7 +22,10 @@ describe("AuthOauth2Client Rest Client", () => {
       {
         getToken: async () => Promise.resolve(null)
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
     policy = customBearerTokenAuthenticationPolicy({
       scopes: defaultScope,

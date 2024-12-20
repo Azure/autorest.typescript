@@ -2,12 +2,17 @@ import TypePropertyOptionalClientFactory, {
   OptionalClient
 } from "./generated/type/property/optionality/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("ModelsPropertyOptional Rest Client", () => {
   let client: OptionalClient;
 
   beforeEach(() => {
     client = TypePropertyOptionalClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

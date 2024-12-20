@@ -4,13 +4,17 @@ import {
   Golden
 } from "./generated/type/model/inheritance/enum-discriminator/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("EnumDiscriminatorClient Rest Client", () => {
   let client: EnumDiscriminatorClient;
 
   beforeEach(() => {
     client = new EnumDiscriminatorClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

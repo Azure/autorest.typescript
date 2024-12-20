@@ -2,15 +2,18 @@ import { assert } from "chai";
 import TypeEnumFixedClientFactory, {
   FixedClient
 } from "./generated/type/enum/fixed/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("FixedEnums Rest Client", () => {
   let client: FixedClient;
 
   beforeEach(() => {
     client = TypeEnumFixedClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

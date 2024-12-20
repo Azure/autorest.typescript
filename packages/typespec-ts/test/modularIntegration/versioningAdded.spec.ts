@@ -1,11 +1,15 @@
 import { assert } from "chai";
 import { AddedClient } from "./generated/versioning/added/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("VersioningAdded Rest Client", () => {
   let client: AddedClient;
 
   beforeEach(() => {
-    client = new AddedClient("http://localhost:3002", "v2", {
+    client = new AddedClient(`http://localhost:${port}`, "v2", {
       allowInsecureConnection: true
     });
   });

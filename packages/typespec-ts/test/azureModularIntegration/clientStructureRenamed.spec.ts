@@ -5,7 +5,7 @@ describe("Client Structure Renamed-Operation Rest Client", () => {
 
   beforeEach(() => {
     client = new RenamedOperationClient(
-      "http://localhost:3006",
+      "http://localhost:3004",
       "renamed-operation",
       {
         allowInsecureConnection: true

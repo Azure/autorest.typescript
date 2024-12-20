@@ -2,12 +2,17 @@ import VersioningTypeChangedFromClientFactory, {
   VersioningTypeChangedFromClient
 } from "./generated/versioning/typeChangedFrom/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("VersioningTypeChangedFrom Rest Client", () => {
   let client: VersioningTypeChangedFromClient;
 
   beforeEach(() => {
     client = VersioningTypeChangedFromClientFactory(
-      "http://localhost:3000",
+      `http://localhost:${port}`,
       "v2",
       {
         allowInsecureConnection: true

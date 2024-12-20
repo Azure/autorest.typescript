@@ -1,11 +1,15 @@
 import { assert } from "chai";
 import { TypeChangedFromClient } from "./generated/versioning/typeChangedFrom/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("VersioningTypeChangedFrom Rest Client", () => {
   let client: TypeChangedFromClient;
 
   beforeEach(() => {
-    client = new TypeChangedFromClient("http://localhost:3002", "v2", {
+    client = new TypeChangedFromClient(`http://localhost:${port}`, "v2", {
       allowInsecureConnection: true
     });
   });

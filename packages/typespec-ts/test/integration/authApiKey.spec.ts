@@ -2,6 +2,12 @@ import ApiKeyClientFactory, {
   AuthApiKeyClient
 } from "./generated/authentication/api-key/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
+
 describe("AuthApiKeyClient Rest Client", () => {
   let validKeyClient: AuthApiKeyClient;
   let invalidKeyClient: AuthApiKeyClient;
@@ -11,13 +17,19 @@ describe("AuthApiKeyClient Rest Client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
     invalidKeyClient = ApiKeyClientFactory(
       {
         key: "invalid-key"
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
   });
 

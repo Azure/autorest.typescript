@@ -3,7 +3,11 @@ import {
   RecursiveClient
 } from "./generated/type/model/inheritance/recursive/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 const body: Extension = {
   level: 0,
   extension: [
@@ -25,7 +29,7 @@ describe("Recursive Client", () => {
 
   beforeEach(() => {
     client = new RecursiveClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

@@ -1,11 +1,15 @@
 import { assert } from "chai";
 import { MadeOptionalClient } from "./generated/versioning/madeOptional/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("VersioningMadeOptionalClient Rest Client", () => {
   let client: MadeOptionalClient;
 
   beforeEach(() => {
-    client = new MadeOptionalClient("http://localhost:3002", "v2", {
+    client = new MadeOptionalClient(`http://localhost:${port}`, "v2", {
       allowInsecureConnection: true
     });
   });

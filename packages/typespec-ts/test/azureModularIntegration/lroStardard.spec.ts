@@ -11,7 +11,7 @@ describe("LROStandardClient Classical Client", () => {
 
   beforeEach(() => {
     client = new StandardClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

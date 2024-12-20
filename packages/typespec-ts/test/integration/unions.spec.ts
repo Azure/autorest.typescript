@@ -4,6 +4,11 @@ import UnionsClientFactory, {
   UnionsClient
 } from "./generated/type/union/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("UnionsClient Rest Client", () => {
   let client: UnionsClient;
 
@@ -14,7 +19,10 @@ describe("UnionsClient Rest Client", () => {
   }
 
   beforeEach(() => {
-    client = UnionsClientFactory({ allowInsecureConnection: true });
+    client = UnionsClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("should get strings only union", async () => {

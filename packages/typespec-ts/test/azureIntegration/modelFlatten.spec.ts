@@ -8,7 +8,7 @@ describe("Flatten Property Rest Client", () => {
   beforeEach(() => {
     client = FlattenPropertyClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 

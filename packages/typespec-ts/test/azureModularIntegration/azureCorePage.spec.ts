@@ -6,7 +6,7 @@ describe("Page Client", () => {
 
   beforeEach(() => {
     client = new PageClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

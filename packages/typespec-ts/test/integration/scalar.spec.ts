@@ -2,16 +2,18 @@ import { assert } from "chai";
 import ScalarClientFactory, {
   ScalarClient
 } from "./generated/type/scalar/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("Scalar Client", () => {
   let client: ScalarClient;
 
   beforeEach(() => {
     client = ScalarClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

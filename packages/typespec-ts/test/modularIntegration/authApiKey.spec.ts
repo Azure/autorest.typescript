@@ -1,6 +1,10 @@
 import { ApiKeyClient } from "./generated/authentication/api-key/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("ApiKeyClient Classical Client", () => {
   let validKeyClient: ApiKeyClient;
   let invalidKeyClient: ApiKeyClient;
@@ -12,7 +16,7 @@ describe("ApiKeyClient Classical Client", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
     invalidKeyClient = new ApiKeyClient(
@@ -21,7 +25,7 @@ describe("ApiKeyClient Classical Client", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
   });

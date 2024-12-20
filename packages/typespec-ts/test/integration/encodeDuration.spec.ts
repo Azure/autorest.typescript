@@ -3,15 +3,18 @@ import EncodeDurationClientFactory, {
   DurationClient
 } from "./generated/encode/duration/src/index.js";
 import { buildCsvCollection } from "./generated/encode/duration/src/serializeHelper.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("EncodeDurationClient Rest Client", () => {
   let client: DurationClient;
 
   beforeEach(() => {
     client = EncodeDurationClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

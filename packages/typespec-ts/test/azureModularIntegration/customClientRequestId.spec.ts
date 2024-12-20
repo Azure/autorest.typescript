@@ -6,7 +6,7 @@ describe("XmsRequestIdClient Classical Client", () => {
 
   beforeEach(() => {
     client = new XmsClientRequestIdClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });
@@ -35,7 +35,7 @@ describe("XmsRequestIdClient Classical Client", () => {
     };
     client = new XmsClientRequestIdClient({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       additionalPolicies: [
         {
           policy: checkClientRequestIdPolicy,

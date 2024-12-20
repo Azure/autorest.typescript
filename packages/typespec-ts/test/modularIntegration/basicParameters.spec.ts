@@ -1,12 +1,17 @@
 import { BasicClient } from "./generated/parameters/basic/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("BasicClient Client", () => {
   let client: BasicClient;
 
   beforeEach(() => {
     client = new BasicClient({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3002"
+      endpoint: `http://localhost:${port}`
     });
   });
 

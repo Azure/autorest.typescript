@@ -11,7 +11,11 @@ import {
 import { UnionClient } from "./generated/authentication/union/src/index.js";
 import { assert } from "chai";
 import { customBearerTokenAuthenticationPolicy } from "../util/customBearerTokenTestingPolicy.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("UnionContext in API Layer", () => {
   let context: UnionContext;
   let policy: PipelinePolicy;
@@ -24,7 +28,7 @@ describe("UnionContext in API Layer", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
 
@@ -50,7 +54,7 @@ describe("UnionContext in API Layer", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
+      { allowInsecureConnection: true, endpoint: `http://localhost:${port}` }
     );
   }
 
@@ -79,7 +83,7 @@ describe("UnionClient in classical client", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
 
@@ -105,7 +109,7 @@ describe("UnionClient in classical client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
+      { allowInsecureConnection: true, endpoint: `http://localhost:${port}` }
     );
   }
 

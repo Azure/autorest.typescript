@@ -6,15 +6,17 @@ import { buildCsvCollection } from "./generated/encode/bytes/src/serializeHelper
 import { uint8ArrayToString } from "@azure/core-util";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("EncodeDatetimeClient Rest Client", () => {
   let client: BytesClient;
   beforeEach(() => {
     client = EncodeBytesClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

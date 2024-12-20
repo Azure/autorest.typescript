@@ -2,6 +2,11 @@ import AuthHttpCustomClientFactory, {
   AuthHttpCustomClient
 } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("AuthHttpCustomClient Rest Client", () => {
   let validKeyClient: AuthHttpCustomClient;
   let invalidKeyClient: AuthHttpCustomClient;
@@ -11,13 +16,19 @@ describe("AuthHttpCustomClient Rest Client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
     invalidKeyClient = AuthHttpCustomClientFactory(
       {
         key: "invalid-key"
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
   });
 

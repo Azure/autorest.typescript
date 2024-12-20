@@ -1,6 +1,10 @@
 import { CustomClient } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("CustomClient Classical Client", () => {
   let validKeyClient: CustomClient;
   let invalidKeyClient: CustomClient;
@@ -12,7 +16,7 @@ describe("CustomClient Classical Client", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
     invalidKeyClient = new CustomClient(
@@ -21,7 +25,7 @@ describe("CustomClient Classical Client", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
   });

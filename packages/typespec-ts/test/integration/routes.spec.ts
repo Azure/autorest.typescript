@@ -2,11 +2,17 @@ import RoutesClientFactory, {
   RoutesClient,
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("RoutesClient Rest Client", () => {
   let client: RoutesClient;
 
   beforeEach(() => {
     client = RoutesClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

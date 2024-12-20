@@ -1,7 +1,11 @@
 import { assert } from "chai";
 import { ValueTypesClient } from "./generated/type//property/value-types/src/index.js";
 import { stringToUint8Array } from "@azure/core-util";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 interface TypeDetail {
   type: string;
   defaultValue: any;
@@ -132,7 +136,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
 
   beforeEach(() => {
     client = new ValueTypesClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

@@ -1,11 +1,16 @@
 import { assert } from "chai";
 import { DatetimeClient } from "./generated/encode/datetime/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 
   beforeEach(() => {
     client = new DatetimeClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

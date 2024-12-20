@@ -2,11 +2,19 @@ import BodyOptionalityClientFactory, {
   BodyOptionalityClient
 } from "./generated/parameters/body-optionality/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("BodyOptionalityClient Rest Client", () => {
   let client: BodyOptionalityClient;
 
   beforeEach(() => {
-    client = BodyOptionalityClientFactory({ allowInsecureConnection: true });
+    client = BodyOptionalityClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("should support required-explicit body", async () => {

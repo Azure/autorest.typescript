@@ -2,11 +2,17 @@ import UnionBodyClientFactory, {
   UnionBodyClient
 } from "./generated/union-body/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("UnionBodyClient Rest Client", () => {
   let client: UnionBodyClient;
 
   beforeEach(() => {
     client = UnionBodyClientFactory("http://localhost:3000", {
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

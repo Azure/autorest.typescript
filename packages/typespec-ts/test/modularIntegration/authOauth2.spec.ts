@@ -10,7 +10,11 @@ import {
 } from "./generated/authentication/oauth2/src/api/index.js";
 import { assert } from "chai";
 import { customBearerTokenAuthenticationPolicy } from "../util/customBearerTokenTestingPolicy.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("OAuth2Context in API Layer", () => {
   let context: OAuth2Context;
   let policy: PipelinePolicy;
@@ -23,7 +27,7 @@ describe("OAuth2Context in API Layer", () => {
       },
       {
         allowInsecureConnection: true,
-        endpoint: "http://localhost:3002"
+        endpoint: `http://localhost:${port}`
       }
     );
 

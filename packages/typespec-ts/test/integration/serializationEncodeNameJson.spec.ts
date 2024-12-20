@@ -2,15 +2,18 @@ import { assert } from "chai";
 import SerializationEncodedNameJsonClientFactory, {
   SerializationEncodedNameJsonClient
 } from "./generated/serialization/encoded-name/json/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("ClientEncodedNameClient Rest Client", () => {
   let client: SerializationEncodedNameJsonClient;
 
   beforeEach(() => {
     client = SerializationEncodedNameJsonClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

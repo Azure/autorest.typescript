@@ -7,13 +7,18 @@ import {
   inputAndOutput,
   output
 } from "./generated/type/model/usage/src/api/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 const EXPECTED_VALUE = "example-value";
 describe("UsageContext Classical Client", () => {
   let client: UsageClient;
 
   beforeEach(() => {
     client = new UsageClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });
@@ -43,7 +48,7 @@ describe("UsageContext API Operations", () => {
 
   beforeEach(() => {
     context = createUsage({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

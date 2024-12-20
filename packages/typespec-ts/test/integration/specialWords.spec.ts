@@ -2,12 +2,19 @@ import SpecialWordsClientFactory, {
   SpecialWordsClient
 } from "./generated/special-words/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("SpecialWordsClient Rest Client", () => {
   let client: SpecialWordsClient;
 
   beforeEach(() => {
-    client = SpecialWordsClientFactory({ allowInsecureConnection: true });
+    client = SpecialWordsClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   describe("operations", () => {

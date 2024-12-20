@@ -1,12 +1,16 @@
 import { assert } from "chai";
 import { DictionaryClient } from "./generated/type/dictionary/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("DictionaryClient Modular Client", () => {
   let client: DictionaryClient;
 
   beforeEach(() => {
     client = new DictionaryClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

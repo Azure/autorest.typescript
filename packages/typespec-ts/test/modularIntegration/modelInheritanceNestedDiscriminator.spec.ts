@@ -5,13 +5,17 @@ import {
   Shark
 } from "./generated/type/model/inheritance/nested-discriminator/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("NestedDiscriminatorClient Rest Client", () => {
   let client: NestedDiscriminatorClient;
 
   beforeEach(() => {
     client = new NestedDiscriminatorClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

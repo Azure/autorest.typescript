@@ -4,13 +4,17 @@ import {
   NullableClient
 } from "./generated/type/property/nullable/src/index.js";
 import { stringToUint8Array } from "@azure/core-util";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("NullableProperties Modular Client", () => {
   let client: NullableClient;
 
   beforeEach(() => {
     client = new NullableClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

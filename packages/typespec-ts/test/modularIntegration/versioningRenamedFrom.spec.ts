@@ -1,11 +1,15 @@
 import { assert } from "chai";
 import { RenamedFromClient } from "./generated/versioning/renamedFrom/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("VersioningRenamedFrom Rest Client", () => {
   let client: RenamedFromClient;
 
   beforeEach(() => {
-    client = new RenamedFromClient("http://localhost:3002", "v2", {
+    client = new RenamedFromClient(`http://localhost:${port}`, "v2", {
       allowInsecureConnection: true
     });
   });

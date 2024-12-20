@@ -5,7 +5,7 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   beforeEach(() => {
     client = new AccessClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

@@ -9,7 +9,7 @@ describe("Usage Client", () => {
   beforeEach(() => {
     client = UsageClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 

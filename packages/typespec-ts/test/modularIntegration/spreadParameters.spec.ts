@@ -1,12 +1,17 @@
 import { SpreadClient } from "./generated/parameters/spread/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("SpreadClient Client", () => {
   let client: SpreadClient;
 
   beforeEach(() => {
     client = new SpreadClient({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3002"
+      endpoint: `http://localhost:${port}`
     });
   });
 

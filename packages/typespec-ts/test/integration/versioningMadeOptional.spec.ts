@@ -2,12 +2,17 @@ import VersioningMadeOptionalClientFactory, {
   VersioningMadeOptionalClient
 } from "./generated/versioning/madeOptional/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("VersioningMadeOptional Rest Client", () => {
   let client: VersioningMadeOptionalClient;
 
   beforeEach(() => {
     client = VersioningMadeOptionalClientFactory(
-      "http://localhost:3000",
+      `http://localhost:${port}`,
       "v2",
       {
         allowInsecureConnection: true

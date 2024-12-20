@@ -1,11 +1,16 @@
 import { assert } from "chai";
 import { UnionClient } from "./generated/type/union/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("Type Union Client", () => {
   let client: UnionClient;
 
   beforeEach(() => {
     client = new UnionClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

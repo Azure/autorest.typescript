@@ -11,16 +11,18 @@ import NotVersionedParamInServerVersionsClientFactory, {
 import VersionedParamInServerVersionsClientFactory, {
   VersionedParamInServerVersionsClient
 } from "./generated/server/versions/versioned/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("SingleParamInServerPath Rest Client", () => {
   let client: SingleParamInServerPathClient;
 
   beforeEach(() => {
     client = SingleParamInServerPathClientFactory("http://localhost:3000", {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 
@@ -34,11 +36,8 @@ describe("MultipleParamInServerPath Rest Client", () => {
   let client: MultipleParamInServerPathClient;
 
   beforeEach(() => {
-    client = MultipleParamInServerPathClientFactory("http://localhost:3000", {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+    client = MultipleParamInServerPathClientFactory(`http://localhost:${port}`, {
+      allowInsecureConnection: true
     });
   });
 
@@ -60,10 +59,8 @@ describe(" NotVersionedParamInServerVersions Rest Client", () => {
     client = NotVersionedParamInServerVersionsClientFactory(
       "http://localhost:3000",
       {
-        allowInsecureConnection: true,
-        retryOptions: {
-          maxRetries: 0
-        }
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
       }
     );
   });
@@ -100,10 +97,8 @@ describe(" VersionedParamInServerVersions Rest Client", () => {
     client = VersionedParamInServerVersionsClientFactory(
       "http://localhost:3000",
       {
-        allowInsecureConnection: true,
-        retryOptions: {
-          maxRetries: 0
-        }
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
       }
     );
   });

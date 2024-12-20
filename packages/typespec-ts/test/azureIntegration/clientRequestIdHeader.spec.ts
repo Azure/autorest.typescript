@@ -8,7 +8,7 @@ describe("ClientRequestIdClient", () => {
   beforeEach(() => {
     client = XmsClientRequestIdClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 
@@ -40,7 +40,7 @@ describe("ClientRequestIdClient", () => {
     const headerName = "x-ms-test-for-js";
     client = XmsClientRequestIdClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005",
+      endpoint: "http://localhost:3003",
       telemetryOptions: {
         clientRequestIdHeaderName: headerName
       }

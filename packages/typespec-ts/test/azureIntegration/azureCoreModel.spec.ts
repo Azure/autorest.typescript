@@ -8,7 +8,7 @@ describe("Azure Core Traits Rest Client", () => {
   beforeEach(() => {
     client = AzureCoreModelClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 

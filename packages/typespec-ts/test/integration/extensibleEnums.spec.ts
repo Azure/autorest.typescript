@@ -2,11 +2,19 @@ import TypeEnumExtensibleClientFactory, {
   ExtensibleClient
 } from "./generated/type/enum/extensible/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("ExtensibleEnums Rest Client", () => {
   let client: ExtensibleClient;
 
   beforeEach(() => {
-    client = TypeEnumExtensibleClientFactory({ allowInsecureConnection: true });
+    client = TypeEnumExtensibleClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("should get known value", async () => {

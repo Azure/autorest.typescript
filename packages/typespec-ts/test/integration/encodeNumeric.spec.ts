@@ -2,11 +2,17 @@ import { assert } from "chai";
 import EncodeNumericClientFactory, {
   NumericClient
 } from "./generated/encode/numeric/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("EncodeNumericClient Rest Client", () => {
   let client: NumericClient;
 
   beforeEach(() => {
     client = EncodeNumericClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

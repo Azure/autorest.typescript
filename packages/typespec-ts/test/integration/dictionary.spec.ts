@@ -3,7 +3,11 @@ import { matrix } from "../util/matrix.js";
 import DictClientFactory, {
   DictClient
 } from "./generated/type/dictionary/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 interface TypeDetail {
   type: string;
   defaultValue: any;
@@ -67,6 +71,7 @@ describe("Dictionary Client", () => {
 
   beforeEach(() => {
     client = DictClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

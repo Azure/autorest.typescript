@@ -3,15 +3,18 @@ import EncodeDatetimeClientFactory, {
   DatetimeClient
 } from "./generated/encode/datetime/src/index.js";
 import { buildCsvCollection } from "./generated/encode/datetime/src/serializeHelper.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 
   beforeEach(() => {
     client = EncodeDatetimeClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

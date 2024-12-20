@@ -6,7 +6,7 @@ describe("RpcClient Classical Client", () => {
 
   beforeEach(() => {
     client = new RpcClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

@@ -8,7 +8,7 @@ describe("ClientEncodedNameClient Rest Client", () => {
   beforeEach(() => {
     client = NamingClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3005"
+      endpoint: "http://localhost:3003"
     });
   });
 

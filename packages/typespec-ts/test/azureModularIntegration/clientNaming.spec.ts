@@ -5,7 +5,7 @@ describe("NameAndEncodedName Client", () => {
 
   beforeEach(() => {
     client = new NamingClient({
-      endpoint: "http://localhost:3006",
+      endpoint: "http://localhost:3004",
       allowInsecureConnection: true
     });
   });

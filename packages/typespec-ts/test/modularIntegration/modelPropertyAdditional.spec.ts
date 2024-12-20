@@ -1,13 +1,17 @@
 import { assert } from "chai";
 import { AdditionalPropertiesClient } from "./generated/type/property/additional-properties/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("ModelPropertyAdditional Client", () => {
 
   let client: AdditionalPropertiesClient;
 
   beforeEach(() => {
     client = new AdditionalPropertiesClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

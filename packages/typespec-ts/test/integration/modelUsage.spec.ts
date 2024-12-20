@@ -2,6 +2,11 @@ import TypeModelUsageClientFactory, {
   UsageClient
 } from "./generated/type/model/usage/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("ModelsUsageClient Rest Client", () => {
   let client: UsageClient;
   const body = {
@@ -9,7 +14,10 @@ describe("ModelsUsageClient Rest Client", () => {
   };
 
   beforeEach(() => {
-    client = TypeModelUsageClientFactory({ allowInsecureConnection: true });
+    client = TypeModelUsageClientFactory({
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
+    });
   });
 
   it("should post input model correctly", async () => {

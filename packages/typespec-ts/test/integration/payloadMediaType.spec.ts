@@ -2,12 +2,17 @@ import { assert } from "chai";
 import MediaTypeClientFactory, {
   MediaTypeClient
 } from "./generated/payload/media-type/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("MediaType Client", () => {
   let client: MediaTypeClient;
 
   beforeEach(() => {
     client = MediaTypeClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

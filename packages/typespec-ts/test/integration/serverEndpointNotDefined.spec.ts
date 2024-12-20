@@ -2,6 +2,11 @@ import { assert } from "chai";
 import NotDefinedParamInServerEndpointClientFactory, {
   NotDefinedParamInServerEndpointClient
 } from "./generated/server/endpoint/not-defined/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("NotDefinedParamInServerEndpoint Rest Client", () => {
   let client: NotDefinedParamInServerEndpointClient;
 
@@ -9,6 +14,7 @@ describe("NotDefinedParamInServerEndpoint Rest Client", () => {
     client = NotDefinedParamInServerEndpointClientFactory(
       "http://localhost:3000",
       {
+        endpoint: `http://localhost:${port}`,
         allowInsecureConnection: true
       }
     );

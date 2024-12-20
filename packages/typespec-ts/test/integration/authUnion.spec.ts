@@ -7,7 +7,11 @@ import { customBearerTokenAuthenticationPolicy } from "../util/customBearerToken
 import AuthUnionClientFactory, {
   AuthUnionClient
 } from "./generated/authentication/union/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("AuthUnionClient Rest Client", () => {
   let client: AuthUnionClient;
   let policy: PipelinePolicy;
@@ -18,7 +22,10 @@ describe("AuthUnionClient Rest Client", () => {
       {
         getToken: async () => Promise.resolve(null)
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
     policy = customBearerTokenAuthenticationPolicy({
       scopes: defaultScope,
@@ -42,7 +49,10 @@ describe("AuthUnionClient Rest Client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      {
+        endpoint: `http://localhost:${port}`,
+        allowInsecureConnection: true
+      }
     );
   }
 

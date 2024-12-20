@@ -1,12 +1,16 @@
 import { CollectionFormatClient } from "./generated/parameters/collection-format/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("CollectionFormatClient Classical Client", () => {
   let client: CollectionFormatClient;
 
   beforeEach(() => {
     client = new CollectionFormatClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

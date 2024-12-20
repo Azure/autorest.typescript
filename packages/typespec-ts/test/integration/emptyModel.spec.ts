@@ -2,15 +2,18 @@ import { assert } from "chai";
 import TypeModelEmptyClientFactory, {
   EmptyClient
 } from "./generated/type/model/empty/src/index.js";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env["PORT"] || "3000";
 describe("TypeModelEmptyClient Rest Client", () => {
   let client: EmptyClient;
 
   beforeEach(() => {
     client = TypeModelEmptyClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: `http://localhost:${port}`,
+      allowInsecureConnection: true
     });
   });
 

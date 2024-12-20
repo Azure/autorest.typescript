@@ -8,10 +8,10 @@ describe("Client Structure Operation Group Rest Client", () => {
   let client2: SecondClient;
 
   beforeEach(() => {
-    client1 = new FirstClient("http://localhost:3006", "default", {
+    client1 = new FirstClient("http://localhost:3004", "default", {
       allowInsecureConnection: true
     });
-    client2 = new SecondClient("http://localhost:3006", "default", {
+    client2 = new SecondClient("http://localhost:3004", "default", {
       allowInsecureConnection: true
     });
   });

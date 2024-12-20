@@ -3,12 +3,17 @@ import NotDiscriminatedClientFactory, {
   Siamese
 } from "./generated/type/model/inheritance/not-discriminated/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("NotDiscriminatedClient Rest Client", () => {
   let client: NotDiscriminatedClient;
 
   beforeEach(() => {
     client = NotDiscriminatedClientFactory({
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });

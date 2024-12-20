@@ -1,12 +1,16 @@
 import { RepeatabilityClient } from "./generated/special-headers/repeatability/src/index.js";
 import { assert } from "chai";
+// Load the .env file if it exists
+import * as dotenv from "dotenv";
+dotenv.config();
 
+const port = process.env["PORT"] || "3000";
 describe("Repeatability Client", () => {
   let client: RepeatabilityClient;
 
   beforeEach(() => {
     client = new RepeatabilityClient({
-      endpoint: "http://localhost:3002",
+      endpoint: `http://localhost:${port}`,
       allowInsecureConnection: true
     });
   });
