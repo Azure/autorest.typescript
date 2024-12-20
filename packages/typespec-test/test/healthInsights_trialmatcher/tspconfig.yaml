@@ -21,12 +21,12 @@ options:
   #     package-name: "azure-healthinsights-clinicalmatching"
   "@azure-tools/typespec-ts":
     title: Health Insights Clinical Matching
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    azureSdkForJs: false
+    "generate-metadata": true
+    "generate-test": true
+    "generate-sample": true
+    "azure-sdk-for-js": false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    packageDetails:
+    "package-details":
       name: "@azure-rest/health-insights-clinicalmatching"
       description: "Azure Health Insights ClinicalMatching"
       version: "1.0.0-beta.1"

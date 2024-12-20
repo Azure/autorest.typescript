@@ -172,55 +172,16 @@ export function dataProductPropertiesDeserializer(
 }
 
 /** The status of the current operation. */
-export enum KnownProvisioningState {
-  /** Represents a succeeded operation. */
-  Succeeded = "Succeeded",
-  /** Represents a failed operation. */
-  Failed = "Failed",
-  /** Represents a canceled operation. */
-  Canceled = "Canceled",
-  /** Represents a pending operation. */
-  Provisioning = "Provisioning",
-  /** Represents a pending operation. */
-  Updating = "Updating",
-  /** Represents an operation under deletion. */
-  Deleting = "Deleting",
-  /** Represents an accepted operation. */
-  Accepted = "Accepted",
-}
-
-/**
- * The status of the current operation. \
- * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Represents a succeeded operation. \
- * **Failed**: Represents a failed operation. \
- * **Canceled**: Represents a canceled operation. \
- * **Provisioning**: Represents a pending operation. \
- * **Updating**: Represents a pending operation. \
- * **Deleting**: Represents an operation under deletion. \
- * **Accepted**: Represents an accepted operation.
- */
-export type ProvisioningState = string;
-
+export type ProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Provisioning"
+  | "Updating"
+  | "Deleting"
+  | "Accepted";
 /** The data type state */
-export enum KnownControlState {
-  /** Field to enable a setting. */
-  Enabled = "Enabled",
-  /** Field to disable a setting. */
-  Disabled = "Disabled",
-}
-
-/**
- * The data type state \
- * {@link KnownControlState} can be used interchangeably with ControlState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: Field to enable a setting. \
- * **Disabled**: Field to disable a setting.
- */
-export type ControlState = string;
+export type ControlState = "Enabled" | "Disabled";
 
 /** Encryption key details. */
 export interface EncryptionKeyDetails {
@@ -364,22 +325,7 @@ export function iPRulesDeserializer(item: any): IPRules {
 }
 
 /** Specifies the default action of allow or deny when no other rules match. */
-export enum KnownDefaultAction {
-  /** Represents allow action. */
-  Allow = "Allow",
-  /** Represents deny action. */
-  Deny = "Deny",
-}
-
-/**
- * Specifies the default action of allow or deny when no other rules match. \
- * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Allow**: Represents allow action. \
- * **Deny**: Represents deny action.
- */
-export type DefaultAction = string;
+export type DefaultAction = "Allow" | "Deny";
 
 /** ManagedResourceGroup related properties */
 export interface ManagedResourceGroupConfiguration {
@@ -470,28 +416,11 @@ export function managedServiceIdentityV4Deserializer(
 }
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export enum KnownManagedServiceIdentityType {
-  /** No managed identity. */
-  None = "None",
-  /** System assigned managed identity. */
-  SystemAssigned = "SystemAssigned",
-  /** User assigned managed identity. */
-  UserAssigned = "UserAssigned",
-  /** System and user assigned managed identity. */
-  SystemAndUserAssigned = "SystemAssigned, UserAssigned",
-}
-
-/**
- * Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). \
- * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **None**: No managed identity. \
- * **SystemAssigned**: System assigned managed identity. \
- * **UserAssigned**: User assigned managed identity. \
- * **SystemAssigned, UserAssigned**: System and user assigned managed identity.
- */
-export type ManagedServiceIdentityType = string;
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned";
 
 export function userAssignedIdentityRecordSerializer(
   item: Record<string, UserAssignedIdentity>,
@@ -624,28 +553,7 @@ export function systemDataDeserializer(item: any): SystemData {
 }
 
 /** The kind of entity that created the resource. */
-export enum KnownCreatedByType {
-  /** The entity was created by a user. */
-  User = "User",
-  /** The entity was created by an application. */
-  Application = "Application",
-  /** The entity was created by a managed identity. */
-  ManagedIdentity = "ManagedIdentity",
-  /** The entity was created by a key. */
-  Key = "Key",
-}
-
-/**
- * The kind of entity that created the resource. \
- * {@link KnowncreatedByType} can be used interchangeably with createdByType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **User**: The entity was created by a user. \
- * **Application**: The entity was created by an application. \
- * **ManagedIdentity**: The entity was created by a managed identity. \
- * **Key**: The entity was created by a key.
- */
-export type CreatedByType = string;
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
@@ -771,26 +679,7 @@ export function roleAssignmentCommonPropertiesSerializer(
 }
 
 /** The data type state */
-export enum KnownDataProductUserRole {
-  /** Field to specify user of type Reader. */
-  Reader = "Reader",
-  /**
-   * Field to specify user of type SensitiveReader.
-   * This user has privileged access to read sensitive data of a data product.
-   */
-  SensitiveReader = "SensitiveReader",
-}
-
-/**
- * The data type state \
- * {@link KnownDataProductUserRole} can be used interchangeably with DataProductUserRole,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Reader**: Field to specify user of type Reader. \
- * **SensitiveReader**: Field to specify user of type SensitiveReader.
- * This user has privileged access to read sensitive data of a data product.
- */
-export type DataProductUserRole = string;
+export type DataProductUserRole = "Reader" | "SensitiveReader";
 
 /** The details for role assignment response. */
 export interface RoleAssignmentDetail {
@@ -985,22 +874,7 @@ export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
 }
 
 /** The data type state */
-export enum KnownDataTypeState {
-  /** Field to specify stopped state. */
-  Stopped = "Stopped",
-  /** Field to specify running state. */
-  Running = "Running",
-}
-
-/**
- * The data type state \
- * {@link KnownDataTypeState} can be used interchangeably with DataTypeState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Stopped**: Field to specify stopped state. \
- * **Running**: Field to specify running state.
- */
-export type DataTypeState = string;
+export type DataTypeState = "Stopped" | "Running";
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
@@ -1333,40 +1207,9 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export enum KnownOrigin {
-  /** Indicates the operation is initiated by a user. */
-  user = "user",
-  /** Indicates the operation is initiated by a system. */
-  system = "system",
-  /** Indicates the operation is initiated by a user or system. */
-  "user,system" = "user,system",
-}
-
-/**
- * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" \
- * {@link KnownOrigin} can be used interchangeably with Origin,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **user**: Indicates the operation is initiated by a user. \
- * **system**: Indicates the operation is initiated by a system. \
- * **user,system**: Indicates the operation is initiated by a user or system.
- */
-export type Origin = string;
-
+export type Origin = "user" | "system" | "user,system";
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export enum KnownActionType {
-  /** Actions are for internal-only APIs. */
-  Internal = "Internal",
-}
-
-/**
- * Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. \
- * {@link KnownActionType} can be used interchangeably with ActionType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Internal**: Actions are for internal-only APIs.
- */
-export type ActionType = string;
+export type ActionType = "Internal";
 
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export enum KnownVersions {

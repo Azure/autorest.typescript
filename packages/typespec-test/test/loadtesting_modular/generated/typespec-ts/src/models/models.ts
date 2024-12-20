@@ -218,127 +218,33 @@ export function passFailMetricDeserializer(item: any): PassFailMetric {
 }
 
 /** Metrics for pass/fail criteria. */
-export enum KnownPFMetrics {
-  /** Pass fail criteria for response time metric in milliseconds. */
-  response_time_ms = "response_time_ms",
-  /** Pass fail criteria for latency metric in milliseconds. */
-  latency = "latency",
-  /** Pass fail criteria for error metric. */
-  error = "error",
-  /** Pass fail criteria for total requests. */
-  requests = "requests",
-  /** Pass fail criteria for request per second. */
-  requests_per_sec = "requests_per_sec",
-}
-
-/**
- * Metrics for pass/fail criteria. \
- * {@link KnownPFMetrics} can be used interchangeably with PFMetrics,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **response_time_ms**: Pass fail criteria for response time metric in milliseconds. \
- * **latency**: Pass fail criteria for latency metric in milliseconds. \
- * **error**: Pass fail criteria for error metric. \
- * **requests**: Pass fail criteria for total requests. \
- * **requests_per_sec**: Pass fail criteria for request per second.
- */
-export type PFMetrics = string;
-
+export type PFMetrics =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
 /** Aggregation functions for pass/fail criteria. */
-export enum KnownPFAgFunc {
-  /** Criteria applies for count value. */
-  count = "count",
-  /** Criteria applies for given percentage value. */
-  percentage = "percentage",
-  /** Criteria applies for avg value. */
-  avg = "avg",
-  /** Criteria applies for 50th percentile value. */
-  p50 = "p50",
-  /** Criteria applies for 75th percentile value. */
-  p75 = "p75",
-  /** Criteria applies for 90th percentile value. */
-  p90 = "p90",
-  /** Criteria applies for 95th percentile value. */
-  p95 = "p95",
-  /** Criteria applies for 96th percentile value. */
-  p96 = "p96",
-  /** Criteria applies for 97th percentile value. */
-  p97 = "p97",
-  /** Criteria applies for 98th percentile value. */
-  p98 = "p98",
-  /** Criteria applies for 99th percentile value. */
-  p99 = "p99",
-  /** Criteria applies for 99.9th percentile value. */
-  "p99.9" = "p99.9",
-  /** Criteria applies for 99.99th percentile value. */
-  "p99.99" = "p99.99",
-  /** Criteria applies for minimum value. */
-  min = "min",
-  /** Criteria applies for maximum value. */
-  max = "max",
-}
-
-/**
- * Aggregation functions for pass/fail criteria. \
- * {@link KnownPFAgFunc} can be used interchangeably with PFAgFunc,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **count**: Criteria applies for count value. \
- * **percentage**: Criteria applies for given percentage value. \
- * **avg**: Criteria applies for avg value. \
- * **p50**: Criteria applies for 50th percentile value. \
- * **p75**: Criteria applies for 75th percentile value. \
- * **p90**: Criteria applies for 90th percentile value. \
- * **p95**: Criteria applies for 95th percentile value. \
- * **p96**: Criteria applies for 96th percentile value. \
- * **p97**: Criteria applies for 97th percentile value. \
- * **p98**: Criteria applies for 98th percentile value. \
- * **p99**: Criteria applies for 99th percentile value. \
- * **p99.9**: Criteria applies for 99.9th percentile value. \
- * **p99.99**: Criteria applies for 99.99th percentile value. \
- * **min**: Criteria applies for minimum value. \
- * **max**: Criteria applies for maximum value.
- */
-export type PFAgFunc = string;
-
+export type PFAgFunc =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p75"
+  | "p90"
+  | "p95"
+  | "p96"
+  | "p97"
+  | "p98"
+  | "p99"
+  | "p99.9"
+  | "p99.99"
+  | "min"
+  | "max";
 /** Action to take on failure of pass/fail criteria. */
-export enum KnownPFAction {
-  /** Test will continue to run even if pass fail metric criteria metric gets failed. */
-  "continue" = "continue",
-  /** Test run will stop if pass fail criteria metric is not passed. */
-  stop = "stop",
-}
-
-/**
- * Action to take on failure of pass/fail criteria. \
- * {@link KnownPFAction} can be used interchangeably with PFAction,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **continue**: Test will continue to run even if pass fail metric criteria metric gets failed. \
- * **stop**: Test run will stop if pass fail criteria metric is not passed.
- */
-export type PFAction = string;
-
+export type PFAction = "continue" | "stop";
 /** Pass/fail criteria result. */
-export enum KnownPFResult {
-  /** Given pass fail criteria metric has passed. */
-  passed = "passed",
-  /** Given pass fail criteria metric couldn't determine. */
-  undetermined = "undetermined",
-  /** Given pass fail criteria metric has failed. */
-  failed = "failed",
-}
-
-/**
- * Pass/fail criteria result. \
- * {@link KnownPFResult} can be used interchangeably with PFResult,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **passed**: Given pass fail criteria metric has passed. \
- * **undetermined**: Given pass fail criteria metric couldn't determine. \
- * **failed**: Given pass fail criteria metric has failed.
- */
-export type PFResult = string;
+export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
 export interface AutoStopCriteria {
@@ -406,22 +312,7 @@ export function secretDeserializer(item: any): Secret {
 }
 
 /** Types of secrets supported. */
-export enum KnownSecretType {
-  /** If the secret is stored in an Azure Key Vault. */
-  AKV_SECRET_URI = "AKV_SECRET_URI",
-  /** If the secret value provided as plain text. */
-  SECRET_VALUE = "SECRET_VALUE",
-}
-
-/**
- * Types of secrets supported. \
- * {@link KnownSecretType} can be used interchangeably with SecretType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **AKV_SECRET_URI**: If the secret is stored in an Azure Key Vault. \
- * **SECRET_VALUE**: If the secret value provided as plain text.
- */
-export type SecretType = string;
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -448,19 +339,7 @@ export function certificateMetadataDeserializer(
 }
 
 /** Types of certificates supported. */
-export enum KnownCertificateType {
-  /** If the certificate is stored in an Azure Key Vault. */
-  AKV_CERT_URI = "AKV_CERT_URI",
-}
-
-/**
- * Types of certificates supported. \
- * {@link KnownCertificateType} can be used interchangeably with CertificateType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **AKV_CERT_URI**: If the certificate is stored in an Azure Key Vault.
- */
-export type CertificateType = string;
+export type CertificateType = "AKV_CERT_URI";
 
 /** Configurations for the load test. */
 export interface LoadTestConfiguration {
@@ -670,61 +549,20 @@ export function testFileInfoDeserializer(item: any): TestFileInfo {
 }
 
 /** Types of file supported. */
-export enum KnownFileType {
-  /** If the file is a JMX script. */
-  JMX_FILE = "JMX_FILE",
-  /** If the file is a user properties file. */
-  USER_PROPERTIES = "USER_PROPERTIES",
-  /** If the file is not among any of the other supported file types. */
-  ADDITIONAL_ARTIFACTS = "ADDITIONAL_ARTIFACTS",
-  /** If the file is a compressed archive containing a collection of various artifacts or resources. */
-  ZIPPED_ARTIFACTS = "ZIPPED_ARTIFACTS",
-  /** If the file is a JSON config file to define the requests for a URL test. */
-  URL_TEST_CONFIG = "URL_TEST_CONFIG",
-  /** If the file is a test script. */
-  TEST_SCRIPT = "TEST_SCRIPT",
-}
-
-/**
- * Types of file supported. \
- * {@link KnownFileType} can be used interchangeably with FileType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **JMX_FILE**: If the file is a JMX script. \
- * **USER_PROPERTIES**: If the file is a user properties file. \
- * **ADDITIONAL_ARTIFACTS**: If the file is not among any of the other supported file types. \
- * **ZIPPED_ARTIFACTS**: If the file is a compressed archive containing a collection of various artifacts or resources. \
- * **URL_TEST_CONFIG**: If the file is a JSON config file to define the requests for a URL test. \
- * **TEST_SCRIPT**: If the file is a test script.
- */
-export type FileType = string;
-
+export type FileType =
+  | "JMX_FILE"
+  | "USER_PROPERTIES"
+  | "ADDITIONAL_ARTIFACTS"
+  | "ZIPPED_ARTIFACTS"
+  | "URL_TEST_CONFIG"
+  | "TEST_SCRIPT";
 /** File status. */
-export enum KnownFileStatus {
-  /** File is not validated. */
-  NOT_VALIDATED = "NOT_VALIDATED",
-  /** File is validated. */
-  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
-  /** File validation is failed. */
-  VALIDATION_FAILURE = "VALIDATION_FAILURE",
-  /** File validation is in progress. */
-  VALIDATION_INITIATED = "VALIDATION_INITIATED",
-  /** Validation is not required. */
-  VALIDATION_NOT_REQUIRED = "VALIDATION_NOT_REQUIRED",
-}
-
-/**
- * File status. \
- * {@link KnownFileStatus} can be used interchangeably with FileStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **NOT_VALIDATED**: File is not validated. \
- * **VALIDATION_SUCCESS**: File is validated. \
- * **VALIDATION_FAILURE**: File validation is failed. \
- * **VALIDATION_INITIATED**: File validation is in progress. \
- * **VALIDATION_NOT_REQUIRED**: Validation is not required.
- */
-export type FileStatus = string;
+export type FileStatus =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
 
 export function testFileInfoArrayDeserializer(
   result: Array<TestFileInfo>,
@@ -735,25 +573,7 @@ export function testFileInfoArrayDeserializer(
 }
 
 /** Test kind */
-export enum KnownTestKind {
-  /** URL Test */
-  URL = "URL",
-  /** JMX Test */
-  JMX = "JMX",
-  /** Locust Test */
-  Locust = "Locust",
-}
-
-/**
- * Test kind \
- * {@link KnownTestKind} can be used interchangeably with TestKind,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **URL**: URL Test \
- * **JMX**: JMX Test \
- * **Locust**: Locust Test
- */
-export type TestKind = string;
+export type TestKind = "URL" | "JMX" | "Locust";
 
 /** Test app components */
 export interface TestAppComponents {
@@ -1428,103 +1248,27 @@ export function artifactsContainerInfoDeserializer(
 }
 
 /** Test result based on pass/fail criteria. */
-export enum KnownPFTestResult {
-  /** Pass/fail criteria has passed. */
-  PASSED = "PASSED",
-  /** Pass/fail criteria is not applicable. */
-  NOT_APPLICABLE = "NOT_APPLICABLE",
-  /** Pass/fail criteria has failed. */
-  FAILED = "FAILED",
-}
-
-/**
- * Test result based on pass/fail criteria. \
- * {@link KnownPFTestResult} can be used interchangeably with PFTestResult,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **PASSED**: Pass\/fail criteria has passed. \
- * **NOT_APPLICABLE**: Pass\/fail criteria is not applicable. \
- * **FAILED**: Pass\/fail criteria has failed.
- */
-export type PFTestResult = string;
-
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 /** Test run status. */
-export enum KnownStatus {
-  /** Test run request is accepted. */
-  ACCEPTED = "ACCEPTED",
-  /** Test run is not yet started. */
-  NOTSTARTED = "NOTSTARTED",
-  /** Test run is provisioning. */
-  PROVISIONING = "PROVISIONING",
-  /** Test run is provisioned. */
-  PROVISIONED = "PROVISIONED",
-  /** Test run is getting configured. */
-  CONFIGURING = "CONFIGURING",
-  /** Test run configuration is done. */
-  CONFIGURED = "CONFIGURED",
-  /** Test run has started executing. */
-  EXECUTING = "EXECUTING",
-  /** Test run execution is completed. */
-  EXECUTED = "EXECUTED",
-  /** Test run is getting deprovisioned. */
-  DEPROVISIONING = "DEPROVISIONING",
-  /** Test run is deprovisioned. */
-  DEPROVISIONED = "DEPROVISIONED",
-  /** Test run is completed. */
-  DONE = "DONE",
-  /** Test run is being cancelled. */
-  CANCELLING = "CANCELLING",
-  /** Test run request is cancelled. */
-  CANCELLED = "CANCELLED",
-  /** Test run request is failed. */
-  FAILED = "FAILED",
-  /** Test run JMX file is validated. */
-  VALIDATION_SUCCESS = "VALIDATION_SUCCESS",
-  /** Test run JMX file validation is failed. */
-  VALIDATION_FAILURE = "VALIDATION_FAILURE",
-}
-
-/**
- * Test run status. \
- * {@link KnownStatus} can be used interchangeably with Status,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **ACCEPTED**: Test run request is accepted. \
- * **NOTSTARTED**: Test run is not yet started. \
- * **PROVISIONING**: Test run is provisioning. \
- * **PROVISIONED**: Test run is provisioned. \
- * **CONFIGURING**: Test run is getting configured. \
- * **CONFIGURED**: Test run configuration is done. \
- * **EXECUTING**: Test run has started executing. \
- * **EXECUTED**: Test run execution is completed. \
- * **DEPROVISIONING**: Test run is getting deprovisioned. \
- * **DEPROVISIONED**: Test run is deprovisioned. \
- * **DONE**: Test run is completed. \
- * **CANCELLING**: Test run is being cancelled. \
- * **CANCELLED**: Test run request is cancelled. \
- * **FAILED**: Test run request is failed. \
- * **VALIDATION_SUCCESS**: Test run JMX file is validated. \
- * **VALIDATION_FAILURE**: Test run JMX file validation is failed.
- */
-export type Status = string;
-
+export type Status =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
 /** Request data collection level for test run */
-export enum KnownRequestDataLevel {
-  /** No request data will be collected */
-  NONE = "NONE",
-  /** Request data will be collected in case of failed requests */
-  ERRORS = "ERRORS",
-}
-
-/**
- * Request data collection level for test run \
- * {@link KnownRequestDataLevel} can be used interchangeably with RequestDataLevel,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **NONE**: No request data will be collected \
- * **ERRORS**: Request data will be collected in case of failed requests
- */
-export type RequestDataLevel = string;
+export type RequestDataLevel = "NONE" | "ERRORS";
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -1730,91 +1474,30 @@ export function nameAndDescDeserializer(item: any): NameAndDesc {
 }
 
 /** Aggregation type. */
-export enum KnownAggregationType {
-  /** Average value. */
-  Average = "Average",
-  /** Total count. */
-  Count = "Count",
-  /** Aggregation will be average in this case. */
-  None = "None",
-  /** Total sum. */
-  Total = "Total",
-  /** 75th percentile. */
-  Percentile75 = "Percentile75",
-  /** 90th percentile. */
-  Percentile90 = "Percentile90",
-  /** 95th percentile. */
-  Percentile95 = "Percentile95",
-  /** 96th percentile. */
-  Percentile96 = "Percentile96",
-  /** 97th percentile. */
-  Percentile97 = "Percentile97",
-  /** 98th percentile. */
-  Percentile98 = "Percentile98",
-  /** 99th percentile. */
-  Percentile99 = "Percentile99",
-  /** 99.9th percentile. */
-  Percentile999 = "Percentile999",
-  /** 99.99th percentile. */
-  Percentile9999 = "Percentile9999",
-}
-
-/**
- * Aggregation type. \
- * {@link KnownAggregationType} can be used interchangeably with AggregationType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Average**: Average value. \
- * **Count**: Total count. \
- * **None**: Aggregation will be average in this case. \
- * **Total**: Total sum. \
- * **Percentile75**: 75th percentile. \
- * **Percentile90**: 90th percentile. \
- * **Percentile95**: 95th percentile. \
- * **Percentile96**: 96th percentile. \
- * **Percentile97**: 97th percentile. \
- * **Percentile98**: 98th percentile. \
- * **Percentile99**: 99th percentile. \
- * **Percentile999**: 99.9th percentile. \
- * **Percentile9999**: 99.99th percentile.
- */
-export type AggregationType = string;
-
+export type AggregationType =
+  | "Average"
+  | "Count"
+  | "None"
+  | "Total"
+  | "Percentile75"
+  | "Percentile90"
+  | "Percentile95"
+  | "Percentile96"
+  | "Percentile97"
+  | "Percentile98"
+  | "Percentile99"
+  | "Percentile999"
+  | "Percentile9999";
 /** Metric unit. */
-export enum KnownMetricUnit {
-  /** No unit specified. */
-  NotSpecified = "NotSpecified",
-  /** Percentage. */
-  Percent = "Percent",
-  /** Value count. */
-  Count = "Count",
-  /** Seconds. */
-  Seconds = "Seconds",
-  /** Milliseconds */
-  Milliseconds = "Milliseconds",
-  /** Bytes */
-  Bytes = "Bytes",
-  /** Bytes per second */
-  BytesPerSecond = "BytesPerSecond",
-  /** Count per second */
-  CountPerSecond = "CountPerSecond",
-}
-
-/**
- * Metric unit. \
- * {@link KnownMetricUnit} can be used interchangeably with MetricUnit,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **NotSpecified**: No unit specified. \
- * **Percent**: Percentage. \
- * **Count**: Value count. \
- * **Seconds**: Seconds. \
- * **Milliseconds**: Milliseconds \
- * **Bytes**: Bytes \
- * **BytesPerSecond**: Bytes per second \
- * **CountPerSecond**: Count per second
- */
-export type MetricUnit = string;
+export type MetricUnit =
+  | "NotSpecified"
+  | "Percent"
+  | "Count"
+  | "Seconds"
+  | "Milliseconds"
+  | "Bytes"
+  | "BytesPerSecond"
+  | "CountPerSecond";
 
 export function metricAvailabilityArrayDeserializer(
   result: Array<MetricAvailability>,
@@ -1840,31 +1523,7 @@ export function metricAvailabilityDeserializer(item: any): MetricAvailability {
 }
 
 /** Time Grain */
-export enum KnownTimeGrain {
-  /** 5 seconds, available only if test run duration is less than 10 minutes. */
-  PT5S = "PT5S",
-  /** 10 seconds, available only if test run duration is less than 10 minutes. */
-  PT10S = "PT10S",
-  /** 1 minute */
-  PT1M = "PT1M",
-  /** 5 minutes, available only if test run duration is greater than 1 minute. */
-  PT5M = "PT5M",
-  /** 1 hour, available only if test run duration is greater than 1 minute. */
-  PT1H = "PT1H",
-}
-
-/**
- * Time Grain \
- * {@link KnownTimeGrain} can be used interchangeably with TimeGrain,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **PT5S**: 5 seconds, available only if test run duration is less than 10 minutes. \
- * **PT10S**: 10 seconds, available only if test run duration is less than 10 minutes. \
- * **PT1M**: 1 minute \
- * **PT5M**: 5 minutes, available only if test run duration is greater than 1 minute. \
- * **PT1H**: 1 hour, available only if test run duration is greater than 1 minute.
- */
-export type TimeGrain = string;
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
@@ -2184,19 +1843,7 @@ export function targetResourceConfigurationsUnionDeserializer(
 }
 
 /** Kind of the resource on which test profile is created. */
-export enum KnownResourceKind {
-  /** Resource is a Azure FunctionApp on Flex Consumption Plan. */
-  FunctionsFlexConsumption = "FunctionsFlexConsumption",
-}
-
-/**
- * Kind of the resource on which test profile is created. \
- * {@link KnownResourceKind} can be used interchangeably with ResourceKind,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **FunctionsFlexConsumption**: Resource is a Azure FunctionApp on Flex Consumption Plan.
- */
-export type ResourceKind = string;
+export type ResourceKind = "FunctionsFlexConsumption";
 
 /** Configurations for a Function App using Flex Consumption Plan. */
 export interface FunctionFlexConsumptionTargetResourceConfigurations
@@ -2405,37 +2052,14 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
 }
 
 /** Test profile run status. */
-export enum KnownTestProfileRunStatus {
-  /** Test profile run request is accepted. */
-  ACCEPTED = "ACCEPTED",
-  /** Test profile run is not yet started. */
-  NOTSTARTED = "NOTSTARTED",
-  /** Test profile run has started executing. */
-  EXECUTING = "EXECUTING",
-  /** Test profile run has completed successfully. */
-  DONE = "DONE",
-  /** Test profile run is being cancelled. */
-  CANCELLING = "CANCELLING",
-  /** Test profile run is cancelled. */
-  CANCELLED = "CANCELLED",
-  /** Test profile run has failed. */
-  FAILED = "FAILED",
-}
-
-/**
- * Test profile run status. \
- * {@link KnownTestProfileRunStatus} can be used interchangeably with TestProfileRunStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **ACCEPTED**: Test profile run request is accepted. \
- * **NOTSTARTED**: Test profile run is not yet started. \
- * **EXECUTING**: Test profile run has started executing. \
- * **DONE**: Test profile run has completed successfully. \
- * **CANCELLING**: Test profile run is being cancelled. \
- * **CANCELLED**: Test profile run is cancelled. \
- * **FAILED**: Test profile run has failed.
- */
-export type TestProfileRunStatus = string;
+export type TestProfileRunStatus =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "EXECUTING"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED";
 
 export function testRunDetailRecordDeserializer(
   item: Record<string, any>,
@@ -2495,22 +2119,7 @@ export function testProfileRunRecommendationDeserializer(
 }
 
 /** Category of Recommendation. */
-export enum KnownRecommendationCategory {
-  /** The recommendation for this category optimizes the throughput/RPS (Requests per Second) of the app. */
-  ThroughputOptimized = "ThroughputOptimized",
-  /** The recommendation for this category optimizes the cost of the app. */
-  CostOptimized = "CostOptimized",
-}
-
-/**
- * Category of Recommendation. \
- * {@link KnownRecommendationCategory} can be used interchangeably with RecommendationCategory,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **ThroughputOptimized**: The recommendation for this category optimizes the throughput\/RPS (Requests per Second) of the app. \
- * **CostOptimized**: The recommendation for this category optimizes the cost of the app.
- */
-export type RecommendationCategory = string;
+export type RecommendationCategory = "ThroughputOptimized" | "CostOptimized";
 
 /** Paged collection of TestProfileRun items */
 export interface _PagedTestProfileRun {

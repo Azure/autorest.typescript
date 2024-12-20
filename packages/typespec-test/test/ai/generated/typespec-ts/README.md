@@ -1,8 +1,8 @@
-# Azure Client client library for JavaScript
-
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure Client client.
+# Azure Client REST client library for JavaScript
 
 
+
+**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
 Key links:
 
@@ -13,18 +13,15 @@ Key links:
 
 ### Currently supported environments
 
-- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- Latest versions of Safari, Chrome, Edge and Firefox.
-
-See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
+- LTS versions of Node.js
 
 ### Prerequisites
 
-- An [Azure subscription][azure_sub].
+- You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
 ### Install the `@azure/ai-client` package
 
-Install the Azure Client client library for JavaScript with `npm`:
+Install the Azure Client REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure/ai-client
@@ -32,44 +29,15 @@ npm install @azure/ai-client
 
 ### Create and authenticate a `ClientClient`
 
-To create a client object to access the Azure Client API, you will need the `endpoint` of your Azure Client resource and a `credential`. The Azure Client client can use Azure Active Directory credentials to authenticate.
-You can find the endpoint for your Azure Client resource in the [Azure Portal][azure_portal].
+To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
+provide an instance of the desired credential type obtained from the
+[@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
+To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) 
 
-To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
-
-```bash
-npm install @azure/identity
-```
-
-You will also need to **register a new AAD application and grant access to Azure Client** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
-
-For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
-
-```javascript
-const { ClientClient } = require("@azure/ai-client");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
-
-const client = new ClientClient("<endpoint>", new DefaultAzureCredential());
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new ClientClient("<endpoint>", credential);
-```
-
-
-### JavaScript Bundle
-To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
-
-## Key concepts
-
-### ClientClient
-
-`ClientClient` is the primary interface for developers using the Azure Client client library. Explore the methods on this client object to understand the different features of the Azure Client service that you can access.
+After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
+As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
+can be used to authenticate the client.
 
 ## Troubleshooting
 
@@ -79,21 +47,8 @@ Enabling logging may help uncover useful information about failures. In order to
 
 ```javascript
 const { setLogLevel } = require("@azure/logger");
+
 setLogLevel("info");
 ```
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
-
-
-## Contributing
-
-If you'd like to contribute to this library, please read the [contributing guide](https://github.com/Azure/azure-sdk-for-js/blob/main/CONTRIBUTING.md) to learn more about how to build and test the code.
-
-## Related projects
-
-- [Microsoft Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js)
-
-[azure_sub]: https://azure.microsoft.com/free/
-[azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity
-[defaultazurecredential]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential

@@ -49,22 +49,22 @@ export interface CreateModerationResponse {
       "hate/threatening": boolean;
       harassment: boolean;
       "harassment/threatening": boolean;
-      "self-harm": boolean;
-      "self-harm/intent": boolean;
-      "self-harm/instructive": boolean;
+      selfHarm: boolean;
+      "selfHarm/intent": boolean;
+      "selfHarm/instructive": boolean;
       sexual: boolean;
       "sexual/minors": boolean;
       violence: boolean;
       "violence/graphic": boolean;
     };
-    category_scores: {
+    categoryScores: {
       hate: number;
       "hate/threatening": number;
       harassment: number;
       "harassment/threatening": number;
-      "self-harm": number;
-      "self-harm/intent": number;
-      "self-harm/instructive": number;
+      selfHarm: number;
+      "selfHarm/intent": number;
+      "selfHarm/instructive": number;
       sexual: number;
       "sexual/minors": number;
       violence: number;
@@ -101,23 +101,23 @@ export interface _CreateModerationResponseResult {
     "hate/threatening": boolean;
     harassment: boolean;
     "harassment/threatening": boolean;
-    "self-harm": boolean;
-    "self-harm/intent": boolean;
-    "self-harm/instructive": boolean;
+    selfHarm: boolean;
+    "selfHarm/intent": boolean;
+    "selfHarm/instructive": boolean;
     sexual: boolean;
     "sexual/minors": boolean;
     violence: boolean;
     "violence/graphic": boolean;
   };
   /** A list of the categories along with their scores as predicted by model. */
-  category_scores: {
+  categoryScores: {
     hate: number;
     "hate/threatening": number;
     harassment: number;
     "harassment/threatening": number;
-    "self-harm": number;
-    "self-harm/intent": number;
-    "self-harm/instructive": number;
+    selfHarm: number;
+    "selfHarm/intent": number;
+    "selfHarm/instructive": number;
     sexual: number;
     "sexual/minors": number;
     violence: number;
@@ -133,7 +133,7 @@ export function _createModerationResponseResultDeserializer(
     categories: _createModerationResponseResultCategoriesDeserializer(
       item["categories"],
     ),
-    category_scores: _createModerationResponseResultCategoryScoresDeserializer(
+    categoryScores: _createModerationResponseResultCategoryScoresDeserializer(
       item["category_scores"],
     ),
   };
@@ -161,17 +161,17 @@ export interface _CreateModerationResponseResultCategories {
    * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting,
    * and eating disorders.
    */
-  "self-harm": boolean;
+  selfHarm: boolean;
   /**
    * Content where the speaker expresses that they are engaging or intend to engage in acts of
    * self-harm, such as suicide, cutting, and eating disorders.
    */
-  "self-harm/intent": boolean;
+  "selfHarm/intent": boolean;
   /**
    * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating
    * disorders, or that gives instructions or advice on how to commit such acts.
    */
-  "self-harm/instructive": boolean;
+  "selfHarm/instructive": boolean;
   /**
    * Content meant to arouse sexual excitement, such as the description of sexual activity, or
    * that promotes sexual services (excluding sex education and wellness).
@@ -193,9 +193,9 @@ export function _createModerationResponseResultCategoriesDeserializer(
     "hate/threatening": item["hate/threatening"],
     harassment: item["harassment"],
     "harassment/threatening": item["harassment/threatening"],
-    "self-harm": item["self-harm"],
-    "self-harm/intent": item["self-harm/intent"],
-    "self-harm/instructive": item["self-harm/instructive"],
+    selfHarm: item["self-harm"],
+    "selfHarm/intent": item["self-harm/intent"],
+    "selfHarm/instructive": item["self-harm/instructive"],
     sexual: item["sexual"],
     "sexual/minors": item["sexual/minors"],
     violence: item["violence"],
@@ -214,11 +214,11 @@ export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'harassment/threatening'. */
   "harassment/threatening": number;
   /** The score for the category 'self-harm'. */
-  "self-harm": number;
+  selfHarm: number;
   /** The score for the category 'self-harm/intent'. */
-  "self-harm/intent": number;
+  "selfHarm/intent": number;
   /** The score for the category 'self-harm/instructive'. */
-  "self-harm/instructive": number;
+  "selfHarm/instructive": number;
   /** The score for the category 'sexual'. */
   sexual: number;
   /** The score for the category 'sexual/minors'. */
@@ -237,9 +237,9 @@ export function _createModerationResponseResultCategoryScoresDeserializer(
     "hate/threatening": item["hate/threatening"],
     harassment: item["harassment"],
     "harassment/threatening": item["harassment/threatening"],
-    "self-harm": item["self-harm"],
-    "self-harm/intent": item["self-harm/intent"],
-    "self-harm/instructive": item["self-harm/instructive"],
+    selfHarm: item["self-harm"],
+    "selfHarm/intent": item["self-harm/intent"],
+    "selfHarm/instructive": item["self-harm/instructive"],
     sexual: item["sexual"],
     "sexual/minors": item["sexual/minors"],
     violence: item["violence"],
@@ -256,7 +256,7 @@ export interface CreateImageRequest {
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
   size?: ("256x256" | "512x512" | "1024x1024") | null;
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
+  responseFormat?: ("url" | "b64_json") | null;
   user?: string;
 }
 
@@ -265,7 +265,7 @@ export function createImageRequestSerializer(item: CreateImageRequest): any {
     prompt: item["prompt"],
     n: item["n"],
     size: item["size"],
-    response_format: item["response_format"],
+    response_format: item["responseFormat"],
     user: item["user"],
   };
 }
@@ -294,13 +294,13 @@ export interface Image {
   /** The URL of the generated image, if `response_format` is `url` (default). */
   url?: string;
   /** The base64-encoded JSON of the generated image, if `response_format` is `b64_json`. */
-  b64_json?: Uint8Array;
+  b64Json?: Uint8Array;
 }
 
 export function imageDeserializer(item: any): Image {
   return {
     url: item["url"],
-    b64_json: !item["b64_json"]
+    b64Json: !item["b64_json"]
       ? item["b64_json"]
       : typeof item["b64_json"] === "string"
         ? stringToUint8Array(item["b64_json"], "base64")
@@ -328,7 +328,7 @@ export interface CreateImageEditRequest {
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
   size?: ("256x256" | "512x512" | "1024x1024") | null;
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
+  responseFormat?: ("url" | "b64_json") | null;
   user?: string;
 }
 
@@ -343,7 +343,7 @@ export function createImageEditRequestSerializer(
       : uint8ArrayToString(item["mask"], "base64"),
     n: item["n"],
     size: item["size"],
-    response_format: item["response_format"],
+    response_format: item["responseFormat"],
     user: item["user"],
   };
 }
@@ -360,7 +360,7 @@ export interface CreateImageVariationRequest {
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
   size?: ("256x256" | "512x512" | "1024x1024") | null;
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
+  responseFormat?: ("url" | "b64_json") | null;
   user?: string;
 }
 
@@ -371,7 +371,7 @@ export function createImageVariationRequestSerializer(
     image: uint8ArrayToString(item["image"], "base64"),
     n: item["n"],
     size: item["size"],
-    response_format: item["response_format"],
+    response_format: item["responseFormat"],
     user: item["user"],
   };
 }
@@ -404,7 +404,7 @@ export interface Model {
   /** The Unix timestamp (in seconds) when the model was created. */
   created: Date;
   /** The organization that owns the model. */
-  owned_by: string;
+  ownedBy: string;
 }
 
 export function modelDeserializer(item: any): Model {
@@ -412,7 +412,7 @@ export function modelDeserializer(item: any): Model {
     id: item["id"],
     object: item["object"],
     created: new Date(item["created"] * 1000),
-    owned_by: item["owned_by"],
+    ownedBy: item["owned_by"],
   };
 }
 
@@ -447,7 +447,7 @@ export interface CreateFineTuneRequest {
    * See the [fine-tuning guide](/docs/guides/legacy-fine-tuning/creating-training-data) for more
    * details.
    */
-  training_file: string;
+  trainingFile: string;
   /**
    * The ID of an uploaded file that contains validation data.
    *
@@ -463,7 +463,7 @@ export interface CreateFineTuneRequest {
    * See the [fine-tuning guide](/docs/guides/legacy-fine-tuning/creating-training-data) for more
    * details.
    */
-  validation_file?: string | null;
+  validationFile?: string | null;
   /**
    * The name of the base model to fine-tune. You can select one of "ada", "babbage", "curie",
    * "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22. To learn more
@@ -474,7 +474,7 @@ export interface CreateFineTuneRequest {
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
    */
-  n_epochs?: number | null;
+  nEpochs?: number | null;
   /**
    * The batch size to use for training. The batch size is the number of training examples used to
    * train a single forward and backward pass.
@@ -483,7 +483,7 @@ export interface CreateFineTuneRequest {
    * in the training set, capped at 256 - in general, we've found that larger batch sizes tend to
    * work better for larger datasets.
    */
-  batch_size?: number | null;
+  batchSize?: number | null;
   /**
    * The learning rate multiplier to use for training. The fine-tuning learning rate is the original
    * learning rate used for pretraining multiplied by this value.
@@ -493,7 +493,7 @@ export interface CreateFineTuneRequest {
    * recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best
    * results.
    */
-  learning_rate_multiplier?: number | null;
+  learningRateMultiplier?: number | null;
   /**
    * The weight to use for loss on the prompt tokens. This controls how much the model tries to
    * learn to generate the prompt (as compared to the completion which always has a weight of 1.0),
@@ -502,7 +502,7 @@ export interface CreateFineTuneRequest {
    * If prompts are extremely long (relative to completions), it may make sense to reduce this
    * weight so as to avoid over-prioritizing learning the prompt.
    */
-  prompt_loss_rate?: number | null;
+  promptLossRate?: number | null;
   /**
    * If set, we calculate classification-specific metrics such as accuracy and F-1 score using the
    * validation set at the end of every epoch. These metrics can be viewed in the
@@ -512,20 +512,20 @@ export interface CreateFineTuneRequest {
    * you must specify `classification_n_classes` for multiclass classification or
    * `classification_positive_class` for binary classification.
    */
-  compute_classification_metrics?: boolean | null;
+  computeClassificationMetrics?: boolean | null;
   /**
    * The number of classes in a classification task.
    *
    * This parameter is required for multiclass classification.
    */
-  classification_n_classes?: number | null;
+  classificationNClasses?: number | null;
   /**
    * The positive class in binary classification.
    *
    * This parameter is needed to generate precision, recall, and F1 metrics when doing binary
    * classification.
    */
-  classification_positive_class?: string | null;
+  classificationPositiveClass?: string | null;
   /**
    * If this is provided, we calculate F-beta scores at the specified beta values. The F-beta score
    * is a generalization of F-1 score. This is only used for binary classification.
@@ -534,7 +534,7 @@ export interface CreateFineTuneRequest {
    * beta score puts more weight on recall and less on precision. A smaller beta score puts more
    * weight on precision and less on recall.
    */
-  classification_betas?: number[] | null;
+  classificationBetas?: number[] | null;
   /**
    * A string of up to 18 characters that will be added to your fine-tuned model name.
    *
@@ -548,19 +548,19 @@ export function createFineTuneRequestSerializer(
   item: CreateFineTuneRequest,
 ): any {
   return {
-    training_file: item["training_file"],
-    validation_file: item["validation_file"],
+    training_file: item["trainingFile"],
+    validation_file: item["validationFile"],
     model: item["model"],
-    n_epochs: item["n_epochs"],
-    batch_size: item["batch_size"],
-    learning_rate_multiplier: item["learning_rate_multiplier"],
-    prompt_loss_rate: item["prompt_loss_rate"],
-    compute_classification_metrics: item["compute_classification_metrics"],
-    classification_n_classes: item["classification_n_classes"],
-    classification_positive_class: item["classification_positive_class"],
-    classification_betas: !item["classification_betas"]
-      ? item["classification_betas"]
-      : item["classification_betas"].map((p: any) => {
+    n_epochs: item["nEpochs"],
+    batch_size: item["batchSize"],
+    learning_rate_multiplier: item["learningRateMultiplier"],
+    prompt_loss_rate: item["promptLossRate"],
+    compute_classification_metrics: item["computeClassificationMetrics"],
+    classification_n_classes: item["classificationNClasses"],
+    classification_positive_class: item["classificationPositiveClass"],
+    classification_betas: !item["classificationBetas"]
+      ? item["classificationBetas"]
+      : item["classificationBetas"].map((p: any) => {
           return p;
         }),
     suffix: item["suffix"],
@@ -574,15 +574,15 @@ export interface FineTune {
   /** The object type, which is always "fine-tune". */
   object: "fine-tune";
   /** The Unix timestamp (in seconds) for when the fine-tuning job was created. */
-  created_at: Date;
+  createdAt: Date;
   /** The Unix timestamp (in seconds) for when the fine-tuning job was last updated. */
-  updated_at: Date;
+  updatedAt: Date;
   /** The base model that is being fine-tuned. */
   model: string;
   /** The name of the fine-tuned model that is being created. */
-  fine_tuned_model: string | null;
+  fineTunedModel: string | null;
   /** The organization that owns the fine-tuning job. */
-  organization_id: string;
+  organizationId: string;
   /**
    * The current status of the fine-tuning job, which can be either `created`, `running`,
    * `succeeded`, `failed`, or `cancelled`.
@@ -593,20 +593,20 @@ export interface FineTune {
    * [fine-tuning guide](/docs/guides/legacy-fine-tuning/hyperparameters) for more details.
    */
   hyperparams: {
-    n_epochs: number;
-    batch_size: number;
-    prompt_loss_weight: number;
-    learning_rate_multiplier: number;
-    compute_classification_metrics?: boolean;
-    classification_positive_class?: string;
-    classification_n_classes?: number;
+    nEpochs: number;
+    batchSize: number;
+    promptLossWeight: number;
+    learningRateMultiplier: number;
+    computeClassificationMetrics?: boolean;
+    classificationPositiveClass?: string;
+    classificationNClasses?: number;
   };
   /** The list of files used for training. */
-  training_files: OpenAIFile[];
+  trainingFiles: OpenAIFile[];
   /** The list of files used for validation. */
-  validation_files: OpenAIFile[];
+  validationFiles: OpenAIFile[];
   /** The compiled results files for the fine-tuning job. */
-  result_files: OpenAIFile[];
+  resultFiles: OpenAIFile[];
   /** The list of events that have been observed in the lifecycle of the FineTune job. */
   events?: FineTuneEvent[];
 }
@@ -615,16 +615,16 @@ export function fineTuneDeserializer(item: any): FineTune {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"] * 1000),
-    updated_at: new Date(item["updated_at"] * 1000),
+    createdAt: new Date(item["created_at"] * 1000),
+    updatedAt: new Date(item["updated_at"] * 1000),
     model: item["model"],
-    fine_tuned_model: item["fine_tuned_model"],
-    organization_id: item["organization_id"],
+    fineTunedModel: item["fine_tuned_model"],
+    organizationId: item["organization_id"],
     status: item["status"],
     hyperparams: _fineTuneHyperparamsDeserializer(item["hyperparams"]),
-    training_files: openAIFileArrayDeserializer(item["training_files"]),
-    validation_files: openAIFileArrayDeserializer(item["validation_files"]),
-    result_files: openAIFileArrayDeserializer(item["result_files"]),
+    trainingFiles: openAIFileArrayDeserializer(item["training_files"]),
+    validationFiles: openAIFileArrayDeserializer(item["validation_files"]),
+    resultFiles: openAIFileArrayDeserializer(item["result_files"]),
     events: !item["events"]
       ? item["events"]
       : fineTuneEventArrayDeserializer(item["events"]),
@@ -637,35 +637,35 @@ export interface _FineTuneHyperparams {
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
    */
-  n_epochs: number;
+  nEpochs: number;
   /**
    * The batch size to use for training. The batch size is the number of training examples used to
    * train a single forward and backward pass.
    */
-  batch_size: number;
+  batchSize: number;
   /** The weight to use for loss on the prompt tokens. */
-  prompt_loss_weight: number;
+  promptLossWeight: number;
   /** The learning rate multiplier to use for training. */
-  learning_rate_multiplier: number;
+  learningRateMultiplier: number;
   /** The classification metrics to compute using the validation dataset at the end of every epoch. */
-  compute_classification_metrics?: boolean;
+  computeClassificationMetrics?: boolean;
   /** The positive class to use for computing classification metrics. */
-  classification_positive_class?: string;
+  classificationPositiveClass?: string;
   /** The number of classes to use for computing classification metrics. */
-  classification_n_classes?: number;
+  classificationNClasses?: number;
 }
 
 export function _fineTuneHyperparamsDeserializer(
   item: any,
 ): _FineTuneHyperparams {
   return {
-    n_epochs: item["n_epochs"],
-    batch_size: item["batch_size"],
-    prompt_loss_weight: item["prompt_loss_weight"],
-    learning_rate_multiplier: item["learning_rate_multiplier"],
-    compute_classification_metrics: item["compute_classification_metrics"],
-    classification_positive_class: item["classification_positive_class"],
-    classification_n_classes: item["classification_n_classes"],
+    nEpochs: item["n_epochs"],
+    batchSize: item["batch_size"],
+    promptLossWeight: item["prompt_loss_weight"],
+    learningRateMultiplier: item["learning_rate_multiplier"],
+    computeClassificationMetrics: item["compute_classification_metrics"],
+    classificationPositiveClass: item["classification_positive_class"],
+    classificationNClasses: item["classification_n_classes"],
   };
 }
 
@@ -704,7 +704,7 @@ export interface OpenAIFile {
    * Additional details about the status of the file. If the file is in the `error` state, this will
    * include a message describing the error.
    */
-  status_details?: string | null;
+  statusDetails?: string | null;
 }
 
 export function openAIFileDeserializer(item: any): OpenAIFile {
@@ -716,7 +716,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     filename: item["filename"],
     purpose: item["purpose"],
     status: item["status"],
-    status_details: item["status_details"],
+    statusDetails: item["status_details"],
   };
 }
 
@@ -731,7 +731,7 @@ export function fineTuneEventArrayDeserializer(
 /** model interface FineTuneEvent */
 export interface FineTuneEvent {
   object: string;
-  created_at: Date;
+  createdAt: Date;
   level: string;
   message: string;
 }
@@ -739,7 +739,7 @@ export interface FineTuneEvent {
 export function fineTuneEventDeserializer(item: any): FineTuneEvent {
   return {
     object: item["object"],
-    created_at: new Date(item["created_at"] * 1000),
+    createdAt: new Date(item["created_at"] * 1000),
     level: item["level"],
     message: item["message"],
   };
@@ -880,8 +880,8 @@ export interface CreateEmbeddingResponse {
   data: Embedding[];
   /** The usage information for the request. */
   usage: {
-    prompt_tokens: number;
-    total_tokens: number;
+    promptTokens: number;
+    totalTokens: number;
   };
 }
 
@@ -928,17 +928,17 @@ export function embeddingDeserializer(item: any): Embedding {
 /** model interface _CreateEmbeddingResponseUsage */
 export interface _CreateEmbeddingResponseUsage {
   /** The number of tokens used by the prompt. */
-  prompt_tokens: number;
+  promptTokens: number;
   /** The total number of tokens used by the request. */
-  total_tokens: number;
+  totalTokens: number;
 }
 
 export function _createEmbeddingResponseUsageDeserializer(
   item: any,
 ): _CreateEmbeddingResponseUsage {
   return {
-    prompt_tokens: item["prompt_tokens"],
-    total_tokens: item["total_tokens"],
+    promptTokens: item["prompt_tokens"],
+    totalTokens: item["total_tokens"],
   };
 }
 
@@ -969,7 +969,7 @@ export interface CreateEditRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  topP?: number | null;
 }
 
 export function createEditRequestSerializer(item: CreateEditRequest): any {
@@ -979,7 +979,7 @@ export function createEditRequestSerializer(item: CreateEditRequest): any {
     instruction: item["instruction"],
     n: item["n"],
     temperature: item["temperature"],
-    top_p: item["top_p"],
+    top_p: item["topP"],
   };
 }
 
@@ -993,7 +993,7 @@ export interface CreateEditResponse {
   choices: {
     text: string;
     index: number;
-    finish_reason: "stop" | "length";
+    finishReason: "stop" | "length";
   }[];
   usage: CompletionUsage;
 }
@@ -1026,7 +1026,7 @@ export interface _CreateEditResponseChoice {
    * natural stop point or a provided stop sequence, or `length` if the maximum number of tokens
    * specified in the request was reached.
    */
-  finish_reason: "stop" | "length";
+  finishReason: "stop" | "length";
 }
 
 export function _createEditResponseChoiceDeserializer(
@@ -1035,25 +1035,25 @@ export function _createEditResponseChoiceDeserializer(
   return {
     text: item["text"],
     index: item["index"],
-    finish_reason: item["finish_reason"],
+    finishReason: item["finish_reason"],
   };
 }
 
 /** Usage statistics for the completion request. */
 export interface CompletionUsage {
   /** Number of tokens in the prompt. */
-  prompt_tokens: number;
+  promptTokens: number;
   /** Number of tokens in the generated completion */
-  completion_tokens: number;
+  completionTokens: number;
   /** Total number of tokens used in the request (prompt + completion). */
-  total_tokens: number;
+  totalTokens: number;
 }
 
 export function completionUsageDeserializer(item: any): CompletionUsage {
   return {
-    prompt_tokens: item["prompt_tokens"],
-    completion_tokens: item["completion_tokens"],
-    total_tokens: item["total_tokens"],
+    promptTokens: item["prompt_tokens"],
+    completionTokens: item["completion_tokens"],
+    totalTokens: item["total_tokens"],
   };
 }
 
@@ -1098,7 +1098,7 @@ export interface CreateCompletionRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  topP?: number | null;
   /**
    * How many completions to generate for each prompt.
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
@@ -1112,7 +1112,7 @@ export interface CreateCompletionRequest {
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
    * for counting tokens.
    */
-  max_tokens?: number | null;
+  maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
   stop?: Stop | null;
   /**
@@ -1121,7 +1121,7 @@ export interface CreateCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  presence_penalty?: number | null;
+  presencePenalty?: number | null;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
    * frequency in the text so far, decreasing the model's likelihood to repeat the same line
@@ -1129,7 +1129,7 @@ export interface CreateCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  frequency_penalty?: number | null;
+  frequencyPenalty?: number | null;
   /**
    * Modify the likelihood of specified tokens appearing in the completion.
    * Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an
@@ -1138,7 +1138,7 @@ export interface CreateCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: Record<string, number> | null;
+  logitBias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -1172,7 +1172,7 @@ export interface CreateCompletionRequest {
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
    * quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
    */
-  best_of?: number | null;
+  bestOf?: number | null;
 }
 
 export function createCompletionRequestSerializer(
@@ -1183,18 +1183,18 @@ export function createCompletionRequestSerializer(
     prompt: item["prompt"],
     suffix: item["suffix"],
     temperature: item["temperature"],
-    top_p: item["top_p"],
+    top_p: item["topP"],
     n: item["n"],
-    max_tokens: item["max_tokens"],
+    max_tokens: item["maxTokens"],
     stop: item["stop"],
-    presence_penalty: item["presence_penalty"],
-    frequency_penalty: item["frequency_penalty"],
-    logit_bias: item["logit_bias"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    logit_bias: item["logitBias"],
     user: item["user"],
     stream: item["stream"],
     logprobs: item["logprobs"],
     echo: item["echo"],
-    best_of: item["best_of"],
+    best_of: item["bestOf"],
   };
 }
 
@@ -1231,11 +1231,11 @@ export interface CreateCompletionResponse {
     text: string;
     logprobs: {
       tokens: string[];
-      token_logprobs: number[];
-      top_logprobs: Record<string, number>[];
-      text_offset: number[];
+      tokenLogprobs: number[];
+      topLogprobs: Record<string, number>[];
+      textOffset: number[];
     } | null;
-    finish_reason: "stop" | "length" | "content_filter";
+    finishReason: "stop" | "length" | "content_filter";
   }[];
   usage?: CompletionUsage;
 }
@@ -1269,9 +1269,9 @@ export interface _CreateCompletionResponseChoice {
   text: string;
   logprobs: {
     tokens: string[];
-    token_logprobs: number[];
-    top_logprobs: Record<string, number>[];
-    text_offset: number[];
+    tokenLogprobs: number[];
+    topLogprobs: Record<string, number>[];
+    textOffset: number[];
   } | null;
   /**
    * The reason the model stopped generating tokens. This will be `stop` if the model hit a
@@ -1280,7 +1280,7 @@ export interface _CreateCompletionResponseChoice {
    * in the request was reached, or `content_filter` if content was omitted due to a flag from our
    * content filters.
    */
-  finish_reason: "stop" | "length" | "content_filter";
+  finishReason: "stop" | "length" | "content_filter";
 }
 
 export function _createCompletionResponseChoiceDeserializer(
@@ -1290,16 +1290,16 @@ export function _createCompletionResponseChoiceDeserializer(
     index: item["index"],
     text: item["text"],
     logprobs: item["logprobs"],
-    finish_reason: item["finish_reason"],
+    finishReason: item["finish_reason"],
   };
 }
 
 /** model interface _CreateCompletionResponseChoiceLogprobs */
 export interface _CreateCompletionResponseChoiceLogprobs {
   tokens: string[];
-  token_logprobs: number[];
-  top_logprobs: Record<string, number>[];
-  text_offset: number[];
+  tokenLogprobs: number[];
+  topLogprobs: Record<string, number>[];
+  textOffset: number[];
 }
 
 export function _createCompletionResponseChoiceLogprobsDeserializer(
@@ -1309,13 +1309,13 @@ export function _createCompletionResponseChoiceLogprobsDeserializer(
     tokens: item["tokens"].map((p: any) => {
       return p;
     }),
-    token_logprobs: item["token_logprobs"].map((p: any) => {
+    tokenLogprobs: item["token_logprobs"].map((p: any) => {
       return p;
     }),
-    top_logprobs: item["top_logprobs"].map((p: any) => {
+    topLogprobs: item["top_logprobs"].map((p: any) => {
       return p;
     }),
-    text_offset: item["text_offset"].map((p: any) => {
+    textOffset: item["text_offset"].map((p: any) => {
       return p;
     }),
   };
@@ -1333,7 +1333,7 @@ export interface CreateFineTuningJobRequest {
    *
    * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
    */
-  training_file: string;
+  trainingFile: string;
   /**
    * The ID of an uploaded file that contains validation data.
    *
@@ -1346,7 +1346,7 @@ export interface CreateFineTuningJobRequest {
    *
    * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
    */
-  validation_file?: string | null;
+  validationFile?: string | null;
   /**
    * The name of the model to fine-tune. You can select one of the
    * [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned).
@@ -1354,7 +1354,7 @@ export interface CreateFineTuningJobRequest {
   model: "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
   /** The hyperparameters used for the fine-tuning job. */
   hyperparameters?: {
-    n_epochs?: "auto" | number;
+    nEpochs?: "auto" | number;
   };
   /**
    * A string of up to 18 characters that will be added to your fine-tuned model name.
@@ -1369,8 +1369,8 @@ export function createFineTuningJobRequestSerializer(
   item: CreateFineTuningJobRequest,
 ): any {
   return {
-    training_file: item["training_file"],
-    validation_file: item["validation_file"],
+    training_file: item["trainingFile"],
+    validation_file: item["validationFile"],
     model: item["model"],
     hyperparameters: !item["hyperparameters"]
       ? item["hyperparameters"]
@@ -1387,17 +1387,17 @@ export interface _CreateFineTuningJobRequestHyperparameters {
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
    */
-  n_epochs?: "auto" | number;
+  nEpochs?: "auto" | number;
 }
 
 export function _createFineTuningJobRequestHyperparametersSerializer(
   item: _CreateFineTuningJobRequestHyperparameters,
 ): any {
   return {
-    n_epochs: !item["n_epochs"]
-      ? item["n_epochs"]
+    n_epochs: !item["nEpochs"]
+      ? item["nEpochs"]
       : _createFineTuningJobRequestHyperparametersNEpochsSerializer(
-          item["n_epochs"],
+          item["nEpochs"],
         ),
   };
 }
@@ -1418,21 +1418,21 @@ export interface FineTuningJob {
   /** The object type, which is always "fine_tuning.job". */
   object: "fine_tuning.job";
   /** The Unix timestamp (in seconds) for when the fine-tuning job was created. */
-  created_at: Date;
+  createdAt: Date;
   /**
    * The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be
    * null if the fine-tuning job is still running.
    */
-  finished_at: Date | null;
+  finishedAt: Date | null;
   /** The base model that is being fine-tuned. */
   model: string;
   /**
    * The name of the fine-tuned model that is being created. The value will be null if the
    * fine-tuning job is still running.
    */
-  fine_tuned_model: string | null;
+  fineTunedModel: string | null;
   /** The organization that owns the fine-tuning job. */
-  organization_id: string;
+  organizationId: string;
   /**
    * The current status of the fine-tuning job, which can be either `created`, `pending`, `running`,
    * `succeeded`, `failed`, or `cancelled`.
@@ -1449,28 +1449,28 @@ export interface FineTuningJob {
    * [fine-tuning guide](/docs/guides/fine-tuning) for more details.
    */
   hyperparameters: {
-    n_epochs?: "auto" | number;
+    nEpochs?: "auto" | number;
   };
   /**
    * The file ID used for training. You can retrieve the training data with the
    * [Files API](/docs/api-reference/files/retrieve-contents).
    */
-  training_file: string;
+  trainingFile: string;
   /**
    * The file ID used for validation. You can retrieve the validation results with the
    * [Files API](/docs/api-reference/files/retrieve-contents).
    */
-  validation_file: string | null;
+  validationFile: string | null;
   /**
    * The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the
    * [Files API](/docs/api-reference/files/retrieve-contents).
    */
-  result_files: string[];
+  resultFiles: string[];
   /**
    * The total number of billable tokens processed by this fine tuning job. The value will be null
    * if the fine-tuning job is still running.
    */
-  trained_tokens: number | null;
+  trainedTokens: number | null;
   /**
    * For fine-tuning jobs that have `failed`, this will contain more information on the cause of the
    * failure.
@@ -1486,25 +1486,25 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"] * 1000),
-    finished_at: !item["finished_at"]
+    createdAt: new Date(item["created_at"] * 1000),
+    finishedAt: !item["finished_at"]
       ? item["finished_at"]
       : !item["finished_at"]
         ? item["finished_at"]
         : new Date(item["finished_at"] * 1000),
     model: item["model"],
-    fine_tuned_model: item["fine_tuned_model"],
-    organization_id: item["organization_id"],
+    fineTunedModel: item["fine_tuned_model"],
+    organizationId: item["organization_id"],
     status: item["status"],
     hyperparameters: _fineTuningJobHyperparametersDeserializer(
       item["hyperparameters"],
     ),
-    training_file: item["training_file"],
-    validation_file: item["validation_file"],
-    result_files: item["result_files"].map((p: any) => {
+    trainingFile: item["training_file"],
+    validationFile: item["validation_file"],
+    resultFiles: item["result_files"].map((p: any) => {
       return p;
     }),
-    trained_tokens: item["trained_tokens"],
+    trainedTokens: item["trained_tokens"],
     error: item["error"],
   };
 }
@@ -1518,14 +1518,14 @@ export interface _FineTuningJobHyperparameters {
    * "Auto" decides the optimal number of epochs based on the size of the dataset. If setting the
    * number manually, we support any number between 1 and 50 epochs.
    */
-  n_epochs?: "auto" | number;
+  nEpochs?: "auto" | number;
 }
 
 export function _fineTuningJobHyperparametersDeserializer(
   item: any,
 ): _FineTuningJobHyperparameters {
   return {
-    n_epochs: !item["n_epochs"]
+    nEpochs: !item["n_epochs"]
       ? item["n_epochs"]
       : _fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
   };
@@ -1567,7 +1567,7 @@ export function _fineTuningJobErrorDeserializer(
 export interface ListPaginatedFineTuningJobsResponse {
   object: string;
   data: FineTuningJob[];
-  has_more: boolean;
+  hasMore: boolean;
 }
 
 export function listPaginatedFineTuningJobsResponseDeserializer(
@@ -1576,7 +1576,7 @@ export function listPaginatedFineTuningJobsResponseDeserializer(
   return {
     object: item["object"],
     data: fineTuningJobArrayDeserializer(item["data"]),
-    has_more: item["has_more"],
+    hasMore: item["has_more"],
   };
 }
 
@@ -1615,7 +1615,7 @@ export function fineTuningJobEventArrayDeserializer(
 export interface FineTuningJobEvent {
   id: string;
   object: string;
-  created_at: Date;
+  createdAt: Date;
   level: "info" | "warn" | "error";
   message: string;
 }
@@ -1624,7 +1624,7 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   return {
     id: item["id"],
     object: item["object"],
-    created_at: new Date(item["created_at"] * 1000),
+    createdAt: new Date(item["created_at"] * 1000),
     level: item["level"],
     message: item["message"],
   };
@@ -1662,7 +1662,7 @@ export interface CreateChatCompletionRequest {
    * model to call that function. `none` is the default when no functions are present. `auto` is the
    * default if functions are present.
    */
-  function_call?: "none" | "auto" | ChatCompletionFunctionCallOption;
+  functionCall?: "none" | "auto" | ChatCompletionFunctionCallOption;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output
    * more random, while lower values like 0.2 will make it more focused and deterministic.
@@ -1677,7 +1677,7 @@ export interface CreateChatCompletionRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  topP?: number | null;
   /**
    * How many completions to generate for each prompt.
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
@@ -1691,7 +1691,7 @@ export interface CreateChatCompletionRequest {
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
    * for counting tokens.
    */
-  max_tokens?: number | null;
+  maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
   stop?: Stop | null;
   /**
@@ -1700,7 +1700,7 @@ export interface CreateChatCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  presence_penalty?: number | null;
+  presencePenalty?: number | null;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
    * frequency in the text so far, decreasing the model's likelihood to repeat the same line
@@ -1708,7 +1708,7 @@ export interface CreateChatCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  frequency_penalty?: number | null;
+  frequencyPenalty?: number | null;
   /**
    * Modify the likelihood of specified tokens appearing in the completion.
    * Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an
@@ -1717,7 +1717,7 @@ export interface CreateChatCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: Record<string, number> | null;
+  logitBias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -1741,19 +1741,19 @@ export function createChatCompletionRequestSerializer(
     functions: !item["functions"]
       ? item["functions"]
       : chatCompletionFunctionsArraySerializer(item["functions"]),
-    function_call: !item["function_call"]
-      ? item["function_call"]
+    function_call: !item["functionCall"]
+      ? item["functionCall"]
       : _createChatCompletionRequestFunctionCall1Serializer(
-          item["function_call"],
+          item["functionCall"],
         ),
     temperature: item["temperature"],
-    top_p: item["top_p"],
+    top_p: item["topP"],
     n: item["n"],
-    max_tokens: item["max_tokens"],
+    max_tokens: item["maxTokens"],
     stop: item["stop"],
-    presence_penalty: item["presence_penalty"],
-    frequency_penalty: item["frequency_penalty"],
-    logit_bias: item["logit_bias"],
+    presence_penalty: item["presencePenalty"],
+    frequency_penalty: item["frequencyPenalty"],
+    logit_bias: item["logitBias"],
     user: item["user"],
     stream: item["stream"],
   };
@@ -1783,7 +1783,7 @@ export interface ChatCompletionRequestMessage {
    */
   name?: string;
   /** The name and arguments of a function that should be called, as generated by the model. */
-  function_call?: {
+  functionCall?: {
     name: string;
     arguments: string;
   };
@@ -1796,10 +1796,10 @@ export function chatCompletionRequestMessageSerializer(
     role: item["role"],
     content: item["content"],
     name: item["name"],
-    function_call: !item["function_call"]
-      ? item["function_call"]
+    function_call: !item["functionCall"]
+      ? item["functionCall"]
       : _chatCompletionRequestMessageFunctionCallSerializer(
-          item["function_call"],
+          item["functionCall"],
         ),
   };
 }
@@ -1909,7 +1909,7 @@ export interface CreateChatCompletionResponse {
   choices: {
     index: number;
     message: ChatCompletionResponseMessage;
-    finish_reason: "stop" | "length" | "function_call" | "content_filter";
+    finishReason: "stop" | "length" | "function_call" | "content_filter";
   }[];
   usage?: CompletionUsage;
 }
@@ -1950,7 +1950,7 @@ export interface _CreateChatCompletionResponseChoice {
    * specified in the request was reached, `content_filter` if the content was omitted due to
    * a flag from our content filters, or `function_call` if the model called a function.
    */
-  finish_reason: "stop" | "length" | "function_call" | "content_filter";
+  finishReason: "stop" | "length" | "function_call" | "content_filter";
 }
 
 export function _createChatCompletionResponseChoiceDeserializer(
@@ -1959,7 +1959,7 @@ export function _createChatCompletionResponseChoiceDeserializer(
   return {
     index: item["index"],
     message: chatCompletionResponseMessageDeserializer(item["message"]),
-    finish_reason: item["finish_reason"],
+    finishReason: item["finish_reason"],
   };
 }
 
@@ -1970,7 +1970,7 @@ export interface ChatCompletionResponseMessage {
   /** The contents of the message. */
   content: string | null;
   /** The name and arguments of a function that should be called, as generated by the model. */
-  function_call?: {
+  functionCall?: {
     name: string;
     arguments: string;
   };
@@ -1982,7 +1982,7 @@ export function chatCompletionResponseMessageDeserializer(
   return {
     role: item["role"],
     content: item["content"],
-    function_call: !item["function_call"]
+    functionCall: !item["function_call"]
       ? item["function_call"]
       : _chatCompletionResponseMessageFunctionCallDeserializer(
           item["function_call"],
@@ -2029,7 +2029,7 @@ export interface CreateTranslationRequest {
    * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or
    * vtt.
    */
-  response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+  responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
   /**
    * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more
    * random, while lower values like 0.2 will make it more focused and deterministic. If set to 0,
@@ -2046,7 +2046,7 @@ export function createTranslationRequestSerializer(
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
     prompt: item["prompt"],
-    response_format: item["response_format"],
+    response_format: item["responseFormat"],
     temperature: item["temperature"],
   };
 }
@@ -2082,7 +2082,7 @@ export interface CreateTranscriptionRequest {
    * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or
    * vtt.
    */
-  response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+  responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
   /**
    * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more
    * random, while lower values like 0.2 will make it more focused and deterministic. If set to 0,
@@ -2105,7 +2105,7 @@ export function createTranscriptionRequestSerializer(
     file: uint8ArrayToString(item["file"], "base64"),
     model: item["model"],
     prompt: item["prompt"],
-    response_format: item["response_format"],
+    response_format: item["responseFormat"],
     temperature: item["temperature"],
     language: item["language"],
   };
