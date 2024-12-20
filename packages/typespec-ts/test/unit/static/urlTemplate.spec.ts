@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import { expandUrlTemplate } from "../../../static/static-helpers/urlTemplate.js";
 
-function createitContext(context: any) {
+function createitContext(context: any, option?: any) {
     return (template: string, result: string) => {
-        const r = expandUrlTemplate(template, context);
+        const r = expandUrlTemplate(template, context, option);
         console.log("template", template, "actual", r, "expected", result);
         assert.equal(r, result);
     };
@@ -94,6 +94,25 @@ describe.only("url-template", () => {
             });
             assert('/pools{?api-version,timeOut}', '/pools?api-version=2023-05-01.17.0');
         });
+    });
+
+    describe("allowReserved option", () => {
+        it("should not encode reserved characters if enable allowReserved", () => {
+            const assert = createitContext({
+                'path': '/foo/bar',
+                'query': 'bar,baz'
+            }, { allowReserved: true });
+            assert('{path}/here{?query}', '/foo/bar/here?query=bar,baz');
+        });
+
+        it("should encode reserved characters if disable allowReserved", () => {
+            const assert = createitContext({
+                'path': '/foo/bar',
+                'query': 'bar,baz'
+            }, { allowReserved: false });
+            assert('{path}/here{?query}', '%2Ffoo%2Fbar/here?query=bar%2Cbaz');
+        });
+
     });
 
     describe('Level 2', () => {
