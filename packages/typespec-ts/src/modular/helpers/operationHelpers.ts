@@ -80,7 +80,9 @@ export function getSendPrivateFunction(
   if (urlTemplateParams.length > 0) {
     statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.urlTemplate}", {
         ${urlTemplateParams.join(",\n")}
-        });`);
+        },{
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    });`);
     pathStr = "path";
   }
 
