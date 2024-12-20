@@ -9,7 +9,7 @@ import { getNullableValidType, isTypeNullable } from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
-  getSpecialSerializeInfo,
+  hasCollectionFormatInfo,
   isBinaryPayload,
   ServiceOperation
 } from "../../utils/operationUtil.js";
@@ -720,12 +720,7 @@ export function getParameterMap(
     return `"${param.name}": ${getConstantValue(param.type)}`;
   }
 
-  const serializeInfo = getSpecialSerializeInfo(
-    context,
-    param.kind,
-    (param as any).collectionFormat
-  );
-  if (serializeInfo.hasCsvCollection || serializeInfo.hasMultiCollection) {
+  if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
     return getCollectionFormat(context, param, optionalParamName);
   }
 

@@ -413,6 +413,19 @@ export function extractPagedMetadataNested(
   return paged;
 }
 
+export function hasCollectionFormatInfo(
+  paramType: string,
+  paramFormat: string
+) {
+  return (
+    getHasMultiCollection(paramType, paramFormat) ||
+    getHasSsvCollection(paramType, paramFormat) ||
+    getHasTsvCollection(paramType, paramFormat) ||
+    getHasCsvCollection(paramType, paramFormat) ||
+    getHasPipeCollection(paramType, paramFormat)
+  );
+}
+
 export function getSpecialSerializeInfo(
   dpgContext: SdkContext,
   paramType: string,
