@@ -105,15 +105,6 @@ model TodoLabelRecord {
 }
 
 @jsonSchema
-model TodoUrlAttachment {
-  /** A description of the URL */
-  description: string;
-
-  /** The url */
-  url: url;
-}
-
-@jsonSchema
 model TodoAttachment {
   /** The file name of the attachment */
   @maxLength(255)
@@ -248,6 +239,7 @@ namespace TodoItems {
      code: "not-found";
   }
 
+  //@friendlyName("{name}List", T)
   model Page<T> {
     @pageItems items: T[];
   }
@@ -287,10 +279,10 @@ namespace TodoItems {
 
     @sharedRoute
     @post
-    op createUrlAttachment(
+    op createJsonAttachment(
       @header contentType: "application/json",
       @path itemId: TodoItem.id,
-      @body contents: TodoUrlAttachment,
+      @body contents: TodoAttachment,
     ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
 
    @sharedRoute
