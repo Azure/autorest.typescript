@@ -23,28 +23,35 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _primitiveSend(
   context: Client,
   param: string,
-  options: PrimitiveOptionalParams = { requestOptions: {} }
+  options: PrimitiveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = __PLACEHOLDER_o15__("/primitive?fixed=true{&param*}").expand({
-    param: param
-  });
+  const path = expandUrlTemplate(
+    "/primitive?fixed=true{&param*}",
+    {
+      param: param,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _primitiveDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -57,7 +64,7 @@ export async function _primitiveDeserialize(
 export async function primitive(
   context: Client,
   param: string,
-  options: PrimitiveOptionalParams = { requestOptions: {} }
+  options: PrimitiveOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _primitiveSend(context, param, options);
   return _primitiveDeserialize(result);
@@ -66,20 +73,26 @@ export async function primitive(
 export function _arraySend(
   context: Client,
   param: string[],
-  options: ArrayOptionalParams = { requestOptions: {} }
+  options: ArrayOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = __PLACEHOLDER_o15__("/array?fixed=true{&param*}").expand({
-    param: param.map((p: any) => {
-      return p;
-    })
-  });
+  const path = expandUrlTemplate(
+    "/array?fixed=true{&param*}",
+    {
+      param: param.map((p: any) => {
+        return p;
+      }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _arrayDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -92,7 +105,7 @@ export async function _arrayDeserialize(
 export async function array(
   context: Client,
   param: string[],
-  options: ArrayOptionalParams = { requestOptions: {} }
+  options: ArrayOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _arraySend(context, param, options);
   return _arrayDeserialize(result);
@@ -101,18 +114,24 @@ export async function array(
 export function _recordSend(
   context: Client,
   param: Record<string, number>,
-  options: RecordOptionalParams = { requestOptions: {} }
+  options: RecordOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = __PLACEHOLDER_o15__("/record?fixed=true{&param*}").expand({
-    param: param
-  });
+  const path = expandUrlTemplate(
+    "/record?fixed=true{&param*}",
+    {
+      param: param,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _recordDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -125,7 +144,7 @@ export async function _recordDeserialize(
 export async function record(
   context: Client,
   param: Record<string, number>,
-  options: RecordOptionalParams = { requestOptions: {} }
+  options: RecordOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _recordSend(context, param, options);
   return _recordDeserialize(result);

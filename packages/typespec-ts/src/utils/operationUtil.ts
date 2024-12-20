@@ -459,8 +459,9 @@ export function hasCollectionFormatInfo(
   paramFormat: string
 ) {
   return (
-    getHasMultiCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat)
+    paramType === "header" &&
+    (getHasMultiCollection(paramType, paramFormat) ||
+      getHasCsvCollection(paramType, paramFormat))
   );
 }
 
@@ -468,16 +469,16 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  // const detail = getSpecialSerializeInfo(paramType, paramFormat);
-  // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
-  if (getHasMultiCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildMultiCollection);
-  }
+  // only enable helpers for header parameters
+  if (paramType === "header") {
+    if (getHasMultiCollection(paramType, paramFormat)) {
+      return resolveReference(SerializationHelpers.buildMultiCollection);
+    }
 
-  if (getHasCsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildCsvCollection);
+    if (getHasCsvCollection(paramType, paramFormat)) {
+      return resolveReference(SerializationHelpers.buildCsvCollection);
+    }
   }
-
   return undefined;
 }
 

@@ -28,31 +28,38 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _optionalSend(
   context: Client,
-  options: OptionalOptionalParams = { requestOptions: {} }
+  options: OptionalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = __PLACEHOLDER_o15__("/annotation/optional{?select}").expand({
-    select: !options?.select
-      ? options?.select
-      : options?.select.map((p: any) => {
-          return p;
-        })
-  });
+  const path = expandUrlTemplate(
+    "/annotation/optional{?select*}",
+    {
+      select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _optionalDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -64,7 +71,7 @@ export async function _optionalDeserialize(
 
 export async function optional(
   context: Client,
-  options: OptionalOptionalParams = { requestOptions: {} }
+  options: OptionalOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _optionalSend(context, options);
   return _optionalDeserialize(result);
@@ -73,20 +80,26 @@ export async function optional(
 export function _requiredSend(
   context: Client,
   select: string[],
-  options: RequiredOptionalParams = { requestOptions: {} }
+  options: RequiredOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = __PLACEHOLDER_o15__("/annotation/required{?select}").expand({
-    select: select.map((p: any) => {
-      return p;
-    })
-  });
+  const path = expandUrlTemplate(
+    "/annotation/required{?select*}",
+    {
+      select: select.map((p: any) => {
+        return p;
+      }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _requiredDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -99,7 +112,7 @@ export async function _requiredDeserialize(
 export async function required(
   context: Client,
   select: string[],
-  options: RequiredOptionalParams = { requestOptions: {} }
+  options: RequiredOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requiredSend(context, select, options);
   return _requiredDeserialize(result);

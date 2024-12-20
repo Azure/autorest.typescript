@@ -8,7 +8,7 @@ function createitContext(context: any, option?: any) {
         assert.equal(r, result);
     };
 }
-describe.only("url-template", () => {
+describe("url-template", () => {
     describe("Level 1", () => {
         const assert = createitContext({
             'var': 'value',
