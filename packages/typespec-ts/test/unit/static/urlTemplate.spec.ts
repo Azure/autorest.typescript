@@ -86,6 +86,16 @@ describe.only("url-template", () => {
         });
     });
 
+    describe('apiVersion', () => {
+        it('should expand apiVersion', () => {
+            const assert = createitContext({
+                'api-version': '2023-05-01.17.0',
+                'timeOut': undefined
+            });
+            assert('/pools{?api-version,timeOut}', '/pools?api-version=2023-05-01.17.0');
+        });
+    });
+
     describe('Level 2', () => {
         const assert = createitContext({
             'var': 'value',

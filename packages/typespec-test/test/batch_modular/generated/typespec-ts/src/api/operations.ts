@@ -207,6 +207,9 @@ export function _listApplicationsSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -256,6 +259,9 @@ export function _getApplicationSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -303,6 +309,9 @@ export function _listPoolUsageMetricsSend(
       endtime: options?.endtime?.toISOString(),
       $filter: options?.$filter,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -346,10 +355,16 @@ export function _createPoolSend(
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/pools{?api-version,timeOut}", {
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/pools{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -408,6 +423,9 @@ export function _listPoolsSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -444,11 +462,17 @@ export function _deletePoolSend(
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/pools/{poolId}{?api-version,timeOut}", {
-    poolId: poolId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({
@@ -517,11 +541,17 @@ export function _poolExistsSend(
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/pools/{poolId}{?api-version,timeOut}", {
-    poolId: poolId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .head({
@@ -594,6 +624,9 @@ export function _getPoolSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -651,11 +684,17 @@ export function _updatePoolSend(
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/pools/{poolId}{?api-version,timeOut}", {
-    poolId: poolId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -727,6 +766,9 @@ export function _disablePoolAutoScaleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -766,6 +808,9 @@ export function _enablePoolAutoScaleSend(
       poolId: poolId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -843,6 +888,9 @@ export function _evaluatePoolAutoScaleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -898,6 +946,9 @@ export function _resizePoolSend(
       poolId: poolId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -975,6 +1026,9 @@ export function _stopPoolResizeSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1047,6 +1101,9 @@ export function _replacePoolPropertiesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1102,6 +1159,9 @@ export function _removeNodesSend(
       poolId: poolId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -1174,6 +1234,9 @@ export function _listSupportedImagesSend(
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1217,6 +1280,9 @@ export function _listPoolNodeCountsSend(
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1257,11 +1323,17 @@ export function _deleteJobSend(
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs/{jobId}{?api-version,timeOut}", {
-    jobId: jobId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({
@@ -1343,6 +1415,9 @@ export function _getJobSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1400,11 +1475,17 @@ export function _updateJobSend(
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs/{jobId}{?api-version,timeOut}", {
-    jobId: jobId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -1470,11 +1551,17 @@ export function _replaceJobSend(
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs/{jobId}{?api-version,timeOut}", {
-    jobId: jobId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .put({
@@ -1547,6 +1634,9 @@ export function _disableJobSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1617,11 +1707,17 @@ export function _enableJobSend(
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs/{jobId}/enable{?api-version,timeOut}", {
-    jobId: jobId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/enable{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -1690,6 +1786,9 @@ export function _terminateJobSend(
       jobId: jobId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -1760,10 +1859,16 @@ export function _createJobSend(
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs{?api-version,timeOut}", {
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -1828,6 +1933,9 @@ export function _listJobsSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1883,6 +1991,9 @@ export function _listJobsFromScheduleSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -1934,6 +2045,9 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
         : options?.$select.map((p: any) => {
             return p;
           }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -1990,6 +2104,9 @@ export function _getJobTaskCountsSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2027,10 +2144,16 @@ export function _createCertificateSend(
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/certificates{?api-version,timeOut}", {
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/certificates{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -2080,6 +2203,9 @@ export function _listCertificatesSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2124,6 +2250,9 @@ export function _cancelCertificateDeletionSend(
       thumbprint: thumbprint,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2179,6 +2308,9 @@ export function _deleteCertificateSend(
       thumbprint: thumbprint,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2242,6 +2374,9 @@ export function _getCertificateSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2286,6 +2421,9 @@ export function _jobScheduleExistsSend(
       jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2349,6 +2487,9 @@ export function _deleteJobScheduleSend(
       jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2429,6 +2570,9 @@ export function _getJobScheduleSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2492,6 +2636,9 @@ export function _updateJobScheduleSend(
       jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2573,6 +2720,9 @@ export function _replaceJobScheduleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2652,6 +2802,9 @@ export function _disableJobScheduleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2714,6 +2867,9 @@ export function _enableJobScheduleSend(
       jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -2778,6 +2934,9 @@ export function _terminateJobScheduleSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2838,10 +2997,16 @@ export function _createJobScheduleSend(
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobschedules{?api-version,timeOut}", {
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobschedules{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -2896,6 +3061,9 @@ export function _listJobSchedulesSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -2933,11 +3101,17 @@ export function _createTaskSend(
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate("/jobs/{jobId}/tasks{?api-version,timeOut}", {
-    jobId: jobId,
-    "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-    timeOut: options?.timeOutInSeconds,
-  });
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -2999,6 +3173,9 @@ export function _listTasksSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3047,6 +3224,9 @@ export function _createTaskCollectionSend(
       jobId: jobId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3115,6 +3295,9 @@ export function _deleteTaskSend(
       taskId: taskId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3198,6 +3381,9 @@ export function _getTaskSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3268,6 +3454,9 @@ export function _replaceTaskSend(
       taskId: taskId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3345,6 +3534,9 @@ export function _listSubTasksSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3386,6 +3578,9 @@ export function _terminateTaskSend(
       taskId: taskId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3456,6 +3651,9 @@ export function _reactivateTaskSend(
       taskId: taskId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3534,6 +3732,9 @@ export function _deleteTaskFileSend(
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3584,6 +3785,9 @@ export function _getTaskFileSend(
       filePath: filePath,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3657,6 +3861,9 @@ export function _getTaskFilePropertiesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3727,6 +3934,9 @@ export function _listTaskFilesSend(
       $filter: options?.$filter,
       recursive: options?.recursive,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3774,6 +3984,9 @@ export function _createNodeUserSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3835,6 +4048,9 @@ export function _deleteNodeUserSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3889,6 +4105,9 @@ export function _replaceNodeUserSend(
       userName: userName,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -3957,6 +4176,9 @@ export function _getNodeSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -3998,6 +4220,9 @@ export function _rebootNodeSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4048,6 +4273,9 @@ export function _reimageNodeSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4102,6 +4330,9 @@ export function _disableNodeSchedulingSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4161,6 +4392,9 @@ export function _enableNodeSchedulingSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -4210,6 +4444,9 @@ export function _getNodeRemoteLoginSettingsSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4263,6 +4500,9 @@ export function _getNodeRemoteDesktopFileSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4318,6 +4558,9 @@ export function _uploadNodeLogsSend(
       nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4384,6 +4627,9 @@ export function _listNodesSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -4436,6 +4682,9 @@ export function _getNodeExtensionSend(
         : options?.$select.map((p: any) => {
             return p;
           }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4491,6 +4740,9 @@ export function _listNodeExtensionsSend(
             return p;
           }),
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -4540,6 +4792,9 @@ export function _deleteNodeFileSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4591,6 +4846,9 @@ export function _getNodeFileSend(
       filePath: filePath,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
@@ -4666,6 +4924,9 @@ export function _getNodeFilePropertiesSend(
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -4735,6 +4996,9 @@ export function _listNodeFilesSend(
       timeOut: options?.timeOutInSeconds,
       $filter: options?.$filter,
       recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
