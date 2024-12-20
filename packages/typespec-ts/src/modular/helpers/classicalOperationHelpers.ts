@@ -124,7 +124,11 @@ export function getClassicalOperation(
     });
   }
   if (existInterface) {
-    existInterface.addProperties([...properties]);
+    // only adding the property if it doesn't exist
+    const unExistingProperties = properties.filter(
+      (p) => !existInterface.getProperty(p.name)
+    );
+    existInterface.addProperties([...unExistingProperties]);
   } else {
     classicFile.addInterface({
       name: interfaceName,
@@ -205,8 +209,7 @@ export function getClassicalOperation(
         hasSubscriptionIdPromoted ? ", subscriptionId" : ""
       })}`;
       if (layer !== operationGroup.namespaceHierarchies.length - 1) {
-        statement = `,
-        ${normalizeName(
+        const propertyAndGetterStatement = `${normalizeName(
           operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
           NameType.Property
         )}: get${getClassicalLayerPrefix(
@@ -214,9 +217,16 @@ export function getClassicalOperation(
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context${
+        )}`;
+        // only adding the property if it doesn't exist
+        if (!returnStatement.includes(propertyAndGetterStatement)) {
+          statement = `,
+        ${propertyAndGetterStatement}Operations(context${
           hasSubscriptionIdPromoted ? ", subscriptionId" : ""
         })}`;
+        } else {
+          statement = `}`;
+        }
       }
       const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);

@@ -307,6 +307,10 @@ export const nonBrandedRlcTsps = [
 
 export const modularTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
   },
