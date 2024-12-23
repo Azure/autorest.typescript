@@ -33,6 +33,28 @@ describe("BasicClient Classical Client", () => {
           "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
         );
       });
+
+      it("could pass the validation if enable skipUrlEncoding because of no special chars", async () => {
+        const iter = client.list({
+          top: 5,
+          skip: 10,
+          orderby: ["id"],
+          filter: "id lt 10",
+          select: ["id", "orders", "etag"],
+          expand: ["orders"],
+          requestOptions: { skipUrlEncoding: true }
+        });
+        const items = [];
+        for await (const user of iter) {
+          items.push(user);
+        }
+        assert.strictEqual(items.length, 2);
+        assert.strictEqual(items[0]?.name, "Madge");
+        assert.strictEqual(
+          items[1]?.etag,
+          "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
+        );
+      });
     });
 
     describe("byPage", () => {
