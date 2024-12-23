@@ -31,7 +31,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -46,9 +46,15 @@ export function _getMultivariateBatchDetectionResultSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate("/multivariate/detect-batch/{resultId}").expand({
-    resultId: resultId,
-  });
+  const path = expandUrlTemplate(
+    "/multivariate/detect-batch/{resultId}",
+    {
+      resultId: resultId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -136,10 +142,16 @@ export function _listMultivariateModelsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate("/multivariate/models{?skip,top}").expand({
-    skip: options?.skip,
-    top: options?.top,
-  });
+  const path = expandUrlTemplate(
+    "/multivariate/models{?skip,top}",
+    {
+      skip: options?.skip,
+      top: options?.top,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -179,9 +191,15 @@ export function _deleteMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate("/multivariate/models/{modelId}").expand({
-    modelId: modelId,
-  });
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -217,9 +235,15 @@ export function _getMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate("/multivariate/models/{modelId}").expand({
-    modelId: modelId,
-  });
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -259,11 +283,15 @@ export function _detectMultivariateBatchAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/multivariate/models/{modelId}:detect-batch",
-  ).expand({
-    modelId: modelId,
-  });
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: optionalParams?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -316,11 +344,15 @@ export function _detectMultivariateLastAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/multivariate/models/{modelId}:detect-last",
-  ).expand({
-    modelId: modelId,
-  });
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: optionalParams?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
