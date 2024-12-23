@@ -31,7 +31,7 @@ import {
   rejectResultDeserializer,
   cloudEventArraySerializer,
 } from "../models/models.js";
-import { parseTemplate } from "../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -47,11 +47,15 @@ export function _publishCloudEventSend(
   },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}:publish{?api-version}",
-  ).expand({
-    topicName: topicName,
-  });
+    {
+      topicName: topicName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -98,11 +102,15 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}:publish{?api-version}",
-  ).expand({
-    topicName: topicName,
-  });
+    {
+      topicName: topicName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -147,14 +155,18 @@ export function _receiveCloudEventsSend(
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
-  ).expand({
-    topicName: topicName,
-    eventSubscriptionName: eventSubscriptionName,
-    maxEvents: options?.maxEvents,
-    maxWaitTime: options?.maxWaitTime,
-  });
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+      maxEvents: options?.maxEvents,
+      maxWaitTime: options?.maxWaitTime,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
@@ -194,12 +206,16 @@ export function _acknowledgeCloudEventsSend(
   lockTokens: AcknowledgeOptions,
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
-  ).expand({
-    topicName: topicName,
-    eventSubscriptionName: eventSubscriptionName,
-  });
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -246,12 +262,16 @@ export function _releaseCloudEventsSend(
   lockTokens: ReleaseOptions,
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version}",
-  ).expand({
-    topicName: topicName,
-    eventSubscriptionName: eventSubscriptionName,
-  });
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -298,12 +318,16 @@ export function _rejectCloudEventsSend(
   lockTokens: RejectOptions,
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
-  ).expand({
-    topicName: topicName,
-    eventSubscriptionName: eventSubscriptionName,
-  });
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({

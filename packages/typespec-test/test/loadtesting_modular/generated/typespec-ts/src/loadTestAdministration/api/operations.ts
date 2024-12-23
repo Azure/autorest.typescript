@@ -37,7 +37,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -51,9 +51,15 @@ export function _createOrUpdateTestSend(
   body: Test,
   options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
-    testId: testId,
-  });
+  const path = expandUrlTemplate(
+    "/tests/{testId}{?api-version}",
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -92,11 +98,15 @@ export function _createOrUpdateAppComponentsSend(
   body: TestAppComponents,
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/app-components{?api-version}",
-  ).expand({
-    testId: testId,
-  });
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -142,11 +152,15 @@ export function _createOrUpdateServerMetricsConfigSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/server-metrics-config{?api-version}",
-  ).expand({
-    testId: testId,
-  });
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -191,11 +205,15 @@ export function _getAppComponentsSend(
   testId: string,
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/app-components{?api-version}",
-  ).expand({
-    testId: testId,
-  });
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -227,11 +245,15 @@ export function _getServerMetricsConfigSend(
   testId: string,
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/server-metrics-config{?api-version}",
-  ).expand({
-    testId: testId,
-  });
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -263,9 +285,15 @@ export function _getTestSend(
   testId: string,
   options: GetTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
-    testId: testId,
-  });
+  const path = expandUrlTemplate(
+    "/tests/{testId}{?api-version}",
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -298,12 +326,16 @@ export function _getTestFileSend(
   fileName: string,
   options: GetTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/files/{fileName}{?api-version}",
-  ).expand({
-    testId: testId,
-    fileName: fileName,
-  });
+    {
+      testId: testId,
+      fileName: fileName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -336,9 +368,15 @@ export function _listTestFilesSend(
   testId: string,
   options: ListTestFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/tests/{testId}/files{?api-version}").expand({
-    testId: testId,
-  });
+  const path = expandUrlTemplate(
+    "/tests/{testId}/files{?api-version}",
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -374,15 +412,19 @@ export function _listTestsSend(
   context: Client,
   options: ListTestsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests{?api-version,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
-  ).expand({
-    orderby: options?.orderby,
-    search: options?.search,
-    lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
-    lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
-    maxpagesize: options?.maxpagesize,
-  });
+    {
+      orderby: options?.orderby,
+      search: options?.search,
+      lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
+      lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -423,13 +465,17 @@ export function _uploadTestFileSend(
   body: Uint8Array,
   options: UploadTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/files/{fileName}{?api-version,fileType}",
-  ).expand({
-    testId: testId,
-    fileName: fileName,
-    fileType: options?.fileType,
-  });
+    {
+      testId: testId,
+      fileName: fileName,
+      fileType: options?.fileType,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .put({
@@ -478,12 +524,16 @@ export function _deleteTestFileSend(
   fileName: string,
   options: DeleteTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/tests/{testId}/files/{fileName}{?api-version}",
-  ).expand({
-    testId: testId,
-    fileName: fileName,
-  });
+    {
+      testId: testId,
+      fileName: fileName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -516,9 +566,15 @@ export function _deleteTestSend(
   testId: string,
   options: DeleteTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/tests/{testId}{?api-version}").expand({
-    testId: testId,
-  });
+  const path = expandUrlTemplate(
+    "/tests/{testId}{?api-version}",
+    {
+      testId: testId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });

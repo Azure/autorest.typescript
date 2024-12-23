@@ -43,7 +43,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -124,11 +124,15 @@ export function _getTextBlocklistSend(
   blocklistName: string,
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-  });
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -161,11 +165,15 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-  });
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -208,11 +216,15 @@ export function _deleteTextBlocklistSend(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-  });
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -283,11 +295,15 @@ export function _addOrUpdateBlockItemsSend(
   body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}:addOrUpdateBlockItems{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-  });
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -329,11 +345,15 @@ export function _removeBlockItemsSend(
   body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}:removeBlockItems{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-  });
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -375,12 +395,16 @@ export function _getTextBlocklistItemSend(
   blockItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}/blockItems/{blockItemId}{?api-version}",
-  ).expand({
-    blocklistName: blocklistName,
-    blockItemId: blockItemId,
-  });
+    {
+      blocklistName: blocklistName,
+      blockItemId: blockItemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -418,14 +442,18 @@ export function _listTextBlocklistItemsSend(
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/text/blocklists/{blocklistName}/blockItems{?api-version,top,skip,maxpagesize}",
-  ).expand({
-    blocklistName: blocklistName,
-    top: options?.top,
-    skip: options?.skip,
-    maxpagesize: options?.maxpagesize,
-  });
+    {
+      blocklistName: blocklistName,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });

@@ -13,6 +13,7 @@ import {
   ConnectionsListSecretsResponse,
   connectionsListSecretsResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -24,16 +25,20 @@ export function _listSend(
   context: Client,
   options: ConnectionsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections{?api-version,category,includeAll,target}",
+    {
+      category: options?.category,
+      includeAll: options?.includeAll,
+      target: options?.target,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        category: options?.category,
-        includeAll: options?.includeAll,
-        target: options?.target,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
@@ -61,8 +66,17 @@ export function _getSend(
   connectionName: string,
   options: ConnectionsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections/{connectionName}{?api-version}",
+    {
+      connectionName: connectionName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections/{connectionName}", connectionName)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -93,8 +107,17 @@ export function _listSecretsSend(
   ignored: string,
   options: ConnectionsListSecretsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections/{connectionName}/listsecrets{?api-version}",
+    {
+      connectionName: connectionName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections/{connectionName}/listsecrets", connectionName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: { ignored: ignored },

@@ -30,7 +30,7 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
@@ -131,10 +131,16 @@ export function _listWidgetsPagesSend(
   pageSize: number,
   options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/widgets/pages{?page,pageSize}").expand({
-    page: page,
-    pageSize: pageSize,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/widgets/pages{?page,pageSize}",
+    {
+      page: page,
+      pageSize: pageSize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -172,10 +178,16 @@ export function _queryWidgetsPagesSend(
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/widgets/pages{?page,pageSize}").expand({
-    page: page,
-    pageSize: pageSize,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/widgets/pages{?page,pageSize}",
+    {
+      page: page,
+      pageSize: pageSize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
@@ -212,9 +224,15 @@ export function _getWidgetSend(
   id: string,
   options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/{id}").expand({
-    id: id,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -288,12 +306,16 @@ export function _createOrReplaceSend(
   resource: User,
   options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
-  ).expand({
-    name: name,
-    "api-version": options?.apiVersion ?? "1.0.0",
-  });
+    {
+      name: name,
+      "api-version": options?.apiVersion ?? "1.0.0",
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .put({
@@ -339,9 +361,15 @@ export function _updateWidgetSend(
   id: string,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/{id}").expand({
-    id: id,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -379,9 +407,15 @@ export function _deleteWidgetSend(
   id: string,
   options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/{id}").expand({
-    id: id,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -413,9 +447,15 @@ export function _analyzeWidgetSend(
   id: string,
   options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/widgets/{id}/analyze").expand({
-    id: id,
-  });
+  const path = expandUrlTemplate(
+    "/widgets/{id}/analyze",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });

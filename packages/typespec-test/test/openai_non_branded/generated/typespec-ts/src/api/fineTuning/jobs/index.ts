@@ -18,7 +18,7 @@ import {
   ListFineTuningJobEventsResponse,
   listFineTuningJobEventsResponseDeserializer,
 } from "../../../models/models.js";
-import { parseTemplate } from "../../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -71,10 +71,16 @@ export function _listSend(
   context: Client,
   options: FineTuningJobsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/fine_tuning/jobs{?after,limit}").expand({
-    after: options?.after,
-    limit: options?.limit,
-  });
+  const path = expandUrlTemplate(
+    "/fine_tuning/jobs{?after,limit}",
+    {
+      after: options?.after,
+      limit: options?.limit,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -104,9 +110,15 @@ export function _retrieveSend(
   fineTuningJobId: string,
   options: FineTuningJobsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate("/fine_tuning/jobs/{fine_tuning_job_id}").expand({
-    fineTuningJobId: fineTuningJobId,
-  });
+  const path = expandUrlTemplate(
+    "/fine_tuning/jobs/{fine_tuning_job_id}",
+    {
+      fineTuningJobId: fineTuningJobId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -137,13 +149,17 @@ export function _listEventsSend(
   fineTuningJobId: string,
   options: FineTuningJobsListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/events{?after,limit}",
-  ).expand({
-    fineTuningJobId: fineTuningJobId,
-    after: options?.after,
-    limit: options?.limit,
-  });
+    {
+      fineTuningJobId: fineTuningJobId,
+      after: options?.after,
+      limit: options?.limit,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -174,11 +190,15 @@ export function _cancelSend(
   fineTuningJobId: string,
   options: FineTuningJobsCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
-  ).expand({
-    fineTuningJobId: fineTuningJobId,
-  });
+    {
+      fineTuningJobId: fineTuningJobId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });

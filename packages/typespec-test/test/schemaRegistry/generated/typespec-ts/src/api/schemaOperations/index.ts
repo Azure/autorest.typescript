@@ -23,7 +23,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -75,11 +75,15 @@ export function _getSchemaByIdSend(
   id: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/$schemaGroups/$schemas/{id}{?api-version}",
-  ).expand({
-    id: id,
-  });
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -116,12 +120,16 @@ export function _listSchemaVersionsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}/versions{?api-version}",
-  ).expand({
-    groupName: groupName,
-    name: name,
-  });
+    {
+      groupName: groupName,
+      name: name,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -165,13 +173,17 @@ export function _getSchemaByVersionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api-version}",
-  ).expand({
-    groupName: groupName,
-    name: name,
-    schemaVersion: schemaVersion,
-  });
+    {
+      groupName: groupName,
+      name: name,
+      schemaVersion: schemaVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -220,12 +232,16 @@ export function _getSchemaIdByContentSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api-version}",
-  ).expand({
-    groupName: groupName,
-    name: name,
-  });
+    {
+      groupName: groupName,
+      name: name,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -278,12 +294,16 @@ export function _registerSchemaSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/$schemaGroups/{groupName}/schemas/{name}{?api-version}",
-  ).expand({
-    groupName: groupName,
-    name: name,
-  });
+    {
+      groupName: groupName,
+      name: name,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .put({
