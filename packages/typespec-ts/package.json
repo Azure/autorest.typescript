@@ -57,7 +57,7 @@
     "stop-test-server": "npx cadl-ranch server stop",
     "unit-test": "npm-run-all --parallel unit-test:rlc unit-test:modular",
     "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 36000 './test/unit/**/*.spec.ts'",
-    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
