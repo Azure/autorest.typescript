@@ -1,10 +1,8 @@
 import { assert } from "chai";
-import { expandUrlTemplate, ExpandUrlTemplateOptions } from "../../../static/static-helpers/urlTemplate.js";
+import { expandUrlTemplate, UrlTemplateOptions } from "../../../static/static-helpers/urlTemplate.js";
 
-function createAssertion(context: any, option?: ExpandUrlTemplateOptions) {
+function createAssertion(context: Record<string, any>, option?: UrlTemplateOptions) {
     return (template: string, expected: string) => {
-        const r = expandUrlTemplate(template, context, option);
-        console.log("template", template, "actual", r, "expected", expected);
         assert.equal(expandUrlTemplate(template, context, option), expected);
     };
 }
