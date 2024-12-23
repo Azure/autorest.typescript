@@ -210,15 +210,10 @@ export function expandUrlTemplate(
       if (!expression) {
         return encodeReserved(literal);
       }
-      const operator: string | undefined = [
-        "+",
-        "#",
-        ".",
-        "/",
-        "?",
-        "&",
-        ";",
-      ].includes(expression[0])
+      const knownOperators = ["+", "#", ".", "/", ";", "?", "&"];
+      const operator: string | undefined = knownOperators.includes(
+        expression[0],
+      )
         ? expression[0]
         : undefined;
       expression = operator ? expression.slice(1) : expression;
