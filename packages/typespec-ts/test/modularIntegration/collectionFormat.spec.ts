@@ -1,7 +1,7 @@
 import { CollectionFormatClient } from "./generated/parameters/collection-format/src/index.js";
 import { assert } from "chai";
 
-describe.only("CollectionFormatClient Classical Client", () => {
+describe("CollectionFormatClient Classical Client", () => {
   let client: CollectionFormatClient;
 
   beforeEach(() => {
@@ -17,26 +17,22 @@ describe.only("CollectionFormatClient Classical Client", () => {
   });
 
   it("should send multi format in query", async () => {
-    const result = await client.query.multi(["blue", "red", "green"], {
-      requestOptions: {
-        skipUrlEncoding: true
-      }
-    });
+    const result = await client.query.multi(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);
   });
 
   it("should send pipes format in query", async () => {
-    const result = await client.query.pipes(["blue|red|green"]);
+    const result = await client.query.pipes(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);
   });
 
   it("should send ssv format in query", async () => {
-    const result = await client.query.ssv(["blue red green"]);
+    const result = await client.query.ssv(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);
   });
 
   it("should send tsv format in query", async () => {
-    const result = await client.query.tsv([`blue\tred\tgreen`]);
+    const result = await client.query.tsv(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);
   });
 

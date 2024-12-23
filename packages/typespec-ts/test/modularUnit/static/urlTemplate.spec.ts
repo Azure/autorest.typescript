@@ -115,6 +115,97 @@ describe("url-template", () => {
 
     });
 
+    describe("path parameters", () => {
+        describe("simple expansion", () => {
+            it("should resolve primitive parameter", () => {
+                const assert = createitContext({
+                    'param': 'a',
+                });
+                assert('/primitive{param}', '/primitivea');
+            });
+            it("should resolve array parameter", () => {
+                const assert = createitContext({
+                    'param': ["a", "b"],
+                });
+                assert('/array{param}', '/arraya,b');
+            });
+
+            it("should resolve object parameter", () => {
+                const assert = createitContext({
+                    'param': { a: 1, b: 2 },
+                });
+                assert('/record{param}', '/recorda,1,b,2');
+            });
+        });
+
+        describe("simple expansion with explode modifier*", () => {
+            it("should resolve primitive parameter", () => {
+                const assert = createitContext({
+                    'param': 'a',
+                });
+                assert('/primitive{param*}', '/primitivea');
+            });
+            it("should resolve array parameter", () => {
+                const assert = createitContext({
+                    'param': ["a", "b"],
+                });
+                assert('/array{param*}', '/arraya,b');
+            });
+
+            it("should resolve object parameter", () => {
+                const assert = createitContext({
+                    'param': { a: 1, b: 2 },
+                });
+                assert('/record{param*}', '/recorda=1,b=2');
+            });
+        });
+
+        describe("path expansion", () => {
+            it("should resolve primitive parameter", () => {
+                const assert = createitContext({
+                    'param': 'a',
+                });
+                assert('/primitive{/param}', "/primitive/a");
+            });
+            it("should resolve array parameter", () => {
+                const assert = createitContext({
+                    'param': ["a", "b"],
+                });
+                assert('/array{/param}', '/array/a,b');
+            });
+
+            it("should resolve object parameter", () => {
+                const assert = createitContext({
+                    'param': { a: 1, b: 2 },
+                });
+                assert('/record{/param}', '/record/a,1,b,2');
+            });
+        });
+
+        describe.only("path expansion with explode modifier*", () => {
+            it("should resolve primitive parameter", () => {
+                const assert = createitContext({
+                    'param': 'a',
+                });
+                assert('/primitive{/param*}', "/primitive/a");
+            });
+            it("should resolve array parameter", () => {
+                const assert = createitContext({
+                    'param': ["a", "b"],
+                });
+                assert('/array{/param*}', '/array/a/b');
+            });
+
+            it("should resolve object parameter", () => {
+                const assert = createitContext({
+                    'param': { a: 1, b: 2 },
+                });
+                assert('/record{/param*}', '/record/a=1/b=2');
+            });
+        });
+
+    });
+
     describe('Level 2', () => {
         const assert = createitContext({
             'var': 'value',

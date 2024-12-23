@@ -41,102 +41,116 @@ describe("Routes Client", () => {
         const result = await client.pathParameters.reservedExpansion.annotation("foo/bar%20baz");
         assert.isUndefined(result);
     });
-    it.skip("Routes_PathParameters_SimpleExpansion_Standard_primitive", async () => {
-        const result = await client.pathParameters.simpleExpansion.standard.primitive("a");
-        assert.isUndefined(result);
+    // TODO: enable these cases when cadl-ranch path issue is fixed
+    describe.skip("Skip these cases", () => {
+        it("Routes_PathParameters_SimpleExpansion_Standard_primitive", async () => {
+            const result = await client.pathParameters.simpleExpansion.standard.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_SimpleExpansion_Standard_array", async () => {
+            const result = await client.pathParameters.simpleExpansion.standard.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_SimpleExpansion_Standard_record", async () => {
+            const result = await client.pathParameters.simpleExpansion.standard.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_SimpleExpansion_Explode_primitive", async () => {
+            const result = await client.pathParameters.simpleExpansion.explode.primitive("a");
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_SimpleExpansion_Explode_primitive", async () => {
+            const result = await client.pathParameters.simpleExpansion.explode.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_SimpleExpansion_Explode_array", async () => {
+            const result = await client.pathParameters.simpleExpansion.explode.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_SimpleExpansion_Explode_record", async () => {
+            const result = await client.pathParameters.simpleExpansion.explode.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_PathExpansion_Standard_primitive", async () => {
+            const result = await client.pathParameters.pathExpansion.standard.primitive("a");
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_PathExpansion_Standard_array", async () => {
+            const result = await client.pathParameters.pathExpansion.standard.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_PathExpansion_Standard_record", async () => {
+            const result = await client.pathParameters.pathExpansion.standard.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_PathExpansion_Explode_primitive", async () => {
+            const result = await client.pathParameters.pathExpansion.explode.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_PathExpansion_Explode_array", async () => {
+            const result = await client.pathParameters.pathExpansion.explode.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_PathExpansion_Explode_record", async () => {
+            const result = await client.pathParameters.pathExpansion.explode.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_LabelExpansion_Standard_primitive", async () => {
+            const result = await client.pathParameters.labelExpansion.standard.primitive("a");
+            assert.isUndefined(result);
+        });
+
+        it("Routes_PathParameters_LabelExpansion_Standard_array", async () => {
+            const result = await client.pathParameters.labelExpansion.standard.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_LabelExpansion_Standard_record", async () => {
+            const result = await client.pathParameters.labelExpansion.standard.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_LabelExpansion_Explode_primitive", async () => {
+            const result = await client.pathParameters.labelExpansion.explode.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_LabelExpansion_Explode_array", async () => {
+            const result = await client.pathParameters.labelExpansion.explode.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_LabelExpansion_Explode_record", async () => {
+            const result = await client.pathParameters.labelExpansion.explode.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Standard_primitive", async () => {
+            const result = await client.pathParameters.matrixExpansion.standard.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Standard_array", async () => {
+            const result = await client.pathParameters.matrixExpansion.standard.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Standard_record", async () => {
+            const result = await client.pathParameters.matrixExpansion.standard.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Explode_primitive", async () => {
+            const result = await client.pathParameters.matrixExpansion.explode.primitive("a");
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Explode_array", async () => {
+            const result = await client.pathParameters.matrixExpansion.explode.array(["a", "b"]);
+            assert.isUndefined(result);
+        });
+        it("Routes_PathParameters_MatrixExpansion_Explode_record", async () => {
+            const result = await client.pathParameters.matrixExpansion.explode.record({ a: 1, b: 2 });
+            assert.isUndefined(result);
+        });
     });
-    it.skip("Routes_PathParameters_SimpleExpansion_Standard_array", async () => {
-        const result = await client.pathParameters.simpleExpansion.standard.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_SimpleExpansion_Standard_record", async () => {
-        const result = await client.pathParameters.simpleExpansion.standard.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_SimpleExpansion_Explode_primitive", async () => {
-        const result = await client.pathParameters.simpleExpansion.explode.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_SimpleExpansion_Explode_array", async () => {
-        const result = await client.pathParameters.simpleExpansion.explode.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_SimpleExpansion_Explode_record", async () => {
-        const result = await client.pathParameters.simpleExpansion.explode.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Standard_primitive", async () => {
-        const result = await client.pathParameters.pathExpansion.standard.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Standard_array", async () => {
-        const result = await client.pathParameters.pathExpansion.standard.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Standard_record", async () => {
-        const result = await client.pathParameters.pathExpansion.standard.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Explode_primitive", async () => {
-        const result = await client.pathParameters.pathExpansion.explode.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Explode_array", async () => {
-        const result = await client.pathParameters.pathExpansion.explode.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_PathExpansion_Explode_record", async () => {
-        const result = await client.pathParameters.pathExpansion.explode.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Standard_primitive", async () => {
-        const result = await client.pathParameters.labelExpansion.standard.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Standard_array", async () => {
-        const result = await client.pathParameters.labelExpansion.standard.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Standard_record", async () => {
-        const result = await client.pathParameters.labelExpansion.standard.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Explode_primitive", async () => {
-        const result = await client.pathParameters.labelExpansion.explode.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Explode_array", async () => {
-        const result = await client.pathParameters.labelExpansion.explode.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_LabelExpansion_Explode_record", async () => {
-        const result = await client.pathParameters.labelExpansion.explode.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Standard_primitive", async () => {
-        const result = await client.pathParameters.matrixExpansion.standard.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Standard_array", async () => {
-        const result = await client.pathParameters.matrixExpansion.standard.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Standard_record", async () => {
-        const result = await client.pathParameters.matrixExpansion.standard.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Explode_primitive", async () => {
-        const result = await client.pathParameters.matrixExpansion.explode.primitive("a");
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Explode_array", async () => {
-        const result = await client.pathParameters.matrixExpansion.explode.array(["a", "b"]);
-        assert.isUndefined(result);
-    });
-    it.skip("Routes_PathParameters_MatrixExpansion_Explode_record", async () => {
-        const result = await client.pathParameters.matrixExpansion.explode.record({ a: 1, b: 2 });
-        assert.isUndefined(result);
-    });
+
     it("Routes_QueryParameters_templateOnly", async () => {
         const result = await client.queryParameters.templateOnly("a");
         assert.isUndefined(result);

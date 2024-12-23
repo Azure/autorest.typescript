@@ -449,9 +449,20 @@ function getHasMultiCollection(
     paramFormat === "multi"
   );
 }
+function getHasSsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "ssv";
+}
+
+function getHasTsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "tsv";
+}
 
 function getHasCsvCollection(paramType: string, paramFormat: string) {
   return paramType === "header" && paramFormat === "csv";
+}
+
+function getHasPipeCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "pipes";
 }
 
 export function hasCollectionFormatInfo(
@@ -459,9 +470,11 @@ export function hasCollectionFormatInfo(
   paramFormat: string
 ) {
   return (
-    paramType === "header" &&
-    (getHasMultiCollection(paramType, paramFormat) ||
-      getHasCsvCollection(paramType, paramFormat))
+    getHasMultiCollection(paramType, paramFormat, false) ||
+    getHasSsvCollection(paramType, paramFormat) ||
+    getHasTsvCollection(paramType, paramFormat) ||
+    getHasCsvCollection(paramType, paramFormat) ||
+    getHasPipeCollection(paramType, paramFormat)
   );
 }
 
@@ -469,16 +482,26 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  // only enable helpers for header parameters
-  if (paramType === "header") {
-    if (getHasMultiCollection(paramType, paramFormat)) {
-      return resolveReference(SerializationHelpers.buildMultiCollection);
-    }
-
-    if (getHasCsvCollection(paramType, paramFormat)) {
-      return resolveReference(SerializationHelpers.buildCsvCollection);
-    }
+  if (getHasMultiCollection(paramType, paramFormat, false)) {
+    return resolveReference(SerializationHelpers.buildMultiCollection);
   }
+
+  if (getHasPipeCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildPipeCollection);
+  }
+
+  if (getHasSsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildSsvCollection);
+  }
+
+  if (getHasTsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildTsvCollection);
+  }
+
+  if (getHasCsvCollection(paramType, paramFormat)) {
+    return resolveReference(SerializationHelpers.buildCsvCollection);
+  }
+
   return undefined;
 }
 
