@@ -41,7 +41,7 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
-import { parseTemplate } from "../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -57,11 +57,15 @@ export function _getAudioTranscriptionAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -111,11 +115,15 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -165,11 +173,15 @@ export function _getAudioTranslationAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/translations{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -216,11 +228,15 @@ export function _getAudioTranslationAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/translations{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -265,11 +281,15 @@ export function _getCompletionsSend(
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/completions{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -315,11 +335,15 @@ export function _getChatCompletionsSend(
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/chat/completions{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -365,11 +389,15 @@ export function _getImageGenerationsSend(
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/images/generations{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -411,11 +439,15 @@ export function _generateSpeechFromTextSend(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/speech{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({
@@ -457,11 +489,15 @@ export function _getEmbeddingsSend(
   body: EmbeddingsOptions,
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/deployments/{deploymentId}/embeddings{?api-version}",
-  ).expand({
-    deploymentId: deploymentId,
-  });
+    {
+      deploymentId: deploymentId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .post({

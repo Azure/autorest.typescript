@@ -7,7 +7,7 @@ import {
 } from "../index.js";
 import { User, userSerializer, userDeserializer } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -22,12 +22,16 @@ export function _createOrReplaceSend(
   resource: User,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/budgets/widgets/createOrReplace/users/{name}{?api-version}",
-  ).expand({
-    name: name,
-    "api-version": options?.apiVersion ?? "1.0.0",
-  });
+    {
+      name: name,
+      "api-version": options?.apiVersion ?? "1.0.0",
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .put({

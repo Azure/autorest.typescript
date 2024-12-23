@@ -19,7 +19,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { parseTemplate } from "../../static-helpers/uriTemplate.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,11 +33,15 @@ export function _createOrUpdateTestProfileSend(
   body: TestProfile,
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  ).expand({
-    testProfileId: testProfileId,
-  });
+    {
+      testProfileId: testProfileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .patch({
@@ -80,11 +84,15 @@ export function _deleteTestProfileSend(
   testProfileId: string,
   options: DeleteTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  ).expand({
-    testProfileId: testProfileId,
-  });
+    {
+      testProfileId: testProfileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
@@ -116,11 +124,15 @@ export function _getTestProfileSend(
   testProfileId: string,
   options: GetTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/test-profiles/{testProfileId}{?api-version}",
-  ).expand({
-    testProfileId: testProfileId,
-  });
+    {
+      testProfileId: testProfileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -151,15 +163,19 @@ export function _listTestProfilesSend(
   context: Client,
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = parseTemplate(
+  const path = expandUrlTemplate(
     "/test-profiles{?api-version,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
-  ).expand({
-    maxpagesize: options?.maxpagesize,
-    lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
-    lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
-    testProfileIds: options?.testProfileIds,
-    testIds: options?.testIds,
-  });
+    {
+      maxpagesize: options?.maxpagesize,
+      lastModifiedStartTime: options?.lastModifiedStartTime?.toISOString(),
+      lastModifiedEndTime: options?.lastModifiedEndTime?.toISOString(),
+      testProfileIds: options?.testProfileIds,
+      testIds: options?.testIds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
     .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
