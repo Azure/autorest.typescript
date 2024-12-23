@@ -295,6 +295,9 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             condition: eq(variables['Agent.OS'], 'Linux')
             continueOnError: true
+          - script: ls coverage
+            displayName: "Check File"
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)
             artifact: RLCAzureCoverageReport
             displayName: "Publish rlc azure coverage report"
