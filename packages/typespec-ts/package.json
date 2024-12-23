@@ -36,7 +36,7 @@
     "integration-test-ci:azure-modular": "npm-run-all --silent -p start-test-server:azure-modular --race generate-and-run:azure-modular",
     "start-test-server": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@typespec/http-specs/specs  --coverageFile ./coverage/spector-coverage-typescript.json",
     "start-test-server:rlc": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@typespec/http-specs/specs --coverageFile ./coverage/spector-coverage-typescript-rlc-standard.json",
-    "start-test-server:azure-rlc": "npx tsp-spector serve ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --port 3003 --coverageFile ./coverage/spector-coverage-typescript-rlc-azure.json",
+    "start-test-server:azure-rlc": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --port 3003 --coverageFile ./coverage/spector-coverage-typescript-rlc-azure.json",
     "start-test-server:modular": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@typespec/http-specs/specs --port 3002  --coverageFile ./coverage/spector-coverage-typescript-modular-standard.json",
     "start-test-server:azure-modular": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --port 3004  --coverageFile ./coverage/spector-coverage-typescript-modular-azure.json",
     "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@typespec/http-specs/* ./temp && cp -r ./node_modules/@azure-tools/azure-http-specs/specs/* ./temp/specs && cp -r ./test/integration/typespec/* ./temp/specs",
