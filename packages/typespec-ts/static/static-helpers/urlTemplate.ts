@@ -188,7 +188,7 @@ export function expandUrlTemplate(
                 modifier: varMatch[2] || varMatch[3],
                 reserved: option?.allowReserved ?? false,
             });
-            result.push(varValue);
+            varValue ? result.push(varValue) : result;
         }
         return result.join("");
     });
