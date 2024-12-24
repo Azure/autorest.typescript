@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import ConfidentialLedgerClient from "./confidentialLedgerClient.js";
+import type ConfidentialLedgerClient from "./confidentialLedgerClient.js";
 
 export * from "./confidentialLedgerClient.js";
 export * from "./parameters.js";

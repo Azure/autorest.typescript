@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import HealthInsightsClinicalMatching from "./healthInsightsClinicalMatching.js";
+import type HealthInsightsClinicalMatching from "./healthInsightsClinicalMatching.js";
 
 export * from "./healthInsightsClinicalMatching.js";
 export * from "./parameters.js";

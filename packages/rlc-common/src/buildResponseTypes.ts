@@ -62,12 +62,12 @@ export function buildResponseTypes(model: RLCModel) {
       );
 
       const responseInterfaceDefinition: OptionalKind<InterfaceDeclarationStructure> =
-        {
-          name: responseTypeName,
-          properties: responseProperties,
-          isExported: true,
-          extends: ["HttpResponse"]
-        };
+      {
+        name: responseTypeName,
+        properties: responseProperties,
+        isExported: true,
+        extends: ["HttpResponse"]
+      };
 
       // Only add a description if one was provided in the Swagger
       // otherwise skip to avoid having empty TSDoc lines
@@ -85,6 +85,7 @@ export function buildResponseTypes(model: RLCModel) {
   if (hasHeaders) {
     responsesFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: ["RawHttpHeaders"],
         moduleSpecifier: getImportSpecifier(
           "restPipeline",
@@ -99,6 +100,7 @@ export function buildResponseTypes(model: RLCModel) {
   }
   responsesFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports,
       moduleSpecifier: getImportSpecifier(
         "restClient",
@@ -115,6 +117,7 @@ export function buildResponseTypes(model: RLCModel) {
     });
     responsesFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: modelNamedImports,
         moduleSpecifier: getImportModuleName(
           {

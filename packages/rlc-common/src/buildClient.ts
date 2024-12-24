@@ -120,19 +120,19 @@ export function buildClient(model: RLCModel): File | undefined {
   const commonClientParams = [
     ...(urlParameters ?? []),
     ...(addCredentials === false ||
-    !isSecurityInfoDefined(
-      credentialScopes,
-      credentialKeyHeaderName,
-      customHttpAuthHeaderName
-    )
+      !isSecurityInfoDefined(
+        credentialScopes,
+        credentialKeyHeaderName,
+        customHttpAuthHeaderName
+      )
       ? []
       : [
-          {
-            name: "credentials",
-            type: credentialTypes.join(" | "),
-            description: `uniquely identify client credential`
-          }
-        ])
+        {
+          name: "credentials",
+          type: credentialTypes.join(" | "),
+          description: `uniquely identify client credential`
+        }
+      ])
   ];
 
   let apiVersionStatement: string = "";
@@ -173,9 +173,8 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of \`${clientInterfaceName}\`\n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.documentName ?? param.name} - ${
-                param.description ?? "The parameter " + param.name
-              }`;
+              return `@param ${param.documentName ?? param.name} - ${param.description ?? "The parameter " + param.name
+                }`;
             })
             .join("\n")
       }
@@ -201,12 +200,21 @@ export function buildClient(model: RLCModel): File | undefined {
       ? paths.length - 1 - paths.lastIndexOf("src")
       : 0;
 
-  const loggerPath = `${
-    parentPath > 0 ? "../".repeat(parentPath) : "./"
-  }logger`;
+  const loggerPath = `${parentPath > 0 ? "../".repeat(parentPath) : "./"
+    }logger`;
   clientFile.addImportDeclarations([
     {
-      namedImports: ["getClient", "ClientOptions"],
+      isTypeOnly: true,
+      namedImports: ["ClientOptions"],
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
+    }
+  ]);
+  clientFile.addImportDeclarations([
+    {
+      namedImports: ["getClient"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
         model.importInfo.runtimeImports
@@ -243,6 +251,7 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: credentialTypes.concat(
           includeKeyCredentialHelper ? ["isKeyCredential"] : []
         ),
@@ -255,6 +264,7 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: getImportModuleName(
         {
@@ -271,6 +281,7 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: Array.from(
           model.importInfo.internalImports.rlcClientFactory.importsSet!
         ),
@@ -388,7 +399,7 @@ export function getClientFactoryBody(
   const { credentialScopes, credentialKeyHeaderName } = model.options;
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
-      "`${endpointUrl}/.default`"
+    "`${endpointUrl}/.default`"
     : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
@@ -498,9 +509,8 @@ export function getClientFactoryBody(
       // If the operation group has an empty name, it means its operations are client
       // level operations so we need to spread the definitions. Otherwise they are
       // within an operation group so we add them as key: value
-      return `${
-        key && key !== "client" ? `"${key}":` : "..."
-      } {${shortcutImplementations[key].join()}}`;
+      return `${key && key !== "client" ? `"${key}":` : "..."
+        } {${shortcutImplementations[key].join()}}`;
     });
     returnStatement = `return { ...client, ${shortcutBody.join()} };`;
   }

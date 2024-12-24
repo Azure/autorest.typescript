@@ -56,17 +56,15 @@ export default defineConfig({
         "toFake": ["setTimeout", "Date"]
       },
       "watch": false,
-      "include": ${
-        options.isAzureSdkForJs
-          ? `["dist-test/browser/**/*.spec.js"]`
-          : `["test/**/*.spec.ts"]`
-      },
+      "include": ${options.isAzureSdkForJs
+    ? `["dist-test/browser/**/*.spec.js"]`
+    : `["test/**/*.spec.ts"]`
+  },
       "coverage": {
-        "include":  ${
-          options.isAzureSdkForJs
-            ? `["dist-test/browser/**/*.spec.js"]`
-            : `["test/**/*.spec.ts"]`
-        },
+        "include":  ${options.isAzureSdkForJs
+    ? `["dist-test/browser/**/*.spec.js"]`
+    : `["test/**/*.spec.ts"]`
+  },
         "provider": "istanbul",
         "reporter": ["text", "json", "html"],
         "reportsDirectory": "coverage-browser"
