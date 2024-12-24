@@ -9,8 +9,8 @@ interface ValueOptions {
   op?: string; // operator
   varValue?: any; // variable value
   varName?: string; // variable name
-  modifier?: string; // modifier
-  reserved: boolean; // if allowReserved is true
+  modifier?: string; // modifier e.g *
+  reserved: boolean; // if true we'll keep reserved words with not encoding
 }
 
 export interface UrlTemplateOptions {
@@ -21,22 +21,24 @@ export interface UrlTemplateOptions {
 // ---------------------
 // helpers
 // ---------------------
-function encodeReserved(str: string) {
+function encodeValue(val: string, reserved: boolean, op?: string) {
+  return reserved === true || op === "+" || op === "#"
+    ? encodeWithReserved(val)
+    : encodeRFC3986URIComponent(val);
+}
+
+function encodeWithReserved(str: string) {
   return str
     .split(/(%[0-9A-Fa-f]{2})/g)
-    .map(function (part: string) {
-      if (!/%[0-9A-Fa-f]/.test(part)) {
-        part = encodeURI(part).replace(/%5B/g, "[").replace(/%5D/g, "]");
-      }
-      return part;
-    })
+    .map((part) => (!/%[0-9A-Fa-f]/.test(part) ? encodeURI(part) : part))
     .join("");
 }
 
-function encodeUnreserved(str: any) {
-  return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
-    return "%" + c.charCodeAt(0).toString(16).toUpperCase();
-  });
+function encodeRFC3986URIComponent(str: string) {
+  return encodeURIComponent(str).replace(
+    /[!'()*]/g,
+    (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`,
+  );
 }
 
 function isDefined(val: any) {
@@ -46,7 +48,7 @@ function isDefined(val: any) {
 function getNamedAndIfEmpty(op?: string): [boolean, string] {
   return [
     !!op && [";", "?", "&"].includes(op),
-    op && ["?", "&"].includes(op) ? "=" : "",
+    !!op && ["?", "&"].includes(op) ? "=" : "",
   ];
 }
 
@@ -60,12 +62,6 @@ function getFirstOrSep(op?: string, isFirst = false) {
   } else {
     return op;
   }
-}
-
-function getEncodeValue(val: any, reserved: boolean, op?: string) {
-  return reserved === true || op === "+" || op === "#"
-    ? encodeReserved(val)
-    : encodeUnreserved(val);
 }
 
 function getExpandedValue(option: ValueOptions) {
@@ -82,7 +78,7 @@ function getExpandedValue(option: ValueOptions) {
         vals.push(`${encodeURIComponent(varName)}`);
         val === "" ? vals.push(ifEmpty) : vals.push("=");
       }
-      vals.push(getEncodeValue(val, reserved, op));
+      vals.push(encodeValue(val, reserved, op));
       isFirst = false;
     }
   } else if (typeof value === "object") {
@@ -97,7 +93,7 @@ function getExpandedValue(option: ValueOptions) {
         vals.push(`${encodeURIComponent(key)}`);
         named && val === "" ? vals.push(ifEmpty) : vals.push("=");
       }
-      vals.push(getEncodeValue(val, reserved, op));
+      vals.push(encodeValue(val, reserved, op));
       isFirst = false;
     }
   }
@@ -109,8 +105,8 @@ function getNonExpandedValue(option: ValueOptions) {
   const vals: string[] = [];
   const first = getFirstOrSep(op, isFirst);
   const [named, ifEmpty] = getNamedAndIfEmpty(op);
-  if (named) {
-    vals.push(getEncodeValue(varName, reserved, op));
+  if (named && varName) {
+    vals.push(encodeValue(varName, reserved, op));
     if (value === "") {
       if (!ifEmpty) {
         vals.push(ifEmpty);
@@ -123,15 +119,15 @@ function getNonExpandedValue(option: ValueOptions) {
   const items = [];
   if (Array.isArray(value)) {
     for (const val of value.filter(isDefined)) {
-      items.push(getEncodeValue(val, reserved, op));
+      items.push(encodeValue(val, reserved, op));
     }
   } else if (typeof value === "object") {
     for (const key of Object.keys(value)) {
       if (!isDefined(value[key])) {
         continue;
       }
-      items.push(encodeUnreserved(key));
-      items.push(getEncodeValue(value[key], reserved, op));
+      items.push(encodeRFC3986URIComponent(key));
+      items.push(encodeValue(value[key], reserved, op));
     }
   }
   vals.push(items.join(","));
@@ -147,14 +143,14 @@ function getVarValue(option: ValueOptions): string | undefined {
     let val = value.toString();
     const [named, ifEmpty] = getNamedAndIfEmpty(op);
     const vals: string[] = [getFirstOrSep(op, isFirst)];
-    if (named) {
-      vals.push(encodeUnreserved(varName));
+    if (named && varName) {
+      vals.push(encodeRFC3986URIComponent(varName));
       val === "" ? vals.push(ifEmpty) : vals.push("=");
     }
     if (modifier && modifier !== "*") {
       val = val.substring(0, parseInt(modifier, 10));
     }
-    vals.push(getEncodeValue(val, reserved, op));
+    vals.push(encodeValue(val, reserved, op));
     return vals.join("");
   } else if (modifier === "*") {
     return getExpandedValue(option);
@@ -173,9 +169,9 @@ export function expandUrlTemplate(
 ): string {
   return template.replace(/\{([^\{\}]+)\}|([^\{\}]+)/g, (_, expr, text) => {
     if (!expr) {
-      return encodeReserved(text);
+      return encodeWithReserved(text);
     }
-    let op = undefined;
+    let op;
     if (["+", "#", ".", "/", ";", "?", "&"].includes(expr[0])) {
       (op = expr[0]), (expr = expr.slice(1));
     }
