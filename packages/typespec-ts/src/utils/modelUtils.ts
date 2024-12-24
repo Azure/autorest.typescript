@@ -1743,7 +1743,14 @@ export function isSchemaProperty(
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
   const statusCodeInfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+  const isNonVisibility = getVisibility(program, property)?.includes("none");
+  return !(
+    headerInfo ||
+    queryInfo ||
+    pathInfo ||
+    statusCodeInfo ||
+    isNonVisibility
+  );
 }
 
 export function getEffectiveSchemaType(
