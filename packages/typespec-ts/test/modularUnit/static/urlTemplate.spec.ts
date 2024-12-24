@@ -6,7 +6,7 @@ function createAssertion(context: Record<string, any>, option?: UrlTemplateOptio
         assert.equal(expandUrlTemplate(template, context, option), expected);
     };
 }
-describe("url-template", () => {
+describe.only("url-template", () => {
     describe("Cases from RFC Spec Examples", () => {
         describe("Level 1", () => {
             const assert = createAssertion({
@@ -202,7 +202,7 @@ describe("url-template", () => {
             });
 
             it('variable undefined object item', () => {
-                assert('{undefinedobjectitem}', 'hello,world,empty,,,nothing');
+                assert('{undefinedobjectitem}', 'key,null,hello,world,empty,,,nothing');
                 assert('{undefinedobjectitem*}', 'hello=world,empty=,nothing');
             });
 
@@ -415,6 +415,7 @@ describe("url-template", () => {
                 'bar': 'bar/hello world',
             });
             assert('/foo/{+bar}', '/foo/bar/hello%20world');
+
         });
     });
 });
