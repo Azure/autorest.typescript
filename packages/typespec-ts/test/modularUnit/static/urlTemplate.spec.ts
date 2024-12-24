@@ -415,6 +415,7 @@ describe("url-template", () => {
                 'bar': 'bar/hello world',
             });
             assert('/foo/{+bar}', '/foo/bar/hello%20world');
+
         });
     });
 });
