@@ -29,9 +29,14 @@ describe("url-template", () => {
             it("should be empty string", () => {
                 assert('', '');
             });
-            it("should be encodes non expressions correctly", () => {
-                assert('hello/world', 'hello/world');
-                assert(':/?#[]@!$&()*+,;=\'', ':/?#[]@!$&()*+,;=\'');
+            it("should be plain url", () => {
+                assert('hello/world/five#5', 'hello/world/five#5');
+            });
+            it("should encodes non-alphanumeric chars", () => {
+                assert(':/?#@!$&()*+,;=\'', ':/?#@!$&()*+,;=\'');
+            });
+            it("should encode [] correctly", () => {
+                assert('[0-9]:[1-8]', '%5B0-9%5D:%5B1-8%5D');
             });
             it("should not double encoded values", () => {
                 assert('%20', '%20');
