@@ -123,7 +123,10 @@ function getNonExpandedValue(option: ValueOptions) {
             items.push(getEncodeValue(val, reserved, op));
         }
     } else if (typeof value === "object") {
-        for (const key of Object.keys(value).filter(isDefined)) {
+        for (const key of Object.keys(value)) {
+            if (!isDefined(value[key])) {
+                continue;
+            }
             items.push(encodeUnreserved(key));
             items.push(getEncodeValue(value[key], reserved, op));
         }
