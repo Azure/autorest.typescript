@@ -13,7 +13,8 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -116,7 +117,8 @@ export async function $onEmit(context: EmitContext) {
     {
       ...SerializationHelpers,
       ...PagingHelpers,
-      ...PollingHelpers
+      ...PollingHelpers,
+      ...UrlTemplateHelpers
     },
     { sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir }
   );

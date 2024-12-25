@@ -21,6 +21,7 @@ import {
   todoItemPatchSerializer,
   _updateResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -32,12 +33,19 @@ export function _listSend(
   context: Client,
   options: TodoItemsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items{?limit,offset}",
+    {
+      limit: options?.limit,
+      offset: options?.offset,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { limit: options?.limit, offset: options?.offset },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listDeserialize(
@@ -134,8 +142,17 @@ export function _getSend(
   id: number,
   options: TodoItemsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{id}", id)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -185,8 +202,17 @@ export function _updateSend(
   patch: TodoItemPatch,
   options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{id}", id)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -243,8 +269,17 @@ export function _$deleteSend(
   id: number,
   options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{id}", id)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 

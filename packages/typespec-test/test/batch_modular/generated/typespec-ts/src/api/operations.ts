@@ -187,6 +187,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -199,16 +200,20 @@ export function _listApplicationsSend(
   context: Client,
   options: ListApplicationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/applications{?api-version,maxresults,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/applications")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listApplicationsDeserialize(
@@ -247,15 +252,20 @@ export function _getApplicationSend(
   applicationId: string,
   options: GetApplicationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/applications/{applicationId}{?api-version,timeOut}",
+    {
+      applicationId: applicationId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/applications/{applicationId}", applicationId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getApplicationDeserialize(
@@ -289,19 +299,23 @@ export function _listPoolUsageMetricsSend(
   context: Client,
   options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/poolusagemetrics{?api-version,maxresults,timeOut,starttime,endtime,$filter}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      starttime: options?.starttime?.toISOString(),
+      endtime: options?.endtime?.toISOString(),
+      $filter: options?.$filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/poolusagemetrics")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        starttime: options?.starttime?.toISOString(),
-        endtime: options?.endtime?.toISOString(),
-        $filter: options?.$filter,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listPoolUsageMetricsDeserialize(
@@ -341,17 +355,23 @@ export function _createPoolSend(
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolCreateOptionsSerializer(body),
     });
 }
@@ -385,9 +405,9 @@ export function _listPoolsSend(
   context: Client,
   options: ListPoolsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -403,7 +423,13 @@ export function _listPoolsSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listPoolsDeserialize(
@@ -436,8 +462,19 @@ export function _deletePoolSend(
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -461,10 +498,6 @@ export function _deletePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -508,8 +541,19 @@ export function _poolExistsSend(
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -533,10 +577,6 @@ export function _poolExistsSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -567,31 +607,10 @@ export function _getPoolSend(
   poolId: string,
   options: GetPoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}", poolId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut,$select,$expand}",
+    {
+      poolId: poolId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
@@ -605,7 +624,37 @@ export function _getPoolSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+      },
+    });
 }
 
 export async function _getPoolDeserialize(
@@ -635,8 +684,19 @@ export function _updatePoolSend(
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -663,10 +723,6 @@ export function _updatePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchPoolUpdateOptionsSerializer(body),
     });
@@ -703,15 +759,20 @@ export function _disablePoolAutoScaleSend(
   poolId: string,
   options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/disableautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/disableautoscale", poolId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _disablePoolAutoScaleDeserialize(
@@ -741,8 +802,19 @@ export function _enablePoolAutoScaleSend(
   body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/enableautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/enableautoscale", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -769,10 +841,6 @@ export function _enablePoolAutoScaleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchPoolEnableAutoScaleOptionsSerializer(body),
     });
@@ -813,17 +881,24 @@ export function _evaluatePoolAutoScaleSend(
   body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/evaluateautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/evaluateautoscale", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolEvaluateAutoScaleOptionsSerializer(body),
     });
 }
@@ -865,8 +940,19 @@ export function _resizePoolSend(
   body: BatchPoolResizeOptions,
   options: ResizePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/resize{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/resize", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -893,10 +979,6 @@ export function _resizePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchPoolResizeOptionsSerializer(body),
     });
@@ -937,8 +1019,19 @@ export function _stopPoolResizeSend(
   poolId: string,
   options: StopPoolResizeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/stopresize{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/stopresize", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -962,10 +1055,6 @@ export function _stopPoolResizeSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -1005,17 +1094,24 @@ export function _replacePoolPropertiesSend(
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/updateproperties{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/updateproperties", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolReplaceOptionsSerializer(body),
     });
 }
@@ -1057,8 +1153,19 @@ export function _removeNodesSend(
   body: NodeRemoveOptions,
   options: RemoveNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/removenodes{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/removenodes", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -1085,10 +1192,6 @@ export function _removeNodesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: nodeRemoveOptionsSerializer(body),
     });
@@ -1124,16 +1227,20 @@ export function _listSupportedImagesSend(
   context: Client,
   options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/supportedimages{?maxresults,timeOut,$filter}",
+    {
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.$filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/supportedimages")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSupportedImagesDeserialize(
@@ -1165,17 +1272,21 @@ export function _listPoolNodeCountsSend(
   context: Client,
   options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/nodecounts{?api-version,maxresults,timeOut,$filter}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.$filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/nodecounts")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listPoolNodeCountsDeserialize(
@@ -1212,8 +1323,19 @@ export function _deleteJobSend(
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1237,10 +1359,6 @@ export function _deleteJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -1280,31 +1398,10 @@ export function _getJobSend(
   jobId: string,
   options: GetJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}", jobId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobId: jobId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
@@ -1318,7 +1415,37 @@ export function _getJobSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+      },
+    });
 }
 
 export async function _getJobDeserialize(
@@ -1348,8 +1475,19 @@ export function _updateJobSend(
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -1376,10 +1514,6 @@ export function _updateJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchJobUpdateOptionsSerializer(body),
     });
@@ -1417,8 +1551,19 @@ export function _replaceJobSend(
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -1445,10 +1590,6 @@ export function _replaceJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchJobSerializer(body),
     });
@@ -1486,8 +1627,19 @@ export function _disableJobSend(
   body: BatchJobDisableOptions,
   options: DisableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/disable{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/disable", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -1514,10 +1666,6 @@ export function _disableJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchJobDisableOptionsSerializer(body),
     });
@@ -1559,8 +1707,19 @@ export function _enableJobSend(
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/enable{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/enable", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1584,10 +1743,6 @@ export function _enableJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -1625,8 +1780,19 @@ export function _terminateJobSend(
   jobId: string,
   options: TerminateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/terminate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/terminate", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -1653,10 +1819,6 @@ export function _terminateJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: !options["body"]
         ? options["body"]
@@ -1697,17 +1859,23 @@ export function _createJobSend(
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobCreateOptionsSerializer(body),
     });
 }
@@ -1747,9 +1915,9 @@ export function _listJobsSend(
   context: Client,
   options: ListJobsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -1765,7 +1933,13 @@ export function _listJobsSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listJobsDeserialize(
@@ -1798,9 +1972,10 @@ export function _listJobsFromScheduleSend(
   jobScheduleId: string,
   options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules/{jobScheduleId}/jobs", jobScheduleId).get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
+      jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -1816,7 +1991,13 @@ export function _listJobsFromScheduleSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listJobsFromScheduleDeserialize(
@@ -1852,21 +2033,26 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,$filter,$select}",
+    {
+      jobId: jobId,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.$filter,
+      $select: !options?.$select
+        ? options?.$select
+        : options?.$select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
@@ -1911,15 +2097,20 @@ export function _getJobTaskCountsSend(
   jobId: string,
   options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/taskcounts{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/taskcounts", jobId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getJobTaskCountsDeserialize(
@@ -1953,17 +2144,23 @@ export function _createCertificateSend(
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/certificates")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchCertificateSerializer(body),
     });
 }
@@ -1993,9 +2190,9 @@ export function _listCertificatesSend(
   context: Client,
   options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/certificates").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/certificates{?api-version,maxresults,timeOut,$filter,$select}",
+    {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -2006,7 +2203,13 @@ export function _listCertificatesSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listCertificatesDeserialize(
@@ -2040,19 +2243,21 @@ export function _cancelCertificateDeletionSend(
   thumbprint: string,
   options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete{?api-version,timeOut}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _cancelCertificateDeletionDeserialize(
@@ -2096,19 +2301,21 @@ export function _deleteCertificateSend(
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteCertificateDeserialize(
@@ -2154,24 +2361,26 @@ export function _getCertificateSend(
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut,$select}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.$select
+        ? options?.$select
+        : options?.$select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getCertificateDeserialize(
@@ -2206,8 +2415,19 @@ export function _jobScheduleExistsSend(
   jobScheduleId: string,
   options: JobScheduleExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2231,10 +2451,6 @@ export function _jobScheduleExistsSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -2265,8 +2481,19 @@ export function _deleteJobScheduleSend(
   jobScheduleId: string,
   options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2290,10 +2517,6 @@ export function _deleteJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -2330,31 +2553,10 @@ export function _getJobScheduleSend(
   jobScheduleId: string,
   options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules/{jobScheduleId}", jobScheduleId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobScheduleId: jobScheduleId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
@@ -2368,7 +2570,37 @@ export function _getJobScheduleSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+      },
+    });
 }
 
 export async function _getJobScheduleDeserialize(
@@ -2398,8 +2630,19 @@ export function _updateJobScheduleSend(
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -2426,10 +2669,6 @@ export function _updateJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchJobScheduleUpdateOptionsSerializer(body),
     });
@@ -2474,8 +2713,19 @@ export function _replaceJobScheduleSend(
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -2502,10 +2752,6 @@ export function _replaceJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchJobScheduleSerializer(body),
     });
@@ -2549,8 +2795,19 @@ export function _disableJobScheduleSend(
   jobScheduleId: string,
   options: DisableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/disable{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/disable", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2574,10 +2831,6 @@ export function _disableJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -2608,8 +2861,19 @@ export function _enableJobScheduleSend(
   jobScheduleId: string,
   options: EnableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/enable{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/enable", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2633,10 +2897,6 @@ export function _enableJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -2667,8 +2927,19 @@ export function _terminateJobScheduleSend(
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/terminate{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/terminate", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2692,10 +2963,6 @@ export function _terminateJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -2730,17 +2997,23 @@ export function _createJobScheduleSend(
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules{?api-version,timeOut}",
+    {
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobScheduleCreateOptionsSerializer(body),
     });
 }
@@ -2770,9 +3043,9 @@ export function _listJobSchedulesSend(
   context: Client,
   options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -2788,7 +3061,13 @@ export function _listJobSchedulesSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listJobSchedulesDeserialize(
@@ -2822,17 +3101,24 @@ export function _createTaskSend(
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchTaskCreateOptionsSerializer(body),
     });
 }
@@ -2868,9 +3154,10 @@ export function _listTasksSend(
   jobId: string,
   options: ListTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}/tasks", jobId).get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
+      jobId: jobId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -2886,7 +3173,13 @@ export function _listTasksSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listTasksDeserialize(
@@ -2925,17 +3218,24 @@ export function _createTaskCollectionSend(
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/addtaskcollection{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/addtaskcollection", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchTaskCollectionSerializer(collection),
     });
 }
@@ -2988,8 +3288,20 @@ export function _deleteTaskSend(
   taskId: string,
   options: DeleteTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3013,10 +3325,6 @@ export function _deleteTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -3055,31 +3363,11 @@ export function _getTaskSend(
   taskId: string,
   options: GetTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobId: jobId,
+      taskId: taskId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
@@ -3093,7 +3381,37 @@ export function _getTaskSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+      },
+    });
 }
 
 export async function _getTaskDeserialize(
@@ -3129,8 +3447,20 @@ export function _replaceTaskSend(
   body: BatchTask,
   options: ReplaceTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -3157,10 +3487,6 @@ export function _replaceTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
       body: batchTaskSerializer(body),
     });
@@ -3195,20 +3521,26 @@ export function _listSubTasksSend(
   taskId: string,
   options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/subtasksinfo{?api-version,timeOut,$select}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.$select
+        ? options?.$select
+        : options?.$select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSubTasksDeserialize(
@@ -3239,8 +3571,20 @@ export function _terminateTaskSend(
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/terminate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3264,10 +3608,6 @@ export function _terminateTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -3304,8 +3644,20 @@ export function _reactivateTaskSend(
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/reactivate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3329,10 +3681,6 @@ export function _reactivateTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -3374,21 +3722,23 @@ export function _deleteTaskFileSend(
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut,recursive}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-        recursive: options?.recursive,
-      },
-    });
+    .path(path)
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTaskFileDeserialize(
@@ -3427,13 +3777,21 @@ export function _getTaskFileSend(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3454,10 +3812,6 @@ export function _getTaskFileSend(
         ...(options?.ocpRange !== undefined
           ? { "ocp-range": options?.ocpRange }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -3498,13 +3852,21 @@ export function _getTaskFilePropertiesSend(
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3522,10 +3884,6 @@ export function _getTaskFilePropertiesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -3565,18 +3923,24 @@ export function _listTaskFilesSend(
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.$filter,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        recursive: options?.recursive,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listTaskFilesDeserialize(
@@ -3613,17 +3977,25 @@ export function _createNodeUserSend(
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchNodeUserCreateOptionsSerializer(body),
     });
 }
@@ -3667,20 +4039,22 @@ export function _deleteNodeUserSend(
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      userName: userName,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
-      poolId,
-      nodeId,
-      userName,
-    )
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteNodeUserDeserialize(
@@ -3723,22 +4097,26 @@ export function _replaceNodeUserSend(
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      userName: userName,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
-      poolId,
-      nodeId,
-      userName,
-    )
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchNodeUserUpdateOptionsSerializer(body),
     });
 }
@@ -3785,9 +4163,11 @@ export function _getNodeSend(
   nodeId: string,
   options: GetNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId).get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}{?api-version,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       $select: !options?.$select
@@ -3796,7 +4176,13 @@ export function _getNodeSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNodeDeserialize(
@@ -3827,17 +4213,25 @@ export function _rebootNodeSend(
   nodeId: string,
   options: RebootNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/reboot{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeRebootOptionsSerializer(options["body"]),
@@ -3872,17 +4266,25 @@ export function _reimageNodeSend(
   nodeId: string,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/reimage{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeReimageOptionsSerializer(options["body"]),
@@ -3921,17 +4323,25 @@ export function _disableNodeSchedulingSend(
   nodeId: string,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/disablescheduling{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeDisableSchedulingOptionsSerializer(options["body"]),
@@ -3974,15 +4384,21 @@ export function _enableNodeSchedulingSend(
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/enablescheduling{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _enableNodeSchedulingDeserialize(
@@ -4021,15 +4437,21 @@ export function _getNodeRemoteLoginSettingsSend(
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/remoteloginsettings{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNodeRemoteLoginSettingsDeserialize(
@@ -4071,15 +4493,21 @@ export function _getNodeRemoteDesktopFileSend(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/rdp{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
@@ -4123,21 +4551,25 @@ export function _uploadNodeLogsSend(
   body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs",
-      poolId,
-      nodeId,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-      },
       body: uploadBatchServiceLogsOptionsSerializer(body),
     });
 }
@@ -4181,9 +4613,10 @@ export function _listNodesSend(
   poolId: string,
   options: ListNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}/nodes", poolId).get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes{?api-version,maxresults,timeOut,$filter,$select}",
+    {
+      poolId: poolId,
       "api-version": options?.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
@@ -4194,7 +4627,13 @@ export function _listNodesSend(
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listNodesDeserialize(
@@ -4230,25 +4669,27 @@ export function _getNodeExtensionSend(
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}{?api-version,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      extensionName: extensionName,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.$select
+        ? options?.$select
+        : options?.$select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}",
-      poolId,
-      nodeId,
-      extensionName,
-    )
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getNodeExtensionDeserialize(
@@ -4286,20 +4727,26 @@ export function _listNodeExtensionsSend(
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/extensions{?maxresults,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.$select
+        ? options?.$select
+        : options?.$select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/extensions", poolId, nodeId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listNodeExtensionsDeserialize(
@@ -4336,21 +4783,23 @@ export function _deleteNodeFileSend(
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut,recursive}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
-        recursive: options?.recursive,
-      },
-    });
+    .path(path)
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteNodeFileDeserialize(
@@ -4389,13 +4838,21 @@ export function _getNodeFileSend(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4416,10 +4873,6 @@ export function _getNodeFileSend(
         ...(options?.ocpRange !== undefined
           ? { "ocp-range": options?.ocpRange }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -4462,13 +4915,21 @@ export function _getNodeFilePropertiesSend(
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4486,10 +4947,6 @@ export function _getNodeFilePropertiesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-      },
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -4529,18 +4986,24 @@ export function _listNodeFilesSend(
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.$filter,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        recursive: options?.recursive,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listNodeFilesDeserialize(

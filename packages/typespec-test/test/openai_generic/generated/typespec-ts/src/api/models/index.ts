@@ -15,6 +15,7 @@ import {
   DeleteModelResponse,
   deleteModelResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -55,8 +56,17 @@ export function _retrieveSend(
   model: string,
   options: ModelsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/models/{model}",
+    {
+      model: model,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/models/{model}", model)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -85,8 +95,17 @@ export function _$deleteSend(
   model: string,
   options: ModelsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/models/{model}",
+    {
+      model: model,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/models/{model}", model)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 

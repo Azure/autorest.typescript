@@ -17,6 +17,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,12 +31,18 @@ export function _getSend(
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
-      subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -74,12 +81,18 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -125,11 +138,17 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      subscriptionId,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

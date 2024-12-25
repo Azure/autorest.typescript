@@ -18,6 +18,7 @@ import {
   ListFineTuneEventsResponse,
   listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -91,8 +92,17 @@ export function _retrieveSend(
   fineTuneId: string,
   options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}",
+    {
+      fineTuneId: fineTuneId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}", fineTuneId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -121,12 +131,19 @@ export function _listEventsSend(
   fineTuneId: string,
   options: FineTunesListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}/events{?stream}",
+    {
+      fineTuneId: fineTuneId,
+      stream: options?.stream,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { stream: options?.stream },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listEventsDeserialize(
@@ -154,8 +171,17 @@ export function _cancelSend(
   fineTuneId: string,
   options: FineTunesCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}/cancel",
+    {
+      fineTuneId: fineTuneId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
+    .path(path)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 

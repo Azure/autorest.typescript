@@ -43,6 +43,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -123,8 +124,17 @@ export function _getTextBlocklistSend(
   blocklistName: string,
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -155,8 +165,17 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -197,8 +216,17 @@ export function _deleteTextBlocklistSend(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -267,11 +295,17 @@ export function _addOrUpdateBlockItemsSend(
   body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:addOrUpdateBlockItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}:addOrUpdateBlockItems",
-      blocklistName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: addOrUpdateBlockItemsOptionsSerializer(body),
@@ -311,8 +345,17 @@ export function _removeBlockItemsSend(
   body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:removeBlockItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: removeBlockItemsOptionsSerializer(body),
@@ -352,12 +395,18 @@ export function _getTextBlocklistItemSend(
   blockItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blockItems/{blockItemId}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      blockItemId: blockItemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}/blockItems/{blockItemId}",
-      blocklistName,
-      blockItemId,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -393,16 +442,21 @@ export function _listTextBlocklistItemsSend(
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blockItems{?api-version,top,skip,maxpagesize}",
+    {
+      blocklistName: blocklistName,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}/blockItems", blocklistName)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
-      },
-    });
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listTextBlocklistItemsDeserialize(

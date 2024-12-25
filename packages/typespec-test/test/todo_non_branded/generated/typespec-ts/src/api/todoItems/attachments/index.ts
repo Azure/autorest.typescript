@@ -11,6 +11,7 @@ import {
   PageTodoAttachment,
   pageTodoAttachmentDeserializer,
 } from "../../../models/models.js";
+import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -23,8 +24,17 @@ export function _listSend(
   itemId: number,
   options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{itemId}/attachments",
+    {
+      itemId: itemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{itemId}/attachments", itemId)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -56,8 +66,17 @@ export function _createAttachmentSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{itemId}/attachments",
+    {
+      itemId: itemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{itemId}/attachments", itemId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: todoAttachmentSerializer(contents),

@@ -30,6 +30,7 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -47,14 +48,20 @@ export function _createSend(
   resource: DataType,
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       body: dataTypeSerializer(resource),
@@ -107,14 +114,20 @@ export function _getSend(
   dataTypeName: string,
   options: DataTypesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -158,14 +171,20 @@ export function _updateSend(
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       body: dataTypeUpdateSerializer(properties),
@@ -218,14 +237,20 @@ export function _$deleteSend(
   dataTypeName: string,
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -284,14 +309,20 @@ export function _deleteDataSend(
   body: Record<string, any>,
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: _deleteDataRequestSerializer(body),
@@ -352,14 +383,20 @@ export function _generateStorageContainerSasTokenSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+      dataTypeName: dataTypeName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       body: containerSaSSerializer(body),
@@ -408,13 +445,19 @@ export function _listByDataProductSend(
   dataProductName: string,
   options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes{?api-version}",
+    {
+      subscriptionId: subscriptionId,
+      resourceGroupName: resourceGroupName,
+      dataProductName: dataProductName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-    )
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

@@ -28,6 +28,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -40,8 +41,17 @@ export function _getSend(
   id: string,
   options: EvaluationsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs/{id}{?api-version}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs/{id}", id)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -111,19 +121,25 @@ export function _listSend(
   context: Client,
   options: EvaluationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs{?api-version,top,skip,maxpagesize}",
+    {
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.clientRequestId !== undefined
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
-      },
-      queryParameters: {
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -159,8 +175,17 @@ export function _updateSend(
   resource: Evaluation,
   options: EvaluationsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs/{id}{?api-version}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs/{id}", id)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType:
@@ -201,8 +226,17 @@ export function _getScheduleSend(
   id: string,
   options: EvaluationsGetScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{id}{?api-version}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{id}", id)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -242,8 +276,17 @@ export function _createOrReplaceScheduleSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{id}{?api-version}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{id}", id)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -288,19 +331,25 @@ export function _listScheduleSend(
   context: Client,
   options: EvaluationsListScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules{?api-version,top,skip,maxpagesize}",
+    {
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.clientRequestId !== undefined
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
-      },
-      queryParameters: {
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -335,8 +384,17 @@ export function _deleteScheduleSend(
   id: string,
   options: EvaluationsDeleteScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{id}{?api-version}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{id}", id)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {

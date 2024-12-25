@@ -185,6 +185,7 @@ export interface Operation {
   description: string;
   summary: string;
   url: string;
+  urlTemplate: string;
   method: string;
   parameters: Parameter[];
   bodyParameter?: BodyParameter;

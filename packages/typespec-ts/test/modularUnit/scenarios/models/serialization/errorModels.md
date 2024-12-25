@@ -33,7 +33,7 @@ export interface Foo {
 
 export function fooDeserializer(item: any): Foo {
   return {
-    name: item["name"]
+    name: item["name"],
   };
 }
 ```
@@ -76,7 +76,7 @@ export interface Foo {
 export function fooDeserializer(item: any): Foo {
   return {
     name: item["name"],
-    options: errorDetailDeserializer(item["options"])
+    options: errorDetailDeserializer(item["options"]),
   };
 }
 
@@ -88,7 +88,7 @@ export interface ErrorDetail {
 
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
-    message: item["message"]
+    message: item["message"],
   };
 }
 ```
