@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type MultipleInheritanceRestClient from "./multipleInheritanceRestClient";
+import MultipleInheritanceRestClient from "./multipleInheritanceRestClient";
 
 export * from "./multipleInheritanceRestClient";
 export * from "./parameters";

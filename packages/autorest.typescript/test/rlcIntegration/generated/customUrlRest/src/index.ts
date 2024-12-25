@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type CustomUrlRestClient from "./customUrlRestClient";
+import CustomUrlRestClient from "./customUrlRestClient";
 
 export * from "./customUrlRestClient";
 export * from "./parameters";

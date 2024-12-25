@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type OpenAIClient from "./openAIClient.js";
+import OpenAIClient from "./openAIClient.js";
 
 export * from "./openAIClient.js";
 export * from "./parameters.js";

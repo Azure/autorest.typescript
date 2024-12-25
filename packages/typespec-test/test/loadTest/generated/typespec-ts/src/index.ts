@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type AzureLoadTesting from "./azureLoadTesting.js";
+import AzureLoadTesting from "./azureLoadTesting.js";
 
 export * from "./azureLoadTesting.js";
 export * from "./parameters.js";

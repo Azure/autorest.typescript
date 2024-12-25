@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type MultipleUrlParameterRestClient from "./multipleUrlParameterRestClient";
+import MultipleUrlParameterRestClient from "./multipleUrlParameterRestClient";
 
 export * from "./multipleUrlParameterRestClient";
 export * from "./parameters";

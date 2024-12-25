@@ -48,7 +48,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
-    isTypeOnly: true,
     namespaceImport: "Parameters",
     moduleSpecifier: getImportModuleName(
       { cjsName: "./parameters", esModulesName: "./parameters.js" },
@@ -57,7 +56,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
   });
 
   file.addImportDeclaration({
-    isTypeOnly: true,
     namespaceImport: "Responses",
     moduleSpecifier: getImportModuleName(
       { cjsName: "./responses", esModulesName: "./responses.js" },
@@ -66,7 +64,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
   });
 
   file.addImportDeclaration({
-    isTypeOnly: true,
     namespaceImport: "Client",
     moduleSpecifier: getImportModuleName(
       {
@@ -80,7 +77,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
   const exports = ["Parameters", "Responses", "Client"];
   if (hasInputModels(model)) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "Models",
       moduleSpecifier: getImportModuleName(
         {
@@ -95,7 +91,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
 
   if (hasOutputModels(model)) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "OutputModels",
       moduleSpecifier: getImportModuleName(
         {
@@ -110,7 +105,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
 
   if (hasPagingOperations(model)) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "PaginateHelper",
       moduleSpecifier: getImportModuleName(
         {
@@ -125,7 +119,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
 
   if (hasUnexpectedHelper(model)) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "UnexpectedHelper",
       moduleSpecifier: getImportModuleName(
         {
@@ -140,7 +133,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
 
   if (hasPollingOperations(model)) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "PollingHelper",
       moduleSpecifier: getImportModuleName(
         {
@@ -161,7 +153,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     hasCsvCollection(model)
   ) {
     file.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "SerializeHelper",
       moduleSpecifier: getImportModuleName(
         {
@@ -197,7 +188,6 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
   const moduleName = normalizeName(clientName, NameType.File);
 
   file.addImportDeclaration({
-    isTypeOnly: true,
     moduleSpecifier: getImportModuleName(
       {
         cjsName: `./${moduleName}`,

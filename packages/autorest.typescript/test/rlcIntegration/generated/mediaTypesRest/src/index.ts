@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type MediaTypes from "./mediaTypes";
+import MediaTypes from "./mediaTypes";
 
 export * from "./mediaTypes";
 export * from "./parameters";

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type LRORestClient from "./lRORestClient";
+import LRORestClient from "./lRORestClient";
 
 export * from "./lRORestClient";
 export * from "./parameters";

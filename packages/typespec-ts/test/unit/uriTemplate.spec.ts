@@ -15,7 +15,7 @@ describe("Client definition generation", () => {
     await assertEqualContent(
       parameters?.content!,
       `
-    import { RequestParameters } from "@azure-rest/core-client";
+    import type { RequestParameters } from "@azure-rest/core-client";
 
     /** This is the wrapper object for the parameter \`param\` with allowReserved set to true. */
     export interface TemplateParamPathParam {

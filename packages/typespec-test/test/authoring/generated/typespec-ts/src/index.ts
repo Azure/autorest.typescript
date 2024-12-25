@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type AuthoringClient from "./authoringClient.js";
+import AuthoringClient from "./authoringClient.js";
 
 export * from "./authoringClient.js";
 export * from "./parameters.js";

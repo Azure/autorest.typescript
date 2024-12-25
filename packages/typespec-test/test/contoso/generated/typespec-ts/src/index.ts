@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type WidgetManagerClient from "./widgetManagerClient.js";
+import WidgetManagerClient from "./widgetManagerClient.js";
 
 export * from "./widgetManagerClient.js";
 export * from "./parameters.js";

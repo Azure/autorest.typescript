@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type TranslatorClient from "./translatorClient.js";
+import TranslatorClient from "./translatorClient.js";
 
 export * from "./translatorClient.js";
 export * from "./parameters.js";

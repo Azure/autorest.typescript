@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type HeaderRestClient from "./headerRestClient";
+import HeaderRestClient from "./headerRestClient";
 
 export * from "./headerRestClient";
 export * from "./parameters";

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type FaceClient from "./faceClient.js";
+import FaceClient from "./faceClient.js";
 
 export * from "./faceClient.js";
 export * from "./parameters.js";

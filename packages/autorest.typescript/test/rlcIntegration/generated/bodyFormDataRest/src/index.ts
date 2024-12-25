@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type BodyFormData from "./bodyFormData";
+import BodyFormData from "./bodyFormData";
 
 export * from "./bodyFormData";
 export * from "./parameters";

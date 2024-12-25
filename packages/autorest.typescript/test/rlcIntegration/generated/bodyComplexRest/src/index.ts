@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type BodyComplexRestClient from "./bodyComplexRestClient";
+import BodyComplexRestClient from "./bodyComplexRestClient";
 
 export * from "./bodyComplexRestClient";
 export * from "./parameters";
