@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import UrlRestClient from "./urlRestClient";
+import type UrlRestClient from "./urlRestClient";
 
 export * from "./urlRestClient";
 export * from "./parameters";

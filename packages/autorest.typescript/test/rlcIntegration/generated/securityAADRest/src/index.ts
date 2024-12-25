@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import SecurityAADRestClient from "./securityAADRestClient";
+import type SecurityAADRestClient from "./securityAADRestClient";
 
 export * from "./securityAADRestClient";
 export * from "./parameters";

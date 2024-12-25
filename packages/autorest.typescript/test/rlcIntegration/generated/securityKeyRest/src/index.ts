@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import SecurityKeyRestClient from "./securityKeyRestClient";
+import type SecurityKeyRestClient from "./securityKeyRestClient";
 
 export * from "./securityKeyRestClient";
 export * from "./parameters";

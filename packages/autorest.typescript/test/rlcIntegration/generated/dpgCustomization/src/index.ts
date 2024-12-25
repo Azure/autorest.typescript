@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import DPGCustomizationClient from "./dPGCustomizationClient";
+import type DPGCustomizationClient from "./dPGCustomizationClient";
 
 export * from "./dPGCustomizationClient";
 export * from "./parameters";

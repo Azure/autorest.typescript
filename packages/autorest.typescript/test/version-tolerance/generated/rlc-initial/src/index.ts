@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import DPGClient from "./dPGClient";
+import type DPGClient from "./dPGClient";
 
 export * from "./dPGClient";
 export * from "./parameters";

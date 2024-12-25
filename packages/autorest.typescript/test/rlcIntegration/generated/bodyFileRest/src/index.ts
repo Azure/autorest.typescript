@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import BodyFile from "./bodyFile";
+import type BodyFile from "./bodyFile";
 
 export * from "./bodyFile";
 export * from "./parameters";

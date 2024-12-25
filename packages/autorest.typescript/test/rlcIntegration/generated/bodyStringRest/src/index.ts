@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import BodyStringRest from "./bodyStringRest";
+import type BodyStringRest from "./bodyStringRest";
 
 export * from "./bodyStringRest";
 export * from "./parameters";

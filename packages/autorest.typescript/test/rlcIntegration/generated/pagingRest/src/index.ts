@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import Paging from "./paging";
+import type Paging from "./paging";
 
 export * from "./paging";
 export * from "./parameters";
