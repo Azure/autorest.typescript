@@ -1,3 +1,7 @@
+## 6.0.31 (Unreleased)
+
+- [Feature] Add a flag to generate ESM compatible source code. Please refer to [#2925](https://github.com/Azure/autorest.typescript/pull/2925)
+
 ## 6.0.30 (2024-12-12)
 
 - [Feature] Support tcgc type for ModelProperty, remove baseUrl in unbranded client and remove property if visibility with none. Please refer to [#2927](https://github.com/Azure/autorest.typescript/pull/2927)
