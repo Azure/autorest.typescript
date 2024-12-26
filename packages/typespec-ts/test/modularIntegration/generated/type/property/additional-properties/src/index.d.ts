@@ -84,7 +84,6 @@ export declare interface ExtendsDifferentSpreadFloatOperations {
 }
 
 export declare interface ExtendsDifferentSpreadFloatPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsDifferentSpreadModelArrayGetOptionalParams extends OperationOptions {
@@ -96,7 +95,6 @@ export declare interface ExtendsDifferentSpreadModelArrayOperations {
 }
 
 export declare interface ExtendsDifferentSpreadModelArrayPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsDifferentSpreadModelGetOptionalParams extends OperationOptions {
@@ -108,7 +106,6 @@ export declare interface ExtendsDifferentSpreadModelOperations {
 }
 
 export declare interface ExtendsDifferentSpreadModelPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsDifferentSpreadStringGetOptionalParams extends OperationOptions {
@@ -120,7 +117,6 @@ export declare interface ExtendsDifferentSpreadStringOperations {
 }
 
 export declare interface ExtendsDifferentSpreadStringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsFloatAdditionalProperties extends Record<string, number> {
@@ -136,7 +132,6 @@ export declare interface ExtendsFloatOperations {
 }
 
 export declare interface ExtendsFloatPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsModelAdditionalProperties extends Record<string, ModelForRecord> {
@@ -156,7 +151,6 @@ export declare interface ExtendsModelArrayOperations {
 }
 
 export declare interface ExtendsModelArrayPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsModelGetOptionalParams extends OperationOptions {
@@ -168,7 +162,6 @@ export declare interface ExtendsModelOperations {
 }
 
 export declare interface ExtendsModelPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsStringAdditionalProperties extends Record<string, string> {
@@ -184,7 +177,6 @@ export declare interface ExtendsStringOperations {
 }
 
 export declare interface ExtendsStringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsUnknownAdditionalProperties extends Record<string, any> {
@@ -218,7 +210,6 @@ export declare interface ExtendsUnknownDerivedOperations {
 }
 
 export declare interface ExtendsUnknownDerivedPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
@@ -230,7 +221,6 @@ export declare interface ExtendsUnknownDiscriminatedOperations {
 }
 
 export declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ExtendsUnknownGetOptionalParams extends OperationOptions {
@@ -242,7 +232,6 @@ export declare interface ExtendsUnknownOperations {
 }
 
 export declare interface ExtendsUnknownPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsFloatAdditionalProperties extends Record<string, number> {
@@ -258,7 +247,6 @@ export declare interface IsFloatOperations {
 }
 
 export declare interface IsFloatPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsModelAdditionalProperties extends Record<string, ModelForRecord> {
@@ -278,7 +266,6 @@ export declare interface IsModelArrayOperations {
 }
 
 export declare interface IsModelArrayPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsModelGetOptionalParams extends OperationOptions {
@@ -290,7 +277,6 @@ export declare interface IsModelOperations {
 }
 
 export declare interface IsModelPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsStringAdditionalProperties extends Record<string, string> {
@@ -306,7 +292,6 @@ export declare interface IsStringOperations {
 }
 
 export declare interface IsStringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsUnknownAdditionalProperties extends Record<string, any> {
@@ -340,7 +325,6 @@ export declare interface IsUnknownDerivedOperations {
 }
 
 export declare interface IsUnknownDerivedPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
@@ -352,7 +336,6 @@ export declare interface IsUnknownDiscriminatedOperations {
 }
 
 export declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface IsUnknownGetOptionalParams extends OperationOptions {
@@ -364,7 +347,6 @@ export declare interface IsUnknownOperations {
 }
 
 export declare interface IsUnknownPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelForRecord {
@@ -380,7 +362,6 @@ export declare interface MultipleSpreadOperations {
 }
 
 export declare interface MultipleSpreadPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface MultipleSpreadRecord extends Record<string, any> {
@@ -396,7 +377,6 @@ export declare interface SpreadDifferentFloatOperations {
 }
 
 export declare interface SpreadDifferentFloatPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadDifferentModelArrayGetOptionalParams extends OperationOptions {
@@ -408,7 +388,6 @@ export declare interface SpreadDifferentModelArrayOperations {
 }
 
 export declare interface SpreadDifferentModelArrayPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadDifferentModelGetOptionalParams extends OperationOptions {
@@ -420,7 +399,6 @@ export declare interface SpreadDifferentModelOperations {
 }
 
 export declare interface SpreadDifferentModelPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadDifferentStringGetOptionalParams extends OperationOptions {
@@ -432,7 +410,6 @@ export declare interface SpreadDifferentStringOperations {
 }
 
 export declare interface SpreadDifferentStringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadFloatGetOptionalParams extends OperationOptions {
@@ -444,7 +421,6 @@ export declare interface SpreadFloatOperations {
 }
 
 export declare interface SpreadFloatPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadFloatRecord extends Record<string, number> {
@@ -460,7 +436,6 @@ export declare interface SpreadModelArrayOperations {
 }
 
 export declare interface SpreadModelArrayPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadModelArrayRecord extends Record<string, ModelForRecord[]> {
@@ -476,7 +451,6 @@ export declare interface SpreadModelOperations {
 }
 
 export declare interface SpreadModelPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadModelRecord extends Record<string, ModelForRecord> {
@@ -492,7 +466,6 @@ export declare interface SpreadRecordDiscriminatedUnionOperations {
 }
 
 export declare interface SpreadRecordDiscriminatedUnionPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
@@ -524,7 +497,6 @@ export declare interface SpreadRecordNonDiscriminatedUnion2Operations {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnion2PutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnion3GetOptionalParams extends OperationOptions {
@@ -536,7 +508,6 @@ export declare interface SpreadRecordNonDiscriminatedUnion3Operations {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnion3PutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnionGetOptionalParams extends OperationOptions {
@@ -548,7 +519,6 @@ export declare interface SpreadRecordNonDiscriminatedUnionOperations {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnionPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadRecordUnionGetOptionalParams extends OperationOptions {
@@ -560,7 +530,6 @@ export declare interface SpreadRecordUnionOperations {
 }
 
 export declare interface SpreadRecordUnionPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadStringGetOptionalParams extends OperationOptions {
@@ -572,7 +541,6 @@ export declare interface SpreadStringOperations {
 }
 
 export declare interface SpreadStringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SpreadStringRecord extends Record<string, string> {

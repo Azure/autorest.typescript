@@ -26,11 +26,9 @@ export declare interface ModelClientOptionalParams extends ClientOptions {
 }
 
 export declare interface PostOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export { }

@@ -19,7 +19,7 @@ export function _op1Send(
     .path("/d")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: aSerializer(body),
     });
 }

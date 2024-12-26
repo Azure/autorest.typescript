@@ -97,7 +97,10 @@ export function _readSend(
     .path("/{id}", id)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

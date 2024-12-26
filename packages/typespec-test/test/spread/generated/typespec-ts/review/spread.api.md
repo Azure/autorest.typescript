@@ -26,22 +26,18 @@ export interface AOperations {
 
 // @public
 export interface ATest1OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface ATest2OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface ATest3OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface ATest4OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public (undocumented)

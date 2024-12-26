@@ -220,6 +220,7 @@ export function _listNodeFilesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -303,6 +304,7 @@ export function _getNodeFilePropertiesSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -388,6 +390,7 @@ export function _getNodeFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -458,6 +461,7 @@ export function _deleteNodeFileSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -522,6 +526,7 @@ export function _listNodeExtensionsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         maxresults: options?.maxresults,
@@ -593,6 +598,7 @@ export function _getNodeExtensionSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -657,6 +663,7 @@ export function _listNodesSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -729,6 +736,7 @@ export function _uploadNodeLogsSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -797,6 +805,7 @@ export function _getNodeRemoteDesktopFileSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -864,6 +873,7 @@ export function _getNodeRemoteLoginSettingsSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -930,6 +940,7 @@ export function _enableNodeSchedulingSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -994,6 +1005,7 @@ export function _disableNodeSchedulingSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1061,6 +1073,7 @@ export function _reimageNodeSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1124,6 +1137,7 @@ export function _rebootNodeSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1180,6 +1194,7 @@ export function _getNodeSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -1248,6 +1263,7 @@ export function _replaceNodeUserSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1324,6 +1340,7 @@ export function _deleteNodeUserSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1391,6 +1408,7 @@ export function _createNodeUserSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1457,6 +1475,7 @@ export function _listTaskFilesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1540,6 +1559,7 @@ export function _getTaskFilePropertiesSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1625,6 +1645,7 @@ export function _getTaskFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
         accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1693,6 +1714,7 @@ export function _deleteTaskFileSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1776,6 +1798,7 @@ export function _reactivateTaskSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1859,6 +1882,7 @@ export function _terminateTaskSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -1918,6 +1942,7 @@ export function _listSubTasksSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2000,6 +2025,7 @@ export function _replaceTaskSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2075,6 +2101,7 @@ export function _getTaskSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -2164,6 +2191,7 @@ export function _deleteTaskSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2226,6 +2254,7 @@ export function _createTaskCollectionSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2299,6 +2328,7 @@ export function _listTasksSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -2375,6 +2405,7 @@ export function _createTaskSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2431,6 +2462,7 @@ export function _listJobSchedulesSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -2501,6 +2533,7 @@ export function _createJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2575,6 +2608,7 @@ export function _terminateJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2652,6 +2686,7 @@ export function _enableJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2725,6 +2760,7 @@ export function _disableJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2800,6 +2836,7 @@ export function _replaceJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2888,6 +2925,7 @@ export function _updateJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -2972,6 +3010,7 @@ export function _getJobScheduleSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -3055,6 +3094,7 @@ export function _deleteJobScheduleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3134,6 +3174,7 @@ export function _jobScheduleExistsSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3192,6 +3233,7 @@ export function _getCertificateSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3261,6 +3303,7 @@ export function _deleteCertificateSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3335,6 +3378,7 @@ export function _cancelCertificateDeletionSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3399,6 +3443,7 @@ export function _listCertificatesSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -3464,6 +3509,7 @@ export function _createCertificateSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3518,6 +3564,7 @@ export function _getJobTaskCountsSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3579,6 +3626,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         maxresults: options?.maxresults,
@@ -3652,6 +3700,7 @@ export function _listJobsFromScheduleSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -3719,6 +3768,7 @@ export function _listJobsSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -3789,6 +3839,7 @@ export function _createJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3874,6 +3925,7 @@ export function _terminateJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -3957,6 +4009,7 @@ export function _enableJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4039,6 +4092,7 @@ export function _disableJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4125,6 +4179,7 @@ export function _replaceJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4206,6 +4261,7 @@ export function _updateJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4283,6 +4339,7 @@ export function _getJobSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -4366,6 +4423,7 @@ export function _deleteJobSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4427,6 +4485,7 @@ export function _listPoolNodeCountsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4490,6 +4549,7 @@ export function _listSupportedImagesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         maxresults: options?.maxresults,
@@ -4570,6 +4630,7 @@ export function _removeNodesSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4631,6 +4692,7 @@ export function _replacePoolPropertiesSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4715,6 +4777,7 @@ export function _stopPoolResizeSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4798,6 +4861,7 @@ export function _resizePoolSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4863,6 +4927,7 @@ export function _evaluatePoolAutoScaleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -4949,6 +5014,7 @@ export function _enablePoolAutoScaleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5011,6 +5077,7 @@ export function _disablePoolAutoScaleSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5086,6 +5153,7 @@ export function _updatePoolSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5163,6 +5231,7 @@ export function _getPoolSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -5246,6 +5315,7 @@ export function _poolExistsSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5319,6 +5389,7 @@ export function _deletePoolSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5382,6 +5453,7 @@ export function _listPoolsSend(
         ? { "return-client-request-id": options?.returnClientRequestId }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
     queryParameters: {
       "api-version": context.apiVersion,
@@ -5452,6 +5524,7 @@ export function _createPoolSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5509,6 +5582,7 @@ export function _listPoolUsageMetricsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5581,6 +5655,7 @@ export function _getApplicationSend(
             }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -5639,6 +5714,7 @@ export function _listApplicationsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,

@@ -728,7 +728,6 @@ export interface FunctionName {
 
 // @public
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -749,22 +748,18 @@ export interface GetAudioTranslationAsResponseObjectOptionalParams extends Opera
 
 // @public
 export interface GetChatCompletionsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface GetCompletionsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface GetEmbeddingsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface GetImageGenerationsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public

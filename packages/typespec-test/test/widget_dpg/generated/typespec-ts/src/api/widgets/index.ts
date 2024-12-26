@@ -50,7 +50,10 @@ export function _analyzeWidgetSend(
     .path("/widgets/{id}/analyze", id)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -85,7 +88,10 @@ export function _deleteWidgetSend(
     .path("/widgets/{id}", id)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -120,8 +126,11 @@ export function _updateWidgetSend(
     .path("/widgets/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: { weight: options?.weight, color: options?.color },
     });
 }
@@ -160,8 +169,11 @@ export function _createOrReplaceSend(
     .path("/widgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
     });
@@ -210,8 +222,11 @@ export function _createWidgetSend(
     .path("/widgets")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: { weight: weight, color: color },
     });
 }
@@ -253,7 +268,10 @@ export function _getWidgetSend(
     .path("/widgets/{id}", id)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -289,7 +307,10 @@ export function _queryWidgetsPagesSend(
     .path("/widgets/widgets/pages")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { page: page, pageSize: pageSize },
     });
 }
@@ -331,7 +352,10 @@ export function _listWidgetsPagesSend(
     .path("/widgets/widgets/pages")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { page: page, pageSize: pageSize },
     });
 }
@@ -407,6 +431,7 @@ export function _listWidgetsSend(
           }
         : {}),
       accept: "application/json",
+      ...options.requestOptions?.headers,
     },
   });
 }

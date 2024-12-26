@@ -45,7 +45,10 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: content,
     });
@@ -99,7 +102,10 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: schemaContent,
     });
@@ -143,7 +149,6 @@ export function _getSchemaByVersionSend(
   groupName: string,
   name: string,
   schemaVersion: number,
-  accept: string,
   options: SchemaOperationsGetSchemaByVersionOptionalParams = {
     requestOptions: {},
   },
@@ -157,7 +162,6 @@ export function _getSchemaByVersionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { Accept: accept },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -179,7 +183,6 @@ export async function getSchemaByVersion(
   groupName: string,
   name: string,
   schemaVersion: number,
-  accept: string,
   options: SchemaOperationsGetSchemaByVersionOptionalParams = {
     requestOptions: {},
   },
@@ -189,7 +192,6 @@ export async function getSchemaByVersion(
     groupName,
     name,
     schemaVersion,
-    accept,
     options,
   );
   return _getSchemaByVersionDeserialize(result);
@@ -207,7 +209,10 @@ export function _listSchemaVersionsSend(
     .path("/$schemaGroups/{groupName}/schemas/{name}/versions", groupName, name)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -244,14 +249,12 @@ export function listSchemaVersions(
 export function _getSchemaByIdSend(
   context: Client,
   id: string,
-  accept: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/$schemaGroups/$schemas/{id}", id)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { Accept: accept },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -271,10 +274,9 @@ export async function _getSchemaByIdDeserialize(
 export async function getSchemaById(
   context: Client,
   id: string,
-  accept: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _getSchemaByIdSend(context, id, accept, options);
+  const result = await _getSchemaByIdSend(context, id, options);
   return _getSchemaByIdDeserialize(result);
 }
 
@@ -288,7 +290,10 @@ export function _listSchemaGroupsSend(
     .path("/$schemaGroups")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }

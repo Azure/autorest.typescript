@@ -36,7 +36,10 @@ export function _stopTestProfileRunSend(
     .path("/test-profile-runs/{testProfileRunId}:stop", testProfileRunId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -74,7 +77,10 @@ export function _listTestProfileRunsSend(
     .path("/test-profile-runs")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         maxpagesize: options?.maxpagesize,
@@ -137,7 +143,10 @@ export function _getTestProfileRunSend(
     .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -176,7 +185,10 @@ export function _deleteTestProfileRunSend(
     .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -217,7 +229,10 @@ export function _createOrUpdateTestProfileRunSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: testProfileRunSerializer(body),
     });

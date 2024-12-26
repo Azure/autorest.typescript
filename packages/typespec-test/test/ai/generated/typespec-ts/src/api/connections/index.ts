@@ -30,8 +30,11 @@ export function _listSecretsSend(
     .path("/connections/{connectionName}/listsecrets", connectionName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: { ignored: ignored },
     });
@@ -73,7 +76,10 @@ export function _getSend(
     .path("/connections/{connectionName}", connectionName)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -107,7 +113,10 @@ export function _listSend(
     .path("/connections")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         category: options?.category,

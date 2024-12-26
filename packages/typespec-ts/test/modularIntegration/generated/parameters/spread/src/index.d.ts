@@ -11,25 +11,20 @@ export declare interface AliasOperations {
 }
 
 export declare interface AliasSpreadAsRequestBodyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface AliasSpreadAsRequestParameterOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface AliasSpreadParameterWithInnerAliasOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface AliasSpreadParameterWithInnerModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface AliasSpreadWithMultipleParametersOptionalParams extends OperationOptions {
     optionalInt?: number;
     optionalStringList?: string[];
-    contentType?: "application/json";
 }
 
 export declare interface BodyParameter {
@@ -45,19 +40,15 @@ export declare interface ModelOperations {
 }
 
 export declare interface ModelSpreadAsRequestBodyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelSpreadCompositeRequestMixOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelSpreadCompositeRequestOnlyWithBodyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelSpreadCompositeRequestOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelSpreadCompositeRequestWithoutBodyOptionalParams extends OperationOptions {

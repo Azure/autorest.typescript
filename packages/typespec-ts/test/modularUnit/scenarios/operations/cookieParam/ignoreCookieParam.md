@@ -39,7 +39,10 @@ export function _testSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

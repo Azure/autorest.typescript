@@ -34,7 +34,10 @@ export function _cancelSend(
     .path("/fine_tuning/jobs/{fine_tuning_job_id}/cancel", fineTuningJobId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -67,7 +70,10 @@ export function _listEventsSend(
     .path("/fine_tuning/jobs/{fine_tuning_job_id}/events", fineTuningJobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { after: options?.after, limit: options?.limit },
     });
 }
@@ -101,7 +107,10 @@ export function _retrieveSend(
     .path("/fine_tuning/jobs/{fine_tuning_job_id}", fineTuningJobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -133,7 +142,10 @@ export function _listSend(
     .path("/fine_tuning/jobs")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { after: options?.after, limit: options?.limit },
     });
 }
@@ -166,8 +178,11 @@ export function _createSend(
     .path("/fine_tuning/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createFineTuningJobRequestSerializer(job),
     });
 }

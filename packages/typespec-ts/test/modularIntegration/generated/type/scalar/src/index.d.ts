@@ -11,7 +11,6 @@ export declare interface BooleanOperations {
 }
 
 export declare interface BooleanPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Decimal128TypeOperations {
@@ -21,7 +20,6 @@ export declare interface Decimal128TypeOperations {
 }
 
 export declare interface Decimal128TypeRequestBodyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Decimal128TypeRequestParameterOptionalParams extends OperationOptions {
@@ -39,7 +37,6 @@ export declare interface Decimal128VerifyPrepareVerifyOptionalParams extends Ope
 }
 
 export declare interface Decimal128VerifyVerifyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface DecimalTypeOperations {
@@ -49,7 +46,6 @@ export declare interface DecimalTypeOperations {
 }
 
 export declare interface DecimalTypeRequestBodyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface DecimalTypeRequestParameterOptionalParams extends OperationOptions {
@@ -67,7 +63,6 @@ export declare interface DecimalVerifyPrepareVerifyOptionalParams extends Operat
 }
 
 export declare interface DecimalVerifyVerifyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare class ScalarClient {
@@ -95,7 +90,6 @@ export declare interface StringOperations {
 }
 
 export declare interface StringPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface UnknownGetOptionalParams extends OperationOptions {
@@ -107,7 +101,6 @@ export declare interface UnknownOperations {
 }
 
 export declare interface UnknownPutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export { }

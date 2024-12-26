@@ -54,7 +54,10 @@ export function _rejectCloudEventsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: rejectOptionsSerializer(lockTokens),
     });
@@ -105,7 +108,10 @@ export function _releaseCloudEventsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: releaseOptionsSerializer(lockTokens),
     });
@@ -156,7 +162,10 @@ export function _acknowledgeCloudEventsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: acknowledgeOptionsSerializer(lockTokens),
     });
@@ -205,7 +214,10 @@ export function _receiveCloudEventsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         maxEvents: options?.maxEvents,
@@ -250,7 +262,7 @@ export function _publishCloudEventsSend(
   return context.path("/topics/{topicName}:publish", topicName).post({
     ...operationOptionsToRequestParameters(options),
     contentType: "application/cloudevents-batch+json; charset=utf-8",
-    headers: { accept: "application/json" },
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
     queryParameters: { "api-version": context.apiVersion },
     body: events.map((p: any) => {
       return cloudEventSerializer(p);
@@ -298,7 +310,10 @@ export function _publishCloudEventSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents+json; charset=utf-8",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: _publishCloudEventRequestSerializer(event),
     });

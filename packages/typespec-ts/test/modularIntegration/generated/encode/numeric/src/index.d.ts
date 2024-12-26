@@ -19,15 +19,12 @@ export declare interface PropertyOperations {
 }
 
 export declare interface PropertySafeintAsStringOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PropertyUint32AsStringOptionalOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PropertyUint8AsStringOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface SafeintAsStringProperty {

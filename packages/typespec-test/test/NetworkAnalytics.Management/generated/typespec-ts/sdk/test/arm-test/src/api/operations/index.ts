@@ -29,7 +29,10 @@ export function _listSend(
     .path("/providers/Microsoft.NetworkAnalytics/operations")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }

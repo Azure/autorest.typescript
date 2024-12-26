@@ -155,7 +155,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/json",
+    contentType: "application/json",
     headers: {
       "required-header": requiredHeader,
       ...(options?.optionalHeader !== undefined
@@ -188,6 +188,7 @@ export function _readSend(
               : options?.nullableDateHeader.toUTCString(),
           }
         : {}),
+      ...options.requestOptions?.headers,
     },
     body: { prop1: prop1, prop2: prop2 },
   });
@@ -264,7 +265,10 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { "nullable-required-header": nullableRequiredHeader },
+      headers: {
+        "nullable-required-header": nullableRequiredHeader,
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -319,7 +323,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/json",
+    contentType: "application/json",
     body: !options["bars"]
       ? options["bars"]
       : options["bars"].map((p: any) => {
@@ -379,7 +383,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/json",
+    contentType: "application/json",
     body: bars.map((p: any) => {
       return barSerializer(p);
     }),
@@ -439,7 +443,10 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -499,8 +506,8 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: (options.contentType as any) ?? "application/json",
-    headers: { accept: "application/json" },
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
     body: !options["bars"]
       ? options["bars"]
       : options["bars"].map((p: any) => {
@@ -568,7 +575,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       body: fooSerializer(body),
     });
 }
@@ -632,7 +639,10 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -704,7 +714,10 @@ export function _testSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -781,7 +794,10 @@ export function _testSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -864,7 +880,10 @@ export function _testSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

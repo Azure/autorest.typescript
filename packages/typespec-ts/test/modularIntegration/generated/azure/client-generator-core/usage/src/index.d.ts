@@ -7,11 +7,9 @@ export declare interface InputModel {
 }
 
 export declare interface InputToInputOutputOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelInReadOnlyPropertyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface OrphanModel {

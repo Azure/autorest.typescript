@@ -34,8 +34,11 @@ export function _createAttachmentSend(
     .path("/items/{itemId}/attachments", itemId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: todoAttachmentSerializer(contents),
     });
 }
@@ -77,7 +80,10 @@ export function _listSend(
     .path("/items/{itemId}/attachments", itemId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

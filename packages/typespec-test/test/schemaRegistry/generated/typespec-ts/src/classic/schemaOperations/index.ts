@@ -48,7 +48,6 @@ export interface SchemaOperationsOperations {
     groupName: string,
     name: string,
     schemaVersion: number,
-    accept: string,
     options?: SchemaOperationsGetSchemaByVersionOptionalParams,
   ) => Promise<Uint8Array>;
   /** Gets the list of all versions of one schema. */
@@ -60,7 +59,6 @@ export interface SchemaOperationsOperations {
   /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
   getSchemaById: (
     id: string,
-    accept: string,
     options?: SchemaOperationsGetSchemaByIdOptionalParams,
   ) => Promise<Uint8Array>;
   /** Gets the list of schema groups user is authorized to access. */
@@ -98,17 +96,8 @@ export function getSchemaOperations(context: SchemaRegistryContext) {
       groupName: string,
       name: string,
       schemaVersion: number,
-      accept: string,
       options?: SchemaOperationsGetSchemaByVersionOptionalParams,
-    ) =>
-      getSchemaByVersion(
-        context,
-        groupName,
-        name,
-        schemaVersion,
-        accept,
-        options,
-      ),
+    ) => getSchemaByVersion(context, groupName, name, schemaVersion, options),
     listSchemaVersions: (
       groupName: string,
       name: string,
@@ -116,9 +105,8 @@ export function getSchemaOperations(context: SchemaRegistryContext) {
     ) => listSchemaVersions(context, groupName, name, options),
     getSchemaById: (
       id: string,
-      accept: string,
       options?: SchemaOperationsGetSchemaByIdOptionalParams,
-    ) => getSchemaById(context, id, accept, options),
+    ) => getSchemaById(context, id, options),
     listSchemaGroups: (
       options?: SchemaOperationsListSchemaGroupsOptionalParams,
     ) => listSchemaGroups(context, options),

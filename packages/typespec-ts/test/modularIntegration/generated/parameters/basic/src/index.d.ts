@@ -18,7 +18,6 @@ export declare interface ExplicitBodyOperations {
 }
 
 export declare interface ExplicitBodySimpleOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ImplicitBodyOperations {
@@ -26,7 +25,6 @@ export declare interface ImplicitBodyOperations {
 }
 
 export declare interface ImplicitBodySimpleOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface User {

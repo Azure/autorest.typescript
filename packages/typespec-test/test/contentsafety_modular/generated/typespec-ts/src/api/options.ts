@@ -17,16 +17,10 @@ export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface RemoveBlockItemsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface RemoveBlockItemsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
@@ -42,13 +36,7 @@ export interface CreateOrUpdateTextBlocklistOptionalParams
 export interface GetTextBlocklistOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AnalyzeImageOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface AnalyzeImageOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AnalyzeTextOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface AnalyzeTextOptionalParams extends OperationOptions {}

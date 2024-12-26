@@ -35,15 +35,12 @@ export declare type UnionV1 = string | number;
 export declare type UnionV2 = string | number;
 
 export declare interface V1OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface V2InInterfaceOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface V2OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare type Versions = "v1" | "v2";

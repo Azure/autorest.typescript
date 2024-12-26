@@ -49,6 +49,7 @@ export function _deleteScheduleSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
     });
@@ -88,6 +89,7 @@ export function _listScheduleSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -135,12 +137,13 @@ export function _createOrReplaceScheduleSend(
     .path("/evaluations/schedules/{id}", id)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
       headers: {
         ...(options?.clientRequestId !== undefined
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
       body: evaluationScheduleSerializer(resource),
@@ -190,6 +193,7 @@ export function _getScheduleSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
     });
@@ -232,6 +236,7 @@ export function _updateSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
       body: evaluationSerializer(resource),
@@ -273,6 +278,7 @@ export function _listSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: {
         "api-version": context.apiVersion,
@@ -317,8 +323,11 @@ export function _createSend(
     .path("/evaluations/runs:run")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { apiVersion: context.apiVersion },
       body: evaluationSerializer(evaluation),
     });
@@ -359,6 +368,7 @@ export function _getSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
         accept: "application/json",
+        ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
     });

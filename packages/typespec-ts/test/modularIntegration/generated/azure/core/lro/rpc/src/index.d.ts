@@ -20,7 +20,6 @@ export declare enum KnownVersions {
 
 export declare interface LongRunningRpcOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
-    contentType?: "application/json";
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: RpcClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;

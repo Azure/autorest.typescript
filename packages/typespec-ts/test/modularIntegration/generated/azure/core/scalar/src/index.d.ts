@@ -17,11 +17,9 @@ export declare enum KnownVersions {
 }
 
 export declare interface PostOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface QueryOptionalParams extends OperationOptions {

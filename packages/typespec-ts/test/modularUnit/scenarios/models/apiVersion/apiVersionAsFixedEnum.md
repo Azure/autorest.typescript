@@ -65,7 +65,10 @@ export function _fooSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { "api-version": context.apiVersion },
+      headers: {
+        "api-version": context.apiVersion,
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

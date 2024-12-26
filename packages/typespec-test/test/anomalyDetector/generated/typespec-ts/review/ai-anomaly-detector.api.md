@@ -87,12 +87,10 @@ export interface MultivariateDeleteMultivariateModelOptionalParams extends Opera
 
 // @public
 export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -200,7 +198,6 @@ export interface MultivariateOperations {
 
 // @public
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -233,17 +230,14 @@ export interface PageSettings {
 
 // @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
 export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public

@@ -63,7 +63,10 @@ export function _stopTestRunSend(
     .path("/test-runs/{testRunId}:stop", testRunId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -97,7 +100,10 @@ export function _listTestRunsSend(
     .path("/test-runs")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         orderby: options?.orderby,
@@ -152,8 +158,11 @@ export function _listMetricsSend(
     .path("/test-runs/{testRunId}/metrics", testRunId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         aggregation: options?.aggregation,
@@ -214,7 +223,10 @@ export function _listMetricNamespacesSend(
     .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -250,7 +262,10 @@ export function _listMetricDefinitionsSend(
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         metricNamespace: metricNamespace,
@@ -302,7 +317,10 @@ export function _listMetricDimensionValuesSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         metricname: metricname,
@@ -356,7 +374,10 @@ export function _getTestRunFileSend(
     .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -397,7 +418,10 @@ export function _getTestRunSend(
     .path("/test-runs/{testRunId}", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -432,7 +456,10 @@ export function _getServerMetricsConfigSend(
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -467,7 +494,10 @@ export function _getAppComponentsSend(
     .path("/test-runs/{testRunId}/app-components", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -505,7 +535,10 @@ export function _deleteTestRunSend(
     .path("/test-runs/{testRunId}", testRunId)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -544,7 +577,10 @@ export function _createOrUpdateServerMetricsConfigSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: testRunServerMetricConfigSerializer(body),
     });
@@ -590,7 +626,10 @@ export function _createOrUpdateAppComponentsSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: testRunAppComponentsSerializer(body),
     });
@@ -634,7 +673,10 @@ export function _createOrUpdateTestRunSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         oldTestRunId: options?.oldTestRunId,

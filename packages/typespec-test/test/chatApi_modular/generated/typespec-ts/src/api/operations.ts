@@ -32,8 +32,11 @@ export function _createSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: chatCompletionOptionsRecordSerializer(body),
     });
 }
@@ -68,8 +71,11 @@ export function _createStreamingSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: streamingChatCompletionOptionsRecordSerializer(body),
     });
 }

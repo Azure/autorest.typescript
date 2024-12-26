@@ -59,7 +59,10 @@ export function _listTextBlocklistItemsSend(
     .path("/text/blocklists/{blocklistName}/blockItems", blocklistName)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         top: options?.top,
@@ -109,7 +112,10 @@ export function _getTextBlocklistItemSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -151,8 +157,11 @@ export function _removeBlockItemsSend(
     .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: removeBlockItemsOptionsSerializer(body),
     });
@@ -198,8 +207,11 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: addOrUpdateBlockItemsOptionsSerializer(body),
     });
@@ -240,7 +252,10 @@ export function _listTextBlocklistsSend(
     .path("/text/blocklists")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -279,7 +294,10 @@ export function _deleteTextBlocklistSend(
     .path("/text/blocklists/{blocklistName}", blocklistName)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -320,7 +338,10 @@ export function _createOrUpdateTextBlocklistSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: textBlocklistSerializer(resource),
     });
@@ -362,7 +383,10 @@ export function _getTextBlocklistSend(
     .path("/text/blocklists/{blocklistName}", blocklistName)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -397,8 +421,11 @@ export function _analyzeImageSend(
     .path("/image:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: analyzeImageOptionsSerializer(body),
     });
@@ -434,8 +461,11 @@ export function _analyzeTextSend(
     .path("/text:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: analyzeTextOptionsSerializer(body),
     });

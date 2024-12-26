@@ -50,8 +50,11 @@ export function _detectMultivariateLastAnomalySend(
     .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: (optionalParams.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
       body: multivariateMultivariateLastDetectionOptionsSerializer(options),
     });
 }
@@ -102,8 +105,11 @@ export function _detectMultivariateBatchAnomalySend(
     .path("/multivariate/models/{modelId}:detect-batch", modelId)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      contentType: (optionalParams.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
       body: multivariateMultivariateBatchDetectionOptionsSerializer(options),
     });
 }
@@ -155,7 +161,10 @@ export function _getMultivariateModelSend(
     .path("/multivariate/models/{modelId}", modelId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -196,7 +205,10 @@ export function _deleteMultivariateModelSend(
     .path("/multivariate/models/{modelId}", modelId)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -233,7 +245,10 @@ export function _listMultivariateModelsSend(
     .path("/multivariate/models")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { skip: options?.skip, top: options?.top },
     });
 }
@@ -276,8 +291,11 @@ export function _trainMultivariateModelSend(
     .path("/multivariate/models")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: multivariateModelInfoSerializer(modelInfo),
     });
 }
@@ -324,7 +342,10 @@ export function _getMultivariateBatchDetectionResultSend(
     .path("/multivariate/detect-batch/{resultId}", resultId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 

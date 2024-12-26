@@ -41,11 +41,9 @@ export declare interface NestedDiscriminatorClientOptionalParams extends ClientO
 }
 
 export declare interface PutModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutRecursiveModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Salmon extends Fish {

@@ -26,11 +26,9 @@ export declare interface Pet {
 }
 
 export declare interface PostValidOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutValidOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Siamese extends Cat {

@@ -4,34 +4,20 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface GetEmbeddingsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface GetEmbeddingsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface GenerateSpeechFromTextOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetImageGenerationsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface GetImageGenerationsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetChatCompletionsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface GetChatCompletionsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetCompletionsOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface GetCompletionsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetAudioTranslationAsResponseObjectOptionalParams

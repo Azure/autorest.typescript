@@ -28,11 +28,9 @@ export declare interface StringOperations {
 }
 
 export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export { }

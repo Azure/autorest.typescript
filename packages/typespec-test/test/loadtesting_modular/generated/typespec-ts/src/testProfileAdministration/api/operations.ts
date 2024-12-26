@@ -34,7 +34,10 @@ export function _listTestProfilesSend(
     .path("/test-profiles")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         "api-version": context.apiVersion,
         maxpagesize: options?.maxpagesize,
@@ -84,7 +87,10 @@ export function _getTestProfileSend(
     .path("/test-profiles/{testProfileId}", testProfileId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -119,7 +125,10 @@ export function _deleteTestProfileSend(
     .path("/test-profiles/{testProfileId}", testProfileId)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
     });
 }
@@ -156,7 +165,10 @@ export function _createOrUpdateTestProfileSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: testProfileSerializer(body),
     });

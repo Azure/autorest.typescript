@@ -34,7 +34,10 @@ export function _createVariationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createImageVariationRequestSerializer(image),
     });
 }
@@ -69,7 +72,10 @@ export function _createEditSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createImageEditRequestSerializer(image),
     });
 }
@@ -103,8 +109,11 @@ export function _createSend(
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createImageRequestSerializer(image),
     });
 }

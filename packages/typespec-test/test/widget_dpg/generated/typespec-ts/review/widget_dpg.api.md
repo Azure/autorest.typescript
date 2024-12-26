@@ -21,7 +21,6 @@ export interface AnalyzeResult {
 
 // @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
@@ -88,13 +87,11 @@ export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 
 // @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    contentType?: "application/json";
     updateIntervalInMs?: number;
 }
 
 // @public
 export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -156,7 +153,6 @@ export interface WidgetsQueryWidgetsPagesOptionalParams extends OperationOptions
 // @public
 export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
     color?: "red" | "blue";
-    contentType?: "application/json";
     weight?: number;
 }
 

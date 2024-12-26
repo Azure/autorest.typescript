@@ -58,8 +58,11 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: embeddingsOptionsSerializer(body),
     });
@@ -97,8 +100,11 @@ export function _generateSpeechFromTextSend(
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/octet-stream" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: speechGenerationOptionsSerializer(body),
     });
@@ -141,8 +147,11 @@ export function _getImageGenerationsSend(
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: imageGenerationOptionsSerializer(body),
     });
@@ -185,8 +194,11 @@ export function _getChatCompletionsSend(
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: chatCompletionsOptionsSerializer(body),
     });
@@ -233,8 +245,11 @@ export function _getCompletionsSend(
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: completionsOptionsSerializer(body),
     });
@@ -284,7 +299,10 @@ export function _getAudioTranslationAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: audioTranslationOptionsSerializer(body),
     });
@@ -332,7 +350,7 @@ export function _getAudioTranslationAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "text/plain" },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
       queryParameters: { "api-version": context.apiVersion },
       body: audioTranslationOptionsSerializer(body),
     });
@@ -380,7 +398,10 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: audioTranscriptionOptionsSerializer(body),
     });
@@ -431,7 +452,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: { accept: "text/plain" },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
       queryParameters: { "api-version": context.apiVersion },
       body: audioTranscriptionOptionsSerializer(body),
     });

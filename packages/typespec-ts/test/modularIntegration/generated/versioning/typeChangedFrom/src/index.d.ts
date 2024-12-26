@@ -8,7 +8,6 @@ export declare interface TestModel {
 }
 
 export declare interface TestOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare class TypeChangedFromClient {

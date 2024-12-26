@@ -28,7 +28,6 @@ export declare interface AzureExampleClientOptionalParams extends ClientOptions 
 }
 
 export declare interface BasicActionOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare type Enum = "EnumValue1";

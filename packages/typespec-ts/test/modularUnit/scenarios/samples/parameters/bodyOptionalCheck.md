@@ -98,8 +98,11 @@ export function _readSend(
     .path("/{name}", name)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: {
         requiredQuery: requiredQuery,
         optionalQuery: options?.optionalQuery,

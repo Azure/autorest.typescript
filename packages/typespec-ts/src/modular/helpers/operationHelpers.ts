@@ -261,7 +261,11 @@ function getOperationSignatureParameters(
           );
         })[0]?.kind !== "cookie" &&
         p.clientDefaultValue === undefined &&
-        !p.optional
+        !p.optional &&
+        !(
+          p.isGeneratedName &&
+          (p.name === "contentType" || p.name === "accept")
+        ) // skip tcgc generated contentType and accept header parameter
     )
     .map((p) => {
       return {
@@ -564,6 +568,14 @@ function getRequestParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "header" || param.kind === "query") {
+      // skip tcgc generated contentType and accept non constant type header parameter
+      if (
+        param.isGeneratedName &&
+        !isConstant(param.type) &&
+        (param.name === "contentType" || param.name === "accept")
+      ) {
+        continue;
+      }
       parametersImplementation[param.kind].push({
         paramMap: getParameterMap(dpgContext, param, optionalParamName),
         param
@@ -587,7 +599,7 @@ function getRequestParameters(
           optionalParamName
         )
       )
-      .join(",\n")}},`;
+      .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
 
   if (parametersImplementation.query.length) {
@@ -761,10 +773,8 @@ function getContentTypeValue(
 ) {
   const defaultValue = param.clientDefaultValue;
   // allow customers to customize the content type if it's guessed by tcgc.
-  if (isConstant(param.type) && !param.isGeneratedName) {
+  if (isConstant(param.type)) {
     return `contentType: ${getConstantValue(param.type)}`;
-  } else if (isConstant(param.type) && param.isGeneratedName) {
-    return `contentType: ${optionalParamName}.${param.name} as any ?? ${getConstantValue(param.type)}`;
   }
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;

@@ -34,11 +34,9 @@ export declare interface NestedFlattenModel {
 }
 
 export declare interface PutFlattenModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutNestedFlattenModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export { }

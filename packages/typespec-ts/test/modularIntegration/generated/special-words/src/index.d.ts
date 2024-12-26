@@ -103,7 +103,6 @@ export declare interface ModelPropertiesOperations {
 }
 
 export declare interface ModelPropertiesSameAsModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsOperations {
@@ -143,135 +142,102 @@ export declare interface ModelsOperations {
 }
 
 export declare interface ModelsWithAndOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithAsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithAssertOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithAsyncOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithAwaitOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithBreakOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithClassOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithConstructorOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithContinueOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithDefOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithDelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithElifOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithElseOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithExceptOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithExecOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithFinallyOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithForOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithFromOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithGlobalOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithIfOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithImportOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithInOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithIsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithLambdaOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithNotOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithOrOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithPassOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithRaiseOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithReturnOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithTryOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithWhileOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithWithOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface ModelsWithYieldOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Not {

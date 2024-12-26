@@ -5,10 +5,7 @@ import { OperationOptions } from "@typespec/ts-http-runtime";
 
 /** Optional parameters. */
 export interface TodoItemsAttachmentsCreateAttachmentOptionalParams
-  extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface TodoItemsAttachmentsListOptionalParams
@@ -37,7 +34,4 @@ export interface TodoItemsListOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface UsersCreateOptionalParams extends OperationOptions {
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
-}
+export interface UsersCreateOptionalParams extends OperationOptions {}

@@ -55,11 +55,9 @@ export declare interface Golden extends Dog {
 }
 
 export declare interface PutExtensibleModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface PutFixedModelOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface Snake {

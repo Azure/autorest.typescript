@@ -34,11 +34,9 @@ export declare interface OptionalExplicitSetOptionalParams extends OperationOpti
 }
 
 export declare interface RequiredExplicitOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface RequiredImplicitOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export { }

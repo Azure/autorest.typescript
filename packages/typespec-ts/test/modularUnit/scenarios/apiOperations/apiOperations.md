@@ -326,7 +326,10 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/octet-stream" },
+      headers: {
+        accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -385,7 +388,10 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/octet-stream" },
+      headers: {
+        accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -469,7 +475,10 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "multipart/form-data" },
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -560,7 +569,10 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "multipart/form-data" },
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -587,6 +599,73 @@ export async function downloadFile(
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
+}
+```
+
+# should handle contentTypes with default value in parameters
+
+Api operations should handle contentTypes has default value
+
+## TypeSpec
+
+```tsp
+@route("/uploadFileViaBody")
+@post op uploadFileViaBody(
+  @header contentType: string = "application/octet-stream",
+  @body body: bytes
+): void;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _uploadFileViaBodySend(
+  context: Client,
+  contentType: string,
+  body: Uint8Array,
+  options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/uploadFileViaBody")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: contentType,
+      body: body,
+    });
+}
+
+export async function _uploadFileViaBodyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function uploadFileViaBody(
+  context: Client,
+  contentType: string,
+  body: Uint8Array,
+  options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _uploadFileViaBodySend(
+    context,
+    contentType,
+    body,
+    options,
+  );
+  return _uploadFileViaBodyDeserialize(result);
 }
 ```
 
@@ -622,7 +701,10 @@ export function _testSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": apiVersion },
     });
 }
@@ -760,7 +842,10 @@ export function _testSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": apiVersion },
     });
 }
@@ -893,7 +978,10 @@ export function _test1Send(
     .path("/test1")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -925,7 +1013,10 @@ export function _testSend(
     .path("/test")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": apiVersion },
     });
 }

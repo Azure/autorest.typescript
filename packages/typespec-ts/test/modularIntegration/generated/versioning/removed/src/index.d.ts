@@ -18,7 +18,6 @@ export declare interface ModelV3 {
 }
 
 export declare interface ModelV3OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare class RemovedClient {
@@ -35,7 +34,6 @@ export declare interface RemovedClientOptionalParams extends ClientOptions {
 export declare type UnionV2 = string | number;
 
 export declare interface V2OptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare type Versions = "v1" | "v2preview" | "v2";

@@ -15,7 +15,6 @@ export declare interface GetOptionalParams extends OperationOptions {
 }
 
 export declare interface PutOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare class RecursiveClient {

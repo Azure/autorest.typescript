@@ -12,7 +12,6 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -27,7 +26,6 @@ export interface AddOrUpdateBlockItemsResult {
 
 // @public
 export interface AnalyzeImageOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -47,7 +45,6 @@ export interface AnalyzeImageResult {
 
 // @public
 export interface AnalyzeTextOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public
@@ -156,7 +153,6 @@ export interface PageSettings {
 
 // @public
 export interface RemoveBlockItemsOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 // @public

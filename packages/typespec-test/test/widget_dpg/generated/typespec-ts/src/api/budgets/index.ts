@@ -25,8 +25,11 @@ export function _createOrReplaceSend(
     .path("/budgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
     });

@@ -75,8 +75,8 @@ export interface SchemaOperationsListSchemaVersionsOptionalParams extends Operat
 
 // @public
 export interface SchemaOperationsOperations {
-    getSchemaById: (id: string, accept: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
-    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, accept: string, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
+    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
+    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;

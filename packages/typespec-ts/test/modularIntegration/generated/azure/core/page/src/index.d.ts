@@ -34,7 +34,6 @@ export declare interface ListWithPageOptionalParams extends OperationOptions {
 
 export declare interface ListWithParametersOptionalParams extends OperationOptions {
     another?: ListItemInputExtensibleEnum;
-    contentType?: "application/json";
 }
 
 export declare class PageClient {

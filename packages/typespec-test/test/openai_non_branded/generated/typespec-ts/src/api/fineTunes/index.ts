@@ -34,7 +34,10 @@ export function _cancelSend(
     .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -67,7 +70,10 @@ export function _listEventsSend(
     .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       queryParameters: { stream: options?.stream },
     });
 }
@@ -101,7 +107,10 @@ export function _retrieveSend(
     .path("/fine-tunes/{fine_tune_id}", fineTuneId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -133,7 +142,10 @@ export function _listSend(
     .path("/fine-tunes")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json" },
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -165,8 +177,11 @@ export function _createSend(
     .path("/fine-tunes")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createFineTuneRequestSerializer(fineTune),
     });
 }

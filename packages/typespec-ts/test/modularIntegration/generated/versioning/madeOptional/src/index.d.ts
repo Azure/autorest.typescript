@@ -19,7 +19,6 @@ export declare interface TestModel {
 
 export declare interface TestOptionalParams extends OperationOptions {
     param?: string;
-    contentType?: "application/json";
 }
 
 export declare type Versions = "v1" | "v2";

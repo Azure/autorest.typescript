@@ -27,8 +27,11 @@ export function _createSend(
     .path("/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      headers: { accept: "application/json" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createCompletionRequestSerializer(body),
     });
 }
