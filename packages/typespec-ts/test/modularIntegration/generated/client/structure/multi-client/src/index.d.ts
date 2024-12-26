@@ -6,9 +6,9 @@ export declare class ClientAClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: ClientAClientOptionalParams);
-    renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
-    renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
     renamedFive(options?: RenamedFiveOptionalParams): Promise<void>;
+    renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
+    renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
 }
 
 export declare interface ClientAClientOptionalParams extends ClientOptions {
@@ -18,9 +18,9 @@ export declare class ClientBClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: ClientBClientOptionalParams);
-    renamedTwo(options?: RenamedTwoOptionalParams): Promise<void>;
-    renamedFour(options?: RenamedFourOptionalParams): Promise<void>;
     renamedSix(options?: RenamedSixOptionalParams): Promise<void>;
+    renamedFour(options?: RenamedFourOptionalParams): Promise<void>;
+    renamedTwo(options?: RenamedTwoOptionalParams): Promise<void>;
 }
 
 export declare interface ClientBClientOptionalParams extends ClientOptions {

@@ -35,9 +35,9 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
-    inputToInputOutput(body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;
-    outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
     modelInReadOnlyProperty(body: RoundTripModel, options?: ModelInReadOnlyPropertyOptionalParams): Promise<RoundTripModel>;
+    outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
+    inputToInputOutput(body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {

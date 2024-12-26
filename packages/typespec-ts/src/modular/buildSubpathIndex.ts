@@ -1,6 +1,12 @@
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 import { join } from "path";
+import { SdkContext } from "../utils/interfaces.js";
+import { getModularClientOptions } from "../utils/clientUtils.js";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -8,17 +14,20 @@ export interface buildSubpathIndexFileOptions {
 }
 
 export function buildSubpathIndexFile(
-  codeModel: ModularCodeModel,
+  context: SdkContext,
+  emitterOptions: ModularEmitterOptions,
   subpath: string,
-  client?: Client,
+  client?: SdkClientType<SdkServiceOperation>,
   options: buildSubpathIndexFileOptions = {}
 ) {
-  const subfolder = client?.subfolder ?? "";
-  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client
+    ? (getModularClientOptions(context, client).subfolder ?? "")
+    : "";
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
   // Skip to export these files because they are used internally.
   const skipFiles = ["pagingHelpers.ts", "pollingHelpers.ts"];
   const apiFilePattern = join(srcPath, subfolder, subpath);
-  const apiFiles = codeModel.project.getSourceFiles().filter((file) => {
+  const apiFiles = emitterOptions.project.getSourceFiles().filter((file) => {
     return file
       .getFilePath()
       .replace(/\\/g, "/")
@@ -27,7 +36,7 @@ export function buildSubpathIndexFile(
   if (apiFiles.length === 0) {
     return;
   }
-  const indexFile = codeModel.project.createSourceFile(
+  const indexFile = emitterOptions.project.createSourceFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {

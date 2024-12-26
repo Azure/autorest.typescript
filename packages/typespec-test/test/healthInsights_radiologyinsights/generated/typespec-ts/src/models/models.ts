@@ -247,8 +247,8 @@ export interface TimePeriod {
 
 export function timePeriodSerializer(item: TimePeriod): any {
   return {
-    start: item["start"]?.toISOString(),
-    end: item["end"]?.toISOString(),
+    start: !item["start"] ? item["start"] : item["start"].toISOString(),
+    end: !item["end"] ? item["end"] : item["end"].toISOString(),
   };
 }
 
@@ -297,7 +297,9 @@ export function patientDocumentSerializer(item: PatientDocument): any {
     clinicalType: item["clinicalType"],
     id: item["id"],
     language: item["language"],
-    createdDateTime: item["createdDateTime"]?.toISOString(),
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : item["createdDateTime"].toISOString(),
     authors: !item["authors"]
       ? item["authors"]
       : documentAuthorArraySerializer(item["authors"]),
@@ -1477,6 +1479,7 @@ export interface Observation extends DomainResource {
 export function observationDeserializer(item: any): Observation {
   return {
     ...item,
+    resourceType: item["resourceType"],
     text: !item["text"] ? item["text"] : narrativeDeserializer(item["text"]),
     contained: !item["contained"]
       ? item["contained"]
@@ -1487,7 +1490,6 @@ export function observationDeserializer(item: any): Observation {
     modifierExtension: !item["modifierExtension"]
       ? item["modifierExtension"]
       : extensionArrayDeserializer(item["modifierExtension"]),
-    resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),
     implicitRules: item["implicitRules"],

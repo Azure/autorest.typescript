@@ -1,18 +1,20 @@
-import { Project } from "ts-morph";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 export function emitLoggerFile(
-  codeModel: ModularCodeModel,
-  project: Project,
+  emitterOptions: ModularEmitterOptions,
   srcPath: string = "src"
 ) {
-  if (codeModel.options.flavor !== "azure") {
+  if (emitterOptions.options.flavor !== "azure") {
     return;
   }
 
-  const sourceFile = project.createSourceFile(`${srcPath}/logger.ts`, "", {
-    overwrite: true
-  });
+  const sourceFile = emitterOptions.project.createSourceFile(
+    `${srcPath}/logger.ts`,
+    "",
+    {
+      overwrite: true
+    }
+  );
 
   sourceFile.addImportDeclaration({
     namedImports: ["createClientLogger"],
@@ -20,8 +22,8 @@ export function emitLoggerFile(
   });
 
   const name =
-    codeModel.options.packageDetails?.nameWithoutScope ??
-    codeModel.options.packageDetails?.name;
+    emitterOptions.options.packageDetails?.nameWithoutScope ??
+    emitterOptions.options.packageDetails?.name;
   sourceFile.addStatements(
     `export const logger = createClientLogger("${name}");`
   );

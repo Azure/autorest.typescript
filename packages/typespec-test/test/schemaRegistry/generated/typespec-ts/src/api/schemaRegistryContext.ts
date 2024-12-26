@@ -7,7 +7,11 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
-export interface SchemaRegistryContext extends Client {}
+export interface SchemaRegistryContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface SchemaRegistryClientOptionalParams extends ClientOptions {
@@ -18,12 +22,12 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 
 /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
 export function createSchemaRegistry(
-  fullyQualifiedNamespace: string,
+  endpointParam: string,
   credential: TokenCredential,
   options: SchemaRegistryClientOptionalParams = {},
 ): SchemaRegistryContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-schema-registry/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -57,5 +61,5 @@ export function createSchemaRegistry(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, apiVersion } as SchemaRegistryContext;
 }

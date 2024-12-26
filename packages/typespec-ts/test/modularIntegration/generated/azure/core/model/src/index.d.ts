@@ -17,9 +17,9 @@ export declare class ModelClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ModelClientOptionalParams);
-    get(options?: GetOptionalParams): Promise<number[]>;
-    put(body: number[], options?: PutOptionalParams): Promise<void>;
     post(body: AzureEmbeddingModel, options?: PostOptionalParams): Promise<AzureEmbeddingModel>;
+    put(body: number[], options?: PutOptionalParams): Promise<void>;
+    get(options?: GetOptionalParams): Promise<number[]>;
 }
 
 export declare interface ModelClientOptionalParams extends ClientOptions {

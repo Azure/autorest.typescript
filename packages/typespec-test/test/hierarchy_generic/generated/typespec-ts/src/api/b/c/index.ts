@@ -19,6 +19,7 @@ export function _op1Send(
     .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: baSerializer(body),
     });
 }

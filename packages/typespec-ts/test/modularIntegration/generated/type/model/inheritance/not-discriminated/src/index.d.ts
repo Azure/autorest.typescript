@@ -13,9 +13,9 @@ export declare class NotDiscriminatedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NotDiscriminatedClientOptionalParams);
-    postValid(input: Siamese, options?: PostValidOptionalParams): Promise<void>;
-    getValid(options?: GetValidOptionalParams): Promise<Siamese>;
     putValid(input: Siamese, options?: PutValidOptionalParams): Promise<Siamese>;
+    getValid(options?: GetValidOptionalParams): Promise<Siamese>;
+    postValid(input: Siamese, options?: PostValidOptionalParams): Promise<void>;
 }
 
 export declare interface NotDiscriminatedClientOptionalParams extends ClientOptions {

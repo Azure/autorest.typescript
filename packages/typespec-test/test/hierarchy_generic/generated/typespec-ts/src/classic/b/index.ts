@@ -11,8 +11,8 @@ import { BEOperations, getBEOperations } from "./e/index.js";
 /** Interface representing a B operations. */
 export interface BOperations {
   op1: (body: Ba, options?: BOp1OptionalParams) => Promise<void>;
-  e: BEOperations;
   c: BCOperations;
+  e: BEOperations;
 }
 
 export function getB(context: FooContext) {
@@ -25,7 +25,7 @@ export function getB(context: FooContext) {
 export function getBOperations(context: FooContext): BOperations {
   return {
     ...getB(context),
-    e: getBEOperations(context),
     c: getBCOperations(context),
+    e: getBEOperations(context),
   };
 }

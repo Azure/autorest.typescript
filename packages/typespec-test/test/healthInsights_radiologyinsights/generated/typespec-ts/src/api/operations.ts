@@ -7,8 +7,8 @@ import {
 } from "./index.js";
 import {
   PatientRecord,
-  patientRecordSerializer,
-  radiologyInsightsInferenceOptionsSerializer,
+  radiologyInsightsModelConfigurationSerializer,
+  patientRecordArraySerializer,
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
@@ -26,41 +26,35 @@ export function _inferRadiologyInsightsSend(
   patients: PatientRecord[],
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/radiology-insights/jobs").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.repeatabilityRequestId !== undefined
-        ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }
-        : {}),
-      ...(options?.repeatabilityFirstSent !== undefined
-        ? {
-            "Repeatability-First-Sent": !options?.repeatabilityFirstSent
-              ? options?.repeatabilityFirstSent
-              : options?.repeatabilityFirstSent.toUTCString(),
-          }
-        : {}),
-    },
-    body: {
-      patients: patients.map((p: any) => {
-        return patientRecordSerializer(p);
-      }),
-      configuration: {
-        verbose: options?.configuration?.["verbose"],
-        includeEvidence: options?.configuration?.["includeEvidence"],
-        inferenceTypes: !options?.configuration?.["inferenceTypes"]
-          ? options?.configuration?.["inferenceTypes"]
-          : options?.configuration?.["inferenceTypes"].map((p: any) => {
-              return p;
-            }),
-        inferenceOptions: !options?.configuration?.["inferenceOptions"]
-          ? options?.configuration?.["inferenceOptions"]
-          : radiologyInsightsInferenceOptionsSerializer(
-              options?.configuration?.["inferenceOptions"],
-            ),
-        locale: options?.configuration?.["locale"],
+  return context
+    .path("/radiology-insights/jobs")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        ...(options?.repeatabilityRequestId !== undefined
+          ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }
+          : {}),
+        ...(options?.repeatabilityFirstSent !== undefined
+          ? {
+              "Repeatability-First-Sent": !options?.repeatabilityFirstSent
+                ? options?.repeatabilityFirstSent
+                : options?.repeatabilityFirstSent.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
       },
-    },
-  });
+      queryParameters: { "api-version": context.apiVersion },
+      body: {
+        patients: patientRecordArraySerializer(patients),
+        configuration: !options?.configuration
+          ? options?.configuration
+          : radiologyInsightsModelConfigurationSerializer(
+              options?.configuration,
+            ),
+      },
+    });
 }
 
 export async function _inferRadiologyInsightsDeserialize(
