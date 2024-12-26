@@ -559,19 +559,10 @@ export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
   oriName?: string;
 };
 
-const clientMethodsMap: Map<
-  string,
-  Map<string, ServiceOperation[]>
-> = new Map();
-
 export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ): Map<string, ServiceOperation[]> {
-  const cache = clientMethodsMap.get(client.crossLanguageDefinitionId);
-  if (cache) {
-    return cache;
-  }
   const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
     client.methods.map((m) => {
       return [[], m];
@@ -632,10 +623,6 @@ export function getMethodHierarchiesMap(
       ]);
     }
   }
-  clientMethodsMap.set(
-    client.crossLanguageDefinitionId,
-    operationHierarchiesMap
-  );
   return operationHierarchiesMap;
 }
 
