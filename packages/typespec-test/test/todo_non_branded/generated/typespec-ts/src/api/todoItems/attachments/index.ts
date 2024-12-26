@@ -102,5 +102,6 @@ export function list(
     () => _listSend(context, itemId, options),
     _listDeserialize,
     ["200"],
+    { itemName: "items" },
   );
 }

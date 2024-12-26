@@ -489,10 +489,14 @@ function getPagingOnlyOperationFunction(
   const statements: string[] = [];
   const options = [];
   // TODO pending tcgc issue to fix https://github.com/Azure/typespec-azure/issues/1985
-  if (operation.__raw_paged_metadata?.itemsSegments) {
-    options.push(
-      `itemName: "${operation.__raw_paged_metadata.itemsSegments[0]}"`
-    );
+  const itemName =
+    operation.response.resultPath !== "" && operation.response.resultPath
+      ? operation.response.resultPath
+      : operation.__raw_paged_metadata?.itemsSegments
+        ? operation.__raw_paged_metadata.itemsSegments[0]
+        : undefined;
+  if (itemName) {
+    options.push(`itemName: "${itemName}"`);
   }
   if (operation.__raw_paged_metadata?.nextLinkSegments) {
     options.push(

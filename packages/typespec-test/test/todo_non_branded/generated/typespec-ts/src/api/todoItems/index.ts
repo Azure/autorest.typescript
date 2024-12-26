@@ -277,5 +277,6 @@ export function list(
     () => _listSend(context, options),
     _listDeserialize,
     ["200"],
+    { itemName: "items" },
   );
 }
