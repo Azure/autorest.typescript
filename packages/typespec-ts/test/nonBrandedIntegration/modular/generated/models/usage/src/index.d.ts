@@ -3,11 +3,9 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface InputAndOutputOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface InputOptionalParams extends OperationOptions {
-    contentType?: "application/json";
 }
 
 export declare interface InputOutputRecord {

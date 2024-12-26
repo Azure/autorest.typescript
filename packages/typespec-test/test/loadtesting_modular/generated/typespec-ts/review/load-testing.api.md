@@ -366,7 +366,6 @@ export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
     body?: MetricRequestPayload;
-    contentType?: "application/json";
     interval?: TimeGrain;
 }
 

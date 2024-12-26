@@ -20,7 +20,6 @@ export declare interface BodyOptionalityClientOptionalParams extends ClientOptio
 
 export declare interface OptionalExplicitOmitOptionalParams extends OperationOptions {
     body?: BodyModel;
-    contentType?: "application/json";
 }
 
 export declare interface OptionalExplicitOperations {
@@ -30,7 +29,6 @@ export declare interface OptionalExplicitOperations {
 
 export declare interface OptionalExplicitSetOptionalParams extends OperationOptions {
     body?: BodyModel;
-    contentType?: "application/json";
 }
 
 export declare interface RequiredExplicitOptionalParams extends OperationOptions {

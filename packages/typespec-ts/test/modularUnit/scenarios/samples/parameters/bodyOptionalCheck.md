@@ -64,8 +64,6 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface ReadOptionalParams extends OperationOptions {
   optionalQuery?: string;
   widget?: BodyParameter;
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
 }
 ```
 

@@ -40,8 +40,6 @@ export interface ListMetricsOptionalParams extends OperationOptions {
   interval?: TimeGrain;
   /** Metric dimension filter */
   body?: MetricRequestPayload;
-  /** Body parameter's content type. Known values are application/json */
-  contentType?: "application/json";
 }
 
 /** Optional parameters. */

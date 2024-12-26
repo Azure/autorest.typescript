@@ -170,7 +170,14 @@ export function buildOperationOptions(
   const dependencies = useDependencies();
   const operation = method[1];
   const optionalParameters = operation.parameters
-    .filter((p) => p.onClient === false)
+    .filter(
+      (p) =>
+        p.onClient === false &&
+        !(
+          p.isGeneratedName &&
+          (p.name === "contentType" || p.name !== "accept")
+        )
+    )
     .filter((p) => p.optional || p.clientDefaultValue);
   const options: SdkMethodParameter[] = [...optionalParameters];
 
