@@ -23,10 +23,13 @@ import {
   getWireName,
   listOperationGroups,
   listOperationsInOperationGroup,
+  SdkBodyParameter,
   SdkClient,
   SdkClientType,
   SdkHttpOperation,
+  SdkHttpParameter,
   SdkMethod,
+  SdkMethodParameter,
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
@@ -287,9 +290,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata.finalStep.kind === "pollingSuccessProperty" &&
-      metadata?.finalStep.target &&
-      metadata?.finalStep?.target?.name === "result"
+        metadata.finalStep.kind === "pollingSuccessProperty" &&
+        metadata?.finalStep.target &&
+        metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -555,10 +558,17 @@ export function parseItemName(paged: PagedResultMetadata): string | undefined {
 export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
   oriName?: string;
 };
+
+const clientMethodsMap: Map<string, Map<string, ServiceOperation[]>> = new Map();
+
 export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
-) {
+): Map<string, ServiceOperation[]> {
+  const cache = clientMethodsMap.get(client.crossLanguageDefinitionId);
+  if (cache) {
+    return cache;
+  }
   const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
     client.methods.map((m) => {
       return [[], m];
@@ -582,7 +592,7 @@ export function getMethodHierarchiesMap(
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||
-        context.rlcOptions?.enableOperationGroup
+          context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
       const groupName = prefixes
@@ -599,36 +609,18 @@ export function getMethodHierarchiesMap(
       }
 
       operationOrGroup.parameters.map((p) => {
-        const paramName = normalizeName(p.name, NameType.Parameter, true);
-        if (paramName === operationOrGroup.name) {
-          p.name = `${paramName}Parameter`;
-        } else {
-          p.name = paramName;
-        }
-        return p;
+        return resolveParameterNameConflict(operationOrGroup, p);
       });
       operationOrGroup.operation.parameters.map((p) => {
-        const paramName = normalizeName(p.name, NameType.Parameter, true);
-        if (paramName === operationOrGroup.name) {
-          p.name = `${paramName}Parameter`;
-        } else {
-          p.name = paramName;
-        }
-        return p;
+        return resolveParameterNameConflict(operationOrGroup, p);
       });
       if (
         operationOrGroup.operation.bodyParam?.name === operationOrGroup.name
       ) {
-        const paramName = normalizeName(
-          operationOrGroup.operation.bodyParam.name,
-          NameType.Parameter,
-          true
-        );
-        if (paramName === operationOrGroup.name) {
-          operationOrGroup.operation.bodyParam.name = `${paramName}Parameter`;
-        } else {
-          operationOrGroup.operation.bodyParam.name = paramName;
-        }
+        operationOrGroup.operation.bodyParam = resolveParameterNameConflict(
+          operationOrGroup,
+          operationOrGroup.operation.bodyParam
+        ) as SdkBodyParameter;
       }
       const operations = operationHierarchiesMap.get(prefixKey);
       operationHierarchiesMap.set(prefixKey, [
@@ -637,5 +629,19 @@ export function getMethodHierarchiesMap(
       ]);
     }
   }
+  clientMethodsMap.set(client.crossLanguageDefinitionId, operationHierarchiesMap);
   return operationHierarchiesMap;
+}
+
+function resolveParameterNameConflict(
+  operationOrGroup: SdkServiceMethod<SdkHttpOperation>,
+  p: SdkMethodParameter | SdkHttpParameter | SdkBodyParameter
+): SdkMethodParameter | SdkHttpParameter | SdkBodyParameter {
+  const paramName = normalizeName(p.name, NameType.Parameter, true);
+  if (paramName === operationOrGroup.name) {
+    p.name = `${paramName}Parameter`;
+  } else {
+    p.name = paramName;
+  }
+  return p;
 }

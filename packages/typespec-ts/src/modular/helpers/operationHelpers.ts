@@ -85,9 +85,6 @@ export function getSendPrivateFunction(
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
-  if (operation.name === "withoutApiVersion") {
-    operation;
-  }
   const hasQueryApiVersion = operation.operation.parameters.some(
     (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
   );
