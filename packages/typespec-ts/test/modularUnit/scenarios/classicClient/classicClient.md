@@ -36,8 +36,9 @@ enum Versions {
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   `2022-08-30`,
 }
-
 ```
+
+The config would be like:
 
 ```yaml
 typespecTitleMap:
