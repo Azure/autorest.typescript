@@ -1,3 +1,11 @@
+## 6.0.31 (2024-12-27)
+
+- [Feature] Adopt to sdkPackage methods, Support client level path parameter in general, contentType/accept header parameter logic change, apiVersion and its policy related change, Parameter order related change, Bytes gets generated inconsistent as before, replace core related dependencies in static helper. Please refer to [#2943](https://github.com/Azure/autorest.typescript/pull/2943)
+- [Feature] Upgrade typespec compiler to v0.63 and cadl ranch spec to the latest. Please refer to [#2942](https://github.com/Azure/autorest.typescript/pull/2942)
+- [Feature] Upgrade mocha to ^11.0.2 for generated packages. Please refer to [#2945](https://github.com/Azure/autorest.typescript/pull/2945)
+- [Feature] use azsdkEslint.config helper in eslint.config.mjs. Please refer to [#2949](https://github.com/Azure/autorest.typescript/pull/2949)
+- [Feature] Upgrade typespec http runtime version to v0.1.0 for unbranded client. Please refer to [#2947](https://github.com/Azure/autorest.typescript/pull/2947)
+
 ## 6.0.30 (2024-12-12)
 
 - [Feature] Support tcgc type for ModelProperty, remove baseUrl in unbranded client and remove property if visibility with none. Please refer to [#2927](https://github.com/Azure/autorest.typescript/pull/2927)
