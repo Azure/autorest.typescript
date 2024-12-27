@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 export {
-  createNetworkAnalytics,
-  NetworkAnalyticsContext,
-  NetworkAnalyticsClientOptionalParams,
-} from "./networkAnalyticsContext.js";
+  createNetworkAnalyticsManagement,
+  NetworkAnalyticsManagementContext,
+  NetworkAnalyticsManagementClientOptionalParams,
+} from "./networkAnalyticsManagementContext.js";
 export {
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,

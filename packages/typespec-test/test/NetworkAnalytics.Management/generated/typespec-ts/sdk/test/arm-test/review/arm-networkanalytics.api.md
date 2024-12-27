@@ -410,8 +410,8 @@ export interface ManagedServiceIdentityV4 {
 }
 
 // @public (undocumented)
-export class NetworkAnalyticsClient {
-    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsClientOptionalParams);
+export class NetworkAnalyticsManagementClient {
+    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsManagementClientOptionalParams);
     readonly dataProducts: DataProductsOperations;
     readonly dataProductsCatalogs: DataProductsCatalogsOperations;
     readonly dataTypes: DataTypesOperations;
@@ -420,7 +420,7 @@ export class NetworkAnalyticsClient {
 }
 
 // @public
-export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
+export interface NetworkAnalyticsManagementClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -487,7 +487,7 @@ export interface Resource {
 }
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsManagementClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
