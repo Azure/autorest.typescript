@@ -66,6 +66,7 @@ export function generateModelFiles(
     if (importedModels.size > 0) {
       modelsFile.addImportDeclarations([
         {
+          isTypeOnly: true,
           namedImports: [...Array.from(importedModels || [])],
           moduleSpecifier: getImportSpecifier(
             "restClient",

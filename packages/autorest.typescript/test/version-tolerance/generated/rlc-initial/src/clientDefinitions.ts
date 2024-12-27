@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   ParamsHeadNoParamsParameters,
   ParamsGetRequiredParameters,
   ParamsPutRequiredOptionalParameters,
   ParamsPostParametersParameters,
   ParamsGetOptionalParameters,
 } from "./parameters";
-import {
+import type {
   ParamsHeadNoParams200Response,
   ParamsGetRequired200Response,
   ParamsPutRequiredOptional200Response,
   ParamsPostParameters200Response,
   ParamsGetOptional200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Params operations */
 export interface ParamsOperations {

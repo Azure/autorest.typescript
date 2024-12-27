@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetDeploymentParameters,
   DeployProjectParameters,
 } from "./parameters.js";
-import {
+import type {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
   DeployProject200Response,
   DeployProject201Response,
   DeployProjectDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetDeployment {
   /** Gets the details of a deployment. */

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-import { RequestParameters } from "@azure-rest/core-client";
-import { BodyParam } from "./models";
+import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+import type { RequestParameters } from "@azure-rest/core-client";
+import type { BodyParam } from "./models";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
 export type PagingGetEmptyNextLinkNamePagesParameters = RequestParameters;

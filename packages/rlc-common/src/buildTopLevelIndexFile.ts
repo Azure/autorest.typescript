@@ -38,6 +38,7 @@ export function buildTopLevelIndex(model: RLCModel) {
     const allModules: string[] = [];
     batchOutputFolder.forEach((item) => {
       indexFile.addImportDeclaration({
+        isTypeOnly: true,
         namespaceImport: item[1],
         moduleSpecifier: getImportModuleName(
           {

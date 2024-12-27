@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   HttpFailureGetEmptyErrorParameters,
   HttpFailureGetNoModelErrorParameters,
   HttpFailureGetNoModelEmptyParameters,
@@ -114,7 +114,7 @@ import {
   MultipleResponsesGet200ModelA400InvalidParameters,
   MultipleResponsesGet200ModelA202ValidParameters,
 } from "./parameters";
-import {
+import type {
   HttpFailureGetEmptyError200Response,
   HttpFailureGetEmptyErrorDefaultResponse,
   HttpFailureGetNoModelError200Response,
@@ -333,7 +333,7 @@ import {
   MultipleResponsesGet200ModelA400Invalid200Response,
   MultipleResponsesGet200ModelA202Valid200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for HttpFailure operations */
 export interface HttpFailureOperations {

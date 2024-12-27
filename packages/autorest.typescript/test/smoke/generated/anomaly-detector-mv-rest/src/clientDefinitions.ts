@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetMultivariateBatchDetectionResultParameters,
   CreateAndTrainMultivariateModelParameters,
   ListMultivariateModelsParameters,
@@ -10,7 +10,7 @@ import {
   DetectMultivariateBatchAnomalyParameters,
   DetectMultivariateLastAnomalyParameters,
 } from "./parameters";
-import {
+import type {
   GetMultivariateBatchDetectionResult200Response,
   GetMultivariateBatchDetectionResultDefaultResponse,
   CreateAndTrainMultivariateModel201Response,
@@ -26,7 +26,7 @@ import {
   DetectMultivariateLastAnomaly200Response,
   DetectMultivariateLastAnomalyDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetMultivariateBatchDetectionResult {
   /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */

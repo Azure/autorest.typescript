@@ -81,9 +81,9 @@ describe("ARM template", () => {
     await assertEqualContent(
       response!.content,
       `
-      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-      import { HttpResponse } from "@azure-rest/core-client";
-      import { OnboardResponseOutput, ErrorResponseOutput } from "./outputModels.js";
+      import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+      import type { HttpResponse } from "@azure-rest/core-client";
+      import type { OnboardResponseOutput, ErrorResponseOutput } from "./outputModels.js";
       
       /** Azure operation completed successfully. */
       export interface Upload200Response extends HttpResponse {

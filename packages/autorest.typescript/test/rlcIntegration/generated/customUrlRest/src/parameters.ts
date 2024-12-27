@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RequestParameters } from "@azure-rest/core-client";
+import type { RequestParameters } from "@azure-rest/core-client";
 
 export interface PathsGetEmptyPathParameters {
   /** Account Name */

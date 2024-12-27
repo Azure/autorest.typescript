@@ -99,6 +99,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     }
   }
   isErrorHelper.addImportDeclaration({
+    isTypeOnly: true,
     namedImports: [...allResponseTypes],
     moduleSpecifier: getImportModuleName(
       {

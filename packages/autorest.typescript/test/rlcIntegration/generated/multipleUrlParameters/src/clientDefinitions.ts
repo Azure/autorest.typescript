@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   EntityCreateOrUpdateParameters,
   EntityListByGuidsParameters,
   EntityCreateOrUpdateEntitiesParameters,
@@ -12,7 +12,7 @@ import {
   EntityDeleteByGuidParameters,
   EntityExportGuidParameters,
 } from "./parameters";
-import {
+import type {
   EntityCreateOrUpdate200Response,
   EntityCreateOrUpdateDefaultResponse,
   EntityListByGuids200Response,
@@ -32,7 +32,7 @@ import {
   EntityExportGuid202Response,
   EntityExportGuidDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Entity operations */
 export interface EntityOperations {

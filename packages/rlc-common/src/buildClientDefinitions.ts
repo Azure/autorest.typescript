@@ -94,6 +94,7 @@ export function buildClientDefinitions(model: RLCModel) {
 
   if (options.importedParameters.size) {
     clientDefinitionsFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: [...options.importedParameters],
       moduleSpecifier: getImportModuleName(
         { cjsName: "./parameters", esModulesName: "./parameters.js" },
@@ -104,6 +105,7 @@ export function buildClientDefinitions(model: RLCModel) {
 
   if (options.importedResponses.size) {
     clientDefinitionsFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: [...options.importedResponses],
       moduleSpecifier: getImportModuleName(
         { cjsName: "./responses", esModulesName: "./responses.js" },
@@ -117,6 +119,7 @@ export function buildClientDefinitions(model: RLCModel) {
       0) > 0
   ) {
     clientDefinitionsFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: Array.from(
         model.importInfo.internalImports.rlcClientDefinition.importsSet!
       ),
@@ -131,6 +134,7 @@ export function buildClientDefinitions(model: RLCModel) {
   options.clientImports.add("StreamableMethod");
   clientDefinitionsFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports: [...options.clientImports],
       moduleSpecifier: getImportSpecifier(
         "restClient",

@@ -176,6 +176,7 @@ export function addImportsToFiles(
 
       if (!hasModifier) {
         return file.addImportDeclaration({
+          isTypeOnly: true,
           moduleSpecifier: specifier,
           namedImports: [...importType.importsSet!.values()]
         });

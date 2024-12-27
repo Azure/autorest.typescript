@@ -2,11 +2,8 @@
 // Licensed under the MIT License.
 
 export const paginateContent = `
-import {
-  Client,
-  createRestError,
-  PathUncheckedResponse
-} from "@azure-rest/core-client";
+import type { Client, PathUncheckedResponse } from "@azure-rest/core-client";
+import { createRestError } from "@azure-rest/core-client";
 
 /**
  * returns an async iterator that iterates over results. It also has a \`byPage\`

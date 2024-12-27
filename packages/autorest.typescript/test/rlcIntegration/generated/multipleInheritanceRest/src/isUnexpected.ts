@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetHorse200Response,
   GetHorseDefaultResponse,
   GetPet200Response,

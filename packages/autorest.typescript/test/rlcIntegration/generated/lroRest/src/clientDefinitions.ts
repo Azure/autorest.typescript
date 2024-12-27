@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   LROsPut200SucceededParameters,
   LROsPatch200SucceededIgnoreHeadersParameters,
   LROsPatch201RetryWithAsyncHeaderParameters,
@@ -84,7 +84,7 @@ import {
   LROsCustomHeaderPost202Retry200Parameters,
   LROsCustomHeaderPostAsyncRetrySucceededParameters,
 } from "./parameters";
-import {
+import type {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
   LROsPut200SucceededDefaultResponse,
@@ -272,7 +272,7 @@ import {
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
   LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface LROsPut200Succeeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */

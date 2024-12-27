@@ -320,8 +320,8 @@ describe("anonymous model", () => {
       await assertEqualContent(
         schemaOutput?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { Bar, EmptyObj, Attachment } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { Bar, EmptyObj, Attachment } from "./models.js";
         
         export interface GetModelBodyParam {
           body: {
@@ -422,8 +422,8 @@ describe("anonymous model", () => {
       await assertEqualContent(
         schemaOutput?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
-        import { BarOutput, EmptyObjOutput, AttachmentOutput } from "./outputModels.js";
+        import type { HttpResponse } from "@azure-rest/core-client";
+        import type { BarOutput, EmptyObjOutput, AttachmentOutput } from "./outputModels.js";
         
         /** The request has succeeded. */
         export interface GetModel200Response extends HttpResponse {

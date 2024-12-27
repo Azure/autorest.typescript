@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorModelOutput } from "./outputModels";
+import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import type { HttpResponse } from "@azure-rest/core-client";
+import type { ErrorModelOutput } from "./outputModels";
 
 /** Send a post request with header value "User-Agent": "overwrite" */
 export interface HeaderParamExistingKey200Response extends HttpResponse {

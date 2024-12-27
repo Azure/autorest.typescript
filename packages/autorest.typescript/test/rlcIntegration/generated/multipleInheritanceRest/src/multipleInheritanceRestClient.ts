@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
+import type { ClientOptions } from "@azure-rest/core-client";
+import { getClient } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { MultipleInheritanceRestClient } from "./clientDefinitions";
+import type { MultipleInheritanceRestClient } from "./clientDefinitions";
 
 /** The optional parameters for the client */
 export interface MultipleInheritanceRestClientOptions extends ClientOptions {}

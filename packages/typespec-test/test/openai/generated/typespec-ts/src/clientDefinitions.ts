@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetEmbeddingsParameters,
   GetCompletionsParameters,
   GetChatCompletionsParameters,
@@ -9,7 +9,7 @@ import {
   GetAzureBatchImageGenerationOperationStatusParameters,
   BeginAzureBatchImageGenerationParameters,
 } from "./parameters.js";
-import {
+import type {
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
   GetCompletions200Response,
@@ -23,7 +23,7 @@ import {
   BeginAzureBatchImageGeneration202Response,
   BeginAzureBatchImageGenerationDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */

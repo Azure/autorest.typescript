@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   HeaderParamExistingKey200Response,
   HeaderParamExistingKeyDefaultResponse,
   HeaderResponseExistingKey200Response,

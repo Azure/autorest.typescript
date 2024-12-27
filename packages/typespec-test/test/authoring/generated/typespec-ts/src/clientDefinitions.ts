@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   CreateOrUpdateParameters,
   GetParameters,
   DeleteParameters,
@@ -19,7 +19,7 @@ import {
   GetSupportedLanguagesParameters,
   ListTrainingConfigVersionsParameters,
 } from "./parameters.js";
-import {
+import type {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
@@ -55,7 +55,7 @@ import {
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {
   /** Creates a new project or updates an existing one. */

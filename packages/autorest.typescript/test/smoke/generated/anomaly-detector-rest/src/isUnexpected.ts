@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   DetectEntireSeries200Response,
   DetectEntireSeriesDefaultResponse,
   DetectLastPoint200Response,

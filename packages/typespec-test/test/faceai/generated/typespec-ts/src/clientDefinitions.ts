@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetOperationResultParameters,
   DetectFromUrlParameters,
   DetectParameters,
@@ -104,7 +104,7 @@ import {
   GetLivenessWithVerifySessionResultParameters,
   GetLivenessWithVerifySessionAuditEntriesParameters,
 } from "./parameters.js";
-import {
+import type {
   GetOperationResult200Response,
   GetOperationResultDefaultResponse,
   DetectFromUrl200Response,
@@ -308,8 +308,8 @@ import {
   GetLivenessWithVerifySessionAuditEntries200Response,
   GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
 } from "./responses.js";
-import { RecognitionModel } from "./models.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { RecognitionModel } from "./models.js";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetOperationResult {
   /** Get status of a long running operation. */

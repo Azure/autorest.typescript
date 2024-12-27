@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetLanguagesParameters,
   TranslateParameters,
   TransliterateParameters,
@@ -10,7 +10,7 @@ import {
   DictionaryLookupParameters,
   DictionaryExamplesParameters,
 } from "./parameters.js";
-import {
+import type {
   GetLanguages200Response,
   GetLanguagesDefaultResponse,
   Translate200Response,
@@ -26,7 +26,7 @@ import {
   DictionaryExamples200Response,
   DictionaryExamplesDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetLanguages {
   /** Gets the set of languages currently supported by other operations of the Translator. */

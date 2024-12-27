@@ -21,7 +21,7 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileViaBodyBodyParam {
               /** Value may contain any sequence of octets */
@@ -57,7 +57,7 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileViaBodyBodyParam {
               /** Value may contain any sequence of octets */
@@ -80,7 +80,7 @@ describe("bytes", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64') - should be treated as string?", async () => {});
+    it.skip("@encode('base64') - should be treated as string?", async () => { });
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {
@@ -93,7 +93,7 @@ describe("bytes", () => {
       assert.ok(parameters);
       await assertEqualContent(
         parameters?.content!,
-        `import { RequestParameters } from "@azure-rest/core-client";
+        `import type { RequestParameters } from "@azure-rest/core-client";
            
           export interface ReadBodyParam {
             body: string;
@@ -116,7 +116,7 @@ describe("bytes", () => {
       assert.ok(parameters);
       await assertEqualContent(
         parameters?.content!,
-        `import { RequestParameters } from "@azure-rest/core-client";
+        `import type { RequestParameters } from "@azure-rest/core-client";
                   
           export interface ReadBodyParam {
             body: string;
@@ -149,8 +149,8 @@ describe("bytes", () => {
       assert.ok(parameters);
       await assertEqualContent(
         parameters?.content!,
-        `import { RequestParameters } from "@azure-rest/core-client";
-          import { Model } from "./models.js";
+        `import type { RequestParameters } from "@azure-rest/core-client";
+          import type { Model } from "./models.js";
                   
           export interface ReadBodyParam {
             body: Model;
@@ -182,7 +182,7 @@ describe("bytes", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
               /** Value may contain any sequence of octets */
@@ -244,7 +244,7 @@ describe("bytes", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
               /** Value may contain any sequence of octets */
@@ -308,7 +308,7 @@ describe("bytes", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
               body:
@@ -489,8 +489,8 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-      import { RequestParameters } from "@azure-rest/core-client";
-      import { SchemaContentTypeValues } from "./models.js";
+      import type { RequestParameters } from "@azure-rest/core-client";
+      import type { SchemaContentTypeValues } from "./models.js";
 
       export interface ReadBodyParam {
         body: string;
@@ -518,8 +518,8 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-      import { RequestParameters } from "@azure-rest/core-client";
-      import { SchemaContentTypeValues } from "./models.js";
+      import type { RequestParameters } from "@azure-rest/core-client";
+      import type { SchemaContentTypeValues } from "./models.js";
 
       export interface ReadBodyParam {
         /** Value may contain any sequence of octets */
@@ -546,7 +546,7 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           /** Value may contain any sequence of octets */

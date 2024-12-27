@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   HeaderParamExistingKeyParameters,
   HeaderResponseExistingKeyParameters,
   HeaderParamProtectedKeyParameters,
@@ -32,7 +32,7 @@ import {
   HeaderResponseEnumParameters,
   HeaderCustomRequestIdParameters,
 } from "./parameters";
-import {
+import type {
   HeaderParamExistingKey200Response,
   HeaderParamExistingKeyDefaultResponse,
   HeaderResponseExistingKey200Response,
@@ -92,7 +92,7 @@ import {
   HeaderCustomRequestId200Response,
   HeaderCustomRequestIdDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ParamExistingKey {
   /** Send a post request with header value "User-Agent": "overwrite" */

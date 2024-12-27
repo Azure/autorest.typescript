@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetWidgetParameters,
   CreateOrUpdateWidgetParameters,
   DeleteWidgetParameters,
   GetWidgetOperationStatusParameters,
   ListWidgetsParameters,
 } from "./parameters.js";
-import {
+import type {
   GetWidget200Response,
   GetWidgetDefaultResponse,
   CreateOrUpdateWidget200Response,
@@ -21,7 +21,7 @@ import {
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetWidget {
   /** Fetch a Widget by name. */

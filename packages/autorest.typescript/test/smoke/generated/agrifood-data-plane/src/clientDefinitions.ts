@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   ApplicationDataListByFarmerIdParameters,
   ApplicationDataListParameters,
   ApplicationDataGetParameters,
@@ -99,7 +99,7 @@ import {
   WeatherGetDataDeleteJobDetailsParameters,
   WeatherCreateDataDeleteJobParameters,
 } from "./parameters";
-import {
+import type {
   ApplicationDataListByFarmerId200Response,
   ApplicationDataListByFarmerIdDefaultResponse,
   ApplicationDataList200Response,
@@ -306,7 +306,7 @@ import {
   WeatherCreateDataDeleteJob202Response,
   WeatherCreateDataDeleteJobDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ApplicationDataListByFarmerId {
   /** Returns a paginated list of application data resources under a particular farm. */

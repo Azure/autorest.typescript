@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
+import type { ClientOptions } from "@azure-rest/core-client";
+import { getClient } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
-import { TranslatorClient } from "./clientDefinitions.js";
+import type { TranslatorClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
 export interface TranslatorClientOptions extends ClientOptions {

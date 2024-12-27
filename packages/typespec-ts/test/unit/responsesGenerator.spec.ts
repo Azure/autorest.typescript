@@ -23,8 +23,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-    import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-    import { HttpResponse } from "@azure-rest/core-client";
+    import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+    import type { HttpResponse } from "@azure-rest/core-client";
     
     export interface Read204Headers {
       /** The location for monitoring the operation state. */
@@ -55,8 +55,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-    import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-    import { HttpResponse } from "@azure-rest/core-client";
+    import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+    import type { HttpResponse } from "@azure-rest/core-client";
     
     export interface Read204Headers {
       /** The location for monitoring the operation state. */
@@ -90,8 +90,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput, ErrorModelOutput } from "./outputModels.js";
+      import type { HttpResponse } from "@azure-rest/core-client";
+      import type { KeyOutput, ErrorModelOutput } from "./outputModels.js";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -117,7 +117,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
+        import type { HttpResponse } from "@azure-rest/core-client";
     
         /** There is no content to send for this request, but the headers may be useful. */
         export interface Read204Response extends HttpResponse {
@@ -135,7 +135,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
+        import type { HttpResponse } from "@azure-rest/core-client";
     
         /** The request has succeeded. */
         export interface Read200Response extends HttpResponse {
@@ -158,8 +158,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
-        import { SimpleModelOutput } from "./outputModels.js";
+        import type { HttpResponse } from "@azure-rest/core-client";
+        import type { SimpleModelOutput } from "./outputModels.js";
     
         /** The request has succeeded. */
         export interface Read200Response extends HttpResponse {
@@ -178,7 +178,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-    import { HttpResponse } from "@azure-rest/core-client";
+    import type { HttpResponse } from "@azure-rest/core-client";
     
     /** The request has succeeded. */
     export interface Read200Response extends HttpResponse {
@@ -196,8 +196,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       export interface Read200Headers {
         "content-type": "image/png";
@@ -221,8 +221,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+      import type { HttpResponse } from "@azure-rest/core-client";
        
       export interface Read200Headers {
         "content-type": "text/plain";
@@ -254,8 +254,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-        import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+        import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
     
         export interface ReadDefaultHeaders {
           /** String error code indicating what went wrong. */
@@ -310,8 +310,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
-        import { ErrorResponseOutput } from "./outputModels.js";
+        import type { HttpResponse } from "@azure-rest/core-client";
+        import type { ErrorResponseOutput } from "./outputModels.js";
 
         export interface ReadDefaultResponse extends HttpResponse {
           status: string;
@@ -336,9 +336,9 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-      import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput } from "./outputModels.js";
+      import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+      import type { HttpResponse } from "@azure-rest/core-client";
+      import type { KeyOutput } from "./outputModels.js";
       
       export interface Read200Headers {
         foo: string;
@@ -367,7 +367,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -386,7 +386,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -405,7 +405,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -424,7 +424,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -443,7 +443,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -462,7 +462,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -481,7 +481,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -500,7 +500,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -519,7 +519,7 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
+      import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -542,8 +542,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
-      import { SimpleModelOutput } from "./outputModels.js";
+      import type { HttpResponse } from "@azure-rest/core-client";
+      import type { SimpleModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -566,8 +566,8 @@ describe("Responses.ts", () => {
       await assertEqualContent(
         responses!.content,
         `
-      import { HttpResponse } from "@azure-rest/core-client";
-      import { InnerModelOutput } from "./outputModels.js";
+      import type { HttpResponse } from "@azure-rest/core-client";
+      import type { InnerModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {

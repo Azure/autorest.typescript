@@ -206,7 +206,17 @@ export function buildClient(model: RLCModel): File | undefined {
   }logger`;
   clientFile.addImportDeclarations([
     {
-      namedImports: ["getClient", "ClientOptions"],
+      isTypeOnly: true,
+      namedImports: ["ClientOptions"],
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
+    }
+  ]);
+  clientFile.addImportDeclarations([
+    {
+      namedImports: ["getClient"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
         model.importInfo.runtimeImports
@@ -243,6 +253,7 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: credentialTypes.concat(
           includeKeyCredentialHelper ? ["isKeyCredential"] : []
         ),
@@ -255,6 +266,7 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: getImportModuleName(
         {
@@ -271,6 +283,7 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: Array.from(
           model.importInfo.internalImports.rlcClientFactory.importsSet!
         ),

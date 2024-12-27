@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetHorseParameters,
   PutHorseParameters,
   GetPetParameters,
@@ -13,7 +13,7 @@ import {
   GetKittenParameters,
   PutKittenParameters,
 } from "./parameters";
-import {
+import type {
   GetHorse200Response,
   GetHorseDefaultResponse,
   PutHorse200Response,
@@ -30,7 +30,7 @@ import {
   GetKittenDefaultResponse,
   PutKitten200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */
 export interface ClientOperations {

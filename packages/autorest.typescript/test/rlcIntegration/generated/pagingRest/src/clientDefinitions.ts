@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   PagingGetNoItemNamePagesParameters,
   PagingGetEmptyNextLinkNamePagesParameters,
   PagingGetNullNextLinkNamePagesParameters,
@@ -29,7 +29,7 @@ import {
   PagingNextFragmentWithGroupingParameters,
   PagingGetPagingModelWithItemNameWithXMSClientNameParameters,
 } from "./parameters";
-import {
+import type {
   PagingGetNoItemNamePages200Response,
   PagingGetNoItemNamePagesDefaultResponse,
   PagingGetEmptyNextLinkNamePages200Response,
@@ -83,7 +83,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientName200Response,
   PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetNoItemNamePages {
   /** A paging operation that must return result of the default 'value' node. */
