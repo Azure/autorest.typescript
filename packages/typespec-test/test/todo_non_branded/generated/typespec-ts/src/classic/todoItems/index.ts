@@ -1,28 +1,29 @@
 // Licensed under the MIT License.
 
 import {
-  TodoItemsListOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsUpdateOptionalParams,
   TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
 } from "../../api/options.js";
 import { TodoContext } from "../../api/todoContext.js";
 import {
-  list,
-  createJson,
-  createForm,
-  get,
-  update,
   $delete,
+  update,
+  get,
+  createForm,
+  createJson,
+  list,
 } from "../../api/todoItems/index.js";
 import {
-  TodoPage,
   TodoItem,
   TodoLabels,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
 } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   TodoItemsAttachmentsOperations,
   getTodoItemsAttachmentsOperations,
@@ -30,23 +31,20 @@ import {
 
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
-  list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
-  createJson: (
-    item: TodoItem,
-    options?: TodoItemsCreateJsonOptionalParams,
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  delete: (
+    id: number,
+    options?: TodoItemsDeleteOptionalParams,
+  ) => Promise<void>;
+  update: (
+    id: number,
+    patch: TodoItemPatch,
+    options?: TodoItemsUpdateOptionalParams,
   ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
-  createForm: (options?: TodoItemsCreateFormOptionalParams) => Promise<{
     id: number;
     title: string;
     createdBy: number;
@@ -73,10 +71,9 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
-  update: (
-    id: number,
-    patch: TodoItemPatch,
-    options?: TodoItemsUpdateOptionalParams,
+  createForm: (
+    body: ToDoItemMultipartRequest,
+    options?: TodoItemsCreateFormOptionalParams,
   ) => Promise<{
     id: number;
     title: string;
@@ -89,34 +86,45 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
-  /**
-   *  @fixme delete is a reserved word that cannot be used as an operation name.
-   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
-   *         to the operation to override the generated name.
-   */
-  delete: (
-    id: number,
-    options?: TodoItemsDeleteOptionalParams,
-  ) => Promise<void>;
+  createJson: (
+    item: TodoItem,
+    options?: TodoItemsCreateJsonOptionalParams,
+  ) => Promise<{
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: Date;
+    updatedAt: Date;
+    completedAt?: Date;
+    labels?: TodoLabels;
+  }>;
+  list: (
+    options?: TodoItemsListOptionalParams,
+  ) => PagedAsyncIterableIterator<TodoItem>;
   attachments: TodoItemsAttachmentsOperations;
 }
 
 export function getTodoItems(context: TodoContext) {
   return {
-    list: (options?: TodoItemsListOptionalParams) => list(context, options),
-    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
-      createJson(context, item, options),
-    createForm: (options?: TodoItemsCreateFormOptionalParams) =>
-      createForm(context, options),
-    get: (id: number, options?: TodoItemsGetOptionalParams) =>
-      get(context, id, options),
+    delete: (id: number, options?: TodoItemsDeleteOptionalParams) =>
+      $delete(context, id, options),
     update: (
       id: number,
       patch: TodoItemPatch,
       options?: TodoItemsUpdateOptionalParams,
     ) => update(context, id, patch, options),
-    delete: (id: number, options?: TodoItemsDeleteOptionalParams) =>
-      $delete(context, id, options),
+    get: (id: number, options?: TodoItemsGetOptionalParams) =>
+      get(context, id, options),
+    createForm: (
+      body: ToDoItemMultipartRequest,
+      options?: TodoItemsCreateFormOptionalParams,
+    ) => createForm(context, body, options),
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
+      createJson(context, item, options),
+    list: (options?: TodoItemsListOptionalParams) => list(context, options),
   };
 }
 

@@ -1,4 +1,3 @@
-import { Type } from "../modularCodeModel.js";
 import { getAllAncestors } from "../helpers/operationHelpers.js";
 import {
   SdkModelType,
@@ -26,10 +25,10 @@ export function isSupportedSerializeType(type: SdkType): boolean {
  * 6. nested model i.e. model with property that is a model with one of the above three conditions.
  * If we consider array type, with all the above 6 types as the element types.
  */
-const specialVariantMap = new Map<Type, boolean>();
+const specialVariantMap = new Map<SdkType, boolean>();
 export function isSpecialUnionVariant(
-  t: Type,
-  variantStack: Type[] = []
+  t: SdkType & { isNonExhaustive?: boolean },
+  variantStack: SdkType[] = []
 ): boolean {
   if (variantStack.length <= 0) {
     variantStack.push(t);
@@ -41,40 +40,40 @@ export function isSpecialUnionVariant(
   }
 
   if (
-    t.type === "datetime" ||
-    t.type === "byte-array" ||
-    (t.type === "model" &&
+    t.kind === "utcDateTime" ||
+    t.kind === "bytes" ||
+    (t.kind === "model" &&
       t.properties
         ?.filter((p) => {
           return !(
             variantStack.includes(p.type) ||
             ancestors.includes(p.type) ||
-            (p.type.type === "list" &&
-              p.type.elementType &&
-              (variantStack.includes(p.type.elementType) ||
-                ancestors.includes(p.type.elementType)))
+            (p.type.kind === "array" &&
+              p.type.valueType &&
+              (variantStack.includes(p.type.valueType) ||
+                ancestors.includes(p.type.valueType)))
           );
         })
         ?.some(
           (p) =>
-            p.clientName !== p.restApiName ||
+            (p.kind === "property" && p.name !== p.serializedName) ||
             isSpecialUnionVariant(p.type, [...variantStack, p.type])
         )) ||
     isPolymorphicUnion(t) ||
-    (t.type === "list" &&
-      t.elementType &&
-      !variantStack.includes(t.elementType) &&
-      !ancestors.includes(t.elementType) &&
-      isSpecialUnionVariant(t.elementType, [...variantStack, t.elementType])) ||
-    (t.type === "combined" &&
-      t.types
+    (t.kind === "array" &&
+      t.valueType &&
+      !variantStack.includes(t.valueType) &&
+      !ancestors.includes(t.valueType) &&
+      isSpecialUnionVariant(t.valueType, [...variantStack, t.valueType])) ||
+    (t.kind === "union" &&
+      t.variantTypes
         ?.filter((p) => {
           return !(variantStack.includes(p) || ancestors.includes(p));
         })
         ?.some((p) => {
           return isSpecialUnionVariant(p, [...variantStack, p]);
         })) ||
-    (t.type === "enum" && !(t.isFixed || t.isNonExhaustive))
+    (t.kind === "enum" && !(t.isFixed || t.isNonExhaustive))
   ) {
     specialVariantMap.set(t, true);
     variantStack.pop();
@@ -85,11 +84,11 @@ export function isSpecialUnionVariant(
   return false;
 }
 
-export function isNormalUnion(t: Type): boolean {
+export function isNormalUnion(t: SdkType): boolean {
   return (
-    t.type === "combined" &&
+    t.kind === "union" &&
     !(
-      t.types?.some((p) => {
+      t.variantTypes?.some((p) => {
         return isSpecialUnionVariant(p);
       }) ?? false
     )
@@ -109,20 +108,22 @@ export function isDiscriminatedUnion(
   );
 }
 
-export function isSpecialHandledUnion(t: Type): boolean {
-  return isDiscriminatedUnion(t.tcgcType!) || isPolymorphicUnion(t);
+export function isSpecialHandledUnion(
+  t: SdkType & { isNonExhaustive?: boolean }
+): boolean {
+  return isDiscriminatedUnion(t!) || isPolymorphicUnion(t);
 }
 
-const polymorphicUnionMap = new Map<Type, boolean>();
-export function isPolymorphicUnion(t: Type): boolean {
+const polymorphicUnionMap = new Map<SdkType, boolean>();
+export function isPolymorphicUnion(t: SdkType): boolean {
   if (polymorphicUnionMap.has(t)) {
     return polymorphicUnionMap.get(t) ?? false;
   }
   const ancestors = getAllAncestors(t);
   if (
-    t.type === "model" &&
-    t.isPolymorphicBaseModel &&
-    t.types
+    t.kind === "model" &&
+    t.discriminatedSubtypes &&
+    Object.values(t.discriminatedSubtypes)
       ?.filter((p) => {
         return !ancestors.includes(p);
       })

@@ -10,6 +10,11 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
 interface File_2 {
     // (undocumented)
     contents: Uint8Array;
@@ -24,6 +29,18 @@ export { File_2 as File }
 export interface FileAttachmentMultipartRequest {
     // (undocumented)
     contents: File_2;
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -86,14 +103,10 @@ export interface TodoItemPatch {
 
 // @public
 export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
 export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -103,25 +116,21 @@ export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions
 // @public
 export interface TodoItemsAttachmentsOperations {
     // (undocumented)
-    createFileAttachment: (itemId: number, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
+    createFileAttachment: (itemId: number, body: FileAttachmentMultipartRequest, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
     createJsonAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => Promise<PageTodoAttachment>;
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
 // @public
 export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
 export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
     // (undocumented)
     attachments?: TodoAttachment[];
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -143,7 +152,7 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    createForm: (options?: TodoItemsCreateFormOptionalParams) => Promise<{
+    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
         id: number;
         title: string;
         createdBy: number;
@@ -183,7 +192,7 @@ export interface TodoItemsOperations {
         labels?: TodoLabels;
     }>;
     // (undocumented)
-    list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
+    list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
     // (undocumented)
     update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
         id: number;
@@ -201,8 +210,6 @@ export interface TodoItemsOperations {
 
 // @public
 export interface TodoItemsUpdateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public

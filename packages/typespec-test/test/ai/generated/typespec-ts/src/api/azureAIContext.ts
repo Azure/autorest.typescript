@@ -6,7 +6,17 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface AzureAIContext extends Client {}
+export interface AzureAIContext extends Client {
+  /** The Azure subscription ID. */
+  subscriptionId: string;
+  /** The name of the Azure Resource Group. */
+  resourceGroupName: string;
+  /** The Azure AI Studio project name. */
+  projectName: string;
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface AzureAIClientOptionalParams extends ClientOptions {
@@ -60,5 +70,11 @@ export function createAzureAI(
       return next(req);
     },
   });
-  return clientContext;
+  return {
+    ...clientContext,
+    subscriptionId,
+    resourceGroupName,
+    projectName,
+    apiVersion,
+  } as AzureAIContext;
 }

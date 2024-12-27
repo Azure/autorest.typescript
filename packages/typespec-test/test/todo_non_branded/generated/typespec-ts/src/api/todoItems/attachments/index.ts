@@ -11,7 +11,13 @@ import {
   todoAttachmentSerializer,
   PageTodoAttachment,
   pageTodoAttachmentDeserializer,
+  FileAttachmentMultipartRequest,
+  fileAttachmentMultipartRequestSerializer,
 } from "../../../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../../static-helpers/pagingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -19,34 +25,53 @@ import {
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 
-export function _listSend(
+export function _createFileAttachmentSend(
   context: Client,
   itemId: number,
-  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
+  body: FileAttachmentMultipartRequest,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   return context
     .path("/items/{itemId}/attachments", itemId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: fileAttachmentMultipartRequestSerializer(body),
+    });
 }
 
-export async function _listDeserialize(
+export async function _createFileAttachmentDeserialize(
   result: PathUncheckedResponse,
-): Promise<PageTodoAttachment> {
-  const expectedStatuses = ["200"];
+): Promise<void> {
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return pageTodoAttachmentDeserializer(result.body);
+  return;
 }
 
-export async function list(
+export async function createFileAttachment(
   context: Client,
   itemId: number,
-  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
-): Promise<PageTodoAttachment> {
-  const result = await _listSend(context, itemId, options);
-  return _listDeserialize(result);
+  body: FileAttachmentMultipartRequest,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<void> {
+  const result = await _createFileAttachmentSend(
+    context,
+    itemId,
+    body,
+    options,
+  );
+  return _createFileAttachmentDeserialize(result);
 }
 
 export function _createJsonAttachmentSend(
@@ -61,7 +86,11 @@ export function _createJsonAttachmentSend(
     .path("/items/{itemId}/attachments", itemId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: todoAttachmentSerializer(contents),
     });
 }
@@ -94,39 +123,43 @@ export async function createJsonAttachment(
   return _createJsonAttachmentDeserialize(result);
 }
 
-export function _createFileAttachmentSend(
+export function _listSend(
   context: Client,
   itemId: number,
-  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
-    requestOptions: {},
-  },
+  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/items/{itemId}/attachments", itemId)
-    .post({
+    .get({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
-export async function _createFileAttachmentDeserialize(
+export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
+): Promise<PageTodoAttachment> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return pageTodoAttachmentDeserializer(result.body);
 }
 
-export async function createFileAttachment(
+export function list(
   context: Client,
   itemId: number,
-  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
-    requestOptions: {},
-  },
-): Promise<void> {
-  const result = await _createFileAttachmentSend(context, itemId, options);
-  return _createFileAttachmentDeserialize(result);
+  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<TodoAttachment> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, itemId, options),
+    _listDeserialize,
+    ["200"],
+    { itemName: "items" },
+  );
 }

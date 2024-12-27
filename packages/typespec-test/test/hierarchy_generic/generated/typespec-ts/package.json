@@ -13,10 +13,10 @@
       ".": "./src/index.ts",
       "./models": "./src/models/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/b": "./src/api/b/index.ts",
-      "./api/b/e/c": "./src/api/b/e/c/index.ts",
+      "./api/d": "./src/api/d/index.ts",
       "./api/b/c": "./src/api/b/c/index.ts",
-      "./api/d": "./src/api/d/index.ts"
+      "./api/b/e/c": "./src/api/b/e/c/index.ts",
+      "./api/b": "./src/api/b/index.ts"
     },
     "dialects": [
       "esm",
@@ -144,40 +144,22 @@
         "default": "./dist/commonjs/api/index.js"
       }
     },
-    "./api/b": {
+    "./api/d": {
       "browser": {
-        "types": "./dist/browser/api/b/index.d.ts",
-        "default": "./dist/browser/api/b/index.js"
+        "types": "./dist/browser/api/d/index.d.ts",
+        "default": "./dist/browser/api/d/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/api/b/index.d.ts",
-        "default": "./dist/react-native/api/b/index.js"
+        "types": "./dist/react-native/api/d/index.d.ts",
+        "default": "./dist/react-native/api/d/index.js"
       },
       "import": {
-        "types": "./dist/esm/api/b/index.d.ts",
-        "default": "./dist/esm/api/b/index.js"
+        "types": "./dist/esm/api/d/index.d.ts",
+        "default": "./dist/esm/api/d/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/api/b/index.d.ts",
-        "default": "./dist/commonjs/api/b/index.js"
-      }
-    },
-    "./api/b/e/c": {
-      "browser": {
-        "types": "./dist/browser/api/b/e/c/index.d.ts",
-        "default": "./dist/browser/api/b/e/c/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/api/b/e/c/index.d.ts",
-        "default": "./dist/react-native/api/b/e/c/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/api/b/e/c/index.d.ts",
-        "default": "./dist/esm/api/b/e/c/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/api/b/e/c/index.d.ts",
-        "default": "./dist/commonjs/api/b/e/c/index.js"
+        "types": "./dist/commonjs/api/d/index.d.ts",
+        "default": "./dist/commonjs/api/d/index.js"
       }
     },
     "./api/b/c": {
@@ -198,22 +180,40 @@
         "default": "./dist/commonjs/api/b/c/index.js"
       }
     },
-    "./api/d": {
+    "./api/b/e/c": {
       "browser": {
-        "types": "./dist/browser/api/d/index.d.ts",
-        "default": "./dist/browser/api/d/index.js"
+        "types": "./dist/browser/api/b/e/c/index.d.ts",
+        "default": "./dist/browser/api/b/e/c/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/api/d/index.d.ts",
-        "default": "./dist/react-native/api/d/index.js"
+        "types": "./dist/react-native/api/b/e/c/index.d.ts",
+        "default": "./dist/react-native/api/b/e/c/index.js"
       },
       "import": {
-        "types": "./dist/esm/api/d/index.d.ts",
-        "default": "./dist/esm/api/d/index.js"
+        "types": "./dist/esm/api/b/e/c/index.d.ts",
+        "default": "./dist/esm/api/b/e/c/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/api/d/index.d.ts",
-        "default": "./dist/commonjs/api/d/index.js"
+        "types": "./dist/commonjs/api/b/e/c/index.d.ts",
+        "default": "./dist/commonjs/api/b/e/c/index.js"
+      }
+    },
+    "./api/b": {
+      "browser": {
+        "types": "./dist/browser/api/b/index.d.ts",
+        "default": "./dist/browser/api/b/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/b/index.d.ts",
+        "default": "./dist/react-native/api/b/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/b/index.d.ts",
+        "default": "./dist/esm/api/b/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/b/index.d.ts",
+        "default": "./dist/commonjs/api/b/index.js"
       }
     }
   },

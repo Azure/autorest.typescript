@@ -3,13 +3,13 @@
 
 import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import {
-  create,
-  get,
-  update,
-  $delete,
-  deleteData,
-  generateStorageContainerSasToken,
   listByDataProduct,
+  generateStorageContainerSasToken,
+  deleteData,
+  $delete,
+  update,
+  get,
+  create,
 } from "../../api/dataTypes/index.js";
 import {
   DataType,
@@ -20,40 +20,39 @@ import {
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  DataTypesCreateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
   DataTypesListByDataProductOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesUpdateOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesCreateOptionalParams,
 } from "../../api/options.js";
 
 /** Interface representing a DataTypes operations. */
 export interface DataTypesOperations {
-  /** Create data type resource. */
-  create: (
+  /** List data type by parent resource. */
+  listByDataProduct: (
+    resourceGroupName: string,
+    dataProductName: string,
+    options?: DataTypesListByDataProductOptionalParams,
+  ) => PagedAsyncIterableIterator<DataType>;
+  /** Generate sas token for storage container. */
+  generateStorageContainerSasToken: (
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    resource: DataType,
-    options?: DataTypesCreateOptionalParams,
-  ) => PollerLike<OperationState<DataType>, DataType>;
-  /** Retrieve data type resource. */
-  get: (
+    body: ContainerSaS,
+    options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  ) => Promise<ContainerSasToken>;
+  /** Delete data for data type. */
+  deleteData: (
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    options?: DataTypesGetOptionalParams,
-  ) => Promise<DataType>;
-  /** Update data type resource. */
-  update: (
-    resourceGroupName: string,
-    dataProductName: string,
-    dataTypeName: string,
-    properties: DataTypeUpdate,
-    options?: DataTypesUpdateOptionalParams,
-  ) => PollerLike<OperationState<DataType>, DataType>;
+    body: Record<string, any>,
+    options?: DataTypesDeleteDataOptionalParams,
+  ) => PollerLike<OperationState<void>, void>;
   /** Delete data type resource. */
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
@@ -66,60 +65,77 @@ export interface DataTypesOperations {
     dataTypeName: string,
     options?: DataTypesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
-  /** Delete data for data type. */
-  deleteData: (
+  /** Update data type resource. */
+  update: (
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    body: Record<string, any>,
-    options?: DataTypesDeleteDataOptionalParams,
-  ) => PollerLike<OperationState<void>, void>;
-  /** Generate sas token for storage container. */
-  generateStorageContainerSasToken: (
+    properties: DataTypeUpdate,
+    options?: DataTypesUpdateOptionalParams,
+  ) => PollerLike<OperationState<DataType>, DataType>;
+  /** Retrieve data type resource. */
+  get: (
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    body: ContainerSaS,
-    options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  ) => Promise<ContainerSasToken>;
-  /** List data type by parent resource. */
-  listByDataProduct: (
+    options?: DataTypesGetOptionalParams,
+  ) => Promise<DataType>;
+  /** Create data type resource. */
+  create: (
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataTypesListByDataProductOptionalParams,
-  ) => PagedAsyncIterableIterator<DataType>;
+    dataTypeName: string,
+    resource: DataType,
+    options?: DataTypesCreateOptionalParams,
+  ) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-export function getDataTypes(
-  context: NetworkAnalyticsContext,
-  subscriptionId: string,
-) {
+export function getDataTypes(context: NetworkAnalyticsContext) {
   return {
-    create: (
+    listByDataProduct: (
+      resourceGroupName: string,
+      dataProductName: string,
+      options?: DataTypesListByDataProductOptionalParams,
+    ) =>
+      listByDataProduct(context, resourceGroupName, dataProductName, options),
+    generateStorageContainerSasToken: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      resource: DataType,
-      options?: DataTypesCreateOptionalParams,
+      body: ContainerSaS,
+      options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
     ) =>
-      create(
+      generateStorageContainerSasToken(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         dataTypeName,
-        resource,
+        body,
         options,
       ),
-    get: (
+    deleteData: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      options?: DataTypesGetOptionalParams,
+      body: Record<string, any>,
+      options?: DataTypesDeleteDataOptionalParams,
     ) =>
-      get(
+      deleteData(
         context,
-        subscriptionId,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        body,
+        options,
+      ),
+    delete: (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      options?: DataTypesDeleteOptionalParams,
+    ) =>
+      $delete(
+        context,
         resourceGroupName,
         dataProductName,
         dataTypeName,
@@ -134,69 +150,32 @@ export function getDataTypes(
     ) =>
       update(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         dataTypeName,
         properties,
         options,
       ),
-    delete: (
+    get: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      options?: DataTypesDeleteOptionalParams,
+      options?: DataTypesGetOptionalParams,
     ) =>
-      $delete(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      ),
-    deleteData: (
+      get(context, resourceGroupName, dataProductName, dataTypeName, options),
+    create: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      body: Record<string, any>,
-      options?: DataTypesDeleteDataOptionalParams,
+      resource: DataType,
+      options?: DataTypesCreateOptionalParams,
     ) =>
-      deleteData(
+      create(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
         dataTypeName,
-        body,
-        options,
-      ),
-    generateStorageContainerSasToken: (
-      resourceGroupName: string,
-      dataProductName: string,
-      dataTypeName: string,
-      body: ContainerSaS,
-      options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
-    ) =>
-      generateStorageContainerSasToken(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        body,
-        options,
-      ),
-    listByDataProduct: (
-      resourceGroupName: string,
-      dataProductName: string,
-      options?: DataTypesListByDataProductOptionalParams,
-    ) =>
-      listByDataProduct(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
+        resource,
         options,
       ),
   };
@@ -204,9 +183,8 @@ export function getDataTypes(
 
 export function getDataTypesOperations(
   context: NetworkAnalyticsContext,
-  subscriptionId: string,
 ): DataTypesOperations {
   return {
-    ...getDataTypes(context, subscriptionId),
+    ...getDataTypes(context),
   };
 }

@@ -1,48 +1,54 @@
 // Licensed under the MIT License.
 
 import {
-  TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
 } from "../../../api/options.js";
 import { TodoContext } from "../../../api/todoContext.js";
 import {
-  list,
-  createJsonAttachment,
   createFileAttachment,
+  createJsonAttachment,
+  list,
 } from "../../../api/todoItems/attachments/index.js";
-import { TodoAttachment, PageTodoAttachment } from "../../../models/models.js";
+import {
+  TodoAttachment,
+  FileAttachmentMultipartRequest,
+} from "../../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {
-  list: (
+  createFileAttachment: (
     itemId: number,
-    options?: TodoItemsAttachmentsListOptionalParams,
-  ) => Promise<PageTodoAttachment>;
+    body: FileAttachmentMultipartRequest,
+    options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  ) => Promise<void>;
   createJsonAttachment: (
     itemId: number,
     contents: TodoAttachment,
     options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   ) => Promise<void>;
-  createFileAttachment: (
+  list: (
     itemId: number,
-    options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  ) => Promise<void>;
+    options?: TodoItemsAttachmentsListOptionalParams,
+  ) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
 export function getTodoItemsAttachments(context: TodoContext) {
   return {
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
-      list(context, itemId, options),
+    createFileAttachment: (
+      itemId: number,
+      body: FileAttachmentMultipartRequest,
+      options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+    ) => createFileAttachment(context, itemId, body, options),
     createJsonAttachment: (
       itemId: number,
       contents: TodoAttachment,
       options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
     ) => createJsonAttachment(context, itemId, contents, options),
-    createFileAttachment: (
-      itemId: number,
-      options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-    ) => createFileAttachment(context, itemId, options),
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
+      list(context, itemId, options),
   };
 }
 

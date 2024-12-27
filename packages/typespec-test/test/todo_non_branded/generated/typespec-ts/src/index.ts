@@ -1,5 +1,11 @@
 // Licensed under the MIT License.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export { TodoClient } from "./todoClient.js";
 export {
   TodoPage,
@@ -15,16 +21,16 @@ export {
   User,
 } from "./models/index.js";
 export {
-  UsersCreateOptionalParams,
-  TodoItemsListOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsDeleteOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+  UsersCreateOptionalParams,
   TodoClientOptionalParams,
 } from "./api/index.js";
 export {
@@ -32,3 +38,4 @@ export {
   UsersOperations,
   TodoItemsAttachmentsOperations,
 } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

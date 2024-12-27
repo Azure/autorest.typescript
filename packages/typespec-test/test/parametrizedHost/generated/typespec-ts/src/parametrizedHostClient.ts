@@ -37,6 +37,6 @@ export class ParametrizedHostClient {
     this.confidentialLedger = getConfidentialLedgerOperations(this._client);
   }
 
-  /** The operation groups for ConfidentialLedger */
+  /** The operation groups for confidentialLedger */
   public readonly confidentialLedger: ConfidentialLedgerOperations;
 }

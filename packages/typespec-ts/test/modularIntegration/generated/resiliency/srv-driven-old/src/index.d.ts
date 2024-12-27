@@ -20,9 +20,9 @@ export declare class ResiliencyServiceDrivenClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, serviceDeploymentVersion: string, options?: ResiliencyServiceDrivenClientOptionalParams);
-    fromNone(options?: FromNoneOptionalParams): Promise<void>;
-    fromOneRequired(parameter: string, options?: FromOneRequiredOptionalParams): Promise<void>;
     fromOneOptional(options?: FromOneOptionalOptionalParams): Promise<void>;
+    fromOneRequired(parameter: string, options?: FromOneRequiredOptionalParams): Promise<void>;
+    fromNone(options?: FromNoneOptionalParams): Promise<void>;
 }
 
 export declare interface ResiliencyServiceDrivenClientOptionalParams extends ClientOptions {

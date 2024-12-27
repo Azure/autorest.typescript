@@ -1,24 +1,21 @@
 import {
-  BodyParameter,
-  Client,
-  ModularCodeModel,
-  Operation,
-  Parameter,
-  Property,
-  Type
-} from "../modularCodeModel.js";
-import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
-import { getType, isTypeNullable } from "./typeHelpers.js";
+import {
+  getNullableValidType,
+  isSpreadBodyParameter,
+  isTypeNullable
+} from "./typeHelpers.js";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
-  hasCollectionFormatInfo
+  hasCollectionFormatInfo,
+  isBinaryPayload,
+  ServiceOperation
 } from "../../utils/operationUtil.js";
 import {
   isNormalUnion,
@@ -31,7 +28,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 
 import { AzurePollingDependencies } from "../external-dependencies.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "../serialization/buildSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
@@ -40,17 +37,38 @@ import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-import { getTypeExpression } from "../type-expressions/get-type-expression.js";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
+import {
+  isReadOnly,
+  SdkBodyParameter,
+  SdkClientType,
+  SdkConstantType,
+  SdkHttpOperation,
+  SdkHttpParameter,
+  SdkLroPagingServiceMethod,
+  SdkLroServiceMethod,
+  SdkMethod,
+  SdkModelPropertyType,
+  SdkModelType,
+  SdkPagingServiceMethod,
+  SdkServiceParameter,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
-  operation: Operation,
+  client: SdkClientType<SdkHttpOperation>,
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
+  const operation = method[1];
   const parameters = getOperationSignatureParameters(
     dpgContext,
-    operation,
+    method,
     clientType
   );
   const { name } = getOperationName(operation);
@@ -64,20 +82,31 @@ export function getSendPrivateFunction(
     returnType: resolveReference(dependencies.StreamableMethod)
   };
 
-  const operationPath = operation.url;
-  const operationMethod = operation.method.toLowerCase();
-  const optionalParamName = parameters.filter((p) =>
-    p.type?.toString().endsWith("OptionalParams")
-  )[0]?.name;
-
+  const operationPath = operation.operation.path;
+  const operationMethod = operation.operation.verb.toLowerCase();
+  const optionalParamName = getOptionalParamsName(parameters);
+  const hasQueryApiVersion = operation.operation.parameters.some(
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
+  );
+  const hasClientApiVersion = client.initialization.properties.some(
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
+  );
   const statements: string[] = [];
+  if (hasClientApiVersion && !hasQueryApiVersion) {
+    statements.push(
+      `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
+    );
+  }
+
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       dpgContext,
-      operation
+      operation,
+      optionalParamName
     )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
       dpgContext,
-      operation
+      operation,
+      optionalParamName
     )}});`
   );
 
@@ -89,7 +118,7 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   context: SdkContext,
-  operation: Operation
+  operation: ServiceOperation
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
@@ -108,14 +137,15 @@ export function getDeserializePrivateFunction(
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
-  const response = operation.responses[0]!;
+  const response = operation.response;
+  const restResponse = operation.operation.responses[0];
   let returnType;
-  if (isLroOnly && operation.method.toLowerCase() !== "patch") {
+  if (isLroOnly && operation.operation.verb.toLowerCase() !== "patch") {
     returnType = buildLroReturnType(context, operation);
-  } else if (response?.type?.type) {
+  } else if (response.type && restResponse) {
     returnType = {
-      name: response.type.name,
-      type: getTypeExpression(context, response.type.tcgcType!)
+      name: (restResponse as any).name ?? "",
+      type: getTypeExpression(context, restResponse.type!)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -142,16 +172,18 @@ export function getDeserializePrivateFunction(
     "}"
   );
   const deserializedType = isLroOnly
-    ? operation?.lroMetadata?.finalResult
-    : response.type;
-  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+    ? operation?.lroMetadata?.finalResponse?.result
+    : restResponse
+      ? restResponse.type
+      : response.type;
+  const lroSubPath = isLroOnly
+    ? operation?.lroMetadata?.finalResponse?.resultPath
+    : undefined;
 
   const deserializePrefix = "result.body";
 
-  const deserializedRoot = hasLroSubPath
-    ? `${deserializePrefix}.${operation?.lroMetadata?.finalResultPath}`
-    : `${deserializePrefix}`;
-  if (isLroOnly && hasLroSubPath) {
+  const deserializedRoot = `${deserializePrefix}${lroSubPath ? "." + lroSubPath : ""}`;
+  if (isLroOnly && lroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
         throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
@@ -160,10 +192,11 @@ export function getDeserializePrivateFunction(
     );
   }
 
-  if (deserializedType?.tcgcType) {
+  if (deserializedType) {
+    const contentTypes = operation.operation.responses[0]?.contentTypes;
     const deserializeFunctionName = buildModelDeserializer(
       context,
-      deserializedType.tcgcType,
+      deserializedType,
       false,
       true
     );
@@ -177,21 +210,14 @@ export function getDeserializePrivateFunction(
           context,
           deserializedType,
           deserializedRoot,
-          response.isBinaryPayload ? "binary" : deserializedType.format
+          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
+            ? "binary"
+            : getEncodeForType(deserializedType)
         )}`
       );
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
-  } else if (deserializedType) {
-    statements.push(
-      `return ${deserializeResponseValue(
-        context,
-        deserializedType,
-        deserializedRoot,
-        response.isBinaryPayload ? "binary" : deserializedType.format
-      )}`
-    );
   } else {
     statements.push("return;");
   }
@@ -202,12 +228,22 @@ export function getDeserializePrivateFunction(
   };
 }
 
+function getOptionalParamsName(
+  parameters: OptionalKind<ParameterDeclarationStructure>[]
+) {
+  return (
+    parameters.filter((p) => p.type?.toString().endsWith("OptionalParams"))[0]
+      ?.name ?? "options"
+  );
+}
+
 function getOperationSignatureParameters(
   context: SdkContext,
-  operation: Operation,
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const optionsType = getOperationOptionsName(operation, true);
+  const operation = method[1];
+  const optionsType = getOperationOptionsName(method, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -216,30 +252,31 @@ function getOperationSignatureParameters(
   operation.parameters
     .filter(
       (p) =>
-        p.implementation === "Method" &&
-        p.type.type !== "constant" &&
+        p.onClient === false &&
+        p.type.kind !== "constant" &&
+        operation.operation.parameters.filter((param) => {
+          return (
+            param.correspondingMethodParams.length === 1 &&
+            param.correspondingMethodParams[0] === p
+          );
+        })[0]?.kind !== "cookie" &&
         p.clientDefaultValue === undefined &&
-        !p.optional
+        !p.optional &&
+        !(
+          p.isGeneratedName &&
+          (p.name === "contentType" || p.name === "accept")
+        ) // skip tcgc generated contentType and accept header parameter
     )
     .map((p) => {
       return {
-        name: p.clientName,
-        type: getTypeExpression(context, p.tcgcType ?? p.type.tcgcType!)
+        name: p.name,
+        type: getTypeExpression(context, p.type)
       };
     })
     .forEach((p) => {
       parameters.set(p.name, p);
     });
 
-  if (operation.bodyParameter && operation.bodyParameter.optional === false) {
-    parameters.set(operation.bodyParameter?.clientName, {
-      hasQuestionToken: operation.bodyParameter.optional,
-      ...{
-        name: operation.bodyParameter.clientName,
-        type: getTypeExpression(context, operation.bodyParameter.type.tcgcType!)
-      }
-    });
-  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
@@ -260,47 +297,54 @@ function getOperationSignatureParameters(
  */
 export function getOperationFunction(
   context: SdkContext,
-  operation: Operation,
+  method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+  const operation = method[1];
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(context, method, clientType);
+  const optionalParamName = getOptionalParamsName(parameters);
   if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
-    return getPagingOnlyOperationFunction(context, operation, clientType);
+    return getPagingOnlyOperationFunction(
+      context,
+      [method[0], operation],
+      clientType
+    );
   } else if (isLroOnlyOperation(operation)) {
     // Case 2: lro-only operation
-    return getLroOnlyOperationFunction(context, operation, clientType);
+    return getLroOnlyOperationFunction(
+      context,
+      [method[0], operation],
+      clientType,
+      optionalParamName
+    );
   } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
   }
 
-  if (operation.name === "floatSeconds") {
-    operation;
-  }
-  // Extract required parameters
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
   // TODO: Support operation overloads
-  const response = operation.responses[0]!;
+  const response = operation.response;
   let returnType = { name: "", type: "void" };
-  if (response.type?.type) {
-    const type =
-      extractPagingType(response.type, operation.itemName) ?? response.type;
+  if (response.type) {
+    const type = response.type;
     returnType = {
-      name: type.name ?? "",
-      type: getTypeExpression(context, type.tcgcType!)
+      name: (type as any).name ?? "",
+      type: getTypeExpression(context, type!)
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
     docs: [
-      ...getDocsFromDescription(operation.description),
+      ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: true,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
@@ -321,12 +365,14 @@ export function getOperationFunction(
 
 function getLroOnlyOperationFunction(
   context: SdkContext,
-  operation: Operation,
-  clientType: string
+  method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
+  clientType: string,
+  optionalParamName: string = "options"
 ) {
+  const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
+    getOperationSignatureParameters(context, method, clientType);
   const returnType = buildLroReturnType(context, operation);
   const { name, fixme = [] } = getOperationName(operation);
   const pollerLikeReference = resolveReference(
@@ -337,13 +383,13 @@ function getLroOnlyOperationFunction(
   );
   const functionStatement = {
     docs: [
-      ...getDocsFromDescription(operation.description),
+      ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: false,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
@@ -351,17 +397,29 @@ function getLroOnlyOperationFunction(
   const getLongRunningPollerReference = resolveReference(
     PollingHelpers.GetLongRunningPoller
   );
-  const resourceLocationConfig = operation.lroMetadata?.finalStateVia
-    ? `resourceLocationConfig: "${operation.lroMetadata?.finalStateVia}"`
-    : "";
+  const lroMetadata =
+    operation.kind === "lro" || operation.kind === "lropaging"
+      ? operation.lroMetadata
+      : undefined;
+  const allowedFinalLocation = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    lroMetadata?.finalStateVia &&
+    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
+      : "";
   const statements: string[] = [];
   statements.push(`
 
   return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
     operation
   )}, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
+    updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
+    abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")}),
@@ -377,13 +435,16 @@ function getLroOnlyOperationFunction(
   };
 }
 
-function buildLroReturnType(context: SdkContext, operation: Operation) {
+function buildLroReturnType(
+  context: SdkContext,
+  operation: SdkLroServiceMethod<SdkHttpOperation>
+) {
   const metadata = operation.lroMetadata;
-  if (metadata !== undefined && metadata.finalResult !== undefined) {
-    const type = metadata.finalResult;
+  if (metadata !== undefined && metadata.finalResponse !== undefined) {
+    const type = metadata.finalResponse.result;
     return {
       name: type.name,
-      type: getTypeExpression(context, type.tcgcType!)
+      type: getTypeExpression(context, type)
     };
   }
   return { name: "", type: "void" };
@@ -391,22 +452,22 @@ function buildLroReturnType(context: SdkContext, operation: Operation) {
 
 function getPagingOnlyOperationFunction(
   context: SdkContext,
-  operation: Operation,
+  method: [string[], SdkPagingServiceMethod<SdkHttpOperation>],
   clientType: string
 ) {
+  const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, operation, clientType);
+    getOperationSignatureParameters(context, method, clientType);
 
   // TODO: Support operation overloads
-  const response = operation.responses[0]!;
+  const response = operation.response;
   let returnType = { name: "", type: "void" };
-  if (response.type?.type) {
-    const type =
-      extractPagingType(response.type, operation.itemName) ?? response.type;
+  if (response.type && response.type.kind === "array") {
+    const type = response.type;
     returnType = {
-      name: type.name ?? "",
-      type: getTypeExpression(context, type.tcgcType!)
+      name: (type.valueType as any).name ?? "",
+      type: getTypeExpression(context, type.valueType)
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -418,24 +479,33 @@ function getPagingOnlyOperationFunction(
   );
   const functionStatement = {
     docs: [
-      ...getDocsFromDescription(operation.description),
+      ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: false,
     isExported: true,
     name,
-    propertyName: operation.name,
+    propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
     returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
   };
 
   const statements: string[] = [];
   const options = [];
-  if (operation.itemName) {
-    options.push(`itemName: "${operation.itemName}"`);
+  // TODO pending tcgc issue to fix https://github.com/Azure/typespec-azure/issues/1985
+  const itemName =
+    operation.response.resultPath !== "" && operation.response.resultPath
+      ? operation.response.resultPath
+      : operation.__raw_paged_metadata?.itemsSegments
+        ? operation.__raw_paged_metadata.itemsSegments[0]
+        : undefined;
+  if (itemName) {
+    options.push(`itemName: "${itemName}"`);
   }
-  if (operation.continuationTokenName) {
-    options.push(`nextLinkName: "${operation.continuationTokenName}"`);
+  if (operation.__raw_paged_metadata?.nextLinkSegments) {
+    options.push(
+      `nextLinkName: "${operation.__raw_paged_metadata.nextLinkSegments[0]}"`
+    );
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
@@ -453,31 +523,15 @@ function getPagingOnlyOperationFunction(
   };
 }
 
-function extractPagingType(type: Type, itemName?: string): Type | undefined {
-  if (!itemName) {
-    return undefined;
-  }
-  const allProperties = [
-    ...(type.properties ?? []),
-    ...(type.parents ?? []).flatMap((p) => p.properties ?? [])
-  ];
-  const prop = allProperties
-    .filter((prop) => prop.restApiName === itemName)
-    .map((prop) => prop.type);
-  if (prop.length === 0) {
-    return undefined;
-  }
-  return prop[0]?.type === "list" && prop[0].elementType
-    ? prop[0].elementType
-    : undefined;
-}
 export function getOperationOptionsName(
-  operation: Operation,
+  method: [string[], ServiceOperation],
   includeGroupName = false
 ) {
+  const prefixes = method[0];
+  const operation = method[1];
   const prefix =
     includeGroupName && operation.name.indexOf("_") === -1
-      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
   return optionName;
@@ -490,20 +544,22 @@ export function getOperationOptionsName(
  */
 function getRequestParameters(
   dpgContext: SdkContext,
-  operation: Operation
+  operation: ServiceOperation,
+  optionalParamName: string = "options"
 ): string {
-  if (!operation.parameters) {
+  if (!operation.operation.parameters) {
     return "";
   }
-  const operationParameters = operation.parameters.filter(
-    (p) => p.implementation !== "Client" && !isContentType(p)
+  const operationParameters = operation.operation.parameters.filter(
+    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
   );
 
-  const contentTypeParameter = operation.parameters.find(isContentType);
+  const contentTypeParameter =
+    operation.operation.parameters.find(isContentType);
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
-    { paramMap: string; param: Parameter }[]
+    { paramMap: string; param: SdkServiceParameter }[]
   > = {
     header: [],
     query: [],
@@ -511,13 +567,17 @@ function getRequestParameters(
   };
 
   for (const param of operationParameters) {
-    if (
-      param.location === "header" ||
-      param.location === "query" ||
-      param.location === "body"
-    ) {
-      parametersImplementation[param.location].push({
-        paramMap: getParameterMap(dpgContext, param),
+    if (param.kind === "header" || param.kind === "query") {
+      // skip tcgc generated contentType and accept non constant type header parameter
+      if (
+        param.isGeneratedName &&
+        !isConstant(param.type) &&
+        (param.name === "contentType" || param.name === "accept")
+      ) {
+        continue;
+      }
+      parametersImplementation[param.kind].push({
+        paramMap: getParameterMap(dpgContext, param, optionalParamName),
         param
       });
     }
@@ -526,13 +586,20 @@ function getRequestParameters(
   let paramStr = "";
 
   if (contentTypeParameter) {
-    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
+    paramStr = `${getContentTypeValue(contentTypeParameter, optionalParamName)},`;
   }
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
-      .join(",\n")}},`;
+      .map((i) =>
+        buildHeaderParameter(
+          dpgContext.program,
+          i.paramMap,
+          i.param,
+          optionalParamName
+        )
+      )
+      .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
 
   if (parametersImplementation.query.length) {
@@ -541,14 +608,14 @@ function getRequestParameters(
       .join(",\n")}},`;
   }
   if (
-    operation.bodyParameter === undefined &&
+    operation.operation.bodyParam === undefined &&
     parametersImplementation.body.length
   ) {
     paramStr = `${paramStr}\nbody: {${parametersImplementation.body
       .map((i) => i.paramMap)
       .join(",\n")}}`;
-  } else if (operation.bodyParameter !== undefined) {
-    paramStr = `${paramStr}${buildBodyParameter(dpgContext, operation.bodyParameter)}`;
+  } else if (operation.operation.bodyParam !== undefined) {
+    paramStr = `${paramStr}${buildBodyParameter(dpgContext, operation.operation.bodyParam)}`;
   }
   return paramStr;
 }
@@ -557,8 +624,10 @@ function getRequestParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: Parameter
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
 ): string {
+  const paramName = param.name;
   if (!param.optional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
@@ -568,10 +637,10 @@ function buildHeaderParameter(
   }
   const conditions = [];
   if (param.optional) {
-    conditions.push(`options?.${param.clientName} !== undefined`);
+    conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`options?.${param.clientName} !== null`);
+    conditions.push(`${optionalParamName}?.${paramName} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -580,26 +649,30 @@ function buildHeaderParameter(
 
 function buildBodyParameter(
   context: SdkContext,
-  bodyParameter: BodyParameter | undefined
+  bodyParameter: SdkBodyParameter | undefined,
+  optionalParamName: string = "options"
 ) {
-  if (!bodyParameter || !bodyParameter.type.tcgcType) {
+  if (!bodyParameter || !bodyParameter.type) {
     return "";
   }
   const serializerFunctionName = buildModelSerializer(
     context,
-    bodyParameter.type.tcgcType!,
+    getNullableValidType(bodyParameter.type),
     false,
     true
   );
 
+  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
   const bodyNameExpression = bodyParameter.optional
-    ? `options["${bodyParameter.clientName}"]`
-    : bodyParameter.clientName;
+    ? `${optionalParamName}["${bodyParamName}"]`
+    : bodyParamName;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    context,
     bodyParameter,
-    bodyParameter.optional ? "options" : undefined
+    bodyParameter.optional ? optionalParamName : undefined
   );
-  if (serializerFunctionName) {
+  // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
+  if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
     return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
@@ -609,9 +682,11 @@ function buildBodyParameter(
     bodyParameter.type,
     bodyNameExpression,
     !bodyParameter.optional,
-    bodyParameter.isBinaryPayload ? "binary" : bodyParameter.format
+    isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
+      ? "binary"
+      : getEncodeForType(bodyParameter.type)
   );
-  return `\nbody: ${serializedBody === bodyNameExpression ? "" : nullOrUndefinedPrefix}${serializedBody},`;
+  return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -629,208 +704,210 @@ function getEncodingFormat(type: { format?: string }) {
  */
 export function getParameterMap(
   context: SdkContext,
-  param: Parameter | Property
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
 ): string {
-  if (isConstant(param)) {
-    return getConstantValue(param);
+  if (isConstant(param.type)) {
+    return `"${param.name}": ${getConstantValue(param.type)}`;
   }
 
-  if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(context, param as Parameter);
+  if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
+    return getCollectionFormat(context, param, optionalParamName);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param);
+    return getOptional(context, param, optionalParamName);
   }
 
   if (isRequired(param)) {
     return getRequired(context, param);
   }
 
-  throw new Error(`Parameter ${param.clientName} is not supported`);
+  throw new Error(`Parameter ${param.name} is not supported`);
 }
 
-function getCollectionFormat(context: SdkContext, param: Parameter) {
-  const collectionInfo = getCollectionFormatHelper(
-    param.location,
-    param.format ?? ""
-  );
+function getCollectionFormat(
+  context: SdkContext,
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
+) {
+  const serializedName = getPropertySerializedName(param);
+  const format = (param as any).collectionFormat;
+  const collectionInfo = getCollectionFormatHelper(param.kind, format ?? "");
   if (!collectionInfo) {
     throw "Has collection format info but without helper function detected";
   }
-  const isMulti = (param.format ?? "").toLowerCase() === "multi";
-  const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
+  const isMulti = format.toLowerCase() === "multi";
+  const additionalParam = isMulti ? `, "${serializedName}"` : "";
   if (!param.optional) {
-    return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
+    return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
       context,
       param.type,
-      param.clientName,
+      param.name,
       true,
-      param.format
+      getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${param.restApiName}": options?.${
-    param.clientName
+  return `"${serializedName}": ${optionalParamName}?.${
+    param.name
   } !== undefined ? ${collectionInfo}(${serializeRequestValue(
     context,
     param.type,
-    "options?." + param.clientName,
+    `${optionalParamName}?.${param.name}`,
     false,
-    param.format
+    getEncodeForType(param.type)
   )}${additionalParam}): undefined`;
 }
 
-function isContentType(param: Parameter): boolean {
+function isContentType(param: SdkServiceParameter): boolean {
   return (
-    param.location === "header" &&
-    param.restApiName.toLowerCase() === "content-type"
+    param.kind === "header" &&
+    param.serializedName.toLowerCase() === "content-type"
   );
 }
 
-function getContentTypeValue(param: Parameter | Property) {
-  const defaultValue =
-    param.clientDefaultValue ?? param.type.clientDefaultValue;
-
+function getContentTypeValue(
+  param: SdkServiceParameter,
+  optionalParamName: string = "options"
+) {
+  const defaultValue = param.clientDefaultValue;
+  // allow customers to customize the content type if it's guessed by tcgc.
+  if (isConstant(param.type)) {
+    return `contentType: ${getConstantValue(param.type)}`;
+  }
   if (defaultValue) {
-    return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
+    return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
     return `contentType: ${
       !param.optional
         ? "contentType"
-        : "options." + param.clientName + " as any"
+        : `${optionalParamName}.` + param.name + " as any"
     }`;
   }
 }
 
-type RequiredType = (Parameter | Property) & {
-  type: { optional: false | undefined; value: string };
-};
-
-function isRequired(param: Parameter | Property): param is RequiredType {
+function isRequired(param: SdkModelPropertyType) {
   return !param.optional;
 }
 
-function getRequired(context: SdkContext, param: RequiredType) {
-  if (param.type.type === "model") {
+function getRequired(context: SdkContext, param: SdkModelPropertyType) {
+  const serializedName = getPropertySerializedName(param);
+  const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
+  if (param.type.kind === "model") {
     const { propertiesStr } = getRequestModelMapping(
       context,
-      param.type,
-      param.clientName
+      { ...param.type, optional: param.optional },
+      clientValue
     );
-    return `"${param.restApiName}": { ${propertiesStr.join(",")} }`;
+    return `"${serializedName}": { ${propertiesStr.join(",")} }`;
   }
-  return `"${param.restApiName}": ${serializeRequestValue(
+  return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    param.clientName,
+    clientValue,
     true,
-    param.format === undefined &&
-      (param as Parameter).location === "header" &&
-      param.type.type === "datetime"
-      ? "headerDefault"
-      : param.format
+    getEncodeForType(param.type)
   )}`;
 }
 
-type ConstantType = (Parameter | Property) & {
-  type: { type: "constant"; value: string };
-};
-
-function getConstantValue(param: ConstantType) {
-  const defaultValue =
-    param.clientDefaultValue ??
-    param.type.clientDefaultValue ??
-    param.type.value;
-
-  if (!defaultValue) {
-    throw new Error(
-      `Constant ${param.clientName} does not have a default value`
-    );
+function getConstantValue(param: SdkConstantType) {
+  if (typeof param.value === "string") {
+    return `"${param.value}"`;
   }
-
-  return `"${param.restApiName}": ${getType(param.type).name}`;
+  return `${param.value}`;
 }
 
-function isConstant(param: Parameter | Property): param is ConstantType {
-  return param.type.type === "constant";
+function isConstant(param: SdkType): param is SdkConstantType {
+  return param.kind === "constant";
 }
 
-type OptionalType = (Parameter | Property) & {
-  type: { optional: true };
-};
-
-function isOptional(param: Parameter | Property): param is OptionalType {
+function isOptional(param: SdkModelPropertyType) {
   return Boolean(param.optional);
 }
 
-function getOptional(context: SdkContext, param: OptionalType) {
-  if (param.type.type === "model") {
+function getOptional(
+  context: SdkContext,
+  param: SdkHttpParameter,
+  optionalParamName: string
+) {
+  const serializedName = getPropertySerializedName(param);
+  const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+  if (param.type.kind === "model") {
     const { propertiesStr, directAssignment } = getRequestModelMapping(
       context,
-      param.type,
-      "options?." + param.clientName + "?."
+      { ...param.type, optional: param.optional },
+      paramName + "?."
     );
     const serializeContent =
       directAssignment === true
         ? propertiesStr.join(",")
         : `{${propertiesStr.join(",")}}`;
-    return `"${param.restApiName}": ${serializeContent}`;
+    return `"${serializedName}": ${serializeContent}`;
   }
-  if (
-    param.restApiName === "api-version" &&
-    (param as any).location === "query"
-  ) {
-    return `"${param.restApiName}": ${
-      param.clientDefaultValue
-        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
-        : `options?.${param.clientName}`
-    }`;
-  }
-  return `"${param.restApiName}": ${serializeRequestValue(
+  return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    `options?.${param.clientName}`,
+    paramName,
     false,
-    param.format === undefined &&
-      (param as Parameter).location === "header" &&
-      param.type.type === "datetime"
-      ? "headerDefault"
-      : param.format
+    getEncodeForType(param.type)
   )}`;
+}
+
+/**
+ * Get the encode for SDK type
+ */
+function getEncodeForType(
+  type: SdkType | SdkHttpParameter | SdkModelPropertyType
+) {
+  return (type as any).encode;
+}
+
+/**
+ * Get the optionality for SDK type
+ */
+function getOptionalForType(
+  type: SdkType | SdkHttpParameter | SdkModelPropertyType
+) {
+  return (type as any).optional;
 }
 
 /**
  * Builds the assignment for when a property or parameter has a default value
  */
-function getDefaultValue(param: Parameter | Property) {
-  return param.clientDefaultValue ?? param.type.clientDefaultValue;
+function getDefaultValue(param: SdkServiceParameter) {
+  return param.clientDefaultValue;
 }
 
 /**
  * Extracts the path parameters
  */
-function getPathParameters(dpgContext: SdkContext, operation: Operation) {
-  if (!operation.parameters) {
+function getPathParameters(
+  dpgContext: SdkContext,
+  operation: ServiceOperation,
+  optionalParamName: string = "options"
+) {
+  if (!operation.operation.parameters) {
     return "";
   }
 
   let pathParams = "";
-  for (const param of operation.parameters) {
-    if (param.location === "path") {
+  for (const param of operation.operation.parameters) {
+    if (param.kind === "path") {
       // Path parameters cannot be optional
       if (param.optional) {
         reportDiagnostic(dpgContext.program, {
           code: "optional-path-param",
           target: NoTarget,
           format: {
-            paramName: param.clientName
+            paramName: param
           }
         });
       }
       pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
         param,
-        getDefaultValue(param)
+        getDefaultValue(param) as string,
+        optionalParamName
       )}`;
     }
   }
@@ -838,19 +915,32 @@ function getPathParameters(dpgContext: SdkContext, operation: Operation) {
   return pathParams;
 }
 
-function getPathParamExpr(param: Parameter, defaultValue?: string) {
+function getPathParamExpr(
+  param: SdkServiceParameter,
+  defaultValue?: string,
+  optionalParamName: string = "options"
+) {
+  if (isConstant(param.type)) {
+    return getConstantValue(param.type);
+  }
+  const paramName = param.onClient
+    ? `context.${param.name}`
+    : param.optional
+      ? `${optionalParamName}["${param.name}"]`
+      : param.name;
   const value = defaultValue
     ? typeof defaultValue === "string"
-      ? `options[${param.clientName}] ?? "${defaultValue}"`
-      : `options[${param.clientName}] ?? ${defaultValue}`
-    : param.clientName;
-  if (param.skipUrlEncoding === true) {
+      ? `${paramName} ?? "${defaultValue}"`
+      : `${paramName} ?? ${defaultValue}`
+    : paramName;
+  // TODO allowReserved is not supported in Query and Header parameter yet.
+  if (param.kind === "path" && param.allowReserved === true) {
     return `{value: ${value}, allowReserved: true}`;
   }
   return value;
 }
 
-function getNullableCheck(name: string, type: Type) {
+function getNullableCheck(name: string, type: SdkType) {
   if (!isTypeNullable(type)) {
     return "";
   }
@@ -869,42 +959,47 @@ interface RequestModelMappingResult {
 }
 export function getRequestModelMapping(
   context: SdkContext,
-  modelPropertyType: Type,
+  modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body"
 ): RequestModelMappingResult {
   const props: string[] = [];
   const allParents = getAllAncestors(modelPropertyType);
-  const properties: Property[] =
+  const properties: SdkModelPropertyType[] =
     getAllProperties(modelPropertyType, allParents) ?? [];
   if (properties.length <= 0) {
     return { propertiesStr: [] };
   }
   for (const property of properties) {
-    if (property.readonly) {
+    if (property.kind === "property" && isReadOnly(property)) {
       continue;
     }
     const dot = propertyPath.endsWith("?") ? "." : "";
-
+    const serializedName = getPropertySerializedName(property);
     const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
     const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+      context,
       property,
       propertyPath
     );
 
-    const propertyFullName = getPropertyFullName(property, propertyPathWithDot);
+    const propertyFullName = getPropertyFullName(
+      context,
+      property,
+      propertyPathWithDot
+    );
     const serializeFunctionName = buildModelSerializer(
       context,
-      property.type.tcgcType!,
+      getNullableValidType(property.type),
       false,
       true
     );
     if (serializeFunctionName) {
       props.push(
-        `"${property.restApiName}": ${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`
+        `"${serializedName}": ${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`
       );
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
       props.push(
-        `"${property.restApiName}": ${nullOrUndefinedPrefix}${propertyFullName}`
+        `"${serializedName}": ${nullOrUndefinedPrefix}${propertyFullName}`
       );
     } else {
       const serializedValue = serializeRequestValue(
@@ -912,13 +1007,19 @@ export function getRequestModelMapping(
         property.type,
         propertyFullName,
         !property.optional,
-        property.format
+        getEncodeForType(property.type)
       );
-      props.push(`"${property.restApiName}": ${serializedValue}`);
+      props.push(`"${serializedName}": ${serializedValue}`);
     }
   }
 
   return { propertiesStr: props };
+}
+
+function getPropertySerializedName(property: SdkModelPropertyType) {
+  return property.kind !== "credential" && property.kind !== "method"
+    ? property.serializedName
+    : property.name;
 }
 
 /**
@@ -927,45 +1028,46 @@ export function getRequestModelMapping(
  */
 export function getResponseMapping(
   context: SdkContext,
-  type: Type,
+  type: SdkType,
   propertyPath: string = "result.body"
 ) {
-  const allParents = getAllAncestors(type);
-  const properties = getAllProperties(type, allParents) ?? [];
+  const allParents = type.kind === "model" ? getAllAncestors(type) : [];
+  const properties =
+    type.kind === "model" ? getAllProperties(type, allParents) : [];
   const props: string[] = [];
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
-
+    const serializedName = getPropertySerializedName(property);
     const restValue = `${
       propertyPath ? `${propertyPath}${dot}` : `${dot}`
-    }["${property.restApiName}"]`;
+    }["${serializedName}"]`;
+
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
     const deserializeFunctionName = buildModelDeserializer(
       context,
-      property.type.tcgcType!,
+      getNullableValidType(property.type),
       false,
       true
     );
+    const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
       props.push(
-        `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
       );
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-      props.push(
-        `"${property.clientName}": ${nullOrUndefinedPrefix}${restValue}`
-      );
+      props.push(`${propertyName}: ${nullOrUndefinedPrefix}${restValue}`);
     } else {
       const deserializeValue = deserializeResponseValue(
         context,
         property.type,
-        `${propertyPath}${dot}["${property.restApiName}"]`,
-        property.format
+        `${propertyPath}${dot}["${serializedName}"]`,
+        getEncodeForType(property.type)
       );
       props.push(
-        `"${property.clientName}": ${deserializeValue === `${propertyPath}${dot}["${property.restApiName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
+        `${propertyName}: ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
       );
     }
   }
@@ -979,7 +1081,7 @@ export function getResponseMapping(
  */
 export function serializeRequestValue(
   context: SdkContext,
-  type: Type,
+  type: SdkType,
   clientValue: string,
   required: boolean,
   format?: string
@@ -987,50 +1089,48 @@ export function serializeRequestValue(
   const getSdkType = useSdkTypes();
   const dependencies = useDependencies();
   const nullOrUndefinedPrefix =
-    isTypeNullable(type) || type.optional || !required
+    isTypeNullable(type) || getOptionalForType(type) || !required
       ? `!${clientValue}? ${clientValue}: `
       : "";
-  switch (type.type) {
-    case "datetime":
-      switch (type.format ?? format) {
+  switch (type.kind) {
+    case "utcDateTime":
+      switch (type.encode ?? format) {
         case "rfc7231":
-        case "headerDefault":
           return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
         case "unixTimestamp":
           return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
         case "rfc3339":
         default:
-          return `${getNullableCheck(clientValue, type)} ${clientValue}${
-            required ? "" : "?"
-          }.toISOString()`;
+          return `${nullOrUndefinedPrefix}${clientValue}.toISOString()`;
       }
-    case "list": {
+    case "array": {
       const prefix = nullOrUndefinedPrefix + clientValue;
-      if (type.elementType) {
+      if (type.valueType) {
         const elementNullOrUndefinedPrefix =
-          isTypeNullable(type.elementType) || type.elementType.optional
+          isTypeNullable(type.valueType) || getOptionalForType(type.valueType)
             ? "!p ? p : "
             : "";
         const serializeFunctionName = buildModelSerializer(
           context,
-          type.elementType.tcgcType!,
+          getNullableValidType(type.valueType),
           false,
           true
         );
         if (serializeFunctionName) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeFunctionName}(p)})`;
         } else if (
-          isAzureCoreErrorType(context.program, type.elementType.__raw)
+          isAzureCoreErrorType(context.program, type.valueType.__raw)
         ) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
         } else {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.elementType, "p", true, type.elementType?.format)}})`;
+          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
         }
       }
       return clientValue;
     }
-    case "byte-array":
-      if (format !== "binary") {
+    case "bytes":
+      // TODO https://github.com/Azure/typespec-azure/issues/1999
+      if (format !== "binary" && format !== "bytes") {
         const uint8ArrayToStringReference = resolveReference(
           dependencies.uint8ArrayToString
         );
@@ -1046,10 +1146,16 @@ export function serializeRequestValue(
             }")`;
       }
       return clientValue;
-    case "combined":
+    case "union":
       if (isNormalUnion(type)) {
         return `${clientValue}`;
-      } else if (isSpecialHandledUnion(type)) {
+      } else if (
+        isSpecialHandledUnion({
+          ...type,
+          isNonExhaustive:
+            context.rlcOptions?.experimentalExtensibleEnums ?? false
+        })
+      ) {
         const sdkType = getSdkType(type.__raw!);
         const serializerRefkey = refkey(sdkType, "serializer");
         const serializeFunctionName = resolveReference(serializerRefkey);
@@ -1057,6 +1163,16 @@ export function serializeRequestValue(
       } else {
         return `${clientValue} as any`;
       }
+    case "model": // this is to build serialization logic for spread model types
+      return `{${getRequestModelMapping(context, type, "").propertiesStr.join(",")}}`;
+    case "nullable":
+      return serializeRequestValue(
+        context,
+        type.type,
+        clientValue,
+        false,
+        getEncodeForType(type.type)
+      );
     default:
       if (clientValue === "constructorParam") {
         return `${clientValue} as any`;
@@ -1072,7 +1188,7 @@ export function serializeRequestValue(
  */
 export function deserializeResponseValue(
   context: SdkContext,
-  type: Type,
+  type: SdkType,
   restValue: string,
   format?: string
 ): string {
@@ -1081,25 +1197,25 @@ export function deserializeResponseValue(
     dependencies.stringToUint8Array
   );
   const nullOrUndefinedPrefix =
-    isTypeNullable(type) || type.optional
+    isTypeNullable(type) || getOptionalForType(type)
       ? `!${restValue}? ${restValue}: `
       : "";
-  switch (type.type) {
-    case "datetime":
-      return `${nullOrUndefinedPrefix} new Date(${type.format === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
-    case "list": {
+  switch (type.kind) {
+    case "utcDateTime":
+      return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
+    case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
       let elementNullOrUndefinedPrefix = "";
       if (
-        type.elementType &&
-        (isTypeNullable(type.elementType) || type.elementType.optional)
+        type.valueType &&
+        (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
         elementNullOrUndefinedPrefix = "!p ? p :";
       }
-      const deserializeFunctionName = type.elementType
+      const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
             context,
-            type.elementType.tcgcType!,
+            getNullableValidType(type.valueType),
             false,
             true
           )
@@ -1107,29 +1223,34 @@ export function deserializeResponseValue(
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
       } else if (
-        type.elementType &&
-        isAzureCoreErrorType(context.program, type.elementType.__raw)
+        type.valueType &&
+        isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
-      } else if (type.elementType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.elementType, "p", type.format)}})`;
+      } else if (type.valueType) {
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
       } else {
         return restValue;
       }
     }
-    case "byte-array":
-      if (format !== "binary") {
+    case "bytes":
+      if (format !== "binary" && format !== "bytes") {
         return `typeof ${restValue} === 'string'
         ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }
       return restValue;
-    case "combined":
+    case "union":
       if (isNormalUnion(type)) {
         return `${restValue}`;
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
-          ? buildModelDeserializer(context, type.tcgcType!, false, true)
+          ? buildModelDeserializer(
+              context,
+              getNullableValidType(type),
+              false,
+              true
+            )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;
@@ -1139,94 +1260,97 @@ export function deserializeResponseValue(
       } else {
         return `${restValue} as any`;
       }
+    case "model": // generate deserialize logic for spread model types
+      return `{${getResponseMapping(context, type, "").join(",")}}`;
+    case "nullable":
+      return deserializeResponseValue(
+        context,
+        type.type,
+        restValue,
+        getEncodeForType(type.type)
+      );
     default:
       return restValue;
   }
 }
 
-export function isLroAndPagingOperation(op: Operation): boolean {
-  return op.discriminator === "lropaging";
+export function isLroAndPagingOperation(
+  op: SdkMethod<SdkHttpOperation>
+): op is SdkLroPagingServiceMethod<SdkHttpOperation> {
+  return op.kind === "lropaging";
 }
 
-export function isLroOnlyOperation(op: Operation): boolean {
-  return op.discriminator === "lro";
+export function isLroOnlyOperation(
+  op: SdkMethod<SdkHttpOperation>
+): op is SdkLroServiceMethod<SdkHttpOperation> {
+  return op.kind === "lro";
 }
 
-export function hasPagingOnlyOperation(
-  client: Client,
-  needRLC?: boolean
-): boolean;
-export function hasPagingOnlyOperation(
-  codeModel: ModularCodeModel,
-  needRLC?: boolean
-): boolean;
-export function hasPagingOnlyOperation(
-  clientOrCodeModel: Client | ModularCodeModel,
-  needRLC: boolean = false
-): boolean {
-  let clients: Client[] = [];
-  if ((clientOrCodeModel as any)?.operationGroups) {
-    clients = [clientOrCodeModel as Client];
-  } else if ((clientOrCodeModel as any)?.clients) {
-    clients = (clientOrCodeModel as ModularCodeModel).clients;
-  }
-  return clients.some(
-    (c) =>
-      (needRLC ? c.rlcHelperDetails.hasPaging : false) ||
-      (c.operationGroups ?? []).some((og) =>
-        (og.operations ?? []).some(isPagingOnlyOperation)
-      )
-  );
+export function isPagingOnlyOperation(
+  op: SdkMethod<SdkHttpOperation>
+): op is SdkPagingServiceMethod<SdkHttpOperation> {
+  return op.kind === "paging";
 }
 
-export function isPagingOnlyOperation(op: Operation): boolean {
-  return op.discriminator === "paging";
-}
-
-export function getAllProperties(type: Type, parents?: Type[]): Property[] {
-  const propertiesMap: Map<string, Property> = new Map();
+export function getAllProperties(
+  type: SdkType,
+  parents?: SdkType[]
+): SdkModelPropertyType[] {
+  const propertiesMap: Map<string, SdkModelPropertyType> = new Map();
   if (!type) {
     return [];
   }
   parents?.forEach((p) => {
     getAllProperties(p).forEach((prop) => {
-      propertiesMap.set(prop.clientName, prop);
+      propertiesMap.set(prop.name, prop);
     });
   });
-  type.properties?.forEach((p) => {
-    propertiesMap.set(p.clientName, p);
-  });
+  type.kind === "model" &&
+    type.properties
+      ?.filter((p) => {
+        return p.kind === "property";
+      })
+      .forEach((p) => {
+        propertiesMap.set(p.name, p);
+      });
   return [...propertiesMap.values()];
 }
 
-export function getAllAncestors(type: Type): Type[] {
-  const ancestors: Type[] = [];
-  type?.parents?.forEach((p) => {
-    ancestors.push(p);
-    ancestors.push(...getAllAncestors(p));
-  });
+export function getAllAncestors(type: SdkType): SdkType[] {
+  const ancestors: SdkType[] = [];
+  if (type.kind === "model" && type.baseModel) {
+    ancestors.push(type.baseModel);
+    ancestors.push(...getAllAncestors(type.baseModel));
+  }
   return ancestors;
 }
 
 export function getPropertySerializationPrefix(
-  modularType: Property | Parameter,
+  context: SdkContext,
+  property: SdkServiceParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const propertyFullName = getPropertyFullName(modularType, propertyPath);
-  if (modularType.optional || isTypeNullable(modularType.type)) {
-    return `!${propertyFullName} ? ${propertyFullName} :`;
+  const propertyFullName = getPropertyFullName(context, property, propertyPath);
+  if (property.optional || isTypeNullable(property.type)) {
+    return `!${propertyFullName}? ${propertyFullName}:`;
   }
 
   return "";
 }
 
 export function getPropertyFullName(
-  modularType: Property | Parameter,
+  context: SdkContext,
+  property: SdkServiceParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  let fullName = `${modularType.clientName}`;
-  if (propertyPath) {
-    fullName = `${propertyPath}["${modularType.clientName}"]`;
+  const normalizedPropertyName = normalizeModelPropertyName(context, property)
+    .replace(/^"/g, "")
+    .replace(/"$/g, "");
+  let fullName = normalizedPropertyName;
+  if (propertyPath === "" && property.optional) {
+    fullName = `options?.${normalizedPropertyName}`;
+  } else if (propertyPath) {
+    fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
   return fullName;
 }
@@ -1235,14 +1359,12 @@ export function getPropertyFullName(
  * Get an expression representing an array of expected status codes for the operation
  * @param operation The operation
  */
-export function getExpectedStatuses(operation: Operation): string {
-  const statusCodes = operation.responses.flatMap((x) =>
-    x.statusCodes.filter((s) => s !== "default")
-  );
+export function getExpectedStatuses(operation: ServiceOperation): string {
+  const statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (
     isLroOnlyOperation(operation) &&
-    operation.method !== "GET" &&
+    operation.operation.verb !== "get" &&
     !statusCodes.includes(200)
   ) {
     statusCodes.push(200);

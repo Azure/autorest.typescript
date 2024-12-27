@@ -26,51 +26,53 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _detectUnivariateEntireSeriesSend(
+export function _detectUnivariateChangePointSend(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
-  optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
+  options: UnivariateUnivariateChangePointDetectionOptions,
+  optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
-    .path("/timeseries/entire/detect")
+    .path("/timeseries/changepoint/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: univariateUnivariateDetectionOptionsSerializer(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
+      body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
     });
 }
 
-export async function _detectUnivariateEntireSeriesDeserialize(
+export async function _detectUnivariateChangePointDeserialize(
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<UnivariateUnivariateChangePointDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return univariateUnivariateEntireDetectionResultDeserializer(result.body);
+  return univariateUnivariateChangePointDetectionResultDeserializer(
+    result.body,
+  );
 }
 
-/**
- * This operation generates a model with an entire series, each point is detected
- * with the same model. With this method, points before and after a certain point
- * are used to determine whether it is an anomaly. The entire detection can give
- * user an overall status of the time series.
- */
-export async function detectUnivariateEntireSeries(
+/** Evaluate change point score of every series point */
+export async function detectUnivariateChangePoint(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
-  optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
+  options: UnivariateUnivariateChangePointDetectionOptions,
+  optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateEntireDetectionResult> {
-  const result = await _detectUnivariateEntireSeriesSend(
+): Promise<UnivariateUnivariateChangePointDetectionResult> {
+  const result = await _detectUnivariateChangePointSend(
     context,
     options,
     optionalParams,
   );
-  return _detectUnivariateEntireSeriesDeserialize(result);
+  return _detectUnivariateChangePointDeserialize(result);
 }
 
 export function _detectUnivariateLastPointSend(
@@ -84,6 +86,11 @@ export function _detectUnivariateLastPointSend(
     .path("/timeseries/last/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
       body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
@@ -118,46 +125,54 @@ export async function detectUnivariateLastPoint(
   return _detectUnivariateLastPointDeserialize(result);
 }
 
-export function _detectUnivariateChangePointSend(
+export function _detectUnivariateEntireSeriesSend(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
-  optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
+  options: UnivariateUnivariateDetectionOptions,
+  optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
-    .path("/timeseries/changepoint/detect")
+    .path("/timeseries/entire/detect")
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
-      body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
+      body: univariateUnivariateDetectionOptionsSerializer(options),
     });
 }
 
-export async function _detectUnivariateChangePointDeserialize(
+export async function _detectUnivariateEntireSeriesDeserialize(
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<UnivariateUnivariateEntireDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return univariateUnivariateChangePointDetectionResultDeserializer(
-    result.body,
-  );
+  return univariateUnivariateEntireDetectionResultDeserializer(result.body);
 }
 
-/** Evaluate change point score of every series point */
-export async function detectUnivariateChangePoint(
+/**
+ * This operation generates a model with an entire series, each point is detected
+ * with the same model. With this method, points before and after a certain point
+ * are used to determine whether it is an anomaly. The entire detection can give
+ * user an overall status of the time series.
+ */
+export async function detectUnivariateEntireSeries(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
-  optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
+  options: UnivariateUnivariateDetectionOptions,
+  optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
-  const result = await _detectUnivariateChangePointSend(
+): Promise<UnivariateUnivariateEntireDetectionResult> {
+  const result = await _detectUnivariateEntireSeriesSend(
     context,
     options,
     optionalParams,
   );
-  return _detectUnivariateChangePointDeserialize(result);
+  return _detectUnivariateEntireSeriesDeserialize(result);
 }

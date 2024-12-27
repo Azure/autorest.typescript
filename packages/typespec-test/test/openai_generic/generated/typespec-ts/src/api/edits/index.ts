@@ -27,6 +27,11 @@ export function _createSend(
     .path("/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createEditRequestSerializer(edit),
     });
 }

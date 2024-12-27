@@ -109,7 +109,7 @@ describe("spread record", () => {
       model Vegetables {
         ...Record<int64 | string>;
         carrots: int64;
-        beans: int64;
+        beans: boolean;
       }
       op post(@body body: Vegetables): { @body body: Vegetables };
       `
