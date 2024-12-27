@@ -6,7 +6,11 @@ import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
-export interface OpenAIContext extends Client {}
+export interface OpenAIContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface OpenAIClientOptionalParams extends ClientOptions {
@@ -56,5 +60,5 @@ export function createOpenAI(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, apiVersion } as OpenAIContext;
 }

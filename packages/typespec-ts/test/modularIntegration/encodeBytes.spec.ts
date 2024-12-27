@@ -163,16 +163,12 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should post bytes with custom content type`, async () => {
-      const result = await client.requestBody.customContentType(pngFile, {
-        contentType: "image/png"
-      });
+      const result = await client.requestBody.customContentType(pngFile);
       assert.isUndefined(result);
     }).timeout(10000);
 
     it(`should post bytes with custom content type`, async () => {
-      const result = await client.requestBody.octetStream(pngFile, {
-        contentType: "application/octet-stream"
-      });
+      const result = await client.requestBody.octetStream(pngFile);
       assert.isUndefined(result);
     });
   });

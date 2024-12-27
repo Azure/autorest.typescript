@@ -11,7 +11,6 @@ import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { SdkContext } from "../../utils/interfaces.js";
 import { getRequestModelMapping } from "../helpers/operationHelpers.js";
-import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -339,7 +338,7 @@ function buildModelTypeSerializer(
 
   const { directAssignment, propertiesStr } = getRequestModelMapping(
     context,
-    getType(context, type.__raw!),
+    type,
     "item"
   );
   if (additionalPropertiesSpread) {

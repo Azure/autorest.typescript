@@ -155,6 +155,7 @@ export function _readSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
     headers: {
       "required-header": requiredHeader,
       ...(options?.optionalHeader !== undefined
@@ -187,6 +188,7 @@ export function _readSend(
               : options?.nullableDateHeader.toUTCString(),
           }
         : {}),
+      ...options.requestOptions?.headers,
     },
     body: { prop1: prop1, prop2: prop2 },
   });
@@ -263,7 +265,10 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { "nullable-required-header": nullableRequiredHeader },
+      headers: {
+        "nullable-required-header": nullableRequiredHeader,
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -304,7 +309,7 @@ op read(@body bars?: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barArraySerializer } from "../models/models.js";
+import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -316,14 +321,15 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: !options["bars"]
+      ? options["bars"]
+      : options["bars"].map((p: any) => {
+          return barSerializer(p);
+        }),
+  });
 }
 
 export async function _readDeserialize(
@@ -362,7 +368,7 @@ op read(@body bars: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barArraySerializer } from "../models/models.js";
+import { Bar, barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -375,12 +381,13 @@ export function _readSend(
   bars: Bar[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: barArraySerializer(bars),
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: bars.map((p: any) => {
+      return barSerializer(p);
+    }),
+  });
 }
 
 export async function _readDeserialize(
@@ -434,7 +441,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(result: PathUncheckedResponse): Promise<
@@ -479,11 +492,7 @@ op read(@body bars?: Bar[]): Bar[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Bar,
-  barArraySerializer,
-  barArrayDeserializer,
-} from "../models/models.js";
+import { Bar, barSerializer, barArrayDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -495,14 +504,16 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: !options["bars"]
+      ? options["bars"]
+      : options["bars"].map((p: any) => {
+          return barSerializer(p);
+        }),
+  });
 }
 
 export async function _readDeserialize(
@@ -564,6 +575,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: fooSerializer(body),
     });
 }
@@ -625,7 +637,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -694,7 +712,13 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _testDeserialize(
@@ -752,6 +776,10 @@ mustEmptyDiagnostic: false
 import { TestingContext as Client } from "./index.js";
 import { Bar, barDeserializer } from "../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
@@ -764,7 +792,13 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _testDeserialize(
@@ -778,12 +812,16 @@ export async function _testDeserialize(
   return barDeserializer(result.body);
 }
 
-export async function test(
+export function test(
   context: Client,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<Bar> {
-  const result = await _testSend(context, options);
-  return _testDeserialize(result);
+): PagedAsyncIterableIterator<void> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _testSend(context, options),
+    _testDeserialize,
+    ["200"],
+  );
 }
 ```
 
@@ -802,7 +840,7 @@ model Error {
 model Bar {
     @items
     lists: string[];
-    @Azure.Core.nextLink
+    @TypeSpec.nextLink
     nextLink: string;
 }
 
@@ -840,7 +878,13 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _testDeserialize(

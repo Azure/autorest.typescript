@@ -13,9 +13,9 @@ export declare interface NumericClientOptionalParams extends ClientOptions {
 }
 
 export declare interface PropertyOperations {
-    safeintAsString: (value: SafeintAsStringProperty, options?: PropertySafeintAsStringOptionalParams) => Promise<SafeintAsStringProperty>;
-    uint32AsStringOptional: (value: Uint32AsStringProperty, options?: PropertyUint32AsStringOptionalOptionalParams) => Promise<Uint32AsStringProperty>;
     uint8AsString: (value: Uint8AsStringProperty, options?: PropertyUint8AsStringOptionalParams) => Promise<Uint8AsStringProperty>;
+    uint32AsStringOptional: (value: Uint32AsStringProperty, options?: PropertyUint32AsStringOptionalOptionalParams) => Promise<Uint32AsStringProperty>;
+    safeintAsString: (value: SafeintAsStringProperty, options?: PropertySafeintAsStringOptionalParams) => Promise<SafeintAsStringProperty>;
 }
 
 export declare interface PropertySafeintAsStringOptionalParams extends OperationOptions {

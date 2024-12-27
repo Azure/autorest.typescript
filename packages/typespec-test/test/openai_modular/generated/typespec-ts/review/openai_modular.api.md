@@ -732,22 +732,18 @@ export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

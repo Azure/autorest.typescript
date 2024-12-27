@@ -21,7 +21,6 @@ export interface AnalyzeResult {
 
 // @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
@@ -88,7 +87,6 @@ export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 
 // @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 

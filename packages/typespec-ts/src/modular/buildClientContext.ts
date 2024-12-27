@@ -1,4 +1,4 @@
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 import {
   NameType,
   isAzurePackage,
@@ -25,20 +25,24 @@ import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
+  SdkClientType,
   SdkHttpParameter,
-  SdkParameter
+  SdkParameter,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../utils/clientUtils.js";
 
 /**
  * This function gets the path of the file containing the modular client context
  */
 export function getClientContextPath(
-  _client: Client,
-  codeModel: ModularCodeModel
+  context: SdkContext,
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ): string {
-  const { subfolder, tcgcClient: client } = _client;
+  const { subfolder } = getModularClientOptions(context, client);
   const name = getClientName(client);
-  const srcPath = codeModel.modularOptions.sourceRoot;
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
   const contentPath = `${srcPath}/${
     subfolder && subfolder !== "" ? subfolder + "/" : ""
   }api/${normalizeName(name, NameType.File)}Context.ts`;
@@ -49,39 +53,60 @@ export function getClientContextPath(
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
-  _client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
 ): SourceFile {
-  const { description, tcgcClient: client } = _client;
   const dependencies = useDependencies();
   const name = getClientName(client);
-  const requiredParams = getClientParametersDeclaration(_client, dpgContext, {
+  const { rlcClientName } = getModularClientOptions(dpgContext, client);
+  const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true
+    requiredOnly: true,
+    apiVersionAsRequired: true
   });
-  const clientContextFile = codeModel.project.createSourceFile(
-    getClientContextPath(_client, codeModel)
+  const clientContextFile = emitterOptions.project.createSourceFile(
+    getClientContextPath(dpgContext, client, emitterOptions)
   );
 
   clientContextFile.addInterface({
     isExported: true,
-    name: `${_client.rlcClientName}`,
+    name: `${rlcClientName}`,
     extends: [resolveReference(dependencies.Client)],
-    docs: getDocsFromDescription(description)
+    docs: getDocsFromDescription(client.doc),
+    properties: getClientParameters(client, dpgContext, {
+      onClientOnly: false,
+      requiredOnly: true,
+      apiVersionAsRequired: true
+    })
+      .filter((p) => {
+        const clientParamName = getClientParameterName(p);
+        return (
+          clientParamName !== "endpointParam" &&
+          clientParamName !== "credential"
+        );
+      })
+      .map((p) => {
+        return {
+          name: getClientParameterName(p),
+          type: getTypeExpression(dpgContext, p.type),
+          hasQuestionToken: false,
+          docs: getDocsWithKnownVersion(dpgContext, p)
+        };
+      })
   });
 
   clientContextFile.addInterface({
     name: `${getClassicalClientName(client)}OptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(_client, dpgContext, {
+    properties: getClientParameters(client, dpgContext, {
       optionalOnly: true
     })
       .filter((p) => p.name !== "endpoint")
       .map((p) => {
         return {
-          name: normalizeName(p.name, NameType.Parameter),
+          name: getClientParameterName(p),
           type:
             p.name.toLowerCase() === "apiversion"
               ? "string"
@@ -95,31 +120,36 @@ export function buildClientContext(
 
   // TODO use binder here
   // (for now) now logger for unbranded pkgs
-  if (isAzurePackage(codeModel)) {
+  if (isAzurePackage(emitterOptions)) {
     clientContextFile.addImportDeclaration({
       moduleSpecifier:
-        codeModel.clients.length > 1 ? "../../logger.js" : "../logger.js",
+        dpgContext.sdkPackage.clients.length > 1
+          ? "../../logger.js"
+          : "../logger.js",
       namedImports: ["logger"]
     });
   }
 
   const factoryFunction = clientContextFile.addFunction({
-    docs: getDocsFromDescription(description),
+    docs: getDocsFromDescription(client.doc),
     name: `create${name}`,
-    returnType: `${_client.rlcClientName}`,
-    parameters: requiredParams,
+    returnType: `${rlcClientName}`,
+    parameters: getClientParametersDeclaration(client, dpgContext, {
+      onClientOnly: false,
+      requiredOnly: true
+    }),
     isExported: true
   });
 
   const endpointParam = buildGetClientEndpointParam(
     factoryFunction,
     dpgContext,
-    _client
+    client
   );
-  const credentialParam = buildGetClientCredentialParam(_client, codeModel);
+  const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
-    codeModel,
+    emitterOptions,
     endpointParam
   );
 
@@ -130,7 +160,7 @@ export function buildClientContext(
   );
 
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
-    codeModel.options;
+    emitterOptions.options;
 
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
     factoryFunction.addStatements(`
@@ -147,17 +177,28 @@ export function buildClientContext(
   }
 
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+  const apiVersionParam = getClientParameters(client, dpgContext).find(
+    (x) => x.isApiVersionParam
+  );
+  const endpointParameter = getClientParameters(client, dpgContext, {
+    onClientOnly: false,
+    requiredOnly: true,
+    skipEndpointTemplate: true
+  }).find((x) => x.kind === "endpoint");
+  if (apiVersionParam) {
+    const templateArguments =
+      endpointParameter && endpointParameter.type.kind === "endpoint"
+        ? endpointParameter.type.templateArguments
+        : endpointParameter && endpointParameter.type.kind === "union"
+          ? endpointParameter.type.variantTypes[0]?.templateArguments
+          : [];
+    const apiVersionInEndpoint =
+      templateArguments && templateArguments.find((p) => p.isApiVersionParam);
+    if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
+      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
+    }
 
-  if (dpgContext.hasApiVersionInClient) {
-    const apiVersionParam = getClientParameters(_client, dpgContext).find(
-      (x) => x.isApiVersionParam && x.kind === "method"
-    );
-
-    if (apiVersionParam) {
-      if (apiVersionParam.clientDefaultValue) {
-        apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
-      }
-
+    if (apiVersionParam.kind === "method") {
       apiVersionPolicyStatement += `
       clientContext.pipeline.addPolicy({
         name: 'ClientApiVersionPolicy',
@@ -175,20 +216,36 @@ export function buildClientContext(
         },
       });`;
     }
-  } else if (isAzurePackage(codeModel)) {
+  } else if (isAzurePackage(emitterOptions)) {
     apiVersionPolicyStatement += `
-      if (options.apiVersion) {
-        logger.warning("This client does not support client api-version, please change it at the operation level");
-      }`;
+        if (options.apiVersion) {
+          logger.warning("This client does not support client api-version, please change it at the operation level");
+        }`;
   } else {
     apiVersionPolicyStatement += `
-      if (options.apiVersion) {
-        console.warn("This client does not support client api-version, please change it at the operation level");
-      }`;
+        if (options.apiVersion) {
+          console.warn("This client does not support client api-version, please change it at the operation level");
+        }`;
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
-  factoryFunction.addStatements("return clientContext;");
+  const contextRequiredParam = requiredParams.filter(
+    (p) =>
+      p.name !== "endpointParam" &&
+      p.name !== "credential" &&
+      p.name !== "options"
+  );
+  if (contextRequiredParam.length) {
+    factoryFunction.addStatements(
+      `return { ...clientContext, ${contextRequiredParam
+        .map((p) => {
+          return p.name;
+        })
+        .join(", ")}} as ${rlcClientName};`
+    );
+  } else {
+    factoryFunction.addStatements(`return clientContext;`);
+  }
 
   clientContextFile.fixMissingImports(
     {},

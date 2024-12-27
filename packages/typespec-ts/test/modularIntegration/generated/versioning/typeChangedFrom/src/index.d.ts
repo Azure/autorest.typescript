@@ -14,7 +14,7 @@ export declare class TypeChangedFromClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: TypeChangedFromClientOptionalParams);
-    test(param: string, body: TestModel, options?: TestOptionalParams): Promise<TestModel>;
+    test(body: TestModel, param: string, options?: TestOptionalParams): Promise<TestModel>;
 }
 
 export declare interface TypeChangedFromClientOptionalParams extends ClientOptions {
