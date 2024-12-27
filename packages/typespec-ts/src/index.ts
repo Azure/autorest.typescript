@@ -45,7 +45,7 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile,
+  buildSampleEnvFile
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -124,10 +124,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-      ...AzurePollingDependencies,
-      ...AzureCoreDependencies,
-      ...AzureIdentityDependencies
-    }
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -198,8 +198,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      ""
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
@@ -328,16 +328,6 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions,
         rootIndexFile
       );
-    }
-
-    // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
-      const samples = emitSamples(dpgContext);
-      // Refine the rlc sample generation logic
-      // TODO: remember to remove this out when RLC is splitted from Modular
-      if (samples.length > 0) {
-        dpgContext.rlcOptions!.generateSample = true;
-      }
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
