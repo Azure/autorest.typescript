@@ -303,7 +303,7 @@ function buildCredentials(
 
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
-    `\`\${${endpointParam}}/.default\``
+      `\`\${${endpointParam}}/.default\``
     : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
@@ -347,22 +347,23 @@ export function buildUserAgentOptions(
   const userAgentInfoStatement =
     packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")
       ? "const userAgentInfo = `azsdk-js-" +
-      clientPackageName +
-      "/" +
-      packageVersion +
-      "`;"
+        clientPackageName +
+        "/" +
+        packageVersion +
+        "`;"
       : "";
 
   if (userAgentInfoStatement) {
     userAgentStatements.push(userAgentInfoStatement);
   }
-  const userAgentPrefix = `const userAgentPrefix = ${"prefixFromOptions ? `${prefixFromOptions} " +
+  const userAgentPrefix = `const userAgentPrefix = ${
+    "prefixFromOptions ? `${prefixFromOptions} " +
     sdkUserAgentPrefix +
     `${userAgentInfoStatement ? " ${userAgentInfo}" : ""}` +
     "` : `" +
     `${sdkUserAgentPrefix}` +
     `${userAgentInfoStatement ? " ${userAgentInfo}`" : "`"}`
-    };`;
+  };`;
   userAgentStatements.push(userAgentPrefix);
 
   context.addStatements(userAgentStatements.join("\n"));

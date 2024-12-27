@@ -146,7 +146,8 @@ function exportRestoreHelpers(
   isTopLevel: boolean = false
 ) {
   const helperFile = project.getSourceFile(
-    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
   if (!helperFile) {
@@ -161,8 +162,9 @@ function exportRestoreHelpers(
       return helper;
     }
   );
-  const moduleSpecifier = `./${isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }restorePollerHelpers.js`;
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }restorePollerHelpers.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
@@ -178,8 +180,9 @@ function exportClassicalClient(
   const clientName = client.name;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
-    moduleSpecifier: `./${subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
-      }${normalizeName(clientName, NameType.File)}.js`
+    moduleSpecifier: `./${
+      subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+    }${normalizeName(clientName, NameType.File)}.js`
   });
 }
 
@@ -202,9 +205,10 @@ function exportModules(
   }
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/${options.subfolder !== "" && options.subfolder
-      ? options.subfolder + "/"
-      : ""
+    `${srcPath}/${
+      options.subfolder !== "" && options.subfolder
+        ? options.subfolder + "/"
+        : ""
     }${moduleName}/index.ts`
   );
   if (!modelsFile) {
@@ -240,10 +244,11 @@ function exportModules(
       }
       return exDeclaration[0];
     });
-  const moduleSpecifier = `./${options.isTopLevel && options.subfolder !== "" && options.subfolder
-    ? options.subfolder + "/"
-    : ""
-    }${moduleName}/index.js`;
+  const moduleSpecifier = `./${
+    options.isTopLevel && options.subfolder !== "" && options.subfolder
+      ? options.subfolder + "/"
+      : ""
+  }${moduleName}/index.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
@@ -263,8 +268,9 @@ export function buildSubClientIndexFile(
     { overwrite: true }
   );
   const clientName = `${getClientName(client)}Client`;
-  const clientFilePath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }${normalizeName(clientName, NameType.File)}.ts`;
+  const clientFilePath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }${normalizeName(clientName, NameType.File)}.ts`;
   const clientFile = emitterOptions.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
