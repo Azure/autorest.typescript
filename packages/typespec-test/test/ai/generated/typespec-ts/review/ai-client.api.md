@@ -363,7 +363,6 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsUploadFileOptionalParams extends OperationOptions {
-    contentType?: string;
     filename?: string;
 }
 
@@ -633,7 +632,6 @@ export interface EvaluationsOperations {
 // @public
 export interface EvaluationsUpdateOptionalParams extends OperationOptions {
     clientRequestId?: string;
-    contentType?: string;
 }
 
 // @public

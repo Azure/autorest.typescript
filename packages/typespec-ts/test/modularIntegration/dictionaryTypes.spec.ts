@@ -11,10 +11,7 @@ describe("DictionaryClient Modular Client", () => {
   beforeEach(() => {
     client = new DictionaryClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

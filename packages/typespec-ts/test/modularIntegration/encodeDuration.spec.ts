@@ -11,10 +11,7 @@ describe("EncodeDurationClient Rest Client", () => {
   beforeEach(() => {
     client = new DurationClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

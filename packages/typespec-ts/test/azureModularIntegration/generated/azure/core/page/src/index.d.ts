@@ -40,11 +40,11 @@ export declare class PageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageClientOptionalParams);
-    listWithPage(options?: ListWithPageOptionalParams): PagedAsyncIterableIterator<User>;
-    listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
-    listWithCustomPageModel(options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
-    listFirstItem(options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
     listSecondItem(options?: ListSecondItemOptionalParams): PagedAsyncIterableIterator<SecondItem>;
+    listFirstItem(options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
+    listWithCustomPageModel(options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
+    listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
+    listWithPage(options?: ListWithPageOptionalParams): PagedAsyncIterableIterator<User>;
 }
 
 export declare interface PageClientOptionalParams extends ClientOptions {

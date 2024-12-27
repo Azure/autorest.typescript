@@ -21,8 +21,8 @@ export declare class RecursiveClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: RecursiveClientOptionalParams);
-    put(input: Extension, options?: PutOptionalParams): Promise<void>;
     get(options?: GetOptionalParams): Promise<Extension>;
+    put(input: Extension, options?: PutOptionalParams): Promise<void>;
 }
 
 export declare interface RecursiveClientOptionalParams extends ClientOptions {

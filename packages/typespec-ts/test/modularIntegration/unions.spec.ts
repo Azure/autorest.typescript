@@ -11,10 +11,7 @@ describe("Type Union Client", () => {
   beforeEach(() => {
     client = new UnionClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

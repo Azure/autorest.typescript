@@ -1180,13 +1180,13 @@ export function createCompletionRequestSerializer(
 ): any {
   return {
     model: item["model"],
-    prompt: item["prompt"],
+    prompt: !item["prompt"] ? item["prompt"] : promptSerializer(item["prompt"]),
     suffix: item["suffix"],
     temperature: item["temperature"],
     top_p: item["top_p"],
     n: item["n"],
     max_tokens: item["max_tokens"],
-    stop: item["stop"],
+    stop: !item["stop"] ? item["stop"] : stopSerializer(item["stop"]),
     presence_penalty: item["presence_penalty"],
     frequency_penalty: item["frequency_penalty"],
     logit_bias: item["logit_bias"],
@@ -1289,7 +1289,9 @@ export function _createCompletionResponseChoiceDeserializer(
   return {
     index: item["index"],
     text: item["text"],
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"]
+      ? item["logprobs"]
+      : _createCompletionResponseChoiceLogprobsDeserializer(item["logprobs"]),
     finish_reason: item["finish_reason"],
   };
 }
@@ -1489,9 +1491,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     created_at: new Date(item["created_at"] * 1000),
     finished_at: !item["finished_at"]
       ? item["finished_at"]
-      : !item["finished_at"]
-        ? item["finished_at"]
-        : new Date(item["finished_at"] * 1000),
+      : new Date(item["finished_at"] * 1000),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
@@ -1505,7 +1505,9 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
       return p;
     }),
     trained_tokens: item["trained_tokens"],
-    error: item["error"],
+    error: !item["error"]
+      ? item["error"]
+      : _fineTuningJobErrorDeserializer(item["error"]),
   };
 }
 
@@ -1750,7 +1752,7 @@ export function createChatCompletionRequestSerializer(
     top_p: item["top_p"],
     n: item["n"],
     max_tokens: item["max_tokens"],
-    stop: item["stop"],
+    stop: !item["stop"] ? item["stop"] : stopSerializer(item["stop"]),
     presence_penalty: item["presence_penalty"],
     frequency_penalty: item["frequency_penalty"],
     logit_bias: item["logit_bias"],

@@ -12,10 +12,7 @@ describe("OptionalProperties Modular Client", () => {
   beforeEach(() => {
     client = new OptionalClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

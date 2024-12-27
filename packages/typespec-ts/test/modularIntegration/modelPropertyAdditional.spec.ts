@@ -12,10 +12,7 @@ describe("ModelPropertyAdditional Client", () => {
   beforeEach(() => {
     client = new AdditionalPropertiesClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

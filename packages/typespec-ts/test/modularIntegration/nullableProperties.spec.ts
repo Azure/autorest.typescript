@@ -15,10 +15,7 @@ describe("NullableProperties Modular Client", () => {
   beforeEach(() => {
     client = new NullableClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

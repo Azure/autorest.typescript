@@ -38,181 +38,196 @@ import {
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
-export function _createSend(
+export function _listByDataProductSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  dataTypeName: string,
-  resource: DataType,
-  options: DataTypesCreateOptionalParams = { requestOptions: {} },
+  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes",
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
-      dataTypeName,
     )
-    .put({
+    .get({
       ...operationOptionsToRequestParameters(options),
-      body: dataTypeSerializer(resource),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
-export async function _createDeserialize(
+export async function _listByDataProductDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataType> {
-  const expectedStatuses = ["200", "201"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return dataTypeDeserializer(result.body);
-}
-
-/** Create data type resource. */
-export function create(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  dataTypeName: string,
-  resource: DataType,
-  options: DataTypesCreateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        resource,
-        options,
-      ),
-    resourceLocationConfig: "azure-async-operation",
-  }) as PollerLike<OperationState<DataType>, DataType>;
-}
-
-export function _getSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  dataTypeName: string,
-  options: DataTypesGetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
-      resourceGroupName,
-      dataProductName,
-      dataTypeName,
-    )
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataType> {
+): Promise<_DataTypeListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return dataTypeDeserializer(result.body);
+  return _dataTypeListResultDeserializer(result.body);
 }
 
-/** Retrieve data type resource. */
-export async function get(
+/** List data type by parent resource. */
+export function listByDataProduct(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  dataTypeName: string,
-  options: DataTypesGetOptionalParams = { requestOptions: {} },
-): Promise<DataType> {
-  const result = await _getSend(
+  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<DataType> {
+  return buildPagedAsyncIterator(
     context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    dataTypeName,
-    options,
+    () =>
+      _listByDataProductSend(
+        context,
+        resourceGroupName,
+        dataProductName,
+        options,
+      ),
+    _listByDataProductDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
   );
-  return _getDeserialize(result);
 }
 
-export function _updateSend(
+export function _generateStorageContainerSasTokenSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataTypeUpdate,
-  options: DataTypesUpdateOptionalParams = { requestOptions: {} },
+  body: ContainerSaS,
+  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken",
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
       dataTypeName,
     )
-    .patch({
+    .post({
       ...operationOptionsToRequestParameters(options),
-      body: dataTypeUpdateSerializer(properties),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: containerSaSSerializer(body),
     });
 }
 
-export async function _updateDeserialize(
+export async function _generateStorageContainerSasTokenDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataType> {
-  const expectedStatuses = ["200", "202"];
+): Promise<ContainerSasToken> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return dataTypeDeserializer(result.body);
+  return containerSasTokenDeserializer(result.body);
 }
 
-/** Update data type resource. */
-export function update(
+/** Generate sas token for storage container. */
+export async function generateStorageContainerSasToken(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  properties: DataTypeUpdate,
-  options: DataTypesUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _updateSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        properties,
-        options,
-      ),
-    resourceLocationConfig: "location",
-  }) as PollerLike<OperationState<DataType>, DataType>;
+  body: ContainerSaS,
+  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<ContainerSasToken> {
+  const result = await _generateStorageContainerSasTokenSend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    dataTypeName,
+    body,
+    options,
+  );
+  return _generateStorageContainerSasTokenDeserialize(result);
+}
+
+export function _deleteDataSend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  dataTypeName: string,
+  body: Record<string, any>,
+  options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+      dataTypeName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: _deleteDataRequestSerializer(body),
+    });
+}
+
+export async function _deleteDataDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["202", "204", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+/** Delete data for data type. */
+export function deleteData(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  dataTypeName: string,
+  body: Record<string, any>,
+  options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<void>, void> {
+  return getLongRunningPoller(
+    context,
+    _deleteDataDeserialize,
+    ["202", "204", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _deleteDataSend(
+          context,
+          resourceGroupName,
+          dataProductName,
+          dataTypeName,
+          body,
+          options,
+        ),
+      resourceLocationConfig: "location",
+    },
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _$deleteSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
@@ -221,12 +236,19 @@ export function _$deleteSend(
   return context
     .path(
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
-      subscriptionId,
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
       dataTypeName,
     )
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+    });
 }
 
 export async function _$deleteDeserialize(
@@ -248,7 +270,6 @@ export async function _$deleteDeserialize(
  */
 export function $delete(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
@@ -264,7 +285,6 @@ export function $delete(
       getInitialResponse: () =>
         _$deleteSend(
           context,
-          subscriptionId,
           resourceGroupName,
           dataProductName,
           dataTypeName,
@@ -275,180 +295,184 @@ export function $delete(
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _deleteDataSend(
+export function _updateSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  body: Record<string, any>,
-  options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
+  properties: DataTypeUpdate,
+  options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData",
-      subscriptionId,
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
       dataTypeName,
     )
-    .post({
+    .patch({
       ...operationOptionsToRequestParameters(options),
-      body: _deleteDataRequestSerializer(body),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: dataTypeUpdateSerializer(properties),
     });
 }
 
-export async function _deleteDataDeserialize(
+export async function _updateDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["202", "204", "200"];
+): Promise<DataType> {
+  const expectedStatuses = ["200", "202"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return dataTypeDeserializer(result.body);
 }
 
-/** Delete data for data type. */
-export function deleteData(
+/** Update data type resource. */
+export function update(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  body: Record<string, any>,
-  options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(
-    context,
-    _deleteDataDeserialize,
-    ["202", "204", "200"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _deleteDataSend(
-          context,
-          subscriptionId,
-          resourceGroupName,
-          dataProductName,
-          dataTypeName,
-          body,
-          options,
-        ),
-      resourceLocationConfig: "location",
-    },
-  ) as PollerLike<OperationState<void>, void>;
+  properties: DataTypeUpdate,
+  options: DataTypesUpdateOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<DataType>, DataType> {
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _updateSend(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        properties,
+        options,
+      ),
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
-export function _generateStorageContainerSasTokenSend(
+export function _getSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  body: ContainerSaS,
-  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataTypesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken",
-      subscriptionId,
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
       dataTypeName,
     )
-    .post({
+    .get({
       ...operationOptionsToRequestParameters(options),
-      body: containerSaSSerializer(body),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
-export async function _generateStorageContainerSasTokenDeserialize(
+export async function _getDeserialize(
   result: PathUncheckedResponse,
-): Promise<ContainerSasToken> {
+): Promise<DataType> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return containerSasTokenDeserializer(result.body);
+  return dataTypeDeserializer(result.body);
 }
 
-/** Generate sas token for storage container. */
-export async function generateStorageContainerSasToken(
+/** Retrieve data type resource. */
+export async function get(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  body: ContainerSaS,
-  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
-    requestOptions: {},
-  },
-): Promise<ContainerSasToken> {
-  const result = await _generateStorageContainerSasTokenSend(
+  options: DataTypesGetOptionalParams = { requestOptions: {} },
+): Promise<DataType> {
+  const result = await _getSend(
     context,
-    subscriptionId,
     resourceGroupName,
     dataProductName,
     dataTypeName,
-    body,
     options,
   );
-  return _generateStorageContainerSasTokenDeserialize(result);
+  return _getDeserialize(result);
 }
 
-export function _listByDataProductSend(
+export function _createSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
+  dataTypeName: string,
+  resource: DataType,
+  options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes",
-      subscriptionId,
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}",
+      context.subscriptionId,
       resourceGroupName,
       dataProductName,
+      dataTypeName,
     )
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: dataTypeSerializer(resource),
+    });
 }
 
-export async function _listByDataProductDeserialize(
+export async function _createDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataTypeListResult> {
-  const expectedStatuses = ["200"];
+): Promise<DataType> {
+  const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _dataTypeListResultDeserializer(result.body);
+  return dataTypeDeserializer(result.body);
 }
 
-/** List data type by parent resource. */
-export function listByDataProduct(
+/** Create data type resource. */
+export function create(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<DataType> {
-  return buildPagedAsyncIterator(
-    context,
-    () =>
-      _listByDataProductSend(
+  dataTypeName: string,
+  resource: DataType,
+  options: DataTypesCreateOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<DataType>, DataType> {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(
         context,
-        subscriptionId,
         resourceGroupName,
         dataProductName,
+        dataTypeName,
+        resource,
         options,
       ),
-    _listByDataProductDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<OperationState<DataType>, DataType>;
 }

@@ -132,7 +132,7 @@ function getCjsDevDependencies({
   if (withTests) {
     testDevDependencies = {
       dotenv: "^16.0.0",
-      mocha: "^10.0.0",
+      mocha: "^11.0.2",
       "@types/mocha": "^10.0.0",
       "@types/chai": "^4.2.8",
       chai: "^4.2.0",

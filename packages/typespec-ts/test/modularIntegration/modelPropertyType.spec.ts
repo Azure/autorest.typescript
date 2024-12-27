@@ -137,10 +137,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
   beforeEach(() => {
     client = new ValueTypesClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
   for (let item of testedTypes) {

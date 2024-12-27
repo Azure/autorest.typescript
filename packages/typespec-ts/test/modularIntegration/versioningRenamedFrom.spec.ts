@@ -15,11 +15,11 @@ describe("VersioningRenamedFrom Rest Client", () => {
   });
 
   it("versioning RenamedFrom ewOp test", async () => {
-    const result = await client.newOp("bar", {
+    const result = await client.newOp({
       newProp: "foo",
       enumProp: "newEnumMember",
       unionProp: 10
-    });
+    }, "bar");
     assert.strictEqual(result.newProp, "foo");
     assert.strictEqual(result.enumProp, "newEnumMember");
     assert.strictEqual(result.unionProp, 10);

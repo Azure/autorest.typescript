@@ -5,10 +5,10 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare class CommonPropertiesClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(options?: CommonPropertiesClientOptionalParams);
-    get(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
-    createWithSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
-    updateWithUserAssignedAndSystemAssigned(subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    constructor(subscriptionId: string, options?: CommonPropertiesClientOptionalParams);
+    updateWithUserAssignedAndSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    createWithSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    get(resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
 }
 
 export declare interface CommonPropertiesClientOptionalParams extends ClientOptions {

@@ -11,10 +11,7 @@ describe("Scalar Client", () => {
   beforeEach(() => {
     client = new ScalarClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

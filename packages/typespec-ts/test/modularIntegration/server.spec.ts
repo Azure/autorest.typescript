@@ -13,10 +13,7 @@ describe("Single Server Path Client", () => {
 
   beforeEach(() => {
     client = new SingleClient(`http://localhost:${port}`, {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -31,10 +28,7 @@ describe("Multiple Server Path Client", () => {
 
   beforeEach(() => {
     client = new MultipleClient(`http://localhost:${port}`, {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -54,10 +48,7 @@ describe("NotVersioned Server Version Client", () => {
 
   beforeEach(() => {
     client = new NotVersionedClient(`http://localhost:${port}`, {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -82,10 +73,7 @@ describe("Versioned Server Version Client", () => {
 
   beforeEach(() => {
     client = new VersionedClient(`http://localhost:${port}`, {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -100,21 +88,29 @@ describe("Versioned Server Version Client", () => {
   });
 
   it("should work with param with explicit value", async () => {
-    const result = await client.withQueryApiVersion({
+    const client = new VersionedClient(`http://localhost:${port}`, {
+      allowInsecureConnection: true,
       apiVersion: "2022-12-01-preview"
     });
+    const result = await client.withQueryApiVersion();
     assert.isUndefined(result);
   });
 
   it("should work with path param", async () => {
-    const result = await client.withPathApiVersion("2022-12-01-preview");
+    const client = new VersionedClient(`http://localhost:${port}`, {
+      allowInsecureConnection: true,
+      apiVersion: "2022-12-01-preview"
+    });
+    const result = await client.withPathApiVersion();
     assert.isUndefined(result);
   });
 
   it("should work with param with old value", async () => {
-    const result = await client.withQueryOldApiVersion({
+    const client = new VersionedClient(`http://localhost:${port}`, {
+      allowInsecureConnection: true,
       apiVersion: "2021-01-01-preview"
     });
+    const result = await client.withQueryOldApiVersion();
     assert.isUndefined(result);
   });
 });

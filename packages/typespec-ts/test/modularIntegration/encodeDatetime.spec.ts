@@ -11,10 +11,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
   beforeEach(() => {
     client = new DatetimeClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

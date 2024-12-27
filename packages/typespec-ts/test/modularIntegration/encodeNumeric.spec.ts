@@ -11,10 +11,7 @@ describe("EncodeNumericClient Rest Client", () => {
   beforeEach(() => {
     client = new NumericClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

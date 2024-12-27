@@ -12,13 +12,13 @@ import {
 
 /** Interface representing a Audio operations. */
 export interface AudioOperations {
-  transcriptions: AudioTranscriptionsOperations;
   translations: AudioTranslationsOperations;
+  transcriptions: AudioTranscriptionsOperations;
 }
 
 export function getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
-    transcriptions: getAudioTranscriptionsOperations(context),
     translations: getAudioTranslationsOperations(context),
+    transcriptions: getAudioTranscriptionsOperations(context),
   };
 }

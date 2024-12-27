@@ -11,10 +11,7 @@ describe("NameAndEncodedName Client", () => {
   beforeEach(() => {
     client = new JsonClient({
       endpoint: `http://localhost:${port}`,
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
