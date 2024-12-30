@@ -281,7 +281,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     for (const subClient of dpgContext.sdkPackage.clients) {
-      renameClientName(subClient, modularEmitterOptions);
+      await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
