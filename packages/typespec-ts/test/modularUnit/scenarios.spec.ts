@@ -149,7 +149,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   "(ts|typescript) classicClient": async (tsp, { }, namedUnknownArgs) => {
     const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
     const result = await emitModularClientFromTypeSpec(tsp, configs);
-    return result!.getFullText()!;
+    return result ? result!.getFullText()! : "";
   }
 };
 
