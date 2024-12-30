@@ -271,15 +271,7 @@ export async function $onEmit(context: EmitContext) {
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(dpgContext, modularEmitterOptions, "models");
-    // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
-      const samples = emitSamples(dpgContext);
-      // Refine the rlc sample generation logic
-      // TODO: remember to remove this out when RLC is splitted from Modular
-      if (samples.length > 0) {
-        dpgContext.rlcOptions!.generateSample = true;
-      }
-    }
+
     for (const subClient of dpgContext.sdkPackage.clients) {
       await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -326,6 +318,15 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions,
         rootIndexFile
       );
+    }
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions?.generateSample === true) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
