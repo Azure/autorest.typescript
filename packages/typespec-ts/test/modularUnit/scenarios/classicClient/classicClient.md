@@ -1,4 +1,4 @@
-# handle with title config for classic client
+# only: handle with title config for classic client
 
 ## TypeSpec
 
@@ -14,17 +14,6 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
 
-@server(
-  "{endpoint}/client/structure/{client}",
-  "",
-  {
-    @doc("Need to be set as 'http://localhost:3000' in client.")
-    endpoint: url,
-
-    @doc("Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client.")
-    client: ClientType = ClientType.Default,
-  }
-)
 @service({
   title: "MultiClient"
 })
@@ -50,5 +39,28 @@ ignoreWeirdLine: false
 ## classicClient
 
 ```ts classicClient
+import { Pipeline } from "@azure/core-rest-pipeline";
 
+export { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
+
+export class TestServiceClient {
+  private _client: TestServiceContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
+
+  constructor(
+    endpointParam: string,
+    options: TestServiceClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : `azsdk-js-client`;
+    this._client = createTestService(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
+    this.pipeline = this._client.pipeline;
+  }
+}
 ```

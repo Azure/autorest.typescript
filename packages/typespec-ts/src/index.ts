@@ -67,7 +67,11 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  createSdkContext,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
@@ -277,13 +281,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     for (const subClient of dpgContext.sdkPackage.clients) {
-      if (
-        modularEmitterOptions.options.typespecTitleMap &&
-        modularEmitterOptions.options.typespecTitleMap[subClient.name]
-      ) {
-        subClient.name =
-          modularEmitterOptions.options.typespecTitleMap[subClient.name]!;
-      }
+      renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
@@ -515,4 +513,16 @@ export async function createContextWithDefaultOptions(
 function isArm(context: EmitContext<Record<string, any>>) {
   const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
+}
+
+export async function renameClientName(
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
+) {
+  if (
+    emitterOptions.options.typespecTitleMap &&
+    emitterOptions.options.typespecTitleMap[client.name]
+  ) {
+    client.name = emitterOptions.options.typespecTitleMap[client.name]!;
+  }
 }

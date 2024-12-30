@@ -253,9 +253,11 @@ enum ClientType {
 op one(): void;
 ```
 
+The config would be like:
+
 ```yaml
 typespecTitleMap:
-  MultiClient: MultiServiceClient
+  ServiceClient: TestServiceClient
 withRawContent: true
 ignoreWeirdLine: false
 ```
@@ -267,18 +269,18 @@ import { logger } from "../logger.js";
 import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface ServiceContext extends Client {}
+export interface TestServiceContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface ServiceClientOptionalParams extends ClientOptions {
+export interface TestServiceClientOptionalParams extends ClientOptions {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
   clientParam?: ClientType;
 }
 
-export function createService(
+export function createTestService(
   endpointParam: string,
-  options: ServiceClientOptionalParams = {},
-): ServiceContext {
+  options: TestServiceClientOptionalParams = {},
+): TestServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
     options.endpoint ??

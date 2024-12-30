@@ -36,7 +36,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { removeUnusedImports } from "../../src/index.js";
+import { removeUnusedImports, renameClientName } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -537,10 +537,12 @@ export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
   {
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    typespecTitleMap = {}
   }: {
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    typespecTitleMap?: Record<string, string>;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -557,6 +559,7 @@ export async function emitModularClientContextFromTypeSpec(
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -571,6 +574,8 @@ export async function emitModularClientContextFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
+    renameClientName(dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions);
     const res = buildClientContext(
       dpgContext,
       dpgContext.sdkPackage.clients[0],
@@ -589,10 +594,12 @@ export async function emitModularClientFromTypeSpec(
   tspContent: string,
   {
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    typespecTitleMap = {}
   }: {
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    typespecTitleMap?: Record<string, string>;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -609,6 +616,7 @@ export async function emitModularClientFromTypeSpec(
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -622,6 +630,8 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients.length > 0 &&
     dpgContext.sdkPackage.clients[0]
   ) {
+    renameClientName(dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions);
     const res = buildClassicalClient(
       dpgContext,
       dpgContext.sdkPackage.clients[0],
