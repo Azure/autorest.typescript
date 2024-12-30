@@ -202,7 +202,7 @@ export function createService(
 }
 ```
 
-# only: handle with title config for client Context
+# handle with title config for client Context
 
 ## TypeSpec
 

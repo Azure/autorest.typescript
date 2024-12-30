@@ -1,4 +1,4 @@
-# only: handle with title config for classic client
+# handle with title config for classic client
 
 ## TypeSpec
 

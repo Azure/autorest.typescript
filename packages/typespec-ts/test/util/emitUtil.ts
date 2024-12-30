@@ -657,6 +657,19 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
+  dpgContext.rlcOptions! = { ...configs };
+  const project = useContext("outputProject");
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
+    }
+  );
+  for (const subClient of dpgContext.sdkPackage.clients) {
+    await renameClientName(subClient, modularEmitterOptions);
+  }
   const files = await emitSamples(dpgContext);
   useBinder().resolveAllReferences("/modularPackageFolder/src");
   return files;
