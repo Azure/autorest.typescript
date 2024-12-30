@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsManagementClientmentClient } from "@azure/arm-networkanalytics";
+import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
@@ -13,10 +13,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsManagementClientmentClient(
-    credential,
-    subscriptionId,
-  );
+  const client = new NetworkAnalyticsClient(credential, subscriptionId);
   const result = await client.dataProducts.generateStorageAccountSasToken(
     "aoiresourceGroupName",
     "dataproduct01",
