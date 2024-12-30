@@ -70,7 +70,6 @@ import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
@@ -243,7 +242,6 @@ export async function $onEmit(context: EmitContext) {
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
-    emitSerializerHelpersFile(project, modularSourcesRoot);
     modularEmitterOptions = transformModularEmitterOptions(
       dpgContext,
       modularSourcesRoot,

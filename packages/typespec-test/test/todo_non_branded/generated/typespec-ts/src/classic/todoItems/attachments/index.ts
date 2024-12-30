@@ -1,9 +1,5 @@
 // Licensed under the MIT License.
 
-import {
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-} from "../../../api/options.js";
 import { TodoContext } from "../../../api/todoContext.js";
 import {
   createAttachment,
@@ -11,6 +7,10 @@ import {
 } from "../../../api/todoItems/attachments/index.js";
 import { TodoAttachment } from "../../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
+import {
+  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "../../../api/options.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {

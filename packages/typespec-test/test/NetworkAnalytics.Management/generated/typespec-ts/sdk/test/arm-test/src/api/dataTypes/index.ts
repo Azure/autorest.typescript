@@ -15,8 +15,6 @@ import {
   DataType,
   dataTypeSerializer,
   dataTypeDeserializer,
-  DataTypeUpdate,
-  dataTypeUpdateSerializer,
   _deleteDataRequestSerializer,
   ContainerSaS,
   containerSaSSerializer,
@@ -25,6 +23,10 @@ import {
   _DataTypeListResult,
   _dataTypeListResultDeserializer,
 } from "../../models/models.js";
+import {
+  DataTypeUpdate,
+  dataTypeUpdateSerializer,
+} from "../../models/azure/resourceManager/foundations/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

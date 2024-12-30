@@ -13,9 +13,11 @@ import {
 import {
   _PagedSchemaGroup,
   _pagedSchemaGroupDeserializer,
-  SchemaGroup,
   _PagedVersion,
   _pagedVersionDeserializer,
+} from "../../models/core/foundations/models.js";
+import {
+  SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,
 } from "../../models/models.js";

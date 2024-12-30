@@ -13,9 +13,11 @@ import {
   TestProfileRun,
   testProfileRunSerializer,
   testProfileRunDeserializer,
+} from "../../models/models.js";
+import {
   _PagedTestProfileRun,
   _pagedTestProfileRunDeserializer,
-} from "../../models/models.js";
+} from "../../models/azure/core/foundations/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -451,7 +451,9 @@ export async function emitModularModelsFromTypeSpec(
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-
+  if (Array.isArray(modelFile)) {
+    return modelFile[0];
+  }
   return modelFile;
 }
 
@@ -465,6 +467,9 @@ export async function emitModularSerializeUtilsFromTypeSpec(
   const files = emitTypes(dpgContext, { sourceRoot: "" });
   binder.resolveAllReferences("/modularPackageFolder/src");
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  if (Array.isArray(files)) {
+    return files[0];
+  }
   return files;
 }
 

@@ -29,6 +29,9 @@ export {
   ConnectionPropertiesAADAuth,
   ConnectionPropertiesSASAuth,
   CredentialsSASAuth,
+  KnownVersions,
+} from "./models.js";
+export {
   ToolDefinition,
   ToolDefinitionUnion,
   CodeInterpreterToolDefinition,
@@ -205,5 +208,4 @@ export {
   AgentStreamEvent,
   ListSortOrder,
   VectorStoreFileStatusFilter,
-  KnownVersions,
-} from "./models.js";
+} from "./agents/models.js";

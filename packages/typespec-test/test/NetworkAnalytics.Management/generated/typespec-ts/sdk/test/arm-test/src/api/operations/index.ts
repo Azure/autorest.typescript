@@ -9,7 +9,7 @@ import {
   _OperationListResult,
   _operationListResultDeserializer,
   Operation,
-} from "../../models/models.js";
+} from "../../models/azure/resourceManager/commonTypes/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
