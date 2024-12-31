@@ -264,7 +264,13 @@ export async function $onEmit(context: EmitContext) {
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(dpgContext, modularEmitterOptions, "models");
+    buildSubpathIndexFile(
+      dpgContext,
+      modularEmitterOptions,
+      "models",
+      undefined,
+      { recursive: true }
+    );
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions?.generateSample === true) {
       const samples = emitSamples(dpgContext);
