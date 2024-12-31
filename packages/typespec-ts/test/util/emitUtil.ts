@@ -440,12 +440,12 @@ export async function emitModularModelsFromTypeSpec(
         dpgContext.sdkPackage.clients[0],
         modularEmitterOptions
       );
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
       removeUnusedImports(modelFile);
       modelFile.fixUnusedIdentifiers();
     } else {
       modelFile = emitTypes(dpgContext, { sourceRoot: "" });
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
     }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
@@ -463,7 +463,7 @@ export async function emitModularSerializeUtilsFromTypeSpec(
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   const files = emitTypes(dpgContext, { sourceRoot: "" });
-  binder.resolveAllReferences("/modularPackageFolder/src");
+  binder.resolveAllReferences("/");
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return files;
 }
@@ -637,7 +637,7 @@ export async function emitModularClientFromTypeSpec(
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
-    binder.resolveAllReferences("/modularPackageFolder/src");
+    binder.resolveAllReferences("/");
     return res;
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
