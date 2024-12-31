@@ -64,7 +64,7 @@ export function getModuleExports(
 ) {
   const exports: Record<string, any> = {
     exports: {
-      ".": "./src/index.ts",
+      ".": "./src/index.ts"
       // "./models": "./src/models/index.ts"
     }
   };
