@@ -657,7 +657,6 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
-  dpgContext.rlcOptions! = { ...configs };
   const project = useContext("outputProject");
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
@@ -671,6 +670,6 @@ export async function emitSamplesFromTypeSpec(
     await renameClientName(subClient, modularEmitterOptions);
   }
   const files = await emitSamples(dpgContext);
-  useBinder().resolveAllReferences("/modularPackageFolder/src");
+  useBinder().resolveAllReferences("/");
   return files;
 }

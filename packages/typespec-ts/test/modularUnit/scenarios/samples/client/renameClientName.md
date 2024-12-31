@@ -60,6 +60,8 @@ Generate samples for non-hierarchy cases:
 
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
+import { TestServiceClient } from "@azure/internal-test";
+
 /**
  * This sample demonstrates how to show example demo
  *
