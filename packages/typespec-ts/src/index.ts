@@ -107,7 +107,8 @@ export async function $onEmit(context: EmitContext) {
   ) {
     emitterOptions.isModularLibrary = true;
   }
-  if (dpgContext.arm) {
+  console.log(emitterOptions.isModularLibrary);
+  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
     emitterOptions.isModularLibrary = true;
   }
   // Enrich the dpg context with path detail and common options
