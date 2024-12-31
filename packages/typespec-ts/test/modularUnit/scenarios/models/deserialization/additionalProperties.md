@@ -18,6 +18,7 @@ interface D {
 ```
 
 This is the tsp configuration.
+
 ```yaml
 compatibilityMode: true
 ```

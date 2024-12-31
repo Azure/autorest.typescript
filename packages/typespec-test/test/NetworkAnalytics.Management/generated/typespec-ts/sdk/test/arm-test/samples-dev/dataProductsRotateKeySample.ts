@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
+import { NetworkAnalyticsManagementClient } from "@azure/arm-networkanalytics";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
@@ -13,7 +13,10 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function dataProductsRotateKeyMaximumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
+  const client = new NetworkAnalyticsManagementClient(
+    credential,
+    subscriptionId,
+  );
   await client.dataProducts.rotateKey("aoiresourceGroupName", "dataproduct01", {
     keyVaultUrl: "https://myKeyVault.vault.azure.net",
   });

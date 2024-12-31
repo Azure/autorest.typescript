@@ -6,7 +6,7 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface NetworkAnalyticsContext extends Client {
+export interface NetworkAnalyticsManagementContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
@@ -15,17 +15,18 @@ export interface NetworkAnalyticsContext extends Client {
 }
 
 /** Optional parameters for the client. */
-export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
+export interface NetworkAnalyticsManagementClientOptionalParams
+  extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
-export function createNetworkAnalytics(
+export function createNetworkAnalyticsManagement(
   credential: TokenCredential,
   subscriptionId: string,
-  options: NetworkAnalyticsClientOptionalParams = {},
-): NetworkAnalyticsContext {
+  options: NetworkAnalyticsManagementClientOptionalParams = {},
+): NetworkAnalyticsManagementContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? "https://management.azure.com";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -63,5 +64,5 @@ export function createNetworkAnalytics(
     ...clientContext,
     apiVersion,
     subscriptionId,
-  } as NetworkAnalyticsContext;
+  } as NetworkAnalyticsManagementContext;
 }

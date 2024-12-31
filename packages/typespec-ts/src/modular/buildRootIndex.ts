@@ -177,7 +177,7 @@ function exportClassicalClient(
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = client.name;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
     moduleSpecifier: `./${

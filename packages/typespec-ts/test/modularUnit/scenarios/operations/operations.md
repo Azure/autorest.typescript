@@ -686,6 +686,8 @@ model Bar {
 op test(): Error | Bar;
 ```
 
+The config would be like:
+
 ```yaml
 needAzureCore: true
 ```
@@ -764,6 +766,8 @@ model Bar {
 @post
 op test(): Error | Bar;
 ```
+
+The config would be like:
 
 ```yaml
 needAzureCore: true
@@ -851,6 +855,8 @@ model Child extends Bar {
 @post
 op test(): Error | Child;
 ```
+
+The config would be like:
 
 ```yaml
 needAzureCore: true

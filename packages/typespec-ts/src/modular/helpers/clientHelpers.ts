@@ -17,7 +17,7 @@ import {
   PackageFlavor
 } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
-import { getClientName } from "./namingHelpers.js";
+import { getClassicalClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
 
@@ -106,10 +106,10 @@ export function getClientParametersDeclaration(
     apiVersionAsRequired: false
   }
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const name = getClientName(client);
+  const name = getClassicalClientName(client);
   const optionsParam = {
     name: "options",
-    type: `${name}ClientOptionalParams`,
+    type: `${name}OptionalParams`,
     initializer: "{}"
   };
 

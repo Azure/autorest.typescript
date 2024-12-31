@@ -7,7 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
+export { NetworkAnalyticsManagementClient } from "./networkAnalyticsManagementClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   DataProduct,
@@ -66,7 +66,7 @@ export {
   KnownVersions,
 } from "./models/index.js";
 export {
-  NetworkAnalyticsClientOptionalParams,
+  NetworkAnalyticsManagementClientOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
