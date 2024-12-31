@@ -7,17 +7,17 @@
  */
 
 import { tracingClient } from "../tracing";
-import { Inheritance } from "../operationsInterfaces";
+import { Inheritance } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
 import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
   Siamese,
   InheritancePutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Inheritance operations. */
 export class InheritanceImpl implements Inheritance {

@@ -1,8 +1,8 @@
-import { ExposureControl } from "../operationsInterfaces";
+import { ExposureControl } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { DataFactoryClient } from "../dataFactoryClient.js";
 import {
   ExposureControlRequest,
   ExposureControlGetFeatureValueOptionalParams,
@@ -12,7 +12,7 @@ import {
   ExposureControlBatchRequest,
   ExposureControlQueryFeatureValuesByFactoryOptionalParams,
   ExposureControlQueryFeatureValuesByFactoryResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing ExposureControl operations. */
 export class ExposureControlImpl implements ExposureControl {

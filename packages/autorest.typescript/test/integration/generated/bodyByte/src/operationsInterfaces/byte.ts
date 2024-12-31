@@ -16,7 +16,7 @@ import {
   BytePutNonAsciiOptionalParams,
   ByteGetInvalidOptionalParams,
   ByteGetInvalidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Byte. */
 export interface Byte {

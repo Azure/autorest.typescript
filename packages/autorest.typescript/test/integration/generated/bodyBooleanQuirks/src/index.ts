@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { BodyBooleanQuirksClient } from "./bodyBooleanQuirksClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { BodyBooleanQuirksClient } from "./bodyBooleanQuirksClient.js";
+export * from "./operationsInterfaces/index.js";

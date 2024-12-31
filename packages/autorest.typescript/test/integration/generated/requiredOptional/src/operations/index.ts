@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./implicit";
-export * from "./explicit";
+export * from "./implicit.js";
+export * from "./explicit.js";

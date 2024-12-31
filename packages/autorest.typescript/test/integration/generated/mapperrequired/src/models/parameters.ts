@@ -7,7 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-client";
-import { CertificateIssuerUpdateParameters as CertificateIssuerUpdateParametersMapper } from "../models/mappers";
+import { CertificateIssuerUpdateParameters as CertificateIssuerUpdateParametersMapper } from "../models/mappers.js";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

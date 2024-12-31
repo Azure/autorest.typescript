@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { AzureSpecialPropertiesClient } from "./azureSpecialPropertiesClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { AzureSpecialPropertiesClient } from "./azureSpecialPropertiesClient.js";
+export * from "./operationsInterfaces/index.js";

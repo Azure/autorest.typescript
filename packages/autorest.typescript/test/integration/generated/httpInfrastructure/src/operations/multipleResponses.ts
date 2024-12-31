@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { MultipleResponses } from "../operationsInterfaces";
+import { MultipleResponses } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { HttpInfrastructureClient } from "../httpInfrastructureClient.js";
 import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
@@ -67,7 +67,7 @@ import {
   MultipleResponsesGet200ModelA400InvalidResponse,
   MultipleResponsesGet200ModelA202ValidOptionalParams,
   MultipleResponsesGet200ModelA202ValidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing MultipleResponses operations. */
 export class MultipleResponsesImpl implements MultipleResponses {

@@ -95,7 +95,7 @@ import {
   LROsPostAsyncRetryFailedResponse,
   LROsPostAsyncRetrycanceledOptionalParams,
   LROsPostAsyncRetrycanceledResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LROs. */
 export interface LROs {

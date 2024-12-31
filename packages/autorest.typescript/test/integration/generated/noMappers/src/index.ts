@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { NoMappersClient } from "./noMappersClient";
+export * from "./models/index.js";
+export { NoMappersClient } from "./noMappersClient.js";

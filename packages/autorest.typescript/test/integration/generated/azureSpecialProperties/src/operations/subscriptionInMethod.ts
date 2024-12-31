@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { SubscriptionInMethod } from "../operationsInterfaces";
+import { SubscriptionInMethod } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient.js";
 import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
   SubscriptionInMethodPostPathLocalValidOptionalParams,
   SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing SubscriptionInMethod operations. */
 export class SubscriptionInMethodImpl implements SubscriptionInMethod {

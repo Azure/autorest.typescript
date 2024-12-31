@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Queries } from "../operationsInterfaces";
+import { Queries } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { UrlClient } from "../urlClient.js";
 import {
   QueriesGetBooleanTrueOptionalParams,
   QueriesGetBooleanFalseOptionalParams,
@@ -47,7 +47,7 @@ import {
   QueriesArrayStringSsvValidOptionalParams,
   QueriesArrayStringTsvValidOptionalParams,
   QueriesArrayStringPipesValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Queries operations. */
 export class QueriesImpl implements Queries {

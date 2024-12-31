@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { FilesImpl } from "./operations";
-import { Files } from "./operationsInterfaces";
-import { BodyFileClientOptionalParams } from "./models";
+import { FilesImpl } from "./operations/index.js";
+import { Files } from "./operationsInterfaces/index.js";
+import { BodyFileClientOptionalParams } from "./models/index.js";
 
 export class BodyFileClient extends coreClient.ServiceClient {
   $host: string;

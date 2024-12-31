@@ -21,7 +21,7 @@ import {
   JsonInput as JsonInputMapper,
   ModelWithByteProperty as ModelWithBytePropertyMapper,
   ModelWithUrlProperty as ModelWithUrlPropertyMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

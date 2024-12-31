@@ -22,7 +22,7 @@ import {
   SkipUrlEncodingImpl,
   OdataImpl,
   HeaderImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   XMsClientRequestId,
   SubscriptionInCredentials,
@@ -32,8 +32,8 @@ import {
   SkipUrlEncoding,
   Odata,
   Header,
-} from "./operationsInterfaces";
-import { AzureSpecialPropertiesClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { AzureSpecialPropertiesClientOptionalParams } from "./models/index.js";
 
 export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
   $host: string;

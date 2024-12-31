@@ -1,14 +1,14 @@
-import { IotConnectorFhirDestination } from "../operationsInterfaces";
+import { IotConnectorFhirDestination } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HealthCareApisClient } from "../healthCareApisClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { HealthCareApisClient } from "../healthCareApisClient.js";
 import {
   SimplePollerLike,
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
+import { createLroSpec } from "../lroImpl.js";
 import {
   IotConnectorFhirDestinationGetOptionalParams,
   IotConnectorFhirDestinationGetResponse,
@@ -16,7 +16,7 @@ import {
   IotConnectorFhirDestinationCreateOrUpdateOptionalParams,
   IotConnectorFhirDestinationCreateOrUpdateResponse,
   IotConnectorFhirDestinationDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing IotConnectorFhirDestination operations. */
 export class IotConnectorFhirDestinationImpl
