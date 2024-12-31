@@ -103,11 +103,11 @@ export async function $onEmit(context: EmitContext) {
     getFlavor(
       emitterOptions,
       getPackageDetails(dpgContext.program, emitterOptions)
-    ) !== "azure"
+    ) !== "azure" &&
+    emitterOptions.isModularLibrary !== false
   ) {
     emitterOptions.isModularLibrary = true;
   }
-  console.log(emitterOptions.isModularLibrary);
   if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
     emitterOptions.isModularLibrary = true;
   }

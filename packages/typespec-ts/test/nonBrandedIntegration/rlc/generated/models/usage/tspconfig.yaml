@@ -8,6 +8,7 @@ options:
     addCredentials: false
     isTypeSpecTest: true
     branded: false
+    isModularLibrary: false
     packageDetails:
       name: "@msinternal/usage"
       description: "Usage Test Service"
