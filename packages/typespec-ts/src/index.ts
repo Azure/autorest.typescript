@@ -94,7 +94,6 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
-
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};
@@ -177,15 +176,6 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
-    if (
-      !isAzurePackage({ options: emitterOptions }) &&
-      emitterOptions.isModularLibrary !== false
-    ) {
-      emitterOptions.isModularLibrary = true;
-    }
-    if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
-      emitterOptions.isModularLibrary = true;
-    }
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
     // if customization folder exists, use it as sources root
@@ -195,13 +185,8 @@ export async function $onEmit(context: EmitContext) {
     return {
       rootDir: projectRoot,
       metadataDir: projectRoot,
-      rlcSourcesDir: join(
-        sourcesRoot,
-        emitterOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
-      ),
-      modularSourcesDir: emitterOptions.isModularLibrary
-        ? sourcesRoot
-        : undefined
+      rlcSourcesDir: sourcesRoot,
+      modularSourcesDir: sourcesRoot
     };
   }
 

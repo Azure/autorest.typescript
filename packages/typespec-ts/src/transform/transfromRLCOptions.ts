@@ -26,6 +26,18 @@ export function transformRLCOptions(
   emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
+  if (
+    getFlavor(
+      emitterOptions,
+      getPackageDetails(dpgContext.program, emitterOptions)
+    ) !== "azure" &&
+    emitterOptions.isModularLibrary !== false
+  ) {
+    emitterOptions.isModularLibrary = true;
+  }
+  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
+    emitterOptions.isModularLibrary = true;
+  }
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext,
