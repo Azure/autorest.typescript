@@ -80,11 +80,7 @@ import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
-import {
-  transformRLCOptions,
-  getFlavor,
-  getPackageDetails
-} from "./transform/transfromRLCOptions.js";
+import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
 
 export * from "./lib.js";
@@ -99,18 +95,6 @@ export async function $onEmit(context: EmitContext) {
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
 
-  if (
-    getFlavor(
-      emitterOptions,
-      getPackageDetails(dpgContext.program, emitterOptions)
-    ) !== "azure" &&
-    emitterOptions.isModularLibrary !== false
-  ) {
-    emitterOptions.isModularLibrary = true;
-  }
-  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
-    emitterOptions.isModularLibrary = true;
-  }
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};
@@ -193,6 +177,15 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
+    if (
+      !isAzurePackage({ options: emitterOptions }) &&
+      emitterOptions.isModularLibrary !== false
+    ) {
+      emitterOptions.isModularLibrary = true;
+    }
+    if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
+      emitterOptions.isModularLibrary = true;
+    }
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
     // if customization folder exists, use it as sources root

@@ -248,7 +248,7 @@ function getModuleKind(emitterOptions: EmitterOptions) {
   return emitterOptions.moduleKind ?? "esm";
 }
 
-export function getFlavor(
+function getFlavor(
   emitterOptions: EmitterOptions,
   packageDetails?: PackageDetails
 ): PackageFlavor {
@@ -278,7 +278,7 @@ export function getFlavor(
   }
 }
 
-export function getPackageDetails(
+function getPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
