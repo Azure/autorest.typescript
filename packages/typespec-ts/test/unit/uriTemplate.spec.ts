@@ -3,7 +3,7 @@ import { emitClientDefinitionFromTypeSpec, emitParameterFromTypeSpec } from "../
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Client definition generation", () => {
-  it("should generate method-level parameter", async () => {
+  it("should generate wrapper object for path allowReserved parameter", async () => {
     const tsp = `
     @route("template/{+param}")
     op template(param: string): void;
@@ -52,6 +52,44 @@ describe("Client definition generation", () => {
             path: Routes;
         };
     `
+    );
+  });
+
+  it("should generate wrapper object for query parameter", async () => {
+    const tsp = `
+    @route("template")
+    op template(@query("include[]") include?: string[]): void;
+        `;
+    const parameters = await emitParameterFromTypeSpec(
+      tsp
+    );
+    assert.ok(parameters);
+    console.log(parameters?.content!);
+    await assertEqualContent(
+      parameters?.content!,
+      `
+    import { RequestParameters } from "@azure-rest/core-client";
+
+    /** This is the wrapper object for the parameter \`include[]\` with explode set to false and style set to form. */        
+    export interface TemplateIncludeQueryParam {
+        /** Value of the parameter */
+        value: string[];
+        /** Should we explode the value? */
+        explode: false;
+        /** Style of the value */
+        style: "form";
+    }
+
+    export interface TemplateQueryParamProperties {
+        "include[]"?: string[] | TemplateIncludeQueryParam;
+    }
+
+    export interface TemplateQueryParam {
+        queryParameters?: TemplateQueryParamProperties;
+    }
+
+    export type TemplateParameters = TemplateQueryParam & RequestParameters;
+      `
     );
   });
 });
