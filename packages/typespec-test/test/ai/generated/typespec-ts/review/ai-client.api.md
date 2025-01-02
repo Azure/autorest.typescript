@@ -363,7 +363,6 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsUploadFileOptionalParams extends OperationOptions {
-    contentType?: string;
     filename?: string;
 }
 
@@ -633,7 +632,6 @@ export interface EvaluationsOperations {
 // @public
 export interface EvaluationsUpdateOptionalParams extends OperationOptions {
     clientRequestId?: string;
-    contentType?: string;
 }
 
 // @public
@@ -723,7 +721,7 @@ export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
 
 // @public
 export enum KnownVersions {
-    "V2024-07-01-Preview" = "2024-07-01-preview"
+    "2024-07-01-preview" = "2024-07-01-preview"
 }
 
 // @public

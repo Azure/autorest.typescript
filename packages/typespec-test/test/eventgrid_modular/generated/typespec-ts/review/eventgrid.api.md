@@ -11,7 +11,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -74,17 +73,15 @@ export interface FailedLockToken {
 // @public
 export enum KnownServiceApiVersions {
     // (undocumented)
-    V2023_06_01_Preview = "2023-06-01-preview"
+    v2023_06_01_preview = "2023-06-01-preview"
 }
 
 // @public
 export interface PublishCloudEventOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -110,7 +107,6 @@ export interface ReceiveResult {
 
 // @public
 export interface RejectCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -126,7 +122,6 @@ export interface RejectResult {
 
 // @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

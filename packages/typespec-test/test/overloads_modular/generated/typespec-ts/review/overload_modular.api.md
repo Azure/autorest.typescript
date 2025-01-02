@@ -12,14 +12,10 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
 export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -30,7 +26,7 @@ export interface FooOperationsOperations {
 
 // @public
 export enum KnownVersions {
-    "V2022-08-30" = "2022-08-30"
+    "2022-08-30" = "2022-08-30"
 }
 
 // @public (undocumented)

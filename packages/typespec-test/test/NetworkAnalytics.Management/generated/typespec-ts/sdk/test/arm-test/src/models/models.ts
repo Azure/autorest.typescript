@@ -271,7 +271,7 @@ export function dataProductNetworkAclsSerializer(
     virtualNetworkRule: virtualNetworkRuleArraySerializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: ipRulesArraySerializer(item["ipRules"]),
+    ipRules: iPRulesArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -286,7 +286,7 @@ export function dataProductNetworkAclsDeserializer(
     virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
+    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -332,15 +332,15 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
-export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
+export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return ipRulesSerializer(item);
+    return iPRulesSerializer(item);
   });
 }
 
-export function ipRulesArrayDeserializer(result: Array<IPRules>): any[] {
+export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return ipRulesDeserializer(item);
+    return iPRulesDeserializer(item);
   });
 }
 
@@ -352,11 +352,11 @@ export interface IPRules {
   action: string;
 }
 
-export function ipRulesSerializer(item: IPRules): any {
+export function iPRulesSerializer(item: IPRules): any {
   return { value: item["value"], action: item["action"] };
 }
 
-export function ipRulesDeserializer(item: any): IPRules {
+export function iPRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
@@ -1292,11 +1292,11 @@ export interface Operation {
   /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for Azure Resource Manager/control-plane operations. */
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
-  readonly display?: OperationDisplay;
+  display?: OperationDisplay;
   /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
   readonly origin?: Origin;
   /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: ActionType;
+  readonly actionType?: ActionType;
 }
 
 export function operationDeserializer(item: any): Operation {
@@ -1335,11 +1335,11 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
-  User = "user",
+  user = "user",
   /** Indicates the operation is initiated by a system. */
-  System = "system",
+  system = "system",
   /** Indicates the operation is initiated by a user or system. */
-  UserSystem = "user,system",
+  "user,system" = "user,system",
 }
 
 /**
@@ -1371,5 +1371,5 @@ export type ActionType = string;
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
-  V2023_11_15 = "2023-11-15",
+  v2023_11_15 = "2023-11-15",
 }

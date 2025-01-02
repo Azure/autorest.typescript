@@ -715,7 +715,9 @@ export function choiceDeserializer(item: any): Choice {
       : contentFilterResultsForChoiceDeserializer(
           item["content_filter_results"],
         ),
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"]
+      ? item["logprobs"]
+      : completionsLogProbabilityModelDeserializer(item["logprobs"]),
     finishReason: item["finish_reason"],
   };
 }
@@ -2971,7 +2973,9 @@ export function chatChoiceDeserializer(item: any): ChatChoice {
     message: !item["message"]
       ? item["message"]
       : chatResponseMessageDeserializer(item["message"]),
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"]
+      ? item["logprobs"]
+      : chatChoiceLogProbabilityInfoDeserializer(item["logprobs"]),
     index: item["index"],
     finishReason: item["finish_reason"],
     finishDetails: !item["finish_details"]
@@ -3176,11 +3180,7 @@ export function chatChoiceLogProbabilityInfoDeserializer(
   return {
     content: !item["content"]
       ? item["content"]
-      : !item["content"]
-        ? item["content"]
-        : item["content"].map((p: any) => {
-            return chatTokenLogProbabilityResultDeserializer(p);
-          }),
+      : chatTokenLogProbabilityResultArrayDeserializer(item["content"]),
   };
 }
 
@@ -3212,18 +3212,12 @@ export function chatTokenLogProbabilityResultDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : !item["bytes"]
-        ? item["bytes"]
-        : item["bytes"].map((p: any) => {
-            return p;
-          }),
+      : item["bytes"].map((p: any) => {
+          return p;
+        }),
     topLogprobs: !item["top_logprobs"]
       ? item["top_logprobs"]
-      : !item["top_logprobs"]
-        ? item["top_logprobs"]
-        : item["top_logprobs"].map((p: any) => {
-            return chatTokenLogProbabilityInfoDeserializer(p);
-          }),
+      : chatTokenLogProbabilityInfoArrayDeserializer(item["top_logprobs"]),
   };
 }
 
@@ -3253,11 +3247,9 @@ export function chatTokenLogProbabilityInfoDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : !item["bytes"]
-        ? item["bytes"]
-        : item["bytes"].map((p: any) => {
-            return p;
-          }),
+      : item["bytes"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -3873,8 +3865,8 @@ export function embeddingsUsageDeserializer(item: any): EmbeddingsUsage {
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
-  V2022_12_01 = "2022-12-01",
-  V2023_05_15 = "2023-05-15",
-  V2024_02_01 = "2024-02-01",
-  V2024_06_01 = "2024-06-01",
+  v2022_12_01 = "2022-12-01",
+  v2023_05_15 = "2023-05-15",
+  v2024_02_01 = "2024-02-01",
+  v2024_06_01 = "2024-06-01",
 }

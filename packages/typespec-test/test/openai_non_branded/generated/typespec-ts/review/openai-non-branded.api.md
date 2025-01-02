@@ -19,8 +19,6 @@ export interface AudioOperations {
 
 // @public
 export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -31,8 +29,6 @@ export interface AudioTranscriptionsOperations {
 
 // @public
 export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -306,29 +302,29 @@ export interface CreateModerationResponse {
         flagged: boolean;
         categories: {
             hate: boolean;
-            hateThreatening: boolean;
+            "hate/threatening": boolean;
             harassment: boolean;
-            harassmentThreatening: boolean;
+            "harassment/threatening": boolean;
             selfHarm: boolean;
-            selfHarmIntent: boolean;
-            selfHarmInstructive: boolean;
+            "selfHarm/intent": boolean;
+            "selfHarm/instructive": boolean;
             sexual: boolean;
-            sexualMinors: boolean;
+            "sexual/minors": boolean;
             violence: boolean;
-            violenceGraphic: boolean;
+            "violence/graphic": boolean;
         };
         categoryScores: {
             hate: number;
-            hateThreatening: number;
+            "hate/threatening": number;
             harassment: number;
-            harassmentThreatening: number;
+            "harassment/threatening": number;
             selfHarm: number;
-            selfHarmIntent: number;
-            selfHarmInstructive: number;
+            "selfHarm/intent": number;
+            "selfHarm/instructive": number;
             sexual: number;
-            sexualMinors: number;
+            "sexual/minors": number;
             violence: number;
-            violenceGraphic: number;
+            "violence/graphic": number;
         };
     }[];
 }
@@ -413,8 +409,6 @@ export interface EmbeddingsOperations {
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -607,8 +601,6 @@ export interface Image {
 
 // @public
 export interface ImagesCreateEditOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -617,8 +609,6 @@ export interface ImagesCreateOptionalParams extends OperationOptions {
 
 // @public
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public

@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 
 import {
-  getAgentsOperations,
-  AgentsOperations,
-} from "./classic/agents/index.js";
+  getEvaluationsOperations,
+  EvaluationsOperations,
+} from "./classic/evaluations/index.js";
 import {
   getConnectionsOperations,
   ConnectionsOperations,
 } from "./classic/connections/index.js";
 import {
-  getEvaluationsOperations,
-  EvaluationsOperations,
-} from "./classic/evaluations/index.js";
+  getAgentsOperations,
+  AgentsOperations,
+} from "./classic/agents/index.js";
 import {
   createAzureAI,
   AzureAIContext,
@@ -49,15 +49,15 @@ export class AzureAIClient {
       { ...options, userAgentOptions: { userAgentPrefix } },
     );
     this.pipeline = this._client.pipeline;
-    this.agents = getAgentsOperations(this._client);
-    this.connections = getConnectionsOperations(this._client);
     this.evaluations = getEvaluationsOperations(this._client);
+    this.connections = getConnectionsOperations(this._client);
+    this.agents = getAgentsOperations(this._client);
   }
 
-  /** The operation groups for Agents */
-  public readonly agents: AgentsOperations;
-  /** The operation groups for Connections */
-  public readonly connections: ConnectionsOperations;
-  /** The operation groups for Evaluations */
+  /** The operation groups for evaluations */
   public readonly evaluations: EvaluationsOperations;
+  /** The operation groups for connections */
+  public readonly connections: ConnectionsOperations;
+  /** The operation groups for agents */
+  public readonly agents: AgentsOperations;
 }

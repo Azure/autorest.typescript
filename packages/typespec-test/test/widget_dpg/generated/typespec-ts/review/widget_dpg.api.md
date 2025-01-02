@@ -21,7 +21,6 @@ export interface AnalyzeResult {
 
 // @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
@@ -37,7 +36,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export enum KnownVersions {
-    "V1.0.0" = "1.0.0"
+    "1.0.0" = "1.0.0"
 }
 
 // @public
@@ -88,7 +87,6 @@ export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 
 // @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 

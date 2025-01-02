@@ -1395,12 +1395,14 @@ export function agentDeserializer(item: any): Agent {
     model: item["model"],
     instructions: item["instructions"],
     tools: toolDefinitionUnionArrayDeserializer(item["tools"]),
-    toolResources: item["tool_resources"],
+    toolResources: !item["tool_resources"]
+      ? item["tool_resources"]
+      : toolResourcesDeserializer(item["tool_resources"]),
     temperature: item["temperature"],
     topP: item["top_p"],
     responseFormat: !item["response_format"]
       ? item["response_format"]
-      : (item["response_format"] as any),
+      : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: item["metadata"],
   };
 }
@@ -1485,9 +1487,7 @@ export function threadMessageOptionsSerializer(
     content: item["content"],
     attachments: !item["attachments"]
       ? item["attachments"]
-      : item["attachments"].map((p: any) => {
-          return messageAttachmentSerializer(p);
-        }),
+      : messageAttachmentArraySerializer(item["attachments"]),
     metadata: item["metadata"],
   };
 }
@@ -1614,7 +1614,9 @@ export function agentThreadDeserializer(item: any): AgentThread {
     id: item["id"],
     object: item["object"],
     createdAt: new Date(item["created_at"] * 1000),
-    toolResources: item["tool_resources"],
+    toolResources: !item["tool_resources"]
+      ? item["tool_resources"]
+      : toolResourcesDeserializer(item["tool_resources"]),
     metadata: item["metadata"],
   };
 }
@@ -1678,7 +1680,9 @@ export function threadMessageSerializer(item: ThreadMessage): any {
     created_at: (item["createdAt"].getTime() / 1000) | 0,
     thread_id: item["threadId"],
     status: item["status"],
-    incomplete_details: item["incompleteDetails"],
+    incomplete_details: !item["incompleteDetails"]
+      ? item["incompleteDetails"]
+      : messageIncompleteDetailsSerializer(item["incompleteDetails"]),
     completed_at: !item["completedAt"]
       ? item["completedAt"]
       : (item["completedAt"].getTime() / 1000) | 0,
@@ -1691,9 +1695,7 @@ export function threadMessageSerializer(item: ThreadMessage): any {
     run_id: item["runId"],
     attachments: !item["attachments"]
       ? item["attachments"]
-      : item["attachments"].map((p: any) => {
-          return messageAttachmentSerializer(p);
-        }),
+      : messageAttachmentArraySerializer(item["attachments"]),
     metadata: item["metadata"],
   };
 }
@@ -1705,28 +1707,22 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
     createdAt: new Date(item["created_at"] * 1000),
     threadId: item["thread_id"],
     status: item["status"],
-    incompleteDetails: item["incomplete_details"],
+    incompleteDetails: !item["incomplete_details"]
+      ? item["incomplete_details"]
+      : messageIncompleteDetailsDeserializer(item["incomplete_details"]),
     completedAt: !item["completed_at"]
       ? item["completed_at"]
-      : !item["completed_at"]
-        ? item["completed_at"]
-        : new Date(item["completed_at"] * 1000),
+      : new Date(item["completed_at"] * 1000),
     incompleteAt: !item["incomplete_at"]
       ? item["incomplete_at"]
-      : !item["incomplete_at"]
-        ? item["incomplete_at"]
-        : new Date(item["incomplete_at"] * 1000),
+      : new Date(item["incomplete_at"] * 1000),
     role: item["role"],
     content: messageContentUnionArrayDeserializer(item["content"]),
     assistantId: item["assistant_id"],
     runId: item["run_id"],
     attachments: !item["attachments"]
       ? item["attachments"]
-      : !item["attachments"]
-        ? item["attachments"]
-        : item["attachments"].map((p: any) => {
-            return messageAttachmentDeserializer(p);
-          }),
+      : messageAttachmentArrayDeserializer(item["attachments"]),
     metadata: item["metadata"],
   };
 }
@@ -2345,52 +2341,52 @@ export function threadRunDeserializer(item: any): ThreadRun {
     threadId: item["thread_id"],
     assistantId: item["assistant_id"],
     status: item["status"],
-    requiredAction: item["required_action"],
-    lastError: item["last_error"],
+    requiredAction: !item["required_action"]
+      ? item["required_action"]
+      : requiredActionUnionDeserializer(item["required_action"]),
+    lastError: !item["last_error"]
+      ? item["last_error"]
+      : runErrorDeserializer(item["last_error"]),
     model: item["model"],
     instructions: item["instructions"],
     tools: toolDefinitionUnionArrayDeserializer(item["tools"]),
     createdAt: new Date(item["created_at"] * 1000),
     expiresAt: !item["expires_at"]
       ? item["expires_at"]
-      : !item["expires_at"]
-        ? item["expires_at"]
-        : new Date(item["expires_at"] * 1000),
+      : new Date(item["expires_at"] * 1000),
     startedAt: !item["started_at"]
       ? item["started_at"]
-      : !item["started_at"]
-        ? item["started_at"]
-        : new Date(item["started_at"] * 1000),
+      : new Date(item["started_at"] * 1000),
     completedAt: !item["completed_at"]
       ? item["completed_at"]
-      : !item["completed_at"]
-        ? item["completed_at"]
-        : new Date(item["completed_at"] * 1000),
+      : new Date(item["completed_at"] * 1000),
     cancelledAt: !item["cancelled_at"]
       ? item["cancelled_at"]
-      : !item["cancelled_at"]
-        ? item["cancelled_at"]
-        : new Date(item["cancelled_at"] * 1000),
+      : new Date(item["cancelled_at"] * 1000),
     failedAt: !item["failed_at"]
       ? item["failed_at"]
-      : !item["failed_at"]
-        ? item["failed_at"]
-        : new Date(item["failed_at"] * 1000),
+      : new Date(item["failed_at"] * 1000),
     incompleteDetails: item["incomplete_details"],
-    usage: item["usage"],
+    usage: !item["usage"]
+      ? item["usage"]
+      : runCompletionUsageDeserializer(item["usage"]),
     temperature: item["temperature"],
     topP: item["top_p"],
     maxPromptTokens: item["max_prompt_tokens"],
     maxCompletionTokens: item["max_completion_tokens"],
-    truncationStrategy: item["truncation_strategy"],
+    truncationStrategy: !item["truncation_strategy"]
+      ? item["truncation_strategy"]
+      : truncationObjectDeserializer(item["truncation_strategy"]),
     toolChoice: !item["tool_choice"]
       ? item["tool_choice"]
-      : (item["tool_choice"] as any),
+      : agentsApiToolChoiceOptionDeserializer(item["tool_choice"]),
     responseFormat: !item["response_format"]
       ? item["response_format"]
-      : (item["response_format"] as any),
+      : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: item["metadata"],
-    toolResources: item["tool_resources"],
+    toolResources: !item["tool_resources"]
+      ? item["tool_resources"]
+      : updateToolResourcesOptionsDeserializer(item["tool_resources"]),
     parallelToolCalls: item["parallelToolCalls"],
   };
 }
@@ -2791,7 +2787,9 @@ export function agentThreadCreationOptionsSerializer(
     messages: !item["messages"]
       ? item["messages"]
       : threadMessageOptionsArraySerializer(item["messages"]),
-    tool_resources: item["toolResources"],
+    tool_resources: !item["toolResources"]
+      ? item["toolResources"]
+      : toolResourcesSerializer(item["toolResources"]),
     metadata: item["metadata"],
   };
 }
@@ -2842,29 +2840,25 @@ export function runStepDeserializer(item: any): RunStep {
     runId: item["run_id"],
     status: item["status"],
     stepDetails: runStepDetailsUnionDeserializer(item["step_details"]),
-    lastError: item["last_error"],
+    lastError: !item["last_error"]
+      ? item["last_error"]
+      : runStepErrorDeserializer(item["last_error"]),
     createdAt: new Date(item["created_at"] * 1000),
     expiredAt: !item["expired_at"]
       ? item["expired_at"]
-      : !item["expired_at"]
-        ? item["expired_at"]
-        : new Date(item["expired_at"] * 1000),
+      : new Date(item["expired_at"] * 1000),
     completedAt: !item["completed_at"]
       ? item["completed_at"]
-      : !item["completed_at"]
-        ? item["completed_at"]
-        : new Date(item["completed_at"] * 1000),
+      : new Date(item["completed_at"] * 1000),
     cancelledAt: !item["cancelled_at"]
       ? item["cancelled_at"]
-      : !item["cancelled_at"]
-        ? item["cancelled_at"]
-        : new Date(item["cancelled_at"] * 1000),
+      : new Date(item["cancelled_at"] * 1000),
     failedAt: !item["failed_at"]
       ? item["failed_at"]
-      : !item["failed_at"]
-        ? item["failed_at"]
-        : new Date(item["failed_at"] * 1000),
-    usage: item["usage"],
+      : new Date(item["failed_at"] * 1000),
+    usage: !item["usage"]
+      ? item["usage"]
+      : runStepCompletionUsageDeserializer(item["usage"]),
     metadata: item["metadata"],
   };
 }
@@ -3582,14 +3576,10 @@ export function vectorStoreDeserializer(item: any): VectorStore {
       : vectorStoreExpirationPolicyDeserializer(item["expires_after"]),
     expiresAt: !item["expires_at"]
       ? item["expires_at"]
-      : !item["expires_at"]
-        ? item["expires_at"]
-        : new Date(item["expires_at"] * 1000),
+      : new Date(item["expires_at"] * 1000),
     lastActiveAt: !item["last_active_at"]
       ? item["last_active_at"]
-      : !item["last_active_at"]
-        ? item["last_active_at"]
-        : new Date(item["last_active_at"] * 1000),
+      : new Date(item["last_active_at"] * 1000),
     metadata: item["metadata"],
   };
 }
@@ -3835,7 +3825,9 @@ export function vectorStoreFileDeserializer(item: any): VectorStoreFile {
     createdAt: new Date(item["created_at"] * 1000),
     vectorStoreId: item["vector_store_id"],
     status: item["status"],
-    lastError: item["last_error"],
+    lastError: !item["last_error"]
+      ? item["last_error"]
+      : vectorStoreFileErrorDeserializer(item["last_error"]),
     chunkingStrategy: vectorStoreChunkingStrategyResponseUnionDeserializer(
       item["chunking_strategy"],
     ),
@@ -4773,5 +4765,5 @@ export type VectorStoreFileStatusFilter =
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  "V2024-07-01-Preview" = "2024-07-01-preview",
+  "2024-07-01-preview" = "2024-07-01-preview",
 }

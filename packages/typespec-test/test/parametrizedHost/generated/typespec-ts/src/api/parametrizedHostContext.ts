@@ -5,7 +5,10 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface ParametrizedHostContext extends Client {}
+export interface ParametrizedHostContext extends Client {
+  /** The API version to use for this operation. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
@@ -56,5 +59,5 @@ export function createParametrizedHost(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, apiVersion } as ParametrizedHostContext;
 }

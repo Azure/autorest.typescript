@@ -732,22 +732,18 @@ export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
@@ -827,13 +823,13 @@ export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "102
 // @public
 export enum KnownServiceApiVersions {
     // (undocumented)
-    V2022_12_01 = "2022-12-01",
+    v2022_12_01 = "2022-12-01",
     // (undocumented)
-    V2023_05_15 = "2023-05-15",
+    v2023_05_15 = "2023-05-15",
     // (undocumented)
-    V2024_02_01 = "2024-02-01",
+    v2024_02_01 = "2024-02-01",
     // (undocumented)
-    V2024_06_01 = "2024-06-01"
+    v2024_06_01 = "2024-06-01"
 }
 
 // @public

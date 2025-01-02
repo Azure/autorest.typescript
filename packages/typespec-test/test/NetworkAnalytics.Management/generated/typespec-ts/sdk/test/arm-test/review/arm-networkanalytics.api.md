@@ -365,9 +365,9 @@ export enum KnownManagedServiceIdentityType {
 
 // @public
 export enum KnownOrigin {
-    System = "system",
-    User = "user",
-    UserSystem = "user,system"
+    "user,system" = "user,system",
+    system = "system",
+    user = "user"
 }
 
 // @public
@@ -383,7 +383,7 @@ export enum KnownProvisioningState {
 
 // @public
 export enum KnownVersions {
-    V2023_11_15 = "2023-11-15"
+    v2023_11_15 = "2023-11-15"
 }
 
 // @public
@@ -426,8 +426,8 @@ export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
 
 // @public
 export interface Operation {
-    actionType?: ActionType;
-    readonly display?: OperationDisplay;
+    readonly actionType?: ActionType;
+    display?: OperationDisplay;
     readonly isDataAction?: boolean;
     readonly name?: string;
     readonly origin?: Origin;

@@ -23,7 +23,9 @@ export function batchNodeUserCreateOptionsSerializer(
   return {
     name: item["name"],
     isAdmin: item["isAdmin"],
-    expiryTime: item["expiryTime"]?.toISOString(),
+    expiryTime: !item["expiryTime"]
+      ? item["expiryTime"]
+      : item["expiryTime"].toISOString(),
     password: item["password"],
     sshPublicKey: item["sshPublicKey"],
   };
@@ -104,7 +106,9 @@ export function batchNodeUserUpdateOptionsSerializer(
 ): any {
   return {
     password: item["password"],
-    expiryTime: item["expiryTime"]?.toISOString(),
+    expiryTime: !item["expiryTime"]
+      ? item["expiryTime"]
+      : item["expiryTime"].toISOString(),
     sshPublicKey: item["sshPublicKey"],
   };
 }
@@ -1080,7 +1084,7 @@ export function uploadBatchServiceLogsOptionsSerializer(
   return {
     containerUrl: item["containerUrl"],
     startTime: item["startTime"].toISOString(),
-    endTime: item["endTime"]?.toISOString(),
+    endTime: !item["endTime"] ? item["endTime"] : item["endTime"].toISOString(),
     identityReference: !item["identityReference"]
       ? item["identityReference"]
       : batchNodeIdentityReferenceSerializer(item["identityReference"]),
@@ -1144,10 +1148,10 @@ export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
     provisioningState: item["provisioningState"],
     vmExtension: !item["vmExtension"]
       ? item["vmExtension"]
-      : vmExtensionDeserializer(item["vmExtension"]),
+      : vMExtensionDeserializer(item["vmExtension"]),
     instanceView: !item["instanceView"]
       ? item["instanceView"]
-      : vmExtensionInstanceViewDeserializer(item["instanceView"]),
+      : vMExtensionInstanceViewDeserializer(item["instanceView"]),
   };
 }
 
@@ -1173,7 +1177,7 @@ export interface VMExtension {
   provisionAfterExtensions?: string[];
 }
 
-export function vmExtensionSerializer(item: VMExtension): any {
+export function vMExtensionSerializer(item: VMExtension): any {
   return {
     name: item["name"],
     publisher: item["publisher"],
@@ -1191,7 +1195,7 @@ export function vmExtensionSerializer(item: VMExtension): any {
   };
 }
 
-export function vmExtensionDeserializer(item: any): VMExtension {
+export function vMExtensionDeserializer(item: any): VMExtension {
   return {
     name: item["name"],
     publisher: item["publisher"],
@@ -1219,7 +1223,7 @@ export interface VMExtensionInstanceView {
   subStatuses?: InstanceViewStatus[];
 }
 
-export function vmExtensionInstanceViewDeserializer(
+export function vMExtensionInstanceViewDeserializer(
   item: any,
 ): VMExtensionInstanceView {
   return {
@@ -2549,8 +2553,12 @@ export interface Schedule {
 
 export function scheduleSerializer(item: Schedule): any {
   return {
-    doNotRunUntil: item["doNotRunUntil"]?.toISOString(),
-    doNotRunAfter: item["doNotRunAfter"]?.toISOString(),
+    doNotRunUntil: !item["doNotRunUntil"]
+      ? item["doNotRunUntil"]
+      : item["doNotRunUntil"].toISOString(),
+    doNotRunAfter: !item["doNotRunAfter"]
+      ? item["doNotRunAfter"]
+      : item["doNotRunAfter"].toISOString(),
     startWindow: item["startWindow"],
     recurrenceInterval: item["recurrenceInterval"],
   };
@@ -3378,8 +3386,8 @@ export function virtualMachineConfigurationSerializer(
         ),
     extensions: !item["extensions"]
       ? item["extensions"]
-      : vmExtensionArraySerializer(item["extensions"]),
-    osDisk: !item["osDisk"] ? item["osDisk"] : osDiskSerializer(item["osDisk"]),
+      : vMExtensionArraySerializer(item["extensions"]),
+    osDisk: !item["osDisk"] ? item["osDisk"] : oSDiskSerializer(item["osDisk"]),
   };
 }
 
@@ -3411,10 +3419,10 @@ export function virtualMachineConfigurationDeserializer(
         ),
     extensions: !item["extensions"]
       ? item["extensions"]
-      : vmExtensionArrayDeserializer(item["extensions"]),
+      : vMExtensionArrayDeserializer(item["extensions"]),
     osDisk: !item["osDisk"]
       ? item["osDisk"]
-      : osDiskDeserializer(item["osDisk"]),
+      : oSDiskDeserializer(item["osDisk"]),
   };
 }
 
@@ -3614,17 +3622,17 @@ export function nodePlacementConfigurationDeserializer(
 /** NodePlacementPolicyType enums */
 export type NodePlacementPolicyType = "regional" | "zonal";
 
-export function vmExtensionArraySerializer(result: Array<VMExtension>): any[] {
+export function vMExtensionArraySerializer(result: Array<VMExtension>): any[] {
   return result.map((item) => {
-    return vmExtensionSerializer(item);
+    return vMExtensionSerializer(item);
   });
 }
 
-export function vmExtensionArrayDeserializer(
+export function vMExtensionArrayDeserializer(
   result: Array<VMExtension>,
 ): any[] {
   return result.map((item) => {
-    return vmExtensionDeserializer(item);
+    return vMExtensionDeserializer(item);
   });
 }
 
@@ -3634,7 +3642,7 @@ export interface OSDisk {
   ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-export function osDiskSerializer(item: OSDisk): any {
+export function oSDiskSerializer(item: OSDisk): any {
   return {
     ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
       ? item["ephemeralOSDiskSettings"]
@@ -3642,7 +3650,7 @@ export function osDiskSerializer(item: OSDisk): any {
   };
 }
 
-export function osDiskDeserializer(item: any): OSDisk {
+export function oSDiskDeserializer(item: any): OSDisk {
   return {
     ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
       ? item["ephemeralOSDiskSettings"]
@@ -6233,5 +6241,5 @@ export function batchApplicationDeserializer(item: any): BatchApplication {
 /** The Azure Batch service version. */
 export enum KnownVersions {
   /** API Version 2023-05-01.17.0 */
-  "V2023-05-01.17.0" = "2023-05-01.17.0",
+  "2023-05-01.17.0" = "2023-05-01.17.0",
 }

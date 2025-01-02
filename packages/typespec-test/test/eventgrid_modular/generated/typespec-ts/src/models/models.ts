@@ -47,7 +47,7 @@ export function cloudEventSerializer(item: CloudEvent): any {
       ? item["dataBase64"]
       : uint8ArrayToString(item["dataBase64"], "base64"),
     type: item["type"],
-    time: item["time"]?.toISOString(),
+    time: !item["time"] ? item["time"] : item["time"].toISOString(),
     specversion: item["specversion"],
     dataschema: item["dataschema"],
     datacontenttype: item["datacontenttype"],
@@ -258,7 +258,7 @@ export function rejectResultDeserializer(item: any): RejectResult {
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
-  V2023_06_01_Preview = "2023-06-01-preview",
+  v2023_06_01_preview = "2023-06-01-preview",
 }
 
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {

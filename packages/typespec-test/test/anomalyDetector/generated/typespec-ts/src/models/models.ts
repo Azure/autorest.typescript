@@ -124,8 +124,12 @@ export function multivariateVariableStateSerializer(
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
     effectiveCount: item["effectiveCount"],
-    firstTimestamp: item["firstTimestamp"]?.toISOString(),
-    lastTimestamp: item["lastTimestamp"]?.toISOString(),
+    firstTimestamp: !item["firstTimestamp"]
+      ? item["firstTimestamp"]
+      : item["firstTimestamp"].toISOString(),
+    lastTimestamp: !item["lastTimestamp"]
+      ? item["lastTimestamp"]
+      : item["lastTimestamp"].toISOString(),
   };
 }
 
@@ -783,7 +787,12 @@ export interface UnivariateTimeSeriesPoint {
 export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
-  return { timestamp: item["timestamp"]?.toISOString(), value: item["value"] };
+  return {
+    timestamp: !item["timestamp"]
+      ? item["timestamp"]
+      : item["timestamp"].toISOString(),
+    value: item["value"],
+  };
 }
 
 /** Type of UnivariateTimeGranularity */
@@ -1042,5 +1051,5 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
-  V1_1 = "v1.1",
+  v1_1 = "v1.1",
 }
