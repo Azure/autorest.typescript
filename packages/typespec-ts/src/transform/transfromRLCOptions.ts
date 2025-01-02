@@ -5,7 +5,8 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo
+  ServiceInfo,
+  isAzurePackage
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -26,24 +27,21 @@ export function transformRLCOptions(
   emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
-  if (
-    getFlavor(
-      emitterOptions,
-      getPackageDetails(dpgContext.program, emitterOptions)
-    ) !== "azure" &&
-    emitterOptions.isModularLibrary !== false
-  ) {
-    emitterOptions.isModularLibrary = true;
-  }
-  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
-    emitterOptions.isModularLibrary = true;
-  }
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext,
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
+  if (
+    isAzurePackage({ options }) &&
+    emitterOptions.isModularLibrary !== false
+  ) {
+    options.isModularLibrary = true;
+  }
+  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
+    options.isModularLibrary = true;
+  }
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
