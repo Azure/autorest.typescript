@@ -95,7 +95,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/{id}", id)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(

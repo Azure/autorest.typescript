@@ -6,8 +6,8 @@ export declare class BasicClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BasicClientOptionalParams);
-    readonly explicitBody: ExplicitBodyOperations;
     readonly implicitBody: ImplicitBodyOperations;
+    readonly explicitBody: ExplicitBodyOperations;
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {

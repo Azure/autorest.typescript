@@ -27,9 +27,9 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
-    input(inputParameter: InputRecord, options?: InputOptionalParams): Promise<void>;
-    output(options?: OutputOptionalParams): Promise<OutputRecord>;
     inputAndOutput(body: InputOutputRecord, options?: InputAndOutputOptionalParams): Promise<InputOutputRecord>;
+    output(options?: OutputOptionalParams): Promise<OutputRecord>;
+    input(inputParameter: InputRecord, options?: InputOptionalParams): Promise<void>;
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {

@@ -24,8 +24,8 @@ export declare class RemovedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams);
-    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
     modelV3(body: ModelV3, options?: ModelV3OptionalParams): Promise<ModelV3>;
+    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {

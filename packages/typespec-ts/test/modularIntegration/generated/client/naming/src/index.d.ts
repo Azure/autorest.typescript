@@ -15,8 +15,8 @@ export declare interface ClientModelLanguageOptionalParams extends OperationOpti
 }
 
 export declare interface ClientModelOperations {
-    client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
     language: (body: TSModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
+    client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
 }
 
 export declare interface ClientNameAndJsonEncodedNameModel {
@@ -49,15 +49,15 @@ export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
-    clientName(options?: ClientNameOptionalParams): Promise<void>;
-    parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
-    client(body: ClientNameModel, options?: ClientOptionalParams): Promise<void>;
-    language(body: LanguageClientNameModel, options?: LanguageOptionalParams): Promise<void>;
-    compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
-    request(clientName: string, options?: RequestOptionalParams): Promise<void>;
-    response(options?: ResponseOptionalParams): Promise<void>;
-    readonly clientModel: ClientModelOperations;
     readonly unionEnum: UnionEnumOperations;
+    readonly clientModel: ClientModelOperations;
+    response(options?: ResponseOptionalParams): Promise<void>;
+    request(clientName: string, options?: RequestOptionalParams): Promise<void>;
+    compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
+    language(body: LanguageClientNameModel, options?: LanguageOptionalParams): Promise<void>;
+    client(body: ClientNameModel, options?: ClientOptionalParams): Promise<void>;
+    parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
+    clientName(options?: ClientNameOptionalParams): Promise<void>;
 }
 
 export declare interface NamingClientOptionalParams extends ClientOptions {
@@ -77,8 +77,8 @@ export declare interface TSModel {
 }
 
 export declare interface UnionEnumOperations {
-    unionEnumName: (body: ClientExtensibleEnum, options?: UnionEnumUnionEnumNameOptionalParams) => Promise<void>;
     unionEnumMemberName: (body: ExtensibleEnum, options?: UnionEnumUnionEnumMemberNameOptionalParams) => Promise<void>;
+    unionEnumName: (body: ClientExtensibleEnum, options?: UnionEnumUnionEnumNameOptionalParams) => Promise<void>;
 }
 
 export declare interface UnionEnumUnionEnumMemberNameOptionalParams extends OperationOptions {
