@@ -9,6 +9,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     generateSample: true
+    isModularLibrary: false
     title: AzureArmResourceClient
     packageDetails:
       name: "@azure/arm-resources"

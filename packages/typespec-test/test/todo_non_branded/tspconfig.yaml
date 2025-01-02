@@ -3,7 +3,6 @@ emit:
   - "@typespec/openapi3"
 options:
   "@azure-tools/typespec-ts":
-    isModularLibrary: true
     generateMetadata: true
     azureSdkForJs: false
     generateSample: true
