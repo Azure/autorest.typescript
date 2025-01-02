@@ -34,7 +34,7 @@ export function transformRLCOptions(
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
   if (
-    isAzurePackage({ options }) &&
+    !isAzurePackage({ options }) &&
     emitterOptions.isModularLibrary !== false
   ) {
     options.isModularLibrary = true;
