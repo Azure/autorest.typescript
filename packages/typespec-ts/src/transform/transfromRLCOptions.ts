@@ -5,8 +5,7 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo,
-  isAzurePackage
+  ServiceInfo
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -27,15 +26,6 @@ export function transformRLCOptions(
   emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
-  if (
-    !isAzurePackage({ options: emitterOptions }) &&
-    emitterOptions.isModularLibrary !== false
-  ) {
-    emitterOptions.isModularLibrary = true;
-  }
-  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
-    emitterOptions.isModularLibrary = true;
-  }
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext,
