@@ -89,7 +89,7 @@ export type FinishReason = "stop" | "length";
 // @public
 export enum KnownAPIVersion {
     // (undocumented)
-    v20231001Preview = "2023-10-01-preview"
+    V20231001Preview = "2023-10-01-preview"
 }
 
 // @public

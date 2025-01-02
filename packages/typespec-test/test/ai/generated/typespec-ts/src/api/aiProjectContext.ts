@@ -6,12 +6,12 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-export interface AzureAIContext extends Client {
+export interface AIProjectContext extends Client {
   /** The Azure subscription ID. */
   subscriptionId: string;
   /** The name of the Azure Resource Group. */
   resourceGroupName: string;
-  /** The Azure AI Studio project name. */
+  /** The Azure AI Foundry project name. */
   projectName: string;
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
@@ -19,20 +19,20 @@ export interface AzureAIContext extends Client {
 }
 
 /** Optional parameters for the client. */
-export interface AzureAIClientOptionalParams extends ClientOptions {
+export interface AIProjectClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
-export function createAzureAI(
+export function createAIProject(
   endpointParam: string,
   subscriptionId: string,
   resourceGroupName: string,
   projectName: string,
   credential: TokenCredential,
-  options: AzureAIClientOptionalParams = {},
-): AzureAIContext {
+  options: AIProjectClientOptionalParams = {},
+): AIProjectContext {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -76,5 +76,5 @@ export function createAzureAI(
     resourceGroupName,
     projectName,
     apiVersion,
-  } as AzureAIContext;
+  } as AIProjectContext;
 }

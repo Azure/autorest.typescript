@@ -2,7 +2,7 @@ import "@azure-tools/typespec-client-generator-core";
 
 using Azure.ClientGenerator.Core;
 
-namespace Azure.AI.Client.Agents {
+namespace Azure.AI.Projects.Agents {
   // Trivial response value containers should treat these containers as internal details and instead surface a shimmed
   // operation that exposes the underlying data directly.
   @@clientName(AgentDeletionStatus, "InternalAgentDeletionStatus", "csharp");
@@ -37,6 +37,18 @@ namespace Azure.AI.Client.Agents {
   @@access(FunctionDefinition, Access.internal);
   @@clientName(FunctionDefinition, "InternalFunctionDefinition", "csharp");
   @@clientName(FunctionToolDefinition.function, "InternalFunction", "csharp");
+
+  // Make AzureFunctionDefinition internal in C#.
+  @@access(AzureFunctionDefinition, Access.internal);
+  @@clientName(AzureFunctionDefinition,
+    "InternalAzureFunctionDefinition",
+    "csharp"
+  );
+  @@clientName(AzureFunctionToolDefinition.azureFunction,
+    "InternalAzureFunction",
+    "csharp"
+  );
+  @@access(AzureFunctionBinding, Access.public);
 
   // SubmitToolOutputsAction: include .tool_calls directly rather than via an intermediate .details.
 
@@ -219,6 +231,9 @@ namespace Azure.AI.Client.Agents {
   @@access(RequiredToolCall, Access.public);
   @@usage(FilePurpose, Usage.input | Usage.output);
   @@usage(ListSortOrder, Usage.input | Usage.output);
+
+  // Make getFileContent internal method in Python (override with get_file_content_stream)
+  @@access(getFileContent, Access.internal, "python");
 
   // Additional, language-specific idiomatic renames
 

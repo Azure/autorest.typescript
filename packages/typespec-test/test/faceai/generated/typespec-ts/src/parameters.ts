@@ -6,7 +6,7 @@ import {
   FaceAttributeType,
   RecognitionModel,
   DetectionModel,
-  FindSimilarMatchMode,
+  FaceErrorResponse,
   LivenessSessionCreationContent,
   LivenessSessionWithVerifyImageCreationContent,
 } from "./models.js";
@@ -133,118 +133,83 @@ export type DetectParameters = DetectQueryParam &
   RequestParameters;
 
 export interface FindSimilarBodyParam {
-  body: {
-    faceId: string;
-    maxNumOfCandidatesReturned?: number;
-    mode?: FindSimilarMatchMode;
-    faceIds: string[];
-  };
+  body: FaceErrorResponse;
 }
 
 export type FindSimilarParameters = FindSimilarBodyParam & RequestParameters;
 
 export interface FindSimilarFromFaceListBodyParam {
-  body: {
-    faceId: string;
-    maxNumOfCandidatesReturned?: number;
-    mode?: FindSimilarMatchMode;
-    faceListId: string;
-  };
+  body: FaceErrorResponse;
 }
 
 export type FindSimilarFromFaceListParameters =
   FindSimilarFromFaceListBodyParam & RequestParameters;
 
 export interface FindSimilarFromLargeFaceListBodyParam {
-  body: {
-    faceId: string;
-    maxNumOfCandidatesReturned?: number;
-    mode?: FindSimilarMatchMode;
-    largeFaceListId: string;
-  };
+  body: FaceErrorResponse;
 }
 
 export type FindSimilarFromLargeFaceListParameters =
   FindSimilarFromLargeFaceListBodyParam & RequestParameters;
 
 export interface IdentifyFromPersonGroupBodyParam {
-  body: {
-    faceIds: string[];
-    personGroupId: string;
-    maxNumOfCandidatesReturned?: number;
-    confidenceThreshold?: number;
-  };
+  body: FaceErrorResponse;
 }
 
 export type IdentifyFromPersonGroupParameters =
   IdentifyFromPersonGroupBodyParam & RequestParameters;
 
 export interface IdentifyFromLargePersonGroupBodyParam {
-  body: {
-    faceIds: string[];
-    largePersonGroupId: string;
-    maxNumOfCandidatesReturned?: number;
-    confidenceThreshold?: number;
-  };
+  body: FaceErrorResponse;
 }
 
 export type IdentifyFromLargePersonGroupParameters =
   IdentifyFromLargePersonGroupBodyParam & RequestParameters;
 
 export interface IdentifyFromPersonDirectoryBodyParam {
-  body: {
-    faceIds: string[];
-    personIds: string[];
-    maxNumOfCandidatesReturned?: number;
-    confidenceThreshold?: number;
-  };
+  body: FaceErrorResponse;
 }
 
 export type IdentifyFromPersonDirectoryParameters =
   IdentifyFromPersonDirectoryBodyParam & RequestParameters;
 
 export interface IdentifyFromDynamicPersonGroupBodyParam {
-  body: {
-    faceIds: string[];
-    dynamicPersonGroupId: string;
-    maxNumOfCandidatesReturned?: number;
-    confidenceThreshold?: number;
-  };
+  body: FaceErrorResponse;
 }
 
 export type IdentifyFromDynamicPersonGroupParameters =
   IdentifyFromDynamicPersonGroupBodyParam & RequestParameters;
 
 export interface VerifyFaceToFaceBodyParam {
-  body: { faceId1: string; faceId2: string };
+  body: FaceErrorResponse;
 }
 
 export type VerifyFaceToFaceParameters = VerifyFaceToFaceBodyParam &
   RequestParameters;
 
 export interface VerifyFromPersonGroupBodyParam {
-  body: { faceId: string; personGroupId: string; personId: string };
+  body: FaceErrorResponse;
 }
 
 export type VerifyFromPersonGroupParameters = VerifyFromPersonGroupBodyParam &
   RequestParameters;
 
 export interface VerifyFromLargePersonGroupBodyParam {
-  body: { faceId: string; largePersonGroupId: string; personId: string };
+  body: FaceErrorResponse;
 }
 
 export type VerifyFromLargePersonGroupParameters =
   VerifyFromLargePersonGroupBodyParam & RequestParameters;
 
 export interface VerifyFromPersonDirectoryBodyParam {
-  body: { faceId: string; personId: string };
+  body: FaceErrorResponse;
 }
 
 export type VerifyFromPersonDirectoryParameters =
   VerifyFromPersonDirectoryBodyParam & RequestParameters;
 
 export interface GroupBodyParam {
-  body: { faceIds: string[] };
+  body: FaceErrorResponse;
 }
 
 export type GroupParameters = GroupBodyParam & RequestParameters;
@@ -888,7 +853,7 @@ export type UpdateLargePersonGroupPersonFaceParameters =
   UpdateLargePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreatePersonBodyParam {
-  body: { name: string; userData?: string };
+  body: FaceErrorResponse;
 }
 
 export type CreatePersonParameters = CreatePersonBodyParam & RequestParameters;

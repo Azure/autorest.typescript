@@ -15,7 +15,7 @@ export interface A {
 }
 
 // @public
-export interface Ba {
+export interface BA {
     // (undocumented)
     prop2: string;
 }
@@ -27,11 +27,11 @@ export interface BCOp1OptionalParams extends OperationOptions {
 // @public
 export interface BCOperations {
     // (undocumented)
-    op1: (body: Ba, options?: BCOp1OptionalParams) => Promise<void>;
+    op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
 // @public
-export interface Bea {
+export interface BEA {
     // (undocumented)
     prop3: string;
 }
@@ -43,7 +43,7 @@ export interface BECOp1OptionalParams extends OperationOptions {
 // @public
 export interface BECOperations {
     // (undocumented)
-    op1: (body: Bea, options?: BECOp1OptionalParams) => Promise<void>;
+    op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 // @public
@@ -63,7 +63,7 @@ export interface BOperations {
     // (undocumented)
     e: BEOperations;
     // (undocumented)
-    op1: (body: Ba, options?: BOp1OptionalParams) => Promise<void>;
+    op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
 }
 
 // @public

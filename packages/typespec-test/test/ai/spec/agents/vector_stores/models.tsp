@@ -1,4 +1,4 @@
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 using TypeSpec.Versioning;
 
@@ -117,6 +117,10 @@ model VectorStoreOptions {
 
   /** The name of the vector store. */
   name?: string;
+
+  /** The vector store configuration, used when vector store is created from Azure asset URIs. */
+  @encodedName("application/json", "configuration")
+  storeConfiguration?: VectorStoreConfiguration;
 
   /** Details on when this vector store expires */
   @encodedName("application/json", "expires_after")

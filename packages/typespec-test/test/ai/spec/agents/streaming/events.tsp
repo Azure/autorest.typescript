@@ -2,7 +2,7 @@ import "@typespec/versioning";
 
 using TypeSpec.Versioning;
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 @doc("""
   Each event in a server-sent events stream has an `event` and `data` property:
@@ -59,6 +59,9 @@ union RunStreamEvent {
 
   /** Event sent when a run is completed. The data of this event is of type ThreadRun */
   ThreadRunCompleted: "thread.run.completed",
+
+  /** Event sent when a run ends incomplete. The data of this event is of type ThreadRun */
+  ThreadRunIncomplete: "thread.run.incomplete",
 
   /** Event sent when a run fails. The data of this event is of type ThreadRun */
   ThreadRunFailed: "thread.run.failed",

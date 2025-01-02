@@ -103,7 +103,14 @@
       "name": "[RLC-Common] Debug Unit Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/rlc-common",
-      "runtimeArgs": ["mocha", "test/**/*.spec.ts"],
+      "runtimeArgs": [
+        "mocha",
+        "-r",
+        "ts-node/register",
+        "--loader=ts-node/esm",
+        "--experimental-specifier-resolution=node",
+        "test/**/*.spec.ts"
+      ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
