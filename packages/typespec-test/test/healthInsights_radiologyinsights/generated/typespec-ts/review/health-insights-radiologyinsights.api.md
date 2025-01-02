@@ -219,7 +219,7 @@ export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
 // @public
 export enum KnownApiVersion {
     // (undocumented)
-    v2023_09_01_Preview = "2023-09-01-preview"
+    V2023_09_01_Preview = "2023-09-01-preview"
 }
 
 // @public

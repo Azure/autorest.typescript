@@ -1051,5 +1051,5 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
-  v1_1 = "v1.1",
+  V1_1 = "v1.1",
 }
