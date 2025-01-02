@@ -96,7 +96,7 @@ export interface DeleteWidget202Headers {
 // @public
 export interface DeleteWidget202Response extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & DeleteWidget202Headers;
     // (undocumented)
@@ -121,7 +121,7 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
 // @public
 export interface DeleteWidgetLogicalResponse extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     status: "200";
 }
@@ -194,7 +194,7 @@ export interface GetWidgetOperationStatus {
 // @public
 export interface GetWidgetOperationStatus200Response extends HttpResponse {
     // (undocumented)
-    body: ResourceOperationStatusOutput;
+    body: ResourceOperationStatusWidgetWidgetErrorOutput;
     // (undocumented)
     status: "200";
 }
@@ -270,7 +270,7 @@ export type ListWidgetsParameters = RequestParameters;
 export type OperationStateOutput = string;
 
 // @public
-export interface OperationStatusOutput {
+export interface OperationStatusErrorOutput {
     error?: ErrorModel;
     id: string;
     status: OperationStateOutput;
@@ -310,7 +310,7 @@ export interface PagingOptions<TResponse> {
 }
 
 // @public
-export interface ResourceOperationStatusOutput {
+export interface ResourceOperationStatusWidgetWidgetErrorOutput {
     error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
