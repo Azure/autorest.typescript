@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BECOp1OptionalParams, FooContext as Client } from "../../../index.js";
-import { Bea, beaSerializer } from "../../../../models/models.js";
+import { Bea, beaSerializer } from "../../../../models/b/e/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

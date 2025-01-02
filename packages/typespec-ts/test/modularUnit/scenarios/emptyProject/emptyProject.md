@@ -8,7 +8,7 @@ import "@typespec/openapi";
 
 ```
 
-This is a yaml config 
+This is a yaml config
 
 ```yaml
 withRawContent: true
@@ -17,4 +17,5 @@ withRawContent: true
 ## classicClient
 
 ```ts classicClient
+
 ```

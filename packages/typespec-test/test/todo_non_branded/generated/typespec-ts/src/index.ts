@@ -8,16 +8,16 @@ import {
 
 export { TodoClient } from "./todoClient.js";
 export {
-  TodoPage,
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
   TodoFileAttachment,
   TodoUrlAttachment,
   TodoAttachment,
+  User,
+  TodoPage,
   TodoItemPatch,
   PageTodoAttachment,
-  User,
 } from "./models/index.js";
 export {
   TodoItemsAttachmentsCreateAttachmentOptionalParams,

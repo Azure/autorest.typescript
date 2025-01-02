@@ -3,7 +3,7 @@
 
 import { FooContext } from "../../../api/fooContext.js";
 import { op1 } from "../../../api/b/c/index.js";
-import { Ba } from "../../../models/models.js";
+import { Ba } from "../../../models/b/models.js";
 import { BCOp1OptionalParams } from "../../../api/options.js";
 
 /** Interface representing a BC operations. */

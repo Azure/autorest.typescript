@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BOp1OptionalParams, FooContext as Client } from "../index.js";
-import { Ba, baSerializer } from "../../models/models.js";
+import { Ba, baSerializer } from "../../models/b/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

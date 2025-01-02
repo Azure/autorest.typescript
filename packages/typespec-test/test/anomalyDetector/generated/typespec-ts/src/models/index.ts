@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export { KnownVersions } from "./models.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
@@ -24,6 +25,8 @@ export {
   MultivariateMultivariateLastDetectionOptions,
   MultivariateVariableValues,
   MultivariateMultivariateLastDetectionResult,
+} from "./multivariate/models.js";
+export {
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
   UnivariateTimeGranularity,
@@ -32,5 +35,4 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  KnownVersions,
-} from "./models.js";
+} from "./univariate/models.js";

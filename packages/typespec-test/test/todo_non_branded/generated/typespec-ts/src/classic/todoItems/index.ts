@@ -1,12 +1,5 @@
 // Licensed under the MIT License.
 
-import {
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateOptionalParams,
-  TodoItemsListOptionalParams,
-} from "../../api/options.js";
 import { TodoContext } from "../../api/todoContext.js";
 import {
   $delete,
@@ -15,8 +8,16 @@ import {
   create,
   list,
 } from "../../api/todoItems/index.js";
-import { TodoItem, TodoLabels, TodoItemPatch } from "../../models/models.js";
+import { TodoItemPatch } from "../../models/todoItems/models.js";
+import { TodoItem, TodoLabels } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import {
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateOptionalParams,
+  TodoItemsListOptionalParams,
+} from "../../api/options.js";
 import {
   TodoItemsAttachmentsOperations,
   getTodoItemsAttachmentsOperations,

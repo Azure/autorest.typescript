@@ -9,6 +9,7 @@ import {
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export {
+  KnownVersions,
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
   MultivariateMultivariateBatchDetectionStatus,
@@ -39,7 +40,6 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  KnownVersions,
 } from "./models/index.js";
 export {
   AnomalyDetectorClientOptionalParams,

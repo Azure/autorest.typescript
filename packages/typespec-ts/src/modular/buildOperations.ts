@@ -12,7 +12,6 @@ import {
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
@@ -119,7 +118,6 @@ export function buildOperationFiles(
       namedImports: [`${rlcClientName} as Client`],
       moduleSpecifier: `${indexPathPrefix}index.js`
     });
-    addImportBySymbol("serializeRecord", operationGroupFile);
     operationGroupFile.fixUnusedIdentifiers();
 
     operationFiles.add(operationGroupFile);

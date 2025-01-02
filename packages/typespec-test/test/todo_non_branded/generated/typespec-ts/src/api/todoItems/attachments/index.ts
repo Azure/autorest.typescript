@@ -6,10 +6,12 @@ import {
   TodoItemsAttachmentsListOptionalParams,
 } from "../../index.js";
 import {
-  TodoAttachment,
-  todoAttachmentSerializer,
   PageTodoAttachment,
   pageTodoAttachmentDeserializer,
+} from "../../../models/todoItems/models.js";
+import {
+  TodoAttachment,
+  todoAttachmentSerializer,
 } from "../../../models/models.js";
 import {
   PagedAsyncIterableIterator,
