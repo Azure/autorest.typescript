@@ -1,3 +1,17 @@
+## 0.37.0 (2024-12-27)
+
+- [Feature] Sdk package methods adoption. Please refer to [#2943](https://github.com/Azure/autorest.typescript/pull/2943)
+  - Adopt to sdkPackage methods;
+  - Support client level path parameter in general;
+  - ContentType/accept header parameter logic change;
+  - ApiVersion and its policy related change;
+  - Adjust parameter order change aligned with spec in spread cases;
+  - The bytes type gets generated inconsistent as before;
+  - Replace core related dependencies in static helper.
+- [Feature] Upgrade mocha to ^11.0.2 for generated packages. Please refer to [#2945](https://github.com/Azure/autorest.typescript/pull/2945)
+- [Feature] use azsdkEslint.config helper in eslint.config.mjs. Please refer to [#2949](https://github.com/Azure/autorest.typescript/pull/2949)
+- [Feature] Upgrade typespec http runtime version to v0.1.0 for unbranded client. Please refer to [#2947](https://github.com/Azure/autorest.typescript/pull/2947)
+
 ## 0.36.0 (2024-12-12)
 
 - [Feature] Support tcgc type for ModelProperty, remove baseUrl in unbranded client and remove property if visibility with none. Please refer to [#2927](https://github.com/Azure/autorest.typescript/pull/2927)
