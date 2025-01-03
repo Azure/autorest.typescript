@@ -174,7 +174,7 @@ const libDef = {
       }
     },
     "no-service-defined": {
-      severity: "error",
+      severity: "warning",
       messages: {
         default:
           "No service defined and must have one and only one service defined."

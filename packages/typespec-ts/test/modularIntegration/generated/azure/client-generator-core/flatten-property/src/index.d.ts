@@ -21,8 +21,8 @@ export declare class FlattenPropertyClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: FlattenPropertyClientOptionalParams);
-    putFlattenModel(input: FlattenModel, options?: PutFlattenModelOptionalParams): Promise<FlattenModel>;
     putNestedFlattenModel(input: NestedFlattenModel, options?: PutNestedFlattenModelOptionalParams): Promise<NestedFlattenModel>;
+    putFlattenModel(input: FlattenModel, options?: PutFlattenModelOptionalParams): Promise<FlattenModel>;
 }
 
 export declare interface FlattenPropertyClientOptionalParams extends ClientOptions {

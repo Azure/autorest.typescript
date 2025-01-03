@@ -10,6 +10,23 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
 export interface PageTodoAttachment {
     // (undocumented)
     items: TodoAttachment[];
@@ -75,15 +92,13 @@ export interface TodoItemsAttachmentsOperations {
     // (undocumented)
     createAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => Promise<PageTodoAttachment>;
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
 // @public
 export interface TodoItemsCreateOptionalParams extends OperationOptions {
     // (undocumented)
     attachments?: TodoAttachment[];
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -132,7 +147,7 @@ export interface TodoItemsOperations {
         labels?: TodoLabels;
     }>;
     // (undocumented)
-    list: (options?: TodoItemsListOptionalParams) => Promise<TodoPage>;
+    list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
     // (undocumented)
     update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
         id: number;
@@ -150,8 +165,6 @@ export interface TodoItemsOperations {
 
 // @public
 export interface TodoItemsUpdateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public

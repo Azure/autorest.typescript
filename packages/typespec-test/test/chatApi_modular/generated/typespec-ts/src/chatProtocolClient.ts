@@ -5,10 +5,10 @@ import {
   createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
-  createStreaming,
   create,
-  CreateStreamingOptionalParams,
+  createStreaming,
   CreateOptionalParams,
+  CreateStreamingOptionalParams,
 } from "./api/index.js";
 import {
   StreamingChatCompletionOptionsRecord,
@@ -43,19 +43,19 @@ export class ChatProtocolClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Creates a new streaming chat completion. */
-  createStreaming(
-    body: StreamingChatCompletionOptionsRecord,
-    options: CreateStreamingOptionalParams = { requestOptions: {} },
-  ): Promise<ChatCompletionChunkRecord> {
-    return createStreaming(this._client, body, options);
-  }
-
   /** Creates a new chat completion. */
   create(
     body: ChatCompletionOptionsRecord,
     options: CreateOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletionRecord> {
     return create(this._client, body, options);
+  }
+
+  /** Creates a new streaming chat completion. */
+  createStreaming(
+    body: StreamingChatCompletionOptionsRecord,
+    options: CreateStreamingOptionalParams = { requestOptions: {} },
+  ): Promise<ChatCompletionChunkRecord> {
+    return createStreaming(this._client, body, options);
   }
 }

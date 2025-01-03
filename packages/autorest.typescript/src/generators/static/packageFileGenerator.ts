@@ -203,7 +203,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
-    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["mocha"] = "^11.0.2";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
     packageInfo.devDependencies["tsx"] = "^4.7.1";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";

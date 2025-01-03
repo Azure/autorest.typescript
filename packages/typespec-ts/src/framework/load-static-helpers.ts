@@ -10,6 +10,8 @@ import {
 } from "ts-morph";
 import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
+import { isAzurePackage } from "@azure-tools/rlc-common";
+import { ModularEmitterOptions } from "../modular/interfaces.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -34,7 +36,8 @@ export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
 const DEFAULT_STATIC_HELPERS_PATH = "static/static-helpers";
 
-export interface LoadStaticHelpersOptions {
+export interface LoadStaticHelpersOptions
+  extends Partial<ModularEmitterOptions> {
   helpersAssetDirectory?: string;
   sourcesDir?: string;
 }
@@ -59,6 +62,26 @@ export async function loadStaticHelpers(
     const contents = await readFile(file.source, "utf-8");
     const addedFile = project.createSourceFile(targetPath, contents, {
       overwrite: true
+    });
+    addedFile.getImportDeclarations().map((i) => {
+      if (!isAzurePackage({ options: options.options })) {
+        if (
+          i
+            .getModuleSpecifier()
+            .getFullText()
+            .includes("@azure/core-rest-pipeline")
+        ) {
+          i.setModuleSpecifier("@typespec/ts-http-runtime");
+        }
+        if (
+          i
+            .getModuleSpecifier()
+            .getFullText()
+            .includes("@azure-rest/core-client")
+        ) {
+          i.setModuleSpecifier("@typespec/ts-http-runtime");
+        }
+      }
     });
 
     for (const entry of Object.values(helpers)) {

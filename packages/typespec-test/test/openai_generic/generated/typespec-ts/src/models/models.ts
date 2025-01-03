@@ -561,8 +561,8 @@ export function createFineTuneRequestSerializer(
     classification_betas: !item["classificationBetas"]
       ? item["classificationBetas"]
       : item["classificationBetas"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     suffix: item["suffix"],
   };
 }
@@ -694,12 +694,12 @@ export interface OpenAIFile {
    * `error`, `deleting` or `deleted`.
    */
   status:
-    | "uploaded"
-    | "processed"
-    | "pending"
-    | "error"
-    | "deleting"
-    | "deleted";
+  | "uploaded"
+  | "processed"
+  | "pending"
+  | "error"
+  | "deleting"
+  | "deleted";
   /**
    * Additional details about the status of the file. If the file is in the `error` state, this will
    * include a message describing the error.
@@ -1065,15 +1065,15 @@ export interface CreateCompletionRequest {
    * descriptions of them.
    */
   model:
-    | "babbage-002"
-    | "davinci-002"
-    | "text-davinci-003"
-    | "text-davinci-002"
-    | "text-davinci-001"
-    | "code-davinci-002"
-    | "text-curie-001"
-    | "text-babbage-001"
-    | "text-ada-001";
+  | "babbage-002"
+  | "davinci-002"
+  | "text-davinci-003"
+  | "text-davinci-002"
+  | "text-davinci-001"
+  | "code-davinci-002"
+  | "text-curie-001"
+  | "text-babbage-001"
+  | "text-ada-001";
   /**
    * The prompt(s) to generate completions for, encoded as a string, array of strings, array of
    * tokens, or array of token arrays.
@@ -1180,7 +1180,7 @@ export function createCompletionRequestSerializer(
 ): any {
   return {
     model: item["model"],
-    prompt: item["prompt"],
+    prompt: !item["prompt"] ? item["prompt"] : promptSerializer(item["prompt"]),
     suffix: item["suffix"],
     temperature: item["temperature"],
     top_p: item["topP"],
@@ -1375,8 +1375,8 @@ export function createFineTuningJobRequestSerializer(
     hyperparameters: !item["hyperparameters"]
       ? item["hyperparameters"]
       : _createFineTuningJobRequestHyperparametersSerializer(
-          item["hyperparameters"],
-        ),
+        item["hyperparameters"],
+      ),
     suffix: item["suffix"],
   };
 }
@@ -1397,8 +1397,8 @@ export function _createFineTuningJobRequestHyperparametersSerializer(
     n_epochs: !item["nEpochs"]
       ? item["nEpochs"]
       : _createFineTuningJobRequestHyperparametersNEpochsSerializer(
-          item["nEpochs"],
-        ),
+        item["nEpochs"],
+      ),
   };
 }
 
@@ -1438,12 +1438,12 @@ export interface FineTuningJob {
    * `succeeded`, `failed`, or `cancelled`.
    */
   status:
-    | "created"
-    | "pending"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled";
+  | "created"
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
   /**
    * The hyperparameters used for the fine-tuning job. See the
    * [fine-tuning guide](/docs/guides/fine-tuning) for more details.
@@ -1489,9 +1489,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     createdAt: new Date(item["created_at"] * 1000),
     finishedAt: !item["finished_at"]
       ? item["finished_at"]
-      : !item["finished_at"]
-        ? item["finished_at"]
-        : new Date(item["finished_at"] * 1000),
+      : new Date(item["finished_at"] * 1000),
     model: item["model"],
     fineTunedModel: item["fine_tuned_model"],
     organizationId: item["organization_id"],
@@ -1637,17 +1635,17 @@ export interface CreateChatCompletionRequest {
    * table for details on which models work with the Chat API.
    */
   model:
-    | "gpt4"
-    | "gpt-4-0314"
-    | "gpt-4-0613"
-    | "gpt-4-32k"
-    | "gpt-4-32k-0314"
-    | "gpt-4-32k-0613"
-    | "gpt-3.5-turbo"
-    | "gpt-3.5-turbo-16k"
-    | "gpt-3.5-turbo-0301"
-    | "gpt-3.5-turbo-0613"
-    | "gpt-3.5-turbo-16k-0613";
+  | "gpt4"
+  | "gpt-4-0314"
+  | "gpt-4-0613"
+  | "gpt-4-32k"
+  | "gpt-4-32k-0314"
+  | "gpt-4-32k-0613"
+  | "gpt-3.5-turbo"
+  | "gpt-3.5-turbo-16k"
+  | "gpt-3.5-turbo-0301"
+  | "gpt-3.5-turbo-0613"
+  | "gpt-3.5-turbo-16k-0613";
   /**
    * A list of messages comprising the conversation so far.
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
@@ -1744,8 +1742,8 @@ export function createChatCompletionRequestSerializer(
     function_call: !item["functionCall"]
       ? item["functionCall"]
       : _createChatCompletionRequestFunctionCall1Serializer(
-          item["functionCall"],
-        ),
+        item["functionCall"],
+      ),
     temperature: item["temperature"],
     top_p: item["topP"],
     n: item["n"],
@@ -1799,8 +1797,8 @@ export function chatCompletionRequestMessageSerializer(
     function_call: !item["functionCall"]
       ? item["functionCall"]
       : _chatCompletionRequestMessageFunctionCallSerializer(
-          item["functionCall"],
-        ),
+        item["functionCall"],
+      ),
   };
 }
 
@@ -1863,7 +1861,7 @@ export function chatCompletionFunctionsSerializer(
 }
 
 /** model interface ChatCompletionFunctionParameters */
-export interface ChatCompletionFunctionParameters extends Record<string, any> {}
+export interface ChatCompletionFunctionParameters extends Record<string, any> { }
 
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
@@ -1985,8 +1983,8 @@ export function chatCompletionResponseMessageDeserializer(
     functionCall: !item["function_call"]
       ? item["function_call"]
       : _chatCompletionResponseMessageFunctionCallDeserializer(
-          item["function_call"],
-        ),
+        item["function_call"],
+      ),
   };
 }
 

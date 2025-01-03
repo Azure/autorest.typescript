@@ -7,8 +7,8 @@ export declare class CustomClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(credential: KeyCredential, options?: CustomClientOptionalParams);
-    valid(options?: ValidOptionalParams): Promise<void>;
     invalid(options?: InvalidOptionalParams): Promise<void>;
+    valid(options?: ValidOptionalParams): Promise<void>;
 }
 
 export declare interface CustomClientOptionalParams extends ClientOptions {
