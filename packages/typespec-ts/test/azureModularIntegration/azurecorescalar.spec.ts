@@ -5,7 +5,7 @@ describe("Scalar Azure core Client", () => {
 
   beforeEach(() => {
     client = new ScalarClient({
-      endpoint: "http://localhost:3004",
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

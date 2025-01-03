@@ -9,7 +9,9 @@ describe("Azure Core Traits Rest Client", () => {
   beforeEach(() => {
     client = AzureCoreTraitsClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3003"
+      retryOptions: {
+        maxRetries: 0
+      }
     });
   });
 

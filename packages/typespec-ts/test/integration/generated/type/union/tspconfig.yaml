@@ -6,6 +6,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
+    branded: false
     isTypeSpecTest: true
     generateSample: true
     title: UnionsClient

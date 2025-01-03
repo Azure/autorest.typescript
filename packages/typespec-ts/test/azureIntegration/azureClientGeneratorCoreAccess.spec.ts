@@ -9,7 +9,9 @@ describe("Access Client", () => {
   beforeEach(() => {
     client = AccessClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3003"
+      retryOptions: {
+        maxRetries: 0
+      }
     });
   });
 

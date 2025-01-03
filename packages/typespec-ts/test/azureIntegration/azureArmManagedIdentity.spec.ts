@@ -7,7 +7,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   beforeEach(() => {
     client = AzureArmModelsCommonTypesManagedIdentityClientFactory({
-      endpoint: "http://localhost:3003",
+      endpoint: "http://localhost:3000",
       allowInsecureConnection: true
     });
   });

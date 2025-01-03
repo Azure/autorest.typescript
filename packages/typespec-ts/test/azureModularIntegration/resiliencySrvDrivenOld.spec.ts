@@ -4,7 +4,7 @@ describe("Service Driven old Client v1", () => {
   let client: ResiliencyServiceDrivenClient;
 
   beforeEach(() => {
-    client = new ResiliencyServiceDrivenClient("http://localhost:3004", "v1", {
+    client = new ResiliencyServiceDrivenClient("http://localhost:3002", "v1", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });
@@ -31,7 +31,7 @@ describe("Service Driven old Client v2", () => {
   let client: ResiliencyServiceDrivenClient;
 
   beforeEach(() => {
-    client = new ResiliencyServiceDrivenClient("http://localhost:3004", "v2", {
+    client = new ResiliencyServiceDrivenClient("http://localhost:3002", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });

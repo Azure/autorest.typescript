@@ -6,7 +6,7 @@ describe("AzureExampleClient Client", () => {
   beforeEach(() => {
     client = new AzureExampleClient({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3004"
+      endpoint: "http://localhost:3002"
     });
   });
 

@@ -9,8 +9,7 @@ describe("AzureLroCoreClient Rest Client", () => {
 
   beforeEach(() => {
     client = SpecsAzureCoreLroStandardClientFactory({
-      allowInsecureConnection: true,
-      endpoint: "http://localhost:3003"
+      allowInsecureConnection: true
     });
   });
 

@@ -5,7 +5,7 @@ describe("Client Structure Two-Operation-Group Rest Client", () => {
 
   beforeEach(() => {
     client = new TwoOperationGroupClient(
-      "http://localhost:3004",
+      "http://localhost:3002",
       "two-operation-group",
       {
         allowInsecureConnection: true

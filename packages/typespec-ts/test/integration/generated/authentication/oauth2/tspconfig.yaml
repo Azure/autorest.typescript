@@ -6,6 +6,7 @@ options:
     generateMetadata: true
     generateTest: true
     azureSdkForJs: false
+    branded: false
     isTypeSpecTest: true
     title: AuthOauth2Client
     packageDetails:

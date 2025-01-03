@@ -1,10 +1,10 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { Client } from '@typespec/ts-http-runtime';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { HttpResponse } from '@typespec/ts-http-runtime';
+import { RawHttpHeaders } from '@typespec/ts-http-runtime';
+import { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
+import { RequestParameters } from '@typespec/ts-http-runtime';
+import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare interface Base64BytesProperty {
     value: string;

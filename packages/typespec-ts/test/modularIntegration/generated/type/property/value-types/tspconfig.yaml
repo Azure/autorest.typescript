@@ -5,6 +5,7 @@ options:
     generateMetadata: true
     generateTest: false
     azureSdkForJs: false
+    branded: false
     isModularLibrary: true
     hierarchyClient: false
     "emitter-output-dir": "{project-root}"

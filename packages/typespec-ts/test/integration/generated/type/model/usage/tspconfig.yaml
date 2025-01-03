@@ -8,6 +8,7 @@ options:
     addCredentials: false
     isTypeSpecTest: true
     azureSdkForJs: false
+    branded: false
     packageDetails:
       name: "@msinternal/usage"
       description: "Usage Test Service"

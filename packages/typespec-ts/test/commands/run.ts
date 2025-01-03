@@ -239,37 +239,24 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
   }
 
   function flavor() {
-    return env.mode().includes("non-branded") ? "non-branded" : "branded";
+    return env.mode().includes("azure") ? "azure" : "standard";
   }
   function clientType() {
-    switch (env.mode()) {
-      case "modular":
-        return "modular";
-      case "rlc":
-        return "rlc";
-      case "azure_rlc":
-        return "azure_rlc";
-      case "azure_modular":
-        return "azure_modular";
-      case "non-branded-modular":
-        return "modular";
-      default:
-        return "rlc";
-    }
+    return env.mode().includes("modular") ? "modular" : "rlc";
   }
 
   function outputPath() {
     const subPath = {
-      "non-branded": {
-        modular: "nonBrandedIntegration/modular",
-        rlc: "nonBrandedIntegration/rlc"
+      standard: {
+        modular: "modularIntegration",
+        rlc: "integration"
       },
-      branded: { modular: "modularIntegration", rlc: "integration", azure_rlc: "azureIntegration", azure_modular: "azureModularIntegration" }
+      azure: { modular: "azureModularIntegration", rlc: "azureIntegration" }
     }[flavor()][clientType()];
 
     const outputPath = joinPath(
       testRoot(),
-      subPath!,
+      subPath,
       "generated",
       env.targetFolder()
     );

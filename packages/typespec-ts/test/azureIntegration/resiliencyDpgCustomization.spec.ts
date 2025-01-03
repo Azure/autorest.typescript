@@ -12,19 +12,19 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
   let client22: ServiceDrivenNewClient;
 
   beforeEach(() => {
-    client11 = ServiceDrivenOldClientFactory("http://localhost:3003", "v1", {
+    client11 = ServiceDrivenOldClientFactory("http://localhost:3000", "v1", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });
-    client12 = ServiceDrivenOldClientFactory("http://localhost:3003", "v2", {
+    client12 = ServiceDrivenOldClientFactory("http://localhost:3000", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });
-    client21 = ServiceDrivenNewClientFactory("http://localhost:3003", "v2", {
+    client21 = ServiceDrivenNewClientFactory("http://localhost:3000", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v1"
     });
-    client22 = ServiceDrivenNewClientFactory("http://localhost:3003", "v2", {
+    client22 = ServiceDrivenNewClientFactory("http://localhost:3000", "v2", {
       allowInsecureConnection: true,
       apiVersion: "v2"
     });
@@ -139,7 +139,7 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
 
   it("should work with add operation", async () => {
     const client122 = ServiceDrivenOldClientFactory(
-      "http://localhost:3003",
+      "http://localhost:3000",
       "v2",
       {
         allowInsecureConnection: true,

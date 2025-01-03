@@ -5,7 +5,7 @@ describe("Azure Arm Resources Rest Client", () => {
 
   beforeEach(() => {
     client = new CommonPropertiesClient(SUBSCRIPTION_ID_EXPECTED, {
-      endpoint: "http://localhost:3004",
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

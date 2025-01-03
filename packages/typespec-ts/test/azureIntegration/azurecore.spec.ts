@@ -18,7 +18,9 @@ describe("Azure Core Rest Client", () => {
   beforeEach(() => {
     client = AzureCoreClientFactory({
       allowInsecureConnection: true,
-      endpoint: "http://localhost:3003"
+      retryOptions: {
+        maxRetries: 0
+      }
     });
   });
   const validUser = {
