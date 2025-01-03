@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class NotDefinedClient {
     private _client;

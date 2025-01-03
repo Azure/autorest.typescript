@@ -7,6 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
+    branded: false
     isTypeSpecTest: true
     title: VersioningMadeOptionalClient
     isModularLibrary: true

@@ -4,6 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
     azureSdkForJs: false
+    branded: false
     isTypeSpecTest: true
     title: AuthApiKeyClient
     packageDetails:

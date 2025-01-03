@@ -1,9 +1,9 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { KeyCredential } from '@azure/core-auth';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { Client } from '@typespec/ts-http-runtime';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { HttpResponse } from '@typespec/ts-http-runtime';
+import { KeyCredential } from '@typespec/ts-http-runtime';
+import { RequestParameters } from '@typespec/ts-http-runtime';
+import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare type AuthApiKeyClient = Client & {
     path: Routes;

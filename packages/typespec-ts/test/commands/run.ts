@@ -216,7 +216,7 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
   async function entryPath(): Promise<string> {
     const specPath = joinPath(
       emitterRoot(),
-      "./temp/http",
+      "./temp/specs",
       env.sourceTypespec()
     );
     const possibleEntryPaths = ["client.tsp", "main.tsp"].map((filename) =>
@@ -239,7 +239,7 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
   }
 
   function flavor() {
-    return env.mode().includes("non-branded") ? "non-branded" : "branded";
+    return env.mode().includes("azure") ? "azure" : "standard";
   }
   function clientType() {
     return env.mode().includes("modular") ? "modular" : "rlc";
@@ -247,11 +247,11 @@ async function runTypespecHelper(env: GenEnv): Promise<void> {
 
   function outputPath() {
     const subPath = {
-      "non-branded": {
-        modular: "nonBrandedIntegration/modular",
-        rlc: "nonBrandedIntegration/rlc"
+      standard: {
+        modular: "modularIntegration",
+        rlc: "integration"
       },
-      branded: { modular: "modularIntegration", rlc: "integration" }
+      azure: { modular: "azureModularIntegration", rlc: "azureIntegration" }
     }[flavor()][clientType()];
 
     const outputPath = joinPath(

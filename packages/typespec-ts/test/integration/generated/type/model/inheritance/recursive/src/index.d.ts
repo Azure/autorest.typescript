@@ -1,8 +1,8 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { Client } from '@typespec/ts-http-runtime';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { HttpResponse } from '@typespec/ts-http-runtime';
+import { RequestParameters } from '@typespec/ts-http-runtime';
+import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 declare function createClient(options?: RecursiveClientOptions): RecursiveClient;
 export default createClient;
