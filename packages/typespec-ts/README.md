@@ -100,12 +100,12 @@ generateMetadata: false
 
 To allow the codegen generating test sample files and updating testing configuration. And the default value is `true` and you could also turn it off as `false`.
 
-### includeShortcuts
+### "include-shortcuts"
 
 To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on.
 
 ```yaml
-includeShortcuts: true
+"include-shortcuts": true
 ```
 
 ### azureSdkForJs

@@ -75,7 +75,7 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
        "emitter-output-dir": "{project-root}"
        generateMetadata: true
        generateTest: true
-       includeShortcuts: true
+       "include-shortcuts": true
        azureSdkForJs: false
        addCredentials: false
        isTypeSpecTest: true

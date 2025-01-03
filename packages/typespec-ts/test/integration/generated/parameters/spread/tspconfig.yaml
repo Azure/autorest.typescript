@@ -3,11 +3,11 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    enableOperationGroup: true
-    isTypeSpecTest: true
-    packageDetails:
+    "generate-metadata": true
+    "generate-test": false
+    "add-credentials": false
+    "azure-sdk-for-js": false
+    "enable-operation-group": true
+    "is-typespec-test": true
+    "package-details":
       name: "@msinternal/parameterSpread"

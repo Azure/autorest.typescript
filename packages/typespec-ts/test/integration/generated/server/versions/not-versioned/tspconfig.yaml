@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    "generate-metadata": true
+    "generate-test": false
+    "add-credentials": false
+    "azure-sdk-for-js": false
+    "is-typespec-test": true
     title: NotVersionedParamInServerVersionsClient
-    packageDetails:
+    "package-details":
       name: "@msinternal/not-versioned"
       description: "Not-versioned Test Service"

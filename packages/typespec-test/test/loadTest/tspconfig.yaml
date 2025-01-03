@@ -20,12 +20,12 @@ options:
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     title: Azure Load Testing
     description: Azure Load Testing Client
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    azureSdkForJs: false
-    enableOperationGroup: true
-    packageDetails:
+    "generate-metadata": true
+    "generate-test": true
+    "generate-sample": true
+    "azure-sdk-for-js": false
+    "enable-operation-group": true
+    "package-details":
       name: "@azure-rest/load-testing"
       description: "This package contains Microsoft Azure LoadTestingClient client library."
       version: 1.0.1

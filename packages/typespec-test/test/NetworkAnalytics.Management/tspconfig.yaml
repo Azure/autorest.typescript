@@ -2,12 +2,12 @@ emit: ["@azure-tools/typespec-ts"]
 options:
   "@azure-tools/typespec-ts":
     examples-directory: "{project-root}/spec/examples"
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    isModularLibrary: true
-    azureSdkForJs: false
-    experimentalExtensibleEnums: true
+    "generate-metadata": true
+    "generate-test": true
+    "generate-sample": true
+    "is-modular-library": true
+    "azure-sdk-for-js": false
+    "experimental-extensible-enums": true
     "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/test/arm-test"
-    packageDetails:
+    "package-details":
       name: "@azure/arm-networkanalytics"

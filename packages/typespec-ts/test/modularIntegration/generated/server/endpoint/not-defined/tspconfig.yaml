@@ -3,14 +3,14 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    "generate-metadata": true
+    "generate-test": false
+    "add-credentials": false
+    "azure-sdk-for-js": false
+    "is-typespec-test": true
     title: NotDefinedParamInServerEndpointClient
-    isModularLibrary: true
-    hierarchyClient: false
-    packageDetails:
+    "is-modular-library": true
+    "hierarchy-client": false
+    "package-details":
       name: "@msinternal/notdefinedparam"
       description: "NotDefinedParameter Test Service"

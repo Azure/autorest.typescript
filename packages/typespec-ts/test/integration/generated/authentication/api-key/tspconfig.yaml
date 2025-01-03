@@ -3,10 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    "azure-sdk-for-js": false
+    "is-typespec-test": true
     title: AuthApiKeyClient
-    packageDetails:
+    "package-details":
       name: "@msinternal/auth-apikey"
       description: "Auth api key Test Service"
       version: "1.0.0"

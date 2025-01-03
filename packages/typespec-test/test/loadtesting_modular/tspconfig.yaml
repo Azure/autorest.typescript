@@ -8,12 +8,12 @@ options:
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     title: Azure Load Testing
     description: Azure Load Testing Client
-    azureSdkForJs: false
-    enableOperationGroup: true
-    isModularLibrary: true
-    hierarchyClient: false
-    experimentalExtensibleEnums: true
-    packageDetails:
+    "azure-sdk-for-js": false
+    "enable-operation-group": true
+    "is-modular-library": true
+    "hierarchy-client": false
+    "experimental-extensible-enums": true
+    "package-details":
       name: "@azure/load-testing"
       description: This package contains Microsoft Azure LoadTestingClient client library.
       version: 1.0.1

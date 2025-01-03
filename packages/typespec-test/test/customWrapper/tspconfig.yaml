@@ -2,8 +2,8 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    azureSdkForJs: false
+    "azure-sdk-for-js": false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    packageDetails:
+    "package-details":
       name: "@msinternal/customWrapper"
       description: "Custom Wrapper Service"

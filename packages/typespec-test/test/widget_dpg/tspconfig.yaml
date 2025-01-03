@@ -2,12 +2,12 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    multiClient: false
-    azureSdkForJs: false
-    isModularLibrary: true
-    generateMetadata: true
+    "multi-client": false
+    "azure-sdk-for-js": false
+    "is-modular-library": true
+    "generate-metadata": true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    packageDetails:
+    "package-details":
       name: "@msinternal/widget_dpg"
       description: "Widget Service"
       version: "1.0.0-beta.1"

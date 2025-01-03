@@ -3,12 +3,12 @@ emit:
   - "@azure-tools/typespec-autorest"
 options:
   "@azure-tools/typespec-ts":
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    azureSdkForJs: false
+    "generate-metadata": true
+    "generate-test": true
+    "generate-sample": true
+    "azure-sdk-for-js": false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    packageDetails:
+    "package-details":
       name: "@msinternal/openai"
       description: "OpenAI Inference Service"
       version: "1.0.0-beta.1"

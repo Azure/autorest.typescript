@@ -3,15 +3,15 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    generateSample: true
+    "generate-metadata": true
+    "generate-test": false
+    "add-credentials": false
+    "azure-sdk-for-js": false
+    "is-typespec-test": true
+    "generate-sample": true
     title: ArrayItemTypesClient
-    enableOperationGroup: true
-    packageDetails:
+    "enable-operation-group": true
+    "package-details":
       name: "@msinternal/array-itemtypes"
       description: "Array item-types Test Service"
       version: "1.0.0"

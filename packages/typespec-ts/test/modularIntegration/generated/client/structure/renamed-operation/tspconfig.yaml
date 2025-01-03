@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    isModularLibrary: true
-    packageDetails:
+    "generate-test": false
+    "add-credentials": false
+    "azure-sdk-for-js": false
+    "is-typespec-test": true
+    "is-modular-library": true
+    "package-details":
       name: "@msinternal/client-structure-renamed"
       description: "Client Structure RenamedOperaiton Test Service"
       version: "1.0.0"
