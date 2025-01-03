@@ -70,6 +70,17 @@ describe("Collection Format Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
+  it("should serialize tsv format query array parameter", async () => {
+    const result = await client
+      .path("/parameters/collection-format/query/tsv")
+      .get({
+        queryParameters: {
+          colors: colors.join("\t")
+        }
+      });
+    assert.strictEqual(result.status, "204");
+  });
+
   it("should serialize ssv format query array parameter", async () => {
     const result = await client
       .path("/parameters/collection-format/query/ssv")
