@@ -7,6 +7,8 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
+export declare function buildMultiCollection(items: string[], parameterName: string): string;
+
 export declare type CollectionFormatClient = Client & {
     path: Routes;
 };
@@ -80,7 +82,7 @@ export declare interface QueryMultiQueryParam {
 }
 
 export declare interface QueryMultiQueryParamProperties {
-    colors: QueryMultiColorsQueryParam;
+    colors: QueryMultiColorsQueryParam | string;
 }
 
 export declare interface QueryPipes {

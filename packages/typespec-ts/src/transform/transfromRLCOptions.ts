@@ -68,8 +68,21 @@ function extractRLCOptions(
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
+  const multiClient = emitterOptions["multi-client"];
+  const isTypeSpecTest = emitterOptions["is-typespec-test"];
+  const title = emitterOptions["title"];
+  const dependencyInfo = emitterOptions["dependency-info"];
+  const productDocLink = emitterOptions["product-doc-link"];
+  const isModularLibrary = emitterOptions["is-modular-library"];
+  const compatibilityMode = emitterOptions["compatibility-mode"];
+  const experimentalExtensibleEnums =
+    emitterOptions["experimental-extensible-enums"];
+  const ignorePropertyNameNormalize =
+    emitterOptions["ignore-property-name-normalize"];
+  const compatibilityQueryMultiFormat =
+    emitterOptions["compatibility-query-multi-format"];
+
   return {
-    ...emitterOptions,
     ...credentialInfo,
     flavor,
     moduleKind,
@@ -86,7 +99,17 @@ function extractRLCOptions(
     enableModelNamespace,
     hierarchyClient,
     azureArm: dpgContext.arm,
-    clearOutputFolder
+    clearOutputFolder,
+    multiClient,
+    isTypeSpecTest,
+    title,
+    dependencyInfo,
+    productDocLink,
+    isModularLibrary,
+    compatibilityMode,
+    experimentalExtensibleEnums,
+    ignorePropertyNameNormalize,
+    compatibilityQueryMultiFormat
   };
 }
 

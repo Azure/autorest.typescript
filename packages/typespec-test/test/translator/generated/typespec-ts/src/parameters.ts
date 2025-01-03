@@ -79,8 +79,9 @@ export interface TranslateQueryParamProperties {
    * in the translation scope. For example, use to=de to translate to German.
    * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
    * For example, use to=de&to=it to translate to German and Italian.
+   * This parameter could be formatted as multi collection string, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request.
    */
-  to: TranslateToQueryParam;
+  to: TranslateToQueryParam | string;
   /**
    * Specifies the language of the input text. Find which languages are available to translate from by
    * looking up supported languages using the translation scope. If the from parameter isn't specified,

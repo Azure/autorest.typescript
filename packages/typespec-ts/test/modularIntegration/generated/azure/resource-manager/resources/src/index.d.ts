@@ -19,14 +19,10 @@ export declare enum KnownCreatedByType {
     Key = "Key"
 }
 
-export declare enum KnownProvisioningState {
+export declare enum KnownResourceProvisioningState {
     Succeeded = "Succeeded",
     Failed = "Failed",
-    Canceled = "Canceled",
-    Provisioning = "Provisioning",
-    Updating = "Updating",
-    Deleting = "Deleting",
-    Accepted = "Accepted"
+    Canceled = "Canceled"
 }
 
 export declare enum KnownVersions {
@@ -83,7 +79,7 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-export declare type ProvisioningState = string;
+export declare type ProvisioningState = ResourceProvisioningState | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
 export declare interface ProxyResource extends Resource {
 }
@@ -94,6 +90,8 @@ export declare interface Resource {
     readonly type?: string;
     readonly systemData?: SystemData;
 }
+
+export declare type ResourceProvisioningState = string;
 
 export declare class ResourcesClient {
     private _client;

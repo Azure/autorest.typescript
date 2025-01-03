@@ -26,7 +26,7 @@ export interface AccountSasToken {
 }
 
 // @public
-export type ActionType = "Internal";
+export type ActionType = string;
 
 // @public
 export interface ConsumptionEndpointsProperties {
@@ -56,10 +56,10 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export type ControlState = "Enabled" | "Disabled";
+export type ControlState = string;
 
 // @public
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+export type CreatedByType = string;
 
 // @public
 export interface DataProduct extends TrackedResource {
@@ -215,7 +215,7 @@ export interface DataProductUpdateProperties {
 }
 
 // @public
-export type DataProductUserRole = "Reader" | "SensitiveReader";
+export type DataProductUserRole = string;
 
 // @public
 export interface DataProductVersion {
@@ -277,7 +277,7 @@ export interface DataTypesOperations {
 }
 
 // @public
-export type DataTypeState = "Stopped" | "Running";
+export type DataTypeState = string;
 
 // @public
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
@@ -298,7 +298,7 @@ export interface DataTypeUpdateProperties {
 }
 
 // @public
-export type DefaultAction = "Allow" | "Deny";
+export type DefaultAction = string;
 
 // @public
 export interface EncryptionKeyDetails {
@@ -319,6 +319,69 @@ export interface KeyVaultInfo {
 }
 
 // @public
+export enum KnownActionType {
+    Internal = "Internal"
+}
+
+// @public
+export enum KnownControlState {
+    Disabled = "Disabled",
+    Enabled = "Enabled"
+}
+
+// @public
+export enum KnownCreatedByType {
+    Application = "Application",
+    Key = "Key",
+    ManagedIdentity = "ManagedIdentity",
+    User = "User"
+}
+
+// @public
+export enum KnownDataProductUserRole {
+    Reader = "Reader",
+    SensitiveReader = "SensitiveReader"
+}
+
+// @public
+export enum KnownDataTypeState {
+    Running = "Running",
+    Stopped = "Stopped"
+}
+
+// @public
+export enum KnownDefaultAction {
+    Allow = "Allow",
+    Deny = "Deny"
+}
+
+// @public
+export enum KnownManagedServiceIdentityType {
+    None = "None",
+    SystemAndUserAssigned = "SystemAssigned, UserAssigned",
+    SystemAssigned = "SystemAssigned",
+    UserAssigned = "UserAssigned"
+}
+
+// @public
+export enum KnownOrigin {
+    "user,system" = "user,system",
+    system = "system",
+    user = "user"
+}
+
+// @public
+export enum KnownProvisioningState {
+    Accepted = "Accepted",
+    Canceled = "Canceled",
+    Deleting = "Deleting",
+    Failed = "Failed",
+    Provisioning = "Provisioning",
+    Succeeded = "Succeeded",
+    Updating = "Updating"
+}
+
+// @public
 export enum KnownVersions {
     v2023_11_15 = "2023-11-15"
 }
@@ -336,7 +399,7 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 // @public
-export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
+export type ManagedServiceIdentityType = string;
 
 // @public
 export interface ManagedServiceIdentityV4 {
@@ -388,7 +451,7 @@ export interface OperationsOperations {
 }
 
 // @public
-export type Origin = "user" | "system" | "user,system";
+export type Origin = string;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -403,7 +466,7 @@ export interface PageSettings {
 }
 
 // @public
-export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+export type ProvisioningState = string;
 
 // @public
 export interface ProxyResource extends Resource {
