@@ -238,7 +238,7 @@ function regularAutorestPackage(
       productName: description,
       productSlugs: ["azure"],
       disableDocsMs: true,
-      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      apiRefLink: `https://learn.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
     };
   }
   return packageInfo;

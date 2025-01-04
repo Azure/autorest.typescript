@@ -100,6 +100,6 @@
     "productName": "",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/arm-package-subscriptions-2019-06?view=azure-node-preview"
+    "apiRefLink": "https://learn.microsoft.com/javascript/api/@msinternal/arm-package-subscriptions-2019-06?view=azure-node-preview"
   }
 }

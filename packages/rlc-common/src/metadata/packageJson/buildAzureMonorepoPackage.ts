@@ -97,7 +97,7 @@ function getSampleMetadata({
       productName: name,
       productSlugs: ["azure"],
       disableDocsMs: true,
-      apiRefLink: `https://docs.microsoft.com/javascript/api/${name}${apiRefUrlQueryParameter}`
+      apiRefLink: `https://learn.microsoft.com/javascript/api/${name}${apiRefUrlQueryParameter}`
     }
   };
 }

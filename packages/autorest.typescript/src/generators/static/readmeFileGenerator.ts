@@ -155,7 +155,7 @@ function createMetadata(
     clientDescriptiveName: `${serviceName} client`,
     description: codeModel.info?.description,
     apiRefURL: azureHuh
-      ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      ? `https://learn.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,

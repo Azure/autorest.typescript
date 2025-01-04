@@ -7,7 +7,7 @@ Azure Health Insights provides an API that serves insight models, specific for H
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/health-insights-clinicalmatching)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/health-insights-clinicalmatching?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/health-insights-clinicalmatching?view=azure-node-preview)
 
 ## Getting started
 

@@ -7,7 +7,7 @@ Azure APIs for the Azure Chat protocol.
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure/ai-chat-protocol)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/ai-chat-protocol?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure/ai-chat-protocol?view=azure-node-preview)
 
 ## Getting started
 
@@ -45,7 +45,7 @@ npm install @azure/identity
 
 You will also need to **register a new AAD application and grant access to Azure ChatProtocol** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
 
-For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 ```javascript
 const { ChatProtocolClient } = require("@azure/ai-chat-protocol");

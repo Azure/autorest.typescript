@@ -8,7 +8,7 @@ Key links:
 
 - [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/agrifood/agrifood-farming-rest)
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/agrifood-farming)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/agrifood-farming?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/agrifood-farming?view=azure-node-preview)
 - [Product documentation](https://azure.microsoft.com/en-us/services/purview/)
 
 ## Getting started
@@ -19,7 +19,7 @@ Key links:
 
 ### Prerequisites
 
-- You must have an [Azure subscription](https://azure.microsoft.com/free/) and follow [these](https://docs.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role) instructions to use this package.
+- You must have an [Azure subscription](https://azure.microsoft.com/free/) and follow [these](https://learn.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role) instructions to use this package.
 
 ### Install the `@azure-rest/agrifood-farming` package
 
@@ -36,7 +36,7 @@ provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
 To authenticate with AAD, you must first `npm` install [`@azure/identity`](https://www.npmjs.com/package/@azure/identity) and
-[enable AAD authentication on your Purview resource](https://docs.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role)
+[enable AAD authentication on your Purview resource](https://learn.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role)
 
 After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from `@azure/identity` to use.
 As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)

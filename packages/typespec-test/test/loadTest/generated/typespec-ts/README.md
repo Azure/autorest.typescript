@@ -8,7 +8,7 @@ Test Service.
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/load-testing)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/load-testing)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/load-testing)
 
 ## Getting started
 
