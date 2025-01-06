@@ -7,7 +7,7 @@ Contoso WidgetManager Service
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/contosowidgetmanager-rest)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/contosowidgetmanager-rest?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/contosowidgetmanager-rest?view=azure-node-preview)
 
 ## Getting started
 
