@@ -80,11 +80,12 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 
 ### typespecTitleMap
 
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `typespecTitleMap` info. The key is the client name from typespec, and the value is the client name we'd like to rename
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `typespecTitleMap` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
 
 ```yaml
 typespecTitleMap: 
   AnomalyDetectorClient: AnomalyDetectorRest
+  AnomalyDetectorClient2: AnomalyDetectorRest2
 ```
 
 ### generateMetadata
