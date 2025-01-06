@@ -168,7 +168,7 @@ export function getDeserializePrivateFunction(
   );
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
-    `throw ${createRestErrorReference}(result);`,
+    `${getExceptionThrowStatement(context, operation)}`,
     "}"
   );
   const deserializedType = isLroOnly
@@ -186,7 +186,7 @@ export function getDeserializePrivateFunction(
   if (isLroOnly && lroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+        throw ${createRestErrorReference}(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
       }
       `
     );
@@ -226,6 +226,91 @@ export function getDeserializePrivateFunction(
     ...functionStatement,
     statements
   };
+}
+
+interface ExceptionThrowDetail {
+  start: number;
+  end?: number;
+  deserializer: string;
+}
+
+interface OperationExceptionDetails {
+  customized: ExceptionThrowDetail[];
+  defaultDeserializer?: string;
+}
+
+function getExceptionDetails(context: SdkContext, operation: ServiceOperation): OperationExceptionDetails {
+  const customized: ExceptionThrowDetail[] = [];
+  let defaultDeserializer: string | undefined;
+  for (const exception of operation.operation.exceptions) {
+    if (!exception.type) {
+      continue;
+    }
+    const statusCode = exception.statusCodes;
+    const deserializeFunctionName = buildModelDeserializer(
+      context,
+      exception.type,
+      false,
+      true
+    );
+    if (!deserializeFunctionName || typeof deserializeFunctionName !== "string") {
+      continue;
+    }
+    if (statusCode === "*") {
+      defaultDeserializer = deserializeFunctionName;
+    } else if (typeof statusCode === "number") {
+      customized.push({
+        start: statusCode,
+        deserializer: deserializeFunctionName
+      });
+    } else {
+      customized.push({
+        start: statusCode.start,
+        end: statusCode.end,
+        deserializer: deserializeFunctionName
+      });
+    }
+  }
+  return { customized, defaultDeserializer };
+}
+
+function getExceptionThrowStatement(context: SdkContext, operation: ServiceOperation) {
+  const statements = [];
+  const createRestErrorReference = resolveReference(
+    useDependencies().createRestError
+  );
+  const { customized, defaultDeserializer } = getExceptionDetails(context, operation);
+  if (customized.length > 0) {
+    statements.push(`const error = ${createRestErrorReference}(result);`);
+    statements.push(`const statusCode = Number.parseInt(result.status);`);
+    const stats: string[] = customized.map((exception) => {
+      if (exception.end) {
+        return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
+              error.details = ${exception.deserializer}(result.body);
+          }`;
+      } else {
+        return `if(statusCode === ${exception.start}) {
+             error.details = ${exception.deserializer}(result.body);
+          }`
+      }
+    });
+    statements.push(stats.join("\nelse "));
+    if (defaultDeserializer) {
+      statements.push(`else {
+        error.details = ${defaultDeserializer}(result.body);
+      }`);
+    }
+    statements.push("throw error;");
+  } else {
+    if (defaultDeserializer) {
+      statements.push(`const error = ${createRestErrorReference}(result);
+      error.details = ${defaultDeserializer}(result.body);`);
+      statements.push("throw error;");
+    } else {
+      statements.push(`${createRestErrorReference}(result);`);
+    }
+  }
+  return statements.join("\n");
 }
 
 function getOptionalParamsName(
@@ -409,7 +494,7 @@ function getLroOnlyOperationFunction(
   ];
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
-    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
   const statements: string[] = [];
@@ -424,9 +509,8 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
+    }>, ${returnType.type}>;
   `);
 
   return {
@@ -749,15 +833,14 @@ function getCollectionFormat(
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${
-    param.name
-  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-    context,
-    param.type,
-    `${optionalParamName}?.${param.name}`,
-    false,
-    getEncodeForType(param.type)
-  )}${additionalParam}): undefined`;
+  return `"${serializedName}": ${optionalParamName}?.${param.name
+    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+      context,
+      param.type,
+      `${optionalParamName}?.${param.name}`,
+      false,
+      getEncodeForType(param.type)
+    )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
@@ -779,11 +862,10 @@ function getContentTypeValue(
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${
-      !param.optional
-        ? "contentType"
-        : `${optionalParamName}.` + param.name + " as any"
-    }`;
+    return `contentType: ${!param.optional
+      ? "contentType"
+      : `${optionalParamName}.` + param.name + " as any"
+      }`;
   }
 }
 
@@ -1038,9 +1120,8 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
-    const restValue = `${
-      propertyPath ? `${propertyPath}${dot}` : `${dot}`
-    }["${serializedName}"]`;
+    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
@@ -1136,14 +1217,12 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-              clientValue,
-              type
-            )} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`;
+            clientValue,
+            type
+          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`;
       }
       return clientValue;
     case "union":
@@ -1214,11 +1293,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
-            context,
-            getNullableValidType(type.valueType),
-            false,
-            true
-          )
+          context,
+          getNullableValidType(type.valueType),
+          false,
+          true
+        )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1246,11 +1325,11 @@ export function deserializeResponseValue(
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
           ? buildModelDeserializer(
-              context,
-              getNullableValidType(type),
-              false,
-              true
-            )
+            context,
+            getNullableValidType(type),
+            false,
+            true
+          )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;

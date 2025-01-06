@@ -14,9 +14,13 @@ import {
   TodoItem,
   todoItemSerializer,
   TodoLabels,
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
   _createResponseDeserializer,
+  invalidTodoItemDeserializer,
   _getResponseDeserializer,
+  notFoundErrorResponseDeserializer,
   TodoItemPatch,
   todoItemPatchSerializer,
   _updateResponseDeserializer,
@@ -53,7 +57,16 @@ export async function _$deleteDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return;
@@ -108,7 +121,7 @@ export async function _updateDeserialize(
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    createRestError(result);
   }
 
   return _updateResponseDeserializer(result.body);
@@ -165,7 +178,12 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return _getResponseDeserializer(result.body);
@@ -230,7 +248,16 @@ export async function _createDeserialize(
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 422) {
+      error.details = invalidTodoItemDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return _createResponseDeserializer(result.body);
@@ -277,7 +304,14 @@ export async function _listDeserialize(
 ): Promise<TodoPage> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return todoPageDeserializer(result.body);
