@@ -128,9 +128,6 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     if (isAzureCoreErrorType(context.program, type.__raw)) {
       return;
     }
-    if (type.usage & UsageFlags.Exception) {
-      console.log("Exception type: ", type.name);
-    }
     if (
       !type.usage ||
       (type.usage !== undefined &&
