@@ -78,12 +78,13 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 | description | description used in package.json file                                                            |
 | version     | detailed version for your released package, the default vaule is `1.0.0-beta.1`                  |
 
-### title
+### typespecTitleMap
 
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `title` info.
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `typespecTitleMap` info. The key is the client name from typespec, and the value is the client name we'd like to rename
 
 ```yaml
-title: AnomalyDetectorRest
+typespecTitleMap: 
+  AnomalyDetectorClient: AnomalyDetectorRest
 ```
 
 ### generateMetadata
