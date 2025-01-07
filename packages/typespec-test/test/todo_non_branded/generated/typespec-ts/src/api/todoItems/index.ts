@@ -121,7 +121,7 @@ export async function _updateDeserialize(
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    createRestError(result);
+    throw createRestError(result);
   }
 
   return _updateResponseDeserializer(result.body);
