@@ -605,7 +605,8 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  const friendlyModelName = getFriendlyName(program, model);
+  const overridedModelName =
+    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
     getModelNamespaceName(dpgContext, model.namespace!)
       .map((nsName) => {
@@ -614,36 +615,28 @@ function getSchemaForModel(
       .join("") + model.name;
   let name = model.name;
   if (
-    !friendlyModelName &&
+    !overridedModelName &&
     model.templateMapper &&
     model.templateMapper.args &&
-    model.templateMapper.args.length > 0
+    model.templateMapper.args.length > 0 &&
+    getPagedResult(program, model)
   ) {
-    const isPagedTemplate = getPagedResult(program, model);
-    const templateTypes = model.templateMapper.args
-      .filter((it) => isType(it) || it.entityKind === "Indeterminate")
-      .map((it) =>
-        it.entityKind === "Indeterminate" ? it.type : it
-      ) as Type[];
-    const templateNamePart = templateTypes
-      .map((it: Type) => {
-        switch (it.kind) {
-          case "Model":
-            return it.name;
-          case "String":
-          case "Boolean":
-          case "Number":
-            return it.value;
-          case "Scalar":
-            return it.name;
-          default:
-            return "";
-        }
-      })
-      .join("");
-    name = isPagedTemplate
-      ? `${templateNamePart} List`
-      : `${name} ${templateNamePart}`;
+    const templateTypes = model.templateMapper.args.filter((it) =>
+      isType(it)
+    ) as Type[];
+    name =
+      templateTypes
+        .map((it: Type) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("") + "List";
   }
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
@@ -652,16 +645,17 @@ function getSchemaForModel(
   const modelSchema: ObjectSchema = {
     name: isCoreModel
       ? name
-      : (friendlyModelName ??
-        (dpgContext.rlcOptions?.enableModelNamespace
+      : overridedModelName !== name
+        ? overridedModelName
+        : dpgContext.rlcOptions?.enableModelNamespace
           ? fullNamespaceName
-          : name)),
+          : name,
     type: "object",
     isMultipartBody,
     description: getDoc(program, model) ?? "",
     fromCore: isCoreModel
   };
-  // normalized the name
+  // normalized the output name
   modelSchema.name = normalizeName(
     modelSchema.name,
     NameType.Interface,
