@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { isValidWord } from "./wordListUtil.js";
+
 export interface NormalizeNameOption {
   shouldGuard?: boolean;
   customReservedNames?: ReservedName[];
@@ -240,34 +242,66 @@ function deconstruct(identifier: string, nameType: NameType): Array<string> {
   // Split by non-alphanumeric characters and try to keep _-. between numbers
   const refinedParts: string[] = [];
   for (let i = 0; i < parts.length; i++) {
-    const [firstMatch, midPart, lastMatch] = extractReservedCharAndSubString(
+    const [formerReserved, part, latterReserved] = extractPartWithReserved(
       parts[i],
       nameType,
       parts[i - 1] === undefined ? true : isNumber(parts[i - 1]),
       parts[i + 1] === undefined ? true : isNumber(parts[i + 1])
     );
-    if (firstMatch) {
-      refinedParts.push(firstMatch);
+    if (formerReserved) {
+      refinedParts.push(formerReserved);
     }
-    if (midPart) {
+    if (part) {
       refinedParts.push(
-        ...midPart
-          .split(/[\W|_]+/)
-          .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()))
+        ...deconstructPart(part)
       );
     }
-    if (lastMatch) {
-      refinedParts.push(lastMatch);
+    if (latterReserved) {
+      refinedParts.push(latterReserved);
     }
   }
   return refinedParts.filter((part) => part.trim().length > 0);
+}
+
+function deconstructPart(text: string): string[] {
+  const parts = text
+    .split(/[\W|_]+/)
+  const res = [];
+  for (const part of parts) {
+    const isUpperCase = isFullyUpperCase(part);
+    const isValid = isValidWord(part);
+    if (isValid) {
+      res.push(part.toLowerCase());
+    } else if (isUpperCase && !isValid) {
+      res.push(part);
+    } else {
+      // try to deconstruct further
+      res.push(...tryDeconstructPart(part.toLowerCase()));
+    }
+  }
+
+  return res;
+}
+
+function tryDeconstructPart(text: string = ""): string[] {
+  if (text.length <= 6) {
+    return [text];
+  }
+  for (let i = 3; i < text.length - 2; i++) {
+    const left = text.substring(0, i);
+    const right = text.substring(i);
+    if (isValidWord(left) && isValidWord(right)) {
+      return [left, right];
+    }
+  }
+  return [text];
 }
 
 function isReservedChar(part: string) {
   return ["_", "-", "."].includes(part);
 }
 
-function extractReservedCharAndSubString(
+function extractPartWithReserved(
   part: string,
   nameType: NameType,
   isPrevNumber: boolean = false,

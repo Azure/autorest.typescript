@@ -4,6 +4,23 @@ import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 
 describe("#normalizeName", () => {
   describe("for enum member name", () => {
+    it("should normalize upper cases properly", () => {
+      expect(normalizeName("requests_per_sec", NameType.EnumMemberName)).to.equal("RequestsPerSec");
+      expect(normalizeName("HA123", NameType.EnumMemberName)).to.equal("HA123");
+      expect(normalizeName("NHELLO", NameType.EnumMemberName)).to.equal("NHELLO");
+      expect(normalizeName("NHELLOA", NameType.EnumMemberName)).to.equal("Nhelloa");
+      expect(normalizeName("NO_HELLO", NameType.EnumMemberName)).to.equal("NoHello");
+      expect(normalizeName("NOHELLO", NameType.EnumMemberName)).to.equal("NoHello");
+      expect(normalizeName("nohello", NameType.EnumMemberName)).to.equal("NoHello");
+      expect(normalizeName("hellono", NameType.EnumMemberName)).to.equal("HelloNo");
+      expect(normalizeName("TEST_SCRIPT", NameType.EnumMemberName)).to.equal("TestScript");
+      expect(normalizeName("TESTSCRIPT", NameType.EnumMemberName)).to.equal("TestScript");
+      expect(normalizeName("testscript", NameType.EnumMemberName)).to.equal("TestScript");
+      expect(normalizeName("NOT_VALIDATED", NameType.EnumMemberName)).to.equal("NotValidated");
+      expect(normalizeName("NOTVALIDATED", NameType.EnumMemberName)).to.equal("NotValidated");
+      expect(normalizeName("notvalidated", NameType.EnumMemberName)).to.equal("NotValidated");
+      expect(normalizeName("validatednot", NameType.EnumMemberName)).to.equal("ValidatedNot");
+    });
     it("should normalize any chars including digits properly", () => {
       expect(normalizeName("-10Min", NameType.EnumMemberName)).to.equal("Num-10Min");
       expect(normalizeName("LROsPut202Retry200_202Response", NameType.EnumMemberName)).to.equal("LROsPut202Retry200_202Response");
@@ -49,7 +66,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("AKV_cert_URI", NameType.EnumMemberName)).to.equal("AKVCertURI");
       expect(normalizeName("AzureOpenAIOperationStateOutput", NameType.EnumMemberName)).to.equal("AzureOpenAIOperationStateOutput");
       expect(normalizeName("TSModel", NameType.EnumMemberName)).to.equal("TSModel");
-      expect(normalizeName("VALIDATION_NOT_REQUIRED", NameType.EnumMemberName)).to.equal("ValidationNOTRequired");
+      expect(normalizeName("VALIDATION_NOT_REQUIRED", NameType.EnumMemberName)).to.equal("ValidationNotRequired");
       expect(normalizeName("ValidationNotRequired", NameType.EnumMemberName)).to.equal("ValidationNotRequired");
       expect(normalizeName("KnownPFTestResult", NameType.EnumMemberName)).to.equal("KnownPFTestResult");
       expect(normalizeName("repeatabilityRequestID", NameType.EnumMemberName)).to.equal("RepeatabilityRequestID");
@@ -105,7 +122,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("AKV_cert_URI", NameType.Property)).to.equal("akvCertURI");
       expect(normalizeName("AzureOpenAIOperationStateOutput", NameType.Property)).to.equal("azureOpenAIOperationStateOutput");
       expect(normalizeName("TSModel", NameType.Property)).to.equal("tsModel");
-      expect(normalizeName("VALIDATION_NOT_REQUIRED", NameType.Property)).to.equal("validationNOTRequired");
+      expect(normalizeName("VALIDATION_NOT_REQUIRED", NameType.Property)).to.equal("validationNotRequired");
       expect(normalizeName("ValidationNotRequired", NameType.Property)).to.equal("validationNotRequired");
       expect(normalizeName("KnownPFTestResult", NameType.Property)).to.equal("knownPFTestResult");
       expect(normalizeName("repeatabilityRequestID", NameType.Property)).to.equal("repeatabilityRequestID");
@@ -168,8 +185,8 @@ describe("#normalizeName", () => {
 
     it("should normalize the name", () => {
       expect(
-        normalizeName("create_ wideget", NameType.Parameter,)
-      ).to.equal("createWideget");
+        normalizeName("create_ widget", NameType.Parameter,)
+      ).to.equal("createWidget");
     });
   });
 
