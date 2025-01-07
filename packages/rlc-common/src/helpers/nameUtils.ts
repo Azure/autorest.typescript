@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { isValidWord } from "./wordListUtil.js";
-
 export interface NormalizeNameOption {
   shouldGuard?: boolean;
   customReservedNames?: ReservedName[];
@@ -253,7 +251,9 @@ function deconstruct(identifier: string, nameType: NameType): Array<string> {
     }
     if (part) {
       refinedParts.push(
-        ...deconstructPart(part)
+        ...part
+          .split(/[\W|_]+/)
+          .map((p) => (isFullyUpperCase(p) ? p : p.toLowerCase()))
       );
     }
     if (latterReserved) {
@@ -261,40 +261,6 @@ function deconstruct(identifier: string, nameType: NameType): Array<string> {
     }
   }
   return refinedParts.filter((part) => part.trim().length > 0);
-}
-
-function deconstructPart(text: string): string[] {
-  const parts = text
-    .split(/[\W|_]+/)
-  const res = [];
-  for (const part of parts) {
-    const isUpperCase = isFullyUpperCase(part);
-    const isValid = isValidWord(part);
-    if (isValid) {
-      res.push(part.toLowerCase());
-    } else if (isUpperCase && !isValid) {
-      res.push(part);
-    } else {
-      // try to deconstruct further
-      res.push(...tryDeconstructPart(part.toLowerCase()));
-    }
-  }
-
-  return res;
-}
-
-function tryDeconstructPart(text: string = ""): string[] {
-  if (text.length <= 6) {
-    return [text];
-  }
-  for (let i = 3; i < text.length - 2; i++) {
-    const left = text.substring(0, i);
-    const right = text.substring(i);
-    if (isValidWord(left) && isValidWord(right)) {
-      return [left, right];
-    }
-  }
-  return [text];
 }
 
 function isReservedChar(part: string) {
