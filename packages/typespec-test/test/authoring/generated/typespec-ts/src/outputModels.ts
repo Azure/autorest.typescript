@@ -33,7 +33,7 @@ export interface ProjectOutput {
 export interface ProjectSettingsOutput extends Record<string, string> {}
 
 /** Provides status details for long running operations. */
-export interface OperationStatusErrorOutput {
+export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
   /**
