@@ -1,3 +1,7 @@
+## 6.0.32 (Unreleased)
+
+- [Feature] Add a flag to generate ESM compatible source code. Please refer to [#2925](https://github.com/Azure/autorest.typescript/pull/2925)
+
 ## 6.0.31 (2024-12-27)
 
 - [Feature] Sdk package methods adoption. Please refer to [#2943](https://github.com/Azure/autorest.typescript/pull/2943)
