@@ -2861,90 +2861,36 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate template model successfully even without @friendlyName", async () => {
+    it("should generate templated friendly name", async () => {
       const tspDefinition = `
+      @friendlyName("{name}Model", Base)
       model Base { }
 
+      @friendlyName("Templated{name}", T)
       model Templated<T> {
         prop: T;
       }
 
-      model Foo {
-        x: Templated<Base>;
-        y: Templated<string>;
-        z: Templated<"cat">;
-        h: Templated<true>;
-        j: Templated<1>;
-      }
+      model X is Templated<Base>{};
       `;
-      const tspType = "Foo";
-      const inputModelName = "Foo";
+      const tspType = "X";
+      const inputModelName = "X";
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooOutput`,
+        outputType: `XOutput`,
         additionalInputContent: `
-        export interface Foo {
-            x: TemplatedBase;
-            y: TemplatedString;
-            z: TemplatedCat;
-            h: TemplatedTrue;
-            j: Templated1;
+        export interface X {
+           prop: BaseModel;
         }
 
-        export interface TemplatedBase {
-          prop: Base;
-        }
-
-        export interface Base {
-        }
-
-        export interface TemplatedString {
-          prop: string;
-        }
-
-        export interface TemplatedCat {
-          prop: "cat";
-        }
-
-        export interface TemplatedTrue {
-          prop: true;
-        }
-
-        export interface Templated1 {
-          prop: 1;
-        }
+        export interface BaseModel {}
         `,
         additionalOutputContent: `
-        export interface FooOutput {
-            x: TemplatedBaseOutput;
-            y: TemplatedStringOutput;
-            z: TemplatedCatOutput;
-            h: TemplatedTrueOutput;
-            j: Templated1Output;
+        export interface XOutput {
+          prop: BaseModelOutput;
         }
 
-        export interface TemplatedBaseOutput {
-          prop: BaseOutput;
-        }
-
-        export interface BaseOutput {
-        }
-
-        export interface TemplatedStringOutput {
-          prop: string;
-        }
-
-        export interface TemplatedCatOutput {
-          prop: "cat";
-        }
-
-        export interface TemplatedTrueOutput {
-          prop: true;
-        }
-
-        export interface Templated1Output {
-          prop: 1;
-        }
+        export interface BaseModelOutput {}
         `
       });
     });
