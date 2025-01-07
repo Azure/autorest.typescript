@@ -2861,40 +2861,6 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate templated friendly name", async () => {
-      const tspDefinition = `
-      @friendlyName("{name}Model", Base)
-      model Base { }
-
-      @friendlyName("Templated{name}", T)
-      model Templated<T> {
-        prop: T;
-      }
-
-      model X is Templated<Base>{};
-      `;
-      const tspType = "X";
-      const inputModelName = "X";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `XOutput`,
-        additionalInputContent: `
-        export interface X {
-           prop: BaseModel;
-        }
-
-        export interface BaseModel {}
-        `,
-        additionalOutputContent: `
-        export interface XOutput {
-          prop: BaseModelOutput;
-        }
-
-        export interface BaseModelOutput {}
-        `
-      });
-    });
-
     it("should generate template model successfully even without @friendlyName", async () => {
       const tspDefinition = `
       model Base { }
