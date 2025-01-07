@@ -81,7 +81,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    flavor
+    flavor,
+    moduleKind
   };
 }
 
