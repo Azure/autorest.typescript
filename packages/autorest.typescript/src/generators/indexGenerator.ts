@@ -36,7 +36,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
       moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind),
     },
     {
-      moduleSpecifier: `./${clientDetails.sourceFileName}`,
+      moduleSpecifier: getImportModuleName(`./${clientDetails.sourceFileName}`, moduleKind),
       namedExports: [clientDetails.className]
     }
   ]);
