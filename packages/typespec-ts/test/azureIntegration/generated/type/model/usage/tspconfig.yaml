@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     isTypeSpecTest: true
-    azureSdkForJs: false
+    isModularLibrary: false
     packageDetails:
       name: "@msinternal/usage"
       description: "Usage Test Service"
