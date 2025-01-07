@@ -178,7 +178,7 @@ describe("Package file generation", () => {
         productName: `${libraryName}`,
         productSlugs: ["azure"],
         disableDocsMs: true,
-        apiRefLink: `https://docs.microsoft.com/javascript/api/${libraryName}`
+        apiRefLink: `https://learn.microsoft.com/javascript/api/${libraryName}`
       };
 
       expect(packageFile).to.have.property("//sampleConfiguration");
@@ -200,7 +200,7 @@ describe("Package file generation", () => {
         productName: `${libraryName}`,
         productSlugs: ["azure"],
         disableDocsMs: true,
-        apiRefLink: `https://docs.microsoft.com/javascript/api/${libraryName}?view=azure-node-preview`
+        apiRefLink: `https://learn.microsoft.com/javascript/api/${libraryName}?view=azure-node-preview`
       };
 
       expect(packageFile).to.have.property("//sampleConfiguration");
