@@ -319,7 +319,7 @@ function getExceptionThrowStatement(
       error.details = ${defaultDeserializer}(result.body);`);
       statements.push("throw error;");
     } else {
-      statements.push(`${createRestErrorReference}(result);`);
+      statements.push(`throw ${createRestErrorReference}(result);`);
     }
   }
   return statements.join("\n");

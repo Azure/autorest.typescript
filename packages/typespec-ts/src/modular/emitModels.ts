@@ -176,7 +176,9 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
     const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
     const outputUsage = (type.usage & UsageFlags.Output) === UsageFlags.Output;
-    if (!(inputUsage || outputUsage || apiVersionEnumOnly)) {
+    const exceptionUsage =
+      (type.usage & UsageFlags.Exception) === UsageFlags.Exception;
+    if (!(inputUsage || outputUsage || apiVersionEnumOnly || exceptionUsage)) {
       return;
     }
     const [enumType, knownValuesEnum] = buildEnumTypes(context, type);

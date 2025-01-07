@@ -112,7 +112,7 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/todo_non_branded",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/anomalyDetector",
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
