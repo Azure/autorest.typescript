@@ -143,6 +143,7 @@ export function buildParameterTypes(model: RLCModel) {
   if (hasHeaders) {
     parametersFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: ["RawHttpHeadersInput"],
         moduleSpecifier: getImportSpecifier(
           "restPipeline",
@@ -153,6 +154,7 @@ export function buildParameterTypes(model: RLCModel) {
   }
   parametersFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports: ["RequestParameters"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
@@ -165,6 +167,7 @@ export function buildParameterTypes(model: RLCModel) {
   ) {
     parametersFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: Array.from(
           model.importInfo.internalImports.parameter.importsSet!
         ),

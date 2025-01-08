@@ -47,7 +47,7 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface CreateOrUpdateUserBodyParam {
           /** Details about username. */
@@ -72,8 +72,8 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { UserDetailsParameter } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { UserDetailsParameter } from "./models.js";
 
         export interface CreateOrUpdateUserBodyParam {
           body: UserDetailsParameter;
@@ -99,7 +99,7 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
         
         export interface ListQueryParamProperties {
             /** Input your filter condition. */
@@ -124,8 +124,8 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
   
         export interface TestHeaders {
             /** test header */
@@ -151,7 +151,7 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-      import { RequestParameters } from "@azure-rest/core-client";
+      import type { RequestParameters } from "@azure-rest/core-client";
       
       export interface TestMediaTypesParam {
           /** content type */
@@ -177,9 +177,9 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         clientDef?.content!,
         `
-        import { ReadParameters } from "./parameters.js";
-        import { Read200Response } from "./responses.js";
-        import { Client, StreamableMethod } from "@azure-rest/core-client";
+        import type { ReadParameters } from "./parameters.js";
+        import type { Read200Response } from "./responses.js";
+        import type { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {
             /** This is the longer description */

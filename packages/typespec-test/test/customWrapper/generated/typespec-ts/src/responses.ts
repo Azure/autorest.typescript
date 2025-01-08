@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { DeploymentOutput } from "./outputModels.js";
+import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import type { DeploymentOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetDeployment200Response extends HttpResponse {
