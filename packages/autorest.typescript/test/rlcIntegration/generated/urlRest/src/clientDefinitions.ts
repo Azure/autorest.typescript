@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   PathsGetBooleanTrueParameters,
   PathsGetBooleanFalseParameters,
   PathsGetIntOneMillionParameters,
@@ -69,7 +69,7 @@ import {
   PathItemsGetGlobalAndLocalQueryNullParameters,
   PathItemsGetLocalPathItemQueryNullParameters,
 } from "./parameters";
-import {
+import type {
   PathsGetBooleanTrue200Response,
   PathsGetBooleanTrueDefaultResponse,
   PathsGetBooleanFalse200Response,
@@ -203,7 +203,7 @@ import {
   PathItemsGetLocalPathItemQueryNull200Response,
   PathItemsGetLocalPathItemQueryNullDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {

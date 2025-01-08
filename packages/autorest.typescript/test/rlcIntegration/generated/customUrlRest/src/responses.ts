@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorModelOutput } from "./outputModels";
+import type { HttpResponse } from "@azure-rest/core-client";
+import type { ErrorModelOutput } from "./outputModels";
 
 /** Get a 200 to test a valid base uri */
 export interface PathsGetEmpty200Response extends HttpResponse {
