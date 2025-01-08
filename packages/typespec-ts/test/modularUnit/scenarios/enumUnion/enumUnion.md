@@ -53,26 +53,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: contentType,
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: contentType,
+    body: body
+  });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -86,7 +84,7 @@ export async function get(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSend(context, contentType, body, options);
   return _getDeserialize(result);
@@ -227,7 +225,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
+  item: SchemaContentTypeValues
 ): any {
   return item;
 }
@@ -287,7 +285,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
+  item: SchemaContentTypeValues
 ): any {
   return item;
 }
@@ -388,7 +386,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
+  item: SchemaContentTypeValues
 ): any {
   return item;
 }
@@ -448,7 +446,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
+  item: SchemaContentTypeValues
 ): any {
   return item;
 }
@@ -502,30 +500,28 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: {
+      "test-header": testHeader,
+      ...options.requestOptions?.headers
+    },
+    body: body
+  });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -539,7 +535,7 @@ export async function get(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -590,30 +586,28 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: {
+      "test-header": testHeader,
+      ...options.requestOptions?.headers
+    },
+    body: body
+  });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -627,7 +621,7 @@ export async function get(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -967,6 +961,10 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+```yaml
+mustEmptyDiagnostic: false
+```
+
 ## Model interface Test
 
 ```ts models interface Test
@@ -1168,7 +1166,7 @@ export enum KnownImageSize {
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  Size1024X1792 = "1024x1792",
+  Size1024X1792 = "1024x1792"
 }
 ```
 
@@ -1201,18 +1199,18 @@ export interface Test {
 }
 ```
 
-## Model Alias Lr
+## Model Alias LR
 
-```ts models alias Lr
-/** Type of Lr */
-export type Lr = "left" | "right";
+```ts models alias LR
+/** Type of LR */
+export type LR = "left" | "right";
 ```
 
-## Model Alias Ud
+## Model Alias UD
 
-```ts models alias Ud
-/** Type of Ud */
-export type Ud = "up" | "down";
+```ts models alias UD
+/** Type of UD */
+export type UD = "up" | "down";
 ```
 
 # model type non-standard enum/union name
