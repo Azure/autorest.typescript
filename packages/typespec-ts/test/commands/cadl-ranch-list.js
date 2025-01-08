@@ -564,10 +564,6 @@ export const azureModularTsps = [
     inputPath: "type/model/inheritance/single-discriminator"
   },
   {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
-  },
-  {
     outputPath: "encode/bytes",
     inputPath: "encode/bytes"
   },
