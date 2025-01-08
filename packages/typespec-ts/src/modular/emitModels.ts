@@ -409,13 +409,6 @@ function addExtendedDictInfo(
     }
     modelInterface.extends.push(`Record<string, any>`);
   } else {
-    reportDiagnostic(context.program, {
-      code: "compatible-additional-properties",
-      format: {
-        modelName: modelInterface?.name ?? ""
-      },
-      target: NoTarget
-    });
     modelInterface.properties?.push({
       name: "additionalProperties",
       docs: ["Additional properties"],
