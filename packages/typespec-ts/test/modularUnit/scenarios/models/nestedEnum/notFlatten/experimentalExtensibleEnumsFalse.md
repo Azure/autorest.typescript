@@ -96,6 +96,6 @@ export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  V2021_10_01_Preview = "2021-10-01-preview"
+  V2021_10_01_Preview = "2021-10-01-preview",
 }
 ```

@@ -93,7 +93,7 @@ export interface Foo {
 export function fooSerializer(item: Foo): any {
   return {
     extensibleString: item["extensibleString"],
-    extensibleNumber: item["extensibleNumber"]
+    extensibleNumber: item["extensibleNumber"],
   };
 }
 
@@ -118,7 +118,7 @@ export enum KnownExtensibleString {
   Num10 = "10",
   Num20 = "20",
   "Num1.0" = "1.0",
-  "Item-1.0" = "-2.0"
+  "Item-1.0" = "-2.0",
 }
 
 /** Type of ExtensibleString */
@@ -129,7 +129,7 @@ export enum KnownExtensibleNumber {
   One = 1,
   Num2 = 2,
   "Num-2.1" = -2.1,
-  Num3 = 3
+  Num3 = 3,
 }
 
 /** Type of ExtensibleNumber */
@@ -139,6 +139,6 @@ export type ExtensibleNumber = number;
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   StableVersion = "2024-07-01",
-  "V2024-08-01-Preview" = "2024-08-01-preview"
+  "V2024-08-01-Preview" = "2024-08-01-preview",
 }
 ```
