@@ -64,9 +64,8 @@ export declare interface PropertyDefaultOptionalParams extends OperationOptions 
 }
 
 export declare interface PropertyOperations {
-    base64url: (body: Base64UrlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64UrlBytesProperty>;
     base64urlArray: (body: Base64UrlArrayBytesProperty, options?: PropertyBase64urlArrayOptionalParams) => Promise<Base64UrlArrayBytesProperty>;
-    base64url: (body: Base64urlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64urlBytesProperty>;
+    base64url: (body: Base64UrlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64UrlBytesProperty>;
     base64: (body: Base64BytesProperty, options?: PropertyBase64OptionalParams) => Promise<Base64BytesProperty>;
     default: (body: DefaultBytesProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultBytesProperty>;
 }
