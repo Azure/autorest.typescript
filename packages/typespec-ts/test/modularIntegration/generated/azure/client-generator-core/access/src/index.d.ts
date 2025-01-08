@@ -13,15 +13,15 @@ export declare class AccessClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: AccessClientOptionalParams);
-    noDecoratorInPublic(name: string, options?: NoDecoratorInPublicOptionalParams): Promise<NoDecoratorModelInPublic>;
-    publicDecoratorInPublic(name: string, options?: PublicDecoratorInPublicOptionalParams): Promise<PublicDecoratorModelInPublic>;
-    noDecoratorInInternal(name: string, options?: NoDecoratorInInternalOptionalParams): Promise<NoDecoratorModelInInternal>;
-    internalDecoratorInInternal(name: string, options?: InternalDecoratorInInternalOptionalParams): Promise<InternalDecoratorModelInInternal>;
-    publicDecoratorInInternal(name: string, options?: PublicDecoratorInInternalOptionalParams): Promise<PublicDecoratorModelInInternal>;
-    public(name: string, options?: PublicOptionalParams): Promise<SharedModel>;
-    internal(name: string, options?: InternalOptionalParams): Promise<SharedModel>;
-    operation(name: string, options?: OperationOptionalParams): Promise<OuterModel>;
     discriminator(kind: string, options?: DiscriminatorOptionalParams): Promise<AbstractModelUnion>;
+    operation(name: string, options?: OperationOptionalParams): Promise<OuterModel>;
+    internal(name: string, options?: InternalOptionalParams): Promise<SharedModel>;
+    public(name: string, options?: PublicOptionalParams): Promise<SharedModel>;
+    publicDecoratorInInternal(name: string, options?: PublicDecoratorInInternalOptionalParams): Promise<PublicDecoratorModelInInternal>;
+    internalDecoratorInInternal(name: string, options?: InternalDecoratorInInternalOptionalParams): Promise<InternalDecoratorModelInInternal>;
+    noDecoratorInInternal(name: string, options?: NoDecoratorInInternalOptionalParams): Promise<NoDecoratorModelInInternal>;
+    publicDecoratorInPublic(name: string, options?: PublicDecoratorInPublicOptionalParams): Promise<PublicDecoratorModelInPublic>;
+    noDecoratorInPublic(name: string, options?: NoDecoratorInPublicOptionalParams): Promise<NoDecoratorModelInPublic>;
 }
 
 export declare interface AccessClientOptionalParams extends ClientOptions {

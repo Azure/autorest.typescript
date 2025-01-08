@@ -40,6 +40,352 @@ import {
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
+export function _analyzeWidgetSend(
+  context: Client,
+  id: string,
+  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/{id}/analyze", id)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _analyzeWidgetDeserialize(
+  result: PathUncheckedResponse,
+): Promise<AnalyzeResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return analyzeResultDeserializer(result.body);
+}
+
+/** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
+export async function analyzeWidget(
+  context: Client,
+  id: string,
+  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
+): Promise<AnalyzeResult> {
+  const result = await _analyzeWidgetSend(context, id, options);
+  return _analyzeWidgetDeserialize(result);
+}
+
+export function _deleteWidgetSend(
+  context: Client,
+  id: string,
+  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/{id}", id)
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _deleteWidgetDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+/** Delete a widget by ID. */
+export async function deleteWidget(
+  context: Client,
+  id: string,
+  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _deleteWidgetSend(context, id, options);
+  return _deleteWidgetDeserialize(result);
+}
+
+export function _updateWidgetSend(
+  context: Client,
+  id: string,
+  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/{id}", id)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: { weight: options?.weight, color: options?.color },
+    });
+}
+
+export async function _updateWidgetDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Widget> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return widgetDeserializer(result.body);
+}
+
+/**
+ * Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
+ * are optional and will be updated within the widget if provided.
+ */
+export async function updateWidget(
+  context: Client,
+  id: string,
+  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
+): Promise<Widget> {
+  const result = await _updateWidgetSend(context, id, options);
+  return _updateWidgetDeserialize(result);
+}
+
+export function _createOrReplaceSend(
+  context: Client,
+  name: string,
+  resource: User,
+  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/widgets/widgets/createOrReplace/users/{name}", name)
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: userSerializer(resource),
+    });
+}
+
+export async function _createOrReplaceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<User> {
+  const expectedStatuses = ["201", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return userDeserializer(result.body);
+}
+
+/** Long-running resource create or replace operation template. */
+export function createOrReplace(
+  context: Client,
+  name: string,
+  resource: User,
+  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<User>, User> {
+  return getLongRunningPoller(
+    context,
+    _createOrReplaceDeserialize,
+    ["201", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _createOrReplaceSend(context, name, resource, options),
+      resourceLocationConfig: "original-uri",
+    },
+  ) as PollerLike<OperationState<User>, User>;
+}
+
+export function _createWidgetSend(
+  context: Client,
+  weight: number,
+  color: "red" | "blue",
+  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: { weight: weight, color: color },
+    });
+}
+
+export async function _createWidgetDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Widget> {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return widgetDeserializer(result.body);
+}
+
+/**
+ * Create a new widget.
+ *
+ * The widget ID is not required during creation, as it is automatically set by the server. Providing an ID will
+ * result in an error.
+ */
+export async function createWidget(
+  context: Client,
+  weight: number,
+  color: "red" | "blue",
+  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
+): Promise<Widget> {
+  const result = await _createWidgetSend(context, weight, color, options);
+  return _createWidgetDeserialize(result);
+}
+
+export function _getWidgetSend(
+  context: Client,
+  id: string,
+  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/{id}", id)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getWidgetDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Widget> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return widgetDeserializer(result.body);
+}
+
+/** Get a widget by ID. */
+export async function getWidget(
+  context: Client,
+  id: string,
+  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
+): Promise<Widget> {
+  const result = await _getWidgetSend(context, id, options);
+  return _getWidgetDeserialize(result);
+}
+
+export function _queryWidgetsPagesSend(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/widgets/pages")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { page: page, pageSize: pageSize },
+    });
+}
+
+export async function _queryWidgetsPagesDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_ListWidgetsPagesResults> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listWidgetsPagesResultsDeserializer(result.body);
+}
+
+export function queryWidgetsPages(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Widget> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _queryWidgetsPagesSend(context, page, pageSize, options),
+    _queryWidgetsPagesDeserialize,
+    ["200"],
+    { itemName: "results", nextLinkName: "odata.nextLink" },
+  );
+}
+
+export function _listWidgetsPagesSend(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/widgets/widgets/pages")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { page: page, pageSize: pageSize },
+    });
+}
+
+export async function _listWidgetsPagesDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_ListWidgetsPagesResults> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listWidgetsPagesResultsDeserializer(result.body);
+}
+
+export function listWidgetsPages(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Widget> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listWidgetsPagesSend(context, page, pageSize, options),
+    _listWidgetsPagesDeserialize,
+    ["200"],
+    { itemName: "results", nextLinkName: "odata.nextLink" },
+  );
+}
+
 export function _listWidgetsSend(
   context: Client,
   requiredHeader: string,
@@ -49,6 +395,7 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
     ...operationOptionsToRequestParameters(options),
     headers: {
@@ -83,6 +430,8 @@ export function _listWidgetsSend(
               : options?.nullableDateHeader.toUTCString(),
           }
         : {}),
+      accept: "application/json",
+      ...options.requestOptions?.headers,
     },
   });
 }
@@ -122,302 +471,4 @@ export async function listWidgets(
     options,
   );
   return _listWidgetsDeserialize(result);
-}
-
-export function _listWidgetsPagesSend(
-  context: Client,
-  page: number,
-  pageSize: number,
-  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/widgets/pages")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { page: page, pageSize: pageSize },
-    });
-}
-
-export async function _listWidgetsPagesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_ListWidgetsPagesResults> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _listWidgetsPagesResultsDeserializer(result.body);
-}
-
-export function listWidgetsPages(
-  context: Client,
-  page: number,
-  pageSize: number,
-  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<Widget> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listWidgetsPagesSend(context, page, pageSize, options),
-    _listWidgetsPagesDeserialize,
-    ["200"],
-    { itemName: "results", nextLinkName: "odata.nextLink" },
-  );
-}
-
-export function _queryWidgetsPagesSend(
-  context: Client,
-  page: number,
-  pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/widgets/pages")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { page: page, pageSize: pageSize },
-    });
-}
-
-export async function _queryWidgetsPagesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_ListWidgetsPagesResults> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _listWidgetsPagesResultsDeserializer(result.body);
-}
-
-export function queryWidgetsPages(
-  context: Client,
-  page: number,
-  pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<Widget> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _queryWidgetsPagesSend(context, page, pageSize, options),
-    _queryWidgetsPagesDeserialize,
-    ["200"],
-    { itemName: "results", nextLinkName: "odata.nextLink" },
-  );
-}
-
-export function _getWidgetSend(
-  context: Client,
-  id: string,
-  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/{id}", id)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Widget> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return widgetDeserializer(result.body);
-}
-
-/** Get a widget by ID. */
-export async function getWidget(
-  context: Client,
-  id: string,
-  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
-): Promise<Widget> {
-  const result = await _getWidgetSend(context, id, options);
-  return _getWidgetDeserialize(result);
-}
-
-export function _createWidgetSend(
-  context: Client,
-  weight: number,
-  color: "red" | "blue",
-  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: { weight: weight, color: color },
-    });
-}
-
-export async function _createWidgetDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Widget> {
-  const expectedStatuses = ["201"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return widgetDeserializer(result.body);
-}
-
-/**
- * Create a new widget.
- *
- * The widget ID is not required during creation, as it is automatically set by the server. Providing an ID will
- * result in an error.
- */
-export async function createWidget(
-  context: Client,
-  weight: number,
-  color: "red" | "blue",
-  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
-): Promise<Widget> {
-  const result = await _createWidgetSend(context, weight, color, options);
-  return _createWidgetDeserialize(result);
-}
-
-export function _createOrReplaceSend(
-  context: Client,
-  name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/widgets/createOrReplace/users/{name}", name)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: userSerializer(resource),
-    });
-}
-
-export async function _createOrReplaceDeserialize(
-  result: PathUncheckedResponse,
-): Promise<User> {
-  const expectedStatuses = ["200", "201"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return userDeserializer(result.body);
-}
-
-/** Long-running resource create or replace operation template. */
-export function createOrReplace(
-  context: Client,
-  name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(
-    context,
-    _createOrReplaceDeserialize,
-    ["200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _createOrReplaceSend(context, name, resource, options),
-      resourceLocationConfig: "original-uri",
-    },
-  ) as PollerLike<OperationState<User>, User>;
-}
-
-export function _updateWidgetSend(
-  context: Client,
-  id: string,
-  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/{id}", id)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      body: { weight: options?.weight, color: options?.color },
-    });
-}
-
-export async function _updateWidgetDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Widget> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return widgetDeserializer(result.body);
-}
-
-/**
- * Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
- * are optional and will be updated within the widget if provided.
- */
-export async function updateWidget(
-  context: Client,
-  id: string,
-  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
-): Promise<Widget> {
-  const result = await _updateWidgetSend(context, id, options);
-  return _updateWidgetDeserialize(result);
-}
-
-export function _deleteWidgetSend(
-  context: Client,
-  id: string,
-  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/{id}", id)
-    .delete({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _deleteWidgetDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-/** Delete a widget by ID. */
-export async function deleteWidget(
-  context: Client,
-  id: string,
-  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _deleteWidgetSend(context, id, options);
-  return _deleteWidgetDeserialize(result);
-}
-
-export function _analyzeWidgetSend(
-  context: Client,
-  id: string,
-  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/widgets/{id}/analyze", id)
-    .post({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _analyzeWidgetDeserialize(
-  result: PathUncheckedResponse,
-): Promise<AnalyzeResult> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return analyzeResultDeserializer(result.body);
-}
-
-/** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
-export async function analyzeWidget(
-  context: Client,
-  id: string,
-  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
-): Promise<AnalyzeResult> {
-  const result = await _analyzeWidgetSend(context, id, options);
-  return _analyzeWidgetDeserialize(result);
 }

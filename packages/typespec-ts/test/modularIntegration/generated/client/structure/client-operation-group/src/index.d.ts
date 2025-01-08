@@ -8,9 +8,9 @@ export declare class FirstClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: FirstClientOptionalParams);
-    one(options?: OneOptionalParams): Promise<void>;
-    readonly group3: Group3Operations;
     readonly group4: Group4Operations;
+    readonly group3: Group3Operations;
+    one(options?: OneOptionalParams): Promise<void>;
 }
 
 export declare interface FirstClientOptionalParams extends ClientOptions {
@@ -20,8 +20,8 @@ export declare interface FiveOptionalParams extends OperationOptions {
 }
 
 export declare interface Group3Operations {
-    two: (options?: Group3TwoOptionalParams) => Promise<void>;
     three: (options?: Group3ThreeOptionalParams) => Promise<void>;
+    two: (options?: Group3TwoOptionalParams) => Promise<void>;
 }
 
 export declare interface Group3ThreeOptionalParams extends OperationOptions {
@@ -51,8 +51,8 @@ export declare class SecondClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: SecondClientOptionalParams);
-    five(options?: FiveOptionalParams): Promise<void>;
     readonly group5: Group5Operations;
+    five(options?: FiveOptionalParams): Promise<void>;
 }
 
 export declare interface SecondClientOptionalParams extends ClientOptions {

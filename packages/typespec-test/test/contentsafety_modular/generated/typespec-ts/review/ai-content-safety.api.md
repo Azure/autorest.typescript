@@ -93,7 +93,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

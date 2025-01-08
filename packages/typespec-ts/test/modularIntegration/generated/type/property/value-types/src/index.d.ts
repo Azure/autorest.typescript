@@ -9,8 +9,8 @@ export declare interface BooleanLiteralGetOptionalParams extends OperationOption
 }
 
 export declare interface BooleanLiteralOperations {
-    get: (options?: BooleanLiteralGetOptionalParams) => Promise<BooleanLiteralProperty>;
     put: (body: BooleanLiteralProperty, options?: BooleanLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: BooleanLiteralGetOptionalParams) => Promise<BooleanLiteralProperty>;
 }
 
 export declare interface BooleanLiteralProperty {
@@ -21,8 +21,8 @@ export declare interface BooleanLiteralPutOptionalParams extends OperationOption
 }
 
 export declare interface BooleanOperations {
-    get: (options?: BooleanGetOptionalParams) => Promise<BooleanProperty>;
     put: (body: BooleanProperty, options?: BooleanPutOptionalParams) => Promise<void>;
+    get: (options?: BooleanGetOptionalParams) => Promise<BooleanProperty>;
 }
 
 export declare interface BooleanProperty {
@@ -36,8 +36,8 @@ export declare interface BytesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BytesOperations {
-    get: (options?: BytesGetOptionalParams) => Promise<BytesProperty>;
     put: (body: BytesProperty, options?: BytesPutOptionalParams) => Promise<void>;
+    get: (options?: BytesGetOptionalParams) => Promise<BytesProperty>;
 }
 
 export declare interface BytesProperty {
@@ -51,8 +51,8 @@ export declare interface CollectionsIntGetOptionalParams extends OperationOption
 }
 
 export declare interface CollectionsIntOperations {
-    get: (options?: CollectionsIntGetOptionalParams) => Promise<CollectionsIntProperty>;
     put: (body: CollectionsIntProperty, options?: CollectionsIntPutOptionalParams) => Promise<void>;
+    get: (options?: CollectionsIntGetOptionalParams) => Promise<CollectionsIntProperty>;
 }
 
 export declare interface CollectionsIntProperty {
@@ -66,8 +66,8 @@ export declare interface CollectionsModelGetOptionalParams extends OperationOpti
 }
 
 export declare interface CollectionsModelOperations {
-    get: (options?: CollectionsModelGetOptionalParams) => Promise<CollectionsModelProperty>;
     put: (body: CollectionsModelProperty, options?: CollectionsModelPutOptionalParams) => Promise<void>;
+    get: (options?: CollectionsModelGetOptionalParams) => Promise<CollectionsModelProperty>;
 }
 
 export declare interface CollectionsModelProperty {
@@ -81,8 +81,8 @@ export declare interface CollectionsStringGetOptionalParams extends OperationOpt
 }
 
 export declare interface CollectionsStringOperations {
-    get: (options?: CollectionsStringGetOptionalParams) => Promise<CollectionsStringProperty>;
     put: (body: CollectionsStringProperty, options?: CollectionsStringPutOptionalParams) => Promise<void>;
+    get: (options?: CollectionsStringGetOptionalParams) => Promise<CollectionsStringProperty>;
 }
 
 export declare interface CollectionsStringProperty {
@@ -96,8 +96,8 @@ export declare interface DatetimeGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeOperations {
-    get: (options?: DatetimeGetOptionalParams) => Promise<DatetimeProperty>;
     put: (body: DatetimeProperty, options?: DatetimePutOptionalParams) => Promise<void>;
+    get: (options?: DatetimeGetOptionalParams) => Promise<DatetimeProperty>;
 }
 
 export declare interface DatetimeProperty {
@@ -111,8 +111,8 @@ export declare interface Decimal128GetOptionalParams extends OperationOptions {
 }
 
 export declare interface Decimal128Operations {
-    get: (options?: Decimal128GetOptionalParams) => Promise<Decimal128Property>;
     put: (body: Decimal128Property, options?: Decimal128PutOptionalParams) => Promise<void>;
+    get: (options?: Decimal128GetOptionalParams) => Promise<Decimal128Property>;
 }
 
 export declare interface Decimal128Property {
@@ -126,8 +126,8 @@ export declare interface DecimalGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DecimalOperations {
-    get: (options?: DecimalGetOptionalParams) => Promise<DecimalProperty>;
     put: (body: DecimalProperty, options?: DecimalPutOptionalParams) => Promise<void>;
+    get: (options?: DecimalGetOptionalParams) => Promise<DecimalProperty>;
 }
 
 export declare interface DecimalProperty {
@@ -141,8 +141,8 @@ export declare interface DictionaryStringGetOptionalParams extends OperationOpti
 }
 
 export declare interface DictionaryStringOperations {
-    get: (options?: DictionaryStringGetOptionalParams) => Promise<DictionaryStringProperty>;
     put: (body: DictionaryStringProperty, options?: DictionaryStringPutOptionalParams) => Promise<void>;
+    get: (options?: DictionaryStringGetOptionalParams) => Promise<DictionaryStringProperty>;
 }
 
 export declare interface DictionaryStringProperty {
@@ -156,8 +156,8 @@ export declare interface DurationGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationOperations {
-    get: (options?: DurationGetOptionalParams) => Promise<DurationProperty>;
     put: (body: DurationProperty, options?: DurationPutOptionalParams) => Promise<void>;
+    get: (options?: DurationGetOptionalParams) => Promise<DurationProperty>;
 }
 
 export declare interface DurationProperty {
@@ -171,8 +171,8 @@ export declare interface EnumGetOptionalParams extends OperationOptions {
 }
 
 export declare interface EnumOperations {
-    get: (options?: EnumGetOptionalParams) => Promise<EnumProperty>;
     put: (body: EnumProperty, options?: EnumPutOptionalParams) => Promise<void>;
+    get: (options?: EnumGetOptionalParams) => Promise<EnumProperty>;
 }
 
 export declare interface EnumProperty {
@@ -188,8 +188,8 @@ export declare interface ExtensibleEnumGetOptionalParams extends OperationOption
 }
 
 export declare interface ExtensibleEnumOperations {
-    get: (options?: ExtensibleEnumGetOptionalParams) => Promise<ExtensibleEnumProperty>;
     put: (body: ExtensibleEnumProperty, options?: ExtensibleEnumPutOptionalParams) => Promise<void>;
+    get: (options?: ExtensibleEnumGetOptionalParams) => Promise<ExtensibleEnumProperty>;
 }
 
 export declare interface ExtensibleEnumProperty {
@@ -208,8 +208,8 @@ export declare interface FloatLiteralGetOptionalParams extends OperationOptions 
 }
 
 export declare interface FloatLiteralOperations {
-    get: (options?: FloatLiteralGetOptionalParams) => Promise<FloatLiteralProperty>;
     put: (body: FloatLiteralProperty, options?: FloatLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: FloatLiteralGetOptionalParams) => Promise<FloatLiteralProperty>;
 }
 
 export declare interface FloatLiteralProperty {
@@ -220,8 +220,8 @@ export declare interface FloatLiteralPutOptionalParams extends OperationOptions 
 }
 
 export declare interface FloatOperations {
-    get: (options?: FloatGetOptionalParams) => Promise<FloatProperty>;
     put: (body: FloatProperty, options?: FloatPutOptionalParams) => Promise<void>;
+    get: (options?: FloatGetOptionalParams) => Promise<FloatProperty>;
 }
 
 export declare interface FloatProperty {
@@ -244,8 +244,8 @@ export declare interface IntLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IntLiteralOperations {
-    get: (options?: IntLiteralGetOptionalParams) => Promise<IntLiteralProperty>;
     put: (body: IntLiteralProperty, options?: IntLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: IntLiteralGetOptionalParams) => Promise<IntLiteralProperty>;
 }
 
 export declare interface IntLiteralProperty {
@@ -256,8 +256,8 @@ export declare interface IntLiteralPutOptionalParams extends OperationOptions {
 }
 
 export declare interface IntOperations {
-    get: (options?: IntGetOptionalParams) => Promise<IntProperty>;
     put: (body: IntProperty, options?: IntPutOptionalParams) => Promise<void>;
+    get: (options?: IntGetOptionalParams) => Promise<IntProperty>;
 }
 
 export declare interface IntProperty {
@@ -271,8 +271,8 @@ export declare interface ModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelOperations {
-    get: (options?: ModelGetOptionalParams) => Promise<ModelProperty>;
     put: (body: ModelProperty, options?: ModelPutOptionalParams) => Promise<void>;
+    get: (options?: ModelGetOptionalParams) => Promise<ModelProperty>;
 }
 
 export declare interface ModelProperty {
@@ -286,8 +286,8 @@ export declare interface NeverGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NeverOperations {
-    get: (options?: NeverGetOptionalParams) => Promise<NeverProperty>;
     put: (body: NeverProperty, options?: NeverPutOptionalParams) => Promise<void>;
+    get: (options?: NeverGetOptionalParams) => Promise<NeverProperty>;
 }
 
 export declare interface NeverProperty {
@@ -303,8 +303,8 @@ export declare interface StringLiteralGetOptionalParams extends OperationOptions
 }
 
 export declare interface StringLiteralOperations {
-    get: (options?: StringLiteralGetOptionalParams) => Promise<StringLiteralProperty>;
     put: (body: StringLiteralProperty, options?: StringLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: StringLiteralGetOptionalParams) => Promise<StringLiteralProperty>;
 }
 
 export declare interface StringLiteralProperty {
@@ -315,8 +315,8 @@ export declare interface StringLiteralPutOptionalParams extends OperationOptions
 }
 
 export declare interface StringOperations {
-    get: (options?: StringGetOptionalParams) => Promise<StringProperty>;
     put: (body: StringProperty, options?: StringPutOptionalParams) => Promise<void>;
+    get: (options?: StringGetOptionalParams) => Promise<StringProperty>;
 }
 
 export declare interface StringProperty {
@@ -330,8 +330,8 @@ export declare interface UnionEnumValueGetOptionalParams extends OperationOption
 }
 
 export declare interface UnionEnumValueOperations {
-    get: (options?: UnionEnumValueGetOptionalParams) => Promise<UnionEnumValueProperty>;
     put: (body: UnionEnumValueProperty, options?: UnionEnumValuePutOptionalParams) => Promise<void>;
+    get: (options?: UnionEnumValueGetOptionalParams) => Promise<UnionEnumValueProperty>;
 }
 
 export declare interface UnionEnumValueProperty {
@@ -345,8 +345,8 @@ export declare interface UnionFloatLiteralGetOptionalParams extends OperationOpt
 }
 
 export declare interface UnionFloatLiteralOperations {
-    get: (options?: UnionFloatLiteralGetOptionalParams) => Promise<UnionFloatLiteralProperty>;
     put: (body: UnionFloatLiteralProperty, options?: UnionFloatLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: UnionFloatLiteralGetOptionalParams) => Promise<UnionFloatLiteralProperty>;
 }
 
 export declare interface UnionFloatLiteralProperty {
@@ -360,8 +360,8 @@ export declare interface UnionIntLiteralGetOptionalParams extends OperationOptio
 }
 
 export declare interface UnionIntLiteralOperations {
-    get: (options?: UnionIntLiteralGetOptionalParams) => Promise<UnionIntLiteralProperty>;
     put: (body: UnionIntLiteralProperty, options?: UnionIntLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: UnionIntLiteralGetOptionalParams) => Promise<UnionIntLiteralProperty>;
 }
 
 export declare interface UnionIntLiteralProperty {
@@ -375,8 +375,8 @@ export declare interface UnionStringLiteralGetOptionalParams extends OperationOp
 }
 
 export declare interface UnionStringLiteralOperations {
-    get: (options?: UnionStringLiteralGetOptionalParams) => Promise<UnionStringLiteralProperty>;
     put: (body: UnionStringLiteralProperty, options?: UnionStringLiteralPutOptionalParams) => Promise<void>;
+    get: (options?: UnionStringLiteralGetOptionalParams) => Promise<UnionStringLiteralProperty>;
 }
 
 export declare interface UnionStringLiteralProperty {
@@ -390,8 +390,8 @@ export declare interface UnknownArrayGetOptionalParams extends OperationOptions 
 }
 
 export declare interface UnknownArrayOperations {
-    get: (options?: UnknownArrayGetOptionalParams) => Promise<UnknownArrayProperty>;
     put: (body: UnknownArrayProperty, options?: UnknownArrayPutOptionalParams) => Promise<void>;
+    get: (options?: UnknownArrayGetOptionalParams) => Promise<UnknownArrayProperty>;
 }
 
 export declare interface UnknownArrayProperty {
@@ -405,8 +405,8 @@ export declare interface UnknownDictGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownDictOperations {
-    get: (options?: UnknownDictGetOptionalParams) => Promise<UnknownDictProperty>;
     put: (body: UnknownDictProperty, options?: UnknownDictPutOptionalParams) => Promise<void>;
+    get: (options?: UnknownDictGetOptionalParams) => Promise<UnknownDictProperty>;
 }
 
 export declare interface UnknownDictProperty {
@@ -420,8 +420,8 @@ export declare interface UnknownIntGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownIntOperations {
-    get: (options?: UnknownIntGetOptionalParams) => Promise<UnknownIntProperty>;
     put: (body: UnknownIntProperty, options?: UnknownIntPutOptionalParams) => Promise<void>;
+    get: (options?: UnknownIntGetOptionalParams) => Promise<UnknownIntProperty>;
 }
 
 export declare interface UnknownIntProperty {
@@ -435,8 +435,8 @@ export declare interface UnknownStringGetOptionalParams extends OperationOptions
 }
 
 export declare interface UnknownStringOperations {
-    get: (options?: UnknownStringGetOptionalParams) => Promise<UnknownStringProperty>;
     put: (body: UnknownStringProperty, options?: UnknownStringPutOptionalParams) => Promise<void>;
+    get: (options?: UnknownStringGetOptionalParams) => Promise<UnknownStringProperty>;
 }
 
 export declare interface UnknownStringProperty {
@@ -450,35 +450,35 @@ export declare class ValueTypesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ValueTypesClientOptionalParams);
-    readonly boolean: BooleanOperations;
-    readonly string: StringOperations;
-    readonly bytes: BytesOperations;
-    readonly int: IntOperations;
-    readonly float: FloatOperations;
-    readonly decimal: DecimalOperations;
-    readonly decimal128: Decimal128Operations;
-    readonly datetime: DatetimeOperations;
-    readonly duration: DurationOperations;
-    readonly enum: EnumOperations;
-    readonly extensibleEnum: ExtensibleEnumOperations;
-    readonly model: ModelOperations;
-    readonly collectionsString: CollectionsStringOperations;
-    readonly collectionsInt: CollectionsIntOperations;
-    readonly collectionsModel: CollectionsModelOperations;
-    readonly dictionaryString: DictionaryStringOperations;
-    readonly never: NeverOperations;
-    readonly unknownString: UnknownStringOperations;
-    readonly unknownInt: UnknownIntOperations;
-    readonly unknownDict: UnknownDictOperations;
-    readonly unknownArray: UnknownArrayOperations;
-    readonly stringLiteral: StringLiteralOperations;
-    readonly intLiteral: IntLiteralOperations;
-    readonly floatLiteral: FloatLiteralOperations;
-    readonly booleanLiteral: BooleanLiteralOperations;
-    readonly unionStringLiteral: UnionStringLiteralOperations;
-    readonly unionIntLiteral: UnionIntLiteralOperations;
-    readonly unionFloatLiteral: UnionFloatLiteralOperations;
     readonly unionEnumValue: UnionEnumValueOperations;
+    readonly unionFloatLiteral: UnionFloatLiteralOperations;
+    readonly unionIntLiteral: UnionIntLiteralOperations;
+    readonly unionStringLiteral: UnionStringLiteralOperations;
+    readonly booleanLiteral: BooleanLiteralOperations;
+    readonly floatLiteral: FloatLiteralOperations;
+    readonly intLiteral: IntLiteralOperations;
+    readonly stringLiteral: StringLiteralOperations;
+    readonly unknownArray: UnknownArrayOperations;
+    readonly unknownDict: UnknownDictOperations;
+    readonly unknownInt: UnknownIntOperations;
+    readonly unknownString: UnknownStringOperations;
+    readonly never: NeverOperations;
+    readonly dictionaryString: DictionaryStringOperations;
+    readonly collectionsModel: CollectionsModelOperations;
+    readonly collectionsInt: CollectionsIntOperations;
+    readonly collectionsString: CollectionsStringOperations;
+    readonly model: ModelOperations;
+    readonly extensibleEnum: ExtensibleEnumOperations;
+    readonly enum: EnumOperations;
+    readonly duration: DurationOperations;
+    readonly datetime: DatetimeOperations;
+    readonly decimal128: Decimal128Operations;
+    readonly decimal: DecimalOperations;
+    readonly float: FloatOperations;
+    readonly int: IntOperations;
+    readonly bytes: BytesOperations;
+    readonly string: StringOperations;
+    readonly boolean: BooleanOperations;
 }
 
 export declare interface ValueTypesClientOptionalParams extends ClientOptions {

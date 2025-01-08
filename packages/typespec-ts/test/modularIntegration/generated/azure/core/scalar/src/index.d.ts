@@ -29,11 +29,11 @@ export declare class ScalarClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ScalarClientOptionalParams);
-    get(options?: GetOptionalParams): Promise<string>;
-    put(body: string, options?: PutOptionalParams): Promise<void>;
-    post(body: AzureLocationModel, options?: PostOptionalParams): Promise<AzureLocationModel>;
-    header(region: string, options?: HeaderOptionalParams): Promise<void>;
     query(region: string, options?: QueryOptionalParams): Promise<void>;
+    header(region: string, options?: HeaderOptionalParams): Promise<void>;
+    post(body: AzureLocationModel, options?: PostOptionalParams): Promise<AzureLocationModel>;
+    put(body: string, options?: PutOptionalParams): Promise<void>;
+    get(options?: GetOptionalParams): Promise<string>;
 }
 
 export declare interface ScalarClientOptionalParams extends ClientOptions {

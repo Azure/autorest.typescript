@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
+import { getBOperations, BOperations } from "./classic/b/index.js";
 import {
   createFoo,
   FooContext,
@@ -30,9 +30,14 @@ export class FooClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.b = getBOperations(this._client);
     this.d = getDOperations(this._client);
+    this.b = getBOperations(this._client);
   }
+
+  /** The operation groups for d */
+  public readonly d: DOperations;
+  /** The operation groups for b */
+  public readonly b: BOperations;
 
   op1(
     body: A,
@@ -40,9 +45,4 @@ export class FooClient {
   ): Promise<void> {
     return op1(this._client, body, options);
   }
-
-  /** The operation groups for B */
-  public readonly b: BOperations;
-  /** The operation groups for D */
-  public readonly d: DOperations;
 }

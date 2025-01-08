@@ -27,7 +27,11 @@ export function _createSend(
     .path("/audio/translations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createTranslationRequestSerializer(audio),
     });
 }
