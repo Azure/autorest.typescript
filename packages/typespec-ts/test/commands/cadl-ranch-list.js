@@ -735,6 +735,10 @@ export const azureModularTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 
