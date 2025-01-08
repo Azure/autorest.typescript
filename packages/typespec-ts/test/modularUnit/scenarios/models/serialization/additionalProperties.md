@@ -1,4 +1,4 @@
-# Should generate serializer for additional properties
+# Should generate serializer for additional properties for legacy code
 
 ## TypeSpec
 
@@ -18,6 +18,7 @@ interface D {
 ```
 
 This is the tsp configuration.
+
 ```yaml
 compatibilityMode: true
 ```
@@ -31,6 +32,48 @@ Generated Models.
 export interface SimpleModel extends Record<string, string> {
   propA: string;
   propB: string;
+}
+
+export function simpleModelSerializer(item: SimpleModel): any {
+  return { ...item, propA: item["propA"], propB: item["propB"] };
+}
+```
+
+# Should generate serializer for additional properties for non-legacy code
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+model SimpleModel {
+    ...Record<string>;
+    propA: string;
+    propB: string;
+}
+
+@route("/serialize")
+interface D {
+  op bar(@body body: SimpleModel): void;
+}
+```
+
+This is the tsp configuration.
+
+```yaml
+compatibilityMode: false
+```
+
+## Provide generated models and its serializer
+
+Generated Models.
+
+```ts models
+/** model interface SimpleModel */
+export interface SimpleModel {
+  propA: string;
+  propB: string;
+  additionalProperties: Record<string, string>;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
