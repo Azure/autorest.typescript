@@ -6,8 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
-    branded: false
+    flavor: "standard"
+    isModularLibrary: false
     isTypeSpecTest: true
     title: NotVersionedParamInServerVersionsClient
     packageDetails:

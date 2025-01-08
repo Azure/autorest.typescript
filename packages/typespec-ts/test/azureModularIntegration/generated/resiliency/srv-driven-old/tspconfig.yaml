@@ -4,7 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     generateMetadata: true
     generateTest: false
-    azureSdkForJs: false
+    flavor: "azure"
     isModularLibrary: true
     hierarchyClient: false
     "emitter-output-dir": "{project-root}"

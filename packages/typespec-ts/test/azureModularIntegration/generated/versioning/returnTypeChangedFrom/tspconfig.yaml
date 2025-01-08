@@ -6,7 +6,7 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    flavor: "azure"
     isTypeSpecTest: true
     title: VersioningReturnTypeChangedFromClient
     isModularLibrary: true

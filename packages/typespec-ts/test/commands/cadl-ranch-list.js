@@ -1,4 +1,4 @@
-export const rlcTsps = [
+export const azureRlcTsps = [
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -298,7 +298,7 @@ export const rlcTsps = [
   }
 ];
 
-export const standardRlcTsps = [
+export const rlcTsps = [
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -320,28 +320,8 @@ export const standardRlcTsps = [
     inputPath: "parameters/body-optionality"
   },
   {
-    outputPath: "encode/bytes",
-    inputPath: "encode/bytes"
-  },
-  {
-    outputPath: "encode/duration",
-    inputPath: "encode/duration"
-  },
-  {
-    outputPath: "encode/datetime",
-    inputPath: "encode/datetime"
-  },
-  {
     outputPath: "shared-route",
     inputPath: "shared-route"
-  },
-  {
-    outputPath: "media-types",
-    inputPath: "media-types"
-  },
-  {
-    outputPath: "overload",
-    inputPath: "overload"
   },
   {
     outputPath: "type/array",
@@ -404,14 +384,6 @@ export const standardRlcTsps = [
     inputPath: "type/property/nullable"
   },
   {
-    outputPath: "type/property/value-types",
-    inputPath: "type/property/value-types"
-  },
-  {
-    outputPath: "type/property/additional-properties",
-    inputPath: "type/property/additional-properties"
-  },
-  {
     outputPath: "type/model/visibility",
     inputPath: "type/model/visibility"
   },
@@ -422,10 +394,6 @@ export const standardRlcTsps = [
   {
     outputPath: "type/model/empty",
     inputPath: "type/model/empty"
-  },
-  {
-    outputPath: "special-words",
-    inputPath: "special-words"
   },
   {
     outputPath: "type/union",
@@ -487,11 +455,6 @@ export const standardRlcTsps = [
     outputPath: "versioning/madeOptional",
     inputPath: "versioning/madeOptional"
   },
-  // disable it as https://github.com/Azure/autorest.typescript/issues/2902
-  // {
-  //   outputPath: "versioning/removed",
-  //   inputPath: "versioning/removed"
-  // },
   {
     outputPath: "versioning/renamedFrom",
     inputPath: "versioning/renamedFrom"
@@ -507,14 +470,10 @@ export const standardRlcTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
-  },
-  {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
   }
 ];
 
-export const modularTsps = [
+export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
@@ -783,7 +742,7 @@ export const modularTsps = [
   }
 ];
 
-export const standardModularTsps = [
+export const modularTsps = [
   {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
@@ -922,10 +881,6 @@ export const standardModularTsps = [
     inputPath: "type/enum/fixed"
   },
   {
-    outputPath: "type/property/additional-properties",
-    inputPath: "type/property/additional-properties"
-  },
-  {
     outputPath: "payload/content-negotiation",
     inputPath: "payload/content-negotiation"
   },
@@ -960,9 +915,5 @@ export const standardModularTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
-  },
-  {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
   }
 ];

@@ -5,8 +5,8 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
     generateTest: true
-    azureSdkForJs: false
-    branded: false
+    flavor: "standard"
+    isModularLibrary: false
     isTypeSpecTest: true
     title: AuthUnionClient
     packageDetails:

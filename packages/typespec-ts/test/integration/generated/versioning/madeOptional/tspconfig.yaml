@@ -5,8 +5,8 @@ options:
     "emitter-output-dir": "{project-root}"
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
-    branded: false
+    flavor: "standard"
+    isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: VersioningMadeOptionalClient

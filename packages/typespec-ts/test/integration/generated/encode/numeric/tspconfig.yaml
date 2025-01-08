@@ -5,8 +5,8 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
     addCredentials: false
-    azureSdkForJs: false
-    branded: false
+    flavor: "standard"
+    isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
