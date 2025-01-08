@@ -320,6 +320,9 @@ export async function $onEmit(context: EmitContext) {
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
+    if (program.compilerOptions.noEmit || program.hasError()) {
+      return;
+    }
 
     for (const file of project.getSourceFiles()) {
       file.fixMissingImports(
