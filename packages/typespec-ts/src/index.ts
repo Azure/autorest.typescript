@@ -11,6 +11,7 @@ import {
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
+  MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers
@@ -115,7 +116,8 @@ export async function $onEmit(context: EmitContext) {
     {
       ...SerializationHelpers,
       ...PagingHelpers,
-      ...PollingHelpers
+      ...PollingHelpers,
+      ...MultipartHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,

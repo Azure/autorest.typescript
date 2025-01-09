@@ -10,7 +10,13 @@ import {
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { SdkContext } from "../../utils/interfaces.js";
-import { getRequestModelMapping } from "../helpers/operationHelpers.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  getPropertyFullName,
+  getRequestModelMapping,
+  getSerializationExpression
+} from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -19,6 +25,9 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { MultipartHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
+import { isOrExtendsHttpFile } from "@typespec/http";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -43,7 +52,10 @@ export function buildModelSerializer(
       // throw new Error(`NYI Serialization of anonymous types`);
       return undefined;
     }
-    if (isAzureCoreErrorType(context.program, type.__raw!)) {
+    if (
+      isAzureCoreErrorType(context.program, type.__raw!) ||
+      isOrExtendsHttpFile(context.program, type.__raw!)
+    ) {
       return undefined;
     }
   }
@@ -331,37 +343,97 @@ function buildModelTypeSerializer(
     statements: ["return item;"]
   };
 
-  // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-  const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item"
-    : "";
+  if (
+    (type.usage & UsageFlags.Input) === UsageFlags.Input &&
+    (type.usage & UsageFlags.MultipartFormData) === UsageFlags.MultipartFormData
+  ) {
+    // For MFD models, serialize into an array of parts
+    // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
+    const parts: string[] = [];
 
-  const { directAssignment, propertiesStr } = getRequestModelMapping(
-    context,
-    type,
-    "item"
-  );
-  if (additionalPropertiesSpread) {
-    propertiesStr.unshift(additionalPropertiesSpread);
-  }
-  const serializeContent =
-    directAssignment === true
-      ? propertiesStr.join(",")
-      : `{${propertiesStr.join(",")}}`;
+    const properties = getAllProperties(type, getAllAncestors(type));
+    for (const property of properties) {
+      if (property.kind !== "property") {
+        continue;
+      }
+      const expr = getSerializationExpression(context, property, "item");
 
-  const output = [];
+      let partDefinition: string;
+      if (property.isMultipartFileInput) {
+        const createFilePartDescriptorDefinition = resolveReference(
+          MultipartHelpers.createFilePartDescriptor
+        );
 
-  // don't emit a serializer if there is nothing to serialize
-  if (propertiesStr.length) {
-    output.push(`
+        const itemPath = property.multipartOptions?.isMulti
+          ? "x"
+          : getPropertyFullName(context, property, "item");
+        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
+
+        // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
+        // In this case, we actually want the content type to be left unset so that Core will take care of
+        // setting the content type correctly.
+        const contentType =
+          property.multipartOptions?.defaultContentTypes?.[0] === "*/*"
+            ? undefined
+            : property.multipartOptions?.defaultContentTypes?.[0];
+
+        if (property.multipartOptions?.isMulti) {
+          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x, ${contentType ? `"${contentType}"` : "undefined"})))`;
+        } else {
+          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"], ${contentType ? `"${contentType}"` : "undefined"})`;
+        }
+      } else if (property.multipartOptions?.isMulti) {
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;
+      } else {
+        partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
+      }
+
+      if (property.optional) {
+        parts.push(
+          `...(${getPropertyFullName(context, property, "item")} === undefined ? [] : [${partDefinition}])`
+        );
+      } else {
+        parts.push(partDefinition);
+      }
+
+      // TODO: How to handle additionalProperties for MFD?
+    }
+
+    serializerFunction.statements = [`return [${parts.join(",")}]`];
+  } else {
+    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
+    const additionalPropertiesSpread = hasAdditionalProperties(type)
+      ? "...item"
+      : "";
+
+    const { directAssignment, propertiesStr } = getRequestModelMapping(
+      context,
+      type,
+      "item"
+    );
+
+    if (additionalPropertiesSpread) {
+      propertiesStr.unshift(additionalPropertiesSpread);
+    }
+    const serializeContent =
+      directAssignment === true
+        ? propertiesStr.join(",")
+        : `{${propertiesStr.join(",")}}`;
+
+    const output = [];
+
+    // don't emit a serializer if there is nothing to serialize
+    if (propertiesStr.length) {
+      output.push(`
         return ${serializeContent}
       `);
-  } else {
-    output.push(`
+    } else {
+      output.push(`
         return item;
       `);
+    }
+    serializerFunction.statements = output;
   }
-  serializerFunction.statements = output;
   return serializerFunction;
 }
 

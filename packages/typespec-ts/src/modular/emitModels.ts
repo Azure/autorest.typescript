@@ -46,7 +46,7 @@ import {
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
-import { isMetadata } from "@typespec/http";
+import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import {
   isAzureCoreErrorType,
   isAzureCoreLroType
@@ -56,6 +56,8 @@ import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { emitQueue } from "../framework/hooks/sdkTypes.js";
+import { resolveReference } from "../framework/reference.js";
+import { MultipartHelpers } from "./static-helpers-metadata.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -126,6 +128,9 @@ export function emitTypes(
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
   if (type.kind === "model") {
     if (isAzureCoreErrorType(context.program, type.__raw)) {
+      return;
+    }
+    if (isOrExtendsHttpFile(context.program, type.__raw!)) {
       return;
     }
     if (
@@ -524,10 +529,52 @@ function buildModelProperty(
       target: NoTarget
     });
   }
+
+  let typeExpression: string;
+  if (property.kind === "property" && property.isMultipartFileInput) {
+    const multipartOptions = property.multipartOptions;
+    typeExpression = "{";
+    typeExpression += `contents: ${resolveReference(MultipartHelpers.FileContents)};`;
+
+    const isContentTypeOptional =
+      multipartOptions?.contentType === undefined ||
+      multipartOptions.contentType.optional ||
+      multipartOptions.defaultContentTypes.length > 0;
+    const isFilenameOptional =
+      multipartOptions?.filename === undefined ||
+      multipartOptions.filename.optional;
+
+    const contentTypeType = multipartOptions?.contentType
+      ? getTypeExpression(context, multipartOptions.contentType.type)
+      : "string";
+    const filenameType = multipartOptions?.filename
+      ? getTypeExpression(context, multipartOptions.filename.type)
+      : "string";
+
+    typeExpression += `contentType${isContentTypeOptional ? "?" : ""}: ${contentTypeType};`;
+    typeExpression += `filename${isFilenameOptional ? "?" : ""}: ${filenameType};`;
+
+    typeExpression += "}";
+
+    if (isContentTypeOptional && isFilenameOptional) {
+      // Allow passing content directly if both filename and content type are optional
+      typeExpression = `(${resolveReference(MultipartHelpers.FileContents)}) | ${typeExpression}`;
+    } else {
+      // If either one is required, still accept File at the top level since it requires a filename
+      typeExpression = `File | ${typeExpression}`;
+    }
+
+    if (property.type.kind === "array") {
+      typeExpression = `Array<${typeExpression}>`;
+    }
+  } else {
+    typeExpression = getTypeExpression(context, property.type);
+  }
+
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: normalizedPropName,
-    type: getTypeExpression(context, property.type),
+    type: typeExpression,
     hasQuestionToken: property.optional,
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
   };

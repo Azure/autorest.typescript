@@ -948,6 +948,71 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
+export function getSerializationExpression(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  propertyPath: string
+): string {
+  const dot = propertyPath.endsWith("?") ? "." : "";
+  const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
+  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+    context,
+    property,
+    propertyPath
+  );
+
+  const propertyFullName = getPropertyFullName(
+    context,
+    property,
+    propertyPathWithDot
+  );
+  const serializeFunctionName = buildModelSerializer(
+    context,
+    getNullableValidType(property.type),
+    false,
+    true
+  );
+  if (serializeFunctionName) {
+    return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
+  } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
+    return `${nullOrUndefinedPrefix}${propertyFullName}`;
+  } else {
+    return serializeRequestValue(
+      context,
+      property.type,
+      propertyFullName,
+      !property.optional,
+      getEncodeForType(property.type)
+    );
+  }
+}
+
+export function getRequestModelProperties(
+  context: SdkContext,
+  modelPropertyType: SdkModelType & { optional?: boolean },
+  propertyPath: string = "body"
+): Array<[string, string]> {
+  const props: [string, string][] = [];
+  const allParents = getAllAncestors(modelPropertyType);
+  const properties: SdkModelPropertyType[] =
+    getAllProperties(modelPropertyType, allParents) ?? [];
+  if (properties.length <= 0) {
+    return [];
+  }
+  for (const property of properties) {
+    if (property.kind === "property" && isReadOnly(property)) {
+      continue;
+    }
+
+    props.push([
+      getPropertySerializedName(property)!,
+      getSerializationExpression(context, property, propertyPath)
+    ]);
+  }
+
+  return props;
+}
+
 /**
  *
  * This function helps translating an HLC request to RLC request,
@@ -962,58 +1027,13 @@ export function getRequestModelMapping(
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body"
 ): RequestModelMappingResult {
-  const props: string[] = [];
-  const allParents = getAllAncestors(modelPropertyType);
-  const properties: SdkModelPropertyType[] =
-    getAllProperties(modelPropertyType, allParents) ?? [];
-  if (properties.length <= 0) {
-    return { propertiesStr: [] };
-  }
-  for (const property of properties) {
-    if (property.kind === "property" && isReadOnly(property)) {
-      continue;
-    }
-    const dot = propertyPath.endsWith("?") ? "." : "";
-    const serializedName = getPropertySerializedName(property);
-    const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
-    const nullOrUndefinedPrefix = getPropertySerializationPrefix(
+  return {
+    propertiesStr: getRequestModelProperties(
       context,
-      property,
+      modelPropertyType,
       propertyPath
-    );
-
-    const propertyFullName = getPropertyFullName(
-      context,
-      property,
-      propertyPathWithDot
-    );
-    const serializeFunctionName = buildModelSerializer(
-      context,
-      getNullableValidType(property.type),
-      false,
-      true
-    );
-    if (serializeFunctionName) {
-      props.push(
-        `"${serializedName}": ${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`
-      );
-    } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-      props.push(
-        `"${serializedName}": ${nullOrUndefinedPrefix}${propertyFullName}`
-      );
-    } else {
-      const serializedValue = serializeRequestValue(
-        context,
-        property.type,
-        propertyFullName,
-        !property.optional,
-        getEncodeForType(property.type)
-      );
-      props.push(`"${serializedName}": ${serializedValue}`);
-    }
-  }
-
-  return { propertiesStr: props };
+    ).map(([name, value]) => `"${name}": ${value}`)
+  };
 }
 
 function getPropertySerializedName(property: SdkModelPropertyType) {
