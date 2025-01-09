@@ -299,6 +299,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/payload/pageable",
     inputPath: "azure/payload/pageable"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
   }
 ];
 
@@ -474,6 +478,26 @@ export const rlcTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  }
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "special-words",
+    inputPath: "special-words"
+  },
+  {
+    outputPath: "type/property/value-types",
+    inputPath: "type/property/value-types"
   }
 ];
 
