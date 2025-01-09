@@ -6,9 +6,7 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
-    isModularLibrary: true
     packageDetails:
-      name: "@msinternal/payload-mediaType"
+      name: "@unbranded/payload-mediaType"
       description: "Payload Media Type Test Service"

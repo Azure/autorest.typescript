@@ -1,10 +1,10 @@
-import type { Client } from '@azure-rest/core-client';
-import type { ClientOptions } from '@azure-rest/core-client';
-import type { HttpResponse } from '@azure-rest/core-client';
-import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import type { RequestParameters } from '@azure-rest/core-client';
-import type { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RawHttpHeaders } from '@typespec/ts-http-runtime';
+import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare type ContentNegotiationClient = Client & {
     path: Routes;

@@ -1,0 +1,19 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    flavor: azure
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    enableOperationGroup: true
+    isModularLibrary: true
+    # temporary only support legacy client for additional properties in modular
+    compatibilityMode: true
+    packageDetails:
+      name: "@msinternal/optional-property"
+      description: "Optional Property Test Service"
+      version: "1.0.0"

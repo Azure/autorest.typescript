@@ -6,8 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/empty-model"
+      name: "@unbranded/empty-model"
       description: "Empty model Service"
