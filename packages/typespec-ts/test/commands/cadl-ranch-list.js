@@ -478,7 +478,7 @@ export const rlcTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
-  }
+  },
   {
     outputPath: "encode/datetime",
     inputPath: "encode/datetime"
