@@ -295,6 +295,10 @@ export const azureRlcTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "azure/payload/pageable",
+    inputPath: "azure/payload/pageable"
   }
 ];
 
@@ -739,6 +743,10 @@ export const azureModularTsps = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "azure/payload/pageable",
+    inputPath: "azure/payload/pageable"
   }
 ];
 
