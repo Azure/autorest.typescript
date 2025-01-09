@@ -1,9 +1,9 @@
-import { Client } from '@typespec/ts-http-runtime';
-import { ClientOptions } from '@typespec/ts-http-runtime';
-import { HttpResponse } from '@typespec/ts-http-runtime';
-import { RawHttpHeaders } from '@typespec/ts-http-runtime';
-import { RequestParameters } from '@typespec/ts-http-runtime';
-import { StreamableMethod } from '@typespec/ts-http-runtime';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RawHttpHeaders } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 declare function createClient(options?: MediaTypeClientOptions): MediaTypeClient;
 export default createClient;
