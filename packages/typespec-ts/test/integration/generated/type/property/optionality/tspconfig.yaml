@@ -6,10 +6,10 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/optional-property"
+      name: "@unbranded/optional-property"
       description: "Optional Property Test Service"
       version: "1.0.0"

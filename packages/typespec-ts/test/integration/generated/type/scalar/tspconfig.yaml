@@ -6,8 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/scalar"
+      name: "@unbranded/scalar"
