@@ -1,5 +1,6 @@
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -12,20 +13,22 @@ export {
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
-  TodoFileAttachment,
-  TodoUrlAttachment,
   TodoAttachment,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
   PageTodoAttachment,
+  FileAttachmentMultipartRequest,
   User,
 } from "./models/index.js";
 export {
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
   UsersCreateOptionalParams,
   TodoClientOptionalParams,
@@ -36,3 +39,4 @@ export {
   TodoItemsAttachmentsOperations,
 } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { FileContents };

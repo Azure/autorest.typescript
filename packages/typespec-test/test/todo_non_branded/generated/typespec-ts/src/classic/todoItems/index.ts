@@ -4,7 +4,8 @@ import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "../../api/options.js";
 import { TodoContext } from "../../api/todoContext.js";
@@ -12,10 +13,16 @@ import {
   $delete,
   update,
   get,
-  create,
+  createForm,
+  createJson,
   list,
 } from "../../api/todoItems/index.js";
-import { TodoItem, TodoLabels, TodoItemPatch } from "../../models/models.js";
+import {
+  TodoItem,
+  TodoLabels,
+  ToDoItemMultipartRequest,
+  TodoItemPatch,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   TodoItemsAttachmentsOperations,
@@ -64,9 +71,24 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
-  create: (
+  createForm: (
+    body: ToDoItemMultipartRequest,
+    options?: TodoItemsCreateFormOptionalParams,
+  ) => Promise<{
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: Date;
+    updatedAt: Date;
+    completedAt?: Date;
+    labels?: TodoLabels;
+  }>;
+  createJson: (
     item: TodoItem,
-    options?: TodoItemsCreateOptionalParams,
+    options?: TodoItemsCreateJsonOptionalParams,
   ) => Promise<{
     id: number;
     title: string;
@@ -96,8 +118,12 @@ export function getTodoItems(context: TodoContext) {
     ) => update(context, id, patch, options),
     get: (id: number, options?: TodoItemsGetOptionalParams) =>
       get(context, id, options),
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) =>
-      create(context, item, options),
+    createForm: (
+      body: ToDoItemMultipartRequest,
+      options?: TodoItemsCreateFormOptionalParams,
+    ) => createForm(context, body, options),
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
+      createJson(context, item, options),
     list: (options?: TodoItemsListOptionalParams) => list(context, options),
   };
 }

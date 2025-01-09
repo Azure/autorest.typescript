@@ -5,10 +5,10 @@ export {
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
-  TodoFileAttachment,
-  TodoUrlAttachment,
   TodoAttachment,
+  ToDoItemMultipartRequest,
   TodoItemPatch,
   PageTodoAttachment,
+  FileAttachmentMultipartRequest,
   User,
 } from "./models.js";

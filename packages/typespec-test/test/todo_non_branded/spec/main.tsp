@@ -79,6 +79,15 @@ model TodoItem {
   @visibility("create") _dummy?: string;
 }
 
+model ToDoItemMultipartRequest {
+  item: HttpPart<TodoItem>;
+  attachments?: HttpPart<File>[];
+}
+
+model FileAttachmentMultipartRequest {
+  contents: HttpPart<File>;
+}
+
 @jsonSchema
 union TodoLabels {
   string,
@@ -95,22 +104,8 @@ model TodoLabelRecord {
   color?: string;
 }
 
-union TodoAttachment {
-  file: TodoFileAttachment,
-  url: TodoUrlAttachment,
-}
-
 @jsonSchema
-model TodoUrlAttachment {
-  /** A description of the URL */
-  description: string;
-
-  /** The url */
-  url: url;
-}
-
-@jsonSchema
-model TodoFileAttachment {
+model TodoAttachment {
   /** The file name of the attachment */
   @maxLength(255)
   filename: string;
@@ -244,17 +239,26 @@ namespace TodoItems {
      code: "not-found";
   }
 
+  //@friendlyName("{name}List", T)
   model Page<T> {
     @pageItems items: T[];
   }
 
   @list op list(...PaginationControls): WithStandardErrors<TodoPage>;
 
+  @sharedRoute
   @post
-  op create(
+  op createJson(
     @header contentType: "application/json",
     item: TodoItem,
     attachments?: TodoAttachment[],
+  ): WithStandardErrors<TodoItem | InvalidTodoItem>;
+
+  @sharedRoute
+  @post
+  op createForm(
+    @header contentType: "multipart/form-data",
+    @multipartBody body: ToDoItemMultipartRequest,
   ): WithStandardErrors<TodoItem | InvalidTodoItem>;
 
   @get op get(@path id: TodoItem.id): TodoItem | NotFoundErrorResponse;
@@ -275,9 +279,18 @@ namespace TodoItems {
 
     @sharedRoute
     @post
-    op createAttachment(
+    op createJsonAttachment(
+      @header contentType: "application/json",
       @path itemId: TodoItem.id,
       @body contents: TodoAttachment,
+    ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
+
+   @sharedRoute
+    @post
+    op createFileAttachment(
+      @header contentType: "multipart/form-data",
+      @path itemId: TodoItem.id,
+      @multipartBody body: FileAttachmentMultipartRequest,
     ): WithStandardErrors<NoContentResponse | NotFoundErrorResponse>;
   }
 }
