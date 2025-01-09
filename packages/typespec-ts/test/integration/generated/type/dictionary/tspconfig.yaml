@@ -6,13 +6,12 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: DictClient
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/dictionary"
+      name: "@unbranded/dictionary"
       description: "Dictionary Test Service"
       version: "1.0.0"

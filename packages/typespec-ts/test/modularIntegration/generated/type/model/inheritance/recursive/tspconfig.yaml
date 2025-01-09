@@ -4,9 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     generateMetadata: true
     generateTest: false
-    flavor: "standard"
-    isModularLibrary: true
     hierarchyClient: false
     "emitter-output-dir": "{project-root}"
     packageDetails:
-      name: "@msinternal/model-inheritance-recursive"
+      name: "@unbranded/model-inheritance-recursive"

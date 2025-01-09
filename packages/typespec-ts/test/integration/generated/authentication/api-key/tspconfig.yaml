@@ -3,11 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     title: AuthApiKeyClient
     packageDetails:
-      name: "@msinternal/auth-apikey"
+      name: "@unbranded/auth-apikey"
       description: "Auth api key Test Service"
       version: "1.0.0"

@@ -6,7 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "azure"
+    flavor: azure
+    azureSdkForJs: false
     isTypeSpecTest: true
     title: VersionedParamInServerVersionsClient
     packageDetails:

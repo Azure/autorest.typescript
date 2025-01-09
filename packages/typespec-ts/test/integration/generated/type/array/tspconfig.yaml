@@ -6,13 +6,12 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: ArrayItemTypesClient
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/array-itemtypes"
+      name: "@unbranded/array-itemtypes"
       description: "Array item-types Test Service"
       version: "1.0.0"

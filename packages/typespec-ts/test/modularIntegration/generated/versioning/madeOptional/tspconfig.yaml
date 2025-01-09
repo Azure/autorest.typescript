@@ -6,11 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isTypeSpecTest: true
     title: VersioningMadeOptionalClient
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/versionning-madeOptional"
+      name: "@unbranded/versionning-madeOptional"
       description: "Versioning MadeOptional Test Service"

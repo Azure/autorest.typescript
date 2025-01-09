@@ -6,9 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/payload-media-type"
+      name: "@unbranded/payload-media-type"

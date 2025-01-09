@@ -6,11 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isTypeSpecTest: true
     title: VersioningTypeChangedFromClient
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/versionning-typeChangedFrom"
+      name: "@unbranded/versionning-typeChangedFrom"
       description: "Versioning TypeChanged Test Service"

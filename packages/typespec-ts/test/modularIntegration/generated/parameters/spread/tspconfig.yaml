@@ -6,10 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     enableOperationGroup: true
     isTypeSpecTest: true
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/parameterSpread"
+      name: "@unbranded/parameterSpread"

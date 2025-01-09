@@ -6,10 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/visibility"
+      name: "@unbranded/visibility"
       description: "Visibility Test Service"
       version: "1.0.0"

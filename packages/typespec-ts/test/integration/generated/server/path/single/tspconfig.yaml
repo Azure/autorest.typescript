@@ -6,10 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    flavor: "standard"
     isModularLibrary: false
     isTypeSpecTest: true
     title: SingleParamInServerPathClient
     packageDetails:
-      name: "@msinternal/singleparam"
+      name: "@unbranded/singleparam"
       description: "SingleParameter Test Service"
