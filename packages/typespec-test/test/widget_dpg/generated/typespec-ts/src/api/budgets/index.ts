@@ -3,9 +3,16 @@
 
 import {
   BudgetsCreateOrReplaceOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
   WidgetServiceContext as Client,
 } from "../index.js";
-import { User, userSerializer, userDeserializer } from "../../models/models.js";
+import {
+  User,
+  userSerializer,
+  userDeserializer,
+  Widget,
+  widgetArrayDeserializer,
+} from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
@@ -14,6 +21,44 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _getBudgetsSend(
+  context: Client,
+  name: string,
+  options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/budgets")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { name: name },
+    });
+}
+
+export async function _getBudgetsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Widget[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return widgetArrayDeserializer(result.body);
+}
+
+export async function getBudgets(
+  context: Client,
+  name: string,
+  options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
+): Promise<Widget[]> {
+  const result = await _getBudgetsSend(context, name, options);
+  return _getBudgetsDeserialize(result);
+}
 
 export function _createOrReplaceSend(
   context: Client,
