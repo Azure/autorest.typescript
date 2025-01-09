@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RequestParameters } from "@azure-rest/core-client";
-import { PostInput } from "./models";
+import type { RequestParameters } from "@azure-rest/core-client";
+import type { PostInput } from "./models";
 
 export type ParamsHeadNoParamsParameters = RequestParameters;
 

@@ -21,8 +21,8 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-            import { RequestParameters } from "@azure-rest/core-client";
-            import { User } from "./models.js";
+            import type { RequestParameters } from "@azure-rest/core-client";
+            import type { User } from "./models.js";
 
             export interface ReadBodyParam {
               body: User;
@@ -53,8 +53,8 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-            import { RequestParameters } from "@azure-rest/core-client";
-            import { SimpleModel } from "./models.js";
+            import type { RequestParameters } from "@azure-rest/core-client";
+            import type { SimpleModel } from "./models.js";
     
             export interface ReadBodyParam {
                body: SimpleModel;
@@ -83,8 +83,8 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-            import { RequestParameters } from "@azure-rest/core-client";
-            import { User } from "./models.js";
+            import type { RequestParameters } from "@azure-rest/core-client";
+            import type { User } from "./models.js";
 
             export interface ReadBodyParam {
                 body: User;
@@ -115,7 +115,7 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-              import { RequestParameters } from "@azure-rest/core-client";
+              import type { RequestParameters } from "@azure-rest/core-client";
       
               export interface ReadBodyParam {
                 body: { name: string; value?: number };
@@ -143,8 +143,8 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-                import { RequestParameters } from "@azure-rest/core-client";
-                import { User } from "./models.js";
+                import type { RequestParameters } from "@azure-rest/core-client";
+                import type { User } from "./models.js";
         
                 export interface ReadBodyParam {
                   body: { user: User };
@@ -177,8 +177,8 @@ describe("Spread(...) and alias", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-                import { RequestParameters } from "@azure-rest/core-client";
-                import { User } from "./models.js";
+                import type { RequestParameters } from "@azure-rest/core-client";
+                import type { User } from "./models.js";
         
                 export interface ReadBodyParam {
                   body: { user: User };
