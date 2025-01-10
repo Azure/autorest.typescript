@@ -18,7 +18,7 @@ export interface UsersOperations {
   }>;
 }
 
-export function getUsers(context: TodoContext) {
+function _getUsers(context: TodoContext) {
   return {
     create: (user: User, options?: UsersCreateOptionalParams) =>
       create(context, user, options),
@@ -27,6 +27,6 @@ export function getUsers(context: TodoContext) {
 
 export function getUsersOperations(context: TodoContext): UsersOperations {
   return {
-    ...getUsers(context),
+    ..._getUsers(context),
   };
 }

@@ -32,7 +32,7 @@ export interface ConnectionsOperations {
   ) => Promise<ConnectionsListResponse>;
 }
 
-export function getConnections(context: AzureAIContext) {
+function _getConnections(context: AzureAIContext) {
   return {
     listSecrets: (
       connectionName: string,
@@ -49,6 +49,6 @@ export function getConnectionsOperations(
   context: AzureAIContext,
 ): ConnectionsOperations {
   return {
-    ...getConnections(context),
+    ..._getConnections(context),
   };
 }

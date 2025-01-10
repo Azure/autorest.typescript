@@ -96,7 +96,7 @@ export interface MultivariateOperations {
   ) => Promise<MultivariateMultivariateDetectionResult>;
 }
 
-export function getMultivariate(context: AnomalyDetectorContext) {
+function _getMultivariate(context: AnomalyDetectorContext) {
   return {
     detectMultivariateLastAnomaly: (
       modelId: string,
@@ -136,6 +136,6 @@ export function getMultivariateOperations(
   context: AnomalyDetectorContext,
 ): MultivariateOperations {
   return {
-    ...getMultivariate(context),
+    ..._getMultivariate(context),
   };
 }

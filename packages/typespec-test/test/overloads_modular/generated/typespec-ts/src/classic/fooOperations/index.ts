@@ -25,7 +25,7 @@ export interface FooOperationsOperations {
   ) => Promise<void>;
 }
 
-export function getFooOperations(context: WidgetManagerContext) {
+function _getFooOperations(context: WidgetManagerContext) {
   return {
     getAvatarAsJpeg: (
       image: Uint8Array,
@@ -42,6 +42,6 @@ export function getFooOperationsOperations(
   context: WidgetManagerContext,
 ): FooOperationsOperations {
   return {
-    ...getFooOperations(context),
+    ..._getFooOperations(context),
   };
 }

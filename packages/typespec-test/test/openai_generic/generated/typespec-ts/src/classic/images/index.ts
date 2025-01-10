@@ -31,7 +31,7 @@ export interface ImagesOperations {
   ) => Promise<ImagesResponse>;
 }
 
-export function getImages(context: OpenAIContext) {
+function _getImages(context: OpenAIContext) {
   return {
     createVariation: (
       image: CreateImageVariationRequest,
@@ -48,6 +48,6 @@ export function getImages(context: OpenAIContext) {
 
 export function getImagesOperations(context: OpenAIContext): ImagesOperations {
   return {
-    ...getImages(context),
+    ..._getImages(context),
   };
 }
