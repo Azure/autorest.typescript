@@ -315,8 +315,8 @@ describe("Input/output model type", () => {
           await assertEqualContent(
             schemaOutput?.content!,
             `
-          import { RequestParameters } from "@azure-rest/core-client";
-          import { TranslationLanguage } from "./models.js";
+          import type { RequestParameters } from "@azure-rest/core-client";
+          import type { TranslationLanguage } from "./models.js";
           
           export interface GetModelBodyParam {
             body: TranslationLanguage;
@@ -1703,7 +1703,7 @@ describe("Input/output model type", () => {
   describe("duration generation", () => {
     const buildParameterDef = (type: string) => {
       return `
-      import { RequestParameters } from "@azure-rest/core-client";
+      import type { RequestParameters } from "@azure-rest/core-client";
       
       export interface GetModelQueryParamProperties {
         "input": ${type};
@@ -2786,7 +2786,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-          import { RequestParameters } from "@azure-rest/core-client";
+          import type { RequestParameters } from "@azure-rest/core-client";
           
           export type TestRunOperationParameters =  RequestParameters;
           `
@@ -2804,7 +2804,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
+        import type { HttpResponse } from "@azure-rest/core-client";
           
         /** The request has succeeded. */
         export interface TestRunOperation200Response extends HttpResponse {
@@ -2829,7 +2829,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
+        import type { HttpResponse } from "@azure-rest/core-client";
           
         /** The request has succeeded. */
         export interface Test200Response extends HttpResponse {
@@ -3018,7 +3018,7 @@ describe("Input/output model type", () => {
         },
         true,
         false,
-        `import { ErrorResponse } from "@azure-rest/core-client"`
+        `import type { ErrorResponse } from "@azure-rest/core-client"`
       );
     });
 
@@ -3063,7 +3063,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         inputModelFile?.content!,
         `
-        import { ErrorResponse } from "@azure-rest/core-client";
+        import type { ErrorResponse } from "@azure-rest/core-client";
         
         /** testing */
         export interface A {
@@ -3107,7 +3107,7 @@ describe("Input/output model type", () => {
         },
         true,
         false,
-        `import { InnerError } from "@azure-rest/core-client"`
+        `import type { InnerError } from "@azure-rest/core-client"`
       );
     });
 
@@ -3144,7 +3144,7 @@ describe("Input/output model type", () => {
         },
         true,
         false,
-        `import { ErrorModel } from "@azure-rest/core-client"`
+        `import type { ErrorModel } from "@azure-rest/core-client"`
       );
     });
 
@@ -3181,7 +3181,7 @@ describe("Input/output model type", () => {
         },
         true,
         false,
-        `import { ErrorModel } from "@azure-rest/core-client"`
+        `import type { ErrorModel } from "@azure-rest/core-client"`
       );
     });
 
@@ -3218,7 +3218,7 @@ describe("Input/output model type", () => {
         },
         true,
         false,
-        `import { ErrorModel } from "@azure-rest/core-client"`
+        `import type { ErrorModel } from "@azure-rest/core-client"`
       );
     });
   });
@@ -3404,7 +3404,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         outputModelFile?.content!,
         `
-        import { ErrorModel } from "@azure-rest/core-client";
+        import type { ErrorModel } from "@azure-rest/core-client";
         export interface ValidateResultOutput {
           /** This is the top-level error object whose code matches the x-ms-error-code response header. */ 
           error?: ErrorModel;
@@ -3764,9 +3764,9 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         paramOutput?.content!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { SchemaContentTypeValues } from "./models.js";
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { SchemaContentTypeValues } from "./models.js";
         
         export interface GetHeaders {
           "test-header": SchemaContentTypeValues;
@@ -3794,9 +3794,9 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         responseOutput?.content!,
         `
-        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-        import { HttpResponse } from "@azure-rest/core-client";
-        import { SchemaContentTypeValuesOutput } from "./outputModels.js";
+        import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import type { HttpResponse } from "@azure-rest/core-client";
+        import type { SchemaContentTypeValuesOutput } from "./outputModels.js";
         
         export interface Get204Headers {
           "test-header": SchemaContentTypeValuesOutput;
@@ -3915,8 +3915,8 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         paramOutput?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { EnumBody } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { EnumBody } from "./models.js";
         
         export interface GetBodyParam {
           body: EnumBody;
@@ -3936,8 +3936,8 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         responseOutput?.content!,
         `
-        import { HttpResponse } from "@azure-rest/core-client";
-        import { EnumBodyOutput } from "./outputModels.js";
+        import type { HttpResponse } from "@azure-rest/core-client";
+        import type { EnumBodyOutput } from "./outputModels.js";
         
         /** There is no content to send for this request, but the headers may be useful. */
         export interface Get204Response extends HttpResponse {
@@ -3987,8 +3987,8 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         paramOutput?.content!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
         
         export interface GetHeaders {
           "test-header": "A" | "B";
@@ -4016,8 +4016,8 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         responseOutput?.content!,
         `
-        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-        import { HttpResponse } from "@azure-rest/core-client";
+        import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import type { HttpResponse } from "@azure-rest/core-client";
         
         export interface Get204Headers {
           "test-header": "A" | "B";
@@ -4131,9 +4131,9 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         paramOutput?.content!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { SchemaContentTypeValues } from "./models.js";
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { SchemaContentTypeValues } from "./models.js";
         
         export interface GetHeaders {
           "test-header": SchemaContentTypeValues;
@@ -4208,9 +4208,9 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         paramOutput?.content!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { EnumTest } from "./models.js";
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { EnumTest } from "./models.js";
         
         export interface GetHeaders {
           "test-header": EnumTest;

@@ -5,7 +5,8 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo
+  ServiceInfo,
+  isAzurePackage
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -32,6 +33,15 @@ export function transformRLCOptions(
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
+  if (
+    !isAzurePackage({ options }) &&
+    emitterOptions.isModularLibrary !== false
+  ) {
+    options.isModularLibrary = true;
+  }
+  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
+    options.isModularLibrary = true;
+  }
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;

@@ -5,7 +5,7 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
     generateTest: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/media-types"
+      name: "@unbranded/media-types"

@@ -7,9 +7,10 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/property-types"
+      name: "@unbranded/property-types"
       description: "Property Types Test Service"
       version: "1.0.0"

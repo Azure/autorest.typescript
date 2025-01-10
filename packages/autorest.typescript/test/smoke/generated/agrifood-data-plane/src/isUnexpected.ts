@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   ApplicationDataListByFarmerId200Response,
   ApplicationDataListByFarmerIdDefaultResponse,
   ApplicationDataList200Response,

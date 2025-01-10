@@ -6,10 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
-    isModularLibrary: true
     packageDetails:
-      name: "@msinternal/extensible-enums"
+      name: "@unbranded/extensible-enums"
       description: "Extensible Enums Test Service"
       version: "1.0.0"

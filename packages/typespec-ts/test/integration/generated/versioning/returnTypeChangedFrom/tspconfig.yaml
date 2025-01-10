@@ -5,10 +5,10 @@ options:
     "emitter-output-dir": "{project-root}"
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: VersioningReturnTypeChangedFromClient
     packageDetails:
-      name: "@msinternal/versioning-returnTypeChangedFrom"
+      name: "@unbranded/versioning-returnTypeChangedFrom"
       description: "Versioning ReturnTypeChangedFrom Service"

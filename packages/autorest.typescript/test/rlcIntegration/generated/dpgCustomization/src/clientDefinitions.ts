@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetModelParameters,
   PostModelParameters,
   GetPagesParameters,
   LroParameters,
 } from "./parameters";
-import {
+import type {
   GetModel200Response,
   PostModel200Response,
   GetPages200Response,
   Lro200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */
 export interface ClientOperations {

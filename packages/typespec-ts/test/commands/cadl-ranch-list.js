@@ -1,4 +1,4 @@
-export const rlcTsps = [
+export const azureRlcTsps = [
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -295,17 +295,213 @@ export const rlcTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
-  }
-];
-
-export const nonBrandedRlcTsps = [
+  },
   {
-    outputPath: "models/usage",
-    inputPath: "type/model/usage"
+    outputPath: "azure/payload/pageable",
+    inputPath: "azure/payload/pageable"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
   }
 ];
 
-export const modularTsps = [
+export const rlcTsps = [
+  {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
+    outputPath: "union-body",
+    inputPath: "union-body"
+  },
+  {
+    outputPath: "special-headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "shared-route",
+    inputPath: "shared-route"
+  },
+  {
+    outputPath: "type/array",
+    inputPath: "type/array"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http/custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
+    outputPath: "type/enum/extensible",
+    inputPath: "type/enum/extensible"
+  },
+  {
+    outputPath: "type/enum/fixed",
+    inputPath: "type/enum/fixed"
+  },
+  {
+    outputPath: "type/model/inheritance/nested-discriminator",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "type/model/inheritance/not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "type/model/inheritance/enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "type/model/inheritance/single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
+    outputPath: "type/model/inheritance/recursive",
+    inputPath: "type/model/inheritance/recursive"
+  },
+  {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
+  },
+  {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
+    outputPath: "type/model/visibility",
+    inputPath: "type/model/visibility"
+  },
+  {
+    outputPath: "type/model/usage",
+    inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "type/model/empty",
+    inputPath: "type/model/empty"
+  },
+  {
+    outputPath: "type/union",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "type/scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
+  },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "special-words",
+    inputPath: "special-words"
+  },
+  {
+    outputPath: "type/property/value-types",
+    inputPath: "type/property/value-types"
+  }
+];
+
+export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
@@ -394,10 +590,6 @@ export const modularTsps = [
   {
     outputPath: "type/model/inheritance/single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
-  },
-  {
-    outputPath: "payload/pageable",
-    inputPath: "payload/pageable"
   },
   {
     outputPath: "encode/bytes",
@@ -571,12 +763,189 @@ export const modularTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "azure/payload/pageable",
+    inputPath: "azure/payload/pageable"
   }
 ];
 
-export const nonBrandedModularTsps = [
+export const modularTsps = [
   {
-    outputPath: "models/usage",
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "type/model/usage",
     inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "type/dictionary",
+    inputPath: "type/dictionary"
+  },
+  {
+    outputPath: "type/property/nullable",
+    inputPath: "type/property/nullable"
+  },
+  {
+    outputPath: "type/property/optionality",
+    inputPath: "type/property/optionality"
+  },
+  {
+    outputPath: "type/model/inheritance/nested-discriminator",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "type/model/inheritance/not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "type/model/inheritance/enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "type/model/inheritance/single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http/custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
+    outputPath: "special-headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "type/model/empty",
+    inputPath: "type/model/empty"
+  },
+  {
+    outputPath: "type/property/value-types",
+    inputPath: "type/property/value-types"
+  },
+  { outputPath: "type/array", inputPath: "type/array" },
+  {
+    outputPath: "type/model/inheritance/recursive",
+    inputPath: "type/model/inheritance/recursive"
+  },
+  {
+    outputPath: "type/union",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
+  },
+  {
+    outputPath: "type/scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "special-words",
+    inputPath: "special-words"
+  },
+  {
+    outputPath: "type/enum/extensible",
+    inputPath: "type/enum/extensible"
+  },
+  {
+    outputPath: "type/enum/fixed",
+    inputPath: "type/enum/fixed"
+  },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/removed",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
+  },
+  {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
   }
 ];

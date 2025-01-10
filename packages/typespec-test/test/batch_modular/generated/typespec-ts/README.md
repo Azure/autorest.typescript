@@ -7,7 +7,7 @@ Azure Batch provides Cloud-scale job scheduling and compute management.
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/batch)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure-rest/batch?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/batch?view=azure-node-preview)
 
 ## Getting started
 
@@ -45,7 +45,7 @@ npm install @azure/identity
 
 You will also need to **register a new AAD application and grant access to Azure Batch** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
 
-For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 ```javascript
 const { BatchClient } = require("@azure-rest/batch");

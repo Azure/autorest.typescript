@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   FilesGetFileParameters,
   FilesGetFileLargeParameters,
   FilesGetEmptyFileParameters,
 } from "./parameters";
-import {
+import type {
   FilesGetFile200Response,
   FilesGetFileDefaultResponse,
   FilesGetFileLarge200Response,
@@ -14,7 +14,7 @@ import {
   FilesGetEmptyFile200Response,
   FilesGetEmptyFileDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetFile {
   /** Get file */
