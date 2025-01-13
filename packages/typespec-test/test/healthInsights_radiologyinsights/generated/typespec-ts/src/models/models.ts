@@ -1086,6 +1086,8 @@ export type MedicalProfessionalType =
   | "nurse"
   | "midwife"
   | "physicianAssistant";
+/** Repeatability Result header options */
+export type RepeatabilityResult = "accepted" | "rejected";
 
 /** Known values of {@link ApiVersion} that the service accepts. */
 export enum KnownApiVersion {

@@ -13,10 +13,10 @@ import {
 } from "../../api/dataTypes/index.js";
 import {
   DataType,
+  DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
 } from "../../models/models.js";
-import { DataTypeUpdate } from "../../models/azure/resourceManager/foundations/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {

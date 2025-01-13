@@ -23,16 +23,6 @@ function buildExportsForMultiClient(
         `./src/${subfolder}/api/index.ts`;
     }
   }
-  for (const client of context.sdkPackage.clients) {
-    const { subfolder } = getModularClientOptions(context, client);
-    const modelSubpaths = getModelSubpaths(emitterOptions, subfolder || "");
-    for (const modelSubpath of modelSubpaths) {
-      packageInfo.exports[
-        `./${subfolder && subfolder !== "" ? subfolder + "/" : ""}${modelSubpath.replace("/index.ts", "")}`
-      ] =
-        `./src/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${modelSubpath}`;
-    }
-  }
 
   if (emitterOptions.options.hierarchyClient) {
     for (const client of context.sdkPackage.clients) {
@@ -53,6 +43,12 @@ function buildExportsForMultiClient(
         ] = `src/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
       }
     }
+    delete packageInfo.exports["./models"];
+    const modelSubpaths = getModelSubpaths(emitterOptions);
+    for (const modelSubpath of modelSubpaths) {
+      packageInfo.exports[`./${modelSubpath.replace("/index.ts", "")}`] =
+        `./src/${modelSubpath}`;
+    }
   }
 
   return packageInfo.exports;
@@ -64,8 +60,8 @@ export function getModuleExports(
 ) {
   const exports: Record<string, any> = {
     exports: {
-      ".": "./src/index.ts"
-      // "./models": "./src/models/index.ts"
+      ".": "./src/index.ts",
+      "./models": "./src/models/index.ts"
     }
   };
   if (!emitterOptions.options.azureArm) {
@@ -75,16 +71,10 @@ export function getModuleExports(
   return buildExportsForMultiClient(context, emitterOptions, exports);
 }
 
-function getModelSubpaths(
-  emitterOptions: ModularEmitterOptions,
-  subfolder: string
-) {
+function getModelSubpaths(emitterOptions: ModularEmitterOptions) {
   const outputProject = useContext("outputProject");
   const modelFiles = outputProject.getSourceFiles(
-    path.join(
-      emitterOptions.modularOptions.sourceRoot + subfolder,
-      `models/**/*.ts`
-    )
+    path.join(emitterOptions.modularOptions.sourceRoot, `models/**/*.ts`)
   );
   const subpath = new Set<string>();
   for (const modelFile of modelFiles) {
@@ -93,10 +83,7 @@ function getModelSubpaths(
       continue;
     }
     subpath.add(
-      path.relative(
-        emitterOptions.modularOptions.sourceRoot + subfolder,
-        filepath
-      )
+      path.relative(emitterOptions.modularOptions.sourceRoot, filepath)
     );
   }
   return Array.from(subpath);

@@ -19,6 +19,8 @@ import {
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
+  DataProductUpdate,
+  dataProductUpdateSerializer,
   AccountSas,
   accountSasSerializer,
   AccountSasToken,
@@ -36,10 +38,6 @@ import {
   _DataProductListResult,
   _dataProductListResultDeserializer,
 } from "../../models/models.js";
-import {
-  DataProductUpdate,
-  dataProductUpdateSerializer,
-} from "../../models/azure/resourceManager/foundations/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -239,6 +239,12 @@ export function getModelNamespaces(
     model.kind === "enum" ||
     model.kind === "union"
   ) {
+    if (
+      model.clientNamespace.startsWith("Azure.ResourceManager") ||
+      model.clientNamespace.startsWith("Azure.Core")
+    ) {
+      return [];
+    }
     const segments = model.clientNamespace.split(".");
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {

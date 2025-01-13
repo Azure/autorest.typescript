@@ -11,16 +11,11 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./models": "./src/models/index.ts",
-      "./models/azure": "./src/models/azure/index.ts",
-      "./models/azure/resourceManager": "./src/models/azure/resourceManager/index.ts",
-      "./models/azure/resourceManager/commonTypes": "./src/models/azure/resourceManager/commonTypes/index.ts",
-      "./models/azure/resourceManager/foundations": "./src/models/azure/resourceManager/foundations/index.ts",
-      "./models/azure/resourceManager/legacy": "./src/models/azure/resourceManager/legacy/index.ts",
       "./api/dataProducts": "./src/api/dataProducts/index.ts",
       "./api/dataTypes": "./src/api/dataTypes/index.ts",
       "./api/dataProductsCatalogs": "./src/api/dataProductsCatalogs/index.ts",
-      "./api/operations": "./src/api/operations/index.ts"
+      "./api/operations": "./src/api/operations/index.ts",
+      "./models": "./src/models/index.ts"
     },
     "dialects": [
       "esm",
@@ -114,114 +109,6 @@
         "default": "./dist/commonjs/index.js"
       }
     },
-    "./models": {
-      "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
-      }
-    },
-    "./models/azure": {
-      "browser": {
-        "types": "./dist/browser/models/azure/index.d.ts",
-        "default": "./dist/browser/models/azure/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/azure/index.d.ts",
-        "default": "./dist/react-native/models/azure/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/azure/index.d.ts",
-        "default": "./dist/esm/models/azure/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/azure/index.d.ts",
-        "default": "./dist/commonjs/models/azure/index.js"
-      }
-    },
-    "./models/azure/resourceManager": {
-      "browser": {
-        "types": "./dist/browser/models/azure/resourceManager/index.d.ts",
-        "default": "./dist/browser/models/azure/resourceManager/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/azure/resourceManager/index.d.ts",
-        "default": "./dist/react-native/models/azure/resourceManager/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/azure/resourceManager/index.d.ts",
-        "default": "./dist/esm/models/azure/resourceManager/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/azure/resourceManager/index.d.ts",
-        "default": "./dist/commonjs/models/azure/resourceManager/index.js"
-      }
-    },
-    "./models/azure/resourceManager/commonTypes": {
-      "browser": {
-        "types": "./dist/browser/models/azure/resourceManager/commonTypes/index.d.ts",
-        "default": "./dist/browser/models/azure/resourceManager/commonTypes/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/azure/resourceManager/commonTypes/index.d.ts",
-        "default": "./dist/react-native/models/azure/resourceManager/commonTypes/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/azure/resourceManager/commonTypes/index.d.ts",
-        "default": "./dist/esm/models/azure/resourceManager/commonTypes/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/azure/resourceManager/commonTypes/index.d.ts",
-        "default": "./dist/commonjs/models/azure/resourceManager/commonTypes/index.js"
-      }
-    },
-    "./models/azure/resourceManager/foundations": {
-      "browser": {
-        "types": "./dist/browser/models/azure/resourceManager/foundations/index.d.ts",
-        "default": "./dist/browser/models/azure/resourceManager/foundations/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/azure/resourceManager/foundations/index.d.ts",
-        "default": "./dist/react-native/models/azure/resourceManager/foundations/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/azure/resourceManager/foundations/index.d.ts",
-        "default": "./dist/esm/models/azure/resourceManager/foundations/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/azure/resourceManager/foundations/index.d.ts",
-        "default": "./dist/commonjs/models/azure/resourceManager/foundations/index.js"
-      }
-    },
-    "./models/azure/resourceManager/legacy": {
-      "browser": {
-        "types": "./dist/browser/models/azure/resourceManager/legacy/index.d.ts",
-        "default": "./dist/browser/models/azure/resourceManager/legacy/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/azure/resourceManager/legacy/index.d.ts",
-        "default": "./dist/react-native/models/azure/resourceManager/legacy/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/azure/resourceManager/legacy/index.d.ts",
-        "default": "./dist/esm/models/azure/resourceManager/legacy/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/azure/resourceManager/legacy/index.d.ts",
-        "default": "./dist/commonjs/models/azure/resourceManager/legacy/index.js"
-      }
-    },
     "./api/dataProducts": {
       "browser": {
         "types": "./dist/browser/api/dataProducts/index.d.ts",
@@ -292,6 +179,24 @@
       "require": {
         "types": "./dist/commonjs/api/operations/index.d.ts",
         "default": "./dist/commonjs/api/operations/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
       }
     }
   },

@@ -967,6 +967,36 @@ export function resourceMetricDeserializer(item: any): ResourceMetric {
   };
 }
 
+/** Paged collection of TestFileInfo items */
+export interface _PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
+  return {
+    value: testFileInfoArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+/** Paged collection of Test items */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestDeserializer(item: any): _PagedTest {
+  return {
+    value: testArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function testArraySerializer(result: Array<Test>): any[] {
   return result.map((item) => {
     return testSerializer(item);
@@ -2011,6 +2041,21 @@ export function dimensionValueDeserializer(item: any): DimensionValue {
   };
 }
 
+/** Paged collection of TestRun items */
+export interface _PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
+  return {
+    value: testRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function testRunArraySerializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
     return testRunSerializer(item);
@@ -2241,6 +2286,21 @@ export function functionFlexConsumptionResourceConfigurationDeserializer(
   };
 }
 
+/** Paged collection of TestProfile items */
+export interface _PagedTestProfile {
+  /** The TestProfile items on this page */
+  value: TestProfile[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
+  return {
+    value: testProfileArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
   return result.map((item) => {
     return testProfileSerializer(item);
@@ -2451,6 +2511,23 @@ export enum KnownRecommendationCategory {
  * **CostOptimized**: The recommendation for this category optimizes the cost of the app.
  */
 export type RecommendationCategory = string;
+
+/** Paged collection of TestProfileRun items */
+export interface _PagedTestProfileRun {
+  /** The TestProfileRun items on this page */
+  value: TestProfileRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestProfileRunDeserializer(
+  item: any,
+): _PagedTestProfileRun {
+  return {
+    value: testProfileRunArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
 
 export function testProfileRunArraySerializer(
   result: Array<TestProfileRun>,

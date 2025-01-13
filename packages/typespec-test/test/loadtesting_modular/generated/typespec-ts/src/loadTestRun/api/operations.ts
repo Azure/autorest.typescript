@@ -40,11 +40,9 @@ import {
   _Metrics,
   _metricsDeserializer,
   TimeSeriesElement,
-} from "../../models/models.js";
-import {
   _PagedTestRun,
   _pagedTestRunDeserializer,
-} from "../../models/azure/core/foundations/models.js";
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

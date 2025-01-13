@@ -28,13 +28,11 @@ import {
   TestServerMetricConfig,
   testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
-} from "../../models/models.js";
-import {
   _PagedTestFileInfo,
   _pagedTestFileInfoDeserializer,
   _PagedTest,
   _pagedTestDeserializer,
-} from "../../models/azure/core/foundations/models.js";
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -47,9 +47,9 @@ export {
   ImagingProcedureRecommendation,
   FollowupCommunicationInference,
   MedicalProfessionalType,
+  RepeatabilityResult,
   KnownApiVersion,
 } from "./models.js";
-export { RepeatabilityResult } from "./azure/core/models.js";
 export {
   Resource,
   Meta,
