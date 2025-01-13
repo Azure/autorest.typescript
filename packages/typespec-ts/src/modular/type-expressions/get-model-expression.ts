@@ -4,7 +4,10 @@ import {
   normalizeModelPropertyName
 } from "./get-type-expression.js";
 
-import { SdkModelType } from "@azure-tools/typespec-client-generator-core";
+import {
+  isReadOnly,
+  SdkModelType
+} from "@azure-tools/typespec-client-generator-core";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { shouldEmitInline } from "./utils.js";
@@ -34,7 +37,7 @@ export function getModelExpression(
       ${type.properties
         .map(
           (p) =>
-            `${normalizeModelPropertyName(context, p)}${p.optional ? "?" : ""}: ${getTypeExpression(context, p.type)}`
+            `${normalizeModelPropertyName(context, p)}${isReadOnly(p as any) || p.optional ? "?" : ""}: ${getTypeExpression(context, p.type)}`
         )
         .join(",\n")}
     }`;

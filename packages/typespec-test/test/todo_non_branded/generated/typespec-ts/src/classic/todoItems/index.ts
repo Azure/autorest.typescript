@@ -38,14 +38,14 @@ export interface TodoItemsOperations {
     patch: TodoItemPatch,
     options?: TodoItemsUpdateOptionalParams,
   ) => Promise<{
-    id: number;
+    id?: number;
     title: string;
-    createdBy: number;
+    createdBy?: number;
     assignedTo?: number;
     description?: string;
     status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
@@ -53,14 +53,14 @@ export interface TodoItemsOperations {
     id: number,
     options?: TodoItemsGetOptionalParams,
   ) => Promise<{
-    id: number;
+    id?: number;
     title: string;
-    createdBy: number;
+    createdBy?: number;
     assignedTo?: number;
     description?: string;
     status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
@@ -68,14 +68,14 @@ export interface TodoItemsOperations {
     item: TodoItem,
     options?: TodoItemsCreateOptionalParams,
   ) => Promise<{
-    id: number;
+    id?: number;
     title: string;
-    createdBy: number;
+    createdBy?: number;
     assignedTo?: number;
     description?: string;
     status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     completedAt?: Date;
     labels?: TodoLabels;
   }>;

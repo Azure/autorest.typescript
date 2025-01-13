@@ -524,12 +524,15 @@ function buildModelProperty(
       target: NoTarget
     });
   }
+  const isReadOnlyProperty = isReadOnly(property as SdkBodyModelPropertyType);
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: normalizedPropName,
     type: getTypeExpression(context, property.type),
-    hasQuestionToken: property.optional,
-    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
+    // Note: hardcode logic - always optional property when readonly is true
+    // TODO: remove this logic when visibility is supported in modular
+    hasQuestionToken: isReadOnlyProperty ? true : property.optional,
+    isReadonly: isReadOnlyProperty
   };
 
   if (property.doc) {

@@ -11,7 +11,7 @@ export interface UsersOperations {
     user: User,
     options?: UsersCreateOptionalParams,
   ) => Promise<{
-    id: number;
+    id?: number;
     username: string;
     email: string;
     token: string;

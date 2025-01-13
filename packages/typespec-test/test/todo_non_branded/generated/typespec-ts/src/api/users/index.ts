@@ -34,7 +34,7 @@ export function _createSend(
 export async function _createDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
-  id: number;
+  id?: number;
   username: string;
   email: string;
   token: string;
@@ -52,7 +52,7 @@ export async function create(
   user: User,
   options: UsersCreateOptionalParams = { requestOptions: {} },
 ): Promise<{
-  id: number;
+  id?: number;
   username: string;
   email: string;
   token: string;
