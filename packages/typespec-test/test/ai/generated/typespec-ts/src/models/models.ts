@@ -6,7 +6,7 @@ import { stringToUint8Array } from "@azure/core-util";
 /** Evaluation Definition */
 export interface Evaluation {
   /** Identifier of the evaluation. */
-  readonly id: string;
+  readonly id?: string;
   /** Data for evaluation. */
   data: InputDataUnion;
   /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
@@ -104,7 +104,7 @@ export function inputDataUnionDeserializer(item: any): InputDataUnion {
 
 /** Data Source for Application Insight. */
 export interface AppInsightsConfiguration extends InputData {
-  readonly type: "app_insights";
+  readonly type?: "app_insights";
   /** LogAnalytic Workspace resourceID associated with AppInsights */
   resourceId: string;
   /** Query to fetch the data. */
@@ -136,7 +136,7 @@ export function appInsightsConfigurationDeserializer(
 
 /** Dataset as source for evaluation. */
 export interface Dataset extends InputData {
-  readonly type: "dataset";
+  readonly type?: "dataset";
   /** Evaluation input data */
   id: string;
 }
@@ -261,7 +261,7 @@ export function evaluationArrayDeserializer(result: Array<Evaluation>): any[] {
 /** Evaluation Schedule Definition */
 export interface EvaluationSchedule {
   /** Identifier of the evaluation. */
-  readonly id: string;
+  readonly id?: string;
   /** Data for evaluation. */
   data: InputDataUnion;
   /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
@@ -363,7 +363,7 @@ export function triggerUnionDeserializer(item: any): TriggerUnion {
 
 /** Recurrence Trigger Definition */
 export interface RecurrenceTrigger extends Trigger {
-  readonly type: "Recurrence";
+  readonly type?: "Recurrence";
   /** The frequency to trigger schedule. */
   frequency: Frequency;
   /** Specifies schedule interval in conjunction with frequency */
@@ -450,7 +450,7 @@ export type WeekDays =
 
 /** Cron Trigger Definition */
 export interface CronTrigger extends Trigger {
-  readonly type: "Cron";
+  readonly type?: "Cron";
   /** Cron expression for the trigger. */
   expression: string;
 }
