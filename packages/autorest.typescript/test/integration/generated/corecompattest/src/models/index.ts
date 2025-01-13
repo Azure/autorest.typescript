@@ -71,40 +71,6 @@ export enum KnownPetStatus {
   Pending = "pending",
   /** Sold */
   Sold = "sold",
-  /** PascalCase1 */
-  PascalCase1 = "pascalCase1",
-  /** PascalCase2 */
-  PascalCase2 = "PascalCase2",
-  /** Pascalcase3 */
-  Pascalcase3 = "pascalcase3",
-  /** Pascalcase4 */
-  Pascalcase4 = "Pascalcase4",
-  /** PascalCase5 */
-  PascalCase5 = "pascal_case_5",
-  /** PascalCase6 */
-  PascalCase6 = "pascal_case6",
-  /** PascalCase7 */
-  PascalCase7 = "_pascal_case7",
-  /** PascalCase8 */
-  PascalCase8 = "pascal, case8",
-  /** MAXOfMLD */
-  MAXOfMLD = "MAX_of_MLD",
-  /** YESORNO */
-  YESORNO = "YES OR NO",
-  /** FailedNOTValidation */
-  FailedNOTValidation = "FAILED_NOT_VALIDATION",
-  /** ValidationSuccess */
-  ValidationSuccess = "VALIDATION_SUCCESS",
-  /** PascalCase6666 */
-  PascalCase6666 = "___pascal____case6666",
-  /** Ninety */
-  Ninety = "090",
-  /** One0 */
-  One0 = "1.0",
-  /** Select */
-  Select = "$select",
-  /** HateThreating */
-  HateThreating = "hate/threating",
 }
 
 /**
@@ -114,24 +80,7 @@ export enum KnownPetStatus {
  * ### Known values supported by the service
  * **available** \
  * **pending** \
- * **sold** \
- * **pascalCase1** \
- * **PascalCase2** \
- * **pascalcase3** \
- * **Pascalcase4** \
- * **pascal_case_5** \
- * **pascal_case6** \
- * **_pascal_case7** \
- * **pascal, case8** \
- * **MAX_of_MLD** \
- * **YES OR NO** \
- * **FAILED_NOT_VALIDATION** \
- * **VALIDATION_SUCCESS** \
- * **___pascal____case6666** \
- * **090** \
- * **1.0** \
- * **$select** \
- * **hate\/threating**
+ * **sold**
  */
 export type PetStatus = string;
 

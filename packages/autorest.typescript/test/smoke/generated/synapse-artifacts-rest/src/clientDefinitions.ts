@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   KqlScriptsGetAllParameters,
   KqlScriptCreateOrUpdateParameters,
   KqlScriptGetByNameParameters,
@@ -93,7 +93,7 @@ import {
   TriggerRunQueryTriggerRunsByWorkspaceParameters,
   WorkspaceGetParameters,
 } from "./parameters";
-import {
+import type {
   KqlScriptsGetAll200Response,
   KqlScriptsGetAllDefaultResponse,
   KqlScriptCreateOrUpdate200Response,
@@ -336,7 +336,7 @@ import {
   WorkspaceGet200Response,
   WorkspaceGetDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for KqlScripts operations */
 export interface KqlScriptsOperations {

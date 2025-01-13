@@ -884,28 +884,7 @@
         "status": {
           "type": "string",
           "description": "pet status in the store",
-          "enum": [
-            "available",
-            "pending",
-            "sold",
-            "pascalCase1",
-            "PascalCase2",
-            "pascalcase3",
-            "Pascalcase4",
-            "pascal_case_5",
-            "pascal_case6",
-            "_pascal_case7",
-            "pascal, case8",
-            "MAX_of_MLD",
-            "YES OR NO",
-            "FAILED_NOT_VALIDATION",
-            "VALIDATION_SUCCESS",
-            "___pascal____case6666",
-            "090",
-            "1.0",
-            "$select",
-            "hate/threating"
-          ]
+          "enum": ["available", "pending", "sold"]
         },
         "petRestrictionLevel": {
           "type": "string",

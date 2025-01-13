@@ -35,7 +35,7 @@
         "prefix": "package-version"
       },
       {
-        "path": "src/dpgCustomizationClient.ts",
+        "path": "src/dPGCustomizationClient.ts",
         "prefix": "userAgentInfo"
       }
     ]

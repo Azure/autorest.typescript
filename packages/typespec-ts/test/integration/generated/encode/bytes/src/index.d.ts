@@ -1,10 +1,10 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RawHttpHeaders } from '@typespec/ts-http-runtime';
+import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare interface Base64BytesProperty {
     value: string;
@@ -14,19 +14,19 @@ export declare interface Base64BytesPropertyOutput {
     value: string;
 }
 
-export declare interface Base64UrlArrayBytesProperty {
+export declare interface Base64urlArrayBytesProperty {
     value: string[];
 }
 
-export declare interface Base64UrlArrayBytesPropertyOutput {
+export declare interface Base64urlArrayBytesPropertyOutput {
     value: string[];
 }
 
-export declare interface Base64UrlBytesProperty {
+export declare interface Base64urlBytesProperty {
     value: string;
 }
 
-export declare interface Base64UrlBytesPropertyOutput {
+export declare interface Base64urlBytesPropertyOutput {
     value: string;
 }
 
@@ -68,41 +68,41 @@ export declare interface HeaderBase64Headers {
 
 export declare type HeaderBase64Parameters = HeaderBase64HeaderParam & RequestParameters;
 
-export declare interface HeaderBase64Url {
-    get(options: HeaderBase64UrlParameters): StreamableMethod<HeaderBase64Url204Response>;
+export declare interface HeaderBase64url {
+    get(options: HeaderBase64urlParameters): StreamableMethod<HeaderBase64url204Response>;
 }
 
-export declare interface HeaderBase64Url204Response extends HttpResponse {
+export declare interface HeaderBase64url204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface HeaderBase64UrlArray {
-    get(options: HeaderBase64UrlArrayParameters): StreamableMethod<HeaderBase64UrlArray204Response>;
+export declare interface HeaderBase64urlArray {
+    get(options: HeaderBase64urlArrayParameters): StreamableMethod<HeaderBase64urlArray204Response>;
 }
 
-export declare interface HeaderBase64UrlArray204Response extends HttpResponse {
+export declare interface HeaderBase64urlArray204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface HeaderBase64UrlArrayHeaderParam {
-    headers: RawHttpHeadersInput & HeaderBase64UrlArrayHeaders;
+export declare interface HeaderBase64urlArrayHeaderParam {
+    headers: RawHttpHeadersInput & HeaderBase64urlArrayHeaders;
 }
 
-export declare interface HeaderBase64UrlArrayHeaders {
+export declare interface HeaderBase64urlArrayHeaders {
     value: string;
 }
 
-export declare type HeaderBase64UrlArrayParameters = HeaderBase64UrlArrayHeaderParam & RequestParameters;
+export declare type HeaderBase64urlArrayParameters = HeaderBase64urlArrayHeaderParam & RequestParameters;
 
-export declare interface HeaderBase64UrlHeaderParam {
-    headers: RawHttpHeadersInput & HeaderBase64UrlHeaders;
+export declare interface HeaderBase64urlHeaderParam {
+    headers: RawHttpHeadersInput & HeaderBase64urlHeaders;
 }
 
-export declare interface HeaderBase64UrlHeaders {
+export declare interface HeaderBase64urlHeaders {
     value: string;
 }
 
-export declare type HeaderBase64UrlParameters = HeaderBase64UrlHeaderParam & RequestParameters;
+export declare type HeaderBase64urlParameters = HeaderBase64urlHeaderParam & RequestParameters;
 
 export declare interface HeaderDefault {
     get(options: HeaderDefaultParameters): StreamableMethod<HeaderDefault204Response>;
@@ -137,35 +137,35 @@ export declare interface PropertyBase64BodyParam {
 
 export declare type PropertyBase64Parameters = PropertyBase64BodyParam & RequestParameters;
 
-export declare interface PropertyBase64Url {
-    post(options: PropertyBase64UrlParameters): StreamableMethod<PropertyBase64Url200Response>;
+export declare interface PropertyBase64url {
+    post(options: PropertyBase64urlParameters): StreamableMethod<PropertyBase64url200Response>;
 }
 
-export declare interface PropertyBase64Url200Response extends HttpResponse {
+export declare interface PropertyBase64url200Response extends HttpResponse {
     status: "200";
-    body: Base64UrlBytesPropertyOutput;
+    body: Base64urlBytesPropertyOutput;
 }
 
-export declare interface PropertyBase64UrlArray {
-    post(options: PropertyBase64UrlArrayParameters): StreamableMethod<PropertyBase64UrlArray200Response>;
+export declare interface PropertyBase64urlArray {
+    post(options: PropertyBase64urlArrayParameters): StreamableMethod<PropertyBase64urlArray200Response>;
 }
 
-export declare interface PropertyBase64UrlArray200Response extends HttpResponse {
+export declare interface PropertyBase64urlArray200Response extends HttpResponse {
     status: "200";
-    body: Base64UrlArrayBytesPropertyOutput;
+    body: Base64urlArrayBytesPropertyOutput;
 }
 
-export declare interface PropertyBase64UrlArrayBodyParam {
-    body: Base64UrlArrayBytesProperty;
+export declare interface PropertyBase64urlArrayBodyParam {
+    body: Base64urlArrayBytesProperty;
 }
 
-export declare type PropertyBase64UrlArrayParameters = PropertyBase64UrlArrayBodyParam & RequestParameters;
+export declare type PropertyBase64urlArrayParameters = PropertyBase64urlArrayBodyParam & RequestParameters;
 
-export declare interface PropertyBase64UrlBodyParam {
-    body: Base64UrlBytesProperty;
+export declare interface PropertyBase64urlBodyParam {
+    body: Base64urlBytesProperty;
 }
 
-export declare type PropertyBase64UrlParameters = PropertyBase64UrlBodyParam & RequestParameters;
+export declare type PropertyBase64urlParameters = PropertyBase64urlBodyParam & RequestParameters;
 
 export declare interface PropertyDefault {
     post(options: PropertyDefaultParameters): StreamableMethod<PropertyDefault200Response>;
@@ -200,45 +200,45 @@ export declare interface QueryBase64QueryParamProperties {
     value: string;
 }
 
-export declare interface QueryBase64Url {
-    get(options: QueryBase64UrlParameters): StreamableMethod<QueryBase64Url204Response>;
+export declare interface QueryBase64url {
+    get(options: QueryBase64urlParameters): StreamableMethod<QueryBase64url204Response>;
 }
 
-export declare interface QueryBase64Url204Response extends HttpResponse {
+export declare interface QueryBase64url204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface QueryBase64UrlArray {
-    get(options: QueryBase64UrlArrayParameters): StreamableMethod<QueryBase64UrlArray204Response>;
+export declare interface QueryBase64urlArray {
+    get(options: QueryBase64urlArrayParameters): StreamableMethod<QueryBase64urlArray204Response>;
 }
 
-export declare interface QueryBase64UrlArray204Response extends HttpResponse {
+export declare interface QueryBase64urlArray204Response extends HttpResponse {
     status: "204";
 }
 
-export declare type QueryBase64UrlArrayParameters = QueryBase64UrlArrayQueryParam & RequestParameters;
+export declare type QueryBase64urlArrayParameters = QueryBase64urlArrayQueryParam & RequestParameters;
 
-export declare interface QueryBase64UrlArrayQueryParam {
-    queryParameters: QueryBase64UrlArrayQueryParamProperties;
+export declare interface QueryBase64urlArrayQueryParam {
+    queryParameters: QueryBase64urlArrayQueryParamProperties;
 }
 
-export declare interface QueryBase64UrlArrayQueryParamProperties {
-    value: string[] | QueryBase64UrlArrayValueQueryParam;
+export declare interface QueryBase64urlArrayQueryParamProperties {
+    value: string[] | QueryBase64urlArrayValueQueryParam;
 }
 
-export declare interface QueryBase64UrlArrayValueQueryParam {
+export declare interface QueryBase64urlArrayValueQueryParam {
     value: string[];
     explode: false;
     style: "form";
 }
 
-export declare type QueryBase64UrlParameters = QueryBase64UrlQueryParam & RequestParameters;
+export declare type QueryBase64urlParameters = QueryBase64urlQueryParam & RequestParameters;
 
-export declare interface QueryBase64UrlQueryParam {
-    queryParameters: QueryBase64UrlQueryParamProperties;
+export declare interface QueryBase64urlQueryParam {
+    queryParameters: QueryBase64urlQueryParamProperties;
 }
 
-export declare interface QueryBase64UrlQueryParamProperties {
+export declare interface QueryBase64urlQueryParamProperties {
     value: string;
 }
 
@@ -274,19 +274,19 @@ export declare interface RequestBodyBase64BodyParam {
 
 export declare type RequestBodyBase64Parameters = RequestBodyBase64BodyParam & RequestParameters;
 
-export declare interface RequestBodyBase64Url {
-    post(options: RequestBodyBase64UrlParameters): StreamableMethod<RequestBodyBase64Url204Response>;
+export declare interface RequestBodyBase64url {
+    post(options: RequestBodyBase64urlParameters): StreamableMethod<RequestBodyBase64url204Response>;
 }
 
-export declare interface RequestBodyBase64Url204Response extends HttpResponse {
+export declare interface RequestBodyBase64url204Response extends HttpResponse {
     status: "204";
 }
 
-export declare interface RequestBodyBase64UrlBodyParam {
+export declare interface RequestBodyBase64urlBodyParam {
     body: string;
 }
 
-export declare type RequestBodyBase64UrlParameters = RequestBodyBase64UrlBodyParam & RequestParameters;
+export declare type RequestBodyBase64urlParameters = RequestBodyBase64urlBodyParam & RequestParameters;
 
 export declare interface RequestBodyCustomContentType {
     post(options: RequestBodyCustomContentTypeParameters): StreamableMethod<RequestBodyCustomContentType204Response>;
@@ -349,16 +349,16 @@ export declare interface ResponseBodyBase64200Response extends HttpResponse {
 
 export declare type ResponseBodyBase64Parameters = RequestParameters;
 
-export declare interface ResponseBodyBase64Url {
-    get(options?: ResponseBodyBase64UrlParameters): StreamableMethod<ResponseBodyBase64Url200Response>;
+export declare interface ResponseBodyBase64url {
+    get(options?: ResponseBodyBase64urlParameters): StreamableMethod<ResponseBodyBase64url200Response>;
 }
 
-export declare interface ResponseBodyBase64Url200Response extends HttpResponse {
+export declare interface ResponseBodyBase64url200Response extends HttpResponse {
     status: "200";
     body: string;
 }
 
-export declare type ResponseBodyBase64UrlParameters = RequestParameters;
+export declare type ResponseBodyBase64urlParameters = RequestParameters;
 
 export declare interface ResponseBodyCustomContentType {
     get(options?: ResponseBodyCustomContentTypeParameters): StreamableMethod<ResponseBodyCustomContentType200Response>;
@@ -406,26 +406,26 @@ export declare type ResponseBodyOctetStreamParameters = RequestParameters;
 export declare interface Routes {
     (path: "/encode/bytes/query/default"): QueryDefault;
     (path: "/encode/bytes/query/base64"): QueryBase64;
-    (path: "/encode/bytes/query/base64url"): QueryBase64Url;
-    (path: "/encode/bytes/query/base64url-array"): QueryBase64UrlArray;
+    (path: "/encode/bytes/query/base64url"): QueryBase64url;
+    (path: "/encode/bytes/query/base64url-array"): QueryBase64urlArray;
     (path: "/encode/bytes/property/default"): PropertyDefault;
     (path: "/encode/bytes/property/base64"): PropertyBase64;
-    (path: "/encode/bytes/property/base64url"): PropertyBase64Url;
-    (path: "/encode/bytes/property/base64url-array"): PropertyBase64UrlArray;
+    (path: "/encode/bytes/property/base64url"): PropertyBase64url;
+    (path: "/encode/bytes/property/base64url-array"): PropertyBase64urlArray;
     (path: "/encode/bytes/header/default"): HeaderDefault;
     (path: "/encode/bytes/header/base64"): HeaderBase64;
-    (path: "/encode/bytes/header/base64url"): HeaderBase64Url;
-    (path: "/encode/bytes/header/base64url-array"): HeaderBase64UrlArray;
+    (path: "/encode/bytes/header/base64url"): HeaderBase64url;
+    (path: "/encode/bytes/header/base64url-array"): HeaderBase64urlArray;
     (path: "/encode/bytes/body/request/default"): RequestBodyDefault;
     (path: "/encode/bytes/body/request/octet-stream"): RequestBodyOctetStream;
     (path: "/encode/bytes/body/request/custom-content-type"): RequestBodyCustomContentType;
     (path: "/encode/bytes/body/request/base64"): RequestBodyBase64;
-    (path: "/encode/bytes/body/request/base64url"): RequestBodyBase64Url;
+    (path: "/encode/bytes/body/request/base64url"): RequestBodyBase64url;
     (path: "/encode/bytes/body/response/default"): ResponseBodyDefault;
     (path: "/encode/bytes/body/response/octet-stream"): ResponseBodyOctetStream;
     (path: "/encode/bytes/body/response/custom-content-type"): ResponseBodyCustomContentType;
     (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;
-    (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64Url;
+    (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64url;
 }
 
 export { }
