@@ -12,6 +12,7 @@ import {
   DataTypesUpdateOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   DataType,
   dataTypeSerializer,
   dataTypeDeserializer,
@@ -66,7 +67,9 @@ export async function _listByDataProductDeserialize(
 ): Promise<_DataTypeListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _dataTypeListResultDeserializer(result.body);
@@ -129,7 +132,9 @@ export async function _generateStorageContainerSasTokenDeserialize(
 ): Promise<ContainerSasToken> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return containerSasTokenDeserializer(result.body);
@@ -190,7 +195,9 @@ export async function _deleteDataDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -256,7 +263,9 @@ export async function _$deleteDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -328,7 +337,9 @@ export async function _updateDeserialize(
 ): Promise<DataType> {
   const expectedStatuses = ["200", "202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataTypeDeserializer(result.body);
@@ -389,7 +400,9 @@ export async function _getDeserialize(
 ): Promise<DataType> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataTypeDeserializer(result.body);
@@ -446,7 +459,9 @@ export async function _createDeserialize(
 ): Promise<DataType> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataTypeDeserializer(result.body);

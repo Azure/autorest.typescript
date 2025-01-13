@@ -12,6 +12,7 @@ import {
   univariateUnivariateDetectionOptionsSerializer,
   UnivariateUnivariateEntireDetectionResult,
   univariateUnivariateEntireDetectionResultDeserializer,
+  univariateAnomalyDetectorErrorDeserializer,
   UnivariateUnivariateLastDetectionResult,
   univariateUnivariateLastDetectionResultDeserializer,
   UnivariateUnivariateChangePointDetectionOptions,
@@ -51,7 +52,9 @@ export async function _detectUnivariateChangePointDeserialize(
 ): Promise<UnivariateUnivariateChangePointDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    throw error;
   }
 
   return univariateUnivariateChangePointDetectionResultDeserializer(
@@ -100,7 +103,9 @@ export async function _detectUnivariateLastPointDeserialize(
 ): Promise<UnivariateUnivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    throw error;
   }
 
   return univariateUnivariateLastDetectionResultDeserializer(result.body);
@@ -150,7 +155,9 @@ export async function _detectUnivariateEntireSeriesDeserialize(
 ): Promise<UnivariateUnivariateEntireDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    throw error;
   }
 
   return univariateUnivariateEntireDetectionResultDeserializer(result.body);

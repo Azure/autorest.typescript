@@ -2,9 +2,13 @@
 
 import { TodoContext as Client, UsersCreateOptionalParams } from "../index.js";
 import {
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
   User,
   userSerializer,
   _createResponse1Deserializer,
+  userExistsResponseDeserializer,
+  invalidUserResponseDeserializer,
 } from "../../models/models.js";
 import {
   StreamableMethod,
@@ -41,7 +45,18 @@ export async function _createDeserialize(
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 409) {
+      error.details = userExistsResponseDeserializer(result.body);
+    } else if (statusCode === 422) {
+      error.details = invalidUserResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return _createResponse1Deserializer(result.body);
