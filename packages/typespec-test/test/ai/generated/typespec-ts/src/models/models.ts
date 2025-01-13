@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { stringToUint8Array } from "@azure/core-util";
-
 /** Evaluation Definition */
 export interface Evaluation {
   /** Identifier of the evaluation. */
   readonly id: string;
   /** Data for evaluation. */
   data: InputDataUnion;
-  /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
+  /** Display Name for evaluation. It helps to find the evaluation easily in AI Foundry. It does not need to be unique. */
   displayName?: string;
   /** Description of the evaluation. It can be used to store additional information about the evaluation and is mutable. */
   description?: string;
@@ -70,13 +68,16 @@ export function inputDataDeserializer(item: any): InputData {
 }
 
 /** Alias for InputDataUnion */
-export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
+export type InputDataUnion =
+  | ApplicationInsightsConfiguration
+  | Dataset
+  | InputData;
 
 export function inputDataUnionSerializer(item: InputDataUnion): any {
   switch (item.type) {
     case "app_insights":
-      return appInsightsConfigurationSerializer(
-        item as AppInsightsConfiguration,
+      return applicationInsightsConfigurationSerializer(
+        item as ApplicationInsightsConfiguration,
       );
 
     case "dataset":
@@ -90,8 +91,8 @@ export function inputDataUnionSerializer(item: InputDataUnion): any {
 export function inputDataUnionDeserializer(item: any): InputDataUnion {
   switch (item.type) {
     case "app_insights":
-      return appInsightsConfigurationDeserializer(
-        item as AppInsightsConfiguration,
+      return applicationInsightsConfigurationDeserializer(
+        item as ApplicationInsightsConfiguration,
       );
 
     case "dataset":
@@ -102,35 +103,39 @@ export function inputDataUnionDeserializer(item: any): InputDataUnion {
   }
 }
 
-/** Data Source for Application Insight. */
-export interface AppInsightsConfiguration extends InputData {
+/** Data Source for Application Insights. */
+export interface ApplicationInsightsConfiguration extends InputData {
   readonly type: "app_insights";
-  /** LogAnalytic Workspace resourceID associated with AppInsights */
+  /** LogAnalytic Workspace resourceID associated with ApplicationInsights */
   resourceId: string;
   /** Query to fetch the data. */
   query: string;
   /** Service name. */
   serviceName: string;
+  /** Connection String to connect to ApplicationInsights. */
+  connectionString?: string;
 }
 
-export function appInsightsConfigurationSerializer(
-  item: AppInsightsConfiguration,
+export function applicationInsightsConfigurationSerializer(
+  item: ApplicationInsightsConfiguration,
 ): any {
   return {
     resourceId: item["resourceId"],
     query: item["query"],
     serviceName: item["serviceName"],
+    connectionString: item["connectionString"],
   };
 }
 
-export function appInsightsConfigurationDeserializer(
+export function applicationInsightsConfigurationDeserializer(
   item: any,
-): AppInsightsConfiguration {
+): ApplicationInsightsConfiguration {
   return {
     type: item["type"],
     resourceId: item["resourceId"],
     query: item["query"],
     serviceName: item["serviceName"],
+    connectionString: item["connectionString"],
   };
 }
 
@@ -260,58 +265,53 @@ export function evaluationArrayDeserializer(result: Array<Evaluation>): any[] {
 
 /** Evaluation Schedule Definition */
 export interface EvaluationSchedule {
-  /** Identifier of the evaluation. */
-  readonly id: string;
+  /** Name of the schedule, which also serves as the unique identifier for the evaluation */
+  readonly name: string;
   /** Data for evaluation. */
-  data: InputDataUnion;
-  /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
-  displayName?: string;
+  data: ApplicationInsightsConfiguration;
   /** Description of the evaluation. It can be used to store additional information about the evaluation and is mutable. */
   description?: string;
   /** Metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
-  /** Status of the evaluation. It is set by service and is read-only. */
-  readonly provisioningStatus?: string;
+  /** Provisioning State of the evaluation. It is set by service and is read-only. */
+  readonly provisioningState?: string;
   /** Evaluation's tags. Unlike properties, tags are fully mutable. */
   tags?: Record<string, string>;
   /** Evaluation's properties. Unlike tags, properties are add-only. Once added, a property cannot be removed. */
   properties?: Record<string, string>;
+  /** Enabled status of the evaluation. It is set by service and is read-only. */
+  readonly isEnabled?: string;
   /** Evaluators to be used for the evaluation. */
   evaluators: Record<string, EvaluatorConfiguration>;
   /** Trigger for the evaluation. */
   trigger: TriggerUnion;
-  /** Sampling strategy for the evaluation. */
-  samplingStrategy: SamplingStrategy;
 }
 
 export function evaluationScheduleSerializer(item: EvaluationSchedule): any {
   return {
-    data: inputDataUnionSerializer(item["data"]),
-    displayName: item["displayName"],
+    data: applicationInsightsConfigurationSerializer(item["data"]),
     description: item["description"],
     tags: item["tags"],
     properties: item["properties"],
     evaluators: evaluatorConfigurationRecordSerializer(item["evaluators"]),
     trigger: triggerUnionSerializer(item["trigger"]),
-    samplingStrategy: samplingStrategySerializer(item["samplingStrategy"]),
   };
 }
 
 export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
   return {
-    id: item["id"],
-    data: inputDataUnionDeserializer(item["data"]),
-    displayName: item["displayName"],
+    name: item["name"],
+    data: applicationInsightsConfigurationDeserializer(item["data"]),
     description: item["description"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    provisioningStatus: item["provisioningStatus"],
+    provisioningState: item["provisioningState"],
     tags: item["tags"],
     properties: item["properties"],
+    isEnabled: item["isEnabled"],
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
     trigger: triggerUnionDeserializer(item["trigger"]),
-    samplingStrategy: samplingStrategyDeserializer(item["samplingStrategy"]),
   };
 }
 
@@ -369,14 +369,16 @@ export interface RecurrenceTrigger extends Trigger {
   /** Specifies schedule interval in conjunction with frequency */
   interval: number;
   /** The recurrence schedule. */
-  schedule: RecurrenceSchedule;
+  schedule?: RecurrenceSchedule;
 }
 
 export function recurrenceTriggerSerializer(item: RecurrenceTrigger): any {
   return {
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: recurrenceScheduleSerializer(item["schedule"]),
+    schedule: !item["schedule"]
+      ? item["schedule"]
+      : recurrenceScheduleSerializer(item["schedule"]),
   };
 }
 
@@ -385,7 +387,9 @@ export function recurrenceTriggerDeserializer(item: any): RecurrenceTrigger {
     type: item["type"],
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: recurrenceScheduleDeserializer(item["schedule"]),
+    schedule: !item["schedule"]
+      ? item["schedule"]
+      : recurrenceScheduleDeserializer(item["schedule"]),
   };
 }
 
@@ -399,9 +403,9 @@ export interface RecurrenceSchedule {
   /** List of minutes for the schedule. */
   minutes: number[];
   /** List of days for the schedule. */
-  weekDays: WeekDays[];
+  weekDays?: WeekDays[];
   /** List of month days for the schedule */
-  monthDays: number[];
+  monthDays?: number[];
 }
 
 export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
@@ -412,12 +416,16 @@ export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
     minutes: item["minutes"].map((p: any) => {
       return p;
     }),
-    weekDays: item["weekDays"].map((p: any) => {
-      return p;
-    }),
-    monthDays: item["monthDays"].map((p: any) => {
-      return p;
-    }),
+    weekDays: !item["weekDays"]
+      ? item["weekDays"]
+      : item["weekDays"].map((p: any) => {
+          return p;
+        }),
+    monthDays: !item["monthDays"]
+      ? item["monthDays"]
+      : item["monthDays"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -429,12 +437,16 @@ export function recurrenceScheduleDeserializer(item: any): RecurrenceSchedule {
     minutes: item["minutes"].map((p: any) => {
       return p;
     }),
-    weekDays: item["weekDays"].map((p: any) => {
-      return p;
-    }),
-    monthDays: item["monthDays"].map((p: any) => {
-      return p;
-    }),
+    weekDays: !item["weekDays"]
+      ? item["weekDays"]
+      : item["weekDays"].map((p: any) => {
+          return p;
+        }),
+    monthDays: !item["monthDays"]
+      ? item["monthDays"]
+      : item["monthDays"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -463,22 +475,6 @@ export function cronTriggerDeserializer(item: any): CronTrigger {
   return {
     type: item["type"],
     expression: item["expression"],
-  };
-}
-
-/** SamplingStrategy Definition */
-export interface SamplingStrategy {
-  /** Sampling rate */
-  rate: number;
-}
-
-export function samplingStrategySerializer(item: SamplingStrategy): any {
-  return { rate: item["rate"] };
-}
-
-export function samplingStrategyDeserializer(item: any): SamplingStrategy {
-  return {
-    rate: item["rate"],
   };
 }
 
@@ -515,126 +511,199 @@ export function evaluationScheduleArrayDeserializer(
   });
 }
 
-/** Response from the list operation */
-export interface ConnectionsListResponse {
-  /** A list of connection list secrets */
-  value: ConnectionsListSecretsResponse[];
+/** Response from getting properties of the Application Insights resource */
+export interface GetAppInsightsResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: AppInsightsProperties;
 }
 
-export function connectionsListResponseDeserializer(
+export function getAppInsightsResponseDeserializer(
   item: any,
-): ConnectionsListResponse {
+): GetAppInsightsResponse {
   return {
-    value: connectionsListSecretsResponseArrayDeserializer(item["value"]),
+    id: item["id"],
+    name: item["name"],
+    properties: appInsightsPropertiesDeserializer(item["properties"]),
   };
 }
 
-export function connectionsListSecretsResponseArrayDeserializer(
-  result: Array<ConnectionsListSecretsResponse>,
+/** The properties of the Application Insights resource */
+export interface AppInsightsProperties {
+  /** Authentication type of the connection target */
+  connectionString: string;
+}
+
+export function appInsightsPropertiesDeserializer(
+  item: any,
+): AppInsightsProperties {
+  return {
+    connectionString: item["ConnectionString"],
+  };
+}
+
+/** Response from the Workspace - Get operation */
+export interface GetWorkspaceResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: WorkspaceProperties;
+}
+
+export function getWorkspaceResponseDeserializer(
+  item: any,
+): GetWorkspaceResponse {
+  return {
+    id: item["id"],
+    name: item["name"],
+    properties: workspacePropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** workspace properties */
+export interface WorkspaceProperties {
+  /** Authentication type of the connection target */
+  applicationInsights: string;
+}
+
+export function workspacePropertiesDeserializer(
+  item: any,
+): WorkspaceProperties {
+  return {
+    applicationInsights: item["applicationInsights"],
+  };
+}
+
+/** Response from the list operation */
+export interface ListConnectionsResponse {
+  /** A list of connection list secrets */
+  value: GetConnectionResponse[];
+}
+
+export function listConnectionsResponseDeserializer(
+  item: any,
+): ListConnectionsResponse {
+  return {
+    value: getConnectionResponseArrayDeserializer(item["value"]),
+  };
+}
+
+export function getConnectionResponseArrayDeserializer(
+  result: Array<GetConnectionResponse>,
 ): any[] {
   return result.map((item) => {
-    return connectionsListSecretsResponseDeserializer(item);
+    return getConnectionResponseDeserializer(item);
   });
 }
 
 /** Response from the listSecrets operation */
-export interface ConnectionsListSecretsResponse {
+export interface GetConnectionResponse {
   /** A unique identifier for the connection */
   id: string;
   /** The name of the resource */
   name: string;
   /** The properties of the resource */
-  properties: ConnectionPropertiesUnion;
+  properties: InternalConnectionPropertiesUnion;
 }
 
-export function connectionsListSecretsResponseDeserializer(
+export function getConnectionResponseDeserializer(
   item: any,
-): ConnectionsListSecretsResponse {
+): GetConnectionResponse {
   return {
     id: item["id"],
     name: item["name"],
-    properties: connectionPropertiesUnionDeserializer(item["properties"]),
+    properties: internalConnectionPropertiesUnionDeserializer(
+      item["properties"],
+    ),
   };
 }
 
 /** Connection properties */
-export interface ConnectionProperties {
+export interface InternalConnectionProperties {
   /** Authentication type of the connection target */
   /** The discriminator possible values: ApiKey, AAD, SAS */
   authType: AuthenticationType;
+  /** Category of the connection */
+  category: ConnectionType;
+  /** The connection URL to be used for this service */
+  target: string;
 }
 
-export function connectionPropertiesDeserializer(
+export function internalConnectionPropertiesDeserializer(
   item: any,
-): ConnectionProperties {
+): InternalConnectionProperties {
   return {
     authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
   };
 }
 
-/** Alias for ConnectionPropertiesUnion */
-export type ConnectionPropertiesUnion =
-  | ConnectionPropertiesApiKeyAuth
-  | ConnectionPropertiesAADAuth
-  | ConnectionPropertiesSASAuth
-  | ConnectionProperties;
+/** Alias for InternalConnectionPropertiesUnion */
+export type InternalConnectionPropertiesUnion =
+  | InternalConnectionPropertiesApiKeyAuth
+  | InternalConnectionPropertiesAADAuth
+  | InternalConnectionPropertiesSASAuth
+  | InternalConnectionProperties;
 
-export function connectionPropertiesUnionDeserializer(
+export function internalConnectionPropertiesUnionDeserializer(
   item: any,
-): ConnectionPropertiesUnion {
+): InternalConnectionPropertiesUnion {
   switch (item.authType) {
     case "ApiKey":
-      return connectionPropertiesApiKeyAuthDeserializer(
-        item as ConnectionPropertiesApiKeyAuth,
+      return internalConnectionPropertiesApiKeyAuthDeserializer(
+        item as InternalConnectionPropertiesApiKeyAuth,
       );
 
     case "AAD":
-      return connectionPropertiesAADAuthDeserializer(
-        item as ConnectionPropertiesAADAuth,
+      return internalConnectionPropertiesAADAuthDeserializer(
+        item as InternalConnectionPropertiesAADAuth,
       );
 
     case "SAS":
-      return connectionPropertiesSASAuthDeserializer(
-        item as ConnectionPropertiesSASAuth,
+      return internalConnectionPropertiesSASAuthDeserializer(
+        item as InternalConnectionPropertiesSASAuth,
       );
 
     default:
-      return connectionPropertiesDeserializer(item);
+      return internalConnectionPropertiesDeserializer(item);
   }
 }
 
 /** Authentication type used by Azure AI service to connect to another service */
 export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
-
-/** Connection properties for connections with API key authentication */
-export interface ConnectionPropertiesApiKeyAuth extends ConnectionProperties {
-  /** Authentication type of the connection target */
-  authType: "ApiKey";
-  /** Category of the connection */
-  category: ConnectionType;
-  /** Credentials will only be present for authType=ApiKey */
-  credentials: CredentialsApiKeyAuth;
-  /** The connection URL to be used for this service */
-  target: string;
-}
-
-export function connectionPropertiesApiKeyAuthDeserializer(
-  item: any,
-): ConnectionPropertiesApiKeyAuth {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
-    target: item["target"],
-  };
-}
-
 /** The Type (or category) of the connection */
 export type ConnectionType =
   | "AzureOpenAI"
   | "Serverless"
   | "AzureBlob"
-  | "AIServices";
+  | "AIServices"
+  | "CognitiveSearch";
+
+/** Connection properties for connections with API key authentication */
+export interface InternalConnectionPropertiesApiKeyAuth
+  extends InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  authType: "ApiKey";
+  /** Credentials will only be present for authType=ApiKey */
+  credentials: CredentialsApiKeyAuth;
+}
+
+export function internalConnectionPropertiesApiKeyAuthDeserializer(
+  item: any,
+): InternalConnectionPropertiesApiKeyAuth {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
+  };
+}
 
 /** The credentials needed for API key authentication */
 export interface CredentialsApiKeyAuth {
@@ -651,18 +720,15 @@ export function credentialsApiKeyAuthDeserializer(
 }
 
 /** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
-export interface ConnectionPropertiesAADAuth extends ConnectionProperties {
+export interface InternalConnectionPropertiesAADAuth
+  extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "AAD";
-  /** Category of the connection */
-  category: ConnectionType;
-  /** The connection URL to be used for this service */
-  target: string;
 }
 
-export function connectionPropertiesAADAuthDeserializer(
+export function internalConnectionPropertiesAADAuthDeserializer(
   item: any,
-): ConnectionPropertiesAADAuth {
+): InternalConnectionPropertiesAADAuth {
   return {
     authType: item["authType"],
     category: item["category"],
@@ -671,25 +737,22 @@ export function connectionPropertiesAADAuthDeserializer(
 }
 
 /** Connection properties for connections with SAS authentication */
-export interface ConnectionPropertiesSASAuth extends ConnectionProperties {
+export interface InternalConnectionPropertiesSASAuth
+  extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "SAS";
-  /** Category of the connection */
-  category: ConnectionType;
   /** Credentials will only be present for authType=ApiKey */
   credentials: CredentialsSASAuth;
-  /** The connection URL to be used for this service */
-  target: string;
 }
 
-export function connectionPropertiesSASAuthDeserializer(
+export function internalConnectionPropertiesSASAuthDeserializer(
   item: any,
-): ConnectionPropertiesSASAuth {
+): InternalConnectionPropertiesSASAuth {
   return {
     authType: item["authType"],
     category: item["category"],
-    credentials: credentialsSASAuthDeserializer(item["credentials"]),
     target: item["target"],
+    credentials: credentialsSASAuthDeserializer(item["credentials"]),
   };
 }
 
@@ -708,7 +771,7 @@ export function credentialsSASAuthDeserializer(item: any): CredentialsSASAuth {
 /** An abstract representation of an input tool definition that an agent can use. */
 export interface ToolDefinition {
   /** The object type. */
-  /** The discriminator possible values: code_interpreter, file_search, function, bing_grounding, microsoft_fabric, sharepoint, azure_ai_search */
+  /** The discriminator possible values: code_interpreter, file_search, function, bing_grounding, fabric_aiskill, sharepoint_grounding, azure_ai_search, openapi, azure_function */
   type: string;
 }
 
@@ -731,6 +794,8 @@ export type ToolDefinitionUnion =
   | MicrosoftFabricToolDefinition
   | SharepointToolDefinition
   | AzureAISearchToolDefinition
+  | OpenApiToolDefinition
+  | AzureFunctionToolDefinition
   | ToolDefinition;
 
 export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
@@ -753,12 +818,12 @@ export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
         item as BingGroundingToolDefinition,
       );
 
-    case "microsoft_fabric":
+    case "fabric_aiskill":
       return microsoftFabricToolDefinitionSerializer(
         item as MicrosoftFabricToolDefinition,
       );
 
-    case "sharepoint":
+    case "sharepoint_grounding":
       return sharepointToolDefinitionSerializer(
         item as SharepointToolDefinition,
       );
@@ -766,6 +831,14 @@ export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
     case "azure_ai_search":
       return azureAISearchToolDefinitionSerializer(
         item as AzureAISearchToolDefinition,
+      );
+
+    case "openapi":
+      return openApiToolDefinitionSerializer(item as OpenApiToolDefinition);
+
+    case "azure_function":
+      return azureFunctionToolDefinitionSerializer(
+        item as AzureFunctionToolDefinition,
       );
 
     default:
@@ -795,12 +868,12 @@ export function toolDefinitionUnionDeserializer(
         item as BingGroundingToolDefinition,
       );
 
-    case "microsoft_fabric":
+    case "fabric_aiskill":
       return microsoftFabricToolDefinitionDeserializer(
         item as MicrosoftFabricToolDefinition,
       );
 
-    case "sharepoint":
+    case "sharepoint_grounding":
       return sharepointToolDefinitionDeserializer(
         item as SharepointToolDefinition,
       );
@@ -808,6 +881,14 @@ export function toolDefinitionUnionDeserializer(
     case "azure_ai_search":
       return azureAISearchToolDefinitionDeserializer(
         item as AzureAISearchToolDefinition,
+      );
+
+    case "openapi":
+      return openApiToolDefinitionDeserializer(item as OpenApiToolDefinition);
+
+    case "azure_function":
+      return azureFunctionToolDefinitionDeserializer(
+        item as AzureFunctionToolDefinition,
       );
 
     default:
@@ -873,12 +954,19 @@ export interface FileSearchToolDefinitionDetails {
    * Note that the file search tool may output fewer than `max_num_results` results. See the file search tool documentation for more information.
    */
   maxNumResults?: number;
+  /** Ranking options for file search. */
+  rankingOptions?: FileSearchRankingOptions;
 }
 
 export function fileSearchToolDefinitionDetailsSerializer(
   item: FileSearchToolDefinitionDetails,
 ): any {
-  return { max_num_results: item["maxNumResults"] };
+  return {
+    max_num_results: item["maxNumResults"],
+    ranking_options: !item["rankingOptions"]
+      ? item["rankingOptions"]
+      : fileSearchRankingOptionsSerializer(item["rankingOptions"]),
+  };
 }
 
 export function fileSearchToolDefinitionDetailsDeserializer(
@@ -886,6 +974,32 @@ export function fileSearchToolDefinitionDetailsDeserializer(
 ): FileSearchToolDefinitionDetails {
   return {
     maxNumResults: item["max_num_results"],
+    rankingOptions: !item["ranking_options"]
+      ? item["ranking_options"]
+      : fileSearchRankingOptionsDeserializer(item["ranking_options"]),
+  };
+}
+
+/** Ranking options for file search. */
+export interface FileSearchRankingOptions {
+  /** File search ranker. */
+  ranker: string;
+  /** Ranker search threshold. */
+  scoreThreshold: number;
+}
+
+export function fileSearchRankingOptionsSerializer(
+  item: FileSearchRankingOptions,
+): any {
+  return { ranker: item["ranker"], score_threshold: item["scoreThreshold"] };
+}
+
+export function fileSearchRankingOptionsDeserializer(
+  item: any,
+): FileSearchRankingOptions {
+  return {
+    ranker: item["ranker"],
+    scoreThreshold: item["score_threshold"],
   };
 }
 
@@ -945,12 +1059,17 @@ export function functionDefinitionDeserializer(item: any): FunctionDefinition {
 export interface BingGroundingToolDefinition extends ToolDefinition {
   /** The object type, which is always 'bing_grounding'. */
   type: "bing_grounding";
+  /** The list of connections used by the bing grounding tool. */
+  bingGrounding: ToolConnectionList;
 }
 
 export function bingGroundingToolDefinitionSerializer(
   item: BingGroundingToolDefinition,
 ): any {
-  return { type: item["type"] };
+  return {
+    type: item["type"],
+    bing_grounding: toolConnectionListSerializer(item["bingGrounding"]),
+  };
 }
 
 export function bingGroundingToolDefinitionDeserializer(
@@ -958,19 +1077,82 @@ export function bingGroundingToolDefinitionDeserializer(
 ): BingGroundingToolDefinition {
   return {
     type: item["type"],
+    bingGrounding: toolConnectionListDeserializer(item["bing_grounding"]),
+  };
+}
+
+/** A set of connection resources currently used by either the `bing_grounding`, `fabric_aiskill`, or `sharepoint_grounding` tools. */
+export interface ToolConnectionList {
+  /**
+   * The connections attached to this tool. There can be a maximum of 1 connection
+   * resource attached to the tool.
+   */
+  connectionList?: ToolConnection[];
+}
+
+export function toolConnectionListSerializer(item: ToolConnectionList): any {
+  return {
+    connections: !item["connectionList"]
+      ? item["connectionList"]
+      : toolConnectionArraySerializer(item["connectionList"]),
+  };
+}
+
+export function toolConnectionListDeserializer(item: any): ToolConnectionList {
+  return {
+    connectionList: !item["connections"]
+      ? item["connections"]
+      : toolConnectionArrayDeserializer(item["connections"]),
+  };
+}
+
+export function toolConnectionArraySerializer(
+  result: Array<ToolConnection>,
+): any[] {
+  return result.map((item) => {
+    return toolConnectionSerializer(item);
+  });
+}
+
+export function toolConnectionArrayDeserializer(
+  result: Array<ToolConnection>,
+): any[] {
+  return result.map((item) => {
+    return toolConnectionDeserializer(item);
+  });
+}
+
+/** A connection resource. */
+export interface ToolConnection {
+  /** A connection in a ToolConnectionList attached to this tool. */
+  connectionId: string;
+}
+
+export function toolConnectionSerializer(item: ToolConnection): any {
+  return { connection_id: item["connectionId"] };
+}
+
+export function toolConnectionDeserializer(item: any): ToolConnection {
+  return {
+    connectionId: item["connection_id"],
   };
 }
 
 /** The input definition information for a Microsoft Fabric tool as used to configure an agent. */
 export interface MicrosoftFabricToolDefinition extends ToolDefinition {
-  /** The object type, which is always 'microsoft_fabric'. */
-  type: "microsoft_fabric";
+  /** The object type, which is always 'fabric_aiskill'. */
+  type: "fabric_aiskill";
+  /** The list of connections used by the Microsoft Fabric tool. */
+  fabricAiskill: ToolConnectionList;
 }
 
 export function microsoftFabricToolDefinitionSerializer(
   item: MicrosoftFabricToolDefinition,
 ): any {
-  return { type: item["type"] };
+  return {
+    type: item["type"],
+    fabric_aiskill: toolConnectionListSerializer(item["fabricAiskill"]),
+  };
 }
 
 export function microsoftFabricToolDefinitionDeserializer(
@@ -978,19 +1160,27 @@ export function microsoftFabricToolDefinitionDeserializer(
 ): MicrosoftFabricToolDefinition {
   return {
     type: item["type"],
+    fabricAiskill: toolConnectionListDeserializer(item["fabric_aiskill"]),
   };
 }
 
 /** The input definition information for a sharepoint tool as used to configure an agent. */
 export interface SharepointToolDefinition extends ToolDefinition {
-  /** The object type, which is always 'sharepoint'. */
-  type: "sharepoint";
+  /** The object type, which is always 'sharepoint_grounding'. */
+  type: "sharepoint_grounding";
+  /** The list of connections used by the SharePoint tool. */
+  sharepointGrounding: ToolConnectionList;
 }
 
 export function sharepointToolDefinitionSerializer(
   item: SharepointToolDefinition,
 ): any {
-  return { type: item["type"] };
+  return {
+    type: item["type"],
+    sharepoint_grounding: toolConnectionListSerializer(
+      item["sharepointGrounding"],
+    ),
+  };
 }
 
 export function sharepointToolDefinitionDeserializer(
@@ -998,6 +1188,9 @@ export function sharepointToolDefinitionDeserializer(
 ): SharepointToolDefinition {
   return {
     type: item["type"],
+    sharepointGrounding: toolConnectionListDeserializer(
+      item["sharepoint_grounding"],
+    ),
   };
 }
 
@@ -1021,22 +1214,384 @@ export function azureAISearchToolDefinitionDeserializer(
   };
 }
 
+/** The input definition information for an OpenAPI tool as used to configure an agent. */
+export interface OpenApiToolDefinition extends ToolDefinition {
+  /** The object type, which is always 'openapi'. */
+  type: "openapi";
+  /** The openapi function definition. */
+  openapi: OpenApiFunctionDefinition;
+}
+
+export function openApiToolDefinitionSerializer(
+  item: OpenApiToolDefinition,
+): any {
+  return {
+    type: item["type"],
+    openapi: openApiFunctionDefinitionSerializer(item["openapi"]),
+  };
+}
+
+export function openApiToolDefinitionDeserializer(
+  item: any,
+): OpenApiToolDefinition {
+  return {
+    type: item["type"],
+    openapi: openApiFunctionDefinitionDeserializer(item["openapi"]),
+  };
+}
+
+/** The input definition information for an openapi function. */
+export interface OpenApiFunctionDefinition {
+  /** The name of the function to be called. */
+  name: string;
+  /** A description of what the function does, used by the model to choose when and how to call the function. */
+  description?: string;
+  /** The openapi function shape, described as a JSON Schema object. */
+  spec: any;
+  /** Open API authentication details */
+  auth: OpenApiAuthDetailsUnion;
+}
+
+export function openApiFunctionDefinitionSerializer(
+  item: OpenApiFunctionDefinition,
+): any {
+  return {
+    name: item["name"],
+    description: item["description"],
+    spec: item["spec"],
+    auth: openApiAuthDetailsUnionSerializer(item["auth"]),
+  };
+}
+
+export function openApiFunctionDefinitionDeserializer(
+  item: any,
+): OpenApiFunctionDefinition {
+  return {
+    name: item["name"],
+    description: item["description"],
+    spec: item["spec"],
+    auth: openApiAuthDetailsUnionDeserializer(item["auth"]),
+  };
+}
+
+/** authentication details for OpenApiFunctionDefinition */
+export interface OpenApiAuthDetails {
+  /** The type of authentication, must be anonymous/connection/managed_identity */
+  /** The discriminator possible values: anonymous, connection, managed_identity */
+  type: OpenApiAuthType;
+}
+
+export function openApiAuthDetailsSerializer(item: OpenApiAuthDetails): any {
+  return { type: item["type"] };
+}
+
+export function openApiAuthDetailsDeserializer(item: any): OpenApiAuthDetails {
+  return {
+    type: item["type"],
+  };
+}
+
+/** Alias for OpenApiAuthDetailsUnion */
+export type OpenApiAuthDetailsUnion =
+  | OpenApiAnonymousAuthDetails
+  | OpenApiConnectionAuthDetails
+  | OpenApiManagedAuthDetails
+  | OpenApiAuthDetails;
+
+export function openApiAuthDetailsUnionSerializer(
+  item: OpenApiAuthDetailsUnion,
+): any {
+  switch (item.type) {
+    case "anonymous":
+      return openApiAnonymousAuthDetailsSerializer(
+        item as OpenApiAnonymousAuthDetails,
+      );
+
+    case "connection":
+      return openApiConnectionAuthDetailsSerializer(
+        item as OpenApiConnectionAuthDetails,
+      );
+
+    case "managed_identity":
+      return openApiManagedAuthDetailsSerializer(
+        item as OpenApiManagedAuthDetails,
+      );
+
+    default:
+      return openApiAuthDetailsSerializer(item);
+  }
+}
+
+export function openApiAuthDetailsUnionDeserializer(
+  item: any,
+): OpenApiAuthDetailsUnion {
+  switch (item.type) {
+    case "anonymous":
+      return openApiAnonymousAuthDetailsDeserializer(
+        item as OpenApiAnonymousAuthDetails,
+      );
+
+    case "connection":
+      return openApiConnectionAuthDetailsDeserializer(
+        item as OpenApiConnectionAuthDetails,
+      );
+
+    case "managed_identity":
+      return openApiManagedAuthDetailsDeserializer(
+        item as OpenApiManagedAuthDetails,
+      );
+
+    default:
+      return openApiAuthDetailsDeserializer(item);
+  }
+}
+
+/**
+ *   Authentication type for OpenApi endpoint. Allowed types are:
+ *   - Anonymous (no authentication required)
+ *   - Connection (requires connection_id to endpoint, as setup in AI Foundry)
+ *   - Managed_Identity (requires audience for identity based auth)
+ */
+export type OpenApiAuthType = "anonymous" | "connection" | "managed_identity";
+
+/** Security details for OpenApi anonymous authentication */
+export interface OpenApiAnonymousAuthDetails extends OpenApiAuthDetails {
+  /** The object type, which is always 'anonymous'. */
+  type: "anonymous";
+}
+
+export function openApiAnonymousAuthDetailsSerializer(
+  item: OpenApiAnonymousAuthDetails,
+): any {
+  return { type: item["type"] };
+}
+
+export function openApiAnonymousAuthDetailsDeserializer(
+  item: any,
+): OpenApiAnonymousAuthDetails {
+  return {
+    type: item["type"],
+  };
+}
+
+/** Security details for OpenApi connection authentication */
+export interface OpenApiConnectionAuthDetails extends OpenApiAuthDetails {
+  /** The object type, which is always 'connection'. */
+  type: "connection";
+  /** Connection auth security details */
+  securityScheme: OpenApiConnectionSecurityScheme;
+}
+
+export function openApiConnectionAuthDetailsSerializer(
+  item: OpenApiConnectionAuthDetails,
+): any {
+  return {
+    type: item["type"],
+    security_scheme: openApiConnectionSecuritySchemeSerializer(
+      item["securityScheme"],
+    ),
+  };
+}
+
+export function openApiConnectionAuthDetailsDeserializer(
+  item: any,
+): OpenApiConnectionAuthDetails {
+  return {
+    type: item["type"],
+    securityScheme: openApiConnectionSecuritySchemeDeserializer(
+      item["security_scheme"],
+    ),
+  };
+}
+
+/** Security scheme for OpenApi managed_identity authentication */
+export interface OpenApiConnectionSecurityScheme {
+  /** Connection id for Connection auth type */
+  connectionId: string;
+}
+
+export function openApiConnectionSecuritySchemeSerializer(
+  item: OpenApiConnectionSecurityScheme,
+): any {
+  return { connection_id: item["connectionId"] };
+}
+
+export function openApiConnectionSecuritySchemeDeserializer(
+  item: any,
+): OpenApiConnectionSecurityScheme {
+  return {
+    connectionId: item["connection_id"],
+  };
+}
+
+/** Security details for OpenApi managed_identity authentication */
+export interface OpenApiManagedAuthDetails extends OpenApiAuthDetails {
+  /** The object type, which is always 'managed_identity'. */
+  type: "managed_identity";
+  /** Connection auth security details */
+  securityScheme: OpenApiManagedSecurityScheme;
+}
+
+export function openApiManagedAuthDetailsSerializer(
+  item: OpenApiManagedAuthDetails,
+): any {
+  return {
+    type: item["type"],
+    security_scheme: openApiManagedSecuritySchemeSerializer(
+      item["securityScheme"],
+    ),
+  };
+}
+
+export function openApiManagedAuthDetailsDeserializer(
+  item: any,
+): OpenApiManagedAuthDetails {
+  return {
+    type: item["type"],
+    securityScheme: openApiManagedSecuritySchemeDeserializer(
+      item["security_scheme"],
+    ),
+  };
+}
+
+/** Security scheme for OpenApi managed_identity authentication */
+export interface OpenApiManagedSecurityScheme {
+  /** Authentication scope for managed_identity auth type */
+  audience: string;
+}
+
+export function openApiManagedSecuritySchemeSerializer(
+  item: OpenApiManagedSecurityScheme,
+): any {
+  return { audience: item["audience"] };
+}
+
+export function openApiManagedSecuritySchemeDeserializer(
+  item: any,
+): OpenApiManagedSecurityScheme {
+  return {
+    audience: item["audience"],
+  };
+}
+
+/** The input definition information for a azure function tool as used to configure an agent. */
+export interface AzureFunctionToolDefinition extends ToolDefinition {
+  /** The object type, which is always 'azure_function'. */
+  type: "azure_function";
+  /** The definition of the concrete function that the function tool should call. */
+  azureFunction: AzureFunctionDefinition;
+}
+
+export function azureFunctionToolDefinitionSerializer(
+  item: AzureFunctionToolDefinition,
+): any {
+  return {
+    type: item["type"],
+    azure_function: azureFunctionDefinitionSerializer(item["azureFunction"]),
+  };
+}
+
+export function azureFunctionToolDefinitionDeserializer(
+  item: any,
+): AzureFunctionToolDefinition {
+  return {
+    type: item["type"],
+    azureFunction: azureFunctionDefinitionDeserializer(item["azure_function"]),
+  };
+}
+
+/** The definition of Azure function. */
+export interface AzureFunctionDefinition {
+  /** The definition of azure function and its parameters. */
+  function: FunctionDefinition;
+  /** Input storage queue. The queue storage trigger runs a function as messages are added to it. */
+  inputBinding: AzureFunctionBinding;
+  /** Output storage queue. The function writes output to this queue when the input items are processed. */
+  outputBinding: AzureFunctionBinding;
+}
+
+export function azureFunctionDefinitionSerializer(
+  item: AzureFunctionDefinition,
+): any {
+  return {
+    function: functionDefinitionSerializer(item["function"]),
+    input_binding: azureFunctionBindingSerializer(item["inputBinding"]),
+    output_binding: azureFunctionBindingSerializer(item["outputBinding"]),
+  };
+}
+
+export function azureFunctionDefinitionDeserializer(
+  item: any,
+): AzureFunctionDefinition {
+  return {
+    function: functionDefinitionDeserializer(item["function"]),
+    inputBinding: azureFunctionBindingDeserializer(item["input_binding"]),
+    outputBinding: azureFunctionBindingDeserializer(item["output_binding"]),
+  };
+}
+
+/** The structure for keeping storage queue name and URI. */
+export interface AzureFunctionBinding {
+  /** The type of binding, which is always 'storage_queue'. */
+  type: "storage_queue";
+  /** Storage queue. */
+  storageQueue: AzureFunctionStorageQueue;
+}
+
+export function azureFunctionBindingSerializer(
+  item: AzureFunctionBinding,
+): any {
+  return {
+    type: item["type"],
+    storage_queue: azureFunctionStorageQueueSerializer(item["storageQueue"]),
+  };
+}
+
+export function azureFunctionBindingDeserializer(
+  item: any,
+): AzureFunctionBinding {
+  return {
+    type: item["type"],
+    storageQueue: azureFunctionStorageQueueDeserializer(item["storage_queue"]),
+  };
+}
+
+/** The structure for keeping storage queue name and URI. */
+export interface AzureFunctionStorageQueue {
+  /** URI to the Azure Storage Queue service allowing you to manipulate a queue. */
+  storageServiceEndpoint: string;
+  /** The name of an Azure function storage queue. */
+  queueName: string;
+}
+
+export function azureFunctionStorageQueueSerializer(
+  item: AzureFunctionStorageQueue,
+): any {
+  return {
+    queue_service_endpoint: item["storageServiceEndpoint"],
+    queue_name: item["queueName"],
+  };
+}
+
+export function azureFunctionStorageQueueDeserializer(
+  item: any,
+): AzureFunctionStorageQueue {
+  return {
+    storageServiceEndpoint: item["queue_service_endpoint"],
+    queueName: item["queue_name"],
+  };
+}
+
 /**
  * A set of resources that are used by the agent's tools. The resources are specific to the type of
  * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
  * tool requires a list of vector store IDs.
  */
 export interface ToolResources {
-  /** Resources to be used by the `code_interpreter tool` consisting of file IDs. */
+  /** Resources to be used by the `code_interpreter` tool consisting of file IDs. */
   codeInterpreter?: CodeInterpreterToolResource;
   /** Resources to be used by the `file_search` tool consisting of vector store IDs. */
   fileSearch?: FileSearchToolResource;
-  /** Resources to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Resources to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Resources to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
   /** Resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
   azureAISearch?: AzureAISearchResource;
 }
@@ -1049,15 +1604,6 @@ export function toolResourcesSerializer(item: ToolResources): any {
     file_search: !item["fileSearch"]
       ? item["fileSearch"]
       : fileSearchToolResourceSerializer(item["fileSearch"]),
-    bing_grounding: !item["bingGrounding"]
-      ? item["bingGrounding"]
-      : connectionListResourceSerializer(item["bingGrounding"]),
-    microsoft_fabric: !item["microsoftFabric"]
-      ? item["microsoftFabric"]
-      : connectionListResourceSerializer(item["microsoftFabric"]),
-    sharepoint: !item["sharePoint"]
-      ? item["sharePoint"]
-      : connectionListResourceSerializer(item["sharePoint"]),
     azure_ai_search: !item["azureAISearch"]
       ? item["azureAISearch"]
       : azureAISearchResourceSerializer(item["azureAISearch"]),
@@ -1072,15 +1618,6 @@ export function toolResourcesDeserializer(item: any): ToolResources {
     fileSearch: !item["file_search"]
       ? item["file_search"]
       : fileSearchToolResourceDeserializer(item["file_search"]),
-    bingGrounding: !item["bing_grounding"]
-      ? item["bing_grounding"]
-      : connectionListResourceDeserializer(item["bing_grounding"]),
-    microsoftFabric: !item["microsoft_fabric"]
-      ? item["microsoft_fabric"]
-      : connectionListResourceDeserializer(item["microsoft_fabric"]),
-    sharePoint: !item["sharepoint"]
-      ? item["sharepoint"]
-      : connectionListResourceDeserializer(item["sharepoint"]),
     azureAISearch: !item["azure_ai_search"]
       ? item["azure_ai_search"]
       : azureAISearchResourceDeserializer(item["azure_ai_search"]),
@@ -1094,6 +1631,8 @@ export interface CodeInterpreterToolResource {
    * associated with the tool.
    */
   fileIds?: string[];
+  /** The data sources to be used. This option is mutually exclusive with the `fileIds` property. */
+  dataSources?: VectorStoreDataSource[];
 }
 
 export function codeInterpreterToolResourceSerializer(
@@ -1105,6 +1644,9 @@ export function codeInterpreterToolResourceSerializer(
       : item["fileIds"].map((p: any) => {
           return p;
         }),
+    data_sources: !item["dataSources"]
+      ? item["dataSources"]
+      : vectorStoreDataSourceArraySerializer(item["dataSources"]),
   };
 }
 
@@ -1117,8 +1659,59 @@ export function codeInterpreterToolResourceDeserializer(
       : item["file_ids"].map((p: any) => {
           return p;
         }),
+    dataSources: !item["data_sources"]
+      ? item["data_sources"]
+      : vectorStoreDataSourceArrayDeserializer(item["data_sources"]),
   };
 }
+
+export function vectorStoreDataSourceArraySerializer(
+  result: Array<VectorStoreDataSource>,
+): any[] {
+  return result.map((item) => {
+    return vectorStoreDataSourceSerializer(item);
+  });
+}
+
+export function vectorStoreDataSourceArrayDeserializer(
+  result: Array<VectorStoreDataSource>,
+): any[] {
+  return result.map((item) => {
+    return vectorStoreDataSourceDeserializer(item);
+  });
+}
+
+/**
+ * The structure, containing Azure asset URI path and the asset type of the file used as a data source
+ * for the enterprise file search.
+ */
+export interface VectorStoreDataSource {
+  /** Asset URI. */
+  assetIdentifier: string;
+  /** The asset type */
+  assetType: VectorStoreDataSourceAssetType;
+}
+
+export function vectorStoreDataSourceSerializer(
+  item: VectorStoreDataSource,
+): any {
+  return { uri: item["assetIdentifier"], type: item["assetType"] };
+}
+
+export function vectorStoreDataSourceDeserializer(
+  item: any,
+): VectorStoreDataSource {
+  return {
+    assetIdentifier: item["uri"],
+    assetType: item["type"],
+  };
+}
+
+/**
+ * Type of vector storage asset. Asset type may be a uri_asset, in this case it should contain asset URI ID,
+ * in the case of id_asset it should contain the data ID.
+ */
+export type VectorStoreDataSourceAssetType = "uri_asset" | "id_asset";
 
 /** A set of resources that are used by the `file_search` tool. */
 export interface FileSearchToolResource {
@@ -1127,6 +1720,12 @@ export interface FileSearchToolResource {
    * store attached to the agent.
    */
   vectorStoreIds?: string[];
+  /**
+   * The list of vector store configuration objects from Azure.
+   * This list is limited to one element.
+   * The only element of this list contains the list of azure asset IDs used by the search tool.
+   */
+  vectorStores?: VectorStoreConfigurations[];
 }
 
 export function fileSearchToolResourceSerializer(
@@ -1138,6 +1737,9 @@ export function fileSearchToolResourceSerializer(
       : item["vectorStoreIds"].map((p: any) => {
           return p;
         }),
+    vector_stores: !item["vectorStores"]
+      ? item["vectorStores"]
+      : vectorStoreConfigurationsArraySerializer(item["vectorStores"]),
   };
 }
 
@@ -1150,67 +1752,80 @@ export function fileSearchToolResourceDeserializer(
       : item["vector_store_ids"].map((p: any) => {
           return p;
         }),
+    vectorStores: !item["vector_stores"]
+      ? item["vector_stores"]
+      : vectorStoreConfigurationsArrayDeserializer(item["vector_stores"]),
   };
 }
 
-/** A set of connection resources currently used by either the `bing_grounding`, `microsoft_fabric`, or `sharepoint` tools. */
-export interface ConnectionListResource {
-  /**
-   * The connections attached to this agent. There can be a maximum of 1 connection
-   * resource attached to the agent.
-   */
-  connectionList?: ConnectionResource[];
+export function vectorStoreConfigurationsArraySerializer(
+  result: Array<VectorStoreConfigurations>,
+): any[] {
+  return result.map((item) => {
+    return vectorStoreConfigurationsSerializer(item);
+  });
 }
 
-export function connectionListResourceSerializer(
-  item: ConnectionListResource,
+export function vectorStoreConfigurationsArrayDeserializer(
+  result: Array<VectorStoreConfigurations>,
+): any[] {
+  return result.map((item) => {
+    return vectorStoreConfigurationsDeserializer(item);
+  });
+}
+
+/** The structure, containing the list of vector storage configurations i.e. the list of azure asset IDs. */
+export interface VectorStoreConfigurations {
+  /** Name */
+  storeName: string;
+  /** Configurations */
+  storeConfiguration: VectorStoreConfiguration;
+}
+
+export function vectorStoreConfigurationsSerializer(
+  item: VectorStoreConfigurations,
 ): any {
   return {
-    connections: !item["connectionList"]
-      ? item["connectionList"]
-      : connectionResourceArraySerializer(item["connectionList"]),
+    name: item["storeName"],
+    configuration: vectorStoreConfigurationSerializer(
+      item["storeConfiguration"],
+    ),
   };
 }
 
-export function connectionListResourceDeserializer(
+export function vectorStoreConfigurationsDeserializer(
   item: any,
-): ConnectionListResource {
+): VectorStoreConfigurations {
   return {
-    connectionList: !item["connections"]
-      ? item["connections"]
-      : connectionResourceArrayDeserializer(item["connections"]),
+    storeName: item["name"],
+    storeConfiguration: vectorStoreConfigurationDeserializer(
+      item["configuration"],
+    ),
   };
 }
 
-export function connectionResourceArraySerializer(
-  result: Array<ConnectionResource>,
-): any[] {
-  return result.map((item) => {
-    return connectionResourceSerializer(item);
-  });
+/**
+ * Vector storage configuration is the list of data sources, used when multiple
+ * files can be used for the enterprise file search.
+ */
+export interface VectorStoreConfiguration {
+  /** Data sources */
+  dataSources: VectorStoreDataSource[];
 }
 
-export function connectionResourceArrayDeserializer(
-  result: Array<ConnectionResource>,
-): any[] {
-  return result.map((item) => {
-    return connectionResourceDeserializer(item);
-  });
-}
-
-/** A connection resource. */
-export interface ConnectionResource {
-  /** A connection in a ConnectionListResource attached to this agent. */
-  connectionId: string;
-}
-
-export function connectionResourceSerializer(item: ConnectionResource): any {
-  return { connection_id: item["connectionId"] };
-}
-
-export function connectionResourceDeserializer(item: any): ConnectionResource {
+export function vectorStoreConfigurationSerializer(
+  item: VectorStoreConfiguration,
+): any {
   return {
-    connectionId: item["connection_id"],
+    data_sources: vectorStoreDataSourceArraySerializer(item["dataSources"]),
+  };
+}
+
+export function vectorStoreConfigurationDeserializer(
+  item: any,
+): VectorStoreConfiguration {
+  return {
+    dataSources: vectorStoreDataSourceArrayDeserializer(item["data_sources"]),
   };
 }
 
@@ -1287,7 +1902,7 @@ export function indexResourceDeserializer(item: any): IndexResource {
  */
 export interface AgentsApiResponseFormat {
   /** Must be one of `text` or `json_object`. */
-  type?: ApiResponseFormat;
+  type?: ResponseFormat;
 }
 
 export function agentsApiResponseFormatSerializer(
@@ -1305,7 +1920,63 @@ export function agentsApiResponseFormatDeserializer(
 }
 
 /** Possible API response formats. */
-export type ApiResponseFormat = "text" | "json_object";
+export type ResponseFormat = "text" | "json_object";
+
+/** The type of response format being defined: `json_schema` */
+export interface ResponseFormatJsonSchemaType {
+  /** Type */
+  type: "json_schema";
+  /** The JSON schema, describing response format. */
+  jsonSchema: ResponseFormatJsonSchema;
+}
+
+export function responseFormatJsonSchemaTypeSerializer(
+  item: ResponseFormatJsonSchemaType,
+): any {
+  return {
+    type: item["type"],
+    json_schema: responseFormatJsonSchemaSerializer(item["jsonSchema"]),
+  };
+}
+
+export function responseFormatJsonSchemaTypeDeserializer(
+  item: any,
+): ResponseFormatJsonSchemaType {
+  return {
+    type: item["type"],
+    jsonSchema: responseFormatJsonSchemaDeserializer(item["json_schema"]),
+  };
+}
+
+/** A description of what the response format is for, used by the model to determine how to respond in the format. */
+export interface ResponseFormatJsonSchema {
+  /** A description of what the response format is for, used by the model to determine how to respond in the format. */
+  description?: string;
+  /** The name of a schema. */
+  name: string;
+  /** The JSON schema object, describing the response format. */
+  schema: any;
+}
+
+export function responseFormatJsonSchemaSerializer(
+  item: ResponseFormatJsonSchema,
+): any {
+  return {
+    description: item["description"],
+    name: item["name"],
+    schema: item["schema"],
+  };
+}
+
+export function responseFormatJsonSchemaDeserializer(
+  item: any,
+): ResponseFormatJsonSchema {
+  return {
+    description: item["description"],
+    name: item["name"],
+    schema: item["schema"],
+  };
+}
 
 export function toolDefinitionUnionArraySerializer(
   result: Array<ToolDefinitionUnion>,
@@ -1327,7 +1998,8 @@ export function toolDefinitionUnionArrayDeserializer(
 export type AgentsApiResponseFormatOption =
   | string
   | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat;
+  | AgentsApiResponseFormat
+  | ResponseFormatJsonSchemaType;
 
 export function agentsApiResponseFormatOptionSerializer(
   item: AgentsApiResponseFormatOption,
@@ -1463,9 +2135,11 @@ export function agentDeletionStatusDeserializer(
 export interface ThreadMessageOptions {
   /**
    * The role of the entity that is creating the message. Allowed values include:
-   * - `user`: Indicates the message is sent by an actual user and should be used in most cases to represent user-generated messages.
-   * - `assistant`: Indicates the message is generated by the agent. Use this value to insert messages from the agent into
-   * the conversation.
+   * - `user`: Indicates the message is sent by an actual user and should be used in most
+   * cases to represent user-generated messages.
+   * - `assistant`: Indicates the message is generated by the agent. Use this value to insert
+   * messages from the agent into the
+   * conversation.
    */
   role: MessageRole;
   /**
@@ -1514,7 +2188,9 @@ export function messageAttachmentArrayDeserializer(
 /** This describes to which tools a file has been attached. */
 export interface MessageAttachment {
   /** The ID of the file to attach to the message. */
-  fileId: string;
+  fileId?: string;
+  /** Azure asset ID. */
+  dataSource?: VectorStoreDataSource;
   /** The tools to add to this file. */
   tools: MessageAttachmentToolDefinition[];
 }
@@ -1522,6 +2198,9 @@ export interface MessageAttachment {
 export function messageAttachmentSerializer(item: MessageAttachment): any {
   return {
     file_id: item["fileId"],
+    data_source: !item["dataSource"]
+      ? item["dataSource"]
+      : vectorStoreDataSourceSerializer(item["dataSource"]),
     tools: messageAttachmentToolDefinitionArraySerializer(item["tools"]),
   };
 }
@@ -1529,6 +2208,9 @@ export function messageAttachmentSerializer(item: MessageAttachment): any {
 export function messageAttachmentDeserializer(item: any): MessageAttachment {
   return {
     fileId: item["file_id"],
+    dataSource: !item["data_source"]
+      ? item["data_source"]
+      : vectorStoreDataSourceDeserializer(item["data_source"]),
     tools: messageAttachmentToolDefinitionArrayDeserializer(item["tools"]),
   };
 }
@@ -1673,33 +2355,6 @@ export interface ThreadMessage {
   metadata: Record<string, string> | null;
 }
 
-export function threadMessageSerializer(item: ThreadMessage): any {
-  return {
-    id: item["id"],
-    object: item["object"],
-    created_at: (item["createdAt"].getTime() / 1000) | 0,
-    thread_id: item["threadId"],
-    status: item["status"],
-    incomplete_details: !item["incompleteDetails"]
-      ? item["incompleteDetails"]
-      : messageIncompleteDetailsSerializer(item["incompleteDetails"]),
-    completed_at: !item["completedAt"]
-      ? item["completedAt"]
-      : (item["completedAt"].getTime() / 1000) | 0,
-    incomplete_at: !item["incompleteAt"]
-      ? item["incompleteAt"]
-      : (item["incompleteAt"].getTime() / 1000) | 0,
-    role: item["role"],
-    content: messageContentUnionArraySerializer(item["content"]),
-    assistant_id: item["assistantId"],
-    run_id: item["runId"],
-    attachments: !item["attachments"]
-      ? item["attachments"]
-      : messageAttachmentArraySerializer(item["attachments"]),
-    metadata: item["metadata"],
-  };
-}
-
 export function threadMessageDeserializer(item: any): ThreadMessage {
   return {
     id: item["id"],
@@ -1736,12 +2391,6 @@ export interface MessageIncompleteDetails {
   reason: MessageIncompleteDetailsReason;
 }
 
-export function messageIncompleteDetailsSerializer(
-  item: MessageIncompleteDetails,
-): any {
-  return { reason: item["reason"] };
-}
-
 export function messageIncompleteDetailsDeserializer(
   item: any,
 ): MessageIncompleteDetails {
@@ -1758,14 +2407,6 @@ export type MessageIncompleteDetailsReason =
   | "run_failed"
   | "run_expired";
 
-export function messageContentUnionArraySerializer(
-  result: Array<MessageContentUnion>,
-): any[] {
-  return result.map((item) => {
-    return messageContentUnionSerializer(item);
-  });
-}
-
 export function messageContentUnionArrayDeserializer(
   result: Array<MessageContentUnion>,
 ): any[] {
@@ -1781,10 +2422,6 @@ export interface MessageContent {
   type: string;
 }
 
-export function messageContentSerializer(item: MessageContent): any {
-  return { type: item["type"] };
-}
-
 export function messageContentDeserializer(item: any): MessageContent {
   return {
     type: item["type"],
@@ -1796,19 +2433,6 @@ export type MessageContentUnion =
   | MessageTextContent
   | MessageImageFileContent
   | MessageContent;
-
-export function messageContentUnionSerializer(item: MessageContentUnion): any {
-  switch (item.type) {
-    case "text":
-      return messageTextContentSerializer(item as MessageTextContent);
-
-    case "image_file":
-      return messageImageFileContentSerializer(item as MessageImageFileContent);
-
-    default:
-      return messageContentSerializer(item);
-  }
-}
 
 export function messageContentUnionDeserializer(
   item: any,
@@ -1835,13 +2459,6 @@ export interface MessageTextContent extends MessageContent {
   text: MessageTextDetails;
 }
 
-export function messageTextContentSerializer(item: MessageTextContent): any {
-  return {
-    type: item["type"],
-    text: messageTextDetailsSerializer(item["text"]),
-  };
-}
-
 export function messageTextContentDeserializer(item: any): MessageTextContent {
   return {
     type: item["type"],
@@ -1857,13 +2474,6 @@ export interface MessageTextDetails {
   annotations: MessageTextAnnotationUnion[];
 }
 
-export function messageTextDetailsSerializer(item: MessageTextDetails): any {
-  return {
-    value: item["value"],
-    annotations: messageTextAnnotationUnionArraySerializer(item["annotations"]),
-  };
-}
-
 export function messageTextDetailsDeserializer(item: any): MessageTextDetails {
   return {
     value: item["value"],
@@ -1871,14 +2481,6 @@ export function messageTextDetailsDeserializer(item: any): MessageTextDetails {
       item["annotations"],
     ),
   };
-}
-
-export function messageTextAnnotationUnionArraySerializer(
-  result: Array<MessageTextAnnotationUnion>,
-): any[] {
-  return result.map((item) => {
-    return messageTextAnnotationUnionSerializer(item);
-  });
 }
 
 export function messageTextAnnotationUnionArrayDeserializer(
@@ -1898,12 +2500,6 @@ export interface MessageTextAnnotation {
   text: string;
 }
 
-export function messageTextAnnotationSerializer(
-  item: MessageTextAnnotation,
-): any {
-  return { type: item["type"], text: item["text"] };
-}
-
 export function messageTextAnnotationDeserializer(
   item: any,
 ): MessageTextAnnotation {
@@ -1918,25 +2514,6 @@ export type MessageTextAnnotationUnion =
   | MessageTextFileCitationAnnotation
   | MessageTextFilePathAnnotation
   | MessageTextAnnotation;
-
-export function messageTextAnnotationUnionSerializer(
-  item: MessageTextAnnotationUnion,
-): any {
-  switch (item.type) {
-    case "file_citation":
-      return messageTextFileCitationAnnotationSerializer(
-        item as MessageTextFileCitationAnnotation,
-      );
-
-    case "file_path":
-      return messageTextFilePathAnnotationSerializer(
-        item as MessageTextFilePathAnnotation,
-      );
-
-    default:
-      return messageTextAnnotationSerializer(item);
-  }
-}
 
 export function messageTextAnnotationUnionDeserializer(
   item: any,
@@ -1973,20 +2550,6 @@ export interface MessageTextFileCitationAnnotation
   endIndex?: number;
 }
 
-export function messageTextFileCitationAnnotationSerializer(
-  item: MessageTextFileCitationAnnotation,
-): any {
-  return {
-    type: item["type"],
-    text: item["text"],
-    file_citation: messageTextFileCitationDetailsSerializer(
-      item["fileCitation"],
-    ),
-    start_index: item["startIndex"],
-    end_index: item["endIndex"],
-  };
-}
-
 export function messageTextFileCitationAnnotationDeserializer(
   item: any,
 ): MessageTextFileCitationAnnotation {
@@ -2007,12 +2570,6 @@ export interface MessageTextFileCitationDetails {
   fileId: string;
   /** The specific quote cited in the associated file. */
   quote: string;
-}
-
-export function messageTextFileCitationDetailsSerializer(
-  item: MessageTextFileCitationDetails,
-): any {
-  return { file_id: item["fileId"], quote: item["quote"] };
 }
 
 export function messageTextFileCitationDetailsDeserializer(
@@ -2036,18 +2593,6 @@ export interface MessageTextFilePathAnnotation extends MessageTextAnnotation {
   endIndex?: number;
 }
 
-export function messageTextFilePathAnnotationSerializer(
-  item: MessageTextFilePathAnnotation,
-): any {
-  return {
-    type: item["type"],
-    text: item["text"],
-    file_path: messageTextFilePathDetailsSerializer(item["filePath"]),
-    start_index: item["startIndex"],
-    end_index: item["endIndex"],
-  };
-}
-
 export function messageTextFilePathAnnotationDeserializer(
   item: any,
 ): MessageTextFilePathAnnotation {
@@ -2066,12 +2611,6 @@ export interface MessageTextFilePathDetails {
   fileId: string;
 }
 
-export function messageTextFilePathDetailsSerializer(
-  item: MessageTextFilePathDetails,
-): any {
-  return { file_id: item["fileId"] };
-}
-
 export function messageTextFilePathDetailsDeserializer(
   item: any,
 ): MessageTextFilePathDetails {
@@ -2088,15 +2627,6 @@ export interface MessageImageFileContent extends MessageContent {
   imageFile: MessageImageFileDetails;
 }
 
-export function messageImageFileContentSerializer(
-  item: MessageImageFileContent,
-): any {
-  return {
-    type: item["type"],
-    image_file: messageImageFileDetailsSerializer(item["imageFile"]),
-  };
-}
-
 export function messageImageFileContentDeserializer(
   item: any,
 ): MessageImageFileContent {
@@ -2110,12 +2640,6 @@ export function messageImageFileContentDeserializer(
 export interface MessageImageFileDetails {
   /** The ID for the file associated with this image. */
   fileId: string;
-}
-
-export function messageImageFileDetailsSerializer(
-  item: MessageImageFileDetails,
-): any {
-  return { file_id: item["fileId"] };
 }
 
 export function messageImageFileDetailsDeserializer(
@@ -2150,14 +2674,6 @@ export function openAIPageableListOfThreadMessageDeserializer(
     lastId: item["last_id"],
     hasMore: item["has_more"],
   };
-}
-
-export function threadMessageArraySerializer(
-  result: Array<ThreadMessage>,
-): any[] {
-  return result.map((item) => {
-    return threadMessageSerializer(item);
-  });
 }
 
 export function threadMessageArrayDeserializer(
@@ -2233,8 +2749,8 @@ export type AgentsNamedToolChoiceType =
   | "code_interpreter"
   | "file_search"
   | "bing_grounding"
-  | "microsoft_fabric"
-  | "sharepoint"
+  | "fabric_aiskill"
+  | "sharepoint_grounding"
   | "azure_ai_search";
 
 /** The function name that will be used, if using the `function` tool */
@@ -2331,7 +2847,7 @@ export interface ThreadRun {
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
   toolResources?: UpdateToolResourcesOptions | null;
   /** Determines if tools can be executed in parallel within the run. */
-  parallelToolCalls?: boolean;
+  parallelToolCalls: boolean;
 }
 
 export function threadRunDeserializer(item: any): ThreadRun {
@@ -2366,7 +2882,9 @@ export function threadRunDeserializer(item: any): ThreadRun {
     failedAt: !item["failed_at"]
       ? item["failed_at"]
       : new Date(item["failed_at"] * 1000),
-    incompleteDetails: item["incomplete_details"],
+    incompleteDetails: !item["incomplete_details"]
+      ? item["incomplete_details"]
+      : incompleteRunDetailsDeserializer(item["incomplete_details"]),
     usage: !item["usage"]
       ? item["usage"]
       : runCompletionUsageDeserializer(item["usage"]),
@@ -2387,7 +2905,7 @@ export function threadRunDeserializer(item: any): ThreadRun {
     toolResources: !item["tool_resources"]
       ? item["tool_resources"]
       : updateToolResourcesOptionsDeserializer(item["tool_resources"]),
-    parallelToolCalls: item["parallelToolCalls"],
+    parallelToolCalls: item["parallel_tool_calls"],
   };
 }
 
@@ -2473,7 +2991,7 @@ export function requiredToolCallUnionArrayDeserializer(
   });
 }
 
-/** An abstract representation a a tool invocation needed by the model to continue a run. */
+/** An abstract representation of a tool invocation needed by the model to continue a run. */
 export interface RequiredToolCall {
   /** The object type for the required tool call. */
   /** The discriminator possible values: function */
@@ -2556,8 +3074,22 @@ export function runErrorDeserializer(item: any): RunError {
   };
 }
 
+/** Details on why the run is incomplete. Will be `null` if the run is not incomplete. */
+export interface IncompleteRunDetails {
+  /** The reason why the run is incomplete. This indicates which specific token limit was reached during the run. */
+  reason: IncompleteDetailsReason;
+}
+
+export function incompleteRunDetailsDeserializer(
+  item: any,
+): IncompleteRunDetails {
+  return {
+    reason: item["reason"],
+  };
+}
+
 /** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
-export type IncompleteRunDetails =
+export type IncompleteDetailsReason =
   | "max_completion_tokens"
   | "max_prompt_tokens";
 
@@ -2592,12 +3124,6 @@ export interface UpdateToolResourcesOptions {
   codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
   /** Overrides the vector store attached to this agent. There can be a maximum of 1 vector store attached to the agent. */
   fileSearch?: UpdateFileSearchToolResourceOptions;
-  /** Overrides the list of connections to be used by the `bing_grounding` tool consisting of connection IDs. */
-  bingGrounding?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `microsoft_fabric` tool consisting of connection IDs. */
-  microsoftFabric?: ConnectionListResource;
-  /** Overrides the list of connections to be used by the `sharepoint` tool consisting of connection IDs. */
-  sharePoint?: ConnectionListResource;
   /** Overrides the resources to be used by the `azure_ai_search` tool consisting of index IDs and names. */
   azureAISearch?: AzureAISearchResource;
 }
@@ -2614,15 +3140,6 @@ export function updateToolResourcesOptionsSerializer(
     file_search: !item["fileSearch"]
       ? item["fileSearch"]
       : updateFileSearchToolResourceOptionsSerializer(item["fileSearch"]),
-    bing_grounding: !item["bingGrounding"]
-      ? item["bingGrounding"]
-      : connectionListResourceSerializer(item["bingGrounding"]),
-    microsoft_fabric: !item["microsoftFabric"]
-      ? item["microsoftFabric"]
-      : connectionListResourceSerializer(item["microsoftFabric"]),
-    sharepoint: !item["sharePoint"]
-      ? item["sharePoint"]
-      : connectionListResourceSerializer(item["sharePoint"]),
     azure_ai_search: !item["azureAISearch"]
       ? item["azureAISearch"]
       : azureAISearchResourceSerializer(item["azureAISearch"]),
@@ -2641,15 +3158,6 @@ export function updateToolResourcesOptionsDeserializer(
     fileSearch: !item["file_search"]
       ? item["file_search"]
       : updateFileSearchToolResourceOptionsDeserializer(item["file_search"]),
-    bingGrounding: !item["bing_grounding"]
-      ? item["bing_grounding"]
-      : connectionListResourceDeserializer(item["bing_grounding"]),
-    microsoftFabric: !item["microsoft_fabric"]
-      ? item["microsoft_fabric"]
-      : connectionListResourceDeserializer(item["microsoft_fabric"]),
-    sharePoint: !item["sharepoint"]
-      ? item["sharepoint"]
-      : connectionListResourceDeserializer(item["sharepoint"]),
     azureAISearch: !item["azure_ai_search"]
       ? item["azure_ai_search"]
       : azureAISearchResourceDeserializer(item["azure_ai_search"]),
@@ -2970,7 +3478,7 @@ export function runStepToolCallUnionArrayDeserializer(
 /** An abstract representation of a detailed tool call as recorded within a run step for an existing run. */
 export interface RunStepToolCall {
   /** The object type. */
-  /** The discriminator possible values: code_interpreter, file_search, bing_grounding, azure_ai_search, sharepoint, microsoft_fabric, function */
+  /** The discriminator possible values: code_interpreter, file_search, bing_grounding, azure_ai_search, sharepoint_grounding, fabric_aiskill, function */
   type: string;
   /** The ID of the tool call. This ID must be referenced when you submit tool outputs. */
   id: string;
@@ -3018,12 +3526,12 @@ export function runStepToolCallUnionDeserializer(
         item as RunStepAzureAISearchToolCall,
       );
 
-    case "sharepoint":
+    case "sharepoint_grounding":
       return runStepSharepointToolCallDeserializer(
         item as RunStepSharepointToolCall,
       );
 
-    case "microsoft_fabric":
+    case "fabric_aiskill":
       return runStepMicrosoftFabricToolCallDeserializer(
         item as RunStepMicrosoftFabricToolCall,
       );
@@ -3185,8 +3693,10 @@ export function runStepCodeInterpreterImageReferenceDeserializer(
 export interface RunStepFileSearchToolCall extends RunStepToolCall {
   /** The object type, which is always 'file_search'. */
   type: "file_search";
-  /** Reserved for future use. */
-  fileSearch: Record<string, string>;
+  /** The ID of the tool call. This ID must be referenced when you submit tool outputs. */
+  id: string;
+  /** For now, this is always going to be an empty object. */
+  fileSearch: RunStepFileSearchToolCallResults;
 }
 
 export function runStepFileSearchToolCallDeserializer(
@@ -3195,7 +3705,86 @@ export function runStepFileSearchToolCallDeserializer(
   return {
     type: item["type"],
     id: item["id"],
-    fileSearch: item["file_search"],
+    fileSearch: runStepFileSearchToolCallResultsDeserializer(
+      item["file_search"],
+    ),
+  };
+}
+
+/** The results of the file search. */
+export interface RunStepFileSearchToolCallResults {
+  /** Ranking options for file search. */
+  rankingOptions?: FileSearchRankingOptions;
+  /** The array of a file search results */
+  results: RunStepFileSearchToolCallResult[];
+}
+
+export function runStepFileSearchToolCallResultsDeserializer(
+  item: any,
+): RunStepFileSearchToolCallResults {
+  return {
+    rankingOptions: !item["ranking_options"]
+      ? item["ranking_options"]
+      : fileSearchRankingOptionsDeserializer(item["ranking_options"]),
+    results: runStepFileSearchToolCallResultArrayDeserializer(item["results"]),
+  };
+}
+
+export function runStepFileSearchToolCallResultArrayDeserializer(
+  result: Array<RunStepFileSearchToolCallResult>,
+): any[] {
+  return result.map((item) => {
+    return runStepFileSearchToolCallResultDeserializer(item);
+  });
+}
+
+/**   File search tool call result. */
+export interface RunStepFileSearchToolCallResult {
+  /** The ID of the file that result was found in. */
+  fileId: string;
+  /** The name of the file that result was found in. */
+  fileName: string;
+  /** The score of the result. All values must be a floating point number between 0 and 1. */
+  score: number;
+  /** The content of the result that was found. The content is only included if requested via the include query parameter. */
+  content?: FileSearchToolCallContent[];
+}
+
+export function runStepFileSearchToolCallResultDeserializer(
+  item: any,
+): RunStepFileSearchToolCallResult {
+  return {
+    fileId: item["file_id"],
+    fileName: item["file_name"],
+    score: item["score"],
+    content: !item["content"]
+      ? item["content"]
+      : fileSearchToolCallContentArrayDeserializer(item["content"]),
+  };
+}
+
+export function fileSearchToolCallContentArrayDeserializer(
+  result: Array<FileSearchToolCallContent>,
+): any[] {
+  return result.map((item) => {
+    return fileSearchToolCallContentDeserializer(item);
+  });
+}
+
+/** The file search result content object. */
+export interface FileSearchToolCallContent {
+  /** The type of the content. */
+  type: "text";
+  /** The text content of the file. */
+  text: string;
+}
+
+export function fileSearchToolCallContentDeserializer(
+  item: any,
+): FileSearchToolCallContent {
+  return {
+    type: item["type"],
+    text: item["text"],
   };
 }
 
@@ -3246,8 +3835,8 @@ export function runStepAzureAISearchToolCallDeserializer(
  * executed SharePoint actions.
  */
 export interface RunStepSharepointToolCall extends RunStepToolCall {
-  /** The object type, which is always 'sharepoint'. */
-  type: "sharepoint";
+  /** The object type, which is always 'sharepoint_grounding'. */
+  type: "sharepoint_grounding";
   /** Reserved for future use. */
   sharePoint: Record<string, string>;
 }
@@ -3258,7 +3847,7 @@ export function runStepSharepointToolCallDeserializer(
   return {
     type: item["type"],
     id: item["id"],
-    sharePoint: item["sharepoint"],
+    sharePoint: item["sharepoint_grounding"],
   };
 }
 
@@ -3267,8 +3856,8 @@ export function runStepSharepointToolCallDeserializer(
  * executed Microsoft Fabric operations.
  */
 export interface RunStepMicrosoftFabricToolCall extends RunStepToolCall {
-  /** The object type, which is always 'microsoft_fabric'. */
-  type: "microsoft_fabric";
+  /** The object type, which is always 'fabric_aiskill'. */
+  type: "fabric_aiskill";
   /** Reserved for future use. */
   microsoftFabric: Record<string, string>;
 }
@@ -3279,7 +3868,7 @@ export function runStepMicrosoftFabricToolCallDeserializer(
   return {
     type: item["type"],
     id: item["id"],
-    microsoftFabric: item["microsoft_fabric"],
+    microsoftFabric: item["fabric_aiskill"],
   };
 }
 
@@ -3482,23 +4071,6 @@ export function fileDeletionStatusDeserializer(item: any): FileDeletionStatus {
     id: item["id"],
     deleted: item["deleted"],
     object: item["object"],
-  };
-}
-
-/** A response from a file get content operation. */
-export interface FileContentResponse {
-  /** The content of the file, in bytes. */
-  content: Uint8Array;
-}
-
-export function fileContentResponseDeserializer(
-  item: any,
-): FileContentResponse {
-  return {
-    content:
-      typeof item["content"] === "string"
-        ? stringToUint8Array(item["content"], "base64")
-        : item["content"],
   };
 }
 
@@ -3717,7 +4289,7 @@ export interface VectorStoreStaticChunkingStrategyOptions {
   maxChunkSizeTokens: number;
   /**
    * The number of tokens that overlap between chunks. The default value is 400.
-   * Note that the overlap must not exceed half of max_chunk_size_tokens.     *
+   * Note that the overlap must not exceed half of max_chunk_size_tokens.
    */
   chunkOverlapTokens: number;
 }
@@ -3841,7 +4413,7 @@ export type VectorStoreFileStatus =
   | "failed"
   | "cancelled";
 
-/** Details on the error that may have ocurred while processing a file for this vector store */
+/** Details on the error that may have occurred while processing a file for this vector store */
 export interface VectorStoreFileError {
   /** One of `server_error` or `rate_limit_exceeded`. */
   code: VectorStoreFileErrorCode;
@@ -3860,10 +4432,9 @@ export function vectorStoreFileErrorDeserializer(
 
 /** Error code variants for vector store file processing */
 export type VectorStoreFileErrorCode =
-  | "internal_error"
-  | "file_not_found"
-  | "parsing_error"
-  | "unhandled_mime_type";
+  | "server_error"
+  | "invalid_file"
+  | "unsupported_file";
 
 /** An abstract representation of a vector store chunking strategy configuration. */
 export interface VectorStoreChunkingStrategyResponse {
@@ -4713,6 +5284,7 @@ export type RunStreamEvent =
   | "thread.run.in_progress"
   | "thread.run.requires_action"
   | "thread.run.completed"
+  | "thread.run.incomplete"
   | "thread.run.failed"
   | "thread.run.cancelling"
   | "thread.run.cancelled"
@@ -4755,6 +5327,9 @@ export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
 
 /** The available sorting options when requesting a list of response objects. */
 export type ListSortOrder = "asc" | "desc";
+/** A list of additional fields to include in the response. */
+export type RunAdditionalFieldList =
+  "step_details.tool_calls[*].file_search.results[*].content";
 /** Query parameter filter for vector store file retrieval endpoint */
 export type VectorStoreFileStatusFilter =
   | "in_progress"
@@ -4765,5 +5340,5 @@ export type VectorStoreFileStatusFilter =
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  "2024-07-01-preview" = "2024-07-01-preview",
+  "V2024-07-01-Preview" = "2024-07-01-preview",
 }

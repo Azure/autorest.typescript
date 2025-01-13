@@ -2,7 +2,7 @@ import "@typespec/versioning";
 
 import "../tools/models.tsp";
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 using TypeSpec.Versioning;
 
@@ -340,4 +340,12 @@ model RunStepDeltaCodeInterpreterImageOutputObject {
   /** The file ID for the image. */
   @encodedName("application/json", "file_id")
   fileId?: string;
+}
+
+/** A list of additional fields to include in the response. */
+union RunAdditionalFieldList {
+  string,
+
+  /** File search result content. */
+  FileSearchContents: "step_details.tool_calls[*].file_search.results[*].content",
 }

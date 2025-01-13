@@ -302,29 +302,29 @@ export interface CreateModerationResponse {
         flagged: boolean;
         categories: {
             hate: boolean;
-            "hate/threatening": boolean;
+            hateThreatening: boolean;
             harassment: boolean;
-            "harassment/threatening": boolean;
+            harassmentThreatening: boolean;
             selfHarm: boolean;
-            "selfHarm/intent": boolean;
-            "selfHarm/instructive": boolean;
+            selfHarmIntent: boolean;
+            selfHarmInstructive: boolean;
             sexual: boolean;
-            "sexual/minors": boolean;
+            sexualMinors: boolean;
             violence: boolean;
-            "violence/graphic": boolean;
+            violenceGraphic: boolean;
         };
         categoryScores: {
             hate: number;
-            "hate/threatening": number;
+            hateThreatening: number;
             harassment: number;
-            "harassment/threatening": number;
+            harassmentThreatening: number;
             selfHarm: number;
-            "selfHarm/intent": number;
-            "selfHarm/instructive": number;
+            selfHarmIntent: number;
+            selfHarmInstructive: number;
             sexual: number;
-            "sexual/minors": number;
+            sexualMinors: number;
             violence: number;
-            "violence/graphic": number;
+            violenceGraphic: number;
         };
     }[];
 }

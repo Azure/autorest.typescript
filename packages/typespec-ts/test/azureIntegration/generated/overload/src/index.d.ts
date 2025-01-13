@@ -4,7 +4,7 @@ import type { HttpResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient($host: string, options?: OveralodClientOptions): OveralodClient;
+declare function createClient(host: string, options?: OveralodClientOptions): OveralodClient;
 export default createClient;
 
 export declare interface GetThing {

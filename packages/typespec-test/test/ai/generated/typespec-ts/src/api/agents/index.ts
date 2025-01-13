@@ -42,10 +42,12 @@ import {
   AgentsUpdateRunOptionalParams,
   AgentsUpdateThreadOptionalParams,
   AgentsUploadFileOptionalParams,
-  AzureAIContext as Client,
+  AIProjectContext as Client,
 } from "../index.js";
 import {
   toolResourcesSerializer,
+  vectorStoreDataSourceArraySerializer,
+  vectorStoreConfigurationSerializer,
   toolDefinitionUnionArraySerializer,
   agentsApiResponseFormatOptionSerializer,
   Agent,
@@ -65,7 +67,6 @@ import {
   threadMessageDeserializer,
   OpenAIPageableListOfThreadMessage,
   openAIPageableListOfThreadMessageDeserializer,
-  threadMessageArraySerializer,
   truncationObjectSerializer,
   agentsApiToolChoiceOptionSerializer,
   ThreadRun,
@@ -87,8 +88,6 @@ import {
   FilePurpose,
   FileDeletionStatus,
   fileDeletionStatusDeserializer,
-  FileContentResponse,
-  fileContentResponseDeserializer,
   OpenAIPageableListOfVectorStore,
   openAIPageableListOfVectorStoreDeserializer,
   VectorStore,
@@ -112,7 +111,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export function _listVectorStoreFileBatchFilesSend(
   context: Client,
@@ -279,7 +278,6 @@ export async function getVectorStoreFileBatch(
 export function _createVectorStoreFileBatchSend(
   context: Client,
   vectorStoreId: string,
-  fileIds: string[],
   options: AgentsCreateVectorStoreFileBatchOptionalParams = {
     requestOptions: {},
   },
@@ -295,9 +293,14 @@ export function _createVectorStoreFileBatchSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        file_ids: fileIds.map((p: any) => {
-          return p;
-        }),
+        file_ids: !options?.fileIds
+          ? options?.fileIds
+          : options?.fileIds.map((p: any) => {
+              return p;
+            }),
+        data_sources: !options?.dataSources
+          ? options?.dataSources
+          : vectorStoreDataSourceArraySerializer(options?.dataSources),
         chunking_strategy: !options?.chunkingStrategy
           ? options?.chunkingStrategy
           : vectorStoreChunkingStrategyRequestUnionSerializer(
@@ -322,7 +325,6 @@ export async function _createVectorStoreFileBatchDeserialize(
 export async function createVectorStoreFileBatch(
   context: Client,
   vectorStoreId: string,
-  fileIds: string[],
   options: AgentsCreateVectorStoreFileBatchOptionalParams = {
     requestOptions: {},
   },
@@ -330,7 +332,6 @@ export async function createVectorStoreFileBatch(
   const result = await _createVectorStoreFileBatchSend(
     context,
     vectorStoreId,
-    fileIds,
     options,
   );
   return _createVectorStoreFileBatchDeserialize(result);
@@ -440,7 +441,6 @@ export async function getVectorStoreFile(
 export function _createVectorStoreFileSend(
   context: Client,
   vectorStoreId: string,
-  fileId: string,
   options: AgentsCreateVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -454,7 +454,10 @@ export function _createVectorStoreFileSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        file_id: fileId,
+        file_id: options?.fileId,
+        data_sources: !options?.dataSources
+          ? options?.dataSources
+          : vectorStoreDataSourceArraySerializer(options?.dataSources),
         chunking_strategy: !options?.chunkingStrategy
           ? options?.chunkingStrategy
           : vectorStoreChunkingStrategyRequestUnionSerializer(
@@ -479,13 +482,11 @@ export async function _createVectorStoreFileDeserialize(
 export async function createVectorStoreFile(
   context: Client,
   vectorStoreId: string,
-  fileId: string,
   options: AgentsCreateVectorStoreFileOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFile> {
   const result = await _createVectorStoreFileSend(
     context,
     vectorStoreId,
-    fileId,
     options,
   );
   return _createVectorStoreFileDeserialize(result);
@@ -678,6 +679,9 @@ export function _createVectorStoreSend(
             return p;
           }),
       name: options?.name,
+      configuration: !options?.storeConfiguration
+        ? options?.storeConfiguration
+        : vectorStoreConfigurationSerializer(options?.storeConfiguration),
       expires_after: !options?.expiresAfter
         ? options?.expiresAfter
         : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
@@ -772,21 +776,23 @@ export function _getFileContentSend(
 
 export async function _getFileContentDeserialize(
   result: PathUncheckedResponse,
-): Promise<FileContentResponse> {
+): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return fileContentResponseDeserializer(result.body);
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
-/** Returns information about a specific file. Does not retrieve file content. */
+/** Retrieves the raw content of a specific file. */
 export async function getFileContent(
   context: Client,
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
-): Promise<FileContentResponse> {
+): Promise<Uint8Array> {
   const result = await _getFileContentSend(context, fileId, options);
   return _getFileContentDeserialize(result);
 }
@@ -968,6 +974,11 @@ export function _listRunStepsSend(
       },
       queryParameters: {
         "api-version": context.apiVersion,
+        "include[]": !options?.include
+          ? options?.include
+          : options?.include.map((p: any) => {
+              return p;
+            }),
         limit: options?.limit,
         order: options?.order,
         after: options?.after,
@@ -1018,7 +1029,14 @@ export function _getRunStepSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
+      queryParameters: {
+        "api-version": context.apiVersion,
+        "include[]": !options?.include
+          ? options?.include
+          : options?.include.map((p: any) => {
+              return p;
+            }),
+      },
     });
 }
 
@@ -1093,6 +1111,7 @@ export function _createThreadAndRunSend(
         response_format: !options?.responseFormat
           ? options?.responseFormat
           : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        parallel_tool_calls: options?.parallelToolCalls,
         metadata: options?.metadata,
       },
     });
@@ -1348,44 +1367,47 @@ export function _createRunSend(
   assistantId: string,
   options: AgentsCreateRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/threads/{threadId}/runs", threadId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      queryParameters: { "api-version": context.apiVersion },
-      body: {
-        assistant_id: assistantId,
-        model: options?.model,
-        instructions: options?.instructions,
-        additional_instructions: options?.additionalInstructions,
-        additional_messages: !options?.additionalMessages
-          ? options?.additionalMessages
-          : threadMessageArraySerializer(options?.additionalMessages),
-        tools: !options?.tools
-          ? options?.tools
-          : toolDefinitionUnionArraySerializer(options?.tools),
-        stream: options?.stream,
-        temperature: options?.temperature,
-        top_p: options?.topP,
-        max_prompt_tokens: options?.maxPromptTokens,
-        max_completion_tokens: options?.maxCompletionTokens,
-        truncation_strategy: !options?.truncationStrategy
-          ? options?.truncationStrategy
-          : truncationObjectSerializer(options?.truncationStrategy),
-        tool_choice: !options?.toolChoice
-          ? options?.toolChoice
-          : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
-        response_format: !options?.responseFormat
-          ? options?.responseFormat
-          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
-        metadata: options?.metadata,
-      },
-    });
+  return context.path("/threads/{threadId}/runs", threadId).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    queryParameters: {
+      "api-version": context.apiVersion,
+      "include[]": !options?.include
+        ? options?.include
+        : options?.include.map((p: any) => {
+            return p;
+          }),
+    },
+    body: {
+      assistant_id: assistantId,
+      model: options?.model,
+      instructions: options?.instructions,
+      additional_instructions: options?.additionalInstructions,
+      additional_messages: !options?.additionalMessages
+        ? options?.additionalMessages
+        : threadMessageOptionsArraySerializer(options?.additionalMessages),
+      tools: !options?.tools
+        ? options?.tools
+        : toolDefinitionUnionArraySerializer(options?.tools),
+      stream: options?.stream,
+      temperature: options?.temperature,
+      top_p: options?.topP,
+      max_prompt_tokens: options?.maxPromptTokens,
+      max_completion_tokens: options?.maxCompletionTokens,
+      truncation_strategy: !options?.truncationStrategy
+        ? options?.truncationStrategy
+        : truncationObjectSerializer(options?.truncationStrategy),
+      tool_choice: !options?.toolChoice
+        ? options?.toolChoice
+        : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
+      response_format: !options?.responseFormat
+        ? options?.responseFormat
+        : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+      parallel_tool_calls: options?.parallelToolCalls,
+      metadata: options?.metadata,
+    },
+  });
 }
 
 export async function _createRunDeserialize(

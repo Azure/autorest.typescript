@@ -12,7 +12,7 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
 
-namespace Azure.AI.Client;
+namespace Azure.AI.Projects;
 
 @doc("Metadata pertaining to creation and last modification of the resource.")
 model SystemData {
@@ -54,12 +54,12 @@ model InputData {
   type: string;
 }
 
-@doc("Data Source for Application Insight.")
-model AppInsightsConfiguration extends InputData {
+@doc("Data Source for Application Insights.")
+model ApplicationInsightsConfiguration extends InputData {
   @visibility("read")
   type: "app_insights";
 
-  @doc("LogAnalytic Workspace resourceID associated with AppInsights")
+  @doc("LogAnalytic Workspace resourceID associated with ApplicationInsights")
   resourceId: string;
 
   @doc("Query to fetch the data.")
@@ -67,6 +67,9 @@ model AppInsightsConfiguration extends InputData {
 
   @doc("Service name.")
   serviceName: string;
+
+  @doc("Connection String to connect to ApplicationInsights.")
+  connectionString?: string;
 }
 
 @doc("Dataset as source for evaluation.")
@@ -99,7 +102,7 @@ model RecurrenceTrigger extends Trigger {
   interval: int32;
 
   @doc("The recurrence schedule.")
-  schedule: RecurrenceSchedule;
+  schedule?: RecurrenceSchedule;
 }
 
 #suppress "@azure-tools/typespec-azure-core/no-string-discriminator" "Needed since suggestion is not supported to generate swagger in OpenAPIv2"
@@ -126,7 +129,7 @@ model Evaluation {
   @visibility("read", "create")
   data: InputData;
 
-  @doc("Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique.")
+  @doc("Display Name for evaluation. It helps to find the evaluation easily in AI Foundry. It does not need to be unique.")
   displayName?: string;
 
   @doc("Description of the evaluation. It can be used to store additional information about the evaluation and is mutable.")
@@ -176,18 +179,6 @@ union WeekDays {
   string,
 }
 
-@doc("Recurrence Definition")
-model Recurrence {
-  @doc("The frequency to trigger schedule.")
-  frequency: Frequency;
-
-  @doc("Specifies schedule interval in conjunction with frequency")
-  interval: int32;
-
-  @doc("The recurrence schedule.")
-  schedule: RecurrenceSchedule;
-}
-
 @doc("RecurrenceSchedule Definition")
 model RecurrenceSchedule {
   @doc("List of hours for the schedule.")
@@ -197,35 +188,26 @@ model RecurrenceSchedule {
   minutes: int32[];
 
   @doc("List of days for the schedule.")
-  weekDays: WeekDays[];
+  weekDays?: WeekDays[];
 
   @doc("List of month days for the schedule")
-  monthDays: int32[];
-}
-
-@doc("SamplingStrategy Definition")
-model SamplingStrategy {
-  @doc("Sampling rate")
-  rate: float32;
+  monthDays?: int32[];
 }
 
 @doc("Evaluation Schedule Definition")
 // NoteNote: I modeled ScheduledEvaluation as a type of Evaluation. But can also be modeled as a separate Schedule entity. We can discuss
 @resource("schedules")
 model EvaluationSchedule {
-  @key("id")
+  @key("name")
   @visibility("read")
-  @doc("Identifier of the evaluation.")
+  @doc("Name of the schedule, which also serves as the unique identifier for the evaluation")
   @pattern("^[a-zA-Z0-9][a-zA-Z0-9-_]*$")
   @maxLength(254)
-  id: string;
+  name: string;
 
   @doc("Data for evaluation.")
   @visibility("read", "create")
-  data: InputData;
-
-  @doc("Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique.")
-  displayName?: string;
+  data: ApplicationInsightsConfiguration;
 
   @doc("Description of the evaluation. It can be used to store additional information about the evaluation and is mutable.")
   description?: string;
@@ -234,9 +216,9 @@ model EvaluationSchedule {
   @visibility("read")
   systemData?: SystemData;
 
-  @doc("Status of the evaluation. It is set by service and is read-only.")
+  @doc("Provisioning State of the evaluation. It is set by service and is read-only.")
   @visibility("read")
-  provisioningStatus?: string;
+  provisioningState?: string;
 
   @doc("Evaluation's tags. Unlike properties, tags are fully mutable.")
   tags?: Record<string>;
@@ -245,15 +227,16 @@ model EvaluationSchedule {
   @visibility("read", "create")
   properties?: Record<string>;
 
+  @doc("Enabled status of the evaluation. It is set by service and is read-only.")
+  @visibility("read")
+  isEnabled?: string;
+
   @doc("Evaluators to be used for the evaluation.")
   @visibility("read", "create")
   evaluators: Record<EvaluatorConfiguration>;
 
   @doc("Trigger for the evaluation.")
   trigger: Trigger;
-
-  @doc("Sampling strategy for the evaluation.")
-  samplingStrategy: SamplingStrategy;
 }
 
 // Define the response model with status code 201

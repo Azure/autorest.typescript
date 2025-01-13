@@ -271,7 +271,7 @@ export function dataProductNetworkAclsSerializer(
     virtualNetworkRule: virtualNetworkRuleArraySerializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: iPRulesArraySerializer(item["ipRules"]),
+    ipRules: ipRulesArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -286,7 +286,7 @@ export function dataProductNetworkAclsDeserializer(
     virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
+    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -332,15 +332,15 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
-export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
+export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return iPRulesSerializer(item);
+    return ipRulesSerializer(item);
   });
 }
 
-export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
+export function ipRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return iPRulesDeserializer(item);
+    return ipRulesDeserializer(item);
   });
 }
 
@@ -352,11 +352,11 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(item: IPRules): any {
+export function ipRulesSerializer(item: IPRules): any {
   return { value: item["value"], action: item["action"] };
 }
 
-export function iPRulesDeserializer(item: any): IPRules {
+export function ipRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
@@ -1335,11 +1335,11 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
-  user = "user",
+  User = "user",
   /** Indicates the operation is initiated by a system. */
-  system = "system",
+  System = "system",
   /** Indicates the operation is initiated by a user or system. */
-  "user,system" = "user,system",
+  UserSystem = "user,system",
 }
 
 /**
@@ -1371,5 +1371,5 @@ export type ActionType = string;
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
-  v2023_11_15 = "2023-11-15",
+  V2023_11_15 = "2023-11-15",
 }
