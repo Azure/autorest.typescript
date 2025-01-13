@@ -457,22 +457,6 @@ export async function emitModularModelsFromTypeSpec(
   return modelFile;
 }
 
-export async function emitModularSerializeUtilsFromTypeSpec(
-  tspContent: string
-) {
-  const context = await rlcEmitterFor(tspContent);
-  const dpgContext = await createDpgContextTestHelper(context.program);
-  const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  const files = emitTypes(dpgContext, { sourceRoot: "" });
-  binder.resolveAllReferences("/");
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  if (Array.isArray(files)) {
-    return files[0];
-  }
-  return files;
-}
-
 export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
   {
