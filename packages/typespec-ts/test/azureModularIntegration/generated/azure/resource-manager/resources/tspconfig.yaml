@@ -1,0 +1,18 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    flavor: azure
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    isModularLibrary: true
+    hierarchyClient: false
+    experimentalExtensibleEnums: true
+    packageDetails:
+      name: "@azure/arm-resources"
+      description: "Azure Arm Resource Test Service"
+      version: "1.0.0"

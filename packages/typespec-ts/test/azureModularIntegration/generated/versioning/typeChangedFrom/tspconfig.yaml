@@ -1,0 +1,17 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    flavor: azure
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    title: VersioningTypeChangedFromClient
+    isModularLibrary: true
+    hierarchyClient: false
+    packageDetails:
+      name: "@msinternal/versionning-typeChangedFrom"
+      description: "Versioning TypeChanged Test Service"
