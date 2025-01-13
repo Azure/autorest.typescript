@@ -337,7 +337,7 @@ export interface AgentsOperations {
   ) => Promise<Agent>;
 }
 
-export function getAgents(context: AzureAIContext) {
+function _getAgents(context: AzureAIContext) {
   return {
     listVectorStoreFileBatchFiles: (
       vectorStoreId: string,
@@ -504,6 +504,6 @@ export function getAgents(context: AzureAIContext) {
 
 export function getAgentsOperations(context: AzureAIContext): AgentsOperations {
   return {
-    ...getAgents(context),
+    ..._getAgents(context),
   };
 }
