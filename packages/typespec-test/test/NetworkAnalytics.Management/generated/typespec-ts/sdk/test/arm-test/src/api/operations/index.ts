@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsContext as Client,
+  NetworkAnalyticsApiContext as Client,
   OperationsListOptionalParams,
 } from "../index.js";
 import {

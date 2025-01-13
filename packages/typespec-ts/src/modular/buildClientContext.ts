@@ -15,7 +15,10 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { SourceFile } from "ts-morph";
-import { getClientName } from "./helpers/namingHelpers.js";
+import {
+  getClassicalClientName,
+  getClientName
+} from "./helpers/namingHelpers.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
@@ -94,7 +97,7 @@ export function buildClientContext(
   });
 
   clientContextFile.addInterface({
-    name: `${name}ClientOptionalParams`,
+    name: `${getClassicalClientName(client)}OptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
     properties: getClientParameters(client, dpgContext, {

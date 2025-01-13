@@ -815,6 +815,8 @@ model ApiVersionParameter {
 op test(...ApiVersionParameter): string;
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: false
 needNamespaces: true
