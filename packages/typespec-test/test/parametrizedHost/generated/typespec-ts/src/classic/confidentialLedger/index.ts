@@ -14,7 +14,7 @@ export interface ConfidentialLedgerOperations {
   ) => Promise<Collection[]>;
 }
 
-export function getConfidentialLedger(context: ParametrizedHostContext) {
+function _getConfidentialLedger(context: ParametrizedHostContext) {
   return {
     listCollections: (
       options?: ConfidentialLedgerListCollectionsOptionalParams,
@@ -26,6 +26,6 @@ export function getConfidentialLedgerOperations(
   context: ParametrizedHostContext,
 ): ConfidentialLedgerOperations {
   return {
-    ...getConfidentialLedger(context),
+    ..._getConfidentialLedger(context),
   };
 }

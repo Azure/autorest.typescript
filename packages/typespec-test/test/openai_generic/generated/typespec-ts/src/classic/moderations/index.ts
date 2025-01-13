@@ -17,7 +17,7 @@ export interface ModerationsOperations {
   ) => Promise<CreateModerationResponse>;
 }
 
-export function getModerations(context: OpenAIContext) {
+function _getModerations(context: OpenAIContext) {
   return {
     create: (
       content: CreateModerationRequest,
@@ -30,6 +30,6 @@ export function getModerationsOperations(
   context: OpenAIContext,
 ): ModerationsOperations {
   return {
-    ...getModerations(context),
+    ..._getModerations(context),
   };
 }

@@ -11,7 +11,7 @@ export interface DOperations {
   op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
 }
 
-export function getD(context: FooContext) {
+function _getD(context: FooContext) {
   return {
     op1: (body: A, options?: DOp1OptionalParams) => op1(context, body, options),
   };
@@ -19,6 +19,6 @@ export function getD(context: FooContext) {
 
 export function getDOperations(context: FooContext): DOperations {
   return {
-    ...getD(context),
+    ..._getD(context),
   };
 }

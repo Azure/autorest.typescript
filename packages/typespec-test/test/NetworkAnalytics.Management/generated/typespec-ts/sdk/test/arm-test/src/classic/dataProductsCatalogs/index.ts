@@ -33,7 +33,7 @@ export interface DataProductsCatalogsOperations {
   ) => Promise<DataProductsCatalog>;
 }
 
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
+function _getDataProductsCatalogs(context: NetworkAnalyticsContext) {
   return {
     listBySubscription: (
       options?: DataProductsCatalogsListBySubscriptionOptionalParams,
@@ -53,6 +53,6 @@ export function getDataProductsCatalogsOperations(
   context: NetworkAnalyticsContext,
 ): DataProductsCatalogsOperations {
   return {
-    ...getDataProductsCatalogs(context),
+    ..._getDataProductsCatalogs(context),
   };
 }

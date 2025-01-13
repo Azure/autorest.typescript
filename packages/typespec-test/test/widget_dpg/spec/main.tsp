@@ -177,4 +177,8 @@ interface Budgets {
     // the same name as Widgets.createOrReplace
     @route("/widgets/createOrReplace")
     op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+
+    @get getBudgets(
+        @query name: string
+    ): Widget[] | WidgetError;
 }

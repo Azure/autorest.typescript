@@ -17,6 +17,7 @@ export {
   KnownVersions,
 } from "./models/index.js";
 export {
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,

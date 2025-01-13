@@ -85,7 +85,7 @@ export interface TodoItemsOperations {
   attachments: TodoItemsAttachmentsOperations;
 }
 
-export function getTodoItems(context: TodoContext) {
+function _getTodoItems(context: TodoContext) {
   return {
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) =>
       $delete(context, id, options),
@@ -106,7 +106,7 @@ export function getTodoItemsOperations(
   context: TodoContext,
 ): TodoItemsOperations {
   return {
-    ...getTodoItems(context),
+    ..._getTodoItems(context),
     attachments: getTodoItemsAttachmentsOperations(context),
   };
 }

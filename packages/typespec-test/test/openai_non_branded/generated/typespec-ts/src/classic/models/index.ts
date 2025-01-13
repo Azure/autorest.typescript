@@ -31,7 +31,7 @@ export interface ModelsOperations {
   list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
 }
 
-export function getModels(context: OpenAIContext) {
+function _getModels(context: OpenAIContext) {
   return {
     delete: (model: string, options?: ModelsDeleteOptionalParams) =>
       $delete(context, model, options),
@@ -43,6 +43,6 @@ export function getModels(context: OpenAIContext) {
 
 export function getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
-    ...getModels(context),
+    ..._getModels(context),
   };
 }
