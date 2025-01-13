@@ -18,34 +18,33 @@ import {
   OperationsOperations,
 } from "./classic/operations/index.js";
 import {
-  createNetworkAnalyticsManagement,
-  NetworkAnalyticsManagementContext,
-  NetworkAnalyticsManagementClientOptionalParams,
+  createNetworkAnalyticsApi,
+  NetworkAnalyticsApiContext,
+  NetworkAnalyticsApiOptionalParams,
 } from "./api/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
-export { NetworkAnalyticsManagementClientOptionalParams } from "./api/networkAnalyticsManagementContext.js";
+export { NetworkAnalyticsApiOptionalParams } from "./api/networkAnalyticsApiContext.js";
 
-export class NetworkAnalyticsManagementClient {
-  private _client: NetworkAnalyticsManagementContext;
+export class NetworkAnalyticsApi {
+  private _client: NetworkAnalyticsApiContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(
     credential: TokenCredential,
     subscriptionId: string,
-    options: NetworkAnalyticsManagementClientOptionalParams = {},
+    options: NetworkAnalyticsApiOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createNetworkAnalyticsManagement(
-      credential,
-      subscriptionId,
-      { ...options, userAgentOptions: { userAgentPrefix } },
-    );
+    this._client = createNetworkAnalyticsApi(credential, subscriptionId, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
     this.pipeline = this._client.pipeline;
     this.dataProducts = getDataProductsOperations(this._client);
     this.dataTypes = getDataTypesOperations(this._client);

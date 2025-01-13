@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsManagementContext as Client,
+  NetworkAnalyticsApiContext as Client,
   DataProductsAddUserRoleOptionalParams,
   DataProductsCreateOptionalParams,
   DataProductsDeleteOptionalParams,

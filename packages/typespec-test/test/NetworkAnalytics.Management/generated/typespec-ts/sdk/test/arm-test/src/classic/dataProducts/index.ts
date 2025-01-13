@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsManagementContext } from "../../api/networkAnalyticsManagementContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listBySubscription,
   listByResourceGroup,
@@ -120,7 +120,7 @@ export interface DataProductsOperations {
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
-export function getDataProducts(context: NetworkAnalyticsManagementContext) {
+export function getDataProducts(context: NetworkAnalyticsApiContext) {
   return {
     listBySubscription: (
       options?: DataProductsListBySubscriptionOptionalParams,
@@ -208,7 +208,7 @@ export function getDataProducts(context: NetworkAnalyticsManagementContext) {
 }
 
 export function getDataProductsOperations(
-  context: NetworkAnalyticsManagementContext,
+  context: NetworkAnalyticsApiContext,
 ): DataProductsOperations {
   return {
     ...getDataProducts(context),
