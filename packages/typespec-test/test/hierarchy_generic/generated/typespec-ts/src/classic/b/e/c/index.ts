@@ -11,7 +11,7 @@ export interface BECOperations {
   op1: (body: Bea, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
-export function getBEC(context: FooContext) {
+function _getBEC(context: FooContext) {
   return {
     op1: (body: Bea, options?: BECOp1OptionalParams) =>
       op1(context, body, options),
@@ -20,6 +20,6 @@ export function getBEC(context: FooContext) {
 
 export function getBECOperations(context: FooContext): BECOperations {
   return {
-    ...getBEC(context),
+    ..._getBEC(context),
   };
 }

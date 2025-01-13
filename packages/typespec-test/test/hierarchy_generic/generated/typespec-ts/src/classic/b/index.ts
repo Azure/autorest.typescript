@@ -15,7 +15,7 @@ export interface BOperations {
   e: BEOperations;
 }
 
-export function getB(context: FooContext) {
+function _getB(context: FooContext) {
   return {
     op1: (body: Ba, options?: BOp1OptionalParams) =>
       op1(context, body, options),
@@ -24,7 +24,7 @@ export function getB(context: FooContext) {
 
 export function getBOperations(context: FooContext): BOperations {
   return {
-    ...getB(context),
+    ..._getB(context),
     c: getBCOperations(context),
     e: getBEOperations(context),
   };

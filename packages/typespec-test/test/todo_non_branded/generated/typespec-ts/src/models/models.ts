@@ -122,6 +122,45 @@ export function todoLabelRecordArrayDeserializer(
   });
 }
 
+/** Something is wrong with you. */
+export interface Standard4XXResponse extends ApiError {}
+
+export function standard4XXResponseDeserializer(
+  item: any,
+): Standard4XXResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** model interface ApiError */
+export interface ApiError {
+  /** A machine readable error code */
+  code: string;
+  /** A human readable message */
+  message: string;
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** Something is wrong with me. */
+export interface Standard5XXResponse extends ApiError {}
+
+export function standard5XXResponseDeserializer(
+  item: any,
+): Standard5XXResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 /** model interface TodoFileAttachment */
 export interface TodoFileAttachment {
   /** The file name of the attachment */

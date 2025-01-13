@@ -12,11 +12,13 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   Widget,
+  WidgetError,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,
 } from "./models/index.js";
 export {
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,

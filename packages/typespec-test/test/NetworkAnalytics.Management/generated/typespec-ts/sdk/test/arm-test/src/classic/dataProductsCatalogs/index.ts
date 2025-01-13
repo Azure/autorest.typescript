@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listBySubscription,
   listByResourceGroup,
@@ -33,7 +33,7 @@ export interface DataProductsCatalogsOperations {
   ) => Promise<DataProductsCatalog>;
 }
 
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
+function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   return {
     listBySubscription: (
       options?: DataProductsCatalogsListBySubscriptionOptionalParams,
@@ -50,9 +50,9 @@ export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
 }
 
 export function getDataProductsCatalogsOperations(
-  context: NetworkAnalyticsContext,
+  context: NetworkAnalyticsApiContext,
 ): DataProductsCatalogsOperations {
   return {
-    ...getDataProductsCatalogs(context),
+    ..._getDataProductsCatalogs(context),
   };
 }

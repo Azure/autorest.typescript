@@ -34,7 +34,8 @@ export function buildModelDeserializer(
     if (
       !type.usage ||
       (type.usage !== undefined &&
-        (type.usage & UsageFlags.Output) !== UsageFlags.Output)
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Exception) !== UsageFlags.Exception)
     ) {
       return undefined;
     }

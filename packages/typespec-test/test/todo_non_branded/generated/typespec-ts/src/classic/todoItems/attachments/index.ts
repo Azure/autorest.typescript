@@ -25,7 +25,7 @@ export interface TodoItemsAttachmentsOperations {
   ) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
-export function getTodoItemsAttachments(context: TodoContext) {
+function _getTodoItemsAttachments(context: TodoContext) {
   return {
     createAttachment: (
       itemId: number,
@@ -41,6 +41,6 @@ export function getTodoItemsAttachmentsOperations(
   context: TodoContext,
 ): TodoItemsAttachmentsOperations {
   return {
-    ...getTodoItemsAttachments(context),
+    ..._getTodoItemsAttachments(context),
   };
 }

@@ -33,7 +33,7 @@ export interface AOperations {
   ) => Promise<void>;
 }
 
-export function getA(context: DemoServiceContext) {
+function _getA(context: DemoServiceContext) {
   return {
     test4: (
       body: {
@@ -56,6 +56,6 @@ export function getA(context: DemoServiceContext) {
 
 export function getAOperations(context: DemoServiceContext): AOperations {
   return {
-    ...getA(context),
+    ..._getA(context),
   };
 }

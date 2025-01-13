@@ -45,6 +45,8 @@ model InputOutputModel {
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -101,6 +103,8 @@ model InputOutputModel {
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -155,6 +159,8 @@ model InputOutputModel {
 @get
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -217,6 +223,8 @@ model InputOutputModel {
 @get
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -2092,6 +2100,8 @@ op get(
 ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -2129,6 +2139,8 @@ op get(
   @body body: string,
 ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -2344,6 +2356,8 @@ model Vegetables {
 op post(@body body: Vegetables): { @body body: Vegetables };
 ```
 
+The config would be like:
+
 ```yaml
 compatibilityMode: true
 ```
@@ -2436,6 +2450,8 @@ model A extends Base{
 }
 op post(@body body: A): { @body body: A };
 ```
+
+The config would be like:
 
 ```yaml
 compatibilityMode: true

@@ -67,7 +67,7 @@ export interface SchemaOperationsOperations {
   ) => PagedAsyncIterableIterator<SchemaGroup>;
 }
 
-export function getSchemaOperations(context: SchemaRegistryContext) {
+function _getSchemaOperations(context: SchemaRegistryContext) {
   return {
     registerSchema: (
       groupName: string,
@@ -117,6 +117,6 @@ export function getSchemaOperationsOperations(
   context: SchemaRegistryContext,
 ): SchemaOperationsOperations {
   return {
-    ...getSchemaOperations(context),
+    ..._getSchemaOperations(context),
   };
 }

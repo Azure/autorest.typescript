@@ -47,7 +47,7 @@ export interface UnivariateOperations {
   ) => Promise<UnivariateUnivariateEntireDetectionResult>;
 }
 
-export function getUnivariate(context: AnomalyDetectorContext) {
+function _getUnivariate(context: AnomalyDetectorContext) {
   return {
     detectUnivariateChangePoint: (
       options: UnivariateUnivariateChangePointDetectionOptions,
@@ -68,6 +68,6 @@ export function getUnivariateOperations(
   context: AnomalyDetectorContext,
 ): UnivariateOperations {
   return {
-    ...getUnivariate(context),
+    ..._getUnivariate(context),
   };
 }

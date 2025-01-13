@@ -67,7 +67,11 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  createSdkContext,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
@@ -267,16 +271,8 @@ export async function $onEmit(context: EmitContext) {
       undefined,
       { recursive: true }
     );
-    // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
-      const samples = emitSamples(dpgContext);
-      // Refine the rlc sample generation logic
-      // TODO: remember to remove this out when RLC is splitted from Modular
-      if (samples.length > 0) {
-        dpgContext.rlcOptions!.generateSample = true;
-      }
-    }
     for (const subClient of dpgContext.sdkPackage.clients) {
+      await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
@@ -321,6 +317,15 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions,
         rootIndexFile
       );
+    }
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions?.generateSample === true) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
@@ -508,4 +513,16 @@ export async function createContextWithDefaultOptions(
 function isArm(context: EmitContext<Record<string, any>>) {
   const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
+}
+
+export async function renameClientName(
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
+) {
+  if (
+    emitterOptions.options.typespecTitleMap &&
+    emitterOptions.options.typespecTitleMap[client.name]
+  ) {
+    client.name = emitterOptions.options.typespecTitleMap[client.name]!;
+  }
 }

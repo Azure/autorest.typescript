@@ -3,6 +3,7 @@
 import {
   todoItemArrayDeserializer,
   TodoItem,
+  ApiError,
   todoAttachmentArrayDeserializer,
   TodoAttachment,
 } from "../models.js";
@@ -28,6 +29,29 @@ export function todoPageDeserializer(item: any): TodoPage {
     totalSize: item["totalSize"],
     prevLink: item["prevLink"],
     nextLink: item["nextLink"],
+  };
+}
+
+/** model interface InvalidTodoItem */
+export interface InvalidTodoItem extends ApiError {}
+
+export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** model interface NotFoundErrorResponse */
+export interface NotFoundErrorResponse {
+  code: "not-found";
+}
+
+export function notFoundErrorResponseDeserializer(
+  item: any,
+): NotFoundErrorResponse {
+  return {
+    code: item["code"],
   };
 }
 

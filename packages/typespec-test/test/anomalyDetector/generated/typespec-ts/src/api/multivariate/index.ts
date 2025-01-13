@@ -14,6 +14,7 @@ import {
 import {
   MultivariateMultivariateDetectionResult,
   multivariateMultivariateDetectionResultDeserializer,
+  multivariateErrorResponseDeserializer,
   MultivariateMultivariateBatchDetectionOptions,
   multivariateMultivariateBatchDetectionOptionsSerializer,
   MultivariateModelInfo,
@@ -64,7 +65,9 @@ export async function _detectMultivariateLastAnomalyDeserialize(
 ): Promise<MultivariateMultivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return multivariateMultivariateLastDetectionResultDeserializer(result.body);
@@ -119,7 +122,9 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
 ): Promise<MultivariateMultivariateDetectionResult> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return multivariateMultivariateDetectionResultDeserializer(result.body);
@@ -173,7 +178,9 @@ export async function _getMultivariateModelDeserialize(
 ): Promise<MultivariateAnomalyDetectionModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return multivariateAnomalyDetectionModelDeserializer(result.body);
@@ -217,7 +224,9 @@ export async function _deleteMultivariateModelDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -258,7 +267,9 @@ export async function _listMultivariateModelsDeserialize(
 ): Promise<_MultivariateModelList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _multivariateModelListDeserializer(result.body);
@@ -305,7 +316,9 @@ export async function _trainMultivariateModelDeserialize(
 ): Promise<MultivariateAnomalyDetectionModel> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return multivariateAnomalyDetectionModelDeserializer(result.body);
@@ -354,7 +367,9 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
 ): Promise<MultivariateMultivariateDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = multivariateErrorResponseDeserializer(result.body);
+    throw error;
   }
 
   return multivariateMultivariateDetectionResultDeserializer(result.body);
