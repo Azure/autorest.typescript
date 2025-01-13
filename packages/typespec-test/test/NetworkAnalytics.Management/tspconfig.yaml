@@ -7,7 +7,6 @@ options:
     generateMetadata: true
     generateTest: true
     generateSample: true
-    isModularLibrary: true
     azureSdkForJs: false
     experimentalExtensibleEnums: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/test/arm-test"

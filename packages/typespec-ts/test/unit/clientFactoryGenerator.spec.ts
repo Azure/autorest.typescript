@@ -18,9 +18,10 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { testClient } from "./clientDefinitions.js";
+        import type { testClient } from "./clientDefinitions.js";
 
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -75,9 +76,10 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import type { ClientOptions } from "@azure-rest/core-client";
+          import { getClient } from "@azure-rest/core-client";
           import { logger } from "./logger.js";
-          import { testClient } from "./clientDefinitions.js";
+          import type { testClient } from "./clientDefinitions.js";
           
           /** The optional parameters for the client */
           export interface testClientOptions extends ClientOptions {}
@@ -150,10 +152,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         clientFactory!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Version } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Version } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
@@ -226,10 +229,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Versions } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Versions } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
@@ -303,10 +307,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Versions } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Versions } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {
@@ -363,9 +368,10 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { testClient } from "./clientDefinitions.js";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -453,10 +459,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         factoryFile!.content,
         `
-      import { getClient, ClientOptions } from "@azure-rest/core-client";
+      import type { ClientOptions } from "@azure-rest/core-client";
+      import { getClient } from "@azure-rest/core-client";
       import { logger } from "./logger.js";
-      import { TokenCredential } from "@azure/core-auth";
-      import { testClient } from "./clientDefinitions.js";
+      import type { TokenCredential } from "@azure/core-auth";
+      import type { testClient } from "./clientDefinitions.js";
       
       /** The optional parameters for the client */
       export interface testClientOptions extends ClientOptions {}
@@ -512,10 +519,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions.js";
+        import type { TokenCredential, KeyCredential } from "@azure/core-auth";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -575,14 +583,15 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import {
+        import type {
           TokenCredential,
           KeyCredential,
           isKeyCredential,
         } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions.js";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}

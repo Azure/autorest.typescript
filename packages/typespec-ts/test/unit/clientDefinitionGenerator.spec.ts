@@ -18,9 +18,9 @@ describe("Client definition generation", () => {
     await assertEqualContent(
       clientDef?.content!,
       `
-      import { ReadParameters } from "./parameters.js";
-      import { Read200Response } from "./responses.js";
-      import { Client, StreamableMethod } from "@azure-rest/core-client";
+      import type { ReadParameters } from "./parameters.js";
+      import type { Read200Response } from "./responses.js";
+      import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
       export interface Read {
           /** This is the longer description */
@@ -51,9 +51,9 @@ describe("Client definition generation", () => {
     await assertEqualContent(
       clientDef?.content!,
       `
-      import { ReadParameters } from "./parameters.js";
-      import { Read200Response } from "./responses.js";
-      import { Client, StreamableMethod } from "@azure-rest/core-client";
+      import type { ReadParameters } from "./parameters.js";
+      import type { Read200Response } from "./responses.js";
+      import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
       export interface Read {
           /** This is the longer description */
@@ -88,10 +88,10 @@ describe("Client definition generation", () => {
       await assertEqualContent(
         clientDef?.content!,
         `
-        import { ReadParameters } from "./parameters.js";
-        import { Read200Response } from "./responses.js";
-        import { IdParam } from "./models.js";
-        import { Client, StreamableMethod } from "@azure-rest/core-client";
+        import type { ReadParameters } from "./parameters.js";
+        import type { Read200Response } from "./responses.js";
+        import type { IdParam } from "./models.js";
+        import type { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {
             /** This is the longer description */
@@ -129,9 +129,9 @@ describe("Client definition generation", () => {
       await assertEqualContent(
         clientDef?.content!,
         `
-        import { ReadParameters } from "./parameters.js";
-        import { Read200Response } from "./responses.js";
-        import { Client, StreamableMethod } from "@azure-rest/core-client";
+        import type { ReadParameters } from "./parameters.js";
+        import type { Read200Response } from "./responses.js";
+        import type { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {
             /** This is the longer description */
@@ -165,10 +165,10 @@ describe("Client definition generation", () => {
       await assertEqualContent(
         clientDef?.content!,
         `
-        import { ReadParameters } from "./parameters.js";
-        import { Read200Response } from "./responses.js";
-        import { EnumParam } from "./models.js";
-        import { Client, StreamableMethod } from "@azure-rest/core-client";
+        import type { ReadParameters } from "./parameters.js";
+        import type { Read200Response } from "./responses.js";
+        import type { EnumParam } from "./models.js";
+        import type { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {
             /** This is the longer description */

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
   LROsPut200SucceededDefaultResponse,

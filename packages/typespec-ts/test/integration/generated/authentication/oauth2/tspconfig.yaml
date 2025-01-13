@@ -5,10 +5,10 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
     generateTest: true
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     title: AuthOauth2Client
     packageDetails:
-      name: "@msinternal/auth-oauth2"
+      name: "@unbranded/auth-oauth2"
       description: "Auth oauth2 Test Service"
       version: "1.0.0"

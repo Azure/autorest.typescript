@@ -164,6 +164,7 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    emitterOptions.isModularLibrary = options.isModularLibrary;
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);
@@ -189,13 +190,8 @@ export async function $onEmit(context: EmitContext) {
     return {
       rootDir: projectRoot,
       metadataDir: projectRoot,
-      rlcSourcesDir: join(
-        sourcesRoot,
-        emitterOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
-      ),
-      modularSourcesDir: emitterOptions.isModularLibrary
-        ? sourcesRoot
-        : undefined
+      rlcSourcesDir: sourcesRoot,
+      modularSourcesDir: sourcesRoot
     };
   }
 

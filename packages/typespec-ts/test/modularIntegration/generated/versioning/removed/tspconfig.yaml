@@ -6,11 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
     title: VersioningRemovedClient
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/versionning-removed"
+      name: "@unbranded/versionning-removed"
       description: "Versioning Removed Test Service"
