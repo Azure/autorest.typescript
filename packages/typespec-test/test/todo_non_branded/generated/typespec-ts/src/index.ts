@@ -15,10 +15,12 @@ export {
   TodoUrlAttachment,
   TodoAttachment,
   User,
+} from "./models/index.js";
+export {
   TodoPage,
   TodoItemPatch,
   PageTodoAttachment,
-} from "./models/index.js";
+} from "./models/todoItems/index.js";
 export {
   TodoItemsAttachmentsCreateAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,

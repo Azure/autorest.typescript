@@ -37,6 +37,8 @@ export {
   ConnectionPropertiesSASAuth,
   CredentialsSASAuth,
   KnownVersions,
+} from "./models/index.js";
+export {
   ToolDefinition,
   ToolDefinitionUnion,
   CodeInterpreterToolDefinition,
@@ -213,7 +215,7 @@ export {
   AgentStreamEvent,
   ListSortOrder,
   VectorStoreFileStatusFilter,
-} from "./models/index.js";
+} from "./models/agents/index.js";
 export {
   AzureAIClientOptionalParams,
   EvaluationsDeleteScheduleOptionalParams,

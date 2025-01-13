@@ -45,7 +45,8 @@ export function buildSubpathIndexFile(
     folders = [join(srcPath, subfolder, subpath)];
   }
   for (const folder of folders) {
-    const apiFilePattern = folder;
+    const apiFilePattern =
+      subpath === "models" ? join(folder, "models.ts") : folder;
     const apiFiles = emitterOptions.project.getSourceFiles().filter((file) => {
       return file
         .getFilePath()

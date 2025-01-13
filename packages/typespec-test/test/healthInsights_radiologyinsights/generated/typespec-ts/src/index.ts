@@ -51,6 +51,8 @@ export {
   MedicalProfessionalType,
   RepeatabilityResult,
   KnownApiVersion,
+} from "./models/index.js";
+export {
   Resource,
   Meta,
   Coding,
@@ -73,7 +75,7 @@ export {
   DomainResource,
   DomainResourceUnion,
   Narrative,
-} from "./models/index.js";
+} from "./models/fhir/r4/index.js";
 export {
   InferRadiologyInsightsOptionalParams,
   RadiologyInsightsClientOptionalParams,
