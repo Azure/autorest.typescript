@@ -88,17 +88,17 @@ export interface TodoFileAttachment {
 export interface TodoItem {
     assignedTo?: number;
     readonly completedAt?: Date;
-    readonly createdAt: Date;
-    readonly createdBy: number;
+    readonly createdAt?: Date;
+    readonly createdBy?: number;
     description?: string;
     // (undocumented)
     dummy?: string;
-    readonly id: number;
+    readonly id?: number;
     // (undocumented)
     labels?: TodoLabels;
     status: "NotStarted" | "InProgress" | "Completed";
     title: string;
-    readonly updatedAt: Date;
+    readonly updatedAt?: Date;
 }
 
 // @public
@@ -151,28 +151,28 @@ export interface TodoItemsOperations {
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
     create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) => Promise<{
-        id: number;
+        id?: number;
         title: string;
-        createdBy: number;
+        createdBy?: number;
         assignedTo?: number;
         description?: string;
         status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
+        createdAt?: Date;
+        updatedAt?: Date;
         completedAt?: Date;
         labels?: TodoLabels;
     }>;
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
     // (undocumented)
     get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<{
-        id: number;
+        id?: number;
         title: string;
-        createdBy: number;
+        createdBy?: number;
         assignedTo?: number;
         description?: string;
         status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
+        createdAt?: Date;
+        updatedAt?: Date;
         completedAt?: Date;
         labels?: TodoLabels;
     }>;
@@ -180,14 +180,14 @@ export interface TodoItemsOperations {
     list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
     // (undocumented)
     update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
-        id: number;
+        id?: number;
         title: string;
-        createdBy: number;
+        createdBy?: number;
         assignedTo?: number;
         description?: string;
         status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
+        createdAt?: Date;
+        updatedAt?: Date;
         completedAt?: Date;
         labels?: TodoLabels;
     }>;
@@ -226,7 +226,7 @@ export interface TodoUrlAttachment {
 // @public
 export interface User {
     email: string;
-    readonly id: number;
+    readonly id?: number;
     password: string;
     username: string;
 }
@@ -245,7 +245,7 @@ export interface UsersCreateOptionalParams extends OperationOptions {
 export interface UsersOperations {
     // (undocumented)
     create: (user: User, options?: UsersCreateOptionalParams) => Promise<{
-        id: number;
+        id?: number;
         username: string;
         email: string;
         token: string;

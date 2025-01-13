@@ -108,14 +108,14 @@ export function _updateSend(
 export async function _updateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
@@ -133,14 +133,14 @@ export async function update(
   patch: TodoItemPatch,
   options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
 ): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
@@ -165,14 +165,14 @@ export function _getSend(
 }
 
 export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
@@ -194,14 +194,14 @@ export async function get(
   id: number,
   options: TodoItemsGetOptionalParams = { requestOptions: {} },
 ): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
@@ -235,14 +235,14 @@ export function _createSend(
 export async function _createDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
@@ -268,14 +268,14 @@ export async function create(
   item: TodoItem,
   options: TodoItemsCreateOptionalParams = { requestOptions: {} },
 ): Promise<{
-  id: number;
+  id?: number;
   title: string;
-  createdBy: number;
+  createdBy?: number;
   assignedTo?: number;
   description?: string;
   status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
