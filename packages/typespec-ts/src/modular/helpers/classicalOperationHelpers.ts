@@ -124,13 +124,13 @@ export function getClassicalOperation(
 
   if (layer === prefixes.length - 1) {
     classicFile.addFunction({
-      name: `get${getClassicalLayerPrefix(
+      name: `_get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
         layer
       )}`,
-      isExported: true,
+      isExported: false,
       parameters: [
         {
           name: "context",
@@ -177,7 +177,7 @@ export function getClassicalOperation(
     const returnStatement = existFunction.getBodyText();
     if (returnStatement) {
       let statement = `,
-      ...get${getClassicalLayerPrefix(
+      ..._get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
@@ -228,7 +228,7 @@ export function getClassicalOperation(
             )}Operations(context)   
       }`
           : `return {
-        ...get${getClassicalLayerPrefix(
+        ..._get${getClassicalLayerPrefix(
           prefixes,
           NameType.Interface,
           "",

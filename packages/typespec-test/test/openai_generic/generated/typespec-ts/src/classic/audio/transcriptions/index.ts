@@ -17,7 +17,7 @@ export interface AudioTranscriptionsOperations {
   ) => Promise<CreateTranscriptionResponse>;
 }
 
-export function getAudioTranscriptions(context: OpenAIContext) {
+function _getAudioTranscriptions(context: OpenAIContext) {
   return {
     create: (
       audio: CreateTranscriptionRequest,
@@ -30,6 +30,6 @@ export function getAudioTranscriptionsOperations(
   context: OpenAIContext,
 ): AudioTranscriptionsOperations {
   return {
-    ...getAudioTranscriptions(context),
+    ..._getAudioTranscriptions(context),
   };
 }

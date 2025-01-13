@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 export {
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,

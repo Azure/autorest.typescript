@@ -69,7 +69,7 @@ export interface EvaluationsOperations {
   ) => Promise<Evaluation>;
 }
 
-export function getEvaluations(context: AzureAIContext) {
+function _getEvaluations(context: AzureAIContext) {
   return {
     deleteSchedule: (
       id: string,
@@ -103,6 +103,6 @@ export function getEvaluationsOperations(
   context: AzureAIContext,
 ): EvaluationsOperations {
   return {
-    ...getEvaluations(context),
+    ..._getEvaluations(context),
   };
 }
