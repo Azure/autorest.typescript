@@ -13,7 +13,7 @@ export interface EditsOperations {
   ) => Promise<CreateEditResponse>;
 }
 
-export function getEdits(context: OpenAIContext) {
+function _getEdits(context: OpenAIContext) {
   return {
     create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) =>
       create(context, edit, options),
@@ -22,6 +22,6 @@ export function getEdits(context: OpenAIContext) {
 
 export function getEditsOperations(context: OpenAIContext): EditsOperations {
   return {
-    ...getEdits(context),
+    ..._getEdits(context),
   };
 }

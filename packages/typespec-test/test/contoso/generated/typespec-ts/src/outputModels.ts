@@ -22,7 +22,7 @@ export interface FakedSharedModelOutput {
 }
 
 /** Provides status details for long running operations. */
-export interface ResourceOperationStatusOutput {
+export interface ResourceOperationStatusWidgetWidgetErrorOutput {
   /** The unique ID of the operation. */
   id: string;
   /**
@@ -38,7 +38,7 @@ export interface ResourceOperationStatusOutput {
 }
 
 /** Provides status details for long running operations. */
-export interface OperationStatusOutput {
+export interface OperationStatusErrorOutput {
   /** The unique ID of the operation. */
   id: string;
   /**

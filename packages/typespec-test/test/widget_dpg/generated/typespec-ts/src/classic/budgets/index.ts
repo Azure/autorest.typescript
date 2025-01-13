@@ -2,13 +2,20 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { createOrReplace } from "../../api/budgets/index.js";
-import { User } from "../../models/models.js";
+import { getBudgets, createOrReplace } from "../../api/budgets/index.js";
+import { User, Widget } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../api/options.js";
+import {
+  BudgetsGetBudgetsOptionalParams,
+  BudgetsCreateOrReplaceOptionalParams,
+} from "../../api/options.js";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {
+  getBudgets: (
+    name: string,
+    options?: BudgetsGetBudgetsOptionalParams,
+  ) => Promise<Widget[]>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
@@ -17,8 +24,10 @@ export interface BudgetsOperations {
   ) => PollerLike<OperationState<User>, User>;
 }
 
-export function getBudgets(context: WidgetServiceContext) {
+function _getBudgets(context: WidgetServiceContext) {
   return {
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) =>
+      getBudgets(context, name, options),
     createOrReplace: (
       name: string,
       resource: User,
@@ -31,6 +40,6 @@ export function getBudgetsOperations(
   context: WidgetServiceContext,
 ): BudgetsOperations {
   return {
-    ...getBudgets(context),
+    ..._getBudgets(context),
   };
 }
