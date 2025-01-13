@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
   DeployProject200Response,

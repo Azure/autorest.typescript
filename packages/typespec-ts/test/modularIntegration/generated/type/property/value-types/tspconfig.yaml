@@ -4,9 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     generateMetadata: true
     generateTest: false
-    azureSdkForJs: false
-    isModularLibrary: true
     hierarchyClient: false
     "emitter-output-dir": "{project-root}"
     packageDetails:
-      name: "@msinternal/modular-model-propertyTypes"
+      name: "@unbranded/modular-model-propertyTypes"

@@ -6,10 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
-    isModularLibrary: true
     packageDetails:
-      name: "@msinternal/model-inheritance-nested-discriminator"
+      name: "@unbranded/model-inheritance-nested-discriminator"
       description: "Model Inheritance Test Service"
       version: "1.0.0"

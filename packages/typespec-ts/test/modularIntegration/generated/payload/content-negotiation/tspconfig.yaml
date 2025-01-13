@@ -6,9 +6,7 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
-    isModularLibrary: true
     packageDetails:
-      name: "@msinternal/payload-content-negotiation"
+      name: "@unbranded/payload-content-negotiation"
       description: "Payload Content Negotiation Test Service"

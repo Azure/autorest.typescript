@@ -5,10 +5,10 @@ options:
     "emitter-output-dir": "{project-root}"
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: VersioningMadeOptionalClient
     packageDetails:
-      name: "@msinternal/versioning-madeOptional"
+      name: "@unbranded/versioning-madeOptional"
       description: "Versioning MadeOptional Service"

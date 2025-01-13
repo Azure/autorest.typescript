@@ -15,7 +15,7 @@ describe("Client definition generation", () => {
     await assertEqualContent(
       parameters?.content!,
       `
-    import { RequestParameters } from "@azure-rest/core-client";
+    import type { RequestParameters } from "@azure-rest/core-client";
 
     /** This is the wrapper object for the parameter \`param\` with allowReserved set to true. */
     export interface TemplateParamPathParam {
@@ -35,9 +35,9 @@ describe("Client definition generation", () => {
     await assertEqualContent(
       clientDef!.content,
       `
-        import { TemplateParameters, TemplateParamPathParam } from "./parameters.js";
-        import { Template204Response } from "./responses.js";
-        import { Client, StreamableMethod } from "@azure-rest/core-client";
+        import type { TemplateParameters, TemplateParamPathParam } from "./parameters.js";
+        import type { Template204Response } from "./responses.js";
+        import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
         export interface Template {
             get(options?: TemplateParameters): StreamableMethod<Template204Response>;

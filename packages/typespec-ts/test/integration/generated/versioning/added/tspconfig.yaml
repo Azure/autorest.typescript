@@ -5,10 +5,10 @@ options:
     "emitter-output-dir": "{project-root}"
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: VersioningAddedClient
     packageDetails:
-      name: "@msinternal/versioning-added"
+      name: "@unbranded/versioning-added"
       description: "Versioning Added Service"
