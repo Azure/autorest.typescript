@@ -36,6 +36,8 @@ export {
   UnivariateTimeGranularity,
   UnivariateImputeMode,
   UnivariateUnivariateEntireDetectionResult,
+  UnivariateAnomalyDetectorError,
+  UnivariateAnomalyDetectorErrorCodes,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,

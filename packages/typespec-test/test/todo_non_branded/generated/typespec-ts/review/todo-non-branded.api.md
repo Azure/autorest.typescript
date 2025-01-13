@@ -10,9 +10,31 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
+export interface ApiError {
+    code: string;
+    message: string;
+}
+
+// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export interface InvalidTodoItem extends ApiError {
+}
+
+// @public
+export interface InvalidUserResponse extends ApiError {
+    // (undocumented)
+    code: "invalid-user";
+}
+
+// @public
+export interface NotFoundErrorResponse {
+    // (undocumented)
+    code: "not-found";
+}
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -30,6 +52,14 @@ export interface PageSettings {
 export interface PageTodoAttachment {
     // (undocumented)
     items: TodoAttachment[];
+}
+
+// @public
+export interface Standard4XXResponse extends ApiError {
+}
+
+// @public
+export interface Standard5XXResponse extends ApiError {
 }
 
 // @public
@@ -199,6 +229,12 @@ export interface User {
     readonly id: number;
     password: string;
     username: string;
+}
+
+// @public
+export interface UserExistsResponse extends ApiError {
+    // (undocumented)
+    code: "user-exists";
 }
 
 // @public

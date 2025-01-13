@@ -83,6 +83,7 @@ import {
 import {
   BatchNodeUserCreateOptions,
   batchNodeUserCreateOptionsSerializer,
+  batchErrorDeserializer,
   BatchNodeUserUpdateOptions,
   batchNodeUserUpdateOptionsSerializer,
   BatchNode,
@@ -237,7 +238,9 @@ export async function _listNodeFilesDeserialize(
 ): Promise<_NodeFileListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeFileListResultDeserializer(result.body);
@@ -318,7 +321,9 @@ export async function _getNodeFilePropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -404,7 +409,9 @@ export async function _getNodeFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return typeof result.body === "string"
@@ -476,7 +483,9 @@ export async function _deleteNodeFileDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -545,7 +554,9 @@ export async function _listNodeExtensionsDeserialize(
 ): Promise<_NodeVMExtensionList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeVMExtensionListDeserializer(result.body);
@@ -617,7 +628,9 @@ export async function _getNodeExtensionDeserialize(
 ): Promise<NodeVMExtension> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return nodeVMExtensionDeserializer(result.body);
@@ -684,7 +697,9 @@ export async function _listNodesDeserialize(
 ): Promise<_BatchNodeListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchNodeListResultDeserializer(result.body);
@@ -751,7 +766,9 @@ export async function _uploadNodeLogsDeserialize(
 ): Promise<UploadBatchServiceLogsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return uploadBatchServiceLogsResultDeserializer(result.body);
@@ -819,7 +836,9 @@ export async function _getNodeRemoteDesktopFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return typeof result.body === "string"
@@ -887,7 +906,9 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchNodeRemoteLoginSettingsResultDeserializer(result.body);
@@ -954,7 +975,9 @@ export async function _enableNodeSchedulingDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1022,7 +1045,9 @@ export async function _disableNodeSchedulingDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1090,7 +1115,9 @@ export async function _reimageNodeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1154,7 +1181,9 @@ export async function _rebootNodeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1213,7 +1242,9 @@ export async function _getNodeDeserialize(
 ): Promise<BatchNode> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchNodeDeserializer(result.body);
@@ -1278,7 +1309,9 @@ export async function _replaceNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1354,7 +1387,9 @@ export async function _deleteNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1423,7 +1458,9 @@ export async function _createNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1492,7 +1529,9 @@ export async function _listTaskFilesDeserialize(
 ): Promise<_NodeFileListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeFileListResultDeserializer(result.body);
@@ -1573,7 +1612,9 @@ export async function _getTaskFilePropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1659,7 +1700,9 @@ export async function _getTaskFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return result.body;
@@ -1729,7 +1772,9 @@ export async function _deleteTaskFileDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1812,7 +1857,9 @@ export async function _reactivateTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1896,7 +1943,9 @@ export async function _terminateTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1961,7 +2010,9 @@ export async function _listSubTasksDeserialize(
 ): Promise<BatchTaskListSubtasksResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchTaskListSubtasksResultDeserializer(result.body);
@@ -2040,7 +2091,9 @@ export async function _replaceTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2125,7 +2178,9 @@ export async function _getTaskDeserialize(
 ): Promise<BatchTask> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchTaskDeserializer(result.body);
@@ -2205,7 +2260,9 @@ export async function _deleteTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2269,7 +2326,9 @@ export async function _createTaskCollectionDeserialize(
 ): Promise<TaskAddCollectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return taskAddCollectionResultDeserializer(result.body);
@@ -2354,7 +2413,9 @@ export async function _listTasksDeserialize(
 ): Promise<_BatchTaskListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchTaskListResultDeserializer(result.body);
@@ -2420,7 +2481,9 @@ export async function _createTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2488,7 +2551,9 @@ export async function _listJobSchedulesDeserialize(
 ): Promise<_BatchJobScheduleListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobScheduleListResultDeserializer(result.body);
@@ -2548,7 +2613,9 @@ export async function _createJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2622,7 +2689,9 @@ export async function _terminateJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2700,7 +2769,9 @@ export async function _enableJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2774,7 +2845,9 @@ export async function _disableJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2851,7 +2924,9 @@ export async function _replaceJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2940,7 +3015,9 @@ export async function _updateJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3034,7 +3111,9 @@ export async function _getJobScheduleDeserialize(
 ): Promise<BatchJobSchedule> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchJobScheduleDeserializer(result.body);
@@ -3108,7 +3187,9 @@ export async function _deleteJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3188,7 +3269,9 @@ export async function _jobScheduleExistsDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200", "404"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3252,7 +3335,9 @@ export async function _getCertificateDeserialize(
 ): Promise<BatchCertificate> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchCertificateDeserializer(result.body);
@@ -3317,7 +3402,9 @@ export async function _deleteCertificateDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3392,7 +3479,9 @@ export async function _cancelCertificateDeletionDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3464,7 +3553,9 @@ export async function _listCertificatesDeserialize(
 ): Promise<_CertificateListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _certificateListResultDeserializer(result.body);
@@ -3524,7 +3615,9 @@ export async function _createCertificateDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3578,7 +3671,9 @@ export async function _getJobTaskCountsDeserialize(
 ): Promise<TaskCountsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return taskCountsResultDeserializer(result.body);
@@ -3646,7 +3741,9 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
 ): Promise<_BatchJobListPreparationAndReleaseTaskStatusResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
@@ -3726,7 +3823,9 @@ export async function _listJobsFromScheduleDeserialize(
 ): Promise<_BatchJobListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListResultDeserializer(result.body);
@@ -3794,7 +3893,9 @@ export async function _listJobsDeserialize(
 ): Promise<_BatchJobListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListResultDeserializer(result.body);
@@ -3854,7 +3955,9 @@ export async function _createJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3942,7 +4045,9 @@ export async function _terminateJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4023,7 +4128,9 @@ export async function _enableJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4107,7 +4214,9 @@ export async function _disableJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4194,7 +4303,9 @@ export async function _replaceJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4276,7 +4387,9 @@ export async function _updateJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4363,7 +4476,9 @@ export async function _getJobDeserialize(
 ): Promise<BatchJob> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchJobDeserializer(result.body);
@@ -4437,7 +4552,9 @@ export async function _deleteJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4501,7 +4618,9 @@ export async function _listPoolNodeCountsDeserialize(
 ): Promise<_PoolNodeCountsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _poolNodeCountsListResultDeserializer(result.body);
@@ -4564,7 +4683,9 @@ export async function _listSupportedImagesDeserialize(
 ): Promise<_AccountListSupportedImagesResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _accountListSupportedImagesResultDeserializer(result.body);
@@ -4645,7 +4766,9 @@ export async function _removeNodesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4707,7 +4830,9 @@ export async function _replacePoolPropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4791,7 +4916,9 @@ export async function _stopPoolResizeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4876,7 +5003,9 @@ export async function _resizePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4942,7 +5071,9 @@ export async function _evaluatePoolAutoScaleDeserialize(
 ): Promise<AutoScaleRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return autoScaleRunDeserializer(result.body);
@@ -5029,7 +5160,9 @@ export async function _enablePoolAutoScaleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5091,7 +5224,9 @@ export async function _disablePoolAutoScaleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5168,7 +5303,9 @@ export async function _updatePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5255,7 +5392,9 @@ export async function _getPoolDeserialize(
 ): Promise<BatchPool> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchPoolDeserializer(result.body);
@@ -5329,7 +5468,9 @@ export async function _poolExistsDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["404", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5403,7 +5544,9 @@ export async function _deletePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5479,7 +5622,9 @@ export async function _listPoolsDeserialize(
 ): Promise<_BatchPoolListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchPoolListResultDeserializer(result.body);
@@ -5539,7 +5684,9 @@ export async function _createPoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5604,7 +5751,9 @@ export async function _listPoolUsageMetricsDeserialize(
 ): Promise<_PoolListUsageMetricsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _poolListUsageMetricsResultDeserializer(result.body);
@@ -5669,7 +5818,9 @@ export async function _getApplicationDeserialize(
 ): Promise<BatchApplication> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchApplicationDeserializer(result.body);
@@ -5729,7 +5880,9 @@ export async function _listApplicationsDeserialize(
 ): Promise<_ApplicationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _applicationListResultDeserializer(result.body);

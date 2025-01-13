@@ -19,6 +19,7 @@ import {
   userDeserializer,
   Widget,
   widgetDeserializer,
+  widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
@@ -62,7 +63,9 @@ export async function _analyzeWidgetDeserialize(
 ): Promise<AnalyzeResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return analyzeResultDeserializer(result.body);
@@ -100,7 +103,9 @@ export async function _deleteWidgetDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -140,7 +145,9 @@ export async function _updateWidgetDeserialize(
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return widgetDeserializer(result.body);
@@ -236,7 +243,9 @@ export async function _createWidgetDeserialize(
 ): Promise<Widget> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return widgetDeserializer(result.body);
@@ -280,7 +289,9 @@ export async function _getWidgetDeserialize(
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return widgetDeserializer(result.body);
@@ -320,7 +331,9 @@ export async function _queryWidgetsPagesDeserialize(
 ): Promise<_ListWidgetsPagesResults> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return _listWidgetsPagesResultsDeserializer(result.body);
@@ -365,7 +378,9 @@ export async function _listWidgetsPagesDeserialize(
 ): Promise<_ListWidgetsPagesResults> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return _listWidgetsPagesResultsDeserializer(result.body);
@@ -441,7 +456,9 @@ export async function _listWidgetsDeserialize(
 ): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return widgetArrayDeserializer(result.body);

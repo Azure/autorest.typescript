@@ -10,6 +10,7 @@ import {
   FilesRetrieveOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   OpenAIFile,
   openAIFileDeserializer,
   ListFilesResponse,
@@ -47,7 +48,9 @@ export async function _downloadDeserialize(
 ): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return result.body;
@@ -83,7 +86,9 @@ export async function _$deleteDeserialize(
 ): Promise<DeleteFileResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return deleteFileResponseDeserializer(result.body);
@@ -124,7 +129,9 @@ export async function _retrieveDeserialize(
 ): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return openAIFileDeserializer(result.body);
@@ -162,7 +169,9 @@ export async function _createDeserialize(
 ): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return openAIFileDeserializer(result.body);
@@ -197,7 +206,9 @@ export async function _listDeserialize(
 ): Promise<ListFilesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return listFilesResponseDeserializer(result.body);
