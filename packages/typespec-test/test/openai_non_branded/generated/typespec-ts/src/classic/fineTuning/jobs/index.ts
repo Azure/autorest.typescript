@@ -53,7 +53,7 @@ export interface FineTuningJobsOperations {
   ) => Promise<FineTuningJob>;
 }
 
-export function getFineTuningJobs(context: OpenAIContext) {
+function _getFineTuningJobs(context: OpenAIContext) {
   return {
     cancel: (
       fineTuningJobId: string,
@@ -80,6 +80,6 @@ export function getFineTuningJobsOperations(
   context: OpenAIContext,
 ): FineTuningJobsOperations {
   return {
-    ...getFineTuningJobs(context),
+    ..._getFineTuningJobs(context),
   };
 }

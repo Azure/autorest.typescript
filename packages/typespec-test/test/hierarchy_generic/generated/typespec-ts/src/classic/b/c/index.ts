@@ -11,7 +11,7 @@ export interface BCOperations {
   op1: (body: Ba, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
-export function getBC(context: FooContext) {
+function _getBC(context: FooContext) {
   return {
     op1: (body: Ba, options?: BCOp1OptionalParams) =>
       op1(context, body, options),
@@ -20,6 +20,6 @@ export function getBC(context: FooContext) {
 
 export function getBCOperations(context: FooContext): BCOperations {
   return {
-    ...getBC(context),
+    ..._getBC(context),
   };
 }
