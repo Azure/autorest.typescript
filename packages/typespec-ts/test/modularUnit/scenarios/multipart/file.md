@@ -26,7 +26,7 @@ export interface RequestBody {
 }
 
 export function requestBodySerializer(item: RequestBody): any {
-  return [createFilePartDescriptor("basicFile", item["basicFile"], undefined)];
+  return [createFilePartDescriptor("basicFile", item["basicFile"])];
 }
 ```
 
@@ -109,9 +109,7 @@ export interface RequestBody {
 }
 
 export function requestBodySerializer(item: RequestBody): any {
-  return [
-    createFilePartDescriptor("nameRequired", item["nameRequired"], undefined),
-  ];
+  return [createFilePartDescriptor("nameRequired", item["nameRequired"])];
 }
 ```
 
@@ -179,9 +177,7 @@ export interface RequestBody {
 
 export function requestBodySerializer(item: RequestBody): any {
   return [
-    ...item["files"].map((x: unknown) =>
-      createFilePartDescriptor("files", x, undefined),
-    ),
+    ...item["files"].map((x: unknown) => createFilePartDescriptor("files", x)),
   ];
 }
 ```
