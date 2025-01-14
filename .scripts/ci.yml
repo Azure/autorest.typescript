@@ -33,6 +33,7 @@ stages:
           - template: build.yml
           - script: |
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
+              echo "main version debug: $MAIN_VERSION"
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
             name: SetAutorestTypescriptMainVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
@@ -48,6 +49,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
+              echo "dev version: $DEV_VERSION"
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
