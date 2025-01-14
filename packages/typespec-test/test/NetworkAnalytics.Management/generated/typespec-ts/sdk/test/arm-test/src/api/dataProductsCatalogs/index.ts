@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsContext as Client,
+  NetworkAnalyticsApiContext as Client,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
   DataProductsCatalogsListBySubscriptionOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   DataProductsCatalog,
   dataProductsCatalogDeserializer,
   _DataProductsCatalogListResult,
@@ -50,7 +51,9 @@ export async function _listBySubscriptionDeserialize(
 ): Promise<_DataProductsCatalogListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _dataProductsCatalogListResultDeserializer(result.body);
@@ -100,7 +103,9 @@ export async function _listByResourceGroupDeserialize(
 ): Promise<_DataProductsCatalogListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _dataProductsCatalogListResultDeserializer(result.body);
@@ -149,7 +154,9 @@ export async function _getDeserialize(
 ): Promise<DataProductsCatalog> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataProductsCatalogDeserializer(result.body);

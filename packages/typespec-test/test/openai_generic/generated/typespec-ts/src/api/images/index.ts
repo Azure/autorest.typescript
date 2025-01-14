@@ -8,6 +8,7 @@ import {
   ImagesCreateVariationOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateImageRequest,
   createImageRequestSerializer,
   ImagesResponse,
@@ -47,7 +48,9 @@ export async function _createVariationDeserialize(
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);
@@ -85,7 +88,9 @@ export async function _createEditDeserialize(
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);
@@ -123,7 +128,9 @@ export async function _createDeserialize(
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);

@@ -5,6 +5,7 @@ import {
   OpenAIContext as Client,
 } from "../../index.js";
 import {
+  errorResponseDeserializer,
   CreateTranscriptionRequest,
   createTranscriptionRequestSerializer,
   CreateTranscriptionResponse,
@@ -40,7 +41,9 @@ export async function _createDeserialize(
 ): Promise<CreateTranscriptionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createTranscriptionResponseDeserializer(result.body);
