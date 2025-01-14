@@ -406,19 +406,12 @@ function buildModelTypeSerializer(
       ? "...item"
       : "";
 
-    const { directAssignment, propertiesStr } = getRequestModelMapping(
-      context,
-      type,
-      "item"
-    );
+    const propertiesStr = getRequestModelMapping(context, type, "item");
 
     if (additionalPropertiesSpread) {
       propertiesStr.unshift(additionalPropertiesSpread);
     }
-    const serializeContent =
-      directAssignment === true
-        ? propertiesStr.join(",")
-        : `{${propertiesStr.join(",")}}`;
+    const serializeContent = `{${propertiesStr.join(",")}}`;
 
     const output = [];
 

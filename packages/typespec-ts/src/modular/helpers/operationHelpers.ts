@@ -892,7 +892,7 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
   const serializedName = getPropertySerializedName(param);
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
-    const { propertiesStr } = getRequestModelMapping(
+    const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
       clientValue
@@ -931,15 +931,12 @@ function getOptional(
   const serializedName = getPropertySerializedName(param);
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
-    const { propertiesStr, directAssignment } = getRequestModelMapping(
+    const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
       paramName + "?."
     );
-    const serializeContent =
-      directAssignment === true
-        ? propertiesStr.join(",")
-        : `{${propertiesStr.join(",")}}`;
+    const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
   return `"${serializedName}": ${serializeRequestValue(
@@ -1115,22 +1112,16 @@ export function getRequestModelProperties(
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
-interface RequestModelMappingResult {
-  propertiesStr: string[];
-  directAssignment?: boolean;
-}
 export function getRequestModelMapping(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body"
-): RequestModelMappingResult {
-  return {
-    propertiesStr: getRequestModelProperties(
-      context,
-      modelPropertyType,
-      propertyPath
-    ).map(([name, value]) => `"${name}": ${value}`)
-  };
+): string[] {
+  return getRequestModelProperties(
+    context,
+    modelPropertyType,
+    propertyPath
+  ).map(([name, value]) => `"${name}": ${value}`);
 }
 
 function getPropertySerializedName(property: SdkModelPropertyType) {
@@ -1281,7 +1272,7 @@ export function serializeRequestValue(
         return `${clientValue} as any`;
       }
     case "model": // this is to build serialization logic for spread model types
-      return `{${getRequestModelMapping(context, type, "").propertiesStr.join(",")}}`;
+      return `{${getRequestModelMapping(context, type, "").join(",")}}`;
     case "nullable":
       return serializeRequestValue(
         context,
