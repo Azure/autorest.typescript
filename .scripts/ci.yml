@@ -16,12 +16,12 @@ parameters:
     default: "Windows-latest"
 
 variables:
+  SetDevVersion: true
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
   TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-azure.json"
   TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-standard.json"
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-azure.json"
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-standard.json"
-
 pool:
   vmImage: ubuntu-20.04
 
@@ -33,7 +33,6 @@ stages:
           - template: build.yml
           - script: |
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
-              echo "main version debug: $MAIN_VERSION"
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
             name: SetAutorestTypescriptMainVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
@@ -49,7 +48,6 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
-              echo "dev version: $DEV_VERSION"
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
