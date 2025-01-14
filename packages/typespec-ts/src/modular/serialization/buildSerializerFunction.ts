@@ -2,6 +2,7 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
+  SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType,
@@ -10,7 +11,7 @@ import {
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 import { SdkContext } from "../../utils/interfaces.js";
-import { getRequestModelMapping } from "../helpers/operationHelpers.js";
+import { getAllAncestors, getAllProperties, getRequestModelMapping } from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -331,11 +332,7 @@ function buildModelTypeSerializer(
     statements: ["return item;"]
   };
 
-  // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-  const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item"
-    : "";
-
+  const additionalPropertiesSpread = getAdditionalPropertiesStatement(context, type);
   const { directAssignment, propertiesStr } = getRequestModelMapping(
     context,
     type,
@@ -363,6 +360,19 @@ function buildModelTypeSerializer(
   }
   serializerFunction.statements = output;
   return serializerFunction;
+}
+
+function getAdditionalPropertiesStatement(context: SdkContext, type: SdkModelType): string | undefined {
+  return hasAdditionalProperties(type)
+    ? (!context.rlcOptions?.compatibilityMode && hasAdditionalPropertiesProperty(type) ? "...item.additionalProperties" : "...item")
+    : undefined;
+}
+
+function hasAdditionalPropertiesProperty(type: SdkModelType) {
+  const allParents = getAllAncestors(type);
+  const properties: SdkModelPropertyType[] =
+    getAllProperties(type, allParents) ?? [];
+  return properties.some((p) => p.name === "additionalProperties");
 }
 
 function buildDictTypeSerializer(
