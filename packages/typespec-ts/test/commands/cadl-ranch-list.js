@@ -661,6 +661,10 @@ export const azureModularTsps = [
     inputPath: "payload/media-type"
   },
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
