@@ -272,7 +272,7 @@ export function toDoItemMultipartRequestSerializer(
       ? []
       : [
           ...item["attachments"].map((x: unknown) =>
-            createFilePartDescriptor("attachments", x, undefined),
+            createFilePartDescriptor("attachments", x),
           ),
         ]),
   ];
@@ -416,7 +416,7 @@ export interface FileAttachmentMultipartRequest {
 export function fileAttachmentMultipartRequestSerializer(
   item: FileAttachmentMultipartRequest,
 ): any {
-  return [createFilePartDescriptor("contents", item["contents"], undefined)];
+  return [createFilePartDescriptor("contents", item["contents"])];
 }
 
 /** model interface User */

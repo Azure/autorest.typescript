@@ -378,9 +378,9 @@ function buildModelTypeSerializer(
             : property.multipartOptions?.defaultContentTypes?.[0];
 
         if (property.multipartOptions?.isMulti) {
-          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x, ${contentType ? `"${contentType}"` : "undefined"})))`;
+          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x${contentType ? `", ${contentType}"` : ""})))`;
         } else {
-          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"], ${contentType ? `"${contentType}"` : "undefined"})`;
+          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"]${contentType ? `, "${contentType}"` : ""})`;
         }
       } else if (property.multipartOptions?.isMulti) {
         partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;

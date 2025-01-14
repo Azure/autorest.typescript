@@ -52,7 +52,7 @@ export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
 ): any {
   return [
-    createFilePartDescriptor("file", item["file"], undefined),
+    createFilePartDescriptor("file", item["file"]),
     ...(item["filename"] === undefined
       ? []
       : [{ name: "filename", body: item["filename"] }]),
@@ -252,7 +252,7 @@ export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
 ): any {
   return [
-    createFilePartDescriptor("file", item["file"], undefined),
+    createFilePartDescriptor("file", item["file"]),
     ...(item["filename"] === undefined
       ? []
       : [{ name: "filename", body: item["filename"] }]),

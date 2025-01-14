@@ -373,10 +373,10 @@ export function createImageEditRequestSerializer(
 ): any {
   return [
     { name: "prompt", body: item["prompt"] },
-    createFilePartDescriptor("image", item["image"], undefined),
+    createFilePartDescriptor("image", item["image"]),
     ...(item["mask"] === undefined
       ? []
-      : [createFilePartDescriptor("mask", item["mask"], undefined)]),
+      : [createFilePartDescriptor("mask", item["mask"])]),
     ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
     ...(item["size"] === undefined
       ? []
@@ -412,7 +412,7 @@ export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
 ): any {
   return [
-    createFilePartDescriptor("image", item["image"], undefined),
+    createFilePartDescriptor("image", item["image"]),
     ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
     ...(item["size"] === undefined
       ? []
@@ -864,7 +864,7 @@ export interface CreateFileRequest {
 
 export function createFileRequestSerializer(item: CreateFileRequest): any {
   return [
-    createFilePartDescriptor("file", item["file"], undefined),
+    createFilePartDescriptor("file", item["file"]),
     { name: "purpose", body: item["purpose"] },
   ];
 }
@@ -2099,7 +2099,7 @@ export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
 ): any {
   return [
-    createFilePartDescriptor("file", item["file"], undefined),
+    createFilePartDescriptor("file", item["file"]),
     { name: "model", body: item["model"] },
     ...(item["prompt"] === undefined
       ? []
@@ -2166,7 +2166,7 @@ export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
 ): any {
   return [
-    createFilePartDescriptor("file", item["file"], undefined),
+    createFilePartDescriptor("file", item["file"]),
     { name: "model", body: item["model"] },
     ...(item["prompt"] === undefined
       ? []
