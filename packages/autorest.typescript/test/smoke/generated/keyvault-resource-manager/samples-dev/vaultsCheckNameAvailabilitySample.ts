@@ -13,9 +13,7 @@ import {
   KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Checks that the vault name is valid and is not already in use.

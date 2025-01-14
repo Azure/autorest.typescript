@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Verify IP flow from the specified VM to a location given the currently configured NSG rules.

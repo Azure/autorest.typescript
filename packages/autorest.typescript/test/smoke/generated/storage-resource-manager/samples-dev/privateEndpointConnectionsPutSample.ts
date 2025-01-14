@@ -13,9 +13,7 @@ import {
   StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update the state of specified private endpoint connection associated with the storage account.

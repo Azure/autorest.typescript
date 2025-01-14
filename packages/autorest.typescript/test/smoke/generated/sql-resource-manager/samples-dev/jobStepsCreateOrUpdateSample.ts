@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { JobStep, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a job step. This will implicitly create a new job version.

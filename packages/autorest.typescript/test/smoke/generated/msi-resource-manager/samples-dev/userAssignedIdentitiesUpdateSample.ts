@@ -13,9 +13,7 @@ import {
   ManagedServiceIdentityClient,
 } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update an identity in the specified subscription and resource group.

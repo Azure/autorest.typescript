@@ -3,9 +3,7 @@
 {{#each importedTypes}}
 {{this}}
 {{/each}}
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 {{#each samples}}
 /**

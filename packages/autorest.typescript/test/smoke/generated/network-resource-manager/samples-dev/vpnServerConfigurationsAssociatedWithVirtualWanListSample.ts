@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gives the list of VpnServerConfigurations associated with Virtual Wan in a resource group.

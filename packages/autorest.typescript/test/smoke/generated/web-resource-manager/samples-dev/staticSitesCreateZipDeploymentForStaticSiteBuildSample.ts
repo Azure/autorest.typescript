@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Deploys zipped content to a specific environment of a static site.

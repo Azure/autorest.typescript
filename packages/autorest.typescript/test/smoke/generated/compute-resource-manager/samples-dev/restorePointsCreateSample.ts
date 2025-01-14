@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The operation to create the restore point. Updating properties of an existing restore point is not allowed
