@@ -42,7 +42,7 @@ export function inputOutputModelSerializer(item: InputOutputModel): any {
 
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
-    prop: fooDeserializer(item["prop"])
+    prop: fooDeserializer(item["prop"]),
   };
 }
 
@@ -61,7 +61,7 @@ export function fooSerializer(item: Foo): any {
     y: templatedSerializer(item["y"]),
     z: templatedSerializer(item["z"]),
     h: templatedSerializer(item["h"]),
-    j: templatedSerializer(item["j"])
+    j: templatedSerializer(item["j"]),
   };
 }
 
@@ -71,7 +71,7 @@ export function fooDeserializer(item: any): Foo {
     y: templatedDeserializer(item["y"]),
     z: templatedDeserializer(item["z"]),
     h: templatedDeserializer(item["h"]),
-    j: templatedDeserializer(item["j"])
+    j: templatedDeserializer(item["j"]),
   };
 }
 
@@ -86,7 +86,7 @@ export function templatedBaseSerializer(item: TemplatedBase): any {
 
 export function templatedBaseDeserializer(item: any): TemplatedBase {
   return {
-    prop: baseDeserializer(item["prop"])
+    prop: baseDeserializer(item["prop"]),
   };
 }
 
@@ -112,7 +112,7 @@ export function templatedSerializer(item: Templated): any {
 
 export function templatedDeserializer(item: any): Templated {
   return {
-    prop: item["prop"]
+    prop: item["prop"],
   };
 }
 

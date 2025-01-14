@@ -6,13 +6,15 @@ import {
   TodoItemsAttachmentsListOptionalParams,
 } from "../../index.js";
 import {
+  notFoundErrorResponseDeserializer,
+  PageTodoAttachment,
+  pageTodoAttachmentDeserializer,
+} from "../../../models/todoItems/models.js";
+import {
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
   TodoAttachment,
   todoAttachmentSerializer,
-  notFoundErrorResponseDeserializer,
-  PageTodoAttachment,
-  pageTodoAttachmentDeserializer,
 } from "../../../models/models.js";
 import {
   PagedAsyncIterableIterator,

@@ -27,7 +27,7 @@ import {
   multivariateMultivariateLastDetectionOptionsSerializer,
   MultivariateMultivariateLastDetectionResult,
   multivariateMultivariateLastDetectionResultDeserializer,
-} from "../../models/models.js";
+} from "../../models/multivariate/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

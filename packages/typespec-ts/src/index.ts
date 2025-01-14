@@ -74,7 +74,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
@@ -243,7 +242,6 @@ export async function $onEmit(context: EmitContext) {
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
-    emitSerializerHelpersFile(project, modularSourcesRoot);
     modularEmitterOptions = transformModularEmitterOptions(
       dpgContext,
       modularSourcesRoot,
@@ -266,8 +264,13 @@ export async function $onEmit(context: EmitContext) {
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(dpgContext, modularEmitterOptions, "models");
-
+    buildSubpathIndexFile(
+      dpgContext,
+      modularEmitterOptions,
+      "models",
+      undefined,
+      { recursive: true }
+    );
     for (const subClient of dpgContext.sdkPackage.clients) {
       await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);

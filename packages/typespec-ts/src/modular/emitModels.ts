@@ -35,7 +35,6 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
@@ -84,22 +83,9 @@ export function emitTypes(
   context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
 ) {
-  const { sdkPackage } = context;
   const outputProject = useContext("outputProject");
 
-  const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
-  if (
-    emitQueue.size > 0 &&
-    (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)
-  ) {
-    sourceFile = outputProject.createSourceFile(modelsFilePath);
-    if (!sourceFile) {
-      throw new Error(`Failed to create source file at ${modelsFilePath}`);
-    }
-  } else {
-    return;
-  }
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -108,19 +94,31 @@ export function emitTypes(
     if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
+
+    const namespaces = getModelNamespaces(context, type);
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    sourceFile = outputProject.getSourceFile(filepath);
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+    }
     emitType(context, type, sourceFile);
   }
 
-  if (
-    sourceFile.getInterfaces().length === 0 &&
-    sourceFile.getTypeAliases().length === 0 &&
-    sourceFile.getEnums().length === 0
-  ) {
-    sourceFile.delete();
-    return;
+  const modelFiles = outputProject.getSourceFiles(
+    sourceRoot + "/models/**/*.ts"
+  );
+  for (const modelFile of modelFiles) {
+    if (
+      modelFile.getInterfaces().length === 0 &&
+      modelFile.getTypeAliases().length === 0 &&
+      modelFile.getEnums().length === 0
+    ) {
+      modelFile.delete();
+      return;
+    }
   }
-  addImportBySymbol("serializeRecord", sourceFile);
-  return sourceFile;
+
+  return modelFiles;
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
@@ -220,8 +218,49 @@ export function getApiVersionEnum(context: SdkContext) {
   return apiVersionEnum;
 }
 
-export function getModelsPath(sourceRoot: string): string {
-  return path.join(...[sourceRoot, "models", `models.ts`]);
+export function getModelsPath(
+  sourceRoot: string,
+  modelNamespace: string[] = []
+): string {
+  return path.join(
+    ...[
+      sourceRoot,
+      "models",
+      ...modelNamespace.map((n) => normalizeName(n, NameType.File)),
+      `models.ts`
+    ]
+  );
+}
+
+export function getModelNamespaces(
+  context: SdkContext,
+  model: SdkType
+): string[] {
+  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  if (
+    model.kind === "model" ||
+    model.kind === "enum" ||
+    model.kind === "union"
+  ) {
+    if (
+      model.clientNamespace.startsWith("Azure.ResourceManager") ||
+      model.clientNamespace.startsWith("Azure.Core")
+    ) {
+      return [];
+    }
+    const segments = model.clientNamespace.split(".");
+    if (segments.length > rootNamespace.length) {
+      while (segments[0] === rootNamespace[0]) {
+        segments.shift();
+        rootNamespace.shift();
+      }
+      return segments;
+    }
+    return [];
+  } else if (model.kind === "array" || model.kind === "dict") {
+    return getModelNamespaces(context, model.valueType);
+  }
+  return [];
 }
 
 function addSerializationFunctions(

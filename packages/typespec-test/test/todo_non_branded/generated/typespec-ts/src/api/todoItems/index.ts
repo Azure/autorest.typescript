@@ -11,6 +11,12 @@ import {
 import {
   TodoPage,
   todoPageDeserializer,
+  invalidTodoItemDeserializer,
+  notFoundErrorResponseDeserializer,
+  TodoItemPatch,
+  todoItemPatchSerializer,
+} from "../../models/todoItems/models.js";
+import {
   TodoItem,
   todoItemSerializer,
   TodoLabels,
@@ -18,11 +24,7 @@ import {
   standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
   _createResponseDeserializer,
-  invalidTodoItemDeserializer,
   _getResponseDeserializer,
-  notFoundErrorResponseDeserializer,
-  TodoItemPatch,
-  todoItemPatchSerializer,
   _updateResponseDeserializer,
 } from "../../models/models.js";
 import {

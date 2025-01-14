@@ -451,21 +451,10 @@ export async function emitModularModelsFromTypeSpec(
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-
+  if (Array.isArray(modelFile)) {
+    return modelFile[0];
+  }
   return modelFile;
-}
-
-export async function emitModularSerializeUtilsFromTypeSpec(
-  tspContent: string
-) {
-  const context = await rlcEmitterFor(tspContent);
-  const dpgContext = await createDpgContextTestHelper(context.program);
-  const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  const files = emitTypes(dpgContext, { sourceRoot: "" });
-  binder.resolveAllReferences("/");
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  return files;
 }
 
 export async function emitModularOperationsFromTypeSpec(

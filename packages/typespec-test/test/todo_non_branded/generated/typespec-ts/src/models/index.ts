@@ -1,7 +1,6 @@
 // Licensed under the MIT License.
 
 export {
-  TodoPage,
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
@@ -11,11 +10,5 @@ export {
   TodoFileAttachment,
   TodoUrlAttachment,
   TodoAttachment,
-  InvalidTodoItem,
-  NotFoundErrorResponse,
-  TodoItemPatch,
-  PageTodoAttachment,
   User,
-  UserExistsResponse,
-  InvalidUserResponse,
 } from "./models.js";

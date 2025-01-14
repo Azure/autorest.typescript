@@ -8,7 +8,6 @@ import {
 
 export { TodoClient } from "./todoClient.js";
 export {
-  TodoPage,
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
@@ -18,14 +17,19 @@ export {
   TodoFileAttachment,
   TodoUrlAttachment,
   TodoAttachment,
+  User,
+} from "./models/index.js";
+export {
+  TodoPage,
   InvalidTodoItem,
   NotFoundErrorResponse,
   TodoItemPatch,
   PageTodoAttachment,
-  User,
+} from "./models/todoItems/index.js";
+export {
   UserExistsResponse,
   InvalidUserResponse,
-} from "./models/index.js";
+} from "./models/users/index.js";
 export {
   TodoItemsAttachmentsCreateAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,

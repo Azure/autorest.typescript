@@ -7,9 +7,11 @@ import {
   User,
   userSerializer,
   _createResponse1Deserializer,
+} from "../../models/models.js";
+import {
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/users/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
