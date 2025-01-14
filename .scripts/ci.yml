@@ -64,15 +64,14 @@ stages:
             name: SetTypeSpecTSDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
-              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
-              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
-              npm version --no-git-tag-version $DEV_VERSION
+              export RLC_COMMON_DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
+              echo "##vso[task.setvariable variable=RLC_COMMON_DEV_VERSION;isOutput=true;]$RLC_COMMON_DEV_VERSION"
+              npm version --no-git-tag-version $RLC_COMMON_DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetRLCCommonDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
-              rlcCommonDevVersion=$(echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION")
-              jq --arg rlcCommonDevVersion "$rlcCommonDevVersion" '.dependencies["@azure-tools/rlc-common"] = $rlcCommonDevVersion' package.json > temp.json
+              jq --arg RLC_COMMON_DEV_VERSION "$RLC_COMMON_DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $RLC_COMMON_DEV_VERSION' package.json > temp.json
               mv temp.json package.json
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: UpdateRLCCommonDevVersionInTypesSpecTs
