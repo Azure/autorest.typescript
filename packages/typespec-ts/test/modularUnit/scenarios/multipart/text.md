@@ -104,7 +104,7 @@ export function requestBodySerializer(item: RequestBody): any {
 }
 ```
 
-# only: Array of text parts
+# Array of text parts
 
 This case is multiple text parts
 

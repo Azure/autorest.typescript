@@ -45,7 +45,7 @@ export function personSerializer(item: Person): any {
 }
 ```
 
-# only: JSON array
+# JSON array
 
 This TypeSpec represents a multipart request body with one part. That part consists of a JSON array. This contrasts with the one-to-many JSON part case.
 
@@ -100,7 +100,7 @@ export function personSerializer(item: Person): any {
 }
 ```
 
-# only: Array of parts
+# Array of parts
 
 This TypeSpec represents a multipart request with multiple JSON parts, each following the spec for `Person`.
 

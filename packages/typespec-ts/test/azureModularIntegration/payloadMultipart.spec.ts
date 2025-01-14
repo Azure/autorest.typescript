@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import fs from "node:fs";
 
-describe.only("MediaType Client", () => {
+describe("Multipart Client", () => {
   let client: MultiPartClient;
 
   const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");

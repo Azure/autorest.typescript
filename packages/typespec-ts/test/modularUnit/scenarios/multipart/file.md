@@ -115,7 +115,7 @@ export function requestBodySerializer(item: RequestBody): any {
 }
 ```
 
-# only: Default content type
+# Default content type
 
 ```tsp
 model PngFile extends File {
@@ -149,7 +149,7 @@ export function requestBodySerializer(item: RequestBody): any {
 }
 ```
 
-# only: Multiple files
+# Multiple files
 
 ```tsp
 model RequestBody {
