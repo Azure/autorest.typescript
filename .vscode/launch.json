@@ -113,6 +113,7 @@
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-test/test/customWrapper",
+
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],

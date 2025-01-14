@@ -25,8 +25,14 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 }
 
 // @public
+export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface BudgetsOperations {
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
+    // (undocumented)
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
 }
 
 // @public
@@ -79,6 +85,12 @@ export interface Widget {
     color: "red" | "blue";
     id: string;
     weight: number;
+}
+
+// @public
+export interface WidgetError {
+    code: number;
+    message: string;
 }
 
 // @public

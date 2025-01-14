@@ -129,13 +129,13 @@ export function getClassicalOperation(
 
   if (layer === prefixes.length - 1) {
     classicFile.addFunction({
-      name: `get${getClassicalLayerPrefix(
+      name: `_get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
         layer
       )}`,
-      isExported: true,
+      isExported: false,
       parameters: [
         {
           name: "context",
@@ -169,7 +169,7 @@ export function getClassicalOperation(
     });
   }
 
-  const operationFunctionName = `get${getClassicalLayerPrefix(
+  const operationFunctionName = `_get${getClassicalLayerPrefix(
     prefixes,
     NameType.Interface,
     "",
@@ -195,7 +195,7 @@ export function getClassicalOperation(
           ${normalizeName(
             prefixes[layer + 1] ?? "FIXME",
             NameType.Property
-          )}: get${getClassicalLayerPrefix(
+          )}: _get${getClassicalLayerPrefix(
             prefixes,
             NameType.Interface,
             "",
@@ -204,7 +204,7 @@ export function getClassicalOperation(
         }
       } else {
         statement = `,
-      ...get${getClassicalLayerPrefix(
+      ..._get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
@@ -239,7 +239,7 @@ export function getClassicalOperation(
             ${normalizeName(
               prefixes[layer + 1] ?? "FIXME",
               NameType.Property
-            )}: get${getClassicalLayerPrefix(
+            )}: _get${getClassicalLayerPrefix(
               prefixes,
               NameType.Interface,
               "",
@@ -247,7 +247,7 @@ export function getClassicalOperation(
             )}Operations(context)   
       }`
           : `return {
-        ...get${getClassicalLayerPrefix(
+        ..._get${getClassicalLayerPrefix(
           prefixes,
           NameType.Interface,
           "",

@@ -3,6 +3,10 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 import { TokenCredential } from '@typespec/ts-http-runtime';
 
+export declare interface InvalidAuth {
+    error: string;
+}
+
 export declare interface InvalidOptionalParams extends OperationOptions {
 }
 

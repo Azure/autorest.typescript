@@ -1,10 +1,5 @@
 // Licensed under the MIT License.
 
-import {
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-} from "../../../api/options.js";
 import { TodoContext } from "../../../api/todoContext.js";
 import {
   createFileAttachment,
@@ -16,6 +11,11 @@ import {
   FileAttachmentMultipartRequest,
 } from "../../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
+import {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "../../../api/options.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {
@@ -35,7 +35,7 @@ export interface TodoItemsAttachmentsOperations {
   ) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
-export function getTodoItemsAttachments(context: TodoContext) {
+function _getTodoItemsAttachments(context: TodoContext) {
   return {
     createFileAttachment: (
       itemId: number,
@@ -52,10 +52,10 @@ export function getTodoItemsAttachments(context: TodoContext) {
   };
 }
 
-export function getTodoItemsAttachmentsOperations(
+export function _getTodoItemsAttachmentsOperations(
   context: TodoContext,
 ): TodoItemsAttachmentsOperations {
   return {
-    ...getTodoItemsAttachments(context),
+    ..._getTodoItemsAttachments(context),
   };
 }

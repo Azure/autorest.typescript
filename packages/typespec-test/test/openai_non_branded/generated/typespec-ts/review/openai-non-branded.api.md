@@ -432,6 +432,24 @@ export interface EmbeddingsOperations {
 }
 
 // @public
+export interface ErrorModel {
+    // (undocumented)
+    code: string | null;
+    // (undocumented)
+    message: string;
+    // (undocumented)
+    param: string | null;
+    // (undocumented)
+    type: string;
+}
+
+// @public
+export interface ErrorResponse {
+    // (undocumented)
+    error: ErrorModel;
+}
+
+// @public
 export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public

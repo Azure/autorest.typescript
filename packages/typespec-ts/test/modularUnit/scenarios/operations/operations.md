@@ -686,6 +686,8 @@ model Bar {
 op test(): Error | Bar;
 ```
 
+The config would be like:
+
 ```yaml
 needAzureCore: true
 ```
@@ -694,7 +696,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _Bar, _barDeserializer } from "../models/models.js";
+import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -726,7 +728,9 @@ export async function _testDeserialize(
 ): Promise<_Bar> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorDeserializer(result.body);
+    throw error;
   }
 
   return _barDeserializer(result.body);
@@ -765,6 +769,8 @@ model Bar {
 op test(): Error | Bar;
 ```
 
+The config would be like:
+
 ```yaml
 needAzureCore: true
 mustEmptyDiagnostic: false
@@ -774,7 +780,7 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barDeserializer } from "../models/models.js";
+import { errorDeserializer, Bar, barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -806,7 +812,9 @@ export async function _testDeserialize(
 ): Promise<Bar> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorDeserializer(result.body);
+    throw error;
   }
 
   return barDeserializer(result.body);
@@ -852,6 +860,8 @@ model Child extends Bar {
 op test(): Error | Child;
 ```
 
+The config would be like:
+
 ```yaml
 needAzureCore: true
 ```
@@ -860,7 +870,11 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _Child, _childDeserializer } from "../models/models.js";
+import {
+  errorDeserializer,
+  _Child,
+  _childDeserializer,
+} from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -892,7 +906,9 @@ export async function _testDeserialize(
 ): Promise<_Child> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorDeserializer(result.body);
+    throw error;
   }
 
   return _childDeserializer(result.body);

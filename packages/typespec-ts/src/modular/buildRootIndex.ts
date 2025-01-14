@@ -1,9 +1,6 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import {
-  getClassicalClientName,
-  getClientName
-} from "./helpers/namingHelpers.js";
+import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers, PagingHelpers } from "./static-helpers-metadata.js";
@@ -14,6 +11,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { join } from "path/posix";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -53,11 +51,12 @@ export function buildRootIndex(
   const modelsExportsIndex = rootIndexFile
     .getExportDeclarations()
     ?.find((i) => {
-      return i.getModuleSpecifierValue() === `./models/index.js`;
+      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
     });
   if (!modelsExportsIndex) {
     exportModules(rootIndexFile, project, srcPath, clientName, "models", {
-      isTopLevel: true
+      isTopLevel: true,
+      recursive: true
     });
   }
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
@@ -200,7 +199,7 @@ function exportClassicalClient(
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = client.name;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
     moduleSpecifier: `./${
@@ -213,6 +212,7 @@ export interface ExportModulesOptions {
   interfaceOnly?: boolean;
   isTopLevel?: boolean;
   subfolder?: string;
+  recursive?: boolean;
 }
 
 function exportModules(
@@ -224,58 +224,80 @@ function exportModules(
   options: ExportModulesOptions = {
     interfaceOnly: false,
     isTopLevel: false,
-    subfolder: ""
+    subfolder: "",
+    recursive: false
   }
 ) {
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      options.subfolder !== "" && options.subfolder
-        ? options.subfolder + "/"
-        : ""
-    }${moduleName}/index.ts`
-  );
-  if (!modelsFile) {
-    return;
-  }
-
-  const exported = [...indexFile.getExportedDeclarations().keys()];
-  const namedExports = [...modelsFile.getExportedDeclarations().entries()]
-    .filter((exDeclaration) => {
-      if (exDeclaration[0].startsWith("_")) {
-        return false;
-      }
-      return exDeclaration[1].some((ex) => {
-        if (
-          options.interfaceOnly &&
-          ex.getKindName() !== "InterfaceDeclaration"
-        ) {
-          return false;
-        }
-        if (
-          options.interfaceOnly &&
-          options.isTopLevel &&
-          exDeclaration[0].endsWith("Context")
-        ) {
-          return false;
-        }
-        return true;
+  const subfolder = options.subfolder ?? "";
+  let folders = [];
+  if (options.recursive) {
+    folders = project
+      .getDirectories()
+      .filter((dir) => {
+        const targetPath = join(srcPath, subfolder, moduleName);
+        return dir.getPath().replace(/\\/g, "/").startsWith(targetPath);
+      })
+      .map((dir) => {
+        return dir.getPath();
       });
-    })
-    .map((exDeclaration) => {
-      if (exported.indexOf(exDeclaration[0]) > -1) {
-        return `${exDeclaration[0]} as ${clientName}${exDeclaration[0]}`;
-      }
-      return exDeclaration[0];
+  } else {
+    folders = [join(srcPath, subfolder, moduleName)];
+  }
+  for (const folder of folders) {
+    const apiFilePattern = join(folder, "index.ts");
+    const modelsFile = project.getSourceFile(apiFilePattern);
+    if (!modelsFile) {
+      continue;
+    }
+
+    const exported = [...indexFile.getExportedDeclarations().keys()];
+
+    const namedExports = [...modelsFile.getExportedDeclarations().entries()]
+      .filter((exDeclaration) => {
+        if (exDeclaration[0].startsWith("_")) {
+          return false;
+        }
+        return exDeclaration[1].some((ex) => {
+          if (
+            options.interfaceOnly &&
+            ex.getKindName() !== "InterfaceDeclaration"
+          ) {
+            return false;
+          }
+          if (
+            moduleName === "models" &&
+            ex.getKindName() === "FunctionDeclaration" &&
+            (exDeclaration[0].endsWith("Serializer") ||
+              exDeclaration[0].endsWith("Deserializer"))
+          ) {
+            return false;
+          }
+          if (
+            options.interfaceOnly &&
+            options.isTopLevel &&
+            exDeclaration[0].endsWith("Context")
+          ) {
+            return false;
+          }
+          return true;
+        });
+      })
+      .map((exDeclaration) => {
+        if (exported.indexOf(exDeclaration[0]) > -1) {
+          return `${exDeclaration[0]} as ${clientName}${exDeclaration[0]}`;
+        }
+        return exDeclaration[0];
+      });
+    const moduleSpecifier = `.${modelsFile
+      .getFilePath()
+      .replace(indexFile.getDirectoryPath(), "")
+      .replace(/\\/g, "/")
+      .replace(".ts", "")}.js`;
+    indexFile.addExportDeclaration({
+      moduleSpecifier,
+      namedExports
     });
-  const moduleSpecifier = `./${
-    options.isTopLevel && options.subfolder !== "" && options.subfolder
-      ? options.subfolder + "/"
-      : ""
-  }${moduleName}/index.js`;
-  indexFile.addExportDeclaration({
-    moduleSpecifier,
-    namedExports
-  });
+  }
 }
 
 export function buildSubClientIndexFile(
@@ -290,7 +312,7 @@ export function buildSubClientIndexFile(
     undefined,
     { overwrite: true }
   );
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClassicalClientName(client)}`;
   const clientFilePath = `${srcPath}/${
     subfolder && subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;

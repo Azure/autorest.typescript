@@ -7,10 +7,15 @@ import {
   TodoItemsAttachmentsListOptionalParams,
 } from "../../index.js";
 import {
-  TodoAttachment,
-  todoAttachmentSerializer,
+  notFoundErrorResponseDeserializer,
   PageTodoAttachment,
   pageTodoAttachmentDeserializer,
+} from "../../../models/todoItems/models.js";
+import {
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
+  TodoAttachment,
+  todoAttachmentSerializer,
   FileAttachmentMultipartRequest,
   fileAttachmentMultipartRequestSerializer,
 } from "../../../models/models.js";
@@ -51,7 +56,16 @@ export async function _createFileAttachmentDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return;
@@ -100,7 +114,16 @@ export async function _createJsonAttachmentDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return;
@@ -144,7 +167,16 @@ export async function _listDeserialize(
 ): Promise<PageTodoAttachment> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
   }
 
   return pageTodoAttachmentDeserializer(result.body);

@@ -1,13 +1,5 @@
 // Licensed under the MIT License.
 
-import {
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsListOptionalParams,
-} from "../../api/options.js";
 import { TodoContext } from "../../api/todoContext.js";
 import {
   $delete,
@@ -17,16 +9,24 @@ import {
   createJson,
   list,
 } from "../../api/todoItems/index.js";
+import { TodoItemPatch } from "../../models/todoItems/models.js";
 import {
   TodoItem,
   TodoLabels,
   ToDoItemMultipartRequest,
-  TodoItemPatch,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+} from "../../api/options.js";
+import {
   TodoItemsAttachmentsOperations,
-  getTodoItemsAttachmentsOperations,
+  _getTodoItemsAttachmentsOperations,
 } from "./attachments/index.js";
 
 /** Interface representing a TodoItems operations. */
@@ -107,7 +107,7 @@ export interface TodoItemsOperations {
   attachments: TodoItemsAttachmentsOperations;
 }
 
-export function getTodoItems(context: TodoContext) {
+function _getTodoItems(context: TodoContext) {
   return {
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) =>
       $delete(context, id, options),
@@ -128,11 +128,11 @@ export function getTodoItems(context: TodoContext) {
   };
 }
 
-export function getTodoItemsOperations(
+export function _getTodoItemsOperations(
   context: TodoContext,
 ): TodoItemsOperations {
   return {
-    ...getTodoItems(context),
-    attachments: getTodoItemsAttachmentsOperations(context),
+    ..._getTodoItems(context),
+    attachments: _getTodoItemsAttachmentsOperations(context),
   };
 }
