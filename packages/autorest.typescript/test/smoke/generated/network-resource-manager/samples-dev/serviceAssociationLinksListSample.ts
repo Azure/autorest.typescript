@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of service association links for a subnet.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGetServiceAssociationLinks.json
  */
-async function getServiceAssociationLinks() {
+async function getServiceAssociationLinks(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "vnet";
@@ -33,7 +33,7 @@ async function getServiceAssociationLinks() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getServiceAssociationLinks();
 }
 

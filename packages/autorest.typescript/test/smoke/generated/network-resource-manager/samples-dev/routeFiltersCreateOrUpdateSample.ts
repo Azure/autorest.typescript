@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a route filter in a specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterCreate.json
  */
-async function routeFilterCreate() {
+async function routeFilterCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeFilterName = "filterName";
@@ -47,7 +47,7 @@ async function routeFilterCreate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routeFilterCreate();
 }
 

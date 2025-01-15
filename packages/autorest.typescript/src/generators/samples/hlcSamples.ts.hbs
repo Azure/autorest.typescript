@@ -19,7 +19,7 @@ import "dotenv/config";
  * @summary {{this.operationDescription}}
  * x-ms-original-file: {{this.originalFileLocation}}
  */
-async function {{this.sampleFunctionName}}() {
+async function {{this.sampleFunctionName}}(): Promise<void> {
   {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
@@ -47,7 +47,7 @@ async function {{this.sampleFunctionName}}() {
 
 {{/each}}
 
-async function main() {
+async function main(): Promise<void> {
 {{#each samples}}
   {{this.sampleFunctionName}}();
 {{/each}}

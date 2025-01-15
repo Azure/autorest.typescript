@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns all signatures overrides for a specific policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicySignatureOverridesGet.json
  */
-async function getSignatureOverrides() {
+async function getSignatureOverrides(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "e747cc13-97d4-4a79-b463-42d7f4e558f2";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -32,7 +32,7 @@ async function getSignatureOverrides() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getSignatureOverrides();
 }
 

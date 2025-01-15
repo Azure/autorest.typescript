@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates tags of a route filter.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterUpdateTags.json
  */
-async function updateRouteFilterTags() {
+async function updateRouteFilterTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeFilterName = "filterName";
@@ -36,7 +36,7 @@ async function updateRouteFilterTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateRouteFilterTags();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a RouteMap if it doesn't exist else updates the existing one.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteMapPut.json
  */
-async function routeMapPut() {
+async function routeMapPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -63,7 +63,7 @@ async function routeMapPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routeMapPut();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Permanently deletes the specified vault. aka Purges the deleted Azure key vault.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/purgeDeletedVault.json
  */
-async function purgeADeletedVault() {
+async function purgeADeletedVault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const vaultName = "sample-vault";
@@ -32,7 +32,7 @@ async function purgeADeletedVault() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   purgeADeletedVault();
 }
 

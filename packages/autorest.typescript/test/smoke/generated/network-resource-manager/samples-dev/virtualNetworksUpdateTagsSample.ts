@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a virtual network tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkUpdateTags.json
  */
-async function updateVirtualNetworkTags() {
+async function updateVirtualNetworkTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -36,7 +36,7 @@ async function updateVirtualNetworkTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateVirtualNetworkTags();
 }
 

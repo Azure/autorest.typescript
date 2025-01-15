@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of job agents in a server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobAgentsByServer.json
  */
-async function listJobAgentsInAServer() {
+async function listJobAgentsInAServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -35,7 +35,7 @@ async function listJobAgentsInAServer() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listJobAgentsInAServer();
 }
 

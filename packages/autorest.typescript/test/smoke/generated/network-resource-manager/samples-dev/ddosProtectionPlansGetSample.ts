@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about the specified DDoS protection plan.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DdosProtectionPlanGet.json
  */
-async function getDDoSProtectionPlan() {
+async function getDDoSProtectionPlan(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ddosProtectionPlanName = "test-plan";
@@ -31,7 +31,7 @@ async function getDDoSProtectionPlan() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getDDoSProtectionPlan();
 }
 

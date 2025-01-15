@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates (patches) a snapshot.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateASnapshot.json
  */
-async function updateASnapshot() {
+async function updateASnapshot(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot";
@@ -39,7 +39,7 @@ async function updateASnapshot() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateASnapshot();
 }
 

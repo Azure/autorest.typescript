@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List all load balancers in a network interface.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceLoadBalancerList.json
  */
-async function networkInterfaceLoadBalancerList() {
+async function networkInterfaceLoadBalancerList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const networkInterfaceName = "nic1";
@@ -34,7 +34,7 @@ async function networkInterfaceLoadBalancerList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkInterfaceLoadBalancerList();
 }
 

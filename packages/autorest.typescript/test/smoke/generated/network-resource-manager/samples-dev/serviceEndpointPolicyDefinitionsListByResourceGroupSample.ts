@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all service endpoint policy definitions in a service end point policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceEndpointPolicyDefinitionList.json
  */
-async function listServiceEndpointDefinitionsInServiceEndPointPolicy() {
+async function listServiceEndpointDefinitionsInServiceEndPointPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceEndpointPolicyName = "testPolicy";
@@ -34,7 +34,7 @@ async function listServiceEndpointDefinitionsInServiceEndPointPolicy() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listServiceEndpointDefinitionsInServiceEndPointPolicy();
 }
 

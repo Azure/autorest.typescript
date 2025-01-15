@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified site from a Virtual Appliance.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceSiteDelete.json
  */
-async function deleteNetworkVirtualApplianceSite() {
+async function deleteNetworkVirtualApplianceSite(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
@@ -33,7 +33,7 @@ async function deleteNetworkVirtualApplianceSite() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteNetworkVirtualApplianceSite();
 }
 

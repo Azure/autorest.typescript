@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets properties of a specified container.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGetWithAllowProtectedAppendWritesAll.json
  */
-async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
+async function getBlobContainersGetWithAllowProtectedAppendWritesAll(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
@@ -39,7 +39,7 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
  * @summary Gets properties of a specified container.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGet.json
  */
-async function getContainers() {
+async function getContainers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
@@ -54,7 +54,7 @@ async function getContainers() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getBlobContainersGetWithAllowProtectedAppendWritesAll();
   getContainers();
 }

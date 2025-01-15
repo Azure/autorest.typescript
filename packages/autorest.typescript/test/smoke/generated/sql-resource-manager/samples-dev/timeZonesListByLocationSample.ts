@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of managed instance time zones by location.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceTimeZoneListByLocation.json
  */
-async function listManagedInstanceTimeZonesByLocation() {
+async function listManagedInstanceTimeZonesByLocation(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "37d5e605-6142-4d79-b564-28b6dbfeec0f";
   const locationName = "canadaeast";
@@ -31,7 +31,7 @@ async function listManagedInstanceTimeZonesByLocation() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listManagedInstanceTimeZonesByLocation();
 }
 

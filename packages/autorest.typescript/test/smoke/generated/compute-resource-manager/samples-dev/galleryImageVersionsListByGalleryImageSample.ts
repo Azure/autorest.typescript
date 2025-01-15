@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List gallery image versions in a gallery image definition.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ListGalleryImageVersionsInAGalleryImage.json
  */
-async function listGalleryImageVersionsInAGalleryImageDefinition() {
+async function listGalleryImageVersionsInAGalleryImageDefinition(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -36,7 +36,7 @@ async function listGalleryImageVersionsInAGalleryImageDefinition() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listGalleryImageVersionsInAGalleryImageDefinition();
 }
 

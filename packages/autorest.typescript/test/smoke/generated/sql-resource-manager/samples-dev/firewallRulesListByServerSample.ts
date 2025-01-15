@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of firewall rules.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/FirewallRuleList.json
  */
-async function listFirewallRules() {
+async function listFirewallRules(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -36,7 +36,7 @@ async function listFirewallRules() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listFirewallRules();
 }
 

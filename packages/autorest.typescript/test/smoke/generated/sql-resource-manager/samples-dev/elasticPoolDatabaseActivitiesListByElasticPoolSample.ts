@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns activity on databases inside of an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ElasticPoolDatabaseActivityList.json
  */
-async function listElasticPoolDatabaseActivity() {
+async function listElasticPoolDatabaseActivity(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "9d4e2ad0-e20b-4464-9219-353bded52513";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-4673";
@@ -37,7 +37,7 @@ async function listElasticPoolDatabaseActivity() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listElasticPoolDatabaseActivity();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List database tables
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseTableListBySchema.json
  */
-async function listDatabaseTables() {
+async function listDatabaseTables(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -39,7 +39,7 @@ async function listDatabaseTables() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDatabaseTables();
 }
 

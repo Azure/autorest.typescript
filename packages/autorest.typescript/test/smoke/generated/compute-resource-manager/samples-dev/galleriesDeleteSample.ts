@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Delete a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/DeleteAGallery.json
  */
-async function deleteAGallery() {
+async function deleteAGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -31,7 +31,7 @@ async function deleteAGallery() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteAGallery();
 }
 

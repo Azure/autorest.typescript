@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists available operations for the Microsoft.ManagedIdentity provider
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/MsiOperationsList.json
  */
-async function msiOperationsList() {
+async function msiOperationsList(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function msiOperationsList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   msiOperationsList();
 }
 

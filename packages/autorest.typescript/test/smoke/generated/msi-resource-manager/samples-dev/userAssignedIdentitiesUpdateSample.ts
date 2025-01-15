@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Update an identity in the specified subscription and resource group.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityUpdate.json
  */
-async function identityUpdate() {
+async function identityUpdate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgName";
   const resourceName = "resourceName";
@@ -39,7 +39,7 @@ async function identityUpdate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   identityUpdate();
 }
 

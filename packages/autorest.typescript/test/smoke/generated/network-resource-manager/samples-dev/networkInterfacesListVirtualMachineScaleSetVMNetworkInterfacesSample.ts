@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about all network interfaces in a virtual machine in a virtual machine scale set.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssVmNetworkInterfaceList.json
  */
-async function listVirtualMachineScaleSetVMNetworkInterfaces() {
+async function listVirtualMachineScaleSetVMNetworkInterfaces(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualMachineScaleSetName = "vmss1";
@@ -36,7 +36,7 @@ async function listVirtualMachineScaleSetVMNetworkInterfaces() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listVirtualMachineScaleSetVMNetworkInterfaces();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Deletes a network manager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerDelete.json
  */
-async function networkManagersDelete() {
+async function networkManagersDelete(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -38,7 +38,7 @@ async function networkManagersDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkManagersDelete();
 }
 

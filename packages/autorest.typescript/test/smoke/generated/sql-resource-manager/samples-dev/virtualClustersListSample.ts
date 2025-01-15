@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all virtualClusters in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/VirtualClusterList.json
  */
-async function listVirtualClusters() {
+async function listVirtualClusters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listVirtualClusters() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listVirtualClusters();
 }
 

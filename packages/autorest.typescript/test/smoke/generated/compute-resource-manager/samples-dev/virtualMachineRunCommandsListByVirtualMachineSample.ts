@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to get all run commands of a Virtual Machine.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/ListRunCommandsInVM.json
  */
-async function listRunCommandsInAVirtualMachine() {
+async function listRunCommandsInAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVM";
@@ -34,7 +34,7 @@ async function listRunCommandsInAVirtualMachine() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listRunCommandsInAVirtualMachine();
 }
 

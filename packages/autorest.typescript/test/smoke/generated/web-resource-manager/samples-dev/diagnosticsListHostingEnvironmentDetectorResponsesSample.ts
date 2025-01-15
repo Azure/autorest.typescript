@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for List Hosting Environment Detector Responses
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListHostingEnvironmentDetectorResponses.json
  */
-async function getAppServiceEnvironmentDetectorResponses() {
+async function getAppServiceEnvironmentDetectorResponses(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -36,7 +36,7 @@ async function getAppServiceEnvironmentDetectorResponses() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAppServiceEnvironmentDetectorResponses();
 }
 

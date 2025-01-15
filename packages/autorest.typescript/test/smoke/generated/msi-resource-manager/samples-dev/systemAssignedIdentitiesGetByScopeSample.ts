@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the systemAssignedIdentity available under the specified RP scope.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/SystemAssignedIdentityGet.json
  */
-async function msiOperationsList() {
+async function msiOperationsList(): Promise<void> {
   const scope = "scope";
   const credential = new DefaultAzureCredential();
   const client = new ManagedServiceIdentityClient(credential);
@@ -26,7 +26,7 @@ async function msiOperationsList() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   msiOperationsList();
 }
 

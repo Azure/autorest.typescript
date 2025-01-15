@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Get all Static Sites for a subscription.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetAllStaticSites.json
  */
-async function getAllStaticSitesInASubscription() {
+async function getAllStaticSitesInASubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function getAllStaticSitesInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAllStaticSitesInASubscription();
 }
 

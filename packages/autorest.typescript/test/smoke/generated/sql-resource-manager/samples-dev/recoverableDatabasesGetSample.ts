@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a recoverable database, which is a resource representing a database's geo backup
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/RecoverableDatabaseGet.json
  */
-async function getARecoverableDatabase() {
+async function getARecoverableDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -35,7 +35,7 @@ async function getARecoverableDatabase() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getARecoverableDatabase();
 }
 

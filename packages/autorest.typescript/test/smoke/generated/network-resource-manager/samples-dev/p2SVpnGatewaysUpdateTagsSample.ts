@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates virtual wan p2s vpn gateway tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayUpdateTags.json
  */
-async function p2SVpnGatewayUpdate() {
+async function p2SVpnGatewayUpdate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "p2sVpnGateway1";
@@ -38,7 +38,7 @@ async function p2SVpnGatewayUpdate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   p2SVpnGatewayUpdate();
 }
 

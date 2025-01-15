@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of managed instances in a resource group.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListByResourceGroup.json
  */
-async function listManagedInstancesByResourceGroup() {
+async function listManagedInstancesByResourceGroup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -39,7 +39,7 @@ async function listManagedInstancesByResourceGroup() {
  * @summary Gets a list of managed instances in a resource group.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListByResourceGroupWithExpandEqualsAdministrators.json
  */
-async function listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory() {
+async function listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -54,7 +54,7 @@ async function listManagedInstancesByResourceGroupWithExpandAdministratorsOrActi
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listManagedInstancesByResourceGroup();
   listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory();
 }

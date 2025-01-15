@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all deleted servers in a subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DeletedServerListBySubscription.json
  */
-async function listDeletedServersInASubscription() {
+async function listDeletedServersInASubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listDeletedServersInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDeletedServersInASubscription();
 }
 

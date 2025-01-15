@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Post a Network Manager Commit.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerCommitPost.json
  */
-async function networkManageCommitPost() {
+async function networkManageCommitPost(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName =
@@ -44,7 +44,7 @@ async function networkManageCommitPost() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkManageCommitPost();
 }
 

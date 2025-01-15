@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Imports a bacpac into a new database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ImportDatabaseWithNetworkIsolation.json
  */
-async function importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount() {
+async function importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -60,7 +60,7 @@ async function importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWith
  * @summary Imports a bacpac into a new database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ImportDatabase.json
  */
-async function importsToAnExistingEmptyDatabase() {
+async function importsToAnExistingEmptyDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -87,7 +87,7 @@ async function importsToAnExistingEmptyDatabase() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
   importsToAnExistingEmptyDatabase();
 }

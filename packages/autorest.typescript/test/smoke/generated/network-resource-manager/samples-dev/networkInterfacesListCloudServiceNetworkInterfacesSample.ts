@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all network interfaces in a cloud service.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServiceNetworkInterfaceList.json
  */
-async function listCloudServiceNetworkInterfaces() {
+async function listCloudServiceNetworkInterfaces(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const cloudServiceName = "cs1";
@@ -34,7 +34,7 @@ async function listCloudServiceNetworkInterfaces() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listCloudServiceNetworkInterfaces();
 }
 

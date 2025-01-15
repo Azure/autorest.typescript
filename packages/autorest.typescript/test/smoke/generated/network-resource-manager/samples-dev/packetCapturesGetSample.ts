@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a packet capture session by name.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherPacketCaptureGet.json
  */
-async function getPacketCapture() {
+async function getPacketCapture(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -33,7 +33,7 @@ async function getPacketCapture() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getPacketCapture();
 }
 

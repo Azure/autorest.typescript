@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an express route cross connection tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionUpdateTags.json
  */
-async function updateExpressRouteCrossConnectionTags() {
+async function updateExpressRouteCrossConnectionTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -39,7 +39,7 @@ async function updateExpressRouteCrossConnectionTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateExpressRouteCrossConnectionTags();
 }
 

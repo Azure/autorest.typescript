@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gives the supported security providers for the virtual wan.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualWanSupportedSecurityProviders.json
  */
-async function supportedSecurityProviders() {
+async function supportedSecurityProviders(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "wan1";
@@ -31,7 +31,7 @@ async function supportedSecurityProviders() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   supportedSecurityProviders();
 }
 

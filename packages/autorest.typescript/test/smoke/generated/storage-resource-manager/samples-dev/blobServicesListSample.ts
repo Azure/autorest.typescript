@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List blob services of storage account. It returns a collection of one object named default.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesList.json
  */
-async function listBlobServices() {
+async function listBlobServices(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4410";
   const accountName = "sto8607";
@@ -34,7 +34,7 @@ async function listBlobServices() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listBlobServices();
 }
 

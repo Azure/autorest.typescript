@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create and start a packet capture on the specified VM.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherPacketCaptureCreate.json
  */
-async function createPacketCapture() {
+async function createPacketCapture(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -52,7 +52,7 @@ async function createPacketCapture() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createPacketCapture();
 }
 

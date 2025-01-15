@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified application gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayDelete.json
  */
-async function deleteApplicationGateway() {
+async function deleteApplicationGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationGatewayName = "appgw";
@@ -31,7 +31,7 @@ async function deleteApplicationGateway() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteApplicationGateway();
 }
 

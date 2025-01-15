@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a disk.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/DeleteAManagedDisk.json
  */
-async function deleteAManagedDisk() {
+async function deleteAManagedDisk(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
@@ -31,7 +31,7 @@ async function deleteAManagedDisk() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteAManagedDisk();
 }
 

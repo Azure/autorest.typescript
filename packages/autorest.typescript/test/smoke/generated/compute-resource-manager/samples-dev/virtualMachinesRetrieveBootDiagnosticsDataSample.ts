@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/RetrieveBootDiagnosticsDataVirtualMachine.json
  */
-async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
+async function retrieveBootDiagnosticsDataOfAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ResourceGroup";
   const vmName = "VMName";
@@ -39,7 +39,7 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   retrieveBootDiagnosticsDataOfAVirtualMachine();
 }
 

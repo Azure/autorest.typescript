@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a network watcher in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherCreate.json
  */
-async function createNetworkWatcher() {
+async function createNetworkWatcher(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -36,7 +36,7 @@ async function createNetworkWatcher() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createNetworkWatcher();
 }
 

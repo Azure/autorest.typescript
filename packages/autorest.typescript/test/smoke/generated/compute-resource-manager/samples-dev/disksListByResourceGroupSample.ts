@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the disks under a resource group.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListManagedDisksInAResourceGroup.json
  */
-async function listAllManagedDisksInAResourceGroup() {
+async function listAllManagedDisksInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listAllManagedDisksInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllManagedDisksInAResourceGroup();
 }
 

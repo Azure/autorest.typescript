@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists databases linked to a sync agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncAgentGetLinkedDatabases.json
  */
-async function getSyncAgentLinkedDatabases() {
+async function getSyncAgentLinkedDatabases(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -38,7 +38,7 @@ async function getSyncAgentLinkedDatabases() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getSyncAgentLinkedDatabases();
 }
 

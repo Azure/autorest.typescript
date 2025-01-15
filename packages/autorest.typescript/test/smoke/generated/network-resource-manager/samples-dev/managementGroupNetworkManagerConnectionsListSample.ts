@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List all network manager connections created by this management group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerConnectionManagementGroupList.json
  */
-async function listManagementGroupNetworkManagerConnection() {
+async function listManagementGroupNetworkManagerConnection(): Promise<void> {
   const managementGroupId = "managementGroupA";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential);
@@ -31,7 +31,7 @@ async function listManagementGroupNetworkManagerConnection() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listManagementGroupNetworkManagerConnection();
 }
 

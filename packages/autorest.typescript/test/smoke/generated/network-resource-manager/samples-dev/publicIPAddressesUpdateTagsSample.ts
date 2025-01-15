@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates public IP address tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressUpdateTags.json
  */
-async function updatePublicIPAddressTags() {
+async function updatePublicIPAddressTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
@@ -36,7 +36,7 @@ async function updatePublicIPAddressTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updatePublicIPAddressTags();
 }
 

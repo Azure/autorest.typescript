@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get the specific private end point connection by specific private link service in the resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateLinkServiceGetPrivateEndpointConnection.json
  */
-async function getPrivateEndPointConnection() {
+async function getPrivateEndPointConnection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceName = "testPls";
@@ -33,7 +33,7 @@ async function getPrivateEndPointConnection() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getPrivateEndPointConnection();
 }
 

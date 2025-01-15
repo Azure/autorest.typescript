@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates container properties as specified in request body. Properties not mentioned in the request will be unchanged. Update fails if the specified container doesn't already exist.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPatch.json
  */
-async function updateContainers() {
+async function updateContainers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
@@ -41,7 +41,7 @@ async function updateContainers() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateContainers();
 }
 

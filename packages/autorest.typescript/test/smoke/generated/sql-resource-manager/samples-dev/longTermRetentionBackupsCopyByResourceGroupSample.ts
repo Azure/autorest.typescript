@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Copy an existing long term retention backup to a different server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ResourceGroupBasedLongTermRetentionBackupCopy.json
  */
-async function copyTheLongTermRetentionBackup() {
+async function copyTheLongTermRetentionBackup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -50,7 +50,7 @@ async function copyTheLongTermRetentionBackup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   copyTheLongTermRetentionBackup();
 }
 

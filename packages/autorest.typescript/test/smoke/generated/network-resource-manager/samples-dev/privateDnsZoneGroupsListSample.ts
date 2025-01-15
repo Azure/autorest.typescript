@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all private dns zone groups in a private endpoint.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateEndpointDnsZoneGroupList.json
  */
-async function listPrivateEndpointsInResourceGroup() {
+async function listPrivateEndpointsInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const privateEndpointName = "testPe";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -34,7 +34,7 @@ async function listPrivateEndpointsInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listPrivateEndpointsInResourceGroup();
 }
 

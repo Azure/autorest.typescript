@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithVMAsSource.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingVMAsSource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingVMAsSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -102,7 +102,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingVMAsSource() {
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersion.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -183,7 +183,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithSnapshotsAsSource.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -266,7 +266,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapsho
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithShallowReplicationMode.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode() {
+async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -302,7 +302,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMo
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithImageVersionAsSource.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -383,7 +383,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource(
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithSnapshotsAsSource.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -466,7 +466,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource()
  * @summary Create or update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryImageVersionWithVHD.json
  */
-async function createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource() {
+async function createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -532,7 +532,7 @@ async function createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateASimpleGalleryImageVersionUsingVMAsSource();
   createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource();
   createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource();

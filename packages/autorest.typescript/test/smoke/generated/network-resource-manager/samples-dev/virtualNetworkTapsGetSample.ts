@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about the specified virtual network tap.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkTapGet.json
  */
-async function getVirtualNetworkTap() {
+async function getVirtualNetworkTap(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const tapName = "testvtap";
@@ -31,7 +31,7 @@ async function getVirtualNetworkTap() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualNetworkTap();
 }
 

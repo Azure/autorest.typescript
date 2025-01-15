@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or updates a route table in a specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteTableCreate.json
  */
-async function createRouteTable() {
+async function createRouteTable(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeTableName = "testrt";
@@ -42,7 +42,7 @@ async function createRouteTable() {
  * @summary Create or updates a route table in a specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteTableCreateWithRoute.json
  */
-async function createRouteTableWithRoute() {
+async function createRouteTableWithRoute(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeTableName = "testrt";
@@ -67,7 +67,7 @@ async function createRouteTableWithRoute() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createRouteTable();
   createRouteTableWithRoute();
 }

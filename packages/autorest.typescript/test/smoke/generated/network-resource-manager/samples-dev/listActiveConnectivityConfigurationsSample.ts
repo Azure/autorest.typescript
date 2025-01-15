@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists active connectivity configurations in a network manager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerActiveConnectivityConfigurationsList.json
  */
-async function listActiveConnectivityConfigurations() {
+async function listActiveConnectivityConfigurations(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
@@ -40,7 +40,7 @@ async function listActiveConnectivityConfigurations() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listActiveConnectivityConfigurations();
 }
 

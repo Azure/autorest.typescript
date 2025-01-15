@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a private dns zone group in the specified private endpoint.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateEndpointDnsZoneGroupCreate.json
  */
-async function createPrivateDnsZoneGroup() {
+async function createPrivateDnsZoneGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const privateEndpointName = "testPe";
@@ -45,7 +45,7 @@ async function createPrivateDnsZoneGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createPrivateDnsZoneGroup();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolCreateOrUpdateMax.json
  */
-async function createOrUpdateElasticPoolWithAllParameter() {
+async function createOrUpdateElasticPoolWithAllParameter(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -49,7 +49,7 @@ async function createOrUpdateElasticPoolWithAllParameter() {
  * @summary Creates or updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolCreateOrUpdateSetMaintenanceConfiguration.json
  */
-async function createOrUpdateElasticPoolWithMaintenanceConfigurationParameter() {
+async function createOrUpdateElasticPoolWithMaintenanceConfigurationParameter(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -77,7 +77,7 @@ async function createOrUpdateElasticPoolWithMaintenanceConfigurationParameter() 
  * @summary Creates or updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolCreateOrUpdateMin.json
  */
-async function createOrUpdateElasticPoolWithMinimumParameters() {
+async function createOrUpdateElasticPoolWithMinimumParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -95,7 +95,7 @@ async function createOrUpdateElasticPoolWithMinimumParameters() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateElasticPoolWithAllParameter();
   createOrUpdateElasticPoolWithMaintenanceConfigurationParameter();
   createOrUpdateElasticPoolWithMinimumParameters();

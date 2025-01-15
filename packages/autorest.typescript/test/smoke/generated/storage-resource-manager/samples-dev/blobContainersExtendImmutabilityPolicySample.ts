@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersExtendImmutabilityPolicy.json
  */
-async function extendImmutabilityPolicy() {
+async function extendImmutabilityPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6238";
   const accountName = "sto232";
@@ -46,7 +46,7 @@ async function extendImmutabilityPolicy() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   extendImmutabilityPolicy();
 }
 

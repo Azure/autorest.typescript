@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified managed HSM Pool.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_Get.json
  */
-async function retrieveAManagedHsmPool() {
+async function retrieveAManagedHsmPool(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "hsm-group";
@@ -29,7 +29,7 @@ async function retrieveAManagedHsmPool() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   retrieveAManagedHsmPool();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to simulate the eviction of spot virtual machine.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/SimulateEvictionOfVM.json
  */
-async function simulateEvictionAVirtualMachine() {
+async function simulateEvictionAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ResourceGroup";
   const vmName = "VMName";
@@ -31,7 +31,7 @@ async function simulateEvictionAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   simulateEvictionAVirtualMachine();
 }
 

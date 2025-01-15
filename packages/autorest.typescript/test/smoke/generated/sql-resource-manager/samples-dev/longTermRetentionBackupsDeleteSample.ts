@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a long term retention backup.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/LongTermRetentionBackupDelete.json
  */
-async function deleteTheLongTermRetentionBackup() {
+async function deleteTheLongTermRetentionBackup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";
@@ -36,7 +36,7 @@ async function deleteTheLongTermRetentionBackup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteTheLongTermRetentionBackup();
 }
 

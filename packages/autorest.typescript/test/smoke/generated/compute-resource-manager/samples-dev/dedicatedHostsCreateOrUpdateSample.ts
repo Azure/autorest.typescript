@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a dedicated host .
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateADedicatedHost.json
  */
-async function createOrUpdateADedicatedHost() {
+async function createOrUpdateADedicatedHost(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
@@ -43,7 +43,7 @@ async function createOrUpdateADedicatedHost() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateADedicatedHost();
 }
 

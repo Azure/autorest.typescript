@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a Express Route Circuit Connection in the specified express route circuits.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitConnectionCreate.json
  */
-async function expressRouteCircuitConnectionCreate() {
+async function expressRouteCircuitConnectionCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid1";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
@@ -52,7 +52,7 @@ async function expressRouteCircuitConnectionCreate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteCircuitConnectionCreate();
 }
 

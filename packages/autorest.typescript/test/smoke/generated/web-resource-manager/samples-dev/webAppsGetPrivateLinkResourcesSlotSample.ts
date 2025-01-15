@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Gets the private link resources
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetSitePrivateLinkResourcesSlot.json
  */
-async function getPrivateLinkResourcesOfASite() {
+async function getPrivateLinkResourcesOfASite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -34,7 +34,7 @@ async function getPrivateLinkResourcesOfASite() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getPrivateLinkResourcesOfASite();
 }
 

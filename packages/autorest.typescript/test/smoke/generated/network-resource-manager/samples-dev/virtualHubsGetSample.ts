@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves the details of a VirtualHub.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubGet.json
  */
-async function virtualHubGet() {
+async function virtualHubGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -31,7 +31,7 @@ async function virtualHubGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualHubGet();
 }
 

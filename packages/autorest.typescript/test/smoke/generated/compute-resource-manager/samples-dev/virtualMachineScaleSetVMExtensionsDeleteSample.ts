@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to delete the VMSS VM extension.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/DeleteVirtualMachineScaleSetVMExtensions.json
  */
-async function deleteVirtualMachineScaleSetVMExtension() {
+async function deleteVirtualMachineScaleSetVMExtension(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
@@ -36,7 +36,7 @@ async function deleteVirtualMachineScaleSetVMExtension() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteVirtualMachineScaleSetVMExtension();
 }
 

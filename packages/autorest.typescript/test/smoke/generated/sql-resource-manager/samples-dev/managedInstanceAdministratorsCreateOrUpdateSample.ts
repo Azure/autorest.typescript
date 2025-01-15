@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a managed instance administrator.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceAdministratorCreate.json
  */
-async function createAdministratorOfManagedInstance() {
+async function createAdministratorOfManagedInstance(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -52,7 +52,7 @@ async function createAdministratorOfManagedInstance() {
  * @summary Creates or updates a managed instance administrator.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceAdministratorUpdate.json
  */
-async function updateAdministratorOfManagedInstance() {
+async function updateAdministratorOfManagedInstance(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -77,7 +77,7 @@ async function updateAdministratorOfManagedInstance() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createAdministratorOfManagedInstance();
   updateAdministratorOfManagedInstance();
 }

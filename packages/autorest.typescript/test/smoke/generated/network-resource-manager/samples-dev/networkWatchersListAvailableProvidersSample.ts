@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary NOTE: This feature is currently in preview and still being tested for stability. Lists all available internet service providers for a specified Azure region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherAvailableProvidersListGet.json
  */
-async function getAvailableProvidersList() {
+async function getAvailableProvidersList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -42,7 +42,7 @@ async function getAvailableProvidersList() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableProvidersList();
 }
 

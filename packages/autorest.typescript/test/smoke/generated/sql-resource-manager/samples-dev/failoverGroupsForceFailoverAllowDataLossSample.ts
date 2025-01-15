@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Fails over from the current primary server to this server. This operation might result in data loss.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/FailoverGroupForceFailoverAllowDataLoss.json
  */
-async function forcedFailoverOfAFailoverGroupAllowingDataLoss() {
+async function forcedFailoverOfAFailoverGroupAllowingDataLoss(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
@@ -35,7 +35,7 @@ async function forcedFailoverOfAFailoverGroupAllowingDataLoss() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   forcedFailoverOfAFailoverGroupAllowingDataLoss();
 }
 

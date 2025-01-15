@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists the long term retention backups for managed databases in a given location.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceLongTermRetentionBackupListByLocation.json
  */
-async function getAllLongTermRetentionBackupsUnderTheLocation() {
+async function getAllLongTermRetentionBackupsUnderTheLocation(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";
@@ -33,7 +33,7 @@ async function getAllLongTermRetentionBackupsUnderTheLocation() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAllLongTermRetentionBackupsUnderTheLocation();
 }
 

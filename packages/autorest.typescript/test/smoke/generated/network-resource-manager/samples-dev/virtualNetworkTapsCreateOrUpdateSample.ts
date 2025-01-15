@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a Virtual Network Tap.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkTapCreate.json
  */
-async function createVirtualNetworkTap() {
+async function createVirtualNetworkTap(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const tapName = "test-vtap";
@@ -41,7 +41,7 @@ async function createVirtualNetworkTap() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createVirtualNetworkTap();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all IpGroups in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsListByResourceGroup.json
  */
-async function listByResourceGroupIPGroups() {
+async function listByResourceGroupIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function listByResourceGroupIPGroups() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listByResourceGroupIPGroups();
 }
 

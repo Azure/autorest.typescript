@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves the details of a vpn connection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnConnectionGet.json
  */
-async function vpnConnectionGet() {
+async function vpnConnectionGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -33,7 +33,7 @@ async function vpnConnectionGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnConnectionGet();
 }
 

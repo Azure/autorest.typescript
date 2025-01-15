@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified Azure key vault.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/deleteVault.json
  */
-async function deleteAVault() {
+async function deleteAVault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName =
@@ -30,7 +30,7 @@ async function deleteAVault() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteAVault();
 }
 

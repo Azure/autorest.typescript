@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified subnet by virtual network and resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetGet.json
  */
-async function getSubnet() {
+async function getSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -39,7 +39,7 @@ async function getSubnet() {
  * @summary Gets the specified subnet by virtual network and resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetGetWithDelegation.json
  */
-async function getSubnetWithADelegation() {
+async function getSubnetWithADelegation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -54,7 +54,7 @@ async function getSubnetWithADelegation() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getSubnet();
   getSubnetWithADelegation();
 }

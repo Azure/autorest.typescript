@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all managed instances in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceList.json
  */
-async function listManagedInstances() {
+async function listManagedInstances(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const credential = new DefaultAzureCredential();
@@ -36,7 +36,7 @@ async function listManagedInstances() {
  * @summary Gets a list of all managed instances in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListWithExpandEqualsAdministrators.json
  */
-async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
+async function listManagedInstancesWithExpandAdministratorsOrActivedirectory(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const credential = new DefaultAzureCredential();
@@ -48,7 +48,7 @@ async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listManagedInstances();
   listManagedInstancesWithExpandAdministratorsOrActivedirectory();
 }

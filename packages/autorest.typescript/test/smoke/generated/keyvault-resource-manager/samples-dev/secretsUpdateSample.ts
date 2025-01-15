@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Update a secret in the specified subscription.  NOTE: This API is intended for internal use in ARM deployments.  Users should use the data-plane REST service for interaction with vault secrets.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/updateSecret.json
  */
-async function updateASecret() {
+async function updateASecret(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
@@ -41,7 +41,7 @@ async function updateASecret() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateASecret();
 }
 

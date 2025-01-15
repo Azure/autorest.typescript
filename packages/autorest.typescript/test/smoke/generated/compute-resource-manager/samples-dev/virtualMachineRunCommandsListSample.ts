@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all available run commands for a subscription in a location.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/VirtualMachineRunCommandList.json
  */
-async function virtualMachineRunCommandList() {
+async function virtualMachineRunCommandList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "SoutheastAsia";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function virtualMachineRunCommandList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualMachineRunCommandList();
 }
 

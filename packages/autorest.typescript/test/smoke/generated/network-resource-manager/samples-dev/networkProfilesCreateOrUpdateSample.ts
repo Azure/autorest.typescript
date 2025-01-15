@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a network profile.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkProfileCreateConfigOnly.json
  */
-async function createNetworkProfileDefaults() {
+async function createNetworkProfileDefaults(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkProfileName = "networkProfile1";
@@ -51,7 +51,7 @@ async function createNetworkProfileDefaults() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createNetworkProfileDefaults();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all guest operating system families available to be specified in the XML service configuration (.cscfg) for a cloud service. Use nextLink property in the response to get the next page of OS Families. Do this till nextLink is null to fetch all the OS Families.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServiceOSFamilies.json
  */
-async function listCloudServiceOSFamiliesInASubscription() {
+async function listCloudServiceOSFamiliesInASubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "westus2";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function listCloudServiceOSFamiliesInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listCloudServiceOSFamiliesInASubscription();
 }
 

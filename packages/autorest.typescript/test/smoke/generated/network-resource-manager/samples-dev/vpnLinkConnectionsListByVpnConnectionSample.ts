@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves all vpn site link connections for a particular virtual wan vpn gateway vpn connection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnSiteLinkConnectionList.json
  */
-async function vpnSiteLinkConnectionList() {
+async function vpnSiteLinkConnectionList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -36,7 +36,7 @@ async function vpnSiteLinkConnectionList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnSiteLinkConnectionList();
 }
 

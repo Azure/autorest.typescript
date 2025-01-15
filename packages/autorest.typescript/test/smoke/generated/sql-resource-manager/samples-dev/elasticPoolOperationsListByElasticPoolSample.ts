@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of operations performed on the elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListElasticPoolOperations.json
  */
-async function listTheElasticPoolManagementOperations() {
+async function listTheElasticPoolManagementOperations(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtestgroup";
@@ -37,7 +37,7 @@ async function listTheElasticPoolManagementOperations() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listTheElasticPoolManagementOperations();
 }
 

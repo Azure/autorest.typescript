@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Creates or updates a peering in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringCreate.json
  */
-async function createPeering() {
+async function createPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -53,7 +53,7 @@ async function createPeering() {
  * @summary Creates or updates a peering in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringCreateWithRemoteVirtualNetworkEncryption.json
  */
-async function createPeeringWithRemoteVirtualNetworkEncryption() {
+async function createPeeringWithRemoteVirtualNetworkEncryption(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -84,7 +84,7 @@ async function createPeeringWithRemoteVirtualNetworkEncryption() {
  * @summary Creates or updates a peering in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringSync.json
  */
-async function syncPeering() {
+async function syncPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -114,7 +114,7 @@ async function syncPeering() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createPeering();
   createPeeringWithRemoteVirtualNetworkEncryption();
   syncPeering();

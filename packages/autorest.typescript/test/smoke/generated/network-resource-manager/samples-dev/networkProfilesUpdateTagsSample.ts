@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates network profile tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkProfileUpdateTags.json
  */
-async function updateNetworkProfileTags() {
+async function updateNetworkProfileTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkProfileName = "test-np";
@@ -36,7 +36,7 @@ async function updateNetworkProfileTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateNetworkProfileTags();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Perform a database extension operation, like polybase import
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CreateOrUpdateDatabaseExtensions.json
  */
-async function createOrUpdateDatabaseExtensions() {
+async function createOrUpdateDatabaseExtensions(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "a1c0814d-3c18-4e1e-a247-c128c12b1677";
   const resourceGroupName =
@@ -50,7 +50,7 @@ async function createOrUpdateDatabaseExtensions() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateDatabaseExtensions();
 }
 

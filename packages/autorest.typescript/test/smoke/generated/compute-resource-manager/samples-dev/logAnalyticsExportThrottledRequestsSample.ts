@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Export logs that show total throttled Api requests for this subscription in the given time window.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/LogAnalyticsThrottledRequests.json
  */
-async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod() {
+async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "westus";
   const parameters: ThrottledRequestsInput = {
@@ -42,7 +42,7 @@ async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourc
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets current instance sql agent configuration.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SqlAgentConfigurationGet.json
  */
-async function getsCurrentInstanceSqlAgentConfiguration() {
+async function getsCurrentInstanceSqlAgentConfiguration(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -32,7 +32,7 @@ async function getsCurrentInstanceSqlAgentConfiguration() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsCurrentInstanceSqlAgentConfiguration();
 }
 

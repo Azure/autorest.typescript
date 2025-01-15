@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Stops the specified application gateway in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayStop.json
  */
-async function stopApplicationGateway() {
+async function stopApplicationGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationGatewayName = "appgw";
@@ -31,7 +31,7 @@ async function stopApplicationGateway() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   stopApplicationGateway();
 }
 

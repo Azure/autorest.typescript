@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates an express route circuit.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitCreate.json
  */
-async function createExpressRouteCircuit() {
+async function createExpressRouteCircuit(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "circuitName";
@@ -57,7 +57,7 @@ async function createExpressRouteCircuit() {
  * @summary Creates or updates an express route circuit.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitCreateOnExpressRoutePort.json
  */
-async function createExpressRouteCircuitOnExpressRoutePort() {
+async function createExpressRouteCircuitOnExpressRoutePort(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "expressRouteCircuit1";
@@ -84,7 +84,7 @@ async function createExpressRouteCircuitOnExpressRoutePort() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createExpressRouteCircuit();
   createExpressRouteCircuitOnExpressRoutePort();
 }

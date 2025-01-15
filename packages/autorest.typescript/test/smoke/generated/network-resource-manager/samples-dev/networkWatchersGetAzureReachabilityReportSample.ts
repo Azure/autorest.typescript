@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary NOTE: This feature is currently in preview and still being tested for stability. Gets the relative latency score for internet service providers from a specified location to Azure regions.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherAzureReachabilityReportGet.json
  */
-async function getAzureReachabilityReport() {
+async function getAzureReachabilityReport(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -43,7 +43,7 @@ async function getAzureReachabilityReport() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAzureReachabilityReport();
 }
 

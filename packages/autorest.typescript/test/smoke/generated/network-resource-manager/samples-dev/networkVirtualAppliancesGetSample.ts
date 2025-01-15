@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified Network Virtual Appliance.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceGet.json
  */
-async function getNetworkVirtualAppliance() {
+async function getNetworkVirtualAppliance(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
@@ -31,7 +31,7 @@ async function getNetworkVirtualAppliance() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getNetworkVirtualAppliance();
 }
 

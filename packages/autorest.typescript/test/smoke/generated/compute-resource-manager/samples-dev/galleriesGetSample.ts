@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Retrieves information about a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryWithSelectPermissions.json
  */
-async function getAGalleryWithSelectPermissions() {
+async function getAGalleryWithSelectPermissions(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -43,7 +43,7 @@ async function getAGalleryWithSelectPermissions() {
  * @summary Retrieves information about a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGallery.json
  */
-async function getAGallery() {
+async function getAGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -53,7 +53,7 @@ async function getAGallery() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGalleryWithSelectPermissions();
   getAGallery();
 }

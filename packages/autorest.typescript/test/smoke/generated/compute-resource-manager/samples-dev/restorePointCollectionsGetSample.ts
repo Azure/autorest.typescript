@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to get the restore point collection.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetRestorePointCollection.json
  */
-async function getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection() {
+async function getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "myRpc";
@@ -37,7 +37,7 @@ async function getARestorePointCollectionButNotTheRestorePointsContainedInTheRes
  * @summary The operation to get the restore point collection.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetRestorePointCollectionWithContainedRestorePoints.json
  */
-async function getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection() {
+async function getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpcName";
@@ -50,7 +50,7 @@ async function getARestorePointCollectionIncludingTheRestorePointsContainedInThe
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection();
   getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection();
 }

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the network profiles in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkProfileListAll.json
  */
-async function listAllNetworkProfiles() {
+async function listAllNetworkProfiles(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllNetworkProfiles() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllNetworkProfiles();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to get the run command.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/GetRunCommand.json
  */
-async function getARunCommand() {
+async function getARunCommand(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVM";
@@ -33,7 +33,7 @@ async function getARunCommand() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getARunCommand();
 }
 

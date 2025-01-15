@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the VpnGateways in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayListByResourceGroup.json
  */
-async function vpnGatewayListByResourceGroup() {
+async function vpnGatewayListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function vpnGatewayListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnGatewayListByResourceGroup();
 }
 

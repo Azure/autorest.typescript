@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Gets a list of security events.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityEventsGetMax.json
  */
-async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
+async function getTheManagedDatabaseSecurityEventsWithMaximalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -58,7 +58,7 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
  * @summary Gets a list of security events.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityEventsGetMin.json
  */
-async function getTheManagedDatabaseSecurityEventsWithMinimalParameters() {
+async function getTheManagedDatabaseSecurityEventsWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -77,7 +77,7 @@ async function getTheManagedDatabaseSecurityEventsWithMinimalParameters() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getTheManagedDatabaseSecurityEventsWithMaximalParameters();
   getTheManagedDatabaseSecurityEventsWithMinimalParameters();
 }

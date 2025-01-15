@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified service endpoint policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceEndpointPolicyDelete.json
  */
-async function deleteServiceEndpointPolicy() {
+async function deleteServiceEndpointPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceEndpointPolicyName = "serviceEndpointPolicy1";
@@ -31,7 +31,7 @@ async function deleteServiceEndpointPolicy() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteServiceEndpointPolicy();
 }
 

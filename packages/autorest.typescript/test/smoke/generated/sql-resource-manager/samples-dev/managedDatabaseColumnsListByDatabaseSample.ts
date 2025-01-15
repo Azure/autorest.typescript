@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary List managed database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedColumnsListByDatabaseMax.json
  */
-async function filterManagedDatabaseColumns() {
+async function filterManagedDatabaseColumns(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -57,7 +57,7 @@ async function filterManagedDatabaseColumns() {
  * @summary List managed database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedColumnsListByDatabaseMin.json
  */
-async function listManagedDatabaseColumns() {
+async function listManagedDatabaseColumns(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -76,7 +76,7 @@ async function listManagedDatabaseColumns() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   filterManagedDatabaseColumns();
   listManagedDatabaseColumns();
 }

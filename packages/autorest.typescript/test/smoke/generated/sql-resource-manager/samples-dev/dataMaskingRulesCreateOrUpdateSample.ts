@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a database data masking rule.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/DataMaskingRuleCreateOrUpdateDefaultMax.json
  */
-async function createOrUpdateDataMaskingRuleForDefaultMax() {
+async function createOrUpdateDataMaskingRuleForDefaultMax(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6852";
@@ -54,7 +54,7 @@ async function createOrUpdateDataMaskingRuleForDefaultMax() {
  * @summary Creates or updates a database data masking rule.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/DataMaskingRuleCreateOrUpdateDefaultMin.json
  */
-async function createOrUpdateDataMaskingRuleForDefaultMin() {
+async function createOrUpdateDataMaskingRuleForDefaultMin(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6852";
@@ -85,7 +85,7 @@ async function createOrUpdateDataMaskingRuleForDefaultMin() {
  * @summary Creates or updates a database data masking rule.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/DataMaskingRuleCreateOrUpdateNumber.json
  */
-async function createOrUpdateDataMaskingRuleForNumbers() {
+async function createOrUpdateDataMaskingRuleForNumbers(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6852";
@@ -118,7 +118,7 @@ async function createOrUpdateDataMaskingRuleForNumbers() {
  * @summary Creates or updates a database data masking rule.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/DataMaskingRuleCreateOrUpdateText.json
  */
-async function createOrUpdateDataMaskingRuleForText() {
+async function createOrUpdateDataMaskingRuleForText(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6852";
@@ -146,7 +146,7 @@ async function createOrUpdateDataMaskingRuleForText() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateDataMaskingRuleForDefaultMax();
   createOrUpdateDataMaskingRuleForDefaultMin();
   createOrUpdateDataMaskingRuleForNumbers();

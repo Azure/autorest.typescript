@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a ExpressRoute gateway in a specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteGatewayCreate.json
  */
-async function expressRouteGatewayCreate() {
+async function expressRouteGatewayCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resourceGroupName";
@@ -44,7 +44,7 @@ async function expressRouteGatewayCreate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteGatewayCreate();
 }
 

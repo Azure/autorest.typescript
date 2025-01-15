@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified ExpressRouteConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteConnectionGet.json
  */
-async function expressRouteConnectionGet() {
+async function expressRouteConnectionGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resourceGroupName";
@@ -34,7 +34,7 @@ async function expressRouteConnectionGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteConnectionGet();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all of the available Key Vault Rest API operations.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listOperations.json
  */
-async function listsAvailableRestApiOperations() {
+async function listsAvailableRestApiOperations(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listsAvailableRestApiOperations() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listsAvailableRestApiOperations();
 }
 

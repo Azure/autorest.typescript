@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a sync agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncAgentGet.json
  */
-async function getASyncAgent() {
+async function getASyncAgent(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -35,7 +35,7 @@ async function getASyncAgent() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getASyncAgent();
 }
 

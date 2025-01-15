@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves a single ExpressRoutePort peering location, including the list of available bandwidths available at said peering location.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortsLocationGet.json
  */
-async function expressRoutePortsLocationGet() {
+async function expressRoutePortsLocationGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const locationName = "locationName";
   const credential = new DefaultAzureCredential();
@@ -27,7 +27,7 @@ async function expressRoutePortsLocationGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRoutePortsLocationGet();
 }
 

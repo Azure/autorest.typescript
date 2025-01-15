@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns a list of geo backup policies.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/GeoBackupPoliciesList.json
  */
-async function listGeoBackupPolicies() {
+async function listGeoBackupPolicies(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-4799";
@@ -37,7 +37,7 @@ async function listGeoBackupPolicies() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listGeoBackupPolicies();
 }
 

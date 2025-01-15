@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all available virtual machine sizes to which the specified virtual machine can be resized.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListAvailableVmSizes_VirtualMachines.json
  */
-async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized() {
+async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVmName";
@@ -34,7 +34,7 @@ async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMac
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized();
 }
 

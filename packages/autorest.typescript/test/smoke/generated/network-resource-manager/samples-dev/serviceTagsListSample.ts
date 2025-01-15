@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of service tag information resources.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceTagsList.json
  */
-async function getListOfServiceTags() {
+async function getListOfServiceTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "westcentralus";
   const credential = new DefaultAzureCredential();
@@ -27,7 +27,7 @@ async function getListOfServiceTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getListOfServiceTags();
 }
 

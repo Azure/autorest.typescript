@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an express route circuit tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitUpdateTags.json
  */
-async function updateExpressRouteCircuitTags() {
+async function updateExpressRouteCircuitTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ertest";
   const circuitName = "er1";
@@ -36,7 +36,7 @@ async function updateExpressRouteCircuitTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateExpressRouteCircuitTags();
 }
 

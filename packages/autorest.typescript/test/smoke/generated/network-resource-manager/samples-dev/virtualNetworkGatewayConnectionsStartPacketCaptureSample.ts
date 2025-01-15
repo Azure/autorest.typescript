@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Starts packet capture on virtual network gateway connection in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionStartPacketCaptureFilterData.json
  */
-async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter() {
+async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
@@ -49,7 +49,7 @@ async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter() {
  * @summary Starts packet capture on virtual network gateway connection in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionStartPacketCapture.json
  */
-async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter() {
+async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
@@ -63,7 +63,7 @@ async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter(
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter();
   startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter();
 }

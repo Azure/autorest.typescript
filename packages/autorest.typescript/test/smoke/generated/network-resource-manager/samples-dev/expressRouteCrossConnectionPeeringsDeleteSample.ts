@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified peering from the ExpressRouteCrossConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionBgpPeeringDelete.json
  */
-async function deleteExpressRouteCrossConnectionBgpPeering() {
+async function deleteExpressRouteCrossConnectionBgpPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -35,7 +35,7 @@ async function deleteExpressRouteCrossConnectionBgpPeering() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteExpressRouteCrossConnectionBgpPeering();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Gets the Ddos Protection Status of all IP Addresses under the Virtual Network
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGetDdosProtectionStatus.json
  */
-async function getDdosProtectionStatusOfAVirtualNetwork() {
+async function getDdosProtectionStatusOfAVirtualNetwork(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -42,7 +42,7 @@ async function getDdosProtectionStatusOfAVirtualNetwork() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getDdosProtectionStatusOfAVirtualNetwork();
 }
 

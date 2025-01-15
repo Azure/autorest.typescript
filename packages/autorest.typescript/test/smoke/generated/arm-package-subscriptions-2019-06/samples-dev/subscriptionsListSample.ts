@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all subscriptions for a tenant.
  * x-ms-original-file: specification/resources/resource-manager/Microsoft.Resources/stable/2019-06-01/examples/GetSubscriptions.json
  */
-async function getAllSubscriptions() {
+async function getAllSubscriptions(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SubscriptionClient(credential);
   const resArray = new Array();
@@ -28,7 +28,7 @@ async function getAllSubscriptions() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAllSubscriptions();
 }
 

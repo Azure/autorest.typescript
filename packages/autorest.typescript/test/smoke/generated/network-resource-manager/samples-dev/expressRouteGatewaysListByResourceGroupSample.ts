@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists ExpressRoute gateways in a given resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteGatewayListByResourceGroup.json
  */
-async function expressRouteGatewayListByResourceGroup() {
+async function expressRouteGatewayListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resourceGroupName";
@@ -29,7 +29,7 @@ async function expressRouteGatewayListByResourceGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteGatewayListByResourceGroup();
 }
 

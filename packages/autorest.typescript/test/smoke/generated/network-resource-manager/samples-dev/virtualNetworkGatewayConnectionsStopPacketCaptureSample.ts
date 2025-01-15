@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Stops packet capture on virtual network gateway connection in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionStopPacketCapture.json
  */
-async function stopPacketCaptureOnVirtualNetworkGatewayConnection() {
+async function stopPacketCaptureOnVirtualNetworkGatewayConnection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
@@ -40,7 +40,7 @@ async function stopPacketCaptureOnVirtualNetworkGatewayConnection() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   stopPacketCaptureOnVirtualNetworkGatewayConnection();
 }
 

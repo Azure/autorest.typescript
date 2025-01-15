@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a VirtualHubBgpConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubBgpConnectionDelete.json
  */
-async function virtualHubRouteTableV2Delete() {
+async function virtualHubRouteTableV2Delete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "hub1";
@@ -33,7 +33,7 @@ async function virtualHubRouteTableV2Delete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualHubRouteTableV2Delete();
 }
 

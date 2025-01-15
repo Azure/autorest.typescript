@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified load balancer outbound rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerOutboundRuleGet.json
  */
-async function loadBalancerOutboundRuleGet() {
+async function loadBalancerOutboundRuleGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb1";
@@ -33,7 +33,7 @@ async function loadBalancerOutboundRuleGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   loadBalancerOutboundRuleGet();
 }
 

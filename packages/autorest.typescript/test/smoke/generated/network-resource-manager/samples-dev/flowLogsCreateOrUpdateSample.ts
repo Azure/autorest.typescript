@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a flow log for the specified network security group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherFlowLogCreate.json
  */
-async function createOrUpdateFlowLog() {
+async function createOrUpdateFlowLog(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -46,7 +46,7 @@ async function createOrUpdateFlowLog() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateFlowLog();
 }
 

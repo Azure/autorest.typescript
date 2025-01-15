@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Get all Kubernetes Environments for a subscription.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/KubeEnvironments_ListBySubscription.json
  */
-async function listKubeEnvironmentsBySubscription() {
+async function listKubeEnvironmentsBySubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "8efdecc5-919e-44eb-b179-915dca89ebf9";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listKubeEnvironmentsBySubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listKubeEnvironmentsBySubscription();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves the details of a nat rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayNatRuleGet.json
  */
-async function virtualNetworkGatewayNatRuleGet() {
+async function virtualNetworkGatewayNatRuleGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "gateway1";
@@ -33,7 +33,7 @@ async function virtualNetworkGatewayNatRuleGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualNetworkGatewayNatRuleGet();
 }
 

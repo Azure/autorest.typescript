@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists all containers and does not support a prefix like data plane. Also SRP today does not return continuation token.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersList.json
  */
-async function listContainers() {
+async function listContainers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
@@ -43,7 +43,7 @@ async function listContainers() {
  * @summary Lists all containers and does not support a prefix like data plane. Also SRP today does not return continuation token.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedBlobContainersList.json
  */
-async function listDeletedContainers() {
+async function listDeletedContainers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
@@ -62,7 +62,7 @@ async function listDeletedContainers() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listContainers();
   listDeletedContainers();
 }

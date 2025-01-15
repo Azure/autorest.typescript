@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified subnet.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetDelete.json
  */
-async function deleteSubnet() {
+async function deleteSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -33,7 +33,7 @@ async function deleteSubnet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteSubnet();
 }
 

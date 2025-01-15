@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets Ssl predefined policy with the specified policy name.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayAvailableSslOptionsPredefinedPolicyGet.json
  */
-async function getAvailableSslPredefinedPolicyByName() {
+async function getAvailableSslPredefinedPolicyByName(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const predefinedPolicyName = "AppGwSslPolicy20150501";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function getAvailableSslPredefinedPolicyByName() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableSslPredefinedPolicyByName();
 }
 

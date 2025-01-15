@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified Peer Express Route Circuit Connection from the specified express route circuit.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PeerExpressRouteCircuitConnectionGet.json
  */
-async function peerExpressRouteCircuitConnectionGet() {
+async function peerExpressRouteCircuitConnectionGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid1";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
@@ -35,7 +35,7 @@ async function peerExpressRouteCircuitConnectionGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   peerExpressRouteCircuitConnectionGet();
 }
 

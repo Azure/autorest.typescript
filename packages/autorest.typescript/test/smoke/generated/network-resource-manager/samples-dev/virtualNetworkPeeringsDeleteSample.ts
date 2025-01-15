@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified virtual network peering.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringDelete.json
  */
-async function deletePeering() {
+async function deletePeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -33,7 +33,7 @@ async function deletePeering() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deletePeering();
 }
 

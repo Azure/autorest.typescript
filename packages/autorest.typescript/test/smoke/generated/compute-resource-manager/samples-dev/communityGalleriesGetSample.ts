@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get a community gallery by gallery public name.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/communityGallery/GetACommunityGallery.json
  */
-async function getAGallery() {
+async function getAGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "myLocation";
   const publicGalleryName = "publicGalleryName";
@@ -31,7 +31,7 @@ async function getAGallery() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGallery();
 }
 

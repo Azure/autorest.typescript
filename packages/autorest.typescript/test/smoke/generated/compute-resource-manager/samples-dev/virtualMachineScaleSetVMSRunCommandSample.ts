@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Run command on a virtual machine in a VM scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/VMScaleSetRunCommand.json
  */
-async function virtualMachineScaleSetVMSRunCommand() {
+async function virtualMachineScaleSetVMSRunCommand(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
@@ -41,7 +41,7 @@ async function virtualMachineScaleSetVMSRunCommand() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualMachineScaleSetVMSRunCommand();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a TDE certificate for a given server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SqlTdeCertificateCreate.json
  */
-async function uploadATdeCertificate() {
+async function uploadATdeCertificate(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000001";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testtdecert";
@@ -37,7 +37,7 @@ async function uploadATdeCertificate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   uploadATdeCertificate();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a threat detection policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertCreateMax.json
  */
-async function updateAManagedServerThreatDetectionPolicyWithAllParameters() {
+async function updateAManagedServerThreatDetectionPolicyWithAllParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -56,7 +56,7 @@ async function updateAManagedServerThreatDetectionPolicyWithAllParameters() {
  * @summary Creates or updates a threat detection policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertCreateMin.json
  */
-async function updateAManagedServerThreatDetectionPolicyWithMinimalParameters() {
+async function updateAManagedServerThreatDetectionPolicyWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -76,7 +76,7 @@ async function updateAManagedServerThreatDetectionPolicyWithMinimalParameters() 
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateAManagedServerThreatDetectionPolicyWithAllParameters();
   updateAManagedServerThreatDetectionPolicyWithMinimalParameters();
 }

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gives the list of VpnServerConfigurations associated with Virtual Wan in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/GetVirtualWanVpnServerConfigurations.json
  */
-async function getVirtualWanVpnServerConfigurations() {
+async function getVirtualWanVpnServerConfigurations(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "wan1";
@@ -32,7 +32,7 @@ async function getVirtualWanVpnServerConfigurations() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualWanVpnServerConfigurations();
 }
 

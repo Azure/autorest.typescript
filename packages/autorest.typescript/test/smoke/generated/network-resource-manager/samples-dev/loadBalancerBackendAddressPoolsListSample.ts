@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the load balancer backed address pools.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LBBackendAddressPoolListWithBackendAddressesPoolType.json
  */
-async function loadBalancerWithBackendAddressPoolContainingBackendAddresses() {
+async function loadBalancerWithBackendAddressPoolContainingBackendAddresses(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
@@ -40,7 +40,7 @@ async function loadBalancerWithBackendAddressPoolContainingBackendAddresses() {
  * @summary Gets all the load balancer backed address pools.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerBackendAddressPoolList.json
  */
-async function loadBalancerBackendAddressPoolList() {
+async function loadBalancerBackendAddressPoolList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
@@ -56,7 +56,7 @@ async function loadBalancerBackendAddressPoolList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   loadBalancerWithBackendAddressPoolContainingBackendAddresses();
   loadBalancerBackendAddressPoolList();
 }

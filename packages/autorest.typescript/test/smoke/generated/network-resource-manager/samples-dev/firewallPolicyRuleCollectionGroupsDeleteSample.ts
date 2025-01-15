@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified FirewallPolicyRuleCollectionGroup.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupDelete.json
  */
-async function deleteFirewallPolicyRuleCollectionGroup() {
+async function deleteFirewallPolicyRuleCollectionGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
@@ -34,7 +34,7 @@ async function deleteFirewallPolicyRuleCollectionGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteFirewallPolicyRuleCollectionGroup();
 }
 

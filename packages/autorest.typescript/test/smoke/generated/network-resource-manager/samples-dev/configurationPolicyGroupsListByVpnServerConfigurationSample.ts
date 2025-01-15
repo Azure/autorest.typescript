@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the configurationPolicyGroups in a resource group for a vpnServerConfiguration.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ConfigurationPolicyGroupListByVpnServerConfiguration.json
  */
-async function configurationPolicyGroupListByVpnServerConfiguration() {
+async function configurationPolicyGroupListByVpnServerConfiguration(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
@@ -34,7 +34,7 @@ async function configurationPolicyGroupListByVpnServerConfiguration() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   configurationPolicyGroupListByVpnServerConfiguration();
 }
 

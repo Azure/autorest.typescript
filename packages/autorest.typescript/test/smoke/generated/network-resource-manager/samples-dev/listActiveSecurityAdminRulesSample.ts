@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists active security admin rules in a network manager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerActiveSecurityAdminRulesList.json
  */
-async function listActiveSecurityAdminRules() {
+async function listActiveSecurityAdminRules(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
@@ -40,7 +40,7 @@ async function listActiveSecurityAdminRules() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listActiveSecurityAdminRules();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List all the ExpressRoutePort resources in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortListByResourceGroup.json
  */
-async function expressRoutePortListByResourceGroup() {
+async function expressRoutePortListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function expressRoutePortListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRoutePortListByResourceGroup();
 }
 

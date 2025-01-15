@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Gets the sas url to get the connection health detail of P2S clients of the virtual wan P2SVpnGateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayGetConnectionHealthDetailed.json
  */
-async function p2SVpnGatewayGetConnectionHealthDetailed() {
+async function p2SVpnGatewayGetConnectionHealthDetailed(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "p2s-vpn-gateway-test";
@@ -42,7 +42,7 @@ async function p2SVpnGatewayGetConnectionHealthDetailed() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   p2SVpnGatewayGetConnectionHealthDetailed();
 }
 

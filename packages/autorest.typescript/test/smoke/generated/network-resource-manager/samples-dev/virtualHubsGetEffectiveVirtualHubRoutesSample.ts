@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/EffectiveRoutesListForConnection.json
  */
-async function effectiveRoutesForAConnectionResource() {
+async function effectiveRoutesForAConnectionResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -51,7 +51,7 @@ async function effectiveRoutesForAConnectionResource() {
  * @summary Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/EffectiveRoutesListForRouteTable.json
  */
-async function effectiveRoutesForARouteTableResource() {
+async function effectiveRoutesForARouteTableResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -80,7 +80,7 @@ async function effectiveRoutesForARouteTableResource() {
  * @summary Gets the effective routes configured for the Virtual Hub resource or the specified resource .
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/EffectiveRoutesListForVirtualHub.json
  */
-async function effectiveRoutesForTheVirtualHub() {
+async function effectiveRoutesForTheVirtualHub(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -99,7 +99,7 @@ async function effectiveRoutesForTheVirtualHub() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   effectiveRoutesForAConnectionResource();
   effectiveRoutesForARouteTableResource();
   effectiveRoutesForTheVirtualHub();

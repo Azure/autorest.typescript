@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Description for Creates or updates an App Service Plan.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateAppServicePlan.json
  */
-async function createOrUpdateAppServicePlan() {
+async function createOrUpdateAppServicePlan(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg123";
@@ -41,7 +41,7 @@ async function createOrUpdateAppServicePlan() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateAppServicePlan();
 }
 

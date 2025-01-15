@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all authorizations in an express route port.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortAuthorizationList.json
  */
-async function listExpressRoutePortAuthorization() {
+async function listExpressRoutePortAuthorization(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "expressRoutePortName";
@@ -34,7 +34,7 @@ async function listExpressRoutePortAuthorization() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listExpressRoutePortAuthorization();
 }
 

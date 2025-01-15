@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Grants access to a diskRestorePoint.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessDiskRestorePoint.json
  */
-async function grantsAccessToADiskRestorePoint() {
+async function grantsAccessToADiskRestorePoint(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpc";
@@ -45,7 +45,7 @@ async function grantsAccessToADiskRestorePoint() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   grantsAccessToADiskRestorePoint();
 }
 

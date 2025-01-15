@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Prepares a subnet by applying network intent policies.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetPrepareNetworkPolicies.json
  */
-async function prepareNetworkPolicies() {
+async function prepareNetworkPolicies(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -39,7 +39,7 @@ async function prepareNetworkPolicies() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   prepareNetworkPolicies();
 }
 

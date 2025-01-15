@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about the specified application security group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationSecurityGroupGet.json
  */
-async function getApplicationSecurityGroup() {
+async function getApplicationSecurityGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationSecurityGroupName = "test-asg";
@@ -31,7 +31,7 @@ async function getApplicationSecurityGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getApplicationSecurityGroup();
 }
 

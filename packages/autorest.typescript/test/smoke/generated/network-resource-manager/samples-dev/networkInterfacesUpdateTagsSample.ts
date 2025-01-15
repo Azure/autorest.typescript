@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a network interface tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceUpdateTags.json
  */
-async function updateNetworkInterfaceTags() {
+async function updateNetworkInterfaceTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-nic";
@@ -36,7 +36,7 @@ async function updateNetworkInterfaceTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateNetworkInterfaceTags();
 }
 

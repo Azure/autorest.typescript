@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves the details of all RoutingIntent child resources of the VirtualHub.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RoutingIntentList.json
  */
-async function routingIntentList() {
+async function routingIntentList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -34,7 +34,7 @@ async function routingIntentList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routingIntentList();
 }
 

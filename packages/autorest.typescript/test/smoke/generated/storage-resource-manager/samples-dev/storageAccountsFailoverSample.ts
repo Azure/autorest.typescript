@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Failover request can be triggered for a storage account in case of availability issues. The failover occurs from the storage account's primary cluster to secondary cluster for RA-GRS accounts. The secondary cluster will become primary after failover.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountFailover.json
  */
-async function storageAccountFailover() {
+async function storageAccountFailover(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4228";
   const accountName = "sto2434";
@@ -31,7 +31,7 @@ async function storageAccountFailover() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountFailover();
 }
 

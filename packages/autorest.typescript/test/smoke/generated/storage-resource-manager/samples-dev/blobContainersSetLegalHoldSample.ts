@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersSetLegalHold.json
  */
-async function setLegalHoldContainers() {
+async function setLegalHoldContainers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4303";
   const accountName = "sto7280";
@@ -44,7 +44,7 @@ async function setLegalHoldContainers() {
  * @summary Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersSetLegalHoldAllowProtectedAppendWritesAll.json
  */
-async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
+async function setLegalHoldContainersWithAllowProtectedAppendWritesAll(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4303";
   const accountName = "sto7280";
@@ -64,7 +64,7 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   setLegalHoldContainers();
   setLegalHoldContainersWithAllowProtectedAppendWritesAll();
 }

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Installs patches on the VM.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/VirtualMachineInstallPatches.json
  */
-async function installPatchStateOfAVirtualMachine() {
+async function installPatchStateOfAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "myResourceGroupName";
@@ -44,7 +44,7 @@ async function installPatchStateOfAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   installPatchStateOfAVirtualMachine();
 }
 

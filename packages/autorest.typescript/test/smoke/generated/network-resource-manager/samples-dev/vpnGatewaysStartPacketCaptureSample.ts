@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Starts packet capture on vpn gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayStartPacketCaptureFilterData.json
  */
-async function startPacketCaptureOnVpnGatewayWithFilter() {
+async function startPacketCaptureOnVpnGatewayWithFilter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "vpngw";
@@ -47,7 +47,7 @@ async function startPacketCaptureOnVpnGatewayWithFilter() {
  * @summary Starts packet capture on vpn gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayStartPacketCapture.json
  */
-async function startPacketCaptureOnVpnGatewayWithoutFilter() {
+async function startPacketCaptureOnVpnGatewayWithoutFilter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "vpngw";
@@ -60,7 +60,7 @@ async function startPacketCaptureOnVpnGatewayWithoutFilter() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   startPacketCaptureOnVpnGatewayWithFilter();
   startPacketCaptureOnVpnGatewayWithoutFilter();
 }

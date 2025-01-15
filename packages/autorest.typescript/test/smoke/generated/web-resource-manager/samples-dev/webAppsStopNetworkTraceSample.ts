@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Stop ongoing capturing network packets for the site.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/StopWebSiteNetworkTrace.json
  */
-async function stopACurrentlyRunningNetworkTraceOperationForASite() {
+async function stopACurrentlyRunningNetworkTraceOperationForASite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg123";
@@ -29,7 +29,7 @@ async function stopACurrentlyRunningNetworkTraceOperationForASite() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   stopACurrentlyRunningNetworkTraceOperationForASite();
 }
 

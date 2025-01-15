@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnSitePut.json
  */
-async function vpnSiteCreate() {
+async function vpnSiteCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnSiteName = "vpnSite1";
@@ -56,7 +56,7 @@ async function vpnSiteCreate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnSiteCreate();
 }
 

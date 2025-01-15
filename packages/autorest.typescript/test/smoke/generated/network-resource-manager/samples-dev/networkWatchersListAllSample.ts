@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all network watchers by subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherListAll.json
  */
-async function listAllNetworkWatchers() {
+async function listAllNetworkWatchers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllNetworkWatchers() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllNetworkWatchers();
 }
 

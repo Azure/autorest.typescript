@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get VPN client connection health detail per P2S client connection of the virtual network gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayGetVpnclientConnectionHealth.json
  */
-async function getVirtualNetworkGatewayVpnclientConnectionHealth() {
+async function getVirtualNetworkGatewayVpnclientConnectionHealth(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "p2s-vnet-test";
   const virtualNetworkGatewayName = "vpnp2sgw";
@@ -32,7 +32,7 @@ async function getVirtualNetworkGatewayVpnclientConnectionHealth() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualNetworkGatewayVpnclientConnectionHealth();
 }
 

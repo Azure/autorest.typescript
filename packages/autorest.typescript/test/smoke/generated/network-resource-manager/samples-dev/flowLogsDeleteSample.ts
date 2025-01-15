@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified flow log resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherFlowLogDelete.json
  */
-async function deleteFlowLog() {
+async function deleteFlowLog(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -33,7 +33,7 @@ async function deleteFlowLog() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteFlowLog();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of inaccessible databases in a logical server
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ListVCoreInaccessibleDatabasesByServer.json
  */
-async function getsAListOfInaccessibleDatabasesInALogicalServer() {
+async function getsAListOfInaccessibleDatabasesInALogicalServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -36,7 +36,7 @@ async function getsAListOfInaccessibleDatabasesInALogicalServer() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsAListOfInaccessibleDatabasesInALogicalServer();
 }
 

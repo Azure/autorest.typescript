@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for List all ResourceHealthMetadata for all sites in the subscription.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListResourceHealthMetadataBySubscription.json
  */
-async function listResourceHealthMetadataForASubscription() {
+async function listResourceHealthMetadataForASubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listResourceHealthMetadataForASubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listResourceHealthMetadataForASubscription();
 }
 

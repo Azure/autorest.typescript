@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a virtual network gateway tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayUpdateTags.json
  */
-async function updateVirtualNetworkGatewayTags() {
+async function updateVirtualNetworkGatewayTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
@@ -36,7 +36,7 @@ async function updateVirtualNetworkGatewayTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateVirtualNetworkGatewayTags();
 }
 

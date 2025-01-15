@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all network security groups applied to a network interface.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceEffectiveNSGList.json
  */
-async function listNetworkInterfaceEffectiveNetworkSecurityGroups() {
+async function listNetworkInterfaceEffectiveNetworkSecurityGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "nic1";
@@ -32,7 +32,7 @@ async function listNetworkInterfaceEffectiveNetworkSecurityGroups() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listNetworkInterfaceEffectiveNetworkSecurityGroups();
 }
 

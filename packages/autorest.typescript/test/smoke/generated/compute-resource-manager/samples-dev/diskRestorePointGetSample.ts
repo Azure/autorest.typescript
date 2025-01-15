@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get disk restorePoint resource
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetDiskRestorePointResources.json
  */
-async function getAnIncrementalDiskRestorePointResource() {
+async function getAnIncrementalDiskRestorePointResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpc";
@@ -36,7 +36,7 @@ async function getAnIncrementalDiskRestorePointResource() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAnIncrementalDiskRestorePointResource();
 }
 

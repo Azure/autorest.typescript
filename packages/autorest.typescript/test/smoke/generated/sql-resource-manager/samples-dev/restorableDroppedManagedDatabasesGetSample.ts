@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a restorable dropped managed database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/GetRestorableDroppedManagedDatabase.json
  */
-async function getsARestorableDroppedManagedDatabase() {
+async function getsARestorableDroppedManagedDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -34,7 +34,7 @@ async function getsARestorableDroppedManagedDatabase() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsARestorableDroppedManagedDatabase();
 }
 

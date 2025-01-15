@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a server's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerBlobAuditingCreateMax.json
  */
-async function updateAServerBlobAuditingPolicyWithAllParameters() {
+async function updateAServerBlobAuditingPolicyWithAllParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -60,7 +60,7 @@ async function updateAServerBlobAuditingPolicyWithAllParameters() {
  * @summary Creates or updates a server's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerBlobAuditingCreateMin.json
  */
-async function updateAServerBlobAuditingPolicyWithMinimalParameters() {
+async function updateAServerBlobAuditingPolicyWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -83,7 +83,7 @@ async function updateAServerBlobAuditingPolicyWithMinimalParameters() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateAServerBlobAuditingPolicyWithAllParameters();
   updateAServerBlobAuditingPolicyWithMinimalParameters();
 }

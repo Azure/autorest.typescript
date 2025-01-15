@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the disks under a subscription.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListManagedDisksInASubscription.json
  */
-async function listAllManagedDisksInASubscription() {
+async function listAllManagedDisksInASubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllManagedDisksInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllManagedDisksInASubscription();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves information about a gallery Application Definition.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplication.json
  */
-async function getAGalleryApplication() {
+async function getAGalleryApplication(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -33,7 +33,7 @@ async function getAGalleryApplication() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGalleryApplication();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all RouteFilterRules in a route filter.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterRuleListByRouteFilter.json
  */
-async function routeFilterRuleListByRouteFilter() {
+async function routeFilterRuleListByRouteFilter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeFilterName = "filterName";
@@ -34,7 +34,7 @@ async function routeFilterRuleListByRouteFilter() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routeFilterRuleListByRouteFilter();
 }
 

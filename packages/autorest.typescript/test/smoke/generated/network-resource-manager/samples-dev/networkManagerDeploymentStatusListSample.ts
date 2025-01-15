@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Post to List of Network Manager Deployment Status.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerDeploymentStatusList.json
  */
-async function networkManagerDeploymentStatusList() {
+async function networkManagerDeploymentStatusList(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName =
@@ -42,7 +42,7 @@ async function networkManagerDeploymentStatusList() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkManagerDeploymentStatusList();
 }
 

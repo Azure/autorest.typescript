@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the load balancer probes.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerProbeList.json
  */
-async function loadBalancerProbeList() {
+async function loadBalancerProbeList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
@@ -34,7 +34,7 @@ async function loadBalancerProbeList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   loadBalancerProbeList();
 }
 

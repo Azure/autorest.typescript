@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerGet.json
  */
-async function getLoadBalancer() {
+async function getLoadBalancer(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -37,7 +37,7 @@ async function getLoadBalancer() {
  * @summary Gets the specified load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerGetInboundNatRulePortMapping.json
  */
-async function getLoadBalancerWithInboundNatRulePortMapping() {
+async function getLoadBalancerWithInboundNatRulePortMapping(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -50,7 +50,7 @@ async function getLoadBalancerWithInboundNatRulePortMapping() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getLoadBalancer();
   getLoadBalancerWithInboundNatRulePortMapping();
 }

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a VpnSite.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnSiteDelete.json
  */
-async function vpnSiteDelete() {
+async function vpnSiteDelete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnSiteName = "vpnSite1";
@@ -31,7 +31,7 @@ async function vpnSiteDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnSiteDelete();
 }
 

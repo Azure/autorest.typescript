@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a DDoS custom policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DdosCustomPolicyCreate.json
  */
-async function createDDoSCustomPolicy() {
+async function createDDoSCustomPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ddosCustomPolicyName = "test-ddos-custom-policy";
@@ -36,7 +36,7 @@ async function createDDoSCustomPolicy() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createDDoSCustomPolicy();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List information about private endpoint connections under a disk access resource
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListPrivateEndpointConnectionsInADiskAccess.json
  */
-async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource() {
+async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
@@ -34,7 +34,7 @@ async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessReso
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource();
 }
 

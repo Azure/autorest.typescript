@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a virtual cluster.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/VirtualClusterUpdate.json
  */
-async function updateVirtualClusterWithTags() {
+async function updateVirtualClusterWithTags(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -40,7 +40,7 @@ async function updateVirtualClusterWithTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateVirtualClusterWithTags();
 }
 

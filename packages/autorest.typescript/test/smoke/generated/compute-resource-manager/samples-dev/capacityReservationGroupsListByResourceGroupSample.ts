@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists all of the capacity reservation groups in the specified resource group. Use the nextLink property in the response to get the next page of capacity reservation groups.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListCapacityReservationGroupsInResourceGroup.json
  */
-async function listCapacityReservationGroupsInResourceGroup() {
+async function listCapacityReservationGroupsInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const expand = "virtualMachines/$ref";
@@ -40,7 +40,7 @@ async function listCapacityReservationGroupsInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listCapacityReservationGroupsInResourceGroup();
 }
 

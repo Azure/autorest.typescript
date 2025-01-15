@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a HubVirtualNetworkConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/HubVirtualNetworkConnectionDelete.json
  */
-async function hubVirtualNetworkConnectionDelete() {
+async function hubVirtualNetworkConnectionDelete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -33,7 +33,7 @@ async function hubVirtualNetworkConnectionDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   hubVirtualNetworkConnectionDelete();
 }
 

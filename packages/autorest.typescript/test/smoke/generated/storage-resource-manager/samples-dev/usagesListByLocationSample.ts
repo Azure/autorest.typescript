@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the current usage count and the limit for the resources of the location under the subscription.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListLocationUsage.json
  */
-async function usageList() {
+async function usageList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "eastus2(stage)";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function usageList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   usageList();
 }
 

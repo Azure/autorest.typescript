@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified connection monitor.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorDelete.json
  */
-async function deleteConnectionMonitor() {
+async function deleteConnectionMonitor(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -33,7 +33,7 @@ async function deleteConnectionMonitor() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteConnectionMonitor();
 }
 

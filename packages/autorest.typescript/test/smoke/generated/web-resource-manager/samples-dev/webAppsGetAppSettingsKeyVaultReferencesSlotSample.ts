@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Gets the config reference app settings and status of an app
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetKeyVaultReferencesForAppSettingsSlot.json
  */
-async function getAzureKeyVaultReferencesForAppSettingsForSlot() {
+async function getAzureKeyVaultReferencesForAppSettingsForSlot(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg123";
@@ -37,7 +37,7 @@ async function getAzureKeyVaultReferencesForAppSettingsForSlot() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAzureKeyVaultReferencesForAppSettingsForSlot();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary The List operation gets information about the vaults associated with the subscription.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listVaultBySubscription.json
  */
-async function listVaultsInTheSpecifiedSubscription() {
+async function listVaultsInTheSpecifiedSubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const top = 1;
@@ -35,7 +35,7 @@ async function listVaultsInTheSpecifiedSubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listVaultsInTheSpecifiedSubscription();
 }
 

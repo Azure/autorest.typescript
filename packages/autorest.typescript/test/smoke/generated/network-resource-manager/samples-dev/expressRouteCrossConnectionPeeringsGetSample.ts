@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified peering for the ExpressRouteCrossConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionBgpPeeringGet.json
  */
-async function getExpressRouteCrossConnectionBgpPeering() {
+async function getExpressRouteCrossConnectionBgpPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -34,7 +34,7 @@ async function getExpressRouteCrossConnectionBgpPeering() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getExpressRouteCrossConnectionBgpPeering();
 }
 

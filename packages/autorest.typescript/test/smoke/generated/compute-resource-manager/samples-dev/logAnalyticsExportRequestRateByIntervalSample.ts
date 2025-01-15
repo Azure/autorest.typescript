@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Export logs that show Api requests made by this subscription in the given time window to show throttling activities.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/LogAnalyticsRequestRateByInterval.json
  */
-async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals() {
+async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "westus";
   const parameters: RequestRateByIntervalInput = {
@@ -41,7 +41,7 @@ async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProvider
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
 }
 

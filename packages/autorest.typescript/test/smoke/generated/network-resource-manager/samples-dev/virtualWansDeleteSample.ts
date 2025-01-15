@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a VirtualWAN.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualWANDelete.json
  */
-async function virtualWanDelete() {
+async function virtualWanDelete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "virtualWan1";
@@ -31,7 +31,7 @@ async function virtualWanDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualWanDelete();
 }
 

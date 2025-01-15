@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Retrieves information about a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryImageVersionWithReplicationStatus.json
  */
-async function getAGalleryImageVersionWithReplicationStatus() {
+async function getAGalleryImageVersionWithReplicationStatus(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -47,7 +47,7 @@ async function getAGalleryImageVersionWithReplicationStatus() {
  * @summary Retrieves information about a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryImageVersionWithSnapshotsAsSource.json
  */
-async function getAGalleryImageVersionWithSnapshotsAsASource() {
+async function getAGalleryImageVersionWithSnapshotsAsASource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -70,7 +70,7 @@ async function getAGalleryImageVersionWithSnapshotsAsASource() {
  * @summary Retrieves information about a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryImageVersionWithVhdAsSource.json
  */
-async function getAGalleryImageVersionWithVhdAsASource() {
+async function getAGalleryImageVersionWithVhdAsASource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -93,7 +93,7 @@ async function getAGalleryImageVersionWithVhdAsASource() {
  * @summary Retrieves information about a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryImageVersion.json
  */
-async function getAGalleryImageVersion() {
+async function getAGalleryImageVersion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -110,7 +110,7 @@ async function getAGalleryImageVersion() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGalleryImageVersionWithReplicationStatus();
   getAGalleryImageVersionWithSnapshotsAsASource();
   getAGalleryImageVersionWithVhdAsASource();

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a sync group.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncGroupPatch.json
  */
-async function updateASyncGroup() {
+async function updateASyncGroup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -50,7 +50,7 @@ async function updateASyncGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateASyncGroup();
 }
 

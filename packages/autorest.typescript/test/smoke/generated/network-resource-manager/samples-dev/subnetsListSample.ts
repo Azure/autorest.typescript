@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all subnets in a virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetList.json
  */
-async function listSubnets() {
+async function listSubnets(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -34,7 +34,7 @@ async function listSubnets() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listSubnets();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Retrieves information about a gallery Application Version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersionWithReplicationStatus.json
  */
-async function getAGalleryApplicationVersionWithReplicationStatus() {
+async function getAGalleryApplicationVersionWithReplicationStatus(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -47,7 +47,7 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
  * @summary Retrieves information about a gallery Application Version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersion.json
  */
-async function getAGalleryApplicationVersion() {
+async function getAGalleryApplicationVersion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -64,7 +64,7 @@ async function getAGalleryApplicationVersion() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGalleryApplicationVersionWithReplicationStatus();
   getAGalleryApplicationVersion();
 }

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreate.json
  */
-async function createVirtualNetwork() {
+async function createVirtualNetwork(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -46,7 +46,7 @@ async function createVirtualNetwork() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateWithBgpCommunities.json
  */
-async function createVirtualNetworkWithBgpCommunities() {
+async function createVirtualNetworkWithBgpCommunities(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -72,7 +72,7 @@ async function createVirtualNetworkWithBgpCommunities() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnetWithDelegation.json
  */
-async function createVirtualNetworkWithDelegatedSubnets() {
+async function createVirtualNetworkWithDelegatedSubnets(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -108,7 +108,7 @@ async function createVirtualNetworkWithDelegatedSubnets() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateWithEncryption.json
  */
-async function createVirtualNetworkWithEncryption() {
+async function createVirtualNetworkWithEncryption(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -134,7 +134,7 @@ async function createVirtualNetworkWithEncryption() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateServiceEndpoints.json
  */
-async function createVirtualNetworkWithServiceEndpoints() {
+async function createVirtualNetworkWithServiceEndpoints(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vnetTest";
   const virtualNetworkName = "vnet1";
@@ -165,7 +165,7 @@ async function createVirtualNetworkWithServiceEndpoints() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateServiceEndpointPolicy.json
  */
-async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy() {
+async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vnetTest";
   const virtualNetworkName = "vnet1";
@@ -201,7 +201,7 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnet.json
  */
-async function createVirtualNetworkWithSubnet() {
+async function createVirtualNetworkWithSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -226,7 +226,7 @@ async function createVirtualNetworkWithSubnet() {
  * @summary Creates or updates a virtual network in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnetWithAddressPrefixes.json
  */
-async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
+async function createVirtualNetworkWithSubnetContainingAddressPrefixes(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -247,7 +247,7 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createVirtualNetwork();
   createVirtualNetworkWithBgpCommunities();
   createVirtualNetworkWithDelegatedSubnets();

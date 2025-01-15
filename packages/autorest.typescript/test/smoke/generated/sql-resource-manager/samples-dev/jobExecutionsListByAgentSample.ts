@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists all executions in a job agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobExecutionsByAgentWithFilter.json
  */
-async function listAllJobExecutionsInAJobAgentWithFiltering() {
+async function listAllJobExecutionsInAJobAgentWithFiltering(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -59,7 +59,7 @@ async function listAllJobExecutionsInAJobAgentWithFiltering() {
  * @summary Lists all executions in a job agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobExecutionsByAgent.json
  */
-async function listAllJobExecutionsInAJobAgent() {
+async function listAllJobExecutionsInAJobAgent(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -78,7 +78,7 @@ async function listAllJobExecutionsInAJobAgent() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllJobExecutionsInAJobAgentWithFiltering();
   listAllJobExecutionsInAJobAgent();
 }

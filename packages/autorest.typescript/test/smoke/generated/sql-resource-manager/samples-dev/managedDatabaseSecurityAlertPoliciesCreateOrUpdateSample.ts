@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a database's security alert policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityAlertCreateMax.json
  */
-async function updateADatabaseThreatDetectionPolicyWithAllParameters() {
+async function updateADatabaseThreatDetectionPolicyWithAllParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -58,7 +58,7 @@ async function updateADatabaseThreatDetectionPolicyWithAllParameters() {
  * @summary Creates or updates a database's security alert policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityAlertCreateMin.json
  */
-async function updateADatabaseThreatDetectionPolicyWithMinimalParameters() {
+async function updateADatabaseThreatDetectionPolicyWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -80,7 +80,7 @@ async function updateADatabaseThreatDetectionPolicyWithMinimalParameters() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateADatabaseThreatDetectionPolicyWithAllParameters();
   updateADatabaseThreatDetectionPolicyWithMinimalParameters();
 }

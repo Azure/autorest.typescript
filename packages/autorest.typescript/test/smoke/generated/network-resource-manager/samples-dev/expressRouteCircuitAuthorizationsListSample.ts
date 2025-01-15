@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all authorizations in an express route circuit.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitAuthorizationList.json
  */
-async function listExpressRouteCircuitAuthorization() {
+async function listExpressRouteCircuitAuthorization(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "circuitName";
@@ -34,7 +34,7 @@ async function listExpressRouteCircuitAuthorization() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listExpressRouteCircuitAuthorization();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the sensitivity label of a given column
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseColumnSensitivityLabelGet.json
  */
-async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase() {
+async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -42,7 +42,7 @@ async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
 }
 

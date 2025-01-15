@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a ConfigurationPolicyGroup if it doesn't exist else updates the existing one.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ConfigurationPolicyGroupPut.json
  */
-async function configurationPolicyGroupPut() {
+async function configurationPolicyGroupPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
@@ -55,7 +55,7 @@ async function configurationPolicyGroupPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   configurationPolicyGroupPut();
 }
 

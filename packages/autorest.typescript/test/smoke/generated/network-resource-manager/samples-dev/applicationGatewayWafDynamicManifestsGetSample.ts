@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the regional application gateway waf manifest.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/GetApplicationGatewayWafDynamicManifests.json
  */
-async function getsWafManifests() {
+async function getsWafManifests(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westus";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function getsWafManifests() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsWafManifests();
 }
 

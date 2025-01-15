@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified load balancer backend address pool.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerBackendAddressPoolDelete.json
  */
-async function backendAddressPoolDelete() {
+async function backendAddressPoolDelete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
@@ -34,7 +34,7 @@ async function backendAddressPoolDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   backendAddressPoolDelete();
 }
 

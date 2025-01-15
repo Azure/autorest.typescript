@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get the specified public IP address in a virtual machine scale set.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssPublicIpGet.json
  */
-async function getVmssPublicIP() {
+async function getVmssPublicIP(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vmss-tester";
   const virtualMachineScaleSetName = "vmss1";
@@ -40,7 +40,7 @@ async function getVmssPublicIP() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVmssPublicIP();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a custom IP prefix.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CustomIpPrefixCreateCustomizedValues.json
  */
-async function createCustomIPPrefixAllocationMethod() {
+async function createCustomIPPrefixAllocationMethod(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const customIpPrefixName = "test-customipprefix";
@@ -36,7 +36,7 @@ async function createCustomIPPrefixAllocationMethod() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createCustomIPPrefixAllocationMethod();
 }
 

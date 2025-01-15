@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates the specified Virtual Router Peering.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualRouterPeeringPut.json
  */
-async function createVirtualRouterPeering() {
+async function createVirtualRouterPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualRouterName = "virtualRouter";
@@ -41,7 +41,7 @@ async function createVirtualRouterPeering() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createVirtualRouterPeering();
 }
 

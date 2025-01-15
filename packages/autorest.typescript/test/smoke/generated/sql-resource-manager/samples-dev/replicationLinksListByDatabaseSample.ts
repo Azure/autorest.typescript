@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of replication links on database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ReplicationLinkListByDatabase.json
  */
-async function listReplicationLinksOnServerOnDatabase() {
+async function listReplicationLinksOnServerOnDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
@@ -37,7 +37,7 @@ async function listReplicationLinksOnServerOnDatabase() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listReplicationLinksOnServerOnDatabase();
 }
 

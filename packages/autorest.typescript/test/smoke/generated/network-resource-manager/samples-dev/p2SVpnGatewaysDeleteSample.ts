@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a virtual wan p2s vpn gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayDelete.json
  */
-async function p2SVpnGatewayDelete() {
+async function p2SVpnGatewayDelete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "p2sVpnGateway1";
@@ -31,7 +31,7 @@ async function p2SVpnGatewayDelete() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   p2SVpnGatewayDelete();
 }
 

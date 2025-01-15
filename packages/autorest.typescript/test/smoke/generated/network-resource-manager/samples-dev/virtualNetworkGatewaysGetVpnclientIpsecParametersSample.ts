@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayGetVpnClientIpsecParameters.json
  */
-async function getVirtualNetworkGatewayVpnClientIpsecParameters() {
+async function getVirtualNetworkGatewayVpnClientIpsecParameters(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
@@ -32,7 +32,7 @@ async function getVirtualNetworkGatewayVpnClientIpsecParameters() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualNetworkGatewayVpnClientIpsecParameters();
 }
 

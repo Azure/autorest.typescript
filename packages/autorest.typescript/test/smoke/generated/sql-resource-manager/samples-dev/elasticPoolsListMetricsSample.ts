@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns elastic pool  metrics.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ElasticPoolMetricsListWithFilter.json
  */
-async function listDatabaseUsageMetrics() {
+async function listDatabaseUsageMetrics(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6730";
@@ -40,7 +40,7 @@ async function listDatabaseUsageMetrics() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDatabaseUsageMetrics();
 }
 

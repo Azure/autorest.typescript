@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all ledger digest upload settings on a database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/LedgerDigestUploadsList.json
  */
-async function getsListOfLedgerDigestUploadSettingsOnADatabase() {
+async function getsListOfLedgerDigestUploadSettingsOnADatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ledgertestrg";
@@ -37,7 +37,7 @@ async function getsListOfLedgerDigestUploadSettingsOnADatabase() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsListOfLedgerDigestUploadSettingsOnADatabase();
 }
 

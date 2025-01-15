@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the current version of the specified key from the specified key vault.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/getKey.json
  */
-async function getAKey() {
+async function getAKey(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
@@ -30,7 +30,7 @@ async function getAKey() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAKey();
 }
 

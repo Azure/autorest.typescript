@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all servers in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerList.json
  */
-async function listServers() {
+async function listServers(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
@@ -36,7 +36,7 @@ async function listServers() {
  * @summary Gets a list of all servers in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerListWithExpandEqualsAdministrators.json
  */
-async function listServersWithExpandEqualsAdministrators() {
+async function listServersWithExpandEqualsAdministrators(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
@@ -48,7 +48,7 @@ async function listServersWithExpandEqualsAdministrators() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listServers();
   listServersWithExpandEqualsAdministrators();
 }

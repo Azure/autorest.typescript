@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Renew a domain.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/RenewDomain.json
  */
-async function renewAnExistingDomain() {
+async function renewAnExistingDomain(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "3dddfa4f-cedf-4dc0-ba29-b6d1a69ab545";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "RG";
@@ -29,7 +29,7 @@ async function renewAnExistingDomain() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   renewAnExistingDomain();
 }
 

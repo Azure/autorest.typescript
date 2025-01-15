@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists ExpressRoute gateways under a given subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteGatewayListBySubscription.json
  */
-async function expressRouteGatewayListBySubscription() {
+async function expressRouteGatewayListBySubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -26,7 +26,7 @@ async function expressRouteGatewayListBySubscription() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteGatewayListBySubscription();
 }
 

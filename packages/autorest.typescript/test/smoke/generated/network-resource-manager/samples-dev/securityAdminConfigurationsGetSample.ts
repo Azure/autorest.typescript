@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves a network manager security admin configuration.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerSecurityAdminConfigurationGet.json
  */
-async function getSecurityAdminConfigurations() {
+async function getSecurityAdminConfigurations(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -34,7 +34,7 @@ async function getSecurityAdminConfigurations() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getSecurityAdminConfigurations();
 }
 

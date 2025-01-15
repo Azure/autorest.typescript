@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the currently advertised routes table summary associated with the express route circuit in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitRouteTableSummaryList.json
  */
-async function listRouteTableSummary() {
+async function listRouteTableSummary(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "circuitName";
@@ -36,7 +36,7 @@ async function listRouteTableSummary() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listRouteTableSummary();
 }
 

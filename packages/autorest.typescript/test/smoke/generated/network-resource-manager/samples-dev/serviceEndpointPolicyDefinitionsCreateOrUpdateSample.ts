@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a service endpoint policy definition in the specified service endpoint policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceEndpointPolicyDefinitionCreate.json
  */
-async function createServiceEndpointPolicyDefinition() {
+async function createServiceEndpointPolicyDefinition(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceEndpointPolicyName = "testPolicy";
@@ -47,7 +47,7 @@ async function createServiceEndpointPolicyDefinition() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createServiceEndpointPolicyDefinition();
 }
 

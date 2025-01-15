@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all private endpoint connections on an application gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayPrivateEndpointConnectionList.json
  */
-async function listsAllPrivateEndpointConnectionsOnApplicationGateway() {
+async function listsAllPrivateEndpointConnectionsOnApplicationGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationGatewayName = "appgw";
@@ -34,7 +34,7 @@ async function listsAllPrivateEndpointConnectionsOnApplicationGateway() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listsAllPrivateEndpointConnectionsOnApplicationGateway();
 }
 

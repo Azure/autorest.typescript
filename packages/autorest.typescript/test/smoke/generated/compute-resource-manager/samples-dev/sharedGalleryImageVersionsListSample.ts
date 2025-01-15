@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List shared gallery image versions by subscription id or tenant id.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/sharedGallery/ListSharedGalleryImageVersions.json
  */
-async function getAGallery() {
+async function getAGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "myLocation";
   const galleryUniqueName = "galleryUniqueName";
@@ -36,7 +36,7 @@ async function getAGallery() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAGallery();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about all network interfaces in a role instance in a cloud service.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServiceRoleInstanceNetworkInterfaceList.json
  */
-async function listCloudServiceRoleInstanceNetworkInterfaces() {
+async function listCloudServiceRoleInstanceNetworkInterfaces(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const cloudServiceName = "cs1";
@@ -36,7 +36,7 @@ async function listCloudServiceRoleInstanceNetworkInterfaces() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listCloudServiceRoleInstanceNetworkInterfaces();
 }
 

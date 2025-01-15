@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkDelete.json
  */
-async function deleteVirtualNetwork() {
+async function deleteVirtualNetwork(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -31,7 +31,7 @@ async function deleteVirtualNetwork() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteVirtualNetwork();
 }
 

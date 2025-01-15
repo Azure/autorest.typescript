@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a new queue with the specified queue name, under the specified account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationPut.json
  */
-async function queueOperationPut() {
+async function queueOperationPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
@@ -44,7 +44,7 @@ async function queueOperationPut() {
  * @summary Creates a new queue with the specified queue name, under the specified account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationPutWithMetadata.json
  */
-async function queueOperationPutWithMetadata() {
+async function queueOperationPutWithMetadata(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
@@ -63,7 +63,7 @@ async function queueOperationPutWithMetadata() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   queueOperationPut();
   queueOperationPutWithMetadata();
 }

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified virtual network by resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGet.json
  */
-async function getVirtualNetwork() {
+async function getVirtualNetwork(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -37,7 +37,7 @@ async function getVirtualNetwork() {
  * @summary Gets the specified virtual network by resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGetWithSubnetDelegation.json
  */
-async function getVirtualNetworkWithADelegatedSubnet() {
+async function getVirtualNetworkWithADelegatedSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -56,7 +56,7 @@ async function getVirtualNetworkWithADelegatedSubnet() {
  * @summary Gets the specified virtual network by resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGetWithServiceAssociationLink.json
  */
-async function getVirtualNetworkWithServiceAssociationLinks() {
+async function getVirtualNetworkWithServiceAssociationLinks(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
@@ -69,7 +69,7 @@ async function getVirtualNetworkWithServiceAssociationLinks() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualNetwork();
   getVirtualNetworkWithADelegatedSubnet();
   getVirtualNetworkWithServiceAssociationLinks();

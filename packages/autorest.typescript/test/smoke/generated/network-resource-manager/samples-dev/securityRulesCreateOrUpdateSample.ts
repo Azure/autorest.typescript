@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a security rule in the specified network security group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkSecurityGroupRuleCreate.json
  */
-async function createSecurityRule() {
+async function createSecurityRule(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkSecurityGroupName = "testnsg";
@@ -47,7 +47,7 @@ async function createSecurityRule() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createSecurityRule();
 }
 

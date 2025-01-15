@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified network interface ip configuration.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceIPConfigurationGet.json
  */
-async function networkInterfaceIPConfigurationGet() {
+async function networkInterfaceIPConfigurationGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const networkInterfaceName = "mynic";
@@ -33,7 +33,7 @@ async function networkInterfaceIPConfigurationGet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkInterfaceIPConfigurationGet();
 }
 

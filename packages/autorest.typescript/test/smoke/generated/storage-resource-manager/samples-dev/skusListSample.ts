@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists the available SKUs supported by Microsoft.Storage for given subscription.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/SKUList.json
  */
-async function skuList() {
+async function skuList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function skuList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   skuList();
 }
 

@@ -22,7 +22,7 @@ import "dotenv/config";
  * @summary Stops packet capture on vpn gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayStopPacketCapture.json
  */
-async function stopPacketCaptureOnVpnGateway() {
+async function stopPacketCaptureOnVpnGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "vpngw";
@@ -41,7 +41,7 @@ async function stopPacketCaptureOnVpnGateway() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   stopPacketCaptureOnVpnGateway();
 }
 

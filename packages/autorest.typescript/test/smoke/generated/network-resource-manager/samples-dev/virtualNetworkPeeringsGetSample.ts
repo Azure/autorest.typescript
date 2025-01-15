@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified virtual network peering.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringGet.json
  */
-async function getPeering() {
+async function getPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -39,7 +39,7 @@ async function getPeering() {
  * @summary Gets the specified virtual network peering.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringGetWithRemoteVirtualNetworkEncryption.json
  */
-async function getPeeringWithRemoteVirtualNetworkEncryption() {
+async function getPeeringWithRemoteVirtualNetworkEncryption(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
@@ -54,7 +54,7 @@ async function getPeeringWithRemoteVirtualNetworkEncryption() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getPeering();
   getPeeringWithRemoteVirtualNetworkEncryption();
 }

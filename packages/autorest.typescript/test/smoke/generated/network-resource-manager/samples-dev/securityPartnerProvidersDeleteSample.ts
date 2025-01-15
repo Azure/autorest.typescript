@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified Security Partner Provider.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SecurityPartnerProviderDelete.json
  */
-async function deleteSecurityPartnerProvider() {
+async function deleteSecurityPartnerProvider(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
@@ -31,7 +31,7 @@ async function deleteSecurityPartnerProvider() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteSecurityPartnerProvider();
 }
 

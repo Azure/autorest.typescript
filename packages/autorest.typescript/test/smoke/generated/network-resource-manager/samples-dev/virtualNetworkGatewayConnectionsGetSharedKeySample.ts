@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves information about the specified virtual network gateway connection shared key through Network resource provider.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionGetSharedKey.json
  */
-async function getVirtualNetworkGatewayConnectionSharedKey() {
+async function getVirtualNetworkGatewayConnectionSharedKey(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
@@ -31,7 +31,7 @@ async function getVirtualNetworkGatewayConnectionSharedKey() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualNetworkGatewayConnectionSharedKey();
 }
 

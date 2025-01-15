@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the existing immutability policy along with the corresponding ETag in response headers and body.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGetImmutabilityPolicy.json
  */
-async function getImmutabilityPolicy() {
+async function getImmutabilityPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res5221";
   const accountName = "sto9177";
@@ -33,7 +33,7 @@ async function getImmutabilityPolicy() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getImmutabilityPolicy();
 }
 

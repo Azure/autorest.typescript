@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the load balancers in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerListAll.json
  */
-async function listAllLoadBalancers() {
+async function listAllLoadBalancers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllLoadBalancers() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllLoadBalancers();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns all of the resource types that can be linked to a Private Endpoint in this subscription in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AvailablePrivateEndpointTypesGet.json
  */
-async function getAvailablePrivateEndpointTypes() {
+async function getAvailablePrivateEndpointTypes(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "regionName";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function getAvailablePrivateEndpointTypes() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailablePrivateEndpointTypes();
 }
 

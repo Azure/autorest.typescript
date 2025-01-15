@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves information about the run-time state of a role instance in a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetInstanceViewOfCloudServiceRoleInstance.json
  */
-async function getInstanceViewOfCloudServiceRoleInstance() {
+async function getInstanceViewOfCloudServiceRoleInstance(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
@@ -33,7 +33,7 @@ async function getInstanceViewOfCloudServiceRoleInstance() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getInstanceViewOfCloudServiceRoleInstance();
 }
 

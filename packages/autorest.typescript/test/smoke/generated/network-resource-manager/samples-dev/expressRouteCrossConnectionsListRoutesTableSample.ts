@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the currently advertised routes table associated with the express route cross connection in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionsRouteTable.json
  */
-async function getExpressRouteCrossConnectionsRouteTable() {
+async function getExpressRouteCrossConnectionsRouteTable(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -37,7 +37,7 @@ async function getExpressRouteCrossConnectionsRouteTable() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getExpressRouteCrossConnectionsRouteTable();
 }
 

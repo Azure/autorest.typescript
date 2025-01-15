@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all job steps for a job's current version.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobStepsByJob.json
  */
-async function listJobStepsForTheLatestVersionOfAJob() {
+async function listJobStepsForTheLatestVersionOfAJob(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -39,7 +39,7 @@ async function listJobStepsForTheLatestVersionOfAJob() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listJobStepsForTheLatestVersionOfAJob();
 }
 

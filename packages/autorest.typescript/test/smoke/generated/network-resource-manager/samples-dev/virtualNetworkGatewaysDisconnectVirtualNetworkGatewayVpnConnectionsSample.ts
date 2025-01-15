@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Disconnect vpn connections of virtual network gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewaysDisconnectP2sVpnConnections.json
  */
-async function disconnectVpnConnectionsFromVirtualNetworkGateway() {
+async function disconnectVpnConnectionsFromVirtualNetworkGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vpn-gateway-test";
   const virtualNetworkGatewayName = "vpngateway";
@@ -39,7 +39,7 @@ async function disconnectVpnConnectionsFromVirtualNetworkGateway() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   disconnectVpnConnectionsFromVirtualNetworkGateway();
 }
 

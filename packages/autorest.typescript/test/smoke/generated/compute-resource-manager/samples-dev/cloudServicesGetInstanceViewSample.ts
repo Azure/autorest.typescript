@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the status of a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetCloudServiceInstanceViewWithMultiRole.json
  */
-async function getCloudServiceInstanceViewWithMultipleRoles() {
+async function getCloudServiceInstanceViewWithMultipleRoles(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -31,7 +31,7 @@ async function getCloudServiceInstanceViewWithMultipleRoles() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getCloudServiceInstanceViewWithMultipleRoles();
 }
 

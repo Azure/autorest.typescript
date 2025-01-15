@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Update encryption scope properties as specified in the request body. Update fails if the specified encryption scope does not already exist.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPatchEncryptionScope.json
  */
-async function storageAccountPatchEncryptionScope() {
+async function storageAccountPatchEncryptionScope(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resource-group-name";
@@ -45,7 +45,7 @@ async function storageAccountPatchEncryptionScope() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountPatchEncryptionScope();
 }
 

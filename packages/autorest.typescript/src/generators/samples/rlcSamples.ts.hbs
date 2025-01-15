@@ -12,7 +12,7 @@ import "dotenv/config";
  * @summary {{this.description}}
  * x-ms-original-file: {{this.originalFileLocation}}
  */
-async function {{name}}() {
+async function {{name}}(): Promise<void> {
   {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
@@ -42,7 +42,7 @@ async function {{name}}() {
 
 {{/each}}
 
-async function main() {
+async function main(): Promise<void> {
 {{#each samples}}
   {{this.name}}();
 {{/each}}

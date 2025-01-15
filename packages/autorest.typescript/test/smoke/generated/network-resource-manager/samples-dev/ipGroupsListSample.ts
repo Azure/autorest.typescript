@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all IpGroups in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsListBySubscription.json
  */
-async function listIPGroups() {
+async function listIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listIPGroups() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listIPGroups();
 }
 

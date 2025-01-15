@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List network usages for a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/UsageList.json
  */
-async function listUsages() {
+async function listUsages(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westus";
   const credential = new DefaultAzureCredential();
@@ -36,7 +36,7 @@ async function listUsages() {
  * @summary List network usages for a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/UsageListSpacedLocation.json
  */
-async function listUsagesSpacedLocation() {
+async function listUsagesSpacedLocation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "West US";
   const credential = new DefaultAzureCredential();
@@ -48,7 +48,7 @@ async function listUsagesSpacedLocation() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listUsages();
   listUsagesSpacedLocation();
 }

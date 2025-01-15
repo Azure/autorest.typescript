@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a key vault in the specified subscription.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createVault.json
  */
-async function createANewVaultOrUpdateAnExistingVault() {
+async function createANewVaultOrUpdateAnExistingVault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName =
@@ -106,7 +106,7 @@ async function createANewVaultOrUpdateAnExistingVault() {
  * @summary Create or update a key vault in the specified subscription.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createVaultWithNetworkAcls.json
  */
-async function createOrUpdateAVaultWithNetworkAcls() {
+async function createOrUpdateAVaultWithNetworkAcls(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName =
@@ -142,7 +142,7 @@ async function createOrUpdateAVaultWithNetworkAcls() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createANewVaultOrUpdateAnExistingVault();
   createOrUpdateAVaultWithNetworkAcls();
 }

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the network manager security admin configurations in a network manager, in a paginated format.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerSecurityAdminConfigurationList.json
  */
-async function listSecurityAdminConfigurationsInANetworkManager() {
+async function listSecurityAdminConfigurationsInANetworkManager(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -35,7 +35,7 @@ async function listSecurityAdminConfigurationsInANetworkManager() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listSecurityAdminConfigurationsInANetworkManager();
 }
 

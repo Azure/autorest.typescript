@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets information about all public IP addresses on a virtual machine scale set level.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssPublicIpListAll.json
  */
-async function listVmssPublicIP() {
+async function listVmssPublicIP(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "vmss-tester";
   const virtualMachineScaleSetName = "vmss1";
@@ -34,7 +34,7 @@ async function listVmssPublicIP() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listVmssPublicIP();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/HubRouteTablePut.json
  */
-async function routeTablePut() {
+async function routeTablePut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -50,7 +50,7 @@ async function routeTablePut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routeTablePut();
 }
 

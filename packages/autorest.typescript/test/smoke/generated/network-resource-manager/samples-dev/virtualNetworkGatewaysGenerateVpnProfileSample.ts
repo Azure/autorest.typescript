@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Generates VPN profile for P2S client of the virtual network gateway in the specified resource group. Used for IKEV2 and radius based authentication.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayGenerateVpnProfile.json
  */
-async function generateVirtualNetworkGatewayVpnProfile() {
+async function generateVirtualNetworkGatewayVpnProfile(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
@@ -37,7 +37,7 @@ async function generateVirtualNetworkGatewayVpnProfile() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   generateVirtualNetworkGatewayVpnProfile();
 }
 

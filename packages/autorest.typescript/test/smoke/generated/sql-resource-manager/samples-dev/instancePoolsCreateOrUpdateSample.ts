@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates an instance pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateInstancePoolMax.json
  */
-async function createAnInstancePoolWithAllProperties() {
+async function createAnInstancePoolWithAllProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -51,7 +51,7 @@ async function createAnInstancePoolWithAllProperties() {
  * @summary Creates or updates an instance pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateInstancePoolMin.json
  */
-async function createAnInstancePoolWithMinProperties() {
+async function createAnInstancePoolWithMinProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -74,7 +74,7 @@ async function createAnInstancePoolWithMinProperties() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createAnInstancePoolWithAllProperties();
   createAnInstancePoolWithMinProperties();
 }

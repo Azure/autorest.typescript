@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Get top resource consuming queries of a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesList.json
  */
-async function obtainListOfInstanceTopResourceConsumingQueries() {
+async function obtainListOfInstanceTopResourceConsumingQueries(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -51,7 +51,7 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
  * @summary Get top resource consuming queries of a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesListMax.json
  */
-async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse() {
+async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -87,7 +87,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
  * @summary Get top resource consuming queries of a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesListMin.json
  */
-async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse() {
+async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -104,7 +104,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndR
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   obtainListOfInstanceTopResourceConsumingQueries();
   obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
   obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();

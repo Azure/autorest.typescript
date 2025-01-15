@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets details about a specified subscription.
  * x-ms-original-file: specification/resources/resource-manager/Microsoft.Resources/stable/2019-06-01/examples/GetSubscription.json
  */
-async function getASingleSubscription() {
+async function getASingleSubscription(): Promise<void> {
   const subscriptionId = "291bba3f-e0a5-47bc-a099-3bdcb2a50a05";
   const credential = new DefaultAzureCredential();
   const client = new SubscriptionClient(credential);
@@ -26,7 +26,7 @@ async function getASingleSubscription() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getASingleSubscription();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the encryption scopes available under the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountEncryptionScopeList.json
  */
-async function storageAccountEncryptionScopeList() {
+async function storageAccountEncryptionScopeList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resource-group-name";
@@ -35,7 +35,7 @@ async function storageAccountEncryptionScopeList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountEncryptionScopeList();
 }
 

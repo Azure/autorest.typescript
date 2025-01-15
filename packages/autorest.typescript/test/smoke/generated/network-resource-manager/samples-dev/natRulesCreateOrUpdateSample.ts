@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a nat rule to a scalable vpn gateway if it doesn't exist else updates the existing nat rules.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NatRulePut.json
  */
-async function natRulePut() {
+async function natRulePut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -45,7 +45,7 @@ async function natRulePut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   natRulePut();
 }
 

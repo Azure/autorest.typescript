@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Gets the functions of a particular static site build.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListStaticSiteBuildFunctions.json
  */
-async function getsTheFunctionsOfAParticularStaticSiteBuild() {
+async function getsTheFunctionsOfAParticularStaticSiteBuild(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -37,7 +37,7 @@ async function getsTheFunctionsOfAParticularStaticSiteBuild() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getsTheFunctionsOfAParticularStaticSiteBuild();
 }
 

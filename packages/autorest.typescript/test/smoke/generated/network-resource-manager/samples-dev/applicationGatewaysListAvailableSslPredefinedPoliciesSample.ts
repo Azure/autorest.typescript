@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all SSL predefined policies for configuring Ssl policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayAvailableSslOptionsPredefinedPoliciesGet.json
  */
-async function getAvailableSslPredefinedPolicies() {
+async function getAvailableSslPredefinedPolicies(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function getAvailableSslPredefinedPolicies() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableSslPredefinedPolicies();
 }
 

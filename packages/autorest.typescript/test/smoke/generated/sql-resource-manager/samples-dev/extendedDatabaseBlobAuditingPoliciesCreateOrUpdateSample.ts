@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates an extended database's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseAzureMonitorAuditingCreateMin.json
  */
-async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters() {
+async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -50,7 +50,7 @@ async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMin
  * @summary Creates or updates an extended database's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseBlobAuditingCreateMax.json
  */
-async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters() {
+async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -92,7 +92,7 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParamete
  * @summary Creates or updates an extended database's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseBlobAuditingCreateMin.json
  */
-async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters() {
+async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -117,7 +117,7 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalPara
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters();
   createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters();
   createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters();

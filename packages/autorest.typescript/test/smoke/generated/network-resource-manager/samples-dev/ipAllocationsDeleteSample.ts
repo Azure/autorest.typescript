@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified IpAllocation.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpAllocationDelete.json
  */
-async function deleteIPAllocation() {
+async function deleteIPAllocation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ipAllocationName = "test-ipallocation";
@@ -31,7 +31,7 @@ async function deleteIPAllocation() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteIPAllocation();
 }
 

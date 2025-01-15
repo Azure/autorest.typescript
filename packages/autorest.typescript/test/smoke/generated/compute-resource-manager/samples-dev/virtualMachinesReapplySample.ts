@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The operation to reapply a virtual machine's state.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ReapplyVirtualMachine.json
  */
-async function reapplyTheStateOfAVirtualMachine() {
+async function reapplyTheStateOfAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ResourceGroup";
   const vmName = "VMName";
@@ -31,7 +31,7 @@ async function reapplyTheStateOfAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   reapplyTheStateOfAVirtualMachine();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all route filters in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterListByResourceGroup.json
  */
-async function routeFilterListByResourceGroup() {
+async function routeFilterListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function routeFilterListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   routeFilterListByResourceGroup();
 }
 

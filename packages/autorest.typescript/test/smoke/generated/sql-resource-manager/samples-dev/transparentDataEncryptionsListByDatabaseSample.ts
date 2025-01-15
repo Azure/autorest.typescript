@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of the logical database's transparent data encryption.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/TransparentDataEncryptionList.json
  */
-async function getAListOfTheDatabaseTransparentDataEncryption() {
+async function getAListOfTheDatabaseTransparentDataEncryption(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -38,7 +38,7 @@ async function getAListOfTheDatabaseTransparentDataEncryption() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAListOfTheDatabaseTransparentDataEncryption();
 }
 

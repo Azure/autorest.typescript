@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified virtual network Gateway connection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionDelete.json
  */
-async function deleteVirtualNetworkGatewayConnection() {
+async function deleteVirtualNetworkGatewayConnection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "conn1";
@@ -32,7 +32,7 @@ async function deleteVirtualNetworkGatewayConnection() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteVirtualNetworkGatewayConnection();
 }
 

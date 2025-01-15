@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a load balancer backend address pool.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LBBackendAddressPoolWithBackendAddressesPut.json
  */
-async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress() {
+async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
@@ -56,7 +56,7 @@ async function updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtua
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateLoadBalancerBackendPoolWithBackendAddressesContainingVirtualNetworkAndIPAddress();
 }
 

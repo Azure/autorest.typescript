@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Checks that the storage account name is valid and is not already in use.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCheckNameAvailability.json
  */
-async function storageAccountCheckNameAvailability() {
+async function storageAccountCheckNameAvailability(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const accountName: StorageAccountCheckNameAvailabilityParameters = {
     name: "sto3363",
@@ -34,7 +34,7 @@ async function storageAccountCheckNameAvailability() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountCheckNameAvailability();
 }
 

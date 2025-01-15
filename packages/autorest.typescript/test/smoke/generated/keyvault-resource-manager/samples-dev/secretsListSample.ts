@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The List operation gets information about the secrets in a vault.  NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listSecrets.json
  */
-async function listSecretsInTheVault() {
+async function listSecretsInTheVault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
@@ -32,7 +32,7 @@ async function listSecretsInTheVault() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listSecretsInTheVault();
 }
 

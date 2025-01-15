@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Lists all shares.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedFileSharesList.json
  */
-async function listDeletedShares() {
+async function listDeletedShares(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
@@ -46,7 +46,7 @@ async function listDeletedShares() {
  * @summary Lists all shares.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileShareSnapshotsList.json
  */
-async function listShareSnapshots() {
+async function listShareSnapshots(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
@@ -71,7 +71,7 @@ async function listShareSnapshots() {
  * @summary Lists all shares.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesList.json
  */
-async function listShares() {
+async function listShares(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
@@ -87,7 +87,7 @@ async function listShares() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDeletedShares();
   listShareSnapshots();
   listShares();

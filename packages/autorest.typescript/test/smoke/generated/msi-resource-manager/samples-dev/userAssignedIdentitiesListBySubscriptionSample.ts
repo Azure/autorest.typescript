@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the userAssignedIdentities available under the specified subscription.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityListBySubscription.json
  */
-async function identityListBySubscription() {
+async function identityListBySubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function identityListBySubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   identityListBySubscription();
 }
 

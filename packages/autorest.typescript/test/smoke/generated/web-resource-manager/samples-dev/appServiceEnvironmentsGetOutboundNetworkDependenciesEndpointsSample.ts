@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Get the network endpoints of all outbound dependencies of an App Service Environment.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetOutboundNetworkDependenciesEndpoints.json
  */
-async function getOutboundNetworkDependenciesEndpoints() {
+async function getOutboundNetworkDependenciesEndpoints(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -36,7 +36,7 @@ async function getOutboundNetworkDependenciesEndpoints() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getOutboundNetworkDependenciesEndpoints();
 }
 

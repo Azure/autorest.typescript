@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the list of workload groups
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetWorkloadGroupList.json
  */
-async function getTheListOfWorkloadGroupsForADataWarehouse() {
+async function getTheListOfWorkloadGroupsForADataWarehouse(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -38,7 +38,7 @@ async function getTheListOfWorkloadGroupsForADataWarehouse() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getTheListOfWorkloadGroupsForADataWarehouse();
 }
 

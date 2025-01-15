@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified Azure Firewall.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureFirewallGet.json
  */
-async function getAzureFirewall() {
+async function getAzureFirewall(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const azureFirewallName = "azurefirewall";
@@ -37,7 +37,7 @@ async function getAzureFirewall() {
  * @summary Gets the specified Azure Firewall.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureFirewallGetWithAdditionalProperties.json
  */
-async function getAzureFirewallWithAdditionalProperties() {
+async function getAzureFirewallWithAdditionalProperties(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const azureFirewallName = "azurefirewall";
@@ -56,7 +56,7 @@ async function getAzureFirewallWithAdditionalProperties() {
  * @summary Gets the specified Azure Firewall.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureFirewallGetWithIpGroups.json
  */
-async function getAzureFirewallWithIPGroups() {
+async function getAzureFirewallWithIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const azureFirewallName = "azurefirewall";
@@ -75,7 +75,7 @@ async function getAzureFirewallWithIPGroups() {
  * @summary Gets the specified Azure Firewall.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureFirewallGetWithZones.json
  */
-async function getAzureFirewallWithZones() {
+async function getAzureFirewallWithZones(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const azureFirewallName = "azurefirewall";
@@ -94,7 +94,7 @@ async function getAzureFirewallWithZones() {
  * @summary Gets the specified Azure Firewall.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureFirewallGetWithMgmtSubnet.json
  */
-async function getAzureFirewallWithManagementSubnet() {
+async function getAzureFirewallWithManagementSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const azureFirewallName = "azurefirewall";
@@ -107,7 +107,7 @@ async function getAzureFirewallWithManagementSubnet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAzureFirewall();
   getAzureFirewallWithAdditionalProperties();
   getAzureFirewallWithIPGroups();

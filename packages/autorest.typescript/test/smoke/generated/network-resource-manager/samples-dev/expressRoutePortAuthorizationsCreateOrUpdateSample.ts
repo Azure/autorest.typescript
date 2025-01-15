@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates an authorization in the specified express route port.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortAuthorizationCreate.json
  */
-async function createExpressRoutePortAuthorization() {
+async function createExpressRoutePortAuthorization(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "expressRoutePortName";
@@ -39,7 +39,7 @@ async function createExpressRoutePortAuthorization() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createExpressRoutePortAuthorization();
 }
 

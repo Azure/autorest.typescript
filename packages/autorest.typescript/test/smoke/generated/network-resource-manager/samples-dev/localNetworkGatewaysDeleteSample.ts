@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes the specified local network gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LocalNetworkGatewayDelete.json
  */
-async function deleteLocalNetworkGateway() {
+async function deleteLocalNetworkGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const localNetworkGatewayName = "localgw";
@@ -31,7 +31,7 @@ async function deleteLocalNetworkGateway() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteLocalNetworkGateway();
 }
 

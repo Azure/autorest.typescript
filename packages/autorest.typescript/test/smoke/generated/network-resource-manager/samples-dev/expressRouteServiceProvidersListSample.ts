@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the available express route service providers.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteProviderList.json
  */
-async function listExpressRouteProviders() {
+async function listExpressRouteProviders(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listExpressRouteProviders() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listExpressRouteProviders();
 }
 

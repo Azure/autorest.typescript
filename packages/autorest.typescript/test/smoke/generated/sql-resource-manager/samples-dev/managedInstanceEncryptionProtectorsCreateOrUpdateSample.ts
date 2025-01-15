@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an existing encryption protector.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceEncryptionProtectorCreateOrUpdateKeyVault.json
  */
-async function updateTheEncryptionProtectorToKeyVault() {
+async function updateTheEncryptionProtectorToKeyVault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -50,7 +50,7 @@ async function updateTheEncryptionProtectorToKeyVault() {
  * @summary Updates an existing encryption protector.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceEncryptionProtectorCreateOrUpdateServiceManaged.json
  */
-async function updateTheEncryptionProtectorToServiceManaged() {
+async function updateTheEncryptionProtectorToServiceManaged(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -72,7 +72,7 @@ async function updateTheEncryptionProtectorToServiceManaged() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateTheEncryptionProtectorToKeyVault();
   updateTheEncryptionProtectorToServiceManaged();
 }

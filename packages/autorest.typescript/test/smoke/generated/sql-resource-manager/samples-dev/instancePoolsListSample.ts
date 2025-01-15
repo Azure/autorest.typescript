@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all instance pools in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListInstancePoolsBySubscriptionId.json
  */
-async function listInstancePoolsInTheSubscription() {
+async function listInstancePoolsInTheSubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listInstancePoolsInTheSubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listInstancePoolsInTheSubscription();
 }
 

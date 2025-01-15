@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Get the specified network interface in a virtual machine scale set.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssNetworkInterfaceGet.json
  */
-async function getVirtualMachineScaleSetNetworkInterface() {
+async function getVirtualMachineScaleSetNetworkInterface(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualMachineScaleSetName = "vmss1";
@@ -36,7 +36,7 @@ async function getVirtualMachineScaleSetNetworkInterface() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getVirtualMachineScaleSetNetworkInterface();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the express route circuits in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitListByResourceGroup.json
  */
-async function listExpressRouteCircuitsInAResourceGroup() {
+async function listExpressRouteCircuitsInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listExpressRouteCircuitsInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listExpressRouteCircuitsInAResourceGroup();
 }
 

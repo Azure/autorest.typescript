@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all available service aliases for this resource group in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AvailableServiceAliasesListByResourceGroup.json
  */
-async function getAvailableServiceAliasesInTheResourceGroup() {
+async function getAvailableServiceAliasesInTheResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const location = "westcentralus";
@@ -34,7 +34,7 @@ async function getAvailableServiceAliasesInTheResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableServiceAliasesInTheResourceGroup();
 }
 

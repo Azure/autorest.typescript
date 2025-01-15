@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Sets the managementpolicy to the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicy.json
  */
-async function storageAccountSetManagementPolicies() {
+async function storageAccountSetManagementPolicies(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -90,7 +90,7 @@ async function storageAccountSetManagementPolicies() {
  * @summary Sets the managementpolicy to the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicyForBlockAndAppendBlobs.json
  */
-async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
+async function storageAccountSetManagementPolicyForBlockAndAppendBlobs(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -134,7 +134,7 @@ async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
  * @summary Sets the managementpolicy to the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicyWithSnapshotAndVersion.json
  */
-async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
+async function storageAccountSetManagementPolicyWithSnapshotAndVersion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -190,7 +190,7 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
  * @summary Sets the managementpolicy to the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicy_LastAccessTimeBasedBlobActions.json
  */
-async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions() {
+async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -232,7 +232,7 @@ async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions()
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountSetManagementPolicies();
   storageAccountSetManagementPolicyForBlockAndAppendBlobs();
   storageAccountSetManagementPolicyWithSnapshotAndVersion();

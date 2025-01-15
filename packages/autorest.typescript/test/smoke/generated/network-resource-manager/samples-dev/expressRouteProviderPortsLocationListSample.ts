@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves all the ExpressRouteProviderPorts in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/expressRouteProviderPortList.json
  */
-async function expressRouteProviderPortList() {
+async function expressRouteProviderPortList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -26,7 +26,7 @@ async function expressRouteProviderPortList() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteProviderPortList();
 }
 

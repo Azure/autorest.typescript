@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all of the available subnet delegations for this resource group in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AvailableDelegationsResourceGroupGet.json
  */
-async function getAvailableDelegationsInTheResourceGroup() {
+async function getAvailableDelegationsInTheResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "westcentralus";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -34,7 +34,7 @@ async function getAvailableDelegationsInTheResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableDelegationsInTheResourceGroup();
 }
 

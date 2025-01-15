@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a subnet in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetCreate.json
  */
-async function createSubnet() {
+async function createSubnet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -44,7 +44,7 @@ async function createSubnet() {
  * @summary Creates or updates a subnet in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetCreateWithDelegation.json
  */
-async function createSubnetWithADelegation() {
+async function createSubnetWithADelegation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -67,7 +67,7 @@ async function createSubnetWithADelegation() {
  * @summary Creates or updates a subnet in the specified virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetCreateServiceEndpoint.json
  */
-async function createSubnetWithServiceEndpoints() {
+async function createSubnetWithServiceEndpoints(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
@@ -87,7 +87,7 @@ async function createSubnetWithServiceEndpoints() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createSubnet();
   createSubnetWithADelegation();
   createSubnetWithServiceEndpoints();

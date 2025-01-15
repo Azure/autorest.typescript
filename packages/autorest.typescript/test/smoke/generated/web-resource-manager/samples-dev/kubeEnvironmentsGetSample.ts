@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Get the properties of a Kubernetes Environment.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/KubeEnvironments_Get.json
  */
-async function getKubeEnvironmentsByName() {
+async function getKubeEnvironmentsByName(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "8efdecc5-919e-44eb-b179-915dca89ebf9";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "examplerg";
@@ -29,7 +29,7 @@ async function getKubeEnvironmentsByName() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getKubeEnvironmentsByName();
 }
 

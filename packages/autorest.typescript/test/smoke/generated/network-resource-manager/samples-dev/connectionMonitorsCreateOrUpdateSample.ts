@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a connection monitor.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorCreate.json
  */
-async function createConnectionMonitorV1() {
+async function createConnectionMonitorV1(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -70,7 +70,7 @@ async function createConnectionMonitorV1() {
  * @summary Create or update a connection monitor.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorV2Create.json
  */
-async function createConnectionMonitorV2() {
+async function createConnectionMonitorV2(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -124,7 +124,7 @@ async function createConnectionMonitorV2() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createConnectionMonitorV1();
   createConnectionMonitorV2();
 }

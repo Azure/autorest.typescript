@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update the object replication policy of the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateObjectReplicationPolicyOnDestination.json
  */
-async function storageAccountCreateObjectReplicationPolicyOnDestination() {
+async function storageAccountCreateObjectReplicationPolicyOnDestination(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "dst112";
@@ -55,7 +55,7 @@ async function storageAccountCreateObjectReplicationPolicyOnDestination() {
  * @summary Create or update the object replication policy of the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateObjectReplicationPolicyOnSource.json
  */
-async function storageAccountCreateObjectReplicationPolicyOnSource() {
+async function storageAccountCreateObjectReplicationPolicyOnSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "src1122";
@@ -93,7 +93,7 @@ async function storageAccountCreateObjectReplicationPolicyOnSource() {
  * @summary Create or update the object replication policy of the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountUpdateObjectReplicationPolicyOnDestination.json
  */
-async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
+async function storageAccountUpdateObjectReplicationPolicyOnDestination(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "dst112";
@@ -129,7 +129,7 @@ async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
  * @summary Create or update the object replication policy of the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountUpdateObjectReplicationPolicyOnSource.json
  */
-async function storageAccountUpdateObjectReplicationPolicyOnSource() {
+async function storageAccountUpdateObjectReplicationPolicyOnSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "src1122";
@@ -163,7 +163,7 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountCreateObjectReplicationPolicyOnDestination();
   storageAccountCreateObjectReplicationPolicyOnSource();
   storageAccountUpdateObjectReplicationPolicyOnDestination();

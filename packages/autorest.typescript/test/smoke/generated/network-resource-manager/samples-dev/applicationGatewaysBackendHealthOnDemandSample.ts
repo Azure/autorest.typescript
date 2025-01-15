@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Gets the backend health for given combination of backend pool and http setting of the specified application gateway in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayBackendHealthTest.json
  */
-async function testBackendHealth() {
+async function testBackendHealth(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationGatewayName = "appgw";
@@ -48,7 +48,7 @@ async function testBackendHealth() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   testBackendHealth();
 }
 

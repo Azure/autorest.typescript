@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Update the state of specified private endpoint connection associated with the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPutPrivateEndpointConnection.json
  */
-async function storageAccountPutPrivateEndpointConnection() {
+async function storageAccountPutPrivateEndpointConnection(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -43,7 +43,7 @@ async function storageAccountPutPrivateEndpointConnection() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountPutPrivateEndpointConnection();
 }
 

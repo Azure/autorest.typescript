@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary List database extension. This will return an empty list as it is not supported.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ListDatabaseExtensions.json
  */
-async function listDatabaseExtensions() {
+async function listDatabaseExtensions(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "7b2515fe-f230-4017-8cf0-695163acab85";
   const resourceGroupName =
@@ -38,7 +38,7 @@ async function listDatabaseExtensions() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDatabaseExtensions();
 }
 

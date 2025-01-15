@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a new SSH public key resource.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAnSshPublicKey.json
  */
-async function createANewSshPublicKeyResource() {
+async function createANewSshPublicKeyResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const sshPublicKeyName = "mySshPublicKeyName";
@@ -39,7 +39,7 @@ async function createANewSshPublicKeyResource() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createANewSshPublicKeyResource();
 }
 

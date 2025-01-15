@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets properties of a guest operating system version that can be specified in the XML service configuration (.cscfg) for a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetCloudServiceOSVersion.json
  */
-async function getCloudServiceOSVersion() {
+async function getCloudServiceOSVersion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "westus2";
   const osVersionName = "WA-GUEST-OS-3.90_202010-02";
@@ -31,7 +31,7 @@ async function getCloudServiceOSVersion() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getCloudServiceOSVersion();
 }
 

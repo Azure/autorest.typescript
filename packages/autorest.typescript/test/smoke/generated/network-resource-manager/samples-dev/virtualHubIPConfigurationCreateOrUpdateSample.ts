@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a VirtualHubIpConfiguration resource if it doesn't exist else updates the existing VirtualHubIpConfiguration.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubIpConfigurationPut.json
  */
-async function virtualHubIPConfigurationPut() {
+async function virtualHubIPConfigurationPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "hub1";
@@ -43,7 +43,7 @@ async function virtualHubIPConfigurationPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualHubIPConfigurationPut();
 }
 

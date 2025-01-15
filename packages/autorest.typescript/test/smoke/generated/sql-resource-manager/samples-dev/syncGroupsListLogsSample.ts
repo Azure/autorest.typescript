@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a collection of sync group logs.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncGroupGetLog.json
  */
-async function getSyncGroupLogs() {
+async function getSyncGroupLogs(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -46,7 +46,7 @@ async function getSyncGroupLogs() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getSyncGroupLogs();
 }
 

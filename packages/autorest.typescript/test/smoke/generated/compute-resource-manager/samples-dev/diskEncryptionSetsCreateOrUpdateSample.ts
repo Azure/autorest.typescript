@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a disk encryption set
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateADiskEncryptionSetWithKeyVaultFromADifferentSubscription.json
  */
-async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() {
+async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
@@ -49,7 +49,7 @@ async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() 
  * @summary Creates or updates a disk encryption set
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateADiskEncryptionSet.json
  */
-async function createADiskEncryptionSet() {
+async function createADiskEncryptionSet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
@@ -74,7 +74,7 @@ async function createADiskEncryptionSet() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
   createADiskEncryptionSet();
 }

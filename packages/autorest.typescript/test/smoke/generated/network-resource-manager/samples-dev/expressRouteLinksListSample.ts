@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieve the ExpressRouteLink sub-resources of the specified ExpressRoutePort resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteLinkList.json
  */
-async function expressRouteLinkGet() {
+async function expressRouteLinkGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "portName";
@@ -34,7 +34,7 @@ async function expressRouteLinkGet() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   expressRouteLinkGet();
 }
 

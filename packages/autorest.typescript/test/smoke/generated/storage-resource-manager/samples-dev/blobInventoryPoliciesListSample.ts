@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the blob inventory policy associated with the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListBlobInventoryPolicy.json
  */
-async function storageAccountGetBlobInventoryPolicy() {
+async function storageAccountGetBlobInventoryPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
@@ -34,7 +34,7 @@ async function storageAccountGetBlobInventoryPolicy() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   storageAccountGetBlobInventoryPolicy();
 }
 

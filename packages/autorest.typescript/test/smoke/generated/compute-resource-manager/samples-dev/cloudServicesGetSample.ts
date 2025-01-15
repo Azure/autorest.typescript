@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Display information about a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetCloudServiceWithMultiRoleAndRDP.json
  */
-async function getCloudServiceWithMultipleRolesAndRdpExtension() {
+async function getCloudServiceWithMultipleRolesAndRdpExtension(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -31,7 +31,7 @@ async function getCloudServiceWithMultipleRolesAndRdpExtension() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getCloudServiceWithMultipleRolesAndRdpExtension();
 }
 

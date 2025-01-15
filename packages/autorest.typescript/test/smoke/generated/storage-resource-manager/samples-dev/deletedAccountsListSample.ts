@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists deleted accounts under the subscription.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedAccountList.json
  */
-async function deletedAccountList() {
+async function deletedAccountList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function deletedAccountList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deletedAccountList();
 }
 

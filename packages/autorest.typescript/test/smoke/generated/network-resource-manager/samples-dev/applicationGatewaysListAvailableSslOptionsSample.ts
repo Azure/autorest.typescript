@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists available Ssl options for configuring Ssl policy.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayAvailableSslOptionsGet.json
  */
-async function getAvailableSslOptions() {
+async function getAvailableSslOptions(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -26,7 +26,7 @@ async function getAvailableSslOptions() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAvailableSslOptions();
 }
 

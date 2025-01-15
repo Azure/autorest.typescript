@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an application security group's tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationSecurityGroupUpdateTags.json
  */
-async function updateApplicationSecurityGroupTags() {
+async function updateApplicationSecurityGroupTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationSecurityGroupName = "test-asg";
@@ -36,7 +36,7 @@ async function updateApplicationSecurityGroupTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateApplicationSecurityGroupTags();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Create or update a dedicated host group. For details of Dedicated Host and Dedicated Host Groups please see [Dedicated Host Documentation] (https://go.microsoft.com/fwlink/?linkid=2082596)
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateADedicatedHostGroup.json
  */
-async function createOrUpdateADedicatedHostGroup() {
+async function createOrUpdateADedicatedHostGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
@@ -42,7 +42,7 @@ async function createOrUpdateADedicatedHostGroup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createOrUpdateADedicatedHostGroup();
 }
 

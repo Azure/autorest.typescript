@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Deletes a workload classifier.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DeleteWorkloadClassifier.json
  */
-async function deleteAWorkloadClassifier() {
+async function deleteAWorkloadClassifier(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -39,7 +39,7 @@ async function deleteAWorkloadClassifier() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   deleteAWorkloadClassifier();
 }
 

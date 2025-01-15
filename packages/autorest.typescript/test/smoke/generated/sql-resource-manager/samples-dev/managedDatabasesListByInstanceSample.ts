@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of managed databases.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseListByManagedInstance.json
  */
-async function listDatabasesByManagedInstances() {
+async function listDatabasesByManagedInstances(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -35,7 +35,7 @@ async function listDatabasesByManagedInstances() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDatabasesByManagedInstances();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns all of the private link service ids that can be linked to a Private Endpoint with auto approved in this subscription in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AutoApprovedPrivateLinkServicesGet.json
  */
-async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved() {
+async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "regionName";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWit
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved();
 }
 

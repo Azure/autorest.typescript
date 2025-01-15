@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the load balancers in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerList.json
  */
-async function listLoadBalancersInResourceGroup() {
+async function listLoadBalancersInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listLoadBalancersInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listLoadBalancersInResourceGroup();
 }
 

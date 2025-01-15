@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all connection monitors for the specified Network Watcher.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorList.json
  */
-async function listConnectionMonitors() {
+async function listConnectionMonitors(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -34,7 +34,7 @@ async function listConnectionMonitors() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listConnectionMonitors();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all private end point connections for a specific private link service.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateLinkServiceListPrivateEndpointConnection.json
  */
-async function listPrivateLinkServiceInResourceGroup() {
+async function listPrivateLinkServiceInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceName = "testPls";
@@ -34,7 +34,7 @@ async function listPrivateLinkServiceInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listPrivateLinkServiceInResourceGroup();
 }
 

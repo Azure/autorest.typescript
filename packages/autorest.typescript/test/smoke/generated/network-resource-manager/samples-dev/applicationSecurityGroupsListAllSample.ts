@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all application security groups in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationSecurityGroupListAll.json
  */
-async function listAllApplicationSecurityGroups() {
+async function listAllApplicationSecurityGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllApplicationSecurityGroups() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllApplicationSecurityGroups();
 }
 

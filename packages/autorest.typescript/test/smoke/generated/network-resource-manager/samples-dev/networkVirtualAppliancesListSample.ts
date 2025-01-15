@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all Network Virtual Appliances in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceListBySubscription.json
  */
-async function listAllNetworkVirtualAppliancesForAGivenSubscription() {
+async function listAllNetworkVirtualAppliancesForAGivenSubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,7 +29,7 @@ async function listAllNetworkVirtualAppliancesForAGivenSubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllNetworkVirtualAppliancesForAGivenSubscription();
 }
 

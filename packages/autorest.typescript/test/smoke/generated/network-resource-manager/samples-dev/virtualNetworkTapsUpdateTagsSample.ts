@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an VirtualNetworkTap tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkTapUpdateTags.json
  */
-async function updateVirtualNetworkTapTags() {
+async function updateVirtualNetworkTapTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const tapName = "test-vtap";
@@ -38,7 +38,7 @@ async function updateVirtualNetworkTapTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateVirtualNetworkTapTags();
 }
 

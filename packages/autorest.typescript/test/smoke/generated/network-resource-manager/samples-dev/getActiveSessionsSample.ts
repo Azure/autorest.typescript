@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Returns the list of currently active sessions on the Bastion.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/BastionSessionsList.json
  */
-async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
+async function returnsAListOfCurrentlyActiveSessionsOnTheBastion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const bastionHostName = "bastionhosttenant";
@@ -34,7 +34,7 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   returnsAListOfCurrentlyActiveSessionsOnTheBastion();
 }
 

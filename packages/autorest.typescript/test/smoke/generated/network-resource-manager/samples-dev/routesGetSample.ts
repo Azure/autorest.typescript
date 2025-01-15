@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets the specified route from a route table.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteTableRouteGet.json
  */
-async function getRoute() {
+async function getRoute(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeTableName = "testrt";
@@ -33,7 +33,7 @@ async function getRoute() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getRoute();
 }
 

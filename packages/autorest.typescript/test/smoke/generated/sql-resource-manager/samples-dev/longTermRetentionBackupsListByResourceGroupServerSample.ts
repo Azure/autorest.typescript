@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists the long term retention backups for a given server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ResourceGroupBasedLongTermRetentionBackupListByServer.json
  */
-async function getAllLongTermRetentionBackupsUnderTheServer() {
+async function getAllLongTermRetentionBackupsUnderTheServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -38,7 +38,7 @@ async function getAllLongTermRetentionBackupsUnderTheServer() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   getAllLongTermRetentionBackupsUnderTheServer();
 }
 

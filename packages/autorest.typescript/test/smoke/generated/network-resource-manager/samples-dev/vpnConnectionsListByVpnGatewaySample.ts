@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Retrieves all vpn connections for a particular virtual wan vpn gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnConnectionList.json
  */
-async function vpnConnectionList() {
+async function vpnConnectionList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -34,7 +34,7 @@ async function vpnConnectionList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnConnectionList();
 }
 

@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates a Network Virtual Appliance.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceUpdateTags.json
  */
-async function updateNetworkVirtualAppliance() {
+async function updateNetworkVirtualAppliance(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
@@ -36,7 +36,7 @@ async function updateNetworkVirtualAppliance() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateNetworkVirtualAppliance();
 }
 

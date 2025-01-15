@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the Azure Web Categories in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AzureWebCategoriesListBySubscription.json
  */
-async function listAllAzureWebCategoriesForAGivenSubscription() {
+async function listAllAzureWebCategoriesForAGivenSubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "4de8428a-4a92-4cea-90ff-b47128b8cab8";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listAllAzureWebCategoriesForAGivenSubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listAllAzureWebCategoriesForAGivenSubscription();
 }
 

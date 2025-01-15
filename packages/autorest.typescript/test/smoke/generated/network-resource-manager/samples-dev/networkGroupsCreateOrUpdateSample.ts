@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates or updates a network group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerGroupPut.json
  */
-async function networkGroupsPut() {
+async function networkGroupsPut(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -39,7 +39,7 @@ async function networkGroupsPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkGroupsPut();
 }
 

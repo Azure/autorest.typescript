@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Patch NetworkManager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerPatch.json
  */
-async function networkManagesPatch() {
+async function networkManagesPatch(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -37,7 +37,7 @@ async function networkManagesPatch() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   networkManagesPatch();
 }
 

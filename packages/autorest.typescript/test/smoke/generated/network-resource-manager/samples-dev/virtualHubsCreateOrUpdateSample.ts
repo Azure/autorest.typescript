@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a VirtualHub resource if it doesn't exist else updates the existing VirtualHub.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubPut.json
  */
-async function virtualHubPut() {
+async function virtualHubPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub2";
@@ -44,7 +44,7 @@ async function virtualHubPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   virtualHubPut();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists the specified static member.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerStaticMemberList.json
  */
-async function staticMembersList() {
+async function staticMembersList(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -37,7 +37,7 @@ async function staticMembersList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   staticMembersList();
 }
 

@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the load balancing rules in a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerLoadBalancingRuleList.json
  */
-async function loadBalancerLoadBalancingRuleList() {
+async function loadBalancerLoadBalancingRuleList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb1";
@@ -34,7 +34,7 @@ async function loadBalancerLoadBalancingRuleList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   loadBalancerLoadBalancingRuleList();
 }
 

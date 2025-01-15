@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Description for Get all top-level domains supported for registration.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/ListTopLevelDomains.json
  */
-async function listTopLevelDomains() {
+async function listTopLevelDomains(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listTopLevelDomains() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listTopLevelDomains();
 }
 

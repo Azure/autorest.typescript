@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateAssignMaintenanceConfiguration.json
  */
-async function assignsMaintenanceConfigurationToAnElasticPool() {
+async function assignsMaintenanceConfigurationToAnElasticPool(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -48,7 +48,7 @@ async function assignsMaintenanceConfigurationToAnElasticPool() {
  * @summary Updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateResetMaintenanceConfiguration.json
  */
-async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
+async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -75,7 +75,7 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
  * @summary Updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateMax.json
  */
-async function updateAnElasticPoolWithAllParameter() {
+async function updateAnElasticPoolWithAllParameter(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -104,7 +104,7 @@ async function updateAnElasticPoolWithAllParameter() {
  * @summary Updates an elastic pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateMin.json
  */
-async function updateAnElasticPoolWithMinimumParameters() {
+async function updateAnElasticPoolWithMinimumParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -122,7 +122,7 @@ async function updateAnElasticPoolWithMinimumParameters() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   assignsMaintenanceConfigurationToAnElasticPool();
   resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
   updateAnElasticPoolWithAllParameter();

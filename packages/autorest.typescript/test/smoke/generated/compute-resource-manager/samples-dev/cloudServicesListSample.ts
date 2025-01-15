@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets a list of all cloud services under a resource group. Use nextLink property in the response to get the next page of Cloud Services. Do this till nextLink is null to fetch all the Cloud Services.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServicesInResourceGroup.json
  */
-async function listCloudServicesInAResourceGroup() {
+async function listCloudServicesInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listCloudServicesInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listCloudServicesInAResourceGroup();
 }
 

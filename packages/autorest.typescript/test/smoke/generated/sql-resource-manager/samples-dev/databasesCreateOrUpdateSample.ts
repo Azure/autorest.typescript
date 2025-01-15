@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateVCoreDatabaseByServiceObjective.json
  */
-async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
+async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -49,7 +49,7 @@ async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateVCoreDatabaseBySkuNameCapacity.json
  */
-async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
+async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -77,7 +77,7 @@ async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseCopyMode.json
  */
-async function createsADatabaseAsACopy() {
+async function createsADatabaseAsACopy(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -108,7 +108,7 @@ async function createsADatabaseAsACopy() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseSecondaryMode.json
  */
-async function createsADatabaseAsAnOnLineSecondary() {
+async function createsADatabaseAsAnOnLineSecondary(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -140,7 +140,7 @@ async function createsADatabaseAsAnOnLineSecondary() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseNamedReplica.json
  */
-async function createsADatabaseAsNamedReplicaSecondary() {
+async function createsADatabaseAsNamedReplicaSecondary(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -172,7 +172,7 @@ async function createsADatabaseAsNamedReplicaSecondary() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabasePITRMode.json
  */
-async function createsADatabaseFromPointInTimeRestore() {
+async function createsADatabaseFromPointInTimeRestore(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -203,7 +203,7 @@ async function createsADatabaseFromPointInTimeRestore() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseDefaultMode.json
  */
-async function createsADatabaseWithDefaultMode() {
+async function createsADatabaseWithDefaultMode(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -234,7 +234,7 @@ async function createsADatabaseWithDefaultMode() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseLedger.json
  */
-async function createsADatabaseWithLedgerOn() {
+async function createsADatabaseWithLedgerOn(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -259,7 +259,7 @@ async function createsADatabaseWithLedgerOn() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseMin.json
  */
-async function createsADatabaseWithMinimumNumberOfParameters() {
+async function createsADatabaseWithMinimumNumberOfParameters(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -284,7 +284,7 @@ async function createsADatabaseWithMinimumNumberOfParameters() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseMaintenanceConfiguration.json
  */
-async function createsADatabaseWithPreferredMaintenanceWindow() {
+async function createsADatabaseWithPreferredMaintenanceWindow(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -317,7 +317,7 @@ async function createsADatabaseWithPreferredMaintenanceWindow() {
  * @summary Creates a new database or updates an existing database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseConfiguredBackupStorageRedundancy.json
  */
-async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
+async function createsADatabaseWithSpecifiedBackupStorageRedundancy(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -339,7 +339,7 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   createsAVCoreDatabaseBySpecifyingServiceObjectiveName();
   createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity();
   createsADatabaseAsACopy();

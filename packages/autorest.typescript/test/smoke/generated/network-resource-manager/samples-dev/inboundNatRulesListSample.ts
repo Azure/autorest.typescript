@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Gets all the inbound NAT rules in a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/InboundNatRuleList.json
  */
-async function inboundNatRuleList() {
+async function inboundNatRuleList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb1";
@@ -34,7 +34,7 @@ async function inboundNatRuleList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   inboundNatRuleList();
 }
 

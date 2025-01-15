@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the userAssignedIdentities available under the specified ResourceGroup.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityListByResourceGroup.json
  */
-async function identityListByResourceGroup() {
+async function identityListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgName";
   const credential = new DefaultAzureCredential();
@@ -32,7 +32,7 @@ async function identityListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   identityListByResourceGroup();
 }
 

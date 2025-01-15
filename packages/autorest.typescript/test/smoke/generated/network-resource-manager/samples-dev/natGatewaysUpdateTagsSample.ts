@@ -21,7 +21,7 @@ import "dotenv/config";
  * @summary Updates nat gateway tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NatGatewayUpdateTags.json
  */
-async function updateNatGatewayTags() {
+async function updateNatGatewayTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const natGatewayName = "test-natGateway";
@@ -36,7 +36,7 @@ async function updateNatGatewayTags() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   updateNatGatewayTags();
 }
 

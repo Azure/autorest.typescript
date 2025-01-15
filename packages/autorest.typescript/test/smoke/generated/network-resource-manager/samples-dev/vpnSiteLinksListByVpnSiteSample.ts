@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary Lists all the vpnSiteLinks in a resource group for a vpn site.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnSiteLinkListByVpnSite.json
  */
-async function vpnSiteLinkListByVpnSite() {
+async function vpnSiteLinkListByVpnSite(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnSiteName = "vpnSite1";
@@ -34,7 +34,7 @@ async function vpnSiteLinkListByVpnSite() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   vpnSiteLinkListByVpnSite();
 }
 

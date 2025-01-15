@@ -18,7 +18,7 @@ import "dotenv/config";
  * @summary The List operation gets information about the deleted managed HSMs associated with the subscription.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/DeletedManagedHsm_List.json
  */
-async function listDeletedManagedHsMSInTheSpecifiedSubscription() {
+async function listDeletedManagedHsMSInTheSpecifiedSubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
@@ -30,7 +30,7 @@ async function listDeletedManagedHsMSInTheSpecifiedSubscription() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   listDeletedManagedHsMSInTheSpecifiedSubscription();
 }
 
