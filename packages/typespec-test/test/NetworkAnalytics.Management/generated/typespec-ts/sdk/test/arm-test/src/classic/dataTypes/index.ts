@@ -181,7 +181,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
   };
 }
 
-export function getDataTypesOperations(
+export function _getDataTypesOperations(
   context: NetworkAnalyticsApiContext,
 ): DataTypesOperations {
   return {

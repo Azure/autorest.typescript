@@ -5,22 +5,28 @@ import {
   $delete,
   update,
   get,
-  create,
+  createForm,
+  createJson,
   list,
 } from "../../api/todoItems/index.js";
 import { TodoItemPatch } from "../../models/todoItems/models.js";
-import { TodoItem, TodoLabels } from "../../models/models.js";
+import {
+  TodoItem,
+  TodoLabels,
+  ToDoItemMultipartRequest,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "../../api/options.js";
 import {
   TodoItemsAttachmentsOperations,
-  getTodoItemsAttachmentsOperations,
+  _getTodoItemsAttachmentsOperations,
 } from "./attachments/index.js";
 
 /** Interface representing a TodoItems operations. */
@@ -65,9 +71,24 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
-  create: (
+  createForm: (
+    body: ToDoItemMultipartRequest,
+    options?: TodoItemsCreateFormOptionalParams,
+  ) => Promise<{
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: Date;
+    updatedAt: Date;
+    completedAt?: Date;
+    labels?: TodoLabels;
+  }>;
+  createJson: (
     item: TodoItem,
-    options?: TodoItemsCreateOptionalParams,
+    options?: TodoItemsCreateJsonOptionalParams,
   ) => Promise<{
     id: number;
     title: string;
@@ -97,17 +118,21 @@ function _getTodoItems(context: TodoContext) {
     ) => update(context, id, patch, options),
     get: (id: number, options?: TodoItemsGetOptionalParams) =>
       get(context, id, options),
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) =>
-      create(context, item, options),
+    createForm: (
+      body: ToDoItemMultipartRequest,
+      options?: TodoItemsCreateFormOptionalParams,
+    ) => createForm(context, body, options),
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
+      createJson(context, item, options),
     list: (options?: TodoItemsListOptionalParams) => list(context, options),
   };
 }
 
-export function getTodoItemsOperations(
+export function _getTodoItemsOperations(
   context: TodoContext,
 ): TodoItemsOperations {
   return {
     ..._getTodoItems(context),
-    attachments: getTodoItemsAttachmentsOperations(context),
+    attachments: _getTodoItemsAttachmentsOperations(context),
   };
 }

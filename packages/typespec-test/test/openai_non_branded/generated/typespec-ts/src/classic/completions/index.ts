@@ -25,7 +25,7 @@ function _getCompletions(context: OpenAIContext) {
   };
 }
 
-export function getCompletionsOperations(
+export function _getCompletionsOperations(
   context: OpenAIContext,
 ): CompletionsOperations {
   return {

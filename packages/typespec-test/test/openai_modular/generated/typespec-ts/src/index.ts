@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
+
 export { OpenAIClient } from "./openAIClient.js";
 export {
   AudioTranscriptionOptions,
@@ -157,3 +159,4 @@ export {
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";
+export { FileContents };

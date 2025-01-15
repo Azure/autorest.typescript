@@ -64,7 +64,7 @@ function _getUnivariate(context: AnomalyDetectorContext) {
   };
 }
 
-export function getUnivariateOperations(
+export function _getUnivariateOperations(
   context: AnomalyDetectorContext,
 ): UnivariateOperations {
   return {

@@ -132,7 +132,7 @@ function _getMultivariate(context: AnomalyDetectorContext) {
   };
 }
 
-export function getMultivariateOperations(
+export function _getMultivariateOperations(
   context: AnomalyDetectorContext,
 ): MultivariateOperations {
   return {

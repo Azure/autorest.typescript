@@ -5,8 +5,8 @@ import { FooContext } from "../../api/fooContext.js";
 import { op1 } from "../../api/b/index.js";
 import { Ba } from "../../models/b/models.js";
 import { BOp1OptionalParams } from "../../api/options.js";
-import { BCOperations, getBCOperations } from "./c/index.js";
-import { BEOperations, getBEOperations } from "./e/index.js";
+import { BCOperations, _getBCOperations } from "./c/index.js";
+import { BEOperations, _getBEOperations } from "./e/index.js";
 
 /** Interface representing a B operations. */
 export interface BOperations {
@@ -22,10 +22,10 @@ function _getB(context: FooContext) {
   };
 }
 
-export function getBOperations(context: FooContext): BOperations {
+export function _getBOperations(context: FooContext): BOperations {
   return {
     ..._getB(context),
-    c: getBCOperations(context),
-    e: getBEOperations(context),
+    c: _getBCOperations(context),
+    e: _getBEOperations(context),
   };
 }

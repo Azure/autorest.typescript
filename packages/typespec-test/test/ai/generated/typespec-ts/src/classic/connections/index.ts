@@ -45,7 +45,7 @@ function _getConnections(context: AzureAIContext) {
   };
 }
 
-export function getConnectionsOperations(
+export function _getConnectionsOperations(
   context: AzureAIContext,
 ): ConnectionsOperations {
   return {

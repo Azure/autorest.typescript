@@ -647,6 +647,9 @@ export interface FileContentResponse {
 }
 
 // @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FileDeletionStatus {
     deleted: boolean;
     id: string;

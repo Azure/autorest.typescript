@@ -42,7 +42,7 @@ function _getModels(context: OpenAIContext) {
   };
 }
 
-export function getModelsOperations(context: OpenAIContext): ModelsOperations {
+export function _getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
     ..._getModels(context),
   };

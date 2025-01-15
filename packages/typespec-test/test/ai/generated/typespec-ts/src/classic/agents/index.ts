@@ -502,7 +502,9 @@ function _getAgents(context: AzureAIContext) {
   };
 }
 
-export function getAgentsOperations(context: AzureAIContext): AgentsOperations {
+export function _getAgentsOperations(
+  context: AzureAIContext,
+): AgentsOperations {
   return {
     ..._getAgents(context),
   };

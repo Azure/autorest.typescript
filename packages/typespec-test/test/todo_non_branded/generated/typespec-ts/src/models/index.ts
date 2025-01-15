@@ -7,8 +7,8 @@ export {
   Standard4XXResponse,
   ApiError,
   Standard5XXResponse,
-  TodoFileAttachment,
-  TodoUrlAttachment,
   TodoAttachment,
+  ToDoItemMultipartRequest,
+  FileAttachmentMultipartRequest,
   User,
 } from "./models.js";
