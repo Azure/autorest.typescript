@@ -105,7 +105,7 @@ import {
   vectorStoreFileDeletionStatusDeserializer,
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
-} from "../../models/models.js";
+} from "../../models/agents/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

@@ -36,6 +36,34 @@ export function fooDeserializer(item: any): Foo {
     name: item["name"],
   };
 }
+
+/** model interface ApiError */
+export interface ApiError {
+  /** A machine readable error code */
+  code: string;
+  detail?: ErrorDetail;
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    detail: !item["detail"]
+      ? item["detail"]
+      : errorDetailDeserializer(item["detail"]),
+  };
+}
+
+/** model interface ErrorDetail */
+export interface ErrorDetail {
+  /** A human readable message */
+  message: string;
+}
+
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
+    message: item["message"],
+  };
+}
 ```
 
 # Generate error models in MPG if it is referenced
@@ -89,6 +117,22 @@ export interface ErrorDetail {
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
     message: item["message"],
+  };
+}
+
+/** model interface ApiError */
+export interface ApiError {
+  /** A machine readable error code */
+  code: string;
+  detail?: ErrorDetail;
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    detail: !item["detail"]
+      ? item["detail"]
+      : errorDetailDeserializer(item["detail"]),
   };
 }
 ```

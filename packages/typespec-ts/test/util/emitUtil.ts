@@ -36,7 +36,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { removeUnusedImports } from "../../src/index.js";
+import { removeUnusedImports, renameClientName } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -440,32 +440,21 @@ export async function emitModularModelsFromTypeSpec(
         dpgContext.sdkPackage.clients[0],
         modularEmitterOptions
       );
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
       removeUnusedImports(modelFile);
       modelFile.fixUnusedIdentifiers();
     } else {
       modelFile = emitTypes(dpgContext, { sourceRoot: "" });
-      binder.resolveAllReferences("/modularPackageFolder/src");
+      binder.resolveAllReferences("/");
     }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
-
+  if (Array.isArray(modelFile)) {
+    return modelFile[0];
+  }
   return modelFile;
-}
-
-export async function emitModularSerializeUtilsFromTypeSpec(
-  tspContent: string
-) {
-  const context = await rlcEmitterFor(tspContent);
-  const dpgContext = await createDpgContextTestHelper(context.program);
-  const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  const files = emitTypes(dpgContext, { sourceRoot: "" });
-  binder.resolveAllReferences("/modularPackageFolder/src");
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  return files;
 }
 
 export async function emitModularOperationsFromTypeSpec(
@@ -537,10 +526,12 @@ export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
   {
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    typespecTitleMap = {}
   }: {
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    typespecTitleMap?: Record<string, string>;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -557,6 +548,7 @@ export async function emitModularClientContextFromTypeSpec(
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -571,6 +563,8 @@ export async function emitModularClientContextFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
+    renameClientName(dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions);
     const res = buildClientContext(
       dpgContext,
       dpgContext.sdkPackage.clients[0],
@@ -589,10 +583,12 @@ export async function emitModularClientFromTypeSpec(
   tspContent: string,
   {
     withRawContent = false,
-    withVersionedApiVersion = false
+    withVersionedApiVersion = false,
+    typespecTitleMap = {}
   }: {
     withRawContent?: boolean;
     withVersionedApiVersion?: boolean;
+    typespecTitleMap?: Record<string, string>;
   } = {}
 ) {
   const context = await rlcEmitterFor(
@@ -609,6 +605,7 @@ export async function emitModularClientFromTypeSpec(
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -622,12 +619,14 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients.length > 0 &&
     dpgContext.sdkPackage.clients[0]
   ) {
+    renameClientName(dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions);
     const res = buildClassicalClient(
       dpgContext,
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
-    binder.resolveAllReferences("/modularPackageFolder/src");
+    binder.resolveAllReferences("/");
     return res;
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -647,7 +646,19 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
+  const project = useContext("outputProject");
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "",
+    project,
+    {
+      casing: "camel"
+    }
+  );
+  for (const subClient of dpgContext.sdkPackage.clients) {
+    await renameClientName(subClient, modularEmitterOptions);
+  }
   const files = await emitSamples(dpgContext);
-  useBinder().resolveAllReferences("/modularPackageFolder/src");
+  useBinder().resolveAllReferences("/");
   return files;
 }

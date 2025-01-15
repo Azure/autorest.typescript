@@ -225,7 +225,11 @@ export interface CreateEmbeddingResponse {
 
 // @public
 export interface CreateFileRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     purpose: string;
 }
 
@@ -258,8 +262,16 @@ export interface CreateFineTuningJobRequest {
 
 // @public
 export interface CreateImageEditRequest {
-    image: Uint8Array;
-    mask?: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+    mask?: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     prompt: string;
     response_format?: ("url" | "b64_json") | null;
@@ -280,7 +292,11 @@ export interface CreateImageRequest {
 
 // @public
 export interface CreateImageVariationRequest {
-    image: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     response_format?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
@@ -331,7 +347,11 @@ export interface CreateModerationResponse {
 
 // @public
 export interface CreateTranscriptionRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     language?: string;
     model: "whisper-1";
     prompt?: string;
@@ -347,7 +367,11 @@ export interface CreateTranscriptionResponse {
 
 // @public
 export interface CreateTranslationRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     model: "whisper-1";
     prompt?: string;
     response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
@@ -406,6 +430,27 @@ export interface EmbeddingsOperations {
     // (undocumented)
     create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
+
+// @public
+export interface ErrorModel {
+    // (undocumented)
+    code: string | null;
+    // (undocumented)
+    message: string;
+    // (undocumented)
+    param: string | null;
+    // (undocumented)
+    type: string;
+}
+
+// @public
+export interface ErrorResponse {
+    // (undocumented)
+    error: ErrorModel;
+}
+
+// @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
