@@ -1,6 +1,10 @@
 // Licensed under the MIT License.
 
 import {
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
+import {
   uint8ArrayToString,
   stringToUint8Array,
 } from "@typespec/ts-http-runtime";
@@ -161,8 +165,8 @@ export function standard5XXResponseDeserializer(
   };
 }
 
-/** model interface TodoFileAttachment */
-export interface TodoFileAttachment {
+/** model interface TodoAttachment */
+export interface TodoAttachment {
   /** The file name of the attachment */
   filename: string;
   /** The media type of the attachment */
@@ -171,7 +175,7 @@ export interface TodoFileAttachment {
   contents: Uint8Array;
 }
 
-export function todoFileAttachmentSerializer(item: TodoFileAttachment): any {
+export function todoAttachmentSerializer(item: TodoAttachment): any {
   return {
     filename: item["filename"],
     mediaType: item["mediaType"],
@@ -179,7 +183,7 @@ export function todoFileAttachmentSerializer(item: TodoFileAttachment): any {
   };
 }
 
-export function todoFileAttachmentDeserializer(item: any): TodoFileAttachment {
+export function todoAttachmentDeserializer(item: any): TodoAttachment {
   return {
     filename: item["filename"],
     mediaType: item["mediaType"],
@@ -187,25 +191,6 @@ export function todoFileAttachmentDeserializer(item: any): TodoFileAttachment {
       typeof item["contents"] === "string"
         ? stringToUint8Array(item["contents"], "base64")
         : item["contents"],
-  };
-}
-
-/** model interface TodoUrlAttachment */
-export interface TodoUrlAttachment {
-  /** A description of the URL */
-  description: string;
-  /** The url */
-  url: string;
-}
-
-export function todoUrlAttachmentSerializer(item: TodoUrlAttachment): any {
-  return { description: item["description"], url: item["url"] };
-}
-
-export function todoUrlAttachmentDeserializer(item: any): TodoUrlAttachment {
-  return {
-    description: item["description"],
-    url: item["url"],
   };
 }
 
@@ -225,19 +210,8 @@ export function todoAttachmentArrayDeserializer(
   });
 }
 
-/** Alias for TodoAttachment */
-export type TodoAttachment = TodoFileAttachment | TodoUrlAttachment;
-
-export function todoAttachmentSerializer(item: TodoAttachment): any {
-  return item;
-}
-
-export function todoAttachmentDeserializer(item: any): TodoAttachment {
-  return item;
-}
-
-/** model interface _CreateResponse */
-export interface _CreateResponse {
+/** model interface _CreateJsonResponse */
+export interface _CreateJsonResponse {
   /** The item's unique id */
   readonly id: number;
   /** The item's title */
@@ -259,7 +233,77 @@ export interface _CreateResponse {
   labels?: TodoLabels;
 }
 
-export function _createResponseDeserializer(item: any): _CreateResponse {
+export function _createJsonResponseDeserializer(
+  item: any,
+): _CreateJsonResponse {
+  return {
+    id: item["id"],
+    title: item["title"],
+    createdBy: item["createdBy"],
+    assignedTo: item["assignedTo"],
+    description: item["description"],
+    status: item["status"],
+    createdAt: new Date(item["createdAt"]),
+    updatedAt: new Date(item["updatedAt"]),
+    completedAt: !item["completedAt"]
+      ? item["completedAt"]
+      : new Date(item["completedAt"]),
+    labels: !item["labels"]
+      ? item["labels"]
+      : todoLabelsDeserializer(item["labels"]),
+  };
+}
+
+/** model interface ToDoItemMultipartRequest */
+export interface ToDoItemMultipartRequest {
+  item: TodoItem;
+  attachments?: Array<
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string }
+  >;
+}
+
+export function toDoItemMultipartRequestSerializer(
+  item: ToDoItemMultipartRequest,
+): any {
+  return [
+    { name: "item", body: todoItemSerializer(item["item"]) },
+    ...(item["attachments"] === undefined
+      ? []
+      : [
+          ...item["attachments"].map((x: unknown) =>
+            createFilePartDescriptor("attachments", x),
+          ),
+        ]),
+  ];
+}
+
+/** model interface _CreateFormResponse */
+export interface _CreateFormResponse {
+  /** The item's unique id */
+  readonly id: number;
+  /** The item's title */
+  title: string;
+  /** User that created the todo */
+  readonly createdBy: number;
+  /** User that the todo is assigned to */
+  assignedTo?: number;
+  /** A longer description of the todo item in markdown format */
+  description?: string;
+  /** The status of the todo item */
+  status: "NotStarted" | "InProgress" | "Completed";
+  /** When the todo item was created. */
+  readonly createdAt: Date;
+  /** When the todo item was last updated */
+  readonly updatedAt: Date;
+  /** When the todo item was makred as completed */
+  readonly completedAt?: Date;
+  labels?: TodoLabels;
+}
+
+export function _createFormResponseDeserializer(
+  item: any,
+): _CreateFormResponse {
   return {
     id: item["id"],
     title: item["title"],
@@ -362,6 +406,19 @@ export function _updateResponseDeserializer(item: any): _UpdateResponse {
   };
 }
 
+/** model interface FileAttachmentMultipartRequest */
+export interface FileAttachmentMultipartRequest {
+  contents:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
+}
+
+export function fileAttachmentMultipartRequestSerializer(
+  item: FileAttachmentMultipartRequest,
+): any {
+  return [createFilePartDescriptor("contents", item["contents"])];
+}
+
 /** model interface User */
 export interface User {
   /** An autogenerated unique id for the user */
@@ -385,8 +442,8 @@ export function userSerializer(item: User): any {
   };
 }
 
-/** model interface _CreateResponse1 */
-export interface _CreateResponse1 {
+/** model interface _CreateResponse */
+export interface _CreateResponse {
   /** An autogenerated unique id for the user */
   readonly id: number;
   /** The user's username */
@@ -397,7 +454,7 @@ export interface _CreateResponse1 {
   token: string;
 }
 
-export function _createResponse1Deserializer(item: any): _CreateResponse1 {
+export function _createResponseDeserializer(item: any): _CreateResponse {
   return {
     id: item["id"],
     username: item["username"],

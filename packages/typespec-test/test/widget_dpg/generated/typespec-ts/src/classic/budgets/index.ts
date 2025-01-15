@@ -36,7 +36,7 @@ function _getBudgets(context: WidgetServiceContext) {
   };
 }
 
-export function getBudgetsOperations(
+export function _getBudgetsOperations(
   context: WidgetServiceContext,
 ): BudgetsOperations {
   return {

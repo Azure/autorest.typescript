@@ -2,7 +2,8 @@
 
 import {
   TodoContext as Client,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
 } from "../../index.js";
 import {
@@ -15,6 +16,8 @@ import {
   standard5XXResponseDeserializer,
   TodoAttachment,
   todoAttachmentSerializer,
+  FileAttachmentMultipartRequest,
+  fileAttachmentMultipartRequestSerializer,
 } from "../../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -27,11 +30,11 @@ import {
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 
-export function _createAttachmentSend(
+export function _createFileAttachmentSend(
   context: Client,
   itemId: number,
-  contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateAttachmentOptionalParams = {
+  body: FileAttachmentMultipartRequest,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -39,16 +42,16 @@ export function _createAttachmentSend(
     .path("/items/{itemId}/attachments", itemId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: "multipart/form-data",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: todoAttachmentSerializer(contents),
+      body: fileAttachmentMultipartRequestSerializer(body),
     });
 }
 
-export async function _createAttachmentDeserialize(
+export async function _createFileAttachmentDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -68,21 +71,79 @@ export async function _createAttachmentDeserialize(
   return;
 }
 
-export async function createAttachment(
+export async function createFileAttachment(
   context: Client,
   itemId: number,
-  contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateAttachmentOptionalParams = {
+  body: FileAttachmentMultipartRequest,
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _createAttachmentSend(
+  const result = await _createFileAttachmentSend(
+    context,
+    itemId,
+    body,
+    options,
+  );
+  return _createFileAttachmentDeserialize(result);
+}
+
+export function _createJsonAttachmentSend(
+  context: Client,
+  itemId: number,
+  contents: TodoAttachment,
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  return context
+    .path("/items/{itemId}/attachments", itemId)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: todoAttachmentSerializer(contents),
+    });
+}
+
+export async function _createJsonAttachmentDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 404) {
+      error.details = notFoundErrorResponseDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
+  }
+
+  return;
+}
+
+export async function createJsonAttachment(
+  context: Client,
+  itemId: number,
+  contents: TodoAttachment,
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<void> {
+  const result = await _createJsonAttachmentSend(
     context,
     itemId,
     contents,
     options,
   );
-  return _createAttachmentDeserialize(result);
+  return _createJsonAttachmentDeserialize(result);
 }
 
 export function _listSend(

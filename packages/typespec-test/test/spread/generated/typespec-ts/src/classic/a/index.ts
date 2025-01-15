@@ -54,7 +54,7 @@ function _getA(context: DemoServiceContext) {
   };
 }
 
-export function getAOperations(context: DemoServiceContext): AOperations {
+export function _getAOperations(context: DemoServiceContext): AOperations {
   return {
     ..._getA(context),
   };

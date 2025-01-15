@@ -4,8 +4,8 @@ import {
   todoItemArrayDeserializer,
   TodoItem,
   ApiError,
-  todoAttachmentArrayDeserializer,
   TodoAttachment,
+  todoAttachmentArrayDeserializer,
 } from "../models.js";
 
 /** model interface TodoPage */

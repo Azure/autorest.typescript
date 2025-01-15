@@ -76,7 +76,7 @@ function _getFineTuningJobs(context: OpenAIContext) {
   };
 }
 
-export function getFineTuningJobsOperations(
+export function _getFineTuningJobsOperations(
   context: OpenAIContext,
 ): FineTuningJobsOperations {
   return {

@@ -18,7 +18,7 @@ function _getBC(context: FooContext) {
   };
 }
 
-export function getBCOperations(context: FooContext): BCOperations {
+export function _getBCOperations(context: FooContext): BCOperations {
   return {
     ..._getBC(context),
   };

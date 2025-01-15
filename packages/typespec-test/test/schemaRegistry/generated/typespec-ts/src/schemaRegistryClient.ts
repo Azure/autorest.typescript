@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  getSchemaOperationsOperations,
+  _getSchemaOperationsOperations,
   SchemaOperationsOperations,
 } from "./classic/schemaOperations/index.js";
 import {
@@ -35,7 +35,7 @@ export class SchemaRegistryClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.schemaOperations = getSchemaOperationsOperations(this._client);
+    this.schemaOperations = _getSchemaOperationsOperations(this._client);
   }
 
   /** The operation groups for schemaOperations */

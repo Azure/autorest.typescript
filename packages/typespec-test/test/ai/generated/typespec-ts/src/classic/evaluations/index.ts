@@ -99,7 +99,7 @@ function _getEvaluations(context: AzureAIContext) {
   };
 }
 
-export function getEvaluationsOperations(
+export function _getEvaluationsOperations(
   context: AzureAIContext,
 ): EvaluationsOperations {
   return {

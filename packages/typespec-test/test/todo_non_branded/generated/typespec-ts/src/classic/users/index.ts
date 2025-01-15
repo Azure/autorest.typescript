@@ -25,7 +25,7 @@ function _getUsers(context: TodoContext) {
   };
 }
 
-export function getUsersOperations(context: TodoContext): UsersOperations {
+export function _getUsersOperations(context: TodoContext): UsersOperations {
   return {
     ..._getUsers(context),
   };

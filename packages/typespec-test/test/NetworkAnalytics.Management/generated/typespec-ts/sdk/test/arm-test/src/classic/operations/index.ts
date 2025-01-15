@@ -21,7 +21,7 @@ function _getOperations(context: NetworkAnalyticsApiContext) {
   };
 }
 
-export function getOperationsOperations(
+export function _getOperationsOperations(
   context: NetworkAnalyticsApiContext,
 ): OperationsOperations {
   return {

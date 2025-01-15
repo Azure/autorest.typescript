@@ -18,7 +18,7 @@ function _getBEC(context: FooContext) {
   };
 }
 
-export function getBECOperations(context: FooContext): BECOperations {
+export function _getBECOperations(context: FooContext): BECOperations {
   return {
     ..._getBEC(context),
   };

@@ -1,9 +1,10 @@
 // Licensed under the MIT License.
 
 import {
-  uint8ArrayToString,
-  stringToUint8Array,
-} from "@typespec/ts-http-runtime";
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
+import { stringToUint8Array } from "@typespec/ts-http-runtime";
 
 /** model interface CreateModerationRequest */
 export interface CreateModerationRequest {
@@ -346,13 +347,17 @@ export interface CreateImageEditRequest {
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image: Uint8Array;
+  image:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?: Uint8Array;
+  mask?:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -365,17 +370,23 @@ export interface CreateImageEditRequest {
 export function createImageEditRequestSerializer(
   item: CreateImageEditRequest,
 ): any {
-  return {
-    prompt: item["prompt"],
-    image: uint8ArrayToString(item["image"], "base64"),
-    mask: !item["mask"]
-      ? item["mask"]
-      : uint8ArrayToString(item["mask"], "base64"),
-    n: item["n"],
-    size: item["size"],
-    response_format: item["responseFormat"],
-    user: item["user"],
-  };
+  return [
+    { name: "prompt", body: item["prompt"] },
+    createFilePartDescriptor("image", item["image"]),
+    ...(item["mask"] === undefined
+      ? []
+      : [createFilePartDescriptor("mask", item["mask"])]),
+    ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
+    ...(item["size"] === undefined
+      ? []
+      : [{ name: "size", body: item["size"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["user"] === undefined
+      ? []
+      : [{ name: "user", body: item["user"] }]),
+  ];
 }
 
 /** model interface CreateImageVariationRequest */
@@ -384,7 +395,9 @@ export interface CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image: Uint8Array;
+  image:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -397,13 +410,19 @@ export interface CreateImageVariationRequest {
 export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
 ): any {
-  return {
-    image: uint8ArrayToString(item["image"], "base64"),
-    n: item["n"],
-    size: item["size"],
-    response_format: item["responseFormat"],
-    user: item["user"],
-  };
+  return [
+    createFilePartDescriptor("image", item["image"]),
+    ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
+    ...(item["size"] === undefined
+      ? []
+      : [{ name: "size", body: item["size"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["user"] === undefined
+      ? []
+      : [{ name: "user", body: item["user"] }]),
+  ];
 }
 
 /** model interface ListModelsResponse */
@@ -831,7 +850,9 @@ export interface CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * The intended purpose of the uploaded documents. Use "fine-tune" for
    * [fine-tuning](/docs/api-reference/fine-tuning). This allows us to validate the format of the
@@ -841,10 +862,10 @@ export interface CreateFileRequest {
 }
 
 export function createFileRequestSerializer(item: CreateFileRequest): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    purpose: item["purpose"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "purpose", body: item["purpose"] },
+  ];
 }
 
 /** model interface DeleteFileResponse */
@@ -2049,7 +2070,9 @@ export interface CreateTranslationRequest {
    * The audio file object (not file name) to translate, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -2074,13 +2097,19 @@ export interface CreateTranslationRequest {
 export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    model: item["model"],
-    prompt: item["prompt"],
-    response_format: item["responseFormat"],
-    temperature: item["temperature"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "model", body: item["model"] },
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+  ];
 }
 
 /** model interface CreateTranslationResponse */
@@ -2102,7 +2131,9 @@ export interface CreateTranscriptionRequest {
    * The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -2133,14 +2164,22 @@ export interface CreateTranscriptionRequest {
 export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    model: item["model"],
-    prompt: item["prompt"],
-    response_format: item["responseFormat"],
-    temperature: item["temperature"],
-    language: item["language"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "model", body: item["model"] },
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+    ...(item["language"] === undefined
+      ? []
+      : [{ name: "language", body: item["language"] }]),
+  ];
 }
 
 /** model interface CreateTranscriptionResponse */

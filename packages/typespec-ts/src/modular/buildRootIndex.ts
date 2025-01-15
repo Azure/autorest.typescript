@@ -3,7 +3,7 @@ import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
-import { PagingHelpers } from "./static-helpers-metadata.js";
+import { MultipartHelpers, PagingHelpers } from "./static-helpers-metadata.js";
 import {
   SdkClientType,
   SdkContext,
@@ -70,6 +70,7 @@ export function buildRootIndex(
   });
 
   exportPagingTypes(context, rootIndexFile);
+  exportFileContentsType(context, rootIndexFile);
 }
 
 /**
@@ -106,6 +107,28 @@ function hasPaging(context: SdkContext): boolean {
     }
     return false;
   });
+}
+
+function exportFileContentsType(
+  context: SdkContext,
+  rootIndexFile: SourceFile
+) {
+  if (
+    context.sdkPackage.models.some((x) =>
+      x.properties.some(
+        (y) => y.kind === "property" && y.multipartOptions?.isFilePart
+      )
+    )
+  ) {
+    const existingExports = getExistingExports(rootIndexFile);
+    const namedExports = [resolveReference(MultipartHelpers.FileContents)];
+
+    const newNamedExports = getNewNamedExports(namedExports, existingExports);
+
+    if (newNamedExports.length > 0) {
+      addExportsToRootIndexFile(rootIndexFile, newNamedExports);
+    }
+  }
 }
 
 function getExistingExports(rootIndexFile: SourceFile): Set<string> {

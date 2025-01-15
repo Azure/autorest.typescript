@@ -25,7 +25,7 @@ function _getModerations(context: OpenAIContext) {
   };
 }
 
-export function getModerationsOperations(
+export function _getModerationsOperations(
   context: OpenAIContext,
 ): ModerationsOperations {
   return {

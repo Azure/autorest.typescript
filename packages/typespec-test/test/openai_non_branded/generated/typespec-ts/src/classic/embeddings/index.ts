@@ -25,7 +25,7 @@ function _getEmbeddings(context: OpenAIContext) {
   };
 }
 
-export function getEmbeddingsOperations(
+export function _getEmbeddingsOperations(
   context: OpenAIContext,
 ): EmbeddingsOperations {
   return {
