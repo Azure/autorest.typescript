@@ -1,6 +1,17 @@
-## 6.0.32 (Unreleased)
+## 6.0.32 (2025-01-15)
 
+- [Feature] Multipart/form-data support for typespec-todo. Please refer to [#2984](https://github.com/Azure/autorest.typescript/pull/2984)
+- [Feature] Model namespaces hierarchies. Please refer to [#2969](https://github.com/Azure/autorest.typescript/pull/2969)
+- [Feature] Support title config for typespec generation. Please refer to [#2941](https://github.com/Azure/autorest.typescript/pull/2941)
+- [Feature] Support the customized error responses in deserializer. Please refer to [#2978](https://github.com/Azure/autorest.typescript/pull/2978)
+- [Bugfix] Fix the duplicated template name without friendlyName in RLC. Please refer to [#2976](https://github.com/Azure/autorest.typescript/pull/2976)
+- [Bugfix] Rename the inner method name with `_methodName`. Please refer to [#2983](https://github.com/Azure/autorest.typescript/pull/2983)
+- [Feature] Migration of SDK Client Packages from CADL Ranch to Typespec & Typespec. Please refer to [#2936](https://github.com/Azure/autorest.typescript/pull/2936)
+- [Feature] Eable `isTypeOnly` for RLC ImportDeclarations. Please refer to [#2963](https://github.com/Azure/autorest.typescript/pull/2963)
 - [Feature] Add a flag to generate ESM compatible source code. Please refer to [#2925](https://github.com/Azure/autorest.typescript/pull/2925)
+- [Feature] Set `isModularLibrary` to `true` for unbranded and mgmt plane. Please refer to [#2973](https://github.com/Azure/autorest.typescript/pull/2973)
+- [Feature] Use `learn.microsoft.com` in generated packages. Please refer to [#2977](https://github.com/Azure/autorest.typescript/pull/2977)
+- [Bugfix] Do not crash for an empty project. Please refer to [#2972](https://github.com/Azure/autorest.typescript/pull/2972)
 
 ## 6.0.31 (2024-12-27)
 
