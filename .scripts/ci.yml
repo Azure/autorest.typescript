@@ -71,8 +71,8 @@ stages:
             name: SetRLCCommonDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
-              DEV_VERSION=$(node -p -e "require('../rlc-common/package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
-              jq --arg $DEV_VERSION "$DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $DEV_VERSION' package.json > temp.json
+              export DEV_VERSION=$(node -p -e "require('../rlc-common/package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
+              jq --arg DEV_VERSION "$DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $DEV_VERSION' package.json > temp.json
               mv temp.json package.json
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: UpdateRLCCommonDevVersionInTypesSpecTs
