@@ -11,6 +11,7 @@ import {
   userSerializer,
   userDeserializer,
   Widget,
+  widgetErrorDeserializer,
   widgetArrayDeserializer,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
@@ -45,7 +46,9 @@ export async function _getBudgetsDeserialize(
 ): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
   }
 
   return widgetArrayDeserializer(result.body);

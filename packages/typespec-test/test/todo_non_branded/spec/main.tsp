@@ -142,6 +142,7 @@ model Standard4XXResponse extends ApiError {
   @maxValue(499)
   @statusCode
   statusCode: int32;
+
 }
 
 /**

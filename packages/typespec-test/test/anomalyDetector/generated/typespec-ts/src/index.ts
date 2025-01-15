@@ -8,6 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
+export { KnownVersions } from "./models/index.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
@@ -31,16 +32,19 @@ export {
   MultivariateMultivariateLastDetectionOptions,
   MultivariateVariableValues,
   MultivariateMultivariateLastDetectionResult,
+} from "./models/multivariate/index.js";
+export {
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
   UnivariateTimeGranularity,
   UnivariateImputeMode,
   UnivariateUnivariateEntireDetectionResult,
+  UnivariateAnomalyDetectorError,
+  UnivariateAnomalyDetectorErrorCodes,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  KnownVersions,
-} from "./models/index.js";
+} from "./models/univariate/index.js";
 export {
   AnomalyDetectorClientOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,

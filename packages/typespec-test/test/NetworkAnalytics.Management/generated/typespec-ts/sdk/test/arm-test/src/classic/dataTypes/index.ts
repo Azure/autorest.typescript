@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listByDataProduct,
   generateStorageContainerSasToken,
@@ -90,7 +90,7 @@ export interface DataTypesOperations {
   ) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-function _getDataTypes(context: NetworkAnalyticsContext) {
+function _getDataTypes(context: NetworkAnalyticsApiContext) {
   return {
     listByDataProduct: (
       resourceGroupName: string,
@@ -182,7 +182,7 @@ function _getDataTypes(context: NetworkAnalyticsContext) {
 }
 
 export function getDataTypesOperations(
-  context: NetworkAnalyticsContext,
+  context: NetworkAnalyticsApiContext,
 ): DataTypesOperations {
   return {
     ..._getDataTypes(context),

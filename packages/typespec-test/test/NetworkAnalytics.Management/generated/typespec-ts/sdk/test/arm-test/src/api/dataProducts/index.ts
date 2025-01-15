@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsContext as Client,
+  NetworkAnalyticsApiContext as Client,
   DataProductsAddUserRoleOptionalParams,
   DataProductsCreateOptionalParams,
   DataProductsDeleteOptionalParams,
@@ -19,6 +19,7 @@ import {
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
+  errorResponseDeserializer,
   DataProductUpdate,
   dataProductUpdateSerializer,
   AccountSas,
@@ -77,7 +78,9 @@ export async function _listBySubscriptionDeserialize(
 ): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _dataProductListResultDeserializer(result.body);
@@ -127,7 +130,9 @@ export async function _listByResourceGroupDeserialize(
 ): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _dataProductListResultDeserializer(result.body);
@@ -183,7 +188,9 @@ export async function _listRolesAssignmentsDeserialize(
 ): Promise<ListRoleAssignments> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return listRoleAssignmentsDeserializer(result.body);
@@ -240,7 +247,9 @@ export async function _removeUserRoleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -295,7 +304,9 @@ export async function _addUserRoleDeserialize(
 ): Promise<RoleAssignmentDetail> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return roleAssignmentDetailDeserializer(result.body);
@@ -350,7 +361,9 @@ export async function _rotateKeyDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -407,7 +420,9 @@ export async function _generateStorageAccountSasTokenDeserialize(
 ): Promise<AccountSasToken> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return accountSasTokenDeserializer(result.body);
@@ -461,7 +476,9 @@ export async function _$deleteDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -524,7 +541,9 @@ export async function _updateDeserialize(
 ): Promise<DataProduct> {
   const expectedStatuses = ["200", "202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataProductDeserializer(result.body);
@@ -581,7 +600,9 @@ export async function _getDeserialize(
 ): Promise<DataProduct> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataProductDeserializer(result.body);
@@ -634,7 +655,9 @@ export async function _createDeserialize(
 ): Promise<DataProduct> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return dataProductDeserializer(result.body);

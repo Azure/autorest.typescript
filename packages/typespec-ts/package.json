@@ -108,7 +108,9 @@
     "@vitest/coverage-v8": "~1.6.0",
     "@vitest/coverage-istanbul": "~1.6.0",
     "@microsoft/api-extractor": "^7.47.5",
-    "tsx": "^4.16.5"
+    "tsx": "^4.16.5",
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.49.0 <1.0.0",
