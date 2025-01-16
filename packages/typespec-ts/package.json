@@ -64,10 +64,10 @@
   "license": "MIT",
   "devDependencies": {
     "@azure-rest/core-client": "^2.3.1",
-    "@typespec/http-specs": "0.1.0-alpha.7",
-    "@typespec/spector": "0.1.0-alpha.6",
+    "@typespec/http-specs": "0.1.0-alpha.5",
+    "@typespec/spector": "0.1.0-alpha.5",
     "@typespec/spec-api": "0.1.0-alpha.0",
-    "@azure-tools/azure-http-specs": "0.1.0-alpha.5",
+    "@azure-tools/azure-http-specs": "0.1.0-alpha.4",
     "@azure-tools/typespec-autorest": ">=0.50.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.50.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.50.0 <1.0.0",
