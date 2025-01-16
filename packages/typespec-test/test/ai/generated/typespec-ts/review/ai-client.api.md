@@ -10,47 +10,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface Agent {
-    createdAt: Date;
-    description: string | null;
-    id: string;
-    instructions: string | null;
-    metadata: Record<string, string> | null;
-    model: string;
-    name: string | null;
-    object: "assistant";
-    responseFormat?: AgentsApiResponseFormatOption | null;
-    temperature: number | null;
-    toolResources: ToolResources | null;
-    tools: ToolDefinitionUnion[];
-    topP: number | null;
-}
-
-// @public
-export interface AgentDeletionStatus {
-    deleted: boolean;
-    id: string;
-    object: "assistant.deleted";
-}
-
-// @public
-export interface AgentsApiResponseFormat {
-    type?: ApiResponseFormat;
-}
-
-// @public
-export type AgentsApiResponseFormatMode = "auto" | "none";
-
-// @public
-export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
-
-// @public
-export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
-
-// @public
-export type AgentsApiToolChoiceOptionMode = "none" | "auto";
-
-// @public
 export interface AgentsCancelRunOptionalParams extends OperationOptions {
 }
 
@@ -64,15 +23,19 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
     instructions?: string | null;
     metadata?: Record<string, string> | null;
     name?: string | null;
+    // Warning: (ae-forgotten-export) The symbol "AgentsApiResponseFormatOption" needs to be exported by the entry point index.d.ts
     responseFormat?: AgentsApiResponseFormatOption | null;
     temperature?: number | null;
+    // Warning: (ae-forgotten-export) The symbol "ToolResources" needs to be exported by the entry point index.d.ts
     toolResources?: ToolResources | null;
+    // Warning: (ae-forgotten-export) The symbol "ToolDefinitionUnion" needs to be exported by the entry point index.d.ts
     tools?: ToolDefinitionUnion[];
     topP?: number | null;
 }
 
 // @public
 export interface AgentsCreateMessageOptionalParams extends OperationOptions {
+    // Warning: (ae-forgotten-export) The symbol "MessageAttachment" needs to be exported by the entry point index.d.ts
     attachments?: MessageAttachment[] | null;
     metadata?: Record<string, string> | null;
 }
@@ -80,6 +43,7 @@ export interface AgentsCreateMessageOptionalParams extends OperationOptions {
 // @public
 export interface AgentsCreateRunOptionalParams extends OperationOptions {
     additionalInstructions?: string | null;
+    // Warning: (ae-forgotten-export) The symbol "ThreadMessage" needs to be exported by the entry point index.d.ts
     additionalMessages?: ThreadMessage[] | null;
     instructions?: string | null;
     maxCompletionTokens?: number | null;
@@ -89,9 +53,11 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
     responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
+    // Warning: (ae-forgotten-export) The symbol "AgentsApiToolChoiceOption" needs to be exported by the entry point index.d.ts
     toolChoice?: AgentsApiToolChoiceOption | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
+    // Warning: (ae-forgotten-export) The symbol "TruncationObject" needs to be exported by the entry point index.d.ts
     truncationStrategy?: TruncationObject | null;
 }
 
@@ -105,8 +71,10 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
     responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
+    // Warning: (ae-forgotten-export) The symbol "AgentThreadCreationOptions" needs to be exported by the entry point index.d.ts
     thread?: AgentThreadCreationOptions;
     toolChoice?: AgentsApiToolChoiceOption | null;
+    // Warning: (ae-forgotten-export) The symbol "UpdateToolResourcesOptions" needs to be exported by the entry point index.d.ts
     toolResources?: UpdateToolResourcesOptions | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
@@ -115,6 +83,7 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
 
 // @public
 export interface AgentsCreateThreadOptionalParams extends OperationOptions {
+    // Warning: (ae-forgotten-export) The symbol "ThreadMessageOptions" needs to be exported by the entry point index.d.ts
     messages?: ThreadMessageOptions[];
     metadata?: Record<string, string> | null;
     toolResources?: ToolResources | null;
@@ -122,6 +91,7 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreChunkingStrategyRequestUnion" needs to be exported by the entry point index.d.ts
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
 }
 
@@ -133,6 +103,7 @@ export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOpti
 // @public
 export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreExpirationPolicy" needs to be exported by the entry point index.d.ts
     expiresAfter?: VectorStoreExpirationPolicy;
     fileIds?: string[];
     metadata?: Record<string, string> | null;
@@ -204,11 +175,13 @@ export interface AgentsListAgentsOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
     limit?: number;
+    // Warning: (ae-forgotten-export) The symbol "ListSortOrder" needs to be exported by the entry point index.d.ts
     order?: ListSortOrder;
 }
 
 // @public
 export interface AgentsListFilesOptionalParams extends OperationOptions {
+    // Warning: (ae-forgotten-export) The symbol "FilePurpose" needs to be exported by the entry point index.d.ts
     purpose?: FilePurpose;
 }
 
@@ -241,6 +214,7 @@ export interface AgentsListRunStepsOptionalParams extends OperationOptions {
 export interface AgentsListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreFileStatusFilter" needs to be exported by the entry point index.d.ts
     filter?: VectorStoreFileStatusFilter;
     limit?: number;
     order?: ListSortOrder;
@@ -271,54 +245,68 @@ export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions 
 }
 
 // @public
-export interface AgentsNamedToolChoice {
-    function?: FunctionName;
-    type: AgentsNamedToolChoiceType;
-}
-
-// @public
-export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_search" | "bing_grounding" | "microsoft_fabric" | "sharepoint" | "azure_ai_search";
-
-// @public
 export interface AgentsOperations {
     cancelRun: (threadId: string, runId: string, options?: AgentsCancelRunOptionalParams) => Promise<ThreadRun>;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreFileBatch" needs to be exported by the entry point index.d.ts
     cancelVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsCancelVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
     createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) => Promise<Agent>;
+    // Warning: (ae-forgotten-export) The symbol "MessageRole" needs to be exported by the entry point index.d.ts
     createMessage: (threadId: string, role: MessageRole, content: string, options?: AgentsCreateMessageOptionalParams) => Promise<ThreadMessage>;
     createRun: (threadId: string, assistantId: string, options?: AgentsCreateRunOptionalParams) => Promise<ThreadRun>;
     createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
+    // Warning: (ae-forgotten-export) The symbol "ThreadRun" needs to be exported by the entry point index.d.ts
     createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) => Promise<ThreadRun>;
     createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
     createVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
     createVectorStoreFileBatch: (vectorStoreId: string, fileIds: string[], options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    // Warning: (ae-forgotten-export) The symbol "AgentDeletionStatus" needs to be exported by the entry point index.d.ts
     deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) => Promise<AgentDeletionStatus>;
+    // Warning: (ae-forgotten-export) The symbol "FileDeletionStatus" needs to be exported by the entry point index.d.ts
     deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) => Promise<FileDeletionStatus>;
+    // Warning: (ae-forgotten-export) The symbol "ThreadDeletionStatus" needs to be exported by the entry point index.d.ts
     deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) => Promise<ThreadDeletionStatus>;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreDeletionStatus" needs to be exported by the entry point index.d.ts
     deleteVectorStore: (vectorStoreId: string, options?: AgentsDeleteVectorStoreOptionalParams) => Promise<VectorStoreDeletionStatus>;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreFileDeletionStatus" needs to be exported by the entry point index.d.ts
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIFile" needs to be exported by the entry point index.d.ts
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
+    // Warning: (ae-forgotten-export) The symbol "FileContentResponse" needs to be exported by the entry point index.d.ts
     getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<FileContentResponse>;
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
+    // Warning: (ae-forgotten-export) The symbol "RunStep" needs to be exported by the entry point index.d.ts
     getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;
     getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) => Promise<AgentThread>;
     getVectorStore: (vectorStoreId: string, options?: AgentsGetVectorStoreOptionalParams) => Promise<VectorStore>;
+    // Warning: (ae-forgotten-export) The symbol "VectorStoreFile" needs to be exported by the entry point index.d.ts
     getVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsGetVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
     getVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsGetVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfAgent" needs to be exported by the entry point index.d.ts
     listAgents: (options?: AgentsListAgentsOptionalParams) => Promise<OpenAIPageableListOfAgent>;
+    // Warning: (ae-forgotten-export) The symbol "FileListResponse" needs to be exported by the entry point index.d.ts
     listFiles: (options?: AgentsListFilesOptionalParams) => Promise<FileListResponse>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfThreadMessage" needs to be exported by the entry point index.d.ts
     listMessages: (threadId: string, options?: AgentsListMessagesOptionalParams) => Promise<OpenAIPageableListOfThreadMessage>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfThreadRun" needs to be exported by the entry point index.d.ts
     listRuns: (threadId: string, options?: AgentsListRunsOptionalParams) => Promise<OpenAIPageableListOfThreadRun>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfRunStep" needs to be exported by the entry point index.d.ts
     listRunSteps: (threadId: string, runId: string, options?: AgentsListRunStepsOptionalParams) => Promise<OpenAIPageableListOfRunStep>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfVectorStoreFile" needs to be exported by the entry point index.d.ts
     listVectorStoreFileBatchFiles: (vectorStoreId: string, batchId: string, options?: AgentsListVectorStoreFileBatchFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
     listVectorStoreFiles: (vectorStoreId: string, options?: AgentsListVectorStoreFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
+    // Warning: (ae-forgotten-export) The symbol "OpenAIPageableListOfVectorStore" needs to be exported by the entry point index.d.ts
     listVectorStores: (options?: AgentsListVectorStoresOptionalParams) => Promise<OpenAIPageableListOfVectorStore>;
+    // Warning: (ae-forgotten-export) The symbol "VectorStore" needs to be exported by the entry point index.d.ts
     modifyVectorStore: (vectorStoreId: string, options?: AgentsModifyVectorStoreOptionalParams) => Promise<VectorStore>;
+    // Warning: (ae-forgotten-export) The symbol "ToolOutput" needs to be exported by the entry point index.d.ts
     submitToolOutputsToRun: (threadId: string, runId: string, toolOutputs: ToolOutput[], options?: AgentsSubmitToolOutputsToRunOptionalParams) => Promise<ThreadRun>;
+    // Warning: (ae-forgotten-export) The symbol "Agent" needs to be exported by the entry point index.d.ts
     updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) => Promise<Agent>;
     updateMessage: (threadId: string, messageId: string, options?: AgentsUpdateMessageOptionalParams) => Promise<ThreadMessage>;
     updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) => Promise<ThreadRun>;
+    // Warning: (ae-forgotten-export) The symbol "AgentThread" needs to be exported by the entry point index.d.ts
     updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) => Promise<AgentThread>;
     uploadFile: (file: Uint8Array, purpose: FilePurpose, options?: AgentsUploadFileOptionalParams) => Promise<OpenAIFile>;
 }
@@ -327,9 +315,6 @@ export interface AgentsOperations {
 export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
     stream?: boolean | null;
 }
-
-// @public
-export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent);
 
 // @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
@@ -366,37 +351,6 @@ export interface AgentsUploadFileOptionalParams extends OperationOptions {
     filename?: string;
 }
 
-// @public
-export interface AgentThread {
-    createdAt: Date;
-    id: string;
-    metadata: Record<string, string> | null;
-    object: "thread";
-    toolResources: ToolResources | null;
-}
-
-// @public
-export interface AgentThreadCreationOptions {
-    messages?: ThreadMessageOptions[];
-    metadata?: Record<string, string> | null;
-    toolResources?: ToolResources | null;
-}
-
-// @public
-export type ApiResponseFormat = "text" | "json_object";
-
-// @public
-export interface AppInsightsConfiguration extends InputData {
-    query: string;
-    resourceId: string;
-    serviceName: string;
-    // (undocumented)
-    readonly type: "app_insights";
-}
-
-// @public
-export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
-
 // @public (undocumented)
 export class AzureAIClient {
     constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AzureAIClientOptionalParams);
@@ -412,85 +366,15 @@ export interface AzureAIClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface AzureAISearchResource {
-    indexList?: IndexResource[];
-}
-
-// @public
-export interface AzureAISearchToolDefinition extends ToolDefinition {
-    type: "azure_ai_search";
-}
-
-// @public
-export interface BingGroundingToolDefinition extends ToolDefinition {
-    type: "bing_grounding";
-}
-
-// @public
-export interface CodeInterpreterToolDefinition extends ToolDefinition {
-    type: "code_interpreter";
-}
-
-// @public
-export interface CodeInterpreterToolResource {
-    fileIds?: string[];
-}
-
-// @public
-export interface ConnectionListResource {
-    connectionList?: ConnectionResource[];
-}
-
-// @public
-export interface ConnectionProperties {
-    authType: AuthenticationType;
-}
-
-// @public
-export interface ConnectionPropertiesAADAuth extends ConnectionProperties {
-    authType: "AAD";
-    category: ConnectionType;
-    target: string;
-}
-
-// @public
-export interface ConnectionPropertiesApiKeyAuth extends ConnectionProperties {
-    authType: "ApiKey";
-    category: ConnectionType;
-    credentials: CredentialsApiKeyAuth;
-    target: string;
-}
-
-// @public
-export interface ConnectionPropertiesSASAuth extends ConnectionProperties {
-    authType: "SAS";
-    category: ConnectionType;
-    credentials: CredentialsSASAuth;
-    target: string;
-}
-
-// @public
-export type ConnectionPropertiesUnion = ConnectionPropertiesApiKeyAuth | ConnectionPropertiesAADAuth | ConnectionPropertiesSASAuth | ConnectionProperties;
-
-// @public
-export interface ConnectionResource {
-    connectionId: string;
-}
-
-// @public
 export interface ConnectionsGetOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface ConnectionsListOptionalParams extends OperationOptions {
+    // Warning: (ae-forgotten-export) The symbol "ConnectionType" needs to be exported by the entry point index.d.ts
     category?: ConnectionType;
     includeAll?: boolean;
     target?: string;
-}
-
-// @public
-export interface ConnectionsListResponse {
-    value: ConnectionsListSecretsResponse[];
 }
 
 // @public
@@ -498,84 +382,18 @@ export interface ConnectionsListSecretsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ConnectionsListSecretsResponse {
-    id: string;
-    name: string;
-    properties: ConnectionPropertiesUnion;
-}
-
-// @public
 export interface ConnectionsOperations {
     get: (connectionName: string, options?: ConnectionsGetOptionalParams) => Promise<ConnectionsListSecretsResponse>;
+    // Warning: (ae-forgotten-export) The symbol "ConnectionsListResponse" needs to be exported by the entry point index.d.ts
     list: (options?: ConnectionsListOptionalParams) => Promise<ConnectionsListResponse>;
+    // Warning: (ae-forgotten-export) The symbol "ConnectionsListSecretsResponse" needs to be exported by the entry point index.d.ts
     listSecrets: (connectionName: string, ignored: string, options?: ConnectionsListSecretsOptionalParams) => Promise<ConnectionsListSecretsResponse>;
 }
-
-// @public
-export type ConnectionType = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
-
-// @public
-export interface CredentialsApiKeyAuth {
-    key: string;
-}
-
-// @public
-export interface CredentialsSASAuth {
-    sas: string;
-}
-
-// @public
-export interface CronTrigger extends Trigger {
-    expression: string;
-    // (undocumented)
-    readonly type: "Cron";
-}
-
-// @public
-export interface Dataset extends InputData {
-    id: string;
-    // (undocumented)
-    readonly type: "dataset";
-}
-
-// @public
-export type DoneEvent = "done";
-
-// @public
-export type ErrorEvent = "error";
-
-// @public
-export interface Evaluation {
-    data: InputDataUnion;
-    description?: string;
-    displayName?: string;
-    evaluators: Record<string, EvaluatorConfiguration>;
-    readonly id: string;
-    properties?: Record<string, string>;
-    readonly status?: string;
-    readonly systemData?: SystemData;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface EvaluationSchedule {
-    data: InputDataUnion;
-    description?: string;
-    displayName?: string;
-    evaluators: Record<string, EvaluatorConfiguration>;
-    readonly id: string;
-    properties?: Record<string, string>;
-    readonly provisioningStatus?: string;
-    samplingStrategy: SamplingStrategy;
-    readonly systemData?: SystemData;
-    tags?: Record<string, string>;
-    trigger: TriggerUnion;
-}
 
 // @public
 export interface EvaluationsCreateOptionalParams extends OperationOptions {
@@ -625,7 +443,9 @@ export interface EvaluationsOperations {
     get: (id: string, options?: EvaluationsGetOptionalParams) => Promise<Evaluation>;
     getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
     list: (options?: EvaluationsListOptionalParams) => PagedAsyncIterableIterator<Evaluation>;
+    // Warning: (ae-forgotten-export) The symbol "EvaluationSchedule" needs to be exported by the entry point index.d.ts
     listSchedule: (options?: EvaluationsListScheduleOptionalParams) => PagedAsyncIterableIterator<EvaluationSchedule>;
+    // Warning: (ae-forgotten-export) The symbol "Evaluation" needs to be exported by the entry point index.d.ts
     update: (id: string, resource: Evaluation, options?: EvaluationsUpdateOptionalParams) => Promise<Evaluation>;
 }
 
@@ -635,347 +455,7 @@ export interface EvaluationsUpdateOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface EvaluatorConfiguration {
-    dataMapping?: Record<string, string>;
-    id: string;
-    initParams?: Record<string, any>;
-}
-
-// @public
-export interface FileContentResponse {
-    content: Uint8Array;
-}
-
-// @public
 export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
-
-// @public
-export interface FileDeletionStatus {
-    deleted: boolean;
-    id: string;
-    object: "file";
-}
-
-// @public
-export interface FileListResponse {
-    data: OpenAIFile[];
-    object: "list";
-}
-
-// @public
-export type FilePurpose = "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output" | "batch" | "batch_output" | "vision";
-
-// @public
-export interface FileSearchToolDefinition extends ToolDefinition {
-    fileSearch?: FileSearchToolDefinitionDetails;
-    type: "file_search";
-}
-
-// @public
-export interface FileSearchToolDefinitionDetails {
-    maxNumResults?: number;
-}
-
-// @public
-export interface FileSearchToolResource {
-    vectorStoreIds?: string[];
-}
-
-// @public
-export type FileState = "uploaded" | "pending" | "running" | "processed" | "error" | "deleting" | "deleted";
-
-// @public
-export type Frequency = "Month" | "Week" | "Day" | "Hour" | "Minute";
-
-// @public
-export interface FunctionDefinition {
-    description?: string;
-    name: string;
-    parameters: any;
-}
-
-// @public
-export interface FunctionName {
-    name: string;
-}
-
-// @public
-export interface FunctionToolDefinition extends ToolDefinition {
-    function: FunctionDefinition;
-    type: "function";
-}
-
-// @public
-export type IncompleteRunDetails = "max_completion_tokens" | "max_prompt_tokens";
-
-// @public
-export interface IndexResource {
-    indexConnectionId: string;
-    indexName: string;
-}
-
-// @public
-export interface InputData {
-    type: string;
-}
-
-// @public
-export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
-
-// @public
-export enum KnownVersions {
-    "2024-07-01-preview" = "2024-07-01-preview"
-}
-
-// @public
-export type ListSortOrder = "asc" | "desc";
-
-// @public
-export interface MessageAttachment {
-    fileId: string;
-    tools: MessageAttachmentToolDefinition[];
-}
-
-// @public
-export type MessageAttachmentToolDefinition = CodeInterpreterToolDefinition | FileSearchToolDefinition;
-
-// @public
-export interface MessageContent {
-    type: string;
-}
-
-// @public
-export type MessageContentUnion = MessageTextContent | MessageImageFileContent | MessageContent;
-
-// @public
-export interface MessageDelta {
-    content: MessageDeltaContentUnion[];
-    role: MessageRole;
-}
-
-// @public
-export interface MessageDeltaChunk {
-    delta: MessageDelta;
-    id: string;
-    object: "thread.message.delta";
-}
-
-// @public
-export interface MessageDeltaContent {
-    index: number;
-    type: string;
-}
-
-// @public
-export type MessageDeltaContentUnion = MessageDeltaImageFileContent | MessageDeltaTextContent | MessageDeltaContent;
-
-// @public
-export interface MessageDeltaImageFileContent extends MessageDeltaContent {
-    imageFile?: MessageDeltaImageFileContentObject;
-    type: "image_file";
-}
-
-// @public
-export interface MessageDeltaImageFileContentObject {
-    fileId?: string;
-}
-
-// @public
-export interface MessageDeltaTextAnnotation {
-    index: number;
-    type: string;
-}
-
-// @public
-export type MessageDeltaTextAnnotationUnion = MessageDeltaTextFileCitationAnnotation | MessageDeltaTextFilePathAnnotation | MessageDeltaTextAnnotation;
-
-// @public
-export interface MessageDeltaTextContent extends MessageDeltaContent {
-    text?: MessageDeltaTextContentObject;
-    type: "text";
-}
-
-// @public
-export interface MessageDeltaTextContentObject {
-    annotations?: MessageDeltaTextAnnotationUnion[];
-    value?: string;
-}
-
-// @public
-export interface MessageDeltaTextFileCitationAnnotation extends MessageDeltaTextAnnotation {
-    endIndex?: number;
-    fileCitation?: MessageDeltaTextFileCitationAnnotationObject;
-    startIndex?: number;
-    text?: string;
-    type: "file_citation";
-}
-
-// @public
-export interface MessageDeltaTextFileCitationAnnotationObject {
-    fileId?: string;
-    quote?: string;
-}
-
-// @public
-export interface MessageDeltaTextFilePathAnnotation extends MessageDeltaTextAnnotation {
-    endIndex?: number;
-    filePath?: MessageDeltaTextFilePathAnnotationObject;
-    startIndex?: number;
-    text?: string;
-    type: "file_path";
-}
-
-// @public
-export interface MessageDeltaTextFilePathAnnotationObject {
-    fileId?: string;
-}
-
-// @public
-export interface MessageImageFileContent extends MessageContent {
-    imageFile: MessageImageFileDetails;
-    type: "image_file";
-}
-
-// @public
-export interface MessageImageFileDetails {
-    fileId: string;
-}
-
-// @public
-export interface MessageIncompleteDetails {
-    reason: MessageIncompleteDetailsReason;
-}
-
-// @public
-export type MessageIncompleteDetailsReason = "content_filter" | "max_tokens" | "run_cancelled" | "run_failed" | "run_expired";
-
-// @public
-export type MessageRole = "user" | "assistant";
-
-// @public
-export type MessageStatus = "in_progress" | "incomplete" | "completed";
-
-// @public
-export type MessageStreamEvent = "thread.message.created" | "thread.message.in_progress" | "thread.message.delta" | "thread.message.completed" | "thread.message.incomplete";
-
-// @public
-export interface MessageTextAnnotation {
-    text: string;
-    type: string;
-}
-
-// @public
-export type MessageTextAnnotationUnion = MessageTextFileCitationAnnotation | MessageTextFilePathAnnotation | MessageTextAnnotation;
-
-// @public
-export interface MessageTextContent extends MessageContent {
-    text: MessageTextDetails;
-    type: "text";
-}
-
-// @public
-export interface MessageTextDetails {
-    annotations: MessageTextAnnotationUnion[];
-    value: string;
-}
-
-// @public
-export interface MessageTextFileCitationAnnotation extends MessageTextAnnotation {
-    endIndex?: number;
-    fileCitation: MessageTextFileCitationDetails;
-    startIndex?: number;
-    type: "file_citation";
-}
-
-// @public
-export interface MessageTextFileCitationDetails {
-    fileId: string;
-    quote: string;
-}
-
-// @public
-export interface MessageTextFilePathAnnotation extends MessageTextAnnotation {
-    endIndex?: number;
-    filePath: MessageTextFilePathDetails;
-    startIndex?: number;
-    type: "file_path";
-}
-
-// @public
-export interface MessageTextFilePathDetails {
-    fileId: string;
-}
-
-// @public
-export interface MicrosoftFabricToolDefinition extends ToolDefinition {
-    type: "microsoft_fabric";
-}
-
-// @public
-export interface OpenAIFile {
-    bytes: number;
-    createdAt: Date;
-    filename: string;
-    id: string;
-    object: "file";
-    purpose: FilePurpose;
-    status?: FileState;
-    statusDetails?: string;
-}
-
-// @public
-export interface OpenAIPageableListOfAgent {
-    data: Agent[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
-
-// @public
-export interface OpenAIPageableListOfRunStep {
-    data: RunStep[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
-
-// @public
-export interface OpenAIPageableListOfThreadMessage {
-    data: ThreadMessage[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
-
-// @public
-export interface OpenAIPageableListOfThreadRun {
-    data: ThreadRun[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
-
-// @public
-export interface OpenAIPageableListOfVectorStore {
-    data: VectorStore[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
-
-// @public
-export interface OpenAIPageableListOfVectorStoreFile {
-    data: VectorStoreFile[];
-    firstId: string;
-    hasMore: boolean;
-    lastId: string;
-    object: "list";
-}
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -988,635 +468,6 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PageSettings {
     continuationToken?: string;
 }
-
-// @public
-export interface RecurrenceSchedule {
-    hours: number[];
-    minutes: number[];
-    monthDays: number[];
-    weekDays: WeekDays[];
-}
-
-// @public
-export interface RecurrenceTrigger extends Trigger {
-    frequency: Frequency;
-    interval: number;
-    schedule: RecurrenceSchedule;
-    // (undocumented)
-    readonly type: "Recurrence";
-}
-
-// @public
-export interface RequiredAction {
-    type: string;
-}
-
-// @public
-export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction;
-
-// @public
-export interface RequiredFunctionToolCall extends RequiredToolCall {
-    function: RequiredFunctionToolCallDetails;
-    type: "function";
-}
-
-// @public
-export interface RequiredFunctionToolCallDetails {
-    arguments: string;
-    name: string;
-}
-
-// @public
-export interface RequiredToolCall {
-    id: string;
-    type: string;
-}
-
-// @public
-export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
-
-// @public
-export interface RunCompletionUsage {
-    completionTokens: number;
-    promptTokens: number;
-    totalTokens: number;
-}
-
-// @public
-export interface RunError {
-    code: string;
-    message: string;
-}
-
-// @public
-export type RunStatus = "queued" | "in_progress" | "requires_action" | "cancelling" | "cancelled" | "failed" | "completed" | "expired";
-
-// @public
-export interface RunStep {
-    assistantId: string;
-    cancelledAt: Date | null;
-    completedAt: Date | null;
-    createdAt: Date;
-    expiredAt: Date | null;
-    failedAt: Date | null;
-    id: string;
-    lastError: RunStepError | null;
-    metadata: Record<string, string> | null;
-    object: "thread.run.step";
-    runId: string;
-    status: RunStepStatus;
-    stepDetails: RunStepDetailsUnion;
-    threadId: string;
-    type: RunStepType;
-    usage?: RunStepCompletionUsage | null;
-}
-
-// @public
-export interface RunStepAzureAISearchToolCall extends RunStepToolCall {
-    azureAISearch: Record<string, string>;
-    type: "azure_ai_search";
-}
-
-// @public
-export interface RunStepBingGroundingToolCall extends RunStepToolCall {
-    bingGrounding: Record<string, string>;
-    type: "bing_grounding";
-}
-
-// @public
-export interface RunStepCodeInterpreterImageOutput extends RunStepCodeInterpreterToolCallOutput {
-    image: RunStepCodeInterpreterImageReference;
-    type: "image";
-}
-
-// @public
-export interface RunStepCodeInterpreterImageReference {
-    fileId: string;
-}
-
-// @public
-export interface RunStepCodeInterpreterLogOutput extends RunStepCodeInterpreterToolCallOutput {
-    logs: string;
-    type: "logs";
-}
-
-// @public
-export interface RunStepCodeInterpreterToolCall extends RunStepToolCall {
-    codeInterpreter: RunStepCodeInterpreterToolCallDetails;
-    type: "code_interpreter";
-}
-
-// @public
-export interface RunStepCodeInterpreterToolCallDetails {
-    input: string;
-    outputs: RunStepCodeInterpreterToolCallOutputUnion[];
-}
-
-// @public
-export interface RunStepCodeInterpreterToolCallOutput {
-    type: string;
-}
-
-// @public
-export type RunStepCodeInterpreterToolCallOutputUnion = RunStepCodeInterpreterLogOutput | RunStepCodeInterpreterImageOutput | RunStepCodeInterpreterToolCallOutput;
-
-// @public
-export interface RunStepCompletionUsage {
-    completionTokens: number;
-    promptTokens: number;
-    totalTokens: number;
-}
-
-// @public
-export interface RunStepDelta {
-    stepDetails?: RunStepDeltaDetailUnion;
-}
-
-// @public
-export interface RunStepDeltaChunk {
-    delta: RunStepDelta;
-    id: string;
-    object: "thread.run.step.delta";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterDetailItemObject {
-    input?: string;
-    outputs?: RunStepDeltaCodeInterpreterOutputUnion[];
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterImageOutput extends RunStepDeltaCodeInterpreterOutput {
-    image?: RunStepDeltaCodeInterpreterImageOutputObject;
-    type: "image";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterImageOutputObject {
-    fileId?: string;
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterLogOutput extends RunStepDeltaCodeInterpreterOutput {
-    logs?: string;
-    type: "logs";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterOutput {
-    index: number;
-    type: string;
-}
-
-// @public
-export type RunStepDeltaCodeInterpreterOutputUnion = RunStepDeltaCodeInterpreterLogOutput | RunStepDeltaCodeInterpreterImageOutput | RunStepDeltaCodeInterpreterOutput;
-
-// @public
-export interface RunStepDeltaCodeInterpreterToolCall extends RunStepDeltaToolCall {
-    codeInterpreter?: RunStepDeltaCodeInterpreterDetailItemObject;
-    type: "code_interpreter";
-}
-
-// @public
-export interface RunStepDeltaDetail {
-    type: string;
-}
-
-// @public
-export type RunStepDeltaDetailUnion = RunStepDeltaMessageCreation | RunStepDeltaToolCallObject | RunStepDeltaDetail;
-
-// @public
-export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
-    fileSearch?: Record<string, string>;
-    type: "file_search";
-}
-
-// @public
-export interface RunStepDeltaFunction {
-    arguments?: string;
-    name?: string;
-    output?: string | null;
-}
-
-// @public
-export interface RunStepDeltaFunctionToolCall extends RunStepDeltaToolCall {
-    function?: RunStepDeltaFunction;
-    type: "function";
-}
-
-// @public
-export interface RunStepDeltaMessageCreation extends RunStepDeltaDetail {
-    messageCreation?: RunStepDeltaMessageCreationObject;
-    type: "message_creation";
-}
-
-// @public
-export interface RunStepDeltaMessageCreationObject {
-    messageId?: string;
-}
-
-// @public
-export interface RunStepDeltaToolCall {
-    id: string;
-    index: number;
-    type: string;
-}
-
-// @public
-export interface RunStepDeltaToolCallObject extends RunStepDeltaDetail {
-    toolCalls?: RunStepDeltaToolCallUnion[];
-    type: "tool_calls";
-}
-
-// @public
-export type RunStepDeltaToolCallUnion = RunStepDeltaFunctionToolCall | RunStepDeltaFileSearchToolCall | RunStepDeltaCodeInterpreterToolCall | RunStepDeltaToolCall;
-
-// @public
-export interface RunStepDetails {
-    type: RunStepType;
-}
-
-// @public
-export type RunStepDetailsUnion = RunStepMessageCreationDetails | RunStepToolCallDetails | RunStepDetails;
-
-// @public
-export interface RunStepError {
-    code: RunStepErrorCode;
-    message: string;
-}
-
-// @public
-export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
-
-// @public
-export interface RunStepFileSearchToolCall extends RunStepToolCall {
-    fileSearch: Record<string, string>;
-    type: "file_search";
-}
-
-// @public
-export interface RunStepFunctionToolCall extends RunStepToolCall {
-    function: RunStepFunctionToolCallDetails;
-    type: "function";
-}
-
-// @public
-export interface RunStepFunctionToolCallDetails {
-    arguments: string;
-    name: string;
-    output: string | null;
-}
-
-// @public
-export interface RunStepMessageCreationDetails extends RunStepDetails {
-    messageCreation: RunStepMessageCreationReference;
-    type: "message_creation";
-}
-
-// @public
-export interface RunStepMessageCreationReference {
-    messageId: string;
-}
-
-// @public
-export interface RunStepMicrosoftFabricToolCall extends RunStepToolCall {
-    microsoftFabric: Record<string, string>;
-    type: "microsoft_fabric";
-}
-
-// @public
-export interface RunStepSharepointToolCall extends RunStepToolCall {
-    sharePoint: Record<string, string>;
-    type: "sharepoint";
-}
-
-// @public
-export type RunStepStatus = "in_progress" | "cancelled" | "failed" | "completed" | "expired";
-
-// @public
-export type RunStepStreamEvent = "thread.run.step.created" | "thread.run.step.in_progress" | "thread.run.step.delta" | "thread.run.step.completed" | "thread.run.step.failed" | "thread.run.step.cancelled" | "thread.run.step.expired";
-
-// @public
-export interface RunStepToolCall {
-    id: string;
-    type: string;
-}
-
-// @public
-export interface RunStepToolCallDetails extends RunStepDetails {
-    toolCalls: RunStepToolCallUnion[];
-    type: "tool_calls";
-}
-
-// @public
-export type RunStepToolCallUnion = RunStepCodeInterpreterToolCall | RunStepFileSearchToolCall | RunStepBingGroundingToolCall | RunStepAzureAISearchToolCall | RunStepSharepointToolCall | RunStepMicrosoftFabricToolCall | RunStepFunctionToolCall | RunStepToolCall;
-
-// @public
-export type RunStepType = "message_creation" | "tool_calls";
-
-// @public
-export type RunStreamEvent = "thread.run.created" | "thread.run.queued" | "thread.run.in_progress" | "thread.run.requires_action" | "thread.run.completed" | "thread.run.failed" | "thread.run.cancelling" | "thread.run.cancelled" | "thread.run.expired";
-
-// @public
-export interface SamplingStrategy {
-    rate: number;
-}
-
-// @public
-export interface SharepointToolDefinition extends ToolDefinition {
-    type: "sharepoint";
-}
-
-// @public
-export interface SubmitToolOutputsAction extends RequiredAction {
-    submitToolOutputs: SubmitToolOutputsDetails;
-    type: "submit_tool_outputs";
-}
-
-// @public
-export interface SubmitToolOutputsDetails {
-    toolCalls: RequiredToolCallUnion[];
-}
-
-// @public
-export interface SystemData {
-    readonly createdAt?: Date;
-    readonly createdBy?: string;
-    readonly createdByType?: string;
-    readonly lastModifiedAt?: Date;
-}
-
-// @public
-export interface ThreadDeletionStatus {
-    deleted: boolean;
-    id: string;
-    object: "thread.deleted";
-}
-
-// @public
-export interface ThreadMessage {
-    assistantId: string | null;
-    attachments: MessageAttachment[] | null;
-    completedAt: Date | null;
-    content: MessageContentUnion[];
-    createdAt: Date;
-    id: string;
-    incompleteAt: Date | null;
-    incompleteDetails: MessageIncompleteDetails | null;
-    metadata: Record<string, string> | null;
-    object: "thread.message";
-    role: MessageRole;
-    runId: string | null;
-    status: MessageStatus;
-    threadId: string;
-}
-
-// @public
-export interface ThreadMessageOptions {
-    attachments?: MessageAttachment[] | null;
-    content: string;
-    metadata?: Record<string, string> | null;
-    role: MessageRole;
-}
-
-// @public
-export interface ThreadRun {
-    assistantId: string;
-    cancelledAt: Date | null;
-    completedAt: Date | null;
-    createdAt: Date;
-    expiresAt: Date | null;
-    failedAt: Date | null;
-    id: string;
-    incompleteDetails: IncompleteRunDetails | null;
-    instructions: string;
-    lastError: RunError | null;
-    maxCompletionTokens: number | null;
-    maxPromptTokens: number | null;
-    metadata: Record<string, string> | null;
-    model: string;
-    object: "thread.run";
-    parallelToolCalls?: boolean;
-    requiredAction?: RequiredActionUnion | null;
-    responseFormat: AgentsApiResponseFormatOption | null;
-    startedAt: Date | null;
-    status: RunStatus;
-    temperature?: number | null;
-    threadId: string;
-    toolChoice: AgentsApiToolChoiceOption | null;
-    toolResources?: UpdateToolResourcesOptions | null;
-    tools: ToolDefinitionUnion[];
-    topP?: number | null;
-    truncationStrategy: TruncationObject | null;
-    usage: RunCompletionUsage | null;
-}
-
-// @public
-export type ThreadStreamEvent = "thread.created";
-
-// @public
-export interface ToolDefinition {
-    type: string;
-}
-
-// @public
-export type ToolDefinitionUnion = CodeInterpreterToolDefinition | FileSearchToolDefinition | FunctionToolDefinition | BingGroundingToolDefinition | MicrosoftFabricToolDefinition | SharepointToolDefinition | AzureAISearchToolDefinition | ToolDefinition;
-
-// @public
-export interface ToolOutput {
-    output?: string;
-    toolCallId?: string;
-}
-
-// @public
-export interface ToolResources {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: CodeInterpreterToolResource;
-    fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface Trigger {
-    type: string;
-}
-
-// @public
-export type TriggerUnion = RecurrenceTrigger | CronTrigger | Trigger;
-
-// @public
-export interface TruncationObject {
-    lastMessages?: number | null;
-    type: TruncationStrategy;
-}
-
-// @public
-export type TruncationStrategy = "auto" | "last_messages";
-
-// @public
-export interface UpdateCodeInterpreterToolResourceOptions {
-    fileIds?: string[];
-}
-
-// @public
-export interface UpdateFileSearchToolResourceOptions {
-    vectorStoreIds?: string[];
-}
-
-// @public
-export interface UpdateToolResourcesOptions {
-    azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
-    codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
-    fileSearch?: UpdateFileSearchToolResourceOptions;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
-}
-
-// @public
-export interface VectorStore {
-    createdAt: Date;
-    expiresAfter?: VectorStoreExpirationPolicy;
-    expiresAt?: Date | null;
-    fileCounts: VectorStoreFileCount;
-    id: string;
-    lastActiveAt: Date | null;
-    metadata: Record<string, string> | null;
-    name: string;
-    object: "vector_store";
-    status: VectorStoreStatus;
-    usageBytes: number;
-}
-
-// @public
-export interface VectorStoreAutoChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
-    type: "auto";
-}
-
-// @public
-export interface VectorStoreAutoChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
-    type: "other";
-}
-
-// @public
-export interface VectorStoreChunkingStrategyRequest {
-    type: VectorStoreChunkingStrategyRequestType;
-}
-
-// @public
-export type VectorStoreChunkingStrategyRequestType = "auto" | "static";
-
-// @public
-export type VectorStoreChunkingStrategyRequestUnion = VectorStoreAutoChunkingStrategyRequest | VectorStoreStaticChunkingStrategyRequest | VectorStoreChunkingStrategyRequest;
-
-// @public
-export interface VectorStoreChunkingStrategyResponse {
-    type: VectorStoreChunkingStrategyResponseType;
-}
-
-// @public
-export type VectorStoreChunkingStrategyResponseType = "other" | "static";
-
-// @public
-export type VectorStoreChunkingStrategyResponseUnion = VectorStoreAutoChunkingStrategyResponse | VectorStoreStaticChunkingStrategyResponse | VectorStoreChunkingStrategyResponse;
-
-// @public
-export interface VectorStoreDeletionStatus {
-    deleted: boolean;
-    id: string;
-    object: "vector_store.deleted";
-}
-
-// @public
-export interface VectorStoreExpirationPolicy {
-    anchor: VectorStoreExpirationPolicyAnchor;
-    days: number;
-}
-
-// @public
-export type VectorStoreExpirationPolicyAnchor = "last_active_at";
-
-// @public
-export interface VectorStoreFile {
-    chunkingStrategy: VectorStoreChunkingStrategyResponseUnion;
-    createdAt: Date;
-    id: string;
-    lastError: VectorStoreFileError | null;
-    object: "vector_store.file";
-    status: VectorStoreFileStatus;
-    usageBytes: number;
-    vectorStoreId: string;
-}
-
-// @public
-export interface VectorStoreFileBatch {
-    createdAt: Date;
-    fileCounts: VectorStoreFileCount;
-    id: string;
-    object: "vector_store.files_batch";
-    status: VectorStoreFileBatchStatus;
-    vectorStoreId: string;
-}
-
-// @public
-export type VectorStoreFileBatchStatus = "in_progress" | "completed" | "cancelled" | "failed";
-
-// @public
-export interface VectorStoreFileCount {
-    cancelled: number;
-    completed: number;
-    failed: number;
-    inProgress: number;
-    total: number;
-}
-
-// @public
-export interface VectorStoreFileDeletionStatus {
-    deleted: boolean;
-    id: string;
-    object: "vector_store.file.deleted";
-}
-
-// @public
-export interface VectorStoreFileError {
-    code: VectorStoreFileErrorCode;
-    message: string;
-}
-
-// @public
-export type VectorStoreFileErrorCode = "internal_error" | "file_not_found" | "parsing_error" | "unhandled_mime_type";
-
-// @public
-export type VectorStoreFileStatus = "in_progress" | "completed" | "failed" | "cancelled";
-
-// @public
-export type VectorStoreFileStatusFilter = "in_progress" | "completed" | "failed" | "cancelled";
-
-// @public
-export interface VectorStoreStaticChunkingStrategyOptions {
-    chunkOverlapTokens: number;
-    maxChunkSizeTokens: number;
-}
-
-// @public
-export interface VectorStoreStaticChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
-    static: VectorStoreStaticChunkingStrategyOptions;
-    type: "static";
-}
-
-// @public
-export interface VectorStoreStaticChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
-    static: VectorStoreStaticChunkingStrategyOptions;
-    type: "static";
-}
-
-// @public
-export type VectorStoreStatus = "expired" | "in_progress" | "completed";
-
-// @public
-export type WeekDays = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
 // (No @packageDocumentation comment for this package)
 
