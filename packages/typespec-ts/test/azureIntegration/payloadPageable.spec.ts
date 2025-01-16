@@ -22,7 +22,7 @@ describe("Pageable Client", () => {
         assert.strictEqual(result.body.pets[1]?.id, "2");
         assert.strictEqual(result.body.pets[1]?.name, 'cat');
         assert.strictEqual(
-            result.body.links.next,
+            result.body.next,
             "http://localhost:3000/payload/pageable/server-driven-pagination/link/nextPage"
         );
     });

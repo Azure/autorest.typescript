@@ -2,7 +2,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare interface DefaultDurationProperty {
+declare interface DefaultDurationProperty {
     value: string;
 }
 
@@ -18,15 +18,15 @@ export declare class DurationClient {
 export declare interface DurationClientOptionalParams extends ClientOptions {
 }
 
-export declare interface Float64SecondsDurationProperty {
+declare interface Float64SecondsDurationProperty {
     value: number;
 }
 
-export declare interface FloatSecondsDurationArrayProperty {
+declare interface FloatSecondsDurationArrayProperty {
     value: number[];
 }
 
-export declare interface FloatSecondsDurationProperty {
+declare interface FloatSecondsDurationProperty {
     value: number;
 }
 
@@ -57,11 +57,11 @@ export declare interface HeaderOperations {
     default: (duration: string, options?: HeaderDefaultOptionalParams) => Promise<void>;
 }
 
-export declare interface Int32SecondsDurationProperty {
+declare interface Int32SecondsDurationProperty {
     value: number;
 }
 
-export declare interface ISO8601DurationProperty {
+declare interface ISO8601DurationProperty {
     value: string;
 }
 

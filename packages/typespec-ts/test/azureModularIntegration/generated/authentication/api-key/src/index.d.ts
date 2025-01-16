@@ -14,10 +14,6 @@ export declare class ApiKeyClient {
 export declare interface ApiKeyClientOptionalParams extends ClientOptions {
 }
 
-export declare interface InvalidAuth {
-    error: string;
-}
-
 export declare interface InvalidOptionalParams extends OperationOptions {
 }
 

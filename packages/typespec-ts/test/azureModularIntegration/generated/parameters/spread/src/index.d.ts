@@ -27,7 +27,7 @@ export declare interface AliasSpreadWithMultipleParametersOptionalParams extends
     optionalStringList?: string[];
 }
 
-export declare interface BodyParameter {
+declare interface BodyParameter {
     name: string;
 }
 

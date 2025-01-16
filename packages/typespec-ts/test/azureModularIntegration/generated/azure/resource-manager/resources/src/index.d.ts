@@ -10,44 +10,74 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-export declare type CreatedByType = string;
+declare type CreatedByType = string;
 
-export declare interface ErrorAdditionalInfo {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
+declare interface ExtensionResource extends Resource {
 }
 
-export declare interface ErrorDetail {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: ErrorDetail[];
-    readonly additionalInfo?: ErrorAdditionalInfo[];
+declare interface ExtensionsResource extends ExtensionResource {
+    properties?: ExtensionsResourceProperties;
 }
 
-export declare interface ErrorResponse {
-    error?: ErrorDetail;
+declare interface ExtensionsResourceProperties {
+    description?: string;
+    readonly provisioningState?: ProvisioningState;
 }
 
-export declare enum KnownCreatedByType {
-    User = "User",
-    Application = "Application",
-    ManagedIdentity = "ManagedIdentity",
-    Key = "Key"
+export declare interface ExtensionsResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
-export declare enum KnownProvisioningState {
-    Succeeded = "Succeeded",
-    Failed = "Failed",
-    Canceled = "Canceled",
-    Provisioning = "Provisioning",
-    Updating = "Updating",
-    Deleting = "Deleting",
-    Accepted = "Accepted"
+export declare interface ExtensionsResourcesDeleteOptionalParams extends OperationOptions {
 }
 
-export declare enum KnownVersions {
-    v2023_12_01_preview = "2023-12-01-preview"
+export declare interface ExtensionsResourcesGetOptionalParams extends OperationOptions {
+}
+
+export declare interface ExtensionsResourcesListByScopeOptionalParams extends OperationOptions {
+}
+
+export declare interface ExtensionsResourcesOperations {
+    listByScope: (resourceUri: string, options?: ExtensionsResourcesListByScopeOptionalParams) => PagedAsyncIterableIterator<ExtensionsResource>;
+    delete: (resourceUri: string, extensionsResourceName: string, options?: ExtensionsResourcesDeleteOptionalParams) => Promise<void>;
+    update: (resourceUri: string, extensionsResourceName: string, properties: ExtensionsResource, options?: ExtensionsResourcesUpdateOptionalParams) => Promise<ExtensionsResource>;
+    createOrUpdate: (resourceUri: string, extensionsResourceName: string, resource: ExtensionsResource, options?: ExtensionsResourcesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ExtensionsResource>, ExtensionsResource>;
+    get: (resourceUri: string, extensionsResourceName: string, options?: ExtensionsResourcesGetOptionalParams) => Promise<ExtensionsResource>;
+}
+
+export declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
+}
+
+declare interface LocationResource extends ProxyResource {
+    properties?: LocationResourceProperties;
+}
+
+declare interface LocationResourceProperties {
+    description?: string;
+    readonly provisioningState?: ProvisioningState;
+}
+
+export declare interface LocationResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesDeleteOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesGetOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesListByLocationOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesOperations {
+    listByLocation: (location: string, options?: LocationResourcesListByLocationOptionalParams) => PagedAsyncIterableIterator<LocationResource>;
+    delete: (location: string, locationResourceName: string, options?: LocationResourcesDeleteOptionalParams) => Promise<void>;
+    update: (location: string, locationResourceName: string, properties: LocationResource, options?: LocationResourcesUpdateOptionalParams) => Promise<LocationResource>;
+    createOrUpdate: (location: string, locationResourceName: string, resource: LocationResource, options?: LocationResourcesCreateOrUpdateOptionalParams) => Promise<LocationResource>;
+    get: (location: string, locationResourceName: string, options?: LocationResourcesGetOptionalParams) => Promise<LocationResource>;
+}
+
+export declare interface LocationResourcesUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
@@ -72,11 +102,11 @@ export declare interface NestedOperations {
     get: (resourceGroupName: string, topLevelTrackedResourceName: string, nextedProxyResourceName: string, options?: NestedGetOptionalParams) => Promise<NestedProxyResource>;
 }
 
-export declare interface NestedProxyResource extends ProxyResource {
+declare interface NestedProxyResource extends ProxyResource {
     properties?: NestedProxyResourceProperties;
 }
 
-export declare interface NestedProxyResourceProperties {
+declare interface NestedProxyResourceProperties {
     readonly provisioningState?: ProvisioningState;
     description?: string;
 }
@@ -85,7 +115,7 @@ export declare interface NestedUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface NotificationDetails {
+declare interface NotificationDetails {
     message: string;
     urgent: boolean;
 }
@@ -100,12 +130,12 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-export declare type ProvisioningState = string;
+declare type ProvisioningState = string;
 
-export declare interface ProxyResource extends Resource {
+declare interface ProxyResource extends Resource {
 }
 
-export declare interface Resource {
+declare interface Resource {
     readonly id?: string;
     readonly name?: string;
     readonly type?: string;
@@ -116,6 +146,8 @@ export declare class ResourcesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
+    readonly locationResources: LocationResourcesOperations;
+    readonly extensionsResources: ExtensionsResourcesOperations;
     readonly singleton: SingletonOperations;
     readonly nested: NestedOperations;
     readonly topLevel: TopLevelOperations;
@@ -150,11 +182,11 @@ export declare interface SingletonOperations {
     getByResourceGroup: (resourceGroupName: string, options?: SingletonGetByResourceGroupOptionalParams) => Promise<SingletonTrackedResource>;
 }
 
-export declare interface SingletonTrackedResource extends TrackedResource {
+declare interface SingletonTrackedResource extends TrackedResource {
     properties?: SingletonTrackedResourceProperties;
 }
 
-export declare interface SingletonTrackedResourceProperties {
+declare interface SingletonTrackedResourceProperties {
     readonly provisioningState?: ProvisioningState;
     description?: string;
 }
@@ -162,7 +194,7 @@ export declare interface SingletonTrackedResourceProperties {
 export declare interface SingletonUpdateOptionalParams extends OperationOptions {
 }
 
-export declare interface SystemData {
+declare interface SystemData {
     createdBy?: string;
     createdByType?: CreatedByType;
     createdAt?: Date;
@@ -201,11 +233,11 @@ export declare interface TopLevelOperations {
     get: (resourceGroupName: string, topLevelTrackedResourceName: string, options?: TopLevelGetOptionalParams) => Promise<TopLevelTrackedResource>;
 }
 
-export declare interface TopLevelTrackedResource extends TrackedResource {
+declare interface TopLevelTrackedResource extends TrackedResource {
     properties?: TopLevelTrackedResourceProperties;
 }
 
-export declare interface TopLevelTrackedResourceProperties {
+declare interface TopLevelTrackedResourceProperties {
     readonly provisioningState?: ProvisioningState;
     description?: string;
 }
@@ -214,7 +246,7 @@ export declare interface TopLevelUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface TrackedResource extends Resource {
+declare interface TrackedResource extends Resource {
     tags?: Record<string, string>;
     location: string;
 }

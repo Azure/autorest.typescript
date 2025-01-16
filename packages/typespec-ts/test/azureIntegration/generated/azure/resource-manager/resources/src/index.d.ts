@@ -93,6 +93,151 @@ export declare interface ExtensionResource extends Resource {
 export declare interface ExtensionResourceOutput extends ResourceOutput {
 }
 
+export declare interface ExtensionsResource extends ExtensionResource {
+    properties?: ExtensionsResourceProperties;
+}
+
+export declare interface ExtensionsResourceListResultOutput {
+    value: Array<ExtensionsResourceOutput>;
+    nextLink?: string;
+}
+
+export declare interface ExtensionsResourceOutput extends ExtensionResourceOutput {
+    properties?: ExtensionsResourcePropertiesOutput;
+}
+
+export declare interface ExtensionsResourceProperties {
+    description?: string;
+}
+
+export declare interface ExtensionsResourcePropertiesOutput {
+    description?: string;
+    readonly provisioningState?: ProvisioningStateOutput;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdate200Response extends HttpResponse {
+    status: "200";
+    body: ExtensionsResourceOutput;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdate201Headers {
+    "azure-asyncoperation"?: string;
+    "retry-after"?: number;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdate201Response extends HttpResponse {
+    status: "201";
+    body: ExtensionsResourceOutput;
+    headers: RawHttpHeaders & ExtensionsResourcesCreateOrUpdate201Headers;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdateBodyParam {
+    body: ExtensionsResource;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdateLogicalResponse extends HttpResponse {
+    status: "200";
+    body: ExtensionsResourceOutput;
+}
+
+export declare type ExtensionsResourcesCreateOrUpdateParameters = ExtensionsResourcesCreateOrUpdateBodyParam & RequestParameters;
+
+export declare interface ExtensionsResourcesCreateOrUpdateResourceUriPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface ExtensionsResourcesDelete200Response extends HttpResponse {
+    status: "200";
+}
+
+export declare interface ExtensionsResourcesDelete204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface ExtensionsResourcesDeleteDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type ExtensionsResourcesDeleteParameters = RequestParameters;
+
+export declare interface ExtensionsResourcesDeleteResourceUriPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface ExtensionsResourcesGet {
+    get(options?: ExtensionsResourcesGetParameters): StreamableMethod<ExtensionsResourcesGet200Response | ExtensionsResourcesGetDefaultResponse>;
+    put(options: ExtensionsResourcesCreateOrUpdateParameters): StreamableMethod<ExtensionsResourcesCreateOrUpdate200Response | ExtensionsResourcesCreateOrUpdate201Response | ExtensionsResourcesCreateOrUpdateDefaultResponse>;
+    patch(options: ExtensionsResourcesUpdateParameters): StreamableMethod<ExtensionsResourcesUpdate200Response | ExtensionsResourcesUpdateDefaultResponse>;
+    delete(options?: ExtensionsResourcesDeleteParameters): StreamableMethod<ExtensionsResourcesDelete200Response | ExtensionsResourcesDelete204Response | ExtensionsResourcesDeleteDefaultResponse>;
+}
+
+export declare interface ExtensionsResourcesGet200Response extends HttpResponse {
+    status: "200";
+    body: ExtensionsResourceOutput;
+}
+
+export declare interface ExtensionsResourcesGetDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type ExtensionsResourcesGetParameters = RequestParameters;
+
+export declare interface ExtensionsResourcesGetResourceUriPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface ExtensionsResourcesListByScope {
+    get(options?: ExtensionsResourcesListByScopeParameters): StreamableMethod<ExtensionsResourcesListByScope200Response | ExtensionsResourcesListByScopeDefaultResponse>;
+}
+
+export declare interface ExtensionsResourcesListByScope200Response extends HttpResponse {
+    status: "200";
+    body: ExtensionsResourceListResultOutput;
+}
+
+export declare interface ExtensionsResourcesListByScopeDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type ExtensionsResourcesListByScopeParameters = RequestParameters;
+
+export declare interface ExtensionsResourcesListByScopeResourceUriPathParam {
+    value: string;
+    allowReserved: true;
+}
+
+export declare interface ExtensionsResourcesUpdate200Response extends HttpResponse {
+    status: "200";
+    body: ExtensionsResourceOutput;
+}
+
+export declare interface ExtensionsResourcesUpdateBodyParam {
+    body: ExtensionsResource;
+}
+
+export declare interface ExtensionsResourcesUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type ExtensionsResourcesUpdateParameters = ExtensionsResourcesUpdateBodyParam & RequestParameters;
+
+export declare interface ExtensionsResourcesUpdateResourceUriPathParam {
+    value: string;
+    allowReserved: true;
+}
+
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 export declare function getLongRunningPoller<TResult extends TopLevelCreateOrReplaceLogicalResponse | TopLevelCreateOrReplaceDefaultResponse>(client: Client, initialResponse: TopLevelCreateOrReplace200Response | TopLevelCreateOrReplace201Response | TopLevelCreateOrReplaceDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -108,6 +253,8 @@ export declare function getLongRunningPoller<TResult extends NestedUpdateLogical
 export declare function getLongRunningPoller<TResult extends NestedDeleteLogicalResponse | NestedDeleteDefaultResponse>(client: Client, initialResponse: NestedDelete202Response | NestedDelete204Response | NestedDeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 export declare function getLongRunningPoller<TResult extends SingletonCreateOrUpdateLogicalResponse | SingletonCreateOrUpdateDefaultResponse>(client: Client, initialResponse: SingletonCreateOrUpdate200Response | SingletonCreateOrUpdate201Response | SingletonCreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+export declare function getLongRunningPoller<TResult extends ExtensionsResourcesCreateOrUpdateLogicalResponse | ExtensionsResourcesCreateOrUpdateDefaultResponse>(client: Client, initialResponse: ExtensionsResourcesCreateOrUpdate200Response | ExtensionsResourcesCreateOrUpdate201Response | ExtensionsResourcesCreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
@@ -159,6 +306,135 @@ export declare function isUnexpected(response: SingletonCreateOrUpdate200Respons
 export declare function isUnexpected(response: SingletonUpdate200Response | SingletonUpdateDefaultResponse): response is SingletonUpdateDefaultResponse;
 
 export declare function isUnexpected(response: SingletonListByResourceGroup200Response | SingletonListByResourceGroupDefaultResponse): response is SingletonListByResourceGroupDefaultResponse;
+
+export declare function isUnexpected(response: ExtensionsResourcesGet200Response | ExtensionsResourcesGetDefaultResponse): response is ExtensionsResourcesGetDefaultResponse;
+
+export declare function isUnexpected(response: ExtensionsResourcesCreateOrUpdate200Response | ExtensionsResourcesCreateOrUpdate201Response | ExtensionsResourcesCreateOrUpdateLogicalResponse | ExtensionsResourcesCreateOrUpdateDefaultResponse): response is ExtensionsResourcesCreateOrUpdateDefaultResponse;
+
+export declare function isUnexpected(response: ExtensionsResourcesUpdate200Response | ExtensionsResourcesUpdateDefaultResponse): response is ExtensionsResourcesUpdateDefaultResponse;
+
+export declare function isUnexpected(response: ExtensionsResourcesDelete200Response | ExtensionsResourcesDelete204Response | ExtensionsResourcesDeleteDefaultResponse): response is ExtensionsResourcesDeleteDefaultResponse;
+
+export declare function isUnexpected(response: ExtensionsResourcesListByScope200Response | ExtensionsResourcesListByScopeDefaultResponse): response is ExtensionsResourcesListByScopeDefaultResponse;
+
+export declare function isUnexpected(response: LocationResourcesGet200Response | LocationResourcesGetDefaultResponse): response is LocationResourcesGetDefaultResponse;
+
+export declare function isUnexpected(response: LocationResourcesCreateOrUpdate200Response | LocationResourcesCreateOrUpdate201Response | LocationResourcesCreateOrUpdateDefaultResponse): response is LocationResourcesCreateOrUpdateDefaultResponse;
+
+export declare function isUnexpected(response: LocationResourcesUpdate200Response | LocationResourcesUpdateDefaultResponse): response is LocationResourcesUpdateDefaultResponse;
+
+export declare function isUnexpected(response: LocationResourcesDelete200Response | LocationResourcesDelete204Response | LocationResourcesDeleteDefaultResponse): response is LocationResourcesDeleteDefaultResponse;
+
+export declare function isUnexpected(response: LocationResourcesListByLocation200Response | LocationResourcesListByLocationDefaultResponse): response is LocationResourcesListByLocationDefaultResponse;
+
+export declare interface LocationResource extends ProxyResource {
+    properties?: LocationResourceProperties;
+}
+
+export declare interface LocationResourceListResultOutput {
+    value: Array<LocationResourceOutput>;
+    nextLink?: string;
+}
+
+export declare interface LocationResourceOutput extends ProxyResourceOutput {
+    properties?: LocationResourcePropertiesOutput;
+}
+
+export declare interface LocationResourceProperties {
+    description?: string;
+}
+
+export declare interface LocationResourcePropertiesOutput {
+    description?: string;
+    readonly provisioningState?: ProvisioningStateOutput;
+}
+
+export declare interface LocationResourcesCreateOrUpdate200Response extends HttpResponse {
+    status: "200";
+    body: LocationResourceOutput;
+}
+
+export declare interface LocationResourcesCreateOrUpdate201Response extends HttpResponse {
+    status: "201";
+    body: LocationResourceOutput;
+}
+
+export declare interface LocationResourcesCreateOrUpdateBodyParam {
+    body: LocationResource;
+}
+
+export declare interface LocationResourcesCreateOrUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type LocationResourcesCreateOrUpdateParameters = LocationResourcesCreateOrUpdateBodyParam & RequestParameters;
+
+export declare interface LocationResourcesDelete200Response extends HttpResponse {
+    status: "200";
+}
+
+export declare interface LocationResourcesDelete204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface LocationResourcesDeleteDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type LocationResourcesDeleteParameters = RequestParameters;
+
+export declare interface LocationResourcesGet {
+    get(options?: LocationResourcesGetParameters): StreamableMethod<LocationResourcesGet200Response | LocationResourcesGetDefaultResponse>;
+    put(options: LocationResourcesCreateOrUpdateParameters): StreamableMethod<LocationResourcesCreateOrUpdate200Response | LocationResourcesCreateOrUpdate201Response | LocationResourcesCreateOrUpdateDefaultResponse>;
+    patch(options: LocationResourcesUpdateParameters): StreamableMethod<LocationResourcesUpdate200Response | LocationResourcesUpdateDefaultResponse>;
+    delete(options?: LocationResourcesDeleteParameters): StreamableMethod<LocationResourcesDelete200Response | LocationResourcesDelete204Response | LocationResourcesDeleteDefaultResponse>;
+}
+
+export declare interface LocationResourcesGet200Response extends HttpResponse {
+    status: "200";
+    body: LocationResourceOutput;
+}
+
+export declare interface LocationResourcesGetDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type LocationResourcesGetParameters = RequestParameters;
+
+export declare interface LocationResourcesListByLocation {
+    get(options?: LocationResourcesListByLocationParameters): StreamableMethod<LocationResourcesListByLocation200Response | LocationResourcesListByLocationDefaultResponse>;
+}
+
+export declare interface LocationResourcesListByLocation200Response extends HttpResponse {
+    status: "200";
+    body: LocationResourceListResultOutput;
+}
+
+export declare interface LocationResourcesListByLocationDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type LocationResourcesListByLocationParameters = RequestParameters;
+
+export declare interface LocationResourcesUpdate200Response extends HttpResponse {
+    status: "200";
+    body: LocationResourceOutput;
+}
+
+export declare interface LocationResourcesUpdateBodyParam {
+    body: LocationResource;
+}
+
+export declare interface LocationResourcesUpdateDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type LocationResourcesUpdateParameters = LocationResourcesUpdateBodyParam & RequestParameters;
 
 export declare interface NestedCreateOrReplace200Response extends HttpResponse {
     status: "200";
@@ -554,6 +830,10 @@ export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}/nestedProxyResources", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): NestedListByTopLevelTrackedResource;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources/default", subscriptionId: string, resourceGroupName: string): SingletonGetByResourceGroup;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/singletonTrackedResources", subscriptionId: string, resourceGroupName: string): SingletonListByResourceGroup;
+    (path: "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}", resourceUri: ExtensionsResourcesGetResourceUriPathParam, extensionsResourceName: string): ExtensionsResourcesGet;
+    (path: "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources", resourceUri: ExtensionsResourcesListByScopeResourceUriPathParam): ExtensionsResourcesListByScope;
+    (path: "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Resources/locations/{location}/locationResources/{locationResourceName}", subscriptionId: string, location: string, locationResourceName: string): LocationResourcesGet;
+    (path: "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.Resources/locations/{location}/locationResources", subscriptionId: string, location: string): LocationResourcesListByLocation;
 }
 
 export declare type Severity = string;

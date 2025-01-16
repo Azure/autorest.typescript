@@ -26,7 +26,7 @@ export declare class ClientBClient {
 export declare interface ClientBClientOptionalParams extends ClientOptions {
 }
 
-export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
+declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
 export declare interface RenamedFiveOptionalParams extends OperationOptions {
 }
