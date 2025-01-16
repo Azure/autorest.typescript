@@ -14,12 +14,16 @@ describe("PageableClient Classical Client", () => {
     });
 
     it("Payload Pageable ServerDriven Pagination link", async () => {
-        const result = await client.serverDrivenPagination.link();
-        assert.strictEqual(result.pets[0]?.id, '1');
-        assert.strictEqual(result.pets[0]?.name, 'dog');
-        assert.strictEqual(result.pets[1]?.id, '2');
-        assert.strictEqual(result.pets[1]?.name, 'cat');
-        assert.strictEqual(result.links.next, "http://localhost:3002/payload/pageable/server-driven-pagination/link/nextPage");
+        const result = client.serverDrivenPagination.link();
+        const items = [];
+        for await (const user of result) {
+            items.push(user);
+        }
+        assert.strictEqual(items.length, 2);
+        assert.strictEqual(items[0]?.id, '1');
+        assert.strictEqual(items[0]?.name, 'dog');
+        assert.strictEqual(items[1]?.id, '2');
+        assert.strictEqual(items[1]?.name, 'cat');
     });
 
 });
