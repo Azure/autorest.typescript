@@ -41,10 +41,6 @@ export declare interface ExportOptionalParams extends OperationOptions {
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
-export declare enum KnownVersions {
-    v2022_12_01_preview = "2022-12-01-preview"
-}
-
 export declare interface ListOptionalParams extends OperationOptions {
     top?: number;
     skip?: number;
@@ -65,18 +61,18 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-export declare interface User {
+declare interface User {
     readonly id: number;
     name: string;
     orders?: UserOrder[];
     readonly etag: string;
 }
 
-export declare interface UserList {
+declare interface UserList {
     users: User[];
 }
 
-export declare interface UserOrder {
+declare interface UserOrder {
     readonly id: number;
     userId: number;
     detail: string;

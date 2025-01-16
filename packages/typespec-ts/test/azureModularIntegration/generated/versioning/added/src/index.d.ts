@@ -14,25 +14,25 @@ export declare class AddedClient {
 export declare interface AddedClientOptionalParams extends ClientOptions {
 }
 
-export declare type EnumV1 = "enumMemberV1" | "enumMemberV2";
+declare type EnumV1 = "enumMemberV1" | "enumMemberV2";
 
-export declare type EnumV2 = "enumMember";
+declare type EnumV2 = "enumMember";
 
-export declare interface ModelV1 {
+declare interface ModelV1 {
     prop: string;
     enumProp: EnumV1;
     unionProp: UnionV1;
 }
 
-export declare interface ModelV2 {
+declare interface ModelV2 {
     prop: string;
     enumProp: EnumV2;
     unionProp: UnionV2;
 }
 
-export declare type UnionV1 = string | number;
+declare type UnionV1 = string | number;
 
-export declare type UnionV2 = string | number;
+declare type UnionV2 = string | number;
 
 export declare interface V1OptionalParams extends OperationOptions {
 }
@@ -43,6 +43,6 @@ export declare interface V2InInterfaceOptionalParams extends OperationOptions {
 export declare interface V2OptionalParams extends OperationOptions {
 }
 
-export declare type Versions = "v1" | "v2";
+declare type Versions = "v1" | "v2";
 
 export { }

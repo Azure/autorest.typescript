@@ -2,15 +2,15 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare interface Base64BytesProperty {
+declare interface Base64BytesProperty {
     value: Uint8Array;
 }
 
-export declare interface Base64urlArrayBytesProperty {
+declare interface Base64urlArrayBytesProperty {
     value: Uint8Array[];
 }
 
-export declare interface Base64urlBytesProperty {
+declare interface Base64urlBytesProperty {
     value: Uint8Array;
 }
 
@@ -28,7 +28,7 @@ export declare class BytesClient {
 export declare interface BytesClientOptionalParams extends ClientOptions {
 }
 
-export declare interface DefaultBytesProperty {
+declare interface DefaultBytesProperty {
     value: Uint8Array;
 }
 

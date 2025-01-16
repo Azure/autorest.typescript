@@ -2,9 +2,9 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare type ClientExtensibleEnum = "value1";
+declare type ClientExtensibleEnum = "value1";
 
-export declare interface ClientModel {
+declare interface ClientModel {
     defaultName: boolean;
 }
 
@@ -19,11 +19,11 @@ export declare interface ClientModelOperations {
     client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
 }
 
-export declare interface ClientNameAndJsonEncodedNameModel {
+declare interface ClientNameAndJsonEncodedNameModel {
     clientName: boolean;
 }
 
-export declare interface ClientNameModel {
+declare interface ClientNameModel {
     clientName: boolean;
 }
 
@@ -36,9 +36,9 @@ export declare interface ClientOptionalParams extends OperationOptions {
 export declare interface CompatibleWithEncodedNameOptionalParams extends OperationOptions {
 }
 
-export declare type ExtensibleEnum = "value1" | "value2";
+declare type ExtensibleEnum = "value1" | "value2";
 
-export declare interface LanguageClientNameModel {
+declare interface LanguageClientNameModel {
     tSName: boolean;
 }
 
@@ -72,7 +72,7 @@ export declare interface RequestOptionalParams extends OperationOptions {
 export declare interface ResponseOptionalParams extends OperationOptions {
 }
 
-export declare interface TSModel {
+declare interface TSModel {
     defaultName: boolean;
 }
 

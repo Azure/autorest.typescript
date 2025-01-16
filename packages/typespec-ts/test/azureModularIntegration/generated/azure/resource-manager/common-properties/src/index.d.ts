@@ -15,75 +15,40 @@ export declare interface CommonPropertiesClientOptionalParams extends ClientOpti
     apiVersion?: string;
 }
 
-export declare type CreatedByType = string;
+declare type CreatedByType = string;
 
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
-}
-
-export declare interface ErrorAdditionalInfo {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface ErrorDetail {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: ErrorDetail[];
-    readonly additionalInfo?: ErrorAdditionalInfo[];
-}
-
-export declare interface ErrorResponse {
-    error?: ErrorDetail;
 }
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
-export declare enum KnownCreatedByType {
-    User = "User",
-    Application = "Application",
-    ManagedIdentity = "ManagedIdentity",
-    Key = "Key"
-}
-
-export declare enum KnownManagedServiceIdentityType {
-    None = "None",
-    SystemAssigned = "SystemAssigned",
-    UserAssigned = "UserAssigned",
-    "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned"
-}
-
-export declare enum KnownVersions {
-    v2023_12_01_preview = "2023-12-01-preview"
-}
-
-export declare interface ManagedIdentityTrackedResource extends TrackedResource {
+declare interface ManagedIdentityTrackedResource extends TrackedResource {
     properties?: ManagedIdentityTrackedResourceProperties;
     identity?: ManagedServiceIdentity;
 }
 
-export declare interface ManagedIdentityTrackedResourceProperties {
+declare interface ManagedIdentityTrackedResourceProperties {
     readonly provisioningState: string;
 }
 
-export declare interface ManagedServiceIdentity {
+declare interface ManagedServiceIdentity {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityType;
     userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-export declare type ManagedServiceIdentityType = string;
+declare type ManagedServiceIdentityType = string;
 
-export declare interface Resource {
+declare interface Resource {
     readonly id?: string;
     readonly name?: string;
     readonly type?: string;
     readonly systemData?: SystemData;
 }
 
-export declare interface SystemData {
+declare interface SystemData {
     createdBy?: string;
     createdByType?: CreatedByType;
     createdAt?: Date;
@@ -92,7 +57,7 @@ export declare interface SystemData {
     lastModifiedAt?: Date;
 }
 
-export declare interface TrackedResource extends Resource {
+declare interface TrackedResource extends Resource {
     tags?: Record<string, string>;
     location: string;
 }
@@ -100,7 +65,7 @@ export declare interface TrackedResource extends Resource {
 export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
 }
 
-export declare interface UserAssignedIdentity {
+declare interface UserAssignedIdentity {
     readonly principalId?: string;
     readonly clientId?: string;
 }

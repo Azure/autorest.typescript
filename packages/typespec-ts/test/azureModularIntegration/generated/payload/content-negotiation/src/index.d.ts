@@ -24,7 +24,7 @@ export declare interface DifferentBodyOperations {
     getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
 }
 
-export declare interface PngImageAsJson {
+declare interface PngImageAsJson {
     content: Uint8Array;
 }
 

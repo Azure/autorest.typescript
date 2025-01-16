@@ -18,11 +18,6 @@ export declare interface FromOneRequiredOptionalParams extends OperationOptions 
     newParameter?: string;
 }
 
-export declare enum KnownVersions {
-    v1 = "v1",
-    v2 = "v2"
-}
-
 export declare class ResiliencyServiceDrivenClient {
     private _client;
     readonly pipeline: Pipeline;

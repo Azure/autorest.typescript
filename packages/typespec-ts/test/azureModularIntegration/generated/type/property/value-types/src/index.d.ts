@@ -13,7 +13,7 @@ export declare interface BooleanLiteralOperations {
     get: (options?: BooleanLiteralGetOptionalParams) => Promise<BooleanLiteralProperty>;
 }
 
-export declare interface BooleanLiteralProperty {
+declare interface BooleanLiteralProperty {
     property: true;
 }
 
@@ -25,7 +25,7 @@ export declare interface BooleanOperations {
     get: (options?: BooleanGetOptionalParams) => Promise<BooleanProperty>;
 }
 
-export declare interface BooleanProperty {
+declare interface BooleanProperty {
     property: boolean;
 }
 
@@ -40,7 +40,7 @@ export declare interface BytesOperations {
     get: (options?: BytesGetOptionalParams) => Promise<BytesProperty>;
 }
 
-export declare interface BytesProperty {
+declare interface BytesProperty {
     property: Uint8Array;
 }
 
@@ -55,7 +55,7 @@ export declare interface CollectionsIntOperations {
     get: (options?: CollectionsIntGetOptionalParams) => Promise<CollectionsIntProperty>;
 }
 
-export declare interface CollectionsIntProperty {
+declare interface CollectionsIntProperty {
     property: number[];
 }
 
@@ -70,7 +70,7 @@ export declare interface CollectionsModelOperations {
     get: (options?: CollectionsModelGetOptionalParams) => Promise<CollectionsModelProperty>;
 }
 
-export declare interface CollectionsModelProperty {
+declare interface CollectionsModelProperty {
     property: InnerModel[];
 }
 
@@ -85,7 +85,7 @@ export declare interface CollectionsStringOperations {
     get: (options?: CollectionsStringGetOptionalParams) => Promise<CollectionsStringProperty>;
 }
 
-export declare interface CollectionsStringProperty {
+declare interface CollectionsStringProperty {
     property: string[];
 }
 
@@ -100,7 +100,7 @@ export declare interface DatetimeOperations {
     get: (options?: DatetimeGetOptionalParams) => Promise<DatetimeProperty>;
 }
 
-export declare interface DatetimeProperty {
+declare interface DatetimeProperty {
     property: Date;
 }
 
@@ -115,7 +115,7 @@ export declare interface Decimal128Operations {
     get: (options?: Decimal128GetOptionalParams) => Promise<Decimal128Property>;
 }
 
-export declare interface Decimal128Property {
+declare interface Decimal128Property {
     property: number;
 }
 
@@ -130,7 +130,7 @@ export declare interface DecimalOperations {
     get: (options?: DecimalGetOptionalParams) => Promise<DecimalProperty>;
 }
 
-export declare interface DecimalProperty {
+declare interface DecimalProperty {
     property: number;
 }
 
@@ -145,7 +145,7 @@ export declare interface DictionaryStringOperations {
     get: (options?: DictionaryStringGetOptionalParams) => Promise<DictionaryStringProperty>;
 }
 
-export declare interface DictionaryStringProperty {
+declare interface DictionaryStringProperty {
     property: Record<string, string>;
 }
 
@@ -160,7 +160,7 @@ export declare interface DurationOperations {
     get: (options?: DurationGetOptionalParams) => Promise<DurationProperty>;
 }
 
-export declare interface DurationProperty {
+declare interface DurationProperty {
     property: string;
 }
 
@@ -175,14 +175,12 @@ export declare interface EnumOperations {
     get: (options?: EnumGetOptionalParams) => Promise<EnumProperty>;
 }
 
-export declare interface EnumProperty {
+declare interface EnumProperty {
     property: FixedInnerEnum;
 }
 
 export declare interface EnumPutOptionalParams extends OperationOptions {
 }
-
-export declare type ExtendedEnum = "value2";
 
 export declare interface ExtensibleEnumGetOptionalParams extends OperationOptions {
 }
@@ -192,14 +190,14 @@ export declare interface ExtensibleEnumOperations {
     get: (options?: ExtensibleEnumGetOptionalParams) => Promise<ExtensibleEnumProperty>;
 }
 
-export declare interface ExtensibleEnumProperty {
+declare interface ExtensibleEnumProperty {
     property: InnerEnum;
 }
 
 export declare interface ExtensibleEnumPutOptionalParams extends OperationOptions {
 }
 
-export declare type FixedInnerEnum = "ValueOne" | "ValueTwo";
+declare type FixedInnerEnum = "ValueOne" | "ValueTwo";
 
 export declare interface FloatGetOptionalParams extends OperationOptions {
 }
@@ -212,7 +210,7 @@ export declare interface FloatLiteralOperations {
     get: (options?: FloatLiteralGetOptionalParams) => Promise<FloatLiteralProperty>;
 }
 
-export declare interface FloatLiteralProperty {
+declare interface FloatLiteralProperty {
     property: 43.125;
 }
 
@@ -224,16 +222,16 @@ export declare interface FloatOperations {
     get: (options?: FloatGetOptionalParams) => Promise<FloatProperty>;
 }
 
-export declare interface FloatProperty {
+declare interface FloatProperty {
     property: number;
 }
 
 export declare interface FloatPutOptionalParams extends OperationOptions {
 }
 
-export declare type InnerEnum = "ValueOne" | "ValueTwo";
+declare type InnerEnum = "ValueOne" | "ValueTwo";
 
-export declare interface InnerModel {
+declare interface InnerModel {
     property: string;
 }
 
@@ -248,7 +246,7 @@ export declare interface IntLiteralOperations {
     get: (options?: IntLiteralGetOptionalParams) => Promise<IntLiteralProperty>;
 }
 
-export declare interface IntLiteralProperty {
+declare interface IntLiteralProperty {
     property: 42;
 }
 
@@ -260,7 +258,7 @@ export declare interface IntOperations {
     get: (options?: IntGetOptionalParams) => Promise<IntProperty>;
 }
 
-export declare interface IntProperty {
+declare interface IntProperty {
     property: number;
 }
 
@@ -275,7 +273,7 @@ export declare interface ModelOperations {
     get: (options?: ModelGetOptionalParams) => Promise<ModelProperty>;
 }
 
-export declare interface ModelProperty {
+declare interface ModelProperty {
     property: InnerModel;
 }
 
@@ -290,7 +288,7 @@ export declare interface NeverOperations {
     get: (options?: NeverGetOptionalParams) => Promise<NeverProperty>;
 }
 
-export declare interface NeverProperty {
+declare interface NeverProperty {
 }
 
 export declare interface NeverPutOptionalParams extends OperationOptions {
@@ -307,7 +305,7 @@ export declare interface StringLiteralOperations {
     get: (options?: StringLiteralGetOptionalParams) => Promise<StringLiteralProperty>;
 }
 
-export declare interface StringLiteralProperty {
+declare interface StringLiteralProperty {
     property: "hello";
 }
 
@@ -319,7 +317,7 @@ export declare interface StringOperations {
     get: (options?: StringGetOptionalParams) => Promise<StringProperty>;
 }
 
-export declare interface StringProperty {
+declare interface StringProperty {
     property: string;
 }
 
@@ -334,7 +332,7 @@ export declare interface UnionEnumValueOperations {
     get: (options?: UnionEnumValueGetOptionalParams) => Promise<UnionEnumValueProperty>;
 }
 
-export declare interface UnionEnumValueProperty {
+declare interface UnionEnumValueProperty {
     property: "value2";
 }
 
@@ -349,7 +347,7 @@ export declare interface UnionFloatLiteralOperations {
     get: (options?: UnionFloatLiteralGetOptionalParams) => Promise<UnionFloatLiteralProperty>;
 }
 
-export declare interface UnionFloatLiteralProperty {
+declare interface UnionFloatLiteralProperty {
     property: 43.125 | 46.875;
 }
 
@@ -364,7 +362,7 @@ export declare interface UnionIntLiteralOperations {
     get: (options?: UnionIntLiteralGetOptionalParams) => Promise<UnionIntLiteralProperty>;
 }
 
-export declare interface UnionIntLiteralProperty {
+declare interface UnionIntLiteralProperty {
     property: 42 | 43;
 }
 
@@ -379,7 +377,7 @@ export declare interface UnionStringLiteralOperations {
     get: (options?: UnionStringLiteralGetOptionalParams) => Promise<UnionStringLiteralProperty>;
 }
 
-export declare interface UnionStringLiteralProperty {
+declare interface UnionStringLiteralProperty {
     property: "hello" | "world";
 }
 
@@ -394,7 +392,7 @@ export declare interface UnknownArrayOperations {
     get: (options?: UnknownArrayGetOptionalParams) => Promise<UnknownArrayProperty>;
 }
 
-export declare interface UnknownArrayProperty {
+declare interface UnknownArrayProperty {
     property: any;
 }
 
@@ -409,7 +407,7 @@ export declare interface UnknownDictOperations {
     get: (options?: UnknownDictGetOptionalParams) => Promise<UnknownDictProperty>;
 }
 
-export declare interface UnknownDictProperty {
+declare interface UnknownDictProperty {
     property: any;
 }
 
@@ -424,7 +422,7 @@ export declare interface UnknownIntOperations {
     get: (options?: UnknownIntGetOptionalParams) => Promise<UnknownIntProperty>;
 }
 
-export declare interface UnknownIntProperty {
+declare interface UnknownIntProperty {
     property: any;
 }
 
@@ -439,7 +437,7 @@ export declare interface UnknownStringOperations {
     get: (options?: UnknownStringGetOptionalParams) => Promise<UnknownStringProperty>;
 }
 
-export declare interface UnknownStringProperty {
+declare interface UnknownStringProperty {
     property: any;
 }
 

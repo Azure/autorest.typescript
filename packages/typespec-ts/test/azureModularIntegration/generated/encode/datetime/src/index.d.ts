@@ -15,7 +15,7 @@ export declare class DatetimeClient {
 export declare interface DatetimeClientOptionalParams extends ClientOptions {
 }
 
-export declare interface DefaultDatetimeProperty {
+declare interface DefaultDatetimeProperty {
     value: Date;
 }
 
@@ -107,19 +107,19 @@ export declare interface ResponseHeaderRfc7231OptionalParams extends OperationOp
 export declare interface ResponseHeaderUnixTimestampOptionalParams extends OperationOptions {
 }
 
-export declare interface Rfc3339DatetimeProperty {
+declare interface Rfc3339DatetimeProperty {
     value: Date;
 }
 
-export declare interface Rfc7231DatetimeProperty {
+declare interface Rfc7231DatetimeProperty {
     value: Date;
 }
 
-export declare interface UnixTimestampArrayDatetimeProperty {
+declare interface UnixTimestampArrayDatetimeProperty {
     value: Date[];
 }
 
-export declare interface UnixTimestampDatetimeProperty {
+declare interface UnixTimestampDatetimeProperty {
     value: Date;
 }
 

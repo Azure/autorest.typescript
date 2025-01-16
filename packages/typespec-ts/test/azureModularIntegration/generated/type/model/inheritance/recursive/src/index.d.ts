@@ -5,9 +5,8 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 declare interface Element_2 {
     extension?: Extension[];
 }
-export { Element_2 as Element }
 
-export declare interface Extension extends Element_2 {
+declare interface Extension extends Element_2 {
     level: number;
 }
 

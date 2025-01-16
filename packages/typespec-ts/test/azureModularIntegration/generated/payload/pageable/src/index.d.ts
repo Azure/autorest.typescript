@@ -2,6 +2,10 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -12,7 +16,17 @@ export declare class PageableClient {
 export declare interface PageableClientOptionalParams extends ClientOptions {
 }
 
-export declare interface Pet {
+export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    next(): Promise<IteratorResult<TElement>>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+}
+
+export declare interface PageSettings {
+    continuationToken?: string;
+}
+
+declare interface Pet {
     id: string;
     name: string;
 }
@@ -21,15 +35,7 @@ export declare interface ServerDrivenPaginationLinkOptionalParams extends Operat
 }
 
 export declare interface ServerDrivenPaginationOperations {
-    link: (options?: ServerDrivenPaginationLinkOptionalParams) => Promise<{
-        pets: Pet[];
-        links: {
-            next?: string;
-            prev?: string;
-            first?: string;
-            last?: string;
-        };
-    }>;
+    link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
 }
 
 export { }

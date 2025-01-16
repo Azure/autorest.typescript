@@ -15,6 +15,6 @@ export declare interface ReturnTypeChangedFromClientOptionalParams extends Clien
 export declare interface TestOptionalParams extends OperationOptions {
 }
 
-export declare type Versions = "v1" | "v2";
+declare type Versions = "v1" | "v2";
 
 export { }

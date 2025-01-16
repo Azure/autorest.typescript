@@ -2,17 +2,17 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-export declare interface ChildFlattenModel {
+declare interface ChildFlattenModel {
     summary: string;
     properties: ChildModel;
 }
 
-export declare interface ChildModel {
+declare interface ChildModel {
     description: string;
     age: number;
 }
 
-export declare interface FlattenModel {
+declare interface FlattenModel {
     name: string;
     properties: ChildModel;
 }
@@ -28,7 +28,7 @@ export declare class FlattenPropertyClient {
 export declare interface FlattenPropertyClientOptionalParams extends ClientOptions {
 }
 
-export declare interface NestedFlattenModel {
+declare interface NestedFlattenModel {
     name: string;
     properties: ChildFlattenModel;
 }
