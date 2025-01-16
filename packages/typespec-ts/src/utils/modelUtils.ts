@@ -390,30 +390,33 @@ function getSchemaForUnion(
   const values = [];
   let namedUnionMember = false;
 
-  if (asEnum?.open && asEnum.members.size > 0) {
-    for (const [_, member] of asEnum.members.entries()) {
-      const memberType = getSchemaForType(dpgContext, member.type, {
-        ...options,
-        needRef: false
-      });
-      values.push(memberType);
-      if (memberType.name) {
-        namedUnionMember = true;
+  if (!(options?.needRef && union.name)) {
+    if (asEnum?.open && asEnum.members.size > 0) {
+      for (const [_, member] of asEnum.members.entries()) {
+        const memberType = getSchemaForType(dpgContext, member.type, {
+          ...options,
+          needRef: options?.needRef ?? false
+        });
+        values.push(memberType);
+        if (memberType.name) {
+          namedUnionMember = true;
+        }
       }
-    }
-  } else {
-    for (const variant of variants) {
-      // We already know it's not a model type
-      const variantType = getSchemaForType(dpgContext, variant.type, {
-        ...options,
-        needRef: false
-      });
-      values.push(variantType);
-      if (variantType.typeName) {
-        namedUnionMember = true;
+    } else {
+      for (const variant of variants) {
+        // We already know it's not a model type
+        const variantType = getSchemaForType(dpgContext, variant.type, {
+          ...options,
+          needRef: options?.needRef ?? false
+        });
+        values.push(variantType);
+        if (variantType.typeName) {
+          namedUnionMember = true;
+        }
       }
     }
   }
+
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
@@ -433,27 +436,25 @@ function getSchemaForUnion(
               (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
             )
             .join(" | ");
-    if (!union.expression) {
-      const unionName = union.name
-        ? normalizeName(union.name, NameType.Interface)
-        : undefined;
-      schema.name = unionName;
-      schema.type = "object";
-      schema.typeName = unionName;
-      schema.outputTypeName = unionName + "Output";
-      schema.alias = unionAlias;
-      schema.outputAlias = outputUnionAlias;
-    } else if (union.expression && !union.name) {
-      schema.type = "union";
-      schema.typeName = unionAlias;
-      schema.outputTypeName = outputUnionAlias;
-    } else {
-      schema.type = "union";
-      schema.typeName = union.name ?? unionAlias;
-      schema.outputTypeName = union.name
-        ? union.name + "Output"
-        : outputUnionAlias;
-    }
+    schema.alias = unionAlias;
+    schema.outputAlias = outputUnionAlias;
+  }
+  if (!union.expression) {
+    const unionName = union.name
+      ? normalizeName(union.name, NameType.Interface)
+      : undefined;
+    schema.name = unionName;
+    schema.type = "object";
+    schema.typeName = unionName;
+    schema.outputTypeName = unionName + "Output";
+  } else if (union.expression && !union.name) {
+    schema.type = "union";
+  } else {
+    schema.type = "union";
+    schema.typeName = union.name ?? schema.alias;
+    schema.outputTypeName = union.name
+      ? union.name + "Output"
+      : schema.outputAlias;
   }
 
   return schema;
