@@ -1,5 +1,6 @@
-## 0.38.0 (2025-01-15)
+## 0.38.0 (2025-01-16)
 
+- [Feature] Upgrade compiler version to 0.64. Please refer to [#3006](https://github.com/Azure/autorest.typescript/pull/3006)
 - [Feature] Multipart/form-data support for typespec-todo. Please refer to [#2984](https://github.com/Azure/autorest.typescript/pull/2984)
 - [Feature] Model namespaces hierarchies. Please refer to [#2969](https://github.com/Azure/autorest.typescript/pull/2969)
 - [Feature] Support title config for typespec generation. Please refer to [#2941](https://github.com/Azure/autorest.typescript/pull/2941)
