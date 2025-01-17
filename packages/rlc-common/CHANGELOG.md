@@ -1,6 +1,6 @@
 ## 0.38.1 (2025-01-17)
 
-- [Bugfix] Fix-windows-env-issue-in-model-namespace-hierarchy. Please refer to [#3008](https://github.com/Azure/autorest.typescript/pull/3008)
+- [Bugfix] Fix windows env issue in model namespace hierarchy. Please refer to [#3008](https://github.com/Azure/autorest.typescript/pull/3008)
 
 ## 0.38.0 (2025-01-16)
 
