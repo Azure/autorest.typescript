@@ -250,6 +250,7 @@ export function getModelNamespaces(
     if (
       model.clientNamespace.startsWith("Azure.ResourceManager") ||
       model.clientNamespace.startsWith("Azure.Core") ||
+      model.crossLanguageDefinitionId.startsWith("TypeSpec.Rest.Resource") ||
       model.crossLanguageDefinitionId === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
     ) {
       return [];
