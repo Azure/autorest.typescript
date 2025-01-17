@@ -2,14 +2,14 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface ActionRequest {
+export declare interface ActionRequest {
     stringProperty: string;
     modelProperty?: Model;
     arrayProperty?: string[];
     recordProperty?: Record<string, string>;
 }
 
-declare interface ActionResponse {
+export declare interface ActionResponse {
     stringProperty: string;
     modelProperty?: Model;
     arrayProperty?: string[];
@@ -30,9 +30,13 @@ export declare interface AzureExampleClientOptionalParams extends ClientOptions 
 export declare interface BasicActionOptionalParams extends OperationOptions {
 }
 
-declare type Enum = "EnumValue1";
+export declare type Enum = "EnumValue1";
 
-declare interface Model {
+export declare enum KnownVersions {
+    v2022_12_01_preview = "2022-12-01-preview"
+}
+
+export declare interface Model {
     int32Property?: number;
     float32Property?: number;
     enumProperty?: Enum;

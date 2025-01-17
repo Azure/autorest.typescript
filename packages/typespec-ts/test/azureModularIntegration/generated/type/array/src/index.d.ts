@@ -69,7 +69,7 @@ export declare interface Float32ValueOperations {
 export declare interface Float32ValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface InnerModel {
+export declare interface InnerModel {
     property: string;
     children?: InnerModel[];
 }

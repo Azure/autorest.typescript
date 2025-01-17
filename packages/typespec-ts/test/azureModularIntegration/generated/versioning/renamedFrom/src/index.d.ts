@@ -2,9 +2,9 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare type NewEnum = "newEnumMember";
+export declare type NewEnum = "newEnumMember";
 
-declare interface NewModel {
+export declare interface NewModel {
     newProp: string;
     enumProp: NewEnum;
     unionProp: NewUnion;
@@ -16,7 +16,7 @@ export declare interface NewOpInNewInterfaceOptionalParams extends OperationOpti
 export declare interface NewOpOptionalParams extends OperationOptions {
 }
 
-declare type NewUnion = string | number;
+export declare type NewUnion = string | number;
 
 export declare class RenamedFromClient {
     private _client;
@@ -29,6 +29,6 @@ export declare class RenamedFromClient {
 export declare interface RenamedFromClientOptionalParams extends ClientOptions {
 }
 
-declare type Versions = "v1" | "v2";
+export declare type Versions = "v1" | "v2";
 
 export { }

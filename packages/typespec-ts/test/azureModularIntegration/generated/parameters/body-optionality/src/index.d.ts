@@ -2,7 +2,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface BodyModel {
+export declare interface BodyModel {
     name: string;
 }
 

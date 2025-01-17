@@ -26,7 +26,7 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-declare interface Pet {
+export declare interface Pet {
     id: string;
     name: string;
 }

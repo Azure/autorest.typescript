@@ -2,99 +2,99 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface And {
+export declare interface And {
     name: string;
 }
 
-declare interface As {
+export declare interface As {
     name: string;
 }
 
-declare interface Assert {
+export declare interface Assert {
     name: string;
 }
 
-declare interface Async {
+export declare interface Async {
     name: string;
 }
 
-declare interface Await {
+export declare interface Await {
     name: string;
 }
 
-declare interface Break {
+export declare interface Break {
     name: string;
 }
 
-declare interface Class {
+export declare interface Class {
     name: string;
 }
 
-declare interface Constructor {
+export declare interface Constructor {
     name: string;
 }
 
-declare interface Continue {
+export declare interface Continue {
     name: string;
 }
 
-declare interface Def {
+export declare interface Def {
     name: string;
 }
 
-declare interface Del {
+export declare interface Del {
     name: string;
 }
 
-declare interface Elif {
+export declare interface Elif {
     name: string;
 }
 
-declare interface Else {
+export declare interface Else {
     name: string;
 }
 
-declare interface Except {
+export declare interface Except {
     name: string;
 }
 
-declare interface Exec {
+export declare interface Exec {
     name: string;
 }
 
-declare interface Finally {
+export declare interface Finally {
     name: string;
 }
 
-declare interface For {
+export declare interface For {
     name: string;
 }
 
-declare interface From {
+export declare interface From {
     name: string;
 }
 
-declare interface GlobalModel {
+export declare interface GlobalModel {
     name: string;
 }
 
-declare interface If {
+export declare interface If {
     name: string;
 }
 
-declare interface Import {
+export declare interface Import {
     name: string;
 }
 
-declare interface In {
+export declare interface In {
     name: string;
 }
 
-declare interface Is {
+export declare interface Is {
     name: string;
 }
 
-declare interface Lambda {
+export declare interface Lambda {
     name: string;
 }
 
@@ -240,7 +240,7 @@ export declare interface ModelsWithWithOptionalParams extends OperationOptions {
 export declare interface ModelsWithYieldOptionalParams extends OperationOptions {
 }
 
-declare interface Not {
+export declare interface Not {
     name: string;
 }
 
@@ -379,7 +379,7 @@ export declare interface OperationsWithOptionalParams extends OperationOptions {
 export declare interface OperationsYieldOptionalParams extends OperationOptions {
 }
 
-declare interface Or {
+export declare interface Or {
     name: string;
 }
 
@@ -522,19 +522,19 @@ export declare interface ParametersWithWithOptionalParams extends OperationOptio
 export declare interface ParametersWithYieldOptionalParams extends OperationOptions {
 }
 
-declare interface Pass {
+export declare interface Pass {
     name: string;
 }
 
-declare interface Raise {
+export declare interface Raise {
     name: string;
 }
 
-declare interface Return {
+export declare interface Return {
     name: string;
 }
 
-declare interface SameAsModel {
+export declare interface SameAsModel {
     sameAsModel: string;
 }
 
@@ -551,19 +551,19 @@ export declare class SpecialWordsClient {
 export declare interface SpecialWordsClientOptionalParams extends ClientOptions {
 }
 
-declare interface Try {
+export declare interface Try {
     name: string;
 }
 
-declare interface While {
+export declare interface While {
     name: string;
 }
 
-declare interface With {
+export declare interface With {
     name: string;
 }
 
-declare interface Yield {
+export declare interface Yield {
     name: string;
 }
 

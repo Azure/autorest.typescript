@@ -2,7 +2,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface TestModel {
+export declare interface TestModel {
     prop: string;
     changedProp: string;
 }
@@ -20,6 +20,6 @@ export declare class TypeChangedFromClient {
 export declare interface TypeChangedFromClientOptionalParams extends ClientOptions {
 }
 
-declare type Versions = "v1" | "v2";
+export declare type Versions = "v1" | "v2";
 
 export { }

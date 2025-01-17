@@ -14,13 +14,13 @@ export declare class EmptyClient {
 export declare interface EmptyClientOptionalParams extends ClientOptions {
 }
 
-declare interface EmptyInput {
+export declare interface EmptyInput {
 }
 
-declare interface EmptyInputOutput {
+export declare interface EmptyInputOutput {
 }
 
-declare interface EmptyOutput {
+export declare interface EmptyOutput {
 }
 
 export declare interface GetEmptyOptionalParams extends OperationOptions {

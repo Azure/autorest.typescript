@@ -2,18 +2,18 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface Cobra extends Snake {
+export declare interface Cobra extends Snake {
     kind: "cobra";
 }
 
-declare interface Dog {
+export declare interface Dog {
     kind: DogKind;
     weight: number;
 }
 
-declare type DogKind = "golden";
+export declare type DogKind = "golden";
 
-declare type DogUnion = Golden | Dog;
+export declare type DogUnion = Golden | Dog;
 
 export declare class EnumDiscriminatorClient {
     private _client;
@@ -50,7 +50,7 @@ export declare interface GetFixedModelOptionalParams extends OperationOptions {
 export declare interface GetFixedModelWrongDiscriminatorOptionalParams extends OperationOptions {
 }
 
-declare interface Golden extends Dog {
+export declare interface Golden extends Dog {
     kind: "golden";
 }
 
@@ -60,13 +60,13 @@ export declare interface PutExtensibleModelOptionalParams extends OperationOptio
 export declare interface PutFixedModelOptionalParams extends OperationOptions {
 }
 
-declare interface Snake {
+export declare interface Snake {
     kind: SnakeKind;
     length: number;
 }
 
-declare type SnakeKind = "cobra";
+export declare type SnakeKind = "cobra";
 
-declare type SnakeUnion = Cobra | Snake;
+export declare type SnakeUnion = Cobra | Snake;
 
 export { }

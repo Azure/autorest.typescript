@@ -2,7 +2,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface Cat extends Pet {
+export declare interface Cat extends Pet {
     age: number;
 }
 
@@ -21,7 +21,7 @@ export declare class NotDiscriminatedClient {
 export declare interface NotDiscriminatedClientOptionalParams extends ClientOptions {
 }
 
-declare interface Pet {
+export declare interface Pet {
     name: string;
 }
 
@@ -31,7 +31,7 @@ export declare interface PostValidOptionalParams extends OperationOptions {
 export declare interface PutValidOptionalParams extends OperationOptions {
 }
 
-declare interface Siamese extends Cat {
+export declare interface Siamese extends Cat {
     smart: boolean;
 }
 

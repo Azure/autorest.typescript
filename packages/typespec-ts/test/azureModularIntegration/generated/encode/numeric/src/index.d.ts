@@ -27,15 +27,15 @@ export declare interface PropertyUint32AsStringOptionalOptionalParams extends Op
 export declare interface PropertyUint8AsStringOptionalParams extends OperationOptions {
 }
 
-declare interface SafeintAsStringProperty {
+export declare interface SafeintAsStringProperty {
     value: string;
 }
 
-declare interface Uint32AsStringProperty {
+export declare interface Uint32AsStringProperty {
     value?: string;
 }
 
-declare interface Uint8AsStringProperty {
+export declare interface Uint8AsStringProperty {
     value: string;
 }
 

@@ -2,11 +2,11 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface Address {
+export declare interface Address {
     city: string;
 }
 
-declare interface BinaryArrayPartsRequest {
+export declare interface BinaryArrayPartsRequest {
     id: string;
     pictures: Array<FileContents | {
         contents: FileContents;
@@ -15,7 +15,7 @@ declare interface BinaryArrayPartsRequest {
     }>;
 }
 
-declare interface ComplexHttpPartsModelRequest {
+export declare interface ComplexHttpPartsModelRequest {
     id: string;
     address: Address;
     profileImage: File | {
@@ -31,7 +31,7 @@ declare interface ComplexHttpPartsModelRequest {
     }>;
 }
 
-declare interface ComplexPartsRequest {
+export declare interface ComplexPartsRequest {
     id: string;
     address: Address;
     profileImage: FileContents | {
@@ -48,7 +48,7 @@ declare interface ComplexPartsRequest {
 
 export declare type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
-declare interface FileWithHttpPartOptionalContentTypeRequest {
+export declare interface FileWithHttpPartOptionalContentTypeRequest {
     profileImage: File | {
         contents: FileContents;
         contentType?: string;
@@ -56,7 +56,7 @@ declare interface FileWithHttpPartOptionalContentTypeRequest {
     };
 }
 
-declare interface FileWithHttpPartRequiredContentTypeRequest {
+export declare interface FileWithHttpPartRequiredContentTypeRequest {
     profileImage: File | {
         contents: FileContents;
         contentType?: string;
@@ -64,7 +64,7 @@ declare interface FileWithHttpPartRequiredContentTypeRequest {
     };
 }
 
-declare interface FileWithHttpPartSpecificContentTypeRequest {
+export declare interface FileWithHttpPartSpecificContentTypeRequest {
     profileImage: File | {
         contents: FileContents;
         contentType?: "image/jpg";
@@ -140,7 +140,7 @@ export declare interface FormDataOperations {
     httpParts: FormDataHttpPartsOperations;
 }
 
-declare interface JsonPartRequest {
+export declare interface JsonPartRequest {
     address: Address;
     profileImage: FileContents | {
         contents: FileContents;
@@ -149,7 +149,7 @@ declare interface JsonPartRequest {
     };
 }
 
-declare interface MultiBinaryPartsRequest {
+export declare interface MultiBinaryPartsRequest {
     profileImage: FileContents | {
         contents: FileContents;
         contentType?: string;
@@ -172,7 +172,7 @@ export declare class MultiPartClient {
 export declare interface MultiPartClientOptionalParams extends ClientOptions {
 }
 
-declare interface MultiPartRequest {
+export declare interface MultiPartRequest {
     id: string;
     profileImage: FileContents | {
         contents: FileContents;

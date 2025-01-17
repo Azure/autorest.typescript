@@ -2,12 +2,12 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface AbstractModel {
+export declare interface AbstractModel {
     kind: string;
     name: string;
 }
 
-declare type AbstractModelUnion = RealModel | AbstractModel;
+export declare type AbstractModelUnion = RealModel | AbstractModel;
 
 export declare class AccessClient {
     private _client;
@@ -27,21 +27,21 @@ export declare class AccessClient {
 export declare interface AccessClientOptionalParams extends ClientOptions {
 }
 
-declare interface BaseModel {
+export declare interface BaseModel {
     name: string;
 }
 
 export declare interface DiscriminatorOptionalParams extends OperationOptions {
 }
 
-declare interface InnerModel {
+export declare interface InnerModel {
     name: string;
 }
 
 export declare interface InternalDecoratorInInternalOptionalParams extends OperationOptions {
 }
 
-declare interface InternalDecoratorModelInInternal {
+export declare interface InternalDecoratorModelInInternal {
     name: string;
 }
 
@@ -54,18 +54,18 @@ export declare interface NoDecoratorInInternalOptionalParams extends OperationOp
 export declare interface NoDecoratorInPublicOptionalParams extends OperationOptions {
 }
 
-declare interface NoDecoratorModelInInternal {
+export declare interface NoDecoratorModelInInternal {
     name: string;
 }
 
-declare interface NoDecoratorModelInPublic {
+export declare interface NoDecoratorModelInPublic {
     name: string;
 }
 
 export declare interface OperationOptionalParams extends OperationOptions {
 }
 
-declare interface OuterModel extends BaseModel {
+export declare interface OuterModel extends BaseModel {
     inner: InnerModel;
 }
 
@@ -75,22 +75,22 @@ export declare interface PublicDecoratorInInternalOptionalParams extends Operati
 export declare interface PublicDecoratorInPublicOptionalParams extends OperationOptions {
 }
 
-declare interface PublicDecoratorModelInInternal {
+export declare interface PublicDecoratorModelInInternal {
     name: string;
 }
 
-declare interface PublicDecoratorModelInPublic {
+export declare interface PublicDecoratorModelInPublic {
     name: string;
 }
 
 export declare interface PublicOptionalParams extends OperationOptions {
 }
 
-declare interface RealModel extends AbstractModel {
+export declare interface RealModel extends AbstractModel {
     kind: "real";
 }
 
-declare interface SharedModel {
+export declare interface SharedModel {
     name: string;
 }
 

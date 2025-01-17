@@ -2,15 +2,15 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface Cat {
+export declare interface Cat {
     name: string;
 }
 
-declare interface Dog {
+export declare interface Dog {
     bark: string;
 }
 
-declare interface EnumsOnlyCases {
+export declare interface EnumsOnlyCases {
     lr: "left" | "right" | "up" | "down";
     ud: "up" | "down";
 }
@@ -54,7 +54,12 @@ export declare interface IntsOnlyOperations {
 export declare interface IntsOnlySendOptionalParams extends OperationOptions {
 }
 
-declare interface MixedLiteralsCases {
+export declare enum KnownStringExtensibleNamedUnion {
+    OptionB = "b",
+    c = "c"
+}
+
+export declare interface MixedLiteralsCases {
     stringLiteral: "a" | 2 | 3.3 | true;
     intLiteral: "a" | 2 | 3.3 | true;
     floatLiteral: "a" | 2 | 3.3 | true;
@@ -74,7 +79,7 @@ export declare interface MixedLiteralsOperations {
 export declare interface MixedLiteralsSendOptionalParams extends OperationOptions {
 }
 
-declare interface MixedTypesCases {
+export declare interface MixedTypesCases {
     model: Cat | "a" | number | boolean;
     literal: Cat | "a" | number | boolean;
     int: Cat | "a" | number | boolean;
@@ -108,7 +113,7 @@ export declare interface ModelsOnlyOperations {
 export declare interface ModelsOnlySendOptionalParams extends OperationOptions {
 }
 
-declare interface StringAndArrayCases {
+export declare interface StringAndArrayCases {
     string: string | string[];
     array: string | string[];
 }
@@ -142,7 +147,7 @@ export declare interface StringExtensibleNamedOperations {
 export declare interface StringExtensibleNamedSendOptionalParams extends OperationOptions {
 }
 
-declare type StringExtensibleNamedUnion = string;
+export declare type StringExtensibleNamedUnion = string;
 
 export declare interface StringExtensibleOperations {
     send: (prop: string, options?: StringExtensibleSendOptionalParams) => Promise<void>;

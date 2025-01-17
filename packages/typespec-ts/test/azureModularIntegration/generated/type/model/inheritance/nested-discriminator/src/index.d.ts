@@ -2,12 +2,12 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface Fish {
+export declare interface Fish {
     kind: string;
     age: number;
 }
 
-declare type FishUnion = SharkUnion | Salmon | Fish;
+export declare type FishUnion = SharkUnion | Salmon | Fish;
 
 export declare interface GetMissingDiscriminatorOptionalParams extends OperationOptions {
 }
@@ -21,7 +21,7 @@ export declare interface GetRecursiveModelOptionalParams extends OperationOption
 export declare interface GetWrongDiscriminatorOptionalParams extends OperationOptions {
 }
 
-declare interface GoblinShark extends Shark {
+export declare interface GoblinShark extends Shark {
     sharktype: "goblin";
 }
 
@@ -46,22 +46,22 @@ export declare interface PutModelOptionalParams extends OperationOptions {
 export declare interface PutRecursiveModelOptionalParams extends OperationOptions {
 }
 
-declare interface Salmon extends Fish {
+export declare interface Salmon extends Fish {
     kind: "salmon";
     friends?: FishUnion[];
     hate?: Record<string, FishUnion>;
     partner?: FishUnion;
 }
 
-declare interface SawShark extends Shark {
+export declare interface SawShark extends Shark {
     sharktype: "saw";
 }
 
-declare interface Shark extends Fish {
+export declare interface Shark extends Fish {
     kind: "shark";
     sharktype: string;
 }
 
-declare type SharkUnion = SawShark | GoblinShark | Shark;
+export declare type SharkUnion = SawShark | GoblinShark | Shark;
 
 export { }

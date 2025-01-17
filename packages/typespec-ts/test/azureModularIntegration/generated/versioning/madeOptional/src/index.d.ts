@@ -12,7 +12,7 @@ export declare class MadeOptionalClient {
 export declare interface MadeOptionalClientOptionalParams extends ClientOptions {
 }
 
-declare interface TestModel {
+export declare interface TestModel {
     prop: string;
     changedProp?: string;
 }
@@ -21,6 +21,6 @@ export declare interface TestOptionalParams extends OperationOptions {
     param?: string;
 }
 
-declare type Versions = "v1" | "v2";
+export declare type Versions = "v1" | "v2";
 
 export { }

@@ -21,7 +21,7 @@ export declare interface BytesPatchNonNullOptionalParams extends OperationOption
 export declare interface BytesPatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface BytesProperty {
+export declare interface BytesProperty {
     requiredProperty: string;
     nullableProperty: Uint8Array | null;
 }
@@ -45,7 +45,7 @@ export declare interface CollectionsBytePatchNonNullOptionalParams extends Opera
 export declare interface CollectionsBytePatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsByteProperty {
+export declare interface CollectionsByteProperty {
     requiredProperty: string;
     nullableProperty: Uint8Array[] | null;
 }
@@ -69,7 +69,7 @@ export declare interface CollectionsModelPatchNonNullOptionalParams extends Oper
 export declare interface CollectionsModelPatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsModelProperty {
+export declare interface CollectionsModelProperty {
     requiredProperty: string;
     nullableProperty: InnerModel[] | null;
 }
@@ -93,7 +93,7 @@ export declare interface CollectionsStringPatchNonNullOptionalParams extends Ope
 export declare interface CollectionsStringPatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsStringProperty {
+export declare interface CollectionsStringProperty {
     requiredProperty: string;
     nullableProperty: string[] | null;
 }
@@ -117,7 +117,7 @@ export declare interface DatetimePatchNonNullOptionalParams extends OperationOpt
 export declare interface DatetimePatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimeProperty {
+export declare interface DatetimeProperty {
     requiredProperty: string;
     nullableProperty: Date | null;
 }
@@ -141,12 +141,12 @@ export declare interface DurationPatchNonNullOptionalParams extends OperationOpt
 export declare interface DurationPatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface DurationProperty {
+export declare interface DurationProperty {
     requiredProperty: string;
     nullableProperty: string | null;
 }
 
-declare interface InnerModel {
+export declare interface InnerModel {
     property: string;
 }
 
@@ -185,7 +185,7 @@ export declare interface StringPatchNonNullOptionalParams extends OperationOptio
 export declare interface StringPatchNullOptionalParams extends OperationOptions {
 }
 
-declare interface StringProperty {
+export declare interface StringProperty {
     requiredProperty: string;
     nullableProperty: string | null;
 }

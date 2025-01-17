@@ -6,12 +6,16 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
-declare interface GenerationOptions {
+export declare interface GenerationOptions {
     prompt: string;
 }
 
-declare interface GenerationResult {
+export declare interface GenerationResult {
     data: string;
+}
+
+export declare enum KnownVersions {
+    v2022_12_01_preview = "2022-12-01-preview"
 }
 
 export declare interface LongRunningRpcOptionalParams extends OperationOptions {

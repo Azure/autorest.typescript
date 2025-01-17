@@ -8,18 +8,18 @@ export declare interface InputAndOutputOptionalParams extends OperationOptions {
 export declare interface InputOptionalParams extends OperationOptions {
 }
 
-declare interface InputOutputRecord {
+export declare interface InputOutputRecord {
     requiredProp: string;
 }
 
-declare interface InputRecord {
+export declare interface InputRecord {
     requiredProp: string;
 }
 
 export declare interface OutputOptionalParams extends OperationOptions {
 }
 
-declare interface OutputRecord {
+export declare interface OutputRecord {
     requiredProp: string;
 }
 

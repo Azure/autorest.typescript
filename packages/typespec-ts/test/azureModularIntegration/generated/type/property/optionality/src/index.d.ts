@@ -15,7 +15,7 @@ export declare interface BooleanLiteralOperations {
     getAll: (options?: BooleanLiteralGetAllOptionalParams) => Promise<BooleanLiteralProperty>;
 }
 
-declare interface BooleanLiteralProperty {
+export declare interface BooleanLiteralProperty {
     property?: true;
 }
 
@@ -38,7 +38,7 @@ export declare interface BytesOperations {
     getAll: (options?: BytesGetAllOptionalParams) => Promise<BytesProperty>;
 }
 
-declare interface BytesProperty {
+export declare interface BytesProperty {
     property?: Uint8Array;
 }
 
@@ -61,7 +61,7 @@ export declare interface CollectionsByteOperations {
     getAll: (options?: CollectionsByteGetAllOptionalParams) => Promise<CollectionsByteProperty>;
 }
 
-declare interface CollectionsByteProperty {
+export declare interface CollectionsByteProperty {
     property?: Uint8Array[];
 }
 
@@ -84,7 +84,7 @@ export declare interface CollectionsModelOperations {
     getAll: (options?: CollectionsModelGetAllOptionalParams) => Promise<CollectionsModelProperty>;
 }
 
-declare interface CollectionsModelProperty {
+export declare interface CollectionsModelProperty {
     property?: StringProperty[];
 }
 
@@ -107,7 +107,7 @@ export declare interface DatetimeOperations {
     getAll: (options?: DatetimeGetAllOptionalParams) => Promise<DatetimeProperty>;
 }
 
-declare interface DatetimeProperty {
+export declare interface DatetimeProperty {
     property?: Date;
 }
 
@@ -130,7 +130,7 @@ export declare interface DurationOperations {
     getAll: (options?: DurationGetAllOptionalParams) => Promise<DurationProperty>;
 }
 
-declare interface DurationProperty {
+export declare interface DurationProperty {
     property?: string;
 }
 
@@ -153,7 +153,7 @@ export declare interface FloatLiteralOperations {
     getAll: (options?: FloatLiteralGetAllOptionalParams) => Promise<FloatLiteralProperty>;
 }
 
-declare interface FloatLiteralProperty {
+export declare interface FloatLiteralProperty {
     property?: 1.25;
 }
 
@@ -176,7 +176,7 @@ export declare interface IntLiteralOperations {
     getAll: (options?: IntLiteralGetAllOptionalParams) => Promise<IntLiteralProperty>;
 }
 
-declare interface IntLiteralProperty {
+export declare interface IntLiteralProperty {
     property?: 1;
 }
 
@@ -224,7 +224,7 @@ export declare interface PlainDateOperations {
     getAll: (options?: PlainDateGetAllOptionalParams) => Promise<PlainDateProperty>;
 }
 
-declare interface PlainDateProperty {
+export declare interface PlainDateProperty {
     property?: string;
 }
 
@@ -247,7 +247,7 @@ export declare interface PlainTimeOperations {
     getAll: (options?: PlainTimeGetAllOptionalParams) => Promise<PlainTimeProperty>;
 }
 
-declare interface PlainTimeProperty {
+export declare interface PlainTimeProperty {
     property?: string;
 }
 
@@ -270,7 +270,7 @@ export declare interface RequiredAndOptionalOperations {
     getAll: (options?: RequiredAndOptionalGetAllOptionalParams) => Promise<RequiredAndOptionalProperty>;
 }
 
-declare interface RequiredAndOptionalProperty {
+export declare interface RequiredAndOptionalProperty {
     optionalProperty?: string;
     requiredProperty: number;
 }
@@ -300,7 +300,7 @@ export declare interface StringLiteralOperations {
     getAll: (options?: StringLiteralGetAllOptionalParams) => Promise<StringLiteralProperty>;
 }
 
-declare interface StringLiteralProperty {
+export declare interface StringLiteralProperty {
     property?: "hello";
 }
 
@@ -317,7 +317,7 @@ export declare interface StringOperations {
     getAll: (options?: StringGetAllOptionalParams) => Promise<StringProperty>;
 }
 
-declare interface StringProperty {
+export declare interface StringProperty {
     property?: string;
 }
 
@@ -340,7 +340,7 @@ export declare interface UnionFloatLiteralOperations {
     getAll: (options?: UnionFloatLiteralGetAllOptionalParams) => Promise<UnionFloatLiteralProperty>;
 }
 
-declare interface UnionFloatLiteralProperty {
+export declare interface UnionFloatLiteralProperty {
     property?: 1.25 | 2.375;
 }
 
@@ -363,7 +363,7 @@ export declare interface UnionIntLiteralOperations {
     getAll: (options?: UnionIntLiteralGetAllOptionalParams) => Promise<UnionIntLiteralProperty>;
 }
 
-declare interface UnionIntLiteralProperty {
+export declare interface UnionIntLiteralProperty {
     property?: 1 | 2;
 }
 
@@ -386,7 +386,7 @@ export declare interface UnionStringLiteralOperations {
     getAll: (options?: UnionStringLiteralGetAllOptionalParams) => Promise<UnionStringLiteralProperty>;
 }
 
-declare interface UnionStringLiteralProperty {
+export declare interface UnionStringLiteralProperty {
     property?: "hello" | "world";
 }
 

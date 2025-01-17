@@ -30,7 +30,7 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-declare interface User {
+export declare interface User {
     name: string;
 }
 

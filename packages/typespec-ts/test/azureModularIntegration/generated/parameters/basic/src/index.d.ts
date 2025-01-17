@@ -27,7 +27,7 @@ export declare interface ImplicitBodyOperations {
 export declare interface ImplicitBodySimpleOptionalParams extends OperationOptions {
 }
 
-declare interface User {
+export declare interface User {
     name: string;
 }
 

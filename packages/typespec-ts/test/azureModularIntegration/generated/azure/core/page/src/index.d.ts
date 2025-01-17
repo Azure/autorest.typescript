@@ -6,18 +6,22 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-declare interface FirstItem {
+export declare interface FirstItem {
     readonly id: number;
+}
+
+export declare enum KnownVersions {
+    v2022_12_01_preview = "2022-12-01-preview"
 }
 
 export declare interface ListFirstItemOptionalParams extends OperationOptions {
 }
 
-declare interface ListItemInputBody {
+export declare interface ListItemInputBody {
     inputName: string;
 }
 
-declare type ListItemInputExtensibleEnum = "First" | "Second";
+export declare type ListItemInputExtensibleEnum = "First" | "Second";
 
 export declare interface ListSecondItemOptionalParams extends OperationOptions {
 }
@@ -57,18 +61,18 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-declare interface SecondItem {
+export declare interface SecondItem {
     readonly name: string;
 }
 
-declare interface User {
+export declare interface User {
     readonly id: number;
     name: string;
     orders?: UserOrder[];
     readonly etag: string;
 }
 
-declare interface UserOrder {
+export declare interface UserOrder {
     readonly id: number;
     userId: number;
     detail: string;

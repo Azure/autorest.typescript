@@ -2,7 +2,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-declare interface InputModel {
+export declare interface InputModel {
     name: string;
 }
 
@@ -12,18 +12,22 @@ export declare interface InputToInputOutputOptionalParams extends OperationOptio
 export declare interface ModelInReadOnlyPropertyOptionalParams extends OperationOptions {
 }
 
-declare interface OutputModel {
+export declare interface OrphanModel {
+    name: string;
+}
+
+export declare interface OutputModel {
     name: string;
 }
 
 export declare interface OutputToInputOutputOptionalParams extends OperationOptions {
 }
 
-declare interface ResultModel {
+export declare interface ResultModel {
     name: string;
 }
 
-declare interface RoundTripModel {
+export declare interface RoundTripModel {
     readonly result: ResultModel;
 }
 

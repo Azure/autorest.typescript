@@ -17,6 +17,8 @@ export declare interface MultipleClientOptionalParams extends ClientOptions {
 export declare interface NoOperationParamsOptionalParams extends OperationOptions {
 }
 
+export declare type Versions = "v1.0";
+
 export declare interface WithOperationPathParamOptionalParams extends OperationOptions {
 }
 

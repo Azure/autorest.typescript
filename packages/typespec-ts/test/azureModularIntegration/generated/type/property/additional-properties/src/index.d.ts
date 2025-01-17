@@ -43,35 +43,35 @@ export declare class AdditionalPropertiesClient {
 export declare interface AdditionalPropertiesClientOptionalParams extends ClientOptions {
 }
 
-declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
+export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
     derivedProp: number;
 }
 
-declare interface DifferentSpreadFloatRecord extends Record<string, any> {
+export declare interface DifferentSpreadFloatRecord extends Record<string, any> {
     name: string;
 }
 
-declare interface DifferentSpreadModelArrayDerived extends DifferentSpreadModelArrayRecord {
+export declare interface DifferentSpreadModelArrayDerived extends DifferentSpreadModelArrayRecord {
     derivedProp: ModelForRecord[];
 }
 
-declare interface DifferentSpreadModelArrayRecord extends Record<string, any> {
+export declare interface DifferentSpreadModelArrayRecord extends Record<string, any> {
     knownProp: string;
 }
 
-declare interface DifferentSpreadModelDerived extends DifferentSpreadModelRecord {
+export declare interface DifferentSpreadModelDerived extends DifferentSpreadModelRecord {
     derivedProp: ModelForRecord;
 }
 
-declare interface DifferentSpreadModelRecord extends Record<string, any> {
+export declare interface DifferentSpreadModelRecord extends Record<string, any> {
     knownProp: string;
 }
 
-declare interface DifferentSpreadStringDerived extends DifferentSpreadStringRecord {
+export declare interface DifferentSpreadStringDerived extends DifferentSpreadStringRecord {
     derivedProp: string;
 }
 
-declare interface DifferentSpreadStringRecord extends Record<string, any> {
+export declare interface DifferentSpreadStringRecord extends Record<string, any> {
     id: number;
 }
 
@@ -119,7 +119,7 @@ export declare interface ExtendsDifferentSpreadStringOperations {
 export declare interface ExtendsDifferentSpreadStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface ExtendsFloatAdditionalProperties extends Record<string, number> {
+export declare interface ExtendsFloatAdditionalProperties extends Record<string, number> {
     id: number;
 }
 
@@ -134,11 +134,11 @@ export declare interface ExtendsFloatOperations {
 export declare interface ExtendsFloatPutOptionalParams extends OperationOptions {
 }
 
-declare interface ExtendsModelAdditionalProperties extends Record<string, ModelForRecord> {
+export declare interface ExtendsModelAdditionalProperties extends Record<string, ModelForRecord> {
     knownProp: ModelForRecord;
 }
 
-declare interface ExtendsModelArrayAdditionalProperties extends Record<string, ModelForRecord[]> {
+export declare interface ExtendsModelArrayAdditionalProperties extends Record<string, ModelForRecord[]> {
     knownProp: ModelForRecord[];
 }
 
@@ -164,7 +164,7 @@ export declare interface ExtendsModelOperations {
 export declare interface ExtendsModelPutOptionalParams extends OperationOptions {
 }
 
-declare interface ExtendsStringAdditionalProperties extends Record<string, string> {
+export declare interface ExtendsStringAdditionalProperties extends Record<string, string> {
     name: string;
 }
 
@@ -179,27 +179,27 @@ export declare interface ExtendsStringOperations {
 export declare interface ExtendsStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface ExtendsUnknownAdditionalProperties extends Record<string, any> {
+export declare interface ExtendsUnknownAdditionalProperties extends Record<string, any> {
     name: string;
 }
 
-declare interface ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditionalProperties {
+export declare interface ExtendsUnknownAdditionalPropertiesDerived extends ExtendsUnknownAdditionalProperties {
     index: number;
     age?: number;
 }
 
-declare interface ExtendsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
+export declare interface ExtendsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
     name: string;
     kind: string;
 }
 
-declare interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived extends ExtendsUnknownAdditionalPropertiesDiscriminated {
+export declare interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived extends ExtendsUnknownAdditionalPropertiesDiscriminated {
     kind: "derived";
     index: number;
     age?: number;
 }
 
-declare type ExtendsUnknownAdditionalPropertiesDiscriminatedUnion = ExtendsUnknownAdditionalPropertiesDiscriminatedDerived | ExtendsUnknownAdditionalPropertiesDiscriminated;
+export declare type ExtendsUnknownAdditionalPropertiesDiscriminatedUnion = ExtendsUnknownAdditionalPropertiesDiscriminatedDerived | ExtendsUnknownAdditionalPropertiesDiscriminated;
 
 export declare interface ExtendsUnknownDerivedGetOptionalParams extends OperationOptions {
 }
@@ -234,7 +234,7 @@ export declare interface ExtendsUnknownOperations {
 export declare interface ExtendsUnknownPutOptionalParams extends OperationOptions {
 }
 
-declare interface IsFloatAdditionalProperties extends Record<string, number> {
+export declare interface IsFloatAdditionalProperties extends Record<string, number> {
     id: number;
 }
 
@@ -249,11 +249,11 @@ export declare interface IsFloatOperations {
 export declare interface IsFloatPutOptionalParams extends OperationOptions {
 }
 
-declare interface IsModelAdditionalProperties extends Record<string, ModelForRecord> {
+export declare interface IsModelAdditionalProperties extends Record<string, ModelForRecord> {
     knownProp: ModelForRecord;
 }
 
-declare interface IsModelArrayAdditionalProperties extends Record<string, ModelForRecord[]> {
+export declare interface IsModelArrayAdditionalProperties extends Record<string, ModelForRecord[]> {
     knownProp: ModelForRecord[];
 }
 
@@ -279,7 +279,7 @@ export declare interface IsModelOperations {
 export declare interface IsModelPutOptionalParams extends OperationOptions {
 }
 
-declare interface IsStringAdditionalProperties extends Record<string, string> {
+export declare interface IsStringAdditionalProperties extends Record<string, string> {
     name: string;
 }
 
@@ -294,27 +294,27 @@ export declare interface IsStringOperations {
 export declare interface IsStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface IsUnknownAdditionalProperties extends Record<string, any> {
+export declare interface IsUnknownAdditionalProperties extends Record<string, any> {
     name: string;
 }
 
-declare interface IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties {
+export declare interface IsUnknownAdditionalPropertiesDerived extends IsUnknownAdditionalProperties {
     index: number;
     age?: number;
 }
 
-declare interface IsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
+export declare interface IsUnknownAdditionalPropertiesDiscriminated extends Record<string, any> {
     name: string;
     kind: string;
 }
 
-declare interface IsUnknownAdditionalPropertiesDiscriminatedDerived extends IsUnknownAdditionalPropertiesDiscriminated {
+export declare interface IsUnknownAdditionalPropertiesDiscriminatedDerived extends IsUnknownAdditionalPropertiesDiscriminated {
     kind: "derived";
     index: number;
     age?: number;
 }
 
-declare type IsUnknownAdditionalPropertiesDiscriminatedUnion = IsUnknownAdditionalPropertiesDiscriminatedDerived | IsUnknownAdditionalPropertiesDiscriminated;
+export declare type IsUnknownAdditionalPropertiesDiscriminatedUnion = IsUnknownAdditionalPropertiesDiscriminatedDerived | IsUnknownAdditionalPropertiesDiscriminated;
 
 export declare interface IsUnknownDerivedGetOptionalParams extends OperationOptions {
 }
@@ -349,7 +349,7 @@ export declare interface IsUnknownOperations {
 export declare interface IsUnknownPutOptionalParams extends OperationOptions {
 }
 
-declare interface ModelForRecord {
+export declare interface ModelForRecord {
     state: string;
 }
 
@@ -364,7 +364,7 @@ export declare interface MultipleSpreadOperations {
 export declare interface MultipleSpreadPutOptionalParams extends OperationOptions {
 }
 
-declare interface MultipleSpreadRecord extends Record<string, any> {
+export declare interface MultipleSpreadRecord extends Record<string, any> {
     flag: boolean;
 }
 
@@ -423,7 +423,7 @@ export declare interface SpreadFloatOperations {
 export declare interface SpreadFloatPutOptionalParams extends OperationOptions {
 }
 
-declare interface SpreadFloatRecord extends Record<string, number> {
+export declare interface SpreadFloatRecord extends Record<string, number> {
     id: number;
 }
 
@@ -438,7 +438,7 @@ export declare interface SpreadModelArrayOperations {
 export declare interface SpreadModelArrayPutOptionalParams extends OperationOptions {
 }
 
-declare interface SpreadModelArrayRecord extends Record<string, ModelForRecord[]> {
+export declare interface SpreadModelArrayRecord extends Record<string, ModelForRecord[]> {
     knownProp: ModelForRecord[];
 }
 
@@ -453,7 +453,7 @@ export declare interface SpreadModelOperations {
 export declare interface SpreadModelPutOptionalParams extends OperationOptions {
 }
 
-declare interface SpreadModelRecord extends Record<string, ModelForRecord> {
+export declare interface SpreadModelRecord extends Record<string, ModelForRecord> {
     knownProp: ModelForRecord;
 }
 
@@ -468,23 +468,23 @@ export declare interface SpreadRecordDiscriminatedUnionOperations {
 export declare interface SpreadRecordDiscriminatedUnionPutOptionalParams extends OperationOptions {
 }
 
-declare interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
+export declare interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
     name: string;
 }
 
-declare interface SpreadRecordForNonDiscriminatedUnion extends Record<string, any> {
+export declare interface SpreadRecordForNonDiscriminatedUnion extends Record<string, any> {
     name: string;
 }
 
-declare interface SpreadRecordForNonDiscriminatedUnion2 extends Record<string, any> {
+export declare interface SpreadRecordForNonDiscriminatedUnion2 extends Record<string, any> {
     name: string;
 }
 
-declare interface SpreadRecordForNonDiscriminatedUnion3 extends Record<string, any> {
+export declare interface SpreadRecordForNonDiscriminatedUnion3 extends Record<string, any> {
     name: string;
 }
 
-declare interface SpreadRecordForUnion extends Record<string, any> {
+export declare interface SpreadRecordForUnion extends Record<string, any> {
     flag: boolean;
 }
 
@@ -543,8 +543,26 @@ export declare interface SpreadStringOperations {
 export declare interface SpreadStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface SpreadStringRecord extends Record<string, string> {
+export declare interface SpreadStringRecord extends Record<string, string> {
     name: string;
+}
+
+export declare type WidgetData = WidgetData0 | WidgetData1;
+
+export declare interface WidgetData0 {
+    kind: "kind0";
+    fooProp: string;
+}
+
+export declare interface WidgetData1 {
+    kind: "kind1";
+    start: Date;
+    end?: Date;
+}
+
+export declare interface WidgetData2 {
+    kind: "kind1";
+    start: string;
 }
 
 export { }
