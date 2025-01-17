@@ -249,7 +249,8 @@ export function getModelNamespaces(
   ) {
     if (
       model.clientNamespace.startsWith("Azure.ResourceManager") ||
-      model.clientNamespace.startsWith("Azure.Core")
+      model.clientNamespace.startsWith("Azure.Core") ||
+      model.crossLanguageDefinitionId === "TypeSpec.Http.File"
     ) {
       return [];
     }

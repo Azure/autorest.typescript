@@ -241,7 +241,7 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso
+          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo_non_branded
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
 
