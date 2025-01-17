@@ -74,16 +74,22 @@ export function getModuleExports(
 function getModelSubpaths(emitterOptions: ModularEmitterOptions) {
   const outputProject = useContext("outputProject");
   const modelFiles = outputProject.getSourceFiles(
-    path.join(emitterOptions.modularOptions.sourceRoot, `models/**/*.ts`)
+    path.join(
+      emitterOptions.modularOptions.sourceRoot.replace(/\\/g, "/"),
+      `models/**/*.ts`
+    )
   );
   const subpath = new Set<string>();
   for (const modelFile of modelFiles) {
-    const filepath = modelFile.getFilePath();
+    const filepath = modelFile.getFilePath().replace(/\\/g, "/");
     if (!filepath.endsWith("index.ts")) {
       continue;
     }
     subpath.add(
-      path.relative(emitterOptions.modularOptions.sourceRoot, filepath)
+      path.relative(
+        emitterOptions.modularOptions.sourceRoot.replace(/\\/g, "/"),
+        filepath
+      )
     );
   }
   return Array.from(subpath);

@@ -234,17 +234,21 @@ function exportModules(
     folders = project
       .getDirectories()
       .filter((dir) => {
-        const targetPath = join(srcPath, subfolder, moduleName);
-        return dir.getPath().replace(/\\/g, "/").startsWith(targetPath);
+        const formattedDir = dir.getPath().replace(/\\/g, "/");
+        const targetPath = join(srcPath, subfolder, moduleName).replace(
+          /\\/g,
+          "/"
+        );
+        return formattedDir.startsWith(targetPath);
       })
       .map((dir) => {
-        return dir.getPath();
+        return dir.getPath().replace(/\\/g, "/");
       });
   } else {
-    folders = [join(srcPath, subfolder, moduleName)];
+    folders = [join(srcPath, subfolder, moduleName).replace(/\\/g, "/")];
   }
   for (const folder of folders) {
-    const apiFilePattern = join(folder, "index.ts");
+    const apiFilePattern = join(folder, "index.ts").replace(/\\/g, "/");
     const modelsFile = project.getSourceFile(apiFilePattern);
     if (!modelsFile) {
       continue;

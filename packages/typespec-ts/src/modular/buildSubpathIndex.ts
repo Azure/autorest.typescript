@@ -32,17 +32,21 @@ export function buildSubpathIndexFile(
     folders = emitterOptions.project
       .getDirectories()
       .filter((dir) => {
-        const targetPath = join(srcPath, subfolder, subpath);
+        const formattedDir = dir.getPath().replace(/\\/g, "/");
+        const targetPath = join(srcPath, subfolder, subpath).replace(
+          /\\/g,
+          "/"
+        );
         return (
-          dir.getPath().replace(/\\/g, "/").startsWith(targetPath) &&
-          !emitterOptions.project.getSourceFile(`${dir}/index.ts`)
+          formattedDir.startsWith(targetPath) &&
+          !emitterOptions.project.getSourceFile(`${formattedDir}/index.ts`)
         );
       })
       .map((dir) => {
-        return dir.getPath();
+        return dir.getPath().replace(/\\/g, "/");
       });
   } else {
-    folders = [join(srcPath, subfolder, subpath)];
+    folders = [join(srcPath, subfolder, subpath).replace(/\\/g, "/")];
   }
   for (const folder of folders) {
     const apiFilePattern =
