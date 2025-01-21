@@ -19,7 +19,7 @@ async function enumGetReferenced() {
 }
 
 async function main() {
-  enumGetReferenced();
+  await enumGetReferenced();
 }
 
 main().catch(console.error);

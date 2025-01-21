@@ -20,7 +20,7 @@ async function analyzeBodySample() {
 }
 
 async function main() {
-  analyzeBodySample();
+  await analyzeBodySample();
 }
 
 main().catch(console.error);

@@ -21,7 +21,7 @@ async function enumPutReferenced() {
 }
 
 async function main() {
-  enumPutReferenced();
+  await enumPutReferenced();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function deleteMultivariateModel() {
 }
 
 async function main() {
-  deleteMultivariateModel();
+  await deleteMultivariateModel();
 }
 
 main().catch(console.error);

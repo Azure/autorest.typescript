@@ -19,7 +19,7 @@ async function stringGetNotProvided() {
 }
 
 async function main() {
-  stringGetNotProvided();
+  await stringGetNotProvided();
 }
 
 main().catch(console.error);

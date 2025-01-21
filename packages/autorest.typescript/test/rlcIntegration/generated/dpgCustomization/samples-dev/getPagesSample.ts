@@ -29,7 +29,7 @@ async function dpgNextLink() {
 }
 
 async function main() {
-  dpgNextLink();
+  await dpgNextLink();
 }
 
 main().catch(console.error);
