@@ -37,6 +37,7 @@ describe("ApiKeyClient Classical Client", () => {
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
       assert.strictEqual(err.message, "Unexpected status code: 403");
+      assert.strictEqual(err.details.error, "invalid-api-key");
     }
   });
 });

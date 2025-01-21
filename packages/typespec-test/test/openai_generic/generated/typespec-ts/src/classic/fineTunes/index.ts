@@ -46,7 +46,7 @@ export interface FineTunesOperations {
   ) => Promise<FineTune>;
 }
 
-export function getFineTunes(context: OpenAIContext) {
+function _getFineTunes(context: OpenAIContext) {
   return {
     cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) =>
       cancel(context, fineTuneId, options),
@@ -64,10 +64,10 @@ export function getFineTunes(context: OpenAIContext) {
   };
 }
 
-export function getFineTunesOperations(
+export function _getFineTunesOperations(
   context: OpenAIContext,
 ): FineTunesOperations {
   return {
-    ...getFineTunes(context),
+    ..._getFineTunes(context),
   };
 }

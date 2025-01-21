@@ -6,6 +6,7 @@ import {
   CompletionsCreateOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateCompletionRequest,
   createCompletionRequestSerializer,
   CreateCompletionResponse,
@@ -41,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateCompletionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createCompletionResponseDeserializer(result.body);

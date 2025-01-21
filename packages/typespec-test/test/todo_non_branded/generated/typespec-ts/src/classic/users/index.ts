@@ -1,9 +1,9 @@
 // Licensed under the MIT License.
 
-import { UsersCreateOptionalParams } from "../../api/options.js";
 import { TodoContext } from "../../api/todoContext.js";
 import { create } from "../../api/users/index.js";
 import { User } from "../../models/models.js";
+import { UsersCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Users operations. */
 export interface UsersOperations {
@@ -18,15 +18,15 @@ export interface UsersOperations {
   }>;
 }
 
-export function getUsers(context: TodoContext) {
+function _getUsers(context: TodoContext) {
   return {
     create: (user: User, options?: UsersCreateOptionalParams) =>
       create(context, user, options),
   };
 }
 
-export function getUsersOperations(context: TodoContext): UsersOperations {
+export function _getUsersOperations(context: TodoContext): UsersOperations {
   return {
-    ...getUsers(context),
+    ..._getUsers(context),
   };
 }

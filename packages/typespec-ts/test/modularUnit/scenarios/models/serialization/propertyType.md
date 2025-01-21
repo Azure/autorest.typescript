@@ -32,6 +32,7 @@ model SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | int32)[];
   propRecordOfString: Record<string>;
+  propRecordOfDate: Record<utcDateTime>;
   propRecordOfBoolean: Record<boolean>;
   propRecordOfNumber: Record<int32>;
   propRecordOfSimpleUnion: Record<string | boolean | int32>;
@@ -85,6 +86,7 @@ export interface SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | number)[];
   propRecordOfString: Record<string, string>;
+  propRecordOfDate: Record<string, Date>;
   propRecordOfBoolean: Record<string, boolean>;
   propRecordOfNumber: Record<string, number>;
   propRecordOfSimpleUnion: Record<string, string | boolean | number>;
@@ -159,6 +161,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
           item["propSimpleUnionArrayOptional"],
         ),
     propRecordOfString: item["propRecordOfString"],
+    propRecordOfDate: item["propRecordOfDate"],
     propRecordOfBoolean: item["propRecordOfBoolean"],
     propRecordOfNumber: item["propRecordOfNumber"],
     propRecordOfSimpleUnion: simpleModelPropRecordOfSimpleUnionRecordSerializer(

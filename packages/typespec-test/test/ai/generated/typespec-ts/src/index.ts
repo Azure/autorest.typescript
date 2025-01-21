@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -36,6 +37,9 @@ export {
   ConnectionPropertiesAADAuth,
   ConnectionPropertiesSASAuth,
   CredentialsSASAuth,
+  KnownVersions,
+} from "./models/index.js";
+export {
   ToolDefinition,
   ToolDefinitionUnion,
   CodeInterpreterToolDefinition,
@@ -212,8 +216,7 @@ export {
   AgentStreamEvent,
   ListSortOrder,
   VectorStoreFileStatusFilter,
-  KnownVersions,
-} from "./models/index.js";
+} from "./models/agents/index.js";
 export {
   AzureAIClientOptionalParams,
   EvaluationsDeleteScheduleOptionalParams,
@@ -274,3 +277,4 @@ export {
   EvaluationsOperations,
 } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { FileContents };

@@ -4,14 +4,14 @@
 import { AzureAIContext } from "../../api/azureAIContext.js";
 import { listSecrets, get, list } from "../../api/connections/index.js";
 import {
+  ConnectionsListResponse,
+  ConnectionsListSecretsResponse,
+} from "../../models/models.js";
+import {
   ConnectionsListSecretsOptionalParams,
   ConnectionsGetOptionalParams,
   ConnectionsListOptionalParams,
 } from "../../api/options.js";
-import {
-  ConnectionsListResponse,
-  ConnectionsListSecretsResponse,
-} from "../../models/models.js";
 
 /** Interface representing a Connections operations. */
 export interface ConnectionsOperations {
@@ -32,7 +32,7 @@ export interface ConnectionsOperations {
   ) => Promise<ConnectionsListResponse>;
 }
 
-export function getConnections(context: AzureAIContext) {
+function _getConnections(context: AzureAIContext) {
   return {
     listSecrets: (
       connectionName: string,
@@ -45,10 +45,10 @@ export function getConnections(context: AzureAIContext) {
   };
 }
 
-export function getConnectionsOperations(
+export function _getConnectionsOperations(
   context: AzureAIContext,
 ): ConnectionsOperations {
   return {
-    ...getConnections(context),
+    ..._getConnections(context),
   };
 }

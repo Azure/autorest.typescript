@@ -9,6 +9,7 @@ import {
   FineTunesRetrieveOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateFineTuneRequest,
   createFineTuneRequestSerializer,
   FineTune,
@@ -46,7 +47,9 @@ export async function _cancelDeserialize(
 ): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return fineTuneDeserializer(result.body);
@@ -83,7 +86,9 @@ export async function _listEventsDeserialize(
 ): Promise<ListFineTuneEventsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return listFineTuneEventsResponseDeserializer(result.body);
@@ -119,7 +124,9 @@ export async function _retrieveDeserialize(
 ): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return fineTuneDeserializer(result.body);
@@ -154,7 +161,9 @@ export async function _listDeserialize(
 ): Promise<ListFineTunesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return listFineTunesResponseDeserializer(result.body);
@@ -191,7 +200,9 @@ export async function _createDeserialize(
 ): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return fineTuneDeserializer(result.body);

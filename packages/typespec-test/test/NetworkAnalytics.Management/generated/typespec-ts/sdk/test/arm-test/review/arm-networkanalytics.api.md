@@ -308,6 +308,26 @@ export interface EncryptionKeyDetails {
 }
 
 // @public
+export interface ErrorAdditionalInfo {
+    readonly info?: Record<string, any>;
+    readonly type?: string;
+}
+
+// @public
+export interface ErrorDetail {
+    readonly additionalInfo?: ErrorAdditionalInfo[];
+    readonly code?: string;
+    readonly details?: ErrorDetail[];
+    readonly message?: string;
+    readonly target?: string;
+}
+
+// @public
+export interface ErrorResponse {
+    error?: ErrorDetail;
+}
+
+// @public
 export interface IPRules {
     action: string;
     value?: string;
@@ -410,8 +430,8 @@ export interface ManagedServiceIdentityV4 {
 }
 
 // @public (undocumented)
-export class NetworkAnalyticsClient {
-    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsClientOptionalParams);
+export class NetworkAnalyticsApi {
+    constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsApiOptionalParams);
     readonly dataProducts: DataProductsOperations;
     readonly dataProductsCatalogs: DataProductsCatalogsOperations;
     readonly dataTypes: DataTypesOperations;
@@ -420,7 +440,7 @@ export class NetworkAnalyticsClient {
 }
 
 // @public
-export interface NetworkAnalyticsClientOptionalParams extends ClientOptions {
+export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
@@ -487,7 +507,7 @@ export interface Resource {
 }
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: NetworkAnalyticsApi, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {

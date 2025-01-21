@@ -29,7 +29,11 @@ export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" 
 
 // @public
 export interface AudioTranscriptionOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     language?: string;
     model?: string;
@@ -77,7 +81,11 @@ export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | 
 
 // @public
 export interface AudioTranslationOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     model?: string;
     prompt?: string;
@@ -704,6 +712,9 @@ export interface EmbeddingsUsage {
     promptTokens: number;
     totalTokens: number;
 }
+
+// @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FunctionCall {
