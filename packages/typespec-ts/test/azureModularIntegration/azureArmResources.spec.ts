@@ -415,6 +415,7 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const item of result) {
       items.push(item);
     }
+    assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.id, validLocationResource.id);
     assert.strictEqual(items[0]?.name, validLocationResource.name);
     assert.strictEqual(items[0]?.type, validLocationResource.type);
@@ -571,6 +572,7 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const item of resourceGroupResult) {
       resourceGroupItems.push(item);
     }
+    assert.strictEqual(resourceGroupItems.length, 1);
     assert.strictEqual(resourceGroupItems[0]?.id, validResourceGroupExtensionsResource.id);
     assert.strictEqual(resourceGroupItems[0]?.name, validResourceGroupExtensionsResource.name);
     assert.strictEqual(resourceGroupItems[0]?.type, validResourceGroupExtensionsResource.type);
@@ -582,6 +584,7 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const item of subscriptionResult) {
       subscriptionItems.push(item);
     }
+    assert.strictEqual(subscriptionItems.length, 1);
     assert.strictEqual(subscriptionItems[0]?.id, validSubscriptionExtensionsResource.id);
     assert.strictEqual(subscriptionItems[0]?.name, validSubscriptionExtensionsResource.name);
     assert.strictEqual(subscriptionItems[0]?.type, validSubscriptionExtensionsResource.type);
@@ -593,6 +596,7 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const item of tenantResult) {
       tenantItems.push(item);
     }
+    assert.strictEqual(tenantItems.length, 1);
     assert.strictEqual(tenantItems[0]?.id, validTenantExtensionsResource.id);
     assert.strictEqual(tenantItems[0]?.name, validTenantExtensionsResource.name);
     assert.strictEqual(tenantItems[0]?.type, validTenantExtensionsResource.type);
@@ -604,6 +608,7 @@ describe("Azure Arm Resources Rest Client", () => {
     for await (const item of resourceResult) {
       resourceItems.push(item);
     }
+    assert.strictEqual(resourceItems.length, 1);
     assert.strictEqual(resourceItems[0]?.id, validResourceExtensionsResource.id);
     assert.strictEqual(resourceItems[0]?.name, validResourceExtensionsResource.name);
     assert.strictEqual(resourceItems[0]?.type, validResourceExtensionsResource.type);
