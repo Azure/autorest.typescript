@@ -556,7 +556,7 @@ describe("Azure Arm Resources Rest Client", () => {
       )
       .get();
     assert.strictEqual(result.status, "200");
-    assert.deepEqual(result.body, validLocationResource);
+    assert.deepStrictEqual(result.body, validLocationResource);
   });
 
   it("should createOrUpdate LocationResources ", async () => {
@@ -575,7 +575,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
     assert.strictEqual(result.status, "200");
-    assert.deepEqual(result.body, validLocationResource);
+    assert.deepStrictEqual(result.body, validLocationResource);
   });
 
   it("should update LocationResources ", async () => {
@@ -591,13 +591,10 @@ describe("Azure Arm Resources Rest Client", () => {
           properties: {
             description: "valid2",
           }
-        },
-        headers: {
-          "Content-Type": "application/json"
         }
       });
     assert.strictEqual(result.status, "200");
-    assert.deepEqual(result.body, {
+    assert.deepStrictEqual(result.body, {
       ...validLocationResource,
       properties: {
         provisioningState: "Succeeded",
@@ -637,7 +634,7 @@ describe("Azure Arm Resources Rest Client", () => {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.deepEqual(result, [validLocationResource]);
+    assert.deepStrictEqual(result, [validLocationResource]);
   });
 
   // extension tracked resource
@@ -652,7 +649,7 @@ describe("Azure Arm Resources Rest Client", () => {
     )
       .get();
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
+    assert.deepStrictEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -664,7 +661,7 @@ describe("Azure Arm Resources Rest Client", () => {
     )
       .get();
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
+    assert.deepStrictEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
 
     const tenantResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -676,7 +673,7 @@ describe("Azure Arm Resources Rest Client", () => {
     )
       .get();
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepEqual(tenantResult.body, validTenantExtensionsResource);
+    assert.deepStrictEqual(tenantResult.body, validTenantExtensionsResource);
 
     const resourceResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -688,7 +685,7 @@ describe("Azure Arm Resources Rest Client", () => {
     )
       .get();
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepEqual(resourceResult.body, validResourceExtensionsResource);
+    assert.deepStrictEqual(resourceResult.body, validResourceExtensionsResource);
   });
 
   it("should createOrUpdate ExtensionsResources ", async () => {
@@ -709,7 +706,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
+    assert.deepStrictEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client
       .path(
@@ -728,7 +725,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
+    assert.deepStrictEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
 
     const tenantResult = await client
       .path(
@@ -747,7 +744,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepEqual(tenantResult.body, validTenantExtensionsResource);
+    assert.deepStrictEqual(tenantResult.body, validTenantExtensionsResource);
 
     const resourceResult = await client
       .path(
@@ -766,7 +763,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       });
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepEqual(resourceResult.body, validResourceExtensionsResource);
+    assert.deepStrictEqual(resourceResult.body, validResourceExtensionsResource);
   });
 
   it("should update ExtensionsResources ", async () => {
@@ -784,13 +781,10 @@ describe("Azure Arm Resources Rest Client", () => {
           properties: {
             description: "valid2",
           }
-        },
-        headers: {
-          "Content-Type": "application/json"
         }
       });
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepEqual(resourceGroupResult.body, {
+    assert.deepStrictEqual(resourceGroupResult.body, {
       ...validResourceGroupExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -812,13 +806,10 @@ describe("Azure Arm Resources Rest Client", () => {
           properties: {
             description: "valid2",
           }
-        },
-        headers: {
-          "Content-Type": "application/json"
         }
       });
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepEqual(subscriptionResult.body, {
+    assert.deepStrictEqual(subscriptionResult.body, {
       ...validSubscriptionExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -840,13 +831,10 @@ describe("Azure Arm Resources Rest Client", () => {
           properties: {
             description: "valid2",
           }
-        },
-        headers: {
-          "Content-Type": "application/json"
         }
       });
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepEqual(tenantResult.body, {
+    assert.deepStrictEqual(tenantResult.body, {
       ...validTenantExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -868,13 +856,10 @@ describe("Azure Arm Resources Rest Client", () => {
           properties: {
             description: "valid2",
           }
-        },
-        headers: {
-          "Content-Type": "application/json"
         }
       });
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepEqual(resourceResult.body, {
+    assert.deepStrictEqual(resourceResult.body, {
       ...validResourceExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -953,7 +938,7 @@ describe("Azure Arm Resources Rest Client", () => {
       resourceGroupResult.push(item);
     }
     assert.strictEqual(resourceGroupResponse.status, "200");
-    assert.deepEqual(resourceGroupResult, [validResourceGroupExtensionsResource]);
+    assert.deepStrictEqual(resourceGroupResult, [validResourceGroupExtensionsResource]);
 
     const subscriptionResponse = await client
       .path(
@@ -974,7 +959,7 @@ describe("Azure Arm Resources Rest Client", () => {
       subscriptionIterResult.push(item);
     }
     assert.strictEqual(subscriptionResponse.status, "200");
-    assert.deepEqual(subscriptionIterResult, [validSubscriptionExtensionsResource]);
+    assert.deepStrictEqual(subscriptionIterResult, [validSubscriptionExtensionsResource]);
 
     const tenantResponse = await client
       .path(
@@ -995,7 +980,7 @@ describe("Azure Arm Resources Rest Client", () => {
       tenantResult.push(item);
     }
     assert.strictEqual(tenantResponse.status, "200");
-    assert.deepEqual(tenantResult, [validTenantExtensionsResource]);
+    assert.deepStrictEqual(tenantResult, [validTenantExtensionsResource]);
 
     const resourceResponse = await client
       .path(
@@ -1016,6 +1001,6 @@ describe("Azure Arm Resources Rest Client", () => {
       resourceResult.push(item);
     }
     assert.strictEqual(resourceResponse.status, "200");
-    assert.deepEqual(resourceResult, [validResourceExtensionsResource]);
+    assert.deepStrictEqual(resourceResult, [validResourceExtensionsResource]);
   });
 });
