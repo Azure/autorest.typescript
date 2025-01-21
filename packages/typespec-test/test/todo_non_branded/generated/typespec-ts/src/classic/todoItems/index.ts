@@ -75,14 +75,14 @@ export interface TodoItemsOperations {
     body: ToDoItemMultipartRequest,
     options?: TodoItemsCreateFormOptionalParams,
   ) => Promise<{
-    id: number;
+    id?: number;
     title: string;
-    createdBy: number;
+    createdBy?: number;
     assignedTo?: number;
     description?: string;
     status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     completedAt?: Date;
     labels?: TodoLabels;
   }>;

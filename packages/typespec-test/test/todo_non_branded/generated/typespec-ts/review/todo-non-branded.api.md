@@ -182,7 +182,20 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) => Promise<{
+    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
+        id?: number;
+        title: string;
+        createdBy?: number;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        createdAt?: Date;
+        updatedAt?: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
+    // (undocumented)
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<{
         id?: number;
         title: string;
         createdBy?: number;

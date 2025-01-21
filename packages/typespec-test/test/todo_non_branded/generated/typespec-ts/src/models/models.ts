@@ -281,11 +281,11 @@ export function toDoItemMultipartRequestSerializer(
 /** model interface _CreateFormResponse */
 export interface _CreateFormResponse {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -293,9 +293,9 @@ export interface _CreateFormResponse {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;

@@ -64,7 +64,7 @@ export declare interface ManagedIdentityTrackedResource extends TrackedResource 
 }
 
 export declare interface ManagedIdentityTrackedResourceProperties {
-    readonly provisioningState: string;
+    readonly provisioningState?: string;
 }
 
 export declare interface ManagedServiceIdentity {

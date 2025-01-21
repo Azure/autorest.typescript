@@ -27,6 +27,6 @@ describe("Azure ClientGeneratorCore Usage Client", () => {
     const result = await client.modelInReadOnlyProperty({
       result: { name: "Madge" }
     });
-    assert.strictEqual(result.result.name, "Madge");
+    assert.strictEqual(result.result?.name, "Madge");
   });
 });

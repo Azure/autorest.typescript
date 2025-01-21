@@ -76,7 +76,7 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 // @public
 export interface User {
     id: string;
-    readonly name: string;
+    readonly name?: string;
     role: string;
 }
 

@@ -17,7 +17,7 @@ export interface AppComponent {
     displayName?: string;
     kind?: string;
     readonly resourceGroup?: string;
-    readonly resourceId: string;
+    readonly resourceId?: string;
     resourceName: string;
     resourceType: string;
     readonly subscriptionId?: string;
@@ -672,7 +672,7 @@ export interface Test {
     publicIPDisabled?: boolean;
     secrets?: Record<string, Secret>;
     subnetId?: string;
-    readonly testId: string;
+    readonly testId?: string;
 }
 
 // @public
@@ -719,7 +719,7 @@ export interface TestProfile {
     targetResourceConfigurations?: TargetResourceConfigurationsUnion;
     targetResourceId?: string;
     testId?: string;
-    readonly testProfileId: string;
+    readonly testProfileId?: string;
 }
 
 // @public (undocumented)
@@ -754,7 +754,7 @@ export interface TestProfileRun {
     readonly targetResourceConfigurations?: TargetResourceConfigurationsUnion;
     readonly targetResourceId?: string;
     testProfileId?: string;
-    readonly testProfileRunId: string;
+    readonly testProfileRunId?: string;
     readonly testRunDetails?: Record<string, TestRunDetail>;
 }
 
@@ -813,7 +813,7 @@ export interface TestRun {
     readonly testArtifacts?: TestRunArtifacts;
     testId?: string;
     readonly testResult?: PFTestResult;
-    readonly testRunId: string;
+    readonly testRunId?: string;
     readonly testRunStatistics?: Record<string, TestRunStatistics>;
     readonly virtualUsers?: number;
 }

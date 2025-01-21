@@ -27,7 +27,7 @@ export function schemaGroupArrayDeserializer(
 /** Schema Group resource. */
 export interface SchemaGroup {
   /** Name of schema group. */
-  readonly groupName: string;
+  readonly groupName?: string;
 }
 
 export function schemaGroupDeserializer(item: any): SchemaGroup {
@@ -62,7 +62,7 @@ export function schemaVersionArrayDeserializer(
 /** Schema versions resource. */
 export interface SchemaVersion {
   /** Version number of specific schema. */
-  readonly schemaVersion: number;
+  readonly schemaVersion?: number;
 }
 
 export function schemaVersionDeserializer(item: any): SchemaVersion {
