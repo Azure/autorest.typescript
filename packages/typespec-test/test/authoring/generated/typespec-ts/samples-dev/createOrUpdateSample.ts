@@ -38,7 +38,7 @@ async function createOrUpdateSample() {
 }
 
 async function main() {
-  createOrUpdateSample();
+  await createOrUpdateSample();
 }
 
 main().catch(console.error);

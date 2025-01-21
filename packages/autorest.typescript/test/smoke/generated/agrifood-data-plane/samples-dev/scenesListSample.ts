@@ -40,7 +40,7 @@ async function scenesList() {
 }
 
 async function main() {
-  scenesList();
+  await scenesList();
 }
 
 main().catch(console.error);

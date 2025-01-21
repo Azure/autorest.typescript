@@ -33,7 +33,7 @@ async function attachmentsDownload() {
 }
 
 async function main() {
-  attachmentsDownload();
+  await attachmentsDownload();
 }
 
 main().catch(console.error);

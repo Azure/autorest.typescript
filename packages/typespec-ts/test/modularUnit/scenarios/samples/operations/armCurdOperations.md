@@ -133,7 +133,7 @@ async function operationsList() {
 }
 
 async function main() {
-  operationsList();
+  await operationsList();
 }
 
 main().catch(console.error);
@@ -202,7 +202,7 @@ async function employeesCreateOrUpdate() {
 }
 
 async function main() {
-  employeesCreateOrUpdate();
+  await employeesCreateOrUpdate();
 }
 
 main().catch(console.error);
@@ -247,7 +247,7 @@ async function employeesDelete() {
 }
 
 async function main() {
-  employeesDelete();
+  await employeesDelete();
 }
 
 main().catch(console.error);

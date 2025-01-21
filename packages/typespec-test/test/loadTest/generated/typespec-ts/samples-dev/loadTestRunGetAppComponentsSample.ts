@@ -24,7 +24,7 @@ async function loadTestRunGetAppComponentsSample() {
 }
 
 async function main() {
-  loadTestRunGetAppComponentsSample();
+  await loadTestRunGetAppComponentsSample();
 }
 
 main().catch(console.error);

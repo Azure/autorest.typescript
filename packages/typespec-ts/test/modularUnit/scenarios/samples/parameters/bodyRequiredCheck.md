@@ -80,7 +80,7 @@ async function read() {
 }
 
 async function main() {
-  read();
+  await read();
 }
 
 main().catch(console.error);

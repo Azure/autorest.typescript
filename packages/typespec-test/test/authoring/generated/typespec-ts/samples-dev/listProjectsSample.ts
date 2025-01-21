@@ -28,7 +28,7 @@ async function listProjectsSample() {
 }
 
 async function main() {
-  listProjectsSample();
+  await listProjectsSample();
 }
 
 main().catch(console.error);

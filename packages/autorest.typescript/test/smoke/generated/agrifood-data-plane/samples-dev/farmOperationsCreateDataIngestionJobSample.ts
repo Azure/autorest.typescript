@@ -32,7 +32,7 @@ async function farmOperationsCreateDataIngestionJob() {
 }
 
 async function main() {
-  farmOperationsCreateDataIngestionJob();
+  await farmOperationsCreateDataIngestionJob();
 }
 
 main().catch(console.error);
