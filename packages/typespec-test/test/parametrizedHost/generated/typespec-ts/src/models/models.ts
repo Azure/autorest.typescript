@@ -3,7 +3,7 @@
 
 /** Identifier for collections. */
 export interface Collection {
-  readonly collectionId: string;
+  readonly collectionId?: string;
 }
 
 export function collectionDeserializer(item: any): Collection {

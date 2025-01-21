@@ -4,7 +4,7 @@
 /** Detection results for the given resultId. */
 export interface MultivariateMultivariateDetectionResult {
   /** Result identifier, which is used to fetch the results of an inference call. */
-  readonly resultId: string;
+  readonly resultId?: string;
   /** Multivariate anomaly detection status. */
   summary: MultivariateMultivariateBatchDetectionResultSummary;
   /** Detection result for each timestamp. */
@@ -573,7 +573,7 @@ export function multivariateModelStateDeserializer(
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
-  readonly modelId: string;
+  readonly modelId?: string;
   /** Date and time (UTC) when the model was created. */
   createdTime: Date;
   /** Date and time (UTC) when the model was last updated. */

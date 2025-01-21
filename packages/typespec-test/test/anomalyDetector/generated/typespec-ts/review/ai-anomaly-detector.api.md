@@ -47,7 +47,7 @@ export interface MultivariateAlignPolicy {
 export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
     lastUpdatedTime: Date;
-    readonly modelId: string;
+    readonly modelId?: string;
     modelInfo?: MultivariateModelInfo;
 }
 
@@ -168,7 +168,7 @@ export type MultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING"
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
-    readonly resultId: string;
+    readonly resultId?: string;
     results: MultivariateAnomalyState[];
     summary: MultivariateMultivariateBatchDetectionResultSummary;
 }

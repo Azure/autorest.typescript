@@ -66,10 +66,10 @@ export declare interface PageSettings {
 }
 
 export declare interface User {
-    readonly id: number;
+    readonly id?: number;
     name: string;
     orders?: UserOrder[];
-    readonly etag: string;
+    readonly etag?: string;
 }
 
 export declare interface UserList {
@@ -77,7 +77,7 @@ export declare interface UserList {
 }
 
 export declare interface UserOrder {
-    readonly id: number;
+    readonly id?: number;
     userId: number;
     detail: string;
 }

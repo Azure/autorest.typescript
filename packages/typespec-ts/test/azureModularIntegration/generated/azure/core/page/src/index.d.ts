@@ -7,7 +7,7 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 export declare interface FirstItem {
-    readonly id: number;
+    readonly id?: number;
 }
 
 export declare enum KnownVersions {
@@ -62,18 +62,18 @@ export declare interface PageSettings {
 }
 
 export declare interface SecondItem {
-    readonly name: string;
+    readonly name?: string;
 }
 
 export declare interface User {
-    readonly id: number;
+    readonly id?: number;
     name: string;
     orders?: UserOrder[];
-    readonly etag: string;
+    readonly etag?: string;
 }
 
 export declare interface UserOrder {
-    readonly id: number;
+    readonly id?: number;
     userId: number;
     detail: string;
 }

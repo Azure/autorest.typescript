@@ -28,7 +28,7 @@ export declare interface ResultModel {
 }
 
 export declare interface RoundTripModel {
-    readonly result: ResultModel;
+    readonly result?: ResultModel;
 }
 
 export declare class UsageClient {

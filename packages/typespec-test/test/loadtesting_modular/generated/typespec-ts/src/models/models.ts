@@ -26,7 +26,7 @@ export interface Test {
   /** The input artifacts for the test. */
   readonly inputArtifacts?: TestInputArtifacts;
   /** Unique test identifier for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
-  readonly testId: string;
+  readonly testId?: string;
   /** The test description. */
   description?: string;
   /** Display name of a test. */
@@ -817,7 +817,7 @@ export function appComponentRecordDeserializer(
 /** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
 export interface AppComponent {
   /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
-  readonly resourceId: string;
+  readonly resourceId?: string;
   /** Azure resource name, required while creating the app component. */
   resourceName: string;
   /** Azure resource type, required while creating the app component. */
@@ -1012,7 +1012,7 @@ export function testArrayDeserializer(result: Array<Test>): any[] {
 /** Load test run model */
 export interface TestRun {
   /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
-  readonly testRunId: string;
+  readonly testRunId?: string;
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
   /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
@@ -2071,7 +2071,7 @@ export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
 /** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */
 export interface TestProfile {
   /** Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
-  readonly testProfileId: string;
+  readonly testProfileId?: string;
   /** Display name of the test profile. */
   displayName?: string;
   /** Description for the test profile. */
@@ -2318,7 +2318,7 @@ export function testProfileArrayDeserializer(
 /** The Test Profile Run Model. Test Profile Run resource enables you to instantiate an already created test profile and run load tests to get recommendations on the optimal configuration for the target resource. */
 export interface TestProfileRun {
   /** Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
-  readonly testProfileRunId: string;
+  readonly testProfileRunId?: string;
   /** Display name for the test profile run. */
   displayName?: string;
   /** The test profile run description */
