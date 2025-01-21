@@ -26,7 +26,7 @@ async function farmersDelete() {
 }
 
 async function main() {
-  farmersDelete();
+  await farmersDelete();
 }
 
 main().catch(console.error);

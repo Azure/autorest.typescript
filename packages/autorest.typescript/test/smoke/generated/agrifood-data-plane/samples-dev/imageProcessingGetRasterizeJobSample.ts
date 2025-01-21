@@ -28,7 +28,7 @@ async function imageProcessingGetRasterizeJob() {
 }
 
 async function main() {
-  imageProcessingGetRasterizeJob();
+  await imageProcessingGetRasterizeJob();
 }
 
 main().catch(console.error);

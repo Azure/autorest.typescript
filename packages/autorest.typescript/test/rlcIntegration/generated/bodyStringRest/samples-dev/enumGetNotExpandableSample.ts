@@ -19,7 +19,7 @@ async function enumGetNotExpandable() {
 }
 
 async function main() {
-  enumGetNotExpandable();
+  await enumGetNotExpandable();
 }
 
 main().catch(console.error);

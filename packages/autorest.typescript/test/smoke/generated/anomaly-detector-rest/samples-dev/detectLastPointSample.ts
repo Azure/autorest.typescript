@@ -86,7 +86,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
 }
 
 async function main() {
-  detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
+  await detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
 }
 
 main().catch(console.error);

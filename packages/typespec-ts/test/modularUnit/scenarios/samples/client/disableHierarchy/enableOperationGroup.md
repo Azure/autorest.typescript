@@ -72,7 +72,7 @@ async function bar() {
 }
 
 async function main() {
-  bar();
+  await bar();
 }
 
 main().catch(console.error);
@@ -114,7 +114,7 @@ async function foo() {
 }
 
 async function main() {
-  foo();
+  await foo();
 }
 
 main().catch(console.error);

@@ -28,7 +28,7 @@ async function oAuthProvidersDelete() {
 }
 
 async function main() {
-  oAuthProvidersDelete();
+  await oAuthProvidersDelete();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function boundariesSearchByFarmerId() {
 }
 
 async function main() {
-  boundariesSearchByFarmerId();
+  await boundariesSearchByFarmerId();
 }
 
 main().catch(console.error);

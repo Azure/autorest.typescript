@@ -30,7 +30,7 @@ async function dataProductsAddUserRoleMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsAddUserRoleMaximumSetGen();
+  await dataProductsAddUserRoleMaximumSetGen();
 }
 
 main().catch(console.error);

@@ -20,7 +20,7 @@ async function bodyThreeTypesSample() {
 }
 
 async function main() {
-  bodyThreeTypesSample();
+  await bodyThreeTypesSample();
 }
 
 main().catch(console.error);

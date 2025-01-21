@@ -24,7 +24,7 @@ async function loadTestRunDeleteTestRunSample() {
 }
 
 async function main() {
-  loadTestRunDeleteTestRunSample();
+  await loadTestRunDeleteTestRunSample();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function oAuthTokensList() {
 }
 
 async function main() {
-  oAuthTokensList();
+  await oAuthTokensList();
 }
 
 main().catch(console.error);

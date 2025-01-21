@@ -21,7 +21,7 @@ async function headerParamInteger() {
 }
 
 async function main() {
-  headerParamInteger();
+  await headerParamInteger();
 }
 
 main().catch(console.error);

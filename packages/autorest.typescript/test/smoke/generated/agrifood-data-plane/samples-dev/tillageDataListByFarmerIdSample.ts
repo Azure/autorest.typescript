@@ -35,7 +35,7 @@ async function tillageDataListByFarmerId() {
 }
 
 async function main() {
-  tillageDataListByFarmerId();
+  await tillageDataListByFarmerId();
 }
 
 main().catch(console.error);

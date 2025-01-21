@@ -30,7 +30,7 @@ async function getEmbeddingsSample() {
 }
 
 async function main() {
-  getEmbeddingsSample();
+  await getEmbeddingsSample();
 }
 
 main().catch(console.error);

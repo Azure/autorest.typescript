@@ -50,7 +50,7 @@ async function {{name}}() {
 
 async function main() {
 {{#each samples}}
-  {{this.name}}();
+  await {{this.name}}();
 {{/each}}
 }
 

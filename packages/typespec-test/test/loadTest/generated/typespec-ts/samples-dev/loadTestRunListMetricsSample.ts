@@ -40,7 +40,7 @@ async function loadTestRunListMetricsSample() {
 }
 
 async function main() {
-  loadTestRunListMetricsSample();
+  await loadTestRunListMetricsSample();
 }
 
 main().catch(console.error);

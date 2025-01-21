@@ -19,7 +19,7 @@ async function stringGetMbcs() {
 }
 
 async function main() {
-  stringGetMbcs();
+  await stringGetMbcs();
 }
 
 main().catch(console.error);

@@ -26,7 +26,7 @@ async function oAuthTokensGetCascadeDeleteJobDetails() {
 }
 
 async function main() {
-  oAuthTokensGetCascadeDeleteJobDetails();
+  await oAuthTokensGetCascadeDeleteJobDetails();
 }
 
 main().catch(console.error);

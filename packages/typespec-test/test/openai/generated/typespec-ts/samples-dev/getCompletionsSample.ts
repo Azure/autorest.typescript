@@ -42,7 +42,7 @@ async function getCompletionsSample() {
 }
 
 async function main() {
-  getCompletionsSample();
+  await getCompletionsSample();
 }
 
 main().catch(console.error);

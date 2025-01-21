@@ -28,7 +28,7 @@ async function listTrainingConfigVersionsSample() {
 }
 
 async function main() {
-  listTrainingConfigVersionsSample();
+  await listTrainingConfigVersionsSample();
 }
 
 main().catch(console.error);

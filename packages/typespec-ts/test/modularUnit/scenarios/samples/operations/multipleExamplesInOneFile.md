@@ -206,7 +206,7 @@ async function employeesCreateOrUpdateMinage() {
 }
 
 async function main() {
-  employeesCreateOrUpdateMaxage();
+  await employeesCreateOrUpdateMaxage();
   employeesCreateOrUpdateMinage();
 }
 

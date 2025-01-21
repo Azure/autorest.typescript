@@ -39,7 +39,7 @@ async function dataProductsUpdateMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsUpdateMaximumSetGen();
+  await dataProductsUpdateMaximumSetGen();
 }
 
 main().catch(console.error);

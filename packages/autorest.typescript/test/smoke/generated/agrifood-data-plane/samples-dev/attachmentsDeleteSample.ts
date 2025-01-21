@@ -33,7 +33,7 @@ async function attachmentsDelete() {
 }
 
 async function main() {
-  attachmentsDelete();
+  await attachmentsDelete();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function weatherCreateDataDeleteJob() {
 }
 
 async function main() {
-  weatherCreateDataDeleteJob();
+  await weatherCreateDataDeleteJob();
 }
 
 main().catch(console.error);

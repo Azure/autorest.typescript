@@ -25,7 +25,7 @@ async function getJobSample() {
 }
 
 async function main() {
-  getJobSample();
+  await getJobSample();
 }
 
 main().catch(console.error);

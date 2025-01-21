@@ -23,7 +23,7 @@ async function stringPutMbcs() {
 }
 
 async function main() {
-  stringPutMbcs();
+  await stringPutMbcs();
 }
 
 main().catch(console.error);

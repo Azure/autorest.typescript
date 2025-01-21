@@ -35,7 +35,7 @@ async function plantingDataListByFarmerId() {
 }
 
 async function main() {
-  plantingDataListByFarmerId();
+  await plantingDataListByFarmerId();
 }
 
 main().catch(console.error);

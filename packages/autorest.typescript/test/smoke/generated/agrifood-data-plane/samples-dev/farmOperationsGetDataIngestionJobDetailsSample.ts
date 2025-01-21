@@ -28,7 +28,7 @@ async function farmOperationsGetDataIngestionJobDetails() {
 }
 
 async function main() {
-  farmOperationsGetDataIngestionJobDetails();
+  await farmOperationsGetDataIngestionJobDetails();
 }
 
 main().catch(console.error);

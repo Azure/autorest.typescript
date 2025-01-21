@@ -32,7 +32,7 @@ async function applicationDataList() {
 }
 
 async function main() {
-  applicationDataList();
+  await applicationDataList();
 }
 
 main().catch(console.error);

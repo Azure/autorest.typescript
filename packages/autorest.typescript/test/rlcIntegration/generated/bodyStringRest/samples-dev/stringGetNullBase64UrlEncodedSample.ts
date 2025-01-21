@@ -19,7 +19,7 @@ async function stringGetNullBase64UrlEncoded() {
 }
 
 async function main() {
-  stringGetNullBase64UrlEncoded();
+  await stringGetNullBase64UrlEncoded();
 }
 
 main().catch(console.error);

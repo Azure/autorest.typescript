@@ -26,7 +26,7 @@ async function seasonsDelete() {
 }
 
 async function main() {
-  seasonsDelete();
+  await seasonsDelete();
 }
 
 main().catch(console.error);

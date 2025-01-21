@@ -20,7 +20,7 @@ async function dpgGetModel() {
 }
 
 async function main() {
-  dpgGetModel();
+  await dpgGetModel();
 }
 
 main().catch(console.error);

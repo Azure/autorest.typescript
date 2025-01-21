@@ -20,7 +20,7 @@ async function analyzeBodyNoAcceptHeaderSample() {
 }
 
 async function main() {
-  analyzeBodyNoAcceptHeaderSample();
+  await analyzeBodyNoAcceptHeaderSample();
 }
 
 main().catch(console.error);

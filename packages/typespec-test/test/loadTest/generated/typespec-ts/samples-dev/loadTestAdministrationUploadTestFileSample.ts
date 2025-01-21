@@ -29,7 +29,7 @@ async function loadTestAdministrationUploadTestFileSample() {
 }
 
 async function main() {
-  loadTestAdministrationUploadTestFileSample();
+  await loadTestAdministrationUploadTestFileSample();
 }
 
 main().catch(console.error);

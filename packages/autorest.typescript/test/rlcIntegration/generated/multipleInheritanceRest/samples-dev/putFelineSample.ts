@@ -23,7 +23,7 @@ async function putFelineSample() {
 }
 
 async function main() {
-  putFelineSample();
+  await putFelineSample();
 }
 
 main().catch(console.error);

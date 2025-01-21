@@ -32,7 +32,7 @@ async function imageProcessingCreateRasterizeJob() {
 }
 
 async function main() {
-  imageProcessingCreateRasterizeJob();
+  await imageProcessingCreateRasterizeJob();
 }
 
 main().catch(console.error);

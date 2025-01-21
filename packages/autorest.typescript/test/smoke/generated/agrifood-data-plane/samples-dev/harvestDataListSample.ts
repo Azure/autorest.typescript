@@ -32,7 +32,7 @@ async function harvestDataList() {
 }
 
 async function main() {
-  harvestDataList();
+  await harvestDataList();
 }
 
 main().catch(console.error);

@@ -18,7 +18,7 @@ async function getCatSample() {
 }
 
 async function main() {
-  getCatSample();
+  await getCatSample();
 }
 
 main().catch(console.error);

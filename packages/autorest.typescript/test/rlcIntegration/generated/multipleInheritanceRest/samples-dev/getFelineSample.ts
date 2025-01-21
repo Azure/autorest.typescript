@@ -18,7 +18,7 @@ async function getFelineSample() {
 }
 
 async function main() {
-  getFelineSample();
+  await getFelineSample();
 }
 
 main().catch(console.error);

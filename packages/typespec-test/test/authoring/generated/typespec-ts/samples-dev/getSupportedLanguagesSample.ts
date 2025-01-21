@@ -28,7 +28,7 @@ async function getSupportedLanguagesSample() {
 }
 
 async function main() {
-  getSupportedLanguagesSample();
+  await getSupportedLanguagesSample();
 }
 
 main().catch(console.error);

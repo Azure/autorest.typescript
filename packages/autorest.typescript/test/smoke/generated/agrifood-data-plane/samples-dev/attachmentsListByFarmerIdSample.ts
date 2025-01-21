@@ -35,7 +35,7 @@ async function attachmentsListByFarmerId() {
 }
 
 async function main() {
-  attachmentsListByFarmerId();
+  await attachmentsListByFarmerId();
 }
 
 main().catch(console.error);

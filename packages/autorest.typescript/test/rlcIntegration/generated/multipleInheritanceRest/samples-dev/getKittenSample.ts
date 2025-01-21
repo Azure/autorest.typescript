@@ -18,7 +18,7 @@ async function getKittenSample() {
 }
 
 async function main() {
-  getKittenSample();
+  await getKittenSample();
 }
 
 main().catch(console.error);

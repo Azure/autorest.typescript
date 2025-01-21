@@ -61,7 +61,7 @@ async function getChatCompletionsSample() {
 }
 
 async function main() {
-  getChatCompletionsSample();
+  await getChatCompletionsSample();
 }
 
 main().catch(console.error);

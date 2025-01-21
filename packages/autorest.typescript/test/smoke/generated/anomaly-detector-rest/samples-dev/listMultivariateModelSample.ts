@@ -36,7 +36,7 @@ async function listMultivariateModel() {
 }
 
 async function main() {
-  listMultivariateModel();
+  await listMultivariateModel();
 }
 
 main().catch(console.error);

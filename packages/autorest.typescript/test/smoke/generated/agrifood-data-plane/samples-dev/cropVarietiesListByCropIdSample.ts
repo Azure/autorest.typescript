@@ -35,7 +35,7 @@ async function cropVarietiesListByCropId() {
 }
 
 async function main() {
-  cropVarietiesListByCropId();
+  await cropVarietiesListByCropId();
 }
 
 main().catch(console.error);

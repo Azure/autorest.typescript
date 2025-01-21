@@ -85,7 +85,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
 }
 
 async function main() {
-  findAnomaliesForTheEntireSeriesInBatchExample();
+  await findAnomaliesForTheEntireSeriesInBatchExample();
 }
 
 main().catch(console.error);

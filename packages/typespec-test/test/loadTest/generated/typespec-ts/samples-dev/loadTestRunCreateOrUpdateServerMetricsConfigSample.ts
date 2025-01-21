@@ -39,7 +39,7 @@ async function loadTestRunCreateOrUpdateServerMetricsConfigSample() {
 }
 
 async function main() {
-  loadTestRunCreateOrUpdateServerMetricsConfigSample();
+  await loadTestRunCreateOrUpdateServerMetricsConfigSample();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function cropVarietiesGet() {
 }
 
 async function main() {
-  cropVarietiesGet();
+  await cropVarietiesGet();
 }
 
 main().catch(console.error);

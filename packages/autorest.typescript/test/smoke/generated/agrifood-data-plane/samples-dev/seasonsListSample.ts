@@ -32,7 +32,7 @@ async function seasonsList() {
 }
 
 async function main() {
-  seasonsList();
+  await seasonsList();
 }
 
 main().catch(console.error);

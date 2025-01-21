@@ -42,7 +42,7 @@ async function weatherList() {
 }
 
 async function main() {
-  weatherList();
+  await weatherList();
 }
 
 main().catch(console.error);

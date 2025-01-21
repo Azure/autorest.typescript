@@ -33,7 +33,7 @@ async function seasonalFieldsDelete() {
 }
 
 async function main() {
-  seasonalFieldsDelete();
+  await seasonalFieldsDelete();
 }
 
 main().catch(console.error);

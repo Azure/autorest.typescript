@@ -33,7 +33,7 @@ async function beginAzureBatchImageGenerationSample() {
 }
 
 async function main() {
-  beginAzureBatchImageGenerationSample();
+  await beginAzureBatchImageGenerationSample();
 }
 
 main().catch(console.error);

@@ -28,7 +28,7 @@ async function scenesGetSatelliteDataIngestionJobDetails() {
 }
 
 async function main() {
-  scenesGetSatelliteDataIngestionJobDetails();
+  await scenesGetSatelliteDataIngestionJobDetails();
 }
 
 main().catch(console.error);

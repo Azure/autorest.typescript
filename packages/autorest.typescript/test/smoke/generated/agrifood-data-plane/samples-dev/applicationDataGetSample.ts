@@ -33,7 +33,7 @@ async function applicationDataGet() {
 }
 
 async function main() {
-  applicationDataGet();
+  await applicationDataGet();
 }
 
 main().catch(console.error);

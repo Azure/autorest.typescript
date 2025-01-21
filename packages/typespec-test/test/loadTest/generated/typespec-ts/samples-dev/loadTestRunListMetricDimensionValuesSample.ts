@@ -43,7 +43,7 @@ async function loadTestRunListMetricDimensionValuesSample() {
 }
 
 async function main() {
-  loadTestRunListMetricDimensionValuesSample();
+  await loadTestRunListMetricDimensionValuesSample();
 }
 
 main().catch(console.error);

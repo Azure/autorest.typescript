@@ -27,7 +27,7 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
+  await dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
 }
 
 main().catch(console.error);

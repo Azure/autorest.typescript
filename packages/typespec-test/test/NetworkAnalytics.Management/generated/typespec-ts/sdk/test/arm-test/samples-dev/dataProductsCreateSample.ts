@@ -69,7 +69,7 @@ async function dataProductsCreateMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsCreateMaximumSetGen();
+  await dataProductsCreateMaximumSetGen();
 }
 
 main().catch(console.error);

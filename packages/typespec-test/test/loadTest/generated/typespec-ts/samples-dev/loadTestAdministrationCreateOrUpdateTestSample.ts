@@ -63,7 +63,7 @@ async function loadTestAdministrationCreateOrUpdateTestSample() {
 }
 
 async function main() {
-  loadTestAdministrationCreateOrUpdateTestSample();
+  await loadTestAdministrationCreateOrUpdateTestSample();
 }
 
 main().catch(console.error);

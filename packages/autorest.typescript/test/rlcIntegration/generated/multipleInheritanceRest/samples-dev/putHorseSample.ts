@@ -23,7 +23,7 @@ async function putHorseSample() {
 }
 
 async function main() {
-  putHorseSample();
+  await putHorseSample();
 }
 
 main().catch(console.error);

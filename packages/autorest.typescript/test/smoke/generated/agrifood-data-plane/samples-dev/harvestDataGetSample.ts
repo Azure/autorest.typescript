@@ -33,7 +33,7 @@ async function harvestDataGet() {
 }
 
 async function main() {
-  harvestDataGet();
+  await harvestDataGet();
 }
 
 main().catch(console.error);

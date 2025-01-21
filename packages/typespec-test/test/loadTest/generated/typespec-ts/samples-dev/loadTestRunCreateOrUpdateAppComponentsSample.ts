@@ -36,7 +36,7 @@ async function loadTestRunCreateOrUpdateAppComponentsSample() {
 }
 
 async function main() {
-  loadTestRunCreateOrUpdateAppComponentsSample();
+  await loadTestRunCreateOrUpdateAppComponentsSample();
 }
 
 main().catch(console.error);

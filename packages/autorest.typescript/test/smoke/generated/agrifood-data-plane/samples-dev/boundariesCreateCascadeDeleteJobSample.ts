@@ -34,7 +34,7 @@ async function boundariesCreateCascadeDeleteJob() {
 }
 
 async function main() {
-  boundariesCreateCascadeDeleteJob();
+  await boundariesCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

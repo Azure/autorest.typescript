@@ -30,7 +30,7 @@ async function getDetectionResult() {
 }
 
 async function main() {
-  getDetectionResult();
+  await getDetectionResult();
 }
 
 main().catch(console.error);

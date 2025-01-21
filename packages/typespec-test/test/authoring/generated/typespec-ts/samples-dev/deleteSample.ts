@@ -28,7 +28,7 @@ async function deleteSample() {
 }
 
 async function main() {
-  deleteSample();
+  await deleteSample();
 }
 
 main().catch(console.error);

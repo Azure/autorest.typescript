@@ -32,7 +32,7 @@ async function weatherCreateDataIngestionJob() {
 }
 
 async function main() {
-  weatherCreateDataIngestionJob();
+  await weatherCreateDataIngestionJob();
 }
 
 main().catch(console.error);

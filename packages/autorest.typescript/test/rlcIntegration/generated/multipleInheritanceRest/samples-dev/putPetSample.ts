@@ -20,7 +20,7 @@ async function putPetSample() {
 }
 
 async function main() {
-  putPetSample();
+  await putPetSample();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function getSwapDeploymentsStatusSample() {
 }
 
 async function main() {
-  getSwapDeploymentsStatusSample();
+  await getSwapDeploymentsStatusSample();
 }
 
 main().catch(console.error);

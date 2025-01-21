@@ -28,7 +28,7 @@ async function importxSample() {
 }
 
 async function main() {
-  importxSample();
+  await importxSample();
 }
 
 main().catch(console.error);

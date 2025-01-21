@@ -29,7 +29,7 @@ async function fieldsDelete() {
 }
 
 async function main() {
-  fieldsDelete();
+  await fieldsDelete();
 }
 
 main().catch(console.error);

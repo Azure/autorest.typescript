@@ -64,7 +64,7 @@ async function getChatCompletionsWithAzureExtensionsSample() {
 }
 
 async function main() {
-  getChatCompletionsWithAzureExtensionsSample();
+  await getChatCompletionsWithAzureExtensionsSample();
 }
 
 main().catch(console.error);

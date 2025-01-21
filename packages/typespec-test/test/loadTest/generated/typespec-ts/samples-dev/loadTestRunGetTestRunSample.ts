@@ -22,7 +22,7 @@ async function loadTestRunGetTestRunSample() {
 }
 
 async function main() {
-  loadTestRunGetTestRunSample();
+  await loadTestRunGetTestRunSample();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function applicationDataDelete() {
 }
 
 async function main() {
-  applicationDataDelete();
+  await applicationDataDelete();
 }
 
 main().catch(console.error);

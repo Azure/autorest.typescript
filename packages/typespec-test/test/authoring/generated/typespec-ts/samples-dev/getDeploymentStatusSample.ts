@@ -31,7 +31,7 @@ async function getDeploymentStatusSample() {
 }
 
 async function main() {
-  getDeploymentStatusSample();
+  await getDeploymentStatusSample();
 }
 
 main().catch(console.error);

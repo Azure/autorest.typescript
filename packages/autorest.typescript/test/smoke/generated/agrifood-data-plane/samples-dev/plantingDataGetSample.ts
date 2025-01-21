@@ -33,7 +33,7 @@ async function plantingDataGet() {
 }
 
 async function main() {
-  plantingDataGet();
+  await plantingDataGet();
 }
 
 main().catch(console.error);

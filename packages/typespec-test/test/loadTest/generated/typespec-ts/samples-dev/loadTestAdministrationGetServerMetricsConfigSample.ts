@@ -24,7 +24,7 @@ async function loadTestAdministrationGetServerMetricsConfigSample() {
 }
 
 async function main() {
-  loadTestAdministrationGetServerMetricsConfigSample();
+  await loadTestAdministrationGetServerMetricsConfigSample();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function plantingDataList() {
 }
 
 async function main() {
-  plantingDataList();
+  await plantingDataList();
 }
 
 main().catch(console.error);

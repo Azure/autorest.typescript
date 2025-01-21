@@ -21,7 +21,7 @@ async function headerParamExistingKey() {
 }
 
 async function main() {
-  headerParamExistingKey();
+  await headerParamExistingKey();
 }
 
 main().catch(console.error);

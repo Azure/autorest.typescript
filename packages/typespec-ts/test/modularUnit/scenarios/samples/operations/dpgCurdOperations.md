@@ -146,7 +146,7 @@ async function widgetsCreateOrUpdateWidget() {
 }
 
 async function main() {
-  widgetsCreateOrUpdateWidget();
+  await widgetsCreateOrUpdateWidget();
 }
 
 main().catch(console.error);
@@ -169,7 +169,7 @@ async function deleteWidgetByWidgetNameUsingLongRunningOperation() {
 }
 
 async function main() {
-  deleteWidgetByWidgetNameUsingLongRunningOperation();
+  await deleteWidgetByWidgetNameUsingLongRunningOperation();
 }
 
 main().catch(console.error);
@@ -200,7 +200,7 @@ async function widgetsListWidgets() {
 }
 
 async function main() {
-  widgetsListWidgets();
+  await widgetsListWidgets();
 }
 
 main().catch(console.error);

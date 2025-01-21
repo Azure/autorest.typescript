@@ -32,7 +32,7 @@ async function scenesCreateSatelliteDataIngestionJob() {
 }
 
 async function main() {
-  scenesCreateSatelliteDataIngestionJob();
+  await scenesCreateSatelliteDataIngestionJob();
 }
 
 main().catch(console.error);

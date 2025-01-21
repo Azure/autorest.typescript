@@ -29,7 +29,7 @@ async function putKittenSample() {
 }
 
 async function main() {
-  putKittenSample();
+  await putKittenSample();
 }
 
 main().catch(console.error);

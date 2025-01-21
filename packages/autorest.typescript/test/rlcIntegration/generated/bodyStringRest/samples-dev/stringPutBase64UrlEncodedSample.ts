@@ -21,7 +21,7 @@ async function stringPutBase64UrlEncoded() {
 }
 
 async function main() {
-  stringPutBase64UrlEncoded();
+  await stringPutBase64UrlEncoded();
 }
 
 main().catch(console.error);

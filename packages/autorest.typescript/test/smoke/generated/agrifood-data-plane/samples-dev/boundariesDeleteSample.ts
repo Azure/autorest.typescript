@@ -29,7 +29,7 @@ async function boundariesDelete() {
 }
 
 async function main() {
-  boundariesDelete();
+  await boundariesDelete();
 }
 
 main().catch(console.error);

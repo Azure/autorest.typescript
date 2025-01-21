@@ -20,7 +20,7 @@ async function dataProductsRotateKeyMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsRotateKeyMaximumSetGen();
+  await dataProductsRotateKeyMaximumSetGen();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function getMultivariateModel() {
 }
 
 async function main() {
-  getMultivariateModel();
+  await getMultivariateModel();
 }
 
 main().catch(console.error);

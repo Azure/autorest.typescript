@@ -22,7 +22,7 @@ async function loadTestAdministrationGetTestSample() {
 }
 
 async function main() {
-  loadTestAdministrationGetTestSample();
+  await loadTestAdministrationGetTestSample();
 }
 
 main().catch(console.error);

@@ -18,7 +18,7 @@ async function dataProductsDeleteMaximumSetGen() {
 }
 
 async function main() {
-  dataProductsDeleteMaximumSetGen();
+  await dataProductsDeleteMaximumSetGen();
 }
 
 main().catch(console.error);
