@@ -31,12 +31,7 @@ export declare interface ServerDrivenPaginationLink200Response extends HttpRespo
     status: "200";
     body: {
         pets: Array<PetOutput>;
-        links: {
-            next?: string;
-            prev?: string;
-            first?: string;
-            last?: string;
-        };
+        next?: string;
     };
 }
 
