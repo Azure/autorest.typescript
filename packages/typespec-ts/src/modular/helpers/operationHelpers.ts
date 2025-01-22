@@ -1125,7 +1125,9 @@ export function getRequestModelMapping(
 }
 
 function getPropertySerializedName(property: SdkModelPropertyType) {
-  return property.kind !== "credential" && property.kind !== "method"
+  return property.kind !== "credential" &&
+    property.kind !== "method" &&
+    property.kind !== "endpoint"
     ? property.serializedName
     : property.name;
 }
