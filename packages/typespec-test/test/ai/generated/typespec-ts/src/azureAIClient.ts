@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 
 import {
-  getEvaluationsOperations,
+  _getEvaluationsOperations,
   EvaluationsOperations,
 } from "./classic/evaluations/index.js";
 import {
-  getConnectionsOperations,
+  _getConnectionsOperations,
   ConnectionsOperations,
 } from "./classic/connections/index.js";
 import {
-  getAgentsOperations,
+  _getAgentsOperations,
   AgentsOperations,
 } from "./classic/agents/index.js";
 import {
@@ -49,9 +49,9 @@ export class AzureAIClient {
       { ...options, userAgentOptions: { userAgentPrefix } },
     );
     this.pipeline = this._client.pipeline;
-    this.evaluations = getEvaluationsOperations(this._client);
-    this.connections = getConnectionsOperations(this._client);
-    this.agents = getAgentsOperations(this._client);
+    this.evaluations = _getEvaluationsOperations(this._client);
+    this.connections = _getConnectionsOperations(this._client);
+    this.agents = _getAgentsOperations(this._client);
   }
 
   /** The operation groups for evaluations */

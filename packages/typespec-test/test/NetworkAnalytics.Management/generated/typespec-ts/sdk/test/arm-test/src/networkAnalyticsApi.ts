@@ -2,19 +2,19 @@
 // Licensed under the MIT License.
 
 import {
-  getDataProductsOperations,
+  _getDataProductsOperations,
   DataProductsOperations,
 } from "./classic/dataProducts/index.js";
 import {
-  getDataTypesOperations,
+  _getDataTypesOperations,
   DataTypesOperations,
 } from "./classic/dataTypes/index.js";
 import {
-  getDataProductsCatalogsOperations,
+  _getDataProductsCatalogsOperations,
   DataProductsCatalogsOperations,
 } from "./classic/dataProductsCatalogs/index.js";
 import {
-  getOperationsOperations,
+  _getOperationsOperations,
   OperationsOperations,
 } from "./classic/operations/index.js";
 import {
@@ -46,10 +46,12 @@ export class NetworkAnalyticsApi {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.dataProducts = getDataProductsOperations(this._client);
-    this.dataTypes = getDataTypesOperations(this._client);
-    this.dataProductsCatalogs = getDataProductsCatalogsOperations(this._client);
-    this.operations = getOperationsOperations(this._client);
+    this.dataProducts = _getDataProductsOperations(this._client);
+    this.dataTypes = _getDataTypesOperations(this._client);
+    this.dataProductsCatalogs = _getDataProductsCatalogsOperations(
+      this._client,
+    );
+    this.operations = _getOperationsOperations(this._client);
   }
 
   /** The operation groups for dataProducts */
