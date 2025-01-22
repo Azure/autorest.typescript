@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  getFooOperationsOperations,
+  _getFooOperationsOperations,
   FooOperationsOperations,
 } from "./classic/fooOperations/index.js";
 import {
@@ -34,7 +34,7 @@ export class WidgetManagerClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.fooOperations = getFooOperationsOperations(this._client);
+    this.fooOperations = _getFooOperationsOperations(this._client);
   }
 
   /** The operation groups for fooOperations */

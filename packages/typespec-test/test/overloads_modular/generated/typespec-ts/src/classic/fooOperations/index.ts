@@ -38,7 +38,7 @@ function _getFooOperations(context: WidgetManagerContext) {
   };
 }
 
-export function getFooOperationsOperations(
+export function _getFooOperationsOperations(
   context: WidgetManagerContext,
 ): FooOperationsOperations {
   return {

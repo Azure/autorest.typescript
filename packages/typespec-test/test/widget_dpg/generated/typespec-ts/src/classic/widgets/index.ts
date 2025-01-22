@@ -145,7 +145,7 @@ function _getWidgets(context: WidgetServiceContext) {
   };
 }
 
-export function getWidgetsOperations(
+export function _getWidgetsOperations(
   context: WidgetServiceContext,
 ): WidgetsOperations {
   return {

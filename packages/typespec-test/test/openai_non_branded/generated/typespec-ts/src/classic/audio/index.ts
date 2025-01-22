@@ -3,11 +3,11 @@
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   AudioTranscriptionsOperations,
-  getAudioTranscriptionsOperations,
+  _getAudioTranscriptionsOperations,
 } from "./transcriptions/index.js";
 import {
   AudioTranslationsOperations,
-  getAudioTranslationsOperations,
+  _getAudioTranslationsOperations,
 } from "./translations/index.js";
 
 /** Interface representing a Audio operations. */
@@ -16,9 +16,9 @@ export interface AudioOperations {
   transcriptions: AudioTranscriptionsOperations;
 }
 
-export function getAudioOperations(context: OpenAIContext): AudioOperations {
+export function _getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
-    translations: getAudioTranslationsOperations(context),
-    transcriptions: getAudioTranscriptionsOperations(context),
+    translations: _getAudioTranslationsOperations(context),
+    transcriptions: _getAudioTranscriptionsOperations(context),
   };
 }

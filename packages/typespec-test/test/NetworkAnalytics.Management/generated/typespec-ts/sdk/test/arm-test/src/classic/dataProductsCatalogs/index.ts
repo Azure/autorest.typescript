@@ -49,7 +49,7 @@ function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   };
 }
 
-export function getDataProductsCatalogsOperations(
+export function _getDataProductsCatalogsOperations(
   context: NetworkAnalyticsApiContext,
 ): DataProductsCatalogsOperations {
   return {

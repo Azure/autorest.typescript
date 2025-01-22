@@ -2,7 +2,8 @@
 
 import {
   TodoContext as Client,
-  TodoItemsCreateOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsListOptionalParams,
@@ -11,18 +12,23 @@ import {
 import {
   TodoPage,
   todoPageDeserializer,
+  invalidTodoItemDeserializer,
+  notFoundErrorResponseDeserializer,
+  TodoItemPatch,
+  todoItemPatchSerializer,
+} from "../../models/todoItems/models.js";
+import {
   TodoItem,
   todoItemSerializer,
   TodoLabels,
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
-  _createResponseDeserializer,
-  invalidTodoItemDeserializer,
+  _createJsonResponseDeserializer,
+  ToDoItemMultipartRequest,
+  toDoItemMultipartRequestSerializer,
+  _createFormResponseDeserializer,
   _getResponseDeserializer,
-  notFoundErrorResponseDeserializer,
-  TodoItemPatch,
-  todoItemPatchSerializer,
   _updateResponseDeserializer,
 } from "../../models/models.js";
 import {
@@ -209,30 +215,25 @@ export async function get(
   return _getDeserialize(result);
 }
 
-export function _createSend(
+export function _createFormSend(
   context: Client,
-  item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  body: ToDoItemMultipartRequest,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/items")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: "multipart/form-data",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: {
-        item: todoItemSerializer(item),
-        attachments: !options?.attachments
-          ? options?.attachments
-          : todoAttachmentArraySerializer(options?.attachments),
-      },
+      body: toDoItemMultipartRequestSerializer(body),
     });
 }
 
-export async function _createDeserialize(
+export async function _createFormDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
   id: number;
@@ -260,13 +261,13 @@ export async function _createDeserialize(
     throw error;
   }
 
-  return _createResponseDeserializer(result.body);
+  return _createFormResponseDeserializer(result.body);
 }
 
-export async function create(
+export async function createForm(
   context: Client,
-  item: TodoItem,
-  options: TodoItemsCreateOptionalParams = { requestOptions: {} },
+  body: ToDoItemMultipartRequest,
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): Promise<{
   id: number;
   title: string;
@@ -279,8 +280,82 @@ export async function create(
   completedAt?: Date;
   labels?: TodoLabels;
 }> {
-  const result = await _createSend(context, item, options);
-  return _createDeserialize(result);
+  const result = await _createFormSend(context, body, options);
+  return _createFormDeserialize(result);
+}
+
+export function _createJsonSend(
+  context: Client,
+  item: TodoItem,
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/items")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: {
+        item: todoItemSerializer(item),
+        attachments: !options?.attachments
+          ? options?.attachments
+          : todoAttachmentArraySerializer(options?.attachments),
+      },
+    });
+}
+
+export async function _createJsonDeserialize(
+  result: PathUncheckedResponse,
+): Promise<{
+  id: number;
+  title: string;
+  createdBy: number;
+  assignedTo?: number;
+  description?: string;
+  status: "NotStarted" | "InProgress" | "Completed";
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date;
+  labels?: TodoLabels;
+}> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 422) {
+      error.details = invalidTodoItemDeserializer(result.body);
+    } else if (statusCode >= 400 && statusCode <= 499) {
+      error.details = standard4XXResponseDeserializer(result.body);
+    } else if (statusCode >= 500 && statusCode <= 599) {
+      error.details = standard5XXResponseDeserializer(result.body);
+    }
+    throw error;
+  }
+
+  return _createJsonResponseDeserializer(result.body);
+}
+
+export async function createJson(
+  context: Client,
+  item: TodoItem,
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
+): Promise<{
+  id: number;
+  title: string;
+  createdBy: number;
+  assignedTo?: number;
+  description?: string;
+  status: "NotStarted" | "InProgress" | "Completed";
+  createdAt: Date;
+  updatedAt: Date;
+  completedAt?: Date;
+  labels?: TodoLabels;
+}> {
+  const result = await _createJsonSend(context, item, options);
+  return _createJsonDeserialize(result);
 }
 
 export function _listSend(

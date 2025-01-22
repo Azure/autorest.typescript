@@ -193,7 +193,7 @@ function buildClientOperationGroups(
       });
     } else {
       const groupName = normalizeName(prefixes[0] ?? "", NameType.Property);
-      const operationName = `get${normalizeName(
+      const operationName = `_get${normalizeName(
         groupName,
         NameType.OperationGroup
       )}Operations`;
@@ -222,7 +222,7 @@ function buildClientOperationGroups(
         clientClass
           .getConstructors()[0]
           ?.addStatements(
-            `this.${groupName} = get${normalizeName(
+            `this.${groupName} = _get${normalizeName(
               groupName,
               NameType.OperationGroup
             )}Operations(this._client)`

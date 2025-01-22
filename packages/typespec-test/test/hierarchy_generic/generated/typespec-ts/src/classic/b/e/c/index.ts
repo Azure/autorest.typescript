@@ -3,7 +3,7 @@
 
 import { FooContext } from "../../../../api/fooContext.js";
 import { op1 } from "../../../../api/b/e/c/index.js";
-import { Bea } from "../../../../models/models.js";
+import { Bea } from "../../../../models/b/e/models.js";
 import { BECOp1OptionalParams } from "../../../../api/options.js";
 
 /** Interface representing a BEC operations. */
@@ -18,7 +18,7 @@ function _getBEC(context: FooContext) {
   };
 }
 
-export function getBECOperations(context: FooContext): BECOperations {
+export function _getBECOperations(context: FooContext): BECOperations {
   return {
     ..._getBEC(context),
   };

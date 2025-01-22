@@ -63,7 +63,7 @@ function _getFiles(context: OpenAIContext) {
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): FilesOperations {
+export function _getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
     ..._getFiles(context),
   };

@@ -19,7 +19,7 @@ import {
   univariateUnivariateChangePointDetectionOptionsSerializer,
   UnivariateUnivariateChangePointDetectionResult,
   univariateUnivariateChangePointDetectionResultDeserializer,
-} from "../../models/models.js";
+} from "../../models/univariate/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

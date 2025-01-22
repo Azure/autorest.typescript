@@ -6,10 +6,12 @@ import {
   standard5XXResponseDeserializer,
   User,
   userSerializer,
-  _createResponse1Deserializer,
+  _createResponseDeserializer,
+} from "../../models/models.js";
+import {
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/users/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,7 +61,7 @@ export async function _createDeserialize(
     throw error;
   }
 
-  return _createResponse1Deserializer(result.body);
+  return _createResponseDeserializer(result.body);
 }
 
 export async function create(
