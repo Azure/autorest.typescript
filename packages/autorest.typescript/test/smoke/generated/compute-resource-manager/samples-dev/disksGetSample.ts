@@ -31,7 +31,7 @@ async function getInformationAboutAManagedDisk() {
 }
 
 async function main() {
-  getInformationAboutAManagedDisk();
+  await getInformationAboutAManagedDisk();
 }
 
 main().catch(console.error);

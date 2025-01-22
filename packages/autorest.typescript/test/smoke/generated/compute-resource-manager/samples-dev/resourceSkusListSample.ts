@@ -73,9 +73,9 @@ async function listsAllAvailableResourceSkUsWithExtendedLocationInformation() {
 }
 
 async function main() {
-  listsAllAvailableResourceSkUs();
-  listsAllAvailableResourceSkUsForTheSpecifiedRegion();
-  listsAllAvailableResourceSkUsWithExtendedLocationInformation();
+  await listsAllAvailableResourceSkUs();
+  await listsAllAvailableResourceSkUsForTheSpecifiedRegion();
+  await listsAllAvailableResourceSkUsWithExtendedLocationInformation();
 }
 
 main().catch(console.error);

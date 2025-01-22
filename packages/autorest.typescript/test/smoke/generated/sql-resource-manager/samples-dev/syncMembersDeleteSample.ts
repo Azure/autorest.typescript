@@ -42,7 +42,7 @@ async function deleteASyncMember() {
 }
 
 async function main() {
-  deleteASyncMember();
+  await deleteASyncMember();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function getsTheReplicationLink() {
 }
 
 async function main() {
-  getsTheReplicationLink();
+  await getsTheReplicationLink();
 }
 
 main().catch(console.error);

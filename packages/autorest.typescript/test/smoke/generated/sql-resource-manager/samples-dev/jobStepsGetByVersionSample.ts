@@ -43,7 +43,7 @@ async function getTheSpecifiedVersionOfAJobStep() {
 }
 
 async function main() {
-  getTheSpecifiedVersionOfAJobStep();
+  await getTheSpecifiedVersionOfAJobStep();
 }
 
 main().catch(console.error);

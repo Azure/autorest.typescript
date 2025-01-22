@@ -37,7 +37,7 @@ async function listSubnets() {
 }
 
 async function main() {
-  listSubnets();
+  await listSubnets();
 }
 
 main().catch(console.error);

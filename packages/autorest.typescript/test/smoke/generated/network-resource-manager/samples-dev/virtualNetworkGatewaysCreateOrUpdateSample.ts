@@ -97,7 +97,7 @@ async function updateVirtualNetworkGateway() {
 }
 
 async function main() {
-  updateVirtualNetworkGateway();
+  await updateVirtualNetworkGateway();
 }
 
 main().catch(console.error);

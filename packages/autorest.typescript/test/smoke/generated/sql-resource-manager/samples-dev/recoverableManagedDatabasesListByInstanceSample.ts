@@ -38,7 +38,7 @@ async function listRecoverableDatabasesByManagedInstances() {
 }
 
 async function main() {
-  listRecoverableDatabasesByManagedInstances();
+  await listRecoverableDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

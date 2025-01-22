@@ -40,7 +40,7 @@ async function listPublishingCredentialsPolicies() {
 }
 
 async function main() {
-  listPublishingCredentialsPolicies();
+  await listPublishingCredentialsPolicies();
 }
 
 main().catch(console.error);

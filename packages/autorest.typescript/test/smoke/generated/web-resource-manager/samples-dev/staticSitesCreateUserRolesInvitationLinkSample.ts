@@ -47,7 +47,7 @@ async function createAnInvitationLinkForAUserForAStaticSite() {
 }
 
 async function main() {
-  createAnInvitationLinkForAUserForAStaticSite();
+  await createAnInvitationLinkForAUserForAStaticSite();
 }
 
 main().catch(console.error);

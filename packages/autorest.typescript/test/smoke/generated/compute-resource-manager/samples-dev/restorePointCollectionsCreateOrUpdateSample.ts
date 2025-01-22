@@ -45,7 +45,7 @@ async function createOrUpdateARestorePointCollection() {
 }
 
 async function main() {
-  createOrUpdateARestorePointCollection();
+  await createOrUpdateARestorePointCollection();
 }
 
 main().catch(console.error);

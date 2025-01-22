@@ -32,7 +32,7 @@ async function deleteCertificate() {
 }
 
 async function main() {
-  deleteCertificate();
+  await deleteCertificate();
 }
 
 main().catch(console.error);

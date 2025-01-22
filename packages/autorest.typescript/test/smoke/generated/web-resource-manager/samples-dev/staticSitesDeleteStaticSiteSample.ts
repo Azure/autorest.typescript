@@ -35,7 +35,7 @@ async function deleteAStaticSite() {
 }
 
 async function main() {
-  deleteAStaticSite();
+  await deleteAStaticSite();
 }
 
 main().catch(console.error);

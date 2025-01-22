@@ -41,7 +41,7 @@ async function vpnSiteUpdate() {
 }
 
 async function main() {
-  vpnSiteUpdate();
+  await vpnSiteUpdate();
 }
 
 main().catch(console.error);

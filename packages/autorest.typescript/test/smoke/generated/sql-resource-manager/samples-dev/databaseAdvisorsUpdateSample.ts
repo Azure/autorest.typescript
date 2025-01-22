@@ -42,7 +42,7 @@ async function updateDatabaseAdvisor() {
 }
 
 async function main() {
-  updateDatabaseAdvisor();
+  await updateDatabaseAdvisor();
 }
 
 main().catch(console.error);

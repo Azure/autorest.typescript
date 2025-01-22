@@ -49,8 +49,8 @@ async function getServerWithExpandAdministrators() {
 }
 
 async function main() {
-  getServer();
-  getServerWithExpandAdministrators();
+  await getServer();
+  await getServerWithExpandAdministrators();
 }
 
 main().catch(console.error);

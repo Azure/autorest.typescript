@@ -149,10 +149,10 @@ async function createOrUpdateDataMaskingRuleForText() {
 }
 
 async function main() {
-  createOrUpdateDataMaskingRuleForDefaultMax();
-  createOrUpdateDataMaskingRuleForDefaultMin();
-  createOrUpdateDataMaskingRuleForNumbers();
-  createOrUpdateDataMaskingRuleForText();
+  await createOrUpdateDataMaskingRuleForDefaultMax();
+  await createOrUpdateDataMaskingRuleForDefaultMin();
+  await createOrUpdateDataMaskingRuleForNumbers();
+  await createOrUpdateDataMaskingRuleForText();
 }
 
 main().catch(console.error);

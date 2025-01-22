@@ -75,8 +75,8 @@ async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
 }
 
 async function main() {
-  updatesDatabaseAutomaticTuningSettingsWithAllProperties();
-  updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
+  await updatesDatabaseAutomaticTuningSettingsWithAllProperties();
+  await updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
 }
 
 main().catch(console.error);

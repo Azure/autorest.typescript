@@ -33,7 +33,7 @@ async function listCertificatesForSubscription() {
 }
 
 async function main() {
-  listCertificatesForSubscription();
+  await listCertificatesForSubscription();
 }
 
 main().catch(console.error);

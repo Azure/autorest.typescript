@@ -39,7 +39,7 @@ async function getAGallery() {
 }
 
 async function main() {
-  getAGallery();
+  await getAGallery();
 }
 
 main().catch(console.error);

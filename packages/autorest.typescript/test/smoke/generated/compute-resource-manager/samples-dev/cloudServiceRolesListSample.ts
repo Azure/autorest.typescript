@@ -37,7 +37,7 @@ async function listRolesInACloudService() {
 }
 
 async function main() {
-  listRolesInACloudService();
+  await listRolesInACloudService();
 }
 
 main().catch(console.error);

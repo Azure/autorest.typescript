@@ -42,7 +42,7 @@ async function deleteAWorkloadClassifier() {
 }
 
 async function main() {
-  deleteAWorkloadClassifier();
+  await deleteAWorkloadClassifier();
 }
 
 main().catch(console.error);

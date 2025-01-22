@@ -31,7 +31,7 @@ async function getFunctionAppStacks() {
 }
 
 async function main() {
-  getFunctionAppStacks();
+  await getFunctionAppStacks();
 }
 
 main().catch(console.error);

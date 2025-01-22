@@ -41,7 +41,7 @@ async function getManagedDatabaseTable() {
 }
 
 async function main() {
-  getManagedDatabaseTable();
+  await getManagedDatabaseTable();
 }
 
 main().catch(console.error);

@@ -44,7 +44,7 @@ async function createOrUpdateACustomDomainForAStaticSite() {
 }
 
 async function main() {
-  createOrUpdateACustomDomainForAStaticSite();
+  await createOrUpdateACustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

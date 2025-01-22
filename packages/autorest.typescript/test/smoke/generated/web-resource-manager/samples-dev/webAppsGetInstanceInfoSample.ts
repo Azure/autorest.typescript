@@ -37,7 +37,7 @@ async function getSiteInstanceInfo() {
 }
 
 async function main() {
-  getSiteInstanceInfo();
+  await getSiteInstanceInfo();
 }
 
 main().catch(console.error);

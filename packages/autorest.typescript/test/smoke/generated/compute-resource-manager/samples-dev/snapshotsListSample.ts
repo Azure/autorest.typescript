@@ -32,7 +32,7 @@ async function listAllSnapshotsInASubscription() {
 }
 
 async function main() {
-  listAllSnapshotsInASubscription();
+  await listAllSnapshotsInASubscription();
 }
 
 main().catch(console.error);

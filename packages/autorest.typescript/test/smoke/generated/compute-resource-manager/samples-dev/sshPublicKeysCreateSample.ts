@@ -42,7 +42,7 @@ async function createANewSshPublicKeyResource() {
 }
 
 async function main() {
-  createANewSshPublicKeyResource();
+  await createANewSshPublicKeyResource();
 }
 
 main().catch(console.error);

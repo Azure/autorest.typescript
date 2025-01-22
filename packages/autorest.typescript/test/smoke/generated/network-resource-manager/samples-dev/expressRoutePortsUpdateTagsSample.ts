@@ -39,7 +39,7 @@ async function expressRoutePortUpdateTags() {
 }
 
 async function main() {
-  expressRoutePortUpdateTags();
+  await expressRoutePortUpdateTags();
 }
 
 main().catch(console.error);

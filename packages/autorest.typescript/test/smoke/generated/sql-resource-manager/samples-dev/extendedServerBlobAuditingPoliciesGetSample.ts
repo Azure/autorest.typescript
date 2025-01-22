@@ -36,7 +36,7 @@ async function getAServerBlobExtendedAuditingPolicy() {
 }
 
 async function main() {
-  getAServerBlobExtendedAuditingPolicy();
+  await getAServerBlobExtendedAuditingPolicy();
 }
 
 main().catch(console.error);

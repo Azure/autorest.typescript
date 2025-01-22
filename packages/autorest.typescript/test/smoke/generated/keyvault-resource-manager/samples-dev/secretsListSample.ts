@@ -35,7 +35,7 @@ async function listSecretsInTheVault() {
 }
 
 async function main() {
-  listSecretsInTheVault();
+  await listSecretsInTheVault();
 }
 
 main().catch(console.error);

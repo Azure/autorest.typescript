@@ -49,7 +49,7 @@ async function createOrUpdateFlowLog() {
 }
 
 async function main() {
-  createOrUpdateFlowLog();
+  await createOrUpdateFlowLog();
 }
 
 main().catch(console.error);

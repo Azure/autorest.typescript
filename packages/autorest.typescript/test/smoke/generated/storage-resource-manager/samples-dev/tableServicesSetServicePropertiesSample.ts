@@ -76,7 +76,7 @@ async function tableServicesPut() {
 }
 
 async function main() {
-  tableServicesPut();
+  await tableServicesPut();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function getResourceHealthMetadata() {
 }
 
 async function main() {
-  getResourceHealthMetadata();
+  await getResourceHealthMetadata();
 }
 
 main().catch(console.error);

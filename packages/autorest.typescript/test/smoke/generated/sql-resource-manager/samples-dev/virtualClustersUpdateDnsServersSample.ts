@@ -35,7 +35,7 @@ async function synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTh
 }
 
 async function main() {
-  synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTheGivenVirtualCluster();
+  await synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTheGivenVirtualCluster();
 }
 
 main().catch(console.error);

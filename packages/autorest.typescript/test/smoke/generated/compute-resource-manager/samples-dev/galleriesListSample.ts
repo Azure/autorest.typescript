@@ -32,7 +32,7 @@ async function listGalleriesInASubscription() {
 }
 
 async function main() {
-  listGalleriesInASubscription();
+  await listGalleriesInASubscription();
 }
 
 main().catch(console.error);

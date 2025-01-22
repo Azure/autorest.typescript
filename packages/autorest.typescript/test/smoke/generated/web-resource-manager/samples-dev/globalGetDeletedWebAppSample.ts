@@ -31,7 +31,7 @@ async function getDeletedWebApp() {
 }
 
 async function main() {
-  getDeletedWebApp();
+  await getDeletedWebApp();
 }
 
 main().catch(console.error);

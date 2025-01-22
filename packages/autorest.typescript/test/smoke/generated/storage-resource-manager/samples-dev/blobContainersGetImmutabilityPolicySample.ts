@@ -36,7 +36,7 @@ async function getImmutabilityPolicy() {
 }
 
 async function main() {
-  getImmutabilityPolicy();
+  await getImmutabilityPolicy();
 }
 
 main().catch(console.error);

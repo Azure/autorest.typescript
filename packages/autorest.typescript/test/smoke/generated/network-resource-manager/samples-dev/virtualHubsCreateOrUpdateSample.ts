@@ -47,7 +47,7 @@ async function virtualHubPut() {
 }
 
 async function main() {
-  virtualHubPut();
+  await virtualHubPut();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function listDeletedServers() {
 }
 
 async function main() {
-  listDeletedServers();
+  await listDeletedServers();
 }
 
 main().catch(console.error);

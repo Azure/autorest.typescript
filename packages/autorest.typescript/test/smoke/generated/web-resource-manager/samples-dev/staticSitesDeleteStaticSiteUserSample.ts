@@ -39,7 +39,7 @@ async function deleteAUserForAStaticSite() {
 }
 
 async function main() {
-  deleteAUserForAStaticSite();
+  await deleteAUserForAStaticSite();
 }
 
 main().catch(console.error);

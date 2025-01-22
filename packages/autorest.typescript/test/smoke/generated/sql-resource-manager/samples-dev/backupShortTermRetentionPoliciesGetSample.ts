@@ -40,7 +40,7 @@ async function getTheShortTermRetentionPolicyForTheDatabase() {
 }
 
 async function main() {
-  getTheShortTermRetentionPolicyForTheDatabase();
+  await getTheShortTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

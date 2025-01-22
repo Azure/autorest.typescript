@@ -107,9 +107,9 @@ async function updateADiskEncryptionSet() {
 }
 
 async function main() {
-  updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded();
-  updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueUpdating();
-  updateADiskEncryptionSet();
+  await updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueSucceeded();
+  await updateADiskEncryptionSetWithRotationToLatestKeyVersionEnabledSetToTrueUpdating();
+  await updateADiskEncryptionSet();
 }
 
 main().catch(console.error);

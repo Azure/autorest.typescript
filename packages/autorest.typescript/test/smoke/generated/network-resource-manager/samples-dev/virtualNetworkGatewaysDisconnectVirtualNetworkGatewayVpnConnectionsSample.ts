@@ -42,7 +42,7 @@ async function disconnectVpnConnectionsFromVirtualNetworkGateway() {
 }
 
 async function main() {
-  disconnectVpnConnectionsFromVirtualNetworkGateway();
+  await disconnectVpnConnectionsFromVirtualNetworkGateway();
 }
 
 main().catch(console.error);

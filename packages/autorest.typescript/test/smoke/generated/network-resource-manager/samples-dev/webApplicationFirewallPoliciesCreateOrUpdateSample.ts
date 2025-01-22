@@ -139,7 +139,7 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
 }
 
 async function main() {
-  createsOrUpdatesAWafPolicyWithinAResourceGroup();
+  await createsOrUpdatesAWafPolicyWithinAResourceGroup();
 }
 
 main().catch(console.error);

@@ -47,7 +47,7 @@ async function putNetworkManager() {
 }
 
 async function main() {
-  putNetworkManager();
+  await putNetworkManager();
 }
 
 main().catch(console.error);
