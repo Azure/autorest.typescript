@@ -1,9 +1,14 @@
 import { assert } from "chai";
 import AzureArmResourceClientFactory, {
   AzureArmResourceClient,
+  ExtensionsResourceOutput,
   getLongRunningPoller,
   isUnexpected,
-  paginate
+  LocationResourceOutput,
+  NestedProxyResourceOutput,
+  paginate,
+  SingletonTrackedResourceOutput,
+  TopLevelTrackedResourceOutput
 } from "./generated/azure/resource-manager/resources/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: AzureArmResourceClient;
@@ -24,16 +29,16 @@ describe("Azure Arm Resources Rest Client", () => {
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
-      description: "valid"
+      description: "valid",
     },
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: "2024-10-04T00:56:07.442Z",
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
-      lastModifiedByType: "User"
-    }
+      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedByType: "User",
+    },
   };
 
   const validNestedResource = {
@@ -42,16 +47,16 @@ describe("Azure Arm Resources Rest Client", () => {
     type: "Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources",
     properties: {
       provisioningState: "Succeeded",
-      description: "valid"
+      description: "valid",
     },
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: "2024-10-04T00:56:07.442Z",
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
-      lastModifiedByType: "User"
-    }
+      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedByType: "User",
+    },
   };
 
   const validSingletonResource = {
@@ -61,16 +66,16 @@ describe("Azure Arm Resources Rest Client", () => {
     location: "eastus",
     properties: {
       provisioningState: "Succeeded",
-      description: "valid"
+      description: "valid",
     },
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: "2024-10-04T00:56:07.442Z",
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
-      lastModifiedByType: "User"
-    }
+      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedByType: "User",
+    },
   };
 
   const validLocationResource = {
@@ -179,9 +184,7 @@ describe("Azure Arm Resources Rest Client", () => {
       throw Error("Unexpected status code");
     }
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(result.body.id, validSingletonResource.id);
-    assert.strictEqual(result.body.name, validSingletonResource.name);
-    assert.strictEqual(result.body.type, validSingletonResource.type);
+    assert.deepStrictEqual<SingletonTrackedResourceOutput>(result.body, validSingletonResource);
   });
 
   it("should createOrUpdate singleton tracked resources", async () => {
@@ -206,9 +209,7 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validSingletonResource.id);
-    assert.strictEqual(result.body.name, validSingletonResource.name);
-    assert.strictEqual(result.body.type, validSingletonResource.type);
+    assert.deepStrictEqual<SingletonTrackedResourceOutput>(result.body, validSingletonResource);
   });
 
   it("should update singleton tracked resources", async () => {
@@ -233,11 +234,12 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validSingletonResource.id);
-    assert.strictEqual(result.body.name, validSingletonResource.name);
-    assert.strictEqual(result.body.type, validSingletonResource.type);
-    assert.strictEqual(result.body.location, "eastus");
-    assert.strictEqual(result.body.properties?.description, "valid2");
+    assert.deepStrictEqual<SingletonTrackedResourceOutput>(result.body, {
+      ...validSingletonResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      },
+    });
   });
 
   it("should list singleton tracked resources by resourceGroup", async () => {
@@ -253,14 +255,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const iter = paginate(client, initialResponse);
-    let result = [];
+    let result: Array<SingletonTrackedResourceOutput> = [];
     for await (const item of iter) {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.strictEqual(result[0]?.id, validSingletonResource.id);
-    assert.strictEqual(result[0]?.name, validSingletonResource.name);
-    assert.strictEqual(result[0]?.type, validSingletonResource.type);
+    assert.deepStrictEqual<SingletonTrackedResourceOutput[]>(result, [validSingletonResource]);
   });
 
   // top level tracked resource
@@ -297,9 +297,7 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validTopLevelResource.id);
-    assert.strictEqual(result.body.name, validTopLevelResource.name);
-    assert.strictEqual(result.body.type, validTopLevelResource.type);
+    assert.deepStrictEqual<TopLevelTrackedResourceOutput>(result.body, validTopLevelResource);
   });
   it("should create or replace top level tracked resources", async () => {
     const initialResponse = await client
@@ -325,14 +323,7 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validTopLevelResource.id);
-    assert.strictEqual(result.body.name, validTopLevelResource.name);
-    assert.strictEqual(result.body.type, validTopLevelResource.type);
-    assert.strictEqual(result.body.location, validTopLevelResource.location);
-    assert.strictEqual(
-      result.body.properties?.description,
-      validTopLevelResource.properties?.description
-    );
+    assert.deepStrictEqual<TopLevelTrackedResourceOutput>(result.body, validTopLevelResource);
   });
   it.skip("should update top level tracked resources", async () => {
     const initialResponse = await client
@@ -355,11 +346,12 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validTopLevelResource.id);
-    assert.strictEqual(result.body.name, validTopLevelResource.name);
-    assert.strictEqual(result.body.type, validTopLevelResource.type);
-    assert.strictEqual(result.body.location, validTopLevelResource.location);
-    assert.strictEqual(result.body.properties?.description, "valid2");
+    assert.deepStrictEqual<TopLevelTrackedResourceOutput>(result.body, {
+      ...validTopLevelResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      },
+    });
   });
   it("should delete top level tracked resources", async () => {
     const result = await client
@@ -391,15 +383,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const iter = paginate(client, initialResponse);
-    let result = [];
+    let result: Array<TopLevelTrackedResourceOutput> = [];
     for await (const item of iter) {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.strictEqual(result[0]?.id, validTopLevelResource.id);
-    assert.strictEqual(result[0]?.name, validTopLevelResource.name);
-    assert.strictEqual(result[0]?.type, validTopLevelResource.type);
-    assert.strictEqual(result[0]?.location, validTopLevelResource.location);
+    assert.deepStrictEqual<TopLevelTrackedResourceOutput[]>(result, [validTopLevelResource]);
   });
   it("should list top level tracked resources by subscription ", async () => {
     const initialResponse = await client
@@ -413,15 +402,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const iter = paginate(client, initialResponse);
-    let result = [];
+    let result: Array<TopLevelTrackedResourceOutput> = [];
     for await (const item of iter) {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.strictEqual(result[0]?.id, validTopLevelResource.id);
-    assert.strictEqual(result[0]?.name, validTopLevelResource.name);
-    assert.strictEqual(result[0]?.type, validTopLevelResource.type);
-    assert.strictEqual(result[0]?.location, validTopLevelResource.location);
+    assert.deepStrictEqual<TopLevelTrackedResourceOutput[]>(result, [validTopLevelResource]);
   });
 
   // nested proxy resource
@@ -442,9 +428,7 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validNestedResource.id);
-    assert.strictEqual(result.body.name, validNestedResource.name);
-    assert.strictEqual(result.body.type, validNestedResource.type);
+    assert.deepStrictEqual<NestedProxyResourceOutput>(result.body, validNestedResource);
   });
 
   it("should create or replace nested proxy resource", async () => {
@@ -470,13 +454,7 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validNestedResource.id);
-    assert.strictEqual(result.body.name, validNestedResource.name);
-    assert.strictEqual(result.body.type, validNestedResource.type);
-    assert.strictEqual(
-      result.body.properties?.description,
-      validNestedResource.properties?.description
-    );
+    assert.deepStrictEqual<NestedProxyResourceOutput>(result.body, validNestedResource);
   });
 
   it("should update nested proxy resource", async () => {
@@ -502,10 +480,12 @@ describe("Azure Arm Resources Rest Client", () => {
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }
-    assert.strictEqual(result.body.id, validNestedResource.id);
-    assert.strictEqual(result.body.name, validNestedResource.name);
-    assert.strictEqual(result.body.type, validNestedResource.type);
-    assert.strictEqual(result.body.properties?.description, "valid2");
+    assert.deepStrictEqual<NestedProxyResourceOutput>(result.body, {
+      ...validNestedResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      },
+    });
   });
 
   it("should delete nested proxy resource", async () => {
@@ -535,14 +515,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const iter = paginate(client, initialResponse);
-    let result = [];
+    let result: Array<NestedProxyResourceOutput> = [];
     for await (const item of iter) {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.strictEqual(result[0]?.id, validNestedResource.id);
-    assert.strictEqual(result[0]?.name, validNestedResource.name);
-    assert.strictEqual(result[0]?.type, validNestedResource.type);
+    assert.deepStrictEqual<NestedProxyResourceOutput[]>(result, [validNestedResource]);
   });
 
   // location resource
@@ -555,8 +533,12 @@ describe("Azure Arm Resources Rest Client", () => {
         "resource"
       )
       .get();
+    if (isUnexpected(result)) {
+      const error = `Unexpected status code ${result.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(result.status, "200");
-    assert.deepStrictEqual(result.body, validLocationResource);
+    assert.deepStrictEqual<LocationResourceOutput>(result.body, validLocationResource);
   });
 
   it("should createOrUpdate LocationResources ", async () => {
@@ -574,8 +556,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(result)) {
+      const error = `Unexpected status code ${result.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(result.status, "200");
-    assert.deepStrictEqual(result.body, validLocationResource);
+    assert.deepStrictEqual<LocationResourceOutput>(result.body, validLocationResource);
   });
 
   it("should update LocationResources ", async () => {
@@ -593,8 +579,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(result)) {
+      const error = `Unexpected status code ${result.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(result.status, "200");
-    assert.deepStrictEqual(result.body, {
+    assert.deepStrictEqual<LocationResourceOutput>(result.body, {
       ...validLocationResource,
       properties: {
         provisioningState: "Succeeded",
@@ -629,12 +619,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const iter = paginate(client, initialResponse);
-    let result = [];
+    let result: Array<LocationResourceOutput> = [];
     for await (const item of iter) {
       result.push(item);
     }
     assert.strictEqual(initialResponse.status, "200");
-    assert.deepStrictEqual(result, [validLocationResource]);
+    assert.deepStrictEqual<LocationResourceOutput[]>(result, [validLocationResource]);
   });
 
   // extension tracked resource
@@ -648,8 +638,12 @@ describe("Azure Arm Resources Rest Client", () => {
       "extension"
     )
       .get();
+    if (isUnexpected(resourceGroupResult)) {
+      const error = `Unexpected status code ${resourceGroupResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepStrictEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceGroupResult.body, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -660,8 +654,12 @@ describe("Azure Arm Resources Rest Client", () => {
       "extension"
     )
       .get();
+    if (isUnexpected(subscriptionResult)) {
+      const error = `Unexpected status code ${subscriptionResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepStrictEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(subscriptionResult.body, validSubscriptionExtensionsResource);
 
     const tenantResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -672,8 +670,12 @@ describe("Azure Arm Resources Rest Client", () => {
       "extension"
     )
       .get();
+    if (isUnexpected(tenantResult)) {
+      const error = `Unexpected status code ${tenantResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepStrictEqual(tenantResult.body, validTenantExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(tenantResult.body, validTenantExtensionsResource);
 
     const resourceResult = await client.path(
       "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
@@ -684,8 +686,12 @@ describe("Azure Arm Resources Rest Client", () => {
       "extension"
     )
       .get();
+    if (isUnexpected(resourceResult)) {
+      const error = `Unexpected status code ${resourceResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepStrictEqual(resourceResult.body, validResourceExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceResult.body, validResourceExtensionsResource);
   });
 
   it("should createOrUpdate ExtensionsResources ", async () => {
@@ -705,8 +711,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(resourceGroupResult)) {
+      const error = `Unexpected status code ${resourceGroupResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepStrictEqual(resourceGroupResult.body, validResourceGroupExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceGroupResult.body, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client
       .path(
@@ -724,8 +734,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(subscriptionResult)) {
+      const error = `Unexpected status code ${subscriptionResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepStrictEqual(subscriptionResult.body, validSubscriptionExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(subscriptionResult.body, validSubscriptionExtensionsResource);
 
     const tenantResult = await client
       .path(
@@ -743,8 +757,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(tenantResult)) {
+      const error = `Unexpected status code ${tenantResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepStrictEqual(tenantResult.body, validTenantExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(tenantResult.body, validTenantExtensionsResource);
 
     const resourceResult = await client
       .path(
@@ -762,8 +780,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(resourceResult)) {
+      const error = `Unexpected status code ${resourceResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepStrictEqual(resourceResult.body, validResourceExtensionsResource);
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceResult.body, validResourceExtensionsResource);
   });
 
   it("should update ExtensionsResources ", async () => {
@@ -783,8 +805,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(resourceGroupResult)) {
+      const error = `Unexpected status code ${resourceGroupResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceGroupResult.status, "200");
-    assert.deepStrictEqual(resourceGroupResult.body, {
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceGroupResult.body, {
       ...validResourceGroupExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -808,8 +834,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(subscriptionResult)) {
+      const error = `Unexpected status code ${subscriptionResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(subscriptionResult.status, "200");
-    assert.deepStrictEqual(subscriptionResult.body, {
+    assert.deepStrictEqual<ExtensionsResourceOutput>(subscriptionResult.body, {
       ...validSubscriptionExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -833,8 +863,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(tenantResult)) {
+      const error = `Unexpected status code ${tenantResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(tenantResult.status, "200");
-    assert.deepStrictEqual(tenantResult.body, {
+    assert.deepStrictEqual<ExtensionsResourceOutput>(tenantResult.body, {
       ...validTenantExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -858,8 +892,12 @@ describe("Azure Arm Resources Rest Client", () => {
           }
         }
       });
+    if (isUnexpected(resourceResult)) {
+      const error = `Unexpected status code ${resourceResult.status}`;
+      assert.fail(error);
+    }
     assert.strictEqual(resourceResult.status, "200");
-    assert.deepStrictEqual(resourceResult.body, {
+    assert.deepStrictEqual<ExtensionsResourceOutput>(resourceResult.body, {
       ...validResourceExtensionsResource,
       properties: {
         provisioningState: "Succeeded",
@@ -933,12 +971,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const resourceGroupIter = paginate(client, resourceGroupResponse);
-    let resourceGroupResult = [];
+    let resourceGroupResult: Array<ExtensionsResourceOutput> = [];
     for await (const item of resourceGroupIter) {
       resourceGroupResult.push(item);
     }
     assert.strictEqual(resourceGroupResponse.status, "200");
-    assert.deepStrictEqual(resourceGroupResult, [validResourceGroupExtensionsResource]);
+    assert.deepStrictEqual<ExtensionsResourceOutput[]>(resourceGroupResult, [validResourceGroupExtensionsResource]);
 
     const subscriptionResponse = await client
       .path(
@@ -954,12 +992,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const subscriptionIter = paginate(client, subscriptionResponse);
-    let subscriptionIterResult = [];
+    let subscriptionIterResult: Array<ExtensionsResourceOutput> = [];
     for await (const item of subscriptionIter) {
       subscriptionIterResult.push(item);
     }
     assert.strictEqual(subscriptionResponse.status, "200");
-    assert.deepStrictEqual(subscriptionIterResult, [validSubscriptionExtensionsResource]);
+    assert.deepStrictEqual<ExtensionsResourceOutput[]>(subscriptionIterResult, [validSubscriptionExtensionsResource]);
 
     const tenantResponse = await client
       .path(
@@ -975,12 +1013,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const tenantIter = paginate(client, tenantResponse);
-    let tenantResult = [];
+    let tenantResult: Array<ExtensionsResourceOutput> = [];
     for await (const item of tenantIter) {
       tenantResult.push(item);
     }
     assert.strictEqual(tenantResponse.status, "200");
-    assert.deepStrictEqual(tenantResult, [validTenantExtensionsResource]);
+    assert.deepStrictEqual<ExtensionsResourceOutput[]>(tenantResult, [validTenantExtensionsResource]);
 
     const resourceResponse = await client
       .path(
@@ -996,12 +1034,12 @@ describe("Azure Arm Resources Rest Client", () => {
       assert.fail(error);
     }
     const resourceIter = paginate(client, resourceResponse);
-    let resourceResult = [];
+    let resourceResult: Array<ExtensionsResourceOutput> = [];
     for await (const item of resourceIter) {
       resourceResult.push(item);
     }
     assert.strictEqual(resourceResponse.status, "200");
-    assert.deepStrictEqual(resourceResult, [validResourceExtensionsResource]);
+    assert.deepStrictEqual<ExtensionsResourceOutput[]>(resourceResult, [validResourceExtensionsResource]);
   });
 
   it("Set allowReserved false, expect error", async () => {
