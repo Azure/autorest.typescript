@@ -1,14 +1,16 @@
 // Licensed under the MIT License.
 
 export {
-  UsersCreateOptionalParams,
-  TodoItemsListOptionalParams,
-  TodoItemsCreateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsDeleteOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+  UsersCreateOptionalParams,
 } from "./options.js";
 export {
   createTodo,

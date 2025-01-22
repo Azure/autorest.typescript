@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorModelOutput, RefColorConstantOutput } from "./outputModels";
+import type { HttpResponse } from "@azure-rest/core-client";
+import type { ErrorModelOutput, RefColorConstantOutput } from "./outputModels";
 
 /** Get null string value value */
 export interface StringGetNull200Response extends HttpResponse {

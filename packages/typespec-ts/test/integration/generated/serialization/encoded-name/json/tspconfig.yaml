@@ -6,10 +6,10 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     title: SerializationEncodedNameJsonClient
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/serialization-encoded-name-json"
+      name: "@unbranded/serialization-encoded-name-json"
       description: "Serialization Encoded Name Json Test Service"

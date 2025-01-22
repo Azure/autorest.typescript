@@ -6,6 +6,7 @@ import {
   OpenAIContext as Client,
 } from "../../index.js";
 import {
+  errorResponseDeserializer,
   CreateTranslationRequest,
   createTranslationRequestSerializer,
   CreateTranslationResponse,
@@ -27,7 +28,11 @@ export function _createSend(
     .path("/audio/translations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createTranslationRequestSerializer(audio),
     });
 }
@@ -37,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateTranslationResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createTranslationResponseDeserializer(result.body);

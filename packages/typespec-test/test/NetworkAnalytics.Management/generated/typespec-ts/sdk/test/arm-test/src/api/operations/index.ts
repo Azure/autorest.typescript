@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsContext as Client,
+  NetworkAnalyticsApiContext as Client,
   OperationsListOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   _OperationListResult,
   _operationListResultDeserializer,
   Operation,
@@ -27,7 +28,14 @@ export function _listSend(
 ): StreamableMethod {
   return context
     .path("/providers/Microsoft.NetworkAnalytics/operations")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+    });
 }
 
 export async function _listDeserialize(
@@ -35,7 +43,9 @@ export async function _listDeserialize(
 ): Promise<_OperationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return _operationListResultDeserializer(result.body);

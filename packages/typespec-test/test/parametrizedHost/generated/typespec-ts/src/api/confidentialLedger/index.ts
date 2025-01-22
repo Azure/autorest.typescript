@@ -24,7 +24,14 @@ export function _listCollectionsSend(
 ): StreamableMethod {
   return context
     .path("/app/collections")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+    });
 }
 
 export async function _listCollectionsDeserialize(

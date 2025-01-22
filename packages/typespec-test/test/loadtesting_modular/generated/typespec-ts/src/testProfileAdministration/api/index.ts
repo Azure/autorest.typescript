@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 
 export {
-  createOrUpdateTestProfile,
-  deleteTestProfile,
-  getTestProfile,
   listTestProfiles,
+  getTestProfile,
+  deleteTestProfile,
+  createOrUpdateTestProfile,
 } from "./operations.js";
 export {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
 } from "./options.js";
 export {
   createTestProfileAdministration,

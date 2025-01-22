@@ -29,7 +29,11 @@ export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" 
 
 // @public
 export interface AudioTranscriptionOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     language?: string;
     model?: string;
@@ -77,7 +81,11 @@ export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | 
 
 // @public
 export interface AudioTranslationOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     model?: string;
     prompt?: string;
@@ -706,6 +714,9 @@ export interface EmbeddingsUsage {
 }
 
 // @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FunctionCall {
     arguments: string;
     name: string;
@@ -732,22 +743,18 @@ export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 // @public

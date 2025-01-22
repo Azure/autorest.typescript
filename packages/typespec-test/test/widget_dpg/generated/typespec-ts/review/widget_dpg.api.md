@@ -21,13 +21,18 @@ export interface AnalyzeResult {
 
 // @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
+}
+
+// @public
+export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface BudgetsOperations {
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<User>, User>;
+    // (undocumented)
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
 }
 
 // @public
@@ -83,12 +88,17 @@ export interface Widget {
 }
 
 // @public
+export interface WidgetError {
+    code: number;
+    message: string;
+}
+
+// @public
 export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
-    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 

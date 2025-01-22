@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface InputAndOutputOptionalParams extends OperationOptions {
 }
@@ -27,9 +27,9 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
-    input(inputParameter: InputRecord, options?: InputOptionalParams): Promise<void>;
-    output(options?: OutputOptionalParams): Promise<OutputRecord>;
     inputAndOutput(body: InputOutputRecord, options?: InputAndOutputOptionalParams): Promise<InputOutputRecord>;
+    output(options?: OutputOptionalParams): Promise<OutputRecord>;
+    input(inputParameter: InputRecord, options?: InputOptionalParams): Promise<void>;
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {

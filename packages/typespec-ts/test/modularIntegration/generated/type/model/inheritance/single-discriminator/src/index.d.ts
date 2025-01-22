@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface Bird {
     kind: string;
@@ -56,13 +56,13 @@ export declare class SingleDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: SingleDiscriminatorClientOptionalParams);
-    getModel(options?: GetModelOptionalParams): Promise<BirdUnion>;
-    putModel(input: BirdUnion, options?: PutModelOptionalParams): Promise<void>;
-    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<BirdUnion>;
-    putRecursiveModel(input: BirdUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
-    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<BirdUnion>;
-    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<BirdUnion>;
     getLegacyModel(options?: GetLegacyModelOptionalParams): Promise<DinosaurUnion>;
+    getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<BirdUnion>;
+    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<BirdUnion>;
+    putRecursiveModel(input: BirdUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
+    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<BirdUnion>;
+    putModel(input: BirdUnion, options?: PutModelOptionalParams): Promise<void>;
+    getModel(options?: GetModelOptionalParams): Promise<BirdUnion>;
 }
 
 export declare interface SingleDiscriminatorClientOptionalParams extends ClientOptions {

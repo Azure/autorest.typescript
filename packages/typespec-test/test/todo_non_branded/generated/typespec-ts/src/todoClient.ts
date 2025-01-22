@@ -1,10 +1,10 @@
 // Licensed under the MIT License.
 
-import { getUsersOperations, UsersOperations } from "./classic/users/index.js";
 import {
-  getTodoItemsOperations,
+  _getTodoItemsOperations,
   TodoItemsOperations,
 } from "./classic/todoItems/index.js";
+import { _getUsersOperations, UsersOperations } from "./classic/users/index.js";
 import {
   createTodo,
   TodoContext,
@@ -33,12 +33,12 @@ export class TodoClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.users = getUsersOperations(this._client);
-    this.todoItems = getTodoItemsOperations(this._client);
+    this.todoItems = _getTodoItemsOperations(this._client);
+    this.users = _getUsersOperations(this._client);
   }
 
-  /** The operation groups for Users */
-  public readonly users: UsersOperations;
-  /** The operation groups for TodoItems */
+  /** The operation groups for todoItems */
   public readonly todoItems: TodoItemsOperations;
+  /** The operation groups for users */
+  public readonly users: UsersOperations;
 }

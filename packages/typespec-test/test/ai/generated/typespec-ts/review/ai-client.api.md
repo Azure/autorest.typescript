@@ -363,7 +363,6 @@ export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsUploadFileOptionalParams extends OperationOptions {
-    contentType?: string;
     filename?: string;
 }
 
@@ -633,7 +632,6 @@ export interface EvaluationsOperations {
 // @public
 export interface EvaluationsUpdateOptionalParams extends OperationOptions {
     clientRequestId?: string;
-    contentType?: string;
 }
 
 // @public
@@ -647,6 +645,9 @@ export interface EvaluatorConfiguration {
 export interface FileContentResponse {
     content: Uint8Array;
 }
+
+// @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FileDeletionStatus {

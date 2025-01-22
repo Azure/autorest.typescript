@@ -6,8 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/inheritance-recursive"
+      name: "@unbranded/inheritance-recursive"
       description: "recursive Service"

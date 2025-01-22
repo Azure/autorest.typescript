@@ -26,6 +26,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: false
 needNamespaces: false
@@ -53,24 +55,26 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: contentType,
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: contentType,
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -84,7 +88,7 @@ export async function get(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, contentType, body, options);
   return _getDeserialize(result);
@@ -118,6 +122,8 @@ op get(
     @body body: string,
 ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -161,6 +167,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -209,6 +217,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -225,7 +235,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -269,6 +279,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -285,7 +297,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -322,6 +334,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -370,6 +384,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -386,7 +402,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -430,6 +446,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -446,7 +464,7 @@ export type SchemaContentTypeValues =
   | string;
 
 export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -478,6 +496,8 @@ op get(
 ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: true
 needNamespaces: false
@@ -500,24 +520,30 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: { "test-header": testHeader },
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -531,7 +557,7 @@ export async function get(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -559,6 +585,8 @@ op get(
 ): { @header("test-header") testHeader: "A" | "B" | string; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: true
 needNamespaces: false
@@ -582,24 +610,30 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: { "test-header": testHeader },
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -613,7 +647,7 @@ export async function get(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -651,6 +685,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -699,6 +735,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -746,6 +784,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -797,6 +837,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -1041,6 +1083,8 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: false
@@ -1107,6 +1151,8 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: false
@@ -1154,7 +1200,7 @@ export enum KnownImageSize {
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  size1024x1792 = "1024x1792"
+  size1024x1792 = "1024x1792",
 }
 ```
 
