@@ -37,7 +37,7 @@ async function deletesAPrivateEndpointConnectionWithAGivenName() {
 }
 
 async function main() {
-  deletesAPrivateEndpointConnectionWithAGivenName();
+  await deletesAPrivateEndpointConnectionWithAGivenName();
 }
 
 main().catch(console.error);

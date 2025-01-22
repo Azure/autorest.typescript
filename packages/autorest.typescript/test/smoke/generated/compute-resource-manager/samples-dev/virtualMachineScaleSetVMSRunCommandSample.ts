@@ -44,7 +44,7 @@ async function virtualMachineScaleSetVMSRunCommand() {
 }
 
 async function main() {
-  virtualMachineScaleSetVMSRunCommand();
+  await virtualMachineScaleSetVMSRunCommand();
 }
 
 main().catch(console.error);

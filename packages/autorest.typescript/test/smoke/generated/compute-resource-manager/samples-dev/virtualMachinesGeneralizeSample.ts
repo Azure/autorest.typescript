@@ -34,7 +34,7 @@ async function generalizeAVirtualMachine() {
 }
 
 async function main() {
-  generalizeAVirtualMachine();
+  await generalizeAVirtualMachine();
 }
 
 main().catch(console.error);

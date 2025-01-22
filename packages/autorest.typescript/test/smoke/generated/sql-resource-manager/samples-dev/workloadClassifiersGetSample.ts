@@ -42,7 +42,7 @@ async function getsAWorkloadClassifierForADataWarehouse() {
 }
 
 async function main() {
-  getsAWorkloadClassifierForADataWarehouse();
+  await getsAWorkloadClassifierForADataWarehouse();
 }
 
 main().catch(console.error);

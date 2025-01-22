@@ -26,7 +26,7 @@ async function weatherGetDataIngestionJobDetails() {
 }
 
 async function main() {
-  weatherGetDataIngestionJobDetails();
+  await weatherGetDataIngestionJobDetails();
 }
 
 main().catch(console.error);

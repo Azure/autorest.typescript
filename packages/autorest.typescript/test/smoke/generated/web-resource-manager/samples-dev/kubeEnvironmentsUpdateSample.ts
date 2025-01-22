@@ -42,7 +42,7 @@ async function updateKubeEnvironments() {
 }
 
 async function main() {
-  updateKubeEnvironments();
+  await updateKubeEnvironments();
 }
 
 main().catch(console.error);

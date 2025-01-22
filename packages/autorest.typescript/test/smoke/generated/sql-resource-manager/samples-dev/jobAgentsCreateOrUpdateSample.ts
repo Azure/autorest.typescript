@@ -46,7 +46,7 @@ async function createOrUpdateAJobAgent() {
 }
 
 async function main() {
-  createOrUpdateAJobAgent();
+  await createOrUpdateAJobAgent();
 }
 
 main().catch(console.error);

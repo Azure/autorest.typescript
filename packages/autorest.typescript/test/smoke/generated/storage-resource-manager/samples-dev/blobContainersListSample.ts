@@ -65,8 +65,8 @@ async function listDeletedContainers() {
 }
 
 async function main() {
-  listContainers();
-  listDeletedContainers();
+  await listContainers();
+  await listDeletedContainers();
 }
 
 main().catch(console.error);

@@ -43,7 +43,7 @@ async function getAJobStepExecution() {
 }
 
 async function main() {
-  getAJobStepExecution();
+  await getAJobStepExecution();
 }
 
 main().catch(console.error);

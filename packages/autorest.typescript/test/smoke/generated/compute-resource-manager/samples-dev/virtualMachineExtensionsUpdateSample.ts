@@ -48,7 +48,7 @@ async function updateVMExtension() {
 }
 
 async function main() {
-  updateVMExtension();
+  await updateVMExtension();
 }
 
 main().catch(console.error);

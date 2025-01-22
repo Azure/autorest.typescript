@@ -38,7 +38,7 @@ async function getAllBuildsForAStaticSite() {
 }
 
 async function main() {
-  getAllBuildsForAStaticSite();
+  await getAllBuildsForAStaticSite();
 }
 
 main().catch(console.error);

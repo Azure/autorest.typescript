@@ -38,7 +38,7 @@ async function loadTestAdministrationListTestsSample() {
 }
 
 async function main() {
-  loadTestAdministrationListTestsSample();
+  await loadTestAdministrationListTestsSample();
 }
 
 main().catch(console.error);

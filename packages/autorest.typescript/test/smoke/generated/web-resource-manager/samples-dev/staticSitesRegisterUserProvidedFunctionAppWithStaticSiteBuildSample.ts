@@ -55,7 +55,7 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild() {
 }
 
 async function main() {
-  registerAUserProvidedFunctionAppWithAStaticSiteBuild();
+  await registerAUserProvidedFunctionAppWithAStaticSiteBuild();
 }
 
 main().catch(console.error);

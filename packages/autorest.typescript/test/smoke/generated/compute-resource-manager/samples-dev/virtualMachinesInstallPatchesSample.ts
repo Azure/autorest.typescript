@@ -47,7 +47,7 @@ async function installPatchStateOfAVirtualMachine() {
 }
 
 async function main() {
-  installPatchStateOfAVirtualMachine();
+  await installPatchStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

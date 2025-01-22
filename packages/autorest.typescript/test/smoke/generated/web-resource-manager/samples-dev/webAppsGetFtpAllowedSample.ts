@@ -32,7 +32,7 @@ async function getFtpAllowed() {
 }
 
 async function main() {
-  getFtpAllowed();
+  await getFtpAllowed();
 }
 
 main().catch(console.error);

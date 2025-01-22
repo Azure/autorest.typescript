@@ -32,7 +32,7 @@ async function getsTheListOfRestorePointCollectionsInASubscription() {
 }
 
 async function main() {
-  getsTheListOfRestorePointCollectionsInASubscription();
+  await getsTheListOfRestorePointCollectionsInASubscription();
 }
 
 main().catch(console.error);

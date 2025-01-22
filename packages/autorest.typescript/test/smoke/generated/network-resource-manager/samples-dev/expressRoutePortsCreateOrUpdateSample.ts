@@ -73,8 +73,8 @@ async function expressRoutePortUpdateLink() {
 }
 
 async function main() {
-  expressRoutePortCreate();
-  expressRoutePortUpdateLink();
+  await expressRoutePortCreate();
+  await expressRoutePortUpdateLink();
 }
 
 main().catch(console.error);

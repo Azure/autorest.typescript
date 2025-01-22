@@ -35,7 +35,7 @@ async function listKeysInTheVault() {
 }
 
 async function main() {
-  listKeysInTheVault();
+  await listKeysInTheVault();
 }
 
 main().catch(console.error);

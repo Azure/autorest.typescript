@@ -44,7 +44,7 @@ async function createOrUpdateCertificate() {
 }
 
 async function main() {
-  createOrUpdateCertificate();
+  await createOrUpdateCertificate();
 }
 
 main().catch(console.error);

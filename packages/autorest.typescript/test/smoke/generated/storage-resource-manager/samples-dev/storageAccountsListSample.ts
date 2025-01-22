@@ -32,7 +32,7 @@ async function storageAccountList() {
 }
 
 async function main() {
-  storageAccountList();
+  await storageAccountList();
 }
 
 main().catch(console.error);

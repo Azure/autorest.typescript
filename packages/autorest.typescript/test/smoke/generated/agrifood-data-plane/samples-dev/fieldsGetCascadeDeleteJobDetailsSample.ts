@@ -28,7 +28,7 @@ async function fieldsGetCascadeDeleteJobDetails() {
 }
 
 async function main() {
-  fieldsGetCascadeDeleteJobDetails();
+  await fieldsGetCascadeDeleteJobDetails();
 }
 
 main().catch(console.error);

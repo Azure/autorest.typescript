@@ -33,7 +33,7 @@ async function listAllManagedDisksInAResourceGroup() {
 }
 
 async function main() {
-  listAllManagedDisksInAResourceGroup();
+  await listAllManagedDisksInAResourceGroup();
 }
 
 main().catch(console.error);

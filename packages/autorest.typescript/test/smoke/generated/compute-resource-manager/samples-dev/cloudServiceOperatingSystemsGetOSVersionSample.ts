@@ -34,7 +34,7 @@ async function getCloudServiceOSVersion() {
 }
 
 async function main() {
-  getCloudServiceOSVersion();
+  await getCloudServiceOSVersion();
 }
 
 main().catch(console.error);

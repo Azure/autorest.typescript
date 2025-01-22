@@ -39,7 +39,7 @@ async function getTheLongTermRetentionPolicyForTheDatabase() {
 }
 
 async function main() {
-  getTheLongTermRetentionPolicyForTheDatabase();
+  await getTheLongTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function listAppServicePlans() {
 }
 
 async function main() {
-  listAppServicePlans();
+  await listAppServicePlans();
 }
 
 main().catch(console.error);

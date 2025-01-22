@@ -196,12 +196,12 @@ async function createsANewManagedDatabaseWithMinimalProperties() {
 }
 
 async function main() {
-  createsANewManagedDatabaseByRestoringFromAnExternalBackup();
-  createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup();
-  createsANewManagedDatabaseFromRestoringALongTermRetentionBackup();
-  createsANewManagedDatabaseUsingPointInTimeRestore();
-  createsANewManagedDatabaseWithMaximalProperties();
-  createsANewManagedDatabaseWithMinimalProperties();
+  await createsANewManagedDatabaseByRestoringFromAnExternalBackup();
+  await createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup();
+  await createsANewManagedDatabaseFromRestoringALongTermRetentionBackup();
+  await createsANewManagedDatabaseUsingPointInTimeRestore();
+  await createsANewManagedDatabaseWithMaximalProperties();
+  await createsANewManagedDatabaseWithMinimalProperties();
 }
 
 main().catch(console.error);

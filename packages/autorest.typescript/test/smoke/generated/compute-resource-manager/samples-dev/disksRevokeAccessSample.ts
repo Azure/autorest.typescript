@@ -34,7 +34,7 @@ async function revokeAccessToAManagedDisk() {
 }
 
 async function main() {
-  revokeAccessToAManagedDisk();
+  await revokeAccessToAManagedDisk();
 }
 
 main().catch(console.error);

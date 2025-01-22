@@ -29,7 +29,7 @@ async function boundariesGet() {
 }
 
 async function main() {
-  boundariesGet();
+  await boundariesGet();
 }
 
 main().catch(console.error);

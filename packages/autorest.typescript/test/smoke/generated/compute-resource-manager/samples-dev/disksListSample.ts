@@ -32,7 +32,7 @@ async function listAllManagedDisksInASubscription() {
 }
 
 async function main() {
-  listAllManagedDisksInASubscription();
+  await listAllManagedDisksInASubscription();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function forceDeleteAVMScaleSet() {
 }
 
 async function main() {
-  forceDeleteAVMScaleSet();
+  await forceDeleteAVMScaleSet();
 }
 
 main().catch(console.error);

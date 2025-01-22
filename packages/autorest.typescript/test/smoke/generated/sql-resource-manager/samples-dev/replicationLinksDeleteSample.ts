@@ -39,7 +39,7 @@ async function deleteAReplicationLink() {
 }
 
 async function main() {
-  deleteAReplicationLink();
+  await deleteAReplicationLink();
 }
 
 main().catch(console.error);

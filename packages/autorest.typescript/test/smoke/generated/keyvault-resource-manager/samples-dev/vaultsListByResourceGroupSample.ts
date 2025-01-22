@@ -42,7 +42,7 @@ async function listVaultsInTheSpecifiedResourceGroup() {
 }
 
 async function main() {
-  listVaultsInTheSpecifiedResourceGroup();
+  await listVaultsInTheSpecifiedResourceGroup();
 }
 
 main().catch(console.error);

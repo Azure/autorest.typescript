@@ -67,8 +67,8 @@ async function getsSecurityDefaultAdminRule() {
 }
 
 async function main() {
-  getsSecurityAdminRule();
-  getsSecurityDefaultAdminRule();
+  await getsSecurityAdminRule();
+  await getsSecurityDefaultAdminRule();
 }
 
 main().catch(console.error);

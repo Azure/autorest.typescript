@@ -46,7 +46,7 @@ async function configureFlowLog() {
 }
 
 async function main() {
-  configureFlowLog();
+  await configureFlowLog();
 }
 
 main().catch(console.error);

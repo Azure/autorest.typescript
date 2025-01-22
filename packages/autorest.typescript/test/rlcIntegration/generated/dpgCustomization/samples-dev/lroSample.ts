@@ -26,7 +26,7 @@ async function dpgLro() {
 }
 
 async function main() {
-  dpgLro();
+  await dpgLro();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function skuList() {
 }
 
 async function main() {
-  skuList();
+  await skuList();
 }
 
 main().catch(console.error);

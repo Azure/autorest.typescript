@@ -44,7 +44,7 @@ async function forceDeleteAVirtualMachineFromAVMScaleSet() {
 }
 
 async function main() {
-  forceDeleteAVirtualMachineFromAVMScaleSet();
+  await forceDeleteAVirtualMachineFromAVMScaleSet();
 }
 
 main().catch(console.error);

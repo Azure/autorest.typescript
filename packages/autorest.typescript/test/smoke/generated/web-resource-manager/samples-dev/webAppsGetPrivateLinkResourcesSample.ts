@@ -35,7 +35,7 @@ async function getPrivateLinkResourcesOfASite() {
 }
 
 async function main() {
-  getPrivateLinkResourcesOfASite();
+  await getPrivateLinkResourcesOfASite();
 }
 
 main().catch(console.error);

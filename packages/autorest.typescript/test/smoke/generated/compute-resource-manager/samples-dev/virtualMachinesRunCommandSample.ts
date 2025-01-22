@@ -40,7 +40,7 @@ async function virtualMachineRunCommand() {
 }
 
 async function main() {
-  virtualMachineRunCommand();
+  await virtualMachineRunCommand();
 }
 
 main().catch(console.error);

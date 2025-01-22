@@ -24,7 +24,7 @@ async function loadTestRunStopTestRunSample() {
 }
 
 async function main() {
-  loadTestRunStopTestRunSample();
+  await loadTestRunStopTestRunSample();
 }
 
 main().catch(console.error);

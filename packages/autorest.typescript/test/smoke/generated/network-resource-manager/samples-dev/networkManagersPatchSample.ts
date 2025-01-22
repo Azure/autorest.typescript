@@ -40,7 +40,7 @@ async function networkManagesPatch() {
 }
 
 async function main() {
-  networkManagesPatch();
+  await networkManagesPatch();
 }
 
 main().catch(console.error);

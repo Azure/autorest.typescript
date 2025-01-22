@@ -45,7 +45,7 @@ async function createsDatawarehouseDatabaseRestorePoint() {
 }
 
 async function main() {
-  createsDatawarehouseDatabaseRestorePoint();
+  await createsDatawarehouseDatabaseRestorePoint();
 }
 
 main().catch(console.error);

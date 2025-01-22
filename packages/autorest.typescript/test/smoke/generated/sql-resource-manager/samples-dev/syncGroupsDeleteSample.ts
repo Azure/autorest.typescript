@@ -40,7 +40,7 @@ async function deleteASyncGroup() {
 }
 
 async function main() {
-  deleteASyncGroup();
+  await deleteASyncGroup();
 }
 
 main().catch(console.error);

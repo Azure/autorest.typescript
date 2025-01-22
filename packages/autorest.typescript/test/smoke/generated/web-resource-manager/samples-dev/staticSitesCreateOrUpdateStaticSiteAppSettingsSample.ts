@@ -42,7 +42,7 @@ async function createsOrUpdatesTheAppSettingsOfAStaticSite() {
 }
 
 async function main() {
-  createsOrUpdatesTheAppSettingsOfAStaticSite();
+  await createsOrUpdatesTheAppSettingsOfAStaticSite();
 }
 
 main().catch(console.error);

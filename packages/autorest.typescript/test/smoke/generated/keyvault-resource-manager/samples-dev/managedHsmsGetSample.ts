@@ -32,7 +32,7 @@ async function retrieveAManagedHsmPool() {
 }
 
 async function main() {
-  retrieveAManagedHsmPool();
+  await retrieveAManagedHsmPool();
 }
 
 main().catch(console.error);

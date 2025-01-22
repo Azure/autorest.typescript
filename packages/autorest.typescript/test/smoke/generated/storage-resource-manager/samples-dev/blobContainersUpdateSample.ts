@@ -44,7 +44,7 @@ async function updateContainers() {
 }
 
 async function main() {
-  updateContainers();
+  await updateContainers();
 }
 
 main().catch(console.error);

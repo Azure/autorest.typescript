@@ -40,7 +40,7 @@ async function listJobsInAJobAgent() {
 }
 
 async function main() {
-  listJobsInAJobAgent();
+  await listJobsInAJobAgent();
 }
 
 main().catch(console.error);

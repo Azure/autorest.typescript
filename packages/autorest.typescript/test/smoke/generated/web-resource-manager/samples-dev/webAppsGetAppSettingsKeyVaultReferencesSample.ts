@@ -38,7 +38,7 @@ async function getAzureKeyVaultReferencesForAppSettings() {
 }
 
 async function main() {
-  getAzureKeyVaultReferencesForAppSettings();
+  await getAzureKeyVaultReferencesForAppSettings();
 }
 
 main().catch(console.error);

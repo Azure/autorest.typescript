@@ -39,7 +39,7 @@ async function deleteVirtualMachineScaleSetVMExtension() {
 }
 
 async function main() {
-  deleteVirtualMachineScaleSetVMExtension();
+  await deleteVirtualMachineScaleSetVMExtension();
 }
 
 main().catch(console.error);

@@ -127,8 +127,8 @@ async function createConnectionMonitorV2() {
 }
 
 async function main() {
-  createConnectionMonitorV1();
-  createConnectionMonitorV2();
+  await createConnectionMonitorV1();
+  await createConnectionMonitorV2();
 }
 
 main().catch(console.error);

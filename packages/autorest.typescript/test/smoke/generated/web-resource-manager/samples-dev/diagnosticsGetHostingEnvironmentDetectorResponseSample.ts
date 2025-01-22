@@ -38,7 +38,7 @@ async function getAppServiceEnvironmentDetectorResponses() {
 }
 
 async function main() {
-  getAppServiceEnvironmentDetectorResponses();
+  await getAppServiceEnvironmentDetectorResponses();
 }
 
 main().catch(console.error);

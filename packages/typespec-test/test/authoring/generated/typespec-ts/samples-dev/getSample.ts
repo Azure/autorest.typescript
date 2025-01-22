@@ -24,7 +24,7 @@ async function getSample() {
 }
 
 async function main() {
-  getSample();
+  await getSample();
 }
 
 main().catch(console.error);

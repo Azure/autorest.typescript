@@ -66,8 +66,8 @@ async function queueOperationPutWithMetadata() {
 }
 
 async function main() {
-  queueOperationPut();
-  queueOperationPutWithMetadata();
+  await queueOperationPut();
+  await queueOperationPutWithMetadata();
 }
 
 main().catch(console.error);

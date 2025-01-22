@@ -59,7 +59,7 @@ async function vpnSiteCreate() {
 }
 
 async function main() {
-  vpnSiteCreate();
+  await vpnSiteCreate();
 }
 
 main().catch(console.error);

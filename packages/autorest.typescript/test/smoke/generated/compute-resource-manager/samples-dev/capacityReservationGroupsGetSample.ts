@@ -34,7 +34,7 @@ async function getACapacityReservationGroup() {
 }
 
 async function main() {
-  getACapacityReservationGroup();
+  await getACapacityReservationGroup();
 }
 
 main().catch(console.error);

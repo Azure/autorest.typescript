@@ -34,7 +34,7 @@ async function storageAccountListKeys() {
 }
 
 async function main() {
-  storageAccountListKeys();
+  await storageAccountListKeys();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function getAppServiceCertificateOrderDetectorResponse() {
 }
 
 async function main() {
-  getAppServiceCertificateOrderDetectorResponse();
+  await getAppServiceCertificateOrderDetectorResponse();
 }
 
 main().catch(console.error);

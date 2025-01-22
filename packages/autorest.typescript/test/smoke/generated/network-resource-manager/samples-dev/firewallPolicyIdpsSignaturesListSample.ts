@@ -46,7 +46,7 @@ async function querySignatureOverrides() {
 }
 
 async function main() {
-  querySignatureOverrides();
+  await querySignatureOverrides();
 }
 
 main().catch(console.error);

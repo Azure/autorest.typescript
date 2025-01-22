@@ -47,7 +47,7 @@ async function createOrUpdateACredential() {
 }
 
 async function main() {
-  createOrUpdateACredential();
+  await createOrUpdateACredential();
 }
 
 main().catch(console.error);

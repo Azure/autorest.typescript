@@ -39,7 +39,7 @@ async function listAdministratorsOfManagedInstance() {
 }
 
 async function main() {
-  listAdministratorsOfManagedInstance();
+  await listAdministratorsOfManagedInstance();
 }
 
 main().catch(console.error);

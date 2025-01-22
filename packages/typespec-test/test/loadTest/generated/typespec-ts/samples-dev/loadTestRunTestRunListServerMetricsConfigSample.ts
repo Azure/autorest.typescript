@@ -24,7 +24,7 @@ async function loadTestRunTestRunListServerMetricsConfigSample() {
 }
 
 async function main() {
-  loadTestRunTestRunListServerMetricsConfigSample();
+  await loadTestRunTestRunListServerMetricsConfigSample();
 }
 
 main().catch(console.error);

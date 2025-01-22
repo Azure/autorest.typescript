@@ -41,7 +41,7 @@ async function listSyncGroupsUnderAGivenDatabase() {
 }
 
 async function main() {
-  listSyncGroupsUnderAGivenDatabase();
+  await listSyncGroupsUnderAGivenDatabase();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function createAProximityPlacementGroup() {
 }
 
 async function main() {
-  createAProximityPlacementGroup();
+  await createAProximityPlacementGroup();
 }
 
 main().catch(console.error);

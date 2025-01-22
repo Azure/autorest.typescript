@@ -43,7 +43,7 @@ async function listVmssvmPublicIP() {
 }
 
 async function main() {
-  listVmssvmPublicIP();
+  await listVmssvmPublicIP();
 }
 
 main().catch(console.error);

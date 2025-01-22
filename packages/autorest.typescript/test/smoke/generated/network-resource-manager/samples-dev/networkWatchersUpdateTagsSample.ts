@@ -39,7 +39,7 @@ async function updateNetworkWatcherTags() {
 }
 
 async function main() {
-  updateNetworkWatcherTags();
+  await updateNetworkWatcherTags();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function clearLegalHoldContainers() {
 }
 
 async function main() {
-  clearLegalHoldContainers();
+  await clearLegalHoldContainers();
 }
 
 main().catch(console.error);

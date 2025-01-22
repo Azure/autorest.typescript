@@ -33,7 +33,7 @@ async function listsAvailableRestApiOperations() {
 }
 
 async function main() {
-  listsAvailableRestApiOperations();
+  await listsAvailableRestApiOperations();
 }
 
 main().catch(console.error);

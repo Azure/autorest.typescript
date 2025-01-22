@@ -45,7 +45,7 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
 }
 
 async function main() {
-  createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild();
+  await createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild();
 }
 
 main().catch(console.error);
