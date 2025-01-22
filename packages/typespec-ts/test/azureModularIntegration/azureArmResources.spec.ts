@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ResourcesClient } from "./generated/azure/resource-manager/resources/src/index.js";
+import { ExtensionsResource, LocationResource, NestedProxyResource, ResourcesClient, TopLevelTrackedResource } from "./generated/azure/resource-manager/resources/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {
   let client: ResourcesClient;
 
@@ -24,9 +24,9 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User"
     }
   };
@@ -42,9 +42,9 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User"
     }
   };
@@ -61,9 +61,9 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: new Date(),
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date(),
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User"
     }
   };
@@ -79,13 +79,13 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: "2024-10-04T00:56:07.442Z",
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User",
     },
   };
-  const validResourceGroupExtensionsResource = {
+  const validResourceGroupExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
     name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
@@ -96,14 +96,14 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: "2024-10-04T00:56:07.442Z",
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User",
     },
   };
 
-  const validSubscriptionExtensionsResource = {
+  const validSubscriptionExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
     name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
@@ -114,14 +114,14 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: "2024-10-04T00:56:07.442Z",
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User",
     },
   };
 
-  const validTenantExtensionsResource = {
+  const validTenantExtensionsResource: ExtensionsResource = {
     id: `/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
     name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
@@ -132,14 +132,14 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: "2024-10-04T00:56:07.442Z",
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User",
     },
   };
 
-  const validResourceExtensionsResource = {
+  const validResourceExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
     name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
@@ -150,9 +150,9 @@ describe("Azure Arm Resources Rest Client", () => {
     systemData: {
       createdBy: "AzureSDK",
       createdByType: "User",
-      createdAt: "2024-10-04T00:56:07.442Z",
+      createdAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedBy: "AzureSDK",
-      lastModifiedAt: "2024-10-04T00:56:07.442Z",
+      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
       lastModifiedByType: "User",
     },
   };
@@ -277,22 +277,28 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should list top level tracked resources by resourceGroup ", async () => {
     const result = await client.topLevel
-      .listByResourceGroup("test-rg")
-      .next();
-    assert.strictEqual(result.value.id, validTopLevelResource.id);
-    assert.strictEqual(result.value.name, validTopLevelResource.name);
-    assert.strictEqual(result.value.type, validTopLevelResource.type);
-    assert.strictEqual(result.value.location, validTopLevelResource.location);
+      .listByResourceGroup("test-rg");
+    const items: Array<TopLevelTrackedResource> = [];
+    for await (const item of result) {
+      items.push(item);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.id, validTopLevelResource.id);
+    assert.strictEqual(items[0]?.name, validTopLevelResource.name);
+    assert.strictEqual(items[0]?.type, validTopLevelResource.type);
   });
 
   it("should list top level tracked resources by subscription ", async () => {
     const result = await client.topLevel
-      .listBySubscription()
-      .next();
-    assert.strictEqual(result.value.id, validTopLevelResource.id);
-    assert.strictEqual(result.value.name, validTopLevelResource.name);
-    assert.strictEqual(result.value.type, validTopLevelResource.type);
-    assert.strictEqual(result.value.location, validTopLevelResource.location);
+      .listBySubscription();
+    const items: Array<TopLevelTrackedResource> = [];
+    for await (const item of result) {
+      items.push(item);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.id, validTopLevelResource.id);
+    assert.strictEqual(items[0]?.name, validTopLevelResource.name);
+    assert.strictEqual(items[0]?.type, validTopLevelResource.type);
   });
 
   // // nested proxy resource
@@ -303,9 +309,7 @@ describe("Azure Arm Resources Rest Client", () => {
       "nested"
     );
 
-    assert.strictEqual(result.id, validNestedResource.id);
-    assert.strictEqual(result.name, validNestedResource.name);
-    assert.strictEqual(result.type, validNestedResource.type);
+    assert.deepStrictEqual<NestedProxyResource>(result, validNestedResource);
   });
 
   it("should create or replace nested proxy resource", async () => {
@@ -319,13 +323,7 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       }
     );
-    assert.strictEqual(result.id, validNestedResource.id);
-    assert.strictEqual(result.name, validNestedResource.name);
-    assert.strictEqual(result.type, validNestedResource.type);
-    assert.strictEqual(
-      result.properties?.description,
-      validNestedResource.properties?.description
-    );
+    assert.deepStrictEqual<NestedProxyResource>(result, validNestedResource);
   });
 
   it("should update nested proxy resource", async () => {
@@ -339,10 +337,12 @@ describe("Azure Arm Resources Rest Client", () => {
         }
       }
     );
-    assert.strictEqual(result.id, validNestedResource.id);
-    assert.strictEqual(result.name, validNestedResource.name);
-    assert.strictEqual(result.type, validNestedResource.type);
-    assert.strictEqual(result.properties?.description, "valid2");
+    assert.deepStrictEqual<NestedProxyResource>(result, {
+      ...validNestedResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      },
+    });
   });
 
   it("should delete nested proxy resource", async () => {
@@ -356,24 +356,20 @@ describe("Azure Arm Resources Rest Client", () => {
 
   it("should list nested proxy resource by TopLevelTrackedResource ", async () => {
     const result = await client.nested
-      .listByTopLevelTrackedResource("test-rg", "top")
-      .next();
+      .listByTopLevelTrackedResource("test-rg", "top");
 
-    assert.strictEqual(result.value.id, validNestedResource.id);
-    assert.strictEqual(result.value.name, validNestedResource.name);
-    assert.strictEqual(result.value.type, validNestedResource.type);
+    const items: Array<NestedProxyResource> = [];
+    for await (const item of result) {
+      items.push(item);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.deepStrictEqual<NestedProxyResource[]>(items, [validNestedResource]);
   });
 
   // location resource
   it("should get LocationResources ", async () => {
-
     const result = await client.locationResources.get(LOCATION_EXPECTED, "resource");
-
-    assert.strictEqual(result.id, validLocationResource.id);
-    assert.strictEqual(result.name, validLocationResource.name);
-    assert.strictEqual(result.type, validLocationResource.type);
-    assert.strictEqual(result.properties?.description, validLocationResource.properties.description);
-    assert.strictEqual(result.properties?.provisioningState, validLocationResource.properties.provisioningState);
+    assert.deepStrictEqual<LocationResource>(result, validLocationResource);
   });
 
   it("should createOrUpdate LocationResources ", async () => {
@@ -382,11 +378,7 @@ describe("Azure Arm Resources Rest Client", () => {
         description: "valid",
       }
     });
-    assert.strictEqual(result.id, validLocationResource.id);
-    assert.strictEqual(result.name, validLocationResource.name);
-    assert.strictEqual(result.type, validLocationResource.type);
-    assert.strictEqual(result.properties?.description, validLocationResource.properties.description);
-    assert.strictEqual(result.properties?.provisioningState, validLocationResource.properties.provisioningState);
+    assert.deepStrictEqual<LocationResource>(result, validLocationResource);
   });
 
   it("should update LocationResources ", async () => {
@@ -396,11 +388,12 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
 
-    assert.strictEqual(result.id, validLocationResource.id);
-    assert.strictEqual(result.name, validLocationResource.name);
-    assert.strictEqual(result.type, validLocationResource.type);
-    assert.strictEqual(result.properties?.description, "valid2");
-    assert.strictEqual(result.properties?.provisioningState, validLocationResource.properties.provisioningState);
+    assert.deepStrictEqual<LocationResource>(result, {
+      ...validLocationResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      },
+    });
   });
 
   it("should delete LocationResources ", async () => {
@@ -411,49 +404,28 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list LocationResources by subscription ", async () => {
     const result = await client.locationResources.listByLocation(LOCATION_EXPECTED);
 
-    const items = [];
+    const items: Array<LocationResource> = [];
     for await (const item of result) {
       items.push(item);
     }
     assert.strictEqual(items.length, 1);
-    assert.strictEqual(items[0]?.id, validLocationResource.id);
-    assert.strictEqual(items[0]?.name, validLocationResource.name);
-    assert.strictEqual(items[0]?.type, validLocationResource.type);
-    assert.strictEqual(items[0]?.properties?.description, validLocationResource.properties.description);
-    assert.strictEqual(items[0]?.properties?.provisioningState, validLocationResource.properties.provisioningState);
+    assert.deepStrictEqual<LocationResource[]>(items, [validLocationResource]);
   });
 
   // extension tracked resource
   it("should get ExtensionsResources ", async () => {
 
     const resourceGroupResult = await client.extensionsResources.get(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}`, "extension");
-    assert.strictEqual(resourceGroupResult.id, validResourceGroupExtensionsResource.id);
-    assert.strictEqual(resourceGroupResult.name, validResourceGroupExtensionsResource.name);
-    assert.strictEqual(resourceGroupResult.type, validResourceGroupExtensionsResource.type);
-    assert.strictEqual(resourceGroupResult.properties?.description, validResourceGroupExtensionsResource.properties.description);
-    assert.strictEqual(resourceGroupResult.properties?.provisioningState, validResourceGroupExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceGroupResult, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client.extensionsResources.get(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}`, "extension");
-    assert.strictEqual(subscriptionResult.id, validSubscriptionExtensionsResource.id);
-    assert.strictEqual(subscriptionResult.name, validSubscriptionExtensionsResource.name);
-    assert.strictEqual(subscriptionResult.type, validSubscriptionExtensionsResource.type);
-    assert.strictEqual(subscriptionResult.properties?.description, validSubscriptionExtensionsResource.properties.description);
-    assert.strictEqual(subscriptionResult.properties?.provisioningState, validSubscriptionExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(subscriptionResult, validSubscriptionExtensionsResource);
 
     const tenantResult = await client.extensionsResources.get("", "extension");
-    assert.strictEqual(tenantResult.id, validTenantExtensionsResource.id);
-    assert.strictEqual(tenantResult.name, validTenantExtensionsResource.name);
-    assert.strictEqual(tenantResult.type, validTenantExtensionsResource.type);
-    assert.strictEqual(tenantResult.properties?.description, validTenantExtensionsResource.properties.description);
-    assert.strictEqual(tenantResult.properties?.provisioningState, validTenantExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(tenantResult, validTenantExtensionsResource);
 
     const resourceResult = await client.extensionsResources.get(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`, "extension");
-    assert.strictEqual(resourceResult.id, validResourceExtensionsResource.id);
-    assert.strictEqual(resourceResult.id, validResourceExtensionsResource.id);
-    assert.strictEqual(resourceResult.name, validResourceExtensionsResource.name);
-    assert.strictEqual(resourceResult.type, validResourceExtensionsResource.type);
-    assert.strictEqual(resourceResult.properties?.description, validResourceExtensionsResource.properties.description);
-    assert.strictEqual(resourceResult.properties?.provisioningState, validResourceExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceResult, validResourceExtensionsResource);
   });
 
   it("should createOrUpdate ExtensionsResources ", async () => {
@@ -463,44 +435,28 @@ describe("Azure Arm Resources Rest Client", () => {
         description: "valid",
       },
     });
-    assert.strictEqual(resourceGroupResult.id, validResourceGroupExtensionsResource.id);
-    assert.strictEqual(resourceGroupResult.name, validResourceGroupExtensionsResource.name);
-    assert.strictEqual(resourceGroupResult.type, validResourceGroupExtensionsResource.type);
-    assert.strictEqual(resourceGroupResult.properties?.description, validResourceGroupExtensionsResource.properties.description);
-    assert.strictEqual(resourceGroupResult.properties?.provisioningState, validResourceGroupExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceGroupResult, validResourceGroupExtensionsResource);
 
     const subscriptionResult = await client.extensionsResources.createOrUpdate(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}`, "extension", {
       properties: {
         description: "valid",
       },
     });
-    assert.strictEqual(subscriptionResult.id, validSubscriptionExtensionsResource.id);
-    assert.strictEqual(subscriptionResult.name, validSubscriptionExtensionsResource.name);
-    assert.strictEqual(subscriptionResult.type, validSubscriptionExtensionsResource.type);
-    assert.strictEqual(subscriptionResult.properties?.description, validSubscriptionExtensionsResource.properties.description);
-    assert.strictEqual(subscriptionResult.properties?.provisioningState, validSubscriptionExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(subscriptionResult, validSubscriptionExtensionsResource);
 
     const tenantResult = await client.extensionsResources.createOrUpdate("", "extension", {
       properties: {
         description: "valid",
       },
     });
-    assert.strictEqual(tenantResult.id, validTenantExtensionsResource.id);
-    assert.strictEqual(tenantResult.name, validTenantExtensionsResource.name);
-    assert.strictEqual(tenantResult.type, validTenantExtensionsResource.type);
-    assert.strictEqual(tenantResult.properties?.description, validTenantExtensionsResource.properties.description);
-    assert.strictEqual(tenantResult.properties?.provisioningState, validTenantExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(tenantResult, validTenantExtensionsResource);
 
     const resourceResult = await client.extensionsResources.createOrUpdate(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`, "extension", {
       properties: {
         description: "valid",
       },
     });
-    assert.strictEqual(resourceResult.id, validResourceExtensionsResource.id);
-    assert.strictEqual(resourceResult.name, validResourceExtensionsResource.name);
-    assert.strictEqual(resourceResult.type, validResourceExtensionsResource.type);
-    assert.strictEqual(resourceResult.properties?.description, validResourceExtensionsResource.properties.description);
-    assert.strictEqual(resourceResult.properties?.provisioningState, validResourceExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceResult, validResourceExtensionsResource);
   });
 
   it("should update ExtensionsResources ", async () => {
@@ -510,44 +466,48 @@ describe("Azure Arm Resources Rest Client", () => {
         description: "valid2",
       },
     });
-    assert.strictEqual(resourceGroupResult.id, validResourceGroupExtensionsResource.id);
-    assert.strictEqual(resourceGroupResult.name, validResourceGroupExtensionsResource.name);
-    assert.strictEqual(resourceGroupResult.type, validResourceGroupExtensionsResource.type);
-    assert.strictEqual(resourceGroupResult.properties?.description, "valid2");
-    assert.strictEqual(resourceGroupResult.properties?.provisioningState, validResourceGroupExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceGroupResult, {
+      ...validResourceGroupExtensionsResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      }
+    });
 
     const subscriptionResult = await client.extensionsResources.update(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}`, "extension", {
       properties: {
         description: "valid2",
       },
     });
-    assert.strictEqual(subscriptionResult.id, validSubscriptionExtensionsResource.id);
-    assert.strictEqual(subscriptionResult.name, validSubscriptionExtensionsResource.name);
-    assert.strictEqual(subscriptionResult.type, validSubscriptionExtensionsResource.type);
-    assert.strictEqual(subscriptionResult.properties?.description, "valid2");
-    assert.strictEqual(subscriptionResult.properties?.provisioningState, validSubscriptionExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(subscriptionResult, {
+      ...validSubscriptionExtensionsResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      }
+    });
 
     const tenantResult = await client.extensionsResources.update("", "extension", {
       properties: {
         description: "valid2",
       },
     });
-    assert.strictEqual(tenantResult.id, validTenantExtensionsResource.id);
-    assert.strictEqual(tenantResult.name, validTenantExtensionsResource.name);
-    assert.strictEqual(tenantResult.type, validTenantExtensionsResource.type);
-    assert.strictEqual(tenantResult.properties?.description, "valid2");
-    assert.strictEqual(tenantResult.properties?.provisioningState, validTenantExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(tenantResult, {
+      ...validTenantExtensionsResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      }
+    });
 
     const resourceResult = await client.extensionsResources.update(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`, "extension", {
       properties: {
         description: "valid2",
       },
     });
-    assert.strictEqual(resourceResult.id, validResourceExtensionsResource.id);
-    assert.strictEqual(resourceResult.name, validResourceExtensionsResource.name);
-    assert.strictEqual(resourceResult.type, validResourceExtensionsResource.type);
-    assert.strictEqual(resourceResult.properties?.description, "valid2");
-    assert.strictEqual(resourceResult.properties?.provisioningState, validResourceExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource>(resourceResult, {
+      ...validResourceExtensionsResource, properties: {
+        provisioningState: "Succeeded",
+        description: "valid2",
+      }
+    });
   });
 
   it("should delete ExtensionsResources ", async () => {
@@ -568,51 +528,35 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should list ExtensionsResources ", async () => {
 
     const resourceGroupResult = await client.extensionsResources.listByScope(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}`);
-    const resourceGroupItems = [];
+    const resourceGroupItems: Array<ExtensionsResource> = [];
     for await (const item of resourceGroupResult) {
       resourceGroupItems.push(item);
     }
     assert.strictEqual(resourceGroupItems.length, 1);
-    assert.strictEqual(resourceGroupItems[0]?.id, validResourceGroupExtensionsResource.id);
-    assert.strictEqual(resourceGroupItems[0]?.name, validResourceGroupExtensionsResource.name);
-    assert.strictEqual(resourceGroupItems[0]?.type, validResourceGroupExtensionsResource.type);
-    assert.strictEqual(resourceGroupItems[0]?.properties?.description, validResourceGroupExtensionsResource.properties.description);
-    assert.strictEqual(resourceGroupItems[0]?.properties?.provisioningState, validResourceGroupExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource[]>(resourceGroupItems, [validResourceGroupExtensionsResource])
 
     const subscriptionResult = await client.extensionsResources.listByScope(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}`);
-    const subscriptionItems = [];
+    const subscriptionItems: Array<ExtensionsResource> = [];
     for await (const item of subscriptionResult) {
       subscriptionItems.push(item);
     }
     assert.strictEqual(subscriptionItems.length, 1);
-    assert.strictEqual(subscriptionItems[0]?.id, validSubscriptionExtensionsResource.id);
-    assert.strictEqual(subscriptionItems[0]?.name, validSubscriptionExtensionsResource.name);
-    assert.strictEqual(subscriptionItems[0]?.type, validSubscriptionExtensionsResource.type);
-    assert.strictEqual(subscriptionItems[0]?.properties?.description, validSubscriptionExtensionsResource.properties.description);
-    assert.strictEqual(subscriptionItems[0]?.properties?.provisioningState, validSubscriptionExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource[]>(subscriptionItems, [validSubscriptionExtensionsResource]);
 
     const tenantResult = await client.extensionsResources.listByScope("");
-    const tenantItems = [];
+    const tenantItems: Array<ExtensionsResource> = [];
     for await (const item of tenantResult) {
       tenantItems.push(item);
     }
     assert.strictEqual(tenantItems.length, 1);
-    assert.strictEqual(tenantItems[0]?.id, validTenantExtensionsResource.id);
-    assert.strictEqual(tenantItems[0]?.name, validTenantExtensionsResource.name);
-    assert.strictEqual(tenantItems[0]?.type, validTenantExtensionsResource.type);
-    assert.strictEqual(tenantItems[0]?.properties?.description, validTenantExtensionsResource.properties.description);
-    assert.strictEqual(tenantItems[0]?.properties?.provisioningState, validTenantExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource[]>(tenantItems, [validTenantExtensionsResource]);
 
     const resourceResult = await client.extensionsResources.listByScope(`subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top`);
-    const resourceItems = [];
+    const resourceItems: Array<ExtensionsResource> = [];
     for await (const item of resourceResult) {
       resourceItems.push(item);
     }
     assert.strictEqual(resourceItems.length, 1);
-    assert.strictEqual(resourceItems[0]?.id, validResourceExtensionsResource.id);
-    assert.strictEqual(resourceItems[0]?.name, validResourceExtensionsResource.name);
-    assert.strictEqual(resourceItems[0]?.type, validResourceExtensionsResource.type);
-    assert.strictEqual(resourceItems[0]?.properties?.description, validResourceExtensionsResource.properties.description);
-    assert.strictEqual(resourceItems[0]?.properties?.provisioningState, validResourceExtensionsResource.properties.provisioningState);
+    assert.deepStrictEqual<ExtensionsResource[]>(resourceItems, [validResourceExtensionsResource]);
   });
 });
