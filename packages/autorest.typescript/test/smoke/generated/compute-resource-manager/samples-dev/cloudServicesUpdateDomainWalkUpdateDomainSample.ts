@@ -37,7 +37,7 @@ async function updateCloudServiceToSpecifiedDomain() {
 }
 
 async function main() {
-  updateCloudServiceToSpecifiedDomain();
+  await updateCloudServiceToSpecifiedDomain();
 }
 
 main().catch(console.error);

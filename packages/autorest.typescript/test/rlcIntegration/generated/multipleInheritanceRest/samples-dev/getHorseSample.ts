@@ -18,7 +18,7 @@ async function getHorseSample() {
 }
 
 async function main() {
-  getHorseSample();
+  await getHorseSample();
 }
 
 main().catch(console.error);

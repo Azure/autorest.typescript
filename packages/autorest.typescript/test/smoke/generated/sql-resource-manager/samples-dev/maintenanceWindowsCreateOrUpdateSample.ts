@@ -49,7 +49,7 @@ async function setsMaintenanceWindowSettingsForASelectedDatabase() {
 }
 
 async function main() {
-  setsMaintenanceWindowSettingsForASelectedDatabase();
+  await setsMaintenanceWindowSettingsForASelectedDatabase();
 }
 
 main().catch(console.error);

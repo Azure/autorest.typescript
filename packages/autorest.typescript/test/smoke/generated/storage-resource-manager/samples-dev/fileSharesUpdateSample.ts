@@ -75,8 +75,8 @@ async function updateShares() {
 }
 
 async function main() {
-  updateShareAcls();
-  updateShares();
+  await updateShareAcls();
+  await updateShares();
 }
 
 main().catch(console.error);

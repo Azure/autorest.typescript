@@ -38,7 +38,7 @@ async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite(
 }
 
 async function main() {
-  getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite();
+  await getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite();
 }
 
 main().catch(console.error);

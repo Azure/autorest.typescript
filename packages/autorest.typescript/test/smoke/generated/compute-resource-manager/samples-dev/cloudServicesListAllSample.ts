@@ -32,7 +32,7 @@ async function listCloudServicesInASubscription() {
 }
 
 async function main() {
-  listCloudServicesInASubscription();
+  await listCloudServicesInASubscription();
 }
 
 main().catch(console.error);

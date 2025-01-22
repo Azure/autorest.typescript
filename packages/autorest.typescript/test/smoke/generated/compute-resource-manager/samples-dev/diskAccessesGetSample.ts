@@ -53,8 +53,8 @@ async function getInformationAboutADiskAccessResource() {
 }
 
 async function main() {
-  getInformationAboutADiskAccessResourceWithPrivateEndpoints();
-  getInformationAboutADiskAccessResource();
+  await getInformationAboutADiskAccessResourceWithPrivateEndpoints();
+  await getInformationAboutADiskAccessResource();
 }
 
 main().catch(console.error);

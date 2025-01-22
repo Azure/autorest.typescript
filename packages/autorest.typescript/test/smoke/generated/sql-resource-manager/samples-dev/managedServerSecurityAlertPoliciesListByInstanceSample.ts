@@ -39,7 +39,7 @@ async function getTheManagedServerThreatDetectionPolicies() {
 }
 
 async function main() {
-  getTheManagedServerThreatDetectionPolicies();
+  await getTheManagedServerThreatDetectionPolicies();
 }
 
 main().catch(console.error);

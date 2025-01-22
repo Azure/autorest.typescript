@@ -40,7 +40,7 @@ async function getsMaintenanceWindowSettingsForASelectedDatabase() {
 }
 
 async function main() {
-  getsMaintenanceWindowSettingsForASelectedDatabase();
+  await getsMaintenanceWindowSettingsForASelectedDatabase();
 }
 
 main().catch(console.error);

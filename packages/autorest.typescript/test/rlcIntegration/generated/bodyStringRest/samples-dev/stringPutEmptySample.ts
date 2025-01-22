@@ -19,7 +19,7 @@ async function stringPutEmpty() {
 }
 
 async function main() {
-  stringPutEmpty();
+  await stringPutEmpty();
 }
 
 main().catch(console.error);

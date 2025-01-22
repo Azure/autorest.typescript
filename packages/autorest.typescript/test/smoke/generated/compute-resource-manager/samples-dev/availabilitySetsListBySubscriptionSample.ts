@@ -37,7 +37,7 @@ async function listAvailabilitySetsInASubscription() {
 }
 
 async function main() {
-  listAvailabilitySetsInASubscription();
+  await listAvailabilitySetsInASubscription();
 }
 
 main().catch(console.error);

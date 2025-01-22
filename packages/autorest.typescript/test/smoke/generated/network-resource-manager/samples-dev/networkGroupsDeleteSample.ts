@@ -43,7 +43,7 @@ async function networkGroupsDelete() {
 }
 
 async function main() {
-  networkGroupsDelete();
+  await networkGroupsDelete();
 }
 
 main().catch(console.error);

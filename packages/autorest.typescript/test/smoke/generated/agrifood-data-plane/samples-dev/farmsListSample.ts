@@ -32,7 +32,7 @@ async function farmsList() {
 }
 
 async function main() {
-  farmsList();
+  await farmsList();
 }
 
 main().catch(console.error);

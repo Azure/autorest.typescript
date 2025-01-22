@@ -41,7 +41,7 @@ async function getTheLatestVersionOfAJobStep() {
 }
 
 async function main() {
-  getTheLatestVersionOfAJobStep();
+  await getTheLatestVersionOfAJobStep();
 }
 
 main().catch(console.error);

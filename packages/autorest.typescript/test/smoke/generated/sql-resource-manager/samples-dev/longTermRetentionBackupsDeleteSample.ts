@@ -39,7 +39,7 @@ async function deleteTheLongTermRetentionBackup() {
 }
 
 async function main() {
-  deleteTheLongTermRetentionBackup();
+  await deleteTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

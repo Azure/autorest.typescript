@@ -38,7 +38,7 @@ async function getADatabaseAutomaticTuningSettings() {
 }
 
 async function main() {
-  getADatabaseAutomaticTuningSettings();
+  await getADatabaseAutomaticTuningSettings();
 }
 
 main().catch(console.error);

@@ -108,8 +108,8 @@ async function putBlobServices() {
 }
 
 async function main() {
-  blobServicesPutLastAccessTimeBasedTracking();
-  putBlobServices();
+  await blobServicesPutLastAccessTimeBasedTracking();
+  await putBlobServices();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function getTopLevelDomain() {
 }
 
 async function main() {
-  getTopLevelDomain();
+  await getTopLevelDomain();
 }
 
 main().catch(console.error);

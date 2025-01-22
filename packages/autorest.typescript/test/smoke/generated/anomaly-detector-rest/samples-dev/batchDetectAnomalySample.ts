@@ -43,7 +43,7 @@ async function detectAnomalyWithMultivariateModel() {
 }
 
 async function main() {
-  detectAnomalyWithMultivariateModel();
+  await detectAnomalyWithMultivariateModel();
 }
 
 main().catch(console.error);

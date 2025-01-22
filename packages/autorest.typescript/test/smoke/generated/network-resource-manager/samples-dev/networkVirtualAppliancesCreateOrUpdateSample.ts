@@ -94,8 +94,8 @@ async function createSaaSNetworkVirtualAppliance() {
 }
 
 async function main() {
-  createNetworkVirtualAppliance();
-  createSaaSNetworkVirtualAppliance();
+  await createNetworkVirtualAppliance();
+  await createSaaSNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function getsADatabase() {
 }
 
 async function main() {
-  getsADatabase();
+  await getsADatabase();
 }
 
 main().catch(console.error);

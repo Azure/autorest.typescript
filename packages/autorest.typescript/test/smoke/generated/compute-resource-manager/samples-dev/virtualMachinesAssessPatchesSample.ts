@@ -35,7 +35,7 @@ async function assessPatchStateOfAVirtualMachine() {
 }
 
 async function main() {
-  assessPatchStateOfAVirtualMachine();
+  await assessPatchStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

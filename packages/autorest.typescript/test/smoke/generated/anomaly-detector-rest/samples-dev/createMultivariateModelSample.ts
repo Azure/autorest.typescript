@@ -45,7 +45,7 @@ async function trainMultivariateModel() {
 }
 
 async function main() {
-  trainMultivariateModel();
+  await trainMultivariateModel();
 }
 
 main().catch(console.error);

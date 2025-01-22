@@ -21,7 +21,7 @@ async function enumPutNotExpandable() {
 }
 
 async function main() {
-  enumPutNotExpandable();
+  await enumPutNotExpandable();
 }
 
 main().catch(console.error);

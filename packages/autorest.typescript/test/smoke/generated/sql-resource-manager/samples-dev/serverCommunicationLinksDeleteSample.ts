@@ -37,7 +37,7 @@ async function deleteAServerCommunicationLink() {
 }
 
 async function main() {
-  deleteAServerCommunicationLink();
+  await deleteAServerCommunicationLink();
 }
 
 main().catch(console.error);

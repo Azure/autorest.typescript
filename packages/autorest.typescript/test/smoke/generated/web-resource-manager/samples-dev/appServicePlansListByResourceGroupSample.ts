@@ -36,7 +36,7 @@ async function listAppServicePlansByResourceGroup() {
 }
 
 async function main() {
-  listAppServicePlansByResourceGroup();
+  await listAppServicePlansByResourceGroup();
 }
 
 main().catch(console.error);

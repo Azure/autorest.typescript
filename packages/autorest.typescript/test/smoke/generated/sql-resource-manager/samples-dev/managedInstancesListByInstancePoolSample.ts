@@ -61,8 +61,8 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
 }
 
 async function main() {
-  listManagedInstancesByInstancePool();
-  listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
+  await listManagedInstancesByInstancePool();
+  await listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

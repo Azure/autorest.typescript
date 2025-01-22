@@ -99,7 +99,7 @@ async function storageAccountSetBlobInventoryPolicy() {
 }
 
 async function main() {
-  storageAccountSetBlobInventoryPolicy();
+  await storageAccountSetBlobInventoryPolicy();
 }
 
 main().catch(console.error);

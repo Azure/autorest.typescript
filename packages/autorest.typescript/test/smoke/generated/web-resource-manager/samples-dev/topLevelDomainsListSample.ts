@@ -33,7 +33,7 @@ async function listTopLevelDomains() {
 }
 
 async function main() {
-  listTopLevelDomains();
+  await listTopLevelDomains();
 }
 
 main().catch(console.error);

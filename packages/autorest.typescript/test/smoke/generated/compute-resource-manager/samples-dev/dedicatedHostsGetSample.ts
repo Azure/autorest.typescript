@@ -36,7 +36,7 @@ async function getADedicatedHost() {
 }
 
 async function main() {
-  getADedicatedHost();
+  await getADedicatedHost();
 }
 
 main().catch(console.error);

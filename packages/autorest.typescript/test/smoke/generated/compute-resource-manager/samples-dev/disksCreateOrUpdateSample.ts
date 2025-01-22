@@ -377,19 +377,19 @@ async function createAnUltraManagedDiskWithLogicalSectorSize512E() {
 }
 
 async function main() {
-  createAManagedDiskAndAssociateWithDiskAccessResource();
-  createAManagedDiskAndAssociateWithDiskEncryptionSet();
-  createAManagedDiskByCopyingASnapshot();
-  createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription();
-  createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription();
-  createAManagedDiskFromAPlatformImage();
-  createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription();
-  createAManagedDiskWithSecurityProfile();
-  createAManagedDiskWithSsdZrsAccountType();
-  createAManagedUploadDisk();
-  createAnEmptyManagedDiskInExtendedLocation();
-  createAnEmptyManagedDisk();
-  createAnUltraManagedDiskWithLogicalSectorSize512E();
+  await createAManagedDiskAndAssociateWithDiskAccessResource();
+  await createAManagedDiskAndAssociateWithDiskEncryptionSet();
+  await createAManagedDiskByCopyingASnapshot();
+  await createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription();
+  await createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription();
+  await createAManagedDiskFromAPlatformImage();
+  await createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription();
+  await createAManagedDiskWithSecurityProfile();
+  await createAManagedDiskWithSsdZrsAccountType();
+  await createAManagedUploadDisk();
+  await createAnEmptyManagedDiskInExtendedLocation();
+  await createAnEmptyManagedDisk();
+  await createAnUltraManagedDiskWithLogicalSectorSize512E();
 }
 
 main().catch(console.error);

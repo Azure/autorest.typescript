@@ -36,7 +36,7 @@ async function swapDeploymentsSample() {
 }
 
 async function main() {
-  swapDeploymentsSample();
+  await swapDeploymentsSample();
 }
 
 main().catch(console.error);

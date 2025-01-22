@@ -26,7 +26,7 @@ async function seasonsGet() {
 }
 
 async function main() {
-  seasonsGet();
+  await seasonsGet();
 }
 
 main().catch(console.error);

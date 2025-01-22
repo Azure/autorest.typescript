@@ -39,7 +39,7 @@ async function listGalleryApplicationVersionsInAGalleryApplicationDefinition() {
 }
 
 async function main() {
-  listGalleryApplicationVersionsInAGalleryApplicationDefinition();
+  await listGalleryApplicationVersionsInAGalleryApplicationDefinition();
 }
 
 main().catch(console.error);

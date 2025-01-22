@@ -31,7 +31,7 @@ async function getAvailableServerVariables() {
 }
 
 async function main() {
-  getAvailableServerVariables();
+  await getAvailableServerVariables();
 }
 
 main().catch(console.error);

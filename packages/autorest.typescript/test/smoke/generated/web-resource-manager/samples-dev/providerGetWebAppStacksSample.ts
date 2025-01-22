@@ -31,7 +31,7 @@ async function getWebAppStacks() {
 }
 
 async function main() {
-  getWebAppStacks();
+  await getWebAppStacks();
 }
 
 main().catch(console.error);

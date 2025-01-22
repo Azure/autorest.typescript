@@ -37,7 +37,7 @@ async function getsAPrivateLinkResourceForSql() {
 }
 
 async function main() {
-  getsAPrivateLinkResourceForSql();
+  await getsAPrivateLinkResourceForSql();
 }
 
 main().catch(console.error);

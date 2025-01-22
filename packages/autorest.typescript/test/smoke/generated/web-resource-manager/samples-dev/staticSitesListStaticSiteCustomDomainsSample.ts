@@ -38,7 +38,7 @@ async function listCustomDomainsForAStaticSite() {
 }
 
 async function main() {
-  listCustomDomainsForAStaticSite();
+  await listCustomDomainsForAStaticSite();
 }
 
 main().catch(console.error);

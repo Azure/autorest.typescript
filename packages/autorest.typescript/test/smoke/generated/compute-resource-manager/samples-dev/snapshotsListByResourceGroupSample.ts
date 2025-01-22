@@ -35,7 +35,7 @@ async function listAllSnapshotsInAResourceGroup() {
 }
 
 async function main() {
-  listAllSnapshotsInAResourceGroup();
+  await listAllSnapshotsInAResourceGroup();
 }
 
 main().catch(console.error);

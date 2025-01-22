@@ -46,7 +46,7 @@ async function createOrUpdateACapacityReservation() {
 }
 
 async function main() {
-  createOrUpdateACapacityReservation();
+  await createOrUpdateACapacityReservation();
 }
 
 main().catch(console.error);

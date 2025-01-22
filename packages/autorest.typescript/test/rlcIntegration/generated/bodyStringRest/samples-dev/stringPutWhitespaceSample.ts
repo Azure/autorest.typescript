@@ -23,7 +23,7 @@ async function stringPutWhitespace() {
 }
 
 async function main() {
-  stringPutWhitespace();
+  await stringPutWhitespace();
 }
 
 main().catch(console.error);

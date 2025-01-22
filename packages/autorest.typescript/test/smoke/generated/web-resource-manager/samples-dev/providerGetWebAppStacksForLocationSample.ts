@@ -34,7 +34,7 @@ async function getLocationsWebAppStacks() {
 }
 
 async function main() {
-  getLocationsWebAppStacks();
+  await getLocationsWebAppStacks();
 }
 
 main().catch(console.error);

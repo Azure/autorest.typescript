@@ -77,8 +77,8 @@ async function createADiskEncryptionSet() {
 }
 
 async function main() {
-  createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
-  createADiskEncryptionSet();
+  await createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
+  await createADiskEncryptionSet();
 }
 
 main().catch(console.error);

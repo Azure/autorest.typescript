@@ -78,7 +78,7 @@ async function p2SVpnGatewayPut() {
 }
 
 async function main() {
-  p2SVpnGatewayPut();
+  await p2SVpnGatewayPut();
 }
 
 main().catch(console.error);

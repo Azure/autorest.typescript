@@ -45,7 +45,7 @@ async function networkManagerDeploymentStatusList() {
 }
 
 async function main() {
-  networkManagerDeploymentStatusList();
+  await networkManagerDeploymentStatusList();
 }
 
 main().catch(console.error);

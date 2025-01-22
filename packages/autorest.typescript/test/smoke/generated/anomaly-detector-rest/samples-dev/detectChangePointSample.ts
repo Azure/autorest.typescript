@@ -295,7 +295,7 @@ async function detectChangePointExample() {
 }
 
 async function main() {
-  detectChangePointExample();
+  await detectChangePointExample();
 }
 
 main().catch(console.error);

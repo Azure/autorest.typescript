@@ -117,9 +117,9 @@ async function syncPeering() {
 }
 
 async function main() {
-  createPeering();
-  createPeeringWithRemoteVirtualNetworkEncryption();
-  syncPeering();
+  await createPeering();
+  await createPeeringWithRemoteVirtualNetworkEncryption();
+  await syncPeering();
 }
 
 main().catch(console.error);

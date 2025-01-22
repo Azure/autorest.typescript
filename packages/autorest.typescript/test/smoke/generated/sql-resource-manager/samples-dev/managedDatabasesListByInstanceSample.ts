@@ -38,7 +38,7 @@ async function listDatabasesByManagedInstances() {
 }
 
 async function main() {
-  listDatabasesByManagedInstances();
+  await listDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

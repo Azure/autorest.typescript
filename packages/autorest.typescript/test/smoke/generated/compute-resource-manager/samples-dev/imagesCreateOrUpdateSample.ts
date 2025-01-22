@@ -367,16 +367,16 @@ async function createAVirtualMachineImageThatIncludesADataDiskFromASnapshot() {
 }
 
 async function main() {
-  createAVirtualMachineImageFromABlobWithDiskEncryptionSetResource();
-  createAVirtualMachineImageFromABlob();
-  createAVirtualMachineImageFromAManagedDiskWithDiskEncryptionSetResource();
-  createAVirtualMachineImageFromAManagedDisk();
-  createAVirtualMachineImageFromASnapshotWithDiskEncryptionSetResource();
-  createAVirtualMachineImageFromASnapshot();
-  createAVirtualMachineImageFromAnExistingVirtualMachine();
-  createAVirtualMachineImageThatIncludesADataDiskFromABlob();
-  createAVirtualMachineImageThatIncludesADataDiskFromAManagedDisk();
-  createAVirtualMachineImageThatIncludesADataDiskFromASnapshot();
+  await createAVirtualMachineImageFromABlobWithDiskEncryptionSetResource();
+  await createAVirtualMachineImageFromABlob();
+  await createAVirtualMachineImageFromAManagedDiskWithDiskEncryptionSetResource();
+  await createAVirtualMachineImageFromAManagedDisk();
+  await createAVirtualMachineImageFromASnapshotWithDiskEncryptionSetResource();
+  await createAVirtualMachineImageFromASnapshot();
+  await createAVirtualMachineImageFromAnExistingVirtualMachine();
+  await createAVirtualMachineImageThatIncludesADataDiskFromABlob();
+  await createAVirtualMachineImageThatIncludesADataDiskFromAManagedDisk();
+  await createAVirtualMachineImageThatIncludesADataDiskFromASnapshot();
 }
 
 main().catch(console.error);

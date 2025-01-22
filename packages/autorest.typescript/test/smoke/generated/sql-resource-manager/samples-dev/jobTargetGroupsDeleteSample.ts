@@ -39,7 +39,7 @@ async function deleteATargetGroup() {
 }
 
 async function main() {
-  deleteATargetGroup();
+  await deleteATargetGroup();
 }
 
 main().catch(console.error);

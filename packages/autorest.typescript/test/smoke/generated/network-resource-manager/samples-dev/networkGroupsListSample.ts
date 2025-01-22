@@ -38,7 +38,7 @@ async function networkGroupsList() {
 }
 
 async function main() {
-  networkGroupsList();
+  await networkGroupsList();
 }
 
 main().catch(console.error);

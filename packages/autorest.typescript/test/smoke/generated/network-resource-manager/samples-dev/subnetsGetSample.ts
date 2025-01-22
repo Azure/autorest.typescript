@@ -57,8 +57,8 @@ async function getSubnetWithADelegation() {
 }
 
 async function main() {
-  getSubnet();
-  getSubnetWithADelegation();
+  await getSubnet();
+  await getSubnetWithADelegation();
 }
 
 main().catch(console.error);

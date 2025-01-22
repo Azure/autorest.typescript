@@ -35,7 +35,7 @@ async function listSecretsForAStaticSite() {
 }
 
 async function main() {
-  listSecretsForAStaticSite();
+  await listSecretsForAStaticSite();
 }
 
 main().catch(console.error);

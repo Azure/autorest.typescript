@@ -132,7 +132,7 @@ async function createJobSample() {
 }
 
 async function main() {
-  createJobSample();
+  await createJobSample();
 }
 
 main().catch(console.error);

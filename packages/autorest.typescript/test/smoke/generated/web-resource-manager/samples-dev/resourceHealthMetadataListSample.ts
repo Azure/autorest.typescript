@@ -33,7 +33,7 @@ async function listResourceHealthMetadataForASubscription() {
 }
 
 async function main() {
-  listResourceHealthMetadataForASubscription();
+  await listResourceHealthMetadataForASubscription();
 }
 
 main().catch(console.error);

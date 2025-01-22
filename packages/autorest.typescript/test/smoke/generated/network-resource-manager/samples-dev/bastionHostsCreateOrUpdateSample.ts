@@ -51,7 +51,7 @@ async function createBastionHost() {
 }
 
 async function main() {
-  createBastionHost();
+  await createBastionHost();
 }
 
 main().catch(console.error);

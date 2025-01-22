@@ -33,7 +33,7 @@ async function deleteDeploymentSample() {
 }
 
 async function main() {
-  deleteDeploymentSample();
+  await deleteDeploymentSample();
 }
 
 main().catch(console.error);

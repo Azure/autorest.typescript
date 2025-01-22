@@ -32,7 +32,7 @@ async function listAllDiskEncryptionSetsInASubscription() {
 }
 
 async function main() {
-  listAllDiskEncryptionSetsInASubscription();
+  await listAllDiskEncryptionSetsInASubscription();
 }
 
 main().catch(console.error);

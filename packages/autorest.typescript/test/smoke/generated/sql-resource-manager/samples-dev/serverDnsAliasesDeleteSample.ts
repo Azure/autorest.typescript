@@ -37,7 +37,7 @@ async function deleteServerDnsAlias() {
 }
 
 async function main() {
-  deleteServerDnsAlias();
+  await deleteServerDnsAlias();
 }
 
 main().catch(console.error);
