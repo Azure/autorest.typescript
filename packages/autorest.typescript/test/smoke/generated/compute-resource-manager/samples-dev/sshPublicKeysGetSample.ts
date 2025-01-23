@@ -34,7 +34,7 @@ async function getAnSshPublicKey() {
 }
 
 async function main() {
-  getAnSshPublicKey();
+  await getAnSshPublicKey();
 }
 
 main().catch(console.error);

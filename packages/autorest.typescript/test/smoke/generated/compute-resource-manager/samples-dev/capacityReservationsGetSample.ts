@@ -36,7 +36,7 @@ async function getACapacityReservation() {
 }
 
 async function main() {
-  getACapacityReservation();
+  await getACapacityReservation();
 }
 
 main().catch(console.error);

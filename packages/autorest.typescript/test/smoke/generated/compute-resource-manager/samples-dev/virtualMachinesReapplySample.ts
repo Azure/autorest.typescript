@@ -34,7 +34,7 @@ async function reapplyTheStateOfAVirtualMachine() {
 }
 
 async function main() {
-  reapplyTheStateOfAVirtualMachine();
+  await reapplyTheStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

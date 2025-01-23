@@ -39,7 +39,7 @@ async function updateApplicationSecurityGroupTags() {
 }
 
 async function main() {
-  updateApplicationSecurityGroupTags();
+  await updateApplicationSecurityGroupTags();
 }
 
 main().catch(console.error);

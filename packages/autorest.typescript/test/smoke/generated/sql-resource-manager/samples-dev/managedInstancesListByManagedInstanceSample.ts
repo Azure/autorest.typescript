@@ -107,9 +107,9 @@ async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndR
 }
 
 async function main() {
-  obtainListOfInstanceTopResourceConsumingQueries();
-  obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
-  obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();
+  await obtainListOfInstanceTopResourceConsumingQueries();
+  await obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
+  await obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();
 }
 
 main().catch(console.error);

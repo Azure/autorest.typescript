@@ -35,7 +35,7 @@ async function deleteKubeEnvironmentByName() {
 }
 
 async function main() {
-  deleteKubeEnvironmentByName();
+  await deleteKubeEnvironmentByName();
 }
 
 main().catch(console.error);

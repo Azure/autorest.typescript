@@ -47,7 +47,7 @@ async function updateASimpleGalleryApplication() {
 }
 
 async function main() {
-  updateASimpleGalleryApplication();
+  await updateASimpleGalleryApplication();
 }
 
 main().catch(console.error);

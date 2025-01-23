@@ -37,7 +37,7 @@ async function getAStaticSiteBuild() {
 }
 
 async function main() {
-  getAStaticSiteBuild();
+  await getAStaticSiteBuild();
 }
 
 main().catch(console.error);

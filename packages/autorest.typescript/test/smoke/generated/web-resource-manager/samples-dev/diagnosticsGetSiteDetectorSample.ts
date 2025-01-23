@@ -65,8 +65,8 @@ async function getAppSlotDetector() {
 }
 
 async function main() {
-  getAppDetector();
-  getAppSlotDetector();
+  await getAppDetector();
+  await getAppSlotDetector();
 }
 
 main().catch(console.error);

@@ -72,8 +72,8 @@ async function resetSharingProfileOfAGallery() {
 }
 
 async function main() {
-  addSharingIdToTheSharingProfileOfAGallery();
-  resetSharingProfileOfAGallery();
+  await addSharingIdToTheSharingProfileOfAGallery();
+  await resetSharingProfileOfAGallery();
 }
 
 main().catch(console.error);

@@ -45,7 +45,7 @@ async function deletesAnAdminRuleCollection() {
 }
 
 async function main() {
-  deletesAnAdminRuleCollection();
+  await deletesAnAdminRuleCollection();
 }
 
 main().catch(console.error);

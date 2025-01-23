@@ -40,7 +40,7 @@ async function forceDeleteAVM() {
 }
 
 async function main() {
-  forceDeleteAVM();
+  await forceDeleteAVM();
 }
 
 main().catch(console.error);

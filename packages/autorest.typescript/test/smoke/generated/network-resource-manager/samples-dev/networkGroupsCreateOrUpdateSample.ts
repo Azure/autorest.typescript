@@ -42,7 +42,7 @@ async function networkGroupsPut() {
 }
 
 async function main() {
-  networkGroupsPut();
+  await networkGroupsPut();
 }
 
 main().catch(console.error);

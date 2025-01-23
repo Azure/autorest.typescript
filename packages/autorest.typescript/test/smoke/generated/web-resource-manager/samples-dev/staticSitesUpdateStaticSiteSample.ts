@@ -40,7 +40,7 @@ async function patchAStaticSite() {
 }
 
 async function main() {
-  patchAStaticSite();
+  await patchAStaticSite();
 }
 
 main().catch(console.error);

@@ -21,7 +21,7 @@ async function headerParamProtectedKey() {
 }
 
 async function main() {
-  headerParamProtectedKey();
+  await headerParamProtectedKey();
 }
 
 main().catch(console.error);

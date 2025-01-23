@@ -33,7 +33,7 @@ async function listKubeEnvironmentsBySubscription() {
 }
 
 async function main() {
-  listKubeEnvironmentsBySubscription();
+  await listKubeEnvironmentsBySubscription();
 }
 
 main().catch(console.error);

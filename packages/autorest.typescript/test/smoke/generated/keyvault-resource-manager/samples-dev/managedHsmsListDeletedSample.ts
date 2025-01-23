@@ -33,7 +33,7 @@ async function listDeletedManagedHsMSInTheSpecifiedSubscription() {
 }
 
 async function main() {
-  listDeletedManagedHsMSInTheSpecifiedSubscription();
+  await listDeletedManagedHsMSInTheSpecifiedSubscription();
 }
 
 main().catch(console.error);

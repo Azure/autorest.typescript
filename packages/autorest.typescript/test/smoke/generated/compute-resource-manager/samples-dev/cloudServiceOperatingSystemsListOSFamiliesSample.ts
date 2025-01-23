@@ -35,7 +35,7 @@ async function listCloudServiceOSFamiliesInASubscription() {
 }
 
 async function main() {
-  listCloudServiceOSFamiliesInASubscription();
+  await listCloudServiceOSFamiliesInASubscription();
 }
 
 main().catch(console.error);

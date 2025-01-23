@@ -36,7 +36,7 @@ async function queueOperationDelete() {
 }
 
 async function main() {
-  queueOperationDelete();
+  await queueOperationDelete();
 }
 
 main().catch(console.error);

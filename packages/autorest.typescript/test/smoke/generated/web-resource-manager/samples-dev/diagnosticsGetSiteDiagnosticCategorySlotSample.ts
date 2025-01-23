@@ -65,8 +65,8 @@ async function getAppSlotDiagnosticCategory() {
 }
 
 async function main() {
-  getAppDiagnosticCategory();
-  getAppSlotDiagnosticCategory();
+  await getAppDiagnosticCategory();
+  await getAppSlotDiagnosticCategory();
 }
 
 main().catch(console.error);

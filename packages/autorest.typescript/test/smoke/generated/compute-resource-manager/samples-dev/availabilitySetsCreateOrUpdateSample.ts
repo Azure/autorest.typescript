@@ -43,7 +43,7 @@ async function createAnAvailabilitySet() {
 }
 
 async function main() {
-  createAnAvailabilitySet();
+  await createAnAvailabilitySet();
 }
 
 main().catch(console.error);

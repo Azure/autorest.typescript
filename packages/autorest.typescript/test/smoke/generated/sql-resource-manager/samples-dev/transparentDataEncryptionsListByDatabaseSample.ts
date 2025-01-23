@@ -41,7 +41,7 @@ async function getAListOfTheDatabaseTransparentDataEncryption() {
 }
 
 async function main() {
-  getAListOfTheDatabaseTransparentDataEncryption();
+  await getAListOfTheDatabaseTransparentDataEncryption();
 }
 
 main().catch(console.error);

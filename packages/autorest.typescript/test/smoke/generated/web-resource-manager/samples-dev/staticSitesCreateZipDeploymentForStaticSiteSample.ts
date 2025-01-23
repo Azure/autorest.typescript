@@ -49,7 +49,7 @@ async function deployASiteFromAZippedPackage() {
 }
 
 async function main() {
-  deployASiteFromAZippedPackage();
+  await deployASiteFromAZippedPackage();
 }
 
 main().catch(console.error);

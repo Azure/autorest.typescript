@@ -35,7 +35,7 @@ async function getVirtualNetworkGatewayVpnclientConnectionHealth() {
 }
 
 async function main() {
-  getVirtualNetworkGatewayVpnclientConnectionHealth();
+  await getVirtualNetworkGatewayVpnclientConnectionHealth();
 }
 
 main().catch(console.error);

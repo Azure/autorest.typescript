@@ -33,7 +33,7 @@ async function plantingDataDelete() {
 }
 
 async function main() {
-  plantingDataDelete();
+  await plantingDataDelete();
 }
 
 main().catch(console.error);

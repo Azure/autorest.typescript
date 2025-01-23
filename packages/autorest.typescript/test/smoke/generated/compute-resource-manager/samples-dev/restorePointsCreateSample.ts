@@ -47,7 +47,7 @@ async function createARestorePoint() {
 }
 
 async function main() {
-  createARestorePoint();
+  await createARestorePoint();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject() {
 }
 
 async function main() {
-  getsAListOfAzureActiveDirectoryOnlyAuthenticationObject();
+  await getsAListOfAzureActiveDirectoryOnlyAuthenticationObject();
 }
 
 main().catch(console.error);

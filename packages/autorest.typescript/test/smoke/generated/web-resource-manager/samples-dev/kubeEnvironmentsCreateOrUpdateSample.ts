@@ -43,7 +43,7 @@ async function createKubeEnvironments() {
 }
 
 async function main() {
-  createKubeEnvironments();
+  await createKubeEnvironments();
 }
 
 main().catch(console.error);

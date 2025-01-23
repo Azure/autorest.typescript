@@ -25,7 +25,7 @@ async function oAuthTokensGetOauthConnectionLink() {
 }
 
 async function main() {
-  oAuthTokensGetOauthConnectionLink();
+  await oAuthTokensGetOauthConnectionLink();
 }
 
 main().catch(console.error);

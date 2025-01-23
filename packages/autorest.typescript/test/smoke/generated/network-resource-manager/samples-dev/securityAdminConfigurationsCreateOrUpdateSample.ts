@@ -45,7 +45,7 @@ async function createNetworkManagerSecurityAdminConfiguration() {
 }
 
 async function main() {
-  createNetworkManagerSecurityAdminConfiguration();
+  await createNetworkManagerSecurityAdminConfiguration();
 }
 
 main().catch(console.error);

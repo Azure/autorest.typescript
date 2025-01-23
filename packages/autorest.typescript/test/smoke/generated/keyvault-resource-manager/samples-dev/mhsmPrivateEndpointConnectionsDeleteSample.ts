@@ -37,7 +37,7 @@ async function managedHsmDeletePrivateEndpointConnection() {
 }
 
 async function main() {
-  managedHsmDeletePrivateEndpointConnection();
+  await managedHsmDeletePrivateEndpointConnection();
 }
 
 main().catch(console.error);

@@ -40,7 +40,7 @@ async function refreshAHubDatabaseSchema() {
 }
 
 async function main() {
-  refreshAHubDatabaseSchema();
+  await refreshAHubDatabaseSchema();
 }
 
 main().catch(console.error);

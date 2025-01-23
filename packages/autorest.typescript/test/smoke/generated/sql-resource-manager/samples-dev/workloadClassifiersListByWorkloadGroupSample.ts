@@ -43,7 +43,7 @@ async function getTheListOfWorkloadClassifiersForAWorkloadGroup() {
 }
 
 async function main() {
-  getTheListOfWorkloadClassifiersForAWorkloadGroup();
+  await getTheListOfWorkloadClassifiersForAWorkloadGroup();
 }
 
 main().catch(console.error);

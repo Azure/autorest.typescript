@@ -34,7 +34,7 @@ async function getBastionHost() {
 }
 
 async function main() {
-  getBastionHost();
+  await getBastionHost();
 }
 
 main().catch(console.error);

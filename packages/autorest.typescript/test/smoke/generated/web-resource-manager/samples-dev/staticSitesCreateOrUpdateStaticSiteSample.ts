@@ -51,7 +51,7 @@ async function createOrUpdateAStaticSite() {
 }
 
 async function main() {
-  createOrUpdateAStaticSite();
+  await createOrUpdateAStaticSite();
 }
 
 main().catch(console.error);

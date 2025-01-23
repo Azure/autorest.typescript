@@ -42,7 +42,7 @@ async function expressRouteGatewayUpdate() {
 }
 
 async function main() {
-  expressRouteGatewayUpdate();
+  await expressRouteGatewayUpdate();
 }
 
 main().catch(console.error);

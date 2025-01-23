@@ -35,7 +35,7 @@ async function virtualMachineRunCommandGet() {
 }
 
 async function main() {
-  virtualMachineRunCommandGet();
+  await virtualMachineRunCommandGet();
 }
 
 main().catch(console.error);

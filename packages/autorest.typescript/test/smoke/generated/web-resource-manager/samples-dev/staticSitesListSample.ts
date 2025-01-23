@@ -33,7 +33,7 @@ async function getAllStaticSitesInASubscription() {
 }
 
 async function main() {
-  getAllStaticSitesInASubscription();
+  await getAllStaticSitesInASubscription();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function tillageDataList() {
 }
 
 async function main() {
-  tillageDataList();
+  await tillageDataList();
 }
 
 main().catch(console.error);

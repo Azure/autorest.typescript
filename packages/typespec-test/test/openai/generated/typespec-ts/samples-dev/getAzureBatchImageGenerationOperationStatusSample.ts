@@ -24,7 +24,7 @@ async function getAzureBatchImageGenerationOperationStatusSample() {
 }
 
 async function main() {
-  getAzureBatchImageGenerationOperationStatusSample();
+  await getAzureBatchImageGenerationOperationStatusSample();
 }
 
 main().catch(console.error);

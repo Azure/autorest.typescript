@@ -38,7 +38,7 @@ async function getARecoverableDatabase() {
 }
 
 async function main() {
-  getARecoverableDatabase();
+  await getARecoverableDatabase();
 }
 
 main().catch(console.error);

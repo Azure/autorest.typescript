@@ -46,7 +46,7 @@ async function updateVirtualMachineScaleSetVMRunCommand() {
 }
 
 async function main() {
-  updateVirtualMachineScaleSetVMRunCommand();
+  await updateVirtualMachineScaleSetVMRunCommand();
 }
 
 main().catch(console.error);

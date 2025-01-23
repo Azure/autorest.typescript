@@ -142,8 +142,8 @@ async function updateAVMByForceDetachingDataDisk() {
 }
 
 async function main() {
-  updateAVMByDetachingDataDisk();
-  updateAVMByForceDetachingDataDisk();
+  await updateAVMByDetachingDataDisk();
+  await updateAVMByForceDetachingDataDisk();
 }
 
 main().catch(console.error);

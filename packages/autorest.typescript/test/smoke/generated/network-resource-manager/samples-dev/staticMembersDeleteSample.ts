@@ -39,7 +39,7 @@ async function staticMembersDelete() {
 }
 
 async function main() {
-  staticMembersDelete();
+  await staticMembersDelete();
 }
 
 main().catch(console.error);

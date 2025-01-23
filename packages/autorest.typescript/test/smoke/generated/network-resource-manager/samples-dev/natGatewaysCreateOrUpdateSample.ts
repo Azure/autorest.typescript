@@ -52,7 +52,7 @@ async function createNatGateway() {
 }
 
 async function main() {
-  createNatGateway();
+  await createNatGateway();
 }
 
 main().catch(console.error);

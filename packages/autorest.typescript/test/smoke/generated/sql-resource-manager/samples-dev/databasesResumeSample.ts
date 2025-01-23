@@ -38,7 +38,7 @@ async function resumesADatabase() {
 }
 
 async function main() {
-  resumesADatabase();
+  await resumesADatabase();
 }
 
 main().catch(console.error);

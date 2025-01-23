@@ -22,7 +22,7 @@ async function loadTestAdministrationDeleteTestSample() {
 }
 
 async function main() {
-  loadTestAdministrationDeleteTestSample();
+  await loadTestAdministrationDeleteTestSample();
 }
 
 main().catch(console.error);

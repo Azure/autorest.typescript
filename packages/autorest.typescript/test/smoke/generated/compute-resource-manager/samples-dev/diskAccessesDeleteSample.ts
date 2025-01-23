@@ -34,7 +34,7 @@ async function deleteADiskAccessResource() {
 }
 
 async function main() {
-  deleteADiskAccessResource();
+  await deleteADiskAccessResource();
 }
 
 main().catch(console.error);

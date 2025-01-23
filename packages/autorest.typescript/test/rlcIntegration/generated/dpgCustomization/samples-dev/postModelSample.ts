@@ -22,7 +22,7 @@ async function dpgPostModel() {
 }
 
 async function main() {
-  dpgPostModel();
+  await dpgPostModel();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function getCustomDomainForAStaticSite() {
 }
 
 async function main() {
-  getCustomDomainForAStaticSite();
+  await getCustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

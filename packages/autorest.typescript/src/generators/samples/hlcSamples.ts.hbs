@@ -51,7 +51,7 @@ async function {{this.sampleFunctionName}}() {
 
 async function main() {
 {{#each samples}}
-  {{this.sampleFunctionName}}();
+  await {{this.sampleFunctionName}}();
 {{/each}}
 }
 

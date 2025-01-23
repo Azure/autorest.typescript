@@ -38,7 +38,7 @@ async function listJobAgentsInAServer() {
 }
 
 async function main() {
-  listJobAgentsInAServer();
+  await listJobAgentsInAServer();
 }
 
 main().catch(console.error);

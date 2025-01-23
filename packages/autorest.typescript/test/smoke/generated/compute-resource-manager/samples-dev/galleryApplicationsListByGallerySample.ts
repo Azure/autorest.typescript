@@ -37,7 +37,7 @@ async function listGalleryApplicationsInAGallery() {
 }
 
 async function main() {
-  listGalleryApplicationsInAGallery();
+  await listGalleryApplicationsInAGallery();
 }
 
 main().catch(console.error);

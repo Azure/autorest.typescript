@@ -37,7 +37,7 @@ async function getTheServerKey() {
 }
 
 async function main() {
-  getTheServerKey();
+  await getTheServerKey();
 }
 
 main().catch(console.error);

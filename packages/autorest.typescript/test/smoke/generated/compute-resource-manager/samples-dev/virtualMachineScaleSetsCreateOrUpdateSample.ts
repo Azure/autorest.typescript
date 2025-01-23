@@ -2108,36 +2108,36 @@ async function createOrUpdateAScaleSetWithCapacityReservation() {
 }
 
 async function main() {
-  createAVmssWithAnExtensionThatHasSuppressFailuresEnabled();
-  createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage();
-  createAPlatformImageScaleSetWithUnmanagedOSDisks();
-  createAScaleSetFromACustomImage();
-  createAScaleSetFromAGeneralizedSharedImage();
-  createAScaleSetFromASpecializedSharedImage();
-  createAScaleSetWithApplicationProfile();
-  createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk();
-  createAScaleSetWithFpgaNetworkInterfaces();
-  createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty();
-  createAScaleSetWithUefiSettingsOfSecureBootAndVTpm();
-  createAScaleSetWithAMarketplaceImagePlan();
-  createAScaleSetWithAnAzureApplicationGateway();
-  createAScaleSetWithAnAzureLoadBalancer();
-  createAScaleSetWithAutomaticRepairsEnabled();
-  createAScaleSetWithBootDiagnostics();
-  createAScaleSetWithEmptyDataDisksOnEachVM();
-  createAScaleSetWithEphemeralOSDisksUsingPlacementProperty();
-  createAScaleSetWithEphemeralOSDisks();
-  createAScaleSetWithExtensionTimeBudget();
-  createAScaleSetWithManagedBootDiagnostics();
-  createAScaleSetWithPasswordAuthentication();
-  createAScaleSetWithPremiumStorage();
-  createAScaleSetWithScaleInPolicy();
-  createAScaleSetWithSpotRestorePolicy();
-  createAScaleSetWithSshAuthentication();
-  createAScaleSetWithTerminateScheduledEventsEnabled();
-  createAScaleSetWithUserData();
-  createAScaleSetWithVirtualMachinesInDifferentZones();
-  createOrUpdateAScaleSetWithCapacityReservation();
+  await createAVmssWithAnExtensionThatHasSuppressFailuresEnabled();
+  await createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage();
+  await createAPlatformImageScaleSetWithUnmanagedOSDisks();
+  await createAScaleSetFromACustomImage();
+  await createAScaleSetFromAGeneralizedSharedImage();
+  await createAScaleSetFromASpecializedSharedImage();
+  await createAScaleSetWithApplicationProfile();
+  await createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk();
+  await createAScaleSetWithFpgaNetworkInterfaces();
+  await createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty();
+  await createAScaleSetWithUefiSettingsOfSecureBootAndVTpm();
+  await createAScaleSetWithAMarketplaceImagePlan();
+  await createAScaleSetWithAnAzureApplicationGateway();
+  await createAScaleSetWithAnAzureLoadBalancer();
+  await createAScaleSetWithAutomaticRepairsEnabled();
+  await createAScaleSetWithBootDiagnostics();
+  await createAScaleSetWithEmptyDataDisksOnEachVM();
+  await createAScaleSetWithEphemeralOSDisksUsingPlacementProperty();
+  await createAScaleSetWithEphemeralOSDisks();
+  await createAScaleSetWithExtensionTimeBudget();
+  await createAScaleSetWithManagedBootDiagnostics();
+  await createAScaleSetWithPasswordAuthentication();
+  await createAScaleSetWithPremiumStorage();
+  await createAScaleSetWithScaleInPolicy();
+  await createAScaleSetWithSpotRestorePolicy();
+  await createAScaleSetWithSshAuthentication();
+  await createAScaleSetWithTerminateScheduledEventsEnabled();
+  await createAScaleSetWithUserData();
+  await createAScaleSetWithVirtualMachinesInDifferentZones();
+  await createOrUpdateAScaleSetWithCapacityReservation();
 }
 
 main().catch(console.error);

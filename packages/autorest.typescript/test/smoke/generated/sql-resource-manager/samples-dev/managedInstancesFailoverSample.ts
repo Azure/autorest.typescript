@@ -41,7 +41,7 @@ async function failoverAManagedInstance() {
 }
 
 async function main() {
-  failoverAManagedInstance();
+  await failoverAManagedInstance();
 }
 
 main().catch(console.error);
