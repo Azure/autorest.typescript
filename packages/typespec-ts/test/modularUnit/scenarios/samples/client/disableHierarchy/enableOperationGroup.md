@@ -65,13 +65,13 @@ import { TestingClient } from "@azure/internal-test";
  * @summary execute bar
  * x-ms-original-file: 2021-10-01-preview/json_for_bar.json
  */
-async function bar() {
+async function bar(): Promise<void> {
   const client = new TestingClient();
   const result = await client.d.bar({ prop1: "body name" });
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await bar();
 }
 
@@ -107,13 +107,13 @@ import { TestingClient } from "@azure/internal-test";
  * @summary execute foo
  * x-ms-original-file: 2021-10-01-preview/json_for_foo.json
  */
-async function foo() {
+async function foo(): Promise<void> {
   const client = new TestingClient();
   const result = await client.c.foo({ prop2: "body name" });
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await foo();
 }
 
