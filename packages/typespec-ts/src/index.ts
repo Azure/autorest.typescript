@@ -68,7 +68,11 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { createSdkContext, SdkClientType, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
+import {
+  createSdkContext,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
@@ -125,10 +129,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-      ...AzurePollingDependencies,
-      ...AzureCoreDependencies,
-      ...AzureIdentityDependencies
-    }
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -195,8 +199,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      ""
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
