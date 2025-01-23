@@ -274,7 +274,7 @@ async function createApplicationGateway() {
 }
 
 async function main() {
-  createApplicationGateway();
+  await createApplicationGateway();
 }
 
 main().catch(console.error);

@@ -19,7 +19,7 @@ async function enumGetReferencedConstant() {
 }
 
 async function main() {
-  enumGetReferencedConstant();
+  await enumGetReferencedConstant();
 }
 
 main().catch(console.error);

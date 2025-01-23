@@ -33,7 +33,7 @@ async function cropVarietiesDelete() {
 }
 
 async function main() {
-  cropVarietiesDelete();
+  await cropVarietiesDelete();
 }
 
 main().catch(console.error);

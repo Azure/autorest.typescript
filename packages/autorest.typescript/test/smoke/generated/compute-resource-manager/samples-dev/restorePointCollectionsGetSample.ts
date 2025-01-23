@@ -53,8 +53,8 @@ async function getARestorePointCollectionIncludingTheRestorePointsContainedInThe
 }
 
 async function main() {
-  getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection();
-  getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection();
+  await getARestorePointCollectionButNotTheRestorePointsContainedInTheRestorePointCollection();
+  await getARestorePointCollectionIncludingTheRestorePointsContainedInTheRestorePointCollection();
 }
 
 main().catch(console.error);

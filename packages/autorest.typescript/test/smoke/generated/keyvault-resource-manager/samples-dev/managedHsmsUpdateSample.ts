@@ -42,7 +42,7 @@ async function updateAnExistingManagedHsmPool() {
 }
 
 async function main() {
-  updateAnExistingManagedHsmPool();
+  await updateAnExistingManagedHsmPool();
 }
 
 main().catch(console.error);

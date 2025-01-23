@@ -39,7 +39,7 @@ async function putVipSwapOperation() {
 }
 
 async function main() {
-  putVipSwapOperation();
+  await putVipSwapOperation();
 }
 
 main().catch(console.error);

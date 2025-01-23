@@ -35,7 +35,7 @@ async function storageAccountListByResourceGroup() {
 }
 
 async function main() {
-  storageAccountListByResourceGroup();
+  await storageAccountListByResourceGroup();
 }
 
 main().catch(console.error);

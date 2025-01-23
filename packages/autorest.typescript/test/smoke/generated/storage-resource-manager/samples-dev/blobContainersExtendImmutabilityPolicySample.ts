@@ -49,7 +49,7 @@ async function extendImmutabilityPolicy() {
 }
 
 async function main() {
-  extendImmutabilityPolicy();
+  await extendImmutabilityPolicy();
 }
 
 main().catch(console.error);

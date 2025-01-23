@@ -45,7 +45,7 @@ async function createOrUpdateADedicatedHostGroup() {
 }
 
 async function main() {
-  createOrUpdateADedicatedHostGroup();
+  await createOrUpdateADedicatedHostGroup();
 }
 
 main().catch(console.error);

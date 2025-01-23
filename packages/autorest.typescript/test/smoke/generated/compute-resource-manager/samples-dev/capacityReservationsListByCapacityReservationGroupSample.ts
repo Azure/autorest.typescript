@@ -37,7 +37,7 @@ async function listCapacityReservationsInReservationGroup() {
 }
 
 async function main() {
-  listCapacityReservationsInReservationGroup();
+  await listCapacityReservationsInReservationGroup();
 }
 
 main().catch(console.error);

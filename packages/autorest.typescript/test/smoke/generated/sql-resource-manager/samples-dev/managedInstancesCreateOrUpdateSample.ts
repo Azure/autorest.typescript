@@ -103,8 +103,8 @@ async function createManagedInstanceWithMinimalProperties() {
 }
 
 async function main() {
-  createManagedInstanceWithAllProperties();
-  createManagedInstanceWithMinimalProperties();
+  await createManagedInstanceWithAllProperties();
+  await createManagedInstanceWithMinimalProperties();
 }
 
 main().catch(console.error);

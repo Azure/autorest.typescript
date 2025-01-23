@@ -48,7 +48,7 @@ async function grantsAccessToADiskRestorePoint() {
 }
 
 async function main() {
-  grantsAccessToADiskRestorePoint();
+  await grantsAccessToADiskRestorePoint();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function listDeletedWebAppByLocation() {
 }
 
 async function main() {
-  listDeletedWebAppByLocation();
+  await listDeletedWebAppByLocation();
 }
 
 main().catch(console.error);

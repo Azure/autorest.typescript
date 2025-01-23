@@ -39,7 +39,7 @@ async function getAPrivateEndpointConnectionForASite() {
 }
 
 async function main() {
-  getAPrivateEndpointConnectionForASite();
+  await getAPrivateEndpointConnectionForASite();
 }
 
 main().catch(console.error);

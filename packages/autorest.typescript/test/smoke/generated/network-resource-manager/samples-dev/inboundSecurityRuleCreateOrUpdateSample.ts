@@ -50,7 +50,7 @@ async function createNetworkVirtualApplianceInboundSecurityRules() {
 }
 
 async function main() {
-  createNetworkVirtualApplianceInboundSecurityRules();
+  await createNetworkVirtualApplianceInboundSecurityRules();
 }
 
 main().catch(console.error);

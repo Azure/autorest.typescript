@@ -37,7 +37,7 @@ async function getNetworkTracesForASite() {
 }
 
 async function main() {
-  getNetworkTracesForASite();
+  await getNetworkTracesForASite();
 }
 
 main().catch(console.error);

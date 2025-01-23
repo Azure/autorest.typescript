@@ -37,7 +37,7 @@ async function storageAccountListPrivateEndpointConnections() {
 }
 
 async function main() {
-  storageAccountListPrivateEndpointConnections();
+  await storageAccountListPrivateEndpointConnections();
 }
 
 main().catch(console.error);

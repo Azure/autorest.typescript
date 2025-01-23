@@ -33,7 +33,7 @@ async function tillageDataDelete() {
 }
 
 async function main() {
-  tillageDataDelete();
+  await tillageDataDelete();
 }
 
 main().catch(console.error);

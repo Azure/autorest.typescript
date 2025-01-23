@@ -35,7 +35,7 @@ async function listCloudServiceOSVersionsInASubscription() {
 }
 
 async function main() {
-  listCloudServiceOSVersionsInASubscription();
+  await listCloudServiceOSVersionsInASubscription();
 }
 
 main().catch(console.error);

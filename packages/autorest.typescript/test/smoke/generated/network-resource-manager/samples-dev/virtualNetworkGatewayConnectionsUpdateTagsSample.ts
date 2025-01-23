@@ -40,7 +40,7 @@ async function updateVirtualNetworkGatewayConnectionTags() {
 }
 
 async function main() {
-  updateVirtualNetworkGatewayConnectionTags();
+  await updateVirtualNetworkGatewayConnectionTags();
 }
 
 main().catch(console.error);

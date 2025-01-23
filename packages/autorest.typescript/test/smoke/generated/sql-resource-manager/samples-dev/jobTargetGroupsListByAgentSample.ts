@@ -40,7 +40,7 @@ async function getAllTargetGroupsInAnAgent() {
 }
 
 async function main() {
-  getAllTargetGroupsInAnAgent();
+  await getAllTargetGroupsInAnAgent();
 }
 
 main().catch(console.error);

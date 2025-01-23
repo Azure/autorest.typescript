@@ -32,7 +32,7 @@ async function listAllVirtualMachineImagesInASubscription() {
 }
 
 async function main() {
-  listAllVirtualMachineImagesInASubscription();
+  await listAllVirtualMachineImagesInASubscription();
 }
 
 main().catch(console.error);

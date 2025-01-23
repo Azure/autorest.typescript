@@ -41,7 +41,7 @@ async function getsDatabaseUsages() {
 }
 
 async function main() {
-  getsDatabaseUsages();
+  await getsDatabaseUsages();
 }
 
 main().catch(console.error);

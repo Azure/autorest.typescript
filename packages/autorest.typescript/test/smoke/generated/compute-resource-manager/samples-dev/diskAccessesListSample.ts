@@ -32,7 +32,7 @@ async function listAllDiskAccessResourcesInASubscription() {
 }
 
 async function main() {
-  listAllDiskAccessResourcesInASubscription();
+  await listAllDiskAccessResourcesInASubscription();
 }
 
 main().catch(console.error);

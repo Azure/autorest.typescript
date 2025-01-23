@@ -53,7 +53,7 @@ async function createOrUpdateDatabaseExtensions() {
 }
 
 async function main() {
-  createOrUpdateDatabaseExtensions();
+  await createOrUpdateDatabaseExtensions();
 }
 
 main().catch(console.error);

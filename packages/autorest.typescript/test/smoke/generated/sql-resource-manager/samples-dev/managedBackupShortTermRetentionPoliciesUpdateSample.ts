@@ -47,7 +47,7 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
 }
 
 async function main() {
-  updateTheShortTermRetentionPolicyForTheDatabase();
+  await updateTheShortTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

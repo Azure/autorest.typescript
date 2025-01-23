@@ -40,7 +40,7 @@ async function listManagedDatabaseSchemas() {
 }
 
 async function main() {
-  listManagedDatabaseSchemas();
+  await listManagedDatabaseSchemas();
 }
 
 main().catch(console.error);

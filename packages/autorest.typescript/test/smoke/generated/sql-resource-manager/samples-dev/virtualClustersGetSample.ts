@@ -35,7 +35,7 @@ async function getVirtualCluster() {
 }
 
 async function main() {
-  getVirtualCluster();
+  await getVirtualCluster();
 }
 
 main().catch(console.error);

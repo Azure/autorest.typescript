@@ -42,7 +42,7 @@ async function updateAJobAgentTags() {
 }
 
 async function main() {
-  updateAJobAgentTags();
+  await updateAJobAgentTags();
 }
 
 main().catch(console.error);

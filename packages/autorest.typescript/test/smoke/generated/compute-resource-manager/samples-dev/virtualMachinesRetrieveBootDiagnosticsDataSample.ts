@@ -42,7 +42,7 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
 }
 
 async function main() {
-  retrieveBootDiagnosticsDataOfAVirtualMachine();
+  await retrieveBootDiagnosticsDataOfAVirtualMachine();
 }
 
 main().catch(console.error);

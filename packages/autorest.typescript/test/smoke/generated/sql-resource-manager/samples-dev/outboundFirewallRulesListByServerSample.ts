@@ -38,7 +38,7 @@ async function getsListOfOutboundFirewallRulesOnAServer() {
 }
 
 async function main() {
-  getsListOfOutboundFirewallRulesOnAServer();
+  await getsListOfOutboundFirewallRulesOnAServer();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function listResourceHealthMetadataForASite() {
 }
 
 async function main() {
-  listResourceHealthMetadataForASite();
+  await listResourceHealthMetadataForASite();
 }
 
 main().catch(console.error);

@@ -90,9 +90,9 @@ async function listShares() {
 }
 
 async function main() {
-  listDeletedShares();
-  listShareSnapshots();
-  listShares();
+  await listDeletedShares();
+  await listShareSnapshots();
+  await listShares();
 }
 
 main().catch(console.error);

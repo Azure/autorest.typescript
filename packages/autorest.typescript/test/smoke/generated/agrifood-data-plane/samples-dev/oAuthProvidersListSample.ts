@@ -32,7 +32,7 @@ async function oAuthProvidersList() {
 }
 
 async function main() {
-  oAuthProvidersList();
+  await oAuthProvidersList();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function listRunCommandsInVmssInstance() {
 }
 
 async function main() {
-  listRunCommandsInVmssInstance();
+  await listRunCommandsInVmssInstance();
 }
 
 main().catch(console.error);

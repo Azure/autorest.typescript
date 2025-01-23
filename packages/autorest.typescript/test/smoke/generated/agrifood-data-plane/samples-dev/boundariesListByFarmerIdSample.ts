@@ -35,7 +35,7 @@ async function boundariesListByFarmerId() {
 }
 
 async function main() {
-  boundariesListByFarmerId();
+  await boundariesListByFarmerId();
 }
 
 main().catch(console.error);

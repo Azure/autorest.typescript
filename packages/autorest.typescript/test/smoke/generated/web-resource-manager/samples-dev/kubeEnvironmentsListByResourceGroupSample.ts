@@ -36,7 +36,7 @@ async function listKubeEnvironmentsByResourceGroup() {
 }
 
 async function main() {
-  listKubeEnvironmentsByResourceGroup();
+  await listKubeEnvironmentsByResourceGroup();
 }
 
 main().catch(console.error);

@@ -69,8 +69,8 @@ async function executeSiteSlotAnalysis() {
 }
 
 async function main() {
-  executeSiteAnalysis();
-  executeSiteSlotAnalysis();
+  await executeSiteAnalysis();
+  await executeSiteSlotAnalysis();
 }
 
 main().catch(console.error);

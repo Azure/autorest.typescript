@@ -38,7 +38,7 @@ async function listTheManagedInstanceManagementOperations() {
 }
 
 async function main() {
-  listTheManagedInstanceManagementOperations();
+  await listTheManagedInstanceManagementOperations();
 }
 
 main().catch(console.error);

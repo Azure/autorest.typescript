@@ -38,7 +38,7 @@ async function getsPrivateLinkResourcesForSql() {
 }
 
 async function main() {
-  getsPrivateLinkResourcesForSql();
+  await getsPrivateLinkResourcesForSql();
 }
 
 main().catch(console.error);

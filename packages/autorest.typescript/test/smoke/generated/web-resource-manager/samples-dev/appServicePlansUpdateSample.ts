@@ -40,7 +40,7 @@ async function patchServicePlan() {
 }
 
 async function main() {
-  patchServicePlan();
+  await patchServicePlan();
 }
 
 main().catch(console.error);

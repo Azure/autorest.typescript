@@ -37,7 +37,7 @@ async function deleteAnElasticPool() {
 }
 
 async function main() {
-  deleteAnElasticPool();
+  await deleteAnElasticPool();
 }
 
 main().catch(console.error);

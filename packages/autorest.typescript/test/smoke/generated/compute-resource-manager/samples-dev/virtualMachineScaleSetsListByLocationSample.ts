@@ -35,7 +35,7 @@ async function listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifie
 }
 
 async function main() {
-  listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
+  await listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
 }
 
 main().catch(console.error);

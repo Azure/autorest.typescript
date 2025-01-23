@@ -37,7 +37,7 @@ async function listRunCommandsInAVirtualMachine() {
 }
 
 async function main() {
-  listRunCommandsInAVirtualMachine();
+  await listRunCommandsInAVirtualMachine();
 }
 
 main().catch(console.error);

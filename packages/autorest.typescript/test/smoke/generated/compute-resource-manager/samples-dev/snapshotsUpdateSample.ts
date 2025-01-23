@@ -42,7 +42,7 @@ async function updateASnapshot() {
 }
 
 async function main() {
-  updateASnapshot();
+  await updateASnapshot();
 }
 
 main().catch(console.error);

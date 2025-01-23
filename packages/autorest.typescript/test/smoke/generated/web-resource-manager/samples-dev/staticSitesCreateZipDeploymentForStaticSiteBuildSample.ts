@@ -51,7 +51,7 @@ async function deployASiteFromAZippedPackageToAParticularStaticSiteBuild() {
 }
 
 async function main() {
-  deployASiteFromAZippedPackageToAParticularStaticSiteBuild();
+  await deployASiteFromAZippedPackageToAParticularStaticSiteBuild();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function deleteAGalleryApplication() {
 }
 
 async function main() {
-  deleteAGalleryApplication();
+  await deleteAGalleryApplication();
 }
 
 main().catch(console.error);

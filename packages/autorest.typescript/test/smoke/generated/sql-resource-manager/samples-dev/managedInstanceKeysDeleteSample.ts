@@ -37,7 +37,7 @@ async function deleteTheManagedInstanceKey() {
 }
 
 async function main() {
-  deleteTheManagedInstanceKey();
+  await deleteTheManagedInstanceKey();
 }
 
 main().catch(console.error);

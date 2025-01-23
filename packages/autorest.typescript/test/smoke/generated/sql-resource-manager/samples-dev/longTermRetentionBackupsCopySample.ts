@@ -49,7 +49,7 @@ async function copyTheLongTermRetentionBackup() {
 }
 
 async function main() {
-  copyTheLongTermRetentionBackup();
+  await copyTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

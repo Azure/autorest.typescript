@@ -39,7 +39,7 @@ async function dDoSProtectionPlanUpdateTags() {
 }
 
 async function main() {
-  dDoSProtectionPlanUpdateTags();
+  await dDoSProtectionPlanUpdateTags();
 }
 
 main().catch(console.error);

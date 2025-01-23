@@ -32,7 +32,7 @@ async function getKubeEnvironmentsByName() {
 }
 
 async function main() {
-  getKubeEnvironmentsByName();
+  await getKubeEnvironmentsByName();
 }
 
 main().catch(console.error);

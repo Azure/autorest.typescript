@@ -36,7 +36,7 @@ async function tableOperationGet() {
 }
 
 async function main() {
-  tableOperationGet();
+  await tableOperationGet();
 }
 
 main().catch(console.error);

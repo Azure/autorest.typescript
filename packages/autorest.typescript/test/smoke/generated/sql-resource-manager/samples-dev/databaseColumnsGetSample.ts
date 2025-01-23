@@ -43,7 +43,7 @@ async function getDatabaseColumn() {
 }
 
 async function main() {
-  getDatabaseColumn();
+  await getDatabaseColumn();
 }
 
 main().catch(console.error);

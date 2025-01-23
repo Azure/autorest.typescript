@@ -49,7 +49,7 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
 }
 
 async function main() {
-  approvesOrRejectsAPrivateEndpointConnectionForASite();
+  await approvesOrRejectsAPrivateEndpointConnectionForASite();
 }
 
 main().catch(console.error);

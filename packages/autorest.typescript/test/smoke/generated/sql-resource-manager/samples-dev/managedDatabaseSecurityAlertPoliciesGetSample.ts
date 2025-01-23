@@ -40,7 +40,7 @@ async function getADatabaseThreatDetectionPolicy() {
 }
 
 async function main() {
-  getADatabaseThreatDetectionPolicy();
+  await getADatabaseThreatDetectionPolicy();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function deletedAccountGet() {
 }
 
 async function main() {
-  deletedAccountGet();
+  await deletedAccountGet();
 }
 
 main().catch(console.error);

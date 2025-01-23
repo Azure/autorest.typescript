@@ -42,7 +42,7 @@ async function deletesTheSpecifiedActiveSession() {
 }
 
 async function main() {
-  deletesTheSpecifiedActiveSession();
+  await deletesTheSpecifiedActiveSession();
 }
 
 main().catch(console.error);

@@ -53,8 +53,8 @@ async function getAVirtualMachineScaleSetWithUserData() {
 }
 
 async function main() {
-  getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement();
-  getAVirtualMachineScaleSetWithUserData();
+  await getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement();
+  await getAVirtualMachineScaleSetWithUserData();
 }
 
 main().catch(console.error);

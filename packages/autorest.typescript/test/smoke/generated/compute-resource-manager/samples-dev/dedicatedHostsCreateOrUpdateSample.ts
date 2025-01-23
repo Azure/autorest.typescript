@@ -46,7 +46,7 @@ async function createOrUpdateADedicatedHost() {
 }
 
 async function main() {
-  createOrUpdateADedicatedHost();
+  await createOrUpdateADedicatedHost();
 }
 
 main().catch(console.error);

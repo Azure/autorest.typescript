@@ -38,7 +38,7 @@ async function boundariesGetOverlap() {
 }
 
 async function main() {
-  boundariesGetOverlap();
+  await boundariesGetOverlap();
 }
 
 main().catch(console.error);

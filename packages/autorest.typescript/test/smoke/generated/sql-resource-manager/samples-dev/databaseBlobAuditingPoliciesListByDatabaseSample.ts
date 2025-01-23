@@ -41,7 +41,7 @@ async function listAuditSettingsOfADatabase() {
 }
 
 async function main() {
-  listAuditSettingsOfADatabase();
+  await listAuditSettingsOfADatabase();
 }
 
 main().catch(console.error);

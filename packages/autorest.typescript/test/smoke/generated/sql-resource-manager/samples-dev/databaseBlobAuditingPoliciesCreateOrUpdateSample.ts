@@ -116,9 +116,9 @@ async function createOrUpdateADatabaseBlobAuditingPolicyWithMinimalParameters() 
 }
 
 async function main() {
-  createOrUpdateADatabaseAzureMonitorAuditingPolicyWithMinimalParameters();
-  createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters();
-  createOrUpdateADatabaseBlobAuditingPolicyWithMinimalParameters();
+  await createOrUpdateADatabaseAzureMonitorAuditingPolicyWithMinimalParameters();
+  await createOrUpdateADatabaseBlobAuditingPolicyWithAllParameters();
+  await createOrUpdateADatabaseBlobAuditingPolicyWithMinimalParameters();
 }
 
 main().catch(console.error);

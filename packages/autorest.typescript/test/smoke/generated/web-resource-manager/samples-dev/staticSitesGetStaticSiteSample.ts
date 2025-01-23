@@ -35,7 +35,7 @@ async function getDetailsForAStaticSite() {
 }
 
 async function main() {
-  getDetailsForAStaticSite();
+  await getDetailsForAStaticSite();
 }
 
 main().catch(console.error);

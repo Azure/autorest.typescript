@@ -35,7 +35,7 @@ async function detachAStaticSite() {
 }
 
 async function main() {
-  detachAStaticSite();
+  await detachAStaticSite();
 }
 
 main().catch(console.error);

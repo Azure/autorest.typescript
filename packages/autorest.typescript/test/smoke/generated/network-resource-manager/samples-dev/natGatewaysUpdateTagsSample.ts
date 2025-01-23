@@ -39,7 +39,7 @@ async function updateNatGatewayTags() {
 }
 
 async function main() {
-  updateNatGatewayTags();
+  await updateNatGatewayTags();
 }
 
 main().catch(console.error);
