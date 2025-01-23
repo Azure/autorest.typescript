@@ -1043,18 +1043,19 @@ describe("Azure Arm Resources Rest Client", () => {
   });
 
   it("Set allowReserved false, expect error", async () => {
-    try {
-      await client.path(
-        "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
-        {
-          value: `subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}`,
-          allowReserved: false as any
-        },
-        "extension"
-      )
-        .get();
-      assert.fail("Set allowReserved false, expect error");
-    } catch (error) {
+    const result = await client.path(
+      "/{resourceUri}/providers/Azure.ResourceManager.Resources/extensionsResources/{extensionsResourceName}",
+      {
+        value: `subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}`,
+        allowReserved: false as any
+      },
+      "extension"
+    )
+      .get();
+    if (isUnexpected(result)) {
+      assert.equal(result.status, "404");
+    } else {
+      assert.fail("Should be not found");
     }
   });
 });
