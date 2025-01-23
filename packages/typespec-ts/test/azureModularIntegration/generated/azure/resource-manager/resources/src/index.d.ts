@@ -29,6 +29,42 @@ export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
 
+export declare interface ExtensionResource extends Resource {
+}
+
+export declare interface ExtensionsResource extends ExtensionResource {
+    properties?: ExtensionsResourceProperties;
+}
+
+export declare interface ExtensionsResourceProperties {
+    description?: string;
+    readonly provisioningState?: ProvisioningState;
+}
+
+export declare interface ExtensionsResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+export declare interface ExtensionsResourcesDeleteOptionalParams extends OperationOptions {
+}
+
+export declare interface ExtensionsResourcesGetOptionalParams extends OperationOptions {
+}
+
+export declare interface ExtensionsResourcesListByScopeOptionalParams extends OperationOptions {
+}
+
+export declare interface ExtensionsResourcesOperations {
+    listByScope: (resourceUri: string, options?: ExtensionsResourcesListByScopeOptionalParams) => PagedAsyncIterableIterator<ExtensionsResource>;
+    delete: (resourceUri: string, extensionsResourceName: string, options?: ExtensionsResourcesDeleteOptionalParams) => Promise<void>;
+    update: (resourceUri: string, extensionsResourceName: string, properties: ExtensionsResource, options?: ExtensionsResourcesUpdateOptionalParams) => Promise<ExtensionsResource>;
+    createOrUpdate: (resourceUri: string, extensionsResourceName: string, resource: ExtensionsResource, options?: ExtensionsResourcesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ExtensionsResource>, ExtensionsResource>;
+    get: (resourceUri: string, extensionsResourceName: string, options?: ExtensionsResourcesGetOptionalParams) => Promise<ExtensionsResource>;
+}
+
+export declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
+}
+
 export declare enum KnownCreatedByType {
     User = "User",
     Application = "Application",
@@ -48,6 +84,38 @@ export declare enum KnownProvisioningState {
 
 export declare enum KnownVersions {
     v2023_12_01_preview = "2023-12-01-preview"
+}
+
+export declare interface LocationResource extends ProxyResource {
+    properties?: LocationResourceProperties;
+}
+
+export declare interface LocationResourceProperties {
+    description?: string;
+    readonly provisioningState?: ProvisioningState;
+}
+
+export declare interface LocationResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesDeleteOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesGetOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesListByLocationOptionalParams extends OperationOptions {
+}
+
+export declare interface LocationResourcesOperations {
+    listByLocation: (location: string, options?: LocationResourcesListByLocationOptionalParams) => PagedAsyncIterableIterator<LocationResource>;
+    delete: (location: string, locationResourceName: string, options?: LocationResourcesDeleteOptionalParams) => Promise<void>;
+    update: (location: string, locationResourceName: string, properties: LocationResource, options?: LocationResourcesUpdateOptionalParams) => Promise<LocationResource>;
+    createOrUpdate: (location: string, locationResourceName: string, resource: LocationResource, options?: LocationResourcesCreateOrUpdateOptionalParams) => Promise<LocationResource>;
+    get: (location: string, locationResourceName: string, options?: LocationResourcesGetOptionalParams) => Promise<LocationResource>;
+}
+
+export declare interface LocationResourcesUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
@@ -116,6 +184,8 @@ export declare class ResourcesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
+    readonly locationResources: LocationResourcesOperations;
+    readonly extensionsResources: ExtensionsResourcesOperations;
     readonly singleton: SingletonOperations;
     readonly nested: NestedOperations;
     readonly topLevel: TopLevelOperations;
