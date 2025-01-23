@@ -27,7 +27,7 @@ async function scenesDownload() {
 }
 
 async function main() {
-  scenesDownload();
+  await scenesDownload();
 }
 
 main().catch(console.error);

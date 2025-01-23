@@ -37,7 +37,7 @@ async function getTheManagedInstanceKey() {
 }
 
 async function main() {
-  getTheManagedInstanceKey();
+  await getTheManagedInstanceKey();
 }
 
 main().catch(console.error);

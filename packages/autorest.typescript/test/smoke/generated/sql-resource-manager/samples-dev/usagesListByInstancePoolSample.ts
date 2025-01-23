@@ -67,8 +67,8 @@ async function listInstancePoolUsages() {
 }
 
 async function main() {
-  listInstancePoolUsagesExpandedWithChildren();
-  listInstancePoolUsages();
+  await listInstancePoolUsagesExpandedWithChildren();
+  await listInstancePoolUsages();
 }
 
 main().catch(console.error);

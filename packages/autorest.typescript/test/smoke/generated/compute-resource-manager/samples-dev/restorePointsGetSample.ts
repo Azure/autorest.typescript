@@ -36,7 +36,7 @@ async function getARestorePoint() {
 }
 
 async function main() {
-  getARestorePoint();
+  await getARestorePoint();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function listSubscriptionNetworkManagerConnection() {
 }
 
 async function main() {
-  listSubscriptionNetworkManagerConnection();
+  await listSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

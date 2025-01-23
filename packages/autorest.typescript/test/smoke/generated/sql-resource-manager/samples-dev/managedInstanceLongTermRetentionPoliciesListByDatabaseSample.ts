@@ -41,7 +41,7 @@ async function getTheLongTermRetentionPoliciesForTheManagedDatabase() {
 }
 
 async function main() {
-  getTheLongTermRetentionPoliciesForTheManagedDatabase();
+  await getTheLongTermRetentionPoliciesForTheManagedDatabase();
 }
 
 main().catch(console.error);

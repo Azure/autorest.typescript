@@ -200,10 +200,10 @@ async function createFirewallPolicyRuleCollectionGroupWithWebCategories() {
 }
 
 async function main() {
-  createFirewallPolicyNatRuleCollectionGroup();
-  createFirewallPolicyRuleCollectionGroup();
-  createFirewallPolicyRuleCollectionGroupWithIPGroups();
-  createFirewallPolicyRuleCollectionGroupWithWebCategories();
+  await createFirewallPolicyNatRuleCollectionGroup();
+  await createFirewallPolicyRuleCollectionGroup();
+  await createFirewallPolicyRuleCollectionGroupWithIPGroups();
+  await createFirewallPolicyRuleCollectionGroupWithWebCategories();
 }
 
 main().catch(console.error);

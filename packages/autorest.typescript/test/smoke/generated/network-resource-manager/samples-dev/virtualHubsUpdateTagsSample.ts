@@ -41,7 +41,7 @@ async function virtualHubUpdate() {
 }
 
 async function main() {
-  virtualHubUpdate();
+  await virtualHubUpdate();
 }
 
 main().catch(console.error);

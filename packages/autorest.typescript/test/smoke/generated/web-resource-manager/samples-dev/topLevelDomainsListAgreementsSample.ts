@@ -44,7 +44,7 @@ async function listTopLevelDomainAgreements() {
 }
 
 async function main() {
-  listTopLevelDomainAgreements();
+  await listTopLevelDomainAgreements();
 }
 
 main().catch(console.error);

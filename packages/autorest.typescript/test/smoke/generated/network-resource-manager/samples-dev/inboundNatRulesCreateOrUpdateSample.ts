@@ -51,7 +51,7 @@ async function inboundNatRuleCreate() {
 }
 
 async function main() {
-  inboundNatRuleCreate();
+  await inboundNatRuleCreate();
 }
 
 main().catch(console.error);

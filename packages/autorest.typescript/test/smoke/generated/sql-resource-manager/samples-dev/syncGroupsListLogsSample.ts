@@ -49,7 +49,7 @@ async function getSyncGroupLogs() {
 }
 
 async function main() {
-  getSyncGroupLogs();
+  await getSyncGroupLogs();
 }
 
 main().catch(console.error);

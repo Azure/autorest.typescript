@@ -34,7 +34,7 @@ async function stopOrPowerOffCloudService() {
 }
 
 async function main() {
-  stopOrPowerOffCloudService();
+  await stopOrPowerOffCloudService();
 }
 
 main().catch(console.error);

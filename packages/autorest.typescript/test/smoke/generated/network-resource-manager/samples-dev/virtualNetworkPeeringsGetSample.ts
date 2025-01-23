@@ -57,8 +57,8 @@ async function getPeeringWithRemoteVirtualNetworkEncryption() {
 }
 
 async function main() {
-  getPeering();
-  getPeeringWithRemoteVirtualNetworkEncryption();
+  await getPeering();
+  await getPeeringWithRemoteVirtualNetworkEncryption();
 }
 
 main().catch(console.error);

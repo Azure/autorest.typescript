@@ -40,7 +40,7 @@ async function updateServerAdvisor() {
 }
 
 async function main() {
-  updateServerAdvisor();
+  await updateServerAdvisor();
 }
 
 main().catch(console.error);

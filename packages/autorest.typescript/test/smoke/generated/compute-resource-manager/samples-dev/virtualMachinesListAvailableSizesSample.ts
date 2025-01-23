@@ -37,7 +37,7 @@ async function listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMac
 }
 
 async function main() {
-  listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized();
+  await listsAllAvailableVirtualMachineSizesToWhichTheSpecifiedVirtualMachineCanBeResized();
 }
 
 main().catch(console.error);

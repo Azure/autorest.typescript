@@ -37,7 +37,7 @@ async function deleteAPrivateEndpointConnectionUnderADiskAccessResource() {
 }
 
 async function main() {
-  deleteAPrivateEndpointConnectionUnderADiskAccessResource();
+  await deleteAPrivateEndpointConnectionUnderADiskAccessResource();
 }
 
 main().catch(console.error);

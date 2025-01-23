@@ -25,7 +25,7 @@ async function loadTestRunGetTestRunFileSample() {
 }
 
 async function main() {
-  loadTestRunGetTestRunFileSample();
+  await loadTestRunGetTestRunFileSample();
 }
 
 main().catch(console.error);

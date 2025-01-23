@@ -46,7 +46,7 @@ async function generatesAPreviewWorkflowFileForTheStaticSite() {
 }
 
 async function main() {
-  generatesAPreviewWorkflowFileForTheStaticSite();
+  await generatesAPreviewWorkflowFileForTheStaticSite();
 }
 
 main().catch(console.error);

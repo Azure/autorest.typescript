@@ -53,8 +53,8 @@ async function getInformationAboutADiskEncryptionSet() {
 }
 
 async function main() {
-  getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed();
-  getInformationAboutADiskEncryptionSet();
+  await getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed();
+  await getInformationAboutADiskEncryptionSet();
 }
 
 main().catch(console.error);

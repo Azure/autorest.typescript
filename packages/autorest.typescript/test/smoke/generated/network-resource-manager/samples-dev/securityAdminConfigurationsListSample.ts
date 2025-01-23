@@ -38,7 +38,7 @@ async function listSecurityAdminConfigurationsInANetworkManager() {
 }
 
 async function main() {
-  listSecurityAdminConfigurationsInANetworkManager();
+  await listSecurityAdminConfigurationsInANetworkManager();
 }
 
 main().catch(console.error);

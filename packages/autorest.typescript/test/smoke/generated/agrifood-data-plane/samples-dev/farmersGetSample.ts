@@ -26,7 +26,7 @@ async function farmersGet() {
 }
 
 async function main() {
-  farmersGet();
+  await farmersGet();
 }
 
 main().catch(console.error);

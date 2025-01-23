@@ -33,7 +33,7 @@ async function deployProjectSample() {
 }
 
 async function main() {
-  deployProjectSample();
+  await deployProjectSample();
 }
 
 main().catch(console.error);

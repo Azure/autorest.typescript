@@ -38,7 +38,7 @@ async function listServersUsages() {
 }
 
 async function main() {
-  listServersUsages();
+  await listServersUsages();
 }
 
 main().catch(console.error);

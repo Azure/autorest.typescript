@@ -20,7 +20,7 @@ async function binaryBodyWithTwoContentTypesSample() {
 }
 
 async function main() {
-  binaryBodyWithTwoContentTypesSample();
+  await binaryBodyWithTwoContentTypesSample();
 }
 
 main().catch(console.error);

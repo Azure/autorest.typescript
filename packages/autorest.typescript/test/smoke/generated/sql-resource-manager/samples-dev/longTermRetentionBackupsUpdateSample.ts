@@ -46,7 +46,7 @@ async function updateTheLongTermRetentionBackup() {
 }
 
 async function main() {
-  updateTheLongTermRetentionBackup();
+  await updateTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

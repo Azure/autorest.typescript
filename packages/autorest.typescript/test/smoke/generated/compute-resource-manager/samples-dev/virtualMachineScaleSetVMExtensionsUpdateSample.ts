@@ -50,7 +50,7 @@ async function updateVirtualMachineScaleSetVMExtension() {
 }
 
 async function main() {
-  updateVirtualMachineScaleSetVMExtension();
+  await updateVirtualMachineScaleSetVMExtension();
 }
 
 main().catch(console.error);

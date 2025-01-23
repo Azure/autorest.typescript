@@ -29,7 +29,7 @@ async function farmsDelete() {
 }
 
 async function main() {
-  farmsDelete();
+  await farmsDelete();
 }
 
 main().catch(console.error);

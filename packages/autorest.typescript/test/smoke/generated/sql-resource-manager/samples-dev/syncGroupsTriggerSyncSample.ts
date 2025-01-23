@@ -40,7 +40,7 @@ async function triggerASyncGroupSynchronization() {
 }
 
 async function main() {
-  triggerASyncGroupSynchronization();
+  await triggerASyncGroupSynchronization();
 }
 
 main().catch(console.error);

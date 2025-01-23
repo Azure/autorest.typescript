@@ -32,7 +32,7 @@ async function getAppServicePlan() {
 }
 
 async function main() {
-  getAppServicePlan();
+  await getAppServicePlan();
 }
 
 main().catch(console.error);

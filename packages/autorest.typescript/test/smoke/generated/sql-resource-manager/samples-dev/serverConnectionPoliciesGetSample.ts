@@ -37,7 +37,7 @@ async function getsAServerConnectionPolicy() {
 }
 
 async function main() {
-  getsAServerConnectionPolicy();
+  await getsAServerConnectionPolicy();
 }
 
 main().catch(console.error);

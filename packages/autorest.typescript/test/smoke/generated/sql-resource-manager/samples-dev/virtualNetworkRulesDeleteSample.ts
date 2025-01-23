@@ -37,7 +37,7 @@ async function deleteAVirtualNetworkRule() {
 }
 
 async function main() {
-  deleteAVirtualNetworkRule();
+  await deleteAVirtualNetworkRule();
 }
 
 main().catch(console.error);

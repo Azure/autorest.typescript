@@ -38,7 +38,7 @@ async function listBackups() {
 }
 
 async function main() {
-  listBackups();
+  await listBackups();
 }
 
 main().catch(console.error);

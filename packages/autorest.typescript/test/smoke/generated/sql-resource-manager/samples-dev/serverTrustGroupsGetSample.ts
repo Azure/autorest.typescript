@@ -37,7 +37,7 @@ async function getServerTrustGroup() {
 }
 
 async function main() {
-  getServerTrustGroup();
+  await getServerTrustGroup();
 }
 
 main().catch(console.error);

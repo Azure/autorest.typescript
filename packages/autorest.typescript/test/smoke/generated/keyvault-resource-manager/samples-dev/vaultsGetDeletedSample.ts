@@ -32,7 +32,7 @@ async function retrieveADeletedVault() {
 }
 
 async function main() {
-  retrieveADeletedVault();
+  await retrieveADeletedVault();
 }
 
 main().catch(console.error);

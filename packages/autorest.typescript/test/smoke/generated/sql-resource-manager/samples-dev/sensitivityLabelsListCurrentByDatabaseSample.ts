@@ -40,7 +40,7 @@ async function getsTheCurrentSensitivityLabelsOfAGivenDatabase() {
 }
 
 async function main() {
-  getsTheCurrentSensitivityLabelsOfAGivenDatabase();
+  await getsTheCurrentSensitivityLabelsOfAGivenDatabase();
 }
 
 main().catch(console.error);

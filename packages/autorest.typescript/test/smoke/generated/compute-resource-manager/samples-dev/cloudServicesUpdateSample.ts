@@ -41,7 +41,7 @@ async function updateExistingCloudServiceToAddTags() {
 }
 
 async function main() {
-  updateExistingCloudServiceToAddTags();
+  await updateExistingCloudServiceToAddTags();
 }
 
 main().catch(console.error);

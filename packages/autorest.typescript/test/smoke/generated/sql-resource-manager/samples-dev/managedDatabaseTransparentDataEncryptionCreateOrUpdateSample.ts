@@ -46,7 +46,7 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
 }
 
 async function main() {
-  updateADatabaseTransparentDataEncryptionStateWithMinimalParameters();
+  await updateADatabaseTransparentDataEncryptionStateWithMinimalParameters();
 }
 
 main().catch(console.error);

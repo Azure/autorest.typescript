@@ -42,7 +42,7 @@ async function createOrUpdateAProximityPlacementGroup() {
 }
 
 async function main() {
-  createOrUpdateAProximityPlacementGroup();
+  await createOrUpdateAProximityPlacementGroup();
 }
 
 main().catch(console.error);

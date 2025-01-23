@@ -23,7 +23,7 @@ async function putCatSample() {
 }
 
 async function main() {
-  putCatSample();
+  await putCatSample();
 }
 
 main().catch(console.error);

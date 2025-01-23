@@ -125,10 +125,10 @@ async function updateAnElasticPoolWithMinimumParameters() {
 }
 
 async function main() {
-  assignsMaintenanceConfigurationToAnElasticPool();
-  resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
-  updateAnElasticPoolWithAllParameter();
-  updateAnElasticPoolWithMinimumParameters();
+  await assignsMaintenanceConfigurationToAnElasticPool();
+  await resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
+  await updateAnElasticPoolWithAllParameter();
+  await updateAnElasticPoolWithMinimumParameters();
 }
 
 main().catch(console.error);

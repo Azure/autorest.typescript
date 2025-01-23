@@ -35,7 +35,7 @@ async function deleteAnInstancePool() {
 }
 
 async function main() {
-  deleteAnInstancePool();
+  await deleteAnInstancePool();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function listUpdateDomainsInCloudService() {
 }
 
 async function main() {
-  listUpdateDomainsInCloudService();
+  await listUpdateDomainsInCloudService();
 }
 
 main().catch(console.error);

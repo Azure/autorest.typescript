@@ -35,7 +35,7 @@ async function farmsListByFarmerId() {
 }
 
 async function main() {
-  farmsListByFarmerId();
+  await farmsListByFarmerId();
 }
 
 main().catch(console.error);

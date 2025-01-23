@@ -36,7 +36,7 @@ async function listExtensionsInVmssInstance() {
 }
 
 async function main() {
-  listExtensionsInVmssInstance();
+  await listExtensionsInVmssInstance();
 }
 
 main().catch(console.error);

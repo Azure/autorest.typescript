@@ -39,7 +39,7 @@ async function updateAzureFirewallTags() {
 }
 
 async function main() {
-  updateAzureFirewallTags();
+  await updateAzureFirewallTags();
 }
 
 main().catch(console.error);

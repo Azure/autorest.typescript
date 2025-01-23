@@ -45,7 +45,7 @@ async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourc
 }
 
 async function main() {
-  exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
+  await exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
 }
 
 main().catch(console.error);

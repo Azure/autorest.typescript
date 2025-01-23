@@ -40,7 +40,7 @@ async function getsTheFunctionsOfAParticularStaticSiteBuild() {
 }
 
 async function main() {
-  getsTheFunctionsOfAParticularStaticSiteBuild();
+  await getsTheFunctionsOfAParticularStaticSiteBuild();
 }
 
 main().catch(console.error);

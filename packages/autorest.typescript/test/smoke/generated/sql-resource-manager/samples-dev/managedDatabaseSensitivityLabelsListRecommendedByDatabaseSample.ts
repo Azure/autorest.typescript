@@ -40,7 +40,7 @@ async function getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedData
 }
 
 async function main() {
-  getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedDatabase();
+  await getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedDatabase();
 }
 
 main().catch(console.error);

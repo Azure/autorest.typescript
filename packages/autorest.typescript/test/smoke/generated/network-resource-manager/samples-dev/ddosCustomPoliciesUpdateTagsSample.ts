@@ -39,7 +39,7 @@ async function dDoSCustomPolicyUpdateTags() {
 }
 
 async function main() {
-  dDoSCustomPolicyUpdateTags();
+  await dDoSCustomPolicyUpdateTags();
 }
 
 main().catch(console.error);

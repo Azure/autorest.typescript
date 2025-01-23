@@ -32,7 +32,7 @@ async function boundariesList() {
 }
 
 async function main() {
-  boundariesList();
+  await boundariesList();
 }
 
 main().catch(console.error);

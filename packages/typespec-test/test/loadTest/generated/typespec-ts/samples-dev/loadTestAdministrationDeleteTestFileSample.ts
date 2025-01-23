@@ -25,7 +25,7 @@ async function loadTestAdministrationDeleteTestFileSample() {
 }
 
 async function main() {
-  loadTestAdministrationDeleteTestFileSample();
+  await loadTestAdministrationDeleteTestFileSample();
 }
 
 main().catch(console.error);

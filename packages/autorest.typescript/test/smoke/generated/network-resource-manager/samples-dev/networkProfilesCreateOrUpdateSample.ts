@@ -54,7 +54,7 @@ async function createNetworkProfileDefaults() {
 }
 
 async function main() {
-  createNetworkProfileDefaults();
+  await createNetworkProfileDefaults();
 }
 
 main().catch(console.error);

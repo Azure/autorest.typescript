@@ -40,7 +40,7 @@ async function cancelASyncGroupSynchronization() {
 }
 
 async function main() {
-  cancelASyncGroupSynchronization();
+  await cancelASyncGroupSynchronization();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function updateServiceEndpointPolicyTags() {
 }
 
 async function main() {
-  updateServiceEndpointPolicyTags();
+  await updateServiceEndpointPolicyTags();
 }
 
 main().catch(console.error);

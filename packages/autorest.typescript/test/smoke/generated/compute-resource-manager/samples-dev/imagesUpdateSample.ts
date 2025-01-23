@@ -45,7 +45,7 @@ async function updatesTagsOfAnImage() {
 }
 
 async function main() {
-  updatesTagsOfAnImage();
+  await updatesTagsOfAnImage();
 }
 
 main().catch(console.error);

@@ -76,8 +76,8 @@ async function createAJobWithDefaultProperties() {
 }
 
 async function main() {
-  createAJobWithAllPropertiesSpecified();
-  createAJobWithDefaultProperties();
+  await createAJobWithAllPropertiesSpecified();
+  await createAJobWithDefaultProperties();
 }
 
 main().catch(console.error);

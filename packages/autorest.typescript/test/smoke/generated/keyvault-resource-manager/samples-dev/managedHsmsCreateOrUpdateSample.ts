@@ -51,7 +51,7 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
 }
 
 async function main() {
-  createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
+  await createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
 }
 
 main().catch(console.error);

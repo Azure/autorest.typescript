@@ -55,7 +55,7 @@ async function createVirtualMachineScaleSetVMRunCommand() {
 }
 
 async function main() {
-  createVirtualMachineScaleSetVMRunCommand();
+  await createVirtualMachineScaleSetVMRunCommand();
 }
 
 main().catch(console.error);

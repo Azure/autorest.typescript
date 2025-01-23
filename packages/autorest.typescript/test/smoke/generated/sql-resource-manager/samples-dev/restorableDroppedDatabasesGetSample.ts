@@ -38,7 +38,7 @@ async function getsARestorableDroppedDatabase() {
 }
 
 async function main() {
-  getsARestorableDroppedDatabase();
+  await getsARestorableDroppedDatabase();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function purgeADeletedVault() {
 }
 
 async function main() {
-  purgeADeletedVault();
+  await purgeADeletedVault();
 }
 
 main().catch(console.error);

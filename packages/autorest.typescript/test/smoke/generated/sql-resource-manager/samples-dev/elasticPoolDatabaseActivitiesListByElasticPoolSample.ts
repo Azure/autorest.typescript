@@ -40,7 +40,7 @@ async function listElasticPoolDatabaseActivity() {
 }
 
 async function main() {
-  listElasticPoolDatabaseActivity();
+  await listElasticPoolDatabaseActivity();
 }
 
 main().catch(console.error);
