@@ -9,6 +9,7 @@ import {
   createModerationRequestSerializer,
   CreateModerationResponse,
   createModerationResponseDeserializer,
+  errorResponseDeserializer,
 } from "../../models/models.js";
 import {
   StreamableMethod,
@@ -40,7 +41,9 @@ export async function _createDeserialize(
 ): Promise<CreateModerationResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createModerationResponseDeserializer(result.body);

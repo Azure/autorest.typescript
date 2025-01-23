@@ -19,7 +19,7 @@ async function stringGetBase64Encoded() {
 }
 
 async function main() {
-  stringGetBase64Encoded();
+  await stringGetBase64Encoded();
 }
 
 main().catch(console.error);

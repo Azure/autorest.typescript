@@ -29,7 +29,7 @@ async function fieldsGet() {
 }
 
 async function main() {
-  fieldsGet();
+  await fieldsGet();
 }
 
 main().catch(console.error);

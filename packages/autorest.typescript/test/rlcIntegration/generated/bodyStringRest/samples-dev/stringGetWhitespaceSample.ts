@@ -19,7 +19,7 @@ async function stringGetWhitespace() {
 }
 
 async function main() {
-  stringGetWhitespace();
+  await stringGetWhitespace();
 }
 
 main().catch(console.error);

@@ -231,7 +231,7 @@ function emitMethodSamples(
   const functions = exampleFunctions.map((f) => `${f}();`).join("\n");
   sourceFile.addStatements(`
   async function main() {
-    ${functions}
+    await ${functions}
   }
 
   main().catch(console.error);`);

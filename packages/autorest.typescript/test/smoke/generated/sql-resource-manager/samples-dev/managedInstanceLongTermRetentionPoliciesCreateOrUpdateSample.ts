@@ -51,7 +51,7 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
 }
 
 async function main() {
-  createOrUpdateTheLtrPolicyForTheManagedDatabase();
+  await createOrUpdateTheLtrPolicyForTheManagedDatabase();
 }
 
 main().catch(console.error);

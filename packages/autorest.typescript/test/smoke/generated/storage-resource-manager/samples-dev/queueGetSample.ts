@@ -36,7 +36,7 @@ async function queueOperationGet() {
 }
 
 async function main() {
-  queueOperationGet();
+  await queueOperationGet();
 }
 
 main().catch(console.error);

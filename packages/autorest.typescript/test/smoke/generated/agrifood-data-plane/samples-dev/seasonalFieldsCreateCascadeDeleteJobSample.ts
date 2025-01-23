@@ -37,7 +37,7 @@ async function seasonalFieldsCreateCascadeDeleteJob() {
 }
 
 async function main() {
-  seasonalFieldsCreateCascadeDeleteJob();
+  await seasonalFieldsCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

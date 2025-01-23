@@ -42,7 +42,7 @@ async function getASasOnAManagedDisk() {
 }
 
 async function main() {
-  getASasOnAManagedDisk();
+  await getASasOnAManagedDisk();
 }
 
 main().catch(console.error);

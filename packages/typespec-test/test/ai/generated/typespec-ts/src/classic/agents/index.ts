@@ -70,7 +70,7 @@ import {
   VectorStoreFile,
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
-} from "../../models/models.js";
+} from "../../models/agents/models.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
@@ -337,7 +337,7 @@ export interface AgentsOperations {
   ) => Promise<Agent>;
 }
 
-export function getAgents(context: AzureAIContext) {
+function _getAgents(context: AzureAIContext) {
   return {
     listVectorStoreFileBatchFiles: (
       vectorStoreId: string,
@@ -502,8 +502,10 @@ export function getAgents(context: AzureAIContext) {
   };
 }
 
-export function getAgentsOperations(context: AzureAIContext): AgentsOperations {
+export function _getAgentsOperations(
+  context: AzureAIContext,
+): AgentsOperations {
   return {
-    ...getAgents(context),
+    ..._getAgents(context),
   };
 }

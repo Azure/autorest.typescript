@@ -97,7 +97,7 @@ function getSampleMetadata({
       productName: name,
       productSlugs: ["azure"],
       disableDocsMs: true,
-      apiRefLink: `https://docs.microsoft.com/javascript/api/${name}${apiRefUrlQueryParameter}`
+      apiRefLink: `https://learn.microsoft.com/javascript/api/${name}${apiRefUrlQueryParameter}`
     }
   };
 }
@@ -187,7 +187,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
     "extract-api":
-      "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+      "dev-tool run vendored rimraf review && dev-tool run extract-api",
     format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
@@ -216,7 +216,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
     "build:test":
       "npm run clean && dev-tool run build-package && dev-tool run build-test",
     build:
-      "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "test:node":
       "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
@@ -233,7 +233,7 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build:
-      "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api",
+      "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api",
     "build:node":
       "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",

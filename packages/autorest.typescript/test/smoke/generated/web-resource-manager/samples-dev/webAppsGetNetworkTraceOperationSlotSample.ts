@@ -39,7 +39,7 @@ async function getTheCurrentStatusOfANetworkTraceOperationForASite() {
 }
 
 async function main() {
-  getTheCurrentStatusOfANetworkTraceOperationForASite();
+  await getTheCurrentStatusOfANetworkTraceOperationForASite();
 }
 
 main().catch(console.error);

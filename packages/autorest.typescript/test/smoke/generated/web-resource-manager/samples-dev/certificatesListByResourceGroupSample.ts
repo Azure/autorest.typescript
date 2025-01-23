@@ -36,7 +36,7 @@ async function listCertificatesByResourceGroup() {
 }
 
 async function main() {
-  listCertificatesByResourceGroup();
+  await listCertificatesByResourceGroup();
 }
 
 main().catch(console.error);

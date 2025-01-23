@@ -140,7 +140,9 @@ export async function uploadFileViaBody(
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   name: string;
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
 }
 ```
 
@@ -148,10 +150,10 @@ export interface _UploadFileRequest {
 
 ```ts models function _uploadFileRequestSerializer
 export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
-  return {
-    name: item["name"],
-    file: uint8ArrayToString(item["file"], "base64"),
-  };
+  return [
+    { name: "name", body: item["name"] },
+    createFilePartDescriptor("file", item["file"]),
+  ];
 }
 ```
 
@@ -227,19 +229,23 @@ scalar BinaryBytes extends bytes;
 ## Models
 
 ```ts models
-import { uint8ArrayToString } from "@azure/core-util";
+import {
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
-  files: Uint8Array[];
+  files: Array<
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string }
+  >;
 }
 
 export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
-  return {
-    files: item["files"].map((p: any) => {
-      return uint8ArrayToString(p, "base64");
-    }),
-  };
+  return [
+    ...item["files"].map((x: unknown) => createFilePartDescriptor("files", x)),
+  ];
 }
 ```
 
@@ -814,6 +820,8 @@ model ApiVersionParameter {
 }
 op test(...ApiVersionParameter): string;
 ```
+
+The config would be like:
 
 ```yaml
 mustEmptyDiagnostic: false

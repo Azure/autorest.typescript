@@ -31,7 +31,7 @@ async function getAzureWebCategoryByName() {
 }
 
 async function main() {
-  getAzureWebCategoryByName();
+  await getAzureWebCategoryByName();
 }
 
 main().catch(console.error);

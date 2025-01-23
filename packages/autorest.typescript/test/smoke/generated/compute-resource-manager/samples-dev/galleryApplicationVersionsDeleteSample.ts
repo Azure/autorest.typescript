@@ -38,7 +38,7 @@ async function deleteAGalleryApplicationVersion() {
 }
 
 async function main() {
-  deleteAGalleryApplicationVersion();
+  await deleteAGalleryApplicationVersion();
 }
 
 main().catch(console.error);

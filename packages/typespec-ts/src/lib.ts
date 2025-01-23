@@ -151,7 +151,15 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "experimental-extensible-enums": { type: "boolean", nullable: true },
     "clear-output-folder": { type: "boolean", nullable: true },
     "ignore-property-name-normalize": { type: "boolean", nullable: true },
-    "compatibility-query-multi-format": { type: "boolean", nullable: true }
+    "compatibility-query-multi-format": { type: "boolean", nullable: true },
+    typespecTitleMap: {
+      type: "object",
+      additionalProperties: {
+        type: "string"
+      },
+      required: [],
+      nullable: true
+    }
   },
   required: []
 };

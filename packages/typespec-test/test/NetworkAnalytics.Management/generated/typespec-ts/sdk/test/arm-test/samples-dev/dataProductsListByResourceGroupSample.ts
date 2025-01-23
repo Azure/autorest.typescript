@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
+import { NetworkAnalyticsApi } from "@azure/arm-networkanalytics";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
@@ -13,7 +13,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen() {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
+  const client = new NetworkAnalyticsApi(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.dataProducts.listByResourceGroup(
     "aoiresourceGroupName",
@@ -25,7 +25,7 @@ async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSet
 }
 
 async function main() {
-  dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
+  await dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 
 main().catch(console.error);

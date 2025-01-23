@@ -33,7 +33,7 @@ async function deleteSubscriptionNetworkManagerConnection() {
 }
 
 async function main() {
-  deleteSubscriptionNetworkManagerConnection();
+  await deleteSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

@@ -43,7 +43,7 @@ async function updateARunCommand() {
 }
 
 async function main() {
-  updateARunCommand();
+  await updateARunCommand();
 }
 
 main().catch(console.error);

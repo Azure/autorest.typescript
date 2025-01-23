@@ -20,6 +20,7 @@ import {
   getPagingResponseBodyType
 } from "./responseTypeUtils";
 import { getAutorestOptions } from "../../autorestSession";
+import { getImportModuleName } from "../../utils/nameConstructors";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -54,8 +55,9 @@ export function addPagingImports(
   sourceFile: SourceFile,
   isClient = false
 ) {
-  const { disablePagingAsyncIterators } = getAutorestOptions();
+  const { disablePagingAsyncIterators, moduleKind } = getAutorestOptions();
   if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
+    const pagingHelperPath = isClient ? "./pagingHelper" : "../pagingHelper";
     sourceFile.addImportDeclarations([
       {
         namedImports: ["PagedAsyncIterableIterator", "PageSettings"],
@@ -63,7 +65,7 @@ export function addPagingImports(
       },
       {
         namedImports: ["setContinuationToken"],
-        moduleSpecifier: isClient ? "./pagingHelper" : "../pagingHelper"
+        moduleSpecifier: getImportModuleName(pagingHelperPath, moduleKind)
       }
     ]);
   }
@@ -227,9 +229,9 @@ export function writeAsyncIterators(
         },
         nextMethod: nextMethodParameters
           ? {
-              name: `${operation.namePrefix}${nextOperationName}`,
-              parameters: nextMethodParameters
-            }
+            name: `${operation.namePrefix}${nextOperationName}`,
+            parameters: nextMethodParameters
+          }
           : undefined,
         publicMethod: {
           name: getPublicMethodName(operation),

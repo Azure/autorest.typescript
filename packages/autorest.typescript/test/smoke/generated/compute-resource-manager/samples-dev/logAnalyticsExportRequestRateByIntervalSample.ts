@@ -44,7 +44,7 @@ async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProvider
 }
 
 async function main() {
-  exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
+  await exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
 }
 
 main().catch(console.error);

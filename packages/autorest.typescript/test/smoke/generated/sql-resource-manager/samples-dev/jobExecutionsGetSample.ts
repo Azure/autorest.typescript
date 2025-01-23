@@ -41,7 +41,7 @@ async function getAJobExecution() {
 }
 
 async function main() {
-  getAJobExecution();
+  await getAJobExecution();
 }
 
 main().catch(console.error);

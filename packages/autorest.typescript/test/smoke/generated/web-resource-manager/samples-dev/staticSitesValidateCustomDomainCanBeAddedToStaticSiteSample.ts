@@ -44,7 +44,7 @@ async function validateACustomDomainForAStaticSite() {
 }
 
 async function main() {
-  validateACustomDomainForAStaticSite();
+  await validateACustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

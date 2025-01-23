@@ -28,7 +28,7 @@ async function seasonalFieldsGetCascadeDeleteJobDetails() {
 }
 
 async function main() {
-  seasonalFieldsGetCascadeDeleteJobDetails();
+  await seasonalFieldsGetCascadeDeleteJobDetails();
 }
 
 main().catch(console.error);

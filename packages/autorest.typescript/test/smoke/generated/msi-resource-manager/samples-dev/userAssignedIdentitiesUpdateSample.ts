@@ -42,7 +42,7 @@ async function identityUpdate() {
 }
 
 async function main() {
-  identityUpdate();
+  await identityUpdate();
 }
 
 main().catch(console.error);

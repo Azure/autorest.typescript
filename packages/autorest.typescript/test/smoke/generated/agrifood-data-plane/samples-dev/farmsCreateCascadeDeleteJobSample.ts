@@ -32,7 +32,7 @@ async function farmsCreateCascadeDeleteJob() {
 }
 
 async function main() {
-  farmsCreateCascadeDeleteJob();
+  await farmsCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

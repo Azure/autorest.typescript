@@ -20,7 +20,7 @@ async function contentTypeWithEncodingSample() {
 }
 
 async function main() {
-  contentTypeWithEncodingSample();
+  await contentTypeWithEncodingSample();
 }
 
 main().catch(console.error);

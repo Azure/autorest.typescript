@@ -37,7 +37,7 @@ async function listRoleInstancesInACloudService() {
 }
 
 async function main() {
-  listRoleInstancesInACloudService();
+  await listRoleInstancesInACloudService();
 }
 
 main().catch(console.error);

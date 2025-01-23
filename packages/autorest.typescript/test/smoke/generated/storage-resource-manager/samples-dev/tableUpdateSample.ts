@@ -36,7 +36,7 @@ async function tableOperationPatch() {
 }
 
 async function main() {
-  tableOperationPatch();
+  await tableOperationPatch();
 }
 
 main().catch(console.error);

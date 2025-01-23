@@ -33,7 +33,7 @@ async function harvestDataDelete() {
 }
 
 async function main() {
-  harvestDataDelete();
+  await harvestDataDelete();
 }
 
 main().catch(console.error);

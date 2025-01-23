@@ -35,7 +35,7 @@ async function purgeAManagedHsmPool() {
 }
 
 async function main() {
-  purgeAManagedHsmPool();
+  await purgeAManagedHsmPool();
 }
 
 main().catch(console.error);

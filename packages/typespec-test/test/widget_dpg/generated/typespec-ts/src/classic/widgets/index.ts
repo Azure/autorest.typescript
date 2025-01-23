@@ -95,7 +95,7 @@ export interface WidgetsOperations {
   ) => Promise<Widget[]>;
 }
 
-export function getWidgets(context: WidgetServiceContext) {
+function _getWidgets(context: WidgetServiceContext) {
   return {
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) =>
       analyzeWidget(context, id, options),
@@ -145,10 +145,10 @@ export function getWidgets(context: WidgetServiceContext) {
   };
 }
 
-export function getWidgetsOperations(
+export function _getWidgetsOperations(
   context: WidgetServiceContext,
 ): WidgetsOperations {
   return {
-    ...getWidgets(context),
+    ..._getWidgets(context),
   };
 }

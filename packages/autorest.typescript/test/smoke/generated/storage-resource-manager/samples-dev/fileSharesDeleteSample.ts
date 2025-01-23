@@ -36,7 +36,7 @@ async function deleteShares() {
 }
 
 async function main() {
-  deleteShares();
+  await deleteShares();
 }
 
 main().catch(console.error);

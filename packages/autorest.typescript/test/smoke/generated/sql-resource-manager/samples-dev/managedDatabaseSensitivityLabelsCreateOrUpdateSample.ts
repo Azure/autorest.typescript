@@ -54,7 +54,7 @@ async function updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersI
 }
 
 async function main() {
-  updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersInAManagedDatabase();
+  await updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersInAManagedDatabase();
 }
 
 main().catch(console.error);

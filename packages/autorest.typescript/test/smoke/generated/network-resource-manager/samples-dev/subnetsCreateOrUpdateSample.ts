@@ -90,9 +90,9 @@ async function createSubnetWithServiceEndpoints() {
 }
 
 async function main() {
-  createSubnet();
-  createSubnetWithADelegation();
-  createSubnetWithServiceEndpoints();
+  await createSubnet();
+  await createSubnetWithADelegation();
+  await createSubnetWithServiceEndpoints();
 }
 
 main().catch(console.error);

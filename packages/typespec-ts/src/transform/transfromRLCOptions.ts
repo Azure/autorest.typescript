@@ -5,7 +5,8 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo
+  ServiceInfo,
+  isAzurePackage
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
@@ -32,6 +33,15 @@ export function transformRLCOptions(
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
+  if (
+    !isAzurePackage({ options }) &&
+    emitterOptions["is-modular-library"] !== false
+  ) {
+    options.isModularLibrary = true;
+  }
+  if (dpgContext.arm && emitterOptions["is-modular-library"] !== false) {
+    options.isModularLibrary = true;
+  }
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
@@ -343,7 +353,7 @@ function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-        emitterOptions["azure-sdk-for-js"] === null
+      emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }

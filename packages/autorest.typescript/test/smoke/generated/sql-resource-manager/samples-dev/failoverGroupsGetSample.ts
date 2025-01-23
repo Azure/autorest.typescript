@@ -37,7 +37,7 @@ async function getFailoverGroup() {
 }
 
 async function main() {
-  getFailoverGroup();
+  await getFailoverGroup();
 }
 
 main().catch(console.error);

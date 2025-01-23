@@ -10,9 +10,44 @@ import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
 // @public
+export interface ApiError {
+    code: string;
+    message: string;
+}
+
+// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public
+export interface FileAttachmentMultipartRequest {
+    // (undocumented)
+    contents: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+}
+
+// @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
+export interface InvalidTodoItem extends ApiError {
+}
+
+// @public
+export interface InvalidUserResponse extends ApiError {
+    // (undocumented)
+    code: "invalid-user";
+}
+
+// @public
+export interface NotFoundErrorResponse {
+    // (undocumented)
+    code: "not-found";
+}
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -33,7 +68,19 @@ export interface PageTodoAttachment {
 }
 
 // @public
-export type TodoAttachment = TodoFileAttachment | TodoUrlAttachment;
+export interface Standard4XXResponse extends ApiError {
+}
+
+// @public
+export interface Standard5XXResponse extends ApiError {
+}
+
+// @public
+export interface TodoAttachment {
+    contents: Uint8Array;
+    filename: string;
+    mediaType: string;
+}
 
 // @public (undocumented)
 export class TodoClient {
@@ -45,13 +92,6 @@ export class TodoClient {
 
 // @public
 export interface TodoClientOptionalParams extends ClientOptions {
-}
-
-// @public
-export interface TodoFileAttachment {
-    contents: Uint8Array;
-    filename: string;
-    mediaType: string;
 }
 
 // @public
@@ -72,6 +112,18 @@ export interface TodoItem {
 }
 
 // @public
+export interface ToDoItemMultipartRequest {
+    // (undocumented)
+    attachments?: Array<FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    }>;
+    // (undocumented)
+    item: TodoItem;
+}
+
+// @public
 export interface TodoItemPatch {
     assignedTo?: number | null;
     description?: string | null;
@@ -80,7 +132,11 @@ export interface TodoItemPatch {
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateAttachmentOptionalParams extends OperationOptions {
+export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -90,13 +146,19 @@ export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions
 // @public
 export interface TodoItemsAttachmentsOperations {
     // (undocumented)
-    createAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateAttachmentOptionalParams) => Promise<void>;
+    createFileAttachment: (itemId: number, body: FileAttachmentMultipartRequest, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
+    // (undocumented)
+    createJsonAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams) => Promise<void>;
     // (undocumented)
     list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
 // @public
-export interface TodoItemsCreateOptionalParams extends OperationOptions {
+export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
     // (undocumented)
     attachments?: TodoAttachment[];
 }
@@ -120,7 +182,20 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    create: (item: TodoItem, options?: TodoItemsCreateOptionalParams) => Promise<{
+    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
+        id: number;
+        title: string;
+        createdBy: number;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        createdAt: Date;
+        updatedAt: Date;
+        completedAt?: Date;
+        labels?: TodoLabels;
+    }>;
+    // (undocumented)
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<{
         id: number;
         title: string;
         createdBy: number;
@@ -188,17 +263,17 @@ export interface TodoPage {
 }
 
 // @public
-export interface TodoUrlAttachment {
-    description: string;
-    url: string;
-}
-
-// @public
 export interface User {
     email: string;
     readonly id: number;
     password: string;
     username: string;
+}
+
+// @public
+export interface UserExistsResponse extends ApiError {
+    // (undocumented)
+    code: "user-exists";
 }
 
 // @public

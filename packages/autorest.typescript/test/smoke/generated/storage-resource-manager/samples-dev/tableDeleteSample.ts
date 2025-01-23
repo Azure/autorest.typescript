@@ -36,7 +36,7 @@ async function tableOperationDelete() {
 }
 
 async function main() {
-  tableOperationDelete();
+  await tableOperationDelete();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function updateRouteFilterTags() {
 }
 
 async function main() {
-  updateRouteFilterTags();
+  await updateRouteFilterTags();
 }
 
 main().catch(console.error);

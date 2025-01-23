@@ -45,7 +45,7 @@ async function createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject() {
 }
 
 async function main() {
-  createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject();
+  await createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject();
 }
 
 main().catch(console.error);

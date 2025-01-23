@@ -37,7 +37,7 @@ async function plannedFailoverOfAFailoverGroup() {
 }
 
 async function main() {
-  plannedFailoverOfAFailoverGroup();
+  await plannedFailoverOfAFailoverGroup();
 }
 
 main().catch(console.error);

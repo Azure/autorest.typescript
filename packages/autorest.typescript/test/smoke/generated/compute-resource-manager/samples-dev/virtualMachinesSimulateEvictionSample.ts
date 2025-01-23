@@ -34,7 +34,7 @@ async function simulateEvictionAVirtualMachine() {
 }
 
 async function main() {
-  simulateEvictionAVirtualMachine();
+  await simulateEvictionAVirtualMachine();
 }
 
 main().catch(console.error);

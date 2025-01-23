@@ -32,7 +32,7 @@ async function boundariesSearch() {
 }
 
 async function main() {
-  boundariesSearch();
+  await boundariesSearch();
 }
 
 main().catch(console.error);

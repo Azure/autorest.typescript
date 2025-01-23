@@ -41,7 +41,7 @@ async function updateADiskAccessResource() {
 }
 
 async function main() {
-  updateADiskAccessResource();
+  await updateADiskAccessResource();
 }
 
 main().catch(console.error);

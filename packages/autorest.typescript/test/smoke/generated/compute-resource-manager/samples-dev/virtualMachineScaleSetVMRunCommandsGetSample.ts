@@ -38,7 +38,7 @@ async function getVirtualMachineScaleSetVMRunCommands() {
 }
 
 async function main() {
-  getVirtualMachineScaleSetVMRunCommands();
+  await getVirtualMachineScaleSetVMRunCommands();
 }
 
 main().catch(console.error);

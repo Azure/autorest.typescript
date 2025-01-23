@@ -31,7 +31,7 @@ async function loadTestAdministrationListTestFilesSample() {
 }
 
 async function main() {
-  loadTestAdministrationListTestFilesSample();
+  await loadTestAdministrationListTestFilesSample();
 }
 
 main().catch(console.error);

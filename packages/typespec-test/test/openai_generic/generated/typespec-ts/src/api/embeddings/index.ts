@@ -6,6 +6,7 @@ import {
   EmbeddingsCreateOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateEmbeddingRequest,
   createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
@@ -41,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateEmbeddingResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createEmbeddingResponseDeserializer(result.body);

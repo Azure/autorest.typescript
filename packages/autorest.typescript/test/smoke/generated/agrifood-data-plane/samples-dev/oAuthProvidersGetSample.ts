@@ -28,7 +28,7 @@ async function oAuthProvidersGet() {
 }
 
 async function main() {
-  oAuthProvidersGet();
+  await oAuthProvidersGet();
 }
 
 main().catch(console.error);

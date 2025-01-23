@@ -45,7 +45,7 @@ async function createsOrUpdatesAManagedInstanceKey() {
 }
 
 async function main() {
-  createsOrUpdatesAManagedInstanceKey();
+  await createsOrUpdatesAManagedInstanceKey();
 }
 
 main().catch(console.error);

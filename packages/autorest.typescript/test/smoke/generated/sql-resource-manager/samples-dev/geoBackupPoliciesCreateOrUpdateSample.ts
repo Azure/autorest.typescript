@@ -44,7 +44,7 @@ async function updateGeoBackupPolicy() {
 }
 
 async function main() {
-  updateGeoBackupPolicy();
+  await updateGeoBackupPolicy();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function getsTheListOfRestorePointCollectionsInAResourceGroup() {
 }
 
 async function main() {
-  getsTheListOfRestorePointCollectionsInAResourceGroup();
+  await getsTheListOfRestorePointCollectionsInAResourceGroup();
 }
 
 main().catch(console.error);

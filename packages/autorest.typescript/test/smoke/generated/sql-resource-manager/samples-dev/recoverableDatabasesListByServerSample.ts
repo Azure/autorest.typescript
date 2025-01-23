@@ -39,7 +39,7 @@ async function getListOfRestorableDroppedDatabases() {
 }
 
 async function main() {
-  getListOfRestorableDroppedDatabases();
+  await getListOfRestorableDroppedDatabases();
 }
 
 main().catch(console.error);

@@ -105,9 +105,9 @@ async function updatesADatabase() {
 }
 
 async function main() {
-  assignsMaintenanceWindowToADatabase();
-  resetsMaintenanceWindowOfADatabaseToDefault();
-  updatesADatabase();
+  await assignsMaintenanceWindowToADatabase();
+  await resetsMaintenanceWindowOfADatabaseToDefault();
+  await updatesADatabase();
 }
 
 main().catch(console.error);

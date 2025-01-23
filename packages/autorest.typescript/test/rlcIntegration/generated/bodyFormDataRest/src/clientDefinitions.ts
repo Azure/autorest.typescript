@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   FormdataUploadFileParameters,
   FormdataUploadFileViaBodyParameters,
   FormdataUploadFilesParameters,
 } from "./parameters";
-import {
+import type {
   FormdataUploadFile200Response,
   FormdataUploadFileDefaultResponse,
   FormdataUploadFileViaBody200Response,
@@ -14,7 +14,7 @@ import {
   FormdataUploadFiles200Response,
   FormdataUploadFilesDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface UploadFile {
   /** Upload file */

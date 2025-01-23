@@ -79,7 +79,7 @@ async function opTopLevel() {
 }
 
 async function main() {
-  opTopLevel();
+  await opTopLevel();
 }
 
 main().catch(console.error);
@@ -121,7 +121,7 @@ async function opD() {
 }
 
 async function main() {
-  opD();
+  await opD();
 }
 
 main().catch(console.error);
@@ -163,7 +163,7 @@ async function opBEC() {
 }
 
 async function main() {
-  opBEC();
+  await opBEC();
 }
 
 main().catch(console.error);

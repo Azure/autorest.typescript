@@ -51,8 +51,8 @@ async function listServersWithExpandEqualsAdministrators() {
 }
 
 async function main() {
-  listServers();
-  listServersWithExpandEqualsAdministrators();
+  await listServers();
+  await listServersWithExpandEqualsAdministrators();
 }
 
 main().catch(console.error);

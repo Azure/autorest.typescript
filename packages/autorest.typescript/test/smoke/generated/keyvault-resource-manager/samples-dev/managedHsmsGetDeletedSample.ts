@@ -32,7 +32,7 @@ async function retrieveADeletedManagedHsm() {
 }
 
 async function main() {
-  retrieveADeletedManagedHsm();
+  await retrieveADeletedManagedHsm();
 }
 
 main().catch(console.error);

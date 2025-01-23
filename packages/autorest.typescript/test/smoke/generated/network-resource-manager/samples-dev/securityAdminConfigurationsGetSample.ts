@@ -37,7 +37,7 @@ async function getSecurityAdminConfigurations() {
 }
 
 async function main() {
-  getSecurityAdminConfigurations();
+  await getSecurityAdminConfigurations();
 }
 
 main().catch(console.error);

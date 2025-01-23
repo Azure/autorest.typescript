@@ -35,7 +35,7 @@ async function listByResourceGroupIPGroups() {
 }
 
 async function main() {
-  listByResourceGroupIPGroups();
+  await listByResourceGroupIPGroups();
 }
 
 main().catch(console.error);

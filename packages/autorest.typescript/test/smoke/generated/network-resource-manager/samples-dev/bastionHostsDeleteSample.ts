@@ -34,7 +34,7 @@ async function deleteBastionHost() {
 }
 
 async function main() {
-  deleteBastionHost();
+  await deleteBastionHost();
 }
 
 main().catch(console.error);

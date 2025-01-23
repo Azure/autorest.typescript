@@ -49,7 +49,7 @@ export interface FilesOperations {
   list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
 }
 
-export function getFiles(context: OpenAIContext) {
+function _getFiles(context: OpenAIContext) {
   return {
     download: (fileId: string, options?: FilesDownloadOptionalParams) =>
       download(context, fileId, options),
@@ -63,8 +63,8 @@ export function getFiles(context: OpenAIContext) {
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): FilesOperations {
+export function _getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
-    ...getFiles(context),
+    ..._getFiles(context),
   };
 }

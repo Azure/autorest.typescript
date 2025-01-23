@@ -39,7 +39,7 @@ async function getACredential() {
 }
 
 async function main() {
-  getACredential();
+  await getACredential();
 }
 
 main().catch(console.error);

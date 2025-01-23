@@ -43,7 +43,7 @@ async function updateFtpAllowed() {
 }
 
 async function main() {
-  updateFtpAllowed();
+  await updateFtpAllowed();
 }
 
 main().catch(console.error);

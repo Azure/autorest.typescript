@@ -56,8 +56,8 @@ async function getAGallery() {
 }
 
 async function main() {
-  getAGalleryWithSelectPermissions();
-  getAGallery();
+  await getAGalleryWithSelectPermissions();
+  await getAGallery();
 }
 
 main().catch(console.error);
