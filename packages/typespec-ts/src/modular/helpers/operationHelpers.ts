@@ -589,20 +589,14 @@ function getPagingOnlyOperationFunction(
 
   const statements: string[] = [];
   const options = [];
-  // TODO pending tcgc issue to fix https://github.com/Azure/typespec-azure/issues/1985
-  const itemName =
-    operation.response.resultPath !== "" && operation.response.resultPath
-      ? operation.response.resultPath
-      : operation.__raw_paged_metadata?.itemsSegments
-        ? operation.__raw_paged_metadata.itemsSegments[0]
-        : undefined;
+  // TODO: follow up on https://github.com/Azure/typespec-azure/issues/2103
+  const nextLinkName = operation.nextLinkPath;
+  const itemName = operation.response.resultPath;
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
-  if (operation.__raw_paged_metadata?.nextLinkSegments) {
-    options.push(
-      `nextLinkName: "${operation.__raw_paged_metadata.nextLinkSegments[0]}"`
-    );
+  if (nextLinkName) {
+    options.push(`nextLinkName: "${nextLinkName}"`);
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
@@ -1125,7 +1119,9 @@ export function getRequestModelMapping(
 }
 
 function getPropertySerializedName(property: SdkModelPropertyType) {
-  return property.kind !== "credential" && property.kind !== "method"
+  return property.kind !== "credential" &&
+    property.kind !== "method" &&
+    property.kind !== "endpoint"
     ? property.serializedName
     : property.name;
 }
