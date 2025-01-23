@@ -39,7 +39,7 @@ async function listAuditSettingsOfADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAuditSettingsOfADatabase();
+  await listAuditSettingsOfADatabase();
 }
 
 main().catch(console.error);

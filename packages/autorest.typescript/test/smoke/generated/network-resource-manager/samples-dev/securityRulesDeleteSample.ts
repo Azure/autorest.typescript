@@ -34,7 +34,7 @@ async function deleteNetworkSecurityRuleFromNetworkSecurityGroup(): Promise<void
 }
 
 async function main(): Promise<void> {
-  deleteNetworkSecurityRuleFromNetworkSecurityGroup();
+  await deleteNetworkSecurityRuleFromNetworkSecurityGroup();
 }
 
 main().catch(console.error);

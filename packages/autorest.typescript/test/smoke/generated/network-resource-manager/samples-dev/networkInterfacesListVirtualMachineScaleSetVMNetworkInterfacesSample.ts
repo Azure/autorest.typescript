@@ -37,7 +37,7 @@ async function listVirtualMachineScaleSetVMNetworkInterfaces(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualMachineScaleSetVMNetworkInterfaces();
+  await listVirtualMachineScaleSetVMNetworkInterfaces();
 }
 
 main().catch(console.error);

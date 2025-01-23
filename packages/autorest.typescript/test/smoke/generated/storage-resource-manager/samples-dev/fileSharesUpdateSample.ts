@@ -73,8 +73,8 @@ async function updateShares(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateShareAcls();
-  updateShares();
+  await updateShareAcls();
+  await updateShares();
 }
 
 main().catch(console.error);

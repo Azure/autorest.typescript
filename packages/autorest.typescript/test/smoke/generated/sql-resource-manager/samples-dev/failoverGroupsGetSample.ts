@@ -35,7 +35,7 @@ async function getFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFailoverGroup();
+  await getFailoverGroup();
 }
 
 main().catch(console.error);

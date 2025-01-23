@@ -709,15 +709,15 @@ async function createLoadBalancerWithOutboundRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createLoadBalancer();
-  createLoadBalancerWithFrontendIPInZone1();
-  createLoadBalancerWithGatewayLoadBalancerConsumerConfigured();
-  createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool();
-  createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool();
-  createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool();
-  createLoadBalancerWithStandardSku();
-  createLoadBalancerWithInboundNatPool();
-  createLoadBalancerWithOutboundRules();
+  await createLoadBalancer();
+  await createLoadBalancerWithFrontendIPInZone1();
+  await createLoadBalancerWithGatewayLoadBalancerConsumerConfigured();
+  await createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool();
+  await createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool();
+  await createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool();
+  await createLoadBalancerWithStandardSku();
+  await createLoadBalancerWithInboundNatPool();
+  await createLoadBalancerWithOutboundRules();
 }
 
 main().catch(console.error);

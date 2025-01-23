@@ -74,7 +74,7 @@ async function expressRouteConnectionCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteConnectionCreate();
+  await expressRouteConnectionCreate();
 }
 
 main().catch(console.error);

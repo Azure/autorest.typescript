@@ -35,7 +35,7 @@ async function getInformationAboutAPrivateEndpointConnectionUnderADiskAccessReso
 }
 
 async function main(): Promise<void> {
-  getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource();
+  await getInformationAboutAPrivateEndpointConnectionUnderADiskAccessResource();
 }
 
 main().catch(console.error);

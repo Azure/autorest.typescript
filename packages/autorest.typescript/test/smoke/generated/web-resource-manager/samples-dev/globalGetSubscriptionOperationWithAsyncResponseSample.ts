@@ -33,7 +33,7 @@ async function getsAnOperationInASubscriptionAndGivenRegion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAnOperationInASubscriptionAndGivenRegion();
+  await getsAnOperationInASubscriptionAndGivenRegion();
 }
 
 main().catch(console.error);

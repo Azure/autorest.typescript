@@ -35,7 +35,7 @@ async function listConnectionMonitors(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listConnectionMonitors();
+  await listConnectionMonitors();
 }
 
 main().catch(console.error);

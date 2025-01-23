@@ -29,7 +29,7 @@ async function getAzureWebCategoryByName(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAzureWebCategoryByName();
+  await getAzureWebCategoryByName();
 }
 
 main().catch(console.error);

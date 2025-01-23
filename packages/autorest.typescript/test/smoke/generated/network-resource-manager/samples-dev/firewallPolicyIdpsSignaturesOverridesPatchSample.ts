@@ -43,7 +43,7 @@ async function patchSignatureOverrides(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  patchSignatureOverrides();
+  await patchSignatureOverrides();
 }
 
 main().catch(console.error);

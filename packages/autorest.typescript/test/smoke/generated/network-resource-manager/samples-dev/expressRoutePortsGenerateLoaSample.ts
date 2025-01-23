@@ -39,7 +39,7 @@ async function generateExpressRoutePortLoa(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generateExpressRoutePortLoa();
+  await generateExpressRoutePortLoa();
 }
 
 main().catch(console.error);

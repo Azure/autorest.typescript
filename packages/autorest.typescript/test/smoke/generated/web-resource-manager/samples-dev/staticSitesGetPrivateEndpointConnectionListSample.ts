@@ -36,7 +36,7 @@ async function getAListOfPrivateEndpointConnectionsAssociatedWithASite(): Promis
 }
 
 async function main(): Promise<void> {
-  getAListOfPrivateEndpointConnectionsAssociatedWithASite();
+  await getAListOfPrivateEndpointConnectionsAssociatedWithASite();
 }
 
 main().catch(console.error);

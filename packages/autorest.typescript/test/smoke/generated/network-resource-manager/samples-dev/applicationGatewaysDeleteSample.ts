@@ -32,7 +32,7 @@ async function deleteApplicationGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteApplicationGateway();
+  await deleteApplicationGateway();
 }
 
 main().catch(console.error);

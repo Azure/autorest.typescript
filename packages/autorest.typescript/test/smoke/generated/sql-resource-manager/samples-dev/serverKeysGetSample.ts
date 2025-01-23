@@ -35,7 +35,7 @@ async function getTheServerKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheServerKey();
+  await getTheServerKey();
 }
 
 main().catch(console.error);

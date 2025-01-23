@@ -32,7 +32,7 @@ async function deleteDDoSCustomPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteDDoSCustomPolicy();
+  await deleteDDoSCustomPolicy();
 }
 
 main().catch(console.error);

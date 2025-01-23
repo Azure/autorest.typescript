@@ -248,14 +248,14 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes(): Promis
 }
 
 async function main(): Promise<void> {
-  createVirtualNetwork();
-  createVirtualNetworkWithBgpCommunities();
-  createVirtualNetworkWithDelegatedSubnets();
-  createVirtualNetworkWithEncryption();
-  createVirtualNetworkWithServiceEndpoints();
-  createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy();
-  createVirtualNetworkWithSubnet();
-  createVirtualNetworkWithSubnetContainingAddressPrefixes();
+  await createVirtualNetwork();
+  await createVirtualNetworkWithBgpCommunities();
+  await createVirtualNetworkWithDelegatedSubnets();
+  await createVirtualNetworkWithEncryption();
+  await createVirtualNetworkWithServiceEndpoints();
+  await createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy();
+  await createVirtualNetworkWithSubnet();
+  await createVirtualNetworkWithSubnetContainingAddressPrefixes();
 }
 
 main().catch(console.error);

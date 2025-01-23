@@ -73,9 +73,9 @@ async function checkForAServerNameThatIsInvalid(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  checkForAServerNameThatAlreadyExists();
-  checkForAServerNameThatIsAvailable();
-  checkForAServerNameThatIsInvalid();
+  await checkForAServerNameThatAlreadyExists();
+  await checkForAServerNameThatIsAvailable();
+  await checkForAServerNameThatIsInvalid();
 }
 
 main().catch(console.error);

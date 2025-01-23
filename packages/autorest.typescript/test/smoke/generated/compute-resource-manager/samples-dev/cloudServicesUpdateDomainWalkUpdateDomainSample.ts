@@ -35,7 +35,7 @@ async function updateCloudServiceToSpecifiedDomain(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateCloudServiceToSpecifiedDomain();
+  await updateCloudServiceToSpecifiedDomain();
 }
 
 main().catch(console.error);

@@ -57,7 +57,7 @@ async function vpnSiteCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSiteCreate();
+  await vpnSiteCreate();
 }
 
 main().catch(console.error);

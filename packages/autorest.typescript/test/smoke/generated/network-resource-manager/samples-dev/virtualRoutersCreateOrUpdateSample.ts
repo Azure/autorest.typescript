@@ -43,7 +43,7 @@ async function createVirtualRouter(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createVirtualRouter();
+  await createVirtualRouter();
 }
 
 main().catch(console.error);

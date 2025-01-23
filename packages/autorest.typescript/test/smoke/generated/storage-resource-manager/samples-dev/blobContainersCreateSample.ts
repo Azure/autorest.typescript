@@ -90,9 +90,9 @@ async function putContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  putContainerWithDefaultEncryptionScope();
-  putContainerWithObjectLevelWorm();
-  putContainers();
+  await putContainerWithDefaultEncryptionScope();
+  await putContainerWithObjectLevelWorm();
+  await putContainers();
 }
 
 main().catch(console.error);

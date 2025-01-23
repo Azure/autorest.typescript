@@ -32,7 +32,7 @@ async function getCloudServiceInstanceViewWithMultipleRoles(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCloudServiceInstanceViewWithMultipleRoles();
+  await getCloudServiceInstanceViewWithMultipleRoles();
 }
 
 main().catch(console.error);

@@ -141,9 +141,9 @@ async function createPrivateEndpointWithManualApprovalConnection(): Promise<void
 }
 
 async function main(): Promise<void> {
-  createPrivateEndpoint();
-  createPrivateEndpointWithApplicationSecurityGroups();
-  createPrivateEndpointWithManualApprovalConnection();
+  await createPrivateEndpoint();
+  await createPrivateEndpointWithApplicationSecurityGroups();
+  await createPrivateEndpointWithManualApprovalConnection();
 }
 
 main().catch(console.error);

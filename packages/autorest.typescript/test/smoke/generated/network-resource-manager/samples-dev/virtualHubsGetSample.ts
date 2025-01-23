@@ -32,7 +32,7 @@ async function virtualHubGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubGet();
+  await virtualHubGet();
 }
 
 main().catch(console.error);

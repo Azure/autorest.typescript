@@ -32,7 +32,7 @@ async function getApplicationGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getApplicationGateway();
+  await getApplicationGateway();
 }
 
 main().catch(console.error);

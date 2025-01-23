@@ -35,7 +35,7 @@ async function listAllVirtualRouterPeeringsForAGivenVirtualRouter(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  listAllVirtualRouterPeeringsForAGivenVirtualRouter();
+  await listAllVirtualRouterPeeringsForAGivenVirtualRouter();
 }
 
 main().catch(console.error);

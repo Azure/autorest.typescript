@@ -33,7 +33,7 @@ async function deleteVirtualCluster(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteVirtualCluster();
+  await deleteVirtualCluster();
 }
 
 main().catch(console.error);

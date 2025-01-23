@@ -37,7 +37,7 @@ async function getGeoBackupPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getGeoBackupPolicy();
+  await getGeoBackupPolicy();
 }
 
 main().catch(console.error);

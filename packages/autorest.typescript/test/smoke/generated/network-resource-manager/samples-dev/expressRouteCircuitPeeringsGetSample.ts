@@ -34,7 +34,7 @@ async function getExpressRouteCircuitPeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCircuitPeering();
+  await getExpressRouteCircuitPeering();
 }
 
 main().catch(console.error);

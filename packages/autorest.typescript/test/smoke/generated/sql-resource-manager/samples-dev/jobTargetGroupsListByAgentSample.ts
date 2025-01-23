@@ -38,7 +38,7 @@ async function getAllTargetGroupsInAnAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllTargetGroupsInAnAgent();
+  await getAllTargetGroupsInAnAgent();
 }
 
 main().catch(console.error);

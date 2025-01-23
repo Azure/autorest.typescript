@@ -39,7 +39,7 @@ async function getAListOfTheDatabaseThreatDetectionPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAListOfTheDatabaseThreatDetectionPolicies();
+  await getAListOfTheDatabaseThreatDetectionPolicies();
 }
 
 main().catch(console.error);

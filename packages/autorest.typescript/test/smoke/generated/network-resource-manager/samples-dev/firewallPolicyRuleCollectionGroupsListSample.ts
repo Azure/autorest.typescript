@@ -80,9 +80,9 @@ async function listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFir
 }
 
 async function main(): Promise<void> {
-  listAllFirewallPolicyRuleCollectionGroupWithWebCategories();
-  listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy();
-  listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFirewallPolicy();
+  await listAllFirewallPolicyRuleCollectionGroupWithWebCategories();
+  await listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy();
+  await listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFirewallPolicy();
 }
 
 main().catch(console.error);

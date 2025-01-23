@@ -57,8 +57,8 @@ async function loadBalancerNetworkInterfaceListVmss(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerNetworkInterfaceListSimple();
-  loadBalancerNetworkInterfaceListVmss();
+  await loadBalancerNetworkInterfaceListSimple();
+  await loadBalancerNetworkInterfaceListVmss();
 }
 
 main().catch(console.error);

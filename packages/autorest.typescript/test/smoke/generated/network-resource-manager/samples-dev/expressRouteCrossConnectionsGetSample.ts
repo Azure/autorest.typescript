@@ -33,7 +33,7 @@ async function getExpressRouteCrossConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCrossConnection();
+  await getExpressRouteCrossConnection();
 }
 
 main().catch(console.error);

@@ -45,7 +45,7 @@ async function createARestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createARestorePoint();
+  await createARestorePoint();
 }
 
 main().catch(console.error);

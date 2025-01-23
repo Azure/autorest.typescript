@@ -30,7 +30,7 @@ async function expressRoutePortList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortList();
+  await expressRoutePortList();
 }
 
 main().catch(console.error);

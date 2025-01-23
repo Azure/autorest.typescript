@@ -85,8 +85,8 @@ async function createExpressRouteCircuitOnExpressRoutePort(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createExpressRouteCircuit();
-  createExpressRouteCircuitOnExpressRoutePort();
+  await createExpressRouteCircuit();
+  await createExpressRouteCircuitOnExpressRoutePort();
 }
 
 main().catch(console.error);

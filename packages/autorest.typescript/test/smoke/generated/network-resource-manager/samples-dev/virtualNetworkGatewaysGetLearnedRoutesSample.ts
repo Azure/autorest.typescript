@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayLearnedRoutes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayLearnedRoutes();
+  await getVirtualNetworkGatewayLearnedRoutes();
 }
 
 main().catch(console.error);

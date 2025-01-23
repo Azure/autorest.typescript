@@ -37,7 +37,7 @@ async function getATargetGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getATargetGroup();
+  await getATargetGroup();
 }
 
 main().catch(console.error);

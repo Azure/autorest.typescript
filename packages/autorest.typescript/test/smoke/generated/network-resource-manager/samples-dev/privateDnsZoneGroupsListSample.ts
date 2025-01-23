@@ -35,7 +35,7 @@ async function listPrivateEndpointsInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listPrivateEndpointsInResourceGroup();
+  await listPrivateEndpointsInResourceGroup();
 }
 
 main().catch(console.error);

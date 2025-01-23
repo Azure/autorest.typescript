@@ -42,7 +42,7 @@ async function createOrUpdateACustomDomainForAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateACustomDomainForAStaticSite();
+  await createOrUpdateACustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

@@ -50,7 +50,7 @@ async function expressRouteCrossConnectionBgpPeeringCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteCrossConnectionBgpPeeringCreate();
+  await expressRouteCrossConnectionBgpPeeringCreate();
 }
 
 main().catch(console.error);

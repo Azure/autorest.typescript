@@ -32,7 +32,7 @@ async function deleteIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteIPGroups();
+  await deleteIPGroups();
 }
 
 main().catch(console.error);

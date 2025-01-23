@@ -63,7 +63,7 @@ async function updateASimpleGalleryApplicationVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASimpleGalleryApplicationVersion();
+  await updateASimpleGalleryApplicationVersion();
 }
 
 main().catch(console.error);

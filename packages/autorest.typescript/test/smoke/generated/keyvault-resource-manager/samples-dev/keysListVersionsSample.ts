@@ -38,7 +38,7 @@ async function listKeyVersionsInTheVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listKeyVersionsInTheVault();
+  await listKeyVersionsInTheVault();
 }
 
 main().catch(console.error);

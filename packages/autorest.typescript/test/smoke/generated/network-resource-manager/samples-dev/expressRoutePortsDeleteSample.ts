@@ -32,7 +32,7 @@ async function expressRoutePortDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortDelete();
+  await expressRoutePortDelete();
 }
 
 main().catch(console.error);

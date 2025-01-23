@@ -35,7 +35,7 @@ async function virtualRouterPeerListAdvertisedRoutes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualRouterPeerListAdvertisedRoutes();
+  await virtualRouterPeerListAdvertisedRoutes();
 }
 
 main().catch(console.error);

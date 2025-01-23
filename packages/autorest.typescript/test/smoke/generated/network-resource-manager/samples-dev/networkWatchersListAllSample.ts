@@ -30,7 +30,7 @@ async function listAllNetworkWatchers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllNetworkWatchers();
+  await listAllNetworkWatchers();
 }
 
 main().catch(console.error);

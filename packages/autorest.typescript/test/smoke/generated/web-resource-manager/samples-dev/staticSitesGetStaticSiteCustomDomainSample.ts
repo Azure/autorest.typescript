@@ -35,7 +35,7 @@ async function getCustomDomainForAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCustomDomainForAStaticSite();
+  await getCustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

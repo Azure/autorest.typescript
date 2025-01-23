@@ -42,7 +42,7 @@ async function createVirtualNetworkTap(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createVirtualNetworkTap();
+  await createVirtualNetworkTap();
 }
 
 main().catch(console.error);

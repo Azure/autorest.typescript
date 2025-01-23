@@ -32,7 +32,7 @@ async function getPrivateLinkService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPrivateLinkService();
+  await getPrivateLinkService();
 }
 
 main().catch(console.error);

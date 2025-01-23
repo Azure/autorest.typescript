@@ -76,7 +76,7 @@ async function p2SVpnGatewayPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  p2SVpnGatewayPut();
+  await p2SVpnGatewayPut();
 }
 
 main().catch(console.error);

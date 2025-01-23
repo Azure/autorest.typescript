@@ -36,7 +36,7 @@ async function deleteASyncAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteASyncAgent();
+  await deleteASyncAgent();
 }
 
 main().catch(console.error);

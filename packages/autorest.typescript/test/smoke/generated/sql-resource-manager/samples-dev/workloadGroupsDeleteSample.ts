@@ -38,7 +38,7 @@ async function deleteAWorkloadGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAWorkloadGroup();
+  await deleteAWorkloadGroup();
 }
 
 main().catch(console.error);

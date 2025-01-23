@@ -32,7 +32,7 @@ async function deleteSecurityPartnerProvider(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteSecurityPartnerProvider();
+  await deleteSecurityPartnerProvider();
 }
 
 main().catch(console.error);

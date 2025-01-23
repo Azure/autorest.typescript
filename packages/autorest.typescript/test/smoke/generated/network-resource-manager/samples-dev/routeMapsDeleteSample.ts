@@ -34,7 +34,7 @@ async function routeMapDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeMapDelete();
+  await routeMapDelete();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function updateNetworkProfileTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNetworkProfileTags();
+  await updateNetworkProfileTags();
 }
 
 main().catch(console.error);

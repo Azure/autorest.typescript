@@ -49,7 +49,7 @@ async function inboundNatRuleCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  inboundNatRuleCreate();
+  await inboundNatRuleCreate();
 }
 
 main().catch(console.error);

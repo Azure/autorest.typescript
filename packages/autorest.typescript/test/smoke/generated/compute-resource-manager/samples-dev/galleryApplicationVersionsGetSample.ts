@@ -65,8 +65,8 @@ async function getAGalleryApplicationVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAGalleryApplicationVersionWithReplicationStatus();
-  getAGalleryApplicationVersion();
+  await getAGalleryApplicationVersionWithReplicationStatus();
+  await getAGalleryApplicationVersion();
 }
 
 main().catch(console.error);

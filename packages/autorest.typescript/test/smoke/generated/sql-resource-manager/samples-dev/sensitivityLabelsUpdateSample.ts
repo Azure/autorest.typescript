@@ -70,7 +70,7 @@ async function updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch(): 
 }
 
 async function main(): Promise<void> {
-  updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
+  await updateSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
 }
 
 main().catch(console.error);

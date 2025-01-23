@@ -37,7 +37,7 @@ async function createADiskAccessResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createADiskAccessResource();
+  await createADiskAccessResource();
 }
 
 main().catch(console.error);

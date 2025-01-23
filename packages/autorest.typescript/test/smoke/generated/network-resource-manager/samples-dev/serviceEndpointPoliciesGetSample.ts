@@ -32,7 +32,7 @@ async function getServiceEndPointPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServiceEndPointPolicy();
+  await getServiceEndPointPolicy();
 }
 
 main().catch(console.error);

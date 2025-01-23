@@ -36,7 +36,7 @@ async function getAllLongTermRetentionBackupsUnderTheManagedInstance(): Promise<
 }
 
 async function main(): Promise<void> {
-  getAllLongTermRetentionBackupsUnderTheManagedInstance();
+  await getAllLongTermRetentionBackupsUnderTheManagedInstance();
 }
 
 main().catch(console.error);

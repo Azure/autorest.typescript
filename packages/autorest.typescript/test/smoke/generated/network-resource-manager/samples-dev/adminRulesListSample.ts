@@ -40,7 +40,7 @@ async function listSecurityAdminRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSecurityAdminRules();
+  await listSecurityAdminRules();
 }
 
 main().catch(console.error);

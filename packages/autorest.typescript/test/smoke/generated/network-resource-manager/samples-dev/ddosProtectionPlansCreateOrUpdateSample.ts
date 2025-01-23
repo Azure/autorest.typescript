@@ -37,7 +37,7 @@ async function createDDoSProtectionPlan(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createDDoSProtectionPlan();
+  await createDDoSProtectionPlan();
 }
 
 main().catch(console.error);

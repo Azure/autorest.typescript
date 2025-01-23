@@ -34,7 +34,7 @@ async function getAGalleryApplication(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAGalleryApplication();
+  await getAGalleryApplication();
 }
 
 main().catch(console.error);

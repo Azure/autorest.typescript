@@ -40,7 +40,7 @@ async function getAllVersionsOfAJob(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllVersionsOfAJob();
+  await getAllVersionsOfAJob();
 }
 
 main().catch(console.error);

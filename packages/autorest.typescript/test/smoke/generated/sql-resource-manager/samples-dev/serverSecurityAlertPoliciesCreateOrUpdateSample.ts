@@ -77,8 +77,8 @@ async function updateAServerThreatDetectionPolicyWithMinimalParameters(): Promis
 }
 
 async function main(): Promise<void> {
-  updateAServerThreatDetectionPolicyWithAllParameters();
-  updateAServerThreatDetectionPolicyWithMinimalParameters();
+  await updateAServerThreatDetectionPolicyWithAllParameters();
+  await updateAServerThreatDetectionPolicyWithMinimalParameters();
 }
 
 main().catch(console.error);

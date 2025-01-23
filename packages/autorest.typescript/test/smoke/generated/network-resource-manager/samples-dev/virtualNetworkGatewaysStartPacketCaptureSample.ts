@@ -65,8 +65,8 @@ async function startPacketCaptureOnVirtualNetworkGatewayWithoutFilter(): Promise
 }
 
 async function main(): Promise<void> {
-  startPacketCaptureOnVirtualNetworkGatewayWithFilter();
-  startPacketCaptureOnVirtualNetworkGatewayWithoutFilter();
+  await startPacketCaptureOnVirtualNetworkGatewayWithFilter();
+  await startPacketCaptureOnVirtualNetworkGatewayWithoutFilter();
 }
 
 main().catch(console.error);

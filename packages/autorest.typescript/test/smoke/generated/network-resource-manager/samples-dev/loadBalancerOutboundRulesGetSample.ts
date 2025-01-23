@@ -34,7 +34,7 @@ async function loadBalancerOutboundRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerOutboundRuleGet();
+  await loadBalancerOutboundRuleGet();
 }
 
 main().catch(console.error);

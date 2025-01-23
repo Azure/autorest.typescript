@@ -43,7 +43,7 @@ async function getAvailableProvidersList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableProvidersList();
+  await getAvailableProvidersList();
 }
 
 main().catch(console.error);

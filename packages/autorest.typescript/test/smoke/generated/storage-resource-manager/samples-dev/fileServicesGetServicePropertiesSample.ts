@@ -32,7 +32,7 @@ async function getFileServices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFileServices();
+  await getFileServices();
 }
 
 main().catch(console.error);

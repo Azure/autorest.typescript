@@ -41,7 +41,7 @@ async function inboundRoutesForTheVirtualHubOnAParticularConnection(): Promise<v
 }
 
 async function main(): Promise<void> {
-  inboundRoutesForTheVirtualHubOnAParticularConnection();
+  await inboundRoutesForTheVirtualHubOnAParticularConnection();
 }
 
 main().catch(console.error);

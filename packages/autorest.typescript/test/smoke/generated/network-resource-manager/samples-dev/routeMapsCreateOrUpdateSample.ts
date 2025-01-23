@@ -64,7 +64,7 @@ async function routeMapPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeMapPut();
+  await routeMapPut();
 }
 
 main().catch(console.error);

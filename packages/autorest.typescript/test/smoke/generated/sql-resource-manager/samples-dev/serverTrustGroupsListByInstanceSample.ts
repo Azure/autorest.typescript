@@ -37,7 +37,7 @@ async function listServerTrustGroupsByManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listServerTrustGroupsByManagedInstance();
+  await listServerTrustGroupsByManagedInstance();
 }
 
 main().catch(console.error);

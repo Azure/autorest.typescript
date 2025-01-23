@@ -75,8 +75,8 @@ async function createAnInstancePoolWithMinProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAnInstancePoolWithAllProperties();
-  createAnInstancePoolWithMinProperties();
+  await createAnInstancePoolWithAllProperties();
+  await createAnInstancePoolWithMinProperties();
 }
 
 main().catch(console.error);

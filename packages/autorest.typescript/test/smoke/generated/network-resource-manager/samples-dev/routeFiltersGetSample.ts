@@ -32,7 +32,7 @@ async function routeFilterGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterGet();
+  await routeFilterGet();
 }
 
 main().catch(console.error);

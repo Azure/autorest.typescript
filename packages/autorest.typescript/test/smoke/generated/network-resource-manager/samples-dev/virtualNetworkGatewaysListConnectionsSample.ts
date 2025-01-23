@@ -35,7 +35,7 @@ async function virtualNetworkGatewaysListConnections(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualNetworkGatewaysListConnections();
+  await virtualNetworkGatewaysListConnections();
 }
 
 main().catch(console.error);

@@ -22,7 +22,7 @@ function _getConfidentialLedger(context: ParametrizedHostContext) {
   };
 }
 
-export function getConfidentialLedgerOperations(
+export function _getConfidentialLedgerOperations(
   context: ParametrizedHostContext,
 ): ConfidentialLedgerOperations {
   return {

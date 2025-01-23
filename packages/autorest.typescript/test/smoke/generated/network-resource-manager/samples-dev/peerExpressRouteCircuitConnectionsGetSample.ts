@@ -36,7 +36,7 @@ async function peerExpressRouteCircuitConnectionGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  peerExpressRouteCircuitConnectionGet();
+  await peerExpressRouteCircuitConnectionGet();
 }
 
 main().catch(console.error);

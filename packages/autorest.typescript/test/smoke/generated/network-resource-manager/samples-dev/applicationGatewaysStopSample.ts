@@ -32,7 +32,7 @@ async function stopApplicationGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  stopApplicationGateway();
+  await stopApplicationGateway();
 }
 
 main().catch(console.error);

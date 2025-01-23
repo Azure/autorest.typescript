@@ -37,7 +37,7 @@ async function getDatabaseSchema(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDatabaseSchema();
+  await getDatabaseSchema();
 }
 
 main().catch(console.error);

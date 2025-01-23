@@ -33,7 +33,7 @@ async function virtualWanListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanListByResourceGroup();
+  await virtualWanListByResourceGroup();
 }
 
 main().catch(console.error);

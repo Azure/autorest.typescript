@@ -32,7 +32,7 @@ async function identityGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityGet();
+  await identityGet();
 }
 
 main().catch(console.error);

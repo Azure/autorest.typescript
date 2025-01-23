@@ -29,7 +29,7 @@ async function deletedAccountGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletedAccountGet();
+  await deletedAccountGet();
 }
 
 main().catch(console.error);

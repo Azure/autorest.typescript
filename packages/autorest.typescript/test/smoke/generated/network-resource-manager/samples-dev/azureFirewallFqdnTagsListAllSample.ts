@@ -30,7 +30,7 @@ async function listAllAzureFirewallFqdnTagsForAGivenSubscription(): Promise<void
 }
 
 async function main(): Promise<void> {
-  listAllAzureFirewallFqdnTagsForAGivenSubscription();
+  await listAllAzureFirewallFqdnTagsForAGivenSubscription();
 }
 
 main().catch(console.error);

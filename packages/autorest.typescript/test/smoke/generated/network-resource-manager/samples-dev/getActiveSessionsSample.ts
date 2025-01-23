@@ -35,7 +35,7 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion(): Promise<void
 }
 
 async function main(): Promise<void> {
-  returnsAListOfCurrentlyActiveSessionsOnTheBastion();
+  await returnsAListOfCurrentlyActiveSessionsOnTheBastion();
 }
 
 main().catch(console.error);

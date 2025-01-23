@@ -140,8 +140,8 @@ async function updateAVMByForceDetachingDataDisk(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAVMByDetachingDataDisk();
-  updateAVMByForceDetachingDataDisk();
+  await updateAVMByDetachingDataDisk();
+  await updateAVMByForceDetachingDataDisk();
 }
 
 main().catch(console.error);

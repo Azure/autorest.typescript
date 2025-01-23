@@ -44,7 +44,7 @@ async function getNextHop(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNextHop();
+  await getNextHop();
 }
 
 main().catch(console.error);

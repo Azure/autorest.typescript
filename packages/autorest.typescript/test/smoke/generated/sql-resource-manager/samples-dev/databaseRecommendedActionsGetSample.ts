@@ -40,7 +40,7 @@ async function getDatabaseRecommendedAction(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDatabaseRecommendedAction();
+  await getDatabaseRecommendedAction();
 }
 
 main().catch(console.error);

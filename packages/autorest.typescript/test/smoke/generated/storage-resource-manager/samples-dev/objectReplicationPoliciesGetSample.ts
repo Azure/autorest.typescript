@@ -34,7 +34,7 @@ async function storageAccountGetObjectReplicationPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountGetObjectReplicationPolicies();
+  await storageAccountGetObjectReplicationPolicies();
 }
 
 main().catch(console.error);

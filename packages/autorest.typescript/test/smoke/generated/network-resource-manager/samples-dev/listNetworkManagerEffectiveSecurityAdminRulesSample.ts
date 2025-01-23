@@ -38,7 +38,7 @@ async function listEffectiveSecurityAdminRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listEffectiveSecurityAdminRules();
+  await listEffectiveSecurityAdminRules();
 }
 
 main().catch(console.error);

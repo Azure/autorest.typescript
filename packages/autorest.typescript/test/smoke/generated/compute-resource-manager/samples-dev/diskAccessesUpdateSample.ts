@@ -39,7 +39,7 @@ async function updateADiskAccessResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateADiskAccessResource();
+  await updateADiskAccessResource();
 }
 
 main().catch(console.error);

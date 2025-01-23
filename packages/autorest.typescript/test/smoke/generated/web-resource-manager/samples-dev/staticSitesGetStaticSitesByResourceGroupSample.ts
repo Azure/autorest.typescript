@@ -34,7 +34,7 @@ async function getStaticSitesForAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getStaticSitesForAResourceGroup();
+  await getStaticSitesForAResourceGroup();
 }
 
 main().catch(console.error);

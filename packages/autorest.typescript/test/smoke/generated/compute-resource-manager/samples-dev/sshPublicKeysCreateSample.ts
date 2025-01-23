@@ -40,7 +40,7 @@ async function createANewSshPublicKeyResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createANewSshPublicKeyResource();
+  await createANewSshPublicKeyResource();
 }
 
 main().catch(console.error);

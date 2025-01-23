@@ -36,7 +36,7 @@ async function getServerAdvisor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServerAdvisor();
+  await getServerAdvisor();
 }
 
 main().catch(console.error);

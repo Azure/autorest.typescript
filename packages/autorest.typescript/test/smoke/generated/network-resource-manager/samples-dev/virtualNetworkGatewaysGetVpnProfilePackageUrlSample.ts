@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayVpnProfilePackageUrl(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayVpnProfilePackageUrl();
+  await getVirtualNetworkGatewayVpnProfilePackageUrl();
 }
 
 main().catch(console.error);

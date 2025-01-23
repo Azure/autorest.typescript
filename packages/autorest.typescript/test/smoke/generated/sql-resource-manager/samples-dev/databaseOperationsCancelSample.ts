@@ -37,7 +37,7 @@ async function cancelTheDatabaseManagementOperation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  cancelTheDatabaseManagementOperation();
+  await cancelTheDatabaseManagementOperation();
 }
 
 main().catch(console.error);

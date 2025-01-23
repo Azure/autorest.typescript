@@ -40,7 +40,7 @@ async function deleteAWorkloadClassifier(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAWorkloadClassifier();
+  await deleteAWorkloadClassifier();
 }
 
 main().catch(console.error);

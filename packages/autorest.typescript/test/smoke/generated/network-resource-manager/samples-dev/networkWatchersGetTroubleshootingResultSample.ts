@@ -41,7 +41,7 @@ async function getTroubleshootResult(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTroubleshootResult();
+  await getTroubleshootResult();
 }
 
 main().catch(console.error);

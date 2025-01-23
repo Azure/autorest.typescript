@@ -94,8 +94,8 @@ async function updateASimpleGalleryImageVersionWithoutSourceId(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  updateASimpleGalleryImageVersionManagedImageAsSource();
-  updateASimpleGalleryImageVersionWithoutSourceId();
+  await updateASimpleGalleryImageVersionManagedImageAsSource();
+  await updateASimpleGalleryImageVersionWithoutSourceId();
 }
 
 main().catch(console.error);

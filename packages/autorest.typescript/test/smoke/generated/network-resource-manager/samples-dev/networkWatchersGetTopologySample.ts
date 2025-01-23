@@ -37,7 +37,7 @@ async function getTopology(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTopology();
+  await getTopology();
 }
 
 main().catch(console.error);

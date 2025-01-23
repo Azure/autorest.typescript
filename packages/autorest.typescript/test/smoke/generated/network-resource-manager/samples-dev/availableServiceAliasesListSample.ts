@@ -31,7 +31,7 @@ async function getAvailableServiceAliases(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableServiceAliases();
+  await getAvailableServiceAliases();
 }
 
 main().catch(console.error);

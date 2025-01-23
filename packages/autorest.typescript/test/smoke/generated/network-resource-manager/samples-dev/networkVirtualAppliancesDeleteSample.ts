@@ -32,7 +32,7 @@ async function deleteNetworkVirtualAppliance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkVirtualAppliance();
+  await deleteNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

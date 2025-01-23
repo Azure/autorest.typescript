@@ -30,7 +30,7 @@ async function listAllVirtualNetworkTaps(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualNetworkTaps();
+  await listAllVirtualNetworkTaps();
 }
 
 main().catch(console.error);

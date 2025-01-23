@@ -34,7 +34,7 @@ async function getPrivateDnsZoneGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPrivateDnsZoneGroup();
+  await getPrivateDnsZoneGroup();
 }
 
 main().catch(console.error);

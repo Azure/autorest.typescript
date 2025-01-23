@@ -43,7 +43,7 @@ async function networkManagerDeploymentStatusList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManagerDeploymentStatusList();
+  await networkManagerDeploymentStatusList();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function listNetworkManagerScopeConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listNetworkManagerScopeConnection();
+  await listNetworkManagerScopeConnection();
 }
 
 main().catch(console.error);

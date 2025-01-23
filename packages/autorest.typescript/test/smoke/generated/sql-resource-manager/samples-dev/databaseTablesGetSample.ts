@@ -39,7 +39,7 @@ async function getDatabaseTable(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDatabaseTable();
+  await getDatabaseTable();
 }
 
 main().catch(console.error);

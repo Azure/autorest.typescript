@@ -36,7 +36,7 @@ async function getsAAzureActiveDirectoryOnlyAuthenticationProperty(): Promise<vo
 }
 
 async function main(): Promise<void> {
-  getsAAzureActiveDirectoryOnlyAuthenticationProperty();
+  await getsAAzureActiveDirectoryOnlyAuthenticationProperty();
 }
 
 main().catch(console.error);

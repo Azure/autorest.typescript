@@ -30,7 +30,7 @@ async function listAllVirtualNetworks(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualNetworks();
+  await listAllVirtualNetworks();
 }
 
 main().catch(console.error);

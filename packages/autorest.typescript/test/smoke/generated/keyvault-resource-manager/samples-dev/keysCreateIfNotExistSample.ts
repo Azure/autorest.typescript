@@ -40,7 +40,7 @@ async function createAKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAKey();
+  await createAKey();
 }
 
 main().catch(console.error);

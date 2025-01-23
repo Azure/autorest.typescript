@@ -30,7 +30,7 @@ async function listAllServiceEndpointPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllServiceEndpointPolicy();
+  await listAllServiceEndpointPolicy();
 }
 
 main().catch(console.error);

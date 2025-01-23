@@ -45,7 +45,7 @@ async function approveAPrivateEndpointConnectionUnderADiskAccessResource(): Prom
 }
 
 async function main(): Promise<void> {
-  approveAPrivateEndpointConnectionUnderADiskAccessResource();
+  await approveAPrivateEndpointConnectionUnderADiskAccessResource();
 }
 
 main().catch(console.error);

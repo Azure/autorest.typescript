@@ -31,7 +31,7 @@ async function getAvailableSslPredefinedPolicyByName(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableSslPredefinedPolicyByName();
+  await getAvailableSslPredefinedPolicyByName();
 }
 
 main().catch(console.error);

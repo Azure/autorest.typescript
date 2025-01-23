@@ -51,7 +51,7 @@ async function createOrUpdateDatabaseExtensions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateDatabaseExtensions();
+  await createOrUpdateDatabaseExtensions();
 }
 
 main().catch(console.error);

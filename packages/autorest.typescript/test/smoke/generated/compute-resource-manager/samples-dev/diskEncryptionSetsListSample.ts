@@ -30,7 +30,7 @@ async function listAllDiskEncryptionSetsInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllDiskEncryptionSetsInASubscription();
+  await listAllDiskEncryptionSetsInASubscription();
 }
 
 main().catch(console.error);

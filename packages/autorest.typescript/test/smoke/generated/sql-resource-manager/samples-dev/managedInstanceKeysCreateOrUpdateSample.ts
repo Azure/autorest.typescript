@@ -43,7 +43,7 @@ async function createsOrUpdatesAManagedInstanceKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createsOrUpdatesAManagedInstanceKey();
+  await createsOrUpdatesAManagedInstanceKey();
 }
 
 main().catch(console.error);

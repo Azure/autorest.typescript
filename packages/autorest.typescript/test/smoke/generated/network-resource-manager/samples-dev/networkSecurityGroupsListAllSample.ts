@@ -30,7 +30,7 @@ async function listAllNetworkSecurityGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllNetworkSecurityGroups();
+  await listAllNetworkSecurityGroups();
 }
 
 main().catch(console.error);

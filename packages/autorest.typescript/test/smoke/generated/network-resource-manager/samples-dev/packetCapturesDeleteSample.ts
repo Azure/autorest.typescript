@@ -34,7 +34,7 @@ async function deletePacketCapture(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePacketCapture();
+  await deletePacketCapture();
 }
 
 main().catch(console.error);

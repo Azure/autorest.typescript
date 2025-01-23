@@ -36,7 +36,7 @@ async function deletesAzureActiveDirectoryOnlyAuthenticationObject(): Promise<vo
 }
 
 async function main(): Promise<void> {
-  deletesAzureActiveDirectoryOnlyAuthenticationObject();
+  await deletesAzureActiveDirectoryOnlyAuthenticationObject();
 }
 
 main().catch(console.error);

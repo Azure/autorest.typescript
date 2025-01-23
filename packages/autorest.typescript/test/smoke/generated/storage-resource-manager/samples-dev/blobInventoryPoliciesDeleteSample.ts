@@ -34,7 +34,7 @@ async function storageAccountDeleteBlobInventoryPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountDeleteBlobInventoryPolicy();
+  await storageAccountDeleteBlobInventoryPolicy();
 }
 
 main().catch(console.error);

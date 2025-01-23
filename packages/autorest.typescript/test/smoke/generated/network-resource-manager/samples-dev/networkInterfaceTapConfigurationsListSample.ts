@@ -35,7 +35,7 @@ async function listVirtualNetworkTapConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworkTapConfigurations();
+  await listVirtualNetworkTapConfigurations();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function createLocalNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createLocalNetworkGateway();
+  await createLocalNetworkGateway();
 }
 
 main().catch(console.error);

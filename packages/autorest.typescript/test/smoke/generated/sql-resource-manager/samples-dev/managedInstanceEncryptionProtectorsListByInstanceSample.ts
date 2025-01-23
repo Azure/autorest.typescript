@@ -36,7 +36,7 @@ async function listEncryptionProtectorsByManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listEncryptionProtectorsByManagedInstance();
+  await listEncryptionProtectorsByManagedInstance();
 }
 
 main().catch(console.error);

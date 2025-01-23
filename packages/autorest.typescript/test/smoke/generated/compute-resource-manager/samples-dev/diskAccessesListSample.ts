@@ -30,7 +30,7 @@ async function listAllDiskAccessResourcesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllDiskAccessResourcesInASubscription();
+  await listAllDiskAccessResourcesInASubscription();
 }
 
 main().catch(console.error);

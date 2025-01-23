@@ -36,7 +36,7 @@ async function listSecurityAdminConfigurationsInANetworkManager(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  listSecurityAdminConfigurationsInANetworkManager();
+  await listSecurityAdminConfigurationsInANetworkManager();
 }
 
 main().catch(console.error);

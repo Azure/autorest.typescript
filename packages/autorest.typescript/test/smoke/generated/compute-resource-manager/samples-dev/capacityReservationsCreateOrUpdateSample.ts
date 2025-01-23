@@ -44,7 +44,7 @@ async function createOrUpdateACapacityReservation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateACapacityReservation();
+  await createOrUpdateACapacityReservation();
 }
 
 main().catch(console.error);

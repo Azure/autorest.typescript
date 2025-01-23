@@ -33,7 +33,7 @@ async function virtualMachineRunCommandGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualMachineRunCommandGet();
+  await virtualMachineRunCommandGet();
 }
 
 main().catch(console.error);

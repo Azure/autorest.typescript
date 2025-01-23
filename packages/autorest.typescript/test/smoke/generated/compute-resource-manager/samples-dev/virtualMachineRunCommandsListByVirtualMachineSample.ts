@@ -35,7 +35,7 @@ async function listRunCommandsInAVirtualMachine(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRunCommandsInAVirtualMachine();
+  await listRunCommandsInAVirtualMachine();
 }
 
 main().catch(console.error);

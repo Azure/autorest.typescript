@@ -32,7 +32,7 @@ async function deleteApplicationSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteApplicationSecurityGroup();
+  await deleteApplicationSecurityGroup();
 }
 
 main().catch(console.error);

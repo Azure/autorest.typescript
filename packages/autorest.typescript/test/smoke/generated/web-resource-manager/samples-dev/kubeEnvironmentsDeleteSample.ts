@@ -33,7 +33,7 @@ async function deleteKubeEnvironmentByName(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteKubeEnvironmentByName();
+  await deleteKubeEnvironmentByName();
 }
 
 main().catch(console.error);

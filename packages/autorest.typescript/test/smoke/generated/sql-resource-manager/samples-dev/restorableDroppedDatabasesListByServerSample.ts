@@ -37,7 +37,7 @@ async function getsAListOfRestorableDroppedDatabases(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAListOfRestorableDroppedDatabases();
+  await getsAListOfRestorableDroppedDatabases();
 }
 
 main().catch(console.error);

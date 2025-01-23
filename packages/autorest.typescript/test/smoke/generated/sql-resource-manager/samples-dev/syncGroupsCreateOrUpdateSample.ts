@@ -84,8 +84,8 @@ async function updateASyncGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createASyncGroup();
-  updateASyncGroup();
+  await createASyncGroup();
+  await updateASyncGroup();
 }
 
 main().catch(console.error);

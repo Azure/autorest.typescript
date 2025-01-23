@@ -69,8 +69,8 @@ async function updatesServerAutomaticTuningSettingsWithMinimalProperties(): Prom
 }
 
 async function main(): Promise<void> {
-  updatesServerAutomaticTuningSettingsWithAllProperties();
-  updatesServerAutomaticTuningSettingsWithMinimalProperties();
+  await updatesServerAutomaticTuningSettingsWithAllProperties();
+  await updatesServerAutomaticTuningSettingsWithMinimalProperties();
 }
 
 main().catch(console.error);

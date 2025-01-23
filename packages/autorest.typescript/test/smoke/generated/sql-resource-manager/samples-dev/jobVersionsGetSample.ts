@@ -39,7 +39,7 @@ async function getAVersionOfAJob(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAVersionOfAJob();
+  await getAVersionOfAJob();
 }
 
 main().catch(console.error);

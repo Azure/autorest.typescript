@@ -37,7 +37,7 @@ async function updateLocalNetworkGatewayTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateLocalNetworkGatewayTags();
+  await updateLocalNetworkGatewayTags();
 }
 
 main().catch(console.error);

@@ -49,7 +49,7 @@ async function virtualNetworkGatewayNatRulePut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualNetworkGatewayNatRulePut();
+  await virtualNetworkGatewayNatRulePut();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function listAllNetworkVirtualAppliancesForAGivenSubscription(): Promise<v
 }
 
 async function main(): Promise<void> {
-  listAllNetworkVirtualAppliancesForAGivenSubscription();
+  await listAllNetworkVirtualAppliancesForAGivenSubscription();
 }
 
 main().catch(console.error);

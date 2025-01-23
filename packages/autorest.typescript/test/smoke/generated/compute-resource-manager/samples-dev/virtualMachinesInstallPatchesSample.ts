@@ -45,7 +45,7 @@ async function installPatchStateOfAVirtualMachine(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  installPatchStateOfAVirtualMachine();
+  await installPatchStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

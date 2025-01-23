@@ -40,7 +40,7 @@ async function updateASnapshot(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASnapshot();
+  await updateASnapshot();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function getFtpAllowed(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFtpAllowed();
+  await getFtpAllowed();
 }
 
 main().catch(console.error);

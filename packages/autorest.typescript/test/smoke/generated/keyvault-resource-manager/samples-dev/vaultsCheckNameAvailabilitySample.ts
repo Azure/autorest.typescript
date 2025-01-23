@@ -35,7 +35,7 @@ async function validateAVaultName(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  validateAVaultName();
+  await validateAVaultName();
 }
 
 main().catch(console.error);

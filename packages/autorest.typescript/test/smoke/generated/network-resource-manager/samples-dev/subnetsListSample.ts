@@ -35,7 +35,7 @@ async function listSubnets(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSubnets();
+  await listSubnets();
 }
 
 main().catch(console.error);

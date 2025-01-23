@@ -30,7 +30,7 @@ async function expressRouteCrossConnectionList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteCrossConnectionList();
+  await expressRouteCrossConnectionList();
 }
 
 main().catch(console.error);

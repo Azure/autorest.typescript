@@ -44,7 +44,7 @@ async function createNetworkVirtualApplianceSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkVirtualApplianceSite();
+  await createNetworkVirtualApplianceSite();
 }
 
 main().catch(console.error);

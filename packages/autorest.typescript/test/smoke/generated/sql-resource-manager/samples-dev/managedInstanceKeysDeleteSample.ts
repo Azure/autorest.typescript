@@ -35,7 +35,7 @@ async function deleteTheManagedInstanceKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteTheManagedInstanceKey();
+  await deleteTheManagedInstanceKey();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function createOrUpdateIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateIPGroups();
+  await createOrUpdateIPGroups();
 }
 
 main().catch(console.error);

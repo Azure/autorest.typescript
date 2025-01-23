@@ -31,7 +31,7 @@ async function listRouteTablesInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRouteTablesInResourceGroup();
+  await listRouteTablesInResourceGroup();
 }
 
 main().catch(console.error);

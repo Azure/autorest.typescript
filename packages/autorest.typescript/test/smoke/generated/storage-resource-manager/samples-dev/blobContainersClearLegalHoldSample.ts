@@ -39,7 +39,7 @@ async function clearLegalHoldContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  clearLegalHoldContainers();
+  await clearLegalHoldContainers();
 }
 
 main().catch(console.error);

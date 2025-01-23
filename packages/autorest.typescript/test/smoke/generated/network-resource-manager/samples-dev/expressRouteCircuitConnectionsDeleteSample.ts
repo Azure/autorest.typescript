@@ -36,7 +36,7 @@ async function deleteExpressRouteCircuit(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteExpressRouteCircuit();
+  await deleteExpressRouteCircuit();
 }
 
 main().catch(console.error);

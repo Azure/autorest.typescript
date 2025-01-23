@@ -38,7 +38,7 @@ async function getTheLongTermRetentionPolicyForTheManagedDatabase(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  getTheLongTermRetentionPolicyForTheManagedDatabase();
+  await getTheLongTermRetentionPolicyForTheManagedDatabase();
 }
 
 main().catch(console.error);

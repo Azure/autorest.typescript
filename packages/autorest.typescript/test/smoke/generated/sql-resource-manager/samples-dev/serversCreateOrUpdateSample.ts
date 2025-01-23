@@ -48,7 +48,7 @@ async function createServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createServer();
+  await createServer();
 }
 
 main().catch(console.error);

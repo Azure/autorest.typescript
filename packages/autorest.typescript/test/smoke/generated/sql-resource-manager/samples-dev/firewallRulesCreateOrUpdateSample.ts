@@ -72,8 +72,8 @@ async function updateAFirewallRuleMaxOrMin(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAFirewallRuleMaxOrMin();
-  updateAFirewallRuleMaxOrMin();
+  await createAFirewallRuleMaxOrMin();
+  await updateAFirewallRuleMaxOrMin();
 }
 
 main().catch(console.error);

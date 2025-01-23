@@ -35,7 +35,7 @@ async function listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualApplian
 }
 
 async function main(): Promise<void> {
-  listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualAppliance();
+  await listAllNetworkVirtualApplianceSitesForAGivenNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

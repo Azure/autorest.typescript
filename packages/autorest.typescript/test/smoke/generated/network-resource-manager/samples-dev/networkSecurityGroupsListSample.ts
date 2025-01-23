@@ -31,7 +31,7 @@ async function listNetworkSecurityGroupsInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listNetworkSecurityGroupsInResourceGroup();
+  await listNetworkSecurityGroupsInResourceGroup();
 }
 
 main().catch(console.error);

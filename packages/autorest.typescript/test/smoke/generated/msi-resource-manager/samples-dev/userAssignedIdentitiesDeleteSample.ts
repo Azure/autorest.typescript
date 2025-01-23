@@ -32,7 +32,7 @@ async function identityDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityDelete();
+  await identityDelete();
 }
 
 main().catch(console.error);

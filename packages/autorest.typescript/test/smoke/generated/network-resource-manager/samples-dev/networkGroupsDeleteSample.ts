@@ -41,7 +41,7 @@ async function networkGroupsDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkGroupsDelete();
+  await networkGroupsDelete();
 }
 
 main().catch(console.error);

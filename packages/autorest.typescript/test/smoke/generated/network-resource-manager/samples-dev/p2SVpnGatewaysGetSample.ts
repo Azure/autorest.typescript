@@ -32,7 +32,7 @@ async function p2SVpnGatewayGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  p2SVpnGatewayGet();
+  await p2SVpnGatewayGet();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function listGalleryImagesInAGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listGalleryImagesInAGallery();
+  await listGalleryImagesInAGallery();
 }
 
 main().catch(console.error);

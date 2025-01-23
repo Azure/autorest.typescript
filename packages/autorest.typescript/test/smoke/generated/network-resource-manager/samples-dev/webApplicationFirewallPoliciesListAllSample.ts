@@ -30,7 +30,7 @@ async function listsAllWafPoliciesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listsAllWafPoliciesInASubscription();
+  await listsAllWafPoliciesInASubscription();
 }
 
 main().catch(console.error);

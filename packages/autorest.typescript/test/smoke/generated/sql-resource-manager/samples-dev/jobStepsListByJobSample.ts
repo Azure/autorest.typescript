@@ -40,7 +40,7 @@ async function listJobStepsForTheLatestVersionOfAJob(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listJobStepsForTheLatestVersionOfAJob();
+  await listJobStepsForTheLatestVersionOfAJob();
 }
 
 main().catch(console.error);

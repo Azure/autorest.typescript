@@ -32,7 +32,7 @@ async function azureFirewallListLearnedPrefixes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  azureFirewallListLearnedPrefixes();
+  await azureFirewallListLearnedPrefixes();
 }
 
 main().catch(console.error);

@@ -71,8 +71,8 @@ async function updateTheEncryptionProtectorToServiceManaged(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateTheEncryptionProtectorToKeyVault();
-  updateTheEncryptionProtectorToServiceManaged();
+  await updateTheEncryptionProtectorToKeyVault();
+  await updateTheEncryptionProtectorToServiceManaged();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function getsTheManagedInstanceManagementOperation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsTheManagedInstanceManagementOperation();
+  await getsTheManagedInstanceManagementOperation();
 }
 
 main().catch(console.error);

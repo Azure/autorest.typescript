@@ -34,7 +34,7 @@ async function deleteFlowLog(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteFlowLog();
+  await deleteFlowLog();
 }
 
 main().catch(console.error);

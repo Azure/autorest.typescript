@@ -33,7 +33,7 @@ async function listNetworkInterfaceEffectiveNetworkSecurityGroups(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  listNetworkInterfaceEffectiveNetworkSecurityGroups();
+  await listNetworkInterfaceEffectiveNetworkSecurityGroups();
 }
 
 main().catch(console.error);

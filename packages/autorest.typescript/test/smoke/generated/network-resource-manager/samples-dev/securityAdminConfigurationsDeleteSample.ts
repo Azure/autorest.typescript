@@ -41,7 +41,7 @@ async function deleteNetworkManagerSecurityAdminConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkManagerSecurityAdminConfiguration();
+  await deleteNetworkManagerSecurityAdminConfiguration();
 }
 
 main().catch(console.error);

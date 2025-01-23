@@ -28,7 +28,7 @@ async function expressRoutePortsLocationGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortsLocationGet();
+  await expressRoutePortsLocationGet();
 }
 
 main().catch(console.error);

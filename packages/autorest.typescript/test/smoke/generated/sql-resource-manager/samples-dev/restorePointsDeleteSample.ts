@@ -38,7 +38,7 @@ async function deletesARestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesARestorePoint();
+  await deletesARestorePoint();
 }
 
 main().catch(console.error);

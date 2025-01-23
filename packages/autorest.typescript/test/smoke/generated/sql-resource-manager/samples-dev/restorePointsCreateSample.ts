@@ -43,7 +43,7 @@ async function createsDatawarehouseDatabaseRestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createsDatawarehouseDatabaseRestorePoint();
+  await createsDatawarehouseDatabaseRestorePoint();
 }
 
 main().catch(console.error);

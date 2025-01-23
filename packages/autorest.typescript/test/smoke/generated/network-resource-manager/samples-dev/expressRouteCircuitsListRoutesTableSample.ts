@@ -36,7 +36,7 @@ async function listRouteTables(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRouteTables();
+  await listRouteTables();
 }
 
 main().catch(console.error);

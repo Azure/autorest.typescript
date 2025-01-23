@@ -33,7 +33,7 @@ async function expressRouteGatewayDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteGatewayDelete();
+  await expressRouteGatewayDelete();
 }
 
 main().catch(console.error);

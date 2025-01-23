@@ -40,7 +40,7 @@ async function forceDeleteAVMScaleSet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  forceDeleteAVMScaleSet();
+  await forceDeleteAVMScaleSet();
 }
 
 main().catch(console.error);

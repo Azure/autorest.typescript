@@ -33,7 +33,7 @@ async function getSignatureOverrides(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSignatureOverrides();
+  await getSignatureOverrides();
 }
 
 main().catch(console.error);

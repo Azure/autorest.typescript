@@ -39,7 +39,7 @@ async function listOfTheUserActivitiesOfADataWarehouse(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listOfTheUserActivitiesOfADataWarehouse();
+  await listOfTheUserActivitiesOfADataWarehouse();
 }
 
 main().catch(console.error);

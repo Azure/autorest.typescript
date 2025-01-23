@@ -33,7 +33,7 @@ async function listResourceGroupServiceEndpointPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listResourceGroupServiceEndpointPolicies();
+  await listResourceGroupServiceEndpointPolicies();
 }
 
 main().catch(console.error);

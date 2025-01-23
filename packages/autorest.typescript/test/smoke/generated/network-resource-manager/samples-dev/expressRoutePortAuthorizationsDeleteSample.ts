@@ -34,7 +34,7 @@ async function deleteExpressRoutePortAuthorization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteExpressRoutePortAuthorization();
+  await deleteExpressRoutePortAuthorization();
 }
 
 main().catch(console.error);

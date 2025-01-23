@@ -77,8 +77,8 @@ async function listManagedDatabaseColumns(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  filterManagedDatabaseColumns();
-  listManagedDatabaseColumns();
+  await filterManagedDatabaseColumns();
+  await listManagedDatabaseColumns();
 }
 
 main().catch(console.error);

@@ -61,8 +61,8 @@ async function listOfServerRecommendedActionsForAllAdvisors(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listOfServerAdvisors();
-  listOfServerRecommendedActionsForAllAdvisors();
+  await listOfServerAdvisors();
+  await listOfServerRecommendedActionsForAllAdvisors();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listDeletedManagedHsMSInTheSpecifiedSubscription(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  listDeletedManagedHsMSInTheSpecifiedSubscription();
+  await listDeletedManagedHsMSInTheSpecifiedSubscription();
 }
 
 main().catch(console.error);

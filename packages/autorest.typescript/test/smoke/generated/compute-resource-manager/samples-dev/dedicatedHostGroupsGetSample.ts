@@ -32,7 +32,7 @@ async function createADedicatedHostGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createADedicatedHostGroup();
+  await createADedicatedHostGroup();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function virtualWanCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanCreate();
+  await virtualWanCreate();
 }
 
 main().catch(console.error);

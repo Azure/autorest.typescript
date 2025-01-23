@@ -38,7 +38,7 @@ async function listElasticPoolActivity(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listElasticPoolActivity();
+  await listElasticPoolActivity();
 }
 
 main().catch(console.error);

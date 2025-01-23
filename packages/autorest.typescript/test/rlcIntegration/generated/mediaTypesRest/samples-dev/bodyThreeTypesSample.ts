@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation BodyThreeTypes
  *
  * @summary call operation BodyThreeTypes
  */
-async function bodyThreeTypesSample() {
+async function bodyThreeTypesSample(): Promise<void> {
   const client = createMediaTypesClient();
   const result = await client
     .path("/mediatypes/bodyThreeTypes")
@@ -19,8 +17,8 @@ async function bodyThreeTypesSample() {
   console.log(result);
 }
 
-async function main() {
-  bodyThreeTypesSample();
+async function main(): Promise<void> {
+  await bodyThreeTypesSample();
 }
 
 main().catch(console.error);

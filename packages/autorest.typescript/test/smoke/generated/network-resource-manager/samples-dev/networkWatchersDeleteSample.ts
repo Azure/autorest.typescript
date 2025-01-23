@@ -32,7 +32,7 @@ async function deleteNetworkWatcher(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkWatcher();
+  await deleteNetworkWatcher();
 }
 
 main().catch(console.error);

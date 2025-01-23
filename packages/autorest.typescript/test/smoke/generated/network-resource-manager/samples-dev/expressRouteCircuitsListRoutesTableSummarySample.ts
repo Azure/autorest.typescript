@@ -37,7 +37,7 @@ async function listRouteTableSummary(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRouteTableSummary();
+  await listRouteTableSummary();
 }
 
 main().catch(console.error);

@@ -95,7 +95,7 @@ async function updateVirtualNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualNetworkGateway();
+  await updateVirtualNetworkGateway();
 }
 
 main().catch(console.error);

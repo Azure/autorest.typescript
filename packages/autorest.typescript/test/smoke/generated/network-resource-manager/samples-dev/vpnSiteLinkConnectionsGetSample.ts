@@ -36,7 +36,7 @@ async function vpnSiteLinkConnectionGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSiteLinkConnectionGet();
+  await vpnSiteLinkConnectionGet();
 }
 
 main().catch(console.error);

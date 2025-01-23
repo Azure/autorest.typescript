@@ -35,7 +35,7 @@ async function keyVaultGetPrivateEndpointConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  keyVaultGetPrivateEndpointConnection();
+  await keyVaultGetPrivateEndpointConnection();
 }
 
 main().catch(console.error);

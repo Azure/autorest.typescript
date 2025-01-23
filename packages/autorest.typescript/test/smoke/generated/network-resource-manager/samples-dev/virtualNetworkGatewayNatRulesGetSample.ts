@@ -34,7 +34,7 @@ async function virtualNetworkGatewayNatRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualNetworkGatewayNatRuleGet();
+  await virtualNetworkGatewayNatRuleGet();
 }
 
 main().catch(console.error);

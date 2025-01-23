@@ -36,7 +36,7 @@ async function listFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listFailoverGroup();
+  await listFailoverGroup();
 }
 
 main().catch(console.error);

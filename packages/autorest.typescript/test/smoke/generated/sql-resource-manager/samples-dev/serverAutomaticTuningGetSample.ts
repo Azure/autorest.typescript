@@ -34,7 +34,7 @@ async function getAServerAutomaticTuningSettings(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAServerAutomaticTuningSettings();
+  await getAServerAutomaticTuningSettings();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function routeMapList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeMapList();
+  await routeMapList();
 }
 
 main().catch(console.error);

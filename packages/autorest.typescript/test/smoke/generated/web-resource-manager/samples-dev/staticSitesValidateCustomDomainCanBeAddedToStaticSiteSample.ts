@@ -42,7 +42,7 @@ async function validateACustomDomainForAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  validateACustomDomainForAStaticSite();
+  await validateACustomDomainForAStaticSite();
 }
 
 main().catch(console.error);

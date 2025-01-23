@@ -40,7 +40,7 @@ async function deletesTheSpecifiedActiveSession(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesTheSpecifiedActiveSession();
+  await deletesTheSpecifiedActiveSession();
 }
 
 main().catch(console.error);

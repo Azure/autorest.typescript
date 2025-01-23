@@ -39,7 +39,7 @@ async function getTheListOfWorkloadGroupsForADataWarehouse(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheListOfWorkloadGroupsForADataWarehouse();
+  await getTheListOfWorkloadGroupsForADataWarehouse();
 }
 
 main().catch(console.error);

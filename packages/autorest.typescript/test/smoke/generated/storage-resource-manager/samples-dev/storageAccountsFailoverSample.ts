@@ -32,7 +32,7 @@ async function storageAccountFailover(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountFailover();
+  await storageAccountFailover();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function deleteARunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteARunCommand();
+  await deleteARunCommand();
 }
 
 main().catch(console.error);

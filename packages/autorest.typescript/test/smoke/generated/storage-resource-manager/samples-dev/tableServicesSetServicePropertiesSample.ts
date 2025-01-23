@@ -74,7 +74,7 @@ async function tableServicesPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  tableServicesPut();
+  await tableServicesPut();
 }
 
 main().catch(console.error);

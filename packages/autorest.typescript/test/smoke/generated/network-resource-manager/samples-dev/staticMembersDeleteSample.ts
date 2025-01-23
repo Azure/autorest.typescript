@@ -37,7 +37,7 @@ async function staticMembersDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  staticMembersDelete();
+  await staticMembersDelete();
 }
 
 main().catch(console.error);

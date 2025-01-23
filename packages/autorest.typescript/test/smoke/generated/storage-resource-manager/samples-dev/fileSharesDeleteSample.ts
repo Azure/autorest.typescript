@@ -34,7 +34,7 @@ async function deleteShares(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteShares();
+  await deleteShares();
 }
 
 main().catch(console.error);

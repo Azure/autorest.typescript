@@ -30,7 +30,7 @@ async function vpnSiteList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSiteList();
+  await vpnSiteList();
 }
 
 main().catch(console.error);

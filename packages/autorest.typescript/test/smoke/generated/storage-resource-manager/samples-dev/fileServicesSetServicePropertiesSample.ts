@@ -127,9 +127,9 @@ async function putFileServicesEnableSecureSmbFeatures(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  putFileServices();
-  putFileServicesEnableSmbMultichannel();
-  putFileServicesEnableSecureSmbFeatures();
+  await putFileServices();
+  await putFileServicesEnableSmbMultichannel();
+  await putFileServicesEnableSecureSmbFeatures();
 }
 
 main().catch(console.error);

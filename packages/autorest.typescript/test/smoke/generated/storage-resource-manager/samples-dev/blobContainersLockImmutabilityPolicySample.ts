@@ -36,7 +36,7 @@ async function lockImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  lockImmutabilityPolicy();
+  await lockImmutabilityPolicy();
 }
 
 main().catch(console.error);

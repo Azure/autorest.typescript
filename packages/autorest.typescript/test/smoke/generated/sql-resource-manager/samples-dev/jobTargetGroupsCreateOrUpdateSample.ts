@@ -100,8 +100,8 @@ async function createOrUpdateATargetGroupWithMinimalProperties(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  createOrUpdateATargetGroupWithAllProperties();
-  createOrUpdateATargetGroupWithMinimalProperties();
+  await createOrUpdateATargetGroupWithAllProperties();
+  await createOrUpdateATargetGroupWithMinimalProperties();
 }
 
 main().catch(console.error);

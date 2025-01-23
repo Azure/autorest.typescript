@@ -33,7 +33,7 @@ async function vpnGatewayListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnGatewayListByResourceGroup();
+  await vpnGatewayListByResourceGroup();
 }
 
 main().catch(console.error);

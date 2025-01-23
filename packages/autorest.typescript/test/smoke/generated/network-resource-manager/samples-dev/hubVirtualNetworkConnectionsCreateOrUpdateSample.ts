@@ -79,7 +79,7 @@ async function hubVirtualNetworkConnectionPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  hubVirtualNetworkConnectionPut();
+  await hubVirtualNetworkConnectionPut();
 }
 
 main().catch(console.error);

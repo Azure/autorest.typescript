@@ -32,7 +32,7 @@ async function deleteNetworkSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkSecurityGroup();
+  await deleteNetworkSecurityGroup();
 }
 
 main().catch(console.error);

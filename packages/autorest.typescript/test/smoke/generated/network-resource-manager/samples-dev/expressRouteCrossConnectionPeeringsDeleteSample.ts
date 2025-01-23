@@ -36,7 +36,7 @@ async function deleteExpressRouteCrossConnectionBgpPeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteExpressRouteCrossConnectionBgpPeering();
+  await deleteExpressRouteCrossConnectionBgpPeering();
 }
 
 main().catch(console.error);

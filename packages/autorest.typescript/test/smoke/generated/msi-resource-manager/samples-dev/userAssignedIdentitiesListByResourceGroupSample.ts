@@ -33,7 +33,7 @@ async function identityListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityListByResourceGroup();
+  await identityListByResourceGroup();
 }
 
 main().catch(console.error);

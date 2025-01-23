@@ -30,7 +30,7 @@ async function listAllDDoSProtectionPlans(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllDDoSProtectionPlans();
+  await listAllDDoSProtectionPlans();
 }
 
 main().catch(console.error);

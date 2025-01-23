@@ -42,7 +42,7 @@ async function createASecret(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createASecret();
+  await createASecret();
 }
 
 main().catch(console.error);

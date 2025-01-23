@@ -36,7 +36,7 @@ async function listServiceObjectives(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listServiceObjectives();
+  await listServiceObjectives();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function getNetworkVirtualAppliance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkVirtualAppliance();
+  await getNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

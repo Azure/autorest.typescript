@@ -51,7 +51,7 @@
         }
       },
       "post": {
-        "operationId": "TodoItems_create",
+        "operationId": "TodoItems_createJson_TodoItems_createForm",
         "parameters": [],
         "responses": {
           "200": {
@@ -115,6 +115,19 @@
                 "required": [
                   "item"
                 ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ToDoItemMultipartRequest"
+              },
+              "encoding": {
+                "item": {
+                  "contentType": "application/json"
+                },
+                "attachments": {
+                  "contentType": "*/*"
+                }
               }
             }
           }
@@ -317,7 +330,7 @@
         }
       },
       "post": {
-        "operationId": "Attachments_createAttachment",
+        "operationId": "Attachments_createJsonAttachment_Attachments_createFileAttachment",
         "parameters": [
           {
             "name": "itemId",
@@ -371,6 +384,16 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TodoAttachment"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FileAttachmentMultipartRequest"
+              },
+              "encoding": {
+                "contents": {
+                  "contentType": "*/*"
+                }
               }
             }
           }
@@ -503,6 +526,18 @@
           }
         }
       },
+      "FileAttachmentMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "contents"
+        ]
+      },
       "Standard4XXResponse": {
         "type": "object",
         "allOf": [
@@ -521,17 +556,25 @@
         ],
         "description": "Something is wrong with me."
       },
-      "TodoAttachment": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TodoFileAttachment"
+      "ToDoItemMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/TodoItemCreate"
           },
-          {
-            "$ref": "#/components/schemas/TodoUrlAttachment"
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
           }
+        },
+        "required": [
+          "item"
         ]
       },
-      "TodoFileAttachment": {
+      "TodoAttachment": {
         "type": "object",
         "required": [
           "filename",
@@ -802,24 +845,6 @@
             }
           }
         ]
-      },
-      "TodoUrlAttachment": {
-        "type": "object",
-        "required": [
-          "description",
-          "url"
-        ],
-        "properties": {
-          "description": {
-            "type": "string",
-            "description": "A description of the URL"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "description": "The url"
-          }
-        }
       },
       "User": {
         "type": "object",

@@ -53,7 +53,7 @@ async function registerAUserProvidedFunctionAppWithAStaticSiteBuild(): Promise<v
 }
 
 async function main(): Promise<void> {
-  registerAUserProvidedFunctionAppWithAStaticSiteBuild();
+  await registerAUserProvidedFunctionAppWithAStaticSiteBuild();
 }
 
 main().catch(console.error);

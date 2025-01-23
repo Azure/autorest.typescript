@@ -35,7 +35,7 @@ async function listAvailabilitySetsInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAvailabilitySetsInASubscription();
+  await listAvailabilitySetsInASubscription();
 }
 
 main().catch(console.error);

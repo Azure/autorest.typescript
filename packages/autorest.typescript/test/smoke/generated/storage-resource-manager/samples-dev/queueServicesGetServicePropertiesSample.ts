@@ -32,7 +32,7 @@ async function queueServicesGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueServicesGet();
+  await queueServicesGet();
 }
 
 main().catch(console.error);

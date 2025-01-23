@@ -31,7 +31,7 @@ async function listDeletedVaultsInTheSpecifiedSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDeletedVaultsInTheSpecifiedSubscription();
+  await listDeletedVaultsInTheSpecifiedSubscription();
 }
 
 main().catch(console.error);

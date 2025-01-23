@@ -35,7 +35,7 @@ async function listCapacityReservationsInReservationGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCapacityReservationsInReservationGroup();
+  await listCapacityReservationsInReservationGroup();
 }
 
 main().catch(console.error);

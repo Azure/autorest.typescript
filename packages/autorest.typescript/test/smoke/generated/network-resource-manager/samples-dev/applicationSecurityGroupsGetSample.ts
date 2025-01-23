@@ -32,7 +32,7 @@ async function getApplicationSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getApplicationSecurityGroup();
+  await getApplicationSecurityGroup();
 }
 
 main().catch(console.error);

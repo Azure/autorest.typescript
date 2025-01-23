@@ -46,7 +46,7 @@ async function updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperatio
 }
 
 async function main(): Promise<void> {
-  updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
+  await updateRecommendedSensitivityLabelsOfAGivenDatabaseUsingAnOperationsBatch();
 }
 
 main().catch(console.error);

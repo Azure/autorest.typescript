@@ -60,7 +60,7 @@ async function createPrivateLinkService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createPrivateLinkService();
+  await createPrivateLinkService();
 }
 
 main().catch(console.error);

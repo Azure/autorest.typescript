@@ -32,7 +32,7 @@ async function deletePublicIPAddress(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePublicIPAddress();
+  await deletePublicIPAddress();
 }
 
 main().catch(console.error);

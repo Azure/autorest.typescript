@@ -30,7 +30,7 @@ async function retrieveADeletedVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  retrieveADeletedVault();
+  await retrieveADeletedVault();
 }
 
 main().catch(console.error);

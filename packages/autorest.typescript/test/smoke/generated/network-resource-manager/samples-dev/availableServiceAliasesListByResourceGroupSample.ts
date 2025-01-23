@@ -35,7 +35,7 @@ async function getAvailableServiceAliasesInTheResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableServiceAliasesInTheResourceGroup();
+  await getAvailableServiceAliasesInTheResourceGroup();
 }
 
 main().catch(console.error);

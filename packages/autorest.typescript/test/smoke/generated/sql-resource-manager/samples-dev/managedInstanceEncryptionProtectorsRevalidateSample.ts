@@ -36,7 +36,7 @@ async function revalidatesTheEncryptionProtector(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  revalidatesTheEncryptionProtector();
+  await revalidatesTheEncryptionProtector();
 }
 
 main().catch(console.error);

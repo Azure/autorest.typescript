@@ -39,7 +39,7 @@ async function createJobExecution(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createJobExecution();
+  await createJobExecution();
 }
 
 main().catch(console.error);

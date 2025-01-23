@@ -35,7 +35,7 @@ async function getAvailableDelegationsInTheResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableDelegationsInTheResourceGroup();
+  await getAvailableDelegationsInTheResourceGroup();
 }
 
 main().catch(console.error);

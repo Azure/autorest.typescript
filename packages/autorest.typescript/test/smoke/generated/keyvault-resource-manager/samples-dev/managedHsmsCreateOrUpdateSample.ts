@@ -49,7 +49,7 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool(): Promi
 }
 
 async function main(): Promise<void> {
-  createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
+  await createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
 }
 
 main().catch(console.error);

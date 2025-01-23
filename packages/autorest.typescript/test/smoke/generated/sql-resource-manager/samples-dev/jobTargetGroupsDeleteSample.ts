@@ -37,7 +37,7 @@ async function deleteATargetGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteATargetGroup();
+  await deleteATargetGroup();
 }
 
 main().catch(console.error);

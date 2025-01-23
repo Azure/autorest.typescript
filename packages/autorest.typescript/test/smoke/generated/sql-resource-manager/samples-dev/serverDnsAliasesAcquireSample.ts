@@ -43,7 +43,7 @@ async function acquireServerDnsAlias(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  acquireServerDnsAlias();
+  await acquireServerDnsAlias();
 }
 
 main().catch(console.error);

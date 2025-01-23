@@ -36,7 +36,7 @@ async function listInaccessibleManagedDatabasesByManagedInstances(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  listInaccessibleManagedDatabasesByManagedInstances();
+  await listInaccessibleManagedDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

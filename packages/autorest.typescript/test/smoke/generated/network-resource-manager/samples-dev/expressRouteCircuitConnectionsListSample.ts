@@ -37,7 +37,7 @@ async function listExpressRouteCircuitConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRouteCircuitConnection();
+  await listExpressRouteCircuitConnection();
 }
 
 main().catch(console.error);

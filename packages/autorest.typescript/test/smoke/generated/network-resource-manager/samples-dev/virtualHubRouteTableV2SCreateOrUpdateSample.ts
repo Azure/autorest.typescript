@@ -56,7 +56,7 @@ async function virtualHubRouteTableV2Put(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubRouteTableV2Put();
+  await virtualHubRouteTableV2Put();
 }
 
 main().catch(console.error);

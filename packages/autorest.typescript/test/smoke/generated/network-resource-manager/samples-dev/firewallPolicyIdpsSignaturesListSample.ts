@@ -44,7 +44,7 @@ async function querySignatureOverrides(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  querySignatureOverrides();
+  await querySignatureOverrides();
 }
 
 main().catch(console.error);

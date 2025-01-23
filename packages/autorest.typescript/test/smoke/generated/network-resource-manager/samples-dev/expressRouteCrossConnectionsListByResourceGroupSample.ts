@@ -34,7 +34,7 @@ async function expressRouteCrossConnectionListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteCrossConnectionListByResourceGroup();
+  await expressRouteCrossConnectionListByResourceGroup();
 }
 
 main().catch(console.error);

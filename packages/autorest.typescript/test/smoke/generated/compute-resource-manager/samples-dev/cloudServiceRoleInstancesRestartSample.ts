@@ -34,7 +34,7 @@ async function restartCloudServiceRoleInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  restartCloudServiceRoleInstance();
+  await restartCloudServiceRoleInstance();
 }
 
 main().catch(console.error);

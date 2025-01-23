@@ -33,7 +33,7 @@ async function listAllNetworkVirtualApplianceForAGivenResourceGroup(): Promise<v
 }
 
 async function main(): Promise<void> {
-  listAllNetworkVirtualApplianceForAGivenResourceGroup();
+  await listAllNetworkVirtualApplianceForAGivenResourceGroup();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function identityListBySubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityListBySubscription();
+  await identityListBySubscription();
 }
 
 main().catch(console.error);

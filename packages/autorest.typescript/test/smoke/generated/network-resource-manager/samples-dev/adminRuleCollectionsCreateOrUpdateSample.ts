@@ -50,7 +50,7 @@ async function createOrUpdateAnAdminRuleCollection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAnAdminRuleCollection();
+  await createOrUpdateAnAdminRuleCollection();
 }
 
 main().catch(console.error);

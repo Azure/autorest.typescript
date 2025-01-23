@@ -30,7 +30,7 @@ async function getAppServicePlan(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAppServicePlan();
+  await getAppServicePlan();
 }
 
 main().catch(console.error);

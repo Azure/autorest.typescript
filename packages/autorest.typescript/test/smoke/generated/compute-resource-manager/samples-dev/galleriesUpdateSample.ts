@@ -39,7 +39,7 @@ async function updateASimpleGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASimpleGallery();
+  await updateASimpleGallery();
 }
 
 main().catch(console.error);

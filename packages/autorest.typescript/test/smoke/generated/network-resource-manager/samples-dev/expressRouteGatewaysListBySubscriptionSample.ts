@@ -27,7 +27,7 @@ async function expressRouteGatewayListBySubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteGatewayListBySubscription();
+  await expressRouteGatewayListBySubscription();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function deleteAManagedHsmPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAManagedHsmPool();
+  await deleteAManagedHsmPool();
 }
 
 main().catch(console.error);

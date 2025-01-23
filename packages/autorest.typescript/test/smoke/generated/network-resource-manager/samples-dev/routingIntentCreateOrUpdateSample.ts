@@ -55,7 +55,7 @@ async function routeTablePut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeTablePut();
+  await routeTablePut();
 }
 
 main().catch(console.error);

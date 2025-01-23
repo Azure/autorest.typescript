@@ -32,7 +32,7 @@ async function storageAccountListKeys(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountListKeys();
+  await storageAccountListKeys();
 }
 
 main().catch(console.error);

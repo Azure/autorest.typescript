@@ -38,7 +38,7 @@ async function getDatabaseAdvisor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDatabaseAdvisor();
+  await getDatabaseAdvisor();
 }
 
 main().catch(console.error);

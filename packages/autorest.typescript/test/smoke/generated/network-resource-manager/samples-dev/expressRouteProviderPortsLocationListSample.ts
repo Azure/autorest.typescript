@@ -27,7 +27,7 @@ async function expressRouteProviderPortList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteProviderPortList();
+  await expressRouteProviderPortList();
 }
 
 main().catch(console.error);

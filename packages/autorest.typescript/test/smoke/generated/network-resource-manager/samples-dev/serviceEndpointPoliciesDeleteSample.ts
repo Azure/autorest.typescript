@@ -32,7 +32,7 @@ async function deleteServiceEndpointPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteServiceEndpointPolicy();
+  await deleteServiceEndpointPolicy();
 }
 
 main().catch(console.error);

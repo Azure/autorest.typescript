@@ -38,7 +38,7 @@ async function generateVirtualNetworkGatewayVpnProfile(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generateVirtualNetworkGatewayVpnProfile();
+  await generateVirtualNetworkGatewayVpnProfile();
 }
 
 main().catch(console.error);

@@ -49,8 +49,8 @@ async function listUsagesSpacedLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listUsages();
-  listUsagesSpacedLocation();
+  await listUsages();
+  await listUsagesSpacedLocation();
 }
 
 main().catch(console.error);

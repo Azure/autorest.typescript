@@ -35,7 +35,7 @@ async function vnetGetUsage(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vnetGetUsage();
+  await vnetGetUsage();
 }
 
 main().catch(console.error);

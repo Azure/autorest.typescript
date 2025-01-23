@@ -12,6 +12,8 @@ import {
   create,
   get,
 } from "../../api/evaluations/index.js";
+import { Evaluation, EvaluationSchedule } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   EvaluationsDeleteScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
@@ -22,8 +24,6 @@ import {
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
 } from "../../api/options.js";
-import { Evaluation, EvaluationSchedule } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {
@@ -99,7 +99,7 @@ function _getEvaluations(context: AzureAIContext) {
   };
 }
 
-export function getEvaluationsOperations(
+export function _getEvaluationsOperations(
   context: AzureAIContext,
 ): EvaluationsOperations {
   return {

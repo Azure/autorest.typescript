@@ -46,7 +46,7 @@ async function storageAccountPatchEncryptionScope(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountPatchEncryptionScope();
+  await storageAccountPatchEncryptionScope();
 }
 
 main().catch(console.error);

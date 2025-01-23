@@ -35,7 +35,7 @@ async function hubVirtualNetworkConnectionList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  hubVirtualNetworkConnectionList();
+  await hubVirtualNetworkConnectionList();
 }
 
 main().catch(console.error);

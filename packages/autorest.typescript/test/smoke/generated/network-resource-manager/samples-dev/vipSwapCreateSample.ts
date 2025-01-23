@@ -37,7 +37,7 @@ async function putVipSwapOperation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  putVipSwapOperation();
+  await putVipSwapOperation();
 }
 
 main().catch(console.error);

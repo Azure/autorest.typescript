@@ -32,7 +32,7 @@ async function deleteLoadBalancer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteLoadBalancer();
+  await deleteLoadBalancer();
 }
 
 main().catch(console.error);

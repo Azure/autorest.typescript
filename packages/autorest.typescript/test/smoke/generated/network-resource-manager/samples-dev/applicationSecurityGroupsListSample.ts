@@ -33,7 +33,7 @@ async function listLoadBalancersInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listLoadBalancersInResourceGroup();
+  await listLoadBalancersInResourceGroup();
 }
 
 main().catch(console.error);

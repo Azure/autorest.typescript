@@ -37,7 +37,7 @@ async function updatePublicIPPrefixTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updatePublicIPPrefixTags();
+  await updatePublicIPPrefixTags();
 }
 
 main().catch(console.error);

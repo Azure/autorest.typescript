@@ -98,10 +98,10 @@ async function getFirewallPolicyRuleCollectionGroupWithWebCategories(): Promise<
 }
 
 async function main(): Promise<void> {
-  getFirewallPolicyNatRuleCollectionGroup();
-  getFirewallPolicyRuleCollectionGroup();
-  getFirewallPolicyRuleCollectionGroupWithIPGroups();
-  getFirewallPolicyRuleCollectionGroupWithWebCategories();
+  await getFirewallPolicyNatRuleCollectionGroup();
+  await getFirewallPolicyRuleCollectionGroup();
+  await getFirewallPolicyRuleCollectionGroupWithIPGroups();
+  await getFirewallPolicyRuleCollectionGroupWithWebCategories();
 }
 
 main().catch(console.error);

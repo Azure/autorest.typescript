@@ -30,7 +30,7 @@ async function getsTheListOfRestorePointCollectionsInASubscription(): Promise<vo
 }
 
 async function main(): Promise<void> {
-  getsTheListOfRestorePointCollectionsInASubscription();
+  await getsTheListOfRestorePointCollectionsInASubscription();
 }
 
 main().catch(console.error);

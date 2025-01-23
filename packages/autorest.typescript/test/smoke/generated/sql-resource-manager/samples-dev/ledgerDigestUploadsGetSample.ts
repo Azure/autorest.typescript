@@ -37,7 +37,7 @@ async function getsTheCurrentLedgerDigestUploadConfigurationForADatabase(): Prom
 }
 
 async function main(): Promise<void> {
-  getsTheCurrentLedgerDigestUploadConfigurationForADatabase();
+  await getsTheCurrentLedgerDigestUploadConfigurationForADatabase();
 }
 
 main().catch(console.error);

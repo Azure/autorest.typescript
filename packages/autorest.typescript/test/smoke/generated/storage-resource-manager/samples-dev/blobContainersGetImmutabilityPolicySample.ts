@@ -34,7 +34,7 @@ async function getImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getImmutabilityPolicy();
+  await getImmutabilityPolicy();
 }
 
 main().catch(console.error);

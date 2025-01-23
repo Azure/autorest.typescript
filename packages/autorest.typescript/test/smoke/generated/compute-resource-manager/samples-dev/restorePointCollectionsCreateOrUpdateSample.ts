@@ -43,7 +43,7 @@ async function createOrUpdateARestorePointCollection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateARestorePointCollection();
+  await createOrUpdateARestorePointCollection();
 }
 
 main().catch(console.error);

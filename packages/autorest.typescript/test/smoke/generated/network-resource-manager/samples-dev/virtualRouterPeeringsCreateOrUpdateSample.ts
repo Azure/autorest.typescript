@@ -42,7 +42,7 @@ async function createVirtualRouterPeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createVirtualRouterPeering();
+  await createVirtualRouterPeering();
 }
 
 main().catch(console.error);

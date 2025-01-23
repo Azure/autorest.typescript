@@ -32,7 +32,7 @@ async function listManagementGroupNetworkManagerConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagementGroupNetworkManagerConnection();
+  await listManagementGroupNetworkManagerConnection();
 }
 
 main().catch(console.error);

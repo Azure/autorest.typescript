@@ -103,9 +103,9 @@ async function updatesADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  assignsMaintenanceWindowToADatabase();
-  resetsMaintenanceWindowOfADatabaseToDefault();
-  updatesADatabase();
+  await assignsMaintenanceWindowToADatabase();
+  await resetsMaintenanceWindowOfADatabaseToDefault();
+  await updatesADatabase();
 }
 
 main().catch(console.error);

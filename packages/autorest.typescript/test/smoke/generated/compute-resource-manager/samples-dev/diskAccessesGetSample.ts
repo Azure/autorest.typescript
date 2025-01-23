@@ -51,8 +51,8 @@ async function getInformationAboutADiskAccessResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getInformationAboutADiskAccessResourceWithPrivateEndpoints();
-  getInformationAboutADiskAccessResource();
+  await getInformationAboutADiskAccessResourceWithPrivateEndpoints();
+  await getInformationAboutADiskAccessResource();
 }
 
 main().catch(console.error);

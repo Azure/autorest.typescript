@@ -36,7 +36,7 @@ async function deleteAGalleryImageVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAGalleryImageVersion();
+  await deleteAGalleryImageVersion();
 }
 
 main().catch(console.error);

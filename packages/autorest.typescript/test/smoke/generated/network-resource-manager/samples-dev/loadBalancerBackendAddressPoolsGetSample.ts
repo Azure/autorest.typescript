@@ -55,8 +55,8 @@ async function loadBalancerBackendAddressPoolGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerWithBackendAddressPoolWithBackendAddresses();
-  loadBalancerBackendAddressPoolGet();
+  await loadBalancerWithBackendAddressPoolWithBackendAddresses();
+  await loadBalancerBackendAddressPoolGet();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function getFirewallPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFirewallPolicy();
+  await getFirewallPolicy();
 }
 
 main().catch(console.error);

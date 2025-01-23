@@ -35,7 +35,7 @@ async function getVirtualNetworkGatewayAdvertisedRoutes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayAdvertisedRoutes();
+  await getVirtualNetworkGatewayAdvertisedRoutes();
 }
 
 main().catch(console.error);

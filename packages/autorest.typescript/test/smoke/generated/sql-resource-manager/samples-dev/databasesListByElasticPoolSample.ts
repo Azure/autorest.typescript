@@ -39,7 +39,7 @@ async function getsAListOfDatabasesInAnElasticPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAListOfDatabasesInAnElasticPool();
+  await getsAListOfDatabasesInAnElasticPool();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listSubscriptionNetworkManagerConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSubscriptionNetworkManagerConnection();
+  await listSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

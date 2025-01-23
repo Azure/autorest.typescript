@@ -49,7 +49,7 @@ async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService():
 }
 
 async function main(): Promise<void> {
-  approveOrRejectPrivateEndPointConnectionForAPrivateLinkService();
+  await approveOrRejectPrivateEndPointConnectionForAPrivateLinkService();
 }
 
 main().catch(console.error);

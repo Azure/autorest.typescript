@@ -46,7 +46,7 @@ async function ipFlowVerify(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  ipFlowVerify();
+  await ipFlowVerify();
 }
 
 main().catch(console.error);

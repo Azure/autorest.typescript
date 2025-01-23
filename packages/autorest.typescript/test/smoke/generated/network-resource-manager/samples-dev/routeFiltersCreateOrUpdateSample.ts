@@ -48,7 +48,7 @@ async function routeFilterCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterCreate();
+  await routeFilterCreate();
 }
 
 main().catch(console.error);

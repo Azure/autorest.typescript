@@ -35,7 +35,7 @@ async function connectivityConfigurationsGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  connectivityConfigurationsGet();
+  await connectivityConfigurationsGet();
 }
 
 main().catch(console.error);

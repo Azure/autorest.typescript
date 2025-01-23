@@ -35,7 +35,7 @@ async function virtualHubRouteTableV2List(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubRouteTableV2List();
+  await virtualHubRouteTableV2List();
 }
 
 main().catch(console.error);

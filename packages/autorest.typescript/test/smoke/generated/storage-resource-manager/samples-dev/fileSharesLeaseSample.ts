@@ -77,8 +77,8 @@ async function breakALeaseOnAShare(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  acquireALeaseOnAShare();
-  breakALeaseOnAShare();
+  await acquireALeaseOnAShare();
+  await breakALeaseOnAShare();
 }
 
 main().catch(console.error);

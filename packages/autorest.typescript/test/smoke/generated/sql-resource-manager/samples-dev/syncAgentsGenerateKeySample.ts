@@ -36,7 +36,7 @@ async function generateASyncAgentKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generateASyncAgentKey();
+  await generateASyncAgentKey();
 }
 
 main().catch(console.error);

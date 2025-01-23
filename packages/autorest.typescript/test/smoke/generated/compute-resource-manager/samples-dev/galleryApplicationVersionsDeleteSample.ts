@@ -36,7 +36,7 @@ async function deleteAGalleryApplicationVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAGalleryApplicationVersion();
+  await deleteAGalleryApplicationVersion();
 }
 
 main().catch(console.error);

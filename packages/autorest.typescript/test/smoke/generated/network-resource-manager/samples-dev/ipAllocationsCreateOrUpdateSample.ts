@@ -45,7 +45,7 @@ async function createIPAllocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createIPAllocation();
+  await createIPAllocation();
 }
 
 main().catch(console.error);

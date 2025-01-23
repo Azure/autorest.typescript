@@ -41,7 +41,7 @@ async function listActiveSecurityAdminRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listActiveSecurityAdminRules();
+  await listActiveSecurityAdminRules();
 }
 
 main().catch(console.error);

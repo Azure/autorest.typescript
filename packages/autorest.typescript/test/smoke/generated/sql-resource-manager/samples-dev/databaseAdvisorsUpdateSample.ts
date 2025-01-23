@@ -40,7 +40,7 @@ async function updateDatabaseAdvisor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateDatabaseAdvisor();
+  await updateDatabaseAdvisor();
 }
 
 main().catch(console.error);

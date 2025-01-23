@@ -31,7 +31,7 @@ async function listsAllApplicationGatewaysInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listsAllApplicationGatewaysInAResourceGroup();
+  await listsAllApplicationGatewaysInAResourceGroup();
 }
 
 main().catch(console.error);

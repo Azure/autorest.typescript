@@ -29,7 +29,7 @@ async function getAllSubscriptions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllSubscriptions();
+  await getAllSubscriptions();
 }
 
 main().catch(console.error);

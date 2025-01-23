@@ -37,7 +37,7 @@ async function dDoSProtectionPlanUpdateTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  dDoSProtectionPlanUpdateTags();
+  await dDoSProtectionPlanUpdateTags();
 }
 
 main().catch(console.error);

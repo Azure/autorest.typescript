@@ -74,8 +74,8 @@ async function createAJobWithDefaultProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAJobWithAllPropertiesSpecified();
-  createAJobWithDefaultProperties();
+  await createAJobWithAllPropertiesSpecified();
+  await createAJobWithDefaultProperties();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function listExpressRouteCircuitsInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRouteCircuitsInASubscription();
+  await listExpressRouteCircuitsInASubscription();
 }
 
 main().catch(console.error);

@@ -85,9 +85,9 @@ async function putSharesWithAccessTier(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNfsShares();
-  putShares();
-  putSharesWithAccessTier();
+  await createNfsShares();
+  await putShares();
+  await putSharesWithAccessTier();
 }
 
 main().catch(console.error);

@@ -57,8 +57,8 @@ async function listPeeringsWithRemoteVirtualNetworkEncryption(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listPeerings();
-  listPeeringsWithRemoteVirtualNetworkEncryption();
+  await listPeerings();
+  await listPeeringsWithRemoteVirtualNetworkEncryption();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function listAllSnapshotsInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllSnapshotsInASubscription();
+  await listAllSnapshotsInASubscription();
 }
 
 main().catch(console.error);

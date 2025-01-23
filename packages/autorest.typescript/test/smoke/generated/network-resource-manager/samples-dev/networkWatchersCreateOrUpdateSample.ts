@@ -37,7 +37,7 @@ async function createNetworkWatcher(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkWatcher();
+  await createNetworkWatcher();
 }
 
 main().catch(console.error);

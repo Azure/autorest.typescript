@@ -37,7 +37,7 @@ async function updateExpressRouteCircuitTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateExpressRouteCircuitTags();
+  await updateExpressRouteCircuitTags();
 }
 
 main().catch(console.error);

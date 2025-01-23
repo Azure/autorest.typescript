@@ -27,7 +27,7 @@ async function getASingleSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASingleSubscription();
+  await getASingleSubscription();
 }
 
 main().catch(console.error);

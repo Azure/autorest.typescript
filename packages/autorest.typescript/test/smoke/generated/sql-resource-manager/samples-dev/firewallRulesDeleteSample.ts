@@ -36,7 +36,7 @@ async function deleteAFirewallRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAFirewallRule();
+  await deleteAFirewallRule();
 }
 
 main().catch(console.error);

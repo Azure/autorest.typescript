@@ -35,7 +35,7 @@ async function getAzureKeyVaultAppSettingReference(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAzureKeyVaultAppSettingReference();
+  await getAzureKeyVaultAppSettingReference();
 }
 
 main().catch(console.error);

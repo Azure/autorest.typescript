@@ -38,7 +38,7 @@ async function virtualMachineRunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualMachineRunCommand();
+  await virtualMachineRunCommand();
 }
 
 main().catch(console.error);

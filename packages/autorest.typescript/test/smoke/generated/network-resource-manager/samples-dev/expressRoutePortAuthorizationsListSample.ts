@@ -35,7 +35,7 @@ async function listExpressRoutePortAuthorization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRoutePortAuthorization();
+  await listExpressRoutePortAuthorization();
 }
 
 main().catch(console.error);

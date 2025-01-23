@@ -32,7 +32,7 @@ async function getBlobServices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getBlobServices();
+  await getBlobServices();
 }
 
 main().catch(console.error);

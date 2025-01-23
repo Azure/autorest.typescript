@@ -37,7 +37,7 @@ async function updateServiceEndpointPolicyTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateServiceEndpointPolicyTags();
+  await updateServiceEndpointPolicyTags();
 }
 
 main().catch(console.error);

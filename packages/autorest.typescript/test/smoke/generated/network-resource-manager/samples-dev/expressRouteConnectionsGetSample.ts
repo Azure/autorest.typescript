@@ -35,7 +35,7 @@ async function expressRouteConnectionGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteConnectionGet();
+  await expressRouteConnectionGet();
 }
 
 main().catch(console.error);

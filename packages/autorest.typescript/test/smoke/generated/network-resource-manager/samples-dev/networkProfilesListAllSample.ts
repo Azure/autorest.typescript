@@ -30,7 +30,7 @@ async function listAllNetworkProfiles(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllNetworkProfiles();
+  await listAllNetworkProfiles();
 }
 
 main().catch(console.error);

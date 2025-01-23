@@ -33,7 +33,7 @@ async function getVirtualCluster(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualCluster();
+  await getVirtualCluster();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function createAProximityPlacementGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAProximityPlacementGroup();
+  await createAProximityPlacementGroup();
 }
 
 main().catch(console.error);

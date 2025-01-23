@@ -198,10 +198,10 @@ async function createFirewallPolicyRuleCollectionGroupWithWebCategories(): Promi
 }
 
 async function main(): Promise<void> {
-  createFirewallPolicyNatRuleCollectionGroup();
-  createFirewallPolicyRuleCollectionGroup();
-  createFirewallPolicyRuleCollectionGroupWithIPGroups();
-  createFirewallPolicyRuleCollectionGroupWithWebCategories();
+  await createFirewallPolicyNatRuleCollectionGroup();
+  await createFirewallPolicyRuleCollectionGroup();
+  await createFirewallPolicyRuleCollectionGroupWithIPGroups();
+  await createFirewallPolicyRuleCollectionGroupWithWebCategories();
 }
 
 main().catch(console.error);

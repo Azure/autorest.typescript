@@ -41,7 +41,7 @@ async function connectivityConfigurationsDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  connectivityConfigurationsDelete();
+  await connectivityConfigurationsDelete();
 }
 
 main().catch(console.error);

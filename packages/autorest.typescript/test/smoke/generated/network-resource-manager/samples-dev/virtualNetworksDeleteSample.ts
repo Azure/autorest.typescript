@@ -32,7 +32,7 @@ async function deleteVirtualNetwork(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteVirtualNetwork();
+  await deleteVirtualNetwork();
 }
 
 main().catch(console.error);

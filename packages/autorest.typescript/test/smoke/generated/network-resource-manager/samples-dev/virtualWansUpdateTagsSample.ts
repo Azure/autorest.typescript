@@ -39,7 +39,7 @@ async function virtualWanUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanUpdate();
+  await virtualWanUpdate();
 }
 
 main().catch(console.error);

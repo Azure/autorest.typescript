@@ -100,7 +100,7 @@ async function updateAnExistingVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAnExistingVault();
+  await updateAnExistingVault();
 }
 
 main().catch(console.error);

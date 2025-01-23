@@ -38,7 +38,7 @@ async function forceDeleteAVM(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  forceDeleteAVM();
+  await forceDeleteAVM();
 }
 
 main().catch(console.error);

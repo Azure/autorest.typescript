@@ -31,7 +31,7 @@ async function listInstancePoolsInTheSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listInstancePoolsInTheSubscription();
+  await listInstancePoolsInTheSubscription();
 }
 
 main().catch(console.error);

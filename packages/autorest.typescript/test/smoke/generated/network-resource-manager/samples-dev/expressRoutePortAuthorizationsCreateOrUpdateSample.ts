@@ -40,7 +40,7 @@ async function createExpressRoutePortAuthorization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createExpressRoutePortAuthorization();
+  await createExpressRoutePortAuthorization();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function deleteReplicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteReplicationLink();
+  await deleteReplicationLink();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function deleteManagementGroupNetworkManagerConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteManagementGroupNetworkManagerConnection();
+  await deleteManagementGroupNetworkManagerConnection();
 }
 
 main().catch(console.error);

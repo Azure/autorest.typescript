@@ -45,7 +45,7 @@ async function virtualHubPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubPut();
+  await virtualHubPut();
 }
 
 main().catch(console.error);

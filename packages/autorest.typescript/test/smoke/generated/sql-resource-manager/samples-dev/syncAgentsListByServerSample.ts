@@ -37,7 +37,7 @@ async function getSyncAgentsUnderAServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSyncAgentsUnderAServer();
+  await getSyncAgentsUnderAServer();
 }
 
 main().catch(console.error);

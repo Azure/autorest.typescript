@@ -50,7 +50,7 @@ async function networkConfigurationDiagnostic(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkConfigurationDiagnostic();
+  await networkConfigurationDiagnostic();
 }
 
 main().catch(console.error);

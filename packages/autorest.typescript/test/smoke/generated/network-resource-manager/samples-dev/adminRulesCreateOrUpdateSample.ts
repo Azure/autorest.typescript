@@ -87,8 +87,8 @@ async function createAnAdminRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createADefaultAdminRule();
-  createAnAdminRule();
+  await createADefaultAdminRule();
+  await createAnAdminRule();
 }
 
 main().catch(console.error);

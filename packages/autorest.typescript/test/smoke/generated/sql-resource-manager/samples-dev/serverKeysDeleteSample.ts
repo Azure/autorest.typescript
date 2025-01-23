@@ -35,7 +35,7 @@ async function deleteTheServerKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteTheServerKey();
+  await deleteTheServerKey();
 }
 
 main().catch(console.error);

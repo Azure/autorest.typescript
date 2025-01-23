@@ -41,7 +41,7 @@ async function getAHubDatabaseSchema(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAHubDatabaseSchema();
+  await getAHubDatabaseSchema();
 }
 
 main().catch(console.error);

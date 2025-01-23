@@ -33,7 +33,7 @@ async function p2SVpnGatewayGetConnectionHealth(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  p2SVpnGatewayGetConnectionHealth();
+  await p2SVpnGatewayGetConnectionHealth();
 }
 
 main().catch(console.error);

@@ -49,7 +49,7 @@ async function createOrUpdateAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAStaticSite();
+  await createOrUpdateAStaticSite();
 }
 
 main().catch(console.error);

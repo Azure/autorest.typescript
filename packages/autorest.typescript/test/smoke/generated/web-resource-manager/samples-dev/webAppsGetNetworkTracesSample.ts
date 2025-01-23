@@ -35,7 +35,7 @@ async function getNetworkTracesForASite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkTracesForASite();
+  await getNetworkTracesForASite();
 }
 
 main().catch(console.error);

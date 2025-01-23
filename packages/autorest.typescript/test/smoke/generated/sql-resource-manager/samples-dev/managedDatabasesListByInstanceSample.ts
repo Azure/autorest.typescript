@@ -36,7 +36,7 @@ async function listDatabasesByManagedInstances(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabasesByManagedInstances();
+  await listDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

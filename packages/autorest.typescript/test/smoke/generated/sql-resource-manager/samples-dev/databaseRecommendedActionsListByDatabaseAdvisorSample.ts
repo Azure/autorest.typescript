@@ -38,7 +38,7 @@ async function listOfDatabaseRecommendedActions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listOfDatabaseRecommendedActions();
+  await listOfDatabaseRecommendedActions();
 }
 
 main().catch(console.error);

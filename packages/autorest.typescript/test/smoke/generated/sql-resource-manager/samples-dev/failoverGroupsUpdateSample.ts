@@ -48,7 +48,7 @@ async function updateFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateFailoverGroup();
+  await updateFailoverGroup();
 }
 
 main().catch(console.error);

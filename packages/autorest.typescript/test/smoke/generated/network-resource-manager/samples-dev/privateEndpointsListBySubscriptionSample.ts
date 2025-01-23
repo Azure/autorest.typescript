@@ -30,7 +30,7 @@ async function listAllPrivateEndpoints(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllPrivateEndpoints();
+  await listAllPrivateEndpoints();
 }
 
 main().catch(console.error);

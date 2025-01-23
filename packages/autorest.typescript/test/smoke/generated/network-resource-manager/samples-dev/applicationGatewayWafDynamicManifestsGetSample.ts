@@ -33,7 +33,7 @@ async function getsWafManifests(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsWafManifests();
+  await getsWafManifests();
 }
 
 main().catch(console.error);

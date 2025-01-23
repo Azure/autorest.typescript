@@ -35,7 +35,7 @@ async function getsARestorableDroppedManagedDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsARestorableDroppedManagedDatabase();
+  await getsARestorableDroppedManagedDatabase();
 }
 
 main().catch(console.error);

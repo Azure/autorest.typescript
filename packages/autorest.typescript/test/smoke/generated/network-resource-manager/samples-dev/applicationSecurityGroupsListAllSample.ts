@@ -30,7 +30,7 @@ async function listAllApplicationSecurityGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllApplicationSecurityGroups();
+  await listAllApplicationSecurityGroups();
 }
 
 main().catch(console.error);

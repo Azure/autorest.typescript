@@ -32,7 +32,7 @@ async function vpnServerConfigurationGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnServerConfigurationGet();
+  await vpnServerConfigurationGet();
 }
 
 main().catch(console.error);

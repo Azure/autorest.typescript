@@ -39,7 +39,7 @@ async function getAListOfTheDatabaseTransparentDataEncryption(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAListOfTheDatabaseTransparentDataEncryption();
+  await getAListOfTheDatabaseTransparentDataEncryption();
 }
 
 main().catch(console.error);

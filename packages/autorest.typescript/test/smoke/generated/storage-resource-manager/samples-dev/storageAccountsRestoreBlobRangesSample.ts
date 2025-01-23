@@ -43,7 +43,7 @@ async function blobRangesRestore(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  blobRangesRestore();
+  await blobRangesRestore();
 }
 
 main().catch(console.error);

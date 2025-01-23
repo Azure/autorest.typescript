@@ -61,7 +61,7 @@ async function createDscpConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createDscpConfiguration();
+  await createDscpConfiguration();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function startAnExtensionRollingUpgrade(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  startAnExtensionRollingUpgrade();
+  await startAnExtensionRollingUpgrade();
 }
 
 main().catch(console.error);

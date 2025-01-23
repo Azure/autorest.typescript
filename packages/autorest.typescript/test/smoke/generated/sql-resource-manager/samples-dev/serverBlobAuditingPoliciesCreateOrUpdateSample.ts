@@ -84,8 +84,8 @@ async function updateAServerBlobAuditingPolicyWithMinimalParameters(): Promise<v
 }
 
 async function main(): Promise<void> {
-  updateAServerBlobAuditingPolicyWithAllParameters();
-  updateAServerBlobAuditingPolicyWithMinimalParameters();
+  await updateAServerBlobAuditingPolicyWithAllParameters();
+  await updateAServerBlobAuditingPolicyWithMinimalParameters();
 }
 
 main().catch(console.error);

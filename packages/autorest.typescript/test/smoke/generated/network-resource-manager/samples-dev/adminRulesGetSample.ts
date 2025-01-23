@@ -65,8 +65,8 @@ async function getsSecurityDefaultAdminRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsSecurityAdminRule();
-  getsSecurityDefaultAdminRule();
+  await getsSecurityAdminRule();
+  await getsSecurityDefaultAdminRule();
 }
 
 main().catch(console.error);

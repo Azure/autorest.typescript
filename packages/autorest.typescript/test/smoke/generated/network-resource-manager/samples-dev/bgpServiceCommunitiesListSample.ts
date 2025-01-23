@@ -30,7 +30,7 @@ async function serviceCommunityList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  serviceCommunityList();
+  await serviceCommunityList();
 }
 
 main().catch(console.error);

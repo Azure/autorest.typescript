@@ -37,7 +37,7 @@ async function listAdministratorsOfManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAdministratorsOfManagedInstance();
+  await listAdministratorsOfManagedInstance();
 }
 
 main().catch(console.error);

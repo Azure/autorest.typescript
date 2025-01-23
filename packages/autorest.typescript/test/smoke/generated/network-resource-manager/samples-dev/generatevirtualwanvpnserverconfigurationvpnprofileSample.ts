@@ -42,7 +42,7 @@ async function generateVirtualWanVpnServerConfigurationVpnProfile(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  generateVirtualWanVpnServerConfigurationVpnProfile();
+  await generateVirtualWanVpnServerConfigurationVpnProfile();
 }
 
 main().catch(console.error);

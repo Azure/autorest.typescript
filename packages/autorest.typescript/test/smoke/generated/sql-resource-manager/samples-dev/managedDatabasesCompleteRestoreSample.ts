@@ -42,7 +42,7 @@ async function completesAManagedDatabaseExternalBackupRestore(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  completesAManagedDatabaseExternalBackupRestore();
+  await completesAManagedDatabaseExternalBackupRestore();
 }
 
 main().catch(console.error);

@@ -50,7 +50,7 @@ async function createNatGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNatGateway();
+  await createNatGateway();
 }
 
 main().catch(console.error);

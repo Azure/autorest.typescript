@@ -260,12 +260,12 @@ async function storageAccountUpdateWithImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountEnableAd();
-  storageAccountEnableCmk();
-  storageAccountUpdate();
-  storageAccountUpdateDisablePublicNetworkAccess();
-  storageAccountUpdateUserAssignedEncryptionIdentityWithCmk();
-  storageAccountUpdateWithImmutabilityPolicy();
+  await storageAccountEnableAd();
+  await storageAccountEnableCmk();
+  await storageAccountUpdate();
+  await storageAccountUpdateDisablePublicNetworkAccess();
+  await storageAccountUpdateUserAssignedEncryptionIdentityWithCmk();
+  await storageAccountUpdateWithImmutabilityPolicy();
 }
 
 main().catch(console.error);

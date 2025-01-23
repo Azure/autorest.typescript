@@ -37,7 +37,7 @@ async function updateNetworkSecurityGroupTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNetworkSecurityGroupTags();
+  await updateNetworkSecurityGroupTags();
 }
 
 main().catch(console.error);

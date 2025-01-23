@@ -78,8 +78,8 @@ async function updateAdministratorOfManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAdministratorOfManagedInstance();
-  updateAdministratorOfManagedInstance();
+  await createAdministratorOfManagedInstance();
+  await updateAdministratorOfManagedInstance();
 }
 
 main().catch(console.error);

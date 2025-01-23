@@ -47,7 +47,7 @@ async function replaceFirewallRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  replaceFirewallRules();
+  await replaceFirewallRules();
 }
 
 main().catch(console.error);

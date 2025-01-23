@@ -30,7 +30,7 @@ async function listAllIPAllocations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllIPAllocations();
+  await listAllIPAllocations();
 }
 
 main().catch(console.error);

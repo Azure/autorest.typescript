@@ -33,7 +33,7 @@ async function listCloudServiceOSFamiliesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCloudServiceOSFamiliesInASubscription();
+  await listCloudServiceOSFamiliesInASubscription();
 }
 
 main().catch(console.error);

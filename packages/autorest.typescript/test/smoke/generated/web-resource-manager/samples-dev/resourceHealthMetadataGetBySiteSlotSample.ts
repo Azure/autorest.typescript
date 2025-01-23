@@ -36,7 +36,7 @@ async function getResourceHealthMetadata(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getResourceHealthMetadata();
+  await getResourceHealthMetadata();
 }
 
 main().catch(console.error);

@@ -55,8 +55,8 @@ async function getPeeringWithRemoteVirtualNetworkEncryption(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPeering();
-  getPeeringWithRemoteVirtualNetworkEncryption();
+  await getPeering();
+  await getPeeringWithRemoteVirtualNetworkEncryption();
 }
 
 main().catch(console.error);

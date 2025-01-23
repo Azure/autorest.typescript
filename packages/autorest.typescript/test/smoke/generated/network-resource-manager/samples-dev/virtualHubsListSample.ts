@@ -30,7 +30,7 @@ async function virtualHubList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubList();
+  await virtualHubList();
 }
 
 main().catch(console.error);

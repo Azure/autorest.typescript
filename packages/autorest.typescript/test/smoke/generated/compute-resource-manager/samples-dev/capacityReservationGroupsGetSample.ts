@@ -32,7 +32,7 @@ async function getACapacityReservationGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getACapacityReservationGroup();
+  await getACapacityReservationGroup();
 }
 
 main().catch(console.error);

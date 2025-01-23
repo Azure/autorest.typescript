@@ -34,7 +34,7 @@ async function defaultSecurityRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  defaultSecurityRuleGet();
+  await defaultSecurityRuleGet();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function vpnGatewayDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnGatewayDelete();
+  await vpnGatewayDelete();
 }
 
 main().catch(console.error);

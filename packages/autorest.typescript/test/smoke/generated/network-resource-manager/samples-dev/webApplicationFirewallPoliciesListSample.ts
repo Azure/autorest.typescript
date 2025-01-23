@@ -33,7 +33,7 @@ async function listsAllWafPoliciesInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listsAllWafPoliciesInAResourceGroup();
+  await listsAllWafPoliciesInAResourceGroup();
 }
 
 main().catch(console.error);

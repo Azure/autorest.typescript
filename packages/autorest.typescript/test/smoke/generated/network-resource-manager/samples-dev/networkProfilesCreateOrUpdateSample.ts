@@ -52,7 +52,7 @@ async function createNetworkProfileDefaults(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkProfileDefaults();
+  await createNetworkProfileDefaults();
 }
 
 main().catch(console.error);

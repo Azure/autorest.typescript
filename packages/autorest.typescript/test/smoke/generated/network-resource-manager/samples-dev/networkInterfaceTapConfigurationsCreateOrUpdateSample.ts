@@ -44,7 +44,7 @@ async function createNetworkInterfaceTapConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkInterfaceTapConfigurations();
+  await createNetworkInterfaceTapConfigurations();
 }
 
 main().catch(console.error);

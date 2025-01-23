@@ -32,7 +32,7 @@ async function getVirtualNetworkGatewayConnectionSharedKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayConnectionSharedKey();
+  await getVirtualNetworkGatewayConnectionSharedKey();
 }
 
 main().catch(console.error);

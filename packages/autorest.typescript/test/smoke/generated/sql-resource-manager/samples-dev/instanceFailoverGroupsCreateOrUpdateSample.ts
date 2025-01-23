@@ -55,7 +55,7 @@ async function createFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createFailoverGroup();
+  await createFailoverGroup();
 }
 
 main().catch(console.error);

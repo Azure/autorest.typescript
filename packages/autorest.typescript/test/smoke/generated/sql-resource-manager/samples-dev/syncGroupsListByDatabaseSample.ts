@@ -39,7 +39,7 @@ async function listSyncGroupsUnderAGivenDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSyncGroupsUnderAGivenDatabase();
+  await listSyncGroupsUnderAGivenDatabase();
 }
 
 main().catch(console.error);

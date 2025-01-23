@@ -48,7 +48,7 @@ async function createSecurityRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createSecurityRule();
+  await createSecurityRule();
 }
 
 main().catch(console.error);

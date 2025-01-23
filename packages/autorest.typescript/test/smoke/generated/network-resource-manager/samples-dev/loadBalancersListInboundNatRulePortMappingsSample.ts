@@ -42,7 +42,7 @@ async function queryInboundNatRulePortMapping(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queryInboundNatRulePortMapping();
+  await queryInboundNatRulePortMapping();
 }
 
 main().catch(console.error);

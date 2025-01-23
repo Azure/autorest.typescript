@@ -30,7 +30,7 @@ async function listAllRouteTables(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllRouteTables();
+  await listAllRouteTables();
 }
 
 main().catch(console.error);

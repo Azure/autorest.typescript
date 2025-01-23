@@ -43,7 +43,7 @@ async function renamesADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  renamesADatabase();
+  await renamesADatabase();
 }
 
 main().catch(console.error);

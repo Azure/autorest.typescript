@@ -41,7 +41,7 @@ async function getTheSpecifiedVersionOfAJobStep(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheSpecifiedVersionOfAJobStep();
+  await getTheSpecifiedVersionOfAJobStep();
 }
 
 main().catch(console.error);

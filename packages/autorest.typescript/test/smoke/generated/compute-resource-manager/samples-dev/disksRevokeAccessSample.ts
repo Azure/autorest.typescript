@@ -32,7 +32,7 @@ async function revokeAccessToAManagedDisk(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  revokeAccessToAManagedDisk();
+  await revokeAccessToAManagedDisk();
 }
 
 main().catch(console.error);

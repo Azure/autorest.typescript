@@ -36,7 +36,7 @@ async function pausesADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  pausesADatabase();
+  await pausesADatabase();
 }
 
 main().catch(console.error);

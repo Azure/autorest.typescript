@@ -32,7 +32,7 @@ async function getBastionHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getBastionHost();
+  await getBastionHost();
 }
 
 main().catch(console.error);

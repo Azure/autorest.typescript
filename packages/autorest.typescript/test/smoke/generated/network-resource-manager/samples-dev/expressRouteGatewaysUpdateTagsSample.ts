@@ -40,7 +40,7 @@ async function expressRouteGatewayUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteGatewayUpdate();
+  await expressRouteGatewayUpdate();
 }
 
 main().catch(console.error);

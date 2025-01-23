@@ -32,7 +32,7 @@ async function tableServicesGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  tableServicesGet();
+  await tableServicesGet();
 }
 
 main().catch(console.error);

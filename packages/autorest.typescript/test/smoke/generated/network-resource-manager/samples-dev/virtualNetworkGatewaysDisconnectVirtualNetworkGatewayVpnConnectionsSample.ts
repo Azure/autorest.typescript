@@ -40,7 +40,7 @@ async function disconnectVpnConnectionsFromVirtualNetworkGateway(): Promise<void
 }
 
 async function main(): Promise<void> {
-  disconnectVpnConnectionsFromVirtualNetworkGateway();
+  await disconnectVpnConnectionsFromVirtualNetworkGateway();
 }
 
 main().catch(console.error);

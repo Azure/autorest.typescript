@@ -32,7 +32,7 @@ async function getVirtualRouter(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualRouter();
+  await getVirtualRouter();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function getACapacityReservation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getACapacityReservation();
+  await getACapacityReservation();
 }
 
 main().catch(console.error);

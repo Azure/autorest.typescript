@@ -28,7 +28,7 @@ async function networkVirtualApplianceSkuGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkVirtualApplianceSkuGet();
+  await networkVirtualApplianceSkuGet();
 }
 
 main().catch(console.error);

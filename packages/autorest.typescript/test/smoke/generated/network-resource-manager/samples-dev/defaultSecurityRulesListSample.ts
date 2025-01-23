@@ -35,7 +35,7 @@ async function defaultSecurityRuleList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  defaultSecurityRuleList();
+  await defaultSecurityRuleList();
 }
 
 main().catch(console.error);

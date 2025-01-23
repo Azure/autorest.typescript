@@ -40,7 +40,7 @@ async function getSecurityGroupView(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSecurityGroupView();
+  await getSecurityGroupView();
 }
 
 main().catch(console.error);

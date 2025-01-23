@@ -43,7 +43,7 @@ async function vpnSitesConfigurationDownload(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSitesConfigurationDownload();
+  await vpnSitesConfigurationDownload();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function deletedAccountList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletedAccountList();
+  await deletedAccountList();
 }
 
 main().catch(console.error);

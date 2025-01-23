@@ -38,7 +38,7 @@ async function getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedData
 }
 
 async function main(): Promise<void> {
-  getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedDatabase();
+  await getsTheRecommendedSensitivityLabelsOfAGivenDatabaseInAManagedDatabase();
 }
 
 main().catch(console.error);

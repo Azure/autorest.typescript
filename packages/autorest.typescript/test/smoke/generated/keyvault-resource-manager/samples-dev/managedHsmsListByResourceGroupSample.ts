@@ -34,7 +34,7 @@ async function listManagedHsmPoolsInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagedHsmPoolsInAResourceGroup();
+  await listManagedHsmPoolsInAResourceGroup();
 }
 
 main().catch(console.error);

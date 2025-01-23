@@ -272,7 +272,7 @@ async function createApplicationGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createApplicationGateway();
+  await createApplicationGateway();
 }
 
 main().catch(console.error);

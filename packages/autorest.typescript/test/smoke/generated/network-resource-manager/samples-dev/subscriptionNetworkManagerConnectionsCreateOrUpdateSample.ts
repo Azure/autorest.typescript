@@ -40,7 +40,7 @@ async function createOrUpdateSubscriptionNetworkManagerConnection(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  createOrUpdateSubscriptionNetworkManagerConnection();
+  await createOrUpdateSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function createRoute(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createRoute();
+  await createRoute();
 }
 
 main().catch(console.error);

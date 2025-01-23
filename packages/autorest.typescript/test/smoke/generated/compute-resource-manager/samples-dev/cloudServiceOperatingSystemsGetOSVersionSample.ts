@@ -32,7 +32,7 @@ async function getCloudServiceOSVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCloudServiceOSVersion();
+  await getCloudServiceOSVersion();
 }
 
 main().catch(console.error);

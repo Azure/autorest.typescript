@@ -40,7 +40,7 @@ async function unprepareNetworkPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  unprepareNetworkPolicies();
+  await unprepareNetworkPolicies();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function queryPacketCaptureStatus(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queryPacketCaptureStatus();
+  await queryPacketCaptureStatus();
 }
 
 main().catch(console.error);

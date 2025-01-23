@@ -39,7 +39,7 @@ async function getSyncAgentLinkedDatabases(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSyncAgentLinkedDatabases();
+  await getSyncAgentLinkedDatabases();
 }
 
 main().catch(console.error);

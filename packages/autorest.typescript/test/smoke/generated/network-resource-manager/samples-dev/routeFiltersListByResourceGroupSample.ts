@@ -33,7 +33,7 @@ async function routeFilterListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterListByResourceGroup();
+  await routeFilterListByResourceGroup();
 }
 
 main().catch(console.error);

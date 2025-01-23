@@ -45,7 +45,7 @@ async function staticMemberPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  staticMemberPut();
+  await staticMemberPut();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function getsListOfLedgerDigestUploadSettingsOnADatabase(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  getsListOfLedgerDigestUploadSettingsOnADatabase();
+  await getsListOfLedgerDigestUploadSettingsOnADatabase();
 }
 
 main().catch(console.error);

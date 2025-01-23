@@ -36,7 +36,7 @@ async function getADatabaseAutomaticTuningSettings(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getADatabaseAutomaticTuningSettings();
+  await getADatabaseAutomaticTuningSettings();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function updateVirtualNetworkTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualNetworkTags();
+  await updateVirtualNetworkTags();
 }
 
 main().catch(console.error);

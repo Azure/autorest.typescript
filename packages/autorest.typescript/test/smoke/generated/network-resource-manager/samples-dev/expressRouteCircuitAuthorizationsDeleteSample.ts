@@ -35,7 +35,7 @@ async function deleteExpressRouteCircuitAuthorization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteExpressRouteCircuitAuthorization();
+  await deleteExpressRouteCircuitAuthorization();
 }
 
 main().catch(console.error);

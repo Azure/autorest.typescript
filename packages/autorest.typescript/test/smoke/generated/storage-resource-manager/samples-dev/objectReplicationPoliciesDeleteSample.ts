@@ -34,7 +34,7 @@ async function storageAccountDeleteObjectReplicationPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountDeleteObjectReplicationPolicies();
+  await storageAccountDeleteObjectReplicationPolicies();
 }
 
 main().catch(console.error);

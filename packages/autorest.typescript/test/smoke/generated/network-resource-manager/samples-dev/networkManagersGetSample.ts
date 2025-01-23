@@ -33,7 +33,7 @@ async function networkManagersGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManagersGet();
+  await networkManagersGet();
 }
 
 main().catch(console.error);

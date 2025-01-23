@@ -40,7 +40,7 @@ async function networkGroupsPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkGroupsPut();
+  await networkGroupsPut();
 }
 
 main().catch(console.error);

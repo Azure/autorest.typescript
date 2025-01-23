@@ -39,7 +39,7 @@ async function getsDatabaseUsages(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsDatabaseUsages();
+  await getsDatabaseUsages();
 }
 
 main().catch(console.error);

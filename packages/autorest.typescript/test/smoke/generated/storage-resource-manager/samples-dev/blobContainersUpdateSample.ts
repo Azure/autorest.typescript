@@ -42,7 +42,7 @@ async function updateContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateContainers();
+  await updateContainers();
 }
 
 main().catch(console.error);

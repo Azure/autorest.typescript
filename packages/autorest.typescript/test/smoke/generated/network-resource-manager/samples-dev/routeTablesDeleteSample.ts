@@ -32,7 +32,7 @@ async function deleteRouteTable(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteRouteTable();
+  await deleteRouteTable();
 }
 
 main().catch(console.error);

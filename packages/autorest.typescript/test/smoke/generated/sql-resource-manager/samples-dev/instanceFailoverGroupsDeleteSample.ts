@@ -35,7 +35,7 @@ async function deleteFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteFailoverGroup();
+  await deleteFailoverGroup();
 }
 
 main().catch(console.error);

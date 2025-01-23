@@ -37,7 +37,7 @@ async function listRunCommandsInVmssInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRunCommandsInVmssInstance();
+  await listRunCommandsInVmssInstance();
 }
 
 main().catch(console.error);

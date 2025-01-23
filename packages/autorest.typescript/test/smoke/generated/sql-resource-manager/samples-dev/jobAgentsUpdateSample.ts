@@ -40,7 +40,7 @@ async function updateAJobAgentTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAJobAgentTags();
+  await updateAJobAgentTags();
 }
 
 main().catch(console.error);

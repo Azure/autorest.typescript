@@ -62,8 +62,8 @@ async function storageAccountRegenerateKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountRegenerateKerbKey();
-  storageAccountRegenerateKey();
+  await storageAccountRegenerateKerbKey();
+  await storageAccountRegenerateKey();
 }
 
 main().catch(console.error);

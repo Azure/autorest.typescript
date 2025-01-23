@@ -35,7 +35,7 @@ async function networkGroupsGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkGroupsGet();
+  await networkGroupsGet();
 }
 
 main().catch(console.error);

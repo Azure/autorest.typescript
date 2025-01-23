@@ -33,7 +33,7 @@ async function listVirtualNetworkGatewaysinResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworkGatewaysinResourceGroup();
+  await listVirtualNetworkGatewaysinResourceGroup();
 }
 
 main().catch(console.error);

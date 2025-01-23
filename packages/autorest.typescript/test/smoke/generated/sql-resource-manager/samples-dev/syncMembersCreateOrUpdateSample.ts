@@ -92,8 +92,8 @@ async function updateASyncMember(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createANewSyncMember();
-  updateASyncMember();
+  await createANewSyncMember();
+  await updateASyncMember();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteVirtualRouter(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteVirtualRouter();
+  await deleteVirtualRouter();
 }
 
 main().catch(console.error);

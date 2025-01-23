@@ -29,7 +29,7 @@ async function getDeletedWebApp(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDeletedWebApp();
+  await getDeletedWebApp();
 }
 
 main().catch(console.error);

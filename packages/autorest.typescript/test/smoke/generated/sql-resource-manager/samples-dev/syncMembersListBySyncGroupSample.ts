@@ -41,7 +41,7 @@ async function listSyncMembersUnderASyncGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSyncMembersUnderASyncGroup();
+  await listSyncMembersUnderASyncGroup();
 }
 
 main().catch(console.error);

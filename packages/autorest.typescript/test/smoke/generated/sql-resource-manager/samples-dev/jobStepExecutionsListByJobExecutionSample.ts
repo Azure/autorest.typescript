@@ -42,7 +42,7 @@ async function listJobStepExecutions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listJobStepExecutions();
+  await listJobStepExecutions();
 }
 
 main().catch(console.error);

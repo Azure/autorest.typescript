@@ -50,7 +50,7 @@ async function swapViPsBetweenTwoLoadBalancers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  swapViPsBetweenTwoLoadBalancers();
+  await swapViPsBetweenTwoLoadBalancers();
 }
 
 main().catch(console.error);

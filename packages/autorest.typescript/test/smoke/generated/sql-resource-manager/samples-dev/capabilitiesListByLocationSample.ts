@@ -29,7 +29,7 @@ async function listSubscriptionCapabilitiesInTheGivenLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSubscriptionCapabilitiesInTheGivenLocation();
+  await listSubscriptionCapabilitiesInTheGivenLocation();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function storageAccountDeleteManagementPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountDeleteManagementPolicies();
+  await storageAccountDeleteManagementPolicies();
 }
 
 main().catch(console.error);

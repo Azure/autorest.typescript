@@ -38,7 +38,7 @@ async function refreshAHubDatabaseSchema(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  refreshAHubDatabaseSchema();
+  await refreshAHubDatabaseSchema();
 }
 
 main().catch(console.error);

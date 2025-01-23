@@ -32,7 +32,7 @@ async function stopOrPowerOffCloudService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  stopOrPowerOffCloudService();
+  await stopOrPowerOffCloudService();
 }
 
 main().catch(console.error);

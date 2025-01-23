@@ -39,7 +39,7 @@ async function vpnServerConfigurationUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnServerConfigurationUpdate();
+  await vpnServerConfigurationUpdate();
 }
 
 main().catch(console.error);

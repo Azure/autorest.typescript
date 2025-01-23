@@ -34,7 +34,7 @@ async function deletePeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePeering();
+  await deletePeering();
 }
 
 main().catch(console.error);

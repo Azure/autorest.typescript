@@ -34,7 +34,7 @@ async function getServiceAssociationLinks(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServiceAssociationLinks();
+  await getServiceAssociationLinks();
 }
 
 main().catch(console.error);

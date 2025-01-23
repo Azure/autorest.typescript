@@ -29,7 +29,7 @@ async function getTopLevelDomain(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTopLevelDomain();
+  await getTopLevelDomain();
 }
 
 main().catch(console.error);

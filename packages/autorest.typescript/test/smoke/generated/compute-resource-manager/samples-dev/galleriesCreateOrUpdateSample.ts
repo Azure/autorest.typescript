@@ -90,9 +90,9 @@ async function createOrUpdateASimpleGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateASimpleGalleryWithSharingProfile();
-  createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
-  createOrUpdateASimpleGallery();
+  await createOrUpdateASimpleGalleryWithSharingProfile();
+  await createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
+  await createOrUpdateASimpleGallery();
 }
 
 main().catch(console.error);

@@ -65,8 +65,8 @@ async function listOfDatabaseRecommendedActionsForAllAdvisors(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listOfDatabaseAdvisors();
-  listOfDatabaseRecommendedActionsForAllAdvisors();
+  await listOfDatabaseAdvisors();
+  await listOfDatabaseRecommendedActionsForAllAdvisors();
 }
 
 main().catch(console.error);

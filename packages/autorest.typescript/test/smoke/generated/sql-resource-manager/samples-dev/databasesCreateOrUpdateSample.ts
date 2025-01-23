@@ -340,17 +340,17 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy(): Promise<v
 }
 
 async function main(): Promise<void> {
-  createsAVCoreDatabaseBySpecifyingServiceObjectiveName();
-  createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity();
-  createsADatabaseAsACopy();
-  createsADatabaseAsAnOnLineSecondary();
-  createsADatabaseAsNamedReplicaSecondary();
-  createsADatabaseFromPointInTimeRestore();
-  createsADatabaseWithDefaultMode();
-  createsADatabaseWithLedgerOn();
-  createsADatabaseWithMinimumNumberOfParameters();
-  createsADatabaseWithPreferredMaintenanceWindow();
-  createsADatabaseWithSpecifiedBackupStorageRedundancy();
+  await createsAVCoreDatabaseBySpecifyingServiceObjectiveName();
+  await createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity();
+  await createsADatabaseAsACopy();
+  await createsADatabaseAsAnOnLineSecondary();
+  await createsADatabaseAsNamedReplicaSecondary();
+  await createsADatabaseFromPointInTimeRestore();
+  await createsADatabaseWithDefaultMode();
+  await createsADatabaseWithLedgerOn();
+  await createsADatabaseWithMinimumNumberOfParameters();
+  await createsADatabaseWithPreferredMaintenanceWindow();
+  await createsADatabaseWithSpecifiedBackupStorageRedundancy();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function getsAVirtualNetworkRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAVirtualNetworkRule();
+  await getsAVirtualNetworkRule();
 }
 
 main().catch(console.error);

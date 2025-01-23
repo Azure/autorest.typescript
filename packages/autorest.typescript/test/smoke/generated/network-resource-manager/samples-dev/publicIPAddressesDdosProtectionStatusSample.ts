@@ -33,7 +33,7 @@ async function getDdosProtectionStatusOfAPublicIPAddress(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDdosProtectionStatusOfAPublicIPAddress();
+  await getDdosProtectionStatusOfAPublicIPAddress();
 }
 
 main().catch(console.error);

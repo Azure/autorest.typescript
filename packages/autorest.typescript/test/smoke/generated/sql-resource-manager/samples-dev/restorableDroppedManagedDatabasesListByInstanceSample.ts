@@ -36,7 +36,7 @@ async function listRestorableDroppedDatabasesByManagedInstances(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  listRestorableDroppedDatabasesByManagedInstances();
+  await listRestorableDroppedDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

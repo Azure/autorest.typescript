@@ -61,8 +61,8 @@ async function getShares(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getShareStats();
-  getShares();
+  await getShareStats();
+  await getShares();
 }
 
 main().catch(console.error);

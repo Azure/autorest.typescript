@@ -32,7 +32,7 @@ async function resetP2SVpnGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  resetP2SVpnGateway();
+  await resetP2SVpnGateway();
 }
 
 main().catch(console.error);

@@ -92,8 +92,8 @@ async function createSaaSNetworkVirtualAppliance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkVirtualAppliance();
-  createSaaSNetworkVirtualAppliance();
+  await createNetworkVirtualAppliance();
+  await createSaaSNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

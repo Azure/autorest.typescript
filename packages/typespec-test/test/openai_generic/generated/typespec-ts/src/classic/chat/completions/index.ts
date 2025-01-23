@@ -26,7 +26,7 @@ function _getChatCompletions(context: OpenAIContext) {
   };
 }
 
-export function getChatCompletionsOperations(
+export function _getChatCompletionsOperations(
   context: OpenAIContext,
 ): ChatCompletionsOperations {
   return {

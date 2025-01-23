@@ -39,7 +39,7 @@ async function cancelAJobExecution(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  cancelAJobExecution();
+  await cancelAJobExecution();
 }
 
 main().catch(console.error);

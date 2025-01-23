@@ -38,7 +38,7 @@ async function generateVpnClientPackage(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generateVpnClientPackage();
+  await generateVpnClientPackage();
 }
 
 main().catch(console.error);

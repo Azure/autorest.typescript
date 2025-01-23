@@ -53,7 +53,7 @@ async function expressRouteCircuitConnectionCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteCircuitConnectionCreate();
+  await expressRouteCircuitConnectionCreate();
 }
 
 main().catch(console.error);

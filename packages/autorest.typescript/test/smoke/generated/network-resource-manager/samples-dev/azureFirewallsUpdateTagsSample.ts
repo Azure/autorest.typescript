@@ -37,7 +37,7 @@ async function updateAzureFirewallTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAzureFirewallTags();
+  await updateAzureFirewallTags();
 }
 
 main().catch(console.error);

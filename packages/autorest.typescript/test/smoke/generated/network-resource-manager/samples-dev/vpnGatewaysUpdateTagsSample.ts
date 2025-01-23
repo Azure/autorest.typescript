@@ -39,7 +39,7 @@ async function vpnGatewayUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnGatewayUpdate();
+  await vpnGatewayUpdate();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function listAllManagedDisksInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllManagedDisksInASubscription();
+  await listAllManagedDisksInASubscription();
 }
 
 main().catch(console.error);

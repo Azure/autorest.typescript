@@ -35,7 +35,7 @@ async function deletePrivateEndPointConnectionForAPrivateLinkService(): Promise<
 }
 
 async function main(): Promise<void> {
-  deletePrivateEndPointConnectionForAPrivateLinkService();
+  await deletePrivateEndPointConnectionForAPrivateLinkService();
 }
 
 main().catch(console.error);

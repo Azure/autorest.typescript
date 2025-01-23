@@ -61,7 +61,7 @@ async function connectivityConfigurationsPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  connectivityConfigurationsPut();
+  await connectivityConfigurationsPut();
 }
 
 main().catch(console.error);

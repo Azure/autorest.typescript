@@ -43,7 +43,7 @@ async function createNetworkManagerSecurityAdminConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkManagerSecurityAdminConfiguration();
+  await createNetworkManagerSecurityAdminConfiguration();
 }
 
 main().catch(console.error);

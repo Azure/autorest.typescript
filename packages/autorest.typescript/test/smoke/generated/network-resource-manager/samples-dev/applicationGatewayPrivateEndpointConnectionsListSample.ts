@@ -35,7 +35,7 @@ async function listsAllPrivateEndpointConnectionsOnApplicationGateway(): Promise
 }
 
 async function main(): Promise<void> {
-  listsAllPrivateEndpointConnectionsOnApplicationGateway();
+  await listsAllPrivateEndpointConnectionsOnApplicationGateway();
 }
 
 main().catch(console.error);

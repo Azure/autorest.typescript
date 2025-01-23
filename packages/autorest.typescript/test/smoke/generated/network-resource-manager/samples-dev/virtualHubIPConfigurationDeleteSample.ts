@@ -34,7 +34,7 @@ async function virtualHubIPConfigurationDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubIPConfigurationDelete();
+  await virtualHubIPConfigurationDelete();
 }
 
 main().catch(console.error);

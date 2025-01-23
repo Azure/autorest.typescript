@@ -2,37 +2,37 @@
 // Licensed under the MIT License.
 
 import {
-  getModerationsOperations,
+  _getModerationsOperations,
   ModerationsOperations,
 } from "./classic/moderations/index.js";
 import {
-  getImagesOperations,
+  _getImagesOperations,
   ImagesOperations,
 } from "./classic/images/index.js";
 import {
-  getModelsOperations,
+  _getModelsOperations,
   ModelsOperations,
 } from "./classic/models/index.js";
 import {
-  getFineTunesOperations,
+  _getFineTunesOperations,
   FineTunesOperations,
 } from "./classic/fineTunes/index.js";
-import { getFilesOperations, FilesOperations } from "./classic/files/index.js";
+import { _getFilesOperations, FilesOperations } from "./classic/files/index.js";
 import {
-  getEmbeddingsOperations,
+  _getEmbeddingsOperations,
   EmbeddingsOperations,
 } from "./classic/embeddings/index.js";
-import { getEditsOperations, EditsOperations } from "./classic/edits/index.js";
+import { _getEditsOperations, EditsOperations } from "./classic/edits/index.js";
 import {
-  getCompletionsOperations,
+  _getCompletionsOperations,
   CompletionsOperations,
 } from "./classic/completions/index.js";
 import {
-  getFineTuningOperations,
+  _getFineTuningOperations,
   FineTuningOperations,
 } from "./classic/fineTuning/index.js";
-import { getChatOperations, ChatOperations } from "./classic/chat/index.js";
-import { getAudioOperations, AudioOperations } from "./classic/audio/index.js";
+import { _getChatOperations, ChatOperations } from "./classic/chat/index.js";
+import { _getAudioOperations, AudioOperations } from "./classic/audio/index.js";
 import {
   createOpenAI,
   OpenAIContext,
@@ -62,17 +62,17 @@ export class OpenAIClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.moderations = getModerationsOperations(this._client);
-    this.images = getImagesOperations(this._client);
-    this.models = getModelsOperations(this._client);
-    this.fineTunes = getFineTunesOperations(this._client);
-    this.files = getFilesOperations(this._client);
-    this.embeddings = getEmbeddingsOperations(this._client);
-    this.edits = getEditsOperations(this._client);
-    this.completions = getCompletionsOperations(this._client);
-    this.fineTuning = getFineTuningOperations(this._client);
-    this.chat = getChatOperations(this._client);
-    this.audio = getAudioOperations(this._client);
+    this.moderations = _getModerationsOperations(this._client);
+    this.images = _getImagesOperations(this._client);
+    this.models = _getModelsOperations(this._client);
+    this.fineTunes = _getFineTunesOperations(this._client);
+    this.files = _getFilesOperations(this._client);
+    this.embeddings = _getEmbeddingsOperations(this._client);
+    this.edits = _getEditsOperations(this._client);
+    this.completions = _getCompletionsOperations(this._client);
+    this.fineTuning = _getFineTuningOperations(this._client);
+    this.chat = _getChatOperations(this._client);
+    this.audio = _getAudioOperations(this._client);
   }
 
   /** The operation groups for moderations */

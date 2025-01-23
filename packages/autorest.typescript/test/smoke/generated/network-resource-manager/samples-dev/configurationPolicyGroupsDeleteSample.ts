@@ -34,7 +34,7 @@ async function configurationPolicyGroupDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  configurationPolicyGroupDelete();
+  await configurationPolicyGroupDelete();
 }
 
 main().catch(console.error);

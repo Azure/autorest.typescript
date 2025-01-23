@@ -51,8 +51,8 @@ async function storageAccountGetPropertiesCmkEnabled(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountGetProperties();
-  storageAccountGetPropertiesCmkEnabled();
+  await storageAccountGetProperties();
+  await storageAccountGetPropertiesCmkEnabled();
 }
 
 main().catch(console.error);

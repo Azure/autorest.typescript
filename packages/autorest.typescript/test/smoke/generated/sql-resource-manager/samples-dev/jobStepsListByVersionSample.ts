@@ -42,7 +42,7 @@ async function listJobStepsForTheSpecifiedVersionOfAJob(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listJobStepsForTheSpecifiedVersionOfAJob();
+  await listJobStepsForTheSpecifiedVersionOfAJob();
 }
 
 main().catch(console.error);

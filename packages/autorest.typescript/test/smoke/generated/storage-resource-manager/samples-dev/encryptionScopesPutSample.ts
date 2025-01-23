@@ -66,8 +66,8 @@ async function storageAccountPutEncryptionScopeWithInfrastructureEncryption(): P
 }
 
 async function main(): Promise<void> {
-  storageAccountPutEncryptionScope();
-  storageAccountPutEncryptionScopeWithInfrastructureEncryption();
+  await storageAccountPutEncryptionScope();
+  await storageAccountPutEncryptionScopeWithInfrastructureEncryption();
 }
 
 main().catch(console.error);

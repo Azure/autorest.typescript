@@ -36,7 +36,7 @@ async function resetVpnLinkConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  resetVpnLinkConnection();
+  await resetVpnLinkConnection();
 }
 
 main().catch(console.error);

@@ -46,7 +46,7 @@ async function createPrivateDnsZoneGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createPrivateDnsZoneGroup();
+  await createPrivateDnsZoneGroup();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function updateVirtualNetworkTapTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualNetworkTapTags();
+  await updateVirtualNetworkTapTags();
 }
 
 main().catch(console.error);

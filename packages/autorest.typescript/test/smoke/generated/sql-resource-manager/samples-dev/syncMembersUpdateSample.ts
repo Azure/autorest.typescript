@@ -54,7 +54,7 @@ async function updateAnExistingSyncMember(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAnExistingSyncMember();
+  await updateAnExistingSyncMember();
 }
 
 main().catch(console.error);

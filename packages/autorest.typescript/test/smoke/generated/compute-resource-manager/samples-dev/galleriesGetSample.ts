@@ -54,8 +54,8 @@ async function getAGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAGalleryWithSelectPermissions();
-  getAGallery();
+  await getAGalleryWithSelectPermissions();
+  await getAGallery();
 }
 
 main().catch(console.error);

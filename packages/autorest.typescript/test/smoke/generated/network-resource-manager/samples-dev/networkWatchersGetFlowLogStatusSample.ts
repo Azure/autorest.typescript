@@ -40,7 +40,7 @@ async function getFlowLogStatus(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFlowLogStatus();
+  await getFlowLogStatus();
 }
 
 main().catch(console.error);

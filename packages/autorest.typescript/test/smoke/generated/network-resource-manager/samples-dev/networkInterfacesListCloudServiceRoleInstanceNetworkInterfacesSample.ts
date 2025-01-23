@@ -37,7 +37,7 @@ async function listCloudServiceRoleInstanceNetworkInterfaces(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCloudServiceRoleInstanceNetworkInterfaces();
+  await listCloudServiceRoleInstanceNetworkInterfaces();
 }
 
 main().catch(console.error);

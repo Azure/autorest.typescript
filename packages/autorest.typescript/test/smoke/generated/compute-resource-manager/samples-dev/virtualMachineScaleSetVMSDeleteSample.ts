@@ -42,7 +42,7 @@ async function forceDeleteAVirtualMachineFromAVMScaleSet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  forceDeleteAVirtualMachineFromAVMScaleSet();
+  await forceDeleteAVirtualMachineFromAVMScaleSet();
 }
 
 main().catch(console.error);

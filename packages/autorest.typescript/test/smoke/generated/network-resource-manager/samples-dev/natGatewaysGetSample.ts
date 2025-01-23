@@ -32,7 +32,7 @@ async function getNatGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNatGateway();
+  await getNatGateway();
 }
 
 main().catch(console.error);

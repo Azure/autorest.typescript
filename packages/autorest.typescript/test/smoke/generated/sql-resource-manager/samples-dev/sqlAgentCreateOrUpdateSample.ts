@@ -38,7 +38,7 @@ async function putsNewSqlAgentConfigurationToInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  putsNewSqlAgentConfigurationToInstance();
+  await putsNewSqlAgentConfigurationToInstance();
 }
 
 main().catch(console.error);

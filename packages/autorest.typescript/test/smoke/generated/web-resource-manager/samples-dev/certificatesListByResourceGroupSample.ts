@@ -34,7 +34,7 @@ async function listCertificatesByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCertificatesByResourceGroup();
+  await listCertificatesByResourceGroup();
 }
 
 main().catch(console.error);

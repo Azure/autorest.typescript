@@ -32,7 +32,7 @@ async function getLocalNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getLocalNetworkGateway();
+  await getLocalNetworkGateway();
 }
 
 main().catch(console.error);

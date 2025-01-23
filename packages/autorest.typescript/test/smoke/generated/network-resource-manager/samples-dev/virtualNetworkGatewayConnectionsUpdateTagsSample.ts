@@ -38,7 +38,7 @@ async function updateVirtualNetworkGatewayConnectionTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualNetworkGatewayConnectionTags();
+  await updateVirtualNetworkGatewayConnectionTags();
 }
 
 main().catch(console.error);

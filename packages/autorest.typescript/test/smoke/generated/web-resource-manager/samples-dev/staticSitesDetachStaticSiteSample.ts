@@ -33,7 +33,7 @@ async function detachAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  detachAStaticSite();
+  await detachAStaticSite();
 }
 
 main().catch(console.error);

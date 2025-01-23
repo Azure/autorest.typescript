@@ -33,7 +33,7 @@ async function storageAccountAbortHierarchicalNamespaceMigration(): Promise<void
 }
 
 async function main(): Promise<void> {
-  storageAccountAbortHierarchicalNamespaceMigration();
+  await storageAccountAbortHierarchicalNamespaceMigration();
 }
 
 main().catch(console.error);

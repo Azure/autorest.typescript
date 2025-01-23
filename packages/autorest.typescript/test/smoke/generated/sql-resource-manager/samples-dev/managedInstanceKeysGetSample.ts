@@ -35,7 +35,7 @@ async function getTheManagedInstanceKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheManagedInstanceKey();
+  await getTheManagedInstanceKey();
 }
 
 main().catch(console.error);

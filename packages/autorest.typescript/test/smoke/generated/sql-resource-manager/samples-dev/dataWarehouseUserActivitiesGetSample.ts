@@ -38,7 +38,7 @@ async function getTheListOfTheUserActivitiesOfADataWarehouse(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheListOfTheUserActivitiesOfADataWarehouse();
+  await getTheListOfTheUserActivitiesOfADataWarehouse();
 }
 
 main().catch(console.error);

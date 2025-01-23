@@ -36,7 +36,7 @@ async function listTheServerKeysByServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listTheServerKeysByServer();
+  await listTheServerKeysByServer();
 }
 
 main().catch(console.error);

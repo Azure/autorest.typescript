@@ -39,7 +39,7 @@ async function virtualHubUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubUpdate();
+  await virtualHubUpdate();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function storageAccountList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountList();
+  await storageAccountList();
 }
 
 main().catch(console.error);

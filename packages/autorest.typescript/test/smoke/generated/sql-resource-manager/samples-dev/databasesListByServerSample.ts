@@ -37,7 +37,7 @@ async function getsAListOfDatabases(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAListOfDatabases();
+  await getsAListOfDatabases();
 }
 
 main().catch(console.error);

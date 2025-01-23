@@ -35,7 +35,7 @@ async function getAvailablePrivateEndpointTypesInTheResourceGroup(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  getAvailablePrivateEndpointTypesInTheResourceGroup();
+  await getAvailablePrivateEndpointTypesInTheResourceGroup();
 }
 
 main().catch(console.error);

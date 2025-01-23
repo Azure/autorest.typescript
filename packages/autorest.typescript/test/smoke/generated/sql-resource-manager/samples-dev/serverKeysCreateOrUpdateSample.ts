@@ -43,7 +43,7 @@ async function createsOrUpdatesAServerKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createsOrUpdatesAServerKey();
+  await createsOrUpdatesAServerKey();
 }
 
 main().catch(console.error);

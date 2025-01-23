@@ -36,7 +36,7 @@ async function listArpTable(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listArpTable();
+  await listArpTable();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function getSpecificSubscriptionUsageInTheGivenLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSpecificSubscriptionUsageInTheGivenLocation();
+  await getSpecificSubscriptionUsageInTheGivenLocation();
 }
 
 main().catch(console.error);

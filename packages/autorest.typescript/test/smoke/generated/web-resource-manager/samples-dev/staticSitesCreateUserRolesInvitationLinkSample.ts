@@ -45,7 +45,7 @@ async function createAnInvitationLinkForAUserForAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAnInvitationLinkForAUserForAStaticSite();
+  await createAnInvitationLinkForAUserForAStaticSite();
 }
 
 main().catch(console.error);

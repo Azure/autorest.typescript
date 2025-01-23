@@ -67,8 +67,8 @@ async function createOrUpdateDataMaskingPolicyMin(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateDataMaskingPolicyMax();
-  createOrUpdateDataMaskingPolicyMin();
+  await createOrUpdateDataMaskingPolicyMax();
+  await createOrUpdateDataMaskingPolicyMin();
 }
 
 main().catch(console.error);

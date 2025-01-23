@@ -34,7 +34,7 @@ async function versionLevelWormContainerMigration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  versionLevelWormContainerMigration();
+  await versionLevelWormContainerMigration();
 }
 
 main().catch(console.error);

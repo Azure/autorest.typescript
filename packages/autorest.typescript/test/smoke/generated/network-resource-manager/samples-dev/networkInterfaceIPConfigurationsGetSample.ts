@@ -34,7 +34,7 @@ async function networkInterfaceIPConfigurationGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkInterfaceIPConfigurationGet();
+  await networkInterfaceIPConfigurationGet();
 }
 
 main().catch(console.error);

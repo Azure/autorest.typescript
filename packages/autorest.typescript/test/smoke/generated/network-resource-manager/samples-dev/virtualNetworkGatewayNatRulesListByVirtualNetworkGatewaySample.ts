@@ -35,7 +35,7 @@ async function virtualNetworkGatewayNatRuleList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualNetworkGatewayNatRuleList();
+  await virtualNetworkGatewayNatRuleList();
 }
 
 main().catch(console.error);

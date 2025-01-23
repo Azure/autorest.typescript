@@ -36,7 +36,7 @@ async function listTheServerManagementOperations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listTheServerManagementOperations();
+  await listTheServerManagementOperations();
 }
 
 main().catch(console.error);

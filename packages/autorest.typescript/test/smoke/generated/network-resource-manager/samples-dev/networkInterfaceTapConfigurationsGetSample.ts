@@ -34,7 +34,7 @@ async function getNetworkInterfaceTapConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkInterfaceTapConfigurations();
+  await getNetworkInterfaceTapConfigurations();
 }
 
 main().catch(console.error);

@@ -51,8 +51,8 @@ async function getLoadBalancerWithInboundNatRulePortMapping(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getLoadBalancer();
-  getLoadBalancerWithInboundNatRulePortMapping();
+  await getLoadBalancer();
+  await getLoadBalancerWithInboundNatRulePortMapping();
 }
 
 main().catch(console.error);

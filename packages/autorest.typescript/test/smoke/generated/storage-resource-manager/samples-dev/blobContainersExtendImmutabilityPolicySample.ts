@@ -47,7 +47,7 @@ async function extendImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  extendImmutabilityPolicy();
+  await extendImmutabilityPolicy();
 }
 
 main().catch(console.error);

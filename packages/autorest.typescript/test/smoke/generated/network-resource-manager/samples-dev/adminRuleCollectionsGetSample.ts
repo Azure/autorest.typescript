@@ -37,7 +37,7 @@ async function getsSecurityAdminRuleCollection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsSecurityAdminRuleCollection();
+  await getsSecurityAdminRuleCollection();
 }
 
 main().catch(console.error);

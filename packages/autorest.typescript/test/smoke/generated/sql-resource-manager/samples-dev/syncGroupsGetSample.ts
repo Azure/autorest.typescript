@@ -38,7 +38,7 @@ async function getASyncGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASyncGroup();
+  await getASyncGroup();
 }
 
 main().catch(console.error);

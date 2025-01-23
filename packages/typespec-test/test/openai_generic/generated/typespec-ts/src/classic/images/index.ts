@@ -46,7 +46,7 @@ function _getImages(context: OpenAIContext) {
   };
 }
 
-export function getImagesOperations(context: OpenAIContext): ImagesOperations {
+export function _getImagesOperations(context: OpenAIContext): ImagesOperations {
   return {
     ..._getImages(context),
   };

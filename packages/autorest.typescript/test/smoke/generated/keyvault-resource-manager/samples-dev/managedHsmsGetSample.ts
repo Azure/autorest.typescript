@@ -30,7 +30,7 @@ async function retrieveAManagedHsmPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  retrieveAManagedHsmPool();
+  await retrieveAManagedHsmPool();
 }
 
 main().catch(console.error);

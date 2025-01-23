@@ -65,7 +65,7 @@ async function createOrUpdateASimpleGalleryApplicationVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateASimpleGalleryApplicationVersion();
+  await createOrUpdateASimpleGalleryApplicationVersion();
 }
 
 main().catch(console.error);

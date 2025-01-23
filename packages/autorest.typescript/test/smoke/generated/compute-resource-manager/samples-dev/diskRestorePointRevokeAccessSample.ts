@@ -38,7 +38,7 @@ async function revokesAccessToADiskRestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  revokesAccessToADiskRestorePoint();
+  await revokesAccessToADiskRestorePoint();
 }
 
 main().catch(console.error);

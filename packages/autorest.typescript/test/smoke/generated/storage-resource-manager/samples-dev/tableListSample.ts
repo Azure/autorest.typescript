@@ -35,7 +35,7 @@ async function tableOperationList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  tableOperationList();
+  await tableOperationList();
 }
 
 main().catch(console.error);

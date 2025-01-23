@@ -31,7 +31,7 @@ async function deleteSubscriptionNetworkManagerConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteSubscriptionNetworkManagerConnection();
+  await deleteSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

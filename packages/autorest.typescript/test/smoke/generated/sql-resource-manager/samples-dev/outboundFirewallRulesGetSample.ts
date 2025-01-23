@@ -35,7 +35,7 @@ async function getsOutboundFirewallRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsOutboundFirewallRule();
+  await getsOutboundFirewallRule();
 }
 
 main().catch(console.error);

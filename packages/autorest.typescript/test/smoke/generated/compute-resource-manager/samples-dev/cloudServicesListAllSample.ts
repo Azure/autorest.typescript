@@ -30,7 +30,7 @@ async function listCloudServicesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCloudServicesInASubscription();
+  await listCloudServicesInASubscription();
 }
 
 main().catch(console.error);

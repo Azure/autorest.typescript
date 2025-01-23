@@ -32,7 +32,7 @@ async function listVirtualNetworkGatewaySupportedVpnDevices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworkGatewaySupportedVpnDevices();
+  await listVirtualNetworkGatewaySupportedVpnDevices();
 }
 
 main().catch(console.error);

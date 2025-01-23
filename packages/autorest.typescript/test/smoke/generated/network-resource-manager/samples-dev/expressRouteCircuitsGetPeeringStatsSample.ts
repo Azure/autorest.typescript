@@ -34,7 +34,7 @@ async function getExpressRouteCircuitPeeringTrafficStats(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCircuitPeeringTrafficStats();
+  await getExpressRouteCircuitPeeringTrafficStats();
 }
 
 main().catch(console.error);

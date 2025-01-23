@@ -35,7 +35,7 @@ async function keyVaultDeletePrivateEndpointConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  keyVaultDeletePrivateEndpointConnection();
+  await keyVaultDeletePrivateEndpointConnection();
 }
 
 main().catch(console.error);

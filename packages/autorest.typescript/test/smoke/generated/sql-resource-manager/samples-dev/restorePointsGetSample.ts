@@ -63,8 +63,8 @@ async function getsADatawarehouseDatabaseRestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsADatabaseRestorePoint();
-  getsADatawarehouseDatabaseRestorePoint();
+  await getsADatabaseRestorePoint();
+  await getsADatawarehouseDatabaseRestorePoint();
 }
 
 main().catch(console.error);

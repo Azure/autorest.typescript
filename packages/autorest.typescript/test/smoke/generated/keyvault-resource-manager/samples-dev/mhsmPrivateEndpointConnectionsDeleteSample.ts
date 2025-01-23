@@ -35,7 +35,7 @@ async function managedHsmDeletePrivateEndpointConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  managedHsmDeletePrivateEndpointConnection();
+  await managedHsmDeletePrivateEndpointConnection();
 }
 
 main().catch(console.error);

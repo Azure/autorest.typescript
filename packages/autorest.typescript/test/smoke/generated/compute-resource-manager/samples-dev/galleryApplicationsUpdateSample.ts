@@ -45,7 +45,7 @@ async function updateASimpleGalleryApplication(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASimpleGalleryApplication();
+  await updateASimpleGalleryApplication();
 }
 
 main().catch(console.error);

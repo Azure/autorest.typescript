@@ -30,7 +30,7 @@ async function expressRouteGatewayListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteGatewayListByResourceGroup();
+  await expressRouteGatewayListByResourceGroup();
 }
 
 main().catch(console.error);

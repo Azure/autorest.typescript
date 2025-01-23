@@ -34,7 +34,7 @@ async function deleteCloudServiceRoleInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteCloudServiceRoleInstance();
+  await deleteCloudServiceRoleInstance();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function getADedicatedHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getADedicatedHost();
+  await getADedicatedHost();
 }
 
 main().catch(console.error);

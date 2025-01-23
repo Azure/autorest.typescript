@@ -39,7 +39,7 @@ async function listVirtualMachineScaleSetNetworkInterfaceIPConfigurations(): Pro
 }
 
 async function main(): Promise<void> {
-  listVirtualMachineScaleSetNetworkInterfaceIPConfigurations();
+  await listVirtualMachineScaleSetNetworkInterfaceIPConfigurations();
 }
 
 main().catch(console.error);

@@ -109,9 +109,9 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
 }
 
 async function main(): Promise<void> {
-  obtainQueryExecutionStatistics();
-  obtainQueryExecutionStatisticsExampleWithAllRequestParameters();
-  obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters();
+  await obtainQueryExecutionStatistics();
+  await obtainQueryExecutionStatisticsExampleWithAllRequestParameters();
+  await obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters();
 }
 
 main().catch(console.error);

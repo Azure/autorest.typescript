@@ -36,7 +36,7 @@ async function listServersUsages(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listServersUsages();
+  await listServersUsages();
 }
 
 main().catch(console.error);

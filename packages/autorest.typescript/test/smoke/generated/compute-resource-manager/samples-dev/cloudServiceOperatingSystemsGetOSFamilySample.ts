@@ -32,7 +32,7 @@ async function getCloudServiceOSFamily(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCloudServiceOSFamily();
+  await getCloudServiceOSFamily();
 }
 
 main().catch(console.error);

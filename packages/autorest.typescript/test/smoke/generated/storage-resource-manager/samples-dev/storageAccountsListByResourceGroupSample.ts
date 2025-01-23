@@ -33,7 +33,7 @@ async function storageAccountListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountListByResourceGroup();
+  await storageAccountListByResourceGroup();
 }
 
 main().catch(console.error);

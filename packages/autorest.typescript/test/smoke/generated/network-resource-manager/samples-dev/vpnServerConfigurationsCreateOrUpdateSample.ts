@@ -115,7 +115,7 @@ async function vpnServerConfigurationCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnServerConfigurationCreate();
+  await vpnServerConfigurationCreate();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function deleteASyncGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteASyncGroup();
+  await deleteASyncGroup();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function getExpressRouteCrossConnectionsRouteTable(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCrossConnectionsRouteTable();
+  await getExpressRouteCrossConnectionsRouteTable();
 }
 
 main().catch(console.error);

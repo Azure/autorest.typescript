@@ -35,7 +35,7 @@ async function networkInterfaceIPConfigurationList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkInterfaceIPConfigurationList();
+  await networkInterfaceIPConfigurationList();
 }
 
 main().catch(console.error);

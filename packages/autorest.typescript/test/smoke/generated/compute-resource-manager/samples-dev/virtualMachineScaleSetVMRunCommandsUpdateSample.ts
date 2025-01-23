@@ -44,7 +44,7 @@ async function updateVirtualMachineScaleSetVMRunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualMachineScaleSetVMRunCommand();
+  await updateVirtualMachineScaleSetVMRunCommand();
 }
 
 main().catch(console.error);

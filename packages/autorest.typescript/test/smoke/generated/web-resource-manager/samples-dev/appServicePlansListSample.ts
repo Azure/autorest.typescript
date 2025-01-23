@@ -31,7 +31,7 @@ async function listAppServicePlans(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAppServicePlans();
+  await listAppServicePlans();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function getTheListOfWorkloadClassifiersForAWorkloadGroup(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  getTheListOfWorkloadClassifiersForAWorkloadGroup();
+  await getTheListOfWorkloadClassifiersForAWorkloadGroup();
 }
 
 main().catch(console.error);

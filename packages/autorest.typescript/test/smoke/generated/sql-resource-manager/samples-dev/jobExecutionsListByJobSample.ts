@@ -40,7 +40,7 @@ async function listAJobExecutions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAJobExecutions();
+  await listAJobExecutions();
 }
 
 main().catch(console.error);

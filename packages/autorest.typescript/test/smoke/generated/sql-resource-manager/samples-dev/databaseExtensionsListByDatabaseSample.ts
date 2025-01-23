@@ -39,7 +39,7 @@ async function listDatabaseExtensions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabaseExtensions();
+  await listDatabaseExtensions();
 }
 
 main().catch(console.error);

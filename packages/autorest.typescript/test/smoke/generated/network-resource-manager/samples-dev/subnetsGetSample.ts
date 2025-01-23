@@ -55,8 +55,8 @@ async function getSubnetWithADelegation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSubnet();
-  getSubnetWithADelegation();
+  await getSubnet();
+  await getSubnetWithADelegation();
 }
 
 main().catch(console.error);

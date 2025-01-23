@@ -34,7 +34,7 @@ async function deletePrivateDnsZoneGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePrivateDnsZoneGroup();
+  await deletePrivateDnsZoneGroup();
 }
 
 main().catch(console.error);

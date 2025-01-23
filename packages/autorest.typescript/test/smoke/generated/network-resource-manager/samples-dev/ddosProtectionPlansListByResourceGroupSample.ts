@@ -33,7 +33,7 @@ async function listDDoSProtectionPlansInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDDoSProtectionPlansInResourceGroup();
+  await listDDoSProtectionPlansInResourceGroup();
 }
 
 main().catch(console.error);

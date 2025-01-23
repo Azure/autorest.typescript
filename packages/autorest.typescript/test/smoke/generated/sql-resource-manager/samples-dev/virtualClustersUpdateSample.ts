@@ -41,7 +41,7 @@ async function updateVirtualClusterWithTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVirtualClusterWithTags();
+  await updateVirtualClusterWithTags();
 }
 
 main().catch(console.error);

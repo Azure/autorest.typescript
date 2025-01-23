@@ -30,7 +30,7 @@ async function virtualWanList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanList();
+  await virtualWanList();
 }
 
 main().catch(console.error);

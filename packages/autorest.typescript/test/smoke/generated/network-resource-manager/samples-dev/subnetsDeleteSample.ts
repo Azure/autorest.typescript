@@ -34,7 +34,7 @@ async function deleteSubnet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteSubnet();
+  await deleteSubnet();
 }
 
 main().catch(console.error);

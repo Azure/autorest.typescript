@@ -40,7 +40,7 @@ async function updateExpressRouteCrossConnectionTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateExpressRouteCrossConnectionTags();
+  await updateExpressRouteCrossConnectionTags();
 }
 
 main().catch(console.error);

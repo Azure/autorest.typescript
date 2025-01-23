@@ -29,7 +29,7 @@ async function listFileServices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listFileServices();
+  await listFileServices();
 }
 
 main().catch(console.error);

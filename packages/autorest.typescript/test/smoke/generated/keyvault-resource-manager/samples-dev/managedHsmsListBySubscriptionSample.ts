@@ -31,7 +31,7 @@ async function listManagedHsmPoolsInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagedHsmPoolsInASubscription();
+  await listManagedHsmPoolsInASubscription();
 }
 
 main().catch(console.error);

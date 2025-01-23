@@ -43,7 +43,7 @@ async function updatesTagsOfAnImage(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updatesTagsOfAnImage();
+  await updatesTagsOfAnImage();
 }
 
 main().catch(console.error);

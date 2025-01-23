@@ -35,7 +35,7 @@ async function getsAAzureActiveDirectoryAdministrator(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAAzureActiveDirectoryAdministrator();
+  await getsAAzureActiveDirectoryAdministrator();
 }
 
 main().catch(console.error);

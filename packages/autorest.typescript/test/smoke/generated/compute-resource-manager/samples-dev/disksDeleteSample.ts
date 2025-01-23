@@ -32,7 +32,7 @@ async function deleteAManagedDisk(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAManagedDisk();
+  await deleteAManagedDisk();
 }
 
 main().catch(console.error);

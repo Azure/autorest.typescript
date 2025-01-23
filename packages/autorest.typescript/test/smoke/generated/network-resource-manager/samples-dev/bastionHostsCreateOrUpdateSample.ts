@@ -49,7 +49,7 @@ async function createBastionHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createBastionHost();
+  await createBastionHost();
 }
 
 main().catch(console.error);

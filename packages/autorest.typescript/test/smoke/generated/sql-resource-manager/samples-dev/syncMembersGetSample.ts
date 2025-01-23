@@ -40,7 +40,7 @@ async function getASyncMember(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASyncMember();
+  await getASyncMember();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function getsAListOfInaccessibleDatabasesInALogicalServer(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  getsAListOfInaccessibleDatabasesInALogicalServer();
+  await getsAListOfInaccessibleDatabasesInALogicalServer();
 }
 
 main().catch(console.error);

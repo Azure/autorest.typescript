@@ -17,7 +17,7 @@ function _getD(context: FooContext) {
   };
 }
 
-export function getDOperations(context: FooContext): DOperations {
+export function _getDOperations(context: FooContext): DOperations {
   return {
     ..._getD(context),
   };

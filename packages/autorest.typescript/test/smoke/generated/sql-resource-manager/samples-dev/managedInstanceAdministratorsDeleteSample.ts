@@ -36,7 +36,7 @@ async function deleteAdministratorOfManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAdministratorOfManagedInstance();
+  await deleteAdministratorOfManagedInstance();
 }
 
 main().catch(console.error);

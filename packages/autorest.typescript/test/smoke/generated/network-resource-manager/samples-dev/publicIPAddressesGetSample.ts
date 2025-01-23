@@ -32,7 +32,7 @@ async function getPublicIPAddress(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPublicIPAddress();
+  await getPublicIPAddress();
 }
 
 main().catch(console.error);

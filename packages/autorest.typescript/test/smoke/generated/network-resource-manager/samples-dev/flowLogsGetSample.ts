@@ -34,7 +34,7 @@ async function getFlowLog(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFlowLog();
+  await getFlowLog();
 }
 
 main().catch(console.error);

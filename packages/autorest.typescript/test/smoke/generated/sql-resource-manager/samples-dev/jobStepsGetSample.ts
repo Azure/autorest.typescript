@@ -39,7 +39,7 @@ async function getTheLatestVersionOfAJobStep(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheLatestVersionOfAJobStep();
+  await getTheLatestVersionOfAJobStep();
 }
 
 main().catch(console.error);

@@ -111,10 +111,10 @@ async function getAGalleryImageVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAGalleryImageVersionWithReplicationStatus();
-  getAGalleryImageVersionWithSnapshotsAsASource();
-  getAGalleryImageVersionWithVhdAsASource();
-  getAGalleryImageVersion();
+  await getAGalleryImageVersionWithReplicationStatus();
+  await getAGalleryImageVersionWithSnapshotsAsASource();
+  await getAGalleryImageVersionWithVhdAsASource();
+  await getAGalleryImageVersion();
 }
 
 main().catch(console.error);

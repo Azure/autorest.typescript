@@ -40,7 +40,7 @@ async function deleteASyncMember(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteASyncMember();
+  await deleteASyncMember();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function networkManagersList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManagersList();
+  await networkManagersList();
 }
 
 main().catch(console.error);

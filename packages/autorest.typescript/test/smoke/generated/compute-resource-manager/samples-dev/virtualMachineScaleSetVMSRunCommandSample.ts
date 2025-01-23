@@ -42,7 +42,7 @@ async function virtualMachineScaleSetVMSRunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualMachineScaleSetVMSRunCommand();
+  await virtualMachineScaleSetVMSRunCommand();
 }
 
 main().catch(console.error);

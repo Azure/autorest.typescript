@@ -32,7 +32,7 @@ async function getVirtualNetworkGatewayConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayConnection();
+  await getVirtualNetworkGatewayConnection();
 }
 
 main().catch(console.error);

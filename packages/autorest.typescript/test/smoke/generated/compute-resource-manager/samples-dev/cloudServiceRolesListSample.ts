@@ -35,7 +35,7 @@ async function listRolesInACloudService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRolesInACloudService();
+  await listRolesInACloudService();
 }
 
 main().catch(console.error);

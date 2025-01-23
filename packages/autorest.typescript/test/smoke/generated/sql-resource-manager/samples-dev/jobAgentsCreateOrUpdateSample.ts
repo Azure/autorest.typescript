@@ -44,7 +44,7 @@ async function createOrUpdateAJobAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAJobAgent();
+  await createOrUpdateAJobAgent();
 }
 
 main().catch(console.error);

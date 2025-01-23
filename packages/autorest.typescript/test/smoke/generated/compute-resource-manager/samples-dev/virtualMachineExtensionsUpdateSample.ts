@@ -46,7 +46,7 @@ async function updateVMExtension(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateVMExtension();
+  await updateVMExtension();
 }
 
 main().catch(console.error);

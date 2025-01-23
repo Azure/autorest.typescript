@@ -33,7 +33,7 @@ async function getAppSettingsOfAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAppSettingsOfAStaticSite();
+  await getAppSettingsOfAStaticSite();
 }
 
 main().catch(console.error);

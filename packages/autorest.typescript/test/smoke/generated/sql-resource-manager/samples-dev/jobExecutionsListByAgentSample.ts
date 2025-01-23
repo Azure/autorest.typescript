@@ -79,8 +79,8 @@ async function listAllJobExecutionsInAJobAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllJobExecutionsInAJobAgentWithFiltering();
-  listAllJobExecutionsInAJobAgent();
+  await listAllJobExecutionsInAJobAgentWithFiltering();
+  await listAllJobExecutionsInAJobAgent();
 }
 
 main().catch(console.error);

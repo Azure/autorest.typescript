@@ -70,8 +70,8 @@ async function resetSharingProfileOfAGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  addSharingIdToTheSharingProfileOfAGallery();
-  resetSharingProfileOfAGallery();
+  await addSharingIdToTheSharingProfileOfAGallery();
+  await resetSharingProfileOfAGallery();
 }
 
 main().catch(console.error);

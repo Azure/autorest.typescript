@@ -49,7 +49,7 @@ async function testBackendHealth(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  testBackendHealth();
+  await testBackendHealth();
 }
 
 main().catch(console.error);

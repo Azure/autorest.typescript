@@ -137,7 +137,7 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createsOrUpdatesAWafPolicyWithinAResourceGroup();
+  await createsOrUpdatesAWafPolicyWithinAResourceGroup();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function assessPatchStateOfAVirtualMachine(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  assessPatchStateOfAVirtualMachine();
+  await assessPatchStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

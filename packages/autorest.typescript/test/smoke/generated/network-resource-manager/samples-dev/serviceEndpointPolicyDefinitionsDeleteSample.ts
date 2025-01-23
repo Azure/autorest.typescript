@@ -35,7 +35,7 @@ async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy()
 }
 
 async function main(): Promise<void> {
-  deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy();
+  await deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy();
 }
 
 main().catch(console.error);

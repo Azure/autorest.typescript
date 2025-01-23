@@ -32,7 +32,7 @@ async function deleteAzureFirewall(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAzureFirewall();
+  await deleteAzureFirewall();
 }
 
 main().catch(console.error);

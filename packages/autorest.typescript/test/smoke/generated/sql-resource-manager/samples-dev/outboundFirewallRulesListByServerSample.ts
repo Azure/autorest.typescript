@@ -36,7 +36,7 @@ async function getsListOfOutboundFirewallRulesOnAServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsListOfOutboundFirewallRulesOnAServer();
+  await getsListOfOutboundFirewallRulesOnAServer();
 }
 
 main().catch(console.error);

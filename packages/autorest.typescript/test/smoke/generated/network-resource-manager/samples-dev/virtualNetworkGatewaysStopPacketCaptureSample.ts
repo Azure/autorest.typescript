@@ -41,7 +41,7 @@ async function stopPacketCaptureOnVirtualNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  stopPacketCaptureOnVirtualNetworkGateway();
+  await stopPacketCaptureOnVirtualNetworkGateway();
 }
 
 main().catch(console.error);

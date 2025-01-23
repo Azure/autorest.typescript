@@ -39,7 +39,7 @@ async function listExtendedAuditingSettingsOfADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExtendedAuditingSettingsOfADatabase();
+  await listExtendedAuditingSettingsOfADatabase();
 }
 
 main().catch(console.error);

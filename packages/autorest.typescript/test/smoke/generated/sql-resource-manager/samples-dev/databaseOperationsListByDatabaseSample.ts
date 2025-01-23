@@ -38,7 +38,7 @@ async function listTheDatabaseManagementOperations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listTheDatabaseManagementOperations();
+  await listTheDatabaseManagementOperations();
 }
 
 main().catch(console.error);

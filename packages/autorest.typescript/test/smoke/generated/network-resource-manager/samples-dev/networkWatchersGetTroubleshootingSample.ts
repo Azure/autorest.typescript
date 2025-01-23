@@ -43,7 +43,7 @@ async function getTroubleshooting(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTroubleshooting();
+  await getTroubleshooting();
 }
 
 main().catch(console.error);

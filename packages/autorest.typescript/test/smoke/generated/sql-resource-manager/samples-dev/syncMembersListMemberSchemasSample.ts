@@ -43,7 +43,7 @@ async function getASyncMemberSchema(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASyncMemberSchema();
+  await getASyncMemberSchema();
 }
 
 main().catch(console.error);

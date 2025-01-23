@@ -75,8 +75,8 @@ async function startPacketCaptureOnVpnConnectionWithoutFilter(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  startPacketCaptureOnVpnConnectionWithFilter();
-  startPacketCaptureOnVpnConnectionWithoutFilter();
+  await startPacketCaptureOnVpnConnectionWithFilter();
+  await startPacketCaptureOnVpnConnectionWithoutFilter();
 }
 
 main().catch(console.error);

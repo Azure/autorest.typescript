@@ -32,7 +32,7 @@ async function routeFilterDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterDelete();
+  await routeFilterDelete();
 }
 
 main().catch(console.error);

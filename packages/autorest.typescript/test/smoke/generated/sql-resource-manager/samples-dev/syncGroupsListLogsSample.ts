@@ -47,7 +47,7 @@ async function getSyncGroupLogs(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSyncGroupLogs();
+  await getSyncGroupLogs();
 }
 
 main().catch(console.error);

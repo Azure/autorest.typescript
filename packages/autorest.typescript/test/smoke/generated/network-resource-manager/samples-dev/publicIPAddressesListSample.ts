@@ -31,7 +31,7 @@ async function listResourceGroupPublicIPAddresses(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listResourceGroupPublicIPAddresses();
+  await listResourceGroupPublicIPAddresses();
 }
 
 main().catch(console.error);

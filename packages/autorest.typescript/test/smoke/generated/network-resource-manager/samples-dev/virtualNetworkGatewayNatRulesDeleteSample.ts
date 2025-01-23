@@ -34,7 +34,7 @@ async function virtualNetworkGatewayNatRuleDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualNetworkGatewayNatRuleDelete();
+  await virtualNetworkGatewayNatRuleDelete();
 }
 
 main().catch(console.error);

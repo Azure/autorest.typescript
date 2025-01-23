@@ -38,7 +38,7 @@ async function listDataMaskingRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDataMaskingRules();
+  await listDataMaskingRules();
 }
 
 main().catch(console.error);

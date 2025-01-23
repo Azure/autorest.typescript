@@ -33,7 +33,7 @@ async function virtualHubListByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubListByResourceGroup();
+  await virtualHubListByResourceGroup();
 }
 
 main().catch(console.error);

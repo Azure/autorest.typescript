@@ -45,7 +45,7 @@ async function networkManageCommitPost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManageCommitPost();
+  await networkManageCommitPost();
 }
 
 main().catch(console.error);

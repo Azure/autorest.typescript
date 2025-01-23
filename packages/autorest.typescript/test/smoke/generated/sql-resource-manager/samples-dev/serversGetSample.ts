@@ -47,8 +47,8 @@ async function getServerWithExpandAdministrators(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServer();
-  getServerWithExpandAdministrators();
+  await getServer();
+  await getServerWithExpandAdministrators();
 }
 
 main().catch(console.error);

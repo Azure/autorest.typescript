@@ -73,8 +73,8 @@ async function createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll
 }
 
 async function main(): Promise<void> {
-  createOrUpdateImmutabilityPolicy();
-  createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll();
+  await createOrUpdateImmutabilityPolicy();
+  await createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll();
 }
 
 main().catch(console.error);

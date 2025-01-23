@@ -29,7 +29,7 @@ async function getAvailableServerVariables(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableServerVariables();
+  await getAvailableServerVariables();
 }
 
 main().catch(console.error);

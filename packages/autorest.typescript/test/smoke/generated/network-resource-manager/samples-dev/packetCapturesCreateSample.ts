@@ -53,7 +53,7 @@ async function createPacketCapture(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createPacketCapture();
+  await createPacketCapture();
 }
 
 main().catch(console.error);

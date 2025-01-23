@@ -55,8 +55,8 @@ async function listManagedInstancesByResourceGroupWithExpandAdministratorsOrActi
 }
 
 async function main(): Promise<void> {
-  listManagedInstancesByResourceGroup();
-  listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory();
+  await listManagedInstancesByResourceGroup();
+  await listManagedInstancesByResourceGroupWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

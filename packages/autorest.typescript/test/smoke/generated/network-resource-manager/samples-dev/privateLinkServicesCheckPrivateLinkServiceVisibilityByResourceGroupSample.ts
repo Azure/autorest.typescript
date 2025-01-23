@@ -41,7 +41,7 @@ async function checkPrivateLinkServiceVisibility(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  checkPrivateLinkServiceVisibility();
+  await checkPrivateLinkServiceVisibility();
 }
 
 main().catch(console.error);

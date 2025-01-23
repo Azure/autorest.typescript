@@ -49,7 +49,7 @@ async function {{this.sampleFunctionName}}(): Promise<void> {
 
 async function main(): Promise<void> {
 {{#each samples}}
-  {{this.sampleFunctionName}}();
+  await {{this.sampleFunctionName}}();
 {{/each}}
 }
 

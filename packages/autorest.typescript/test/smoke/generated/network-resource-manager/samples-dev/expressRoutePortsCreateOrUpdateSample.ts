@@ -71,8 +71,8 @@ async function expressRoutePortUpdateLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortCreate();
-  expressRoutePortUpdateLink();
+  await expressRoutePortCreate();
+  await expressRoutePortUpdateLink();
 }
 
 main().catch(console.error);

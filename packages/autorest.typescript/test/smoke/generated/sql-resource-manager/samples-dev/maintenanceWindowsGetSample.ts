@@ -38,7 +38,7 @@ async function getsMaintenanceWindowSettingsForASelectedDatabase(): Promise<void
 }
 
 async function main(): Promise<void> {
-  getsMaintenanceWindowSettingsForASelectedDatabase();
+  await getsMaintenanceWindowSettingsForASelectedDatabase();
 }
 
 main().catch(console.error);

@@ -68,8 +68,8 @@ async function createRouteTableWithRoute(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createRouteTable();
-  createRouteTableWithRoute();
+  await createRouteTable();
+  await createRouteTableWithRoute();
 }
 
 main().catch(console.error);

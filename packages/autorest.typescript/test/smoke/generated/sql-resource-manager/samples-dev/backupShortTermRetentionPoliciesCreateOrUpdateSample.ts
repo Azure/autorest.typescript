@@ -46,7 +46,7 @@ async function updateTheShortTermRetentionPolicyForTheDatabase(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  updateTheShortTermRetentionPolicyForTheDatabase();
+  await updateTheShortTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

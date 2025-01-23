@@ -36,7 +36,7 @@ async function resumesADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  resumesADatabase();
+  await resumesADatabase();
 }
 
 main().catch(console.error);

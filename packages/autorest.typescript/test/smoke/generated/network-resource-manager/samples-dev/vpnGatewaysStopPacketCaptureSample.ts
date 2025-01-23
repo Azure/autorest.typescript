@@ -42,7 +42,7 @@ async function stopPacketCaptureOnVpnGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  stopPacketCaptureOnVpnGateway();
+  await stopPacketCaptureOnVpnGateway();
 }
 
 main().catch(console.error);

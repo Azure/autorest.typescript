@@ -30,7 +30,7 @@ async function listsAllApplicationGatewaysInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listsAllApplicationGatewaysInASubscription();
+  await listsAllApplicationGatewaysInASubscription();
 }
 
 main().catch(console.error);

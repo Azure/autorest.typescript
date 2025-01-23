@@ -32,7 +32,7 @@ async function deleteNetworkInterface(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkInterface();
+  await deleteNetworkInterface();
 }
 
 main().catch(console.error);

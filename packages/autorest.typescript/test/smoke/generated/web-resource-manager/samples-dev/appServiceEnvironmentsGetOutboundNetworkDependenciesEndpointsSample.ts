@@ -37,7 +37,7 @@ async function getOutboundNetworkDependenciesEndpoints(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getOutboundNetworkDependenciesEndpoints();
+  await getOutboundNetworkDependenciesEndpoints();
 }
 
 main().catch(console.error);

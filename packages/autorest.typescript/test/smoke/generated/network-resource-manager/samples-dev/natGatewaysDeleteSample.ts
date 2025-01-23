@@ -32,7 +32,7 @@ async function deleteNatGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNatGateway();
+  await deleteNatGateway();
 }
 
 main().catch(console.error);

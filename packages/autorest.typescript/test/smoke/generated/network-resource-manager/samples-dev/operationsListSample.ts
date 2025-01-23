@@ -31,7 +31,7 @@ async function getAListOfOperationsForAResourceProvider(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAListOfOperationsForAResourceProvider();
+  await getAListOfOperationsForAResourceProvider();
 }
 
 main().catch(console.error);

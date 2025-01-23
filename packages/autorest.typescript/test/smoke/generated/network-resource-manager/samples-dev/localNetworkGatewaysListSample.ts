@@ -31,7 +31,7 @@ async function listLocalNetworkGateways(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listLocalNetworkGateways();
+  await listLocalNetworkGateways();
 }
 
 main().catch(console.error);

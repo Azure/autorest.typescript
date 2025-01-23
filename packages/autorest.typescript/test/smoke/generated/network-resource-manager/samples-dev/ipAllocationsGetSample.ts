@@ -32,7 +32,7 @@ async function getIPAllocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getIPAllocation();
+  await getIPAllocation();
 }
 
 main().catch(console.error);

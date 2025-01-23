@@ -34,7 +34,7 @@ async function vpnConnectionGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnConnectionGet();
+  await vpnConnectionGet();
 }
 
 main().catch(console.error);

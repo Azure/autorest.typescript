@@ -30,7 +30,7 @@ async function listAllLoadBalancers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllLoadBalancers();
+  await listAllLoadBalancers();
 }
 
 main().catch(console.error);

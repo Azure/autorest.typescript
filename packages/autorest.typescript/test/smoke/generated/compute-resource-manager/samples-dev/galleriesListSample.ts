@@ -30,7 +30,7 @@ async function listGalleriesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listGalleriesInASubscription();
+  await listGalleriesInASubscription();
 }
 
 main().catch(console.error);

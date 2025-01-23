@@ -5,9 +5,7 @@ export const sampleTemplate = `
 {{#each importedTypes}}
 {{this}}
 {{/each}}
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 {{#each samples}}
 /**
@@ -18,7 +16,7 @@ dotenv.config();
  * x-ms-original-file: {{this.originalFileLocation}}
  {{/if}}
  */
-async function {{name}}() {
+async function {{name}}(): Promise<void>  {
   {{#each this.clientParamAssignments}}
   {{this}}
   {{/each}}
@@ -48,9 +46,9 @@ async function {{name}}() {
 
 {{/each}}
 
-async function main() {
+async function main(): Promise<void>  {
 {{#each samples}}
-  {{this.name}}();
+  await {{this.name}}();
 {{/each}}
 }
 

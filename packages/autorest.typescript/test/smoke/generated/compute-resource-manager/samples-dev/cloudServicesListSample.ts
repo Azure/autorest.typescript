@@ -31,7 +31,7 @@ async function listCloudServicesInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCloudServicesInAResourceGroup();
+  await listCloudServicesInAResourceGroup();
 }
 
 main().catch(console.error);

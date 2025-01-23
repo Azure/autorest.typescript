@@ -37,7 +37,7 @@ async function deleteAReplicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAReplicationLink();
+  await deleteAReplicationLink();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function keyVaultListPrivateLinkResources(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  keyVaultListPrivateLinkResources();
+  await keyVaultListPrivateLinkResources();
 }
 
 main().catch(console.error);

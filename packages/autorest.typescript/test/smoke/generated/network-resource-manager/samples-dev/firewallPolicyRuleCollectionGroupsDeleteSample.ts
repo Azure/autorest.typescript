@@ -35,7 +35,7 @@ async function deleteFirewallPolicyRuleCollectionGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteFirewallPolicyRuleCollectionGroup();
+  await deleteFirewallPolicyRuleCollectionGroup();
 }
 
 main().catch(console.error);

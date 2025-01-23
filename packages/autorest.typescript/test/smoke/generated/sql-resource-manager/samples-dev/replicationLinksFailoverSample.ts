@@ -37,7 +37,7 @@ async function failoverAReplicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  failoverAReplicationLink();
+  await failoverAReplicationLink();
 }
 
 main().catch(console.error);

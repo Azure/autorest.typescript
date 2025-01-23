@@ -42,7 +42,7 @@ async function updateGeoBackupPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateGeoBackupPolicy();
+  await updateGeoBackupPolicy();
 }
 
 main().catch(console.error);

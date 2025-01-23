@@ -113,7 +113,7 @@ function _getSchemaOperations(context: SchemaRegistryContext) {
   };
 }
 
-export function getSchemaOperationsOperations(
+export function _getSchemaOperationsOperations(
   context: SchemaRegistryContext,
 ): SchemaOperationsOperations {
   return {

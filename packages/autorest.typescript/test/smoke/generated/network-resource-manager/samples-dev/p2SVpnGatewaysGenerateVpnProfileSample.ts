@@ -39,7 +39,7 @@ async function generateP2SVpnGatewayVpnprofile(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generateP2SVpnGatewayVpnprofile();
+  await generateP2SVpnGatewayVpnprofile();
 }
 
 main().catch(console.error);

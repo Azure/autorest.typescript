@@ -33,7 +33,7 @@ async function listGalleriesInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listGalleriesInAResourceGroup();
+  await listGalleriesInAResourceGroup();
 }
 
 main().catch(console.error);

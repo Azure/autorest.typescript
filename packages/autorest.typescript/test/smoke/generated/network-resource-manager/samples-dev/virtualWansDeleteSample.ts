@@ -32,7 +32,7 @@ async function virtualWanDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanDelete();
+  await virtualWanDelete();
 }
 
 main().catch(console.error);

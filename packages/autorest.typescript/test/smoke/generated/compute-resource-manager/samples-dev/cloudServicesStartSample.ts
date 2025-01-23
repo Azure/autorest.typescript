@@ -32,7 +32,7 @@ async function startCloudService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  startCloudService();
+  await startCloudService();
 }
 
 main().catch(console.error);

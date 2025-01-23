@@ -37,7 +37,7 @@ async function createCustomIPPrefixAllocationMethod(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createCustomIPPrefixAllocationMethod();
+  await createCustomIPPrefixAllocationMethod();
 }
 
 main().catch(console.error);

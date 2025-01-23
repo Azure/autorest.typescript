@@ -37,7 +37,7 @@ async function updateRouteFilterTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateRouteFilterTags();
+  await updateRouteFilterTags();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function deleteAVirtualNetworkRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAVirtualNetworkRule();
+  await deleteAVirtualNetworkRule();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteFirewallPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteFirewallPolicy();
+  await deleteFirewallPolicy();
 }
 
 main().catch(console.error);

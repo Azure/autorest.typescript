@@ -33,7 +33,7 @@ async function getDeletedServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDeletedServer();
+  await getDeletedServer();
 }
 
 main().catch(console.error);

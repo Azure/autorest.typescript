@@ -33,7 +33,7 @@ async function deleteServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteServer();
+  await deleteServer();
 }
 
 main().catch(console.error);

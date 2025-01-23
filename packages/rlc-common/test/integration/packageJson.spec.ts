@@ -299,7 +299,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && dev-tool run build-package && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -323,7 +323,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -394,7 +394,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
@@ -430,7 +430,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",

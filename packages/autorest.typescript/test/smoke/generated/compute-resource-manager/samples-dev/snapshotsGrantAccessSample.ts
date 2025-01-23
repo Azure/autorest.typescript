@@ -40,7 +40,7 @@ async function getASasOnASnapshot(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASasOnASnapshot();
+  await getASasOnASnapshot();
 }
 
 main().catch(console.error);

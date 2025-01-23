@@ -33,7 +33,7 @@ async function purgeADeletedVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  purgeADeletedVault();
+  await purgeADeletedVault();
 }
 
 main().catch(console.error);

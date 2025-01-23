@@ -35,7 +35,7 @@ async function listsAllPrivateLinkResourcesOnApplicationGateway(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  listsAllPrivateLinkResourcesOnApplicationGateway();
+  await listsAllPrivateLinkResourcesOnApplicationGateway();
 }
 
 main().catch(console.error);

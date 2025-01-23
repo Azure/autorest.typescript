@@ -32,7 +32,7 @@ async function deleteBastionHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteBastionHost();
+  await deleteBastionHost();
 }
 
 main().catch(console.error);

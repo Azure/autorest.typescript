@@ -32,7 +32,7 @@ async function getASyncDatabaseId(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASyncDatabaseId();
+  await getASyncDatabaseId();
 }
 
 main().catch(console.error);

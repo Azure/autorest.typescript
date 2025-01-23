@@ -35,7 +35,7 @@ async function inboundNatRuleList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  inboundNatRuleList();
+  await inboundNatRuleList();
 }
 
 main().catch(console.error);

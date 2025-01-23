@@ -35,7 +35,7 @@ async function getAJobAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAJobAgent();
+  await getAJobAgent();
 }
 
 main().catch(console.error);

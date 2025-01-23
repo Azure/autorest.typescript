@@ -30,7 +30,7 @@ async function listAllPrivateListService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllPrivateListService();
+  await listAllPrivateListService();
 }
 
 main().catch(console.error);

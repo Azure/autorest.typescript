@@ -38,7 +38,7 @@ async function getADatabaseThreatDetectionPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getADatabaseThreatDetectionPolicy();
+  await getADatabaseThreatDetectionPolicy();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function getsAServerConnectionPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAServerConnectionPolicy();
+  await getsAServerConnectionPolicy();
 }
 
 main().catch(console.error);

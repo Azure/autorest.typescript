@@ -32,7 +32,7 @@ async function getBackendHealth(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getBackendHealth();
+  await getBackendHealth();
 }
 
 main().catch(console.error);

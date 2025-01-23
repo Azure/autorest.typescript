@@ -41,7 +41,7 @@ async function getDatabaseColumn(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDatabaseColumn();
+  await getDatabaseColumn();
 }
 
 main().catch(console.error);

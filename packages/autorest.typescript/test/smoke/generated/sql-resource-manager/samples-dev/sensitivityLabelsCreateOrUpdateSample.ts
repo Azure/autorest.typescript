@@ -52,7 +52,7 @@ async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters(): Prom
 }
 
 async function main(): Promise<void> {
-  updatesTheSensitivityLabelOfAGivenColumnWithAllParameters();
+  await updatesTheSensitivityLabelOfAGivenColumnWithAllParameters();
 }
 
 main().catch(console.error);

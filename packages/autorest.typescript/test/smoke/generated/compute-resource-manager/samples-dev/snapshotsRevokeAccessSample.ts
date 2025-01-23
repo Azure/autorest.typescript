@@ -32,7 +32,7 @@ async function revokeAccessToASnapshot(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  revokeAccessToASnapshot();
+  await revokeAccessToASnapshot();
 }
 
 main().catch(console.error);

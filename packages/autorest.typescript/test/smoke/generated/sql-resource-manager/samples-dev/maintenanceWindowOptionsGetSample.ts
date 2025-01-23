@@ -38,7 +38,7 @@ async function getsAListOfAvailableMaintenanceWindowsForASelectedDatabase(): Pro
 }
 
 async function main(): Promise<void> {
-  getsAListOfAvailableMaintenanceWindowsForASelectedDatabase();
+  await getsAListOfAvailableMaintenanceWindowsForASelectedDatabase();
 }
 
 main().catch(console.error);

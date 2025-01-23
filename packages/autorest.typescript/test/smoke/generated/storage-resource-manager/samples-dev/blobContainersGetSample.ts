@@ -55,8 +55,8 @@ async function getContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getBlobContainersGetWithAllowProtectedAppendWritesAll();
-  getContainers();
+  await getBlobContainersGetWithAllowProtectedAppendWritesAll();
+  await getContainers();
 }
 
 main().catch(console.error);

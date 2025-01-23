@@ -42,7 +42,7 @@ async function listDatabaseColumns(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabaseColumns();
+  await listDatabaseColumns();
 }
 
 main().catch(console.error);

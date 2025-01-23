@@ -44,7 +44,7 @@ async function updateTheLongTermRetentionBackup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateTheLongTermRetentionBackup();
+  await updateTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteVirtualNetworkTapResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteVirtualNetworkTapResource();
+  await deleteVirtualNetworkTapResource();
 }
 
 main().catch(console.error);

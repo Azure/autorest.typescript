@@ -101,8 +101,8 @@ async function createManagedInstanceWithMinimalProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createManagedInstanceWithAllProperties();
-  createManagedInstanceWithMinimalProperties();
+  await createManagedInstanceWithAllProperties();
+  await createManagedInstanceWithMinimalProperties();
 }
 
 main().catch(console.error);

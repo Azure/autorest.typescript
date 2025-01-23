@@ -37,7 +37,7 @@ async function updateApplicationGatewayTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateApplicationGatewayTags();
+  await updateApplicationGatewayTags();
 }
 
 main().catch(console.error);

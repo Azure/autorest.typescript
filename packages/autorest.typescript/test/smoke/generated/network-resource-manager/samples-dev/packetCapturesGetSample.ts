@@ -34,7 +34,7 @@ async function getPacketCapture(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPacketCapture();
+  await getPacketCapture();
 }
 
 main().catch(console.error);

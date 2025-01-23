@@ -100,8 +100,8 @@ async function createOrUpdateAJobStepWithMinimalPropertiesSpecified(): Promise<v
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAJobStepWithAllPropertiesSpecified();
-  createOrUpdateAJobStepWithMinimalPropertiesSpecified();
+  await createOrUpdateAJobStepWithAllPropertiesSpecified();
+  await createOrUpdateAJobStepWithMinimalPropertiesSpecified();
 }
 
 main().catch(console.error);

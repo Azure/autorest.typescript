@@ -36,7 +36,7 @@ async function getsARestorableDroppedDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsARestorableDroppedDatabase();
+  await getsARestorableDroppedDatabase();
 }
 
 main().catch(console.error);

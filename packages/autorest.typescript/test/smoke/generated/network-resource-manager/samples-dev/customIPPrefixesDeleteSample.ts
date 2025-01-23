@@ -32,7 +32,7 @@ async function deleteCustomIPPrefix(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteCustomIPPrefix();
+  await deleteCustomIPPrefix();
 }
 
 main().catch(console.error);

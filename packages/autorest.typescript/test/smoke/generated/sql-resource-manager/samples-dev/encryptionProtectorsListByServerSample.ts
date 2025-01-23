@@ -36,7 +36,7 @@ async function listEncryptionProtectorsByServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listEncryptionProtectorsByServer();
+  await listEncryptionProtectorsByServer();
 }
 
 main().catch(console.error);

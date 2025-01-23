@@ -37,7 +37,7 @@ async function updateNatGatewayTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNatGatewayTags();
+  await updateNatGatewayTags();
 }
 
 main().catch(console.error);

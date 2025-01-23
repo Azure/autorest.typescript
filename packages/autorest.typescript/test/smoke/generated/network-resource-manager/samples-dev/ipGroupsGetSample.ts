@@ -29,7 +29,7 @@ async function getIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getIPGroups();
+  await getIPGroups();
 }
 
 main().catch(console.error);

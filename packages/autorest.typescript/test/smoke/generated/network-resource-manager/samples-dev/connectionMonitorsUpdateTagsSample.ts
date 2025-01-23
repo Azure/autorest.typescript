@@ -39,7 +39,7 @@ async function updateConnectionMonitorTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateConnectionMonitorTags();
+  await updateConnectionMonitorTags();
 }
 
 main().catch(console.error);

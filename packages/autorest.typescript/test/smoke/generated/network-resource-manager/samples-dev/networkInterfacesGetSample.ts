@@ -32,7 +32,7 @@ async function getNetworkInterface(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkInterface();
+  await getNetworkInterface();
 }
 
 main().catch(console.error);

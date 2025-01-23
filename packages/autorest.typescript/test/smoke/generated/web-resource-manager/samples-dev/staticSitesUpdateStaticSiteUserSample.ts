@@ -44,7 +44,7 @@ async function createOrUpdateAUserForAStaticSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAUserForAStaticSite();
+  await createOrUpdateAUserForAStaticSite();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function tableOperationPatch(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  tableOperationPatch();
+  await tableOperationPatch();
 }
 
 main().catch(console.error);

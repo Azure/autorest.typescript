@@ -27,7 +27,7 @@ async function getAvailableWafRuleSets(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableWafRuleSets();
+  await getAvailableWafRuleSets();
 }
 
 main().catch(console.error);

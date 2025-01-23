@@ -40,7 +40,7 @@ async function getsAWorkloadClassifierForADataWarehouse(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAWorkloadClassifierForADataWarehouse();
+  await getsAWorkloadClassifierForADataWarehouse();
 }
 
 main().catch(console.error);

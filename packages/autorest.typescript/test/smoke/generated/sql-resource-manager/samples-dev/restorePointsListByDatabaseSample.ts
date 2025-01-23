@@ -64,8 +64,8 @@ async function listDatawarehouseDatabaseRestorePoints(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabaseRestorePoints();
-  listDatawarehouseDatabaseRestorePoints();
+  await listDatabaseRestorePoints();
+  await listDatawarehouseDatabaseRestorePoints();
 }
 
 main().catch(console.error);

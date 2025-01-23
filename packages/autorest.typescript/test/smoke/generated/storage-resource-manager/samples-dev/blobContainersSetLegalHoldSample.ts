@@ -65,8 +65,8 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll(): Promis
 }
 
 async function main(): Promise<void> {
-  setLegalHoldContainers();
-  setLegalHoldContainersWithAllowProtectedAppendWritesAll();
+  await setLegalHoldContainers();
+  await setLegalHoldContainersWithAllowProtectedAppendWritesAll();
 }
 
 main().catch(console.error);

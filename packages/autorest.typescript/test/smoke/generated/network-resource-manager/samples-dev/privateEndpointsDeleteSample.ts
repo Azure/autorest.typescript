@@ -32,7 +32,7 @@ async function deletePrivateEndpoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePrivateEndpoint();
+  await deletePrivateEndpoint();
 }
 
 main().catch(console.error);

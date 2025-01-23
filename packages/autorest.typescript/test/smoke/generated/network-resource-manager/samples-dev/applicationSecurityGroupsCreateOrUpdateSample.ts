@@ -38,7 +38,7 @@ async function createApplicationSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createApplicationSecurityGroup();
+  await createApplicationSecurityGroup();
 }
 
 main().catch(console.error);

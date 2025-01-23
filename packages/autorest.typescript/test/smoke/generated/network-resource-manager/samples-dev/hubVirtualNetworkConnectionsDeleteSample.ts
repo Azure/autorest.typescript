@@ -34,7 +34,7 @@ async function hubVirtualNetworkConnectionDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  hubVirtualNetworkConnectionDelete();
+  await hubVirtualNetworkConnectionDelete();
 }
 
 main().catch(console.error);

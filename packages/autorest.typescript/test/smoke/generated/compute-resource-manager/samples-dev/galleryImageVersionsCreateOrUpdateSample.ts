@@ -533,13 +533,13 @@ async function createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource(): Prom
 }
 
 async function main(): Promise<void> {
-  createOrUpdateASimpleGalleryImageVersionUsingVMAsSource();
-  createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource();
-  createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource();
-  createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode();
-  createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource();
-  createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource();
-  createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource();
+  await createOrUpdateASimpleGalleryImageVersionUsingVMAsSource();
+  await createOrUpdateASimpleGalleryImageVersionUsingManagedImageAsSource();
+  await createOrUpdateASimpleGalleryImageVersionUsingMixOfDisksAndSnapshotsAsASource();
+  await createOrUpdateASimpleGalleryImageVersionUsingShallowReplicationMode();
+  await createOrUpdateASimpleGalleryImageVersionUsingSharedImageAsSource();
+  await createOrUpdateASimpleGalleryImageVersionUsingSnapshotsAsASource();
+  await createOrUpdateASimpleGalleryImageVersionUsingVhdAsASource();
 }
 
 main().catch(console.error);

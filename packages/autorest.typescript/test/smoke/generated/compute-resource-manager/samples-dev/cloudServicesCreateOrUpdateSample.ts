@@ -277,10 +277,10 @@ async function createNewCloudServiceWithSingleRoleAndRdpExtension(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  createNewCloudServiceWithMultipleRoles();
-  createNewCloudServiceWithSingleRole();
-  createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
-  createNewCloudServiceWithSingleRoleAndRdpExtension();
+  await createNewCloudServiceWithMultipleRoles();
+  await createNewCloudServiceWithSingleRole();
+  await createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
+  await createNewCloudServiceWithSingleRoleAndRdpExtension();
 }
 
 main().catch(console.error);

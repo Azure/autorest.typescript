@@ -33,7 +33,7 @@ async function getsTheListOfRestorePointCollectionsInAResourceGroup(): Promise<v
 }
 
 async function main(): Promise<void> {
-  getsTheListOfRestorePointCollectionsInAResourceGroup();
+  await getsTheListOfRestorePointCollectionsInAResourceGroup();
 }
 
 main().catch(console.error);

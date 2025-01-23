@@ -38,7 +38,7 @@ async function staticMembersList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  staticMembersList();
+  await staticMembersList();
 }
 
 main().catch(console.error);

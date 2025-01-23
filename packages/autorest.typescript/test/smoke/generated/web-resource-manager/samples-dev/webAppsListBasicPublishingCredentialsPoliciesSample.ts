@@ -36,7 +36,7 @@ async function listPublishingCredentialsPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listPublishingCredentialsPolicies();
+  await listPublishingCredentialsPolicies();
 }
 
 main().catch(console.error);

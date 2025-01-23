@@ -45,7 +45,7 @@ async function createOrUpdateACredential(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateACredential();
+  await createOrUpdateACredential();
 }
 
 main().catch(console.error);

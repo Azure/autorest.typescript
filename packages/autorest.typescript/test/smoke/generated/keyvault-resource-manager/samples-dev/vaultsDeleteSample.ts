@@ -31,7 +31,7 @@ async function deleteAVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAVault();
+  await deleteAVault();
 }
 
 main().catch(console.error);

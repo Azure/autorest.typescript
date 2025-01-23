@@ -37,7 +37,7 @@ async function listFirewallRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listFirewallRules();
+  await listFirewallRules();
 }
 
 main().catch(console.error);

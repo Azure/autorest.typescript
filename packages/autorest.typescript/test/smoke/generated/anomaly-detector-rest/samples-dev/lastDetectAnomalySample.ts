@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the inference data should be put into request body in a JSON format. The request will complete synchronously and return the detection immediately in the response body.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the inference data should be put into request body in a JSON format. The request will complete synchronously and return the detection immediately in the response body.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/LastDetectAnomaly.json
  */
-async function detectAnomalyWithMultivariateModel() {
+async function detectAnomalyWithMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -177,8 +175,8 @@ async function detectAnomalyWithMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
-  detectAnomalyWithMultivariateModel();
+async function main(): Promise<void> {
+  await detectAnomalyWithMultivariateModel();
 }
 
 main().catch(console.error);

@@ -27,7 +27,7 @@ async function getAvailableSslOptions(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableSslOptions();
+  await getAvailableSslOptions();
 }
 
 main().catch(console.error);

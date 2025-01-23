@@ -39,7 +39,7 @@ async function updateFlowLogTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateFlowLogTags();
+  await updateFlowLogTags();
 }
 
 main().catch(console.error);

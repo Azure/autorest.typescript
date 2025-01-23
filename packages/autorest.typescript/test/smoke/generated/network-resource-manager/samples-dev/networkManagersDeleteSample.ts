@@ -39,7 +39,7 @@ async function networkManagersDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManagersDelete();
+  await networkManagersDelete();
 }
 
 main().catch(console.error);

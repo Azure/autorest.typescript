@@ -35,7 +35,7 @@ async function getServerDnsAlias(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServerDnsAlias();
+  await getServerDnsAlias();
 }
 
 main().catch(console.error);

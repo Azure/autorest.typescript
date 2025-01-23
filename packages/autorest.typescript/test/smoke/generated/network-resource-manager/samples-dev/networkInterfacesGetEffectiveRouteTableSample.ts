@@ -33,7 +33,7 @@ async function showNetworkInterfaceEffectiveRouteTables(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  showNetworkInterfaceEffectiveRouteTables();
+  await showNetworkInterfaceEffectiveRouteTables();
 }
 
 main().catch(console.error);

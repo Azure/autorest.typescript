@@ -35,7 +35,7 @@ async function routingIntentList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routingIntentList();
+  await routingIntentList();
 }
 
 main().catch(console.error);

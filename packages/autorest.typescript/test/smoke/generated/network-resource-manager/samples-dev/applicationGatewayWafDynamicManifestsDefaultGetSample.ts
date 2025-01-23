@@ -29,7 +29,7 @@ async function getsWafDefaultManifest(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsWafDefaultManifest();
+  await getsWafDefaultManifest();
 }
 
 main().catch(console.error);

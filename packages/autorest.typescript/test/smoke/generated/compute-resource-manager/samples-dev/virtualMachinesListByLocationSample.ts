@@ -31,7 +31,7 @@ async function listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpec
 }
 
 async function main(): Promise<void> {
-  listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
+  await listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
 }
 
 main().catch(console.error);

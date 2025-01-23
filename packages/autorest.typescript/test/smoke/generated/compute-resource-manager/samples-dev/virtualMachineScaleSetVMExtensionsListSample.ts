@@ -34,7 +34,7 @@ async function listExtensionsInVmssInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExtensionsInVmssInstance();
+  await listExtensionsInVmssInstance();
 }
 
 main().catch(console.error);

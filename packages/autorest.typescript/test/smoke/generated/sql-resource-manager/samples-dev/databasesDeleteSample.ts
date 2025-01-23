@@ -36,7 +36,7 @@ async function deletesADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesADatabase();
+  await deletesADatabase();
 }
 
 main().catch(console.error);

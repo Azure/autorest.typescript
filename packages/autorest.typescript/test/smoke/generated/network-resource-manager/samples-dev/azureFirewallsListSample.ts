@@ -31,7 +31,7 @@ async function listAllAzureFirewallsForAGivenResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllAzureFirewallsForAGivenResourceGroup();
+  await listAllAzureFirewallsForAGivenResourceGroup();
 }
 
 main().catch(console.error);

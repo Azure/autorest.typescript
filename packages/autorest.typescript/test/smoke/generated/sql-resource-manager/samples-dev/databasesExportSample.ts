@@ -88,8 +88,8 @@ async function exportsADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
-  exportsADatabase();
+  await exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
+  await exportsADatabase();
 }
 
 main().catch(console.error);

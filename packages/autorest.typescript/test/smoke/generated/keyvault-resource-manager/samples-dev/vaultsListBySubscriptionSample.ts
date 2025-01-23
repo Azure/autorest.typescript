@@ -36,7 +36,7 @@ async function listVaultsInTheSpecifiedSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVaultsInTheSpecifiedSubscription();
+  await listVaultsInTheSpecifiedSubscription();
 }
 
 main().catch(console.error);

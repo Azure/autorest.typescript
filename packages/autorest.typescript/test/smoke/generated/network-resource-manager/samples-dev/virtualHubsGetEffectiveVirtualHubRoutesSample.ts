@@ -100,9 +100,9 @@ async function effectiveRoutesForTheVirtualHub(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  effectiveRoutesForAConnectionResource();
-  effectiveRoutesForARouteTableResource();
-  effectiveRoutesForTheVirtualHub();
+  await effectiveRoutesForAConnectionResource();
+  await effectiveRoutesForARouteTableResource();
+  await effectiveRoutesForTheVirtualHub();
 }
 
 main().catch(console.error);

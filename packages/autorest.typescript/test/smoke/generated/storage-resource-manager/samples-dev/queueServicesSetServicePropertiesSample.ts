@@ -74,7 +74,7 @@ async function queueServicesPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueServicesPut();
+  await queueServicesPut();
 }
 
 main().catch(console.error);

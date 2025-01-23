@@ -30,7 +30,7 @@ async function listAllVirtualMachineImagesInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualMachineImagesInASubscription();
+  await listAllVirtualMachineImagesInASubscription();
 }
 
 main().catch(console.error);

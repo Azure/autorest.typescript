@@ -42,7 +42,7 @@ async function getVpnDeviceConfigurationScript(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVpnDeviceConfigurationScript();
+  await getVpnDeviceConfigurationScript();
 }
 
 main().catch(console.error);

@@ -45,7 +45,7 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
 }
 
 async function main(): Promise<void> {
-  updateADatabaseTransparentDataEncryptionStateWithMinimalParameters();
+  await updateADatabaseTransparentDataEncryptionStateWithMinimalParameters();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function staticMembersGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  staticMembersGet();
+  await staticMembersGet();
 }
 
 main().catch(console.error);

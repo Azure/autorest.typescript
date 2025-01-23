@@ -37,7 +37,7 @@ async function deleteAJob(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAJob();
+  await deleteAJob();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayBgpPeerStatus(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayBgpPeerStatus();
+  await getVirtualNetworkGatewayBgpPeerStatus();
 }
 
 main().catch(console.error);

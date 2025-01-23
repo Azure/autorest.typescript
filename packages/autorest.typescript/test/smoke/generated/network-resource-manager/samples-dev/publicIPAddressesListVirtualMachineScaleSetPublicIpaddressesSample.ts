@@ -35,7 +35,7 @@ async function listVmssPublicIP(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVmssPublicIP();
+  await listVmssPublicIP();
 }
 
 main().catch(console.error);

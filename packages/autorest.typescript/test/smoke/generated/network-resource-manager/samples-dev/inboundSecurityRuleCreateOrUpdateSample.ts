@@ -48,7 +48,7 @@ async function createNetworkVirtualApplianceInboundSecurityRules(): Promise<void
 }
 
 async function main(): Promise<void> {
-  createNetworkVirtualApplianceInboundSecurityRules();
+  await createNetworkVirtualApplianceInboundSecurityRules();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function generalizeAVirtualMachine(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  generalizeAVirtualMachine();
+  await generalizeAVirtualMachine();
 }
 
 main().catch(console.error);

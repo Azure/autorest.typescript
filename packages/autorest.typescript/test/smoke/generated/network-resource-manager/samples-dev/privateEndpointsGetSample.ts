@@ -70,9 +70,9 @@ async function getPrivateEndpointWithManualApprovalConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getPrivateEndpoint();
-  getPrivateEndpointWithApplicationSecurityGroups();
-  getPrivateEndpointWithManualApprovalConnection();
+  await getPrivateEndpoint();
+  await getPrivateEndpointWithApplicationSecurityGroups();
+  await getPrivateEndpointWithManualApprovalConnection();
 }
 
 main().catch(console.error);

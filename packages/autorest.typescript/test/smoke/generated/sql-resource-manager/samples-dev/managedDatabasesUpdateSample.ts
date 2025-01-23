@@ -66,8 +66,8 @@ async function updatesAManagedDatabaseWithMinimalProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updatesAManagedDatabaseWithMaximalProperties();
-  updatesAManagedDatabaseWithMinimalProperties();
+  await updatesAManagedDatabaseWithMaximalProperties();
+  await updatesAManagedDatabaseWithMinimalProperties();
 }
 
 main().catch(console.error);

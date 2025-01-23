@@ -41,7 +41,7 @@ async function disconnectVpnConnectionsFromP2SVpnGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  disconnectVpnConnectionsFromP2SVpnGateway();
+  await disconnectVpnConnectionsFromP2SVpnGateway();
 }
 
 main().catch(console.error);

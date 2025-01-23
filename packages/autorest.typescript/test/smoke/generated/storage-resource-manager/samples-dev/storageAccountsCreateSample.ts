@@ -278,12 +278,12 @@ async function storageAccountCreateWithImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  nfsV3AccountCreate();
-  storageAccountCreate();
-  storageAccountCreateDisallowPublicNetworkAccess();
-  storageAccountCreateEnablePublicNetworkAccess();
-  storageAccountCreateUserAssignedEncryptionIdentityWithCmk();
-  storageAccountCreateWithImmutabilityPolicy();
+  await nfsV3AccountCreate();
+  await storageAccountCreate();
+  await storageAccountCreateDisallowPublicNetworkAccess();
+  await storageAccountCreateEnablePublicNetworkAccess();
+  await storageAccountCreateUserAssignedEncryptionIdentityWithCmk();
+  await storageAccountCreateWithImmutabilityPolicy();
 }
 
 main().catch(console.error);

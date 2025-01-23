@@ -40,7 +40,7 @@ async function approveOrRejectAOutboundFirewallRuleWithAGivenName(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  approveOrRejectAOutboundFirewallRuleWithAGivenName();
+  await approveOrRejectAOutboundFirewallRuleWithAGivenName();
 }
 
 main().catch(console.error);

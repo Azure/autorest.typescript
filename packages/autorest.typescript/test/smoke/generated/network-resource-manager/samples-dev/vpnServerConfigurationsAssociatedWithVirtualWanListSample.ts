@@ -33,7 +33,7 @@ async function getVirtualWanVpnServerConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualWanVpnServerConfigurations();
+  await getVirtualWanVpnServerConfigurations();
 }
 
 main().catch(console.error);

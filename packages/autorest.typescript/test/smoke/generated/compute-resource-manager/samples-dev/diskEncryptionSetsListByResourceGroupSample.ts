@@ -33,7 +33,7 @@ async function listAllDiskEncryptionSetsInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllDiskEncryptionSetsInAResourceGroup();
+  await listAllDiskEncryptionSetsInAResourceGroup();
 }
 
 main().catch(console.error);

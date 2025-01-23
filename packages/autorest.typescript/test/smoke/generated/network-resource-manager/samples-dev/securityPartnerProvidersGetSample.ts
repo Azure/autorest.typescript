@@ -32,7 +32,7 @@ async function getSecurityPartnerProvider(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSecurityPartnerProvider();
+  await getSecurityPartnerProvider();
 }
 
 main().catch(console.error);

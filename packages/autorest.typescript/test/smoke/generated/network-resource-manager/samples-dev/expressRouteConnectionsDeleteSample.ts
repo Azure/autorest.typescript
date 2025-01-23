@@ -35,7 +35,7 @@ async function expressRouteConnectionDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteConnectionDelete();
+  await expressRouteConnectionDelete();
 }
 
 main().catch(console.error);

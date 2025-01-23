@@ -40,7 +40,7 @@ async function listVaultsInTheSpecifiedResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVaultsInTheSpecifiedResourceGroup();
+  await listVaultsInTheSpecifiedResourceGroup();
 }
 
 main().catch(console.error);

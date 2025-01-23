@@ -42,7 +42,7 @@ async function enablesTheSensitivityRecommendationsOnAGivenColumn(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  enablesTheSensitivityRecommendationsOnAGivenColumn();
+  await enablesTheSensitivityRecommendationsOnAGivenColumn();
 }
 
 main().catch(console.error);

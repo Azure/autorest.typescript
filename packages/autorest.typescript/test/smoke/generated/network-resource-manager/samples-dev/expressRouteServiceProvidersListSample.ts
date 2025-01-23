@@ -30,7 +30,7 @@ async function listExpressRouteProviders(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRouteProviders();
+  await listExpressRouteProviders();
 }
 
 main().catch(console.error);

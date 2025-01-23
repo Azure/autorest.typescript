@@ -43,7 +43,7 @@ async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase(): Promis
 }
 
 async function main(): Promise<void> {
-  getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
+  await getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
 }
 
 main().catch(console.error);

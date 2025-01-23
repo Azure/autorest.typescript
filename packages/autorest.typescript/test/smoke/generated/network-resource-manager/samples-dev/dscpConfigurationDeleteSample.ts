@@ -32,7 +32,7 @@ async function deleteDscpConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteDscpConfiguration();
+  await deleteDscpConfiguration();
 }
 
 main().catch(console.error);

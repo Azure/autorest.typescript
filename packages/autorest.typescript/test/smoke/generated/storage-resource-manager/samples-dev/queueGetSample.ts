@@ -34,7 +34,7 @@ async function queueOperationGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueOperationGet();
+  await queueOperationGet();
 }
 
 main().catch(console.error);

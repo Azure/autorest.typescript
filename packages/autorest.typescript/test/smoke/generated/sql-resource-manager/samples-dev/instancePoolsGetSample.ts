@@ -33,7 +33,7 @@ async function getAnInstancePool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAnInstancePool();
+  await getAnInstancePool();
 }
 
 main().catch(console.error);

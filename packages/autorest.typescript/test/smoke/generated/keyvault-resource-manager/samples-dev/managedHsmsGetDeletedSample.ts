@@ -30,7 +30,7 @@ async function retrieveADeletedManagedHsm(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  retrieveADeletedManagedHsm();
+  await retrieveADeletedManagedHsm();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function getsAListOfAzureActiveDirectoryAdministrator(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsAListOfAzureActiveDirectoryAdministrator();
+  await getsAListOfAzureActiveDirectoryAdministrator();
 }
 
 main().catch(console.error);

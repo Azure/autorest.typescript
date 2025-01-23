@@ -41,7 +41,7 @@ async function getAllLongTermRetentionBackupsUnderTheDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllLongTermRetentionBackupsUnderTheDatabase();
+  await getAllLongTermRetentionBackupsUnderTheDatabase();
 }
 
 main().catch(console.error);

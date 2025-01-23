@@ -35,7 +35,7 @@ async function plannedFailoverOfAFailoverGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  plannedFailoverOfAFailoverGroup();
+  await plannedFailoverOfAFailoverGroup();
 }
 
 main().catch(console.error);

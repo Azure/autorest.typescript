@@ -34,7 +34,7 @@ async function vpnConnectionDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnConnectionDelete();
+  await vpnConnectionDelete();
 }
 
 main().catch(console.error);

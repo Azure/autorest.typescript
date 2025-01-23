@@ -32,7 +32,7 @@ async function getRouteTable(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getRouteTable();
+  await getRouteTable();
 }
 
 main().catch(console.error);

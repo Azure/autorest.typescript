@@ -42,7 +42,7 @@ async function storageAccountListServiceSas(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountListServiceSas();
+  await storageAccountListServiceSas();
 }
 
 main().catch(console.error);

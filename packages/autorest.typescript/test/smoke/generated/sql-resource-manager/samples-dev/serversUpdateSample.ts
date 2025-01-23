@@ -43,7 +43,7 @@ async function updateAServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAServer();
+  await updateAServer();
 }
 
 main().catch(console.error);

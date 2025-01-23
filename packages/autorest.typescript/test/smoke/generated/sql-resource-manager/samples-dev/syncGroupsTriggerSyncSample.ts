@@ -38,7 +38,7 @@ async function triggerASyncGroupSynchronization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  triggerASyncGroupSynchronization();
+  await triggerASyncGroupSynchronization();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteADiskAccessResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteADiskAccessResource();
+  await deleteADiskAccessResource();
 }
 
 main().catch(console.error);

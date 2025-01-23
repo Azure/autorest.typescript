@@ -33,7 +33,7 @@ async function listAllSecurityPartnerProvidersForAGivenResourceGroup(): Promise<
 }
 
 async function main(): Promise<void> {
-  listAllSecurityPartnerProvidersForAGivenResourceGroup();
+  await listAllSecurityPartnerProvidersForAGivenResourceGroup();
 }
 
 main().catch(console.error);

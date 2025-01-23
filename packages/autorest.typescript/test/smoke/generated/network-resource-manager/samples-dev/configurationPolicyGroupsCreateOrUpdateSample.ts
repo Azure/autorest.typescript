@@ -56,7 +56,7 @@ async function configurationPolicyGroupPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  configurationPolicyGroupPut();
+  await configurationPolicyGroupPut();
 }
 
 main().catch(console.error);

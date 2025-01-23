@@ -49,8 +49,8 @@ async function listManagedInstancesWithExpandAdministratorsOrActivedirectory(): 
 }
 
 async function main(): Promise<void> {
-  listManagedInstances();
-  listManagedInstancesWithExpandAdministratorsOrActivedirectory();
+  await listManagedInstances();
+  await listManagedInstancesWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

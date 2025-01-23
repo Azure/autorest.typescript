@@ -31,7 +31,7 @@ async function msiOperationsList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  msiOperationsList();
+  await msiOperationsList();
 }
 
 main().catch(console.error);

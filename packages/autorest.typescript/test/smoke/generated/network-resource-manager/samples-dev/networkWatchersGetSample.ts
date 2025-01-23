@@ -32,7 +32,7 @@ async function getNetworkWatcher(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkWatcher();
+  await getNetworkWatcher();
 }
 
 main().catch(console.error);

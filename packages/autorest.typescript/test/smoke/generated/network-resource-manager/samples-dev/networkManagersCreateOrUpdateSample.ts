@@ -45,7 +45,7 @@ async function putNetworkManager(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  putNetworkManager();
+  await putNetworkManager();
 }
 
 main().catch(console.error);

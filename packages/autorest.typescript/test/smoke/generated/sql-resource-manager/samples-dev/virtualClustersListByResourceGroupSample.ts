@@ -34,7 +34,7 @@ async function listVirtualClustersByResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualClustersByResourceGroup();
+  await listVirtualClustersByResourceGroup();
 }
 
 main().catch(console.error);

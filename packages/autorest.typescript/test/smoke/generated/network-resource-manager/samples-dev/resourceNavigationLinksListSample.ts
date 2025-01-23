@@ -34,7 +34,7 @@ async function getResourceNavigationLinks(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getResourceNavigationLinks();
+  await getResourceNavigationLinks();
 }
 
 main().catch(console.error);

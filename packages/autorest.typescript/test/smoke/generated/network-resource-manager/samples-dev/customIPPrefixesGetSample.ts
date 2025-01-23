@@ -32,7 +32,7 @@ async function getCustomIPPrefix(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCustomIPPrefix();
+  await getCustomIPPrefix();
 }
 
 main().catch(console.error);

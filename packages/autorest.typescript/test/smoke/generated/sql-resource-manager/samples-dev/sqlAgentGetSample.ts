@@ -33,7 +33,7 @@ async function getsCurrentInstanceSqlAgentConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsCurrentInstanceSqlAgentConfiguration();
+  await getsCurrentInstanceSqlAgentConfiguration();
 }
 
 main().catch(console.error);

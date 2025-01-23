@@ -37,7 +37,7 @@ async function updateNetworkVirtualAppliance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNetworkVirtualAppliance();
+  await updateNetworkVirtualAppliance();
 }
 
 main().catch(console.error);

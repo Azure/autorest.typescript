@@ -39,7 +39,7 @@ async function getVirtualMachineScaleSetNetworkInterface(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualMachineScaleSetNetworkInterface();
+  await getVirtualMachineScaleSetNetworkInterface();
 }
 
 main().catch(console.error);

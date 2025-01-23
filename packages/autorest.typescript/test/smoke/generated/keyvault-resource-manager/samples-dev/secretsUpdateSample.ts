@@ -42,7 +42,7 @@ async function updateASecret(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASecret();
+  await updateASecret();
 }
 
 main().catch(console.error);

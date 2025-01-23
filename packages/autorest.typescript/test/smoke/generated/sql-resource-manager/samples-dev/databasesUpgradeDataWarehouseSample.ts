@@ -36,7 +36,7 @@ async function upgradesADataWarehouse(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  upgradesADataWarehouse();
+  await upgradesADataWarehouse();
 }
 
 main().catch(console.error);

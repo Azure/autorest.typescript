@@ -32,7 +32,7 @@ async function resetVirtualNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  resetVirtualNetworkGateway();
+  await resetVirtualNetworkGateway();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function deleteTheLongTermRetentionBackup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteTheLongTermRetentionBackup();
+  await deleteTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

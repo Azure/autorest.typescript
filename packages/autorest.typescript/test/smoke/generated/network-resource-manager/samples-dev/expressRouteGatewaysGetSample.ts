@@ -33,7 +33,7 @@ async function expressRouteGatewayGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteGatewayGet();
+  await expressRouteGatewayGet();
 }
 
 main().catch(console.error);

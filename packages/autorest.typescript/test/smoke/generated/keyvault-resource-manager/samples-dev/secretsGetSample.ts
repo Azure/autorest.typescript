@@ -35,7 +35,7 @@ async function getASecret(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASecret();
+  await getASecret();
 }
 
 main().catch(console.error);

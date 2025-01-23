@@ -30,7 +30,7 @@ async function listAllFirewallPoliciesForAGivenSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllFirewallPoliciesForAGivenSubscription();
+  await listAllFirewallPoliciesForAGivenSubscription();
 }
 
 main().catch(console.error);

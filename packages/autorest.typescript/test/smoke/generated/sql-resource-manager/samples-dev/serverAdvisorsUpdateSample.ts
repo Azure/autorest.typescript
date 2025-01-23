@@ -38,7 +38,7 @@ async function updateServerAdvisor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateServerAdvisor();
+  await updateServerAdvisor();
 }
 
 main().catch(console.error);

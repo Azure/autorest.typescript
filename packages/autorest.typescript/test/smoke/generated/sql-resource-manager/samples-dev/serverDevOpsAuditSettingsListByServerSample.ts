@@ -36,7 +36,7 @@ async function listDevOpsAuditSettingsOfAServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDevOpsAuditSettingsOfAServer();
+  await listDevOpsAuditSettingsOfAServer();
 }
 
 main().catch(console.error);

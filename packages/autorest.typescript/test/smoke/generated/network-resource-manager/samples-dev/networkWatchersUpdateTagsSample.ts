@@ -37,7 +37,7 @@ async function updateNetworkWatcherTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNetworkWatcherTags();
+  await updateNetworkWatcherTags();
 }
 
 main().catch(console.error);

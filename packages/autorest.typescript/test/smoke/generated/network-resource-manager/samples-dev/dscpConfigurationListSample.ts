@@ -33,7 +33,7 @@ async function getDscpConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDscpConfiguration();
+  await getDscpConfiguration();
 }
 
 main().catch(console.error);

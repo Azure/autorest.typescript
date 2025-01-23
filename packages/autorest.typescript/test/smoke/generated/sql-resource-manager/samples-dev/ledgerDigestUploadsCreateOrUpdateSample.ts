@@ -45,7 +45,7 @@ async function enablesLedgerDigestUploadConfigurationForADatabase(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  enablesLedgerDigestUploadConfigurationForADatabase();
+  await enablesLedgerDigestUploadConfigurationForADatabase();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function updateApplicationSecurityGroupTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateApplicationSecurityGroupTags();
+  await updateApplicationSecurityGroupTags();
 }
 
 main().catch(console.error);

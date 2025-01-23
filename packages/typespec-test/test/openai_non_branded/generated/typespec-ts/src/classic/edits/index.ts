@@ -20,7 +20,7 @@ function _getEdits(context: OpenAIContext) {
   };
 }
 
-export function getEditsOperations(context: OpenAIContext): EditsOperations {
+export function _getEditsOperations(context: OpenAIContext): EditsOperations {
   return {
     ..._getEdits(context),
   };

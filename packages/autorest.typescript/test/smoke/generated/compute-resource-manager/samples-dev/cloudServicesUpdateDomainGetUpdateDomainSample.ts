@@ -34,7 +34,7 @@ async function getCloudServiceUpdateDomain(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCloudServiceUpdateDomain();
+  await getCloudServiceUpdateDomain();
 }
 
 main().catch(console.error);

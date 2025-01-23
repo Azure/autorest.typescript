@@ -32,7 +32,7 @@ async function getCloudServiceWithMultipleRolesAndRdpExtension(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  getCloudServiceWithMultipleRolesAndRdpExtension();
+  await getCloudServiceWithMultipleRolesAndRdpExtension();
 }
 
 main().catch(console.error);

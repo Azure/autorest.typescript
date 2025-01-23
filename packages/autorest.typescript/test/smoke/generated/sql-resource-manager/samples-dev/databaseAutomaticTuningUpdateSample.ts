@@ -73,8 +73,8 @@ async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties(): Pr
 }
 
 async function main(): Promise<void> {
-  updatesDatabaseAutomaticTuningSettingsWithAllProperties();
-  updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
+  await updatesDatabaseAutomaticTuningSettingsWithAllProperties();
+  await updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
 }
 
 main().catch(console.error);

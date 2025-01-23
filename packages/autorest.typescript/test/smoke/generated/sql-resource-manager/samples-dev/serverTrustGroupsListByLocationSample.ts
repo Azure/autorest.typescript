@@ -36,7 +36,7 @@ async function listServerTrustGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listServerTrustGroups();
+  await listServerTrustGroups();
 }
 
 main().catch(console.error);

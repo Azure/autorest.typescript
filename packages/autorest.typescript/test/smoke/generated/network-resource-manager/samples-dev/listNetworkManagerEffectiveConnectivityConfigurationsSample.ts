@@ -39,7 +39,7 @@ async function listEffectiveConnectivityConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listEffectiveConnectivityConfiguration();
+  await listEffectiveConnectivityConfiguration();
 }
 
 main().catch(console.error);

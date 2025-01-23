@@ -40,7 +40,7 @@ async function createOrUpdateManagementGroupNetworkManagerConnection(): Promise<
 }
 
 async function main(): Promise<void> {
-  createOrUpdateManagementGroupNetworkManagerConnection();
+  await createOrUpdateManagementGroupNetworkManagerConnection();
 }
 
 main().catch(console.error);

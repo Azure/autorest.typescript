@@ -35,7 +35,7 @@ async function getServerTrustGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getServerTrustGroup();
+  await getServerTrustGroup();
 }
 
 main().catch(console.error);

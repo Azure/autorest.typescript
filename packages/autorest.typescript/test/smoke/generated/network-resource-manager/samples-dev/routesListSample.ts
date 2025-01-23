@@ -35,7 +35,7 @@ async function listRoutes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listRoutes();
+  await listRoutes();
 }
 
 main().catch(console.error);

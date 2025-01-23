@@ -143,8 +143,8 @@ async function createOrUpdateAVaultWithNetworkAcls(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createANewVaultOrUpdateAnExistingVault();
-  createOrUpdateAVaultWithNetworkAcls();
+  await createANewVaultOrUpdateAnExistingVault();
+  await createOrUpdateAVaultWithNetworkAcls();
 }
 
 main().catch(console.error);

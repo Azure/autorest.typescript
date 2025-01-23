@@ -31,7 +31,7 @@ async function listResourceGroupPublicIPPrefixes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listResourceGroupPublicIPPrefixes();
+  await listResourceGroupPublicIPPrefixes();
 }
 
 main().catch(console.error);

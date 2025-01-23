@@ -37,7 +37,7 @@ async function expressRoutePortUpdateTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortUpdateTags();
+  await expressRoutePortUpdateTags();
 }
 
 main().catch(console.error);

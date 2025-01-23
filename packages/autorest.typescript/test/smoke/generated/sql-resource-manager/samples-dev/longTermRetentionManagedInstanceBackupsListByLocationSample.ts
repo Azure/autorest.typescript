@@ -34,7 +34,7 @@ async function getAllLongTermRetentionBackupsUnderTheLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllLongTermRetentionBackupsUnderTheLocation();
+  await getAllLongTermRetentionBackupsUnderTheLocation();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function vpnServerConfigurationList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnServerConfigurationList();
+  await vpnServerConfigurationList();
 }
 
 main().catch(console.error);

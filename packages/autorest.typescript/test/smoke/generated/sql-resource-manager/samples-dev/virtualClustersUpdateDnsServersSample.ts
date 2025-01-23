@@ -33,7 +33,7 @@ async function synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTh
 }
 
 async function main(): Promise<void> {
-  synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTheGivenVirtualCluster();
+  await synchronizesTheDnsServerSettingsUsedByTheManagedInstancesInsideTheGivenVirtualCluster();
 }
 
 main().catch(console.error);

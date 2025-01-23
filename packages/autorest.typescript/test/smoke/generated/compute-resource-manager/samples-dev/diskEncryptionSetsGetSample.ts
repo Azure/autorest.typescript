@@ -51,8 +51,8 @@ async function getInformationAboutADiskEncryptionSet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed();
-  getInformationAboutADiskEncryptionSet();
+  await getInformationAboutADiskEncryptionSetWhenAutoKeyRotationFailed();
+  await getInformationAboutADiskEncryptionSet();
 }
 
 main().catch(console.error);

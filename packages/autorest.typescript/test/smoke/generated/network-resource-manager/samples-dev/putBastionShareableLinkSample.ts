@@ -53,7 +53,7 @@ async function createBastionShareableLinksForTheRequestVMS(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createBastionShareableLinksForTheRequestVMS();
+  await createBastionShareableLinksForTheRequestVMS();
 }
 
 main().catch(console.error);

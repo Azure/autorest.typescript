@@ -54,7 +54,7 @@ async function addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions(): Prom
 }
 
 async function main(): Promise<void> {
-  addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions();
+  await addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteASnapshot(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteASnapshot();
+  await deleteASnapshot();
 }
 
 main().catch(console.error);

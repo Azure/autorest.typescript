@@ -28,7 +28,7 @@ async function getListOfServiceTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getListOfServiceTags();
+  await getListOfServiceTags();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listNatGatewaysInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listNatGatewaysInResourceGroup();
+  await listNatGatewaysInResourceGroup();
 }
 
 main().catch(console.error);

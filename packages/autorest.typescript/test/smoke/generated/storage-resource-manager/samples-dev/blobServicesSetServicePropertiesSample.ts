@@ -106,8 +106,8 @@ async function putBlobServices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  blobServicesPutLastAccessTimeBasedTracking();
-  putBlobServices();
+  await blobServicesPutLastAccessTimeBasedTracking();
+  await putBlobServices();
 }
 
 main().catch(console.error);

@@ -81,8 +81,8 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified(): Promise
 }
 
 async function main(): Promise<void> {
-  createAWorkloadGroupWithAllPropertiesSpecified();
-  createAWorkloadGroupWithTheRequiredPropertiesSpecified();
+  await createAWorkloadGroupWithAllPropertiesSpecified();
+  await createAWorkloadGroupWithTheRequiredPropertiesSpecified();
 }
 
 main().catch(console.error);

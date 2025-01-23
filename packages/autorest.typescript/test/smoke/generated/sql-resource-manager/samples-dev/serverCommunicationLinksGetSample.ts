@@ -35,7 +35,7 @@ async function getAServerCommunicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAServerCommunicationLink();
+  await getAServerCommunicationLink();
 }
 
 main().catch(console.error);

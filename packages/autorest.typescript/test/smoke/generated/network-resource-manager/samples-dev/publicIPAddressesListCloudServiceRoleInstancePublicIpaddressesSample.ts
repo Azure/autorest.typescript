@@ -41,7 +41,7 @@ async function listVmssvmPublicIP(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVmssvmPublicIP();
+  await listVmssvmPublicIP();
 }
 
 main().catch(console.error);

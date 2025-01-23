@@ -29,7 +29,7 @@ async function getInformationAboutASnapshot(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getInformationAboutASnapshot();
+  await getInformationAboutASnapshot();
 }
 
 main().catch(console.error);

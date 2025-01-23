@@ -35,7 +35,7 @@ async function virtualRouterPeerListLearnedRoutes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualRouterPeerListLearnedRoutes();
+  await virtualRouterPeerListLearnedRoutes();
 }
 
 main().catch(console.error);

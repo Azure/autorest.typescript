@@ -39,7 +39,7 @@ async function failoverAManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  failoverAManagedInstance();
+  await failoverAManagedInstance();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function configurationPolicyGroupGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  configurationPolicyGroupGet();
+  await configurationPolicyGroupGet();
 }
 
 main().catch(console.error);

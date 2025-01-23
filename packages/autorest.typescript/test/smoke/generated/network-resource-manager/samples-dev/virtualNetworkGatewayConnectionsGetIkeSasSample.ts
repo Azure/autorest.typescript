@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayConnectionIkeSa(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayConnectionIkeSa();
+  await getVirtualNetworkGatewayConnectionIkeSa();
 }
 
 main().catch(console.error);

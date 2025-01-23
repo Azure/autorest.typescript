@@ -34,7 +34,7 @@ async function getVirtualRouterPeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualRouterPeering();
+  await getVirtualRouterPeering();
 }
 
 main().catch(console.error);

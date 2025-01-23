@@ -30,7 +30,7 @@ async function listAllVirtualRoutersForAGivenSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualRoutersForAGivenSubscription();
+  await listAllVirtualRoutersForAGivenSubscription();
 }
 
 main().catch(console.error);

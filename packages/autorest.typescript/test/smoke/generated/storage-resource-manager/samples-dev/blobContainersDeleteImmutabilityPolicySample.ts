@@ -36,7 +36,7 @@ async function deleteImmutabilityPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteImmutabilityPolicy();
+  await deleteImmutabilityPolicy();
 }
 
 main().catch(console.error);

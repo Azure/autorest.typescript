@@ -77,8 +77,8 @@ async function listDatabaseColumns(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  filterDatabaseColumns();
-  listDatabaseColumns();
+  await filterDatabaseColumns();
+  await listDatabaseColumns();
 }
 
 main().catch(console.error);

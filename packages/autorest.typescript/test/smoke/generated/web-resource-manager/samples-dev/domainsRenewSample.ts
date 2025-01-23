@@ -30,7 +30,7 @@ async function renewAnExistingDomain(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  renewAnExistingDomain();
+  await renewAnExistingDomain();
 }
 
 main().catch(console.error);

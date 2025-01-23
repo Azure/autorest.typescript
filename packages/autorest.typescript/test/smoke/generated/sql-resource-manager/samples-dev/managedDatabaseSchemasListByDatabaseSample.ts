@@ -38,7 +38,7 @@ async function listManagedDatabaseSchemas(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagedDatabaseSchemas();
+  await listManagedDatabaseSchemas();
 }
 
 main().catch(console.error);

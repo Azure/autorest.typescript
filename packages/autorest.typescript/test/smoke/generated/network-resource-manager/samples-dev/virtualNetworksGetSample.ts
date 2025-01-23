@@ -70,9 +70,9 @@ async function getVirtualNetworkWithServiceAssociationLinks(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetwork();
-  getVirtualNetworkWithADelegatedSubnet();
-  getVirtualNetworkWithServiceAssociationLinks();
+  await getVirtualNetwork();
+  await getVirtualNetworkWithADelegatedSubnet();
+  await getVirtualNetworkWithServiceAssociationLinks();
 }
 
 main().catch(console.error);

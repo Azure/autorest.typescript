@@ -29,7 +29,7 @@ async function vpnGatewayGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnGatewayGet();
+  await vpnGatewayGet();
 }
 
 main().catch(console.error);

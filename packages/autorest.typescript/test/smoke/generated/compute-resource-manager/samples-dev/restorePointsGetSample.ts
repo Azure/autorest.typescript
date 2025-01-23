@@ -34,7 +34,7 @@ async function getARestorePoint(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getARestorePoint();
+  await getARestorePoint();
 }
 
 main().catch(console.error);

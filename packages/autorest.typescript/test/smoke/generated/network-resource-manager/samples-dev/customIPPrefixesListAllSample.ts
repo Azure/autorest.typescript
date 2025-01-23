@@ -30,7 +30,7 @@ async function listAllCustomIPPrefixes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllCustomIPPrefixes();
+  await listAllCustomIPPrefixes();
 }
 
 main().catch(console.error);

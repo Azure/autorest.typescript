@@ -36,7 +36,7 @@ async function networkGroupsList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkGroupsList();
+  await networkGroupsList();
 }
 
 main().catch(console.error);

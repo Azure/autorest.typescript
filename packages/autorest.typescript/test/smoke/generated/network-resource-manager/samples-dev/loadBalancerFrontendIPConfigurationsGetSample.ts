@@ -34,7 +34,7 @@ async function loadBalancerFrontendIPConfigurationGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerFrontendIPConfigurationGet();
+  await loadBalancerFrontendIPConfigurationGet();
 }
 
 main().catch(console.error);

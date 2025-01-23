@@ -34,7 +34,7 @@ async function natRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  natRuleGet();
+  await natRuleGet();
 }
 
 main().catch(console.error);

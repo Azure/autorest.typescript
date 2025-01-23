@@ -35,7 +35,7 @@ async function deleteAnElasticPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAnElasticPool();
+  await deleteAnElasticPool();
 }
 
 main().catch(console.error);

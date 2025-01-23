@@ -35,7 +35,7 @@ async function getDataMaskingPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDataMaskingPolicy();
+  await getDataMaskingPolicy();
 }
 
 main().catch(console.error);

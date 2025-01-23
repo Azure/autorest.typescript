@@ -37,7 +37,7 @@ async function updateIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateIPGroups();
+  await updateIPGroups();
 }
 
 main().catch(console.error);

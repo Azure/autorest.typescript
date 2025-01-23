@@ -67,8 +67,8 @@ async function getAppSlotAnalysis(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAppAnalysis();
-  getAppSlotAnalysis();
+  await getAppAnalysis();
+  await getAppSlotAnalysis();
 }
 
 main().catch(console.error);

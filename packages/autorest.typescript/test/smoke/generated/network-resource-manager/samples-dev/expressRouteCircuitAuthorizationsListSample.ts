@@ -35,7 +35,7 @@ async function listExpressRouteCircuitAuthorization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRouteCircuitAuthorization();
+  await listExpressRouteCircuitAuthorization();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function getFunctionAppSettingsOfAStaticSiteBuild(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getFunctionAppSettingsOfAStaticSiteBuild();
+  await getFunctionAppSettingsOfAStaticSiteBuild();
 }
 
 main().catch(console.error);

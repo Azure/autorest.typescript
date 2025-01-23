@@ -30,7 +30,7 @@ async function listAllSecurityPartnerProvidersForAGivenSubscription(): Promise<v
 }
 
 async function main(): Promise<void> {
-  listAllSecurityPartnerProvidersForAGivenSubscription();
+  await listAllSecurityPartnerProvidersForAGivenSubscription();
 }
 
 main().catch(console.error);

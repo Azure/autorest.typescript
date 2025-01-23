@@ -38,7 +38,7 @@ async function listReplicationLinksOnServerOnDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listReplicationLinksOnServerOnDatabase();
+  await listReplicationLinksOnServerOnDatabase();
 }
 
 main().catch(console.error);

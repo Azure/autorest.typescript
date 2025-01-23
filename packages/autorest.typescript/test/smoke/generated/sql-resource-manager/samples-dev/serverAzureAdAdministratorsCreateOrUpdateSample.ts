@@ -46,7 +46,7 @@ async function createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator(): Pr
 }
 
 async function main(): Promise<void> {
-  createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator();
+  await createsOrUpdatesAnExistingAzureActiveDirectoryAdministrator();
 }
 
 main().catch(console.error);

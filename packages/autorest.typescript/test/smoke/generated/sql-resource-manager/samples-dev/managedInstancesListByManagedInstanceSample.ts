@@ -105,9 +105,9 @@ async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndR
 }
 
 async function main(): Promise<void> {
-  obtainListOfInstanceTopResourceConsumingQueries();
-  obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
-  obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();
+  await obtainListOfInstanceTopResourceConsumingQueries();
+  await obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
+  await obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();
 }
 
 main().catch(console.error);

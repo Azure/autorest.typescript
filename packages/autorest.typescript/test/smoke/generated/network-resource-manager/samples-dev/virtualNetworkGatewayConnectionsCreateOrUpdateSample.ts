@@ -107,7 +107,7 @@ async function createVirtualNetworkGatewayConnectionS2S(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createVirtualNetworkGatewayConnectionS2S();
+  await createVirtualNetworkGatewayConnectionS2S();
 }
 
 main().catch(console.error);

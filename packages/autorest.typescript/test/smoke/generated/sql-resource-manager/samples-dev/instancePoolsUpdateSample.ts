@@ -38,7 +38,7 @@ async function patchAnInstancePool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  patchAnInstancePool();
+  await patchAnInstancePool();
 }
 
 main().catch(console.error);

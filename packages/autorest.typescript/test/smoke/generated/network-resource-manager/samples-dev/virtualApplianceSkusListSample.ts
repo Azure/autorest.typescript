@@ -30,7 +30,7 @@ async function networkVirtualApplianceSkuListResult(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkVirtualApplianceSkuListResult();
+  await networkVirtualApplianceSkuListResult();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function listSecretsInTheVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSecretsInTheVault();
+  await listSecretsInTheVault();
 }
 
 main().catch(console.error);

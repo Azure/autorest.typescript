@@ -43,7 +43,7 @@ async function createOrUpdateADedicatedHostGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateADedicatedHostGroup();
+  await createOrUpdateADedicatedHostGroup();
 }
 
 main().catch(console.error);

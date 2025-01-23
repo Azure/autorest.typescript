@@ -32,7 +32,7 @@ async function storageAccountDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountDelete();
+  await storageAccountDelete();
 }
 
 main().catch(console.error);

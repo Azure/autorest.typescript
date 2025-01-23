@@ -35,7 +35,7 @@ async function getSecurityAdminConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSecurityAdminConfigurations();
+  await getSecurityAdminConfigurations();
 }
 
 main().catch(console.error);

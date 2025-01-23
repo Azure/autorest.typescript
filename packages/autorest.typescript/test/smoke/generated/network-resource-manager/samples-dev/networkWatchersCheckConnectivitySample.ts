@@ -44,7 +44,7 @@ async function checkConnectivity(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  checkConnectivity();
+  await checkConnectivity();
 }
 
 main().catch(console.error);

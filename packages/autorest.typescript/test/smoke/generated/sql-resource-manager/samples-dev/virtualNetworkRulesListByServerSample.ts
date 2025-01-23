@@ -36,7 +36,7 @@ async function listVirtualNetworkRules(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworkRules();
+  await listVirtualNetworkRules();
 }
 
 main().catch(console.error);

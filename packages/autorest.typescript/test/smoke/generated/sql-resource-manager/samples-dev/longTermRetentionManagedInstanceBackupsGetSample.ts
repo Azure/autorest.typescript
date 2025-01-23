@@ -37,7 +37,7 @@ async function getTheLongTermRetentionBackupOfAManagedDatabase(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  getTheLongTermRetentionBackupOfAManagedDatabase();
+  await getTheLongTermRetentionBackupOfAManagedDatabase();
 }
 
 main().catch(console.error);

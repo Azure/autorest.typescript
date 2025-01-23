@@ -55,8 +55,8 @@ async function listServersByResourceGroupWithExpandAdministrators(): Promise<voi
 }
 
 async function main(): Promise<void> {
-  listServersByResourceGroup();
-  listServersByResourceGroupWithExpandAdministrators();
+  await listServersByResourceGroup();
+  await listServersByResourceGroupWithExpandAdministrators();
 }
 
 main().catch(console.error);

@@ -67,8 +67,8 @@ async function createPublicIPPrefixDefaults(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createPublicIPPrefixAllocationMethod();
-  createPublicIPPrefixDefaults();
+  await createPublicIPPrefixAllocationMethod();
+  await createPublicIPPrefixDefaults();
 }
 
 main().catch(console.error);

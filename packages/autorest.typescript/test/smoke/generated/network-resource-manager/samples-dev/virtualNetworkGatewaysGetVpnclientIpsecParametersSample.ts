@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayVpnClientIpsecParameters(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayVpnClientIpsecParameters();
+  await getVirtualNetworkGatewayVpnClientIpsecParameters();
 }
 
 main().catch(console.error);

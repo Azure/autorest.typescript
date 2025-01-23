@@ -37,7 +37,7 @@ async function getTheManagedServerThreatDetectionPolicies(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheManagedServerThreatDetectionPolicies();
+  await getTheManagedServerThreatDetectionPolicies();
 }
 
 main().catch(console.error);

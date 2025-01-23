@@ -35,7 +35,7 @@ async function getExpressRouteCrossConnectionBgpPeering(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCrossConnectionBgpPeering();
+  await getExpressRouteCrossConnectionBgpPeering();
 }
 
 main().catch(console.error);

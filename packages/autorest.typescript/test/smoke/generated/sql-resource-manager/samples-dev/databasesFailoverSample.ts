@@ -41,7 +41,7 @@ async function failoverAnDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  failoverAnDatabase();
+  await failoverAnDatabase();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listAllFirewallPoliciesForAGivenResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllFirewallPoliciesForAGivenResourceGroup();
+  await listAllFirewallPoliciesForAGivenResourceGroup();
 }
 
 main().catch(console.error);

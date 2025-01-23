@@ -40,7 +40,7 @@ async function updateAnExistingManagedHsmPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateAnExistingManagedHsmPool();
+  await updateAnExistingManagedHsmPool();
 }
 
 main().catch(console.error);

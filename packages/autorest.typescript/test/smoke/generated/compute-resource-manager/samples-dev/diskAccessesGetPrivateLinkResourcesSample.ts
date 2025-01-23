@@ -32,7 +32,7 @@ async function listAllPossiblePrivateLinkResourcesUnderDiskAccessResource(): Pro
 }
 
 async function main(): Promise<void> {
-  listAllPossiblePrivateLinkResourcesUnderDiskAccessResource();
+  await listAllPossiblePrivateLinkResourcesUnderDiskAccessResource();
 }
 
 main().catch(console.error);

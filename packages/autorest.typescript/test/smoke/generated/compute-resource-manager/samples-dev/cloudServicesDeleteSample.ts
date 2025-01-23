@@ -32,7 +32,7 @@ async function deleteCloudService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteCloudService();
+  await deleteCloudService();
 }
 
 main().catch(console.error);

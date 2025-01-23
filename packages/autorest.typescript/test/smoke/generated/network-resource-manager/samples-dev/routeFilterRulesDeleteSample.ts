@@ -34,7 +34,7 @@ async function routeFilterRuleDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterRuleDelete();
+  await routeFilterRuleDelete();
 }
 
 main().catch(console.error);

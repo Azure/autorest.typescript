@@ -36,7 +36,7 @@ async function getAllLongTermRetentionBackupsUnderTheServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAllLongTermRetentionBackupsUnderTheServer();
+  await getAllLongTermRetentionBackupsUnderTheServer();
 }
 
 main().catch(console.error);

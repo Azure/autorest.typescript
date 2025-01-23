@@ -86,8 +86,8 @@ async function importsToANewDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount();
-  importsToANewDatabase();
+  await importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount();
+  await importsToANewDatabase();
 }
 
 main().catch(console.error);

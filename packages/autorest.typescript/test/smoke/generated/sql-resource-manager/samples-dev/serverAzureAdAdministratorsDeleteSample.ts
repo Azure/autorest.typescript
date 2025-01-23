@@ -35,7 +35,7 @@ async function deleteAzureActiveDirectoryAdministrator(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAzureActiveDirectoryAdministrator();
+  await deleteAzureActiveDirectoryAdministrator();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function deleteAPrivateEndpointConnectionUnderADiskAccessResource(): Promi
 }
 
 async function main(): Promise<void> {
-  deleteAPrivateEndpointConnectionUnderADiskAccessResource();
+  await deleteAPrivateEndpointConnectionUnderADiskAccessResource();
 }
 
 main().catch(console.error);

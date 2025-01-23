@@ -32,7 +32,7 @@ async function listManagedInstanceTimeZonesByLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagedInstanceTimeZonesByLocation();
+  await listManagedInstanceTimeZonesByLocation();
 }
 
 main().catch(console.error);

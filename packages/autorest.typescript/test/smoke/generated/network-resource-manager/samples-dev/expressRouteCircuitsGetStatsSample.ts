@@ -32,7 +32,7 @@ async function getExpressRouteCircuitTrafficStats(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getExpressRouteCircuitTrafficStats();
+  await getExpressRouteCircuitTrafficStats();
 }
 
 main().catch(console.error);

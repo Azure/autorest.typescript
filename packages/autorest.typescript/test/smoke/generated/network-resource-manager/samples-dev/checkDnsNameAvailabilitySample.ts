@@ -32,7 +32,7 @@ async function checkDnsNameAvailability(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  checkDnsNameAvailability();
+  await checkDnsNameAvailability();
 }
 
 main().catch(console.error);

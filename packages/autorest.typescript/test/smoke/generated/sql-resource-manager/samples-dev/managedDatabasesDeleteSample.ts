@@ -36,7 +36,7 @@ async function deleteManagedDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteManagedDatabase();
+  await deleteManagedDatabase();
 }
 
 main().catch(console.error);

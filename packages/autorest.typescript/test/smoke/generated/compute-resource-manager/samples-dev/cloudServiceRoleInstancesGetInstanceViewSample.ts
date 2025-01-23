@@ -34,7 +34,7 @@ async function getInstanceViewOfCloudServiceRoleInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getInstanceViewOfCloudServiceRoleInstance();
+  await getInstanceViewOfCloudServiceRoleInstance();
 }
 
 main().catch(console.error);

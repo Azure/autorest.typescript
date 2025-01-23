@@ -51,7 +51,7 @@ async function updateASyncGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateASyncGroup();
+  await updateASyncGroup();
 }
 
 main().catch(console.error);

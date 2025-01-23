@@ -31,7 +31,7 @@ async function listTopLevelDomains(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listTopLevelDomains();
+  await listTopLevelDomains();
 }
 
 main().catch(console.error);

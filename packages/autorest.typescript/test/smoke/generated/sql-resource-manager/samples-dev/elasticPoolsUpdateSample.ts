@@ -123,10 +123,10 @@ async function updateAnElasticPoolWithMinimumParameters(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  assignsMaintenanceConfigurationToAnElasticPool();
-  resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
-  updateAnElasticPoolWithAllParameter();
-  updateAnElasticPoolWithMinimumParameters();
+  await assignsMaintenanceConfigurationToAnElasticPool();
+  await resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
+  await updateAnElasticPoolWithAllParameter();
+  await updateAnElasticPoolWithMinimumParameters();
 }
 
 main().catch(console.error);

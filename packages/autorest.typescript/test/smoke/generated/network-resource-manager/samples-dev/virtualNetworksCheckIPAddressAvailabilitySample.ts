@@ -34,7 +34,7 @@ async function checkIPAddressAvailability(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  checkIPAddressAvailability();
+  await checkIPAddressAvailability();
 }
 
 main().catch(console.error);

@@ -43,7 +43,7 @@ async function createAServerCommunicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAServerCommunicationLink();
+  await createAServerCommunicationLink();
 }
 
 main().catch(console.error);

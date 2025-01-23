@@ -63,8 +63,8 @@ async function listDeletedContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listContainers();
-  listDeletedContainers();
+  await listContainers();
+  await listDeletedContainers();
 }
 
 main().catch(console.error);

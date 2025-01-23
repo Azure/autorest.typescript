@@ -79,8 +79,8 @@ async function updateADatabaseThreatDetectionPolicyWithMinimalParameters(): Prom
 }
 
 async function main(): Promise<void> {
-  updateADatabaseThreatDetectionPolicyWithAllParameters();
-  updateADatabaseThreatDetectionPolicyWithMinimalParameters();
+  await updateADatabaseThreatDetectionPolicyWithAllParameters();
+  await updateADatabaseThreatDetectionPolicyWithMinimalParameters();
 }
 
 main().catch(console.error);

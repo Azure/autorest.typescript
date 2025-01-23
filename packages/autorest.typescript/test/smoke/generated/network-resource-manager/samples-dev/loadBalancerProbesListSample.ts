@@ -35,7 +35,7 @@ async function loadBalancerProbeList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerProbeList();
+  await loadBalancerProbeList();
 }
 
 main().catch(console.error);

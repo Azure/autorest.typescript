@@ -34,7 +34,7 @@ async function inboundNatRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  inboundNatRuleGet();
+  await inboundNatRuleGet();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function listDatabaseSchemas(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabaseSchemas();
+  await listDatabaseSchemas();
 }
 
 main().catch(console.error);

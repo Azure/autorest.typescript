@@ -32,7 +32,7 @@ async function deleteDDoSProtectionPlan(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteDDoSProtectionPlan();
+  await deleteDDoSProtectionPlan();
 }
 
 main().catch(console.error);

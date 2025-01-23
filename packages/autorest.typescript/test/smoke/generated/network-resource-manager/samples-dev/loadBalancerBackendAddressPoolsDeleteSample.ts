@@ -35,7 +35,7 @@ async function backendAddressPoolDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  backendAddressPoolDelete();
+  await backendAddressPoolDelete();
 }
 
 main().catch(console.error);

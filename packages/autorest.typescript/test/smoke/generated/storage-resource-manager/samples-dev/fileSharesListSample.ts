@@ -88,9 +88,9 @@ async function listShares(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDeletedShares();
-  listShareSnapshots();
-  listShares();
+  await listDeletedShares();
+  await listShareSnapshots();
+  await listShares();
 }
 
 main().catch(console.error);

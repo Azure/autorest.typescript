@@ -43,7 +43,7 @@ async function deletesAnAdminRuleCollection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesAnAdminRuleCollection();
+  await deletesAnAdminRuleCollection();
 }
 
 main().catch(console.error);

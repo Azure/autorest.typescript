@@ -35,7 +35,7 @@ async function getsARecoverableDatabasesByManagedInstances(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsARecoverableDatabasesByManagedInstances();
+  await getsARecoverableDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

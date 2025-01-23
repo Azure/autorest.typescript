@@ -35,7 +35,7 @@ async function storageAccountListPrivateEndpointConnections(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountListPrivateEndpointConnections();
+  await storageAccountListPrivateEndpointConnections();
 }
 
 main().catch(console.error);

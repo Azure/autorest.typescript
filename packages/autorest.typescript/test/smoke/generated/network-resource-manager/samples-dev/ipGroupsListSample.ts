@@ -30,7 +30,7 @@ async function listIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listIPGroups();
+  await listIPGroups();
 }
 
 main().catch(console.error);

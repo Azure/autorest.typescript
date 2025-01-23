@@ -37,7 +37,7 @@ async function listGalleryApplicationVersionsInAGalleryApplicationDefinition(): 
 }
 
 async function main(): Promise<void> {
-  listGalleryApplicationVersionsInAGalleryApplicationDefinition();
+  await listGalleryApplicationVersionsInAGalleryApplicationDefinition();
 }
 
 main().catch(console.error);

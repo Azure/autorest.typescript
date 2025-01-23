@@ -41,7 +41,7 @@ async function listDatabaseUsageMetrics(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDatabaseUsageMetrics();
+  await listDatabaseUsageMetrics();
 }
 
 main().catch(console.error);

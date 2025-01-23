@@ -38,7 +38,7 @@ async function networkManagesPatch(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkManagesPatch();
+  await networkManagesPatch();
 }
 
 main().catch(console.error);

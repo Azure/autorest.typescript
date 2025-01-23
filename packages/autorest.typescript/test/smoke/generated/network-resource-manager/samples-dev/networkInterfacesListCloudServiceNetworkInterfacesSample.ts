@@ -35,7 +35,7 @@ async function listCloudServiceNetworkInterfaces(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listCloudServiceNetworkInterfaces();
+  await listCloudServiceNetworkInterfaces();
 }
 
 main().catch(console.error);

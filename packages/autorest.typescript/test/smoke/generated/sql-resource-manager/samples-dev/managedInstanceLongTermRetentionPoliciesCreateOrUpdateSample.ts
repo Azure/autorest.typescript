@@ -49,7 +49,7 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  createOrUpdateTheLtrPolicyForTheManagedDatabase();
+  await createOrUpdateTheLtrPolicyForTheManagedDatabase();
 }
 
 main().catch(console.error);

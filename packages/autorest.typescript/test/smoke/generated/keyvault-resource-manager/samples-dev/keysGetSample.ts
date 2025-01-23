@@ -31,7 +31,7 @@ async function getAKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAKey();
+  await getAKey();
 }
 
 main().catch(console.error);

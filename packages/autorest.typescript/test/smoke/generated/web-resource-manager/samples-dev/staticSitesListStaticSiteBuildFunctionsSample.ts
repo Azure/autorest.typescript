@@ -38,7 +38,7 @@ async function getsTheFunctionsOfAParticularStaticSiteBuild(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsTheFunctionsOfAParticularStaticSiteBuild();
+  await getsTheFunctionsOfAParticularStaticSiteBuild();
 }
 
 main().catch(console.error);

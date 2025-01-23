@@ -37,7 +37,7 @@ async function getsTheReplicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsTheReplicationLink();
+  await getsTheReplicationLink();
 }
 
 main().catch(console.error);

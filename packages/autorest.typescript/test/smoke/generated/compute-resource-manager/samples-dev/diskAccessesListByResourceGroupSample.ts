@@ -33,7 +33,7 @@ async function listAllDiskAccessResourcesInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllDiskAccessResourcesInAResourceGroup();
+  await listAllDiskAccessResourcesInAResourceGroup();
 }
 
 main().catch(console.error);

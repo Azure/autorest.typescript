@@ -34,7 +34,7 @@ async function tableOperationDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  tableOperationDelete();
+  await tableOperationDelete();
 }
 
 main().catch(console.error);

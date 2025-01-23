@@ -40,7 +40,7 @@ async function getASasOnAManagedDisk(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASasOnAManagedDisk();
+  await getASasOnAManagedDisk();
 }
 
 main().catch(console.error);

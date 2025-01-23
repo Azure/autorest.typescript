@@ -31,7 +31,7 @@ async function listVirtualClusters(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualClusters();
+  await listVirtualClusters();
 }
 
 main().catch(console.error);

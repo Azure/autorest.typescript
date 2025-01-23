@@ -30,7 +30,7 @@ async function listAllNatGateways(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllNatGateways();
+  await listAllNatGateways();
 }
 
 main().catch(console.error);

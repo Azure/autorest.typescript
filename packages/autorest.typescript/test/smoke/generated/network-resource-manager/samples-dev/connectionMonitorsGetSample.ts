@@ -34,7 +34,7 @@ async function getConnectionMonitor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getConnectionMonitor();
+  await getConnectionMonitor();
 }
 
 main().catch(console.error);

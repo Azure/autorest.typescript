@@ -40,7 +40,7 @@ async function identityUpdate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityUpdate();
+  await identityUpdate();
 }
 
 main().catch(console.error);

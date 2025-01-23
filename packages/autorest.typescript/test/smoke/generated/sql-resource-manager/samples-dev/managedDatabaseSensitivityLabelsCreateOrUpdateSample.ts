@@ -52,7 +52,7 @@ async function updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersI
 }
 
 async function main(): Promise<void> {
-  updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersInAManagedDatabase();
+  await updatesOrCreatesASensitivityLabelOfAGivenColumnWithAllParametersInAManagedDatabase();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function listJobAgentsInAServer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listJobAgentsInAServer();
+  await listJobAgentsInAServer();
 }
 
 main().catch(console.error);

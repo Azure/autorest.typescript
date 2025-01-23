@@ -32,7 +32,7 @@ async function virtualHubDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubDelete();
+  await virtualHubDelete();
 }
 
 main().catch(console.error);

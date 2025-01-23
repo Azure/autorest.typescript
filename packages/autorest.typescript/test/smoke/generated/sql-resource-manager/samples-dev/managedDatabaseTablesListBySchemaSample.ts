@@ -40,7 +40,7 @@ async function listManagedDatabaseTables(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listManagedDatabaseTables();
+  await listManagedDatabaseTables();
 }
 
 main().catch(console.error);

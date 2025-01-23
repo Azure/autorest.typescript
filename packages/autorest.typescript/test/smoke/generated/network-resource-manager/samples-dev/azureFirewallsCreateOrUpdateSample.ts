@@ -621,12 +621,12 @@ async function createAzureFirewallInVirtualHub(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createAzureFirewall();
-  createAzureFirewallWithAdditionalProperties();
-  createAzureFirewallWithIPGroups();
-  createAzureFirewallWithZones();
-  createAzureFirewallWithManagementSubnet();
-  createAzureFirewallInVirtualHub();
+  await createAzureFirewall();
+  await createAzureFirewallWithAdditionalProperties();
+  await createAzureFirewallWithIPGroups();
+  await createAzureFirewallWithZones();
+  await createAzureFirewallWithManagementSubnet();
+  await createAzureFirewallInVirtualHub();
 }
 
 main().catch(console.error);

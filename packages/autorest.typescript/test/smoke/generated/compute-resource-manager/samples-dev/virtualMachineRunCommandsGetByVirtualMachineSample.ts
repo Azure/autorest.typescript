@@ -34,7 +34,7 @@ async function getARunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getARunCommand();
+  await getARunCommand();
 }
 
 main().catch(console.error);

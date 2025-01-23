@@ -36,7 +36,7 @@ async function listTheKeysForAManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listTheKeysForAManagedInstance();
+  await listTheKeysForAManagedInstance();
 }
 
 main().catch(console.error);

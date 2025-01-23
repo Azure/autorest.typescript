@@ -28,7 +28,7 @@ async function getAvailableRequestHeaders(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableRequestHeaders();
+  await getAvailableRequestHeaders();
 }
 
 main().catch(console.error);

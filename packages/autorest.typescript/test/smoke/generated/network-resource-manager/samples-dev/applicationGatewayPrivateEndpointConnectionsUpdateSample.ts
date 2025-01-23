@@ -49,7 +49,7 @@ async function updateApplicationGatewayPrivateEndpointConnection(): Promise<void
 }
 
 async function main(): Promise<void> {
-  updateApplicationGatewayPrivateEndpointConnection();
+  await updateApplicationGatewayPrivateEndpointConnection();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function deleteConnectionMonitor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteConnectionMonitor();
+  await deleteConnectionMonitor();
 }
 
 main().catch(console.error);

@@ -64,7 +64,7 @@ function _getFineTunes(context: OpenAIContext) {
   };
 }
 
-export function getFineTunesOperations(
+export function _getFineTunesOperations(
   context: OpenAIContext,
 ): FineTunesOperations {
   return {

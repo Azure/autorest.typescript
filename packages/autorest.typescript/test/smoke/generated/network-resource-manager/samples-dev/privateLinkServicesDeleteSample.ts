@@ -32,7 +32,7 @@ async function deletePrivateLinkService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletePrivateLinkService();
+  await deletePrivateLinkService();
 }
 
 main().catch(console.error);

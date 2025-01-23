@@ -40,7 +40,7 @@ async function identityCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  identityCreate();
+  await identityCreate();
 }
 
 main().catch(console.error);

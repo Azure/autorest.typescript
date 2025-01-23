@@ -53,8 +53,8 @@ async function getManagedInstanceWithExpandAdministratorsOrActivedirectory(): Pr
 }
 
 async function main(): Promise<void> {
-  getManagedInstance();
-  getManagedInstanceWithExpandAdministratorsOrActivedirectory();
+  await getManagedInstance();
+  await getManagedInstanceWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

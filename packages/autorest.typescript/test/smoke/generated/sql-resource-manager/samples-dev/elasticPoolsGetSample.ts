@@ -35,7 +35,7 @@ async function getAnElasticPool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAnElasticPool();
+  await getAnElasticPool();
 }
 
 main().catch(console.error);

@@ -30,7 +30,7 @@ async function routeFilterList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterList();
+  await routeFilterList();
 }
 
 main().catch(console.error);

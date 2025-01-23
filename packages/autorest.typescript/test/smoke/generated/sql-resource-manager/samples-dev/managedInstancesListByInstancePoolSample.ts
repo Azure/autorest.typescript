@@ -59,8 +59,8 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
 }
 
 async function main(): Promise<void> {
-  listManagedInstancesByInstancePool();
-  listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
+  await listManagedInstancesByInstancePool();
+  await listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

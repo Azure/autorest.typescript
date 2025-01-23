@@ -37,7 +37,7 @@ async function updateFirewallPolicyTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateFirewallPolicyTags();
+  await updateFirewallPolicyTags();
 }
 
 main().catch(console.error);

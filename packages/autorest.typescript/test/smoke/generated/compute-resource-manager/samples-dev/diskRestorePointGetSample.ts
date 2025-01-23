@@ -37,7 +37,7 @@ async function getAnIncrementalDiskRestorePointResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAnIncrementalDiskRestorePointResource();
+  await getAnIncrementalDiskRestorePointResource();
 }
 
 main().catch(console.error);

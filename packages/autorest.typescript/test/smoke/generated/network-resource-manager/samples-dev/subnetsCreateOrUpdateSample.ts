@@ -88,9 +88,9 @@ async function createSubnetWithServiceEndpoints(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createSubnet();
-  createSubnetWithADelegation();
-  createSubnetWithServiceEndpoints();
+  await createSubnet();
+  await createSubnetWithADelegation();
+  await createSubnetWithServiceEndpoints();
 }
 
 main().catch(console.error);

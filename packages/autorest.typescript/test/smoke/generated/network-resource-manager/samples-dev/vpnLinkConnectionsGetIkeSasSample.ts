@@ -36,7 +36,7 @@ async function getVpnLinkConnectionIkeSa(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVpnLinkConnectionIkeSa();
+  await getVpnLinkConnectionIkeSa();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listNetworkInterfacesInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listNetworkInterfacesInResourceGroup();
+  await listNetworkInterfacesInResourceGroup();
 }
 
 main().catch(console.error);

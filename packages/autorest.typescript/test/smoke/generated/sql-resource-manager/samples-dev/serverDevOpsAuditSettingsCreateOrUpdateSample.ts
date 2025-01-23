@@ -78,8 +78,8 @@ async function updateAServerDevOpsAuditSettingsWithMinimalInput(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  updateAServerDevOpsAuditSettingsWithAllParams();
-  updateAServerDevOpsAuditSettingsWithMinimalInput();
+  await updateAServerDevOpsAuditSettingsWithAllParams();
+  await updateAServerDevOpsAuditSettingsWithMinimalInput();
 }
 
 main().catch(console.error);

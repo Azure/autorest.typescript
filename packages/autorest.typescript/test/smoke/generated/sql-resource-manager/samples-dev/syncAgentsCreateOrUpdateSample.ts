@@ -72,8 +72,8 @@ async function updateASyncAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createANewSyncAgent();
-  updateASyncAgent();
+  await createANewSyncAgent();
+  await updateASyncAgent();
 }
 
 main().catch(console.error);

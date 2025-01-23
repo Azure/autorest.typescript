@@ -36,7 +36,7 @@ async function getCloudServiceNetworkInterface(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getCloudServiceNetworkInterface();
+  await getCloudServiceNetworkInterface();
 }
 
 main().catch(console.error);

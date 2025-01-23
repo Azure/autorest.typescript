@@ -82,7 +82,7 @@ async function vpnConnectionPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnConnectionPut();
+  await vpnConnectionPut();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function getAnExtendedDatabaseBlobAuditingPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAnExtendedDatabaseBlobAuditingPolicy();
+  await getAnExtendedDatabaseBlobAuditingPolicy();
 }
 
 main().catch(console.error);

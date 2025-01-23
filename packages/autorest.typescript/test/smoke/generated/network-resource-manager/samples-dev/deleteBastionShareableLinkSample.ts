@@ -50,7 +50,7 @@ async function deleteBastionShareableLinksForTheRequestVMS(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteBastionShareableLinksForTheRequestVMS();
+  await deleteBastionShareableLinksForTheRequestVMS();
 }
 
 main().catch(console.error);

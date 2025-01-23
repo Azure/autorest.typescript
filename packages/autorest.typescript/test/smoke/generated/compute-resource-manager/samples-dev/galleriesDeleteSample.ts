@@ -32,7 +32,7 @@ async function deleteAGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAGallery();
+  await deleteAGallery();
 }
 
 main().catch(console.error);

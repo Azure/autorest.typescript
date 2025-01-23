@@ -36,7 +36,7 @@ async function forcedFailoverOfAFailoverGroupAllowingDataLoss(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  forcedFailoverOfAFailoverGroupAllowingDataLoss();
+  await forcedFailoverOfAFailoverGroupAllowingDataLoss();
 }
 
 main().catch(console.error);

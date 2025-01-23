@@ -30,7 +30,7 @@ async function listAllBastionHostsForAGivenSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllBastionHostsForAGivenSubscription();
+  await listAllBastionHostsForAGivenSubscription();
 }
 
 main().catch(console.error);

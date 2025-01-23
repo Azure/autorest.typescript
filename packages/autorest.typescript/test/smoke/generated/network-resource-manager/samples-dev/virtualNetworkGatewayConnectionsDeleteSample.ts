@@ -33,7 +33,7 @@ async function deleteVirtualNetworkGatewayConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteVirtualNetworkGatewayConnection();
+  await deleteVirtualNetworkGatewayConnection();
 }
 
 main().catch(console.error);

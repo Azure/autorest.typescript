@@ -30,7 +30,7 @@ async function getManagedInstanceTimeZone(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getManagedInstanceTimeZone();
+  await getManagedInstanceTimeZone();
 }
 
 main().catch(console.error);

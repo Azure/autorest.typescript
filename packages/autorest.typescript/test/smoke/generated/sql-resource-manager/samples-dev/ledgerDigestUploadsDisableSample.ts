@@ -37,7 +37,7 @@ async function disablesUploadingLedgerDigestsForADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  disablesUploadingLedgerDigestsForADatabase();
+  await disablesUploadingLedgerDigestsForADatabase();
 }
 
 main().catch(console.error);

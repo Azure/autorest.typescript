@@ -35,7 +35,7 @@ async function deleteAServerCommunicationLink(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAServerCommunicationLink();
+  await deleteAServerCommunicationLink();
 }
 
 main().catch(console.error);

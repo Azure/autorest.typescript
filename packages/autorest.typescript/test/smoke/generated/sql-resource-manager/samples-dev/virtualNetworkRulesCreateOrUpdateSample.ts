@@ -44,7 +44,7 @@ async function createOrUpdateAVirtualNetworkRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateAVirtualNetworkRule();
+  await createOrUpdateAVirtualNetworkRule();
 }
 
 main().catch(console.error);

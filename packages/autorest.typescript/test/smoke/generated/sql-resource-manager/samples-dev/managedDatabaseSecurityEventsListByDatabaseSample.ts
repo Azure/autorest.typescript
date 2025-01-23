@@ -78,8 +78,8 @@ async function getTheManagedDatabaseSecurityEventsWithMinimalParameters(): Promi
 }
 
 async function main(): Promise<void> {
-  getTheManagedDatabaseSecurityEventsWithMaximalParameters();
-  getTheManagedDatabaseSecurityEventsWithMinimalParameters();
+  await getTheManagedDatabaseSecurityEventsWithMaximalParameters();
+  await getTheManagedDatabaseSecurityEventsWithMinimalParameters();
 }
 
 main().catch(console.error);

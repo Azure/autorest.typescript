@@ -35,7 +35,7 @@ async function routeFilterRuleListByRouteFilter(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterRuleListByRouteFilter();
+  await routeFilterRuleListByRouteFilter();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function listBlobServices(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listBlobServices();
+  await listBlobServices();
 }
 
 main().catch(console.error);

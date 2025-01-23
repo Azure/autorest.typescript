@@ -207,7 +207,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
   };
 }
 
-export function getDataProductsOperations(
+export function _getDataProductsOperations(
   context: NetworkAnalyticsApiContext,
 ): DataProductsOperations {
   return {

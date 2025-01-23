@@ -31,7 +31,7 @@ async function listExpressRouteCircuitsInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listExpressRouteCircuitsInAResourceGroup();
+  await listExpressRouteCircuitsInAResourceGroup();
 }
 
 main().catch(console.error);

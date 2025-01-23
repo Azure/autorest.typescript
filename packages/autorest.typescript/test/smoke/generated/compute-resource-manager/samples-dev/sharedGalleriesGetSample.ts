@@ -29,7 +29,7 @@ async function getAGallery(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAGallery();
+  await getAGallery();
 }
 
 main().catch(console.error);

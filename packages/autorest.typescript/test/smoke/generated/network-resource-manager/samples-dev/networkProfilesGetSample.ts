@@ -51,8 +51,8 @@ async function getNetworkProfileWithContainerNetworkInterfaces(): Promise<void> 
 }
 
 async function main(): Promise<void> {
-  getNetworkProfile();
-  getNetworkProfileWithContainerNetworkInterfaces();
+  await getNetworkProfile();
+  await getNetworkProfileWithContainerNetworkInterfaces();
 }
 
 main().catch(console.error);

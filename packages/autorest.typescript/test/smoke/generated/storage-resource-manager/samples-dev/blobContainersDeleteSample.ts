@@ -34,7 +34,7 @@ async function deleteContainers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteContainers();
+  await deleteContainers();
 }
 
 main().catch(console.error);

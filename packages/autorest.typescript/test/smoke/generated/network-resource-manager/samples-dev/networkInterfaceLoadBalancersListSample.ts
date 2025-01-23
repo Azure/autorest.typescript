@@ -35,7 +35,7 @@ async function networkInterfaceLoadBalancerList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  networkInterfaceLoadBalancerList();
+  await networkInterfaceLoadBalancerList();
 }
 
 main().catch(console.error);

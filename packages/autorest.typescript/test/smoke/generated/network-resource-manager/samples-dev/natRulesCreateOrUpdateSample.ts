@@ -46,7 +46,7 @@ async function natRulePut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  natRulePut();
+  await natRulePut();
 }
 
 main().catch(console.error);

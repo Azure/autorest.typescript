@@ -35,7 +35,7 @@ async function storageAccountGetEncryptionScope(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountGetEncryptionScope();
+  await storageAccountGetEncryptionScope();
 }
 
 main().catch(console.error);

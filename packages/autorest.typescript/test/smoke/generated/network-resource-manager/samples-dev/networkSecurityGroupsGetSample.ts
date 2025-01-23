@@ -32,7 +32,7 @@ async function getNetworkSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkSecurityGroup();
+  await getNetworkSecurityGroup();
 }
 
 main().catch(console.error);

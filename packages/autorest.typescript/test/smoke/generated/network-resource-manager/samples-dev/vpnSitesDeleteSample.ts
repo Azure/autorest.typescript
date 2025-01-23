@@ -32,7 +32,7 @@ async function vpnSiteDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSiteDelete();
+  await vpnSiteDelete();
 }
 
 main().catch(console.error);

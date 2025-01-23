@@ -34,7 +34,7 @@ async function queryConnectionMonitor(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queryConnectionMonitor();
+  await queryConnectionMonitor();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function getAvailablePrivateEndpointTypes(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailablePrivateEndpointTypes();
+  await getAvailablePrivateEndpointTypes();
 }
 
 main().catch(console.error);

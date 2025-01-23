@@ -37,7 +37,7 @@ async function listGalleryImageVersionsInAGalleryImageDefinition(): Promise<void
 }
 
 async function main(): Promise<void> {
-  listGalleryImageVersionsInAGalleryImageDefinition();
+  await listGalleryImageVersionsInAGalleryImageDefinition();
 }
 
 main().catch(console.error);

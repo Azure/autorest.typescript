@@ -41,7 +41,7 @@ async function listActiveConnectivityConfigurations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listActiveConnectivityConfigurations();
+  await listActiveConnectivityConfigurations();
 }
 
 main().catch(console.error);

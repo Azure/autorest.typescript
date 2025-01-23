@@ -38,7 +38,7 @@ async function uploadATdeCertificate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  uploadATdeCertificate();
+  await uploadATdeCertificate();
 }
 
 main().catch(console.error);

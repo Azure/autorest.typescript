@@ -34,7 +34,7 @@ async function listSubscriptionUsagesInTheGivenLocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listSubscriptionUsagesInTheGivenLocation();
+  await listSubscriptionUsagesInTheGivenLocation();
 }
 
 main().catch(console.error);

@@ -75,8 +75,8 @@ async function createADiskEncryptionSet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
-  createADiskEncryptionSet();
+  await createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
+  await createADiskEncryptionSet();
 }
 
 main().catch(console.error);

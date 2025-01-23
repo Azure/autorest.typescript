@@ -35,7 +35,7 @@ async function createServerDnsAlias(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createServerDnsAlias();
+  await createServerDnsAlias();
 }
 
 main().catch(console.error);

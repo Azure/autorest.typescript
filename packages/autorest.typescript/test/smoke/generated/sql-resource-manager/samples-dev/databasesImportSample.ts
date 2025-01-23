@@ -88,8 +88,8 @@ async function importsToAnExistingEmptyDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
-  importsToAnExistingEmptyDatabase();
+  await importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
+  await importsToAnExistingEmptyDatabase();
 }
 
 main().catch(console.error);

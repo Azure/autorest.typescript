@@ -35,7 +35,7 @@ async function managedHsmGetPrivateEndpointConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  managedHsmGetPrivateEndpointConnection();
+  await managedHsmGetPrivateEndpointConnection();
 }
 
 main().catch(console.error);

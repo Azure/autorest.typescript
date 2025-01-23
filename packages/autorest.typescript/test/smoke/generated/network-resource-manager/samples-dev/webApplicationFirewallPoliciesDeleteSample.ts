@@ -32,7 +32,7 @@ async function deletesAWafPolicyWithinAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesAWafPolicyWithinAResourceGroup();
+  await deletesAWafPolicyWithinAResourceGroup();
 }
 
 main().catch(console.error);

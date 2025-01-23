@@ -34,7 +34,7 @@ async function queueOperationDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueOperationDelete();
+  await queueOperationDelete();
 }
 
 main().catch(console.error);

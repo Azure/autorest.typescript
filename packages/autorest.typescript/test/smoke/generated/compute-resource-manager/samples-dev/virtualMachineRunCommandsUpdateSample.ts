@@ -41,7 +41,7 @@ async function updateARunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateARunCommand();
+  await updateARunCommand();
 }
 
 main().catch(console.error);

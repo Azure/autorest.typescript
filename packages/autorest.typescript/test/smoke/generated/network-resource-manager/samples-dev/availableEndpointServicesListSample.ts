@@ -31,7 +31,7 @@ async function endpointServicesList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  endpointServicesList();
+  await endpointServicesList();
 }
 
 main().catch(console.error);

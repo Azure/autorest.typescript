@@ -39,7 +39,7 @@ async function getTheShortTermRetentionPolicyForTheDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheShortTermRetentionPolicyForTheDatabase();
+  await getTheShortTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

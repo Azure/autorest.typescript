@@ -35,7 +35,7 @@ async function deleteAJobAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAJobAgent();
+  await deleteAJobAgent();
 }
 
 main().catch(console.error);

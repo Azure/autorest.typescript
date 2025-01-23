@@ -31,7 +31,7 @@ async function listVirtualNetworksInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworksInResourceGroup();
+  await listVirtualNetworksInResourceGroup();
 }
 
 main().catch(console.error);

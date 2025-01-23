@@ -37,7 +37,7 @@ async function updateRouteTableTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateRouteTableTags();
+  await updateRouteTableTags();
 }
 
 main().catch(console.error);

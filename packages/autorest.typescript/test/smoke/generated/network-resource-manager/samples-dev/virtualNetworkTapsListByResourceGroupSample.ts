@@ -33,7 +33,7 @@ async function listVirtualNetworkTapsInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listVirtualNetworkTapsInResourceGroup();
+  await listVirtualNetworkTapsInResourceGroup();
 }
 
 main().catch(console.error);

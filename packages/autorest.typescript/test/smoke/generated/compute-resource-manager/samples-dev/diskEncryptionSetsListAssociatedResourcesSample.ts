@@ -35,7 +35,7 @@ async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet(): Prom
 }
 
 async function main(): Promise<void> {
-  listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
+  await listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
 }
 
 main().catch(console.error);

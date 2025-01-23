@@ -51,7 +51,7 @@ async function createOrUpdateARunCommand(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateARunCommand();
+  await createOrUpdateARunCommand();
 }
 
 main().catch(console.error);

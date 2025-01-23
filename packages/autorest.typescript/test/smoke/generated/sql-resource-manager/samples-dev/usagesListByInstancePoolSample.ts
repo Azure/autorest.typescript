@@ -65,8 +65,8 @@ async function listInstancePoolUsages(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listInstancePoolUsagesExpandedWithChildren();
-  listInstancePoolUsages();
+  await listInstancePoolUsagesExpandedWithChildren();
+  await listInstancePoolUsages();
 }
 
 main().catch(console.error);

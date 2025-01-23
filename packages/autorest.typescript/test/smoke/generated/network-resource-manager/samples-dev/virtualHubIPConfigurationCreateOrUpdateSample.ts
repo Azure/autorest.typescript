@@ -44,7 +44,7 @@ async function virtualHubIPConfigurationPut(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubIPConfigurationPut();
+  await virtualHubIPConfigurationPut();
 }
 
 main().catch(console.error);

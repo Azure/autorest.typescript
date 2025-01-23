@@ -34,7 +34,7 @@ async function loadBalancerLoadBalancingRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  loadBalancerLoadBalancingRuleGet();
+  await loadBalancerLoadBalancingRuleGet();
 }
 
 main().catch(console.error);

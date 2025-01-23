@@ -30,7 +30,7 @@ async function vpnGatewayListBySubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnGatewayListBySubscription();
+  await vpnGatewayListBySubscription();
 }
 
 main().catch(console.error);

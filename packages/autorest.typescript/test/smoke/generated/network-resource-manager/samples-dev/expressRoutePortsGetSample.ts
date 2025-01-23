@@ -32,7 +32,7 @@ async function expressRoutePortGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRoutePortGet();
+  await expressRoutePortGet();
 }
 
 main().catch(console.error);

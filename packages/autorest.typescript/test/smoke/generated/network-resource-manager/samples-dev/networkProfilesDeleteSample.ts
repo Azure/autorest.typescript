@@ -32,7 +32,7 @@ async function deleteNetworkProfile(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkProfile();
+  await deleteNetworkProfile();
 }
 
 main().catch(console.error);

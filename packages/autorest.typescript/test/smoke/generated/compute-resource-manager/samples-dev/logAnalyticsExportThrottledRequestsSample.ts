@@ -43,7 +43,7 @@ async function exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourc
 }
 
 async function main(): Promise<void> {
-  exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
+  await exportLogsWhichContainAllThrottledApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriod();
 }
 
 main().catch(console.error);

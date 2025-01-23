@@ -77,8 +77,8 @@ async function breakALeaseOnAContainer(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  acquireALeaseOnAContainer();
-  breakALeaseOnAContainer();
+  await acquireALeaseOnAContainer();
+  await breakALeaseOnAContainer();
 }
 
 main().catch(console.error);

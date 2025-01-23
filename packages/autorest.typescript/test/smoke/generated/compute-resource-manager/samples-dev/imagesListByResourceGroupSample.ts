@@ -31,7 +31,7 @@ async function listAllVirtualMachineImagesInAResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualMachineImagesInAResourceGroup();
+  await listAllVirtualMachineImagesInAResourceGroup();
 }
 
 main().catch(console.error);

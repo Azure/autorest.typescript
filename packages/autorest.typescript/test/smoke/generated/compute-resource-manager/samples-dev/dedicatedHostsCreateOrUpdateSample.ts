@@ -44,7 +44,7 @@ async function createOrUpdateADedicatedHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateADedicatedHost();
+  await createOrUpdateADedicatedHost();
 }
 
 main().catch(console.error);

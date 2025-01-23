@@ -32,7 +32,7 @@ async function listNetworkManager(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listNetworkManager();
+  await listNetworkManager();
 }
 
 main().catch(console.error);

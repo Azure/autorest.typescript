@@ -31,7 +31,7 @@ async function getManagementGroupNetworkManagerConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getManagementGroupNetworkManagerConnection();
+  await getManagementGroupNetworkManagerConnection();
 }
 
 main().catch(console.error);

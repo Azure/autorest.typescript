@@ -34,7 +34,7 @@ async function routeFilterRuleGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterRuleGet();
+  await routeFilterRuleGet();
 }
 
 main().catch(console.error);

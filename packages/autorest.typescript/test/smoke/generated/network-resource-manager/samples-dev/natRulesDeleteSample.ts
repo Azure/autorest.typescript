@@ -34,7 +34,7 @@ async function natRuleDelete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  natRuleDelete();
+  await natRuleDelete();
 }
 
 main().catch(console.error);

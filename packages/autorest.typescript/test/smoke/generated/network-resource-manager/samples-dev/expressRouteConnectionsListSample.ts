@@ -33,7 +33,7 @@ async function expressRouteConnectionList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  expressRouteConnectionList();
+  await expressRouteConnectionList();
 }
 
 main().catch(console.error);

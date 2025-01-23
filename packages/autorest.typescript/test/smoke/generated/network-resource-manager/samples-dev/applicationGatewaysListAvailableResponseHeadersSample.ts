@@ -29,7 +29,7 @@ async function getAvailableResponseHeaders(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableResponseHeaders();
+  await getAvailableResponseHeaders();
 }
 
 main().catch(console.error);

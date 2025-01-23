@@ -33,7 +33,7 @@ async function listByResourceGroupIPGroups(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listByResourceGroupIPGroups();
+  await listByResourceGroupIPGroups();
 }
 
 main().catch(console.error);

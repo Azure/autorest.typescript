@@ -37,7 +37,7 @@ async function updateNetworkInterfaceTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateNetworkInterfaceTags();
+  await updateNetworkInterfaceTags();
 }
 
 main().catch(console.error);

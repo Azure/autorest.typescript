@@ -29,7 +29,7 @@ async function getSwapResource(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getSwapResource();
+  await getSwapResource();
 }
 
 main().catch(console.error);

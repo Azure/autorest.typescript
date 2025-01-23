@@ -42,7 +42,7 @@ async function exportLogsWhichContainAllApiRequestsMadeToComputeResourceProvider
 }
 
 async function main(): Promise<void> {
-  exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
+  await exportLogsWhichContainAllApiRequestsMadeToComputeResourceProviderWithinTheGivenTimePeriodBrokenDownByIntervals();
 }
 
 main().catch(console.error);

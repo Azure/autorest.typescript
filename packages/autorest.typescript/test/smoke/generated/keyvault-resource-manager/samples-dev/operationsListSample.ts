@@ -31,7 +31,7 @@ async function listsAvailableRestApiOperations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listsAvailableRestApiOperations();
+  await listsAvailableRestApiOperations();
 }
 
 main().catch(console.error);

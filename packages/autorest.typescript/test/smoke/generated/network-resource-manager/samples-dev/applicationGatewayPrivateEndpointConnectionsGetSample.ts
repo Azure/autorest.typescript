@@ -34,7 +34,7 @@ async function getApplicationGatewayPrivateEndpointConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getApplicationGatewayPrivateEndpointConnection();
+  await getApplicationGatewayPrivateEndpointConnection();
 }
 
 main().catch(console.error);

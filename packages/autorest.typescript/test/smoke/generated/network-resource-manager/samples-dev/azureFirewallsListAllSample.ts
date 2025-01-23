@@ -30,7 +30,7 @@ async function listAllAzureFirewallsForAGivenSubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllAzureFirewallsForAGivenSubscription();
+  await listAllAzureFirewallsForAGivenSubscription();
 }
 
 main().catch(console.error);

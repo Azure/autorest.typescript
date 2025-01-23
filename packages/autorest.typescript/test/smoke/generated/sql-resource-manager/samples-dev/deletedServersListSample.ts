@@ -31,7 +31,7 @@ async function listDeletedServersInASubscription(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDeletedServersInASubscription();
+  await listDeletedServersInASubscription();
 }
 
 main().catch(console.error);

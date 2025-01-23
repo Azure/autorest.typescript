@@ -36,7 +36,7 @@ async function getsADatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsADatabase();
+  await getsADatabase();
 }
 
 main().catch(console.error);

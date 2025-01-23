@@ -38,7 +38,7 @@ async function managedDatabaseRestoreDetails(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  managedDatabaseRestoreDetails();
+  await managedDatabaseRestoreDetails();
 }
 
 main().catch(console.error);

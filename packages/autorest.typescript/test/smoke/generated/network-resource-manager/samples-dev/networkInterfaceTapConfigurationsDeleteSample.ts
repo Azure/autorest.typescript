@@ -35,7 +35,7 @@ async function deleteTapConfiguration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteTapConfiguration();
+  await deleteTapConfiguration();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function listDeletedServers(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listDeletedServers();
+  await listDeletedServers();
 }
 
 main().catch(console.error);

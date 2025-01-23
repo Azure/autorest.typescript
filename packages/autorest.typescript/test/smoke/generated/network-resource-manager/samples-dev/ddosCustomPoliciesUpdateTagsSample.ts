@@ -37,7 +37,7 @@ async function dDoSCustomPolicyUpdateTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  dDoSCustomPolicyUpdateTags();
+  await dDoSCustomPolicyUpdateTags();
 }
 
 main().catch(console.error);

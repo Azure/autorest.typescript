@@ -43,7 +43,7 @@ async function getDdosProtectionStatusOfAVirtualNetwork(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDdosProtectionStatusOfAVirtualNetwork();
+  await getDdosProtectionStatusOfAVirtualNetwork();
 }
 
 main().catch(console.error);

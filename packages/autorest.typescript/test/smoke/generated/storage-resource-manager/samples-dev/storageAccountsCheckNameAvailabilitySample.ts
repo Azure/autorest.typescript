@@ -35,7 +35,7 @@ async function storageAccountCheckNameAvailability(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountCheckNameAvailability();
+  await storageAccountCheckNameAvailability();
 }
 
 main().catch(console.error);

@@ -47,7 +47,7 @@ async function setVirtualNetworkGatewayVpnClientIpsecParameters(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  setVirtualNetworkGatewayVpnClientIpsecParameters();
+  await setVirtualNetworkGatewayVpnClientIpsecParameters();
 }
 
 main().catch(console.error);

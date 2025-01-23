@@ -32,7 +32,7 @@ async function storageAccountRevokeUserDelegationKeys(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountRevokeUserDelegationKeys();
+  await storageAccountRevokeUserDelegationKeys();
 }
 
 main().catch(console.error);

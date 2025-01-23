@@ -35,7 +35,7 @@ async function deleteNetworkManagerScopeConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteNetworkManagerScopeConnection();
+  await deleteNetworkManagerScopeConnection();
 }
 
 main().catch(console.error);

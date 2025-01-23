@@ -35,7 +35,7 @@ async function storageAccountHierarchicalNamespaceMigration(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountHierarchicalNamespaceMigration();
+  await storageAccountHierarchicalNamespaceMigration();
 }
 
 main().catch(console.error);

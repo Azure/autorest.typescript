@@ -35,7 +35,7 @@ async function listPrivateLinkServiceInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listPrivateLinkServiceInResourceGroup();
+  await listPrivateLinkServiceInResourceGroup();
 }
 
 main().catch(console.error);

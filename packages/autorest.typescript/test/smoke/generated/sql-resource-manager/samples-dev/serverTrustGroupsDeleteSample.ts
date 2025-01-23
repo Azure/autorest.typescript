@@ -35,7 +35,7 @@ async function dropServerTrustGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  dropServerTrustGroup();
+  await dropServerTrustGroup();
 }
 
 main().catch(console.error);

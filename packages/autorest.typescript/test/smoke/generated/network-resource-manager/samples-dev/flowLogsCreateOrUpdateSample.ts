@@ -47,7 +47,7 @@ async function createOrUpdateFlowLog(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createOrUpdateFlowLog();
+  await createOrUpdateFlowLog();
 }
 
 main().catch(console.error);

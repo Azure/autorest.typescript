@@ -31,7 +31,7 @@ async function retrieveAVault(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  retrieveAVault();
+  await retrieveAVault();
 }
 
 main().catch(console.error);

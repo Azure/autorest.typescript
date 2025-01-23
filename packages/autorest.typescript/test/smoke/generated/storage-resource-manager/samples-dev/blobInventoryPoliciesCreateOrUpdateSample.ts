@@ -97,7 +97,7 @@ async function storageAccountSetBlobInventoryPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  storageAccountSetBlobInventoryPolicy();
+  await storageAccountSetBlobInventoryPolicy();
 }
 
 main().catch(console.error);

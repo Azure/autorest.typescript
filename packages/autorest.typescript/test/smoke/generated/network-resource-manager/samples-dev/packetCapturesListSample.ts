@@ -35,7 +35,7 @@ async function listPacketCaptures(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listPacketCaptures();
+  await listPacketCaptures();
 }
 
 main().catch(console.error);

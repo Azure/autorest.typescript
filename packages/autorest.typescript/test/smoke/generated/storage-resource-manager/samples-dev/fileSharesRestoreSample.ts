@@ -42,7 +42,7 @@ async function restoreShares(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  restoreShares();
+  await restoreShares();
 }
 
 main().catch(console.error);

@@ -71,9 +71,9 @@ async function listsAllAvailableResourceSkUsWithExtendedLocationInformation(): P
 }
 
 async function main(): Promise<void> {
-  listsAllAvailableResourceSkUs();
-  listsAllAvailableResourceSkUsForTheSpecifiedRegion();
-  listsAllAvailableResourceSkUsWithExtendedLocationInformation();
+  await listsAllAvailableResourceSkUs();
+  await listsAllAvailableResourceSkUsForTheSpecifiedRegion();
+  await listsAllAvailableResourceSkUsWithExtendedLocationInformation();
 }
 
 main().catch(console.error);

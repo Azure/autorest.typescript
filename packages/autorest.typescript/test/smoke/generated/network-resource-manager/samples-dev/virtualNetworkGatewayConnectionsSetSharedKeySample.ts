@@ -38,7 +38,7 @@ async function setVirtualNetworkGatewayConnectionSharedKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  setVirtualNetworkGatewayConnectionSharedKey();
+  await setVirtualNetworkGatewayConnectionSharedKey();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listResourceGroupNetworkProfiles(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listResourceGroupNetworkProfiles();
+  await listResourceGroupNetworkProfiles();
 }
 
 main().catch(console.error);

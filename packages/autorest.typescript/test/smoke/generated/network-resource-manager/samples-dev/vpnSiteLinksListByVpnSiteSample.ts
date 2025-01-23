@@ -35,7 +35,7 @@ async function vpnSiteLinkListByVpnSite(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  vpnSiteLinkListByVpnSite();
+  await vpnSiteLinkListByVpnSite();
 }
 
 main().catch(console.error);

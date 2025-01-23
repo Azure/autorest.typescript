@@ -107,7 +107,7 @@ async function createFirewallPolicy(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createFirewallPolicy();
+  await createFirewallPolicy();
 }
 
 main().catch(console.error);

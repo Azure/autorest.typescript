@@ -39,7 +39,7 @@ async function updateExistingCloudServiceToAddTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateExistingCloudServiceToAddTags();
+  await updateExistingCloudServiceToAddTags();
 }
 
 main().catch(console.error);

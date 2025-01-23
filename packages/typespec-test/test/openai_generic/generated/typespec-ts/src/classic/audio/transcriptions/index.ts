@@ -26,7 +26,7 @@ function _getAudioTranscriptions(context: OpenAIContext) {
   };
 }
 
-export function getAudioTranscriptionsOperations(
+export function _getAudioTranscriptionsOperations(
   context: OpenAIContext,
 ): AudioTranscriptionsOperations {
   return {

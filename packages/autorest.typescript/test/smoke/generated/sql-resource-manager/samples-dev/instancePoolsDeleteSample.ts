@@ -33,7 +33,7 @@ async function deleteAnInstancePool(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteAnInstancePool();
+  await deleteAnInstancePool();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function listAllVirtualRouterForAGivenResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllVirtualRouterForAGivenResourceGroup();
+  await listAllVirtualRouterForAGivenResourceGroup();
 }
 
 main().catch(console.error);

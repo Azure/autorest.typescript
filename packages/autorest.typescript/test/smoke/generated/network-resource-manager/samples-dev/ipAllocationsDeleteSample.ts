@@ -32,7 +32,7 @@ async function deleteIPAllocation(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteIPAllocation();
+  await deleteIPAllocation();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function queueOperationPatch(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueOperationPatch();
+  await queueOperationPatch();
 }
 
 main().catch(console.error);

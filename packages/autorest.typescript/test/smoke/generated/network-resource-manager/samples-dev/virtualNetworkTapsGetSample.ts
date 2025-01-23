@@ -32,7 +32,7 @@ async function getVirtualNetworkTap(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkTap();
+  await getVirtualNetworkTap();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function createKubeEnvironments(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createKubeEnvironments();
+  await createKubeEnvironments();
 }
 
 main().catch(console.error);

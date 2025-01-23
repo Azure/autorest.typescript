@@ -164,10 +164,10 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource(): Promise<vo
 }
 
 async function main(): Promise<void> {
-  storageAccountCreateObjectReplicationPolicyOnDestination();
-  storageAccountCreateObjectReplicationPolicyOnSource();
-  storageAccountUpdateObjectReplicationPolicyOnDestination();
-  storageAccountUpdateObjectReplicationPolicyOnSource();
+  await storageAccountCreateObjectReplicationPolicyOnDestination();
+  await storageAccountCreateObjectReplicationPolicyOnSource();
+  await storageAccountUpdateObjectReplicationPolicyOnDestination();
+  await storageAccountUpdateObjectReplicationPolicyOnSource();
 }
 
 main().catch(console.error);

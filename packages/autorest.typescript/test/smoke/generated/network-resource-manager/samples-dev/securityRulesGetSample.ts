@@ -34,7 +34,7 @@ async function getNetworkSecurityRuleInNetworkSecurityGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getNetworkSecurityRuleInNetworkSecurityGroup();
+  await getNetworkSecurityRuleInNetworkSecurityGroup();
 }
 
 main().catch(console.error);

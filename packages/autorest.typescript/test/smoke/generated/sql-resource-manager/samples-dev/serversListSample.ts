@@ -49,8 +49,8 @@ async function listServersWithExpandEqualsAdministrators(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listServers();
-  listServersWithExpandEqualsAdministrators();
+  await listServers();
+  await listServersWithExpandEqualsAdministrators();
 }
 
 main().catch(console.error);

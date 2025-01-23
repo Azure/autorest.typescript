@@ -41,7 +41,7 @@ async function updateExpressRouteCrossConnection(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateExpressRouteCrossConnection();
+  await updateExpressRouteCrossConnection();
 }
 
 main().catch(console.error);

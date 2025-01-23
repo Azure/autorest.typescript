@@ -35,7 +35,7 @@ async function natRuleList(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  natRuleList();
+  await natRuleList();
 }
 
 main().catch(console.error);

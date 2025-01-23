@@ -51,8 +51,8 @@ async function getInstanceViewOfAVirtualMachinePlacedOnADedicatedHostGroupThroug
 }
 
 async function main(): Promise<void> {
-  getVirtualMachineInstanceView();
-  getInstanceViewOfAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlacement();
+  await getVirtualMachineInstanceView();
+  await getInstanceViewOfAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlacement();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function deleteServerDnsAlias(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteServerDnsAlias();
+  await deleteServerDnsAlias();
 }
 
 main().catch(console.error);

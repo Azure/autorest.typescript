@@ -43,7 +43,7 @@ async function getsTheSensitivityLabelOfAGivenColumn(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getsTheSensitivityLabelOfAGivenColumn();
+  await getsTheSensitivityLabelOfAGivenColumn();
 }
 
 main().catch(console.error);

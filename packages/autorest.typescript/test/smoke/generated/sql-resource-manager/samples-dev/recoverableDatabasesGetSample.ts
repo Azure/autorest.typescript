@@ -36,7 +36,7 @@ async function getARecoverableDatabase(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getARecoverableDatabase();
+  await getARecoverableDatabase();
 }
 
 main().catch(console.error);

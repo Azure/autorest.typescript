@@ -35,7 +35,7 @@ async function deletesAOutboundFirewallRuleWithAGivenName(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deletesAOutboundFirewallRuleWithAGivenName();
+  await deletesAOutboundFirewallRuleWithAGivenName();
 }
 
 main().catch(console.error);

@@ -35,7 +35,7 @@ async function listUpdateDomainsInCloudService(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listUpdateDomainsInCloudService();
+  await listUpdateDomainsInCloudService();
 }
 
 main().catch(console.error);

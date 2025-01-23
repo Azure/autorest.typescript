@@ -34,7 +34,7 @@ async function routeTableGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeTableGet();
+  await routeTableGet();
 }
 
 main().catch(console.error);

@@ -32,7 +32,7 @@ async function deleteLocalNetworkGateway(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  deleteLocalNetworkGateway();
+  await deleteLocalNetworkGateway();
 }
 
 main().catch(console.error);

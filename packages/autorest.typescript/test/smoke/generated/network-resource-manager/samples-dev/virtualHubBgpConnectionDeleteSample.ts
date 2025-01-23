@@ -34,7 +34,7 @@ async function virtualHubRouteTableV2Delete(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualHubRouteTableV2Delete();
+  await virtualHubRouteTableV2Delete();
 }
 
 main().catch(console.error);

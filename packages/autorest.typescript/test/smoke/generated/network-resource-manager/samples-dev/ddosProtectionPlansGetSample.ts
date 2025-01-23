@@ -32,7 +32,7 @@ async function getDDoSProtectionPlan(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getDDoSProtectionPlan();
+  await getDDoSProtectionPlan();
 }
 
 main().catch(console.error);

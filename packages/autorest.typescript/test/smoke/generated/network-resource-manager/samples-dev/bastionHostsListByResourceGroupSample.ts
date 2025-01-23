@@ -33,7 +33,7 @@ async function listAllBastionHostsForAGivenResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listAllBastionHostsForAGivenResourceGroup();
+  await listAllBastionHostsForAGivenResourceGroup();
 }
 
 main().catch(console.error);

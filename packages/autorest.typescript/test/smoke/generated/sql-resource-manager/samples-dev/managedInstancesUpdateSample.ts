@@ -100,9 +100,9 @@ async function updateManagedInstanceWithMinimalProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy();
-  updateManagedInstanceWithAllProperties();
-  updateManagedInstanceWithMinimalProperties();
+  await removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy();
+  await updateManagedInstanceWithAllProperties();
+  await updateManagedInstanceWithMinimalProperties();
 }
 
 main().catch(console.error);

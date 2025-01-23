@@ -40,7 +40,7 @@ async function refreshASyncMemberDatabaseSchema(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  refreshASyncMemberDatabaseSchema();
+  await refreshASyncMemberDatabaseSchema();
 }
 
 main().catch(console.error);

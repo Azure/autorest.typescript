@@ -35,7 +35,7 @@ async function getTheEncryptionProtector(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getTheEncryptionProtector();
+  await getTheEncryptionProtector();
 }
 
 main().catch(console.error);

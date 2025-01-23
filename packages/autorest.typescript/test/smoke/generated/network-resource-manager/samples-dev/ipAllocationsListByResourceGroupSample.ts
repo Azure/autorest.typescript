@@ -33,7 +33,7 @@ async function listIPAllocationsInResourceGroup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  listIPAllocationsInResourceGroup();
+  await listIPAllocationsInResourceGroup();
 }
 
 main().catch(console.error);

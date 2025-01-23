@@ -41,7 +41,7 @@ async function disablesSensitivityRecommendationsOnAGivenColumn(): Promise<void>
 }
 
 async function main(): Promise<void> {
-  disablesSensitivityRecommendationsOnAGivenColumn();
+  await disablesSensitivityRecommendationsOnAGivenColumn();
 }
 
 main().catch(console.error);

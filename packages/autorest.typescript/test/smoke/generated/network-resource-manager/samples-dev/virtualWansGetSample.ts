@@ -32,7 +32,7 @@ async function virtualWanGet(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  virtualWanGet();
+  await virtualWanGet();
 }
 
 main().catch(console.error);

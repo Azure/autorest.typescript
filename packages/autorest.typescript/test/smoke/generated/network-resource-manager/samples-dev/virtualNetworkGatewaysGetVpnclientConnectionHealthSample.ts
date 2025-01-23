@@ -33,7 +33,7 @@ async function getVirtualNetworkGatewayVpnclientConnectionHealth(): Promise<void
 }
 
 async function main(): Promise<void> {
-  getVirtualNetworkGatewayVpnclientConnectionHealth();
+  await getVirtualNetworkGatewayVpnclientConnectionHealth();
 }
 
 main().catch(console.error);

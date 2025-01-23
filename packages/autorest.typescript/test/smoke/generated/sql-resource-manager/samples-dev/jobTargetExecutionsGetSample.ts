@@ -43,7 +43,7 @@ async function getAJobStepTargetExecution(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAJobStepTargetExecution();
+  await getAJobStepTargetExecution();
 }
 
 main().catch(console.error);

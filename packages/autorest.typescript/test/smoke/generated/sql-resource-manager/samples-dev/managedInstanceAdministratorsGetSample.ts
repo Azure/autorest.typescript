@@ -36,7 +36,7 @@ async function getAdministratorOfManagedInstance(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAdministratorOfManagedInstance();
+  await getAdministratorOfManagedInstance();
 }
 
 main().catch(console.error);

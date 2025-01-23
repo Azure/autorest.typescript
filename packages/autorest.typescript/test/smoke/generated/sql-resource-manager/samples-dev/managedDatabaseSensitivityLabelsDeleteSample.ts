@@ -41,7 +41,7 @@ async function deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase(): Pro
 }
 
 async function main(): Promise<void> {
-  deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
+  await deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
 }
 
 main().catch(console.error);

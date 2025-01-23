@@ -64,8 +64,8 @@ async function queueOperationPutWithMetadata(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  queueOperationPut();
-  queueOperationPutWithMetadata();
+  await queueOperationPut();
+  await queueOperationPutWithMetadata();
 }
 
 main().catch(console.error);

@@ -36,7 +36,7 @@ async function getASyncAgent(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getASyncAgent();
+  await getASyncAgent();
 }
 
 main().catch(console.error);

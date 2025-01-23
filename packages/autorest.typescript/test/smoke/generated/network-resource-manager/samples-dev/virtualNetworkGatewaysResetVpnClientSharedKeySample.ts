@@ -33,7 +33,7 @@ async function resetVpnClientSharedKey(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  resetVpnClientSharedKey();
+  await resetVpnClientSharedKey();
 }
 
 main().catch(console.error);

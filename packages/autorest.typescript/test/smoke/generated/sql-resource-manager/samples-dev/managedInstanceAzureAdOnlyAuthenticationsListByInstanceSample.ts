@@ -37,7 +37,7 @@ async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject(): Promis
 }
 
 async function main(): Promise<void> {
-  getsAListOfAzureActiveDirectoryOnlyAuthenticationObject();
+  await getsAListOfAzureActiveDirectoryOnlyAuthenticationObject();
 }
 
 main().catch(console.error);

@@ -45,7 +45,7 @@ async function createSecurityPartnerProvider(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createSecurityPartnerProvider();
+  await createSecurityPartnerProvider();
 }
 
 main().catch(console.error);

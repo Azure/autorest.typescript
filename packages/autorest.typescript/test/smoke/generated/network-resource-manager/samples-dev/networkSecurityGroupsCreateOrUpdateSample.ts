@@ -73,8 +73,8 @@ async function createNetworkSecurityGroupWithRule(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  createNetworkSecurityGroup();
-  createNetworkSecurityGroupWithRule();
+  await createNetworkSecurityGroup();
+  await createNetworkSecurityGroupWithRule();
 }
 
 main().catch(console.error);

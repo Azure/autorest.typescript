@@ -37,7 +37,7 @@ async function updateSecurityPartnerProviderTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateSecurityPartnerProviderTags();
+  await updateSecurityPartnerProviderTags();
 }
 
 main().catch(console.error);

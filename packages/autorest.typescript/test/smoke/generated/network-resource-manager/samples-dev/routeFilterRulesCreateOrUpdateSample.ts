@@ -43,7 +43,7 @@ async function routeFilterRuleCreate(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  routeFilterRuleCreate();
+  await routeFilterRuleCreate();
 }
 
 main().catch(console.error);

@@ -1,5 +1,7 @@
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
+
 export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
@@ -98,3 +100,4 @@ export {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
+export { FileContents };

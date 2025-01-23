@@ -37,7 +37,7 @@ async function updateLoadBalancerTags(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  updateLoadBalancerTags();
+  await updateLoadBalancerTags();
 }
 
 main().catch(console.error);

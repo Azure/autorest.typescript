@@ -37,7 +37,7 @@ async function getAKeyVersion(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAKeyVersion();
+  await getAKeyVersion();
 }
 
 main().catch(console.error);

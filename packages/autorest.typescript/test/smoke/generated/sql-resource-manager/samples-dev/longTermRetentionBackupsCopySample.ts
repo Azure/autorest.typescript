@@ -47,7 +47,7 @@ async function copyTheLongTermRetentionBackup(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  copyTheLongTermRetentionBackup();
+  await copyTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

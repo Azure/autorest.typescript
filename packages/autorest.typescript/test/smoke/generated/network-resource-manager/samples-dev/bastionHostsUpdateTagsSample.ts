@@ -37,7 +37,7 @@ async function patchBastionHost(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  patchBastionHost();
+  await patchBastionHost();
 }
 
 main().catch(console.error);

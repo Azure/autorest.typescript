@@ -38,7 +38,7 @@ async function cancelASyncGroupSynchronization(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  cancelASyncGroupSynchronization();
+  await cancelASyncGroupSynchronization();
 }
 
 main().catch(console.error);

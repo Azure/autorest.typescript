@@ -37,7 +37,7 @@ async function obtainQueryProperties(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  obtainQueryProperties();
+  await obtainQueryProperties();
 }
 
 main().catch(console.error);

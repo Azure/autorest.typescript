@@ -31,7 +31,7 @@ async function getAvailableDelegations(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  getAvailableDelegations();
+  await getAvailableDelegations();
 }
 
 main().catch(console.error);
